@@ -15,6 +15,7 @@
  */
 
 using System;
+using System.ComponentModel;
 using System.Diagnostics;
 
 namespace ElmSharp.Wearable
@@ -41,6 +42,17 @@ namespace ElmSharp.Wearable
         }
 
         /// <summary>
+        /// Creates and initializes a new instance of the Circle GenList class.
+        /// </summary>
+        /// <param name="parent">The parent of new Circle CircleGenList instance</param>
+        [Obsolete("It is not safe for guess circle surface from parent and create new surface by every new widget")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public CircleGenList(EvasObject parent) : this(parent, CircleSurface.CreateCircleSurface(parent))
+        {
+            ((IRotaryActionWidget)this).Activate();
+        }
+
+        /// <summary>
         /// Gets the handle for Circle Widget.
         /// </summary>
         public virtual IntPtr CircleHandle => _circleHandle;
@@ -49,6 +61,17 @@ namespace ElmSharp.Wearable
         /// Gets the handle for Circle Surface used in this widget
         /// </summary>
         public virtual CircleSurface CircleSurface => _surface;
+
+        /// <summary>
+        /// Sets or gets disabled state of this widget.
+        /// </summary>
+        [Obsolete("Use IsEnabled")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public bool Disabled
+        {
+            get => !IsEnabled;
+            set => IsEnabled = !value;
+        }
 
         /// <summary>
         /// Sets or gets the state of the widget, which might be enabled or disabled.

@@ -46,6 +46,17 @@ namespace ElmSharp.Wearable
             _handle = IntPtr.Zero;
         }
 
+        /// <summary>
+        /// Gets the handle for CircleSurface
+        /// </summary>
         public IntPtr Handle => _handle;
+
+        internal static CircleSurface CreateCircleSurface(EvasObject obj)
+        {
+            if (obj is Conformant) return new CircleSurface(obj as Conformant);
+            else if (obj is Naviframe) return new CircleSurface(obj as Naviframe);
+            else if (obj is Layout) return new CircleSurface(obj as Layout);
+            else return new CircleSurface();
+        }
     }
 }

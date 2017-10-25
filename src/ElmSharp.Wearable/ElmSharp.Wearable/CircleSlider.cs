@@ -15,6 +15,7 @@
  */
 
 using System;
+using System.ComponentModel;
 using System.Diagnostics;
 
 namespace ElmSharp.Wearable
@@ -37,6 +38,17 @@ namespace ElmSharp.Wearable
             Debug.Assert(parent == null || surface == null || parent.IsRealized);
             _surface = surface;
             Realize(parent);
+        }
+
+        /// <summary>
+        /// Creates and initializes a new instance of the Circle Slider class.
+        /// </summary>
+        /// <param name="parent">The parent of new Circle CircleSlider instance</param>
+        [Obsolete("It is not safe for guess circle surface from parent and create new surface by every new widget")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public CircleSlider(EvasObject parent) : this(parent, CircleSurface.CreateCircleSurface(parent))
+        {
+            ((IRotaryActionWidget)this).Activate();
         }
 
         /// <summary>
@@ -71,6 +83,17 @@ namespace ElmSharp.Wearable
             {
                 Interop.Eext.eext_circle_object_slider_step_set(CircleHandle, (double)value);
             }
+        }
+
+        /// <summary>
+        /// Sets or gets disabled state of this widget.
+        /// </summary>
+        [Obsolete("Use IsEnabled")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public bool Disabled
+        {
+            get => !IsEnabled;
+            set => IsEnabled = !value;
         }
 
         /// <summary>
