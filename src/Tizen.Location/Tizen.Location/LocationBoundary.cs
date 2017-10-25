@@ -352,14 +352,14 @@ namespace Tizen.Location
     {
         /// <summary>
         /// Latitude component of the coordinate.
-        /// Should have a value between [-90.0 ~ 90.0] (degrees).
+        /// Should have a value between [-90.0 ~ 90.0] \(degrees).
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public double Latitude;
 
         /// <summary>
         /// Longitude component of the coordinate.
-        /// Should have a value between [-180.0 ~ 180.0] (degrees).
+        /// Should have a value between [-180.0 ~ 180.0] \(degrees).
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public double Longitude;

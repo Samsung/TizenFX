@@ -46,8 +46,8 @@ namespace Tizen.Location
         /// The parameterized constructor of the Location class.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        /// <param name="latitude">The latitude component of the device co-ordinate [-90.0 ~ 90.0] (degrees).</param>
-        /// <param name="longitude">The longitude component of the device co-ordinate[-180.0 ~ 180.0] (degrees).</param>
+        /// <param name="latitude">The latitude component of the device co-ordinate [-90.0 ~ 90.0] \(degrees).</param>
+        /// <param name="longitude">The longitude component of the device co-ordinate[-180.0 ~ 180.0] \(degrees).</param>
         /// <param name="altitude">The altitude value.</param>
         /// <param name="accuracy">The accuracy in meters.</param>
         /// <param name="speed">The device speed.</param>
@@ -66,7 +66,7 @@ namespace Tizen.Location
         }
 
         /// <summary>
-        /// The current latitude [-90.0 ~ 90.0] (degrees).
+        /// The current latitude [-90.0 ~ 90.0] \(degrees).
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public double Latitude
@@ -92,7 +92,7 @@ namespace Tizen.Location
         }
 
         /// <summary>
-        /// The current longitude [-180.0 ~ 180.0] (degrees).
+        /// The current longitude [-180.0 ~ 180.0] \(degrees).
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public double Longitude
@@ -202,10 +202,10 @@ namespace Tizen.Location
         /// Gets the distance between the two given coordinates.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        /// <param name="startLatitude">The latitude of the source location [-90.0 ~ 90.0] (degrees).</param>
-        /// <param name="startLongitude">The longitude of the source location[-180.0 ~ 180.0] (degrees).</param>
-        /// <param name="endLatitude">The latitude of the source location [-90.0 ~ 90.0] (degrees).</param>
-        /// <param name="endLongitude">The longitude of the source location[-180.0 ~ 180.0] (degrees).</param>
+        /// <param name="startLatitude">The latitude of the source location [-90.0 ~ 90.0] \(degrees).</param>
+        /// <param name="startLongitude">The longitude of the source location[-180.0 ~ 180.0] \(degrees).</param>
+        /// <param name="endLatitude">The latitude of the source location [-90.0 ~ 90.0] \(degrees).</param>
+        /// <param name="endLongitude">The longitude of the source location[-180.0 ~ 180.0] \(degrees).</param>
         /// <returns>Returns the distance between the source and the destination.</returns>
         /// <exception cref="ArgumentException">Thrown when an invalid argument is used.</exception>
         /// <exception cref="NotSupportedException">Thrown when the location is not supported.</exception>
