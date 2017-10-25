@@ -70,6 +70,37 @@ namespace Tizen.NUI
             //Release your own unmanaged resources here.
             //You should not access any managed member here except static instance.
             //because the execution order of Finalizes is non-deterministic.
+
+            if (_widgetAddedEventCallback != null)
+            {
+                this.WidgetAddedSignal().Disconnect(_widgetAddedEventCallback);
+            }
+
+            if (_widgetContentUpdatedEventCallback != null)
+            {
+                this.WidgetContentUpdatedSignal().Disconnect(_widgetContentUpdatedEventCallback);
+            }
+
+            if (_widgetCreationAbortedEventCallback != null)
+            {
+                this.WidgetCreationAbortedSignal().Disconnect(_widgetCreationAbortedEventCallback);
+            }
+
+            if (_widgetDeletedEventCallback != null)
+            {
+                this.WidgetDeletedSignal().Disconnect(_widgetDeletedEventCallback);
+            }
+
+            if (_widgetFaultedEventCallback != null)
+            {
+                this.WidgetFaultedSignal().Disconnect(_widgetFaultedEventCallback);
+            }
+
+            if (_widgetUpdatePeriodChangedEventCallback != null)
+            {
+                this.WidgetUpdatePeriodChangedSignal().Disconnect(_widgetUpdatePeriodChangedEventCallback);
+            }
+
             if (swigCPtr.Handle != global::System.IntPtr.Zero)
             {
                 if (swigCMemOwn)
@@ -79,7 +110,7 @@ namespace Tizen.NUI
                 }
                 swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
             }
-            base.Dispose();
+            base.Dispose(type);
         }
 
         internal new class Property

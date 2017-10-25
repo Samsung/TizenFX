@@ -17,7 +17,6 @@
 using System;
 using System.ComponentModel;
 using System.Runtime.InteropServices;
-using Tizen.Applications;
 
 namespace Tizen.NUI
 {
@@ -60,6 +59,35 @@ namespace Tizen.NUI
             //Release your own unmanaged resources here.
             //You should not access any managed member here except static instance.
             //because the execution order of Finalizes is non-deterministic.
+            if (_createCallback != null)
+            {
+                this.CreateSignal().Disconnect(_createCallback);
+            }
+
+            if (_pauseCallback != null)
+            {
+                this.PauseSignal().Disconnect(_pauseCallback);
+            }
+
+            if (_resizeCallback != null)
+            {
+                this.ResizeSignal().Disconnect(_resizeCallback);
+            }
+
+            if (_resumeCallback != null)
+            {
+                this.ResumeSignal().Disconnect(_resumeCallback);
+            }
+
+            if (_terminateCallback != null)
+            {
+                this.TerminateSignal().Disconnect(_terminateCallback);
+            }
+
+            if (_updateCallback != null)
+            {
+                this.UpdateSignal().Disconnect(_updateCallback);
+            }
 
             if (swigCPtr.Handle != global::System.IntPtr.Zero)
             {
