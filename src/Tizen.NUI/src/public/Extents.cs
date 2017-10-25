@@ -23,6 +23,9 @@ namespace Tizen.NUI
     public class Extents : global::System.IDisposable
     {
         private global::System.Runtime.InteropServices.HandleRef swigCPtr;
+        /// <summary>
+        /// Extents class
+        /// </summary>
         protected bool swigCMemOwn;
 
         internal Extents(global::System.IntPtr cPtr, bool cMemoryOwn)
@@ -38,7 +41,9 @@ namespace Tizen.NUI
 
         //A Flag to check who called Dispose(). (By User or DisposeQueue)
         private bool isDisposeQueued = false;
-        //A Flat to check if it is already disposed.
+        /// <summary>
+        /// A Flat to check if it is already disposed.
+        /// </summary>
         protected bool disposed = false;
 
         /// <summary>
@@ -77,6 +82,10 @@ namespace Tizen.NUI
             }
         }
 
+        /// <summary>
+        /// To make a Extents instance be disposed.
+        /// </summary>
+        /// <param name="type">Extents type</param>
         protected virtual void Dispose(DisposeTypes type)
         {
             if (disposed)

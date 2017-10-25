@@ -46,7 +46,6 @@ namespace Tizen.NUI
         /// Please DO NOT use! This will be deprecated!
         /// Dispose() method in Singletone classes (ex: FocusManager, StyleManager, VisualFactory, IMFManager, TtsPlayer, Window) is not required.
         /// Because it is Sigletone, so it is alive for one thread until the NUI is terminated, so it never be disposed.
-        [Obsolete("Please DO NOT use! This will be Deprecated!")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected override void Dispose(DisposeTypes type)
         {
@@ -1283,7 +1282,6 @@ namespace Tizen.NUI
         /// ImfManager event received signal.
         /// </summary>
         //Please do not use! this will be internal
-        [Obsolete("Please DO NOT use! This will be internal method!")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public ImfEventSignalType EventReceivedSignal()
         {

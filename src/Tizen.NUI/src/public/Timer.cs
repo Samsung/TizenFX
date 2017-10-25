@@ -152,7 +152,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        ///// Downcasts a handle to Timer handle.
+        /// Downcasts a handle to Timer handle.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// Please do not use! this will be deprecated!

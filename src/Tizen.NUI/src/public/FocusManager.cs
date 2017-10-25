@@ -48,7 +48,6 @@ namespace Tizen.NUI
         /// Please DO NOT use! This will be deprecated!
         /// Dispose() method in Singletone classes (ex: FocusManager, StyleManager, VisualFactory, IMFManager, TtsPlayer, Window) is not required.
         /// Because it is Sigletone, so it is alive for one thread until the NUI is terminated, so it never be disposed.
-        [Obsolete("Please DO NOT use! This will be Deprecated!")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected override void Dispose(DisposeTypes type)
         {
@@ -779,7 +778,6 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         /// Please do not use! this will be deprecated.
         /// Instead please use FocusedViewActivatedEventArgs.
-        [Obsolete("Please DO NOT use! This will be deprecated, instead please USE Tizen.NUI.FocusManager.FocusedViewActivatedEventArgs")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public class FocusedViewEnterKeyEventArgs : EventArgs
         {

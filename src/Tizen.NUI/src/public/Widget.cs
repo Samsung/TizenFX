@@ -24,7 +24,7 @@ namespace Tizen.NUI
     /// <summary>
     /// Widget object should be created by WidgetApplication.
     /// </summary>
-    [Obsolete("Please do not use! this will be deprecated")]
+    /// This is an experimental feature. We do recommend not to use it.
     [EditorBrowsable(EditorBrowsableState.Never)]
     public class Widget : BaseHandle
     {

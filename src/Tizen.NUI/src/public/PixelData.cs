@@ -31,7 +31,6 @@ namespace Tizen.NUI
     /// And this would make some problem, because dotnet runtime would change the address of memory allocated.
     /// So this is required to be removed.
     /// currently no use. will be added later
-    [Obsolete("Please DO NOT use! This will be Deprecated!")]
     [EditorBrowsable(EditorBrowsableState.Never)]
     public class PixelData : BaseHandle
     {

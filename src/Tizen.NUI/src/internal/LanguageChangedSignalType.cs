@@ -27,6 +27,9 @@ namespace Tizen.NUI
     public class LanguageChangedSignalType : global::System.IDisposable
     {
         private global::System.Runtime.InteropServices.HandleRef swigCPtr;
+        /// <summary>
+        /// LanguageChangedSignalType
+        /// </summary>
         protected bool swigCMemOwn;
 
         internal LanguageChangedSignalType(global::System.IntPtr cPtr, bool cMemoryOwn)

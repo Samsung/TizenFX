@@ -33,7 +33,7 @@ namespace Tizen.NUI
             return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
         }
 
-        protected virtual void Dispose(DisposeTypes type)
+        protected override void Dispose(DisposeTypes type)
         {
             if (disposed)
             {
@@ -82,7 +82,7 @@ namespace Tizen.NUI
             }
         }
 
-        public static WatchApplication Instance
+        public new static WatchApplication Instance
         {
             get
             {

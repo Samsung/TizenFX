@@ -27,6 +27,9 @@ namespace Tizen.NUI
     public class KeyboardResizedSignalType : global::System.IDisposable
     {
         private global::System.Runtime.InteropServices.HandleRef swigCPtr;
+        /// <summary>
+        /// KeyboardResizedSignalType
+        /// </summary>
         protected bool swigCMemOwn;
 
         internal KeyboardResizedSignalType(global::System.IntPtr cPtr, bool cMemoryOwn)

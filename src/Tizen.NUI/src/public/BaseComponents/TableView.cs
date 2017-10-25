@@ -353,7 +353,7 @@ namespace Tizen.NUI.BaseComponents
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
         /// <summary>
-        /// Downcasts a handle to tabelView handle.
+        /// Downcasts a handle to TabelView handle.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// Please do not use! this will be deprecated!
