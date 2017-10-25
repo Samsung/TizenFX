@@ -85,9 +85,9 @@ namespace Tizen.System.Usb
                     int count = Interop.NativeGet<int>(_handle.GetNumInterfaces);
                     for (int i = 0; i < count; ++i)
                     {
-                        Interop.UsbInterfaceHandle handle;
+                        IntPtr handle;
                         _handle.GetInterface(i, out handle);
-                        UsbInterface usbInterface = new UsbInterface(this, handle);
+                        UsbInterface usbInterface = new UsbInterface(this, new Interop.UsbInterfaceHandle(handle));
                         _interfaces.Add(usbInterface.Id, usbInterface);
                     }
                 }

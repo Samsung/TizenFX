@@ -73,9 +73,9 @@ namespace Tizen.System.Usb
                     int count = Interop.NativeGet<int>(_handle.GetNumEndpoints);
                     for (int i = 0; i < count; ++i)
                     {
-                        Interop.UsbEndpointHandle handle;
+                        IntPtr handle;
                         _handle.GetEndpoint(i, out handle);
-                        UsbEndpoint endpoint = UsbEndpoint.EndpointFactory(this, handle);
+                        UsbEndpoint endpoint = UsbEndpoint.EndpointFactory(this, new Interop.UsbEndpointHandle(handle));
                         _endpoints.Add(endpoint.Id, endpoint);
                     }
                 }

@@ -40,13 +40,13 @@ internal static partial class Interop
     internal static extern ErrorCode GetAddress(this HostDeviceHandle /* usb_host_device_h */ dev, out int deviceAddress);
 
     [DllImport(Libraries.Usb, EntryPoint = "usb_host_device_get_port_numbers")]
-    internal static extern ErrorCode GetPortNumbers(this HostDeviceHandle /* usb_host_device_h */ dev, [MarshalAs(UnmanagedType.SysInt, SizeParamIndex = 2)] [In, Out] int[] portNumbers, int portNumbersLen, out int portsCount);
+    internal static extern ErrorCode GetPortNumbers(this HostDeviceHandle /* usb_host_device_h */ dev, [In, Out] int[] portNumbers, int portNumbersLen, out int portsCount);
 
     [DllImport(Libraries.Usb, EntryPoint = "usb_host_device_get_config")]
-    internal static extern ErrorCode GetConfig(this HostDeviceHandle /* usb_host_device_h */ dev, int configIndex, out UsbConfigHandle /* usb_host_config_h */ config);
+    internal static extern ErrorCode GetConfig(this HostDeviceHandle /* usb_host_device_h */ dev, int configIndex, out IntPtr /* usb_host_config_h */ config);
 
     [DllImport(Libraries.Usb, EntryPoint = "usb_host_get_active_config")]
-    internal static extern ErrorCode GetActiveConfig(this HostDeviceHandle /* usb_host_device_h */ dev, out UsbConfigHandle /* usb_host_config_h */ config);
+    internal static extern ErrorCode GetActiveConfig(this HostDeviceHandle /* usb_host_device_h */ dev, out IntPtr /* usb_host_config_h */ config);
 
     [DllImport(Libraries.Usb, EntryPoint = "usb_host_device_get_bcd_usb")]
     internal static extern ErrorCode GetBcdUsb(this HostDeviceHandle /* usb_host_device_h */ dev, out int bcdUsb);

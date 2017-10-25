@@ -34,10 +34,14 @@ namespace Tizen.System.Usb
         /// </summary>
         public UsbManager()
         {
-            _context = new Interop.UsbContextHandle();
+            _context = Interop.UsbContextHandle.GetContextHandle();
             _devices = _context.GetDeviceList().Select(devHandle => new UsbDevice(this, devHandle)).ToList();
+
+            IntPtr hotpluggedHandle;
             _context.SetHotplugCb(HostHotplugCallback, Interop.HotplugEventType.Any,
-                IntPtr.Zero, out _hotpluggedHandle).ThrowIfFailed("Failed to set hot plugged callback");
+                IntPtr.Zero, out hotpluggedHandle).ThrowIfFailed("Failed to set hot plugged callback");
+
+            _hotpluggedHandle = new Interop.HostHotplugHandle(hotpluggedHandle);
         }
 
         /// <summary>
@@ -94,7 +98,7 @@ namespace Tizen.System.Usb
         #region IDisposable Support
         private bool disposedValue = false;
 
-        protected virtual void Dispose(bool disposing)
+        internal virtual void Dispose(bool disposing)
         {
             if (!disposedValue)
             {

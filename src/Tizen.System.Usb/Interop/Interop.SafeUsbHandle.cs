@@ -55,7 +55,8 @@ internal static partial class Interop
     internal abstract class SafeUsbHandle : SafeHandle
     {
         public abstract void Destroy();
-        public SafeUsbHandle() : base(IntPtr.Zero, true) { }
+
+        private SafeUsbHandle() : base(IntPtr.Zero, true) { }
         public SafeUsbHandle(IntPtr handle) : base(handle, true) { }
         public override bool IsInvalid { get { return handle == IntPtr.Zero; } }
         protected override bool ReleaseHandle()
