@@ -15,6 +15,9 @@
  *
  */
 
+using System;
+using System.ComponentModel;
+
 namespace Tizen.NUI
 {
     /// <summary>
@@ -23,6 +26,13 @@ namespace Tizen.NUI
     ///  The buffer memory must NOT be released outside of this class, instead,
     ///  the PixelData object will release it automatically when the reference count falls to zero.
     /// </summary>
+    /// Please DO NOT use! This will be deprecated!
+    /// PixelData class requires externally allocated pixel memory buffer and this buffer loses its ownershop by native DALi.
+    /// And this would make some problem, because dotnet runtime would change the address of memory allocated.
+    /// So this is required to be removed.
+    /// currently no use. will be added later
+    [Obsolete("Please DO NOT use! This will be Deprecated!")]
+    [EditorBrowsable(EditorBrowsableState.Never)]
     public class PixelData : BaseHandle
     {
         private global::System.Runtime.InteropServices.HandleRef swigCPtr;

@@ -14,12 +14,12 @@
  * limitations under the License.
  *
  */
+using System;
+using System.Runtime.InteropServices;
+using System.ComponentModel;
 
 namespace Tizen.NUI.BaseComponents
 {
-    using System;
-    using System.Runtime.InteropServices;
-    using System.ComponentModel;
 
     /// <summary>
     /// ImageView is a class for displaying an image resource.<br />
@@ -191,9 +191,12 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        /// [Obsolete("Please do not use! this will be deprecated")]
+        /// Downcasts a handle to imageView handle.
         /// </summary>
-        [Obsolete("Please do not use! this will be deprecated")]
+        /// Please do not use! this will be deprecated!
+        /// Instead please use as keyword.
+        [Obsolete("Please DO NOT use! This will be deprecated, instead please USE as keyword.")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public new static ImageView DownCast(BaseHandle handle)
         {
             ImageView ret = Registry.GetManagedBaseHandleFromNativePtr(handle) as ImageView;

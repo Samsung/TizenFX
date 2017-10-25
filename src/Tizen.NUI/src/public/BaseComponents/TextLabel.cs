@@ -19,6 +19,7 @@ extern alias TizenSystemSettings;
 using TizenSystemSettings.Tizen.System;
 using System;
 using System.Globalization;
+using System.ComponentModel;
 namespace Tizen.NUI.BaseComponents
 {
 
@@ -136,12 +137,15 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        /// [Obsolete("Please do not use! this will be deprecated")]
+        /// Downcasts a handle to textLabel handle
         /// </summary>
         /// <param name="handle"></param>
         /// <returns></returns>
         /// <since_tizen> 3 </since_tizen>
-        [Obsolete("Please do not use! this will be deprecated")]
+        /// Please do not use! this will be deprecated!
+        /// Instead please use as keyword.
+        [Obsolete("Please DO NOT use! This will be deprecated, instead please USE as keyword.")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public new static TextLabel DownCast(BaseHandle handle)
         {
             TextLabel ret =  Registry.GetManagedBaseHandleFromNativePtr(handle) as TextLabel;

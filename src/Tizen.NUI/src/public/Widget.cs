@@ -15,6 +15,7 @@
  *
  */
 using System;
+using System.ComponentModel;
 using System.Runtime.InteropServices;
 using Tizen.Applications;
 
@@ -23,6 +24,8 @@ namespace Tizen.NUI
     /// <summary>
     /// Widget object should be created by WidgetApplication.
     /// </summary>
+    [Obsolete("Please do not use! this will be deprecated")]
+    [EditorBrowsable(EditorBrowsableState.Never)]
     public class Widget : BaseHandle
     {
         private global::System.Runtime.InteropServices.HandleRef swigCPtr;

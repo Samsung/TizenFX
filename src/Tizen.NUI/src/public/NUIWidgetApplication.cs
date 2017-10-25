@@ -16,6 +16,7 @@
  */
 
 using System;
+using System.ComponentModel;
 using Tizen.Applications;
 using Tizen.Applications.CoreBackend;
 using Tizen.NUI;
@@ -26,6 +27,8 @@ namespace Tizen.NUI
     /// <summary>
     /// Represents an application that have UI screen. The NUIWidgetApplication class has a default stage.
     /// </summary>
+    [Obsolete("Please do not use! this will be deprecated")]
+    [EditorBrowsable(EditorBrowsableState.Never)]
     public class NUIWidgetApplication : CoreApplication
     {
 

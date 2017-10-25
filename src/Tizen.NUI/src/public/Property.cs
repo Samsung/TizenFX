@@ -16,6 +16,7 @@
  */
 
 using System;
+using System.ComponentModel;
 
 namespace Tizen.NUI
 {
@@ -1018,10 +1019,11 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// [Obsolete("Please do not use! this will be deprecated")]
+        /// Please do not use! this will be deprecated.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         [Obsolete("Please do not use! this will be deprecated")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public string GetKey(uint position)
         {
             string ret = NDalicPINVOKE.Property_Map_GetKey(swigCPtr, position);
@@ -1043,10 +1045,11 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// [Obsolete("Please do not use! this will be deprecated")]
+        /// Please do not use! this will be deprecated
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         [Obsolete("Please do not use! this will be deprecated")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public PropertyValue Find(string key)
         {
             global::System.IntPtr cPtr = NDalicPINVOKE.Property_Map_Find__SWIG_0(swigCPtr, key);
@@ -1085,10 +1088,11 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// [Obsolete("Please do not use! this will be deprecated")]
+        /// Please do not use! this will be deprecated.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         [Obsolete("Please do not use! this will be deprecated")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public PropertyValue Find(string key, PropertyType type)
         {
             global::System.IntPtr cPtr = NDalicPINVOKE.Property_Map_Find__SWIG_4(swigCPtr, key, (int)type);
@@ -1098,10 +1102,11 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// [Obsolete("Please do not use! this will be deprecated")]
+        /// Please do not use! this will be deprecated
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         [Obsolete("Please do not use! this will be deprecated")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public PropertyValue Find(int key, PropertyType type)
         {
             global::System.IntPtr cPtr = NDalicPINVOKE.Property_Map_Find__SWIG_5(swigCPtr, key, (int)type);

@@ -14,13 +14,12 @@
  * limitations under the License.
  *
  */
+using System;
+using System.ComponentModel;
+using System.Runtime.InteropServices;
 
 namespace Tizen.NUI.BaseComponents
 {
-
-    using System;
-    using System.Runtime.InteropServices;
-
     /// <summary>
     /// VideoView is a control for video playback and display.
     /// </summary>
@@ -187,11 +186,14 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        /// [Obsolete("Please do not use! this will be deprecated")]
+        /// Downcasts a handle to videoView handle.
         /// </summary>
         /// <param name="handle"></param>
         /// <returns></returns>
-        [Obsolete("Please do not use! this will be deprecated")]
+        /// Please do not use! this will be deprecated!
+        /// Instead please use as keyword.
+        [Obsolete("Please DO NOT use! This will be deprecated, instead please USE as keyword.")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public new static VideoView DownCast(BaseHandle handle)
         {
             VideoView ret =  Registry.GetManagedBaseHandleFromNativePtr(handle) as VideoView;

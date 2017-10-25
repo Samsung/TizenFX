@@ -14,13 +14,12 @@
  * limitations under the License.
  *
  */
+using System;
+using System.ComponentModel;
+using System.Runtime.InteropServices;
 
 namespace Tizen.NUI.BaseComponents
 {
-
-    using System;
-    using System.Runtime.InteropServices;
-
     /// <summary>
     /// View is the base class for all views.
     /// </summary>
@@ -2181,10 +2180,12 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        /// [Obsolete("Please do not use! this will be deprecated")]
+        /// Please do not use! this will be deprecated.
         /// </summary>
-        /// <since_tizen> 3 </since_tizen>
-        [Obsolete("Please do not use! this will be deprecated")]
+        /// Please do not use! this will be deprecated!
+        /// Instead please use PositionUsesPivotPoint.
+        [Obsolete("Please do not use! this will be deprecated, instead please use PositionUsesPivotPoint")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public bool PositionUsesAnchorPoint
         {
             get
@@ -2265,7 +2266,10 @@ namespace Tizen.NUI.BaseComponents
         /// <remarks>
         /// Deriving classes stipulate the natural size and by default a view has a zero natural size.
         /// </remarks>
+        /// /// Please do not use! this will be deprecated!
+        /// Instead please use NaturalSize2D.
         [Obsolete("Please do not use! this will be deprecated, please use NaturalSize2D instead")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public Vector3 NaturalSize
         {
             get
@@ -4168,7 +4172,10 @@ namespace Tizen.NUI.BaseComponents
         /// [Obsolete("Please do not use! this will be deprecated")]
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        [Obsolete("Please do not use! this will be deprecated")]
+        /// Please do not use! this will be deprecated!
+        /// Instead please use TouchEvent.
+        [Obsolete("Please do not use! this will be deprecated, instead please use TouchEvent.")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public event EventHandlerWithReturnType<object, TouchEventArgs, bool> Touched
         {
             add
@@ -4198,7 +4205,10 @@ namespace Tizen.NUI.BaseComponents
         /// [Obsolete("Please do not use! this will be deprecated")]
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        [Obsolete("Please do not use! this will be deprecated")]
+        /// Please do not use! this will be deprecated!
+        /// Instead please use HoverEvent.
+        [Obsolete("Please do not use! this will be deprecated, instead please use HoverEvent.")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public event EventHandlerWithReturnType<object, HoverEventArgs, bool> Hovered
         {
             add
@@ -4225,10 +4235,13 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        /// [Obsolete("Please do not use! this will be deprecated")]
+        /// Please do not use! this will be deprecated.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        [Obsolete("Please do not use! this will be deprecated")]
+        /// Please do not use! this will be deprecated!
+        /// Instead please use WheelEvent.
+        [Obsolete("Please do not use! this will be deprecated, instead please use WheelEvent.")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public event EventHandlerWithReturnType<object, WheelEventArgs, bool> WheelMoved
         {
             add
@@ -4258,7 +4271,10 @@ namespace Tizen.NUI.BaseComponents
         /// [Obsolete("Please do not use! this will be deprecated")]
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        [Obsolete("Please do not use! this will be deprecated")]
+        /// Please do not use! this will be deprecated!
+        /// Instead please use PivotPoint.
+        [Obsolete("Please do not use! this will be deprecated, instead please use PivotPoint")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public Position AnchorPoint
         {
             get
@@ -4296,7 +4312,10 @@ namespace Tizen.NUI.BaseComponents
         /// [Obsolete("Please do not use! this will be deprecated")]
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        [Obsolete("Please do not use! this will be deprecated")]
+        /// Please do not use! this will be deprecated!
+        /// Instead please use AddedToWindow.
+        [Obsolete("Please do not use! this will be deprecated, instead please use AddedToWindow")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public event EventHandler OnWindowEvent
         {
             add
@@ -4325,7 +4344,10 @@ namespace Tizen.NUI.BaseComponents
         /// [Obsolete("Please do not use! this will be deprecated")]
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        [Obsolete("Please do not use! this will be deprecated")]
+        /// Please do not use! this will be deprecated!
+        /// Instead please use RemovedFromWindow.
+        [Obsolete("Please do not use! this will be deprecated, instead please use RemovedFromWindow")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public event EventHandler OffWindowEvent
         {
             add
@@ -4354,7 +4376,10 @@ namespace Tizen.NUI.BaseComponents
         /// [Obsolete("Please do not use! this will be deprecated")]
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        [Obsolete("Please do not use! this will be deprecated")]
+        /// Please do not use! this will be deprecated!
+        /// Instead please use Relayout.
+        [Obsolete("Please do not use! this will be deprecated, instead please use Relayout")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public event EventHandler OnRelayoutEvent
         {
             add

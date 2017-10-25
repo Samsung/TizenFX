@@ -16,6 +16,7 @@
  */
 
 using System;
+using System.ComponentModel;
 
 namespace Tizen.NUI
 {
@@ -929,7 +930,10 @@ namespace Tizen.NUI
         /// [Obsolete("Please do not use! this will be deprecated")]
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        [Obsolete("Please do not use! this will be deprecated")]
+        /// Please do not use! this will be deprecated!
+        /// Instead please use PivotPointTop.
+        [Obsolete("Please do not use! this will be deprecated, instead please use PivotPointTop")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public static float AnchorPointTop
         {
             get
@@ -944,7 +948,10 @@ namespace Tizen.NUI
         /// [Obsolete("Please do not use! this will be deprecated")]
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        [Obsolete("Please do not use! this will be deprecated")]
+        /// Please do not use! this will be deprecated!
+        /// Instead please use PivotPointBottom.
+        [Obsolete("Please do not use! this will be deprecated, instead please use PivotPointBottom")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public static float AnchorPointBottom
         {
             get
@@ -959,7 +966,10 @@ namespace Tizen.NUI
         /// [Obsolete("Please do not use! this will be deprecated")]
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        [Obsolete("Please do not use! this will be deprecated")]
+        /// Please do not use! this will be deprecated!
+        /// Instead please use PivotPointLeft.
+        [Obsolete("Please do not use! this will be deprecated, instead please use PivotPointLeft")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public static float AnchorPointLeft
         {
             get
@@ -974,7 +984,10 @@ namespace Tizen.NUI
         /// [Obsolete("Please do not use! this will be deprecated")]
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        [Obsolete("Please do not use! this will be deprecated")]
+        /// Please do not use! this will be deprecated!
+        /// Instead please use PivotPointRight.
+        [Obsolete("Please do not use! this will be deprecated, instead please use PivotPointRight")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public static float AnchorPointRight
         {
             get
@@ -989,7 +1002,10 @@ namespace Tizen.NUI
         /// [Obsolete("Please do not use! this will be deprecated")]
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        [Obsolete("Please do not use! this will be deprecated")]
+        /// Please do not use! this will be deprecated!
+        /// Instead please use PivotPointMiddle.
+        [Obsolete("Please do not use! this will be deprecated, instead please use PivotPointMiddle")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public static float AnchorPointMiddle
         {
             get
@@ -1004,7 +1020,10 @@ namespace Tizen.NUI
         /// [Obsolete("Please do not use! this will be deprecated")]
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        [Obsolete("Please do not use! this will be deprecated")]
+        /// Please do not use! this will be deprecated!
+        /// Instead please use PivotPointTopLeft.
+        [Obsolete("Please do not use! this will be deprecated, instead please use PivotPointTopLeft")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public static Position AnchorPointTopLeft
         {
             get
@@ -1020,7 +1039,10 @@ namespace Tizen.NUI
         /// [Obsolete("Please do not use! this will be deprecated")]
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        [Obsolete("Please do not use! this will be deprecated")]
+        /// Please do not use! this will be deprecated!
+        /// Instead please use PivotPointTopCenter.
+        [Obsolete("Please do not use! this will be deprecated, instead please use PivotPointTopCenter")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public static Position AnchorPointTopCenter
         {
             get
@@ -1036,7 +1058,10 @@ namespace Tizen.NUI
         /// [Obsolete("Please do not use! this will be deprecated")]
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        [Obsolete("Please do not use! this will be deprecated")]
+        /// Please do not use! this will be deprecated!
+        /// Instead please use PivotPointTopRight.
+        [Obsolete("Please do not use! this will be deprecated, instead please use PivotPointTopRight")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public static Position AnchorPointTopRight
         {
             get
@@ -1052,7 +1077,10 @@ namespace Tizen.NUI
         /// [Obsolete("Please do not use! this will be deprecated")]
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        [Obsolete("Please do not use! this will be deprecated")]
+        /// Please do not use! this will be deprecated!
+        /// Instead please use PivotPointCenterLeft.
+        [Obsolete("Please do not use! this will be deprecated, instead please use PivotPointCenterLeft")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public static Position AnchorPointCenterLeft
         {
             get
@@ -1068,7 +1096,10 @@ namespace Tizen.NUI
         /// [Obsolete("Please do not use! this will be deprecated")]
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        [Obsolete("Please do not use! this will be deprecated")]
+        /// Please do not use! this will be deprecated!
+        /// Instead please use PivotPointCenter.
+        [Obsolete("Please do not use! this will be deprecated, instead please use PivotPointCenter")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public static Position AnchorPointCenter
         {
             get
@@ -1084,7 +1115,10 @@ namespace Tizen.NUI
         /// [Obsolete("Please do not use! this will be deprecated")]
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        [Obsolete("Please do not use! this will be deprecated")]
+        /// Please do not use! this will be deprecated!
+        /// Instead please use PivotPointCenterRight.
+        [Obsolete("Please do not use! this will be deprecated, instead please use PivotPointCenterRight")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public static Position AnchorPointCenterRight
         {
             get
@@ -1100,7 +1134,10 @@ namespace Tizen.NUI
         /// [Obsolete("Please do not use! this will be deprecated")]
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        [Obsolete("Please do not use! this will be deprecated")]
+        /// Please do not use! this will be deprecated!
+        /// Instead please use PivotPointBottomLeft.
+        [Obsolete("Please do not use! this will be deprecated, instead please use PivotPointBottomLeft")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public static Position AnchorPointBottomLeft
         {
             get
@@ -1116,7 +1153,10 @@ namespace Tizen.NUI
         /// [Obsolete("Please do not use! this will be deprecated")]
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        [Obsolete("Please do not use! this will be deprecated")]
+        /// Please do not use! this will be deprecated!
+        /// Instead please use PivotPointBottomCenter.
+        [Obsolete("Please do not use! this will be deprecated, instead please use PivotPointBottomCenter")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public static Position AnchorPointBottomCenter
         {
             get
@@ -1132,7 +1172,10 @@ namespace Tizen.NUI
         /// [Obsolete("Please do not use! this will be deprecated")]
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        [Obsolete("Please do not use! this will be deprecated")]
+        /// Please do not use! this will be deprecated!
+        /// Instead please use PivotPointBottomRight.
+        [Obsolete("Please do not use! this will be deprecated, instead please use PivotPointBottomRight")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public static Position AnchorPointBottomRight
         {
             get

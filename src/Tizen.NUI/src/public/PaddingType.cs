@@ -17,8 +17,8 @@
 
 namespace Tizen.NUI
 {
-
     using System;
+    using System.ComponentModel;
 
     /// <summary>
     /// The gesture state.
@@ -200,7 +200,10 @@ namespace Tizen.NUI
         /// <summary>
         /// The Left value.
         /// </summary>
-        [Obsolete("Please do not use! this will be removed. please use Start instead")]
+        /// Please DO NOT use! This will be deprecated!
+        /// instead please use Start property.
+        [Obsolete("Please DO NOT use! This will be Deprecated!. Please USE Tizen.NUI.PaddingType.Start instead!")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public float Left
         {
             set
@@ -231,7 +234,10 @@ namespace Tizen.NUI
         /// <summary>
         /// The Right value.
         /// </summary>
-        [Obsolete("Please do not use! this will be removed. please use End instead")]
+        /// Please DO NOT use! This will be deprecated!
+        /// instead please use Start property.
+        [Obsolete("Please DO NOT use! This will be Deprecated!. Please USE Tizen.NUI.PaddingType.End instead!")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public float Right
         {
             set

@@ -14,6 +14,7 @@
  * limitations under the License.
  *
  */
+
 using System;
 using System.Runtime.InteropServices;
 using System.ComponentModel;
@@ -42,6 +43,11 @@ namespace Tizen.NUI
         /// </summary>
         /// <param name="type">Dispose Type</param>
         /// <since_tizen> 3 </since_tizen>
+        /// Please DO NOT use! This will be deprecated!
+        /// Dispose() method in Singletone classes (ex: FocusManager, StyleManager, VisualFactory, IMFManager, TtsPlayer, Window) is not required.
+        /// Because it is Sigletone, so it is alive for one thread until the NUI is terminated, so it never be disposed.
+        [Obsolete("Please DO NOT use! This will be Deprecated!")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         protected override void Dispose(DisposeTypes type)
         {
             if (disposed)
@@ -1276,8 +1282,9 @@ namespace Tizen.NUI
         /// <summary>
         /// ImfManager event received signal.
         /// </summary>
-	    //Please do not use! this will be internal
-	   [EditorBrowsable(EditorBrowsableState.Never)]
+        //Please do not use! this will be internal
+        [Obsolete("Please DO NOT use! This will be internal method!")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public ImfEventSignalType EventReceivedSignal()
         {
             ImfEventSignalType ret = new ImfEventSignalType(NDalicManualPINVOKE.ImfManager_EventReceivedSignal(swigCPtr), false);

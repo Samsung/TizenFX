@@ -14,15 +14,13 @@
  * limitations under the License.
  *
  */
+using System;
+using System.Runtime.InteropServices;
+using Tizen.NUI.BaseComponents;
+using System.ComponentModel;
 
 namespace Tizen.NUI
 {
-
-    using System;
-    using System.Runtime.InteropServices;
-    using Tizen.NUI.BaseComponents;
-    using System.ComponentModel;
-
     /// <summary>
     /// The window class is used internally for drawing.<br />
     /// The window has an orientation and indicator properties.<br />
@@ -51,6 +49,11 @@ namespace Tizen.NUI
         /// <summary>
         /// To make the window instance be disposed.
         /// </summary>
+        /// Please DO NOT use! This will be deprecated!
+        /// Dispose() method in Singletone classes (ex: FocusManager, StyleManager, VisualFactory, IMFManager, TtsPlayer, Window) is not required.
+        /// Because it is Sigletone, so it is alive for one thread until the NUI is terminated, so it never be disposed.
+        [Obsolete("Please DO NOT use! This will be Deprecated!")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         protected override void Dispose(DisposeTypes type)
         {
             if (disposed)
@@ -1555,7 +1558,10 @@ namespace Tizen.NUI
         /// Please do not use! this will be deprecated. Please use 'FocusChanged' event instead.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        [Obsolete("Please do not use! this will be deprecated. Please use 'FocusChanged' event instead")]
+        /// Please do not use! this will be deprecated!
+        /// Instead please use FocusChanged.
+        [Obsolete("Please do not use! this will be deprecated, instead please use FocusChanged")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public event EventHandler<WindowFocusChangedEventArgs> WindowFocusChanged
         {
             add

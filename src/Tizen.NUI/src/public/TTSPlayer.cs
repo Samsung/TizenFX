@@ -15,11 +15,12 @@
  *
  */
 
+using System;
+using System.Runtime.InteropServices;
+using System.ComponentModel;
+
 namespace Tizen.NUI
 {
-    using System;
-    using System.Runtime.InteropServices;
-
     /// <summary>
     /// The Text-to-speech (TTS) player.
     /// </summary>
@@ -42,6 +43,11 @@ namespace Tizen.NUI
         /// </summary>
         /// <param name="type">The dispose type</param>
         /// <since_tizen> 3 </since_tizen>
+        /// Please DO NOT use! This will be deprecated!
+        /// Dispose() method in Singletone classes (ex: FocusManager, StyleManager, VisualFactory, IMFManager, TtsPlayer, Window) is not required.
+        /// Because it is Sigletone, so it is alive for one thread until the NUI is terminated, so it never be disposed.
+        [Obsolete("Please DO NOT use! This will be Deprecated!")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         protected override void Dispose(DisposeTypes type)
         {
             if (disposed)

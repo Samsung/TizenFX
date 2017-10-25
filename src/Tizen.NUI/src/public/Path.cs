@@ -16,6 +16,7 @@
  */
 
 using System;
+using System.ComponentModel;
 
 namespace Tizen.NUI
 {
@@ -92,10 +93,13 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Please do not use! this will be deprecated
+        /// Downcasts a handle to Path handle.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        [Obsolete("Please do not use! this will be deprecated")]
+        /// Please do not use! this will be deprecated!
+        /// Instead please use as keyword.
+        [Obsolete("Please DO NOT use! This will be deprecated, instead please USE as keyword.")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public static Path DownCast(BaseHandle handle)
         {
             Path ret =  Registry.GetManagedBaseHandleFromNativePtr(handle) as Path;
