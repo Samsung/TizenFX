@@ -74,13 +74,13 @@ namespace Tizen.Multimedia.Util
 
         internal abstract void Configure(TransformHandle handle);
 
-        internal virtual Task<MediaPacket> ApplyAsync(MediaPacket source)
+        internal virtual async Task<MediaPacket> ApplyAsync(MediaPacket source)
         {
             using (TransformHandle handle = CreateHandle())
             {
                 Configure(handle);
 
-                return RunAsync(handle, source);
+                return await RunAsync(handle, source);
             }
         }
     }

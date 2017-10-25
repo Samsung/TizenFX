@@ -114,13 +114,14 @@ namespace Tizen.Multimedia.Util
         {
             var tcs = new TaskCompletionSource<bool>();
 
-            IntPtr outBuffer = IntPtr.Zero;
-            Unmanaged.SetOutputBuffer(Handle, out outBuffer).ThrowIfFailed("Failed to initialize encoder");
-
             Task.Run(() =>
             {
+                IntPtr outBuffer = IntPtr.Zero;
+
                 try
                 {
+                    Unmanaged.SetOutputBuffer(Handle, out outBuffer).ThrowIfFailed("Failed to initialize encoder");
+
                     ulong size = 0;
                     Unmanaged.Run(Handle, out size).ThrowIfFailed("Failed to encode given image");
 
