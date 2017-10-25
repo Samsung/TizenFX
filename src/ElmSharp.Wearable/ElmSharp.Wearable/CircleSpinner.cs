@@ -15,6 +15,7 @@
  */
 
 using System;
+using System.ComponentModel;
 using System.Diagnostics;
 
 namespace ElmSharp.Wearable
@@ -43,6 +44,17 @@ namespace ElmSharp.Wearable
         }
 
         /// <summary>
+        /// Creates and initializes a new instance of the Circle Spinner class.
+        /// </summary>
+        /// <param name="parent">The parent of new Circle CircleSpinner instance</param>
+        [Obsolete("It is not safe for guess circle surface from parent and create new surface by every new widget")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public CircleSpinner(EvasObject parent) : this(parent, CircleSurface.CreateCircleSurface(parent))
+        {
+            ((IRotaryActionWidget)this).Activate();
+        }
+
+        /// <summary>
         /// Gets the handle for Circle Widget.
         /// </summary>
         public virtual IntPtr CircleHandle => RealHandle;
@@ -66,6 +78,17 @@ namespace ElmSharp.Wearable
                 _angleRatio = value;
                 Interop.Eext.eext_circle_object_spinner_angle_set(CircleHandle, _angleRatio);
             }
+        }
+
+        /// <summary>
+        /// Sets or gets disabled state of this widget.
+        /// </summary>
+        [Obsolete("Use IsEnabled")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public bool Disabled
+        {
+            get => !IsEnabled;
+            set => IsEnabled = !value;
         }
 
         /// <summary>
