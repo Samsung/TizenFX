@@ -189,7 +189,7 @@ namespace ElmSharp.Wearable
         /// ScrollBarVisiblePolicy.Auto means the vertical scrollbar is made visible if it is needed, and otherwise kept hidden.
         /// ScrollBarVisiblePolicy.Visible turns it on all the time, and ScrollBarVisiblePolicy.Invisible always keeps it off.
         /// </remarks>
-        public override ScrollBarVisiblePolicy VerticalScrollBarVisiblePolicy
+        public ScrollBarVisiblePolicy VerticalScrollBarVisiblePolicy
         {
             get
             {
@@ -199,7 +199,6 @@ namespace ElmSharp.Wearable
             }
             set
             {
-                base.VerticalScrollBarVisiblePolicy = value;
                 int h;
                 Interop.Eext.eext_circle_object_genlist_scroller_policy_get(CircleHandle, out h, IntPtr.Zero);
                 Interop.Eext.eext_circle_object_genlist_scroller_policy_set(CircleHandle, (int)h, (int)value);
