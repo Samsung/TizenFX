@@ -33,7 +33,7 @@ internal static partial class Interop
     internal static extern ErrorCode GetNumEndpoints(this UsbInterfaceHandle /* usb_host_interface_h */ usbInterface, out int numEndpoints);
 
     [DllImport(Libraries.Usb, EntryPoint = "usb_host_interface_get_endpoint")]
-    internal static extern ErrorCode GetEndpoint(this UsbInterfaceHandle /* usb_host_interface_h */ usbInterface, int epIndex, out UsbEndpointHandle /* usb_host_endpoint_h */ ep);
+    internal static extern ErrorCode GetEndpoint(this UsbInterfaceHandle /* usb_host_interface_h */ usbInterface, int epIndex, out IntPtr /* usb_host_endpoint_h */ ep);
 
     [DllImport(Libraries.Usb, EntryPoint = "usb_host_interface_set_altsetting")]
     internal static extern ErrorCode SetAltsetting(this UsbInterfaceHandle /* usb_host_interface_h */ usbInterface, int altsetting);

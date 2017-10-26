@@ -38,7 +38,7 @@ internal static partial class Interop
     internal static extern ErrorCode GetConfigStr(this UsbConfigHandle /* usb_host_config_h */ config, ref int length, byte[] data);
 
     [DllImport(Libraries.Usb, EntryPoint = "usb_host_config_get_interface")]
-    internal static extern ErrorCode GetInterface(this UsbConfigHandle /* usb_host_config_h */ config, int interfaceIndex, out UsbInterfaceHandle /* usb_host_interface_h */ usbInterface);
+    internal static extern ErrorCode GetInterface(this UsbConfigHandle /* usb_host_config_h */ config, int interfaceIndex, out IntPtr /* usb_host_interface_h */ usbInterface);
 
     internal class UsbConfigHandle : SafeUsbHandle
     {
