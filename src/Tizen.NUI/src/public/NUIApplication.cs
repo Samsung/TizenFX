@@ -16,6 +16,7 @@
  */
 
 using System;
+using System.ComponentModel;
 using Tizen.Applications;
 using Tizen.Applications.CoreBackend;
 
@@ -250,6 +251,7 @@ namespace Tizen.NUI
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         [Obsolete("Please do not use! this will be deprecated")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public Window Window
         {
             get

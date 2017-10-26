@@ -2110,6 +2110,7 @@ namespace Tizen.NUI
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
     [Obsolete("Please do not use! this will be deprecated")]
+    [EditorBrowsable(EditorBrowsableState.Never)]
     public struct AnchorPoint
     {
         /// <summary>
