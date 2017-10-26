@@ -8,7 +8,7 @@
     <InternalProjectSrcDir>$(ProjectRootDir)\internal\src\</InternalProjectSrcDir>
 
     <ToolsDir>$(ProjectRootDir)tools\</ToolsDir>
-    <GenAPIDir>$(ToolsDir)GenAPI\</GenAPIDir>
+    <GenDummyDir>$(ToolsDir)GenDummy\</GenDummyDir>
 
     <OutputBaseDir>$(ProjectRootDir)Artifacts\</OutputBaseDir>
     <OutputPublicDir>$(OutputBaseDir)bin\public\</OutputPublicDir>
