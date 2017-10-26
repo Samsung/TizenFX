@@ -38,6 +38,20 @@ namespace Tizen.NUI
             return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
         }
 
+        private static readonly TTSPlayer instance = TTSPlayer.Get();
+
+        /// <summary>
+        /// Gets the singleton of the TTSPlayer object.
+        /// </summary>
+        /// <since_tizen> 5 </since_tizen>
+        public static TTSPlayer Instance
+        {
+            get
+            {
+                return instance;
+            }
+        }
+
         /// <summary>
         /// Dispose.
         /// </summary>
