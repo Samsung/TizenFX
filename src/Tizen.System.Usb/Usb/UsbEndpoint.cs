@@ -24,7 +24,7 @@ namespace Tizen.System.Usb
     public class UsbEndpoint
     {
         internal readonly Interop.UsbEndpointHandle _handle;
-        protected readonly UsbInterface _parent;
+        internal readonly UsbInterface _parent;
 
         internal UsbEndpoint(UsbInterface parent, Interop.UsbEndpointHandle handle)
         {
@@ -74,7 +74,7 @@ namespace Tizen.System.Usb
             _parent?.ThrowIfDisposed();
         }
 
-        protected int TransferImpl(byte[] buffer, int length, uint timeout)
+        internal int TransferImpl(byte[] buffer, int length, uint timeout)
         {
             ThrowIfDisposed();
             int transferred;

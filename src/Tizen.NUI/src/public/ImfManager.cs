@@ -38,6 +38,20 @@ namespace Tizen.NUI
             return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, IntPtr.Zero) : obj.swigCPtr;
         }
 
+        private static readonly ImfManager instance = ImfManager.Get();
+
+        /// <summary>
+        /// Gets the singleton of the ImfManager object.
+        /// </summary>
+        /// <since_tizen> 5 </since_tizen>
+        public static ImfManager Instance
+        {
+            get
+            {
+                return instance;
+            }
+        }
+
         /// <summary>
         /// Dispose
         /// </summary>
@@ -696,12 +710,21 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Finalize the IMF.<br/>
+        /// Destroy the context of the IMF.<br/>
         /// </summary>
-        public void Finalize()
+        /// <since_tizen> 5 </since_tizen>
+        public void DestroyContext()
         {
             NDalicManualPINVOKE.ImfManager_Finalize(swigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        /// Please DO NOT use! This will be deprecated, instead please USE Tizen.NUI.ImfManager.Instance.DestroyContext()!
+        [Obsolete("Please DO NOT use! This will be deprecated, instead please USE Tizen.NUI.ImfManager.Instance.DestroyContext()!")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void Finalize()
+        {
+            DestroyContext();
         }
 
         /// <summary>

@@ -32,7 +32,7 @@ internal static partial class Interop
     internal delegate void HostHotplugCallback(IntPtr /* usb_host_device_h */ dev, IntPtr /* void */ userData);
 
     [DllImport(Libraries.Usb, EntryPoint = "usb_host_set_hotplug_cb")]
-    internal static extern ErrorCode SetHotplugCb(this UsbContextHandle /* usb_host_context_h */ ctx, HostHotplugCallback cb, HotplugEventType /* usb_host_hotplug_event_e */ hostEvent, IntPtr /* void */ userData, out HostHotplugHandle /* usb_host_hotplug_h */ handle);
+    internal static extern ErrorCode SetHotplugCb(this UsbContextHandle /* usb_host_context_h */ ctx, HostHotplugCallback cb, HotplugEventType /* usb_host_hotplug_event_e */ hostEvent, IntPtr /* void */ userData, out IntPtr /* usb_host_hotplug_h */ handle);
 
     [DllImport(Libraries.Usb, EntryPoint = "usb_host_get_device_list")]
     internal static extern ErrorCode GetDeviceList(this UsbContextHandle /* usb_host_context_h */ ctx, out IntPtr /* usb_host_device_h */ devs, out int length);
@@ -53,9 +53,13 @@ internal static partial class Interop
         [DllImport(Libraries.Usb, EntryPoint = "usb_host_free_device_list")]
         internal static extern ErrorCode FreeDeviceList(IntPtr deviceList, bool unrefDevices);
 
-        internal UsbContextHandle()
+        internal UsbContextHandle(IntPtr handle) : base(handle) { }
+
+        internal static UsbContextHandle GetContextHandle()
         {
-            Create(out handle).ThrowIfFailed("Failed to create native context handle");
+            IntPtr nativeHandle;
+            Create(out nativeHandle).ThrowIfFailed("Failed to create native context handle");
+            return new UsbContextHandle(nativeHandle);
         }
 
         public override void Destroy()

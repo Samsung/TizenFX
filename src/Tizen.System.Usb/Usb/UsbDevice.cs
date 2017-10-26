@@ -37,9 +37,9 @@ namespace Tizen.System.Usb
             int count = Interop.NativeGet<int>(_handle.GetNumConfigurations);
             for (int i = 0; i < count; ++i)
             {
-                Interop.UsbConfigHandle configHandle;
+                IntPtr configHandle;
                 _handle.GetConfig(i, out configHandle);
-                _configurations.Add(i, new UsbConfiguration(this, configHandle));
+                _configurations.Add(i, new UsbConfiguration(this, new Interop.UsbConfigHandle(configHandle)));
             }
         }
 
@@ -112,7 +112,8 @@ namespace Tizen.System.Usb
             get
             {
                 ThrowIfDisposed();
-                Interop.UsbConfigHandle configHandle = Interop.NativeGet<Interop.UsbConfigHandle>(_handle.GetActiveConfig);
+                IntPtr handle = Interop.NativeGet<IntPtr>(_handle.GetActiveConfig);
+                Interop.UsbConfigHandle configHandle = new Interop.UsbConfigHandle(handle);
                 return _configurations.Values.Where(config => config._handle == configHandle).First();
             }
         }

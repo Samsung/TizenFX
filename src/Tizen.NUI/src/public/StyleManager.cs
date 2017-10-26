@@ -43,6 +43,20 @@ namespace Tizen.NUI
             return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
         }
 
+        private static readonly StyleManager instance = StyleManager.Get();
+
+        /// <summary>
+        /// Gets the singleton of the StyleManager object.
+        /// </summary>
+        /// <since_tizen> 5 </since_tizen>
+        public static StyleManager Instance
+        {
+            get
+            {
+                return instance;
+            }
+        }
+
         /// <summary>
         /// Dispose.
         /// </summary>

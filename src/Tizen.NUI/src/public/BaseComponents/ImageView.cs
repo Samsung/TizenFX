@@ -256,7 +256,7 @@ namespace Tizen.NUI.BaseComponents
             }
             set
             {
-                _url = value;
+                _url = (value == null? "" : value);
                 UpdateImage();
             }
         }
