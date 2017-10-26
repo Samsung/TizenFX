@@ -19,11 +19,77 @@ using System;
 namespace ElmSharp
 {
     /// <summary>
+    /// Enumeration for visible type of scrollbar.
+    /// </summary>
+    public enum ScrollBarVisiblePolicy
+    {
+        /// <summary>
+        /// Show scrollbars as needed
+        /// </summary>
+        Auto = 0,
+
+        /// <summary>
+        /// Always show scrollbars
+        /// </summary>
+        Visible,
+
+        /// <summary>
+        /// Never show scrollbars
+        /// </summary>
+        Invisible
+    }
+
+    /// <summary>
+    /// Enumeration for visible type of scrollbar.
+    /// </summary>
+    public enum ScrollBlock
+    {
+        /// <summary>
+        /// Scrolling movement is allowed in both direction.(X axis and Y axis)
+        /// </summary>
+        None = 1,
+
+        /// <summary>
+        /// Scrolling movement is not allowed in Y axis direction.
+        /// </summary>
+        Vertical = 2,
+
+        /// <summary>
+        /// Scrolling movement is not allowed in X axis direction.
+        /// </summary>
+        Horizontal = 4
+    }
+
+    /// <summary>
+    /// Type that controls how the content is scrolled.
+    /// </summary>
+    public enum ScrollSingleDirection
+    {
+        /// <summary>
+        /// Scroll every direction.
+        /// </summary>
+        None,
+
+        /// <summary>
+        /// Scroll single direction if the direction is certain.
+        /// </summary>
+        Soft,
+
+        /// <summary>
+        /// Scroll only single direction.
+        /// </summary>
+        Hard,
+    }
+
+    /// <summary>
     /// The Scroller is a container that holds and clips a single object and allows you to scroll across it.
     /// </summary>
-    public class Scroller : Layout, IScrollable
+    public class Scroller : Layout
     {
-        ScrollableAdapter _adapter;
+        SmartEvent _scroll;
+        SmartEvent _dragStart;
+        SmartEvent _dragStop;
+        SmartEvent _scrollpage;
 
         /// <summary>
         /// Creates and initializes a new instance of the Scroller class.
@@ -45,8 +111,14 @@ namespace ElmSharp
         /// </summary>
         public event EventHandler Scrolled
         {
-            add => _adapter.Scrolled += value;
-            remove => _adapter.Scrolled -= value;
+            add
+            {
+                _scroll.On += value;
+            }
+            remove
+            {
+                _scroll.On -= value;
+            }
         }
 
         /// <summary>
@@ -54,8 +126,14 @@ namespace ElmSharp
         /// </summary>
         public event EventHandler DragStart
         {
-            add => _adapter.DragStart += value;
-            remove => _adapter.DragStart -= value;
+            add
+            {
+                _dragStart.On += value;
+            }
+            remove
+            {
+                _dragStart.On -= value;
+            }
         }
 
         /// <summary>
@@ -63,8 +141,14 @@ namespace ElmSharp
         /// </summary>
         public event EventHandler DragStop
         {
-            add => _adapter.DragStop += value;
-            remove => _adapter.DragStop -= value;
+            add
+            {
+                _dragStop.On += value;
+            }
+            remove
+            {
+                _dragStop.On -= value;
+            }
         }
 
         /// <summary>
@@ -72,14 +156,28 @@ namespace ElmSharp
         /// </summary>
         public event EventHandler PageScrolled
         {
-            add => _adapter.PageScrolled += value;
-            remove => _adapter.PageScrolled -= value;
+            add
+            {
+                _scrollpage.On += value;
+            }
+            remove
+            {
+                _scrollpage.On -= value;
+            }
         }
 
         /// <summary>
         /// Gets the current region in the content object that is visible through the Scroller.
         /// </summary>
-        public Rect CurrentRegion => _adapter.CurrentRegion;
+        public Rect CurrentRegion
+        {
+            get
+            {
+                int x, y, w, h;
+                Interop.Elementary.elm_scroller_region_get(RealHandle, out x, out y, out w, out h);
+                return new Rect(x, y, w, h);
+            }
+        }
 
         /// <summary>
         /// Sets or gets the value of HorizontalScrollBarVisiblePolicy
@@ -90,8 +188,17 @@ namespace ElmSharp
         /// </remarks>
         public virtual ScrollBarVisiblePolicy HorizontalScrollBarVisiblePolicy
         {
-            get => _adapter.HorizontalScrollBarVisiblePolicy;
-            set => _adapter.HorizontalScrollBarVisiblePolicy = value;
+            get
+            {
+                int policy;
+                Interop.Elementary.elm_scroller_policy_get(RealHandle, out policy, IntPtr.Zero);
+                return (ScrollBarVisiblePolicy)policy;
+            }
+            set
+            {
+                ScrollBarVisiblePolicy v = VerticalScrollBarVisiblePolicy;
+                Interop.Elementary.elm_scroller_policy_set(RealHandle, (int)value, (int)v);
+            }
         }
 
         /// <summary>
@@ -103,8 +210,17 @@ namespace ElmSharp
         /// </remarks>
         public virtual ScrollBarVisiblePolicy VerticalScrollBarVisiblePolicy
         {
-            get => _adapter.VerticalScrollBarVisiblePolicy;
-            set => _adapter.VerticalScrollBarVisiblePolicy = value;
+            get
+            {
+                int policy;
+                Interop.Elementary.elm_scroller_policy_get(RealHandle, IntPtr.Zero, out policy);
+                return (ScrollBarVisiblePolicy)policy;
+            }
+            set
+            {
+                ScrollBarVisiblePolicy h = HorizontalScrollBarVisiblePolicy;
+                Interop.Elementary.elm_scroller_policy_set(RealHandle, (int)h, (int)value);
+            }
         }
 
         /// <summary>
@@ -116,8 +232,14 @@ namespace ElmSharp
         /// </remarks>
         public ScrollBlock ScrollBlock
         {
-            get => _adapter.ScrollBlock;
-            set => _adapter.ScrollBlock = value;
+            get
+            {
+                return (ScrollBlock)Interop.Elementary.elm_scroller_movement_block_get(RealHandle);
+            }
+            set
+            {
+                Interop.Elementary.elm_scroller_movement_block_set(RealHandle, (int)value);
+            }
         }
 
         /// <summary>
@@ -128,7 +250,15 @@ namespace ElmSharp
         /// If there are two or more pages in the viewport, it returns the number of the page which meets the top of the viewport.
         /// The page number starts from 0. 0 is the first page.
         /// </remarks>
-        public int VerticalPageIndex => _adapter.VerticalPageIndex;
+        public int VerticalPageIndex
+        {
+            get
+            {
+                int v, h;
+                Interop.Elementary.elm_scroller_current_page_get(RealHandle, out h, out v);
+                return v;
+            }
+        }
 
         /// <summary>
         /// Sets or gets scroll current page number.
@@ -138,15 +268,32 @@ namespace ElmSharp
         /// If there are two or more pages in the viewport, it returns the number of the page which meets the left of the viewport.
         /// The page number starts from 0. 0 is the first page.
         /// </remarks>
-        public int HorizontalPageIndex => _adapter.HorizontalPageIndex;
+        public int HorizontalPageIndex
+        {
+            get
+            {
+                int v, h;
+                Interop.Elementary.elm_scroller_current_page_get(RealHandle, out h, out v);
+                return h;
+            }
+        }
 
         /// <summary>
         /// Sets or gets the maximum limit of the movable page at vertical direction.
         /// </summary>
         public int VerticalPageScrollLimit
         {
-            get => _adapter.VerticalPageScrollLimit;
-            set => _adapter.VerticalPageScrollLimit = value;
+            get
+            {
+                int v, h;
+                Interop.Elementary.elm_scroller_page_scroll_limit_get(RealHandle, out h, out v);
+                return v;
+            }
+            set
+            {
+                int h = HorizontalPageScrollLimit;
+                Interop.Elementary.elm_scroller_page_scroll_limit_set(RealHandle, h, value);
+            }
         }
 
         /// <summary>
@@ -154,8 +301,17 @@ namespace ElmSharp
         /// </summary>
         public int HorizontalPageScrollLimit
         {
-            get => _adapter.HorizontalPageScrollLimit;
-            set => _adapter.HorizontalPageScrollLimit = value;
+            get
+            {
+                int v, h;
+                Interop.Elementary.elm_scroller_page_scroll_limit_get(RealHandle, out h, out v);
+                return h;
+            }
+            set
+            {
+                int v = VerticalPageScrollLimit;
+                Interop.Elementary.elm_scroller_page_scroll_limit_set(RealHandle, value, v);
+            }
         }
 
         /// <summary>
@@ -167,8 +323,17 @@ namespace ElmSharp
         /// </summary>
         public bool VerticalBounce
         {
-            get => _adapter.VerticalBounce;
-            set => _adapter.VerticalBounce = value;
+            get
+            {
+                bool v, h;
+                Interop.Elementary.elm_scroller_bounce_get(RealHandle, out h, out v);
+                return v;
+            }
+            set
+            {
+                bool h = HorizontalBounce;
+                Interop.Elementary.elm_scroller_bounce_set(RealHandle, h, value);
+            }
         }
 
         /// <summary>
@@ -180,8 +345,17 @@ namespace ElmSharp
         /// </summary>
         public bool HorizontalBounce
         {
-            get => _adapter.HorizontalBounce;
-            set => _adapter.HorizontalBounce = value;
+            get
+            {
+                bool v, h;
+                Interop.Elementary.elm_scroller_bounce_get(RealHandle, out h, out v);
+                return h;
+            }
+            set
+            {
+                bool v = VerticalBounce;
+                Interop.Elementary.elm_scroller_bounce_set(RealHandle, value, v);
+            }
         }
 
         /// <summary>
@@ -189,7 +363,12 @@ namespace ElmSharp
         /// </summary>
         public int ChildWidth
         {
-            get => _adapter.ChildWidth;
+            get
+            {
+                int w, h;
+                Interop.Elementary.elm_scroller_child_size_get(RealHandle, out w, out h);
+                return w;
+            }
         }
 
         /// <summary>
@@ -197,7 +376,12 @@ namespace ElmSharp
         /// </summary>
         public int ChildHeight
         {
-            get => _adapter.ChildHeight;
+            get
+            {
+                int w, h;
+                Interop.Elementary.elm_scroller_child_size_get(RealHandle, out w, out h);
+                return h;
+            }
         }
 
         /// <summary>
@@ -209,8 +393,17 @@ namespace ElmSharp
         /// </summary>
         public double HorizontalGravity
         {
-            get => _adapter.HorizontalGravity;
-            set => _adapter.HorizontalGravity = value;
+            get
+            {
+                double v, h;
+                Interop.Elementary.elm_scroller_gravity_get(RealHandle, out h, out v);
+                return h;
+            }
+            set
+            {
+                double v = VerticalGravity;
+                Interop.Elementary.elm_scroller_gravity_set(RealHandle, value, v);
+            }
         }
 
         /// <summary>
@@ -222,21 +415,46 @@ namespace ElmSharp
         /// </summary>
         public double VerticalGravity
         {
-            get => _adapter.VerticalGravity;
-            set => _adapter.VerticalGravity = value;
+            get
+            {
+                double v, h;
+                Interop.Elementary.elm_scroller_gravity_get(RealHandle, out h, out v);
+                return v;
+            }
+            set
+            {
+                double h = HorizontalGravity;
+                Interop.Elementary.elm_scroller_gravity_set(RealHandle, h, value);
+            }
         }
 
         /// <summary>
         /// Get scroll last page number.
         /// The page number starts from 0. 0 is the first page. This returns the last page number among the pages.
         /// </summary>
-        public int LastVerticalPageNumber => _adapter.LastVerticalPageNumber;
+        public int LastVerticalPageNumber
+        {
+            get
+            {
+                int v, h;
+                Interop.Elementary.elm_scroller_last_page_get(RealHandle, out h, out v);
+                return v;
+            }
+        }
 
         /// <summary>
         /// Get scroll last page number.
         /// The page number starts from 0. 0 is the first page. This returns the last page number among the pages.
         /// </summary>
-        public int LastHorizontalPageNumber => _adapter.LastHorizontalPageNumber;
+        public int LastHorizontalPageNumber
+        {
+            get
+            {
+                int v, h;
+                Interop.Elementary.elm_scroller_last_page_get(RealHandle, out h, out v);
+                return h;
+            }
+        }
 
         /// <summary>
         /// Set an infinite loop_ for a scroller.
@@ -245,8 +463,17 @@ namespace ElmSharp
         /// </summary>
         public bool VerticalLoop
         {
-            get => _adapter.VerticalLoop;
-            set => _adapter.VerticalLoop = value;
+            get
+            {
+                bool v, h;
+                Interop.Elementary.elm_scroller_loop_get(RealHandle, out h, out v);
+                return v;
+            }
+            set
+            {
+                bool h = HorizontalLoop;
+                Interop.Elementary.elm_scroller_loop_set(RealHandle, h, value);
+            }
         }
 
         /// <summary>
@@ -256,26 +483,17 @@ namespace ElmSharp
         /// </summary>
         public bool HorizontalLoop
         {
-            get => _adapter.HorizontalLoop;
-            set => _adapter.HorizontalLoop = value;
-        }
-
-        /// <summary>
-        /// Gets or sets the page size to an absolute fixed value, with 0 turning it off for that axis.
-        /// </summary>
-        public int HorizontalPageSize
-        {
-            get => _adapter.HorizontalPageSize;
-            set => _adapter.HorizontalPageSize = value;
-        }
-
-        /// <summary>
-        /// Gets or sets the page size to an absolute fixed value, with 0 turning it off for that axis.
-        /// </summary>
-        public int VerticalPageSize
-        {
-            get => _adapter.VerticalPageSize;
-            set => _adapter.VerticalPageSize = value;
+            get
+            {
+                bool v, h;
+                Interop.Elementary.elm_scroller_loop_get(RealHandle, out h, out v);
+                return h;
+            }
+            set
+            {
+                bool v = VerticalLoop;
+                Interop.Elementary.elm_scroller_loop_set(RealHandle, value, v);
+            }
         }
 
         /// <summary>
@@ -283,8 +501,17 @@ namespace ElmSharp
         /// </summary>
         public double VerticalRelativePageSize
         {
-            get => _adapter.VerticalRelativePageSize;
-            set => _adapter.VerticalRelativePageSize = value;
+            get
+            {
+                double v, h;
+                Interop.Elementary.elm_scroller_page_relative_get(RealHandle, out h, out v);
+                return v;
+            }
+            set
+            {
+                double h = HorizontalRelativePageSize;
+                Interop.Elementary.elm_scroller_page_relative_set(RealHandle, h, value);
+            }
         }
 
         /// <summary>
@@ -292,8 +519,17 @@ namespace ElmSharp
         /// </summary>
         public double HorizontalRelativePageSize
         {
-            get => _adapter.HorizontalRelativePageSize;
-            set => _adapter.HorizontalRelativePageSize = value;
+            get
+            {
+                double v, h;
+                Interop.Elementary.elm_scroller_page_relative_get(RealHandle, out h, out v);
+                return h;
+            }
+            set
+            {
+                double v = VerticalRelativePageSize;
+                Interop.Elementary.elm_scroller_page_relative_set(RealHandle, value, v);
+            }
         }
 
         /// <summary>
@@ -307,8 +543,17 @@ namespace ElmSharp
         /// </remarks>
         public bool VerticalSnap
         {
-            get => _adapter.VerticalSnap;
-            set => _adapter.VerticalSnap = value;
+            get
+            {
+                bool v, h;
+                Interop.Elementary.elm_scroller_page_snap_get(RealHandle, out h, out v);
+                return v;
+            }
+            set
+            {
+                bool h = HorizontalSnap;
+                Interop.Elementary.elm_scroller_page_snap_set(RealHandle, h, value);
+            }
         }
 
         /// <summary>
@@ -322,8 +567,17 @@ namespace ElmSharp
         /// </remarks>
         public bool HorizontalSnap
         {
-            get => _adapter.HorizontalSnap;
-            set => _adapter.HorizontalSnap = value;
+            get
+            {
+                bool v, h;
+                Interop.Elementary.elm_scroller_page_snap_get(RealHandle, out h, out v);
+                return h;
+            }
+            set
+            {
+                bool v = VerticalSnap;
+                Interop.Elementary.elm_scroller_page_snap_set(RealHandle, value, v);
+            }
         }
 
         /// <summary>
@@ -331,8 +585,17 @@ namespace ElmSharp
         /// </summary>
         public int PageHeight
         {
-            get => _adapter.PageHeight;
-            set => _adapter.PageHeight = value;
+            get
+            {
+                int w, h;
+                Interop.Elementary.elm_scroller_page_size_get(RealHandle, out w, out h);
+                return h;
+            }
+            set
+            {
+                int w = PageWidth;
+                Interop.Elementary.elm_scroller_page_size_set(RealHandle, w, value);
+            }
         }
 
         /// <summary>
@@ -340,8 +603,17 @@ namespace ElmSharp
         /// </summary>
         public int PageWidth
         {
-            get => _adapter.PageWidth;
-            set => _adapter.PageWidth = value;
+            get
+            {
+                int w, h;
+                Interop.Elementary.elm_scroller_page_size_get(RealHandle, out w, out h);
+                return w;
+            }
+            set
+            {
+                int h = PageHeight;
+                Interop.Elementary.elm_scroller_page_size_set(RealHandle, value, h);
+            }
         }
 
         /// <summary>
@@ -366,8 +638,17 @@ namespace ElmSharp
         /// </summary>
         public int HorizontalStepSize
         {
-            get => _adapter.HorizontalStepSize;
-            set => _adapter.HorizontalStepSize = value;
+            get
+            {
+                int h, v;
+                Interop.Elementary.elm_scroller_step_size_get(RealHandle, out h, out v);
+                return h;
+            }
+            set
+            {
+                int v = VerticalStepSize;
+                Interop.Elementary.elm_scroller_step_size_set(RealHandle, value, v);
+            }
         }
 
         /// <summary>
@@ -375,8 +656,17 @@ namespace ElmSharp
         /// </summary>
         public int VerticalStepSize
         {
-            get => _adapter.VerticalStepSize;
-            set => _adapter.VerticalStepSize = value;
+            get
+            {
+                int h, v;
+                Interop.Elementary.elm_scroller_step_size_get(RealHandle, out h, out v);
+                return v;
+            }
+            set
+            {
+                int h = HorizontalStepSize;
+                Interop.Elementary.elm_scroller_step_size_set(RealHandle, h, value);
+            }
         }
 
         /// <summary>
@@ -384,8 +674,14 @@ namespace ElmSharp
         /// </summary>
         public bool WheelDisabled
         {
-            get => _adapter.WheelDisabled;
-            set => _adapter.WheelDisabled = value;
+            get
+            {
+                return Interop.Elementary.elm_scroller_wheel_disabled_get(RealHandle);
+            }
+            set
+            {
+                Interop.Elementary.elm_scroller_wheel_disabled_set(RealHandle, value);
+            }
         }
 
         /// <summary>
@@ -393,8 +689,14 @@ namespace ElmSharp
         /// </summary>
         public ScrollSingleDirection SingleDirection
         {
-            get => _adapter.SingleDirection;
-            set => _adapter.SingleDirection = value;
+            get
+            {
+                return (ScrollSingleDirection)Interop.Elementary.elm_scroller_single_direction_get(RealHandle);
+            }
+            set
+            {
+                Interop.Elementary.elm_scroller_single_direction_set(RealHandle, (int)value);
+            }
         }
 
         /// <summary>
@@ -406,7 +708,7 @@ namespace ElmSharp
         /// <param name="vertical">Enable limiting minimum size vertically</param>
         public void MinimumLimit(bool horizontal, bool vertical)
         {
-            _adapter.MinimumLimit(horizontal, vertical);
+            Interop.Elementary.elm_scroller_content_min_limit(RealHandle, horizontal, vertical);
         }
 
         /// <summary>
@@ -447,7 +749,14 @@ namespace ElmSharp
         /// <param name="animated">True means slider with animation.</param>
         public void ScrollTo(int horizontalPageIndex, int verticalPageIndex, bool animated)
         {
-            _adapter.ScrollTo(horizontalPageIndex, verticalPageIndex, animated);
+            if (animated)
+            {
+                Interop.Elementary.elm_scroller_page_bring_in(RealHandle, horizontalPageIndex, verticalPageIndex);
+            }
+            else
+            {
+                Interop.Elementary.elm_scroller_page_show(RealHandle, horizontalPageIndex, verticalPageIndex);
+            }
         }
 
         /// <summary>
@@ -464,7 +773,26 @@ namespace ElmSharp
         /// <param name="animated">True means allows the scroller to "smoothly slide" to this location.</param>
         public void ScrollTo(Rect region, bool animated)
         {
-            _adapter.ScrollTo(region, animated);
+            if (animated)
+            {
+                Interop.Elementary.elm_scroller_region_bring_in(RealHandle, region.X, region.Y, region.Width, region.Height);
+            }
+            else
+            {
+                Interop.Elementary.elm_scroller_region_show(RealHandle, region.X, region.Y, region.Width, region.Height);
+            }
+        }
+
+        /// <summary>
+        /// The callback of Realized Event
+        /// </summary>
+        protected override void OnRealized()
+        {
+            base.OnRealized();
+            _scroll = new SmartEvent(this, this.RealHandle, "scroll");
+            _dragStart = new SmartEvent(this, this.RealHandle, "scroll,drag,start");
+            _dragStop = new SmartEvent(this, this.RealHandle, "scroll,drag,stop");
+            _scrollpage = new SmartEvent(this, this.RealHandle, "scroll,page,changed");
         }
 
         /// <summary>
@@ -479,8 +807,6 @@ namespace ElmSharp
 
             RealHandle = Interop.Elementary.elm_scroller_add(handle);
             Interop.Elementary.elm_object_part_content_set(handle, "elm.swallow.content", RealHandle);
-
-            _adapter = new ScrollableAdapter(this);
 
             return handle;
         }
