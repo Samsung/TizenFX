@@ -2529,7 +2529,13 @@ namespace Tizen.NUI.BaseComponents
             return ret;
         }
 
-        internal Layer GetLayer()
+        /// <summary>
+        /// Gets the parent layer of this view.If a view has no parent, this method does nothing.
+        /// </summary>
+        /// <pre>The view has been initialized. </pre>
+        /// <returns>the parent layer of view </returns>
+        /// <since_tizen> 5 </since_tizen>
+        public Layer GetLayer()
         {
             IntPtr cPtr = NDalicPINVOKE.Actor_GetLayer(swigCPtr);
             Layer ret = Registry.GetManagedBaseHandleFromNativePtr(cPtr) as Layer;
