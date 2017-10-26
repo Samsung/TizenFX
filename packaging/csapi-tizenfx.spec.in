@@ -3,7 +3,7 @@
 %define DOTNET_ASSEMBLY_RES_PATH %{DOTNET_ASSEMBLY_PATH}/res
 %define DOTNET_NUGET_SOURCE /nuget
 
-%define DOTNET_TIZEN_API_VERSION 4
+%define DOTNET_TIZEN_API_VERSION 5
 
 %define _tizenfx_bin_path Artifacts
 
