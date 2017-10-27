@@ -57,7 +57,7 @@ namespace ElmSharp.Wearable
         /// <summary>
         /// Gets the handle for Circle Widget.
         /// </summary>
-        public virtual IntPtr CircleHandle => RealHandle;
+        public virtual IntPtr CircleHandle => _circleHandle;
 
         /// <summary>
         /// Gets the handle for Circle Surface used in this widget
@@ -161,7 +161,7 @@ namespace ElmSharp.Wearable
         protected override IntPtr CreateHandle(EvasObject parent)
         {
             IntPtr handle = base.CreateHandle(parent);
-            _circleHandle = Interop.Eext.eext_circle_object_spinner_add(RealHandle == IntPtr.Zero ? Handle : RealHandle, CircleSurface.Handle);
+            _circleHandle = Interop.Eext.eext_circle_object_spinner_add(RealHandle == IntPtr.Zero ? handle : RealHandle, CircleSurface.Handle);
             return handle;
         }
     }
