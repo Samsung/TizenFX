@@ -339,11 +339,21 @@ namespace ElmSharp
         }
 
         /// <summary>
+        /// Use FlushAllCache instead.
+        /// </summary>
+        [Obsolete("use FlushAllCache instead")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static void FlushAllCashe()
+        {
+            Interop.Elementary.elm_cache_all_flush();
+        }
+
+        /// <summary>
         /// Flush all caches.
         /// Frees all data that was in cache and is not currently being used to reduce memory usage. This frees Edje's, Evas' and Eet's cache.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
-        public static void FlushAllCashe()
+        public static void FlushAllCache()
         {
             Interop.Elementary.elm_cache_all_flush();
         }
