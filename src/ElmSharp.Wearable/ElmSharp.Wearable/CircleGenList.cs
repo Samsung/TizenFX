@@ -213,7 +213,7 @@ namespace ElmSharp.Wearable
         protected override IntPtr CreateHandle(EvasObject parent)
         {
             var handle = base.CreateHandle(parent);
-            _circleHandle = Interop.Eext.eext_circle_object_genlist_add(RealHandle == IntPtr.Zero ? Handle : RealHandle, CircleSurface.Handle);
+            _circleHandle = Interop.Eext.eext_circle_object_genlist_add(RealHandle == IntPtr.Zero ? handle : RealHandle, CircleSurface.Handle);
 
             return handle;
         }

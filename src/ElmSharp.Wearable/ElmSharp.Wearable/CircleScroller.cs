@@ -79,11 +79,11 @@ namespace ElmSharp.Wearable
         {
             get
             {
-                return !Interop.Eext.eext_circle_object_disabled_get(Handle);
+                return !Interop.Eext.eext_circle_object_disabled_get(CircleHandle);
             }
             set
             {
-                Interop.Eext.eext_circle_object_disabled_set(Handle, !value);
+                Interop.Eext.eext_circle_object_disabled_set(CircleHandle, !value);
             }
         }
 
@@ -339,7 +339,7 @@ namespace ElmSharp.Wearable
         protected override IntPtr CreateHandle(EvasObject parent)
         {
             IntPtr handle = base.CreateHandle(parent);
-            _circleHandle = Interop.Eext.eext_circle_object_scroller_add(RealHandle == IntPtr.Zero ? Handle : RealHandle, CircleSurface.Handle);
+            _circleHandle = Interop.Eext.eext_circle_object_scroller_add(RealHandle == IntPtr.Zero ? handle : RealHandle, CircleSurface.Handle);
             return handle;
         }
     }
