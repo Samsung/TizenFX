@@ -213,8 +213,8 @@ namespace Tizen.Location.Geofence
         /// </summary>
         /// <since_tizen> 4 </since_tizen>
         /// <param name="placeId">The current place ID.</param>
-        /// <param name="latitude">Specifies the value of latitude of the geofence [-90.0 ~ 90.0] (degrees).</param>
-        /// <param name="longitude">Specifies the value of longitude of the geofence [-180.0 ~ 180.0] (degrees).</param>
+        /// <param name="latitude">Specifies the value of latitude of the geofence [-90.0 ~ 90.0] \(degrees).</param>
+        /// <param name="longitude">Specifies the value of longitude of the geofence [-180.0 ~ 180.0] \(degrees).</param>
         /// <param name="radius">Specifies the value of radius of the geofence [100 ~ 500](meter).</param>
         /// <param name="address">Specifies the value of the address.</param>
         /// <returns>The newly created geofence instance.</returns>

@@ -53,6 +53,7 @@
 
     <MSBuild Projects="@(ProjectToBuild)"
              Properties="Configuration=$(Configuration);RestoreSources=$(RestoreSources)"
+             BuildInParallel="false"
              Targets="Restore" />
 
     <MSBuild Projects="@(ProjectToBuild)"
