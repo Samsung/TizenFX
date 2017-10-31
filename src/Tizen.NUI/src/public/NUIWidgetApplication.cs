@@ -27,6 +27,7 @@ namespace Tizen.NUI
     /// <summary>
     /// Represents an application that have UI screen. The NUIWidgetApplication class has a default stage.
     /// </summary>
+    /// <since_tizen> 4 </since_tizen>
     [Obsolete("Please do not use! this will be deprecated")]
     [EditorBrowsable(EditorBrowsableState.Never)]
     public class NUIWidgetApplication : CoreApplication
@@ -54,6 +55,7 @@ namespace Tizen.NUI
         /// <summary>
         /// Overrides this method if want to handle behavior.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         protected override void OnLocaleChanged(LocaleChangedEventArgs e)
         {
             Log.Fatal("NUI", "OnLocaleChanged() is called!");
@@ -63,6 +65,7 @@ namespace Tizen.NUI
         /// <summary>
         /// Overrides this method if want to handle behavior.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         protected override void OnLowBattery(LowBatteryEventArgs e)
         {
             Log.Fatal("NUI", "OnLowBattery() is called!");
@@ -72,6 +75,7 @@ namespace Tizen.NUI
         /// <summary>
         /// Overrides this method if want to handle behavior.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         protected override void OnLowMemory(LowMemoryEventArgs e)
         {
             Log.Fatal("NUI", "OnLowMemory() is called!");
@@ -81,6 +85,7 @@ namespace Tizen.NUI
         /// <summary>
         /// Overrides this method if want to handle behavior.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         protected override void OnRegionFormatChanged(RegionFormatChangedEventArgs e)
         {
             Log.Fatal("NUI", "OnRegionFormatChanged() is called!");
@@ -90,6 +95,7 @@ namespace Tizen.NUI
         /// <summary>
         /// Overrides this method if want to handle behavior.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         protected override void OnTerminate()
         {
             Log.Fatal("NUI", "OnTerminate() is called!");
@@ -99,6 +105,7 @@ namespace Tizen.NUI
         /// <summary>
         /// Overrides this method if want to handle behavior.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         protected virtual void OnPreCreate()
         {
             Log.Fatal("NUI", "OnPreCreate() is called!");
@@ -107,6 +114,7 @@ namespace Tizen.NUI
         /// <summary>
         /// Overrides this method if want to handle behavior.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         protected override void OnCreate()
         {
             // This is also required to create DisposeQueue on main thread.

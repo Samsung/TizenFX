@@ -25,6 +25,7 @@ namespace Tizen.NUI
     /// A set of key frames for a property that can be animated using DALi animation.<br />
     /// This allows the generation of key frame objects from individual Property::Values.<br />
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public class KeyFrames : BaseHandle
     {
         private global::System.Runtime.InteropServices.HandleRef swigCPtr;

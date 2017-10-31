@@ -23,12 +23,14 @@ namespace Tizen.NUI
     /// <summary>
     /// The Color class.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public class Color : global::System.IDisposable
     {
         private global::System.Runtime.InteropServices.HandleRef swigCPtr;
         /// <summary>
         /// swigCMemOwn
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         protected bool swigCMemOwn;
 
         internal Color(global::System.IntPtr cPtr, bool cMemoryOwn)

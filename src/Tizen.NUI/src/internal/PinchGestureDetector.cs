@@ -72,11 +72,13 @@ namespace Tizen.NUI
         }
 
 
+        /// <since_tizen> 3 </since_tizen>
         public class DetectedEventArgs : EventArgs
         {
             private View _view;
             private PinchGesture _pinchGesture;
 
+            /// <since_tizen> 3 </since_tizen>
             public View View
             {
                 get
@@ -89,6 +91,7 @@ namespace Tizen.NUI
                 }
             }
 
+            /// <since_tizen> 3 </since_tizen>
             public PinchGesture PinchGesture
             {
                 get

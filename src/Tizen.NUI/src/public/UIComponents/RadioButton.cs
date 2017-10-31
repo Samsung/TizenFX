@@ -31,6 +31,7 @@ namespace Tizen.NUI.UIComponents
     /// <br />
     /// The StateChanged event is emitted when the RadioButton change its state to \e selected or \e unselected.<br />
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public class RadioButton : Button
     {
         private global::System.Runtime.InteropServices.HandleRef swigCPtr;
@@ -48,6 +49,7 @@ namespace Tizen.NUI.UIComponents
         /// <summary>
         /// To dispose the RadioButton instance.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         protected override void Dispose(DisposeTypes type)
         {
             if (disposed)

@@ -21,6 +21,7 @@ namespace Tizen.NUI
     /// <summary>
     /// Position2D is a two-dimensional vector.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public class Position2D : global::System.IDisposable
     {
         private global::System.Runtime.InteropServices.HandleRef swigCPtr;
@@ -44,9 +45,9 @@ namespace Tizen.NUI
         //A Flag to check who called Dispose(). (By User or DisposeQueue)
         private bool isDisposeQueued = false;
         /// <summary>
-        /// <since_tizen> 3 </since_tizen>
         /// A Flat to check if it is already disposed.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         protected bool disposed = false;
 
         /// <summary>

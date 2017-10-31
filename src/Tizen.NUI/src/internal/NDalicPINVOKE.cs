@@ -21,7 +21,9 @@ class NDalicPINVOKE {
 
   protected class SWIGExceptionHelper {
 
+    /// <since_tizen> 3 </since_tizen>
     public delegate void ExceptionDelegate(string message);
+    /// <since_tizen> 3 </since_tizen>
     public delegate void ExceptionArgumentDelegate(string message, string paramName);
 
     static ExceptionDelegate applicationDelegate = new ExceptionDelegate(SetPendingApplicationException);
@@ -131,11 +133,13 @@ class NDalicPINVOKE {
 
   protected static SWIGExceptionHelper swigExceptionHelper = new SWIGExceptionHelper();
 
+  /// <since_tizen> 3 </since_tizen>
   public class SWIGPendingException {
     [global::System.ThreadStatic]
     private static global::System.Exception pendingException = null;
     private static int numExceptionsPending = 0;
 
+    /// <since_tizen> 3 </since_tizen>
     public static bool Pending {
       get {
         bool pending = false;
@@ -146,6 +150,7 @@ class NDalicPINVOKE {
       }
     }
 
+    /// <since_tizen> 3 </since_tizen>
     public static void Set(global::System.Exception e) {
       if (pendingException != null)
         throw new global::System.ApplicationException("FATAL: An earlier pending exception from unmanaged code was missed and thus not thrown (" + pendingException.ToString() + ")", e);
@@ -155,6 +160,7 @@ class NDalicPINVOKE {
       }
     }
 
+    /// <since_tizen> 3 </since_tizen>
     public static global::System.Exception Retrieve() {
       global::System.Exception e = null;
       if (numExceptionsPending > 0) {
@@ -173,6 +179,7 @@ class NDalicPINVOKE {
 
   protected class SWIGStringHelper {
 
+    /// <since_tizen> 3 </since_tizen>
     public delegate string SWIGStringDelegate(string message);
     static SWIGStringDelegate stringDelegate = new SWIGStringDelegate(CreateString);
 

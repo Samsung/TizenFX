@@ -23,6 +23,7 @@ namespace Tizen.NUI
     /// RelativeVector3 is a three-dimensional vector.
     /// All values (x, y, z and w) should be between [0, 1].
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public class RelativeVector3 : global::System.IDisposable
     {
         private global::System.Runtime.InteropServices.HandleRef swigCPtr;

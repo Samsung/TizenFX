@@ -22,6 +22,7 @@ namespace Tizen.NUI
     /// A PinchGesture is emitted when the user moves two fingers towards or away from each other.<br />
     /// A pinch gesture will continue to be sent to the actor under the center point of the pinch until the pinch ends.<br />
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public class PinchGesture : Gesture
     {
         private global::System.Runtime.InteropServices.HandleRef swigCPtr;

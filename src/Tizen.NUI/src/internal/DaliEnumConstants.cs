@@ -26,6 +26,7 @@ namespace Tizen.NUI
     /// <summary>
     /// Enumeration for texture types.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public enum TextureType
     {
             /// <summary>
@@ -43,6 +44,7 @@ namespace Tizen.NUI
     /// <summary>
     /// Enumeration for stereoscopic view modes.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public enum ViewMode
     {
             /// <summary>
@@ -156,6 +158,7 @@ namespace Tizen.NUI
             /// <summary>
             /// Background Property
             /// </summary>
+            /// <since_tizen> 3 </since_tizen>
             public struct BackgroundProperty
             {
                 /// <summary>
@@ -173,6 +176,7 @@ namespace Tizen.NUI
             /// <summary>
             /// The properties of the tail used by the tooltip.
             /// </summary>
+            /// <since_tizen> 3 </since_tizen>
             public struct TailProperty
             {
                 /// <summary>

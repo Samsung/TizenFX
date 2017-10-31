@@ -23,6 +23,7 @@ namespace Tizen.NUI.BaseComponents
     /// <summary>
     /// View is the base class for all views.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public class View : Container
     {
         private global::System.Runtime.InteropServices.HandleRef swigCPtr;
@@ -90,6 +91,7 @@ namespace Tizen.NUI.BaseComponents
         /// Retrieves the number of children held by the view.
         /// </summary>
         /// <seealso cref="Container.GetChildCount" />
+        /// <since_tizen> 4 </since_tizen>
         public override uint GetChildCount()
         {
             return Convert.ToUInt32(Children.Count);
@@ -99,6 +101,7 @@ namespace Tizen.NUI.BaseComponents
         /// Gets the views parent.
         /// </summary>
         /// <seealso cref="Container.GetParent()" />
+        /// <since_tizen> 4 </since_tizen>
         public override Container GetParent()
         {
             IntPtr cPtr = NDalicPINVOKE.Actor_GetParent(swigCPtr);
@@ -340,6 +343,7 @@ namespace Tizen.NUI.BaseComponents
         /// <summary>
         /// Event arguments that passed via the KeyEvent signal.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public class KeyEventArgs : EventArgs
         {
             private Key _key;
@@ -370,7 +374,7 @@ namespace Tizen.NUI.BaseComponents
         /// An event for the KeyPressed signal which can be used to subscribe or unsubscribe the event handler provided by the user.<br />
         /// The KeyPressed signal is emitted when the key event is received.<br />
         /// </summary>
-        /// <since_tizen> 4 </since_tizen>
+        /// <since_tizen> 3 </since_tizen>
         public event EventHandlerWithReturnType<object, KeyEventArgs, bool> KeyEvent
         {
             add
@@ -464,6 +468,7 @@ namespace Tizen.NUI.BaseComponents
         /// <summary>
         /// Event arguments that passed via the touch signal.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public class TouchEventArgs : EventArgs
         {
             private Touch _touch;
@@ -494,7 +499,7 @@ namespace Tizen.NUI.BaseComponents
         /// An event for the touched signal which can be used to subscribe or unsubscribe the event handler provided by the user.<br />
         /// The touched signal is emitted when the touch input is received.<br />
         /// </summary>
-        /// <since_tizen> 4 </since_tizen>
+        /// <since_tizen> 3 </since_tizen>
         public event EventHandlerWithReturnType<object, TouchEventArgs, bool> TouchEvent
         {
             add
@@ -538,6 +543,7 @@ namespace Tizen.NUI.BaseComponents
         /// <summary>
         /// Event arguments that passed via the hover signal.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public class HoverEventArgs : EventArgs
         {
             private Hover _hover;
@@ -568,7 +574,7 @@ namespace Tizen.NUI.BaseComponents
         /// An event for the hovered signal which can be used to subscribe or unsubscribe the event handler provided by the user.<br />
         /// The hovered signal is emitted when the hover input is received.<br />
         /// </summary>
-        /// <since_tizen> 4 </since_tizen>
+        /// <since_tizen> 3 </since_tizen>
         public event EventHandlerWithReturnType<object, HoverEventArgs, bool> HoverEvent
         {
             add
@@ -612,6 +618,7 @@ namespace Tizen.NUI.BaseComponents
         /// <summary>
         /// Event arguments that passed via the wheel signal.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public class WheelEventArgs : EventArgs
         {
             private Wheel _wheel;
@@ -642,7 +649,7 @@ namespace Tizen.NUI.BaseComponents
         /// An event for the WheelMoved signal which can be used to subscribe or unsubscribe the event handler provided by the user.<br />
         /// The WheelMoved signal is emitted when the wheel event is received.<br />
         /// </summary>
-        /// <since_tizen> 4 </since_tizen>
+        /// <since_tizen> 3 </since_tizen>
         public event EventHandlerWithReturnType<object, WheelEventArgs, bool> WheelEvent
         {
             add
@@ -773,6 +780,7 @@ namespace Tizen.NUI.BaseComponents
         /// <summary>
         /// Event arguments of visibility changed.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public class VisibilityChangedEventArgs : EventArgs
         {
             private View _view;
@@ -883,6 +891,7 @@ namespace Tizen.NUI.BaseComponents
         /// <summary>
         /// Event arguments of layout direction changed.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         public class LayoutDirectionChangedEventArgs : EventArgs
         {
             private View _view;
@@ -988,7 +997,7 @@ namespace Tizen.NUI.BaseComponents
         /// An event for the ResourcesLoadedSignal signal which can be used to subscribe or unsubscribe the event handler provided by the user.<br />
         /// This signal is emitted after all resources required by a view are loaded and ready.<br />
         /// </summary>
-        /// <since_tizen> 4 </since_tizen>
+        /// <since_tizen> 3 </since_tizen>
         public event EventHandler ResourcesLoaded
         {
             add
@@ -1153,6 +1162,7 @@ namespace Tizen.NUI.BaseComponents
         /// </summary>
         /// <param name="handle">A handle to an object.</param>
         /// <returns>A handle to a view or an uninitialized handle.</returns>
+        /// <since_tizen> 3 </since_tizen>
         [Obsolete("Please do not use! this will be deprecated, instead please use as keyword.")]
         public static View DownCast(BaseHandle handle)
         {
@@ -1379,7 +1389,7 @@ namespace Tizen.NUI.BaseComponents
         /// Creates an animation to animate the background color visual. If there is no
         /// background visual, creates one with transparent black as it's mixColor.
         /// </summary>
-        /// <since_tizen> 4 </since_tizen>
+        /// <since_tizen> 3 </since_tizen>
         public Animation AnimateBackgroundColor( object destinationValue,
                                                  int startTime,
                                                  int endTime,
@@ -1401,7 +1411,7 @@ namespace Tizen.NUI.BaseComponents
         /// <summary>
         /// Creates an animation to animate the mixColor of the named visual.
         /// </summary>
-        /// <since_tizen> 4 </since_tizen>
+        /// <since_tizen> 3 </since_tizen>
         public Animation AnimateColor( string targetVisual, object destinationColor, int startTime, int endTime, AlphaFunction.BuiltinFunctions? alphaFunction = null, object initialColor = null )
         {
             Animation animation = null;
@@ -2164,7 +2174,7 @@ namespace Tizen.NUI.BaseComponents
         /// <remarks>If false, then the top-left of the view is used for the position.
         /// Setting this to false will allow scaling or rotation around the anchor-point without affecting the view's position.
         /// </remarks>
-        /// <since_tizen> 4 </since_tizen>
+        /// <since_tizen> 3 </since_tizen>
         public bool PositionUsesPivotPoint
         {
             get
@@ -2184,6 +2194,7 @@ namespace Tizen.NUI.BaseComponents
         /// </summary>
         /// Please do not use! this will be deprecated!
         /// Instead please use PositionUsesPivotPoint.
+        /// <since_tizen> 3 </since_tizen>
         [Obsolete("Please do not use! this will be deprecated, instead please use PositionUsesPivotPoint")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public bool PositionUsesAnchorPoint
@@ -2268,6 +2279,7 @@ namespace Tizen.NUI.BaseComponents
         /// </remarks>
         /// /// Please do not use! this will be deprecated!
         /// Instead please use NaturalSize2D.
+        /// <since_tizen> 3 </since_tizen>
         [Obsolete("Please do not use! this will be deprecated, please use NaturalSize2D instead")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public Vector3 NaturalSize
@@ -2421,7 +2433,7 @@ namespace Tizen.NUI.BaseComponents
         /// </summary>
         /// <remarks>Most resources are only loaded when the control is placed on the stage.
         /// </remarks>
-        /// <since_tizen> 4 </since_tizen>
+        /// <since_tizen> 3 </since_tizen>
         public bool IsResourceReady()
         {
             bool ret = NDalicPINVOKE.IsResourceReady(swigCPtr);
@@ -3152,7 +3164,7 @@ namespace Tizen.NUI.BaseComponents
             return ret;
         }
 
-        /// <since_tizen> 4 </since_tizen>
+        /// <since_tizen> 3 </since_tizen>
         public uint AddRenderer(Renderer renderer)
         {
             uint ret = NDalicPINVOKE.Actor_AddRenderer(swigCPtr, Renderer.getCPtr(renderer));
@@ -3169,7 +3181,7 @@ namespace Tizen.NUI.BaseComponents
             return ret;
         }
 
-        /// <since_tizen> 4 </since_tizen>
+        /// <since_tizen> 3 </since_tizen>
         public Renderer GetRendererAt(uint index)
         {
             IntPtr cPtr = NDalicPINVOKE.Actor_GetRendererAt(swigCPtr, index);
@@ -3180,7 +3192,7 @@ namespace Tizen.NUI.BaseComponents
             return ret;
         }
 
-        /// <since_tizen> 4 </since_tizen>
+        /// <since_tizen> 3 </since_tizen>
         public void RemoveRenderer(Renderer renderer)
         {
             NDalicPINVOKE.Actor_RemoveRenderer__SWIG_0(swigCPtr, Renderer.getCPtr(renderer));
@@ -3188,7 +3200,7 @@ namespace Tizen.NUI.BaseComponents
                 throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
-        /// <since_tizen> 4 </since_tizen>
+        /// <since_tizen> 3 </since_tizen>
         public void RemoveRenderer(uint index)
         {
             NDalicPINVOKE.Actor_RemoveRenderer__SWIG_1(swigCPtr, index);
@@ -4163,7 +4175,7 @@ namespace Tizen.NUI.BaseComponents
         /// <summary>
         /// Gets the number of renderers held by the view.
         /// </summary>
-        /// <since_tizen> 4 </since_tizen>
+        /// <since_tizen> 3 </since_tizen>
         public uint RendererCount
         {
             get
@@ -4416,6 +4428,7 @@ namespace Tizen.NUI.BaseComponents
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         //"Please DO NOT use! This will be deprecated! Please use 'Container GetParent() for derived class' instead!"
+        /// <since_tizen> 3 </since_tizen>
         [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Never)]
         public new View Parent
         {
@@ -4483,6 +4496,7 @@ namespace Tizen.NUI.BaseComponents
         /// <summary>
         /// Gets or sets the Margin for use in layout.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         public Extents Margin
         {
             get
@@ -4500,6 +4514,7 @@ namespace Tizen.NUI.BaseComponents
         /// <summary>
         /// Gets or sets the Padding for use in layout.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         public Extents PaddingEX
         {
             get
@@ -4524,10 +4539,12 @@ namespace Tizen.NUI.BaseComponents
         /// <summary>
         /// Left to right.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         LTR,
         /// <summary>
         /// Right to left.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         RTL
     }
 }

@@ -20,6 +20,7 @@ namespace Tizen.NUI
     /// <summary>
     /// Sampler is a handle to an object that can be used to provide the sampling parameters to sample textures.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public class Sampler : BaseHandle
     {
         private global::System.Runtime.InteropServices.HandleRef swigCPtr;

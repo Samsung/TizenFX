@@ -26,6 +26,7 @@ namespace Tizen.NUI.UIComponents
     /// The selected image is shown over the background image when the box is selected (background image is not replaced by \e selected image).<br />
     /// When the button is disabled, the background image and the selected image are replaced by disabled images.<br />
     /// /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public class CheckBoxButton : Button
     {
         private global::System.Runtime.InteropServices.HandleRef swigCPtr;
@@ -44,6 +45,7 @@ namespace Tizen.NUI.UIComponents
         /// <summary>
         /// To dispose the CheckBoxButton instance.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         protected override void Dispose(DisposeTypes type)
         {
             if (disposed)

@@ -23,6 +23,7 @@ namespace Tizen.NUI.BaseComponents
     /// <summary>
     /// VideoView is a control for video playback and display.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public class VideoView : View
     {
         private global::System.Runtime.InteropServices.HandleRef swigCPtr;
@@ -81,6 +82,7 @@ namespace Tizen.NUI.BaseComponents
         /// <summary>
         /// Event arguments that passed via the finished signal.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public class FinishedEventArgs : EventArgs
         {
             private VideoView _videoView;
@@ -192,6 +194,7 @@ namespace Tizen.NUI.BaseComponents
         /// <returns></returns>
         /// Please do not use! this will be deprecated!
         /// Instead please use as keyword.
+        /// <since_tizen> 3 </since_tizen>
         [Obsolete("Please DO NOT use! This will be deprecated, instead please USE as keyword.")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public new static VideoView DownCast(BaseHandle handle)

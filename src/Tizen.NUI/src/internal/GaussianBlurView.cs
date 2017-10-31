@@ -72,10 +72,12 @@ namespace Tizen.NUI
 
 
 
+        /// <since_tizen> 3 </since_tizen>
         public class FinishedEventArgs : EventArgs
         {
             private GaussianBlurView _gaussianBlurView;
 
+            /// <since_tizen> 3 </since_tizen>
             public GaussianBlurView GaussianBlurView
             {
                 get

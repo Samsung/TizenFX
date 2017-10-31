@@ -21,6 +21,7 @@ namespace Tizen.NUI
     /// TextureSet is a handle to an object that specifies the set of images used as textures by a renderer.<br />
     /// The images have to be ordered in the same order they are declared in the shader.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public class TextureSet : BaseHandle
     {
         private global::System.Runtime.InteropServices.HandleRef swigCPtr;

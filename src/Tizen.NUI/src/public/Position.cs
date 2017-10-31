@@ -24,6 +24,7 @@ namespace Tizen.NUI
     /// <summary>
     /// Position is a three-dimensional vector.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public class Position : global::System.IDisposable
     {
         private global::System.Runtime.InteropServices.HandleRef swigCPtr;
@@ -610,7 +611,7 @@ namespace Tizen.NUI
         /// <summary>
         /// PivotPoint constants: 0.0.
         /// </summary>
-        /// <since_tizen> 4 </since_tizen>
+        /// <since_tizen> 3 </since_tizen>
         public static float PivotPointTop
         {
             get
@@ -624,7 +625,7 @@ namespace Tizen.NUI
         /// <summary>
         /// PivotPoint constants: 1.0.
         /// </summary>
-        /// <since_tizen> 4 </since_tizen>
+        /// <since_tizen> 3 </since_tizen>
         public static float PivotPointBottom
         {
             get
@@ -638,7 +639,7 @@ namespace Tizen.NUI
         /// <summary>
         /// PivotPoint constants: 0.0.
         /// </summary>
-        /// <since_tizen> 4 </since_tizen>
+        /// <since_tizen> 3 </since_tizen>
         public static float PivotPointLeft
         {
             get
@@ -652,7 +653,7 @@ namespace Tizen.NUI
         /// <summary>
         /// PivotPoint constants: 1.0.
         /// </summary>
-        /// <since_tizen> 4 </since_tizen>
+        /// <since_tizen> 3 </since_tizen>
         public static float PivotPointRight
         {
             get
@@ -666,7 +667,7 @@ namespace Tizen.NUI
         /// <summary>
         /// PivotPoint constants: 0.0.
         /// </summary>
-        /// <since_tizen> 4 </since_tizen>
+        /// <since_tizen> 3 </since_tizen>
         public static float PivotPointMiddle
         {
             get
@@ -680,7 +681,7 @@ namespace Tizen.NUI
         /// <summary>
         /// PivotPoint constants: 0.0, 0.0, 0.5.
         /// </summary>
-        /// <since_tizen> 4 </since_tizen>
+        /// <since_tizen> 3 </since_tizen>
         public static Position PivotPointTopLeft
         {
             get
@@ -695,7 +696,7 @@ namespace Tizen.NUI
         /// <summary>
         /// PivotPoint constants: 0.5, 0.0, 0.5.
         /// </summary>
-        /// <since_tizen> 4 </since_tizen>
+        /// <since_tizen> 3 </since_tizen>
         public static Position PivotPointTopCenter
         {
             get
@@ -710,7 +711,7 @@ namespace Tizen.NUI
         /// <summary>
         /// PivotPoint constants: 1.0, 0.0, 0.5.
         /// </summary>
-        /// <since_tizen> 4 </since_tizen>
+        /// <since_tizen> 3 </since_tizen>
         public static Position PivotPointTopRight
         {
             get
@@ -725,7 +726,7 @@ namespace Tizen.NUI
         /// <summary>
         /// PivotPoint constants: 0.0, 0.5, 0.5.
         /// </summary>
-        /// <since_tizen> 4 </since_tizen>
+        /// <since_tizen> 3 </since_tizen>
         public static Position PivotPointCenterLeft
         {
             get
@@ -740,7 +741,7 @@ namespace Tizen.NUI
         /// <summary>
         /// PivotPoint constants: 0.5, 0.5, 0.5.
         /// </summary>
-        /// <since_tizen> 4 </since_tizen>
+        /// <since_tizen> 3 </since_tizen>
         public static Position PivotPointCenter
         {
             get
@@ -755,7 +756,7 @@ namespace Tizen.NUI
         /// <summary>
         /// PivotPoint constants: 1.0, 0.5, 0.5.
         /// </summary>
-        /// <since_tizen> 4 </since_tizen>
+        /// <since_tizen> 3 </since_tizen>
         public static Position PivotPointCenterRight
         {
             get
@@ -770,7 +771,7 @@ namespace Tizen.NUI
         /// <summary>
         /// PivotPoint constants: 0.0, 1.0, 0.5.
         /// </summary>
-        /// <since_tizen> 4 </since_tizen>
+        /// <since_tizen> 3 </since_tizen>
         public static Position PivotPointBottomLeft
         {
             get
@@ -785,7 +786,7 @@ namespace Tizen.NUI
         /// <summary>
         /// PivotPoint constants: 0.5, 1.0, 0.5
         /// </summary>
-        /// <since_tizen> 4 </since_tizen>
+        /// <since_tizen> 3 </since_tizen>
         public static Position PivotPointBottomCenter
         {
             get
@@ -800,7 +801,7 @@ namespace Tizen.NUI
         /// <summary>
         /// PivotPoint constants: 1.0, 1.0, 0.5.
         /// </summary>
-        /// <since_tizen> 4 </since_tizen>
+        /// <since_tizen> 3 </since_tizen>
         public static Position PivotPointBottomRight
         {
             get

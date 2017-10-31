@@ -20,6 +20,7 @@ namespace Tizen.NUI
     /// <summary>
     /// This object translates data from a property array of maps into an array of animators.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public class TransitionData : BaseHandle
     {
         private global::System.Runtime.InteropServices.HandleRef swigCPtr;

@@ -25,6 +25,7 @@ namespace Tizen.NUI
     /// The Container is an abstract class to be inherited from by classes that desire to have views
     /// added to them.
     /// </summary>
+    /// <since_tizen> 4 </since_tizen>
     public abstract class Container : Animatable
     {
 
@@ -33,6 +34,7 @@ namespace Tizen.NUI
         /// <summary>
         /// List of children of Container.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         public List<View> Children
         {
             get
@@ -49,7 +51,7 @@ namespace Tizen.NUI
         /// <summary>
         /// Dispose.
         /// </summary>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 4 </since_tizen>
         protected override void Dispose(DisposeTypes type)
         {
             if (disposed)
@@ -93,6 +95,7 @@ namespace Tizen.NUI
         /// </summary>
         /// <pre>The child container has been initialized.</pre>
         /// <returns>The parent container.</returns>
+        /// <since_tizen> 4 </since_tizen>
         public abstract Container GetParent();
 
         /// <summary>
@@ -100,6 +103,7 @@ namespace Tizen.NUI
         /// </summary>
         /// <pre>The container has been initialized.</pre>
         /// <returns>The number of children.</returns>
+        /// <since_tizen> 4 </since_tizen>
         public abstract UInt32 GetChildCount();
 
         /// <summary>

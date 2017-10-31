@@ -66,9 +66,11 @@ namespace Tizen.NUI
             base.Dispose(type);
         }
 
+        /// <since_tizen> 3 </since_tizen>
         public new class Property : global::System.IDisposable
         {
             private global::System.Runtime.InteropServices.HandleRef swigCPtr;
+            /// <since_tizen> 3 </since_tizen>
             protected bool swigCMemOwn;
 
             internal Property(global::System.IntPtr cPtr, bool cMemoryOwn)
@@ -85,6 +87,7 @@ namespace Tizen.NUI
             //A Flag to check who called Dispose(). (By User or DisposeQueue)
             private bool isDisposeQueued = false;
             //A Flat to check if it is already disposed.
+            /// <since_tizen> 3 </since_tizen>
             protected bool disposed = false;
 
 
@@ -97,6 +100,7 @@ namespace Tizen.NUI
                 }
             }
 
+            /// <since_tizen> 3 </since_tizen>
             public void Dispose()
             {
                 //Throw excpetion if Dispose() is called in separate thread.
@@ -116,6 +120,7 @@ namespace Tizen.NUI
                 }
             }
 
+            /// <since_tizen> 3 </since_tizen>
             protected virtual void Dispose(DisposeTypes type)
             {
                 if (disposed)
@@ -148,18 +153,27 @@ namespace Tizen.NUI
                 disposed = true;
             }
 
+            /// <since_tizen> 3 </since_tizen>
             public Property() : this(NDalicPINVOKE.new_Model3dView_Property(), true)
             {
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
 
+            /// <since_tizen> 3 </since_tizen>
             public static readonly int GEOMETRY_URL = NDalicPINVOKE.Model3dView_Property_GEOMETRY_URL_get();
+            /// <since_tizen> 3 </since_tizen>
             public static readonly int MATERIAL_URL = NDalicPINVOKE.Model3dView_Property_MATERIAL_URL_get();
+            /// <since_tizen> 3 </since_tizen>
             public static readonly int IMAGES_URL = NDalicPINVOKE.Model3dView_Property_IMAGES_URL_get();
+            /// <since_tizen> 3 </since_tizen>
             public static readonly int ILLUMINATION_TYPE = NDalicPINVOKE.Model3dView_Property_ILLUMINATION_TYPE_get();
+            /// <since_tizen> 3 </since_tizen>
             public static readonly int TEXTURE0_URL = NDalicPINVOKE.Model3dView_Property_TEXTURE0_URL_get();
+            /// <since_tizen> 3 </since_tizen>
             public static readonly int TEXTURE1_URL = NDalicPINVOKE.Model3dView_Property_TEXTURE1_URL_get();
+            /// <since_tizen> 3 </since_tizen>
             public static readonly int TEXTURE2_URL = NDalicPINVOKE.Model3dView_Property_TEXTURE2_URL_get();
+            /// <since_tizen> 3 </since_tizen>
             public static readonly int LIGHT_POSITION = NDalicPINVOKE.Model3dView_Property_LIGHT_POSITION_get();
 
         }
@@ -193,6 +207,7 @@ namespace Tizen.NUI
             return ret;
         }
 
+        /// <since_tizen> 3 </since_tizen>
         public enum IluminationTypeEnum
         {
             DIFFUSE,

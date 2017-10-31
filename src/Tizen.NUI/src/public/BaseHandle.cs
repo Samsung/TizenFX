@@ -21,6 +21,7 @@ namespace Tizen.NUI
     /// <summary>
     /// BaseHandle is a handle to an internal Dali resource.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public class BaseHandle : global::System.IDisposable
     {
         private global::System.Runtime.InteropServices.HandleRef swigCPtr;

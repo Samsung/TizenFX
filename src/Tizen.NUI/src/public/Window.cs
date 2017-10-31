@@ -25,6 +25,7 @@ namespace Tizen.NUI
     /// The window class is used internally for drawing.<br />
     /// The window has an orientation and indicator properties.<br />
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public class Window : BaseHandle
     {
         private global::System.Runtime.InteropServices.HandleRef swigCPtr;
@@ -52,6 +53,7 @@ namespace Tizen.NUI
         /// Please DO NOT use! This will be deprecated!
         /// Dispose() method in Singletone classes (ex: FocusManager, StyleManager, VisualFactory, IMFManager, TtsPlayer, Window) is not required.
         /// Because it is Sigletone, so it is alive for one thread until the NUI is terminated, so it never be disposed.
+        /// <since_tizen> 3 </since_tizen>
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected override void Dispose(DisposeTypes type)
         {
@@ -380,7 +382,7 @@ namespace Tizen.NUI
         /// </summary>
         /// <param name="screenOffMode">The screen mode.</param>
         /// <returns>True if no error occurred, false otherwise.</returns>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 4 </since_tizen>
         public bool SetScreenOffMode(ScreenOffMode screenOffMode)
         {
             bool ret = NDalicPINVOKE.SetScreenOffMode(swigCPtr, (int)screenOffMode);
@@ -392,7 +394,7 @@ namespace Tizen.NUI
         /// Gets the screen mode of the window.
         /// </summary>
         /// <returns>The screen off mode.</returns>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 4 </since_tizen>
         public ScreenOffMode GetScreenOffMode()
         {
             ScreenOffMode ret = (ScreenOffMode)NDalicPINVOKE.GetScreenOffMode(swigCPtr);
@@ -428,6 +430,7 @@ namespace Tizen.NUI
         /// <summary>
         /// The focus changed event argument.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public class FocusChangedEventArgs : EventArgs
         {
             /// <summary>
@@ -449,7 +452,7 @@ namespace Tizen.NUI
         /// <summary>
         /// FocusChanged event.
         /// </summary>
-        /// <since_tizen> 4 </since_tizen>
+        /// <since_tizen> 3 </since_tizen>
         public event EventHandler<FocusChangedEventArgs> FocusChanged
         {
             add
@@ -1004,6 +1007,7 @@ namespace Tizen.NUI
         /// <summary>
         /// The touch event argument.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public class TouchEventArgs : EventArgs
         {
             private Touch _touch;
@@ -1034,7 +1038,7 @@ namespace Tizen.NUI
         /// then when the last finger is lifted.<br />
         /// An interrupted event will also be emitted (if it occurs).<br />
         /// </summary>
-        /// <since_tizen> 4 </since_tizen>
+        /// <since_tizen> 3 </since_tizen>
         public event EventHandler<TouchEventArgs> TouchEvent
         {
             add
@@ -1077,6 +1081,7 @@ namespace Tizen.NUI
         /// <summary>
         /// Wheel event arguments.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public class WheelEventArgs : EventArgs
         {
             private Wheel _wheel;
@@ -1104,7 +1109,7 @@ namespace Tizen.NUI
         /// <summary>
         /// This event is emitted when the wheel event is received.
         /// </summary>
-        /// <since_tizen> 4 </since_tizen>
+        /// <since_tizen> 3 </since_tizen>
         public event EventHandler<WheelEventArgs> WheelEvent
         {
             add
@@ -1144,6 +1149,7 @@ namespace Tizen.NUI
         /// <summary>
         /// Key event arguments.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public class KeyEventArgs : EventArgs
         {
             private Key _key;
@@ -1171,7 +1177,7 @@ namespace Tizen.NUI
         /// <summary>
         /// This event is emitted when the key event is received.
         /// </summary>
-        /// <since_tizen> 4 </since_tizen>
+        /// <since_tizen> 3 </since_tizen>
         public event EventHandler<KeyEventArgs> KeyEvent
         {
             add
@@ -1350,7 +1356,7 @@ namespace Tizen.NUI
         /// <summary>
         /// This resized event arguments.
         /// </summary>
-        /// <since_tizen> 4 </since_tizen>
+        /// <since_tizen> 3 </since_tizen>
         public class ResizedEventArgs : EventArgs
         {
             Size2D _windowSize;
@@ -1380,7 +1386,7 @@ namespace Tizen.NUI
         /// <summary>
         /// This event is emitted when the window resized.
         /// </summary>
-        /// <since_tizen> 4 </since_tizen>
+        /// <since_tizen> 3 </since_tizen>
         public event EventHandler<ResizedEventArgs> Resized
         {
             add
@@ -1523,7 +1529,7 @@ namespace Tizen.NUI
         /// Removes a layer from the stage.
         /// </summary>
         /// <param name="layer">Layer to remove.</param>
-        /// <since_tizen> 4 </since_tizen>
+        /// <since_tizen> 3 </since_tizen>
         public void RemoveLayer(Layer layer)
         {
             NDalicPINVOKE.Stage_Remove(stageCPtr, Layer.getCPtr(layer));

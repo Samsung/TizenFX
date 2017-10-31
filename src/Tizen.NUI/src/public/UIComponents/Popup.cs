@@ -24,6 +24,7 @@ namespace Tizen.NUI.UIComponents
     /// <summary>
     /// The Popup widget provides a configurable popup dialog with a built-in layout of three main fields.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public class Popup : View
     {
         private global::System.Runtime.InteropServices.HandleRef swigCPtr;
@@ -106,6 +107,7 @@ namespace Tizen.NUI.UIComponents
         /// <summary>
         /// Event arguments that passed via the OutsideTouchedEvent.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public class TouchedOutsideEventArgs : EventArgs
         {
         }
@@ -113,6 +115,7 @@ namespace Tizen.NUI.UIComponents
         /// <summary>
         /// Event arguments that passed via the ShowingEventArgs.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public class ShowingEventArgs : EventArgs
         {
         }
@@ -120,6 +123,7 @@ namespace Tizen.NUI.UIComponents
         /// <summary>
         /// Event arguments that passed via the ShownEventArgs.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public class ShownEventArgs : EventArgs
         {
         }
@@ -127,6 +131,7 @@ namespace Tizen.NUI.UIComponents
         /// <summary>
         /// Event arguments that passed via the HidingEventArgs.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public class HidingEventArgs : EventArgs
         {
         }
@@ -134,6 +139,7 @@ namespace Tizen.NUI.UIComponents
         /// <summary>
         /// Event arguments that passed via the HiddenEventArgs.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public class HiddenEventArgs : EventArgs
         {
         }
@@ -166,7 +172,7 @@ namespace Tizen.NUI.UIComponents
         /// <summary>
         /// An event is sent when the user has touched outside the dialog.
         /// </summary>
-        /// <since_tizen> 4 </since_tizen>
+        /// <since_tizen> 3 </since_tizen>
         public event EventHandler<TouchedOutsideEventArgs> TouchedOutside
         {
             add

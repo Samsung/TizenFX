@@ -28,6 +28,7 @@ namespace Tizen.NUI.BaseComponents
     /// <summary>
     /// A control which provides a multi-line editable text editor.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public class TextEditor : View
     {
         private global::System.Runtime.InteropServices.HandleRef swigCPtr;
@@ -48,6 +49,7 @@ namespace Tizen.NUI.BaseComponents
         /// <summary>
         /// Dispose.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         protected override void Dispose(DisposeTypes type)
         {
             if (disposed)
@@ -87,6 +89,7 @@ namespace Tizen.NUI.BaseComponents
         /// <summary>
         /// Event arguments that passed via the TextChanged signal.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public class TextChangedEventArgs : EventArgs
         {
             private TextEditor _textEditor;
@@ -157,6 +160,7 @@ namespace Tizen.NUI.BaseComponents
         /// <summary>
         /// Event arguments that passed via the ScrollStateChanged signal.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public class ScrollStateChangedEventArgs : EventArgs
         {
             private TextEditor _textEditor;
@@ -1348,7 +1352,7 @@ namespace Tizen.NUI.BaseComponents
         /// <summary>
         /// The EnableSelection property.
         /// </summary>
-        /// <since_tizen> 4 </since_tizen>
+        /// <since_tizen> 3 </since_tizen>
         public bool EnableSelection
         {
             get
@@ -1387,7 +1391,7 @@ namespace Tizen.NUI.BaseComponents
         /// editor.Placeholder = propertyMap;
         /// </code>
         /// </example>
-        /// <since_tizen> 4 </since_tizen>
+        /// <since_tizen> 3 </since_tizen>
         public Tizen.NUI.PropertyMap Placeholder
         {
             get

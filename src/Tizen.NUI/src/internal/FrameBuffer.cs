@@ -64,8 +64,10 @@ namespace Tizen.NUI
             base.Dispose(type);
         }
 
+        /// <since_tizen> 3 </since_tizen>
         public class Attachment
         {
+            /// <since_tizen> 3 </since_tizen>
             public enum Mask
             {
                 NONE = 0,
