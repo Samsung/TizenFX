@@ -23,6 +23,7 @@ namespace Tizen.Applications
     /// <summary>
     /// This class provides methods and properties to get information of the recent application.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     [EditorBrowsable(EditorBrowsableState.Never)]
     public class RecentApplicationInfo : ApplicationInfo
     {
@@ -31,31 +32,37 @@ namespace Tizen.Applications
         /// <summary>
         /// Gets the instance ID.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public string InstanceId { get; private set; }
 
         /// <summary>
         /// Gets the instance name.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public string InstanceName { get; private set; }
 
         /// <summary>
         /// Gets the arguements.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public string Arg { get; private set; }
 
         /// <summary>
         /// Gets the URI.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public string Uri { get; private set; }
 
         /// <summary>
         /// Gets the launchTime.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public DateTime LaunchTime { get; private set; }
 
         /// <summary>
         /// Gets the recent application controller.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public RecentApplicationControl Controller { get; private set; }
 
         internal RecentApplicationInfo(Interop.ApplicationManager.RuaRec record) : base(Marshal.PtrToStringAnsi(record.pkgName))

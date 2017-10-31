@@ -24,6 +24,7 @@ namespace Tizen.Applications
     /// <summary>
     /// This class provides methods and properties to get information of the recent application.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     [EditorBrowsable(EditorBrowsableState.Never)]
     public class RecentApplicationControl
     {
@@ -40,6 +41,7 @@ namespace Tizen.Applications
         /// Deletes the application from the recent application list.
         /// </summary>
         /// <privlevel>platform</privlevel>
+        /// <since_tizen> 3 </since_tizen>
         public void Delete()
         {
             Interop.ApplicationManager.ErrorCode err = Interop.ApplicationManager.ErrorCode.None;
@@ -54,6 +56,7 @@ namespace Tizen.Applications
         /// Deletes all recent applications from the recent application list.
         /// </summary>
         /// <privlevel>platform</privlevel>
+        /// <since_tizen> 3 </since_tizen>
         public static void DeleteAll()
         {
             Interop.ApplicationManager.ErrorCode err = Interop.ApplicationManager.ErrorCode.None;

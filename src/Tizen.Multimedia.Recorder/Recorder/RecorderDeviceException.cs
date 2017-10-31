@@ -21,11 +21,13 @@ namespace Tizen.Multimedia
     /// <summary>
     /// The exception that is thrown when a recorder device-related error occurs.
     /// </summary>
+    /// <since_tizen> 4 </since_tizen>
     public class RecorderDeviceException : Exception
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="RecorderDeviceException"/> class.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         public RecorderDeviceException() : base()
         {
         }
@@ -33,6 +35,7 @@ namespace Tizen.Multimedia
         /// <summary>
         /// Initializes a new instance of the <see cref="RecorderDeviceException"/> class with a specified error message.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         public RecorderDeviceException(string message) : base(message)
         {
         }
@@ -41,6 +44,7 @@ namespace Tizen.Multimedia
         /// Initializes a new instance of the <see cref="RecorderDeviceException"/> class with
         /// a specified error message and inner exception.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         public RecorderDeviceException(string message, Exception innerException) : base(message, innerException)
         {
         }

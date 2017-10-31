@@ -21,6 +21,7 @@ namespace Tizen.Applications
     /// <summary>
     /// The class for the argument of the LocaleChanged EventHandler
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public class LocaleChangedEventArgs : EventArgs
     {
 
@@ -28,6 +29,7 @@ namespace Tizen.Applications
         /// Initializes LocaleChangedEventArgs class
         /// </summary>
         /// <param name="locale">The information of the Locale</param>
+        /// <since_tizen> 3 </since_tizen>
         public LocaleChangedEventArgs(string locale)
         {
             Locale = locale;
@@ -36,6 +38,7 @@ namespace Tizen.Applications
         /// <summary>
         /// The property to get the intformation of the Locale
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public string Locale { get; private set; }
 
     }

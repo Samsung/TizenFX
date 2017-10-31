@@ -22,6 +22,7 @@ namespace Tizen.Applications
     /// <summary>
     /// This class provides methods and properties to get information of the application.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public class ApplicationInfo : IDisposable
     {
         private const string LogTag = "Tizen.Applications";
@@ -44,6 +45,7 @@ namespace Tizen.Applications
         /// A constructor of ApplicationInfo that takes the application ID.
         /// </summary>
         /// <param name="applicationId">Application ID.</param>
+        /// <since_tizen> 3 </since_tizen>
         public ApplicationInfo(string applicationId)
         {
             _applicationId = applicationId;
@@ -60,6 +62,7 @@ namespace Tizen.Applications
         /// <summary>
         /// Gets the application ID.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public string ApplicationId
         {
             get
@@ -83,6 +86,7 @@ namespace Tizen.Applications
         /// <summary>
         /// Gets the package ID of the application.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public string PackageId
         {
             get
@@ -104,6 +108,7 @@ namespace Tizen.Applications
         /// <summary>
         /// Gets the label of the application.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public string Label
         {
             get
@@ -125,6 +130,7 @@ namespace Tizen.Applications
         /// <summary>
         /// Gets the executable path of the application.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public string ExecutablePath
         {
             get
@@ -146,6 +152,7 @@ namespace Tizen.Applications
         /// <summary>
         /// Gets the absolute path to the icon image.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public string IconPath
         {
             get
@@ -167,6 +174,7 @@ namespace Tizen.Applications
         /// <summary>
         /// Gets the application type name.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public string ApplicationType
         {
             get
@@ -188,6 +196,7 @@ namespace Tizen.Applications
         /// <summary>
         /// Gets the application's metadata.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public IDictionary<String, String> Metadata
         {
             get
@@ -219,6 +228,7 @@ namespace Tizen.Applications
         /// <summary>
         /// Checks whether the application information is nodisplay. If the application icon is not displayed on the menu screen, true; otherwise, false.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public bool IsNoDisplay
         {
             get
@@ -241,6 +251,7 @@ namespace Tizen.Applications
         /// <summary>
         /// Checks whether the application is launched on booting time. If the application automatically starts on boot, true; otherwise, false.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public bool IsOnBoot
         {
             get
@@ -262,6 +273,7 @@ namespace Tizen.Applications
         /// <summary>
         /// Checks whether the application is preloaded. If the application is preloaded, true; otherwise, false.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public bool IsPreload
         {
             get
@@ -283,6 +295,7 @@ namespace Tizen.Applications
         /// <summary>
         /// Gets the shared data path.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public string SharedDataPath
         {
             get
@@ -300,6 +313,7 @@ namespace Tizen.Applications
         /// <summary>
         /// Gets the shared resource path.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public string SharedResourcePath
         {
             get
@@ -317,6 +331,7 @@ namespace Tizen.Applications
         /// <summary>
         /// Gets the shared trust path.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public string SharedTrustedPath
         {
             get
@@ -334,6 +349,7 @@ namespace Tizen.Applications
         /// <summary>
         /// Gets the external shared data path.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public string ExternalSharedDataPath
         {
             get
@@ -352,6 +368,7 @@ namespace Tizen.Applications
         /// Gets the localized label of the application for the given locale.
         /// </summary>
         /// <param name="locale">Locale.</param>
+        /// <since_tizen> 3 </since_tizen>
         public string GetLocalizedLabel(string locale)
         {
             string label = string.Empty;
@@ -382,6 +399,7 @@ namespace Tizen.Applications
         /// <summary>
         /// Releases all resources used by the ApplicationInfo class.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public void Dispose()
         {
             Dispose(true);

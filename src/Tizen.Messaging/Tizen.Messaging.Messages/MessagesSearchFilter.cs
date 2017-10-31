@@ -19,11 +19,13 @@ namespace Tizen.Messaging.Messages
     /// <summary>
     /// This class represents message search filters.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public class MessagesSearchFilter
     {
         /// <summary>
         /// Creates a search filter for searching messages.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public MessagesSearchFilter()
         {
         }
@@ -31,18 +33,22 @@ namespace Tizen.Messaging.Messages
         /// <summary>
         /// The message box type.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public MessageBoxType MessageBoxType { get; set; }
         /// <summary>
         /// The message type.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public MessageType MessageType { get; set; }
         /// <summary>
         /// The keyword to search in the text and the subject.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public string TextKeyword { get; set; }
         /// <summary>
         /// The recipient address.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public string AddressKeyword { get; set; }
     }
 }

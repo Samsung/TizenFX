@@ -21,6 +21,7 @@ namespace Tizen.System
     /// <summary>
     /// BatteryPercentChangedEventArgs is an extended EventArgs class. This class contains event arguments for the BatteryPercentChanged event from the battery class.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public class BatteryPercentChangedEventArgs : EventArgs
     {
         internal BatteryPercentChangedEventArgs(){}
@@ -35,6 +36,7 @@ namespace Tizen.System
     /// <summary>
     /// BatteryLevelChangedEventArgs is an extended EventArgs class. This class contains event arguments for the BatteryLevelChanged event from the battery class.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public class BatteryLevelChangedEventArgs : EventArgs
     {
         internal BatteryLevelChangedEventArgs(){}
@@ -48,6 +50,7 @@ namespace Tizen.System
     /// <summary>
     /// BatteryChargingStateChangedEventArgs is an extended EventArgs class. This class contains event arguments for the BatteryChargingStateChanged event from the battery class.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public class BatteryChargingStateChangedEventArgs : EventArgs
     {
         internal BatteryChargingStateChangedEventArgs() {}
@@ -61,6 +64,7 @@ namespace Tizen.System
     /// <summary>
     /// DisplayStateChangedEventArgs is an extended EventArgs class. This class contains event arguments for the DisplayStateChanged event from the display class.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public class DisplayStateChangedEventArgs : EventArgs
     {
         internal DisplayStateChangedEventArgs() {}
@@ -74,6 +78,7 @@ namespace Tizen.System
     /// <summary>
     /// LedBrightnessChangedEventArgs is an extended EventArgs class. This class contains event arguments for the LedBrightnessChanged event from the LED class.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public class LedBrightnessChangedEventArgs : EventArgs
     {
         internal LedBrightnessChangedEventArgs() {}

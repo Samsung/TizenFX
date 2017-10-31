@@ -19,6 +19,7 @@ namespace Tizen.Messaging.Messages
     /// <summary>
     /// Enumeration for the result of sending a message.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public enum SentResult
     {
         /// <summary>
@@ -34,6 +35,7 @@ namespace Tizen.Messaging.Messages
     /// <summary>
     /// Enumeration for the message type.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public enum MessageType
     {
         /// <summary>
@@ -61,6 +63,7 @@ namespace Tizen.Messaging.Messages
     /// <summary>
     /// Enumeration for the message box type.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public enum MessageBoxType
     {
         /// <summary>
@@ -88,6 +91,7 @@ namespace Tizen.Messaging.Messages
     /// <summary>
     /// Enumeration for the SIM slot index of a message.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public enum SimSlotId
     {
         /// <summary>
@@ -130,6 +134,7 @@ namespace Tizen.Messaging.Messages
     /// <summary>
     /// Enumeration for the attachment type for the MMS messaging.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public enum MediaType
     {
         /// <summary>

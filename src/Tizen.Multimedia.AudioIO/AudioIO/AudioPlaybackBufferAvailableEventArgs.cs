@@ -21,6 +21,7 @@ namespace Tizen.Multimedia
     /// <summary>
     /// Provides data for the <see cref="AudioPlayback.BufferAvailable"/> event.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public class AudioPlaybackBufferAvailableEventArgs : EventArgs
     {
         internal AudioPlaybackBufferAvailableEventArgs(int length)
@@ -33,6 +34,7 @@ namespace Tizen.Multimedia
         /// </summary>
         /// <value>The length of the buffer that can be written.</value>
         /// <seealso cref="AudioPlayback.Write(byte[])"/>
+        /// <since_tizen> 3 </since_tizen>
         public int Length { get; }
     }
 }

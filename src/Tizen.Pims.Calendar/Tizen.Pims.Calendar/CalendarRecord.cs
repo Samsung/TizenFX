@@ -127,6 +127,7 @@ namespace Tizen.Pims.Calendar
         /// Disposes of the resources (other than memory) used by the CalendarRecord.
         /// </summary>
         /// <param name="disposing">true to release both managed and unmanaged resources; false to release only unmanaged resources.</param>
+        /// <since_tizen> 4 </since_tizen>
         protected virtual void Dispose(bool disposing)
         {
             if (!_disposedValue)
@@ -147,6 +148,7 @@ namespace Tizen.Pims.Calendar
         /// Releases all resources used by the CalendarRecord.
         /// It should be called after having finished using of the object.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         public void Dispose()
         {
             Dispose(true);

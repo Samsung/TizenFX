@@ -25,6 +25,7 @@ namespace Tizen.Network.WiFi
     /// <summary>
     /// A class for managing the WiFiManager handle.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     [EditorBrowsable(EditorBrowsableState.Never)]
     public sealed class SafeWiFiManagerHandle : SafeHandle
     {
@@ -36,6 +37,7 @@ namespace Tizen.Network.WiFi
         /// Checks the validity of the handle.
         /// </summary>
         /// <value>Represents the validity of the handle.</value>
+        /// <since_tizen> 3 </since_tizen>
         public override bool IsInvalid
         {
             get

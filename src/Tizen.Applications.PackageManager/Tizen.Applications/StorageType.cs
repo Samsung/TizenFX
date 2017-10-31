@@ -19,6 +19,7 @@ namespace Tizen.Applications
     /// <summary>
     /// Enumeration for the storage types.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public enum StorageType
     {
         /// <summary>

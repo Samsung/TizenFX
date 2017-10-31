@@ -22,6 +22,7 @@ namespace Tizen.Applications.NotificationEventListener
     /// <summary>
     /// Enumeration for the progress category.
     /// </summary>
+    /// <since_tizen> 4 </since_tizen>
     public enum ProgressCategory
     {
         /// <summary>
@@ -43,6 +44,7 @@ namespace Tizen.Applications.NotificationEventListener
     /// <summary>
     /// Enumeration for the accessory option.
     /// </summary>
+    /// <since_tizen> 4 </since_tizen>
     public enum AccessoryOption
     {
         /// <summary>
@@ -64,6 +66,7 @@ namespace Tizen.Applications.NotificationEventListener
     /// <summary>
     /// Enumeration for the button index.
     /// </summary>
+    /// <since_tizen> 4 </since_tizen>
     public enum ButtonIndex
     {
         /// <summary>
@@ -90,6 +93,7 @@ namespace Tizen.Applications.NotificationEventListener
     /// <summary>
     /// Enumeration for the notification particular property.
     /// </summary>
+    /// <since_tizen> 4 </since_tizen>
     [Flags]
     public enum NotificationProperty
     {
@@ -122,6 +126,7 @@ namespace Tizen.Applications.NotificationEventListener
     /// <summary>
     /// Enumeration for event type on notification.
     /// </summary>
+    /// <since_tizen> 4 </since_tizen>
     [EditorBrowsable(EditorBrowsableState.Never)]
     public enum UserEventType
     {

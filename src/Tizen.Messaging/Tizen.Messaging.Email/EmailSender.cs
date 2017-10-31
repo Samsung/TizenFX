@@ -22,6 +22,7 @@ namespace Tizen.Messaging.Email
     /// <summary>
     /// This class is used to send email messages.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public static class EmailSender
     {
         /// <summary>
@@ -29,6 +30,7 @@ namespace Tizen.Messaging.Email
         /// </summary>
         /// <param name="email">The email message.</param>
         /// <returns> Failure if the email sending activity failed, otherwise Success.</returns>
+        /// <since_tizen> 3 </since_tizen>
         public static async Task<EmailSendResult> SendAsync(EmailMessage email)
         {
             var task = new TaskCompletionSource<EmailSendResult>();

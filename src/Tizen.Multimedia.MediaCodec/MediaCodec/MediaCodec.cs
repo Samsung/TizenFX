@@ -23,6 +23,7 @@ namespace Tizen.Multimedia.MediaCodec
     /// <summary>
     /// Provides a means to encode and decode the video and the audio data.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public class MediaCodec : IDisposable
     {
         private const int CodecTypeMask = 0xFFFF;
@@ -35,6 +36,7 @@ namespace Tizen.Multimedia.MediaCodec
         /// <summary>
         /// Initializes a new instance of the MediaCodec class.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public MediaCodec()
         {
             int ret = Interop.MediaCodec.Create(out _handle);
@@ -59,6 +61,7 @@ namespace Tizen.Multimedia.MediaCodec
         /// <param name="disposing">
         /// true to release both managed and unmanaged resources; false to release only unmanaged resources.
         /// </param>
+        /// <since_tizen> 3 </since_tizen>
         protected virtual void Dispose(bool disposing)
         {
             if (!_isDisposed)
@@ -84,6 +87,7 @@ namespace Tizen.Multimedia.MediaCodec
         /// <summary>
         /// Releases all resources used by the <see cref="MediaCodec"/> object.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public void Dispose()
         {
             Dispose(true);
@@ -109,6 +113,7 @@ namespace Tizen.Multimedia.MediaCodec
         /// <summary>
         /// Gets the audio codec list that the current device supports.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public static IEnumerable<MediaFormatVideoMimeType> SupportedVideoCodecs
         {
             get
@@ -128,6 +133,7 @@ namespace Tizen.Multimedia.MediaCodec
         /// <summary>
         /// Gets the audio codec list that the current device supports.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public static IEnumerable<MediaFormatAudioMimeType> SupportedAudioCodecs
         {
             get
@@ -204,6 +210,7 @@ namespace Tizen.Multimedia.MediaCodec
         ///     -or-<br/>
         ///     Internal error.
         /// </exception>
+        /// <since_tizen> 3 </since_tizen>
         public void Prepare()
         {
             ValidateNotDisposed();
@@ -225,6 +232,7 @@ namespace Tizen.Multimedia.MediaCodec
         /// <summary>
         /// Unprepares the MediaCodec.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public void Unprepare()
         {
             ValidateNotDisposed();
@@ -249,6 +257,7 @@ namespace Tizen.Multimedia.MediaCodec
         /// <exception cref="NotSupportedException">The mime type of the format is not supported.</exception>
         /// <see cref="SupportedAudioCodecs"/>
         /// <see cref="SupportedVideoCodecs"/>
+        /// <since_tizen> 3 </since_tizen>
         public void Configure(MediaFormat format, bool encoder, MediaCodecTypes codecType)
         {
             ValidateNotDisposed();
@@ -358,6 +367,7 @@ namespace Tizen.Multimedia.MediaCodec
         /// <exception cref="ArgumentNullException"><paramref name="packet"/> is null.</exception>
         /// <exception cref="InvalidOperationException">The current codec is not prepared yet.</exception>
         /// <remarks>Any attempts to modify the packet will fail until the <see cref="InputProcessed"/> event for the packet is invoked.</remarks>
+        /// <since_tizen> 3 </since_tizen>
         public void ProcessInput(MediaPacket packet)
         {
             ValidateNotDisposed();
@@ -382,6 +392,7 @@ namespace Tizen.Multimedia.MediaCodec
         /// <summary>
         /// Flushes both input and output buffers.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public void FlushBuffers()
         {
             ValidateNotDisposed();
@@ -398,6 +409,7 @@ namespace Tizen.Multimedia.MediaCodec
         /// <param name="type">The mime type to query.</param>
         /// <returns>The values indicating which codec types are supported on the current device.</returns>
         /// <exception cref="ArgumentException"><paramref name="type"/> is invalid.</exception>
+        /// <since_tizen> 3 </since_tizen>
         public MediaCodecTypes GetCodecType(bool encoder, MediaFormatVideoMimeType type)
         {
             ValidateNotDisposed();
@@ -417,6 +429,7 @@ namespace Tizen.Multimedia.MediaCodec
         /// <param name="type">The mime type to query.</param>
         /// <returns>The values indicating which codec types are supported on the current device.</returns>
         /// <exception cref="ArgumentException"><paramref name="type"/> is invalid.</exception>
+        /// <since_tizen> 3 </since_tizen>
         public MediaCodecTypes GetCodecType(bool encoder, MediaFormatAudioMimeType type)
         {
             ValidateNotDisposed();
@@ -462,6 +475,7 @@ namespace Tizen.Multimedia.MediaCodec
         /// Occurs when an output buffer is available.
         /// </summary>
         /// <remarks>The output packet needs to be disposed after it is used to clean up unmanaged resources.</remarks>
+        /// <since_tizen> 3 </since_tizen>
         public event EventHandler<OutputAvailableEventArgs> OutputAvailable
         {
             add
@@ -541,6 +555,7 @@ namespace Tizen.Multimedia.MediaCodec
         /// Occurs when an input packet is processed.
         /// </summary>
         /// <see cref="ProcessInput(MediaPacket)"/>
+        /// <since_tizen> 3 </since_tizen>
         public event EventHandler<InputProcessedEventArgs> InputProcessed;
 
         private void RegisterInputProcessed()
@@ -574,6 +589,7 @@ namespace Tizen.Multimedia.MediaCodec
         /// <summary>
         /// Occurs whenever an error is produced in the codec.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public event EventHandler<MediaCodecErrorOccurredEventArgs> ErrorOccurred;
 
         private void RegisterErrorOccurred()
@@ -597,6 +613,7 @@ namespace Tizen.Multimedia.MediaCodec
         /// <summary>
         /// Occurs when the codec processes all input data.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public event EventHandler<EventArgs> EosReached;
 
         private void RegisterEosReached()
@@ -616,6 +633,7 @@ namespace Tizen.Multimedia.MediaCodec
         /// <summary>
         /// Occurs when the codec needs more data or has enough data.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public event EventHandler<BufferStatusChangedEventArgs> BufferStatusChanged;
 
         private void RegisterBufferStatusChanged()

@@ -21,6 +21,7 @@ namespace Tizen.Multimedia.Util
     /// <summary>
     /// Represents the gif image data used to encode a gif image with <see cref="GifEncoder"/>.
     /// </summary>
+    /// <since_tizen> 4 </since_tizen>
     public class GifFrame
     {
 
@@ -31,6 +32,7 @@ namespace Tizen.Multimedia.Util
         /// <param name="delay">The delay for this image in milliseconds.</param>
         /// <exception cref="ArgumentNullException"><paramref name="buffer"/> is null.</exception>
         /// <exception cref="ArgumentException">The length of <paramref name="buffer"/> is zero.</exception>
+        /// <since_tizen> 4 </since_tizen>
         public GifFrame(byte[] buffer, uint delay)
         {
             if (buffer == null)
@@ -50,12 +52,14 @@ namespace Tizen.Multimedia.Util
         /// <summary>
         /// Gets the raw image data.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         public byte[] Buffer { get; }
 
         /// <summary>
         /// Gets or sets the delay for this image.
         /// </summary>
         /// <value>Time delay in milliseconds.</value>
+        /// <since_tizen> 4 </since_tizen>
         public uint Delay { get; set; }
     }
 }

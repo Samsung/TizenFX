@@ -24,6 +24,7 @@ namespace Tizen.Multimedia
     /// Provides a means to configure properties and handle events for <see cref="MediaStreamSource"/>.
     /// </summary>
     /// <seealso cref="MediaStreamSource"/>
+    /// <since_tizen> 3 </since_tizen>
     public class MediaStreamConfiguration
     {
         private const ulong DefaultBufferMaxSize = 200000;
@@ -47,12 +48,14 @@ namespace Tizen.Multimedia
         /// <remarks>The event handler will be executed on an internal thread.</remarks>
         /// <seealso cref="BufferMaxSize"/>
         /// <seealso cref="BufferMinThreshold"/>
+        /// <since_tizen> 3 </since_tizen>
         public event EventHandler<MediaStreamBufferStatusChangedEventArgs> BufferStatusChanged;
 
         /// <summary>
         /// Occurs when the seeking is requested.
         /// </summary>
         /// <remarks>The event handler will be executed on an internal thread.</remarks>
+        /// <since_tizen> 3 </since_tizen>
         public event EventHandler<MediaStreamSeekingOccurredEventArgs> SeekingOccurred;
 
         /// <summary>
@@ -63,6 +66,7 @@ namespace Tizen.Multimedia
         /// <exception cref="InvalidOperationException">The <see cref="MediaStreamSource"/> is not assigned to a player.</exception>
         /// <exception cref="ArgumentOutOfRangeException"><paramref name="value"/> is zero.</exception>
         /// <seealso cref="BufferStatusChanged"/>
+        /// <since_tizen> 3 </since_tizen>
         public ulong BufferMaxSize
         {
             get
@@ -98,6 +102,7 @@ namespace Tizen.Multimedia
         /// <exception cref="InvalidOperationException">The <see cref="MediaStreamSource"/> is not assigned to a player.</exception>
         /// <exception cref="ArgumentOutOfRangeException"><paramref name="value"/> is greater than 100.</exception>
         /// <seealso cref="BufferStatusChanged"/>
+        /// <since_tizen> 3 </since_tizen>
         public uint BufferMinThreshold
         {
             get

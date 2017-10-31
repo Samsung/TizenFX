@@ -68,7 +68,7 @@ namespace Tizen.Location
         /// <summary>
         /// Sets the specified geographical positioning type.
         /// </summary>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 4 </since_tizen>
         /// <privilege>http://tizen.org/privilege/location.enable</privilege>
         /// <privlevel>platform</privlevel>
         /// <param name="locationType">The back-end positioning method to be used for LBS.</param>

@@ -22,6 +22,7 @@ namespace Tizen.System
     /// <summary>
     /// The Information class provides functions to obtain various system information.
     /// </summary>
+    /// <since_tizen> 4 </since_tizen>
     public static class Information
     {
         internal const string HttpPrefix = "http://";

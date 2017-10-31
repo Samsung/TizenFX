@@ -23,6 +23,7 @@ namespace Tizen.Multimedia.Remoting
     /// <summary>
     /// Provides data for the <see cref="MediaController.PlaybackStateUpdated"/> event.
     /// </summary>
+    /// <since_tizen> 4 </since_tizen>
     public class PlaybackStateUpdatedEventArgs : EventArgs
     {
         /// <summary>
@@ -32,6 +33,7 @@ namespace Tizen.Multimedia.Remoting
         /// <param name="position">The playback position in milliseconds.</param>
         /// <exception cref="ArgumentException"><paramref name="state"/> is invalid.</exception>
         /// <exception cref="ArgumentOutOfRangeException"><paramref name="position"/> is less than zero.</exception>
+        /// <since_tizen> 4 </since_tizen>
         public PlaybackStateUpdatedEventArgs(MediaControlPlaybackState state, long position)
         {
             ValidationUtil.ValidateEnum(typeof(MediaControlPlaybackState), state, nameof(state));
@@ -48,11 +50,13 @@ namespace Tizen.Multimedia.Remoting
         /// <summary>
         /// Gets the playback state.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         public MediaControlPlaybackState State { get; }
 
         /// <summary>
         /// Gets the playback position in milliseconds.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         public long Position { get; }
     }
 }

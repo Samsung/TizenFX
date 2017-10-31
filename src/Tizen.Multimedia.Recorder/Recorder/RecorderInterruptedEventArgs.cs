@@ -21,6 +21,7 @@ namespace Tizen.Multimedia
     /// <summary>
     /// Provides data for the <see cref="Recorder.Interrupted"/> event.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public class RecorderInterruptedEventArgs : EventArgs
     {
         internal RecorderInterruptedEventArgs(RecorderPolicy policy, RecorderState previous, RecorderState current)
@@ -33,16 +34,19 @@ namespace Tizen.Multimedia
         /// <summary>
         /// Gets the reason that interrupted the recorder.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         public RecorderPolicy Reason { get; }
 
         /// <summary>
         /// Gets the previous state of the recorder.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public RecorderState Previous { get; }
 
         /// <summary>
         /// Gets the current state of the recorder.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public RecorderState Current { get; }
     }
 }

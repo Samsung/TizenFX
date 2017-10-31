@@ -21,6 +21,7 @@ namespace Tizen.Multimedia
     /// <summary>
     /// Specifies the flip operation.
     /// </summary>
+    /// <since_tizen> 4 </since_tizen>
     [Flags]
     public enum Flips
     {

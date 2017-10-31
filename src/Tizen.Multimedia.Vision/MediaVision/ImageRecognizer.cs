@@ -24,7 +24,7 @@ namespace Tizen.Multimedia.Vision
     /// <summary>
     /// Provides the ability to recognize images on image sources.
     /// </summary>
-    /// <since_tizen> 3 </since_tizen>
+    /// <since_tizen> 4 </since_tizen>
     public static class ImageRecognizer
     {
         /// <summary>
@@ -44,7 +44,7 @@ namespace Tizen.Multimedia.Vision
         /// <exception cref="NotSupportedException">The feature is not supported.</exception>
         /// <exception cref="ObjectDisposedException"><paramref name="source"/> has already been disposed of.</exception>
         /// <feature>http://tizen.org/feature/vision.image_recognition</feature>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 4 </since_tizen>
         public static async Task<IEnumerable<ImageRecognitionResult>> RecognizeAsync(
             MediaVisionSource source, ImageObject[] imageObjects)
         {
@@ -73,7 +73,7 @@ namespace Tizen.Multimedia.Vision
         ///     <paramref name="config"/> has already been disposed of.
         /// </exception>
         /// <feature>http://tizen.org/feature/vision.image_recognition</feature>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 4 </since_tizen>
         public static async Task<IEnumerable<ImageRecognitionResult>> RecognizeAsync(MediaVisionSource source,
             ImageObject[] imageObjects, ImageRecognitionConfiguration config)
         {

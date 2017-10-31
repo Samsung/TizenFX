@@ -22,7 +22,7 @@ namespace Tizen.Multimedia.Vision
     /// Represents a configuration of <see cref="ImageTracker"/>.
     /// </summary>
     /// <feature>http://tizen.org/feature/vision.image_recognition</feature>
-    /// <since_tizen> 3 </since_tizen>
+    /// <since_tizen> 4 </since_tizen>
     public class ImageTrackingConfiguration : ImageRecognitionConfiguration
     {
         private const string KeyHistoryAmount = "MV_IMAGE_TRACKING_HISTORY_AMOUNT";
@@ -35,44 +35,44 @@ namespace Tizen.Multimedia.Vision
         /// <summary>
         /// A read-only field that represents the default value of <see cref="HistoryAmount"/>.
         /// </summary>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 4 </since_tizen>
         public static readonly int DefaultHistoryAmount = 3;
 
         /// <summary>
         /// A read-only field that represents the default value of <see cref="ExpectedOffset"/>.
         /// </summary>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 4 </since_tizen>
         public static readonly double DefaultExpectedOffset = 0;
 
         /// <summary>
         /// A read-only field that represents the default value of <see cref="IsStabilizationEnabled"/>.
         /// </summary>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 4 </since_tizen>
         public static readonly bool DefaultStabilizationEnabled = true;
 
         /// <summary>
         /// A read-only field that represents the default value of <see cref="StabilizationTolerantShift"/>.
         /// </summary>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 4 </since_tizen>
         public static readonly double DefaultStabilizationTolerantShift = 0.00006;
 
         /// <summary>
         /// A read-only field that represents the default value of <see cref="StabilizationSpeed"/>.
         /// </summary>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 4 </since_tizen>
         public static readonly double DefaultStabilizationSpeed = 0.3;
 
         /// <summary>
         /// A read-only field that represents the default value of <see cref="StabilizationAcceleration"/>.
         /// </summary>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 4 </since_tizen>
         public static readonly double DefaultStabilizationAcceleration = 0.1;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="ImageTrackingConfiguration"/> class.
         /// </summary>
         /// <exception cref="NotSupportedException">The feature is not supported.</exception>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 4 </since_tizen>
         public ImageTrackingConfiguration()
         {
         }
@@ -86,7 +86,7 @@ namespace Tizen.Multimedia.Vision
         /// </value>
         /// <exception cref="ObjectDisposedException">The <see cref="ImageTrackingConfiguration"/> already has been disposed of.</exception>
         /// <exception cref="ArgumentOutOfRangeException"><paramref name="value"/> is less than zero.</exception>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 4 </since_tizen>
         public int HistoryAmount
         {
             get
@@ -112,7 +112,7 @@ namespace Tizen.Multimedia.Vision
         /// The default is 0.
         /// </value>
         /// <exception cref="ObjectDisposedException">The <see cref="ImageTrackingConfiguration"/> already has been disposed of.</exception>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 4 </since_tizen>
         public double ExpectedOffset
         {
             get
@@ -139,7 +139,7 @@ namespace Tizen.Multimedia.Vision
         ///     -or-<br/>
         ///     <paramref name="value"/> is greater than one.
         /// </exception>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 4 </since_tizen>
         public double StabilizationAcceleration
         {
             get
@@ -165,7 +165,7 @@ namespace Tizen.Multimedia.Vision
         /// The default is 0.3.
         /// </value>
         /// <exception cref="ObjectDisposedException">The <see cref="ImageTrackingConfiguration"/> already has been disposed of.</exception>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 4 </since_tizen>
         public double StabilizationSpeed
         {
             get
@@ -190,7 +190,7 @@ namespace Tizen.Multimedia.Vision
         /// The default is 0.00006.
         /// </value>
         /// <exception cref="ObjectDisposedException">The <see cref="ImageTrackingConfiguration"/> already has been disposed of.</exception>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 4 </since_tizen>
         public double StabilizationTolerantShift
         {
             get
@@ -211,7 +211,7 @@ namespace Tizen.Multimedia.Vision
         /// The default is true.
         /// </value>
         /// <exception cref="ObjectDisposedException">The <see cref="ImageTrackingConfiguration"/> already has been disposed of.</exception>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 4 </since_tizen>
         public bool IsStabilizationEnabled
         {
             get

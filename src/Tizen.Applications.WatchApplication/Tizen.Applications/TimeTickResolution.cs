@@ -21,6 +21,7 @@ namespace Tizen.Applications
     /// <summary>
     /// Enumeration for Time tick resolution.
     /// </summary>
+    /// <since_tizen> 4 </since_tizen>
     public enum TimeTickResolution
     {
         /// <summary>

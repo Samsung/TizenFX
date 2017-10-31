@@ -21,6 +21,7 @@ namespace Tizen.Sensor
     /// <summary>
     /// The MagnetometerRotationVectorSensor class is used for registering callbacks for the magnetometer rotation vector sensor and getting the magnetometer rotation vector data.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public sealed class MagnetometerRotationVectorSensor : Sensor
     {
         private static string MagnetometerRVKey = "http://tizen.org/feature/sensor.geomagnetic_rotation_vector";

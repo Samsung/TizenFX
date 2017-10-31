@@ -21,11 +21,13 @@ namespace Tizen.Applications
     /// <summary>
     /// Arguments for the event that reaised when the time tick comes.
     /// </summary>
+    /// <since_tizen> 4 </since_tizen>
     public class TimeEventArgs : EventArgs
     {
         /// <summary>
         /// The received WatchTime.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         public WatchTime Time { get; internal set; }
 
         internal TimeEventArgs()

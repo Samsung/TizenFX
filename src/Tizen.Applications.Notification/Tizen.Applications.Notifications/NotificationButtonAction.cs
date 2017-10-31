@@ -32,22 +32,26 @@ namespace Tizen.Applications.Notifications
         /// <remarks>
         /// It must include a text, an index, an ImagePath, and an action to be invoked when the user selects the button.
         /// </remarks>>
+        /// <since_tizen> 3 </since_tizen>
         public sealed class ButtonAction : MakerBase
         {
             /// <summary>
             /// Gets or sets the index of the button, which appeares as notification.
             /// </summary>
+            /// <since_tizen> 3 </since_tizen>
             public ButtonIndex Index { get; set; } = ButtonIndex.None;
 
             /// <summary>
             /// Gets or sets the text describing the button.
             /// </summary>
+            /// <since_tizen> 3 </since_tizen>
             public string Text { get; set; }
 
             /// <summary>
             /// Gets or sets the image path that represents the button.
             /// You should provide an absolute path for an image file.
             /// </summary>
+            /// <since_tizen> 3 </since_tizen>
             public string ImagePath { get; set; }
 
             /// <summary>
@@ -68,6 +72,7 @@ namespace Tizen.Applications.Notifications
             /// </code>
             /// </example>
             /// <seealso cref="Tizen.Applications.AppControl"></seealso>
+            /// <since_tizen> 3 </since_tizen>
             public AppControl Action { get; set; }
 
             internal override void Make(Notification notification)

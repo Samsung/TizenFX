@@ -39,6 +39,7 @@ namespace Tizen.Multimedia
         /// Initialize a new instance of the <see cref="StreamRecorder"/> class.
         /// </summary>
         /// <exception cref="NotSupportedException">The feature is not supported.</exception>
+        /// <since_tizen> 3 </since_tizen>
         public StreamRecorder()
         {
             try
@@ -76,6 +77,7 @@ namespace Tizen.Multimedia
         /// Gets the current state of the stream recorder.
         /// </summary>
         /// <exception cref="ObjectDisposedException">The <see cref="StreamRecorder"/> has already been disposed.</exception>
+        /// <since_tizen> 3 </since_tizen>
         public RecorderState State
         {
             get
@@ -115,6 +117,7 @@ namespace Tizen.Multimedia
         /// <seealso cref="StreamRecorderOptions"/>
         /// <seealso cref="StreamRecorderAudioOptions"/>
         /// <seealso cref="StreamRecorderVideoOptions"/>
+        /// <since_tizen> 4 </since_tizen>
         public void Prepare(StreamRecorderOptions options)
         {
             if (options == null)
@@ -150,6 +153,7 @@ namespace Tizen.Multimedia
         /// <exception cref="InvalidOperationException">The recorder is not in the valid state.</exception>
         /// <exception cref="ObjectDisposedException">The <see cref="StreamRecorder"/> has already been disposed.</exception>
         /// <seealso cref="Prepare"/>
+        /// <since_tizen> 3 </since_tizen>
         public void Unprepare()
         {
             if (State == RecorderState.Idle)
@@ -178,6 +182,7 @@ namespace Tizen.Multimedia
         /// <seealso cref="Pause"/>
         /// <seealso cref="Commit"/>
         /// <seealso cref="Cancel"/>
+        /// <since_tizen> 3 </since_tizen>
         public void Start()
         {
             if (State == RecorderState.Recording)
@@ -205,6 +210,7 @@ namespace Tizen.Multimedia
         /// <seealso cref="Start"/>
         /// <seealso cref="Commit"/>
         /// <seealso cref="Cancel"/>
+        /// <since_tizen> 3 </since_tizen>
         public void Pause()
         {
             if (State == RecorderState.Paused)
@@ -237,6 +243,7 @@ namespace Tizen.Multimedia
         /// <exception cref="ObjectDisposedException">The <see cref="StreamRecorder"/> has already been disposed.</exception>
         /// <seealso cref="Start"/>
         /// <seealso cref="Pause"/>
+        /// <since_tizen> 3 </since_tizen>
         public void Commit()
         {
             ValidateState(RecorderState.Paused, RecorderState.Recording);
@@ -256,6 +263,7 @@ namespace Tizen.Multimedia
         /// <exception cref="ObjectDisposedException">The <see cref="StreamRecorder"/> has already been disposed.</exception>
         /// <seealso cref="Start"/>
         /// <seealso cref="Pause"/>
+        /// <since_tizen> 3 </since_tizen>
         public void Cancel()
         {
             ValidateState(RecorderState.Paused, RecorderState.Recording);
@@ -293,6 +301,7 @@ namespace Tizen.Multimedia
         /// <seealso cref="StreamRecorderOptions.Audio"/>
         /// <seealso cref="StreamRecorderOptions.Video"/>
         /// <seealso cref="StreamRecorderVideoOptions.SourceFormat"/>
+        /// <since_tizen> 3 </since_tizen>
         public void PushBuffer(MediaPacket packet)
         {
             if (packet == null)
@@ -338,6 +347,7 @@ namespace Tizen.Multimedia
         /// <summary>
         /// Release any unmanaged resources used by this object.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public void Dispose()
         {
             Dispose(true);
@@ -349,6 +359,7 @@ namespace Tizen.Multimedia
         /// <param name="disposing">
         /// true to release both managed and unmanaged resources; false to release only unmanaged resources.
         /// </param>
+        /// <since_tizen> 3 </since_tizen>
         protected virtual void Dispose(bool disposing)
         {
             if (!_disposed)

@@ -23,6 +23,7 @@ namespace Tizen.Content.MediaContent
     /// Represents the information related to the media stored.
     /// </summary>
     /// <seealso cref="MediaInfoCommand"/>
+    /// <since_tizen> 4 </since_tizen>
     public class MediaInfo
     {
         internal MediaInfo(Interop.MediaInfoHandle handle)
@@ -62,48 +63,56 @@ namespace Tizen.Content.MediaContent
         /// Gets the ID of media.
         /// </summary>
         /// <value>The unique ID of media.</value>
+        /// <since_tizen> 4 </since_tizen>
         public string Id { get; }
 
         /// <summary>
         /// Gets the path to media.
         /// </summary>
         /// <value>The full path of the media file.</value>
+        /// <since_tizen> 4 </since_tizen>
         public string Path { get; }
 
         /// <summary>
         /// Gets the name of media.
         /// </summary>
         /// <value>The base name of the media file.</value>
+        /// <since_tizen> 4 </since_tizen>
         public string DisplayName { get; }
 
         /// <summary>
         /// Gets the <see cref="MediaContent.MediaType"/> of media.
         /// </summary>
         /// <value>The <see cref="MediaContent.MediaType"/> of media.</value>
+        /// <since_tizen> 4 </since_tizen>
         public MediaType MediaType { get; }
 
         /// <summary>
         /// Gets the mime type from media.
         /// </summary>
         /// <value>The mime type of media.</value>
+        /// <since_tizen> 4 </since_tizen>
         public string MimeType { get; }
 
         /// <summary>
         /// Gets the file size of media in bytes.
         /// </summary>
         /// <value>The file size of media in bytes.</value>
+        /// <since_tizen> 4 </since_tizen>
         public long FileSize { get; }
 
         /// <summary>
         /// Gets the date of addition of media.
         /// </summary>
         /// <value>The date of addition of media.</value>
+        /// <since_tizen> 4 </since_tizen>
         public DateTimeOffset DateAdded { get; }
 
         /// <summary>
         /// Gets the date of modification of media.
         /// </summary>
         /// <value>The date of modification of media.</value>
+        /// <since_tizen> 4 </since_tizen>
         public DateTimeOffset DateModified { get; }
 
         /// <summary>
@@ -113,78 +122,91 @@ namespace Tizen.Content.MediaContent
         /// The creation date if the file has the creation information (like recorded date or image creation date),
         /// otherwise the modified date.
         /// </value>
+        /// <since_tizen> 4 </since_tizen>
         public DateTimeOffset Timeline { get; }
 
         /// <summary>
         /// Gets the thumbnail of media.
         /// </summary>
         /// <value>The thumbnail path of media.</value>
+        /// <since_tizen> 4 </since_tizen>
         public string ThumbnailPath { get; }
 
         /// <summary>
         /// Gets the description of media.
         /// </summary>
         /// <value>The description from the metadata.</value>
+        /// <since_tizen> 4 </since_tizen>
         public string Description { get; }
 
         /// <summary>
         /// Gets the longitude of media.
         /// </summary>
         /// <value>The longitude.</value>
+        /// <since_tizen> 4 </since_tizen>
         public double Longitude { get; }
 
         /// <summary>
         /// Gets the latitude of media.
         /// </summary>
         /// <value>The latitude.</value>
+        /// <since_tizen> 4 </since_tizen>
         public double Latitude { get; }
 
         /// <summary>
         /// Gets the altitude of media.
         /// </summary>
         /// <value>The altitude.</value>
+        /// <since_tizen> 4 </since_tizen>
         public double Altitude { get; }
 
         /// <summary>
         /// Gets the rating of media.
         /// </summary>
         /// <value>The rating from the metadata.</value>
+        /// <since_tizen> 4 </since_tizen>
         public int Rating { get; }
 
         /// <summary>
         /// Gets the favorite status of media.
         /// </summary>
         /// <value>true if media is set as favorite, otherwise false.</value>
+        /// <since_tizen> 4 </since_tizen>
         public bool IsFavorite { get; }
 
         /// <summary>
         /// Gets the title of media.
         /// </summary>
         /// <value>The title of media.</value>
+        /// <since_tizen> 4 </since_tizen>
         public string Title { get; }
 
         /// <summary>
         /// Gets the storage ID of the storage that the media is stored on.
         /// </summary>
         /// <value>The storage ID of the storage that the media is stored on.</value>
+        /// <since_tizen> 4 </since_tizen>
         public string StorageId { get; }
 
         /// <summary>
         /// Gets the value indicating whether the media is DRM-protected.
         /// </summary>
         /// <value>A bool value indicating whether the media is DRM-protected.</value>
+        /// <since_tizen> 4 </since_tizen>
         public bool IsDrm { get; }
 
         /// <summary>
         /// Gets the storage type of the storage that the media is stored on.
         /// </summary>
         /// <value>The storage type of the storage that the media is stored on.</value>
+        /// <since_tizen> 4 </since_tizen>
         public StorageType StorageType { get; }
 
         /// <summary>
         /// Returns a string representation of the media information.
         /// </summary>
         /// <returns>A string representation of the current media information.</returns>
+        /// <since_tizen> 4 </since_tizen>
         public override string ToString() => $"Id={Id}, Path={Path}, MediaType={MediaType}";
 
         internal static MediaInfo FromHandle(Interop.MediaInfoHandle handle)

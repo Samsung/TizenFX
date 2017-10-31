@@ -21,6 +21,7 @@ namespace Tizen.Sensor
     /// <summary>
     /// The LinearAccelerationSensor class is used for registering callbacks for the linear acceleration sensor and getting the linear acceleration data.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public sealed class LinearAccelerationSensor : Sensor
     {
         private const string LinearAccelerationSensorKey = "http://tizen.org/feature/sensor.linear_acceleration";

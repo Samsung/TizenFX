@@ -25,6 +25,7 @@ namespace Tizen.Network.Bluetooth {
     /// <summary>
     /// This is the BluetoothLeAdvertiser class. It handles the LE advertising operation amd callback.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public class BluetoothLeAdvertiser
     {
         private static readonly BluetoothLeAdvertiser _instance = new BluetoothLeAdvertiser();
@@ -44,6 +45,7 @@ namespace Tizen.Network.Bluetooth {
         /// <summary>
         /// This event is called when the LE advertising state changes.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public event EventHandler<AdvertisingStateChangedEventArgs> AdvertisingStateChanged
         {
             add
@@ -64,6 +66,7 @@ namespace Tizen.Network.Bluetooth {
         /// <param name="advertiseData">The advertiser object carrying information of the advertising.</param>
         /// <exception cref="NotSupportedException">Thrown when the Bluetooth LE is not supported.</exception>
         /// <exception cref="InvalidOperationException">Thrown when the Bluetooth LE is not enabled.</exception>
+        /// <since_tizen> 3 </since_tizen>
         public void StartAdvertising(BluetoothLeAdvertiseData advertiseData)
         {
             if (BluetoothAdapter.IsBluetoothEnabled && Globals.IsInitialize)
@@ -89,6 +92,7 @@ namespace Tizen.Network.Bluetooth {
         /// <param name="advertiseData">The advertiser object carrying information of the advertising.</param>
         /// <exception cref="NotSupportedException">Thrown when the Bluetooth LE is not supported.</exception>
         /// <exception cref="InvalidOperationException">Thrown when the Bluetooth LE is not enabled.</exception>
+        /// <since_tizen> 3 </since_tizen>
         public void StopAdvertising(BluetoothLeAdvertiseData advertiseData)
         {
             if (BluetoothAdapter.IsBluetoothEnabled && Globals.IsInitialize)
@@ -110,6 +114,7 @@ namespace Tizen.Network.Bluetooth {
     /// This is the BluetoothLeDevice class.
     /// It handles the LE device operations like getting data from the scan result information.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public class BluetoothLeDevice
     {
         //properties of Bluetoothlesacandata
@@ -124,6 +129,7 @@ namespace Tizen.Network.Bluetooth {
         /// <summary>
         /// This event is called when the GATT client connects/disconnects with the server.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public event EventHandler<GattConnectionStateChangedEventArgs> GattConnectionStateChanged
         {
             add
@@ -179,6 +185,7 @@ namespace Tizen.Network.Bluetooth {
         /// <summary>
         /// The remote address.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public string RemoteAddress
         {
             get
@@ -190,6 +197,7 @@ namespace Tizen.Network.Bluetooth {
         /// <summary>
         /// The type of the address.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public BluetoothLeDeviceAddressType AddressType
         {
             get
@@ -201,6 +209,7 @@ namespace Tizen.Network.Bluetooth {
         /// <summary>
         /// The rssi value.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public int Rssi
         {
             get
@@ -212,6 +221,7 @@ namespace Tizen.Network.Bluetooth {
         /// <summary>
         /// The advertsing data information.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public byte[] AdvertsingDataInformation
         {
             get
@@ -223,6 +233,7 @@ namespace Tizen.Network.Bluetooth {
         /// <summary>
         /// The scan data information.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public byte[] ScanDataInformation
         {
             get
@@ -234,6 +245,7 @@ namespace Tizen.Network.Bluetooth {
         /// <summary>
         /// The type of the packet.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public BluetoothLePacketType PacketType
         {
             get
@@ -255,6 +267,7 @@ namespace Tizen.Network.Bluetooth {
         /// </remarks>
         /// <exception cref="NotSupportedException">Thrown when the Bluetooth LE is not supported.</exception>
         /// <exception cref="InvalidOperationException">Thrown when the Bluetooth LE is not enabled.</exception>
+        /// <since_tizen> 3 </since_tizen>
         public IEnumerable<string> ServiceUuid
         {
             get
@@ -277,6 +290,7 @@ namespace Tizen.Network.Bluetooth {
         /// </remarks>
         /// <exception cref="NotSupportedException">Thrown when the Bluetooth LE is not supported.</exception>
         /// <exception cref="InvalidOperationException">Thrown when the Bluetooth LE is not enabled.</exception>
+        /// <since_tizen> 3 </since_tizen>
         public string DeviceName
         {
             get
@@ -298,6 +312,7 @@ namespace Tizen.Network.Bluetooth {
         /// </remarks>
         /// <exception cref="NotSupportedException">Thrown when the Bluetooth LE is not supported.</exception>
         /// <exception cref="InvalidOperationException">Thrown when the Bluetooth LE is not enabled.</exception>
+        /// <since_tizen> 3 </since_tizen>
         public int TxPowerLevel
         {
             get
@@ -319,6 +334,7 @@ namespace Tizen.Network.Bluetooth {
         /// </remarks>
         /// <exception cref="NotSupportedException">Thrown when the Bluetooth LE is not supported.</exception>
         /// <exception cref="InvalidOperationException">Thrown when the Bluetooth LE is not enabled.</exception>
+        /// <since_tizen> 3 </since_tizen>
         public IEnumerable<string> ServiceSolictationUuid
         {
             get
@@ -339,6 +355,7 @@ namespace Tizen.Network.Bluetooth {
         /// </remarks>
         /// <exception cref="NotSupportedException">Thrown when the Bluetooth LE is not supported.</exception>
         /// <exception cref="InvalidOperationException">Thrown when the Bluetooth LE is not enabled.</exception>
+        /// <since_tizen> 3 </since_tizen>
         public int Appearance
         {
             get
@@ -359,6 +376,7 @@ namespace Tizen.Network.Bluetooth {
         /// </remarks>
         /// <exception cref="NotSupportedException">Thrown when the Bluetooth LE is not supported.</exception>
         /// <exception cref="InvalidOperationException">Thrown when the Bluetooth LE is not enabled.</exception>/// 
+        /// <since_tizen> 3 </since_tizen>
         public ManufacturerData ManufacturerData
         {
             get
@@ -380,6 +398,7 @@ namespace Tizen.Network.Bluetooth {
         /// <returns> Returns the service data list.</returns>
         /// <exception cref="NotSupportedException">Thrown when the Bluetooth LE is not supported.</exception>
         /// <exception cref="InvalidOperationException">Thrown when the Bluetooth LE is not enabled.</exception>
+        /// <since_tizen> 3 </since_tizen>
         public IEnumerable<BluetoothLeServiceData> GetServiceDataList()
         {
             int serviceCount = 0;
@@ -403,6 +422,7 @@ namespace Tizen.Network.Bluetooth {
         /// <exception cref="NotSupportedException">Thrown when the Bluetooth LE is not supported.</exception>
         /// <exception cref="InvalidOperationException">Thrown when the Bluetooth LE is not enabled
         /// or when the gatt connection attempt to remote device fails.</exception>
+        /// <since_tizen> 3 </since_tizen>
         public BluetoothGattClient GattConnect(bool autoConnect)
         {
             BluetoothGattClient client = null;
@@ -433,6 +453,7 @@ namespace Tizen.Network.Bluetooth {
         /// <exception cref="NotSupportedException">Thrown when the Bluetooth LE is not supported.</exception>
         /// <exception cref="InvalidOperationException">Thrown when the Bluetooth LE is not enabled
         /// or when the GATT disconnection attempt to remote device fails.</exception>
+        /// <since_tizen> 3 </since_tizen>
         public void GattDisconnect()
         {
             if (BluetoothAdapter.IsBluetoothEnabled && Globals.IsInitialize)
@@ -452,6 +473,7 @@ namespace Tizen.Network.Bluetooth {
     /// <summary>
     /// Bluetooth LE advertise data. Handles the data advertising.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public class BluetoothLeAdvertiseData:IDisposable
     {
         private IntPtr _handle = IntPtr.Zero;
@@ -468,6 +490,7 @@ namespace Tizen.Network.Bluetooth {
         /// <exception cref="NotSupportedException">Thrown when the Bluetooth LE is not supported.</exception>
         /// <exception cref="InvalidOperationException">Thrown when the Bluetooth LE is not enabled
         /// or when create advertiser fails.</exception>
+        /// <since_tizen> 3 </since_tizen>
         public BluetoothLeAdvertiseData()
         {
             if (BluetoothAdapter.IsBluetoothEnabled && Globals.IsInitialize)
@@ -515,6 +538,7 @@ namespace Tizen.Network.Bluetooth {
         /// <exception cref="NotSupportedException">Thrown when the Bluetooth LE is not supported.</exception>
         /// <exception cref="InvalidOperationException">Thrown when the Bluetooth LE is not enabled
         /// or when the set advertising mode fails.</exception>
+        /// <since_tizen> 3 </since_tizen>
         public BluetoothLeAdvertisingMode AdvertisingMode
         {
             get
@@ -544,6 +568,7 @@ namespace Tizen.Network.Bluetooth {
         /// <exception cref="NotSupportedException">Thrown when the Bluetooth LE is not supported.</exception>
         /// <exception cref="InvalidOperationException">Thrown when the Bluetooth LE is not enabled
         /// or when the set advertising connectable mode fails.</exception>
+        /// <since_tizen> 3 </since_tizen>
         public bool AdvertisingConnectable
         {
             get
@@ -567,6 +592,7 @@ namespace Tizen.Network.Bluetooth {
         /// <summary>
         /// Dispose
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public void Dispose()
         {
             Dispose(true);
@@ -581,6 +607,7 @@ namespace Tizen.Network.Bluetooth {
         /// <summary>
         /// The type of the packet.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public BluetoothLePacketType PacketType
         {
             get
@@ -602,6 +629,7 @@ namespace Tizen.Network.Bluetooth {
         /// <exception cref="NotSupportedException">Thrown when the Bluetooth LE is not supported.</exception>
         /// <exception cref="InvalidOperationException">Thrown when the Bluetooth LE is not enabled
         /// or when the set appearance fails.</exception>
+        /// <since_tizen> 3 </since_tizen>
         public int Appearance
         {
             get
@@ -630,6 +658,7 @@ namespace Tizen.Network.Bluetooth {
         /// <exception cref="NotSupportedException">Thrown when the Bluetooth LE is not supported.</exception>
         /// <exception cref="InvalidOperationException">Thrown when the Bluetooth LE is not enabled
         /// or when the set advertising device name fails.</exception>
+        /// <since_tizen> 3 </since_tizen>
         public bool IncludeDeviceName
         {
             get
@@ -661,6 +690,7 @@ namespace Tizen.Network.Bluetooth {
         /// <exception cref="NotSupportedException">Thrown when the Bluetooth LE is not supported.</exception>
         /// <exception cref="InvalidOperationException">Thrown when the Bluetooth LE is not enabled
         /// or when the set advertising TC power level fails.</exception>
+        /// <since_tizen> 3 </since_tizen>
         public bool IncludeTxPowerLevel
         {
             get
@@ -693,6 +723,7 @@ namespace Tizen.Network.Bluetooth {
         /// <exception cref="NotSupportedException">Thrown when the Bluetooth LE is not supported.</exception>
         /// <exception cref="InvalidOperationException">Thrown when the Bluetooth LE is not enabled
         /// or when the add advertising service UUID procedure fails.</exception>
+        /// <since_tizen> 3 </since_tizen>
         public void AddAdvertisingServiceUuid(BluetoothLePacketType packetType, string serviceUuid)
         {
             if (BluetoothAdapter.IsBluetoothEnabled && Globals.IsInitialize)
@@ -722,6 +753,7 @@ namespace Tizen.Network.Bluetooth {
         /// <exception cref="NotSupportedException">Thrown when the Bluetooth LE is not supported.</exception>
         /// <exception cref="InvalidOperationException">Thrown when the Bluetooth LE is not enabled
         /// or when the add advertising service solicitation UUID procedure fails.</exception>
+        /// <since_tizen> 3 </since_tizen>
         public void AddAdvertisingServiceSolicitationUuid(BluetoothLePacketType packetType,
                                                         string serviceSolicitationUuid)
         {
@@ -753,6 +785,7 @@ namespace Tizen.Network.Bluetooth {
         /// <exception cref="NotSupportedException">Thrown when the Bluetooth LE is not supported.</exception>
         /// <exception cref="InvalidOperationException">Thrown when the Bluetooth LE is not enabled
         /// or when the add advertising data procedure fails.</exception>
+        /// <since_tizen> 3 </since_tizen>
         public void AddAdvertisingServiceData(BluetoothLePacketType packetType, BluetoothServiceData data)
         {
             if (BluetoothAdapter.IsBluetoothEnabled && Globals.IsInitialize)
@@ -789,6 +822,7 @@ namespace Tizen.Network.Bluetooth {
         /// <exception cref="NotSupportedException">Thrown when the Bluetooth LE is not supported.</exception>
         /// <exception cref="InvalidOperationException">Thrown when the Bluetooth LE is not enabled
         /// or when the add advertising manufacturer data procedure fails.</exception>
+        /// <since_tizen> 3 </since_tizen>
         public void AddAdvertisingManufacturerData(BluetoothLePacketType packetType,
                                     ManufacturerData manufacturerData)
         {

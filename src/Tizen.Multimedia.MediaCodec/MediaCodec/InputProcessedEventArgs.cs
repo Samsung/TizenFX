@@ -22,6 +22,7 @@ namespace Tizen.Multimedia.MediaCodec
     /// <summary>
     /// Provides data for the <see cref="MediaCodec.InputProcessed"/> event.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public class InputProcessedEventArgs : EventArgs
     {
         /// <summary>
@@ -38,6 +39,7 @@ namespace Tizen.Multimedia.MediaCodec
         /// <summary>
         /// Gets the packet processed by the codec.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public MediaPacket Packet { get; }
     }
 }

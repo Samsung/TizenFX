@@ -21,6 +21,7 @@ namespace Tizen.Multimedia
     /// <summary>
     /// Provides a means to control volume levels.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public class VolumeLevel
     {
         internal VolumeLevel()
@@ -43,6 +44,7 @@ namespace Tizen.Multimedia
         ///     <paramref name="value"/> is greater than <see cref="MaxVolumeLevel.this[AudioVolumeType]"/>.
         /// </exception>
         /// <exception cref="UnauthorizedAccessException">The caller does not have required privilege to set volume.</exception>
+        /// <since_tizen> 3 </since_tizen>
         public int this[AudioVolumeType type]
         {
             get

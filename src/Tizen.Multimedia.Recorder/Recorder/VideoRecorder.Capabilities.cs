@@ -23,6 +23,7 @@ using NativeHandle = Interop.RecorderHandle;
 
 namespace Tizen.Multimedia
 {
+    /// <since_tizen> 4 </since_tizen>
     public partial class VideoRecorder
     {
         private static IEnumerable<Size> _frontResolutions;
@@ -64,6 +65,7 @@ namespace Tizen.Multimedia
         /// <param name="device">The camera device to retrieve the supported resolutions.</param>
         /// <exception cref="NotSupportedException">A required feature is not supported.</exception>
         /// <exception cref="ArgumentException"><paramref name="device"/> is invalid.</exception>
+        /// <since_tizen> 4 </since_tizen>
         public static IEnumerable<Size> GetSupportedVideoResolutions(CameraDevice device)
         {
             ValidationUtil.ValidateEnum(typeof(CameraDevice), device, nameof(device));
@@ -88,6 +90,7 @@ namespace Tizen.Multimedia
         /// </summary>
         /// <feature>http://tizen.org/feature/camera</feature>
         /// <exception cref="NotSupportedException">A required feature is not supported.</exception>
+        /// <since_tizen> 4 </since_tizen>
         public static IEnumerable<RecorderVideoCodec> GetSupportedVideoCodecs()
             => Capabilities.Value.SupportedVideoCodecs ?? throw new NotSupportedException("Video recording is not supported.");
 

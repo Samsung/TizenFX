@@ -22,6 +22,7 @@ namespace Tizen.Content.MediaContent
     /// <summary>
     /// Represents the audio media information.
     /// </summary>
+    /// <since_tizen> 4 </since_tizen>
     public class AudioInfo : MediaInfo
     {
         internal AudioInfo(Interop.MediaInfoHandle handle) : base(handle)
@@ -61,84 +62,98 @@ namespace Tizen.Content.MediaContent
         /// Gets the album name.
         /// </summary>
         /// <value>The album from the metadata.</value>
+        /// <since_tizen> 4 </since_tizen>
         public string Album { get; }
 
         /// <summary>
         /// Gets the artist name.
         /// </summary>
         /// <value>The artist from the metadata.</value>
+        /// <since_tizen> 4 </since_tizen>
         public string Artist { get; }
 
         /// <summary>
         /// Gets the album artist name.
         /// </summary>
         /// <value>The album artist from the metadata.</value>
+        /// <since_tizen> 4 </since_tizen>
         public string AlbumArtist { get; }
 
         /// <summary>
         /// Gets the genre.
         /// </summary>
         /// <value>The genre from the metadata.</value>
+        /// <since_tizen> 4 </since_tizen>
         public string Genre { get; }
 
         /// <summary>
         /// Gets the composer.
         /// </summary>
         /// <value>The composer from the metadata.</value>
+        /// <since_tizen> 4 </since_tizen>
         public string Composer { get; }
 
         /// <summary>
         /// Gets the year.
         /// </summary>
         /// <value>The year from the metadata.</value>
+        /// <since_tizen> 4 </since_tizen>
         public string Year { get; }
 
         /// <summary>
         /// Gets the recorded date.
         /// </summary>
         /// <value>The recorded date from the metadata.</value>
+        /// <since_tizen> 4 </since_tizen>
         public string DateRecorded { get; }
 
         /// <summary>
         /// Gets the copyright.
         /// </summary>
         /// <value>The copyright from the metadata.</value>
+        /// <since_tizen> 4 </since_tizen>
         public string Copyright { get; }
 
         /// <summary>
         /// Gets the track number.
         /// </summary>
         /// <value>The track number from the metadata.</value>
+        /// <since_tizen> 4 </since_tizen>
         public string TrackNumber { get; }
 
         /// <summary>
         /// Gets the bit rate in bit per second.
         /// </summary>
         /// <value>The bit rate in bit per second.</value>
+        /// <since_tizen> 4 </since_tizen>
         public int BitRate { get; }
 
         /// <summary>
         /// Gets the bit per sample.
         /// </summary>
         /// <value>The bit per sample.</value>
+        /// <since_tizen> 4 </since_tizen>
         public int BitPerSample { get; }
 
         /// <summary>
         /// Gets the sample rate in hertz.
         /// </summary>
         /// <value>The sample rate in hertz.</value>
+        /// <since_tizen> 4 </since_tizen>
         public int SampleRate { get; }
 
         /// <summary>
         /// Gets the number of channels.
         /// </summary>
         /// <value>The number of channels.</value>
+        /// <since_tizen> 4 </since_tizen>
         public int Channels { get; }
 
         /// <summary>
         /// Gets the track duration in milliseconds.
         /// </summary>
         /// <value>The track duration in milliseconds.</value>
+        /// <since_tizen> 4 </since_tizen>
         public int Duration { get; }
     }
 }

@@ -30,11 +30,13 @@ namespace Tizen.Multimedia.Remoting
         /// <summary>
         /// Occurs when a server is started.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         public event EventHandler<MediaControlServerStartedEventArgs> ServerStarted;
 
         /// <summary>
         /// Occurs when a server is stopped.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         public event EventHandler<MediaControlServerStoppedEventArgs> ServerStopped;
 
         private void InitializeEvents()

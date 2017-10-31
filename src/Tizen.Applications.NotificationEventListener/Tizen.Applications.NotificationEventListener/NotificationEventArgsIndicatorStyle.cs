@@ -24,16 +24,19 @@ namespace Tizen.Applications.NotificationEventListener
         /// <summary>
         ///  Class to generate the indicator style notification.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         public class IndicatorStyleArgs : StyleArgs
         {
             /// <summary>
             /// Gets the path of the image file to display on the icon of indicator style.
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public string IconPath { get; internal set; }
 
             /// <summary>
             /// Gets the sub text to display indicator style.
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public string SubText { get; internal set; }
 
             internal override string Key

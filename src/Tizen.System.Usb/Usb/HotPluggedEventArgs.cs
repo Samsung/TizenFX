@@ -21,6 +21,7 @@ namespace Tizen.System.Usb
     /// <summary>
     /// Event arguments for Hot Plugged event for USB devices.
     /// </summary>
+    /// <since_tizen> 4 </since_tizen>
     public class HotPluggedEventArgs : EventArgs
     {
         internal HotPluggedEventArgs(UsbDevice device, HotplugEventType type)
@@ -32,11 +33,13 @@ namespace Tizen.System.Usb
         /// <summary>
         /// USB Device
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         public UsbDevice Device { get; }
 
         /// <summary>
         /// Event Type
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         public HotplugEventType EventType { get; }
     }
 }

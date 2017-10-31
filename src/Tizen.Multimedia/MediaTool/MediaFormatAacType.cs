@@ -19,6 +19,7 @@ namespace Tizen.Multimedia
     /// <summary>
     /// Specifies the AAC types for <see cref="AudioMediaFormat"/>.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public enum MediaFormatAacType
     {
         /// <summary>

@@ -21,6 +21,7 @@ namespace Tizen.Sensor
     /// <summary>
     /// The UncalibratedGyroscope sensor class is used for registering callbacks for the uncalibrated gyroscope and getting the uncalibrated gyroscope data.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public sealed class UncalibratedGyroscope : Sensor
     {
         private static string UncalibratedGyroscopeKey = "http://tizen.org/feature/sensor.gyroscope.uncalibrated";

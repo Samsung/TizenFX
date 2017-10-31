@@ -24,6 +24,7 @@ namespace Tizen.Applications
     /// <summary>
     /// This class provides the methods and properties to get information about the packages.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public class Package
     {
         private const string LogTag = "Tizen.Applications";
@@ -52,36 +53,43 @@ namespace Tizen.Applications
         /// <summary>
         /// The package ID.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public string Id { get { return _id; } }
 
         /// <summary>
         /// Label of the package.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public string Label { get { return _label; } }
 
         /// <summary>
         /// Absolute path to the icon image.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public string IconPath { get { return _iconPath; } }
 
         /// <summary>
         /// Version of the package.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public string Version { get { return _version; } }
 
         /// <summary>
         /// Type of the package.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public PackageType PackageType { get { return _type; } }
 
         /// <summary>
         /// Installed storage type for the package.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public StorageType InstalledStorageType { get { return (StorageType)_installedStorageType; } }
 
         /// <summary>
         /// Root path for the package.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public string RootPath { get { return _rootPath; } }
 
         /// <summary>
@@ -89,47 +97,56 @@ namespace Tizen.Applications
         /// </summary>
         /// <privilege>http://tizen.org/privilege/packagemanager.admin</privilege>
         /// <privlevel>platform</privlevel>
+        /// <since_tizen> 3 </since_tizen>
         public string TizenExpansionPackageName { get { return _expansionPackageName; } }
 
         /// <summary>
         /// Checks whether the package is a system package.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public bool IsSystemPackage { get { return _isSystemPackage; } }
 
         /// <summary>
         /// Checks whether the package is removable.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public bool IsRemovable { get { return _isRemovable; } }
 
         /// <summary>
         /// Checks whether the package is preloaded.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public bool IsPreloaded { get { return _isPreloaded; } }
 
         /// <summary>
         /// Checks whether the current package is accessible.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public bool IsAccessible { get { return _isAccessible; } }
 
         /// <summary>
         /// Certificate information for the package.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public IReadOnlyDictionary<CertificateType, PackageCertificate> Certificates { get { return _certificates; } }
 
         /// <summary>
         /// Requested privilege for the package.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public IEnumerable<string> Privileges { get { return _privileges; } }
 
         /// <summary>
         /// Installed time of the package.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public int InstalledTime { get { return _installedTime; } }
 
         /// <summary>
         /// Retrieves all the application IDs of this package.
         /// </summary>
         /// <returns>Returns a dictionary containing all the application information for a given application type.</returns>
+        /// <since_tizen> 3 </since_tizen>
         public IEnumerable<ApplicationInfo> GetApplications()
         {
             return GetApplications(ApplicationType.All);
@@ -140,6 +157,7 @@ namespace Tizen.Applications
         /// </summary>
         /// <param name="type">Optional: AppType enumeration value.</param>
         /// <returns>Returns a dictionary containing all the application information for a given application type.</returns>
+        /// <since_tizen> 3 </since_tizen>
         public IEnumerable<ApplicationInfo> GetApplications(ApplicationType type)
         {
             List<ApplicationInfo> appInfoList = new List<ApplicationInfo>();
@@ -175,6 +193,7 @@ namespace Tizen.Applications
         /// </summary>
         /// <returns>Package size information.</returns>
         /// <privilege>http://tizen.org/privilege/packagemanager.info</privilege>
+        /// <since_tizen> 3 </since_tizen>
         public async Task<PackageSizeInformation> GetSizeInformationAsync()
         {
             TaskCompletionSource<PackageSizeInformation> tcs = new TaskCompletionSource<PackageSizeInformation>();
@@ -202,6 +221,7 @@ namespace Tizen.Applications
         /// <returns>Certificate comparison result.</returns>
         /// <exception cref="ArgumentException">Thrown when a failed input package ID is invalid.</exception>
         /// <exception cref="System.IO.IOException">Thrown when the method failed due to an internal I/O error.</exception>
+        /// <since_tizen> 3 </since_tizen>
         public CertCompareResultType CompareCertInfo(string packageId)
         {
             Interop.PackageManager.CertCompareResultType compareResult;

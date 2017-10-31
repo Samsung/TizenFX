@@ -21,6 +21,7 @@ namespace Tizen.System.Usb
     /// <summary>
     /// String information for USB device.
     /// </summary>
+    /// <since_tizen> 4 </since_tizen>
     public class UsbDeviceStrings
     {
         private readonly UsbDevice _device;
@@ -37,6 +38,7 @@ namespace Tizen.System.Usb
         /// </summary>
         /// <exception cref="InvalidOperationException">Throws exception if device is disconnected or not opened for operation.</exception>
         /// <exception cref="UnauthorizedAccessException">Throws exception if user has insufficient permission on device.</exception>
+        /// <since_tizen> 4 </since_tizen>
         public string Manufacturer
         {
             get
@@ -51,6 +53,7 @@ namespace Tizen.System.Usb
         /// </summary>
         /// <exception cref="InvalidOperationException">Throws exception if device is not opened for operation.</exception>
         /// <exception cref="UnauthorizedAccessException">Throws exception if user has insufficient permission on device.</exception>
+        /// <since_tizen> 4 </since_tizen>
         public string Product
         {
             get
@@ -65,6 +68,7 @@ namespace Tizen.System.Usb
         /// </summary>
         /// <exception cref="InvalidOperationException">Throws exception if device is not opened for operation.</exception>
         /// <exception cref="UnauthorizedAccessException">Throws exception if user has insufficient permission on device.</exception>
+        /// <since_tizen> 4 </since_tizen>
         public string Serial
         {
             get

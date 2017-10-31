@@ -24,6 +24,7 @@ namespace Tizen.Multimedia
     /// <summary>
     /// Represents an equalizer band of <see cref="AudioEffect"/>.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public class EqualizerBand
     {
         private readonly AudioEffect _owner;
@@ -58,6 +59,7 @@ namespace Tizen.Multimedia
         /// <exception cref="ArgumentOutOfRangeException">
         ///     <paramref name="value"/> is not inside of <see cref="AudioEffect.BandLevelRange"/>.
         /// </exception>
+        /// <since_tizen> 3 </since_tizen>
         public int Level
         {
             get
@@ -91,11 +93,13 @@ namespace Tizen.Multimedia
         /// <summary>
         /// Gets the frequency in the dB.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public int Frequency { get; }
 
         /// <summary>
         /// Gets the frequency range in the dB.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public int FrequencyRange { get; }
 
     }

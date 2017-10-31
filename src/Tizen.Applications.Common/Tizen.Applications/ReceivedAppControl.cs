@@ -43,6 +43,7 @@ namespace Tizen.Applications
     /// }
     /// </code>
     /// </example>
+    /// <since_tizen> 3 </since_tizen>
     public class ReceivedAppControl : AppControl
     {
         private const string LogTag = "Tizen.Applications";
@@ -50,6 +51,7 @@ namespace Tizen.Applications
         /// <summary>
         /// Initializes a ReceivedAppControl class.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public ReceivedAppControl(SafeAppControlHandle handle) : base(handle)
         {
         }
@@ -69,6 +71,7 @@ namespace Tizen.Applications
         ///     }
         /// </code>
         /// </example>
+        /// <since_tizen> 3 </since_tizen>
         public string CallerApplicationId
         {
             get
@@ -98,6 +101,7 @@ namespace Tizen.Applications
         ///     }
         /// </code>
         /// </example>
+        /// <since_tizen> 3 </since_tizen>
         public bool IsReplyRequest
         {
             get
@@ -132,6 +136,7 @@ namespace Tizen.Applications
         ///     }
         /// </code>
         /// </example>
+        /// <since_tizen> 3 </since_tizen>
         public void ReplyToLaunchRequest(AppControl replyRequest, AppControlReplyResult result)
         {
             if (replyRequest == null)

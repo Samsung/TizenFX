@@ -24,6 +24,7 @@ namespace Tizen.Network.Bluetooth
     /// The BluetoothAdapter class is used to discover neighbouring bluetooth devices.
     /// </summary>
     /// <privilege> http://tizen.org/privilege/bluetooth </privilege>
+    /// <since_tizen> 3 </since_tizen>
     static public class BluetoothAdapter
     {
         /// <summary>
@@ -31,6 +32,7 @@ namespace Tizen.Network.Bluetooth
         /// </summary>
         /// <exception cref="NotSupportedException">Thrown when the Bluetooth is not supported.</exception>
         /// <exception cref="InvalidOperationException">Thrown when the Bluetooth is not enabled.</exception>
+        /// <since_tizen> 3 </since_tizen>
         static public bool IsBluetoothEnabled
         {
             get
@@ -54,6 +56,7 @@ namespace Tizen.Network.Bluetooth
         /// </remarks>
         /// <exception cref="NotSupportedException">Thrown when the Bluetooth is not supported.</exception>
         /// <exception cref="InvalidOperationException">Thrown when the Bluetooth is not enabled.</exception>
+        /// <since_tizen> 3 </since_tizen>
         static public string Address
         {
             get
@@ -77,6 +80,7 @@ namespace Tizen.Network.Bluetooth
         /// </remarks>
         /// <exception cref="NotSupportedException">Thrown when the Bluetooth is not supported.</exception>
         /// <exception cref="InvalidOperationException">Thrown when the Bluetooth is not enabled.</exception>
+        /// <since_tizen> 3 </since_tizen>
         static public string Name
         {
             get
@@ -111,6 +115,7 @@ namespace Tizen.Network.Bluetooth
         /// </remarks>
         /// <exception cref="NotSupportedException">Thrown when the Bluetooth is not supported.</exception>
         /// <exception cref="InvalidOperationException">Thrown when the Bluetooth is not enabled.</exception>
+        /// <since_tizen> 3 </since_tizen>
         static public VisibilityMode Visibility
         {
             get
@@ -134,6 +139,7 @@ namespace Tizen.Network.Bluetooth
         /// </remarks>
         /// <exception cref="NotSupportedException">Thrown when the Bluetooth is not supported.</exception>
         /// <exception cref="InvalidOperationException">Thrown when the Bluetooth is not enabled.</exception>
+        /// <since_tizen> 3 </since_tizen>
         static public bool IsDiscoveryInProgress
         {
             get
@@ -157,6 +163,7 @@ namespace Tizen.Network.Bluetooth
         /// </remarks>
         /// <exception cref="NotSupportedException">Thrown when the Bluetooth is not supported.</exception>
         /// <exception cref="InvalidOperationException">Thrown when the Bluetooth is not enabled.</exception>
+        /// <since_tizen> 3 </since_tizen>
         static public int RemainingTimeAsVisible
         {
             get
@@ -177,6 +184,7 @@ namespace Tizen.Network.Bluetooth
         /// </summary>
         /// <exception cref="NotSupportedException">Thrown when the Bluetooth is not supported.</exception>
         /// <exception cref="InvalidOperationException">Thrown when the Bluetooth is not enabled.</exception>
+        /// <since_tizen> 3 </since_tizen>
         static public event EventHandler<StateChangedEventArgs> StateChanged
         {
             add
@@ -208,6 +216,7 @@ namespace Tizen.Network.Bluetooth
         /// </summary>
         /// <exception cref="NotSupportedException">Thrown when the Bluetooth is not supported.</exception>
         /// <exception cref="InvalidOperationException">Thrown when the Bluetooth is not enabled.</exception>
+        /// <since_tizen> 3 </since_tizen>
         static public event EventHandler<NameChangedEventArgs> NameChanged
         {
             add
@@ -239,6 +248,7 @@ namespace Tizen.Network.Bluetooth
         /// </summary>
         /// <exception cref="NotSupportedException">Thrown when the Bluetooth is not supported.</exception>
         /// <exception cref="InvalidOperationException">Thrown when the Bluetooth is not enabled.</exception>
+        /// <since_tizen> 3 </since_tizen>
         static public event EventHandler<VisibilityModeChangedEventArgs> VisibilityModeChanged
         {
             add
@@ -270,6 +280,7 @@ namespace Tizen.Network.Bluetooth
         /// </summary>
         /// <exception cref="NotSupportedException">Thrown when the Bluetooth is not supported.</exception>
         /// <exception cref="InvalidOperationException">Thrown when the Bluetooth is not enabled.</exception>
+        /// <since_tizen> 3 </since_tizen>
         static public event EventHandler<VisibilityDurationChangedEventArgs> VisibilityDurationChanged
         {
             add
@@ -301,6 +312,7 @@ namespace Tizen.Network.Bluetooth
         /// </summary>
         /// <exception cref="NotSupportedException">Thrown when the Bluetooth is not supported.</exception>
         /// <exception cref="InvalidOperationException">Thrown when the Bluetooth is not enabled.</exception>
+        /// <since_tizen> 3 </since_tizen>
         static public event EventHandler<DiscoveryStateChangedEventArgs> DiscoveryStateChanged
         {
             add
@@ -332,6 +344,7 @@ namespace Tizen.Network.Bluetooth
         /// </summary>
         /// <exception cref="NotSupportedException">Thrown when the Bluetooth is not supported.</exception>
         /// <exception cref="InvalidOperationException">Thrown when the Bluetooth is not enabled.</exception>
+        /// <since_tizen> 3 </since_tizen>
         static public event EventHandler<AdapterLeScanResultChangedEventArgs> ScanResultChanged
         {
             add
@@ -368,6 +381,7 @@ namespace Tizen.Network.Bluetooth
         /// <exception cref="NotSupportedException">Thrown when the Bluetooth is not supported.</exception>
         /// <exception cref="InvalidOperationException">Thrown when the Bluetooth is not enabled
         /// or the start discovery fails.</exception>
+        /// <since_tizen> 3 </since_tizen>
         static public void StartDiscovery()
         {
             if (IsBluetoothEnabled)
@@ -386,6 +400,7 @@ namespace Tizen.Network.Bluetooth
         /// <exception cref="NotSupportedException">Thrown when the Bluetooth is not supported.</exception>
         /// <exception cref="InvalidOperationException">Thrown when the Bluetooth is not enabled or 
         /// the discovery process is not is progress. </exception>
+        /// <since_tizen> 3 </since_tizen>
         static public void StopDiscovery()
         {
             if (IsDiscoveryInProgress)
@@ -404,6 +419,7 @@ namespace Tizen.Network.Bluetooth
         /// <exception cref="NotSupportedException">Thrown when the Bluetooth is not supported.</exception>
         /// <exception cref="InvalidOperationException">Thrown when the Bluetooth is not enabled
         /// or reading the Bonded devices list is failed.</exception>
+        /// <since_tizen> 3 </since_tizen>
         static public IEnumerable<BluetoothDevice> GetBondedDevices()
         {
             if (IsBluetoothEnabled)
@@ -426,6 +442,7 @@ namespace Tizen.Network.Bluetooth
         /// <exception cref="NotSupportedException">Thrown when the Bluetooth is not supported.</exception>
         /// <exception cref="InvalidOperationException">Thrown when the Bluetooth is not enabled
         /// or reading the bonded device information fails.</exception>
+        /// <since_tizen> 3 </since_tizen>
         static public BluetoothDevice GetBondedDevice(string address)
         {
             if (IsBluetoothEnabled)
@@ -445,6 +462,7 @@ namespace Tizen.Network.Bluetooth
         /// <param name="serviceUuid">The UUID of Service.</param>
         /// <exception cref="NotSupportedException">Thrown when the Bluetooth is not supported.</exception>
         /// <exception cref="InvalidOperationException">Thrown when the Bluetooth is not enabled.</exception>
+        /// <since_tizen> 3 </since_tizen>
         static public bool IsServiceUsed(string serviceUuid)
         {
             try
@@ -467,6 +485,7 @@ namespace Tizen.Network.Bluetooth
         /// <exception cref="NotSupportedException">Thrown when the Bluetooth is not supported.</exception>
         /// <exception cref="InvalidOperationException">Thrown when the Bluetooth is not enabled
         /// or the read OObData procedure is failed.</exception>
+        /// <since_tizen> 3 </since_tizen>
         static public BluetoothOobData GetLocalOobData()
         {
             if (IsBluetoothEnabled && Globals.IsInitialize)
@@ -490,6 +509,7 @@ namespace Tizen.Network.Bluetooth
         /// <exception cref="NotSupportedException">Thrown when the Bluetooth is not supported.</exception>
         /// <exception cref="InvalidOperationException">Thrown when the Bluetooth is not enabled
         /// or the set OobData procedure is failed.</exception>
+        /// <since_tizen> 3 </since_tizen>
         static public void SetRemoteOobData(string address, BluetoothOobData oobData)
         {
             if (IsBluetoothEnabled && Globals.IsInitialize)
@@ -508,6 +528,7 @@ namespace Tizen.Network.Bluetooth
         /// <exception cref="NotSupportedException">Thrown when the Bluetooth is not supported.</exception>
         /// <exception cref="InvalidOperationException">Thrown when the Bluetooth is not enabled.
         /// or if the Remove Oobdata procedure is failed.</exception>
+        /// <since_tizen> 3 </since_tizen>
         static public void RemoveRemoteOobData(string address)
         {
             if (IsBluetoothEnabled && Globals.IsInitialize)
@@ -525,6 +546,7 @@ namespace Tizen.Network.Bluetooth
         /// <exception cref="NotSupportedException">Thrown when the Bluetooth LE is not supported.</exception>
         /// <exception cref="InvalidOperationException">Thrown when the Bluetooth LE is not enabled
         /// or the Start LE scan is failed.</exception>
+        /// <since_tizen> 3 </since_tizen>
         static public void StartLeScan()
         {
             if (BluetoothAdapter.IsBluetoothEnabled && Globals.IsInitialize)
@@ -551,6 +573,7 @@ namespace Tizen.Network.Bluetooth
         /// <exception cref="NotSupportedException">Thrown when the Bluetooth LE is not supported.</exception>
         /// <exception cref="InvalidOperationException">Thrown when the Bluetooth LE is not enabled
         /// or the Stop LE scan is failed.</exception>
+        /// <since_tizen> 3 </since_tizen>
         static public void StopLeScan()
         {
             if (BluetoothAdapter.IsBluetoothEnabled && Globals.IsInitialize)
@@ -575,6 +598,7 @@ namespace Tizen.Network.Bluetooth
         /// The Bluetooth must be enabled before calling this API.
         /// </remarks>
         /// <returns>The BluetoothLeAdvertiser instance.</returns>
+        /// <since_tizen> 3 </since_tizen>
         static public BluetoothLeAdvertiser GetBluetoothLeAdvertiser()
         {
             return BluetoothLeAdvertiser.Instance;
@@ -591,6 +615,7 @@ namespace Tizen.Network.Bluetooth
         /// <exception cref="NotSupportedException">Thrown when the Bluetooth is not supported.</exception>
         /// <exception cref="InvalidOperationException">Thrown when the Bluetooth is not enabled
         /// or the socket create error occurs.</exception>
+        /// <since_tizen> 3 </since_tizen>
         static public BluetoothServerSocket CreateServerSocket(string serviceUuid)
         {
             if (IsBluetoothEnabled && Globals.IsInitialize)
@@ -613,6 +638,7 @@ namespace Tizen.Network.Bluetooth
         /// <exception cref="NotSupportedException">Thrown when the Bluetooth is not supported.</exception>
         /// <exception cref="InvalidOperationException">Thrown when the Bluetooth is not enabled
         /// or the socket destroy error occurs.</exception>
+        /// <since_tizen> 3 </since_tizen>
         static public void DestroyServerSocket(BluetoothServerSocket socket)
         {
             if (IsBluetoothEnabled && Globals.IsInitialize)

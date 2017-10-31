@@ -21,6 +21,7 @@ namespace Tizen.Telephony
     /// <summary>
     /// The Network class provides APIs to obtain information about the current telephony service network.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public class Network
     {
         internal IntPtr _handle;
@@ -51,6 +52,7 @@ namespace Tizen.Telephony
         /// Enumeration for the RSSI (Receive Signal Strength Indicator).
         /// Rssi6 indicates the highest strength.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public enum Rssi
         {
             /// <summary>
@@ -90,6 +92,7 @@ namespace Tizen.Telephony
         /// <summary>
         /// Enumeration for the network types.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public enum Type
         {
             /// <summary>
@@ -157,6 +160,7 @@ namespace Tizen.Telephony
         /// <summary>
         /// Enumeration for the PS types.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public enum PsType
         {
             /// <summary>
@@ -184,6 +188,7 @@ namespace Tizen.Telephony
         /// <summary>
         /// Enumeration for the network service states.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public enum ServiceState
         {
             /// <summary>
@@ -207,6 +212,7 @@ namespace Tizen.Telephony
         /// <summary>
         /// Enumeration for the network name priority.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public enum NameOption
         {
             /// <summary>
@@ -230,6 +236,7 @@ namespace Tizen.Telephony
         /// <summary>
         /// Enumeration for the possible 'default' Data Subscriptions for the Packet Switched(PS).
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public enum DefaultDataSubscription
         {
             /// <summary>
@@ -249,6 +256,7 @@ namespace Tizen.Telephony
         /// <summary>
         /// Enumeration for defining the possible 'default' Subscriptions for the Circuit Switched(CS).
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public enum DefaultSubscription
         {
             /// <summary>
@@ -268,6 +276,7 @@ namespace Tizen.Telephony
         /// <summary>
         /// Enumeration for the network selection modes.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public enum SelectionMode
         {
             /// <summary>

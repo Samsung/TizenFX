@@ -21,6 +21,7 @@ namespace Tizen.Sensor
     /// <summary>
     /// The UltravioletSensor changed event arguments class is used for storing the data returned by a ultraviolet sensor.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public class UltravioletSensorDataUpdatedEventArgs : EventArgs
     {
         internal UltravioletSensorDataUpdatedEventArgs(float ultravioletIndex)

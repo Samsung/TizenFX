@@ -396,14 +396,17 @@ namespace Tizen.Pims.Contacts
             /// <summary>
             /// Inserted
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             Inserted,
             /// <summary>
             /// Updated
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             Updated,
             /// <summary>
             /// Deleted
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             Deleted,
         }
 
@@ -416,22 +419,27 @@ namespace Tizen.Pims.Contacts
             /// <summary>
             /// Identifier of this contacts address book view
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const string Uri = "tizen.contacts_view.addressbook";
             /// <summary>
             /// integer, read only,  DB record ID of the address book
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint Id = (uint)Property.Id.AddressBookId;
             /// <summary>
             /// integer, read/write once, Account ID that the address book belongs to
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint AccountId = (uint)Property.Id.AddressBookAccountId;
             /// <summary>
             /// string, read/write, It cannot be NULL. Duplicate names are not allowed.
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint Name = (uint)Property.Id.AddressBookName;
             /// <summary>
             /// integer, read/write, AddressBook mode, refer to the ModeValue
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint Mode = (uint)Property.Id.AddressBookMode;
 
             /// <summary>
@@ -443,10 +451,12 @@ namespace Tizen.Pims.Contacts
                 /// <summary>
                 /// All module can read and write contacts of this address_book
                 /// </summary>
+                /// <since_tizen> 4 </since_tizen>
                 None,
                 /// <summary>
                 /// All module can only read contacts of this address_book
                 /// </summary>
+                /// <since_tizen> 4 </since_tizen>
                 ReadOnly,
             }
         }
@@ -460,42 +470,52 @@ namespace Tizen.Pims.Contacts
             /// <summary>
             /// Identifier of this contacts group view
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const string Uri = "tizen.contacts_view.group";
             /// <summary>
             /// DB record ID of the group
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint Id = (uint)Property.Id.GroupId;
             /// <summary>
             /// AddressBook ID that the group belongs to
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint AddressBookId = (uint)Property.Id.GroupAddressBookId;
             /// <summary>
             /// Group name
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint Name = (uint)Property.Id.GroupName;
             /// <summary>
             /// Ringtone path of the group
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint RingtonePath = (uint)Property.Id.GroupRingtone;
             /// <summary>
             /// Image path of the group
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint ImagePath = (uint)Property.Id.GroupImage;
             /// <summary>
             /// Vibration path of the group
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint Vibration = (uint)Property.Id.GroupVibration;
             /// <summary>
             /// Extra data for default group name
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint ExtraData = (uint)Property.Id.GroupExtraData;
             /// <summary>
             /// The group is read only or not
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint IsReadOnly = (uint)Property.Id.GroupIsReadOnly;
             /// <summary>
             /// Message alert path of the group
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint MessageAlert = (uint)Property.Id.GroupMessageAlert;
         }
 
@@ -508,74 +528,92 @@ namespace Tizen.Pims.Contacts
             /// <summary>
             /// Identifier of this contacts person view
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const string Uri = "tizen.contacts_view.person";
             /// <summary>
             /// DB record ID of the person
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint Id = (uint)Property.Id.PersonId;
             /// <summary>
             /// Display name of the person
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint DisplayName = (uint)Property.Id.PersonDisplayName;
             /// <summary>
             /// The first character of first string for grouping. This is normalized using ICU (projection)
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint DisplayNameIndex = (uint)Property.Id.PersonDisplayNameIndex;
             /// <summary>
             /// Display contact ID that the person belongs to
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint DisplayContactId = (uint)Property.Id.PersonDisplayContactId;
             /// <summary>
             /// Ringtone path of the person
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint RingtonePath = (uint)Property.Id.PersonRingtone;
             /// <summary>
             /// Image thumbnail path of the person
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint ThumbnailPath = (uint)Property.Id.PersonThumbnail;
             /// <summary>
             /// Vibration path of the person
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint Vibration = (uint)Property.Id.PersonVibration;
             /// <summary>
             /// Message alert path of the person
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint MessageAlert = (uint)Property.Id.PersonMessageAlert;
             /// <summary>
             /// Status of social account
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint Status = (uint)Property.Id.PersonStatus;
             /// <summary>
             /// The person is favorite or not
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint IsFavorite = (uint)Property.Id.PersonIsFavorite;
             /// <summary>
             /// The priority of favorite contacts. it can be used as sorting key
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint FavoritePriority = (uint)Property.Id.PersonFavoritePriority;
             /// <summary>
             /// Link count of contact records (projection)
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint LinkCount = (uint)Property.Id.PersonLinkCount;
             /// <summary>
             /// AddressBook IDs that the person belongs to (projection)
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint AddressBookIds = (uint)Property.Id.PersonAddressBookIds;
             /// <summary>
             /// The person has phone number or not
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint HasPhoneNumber = (uint)Property.Id.PersonHasPhoneNumber;
             /// <summary>
             /// The person has email or not
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint HasEmail = (uint)Property.Id.PersonHasEmail;
             /// <summary>
             /// keyword matched data type
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint SnippetType = (uint)Property.Id.PersonSnippetType;
             /// <summary>
             /// keyword matched data string
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint SnippetString = (uint)Property.Id.PersonSnippetString;
         }
 
@@ -588,130 +626,162 @@ namespace Tizen.Pims.Contacts
             /// <summary>
             /// Identifier of this contact view
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const string Uri = "tizen.contacts_view.contact";
             /// <summary>
             /// DB record ID of the contact
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint Id = (uint)Property.Id.ContactId;
             /// <summary>
             /// Display name of the contact
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint DisplayName = (uint)Property.Id.ContactDisplayName;
             /// <summary>
             /// The source type of display name, refer to the DisplayNameSourceType
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint DisplaySourceType = (uint)Property.Id.ContactDisplaySourceDataId;
             /// <summary>
             /// AddressBook ID that the contact belongs to
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint AddressBookId = (uint)Property.Id.ContactAddressBookId;
             /// <summary>
             /// Ringtone path of the contact
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint RingtonePath = (uint)Property.Id.ContactRingtone;
             /// <summary>
             /// Image thumbnail path of the contact
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint ThumbnailPath = (uint)Property.Id.ContactThumbnail;
             /// <summary>
             /// The contact is favorite or not
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint IsFavorite = (uint)Property.Id.ContactIsFavorite;
             /// <summary>
             /// The contact has phone number or not
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint HasPhoneNumber = (uint)Property.Id.ContactHasPhoneNumber;
             /// <summary>
             /// The contact has email or not
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint HasEmail = (uint)Property.Id.ContactHasEmail;
             /// <summary>
             /// Person ID that the contact belongs to. If set when inserting, a contact will be linked to person
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint PersonId = (uint)Property.Id.ContactPersonId;
             /// <summary>
             /// Unique identifier
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint UId = (uint)Property.Id.ContactUId;
             /// <summary>
             /// Vibration path of the contact
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint Vibration = (uint)Property.Id.ContactVibration;
             /// <summary>
             /// Message alert path of the contact
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint MessageAlert = (uint)Property.Id.ContactMessageAlert;
             /// <summary>
             /// Last changed contact time
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint ChangedTime = (uint)Property.Id.ContactChangedTime;
             /// <summary>
             /// The link mode, refer to the LinkModeValue. If the person_id was set, this value will be ignored
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint LinkMode = (uint)Property.Id.ContactLinkMode;
             /// <summary>
             /// Name child record (single)
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint Name = (uint)Property.Id.ContactName;
             /// <summary>
             /// Company child record (multiple)
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint Company = (uint)Property.Id.ContactCompany;
             /// <summary>
             /// Note child record (multiple)
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint Note = (uint)Property.Id.ContactNote;
             /// <summary>
             /// Number child record (multiple)
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint Number = (uint)Property.Id.ContactNumber;
             /// <summary>
             /// Email child record (multiple)
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint Email = (uint)Property.Id.ContactEmail;
             /// <summary>
             /// Event child record (multiple)
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint Event = (uint)Property.Id.ContactEvent;
             /// <summary>
             /// Messenger child record (multiple)
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint Messenger = (uint)Property.Id.ContactMessenger;
             /// <summary>
             /// Address child record (multiple)
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint Address = (uint)Property.Id.ContactAddress;
             /// <summary>
             /// URL child record (multiple)
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint URL = (uint)Property.Id.ContactURL;
             /// <summary>
             /// Nickname child record (multiple)
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint Nickname = (uint)Property.Id.ContactNickname;
             /// <summary>
             /// Profile child record (multiple)
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint Profile = (uint)Property.Id.ContactProfile;
             /// <summary>
             /// Relationship child record (multiple)
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint Relationship = (uint)Property.Id.ContactRelationship;
             /// <summary>
             /// Image child record (multiple)
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint Image = (uint)Property.Id.ContactImage;
             /// <summary>
             /// GroupRelation child record (multiple)
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint GroupRelation = (uint)Property.Id.ContactGroupRelation;
             /// <summary>
             /// Extension child record (multiple)
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint Extension = (uint)Property.Id.ContactExtension;
             /// <summary>
             /// Sip child record (multiple)
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint Sip = (uint)Property.Id.ContactSip;
 
             /// <summary>
@@ -723,10 +793,12 @@ namespace Tizen.Pims.Contacts
                 /// <summary>
                 /// Auto link immediately
                 /// </summary>
+                /// <since_tizen> 4 </since_tizen>
                 Auto,
                 /// <summary>
                 /// Do not auto link when the contact is inserted
                 /// </summary>
+                /// <since_tizen> 4 </since_tizen>
                 None
             }
 
@@ -739,26 +811,32 @@ namespace Tizen.Pims.Contacts
                 /// <summary>
                 /// Invalid source of display name
                 /// </summary>
+                /// <since_tizen> 4 </since_tizen>
                 Invalid,
                 /// <summary>
                 /// Produced display name from email record
                 /// </summary>
+                /// <since_tizen> 4 </since_tizen>
                 Email,
                 /// <summary>
                 /// Produced display name from number record
                 /// </summary>
+                /// <since_tizen> 4 </since_tizen>
                 Number,
                 /// <summary>
                 /// Produced display name from nickname record
                 /// </summary>
+                /// <since_tizen> 4 </since_tizen>
                 Nickname,
                 /// <summary>
                 /// Produced display name from company record
                 /// </summary>
+                /// <since_tizen> 4 </since_tizen>
                 Company,
                 /// <summary>
                 /// Produced display name from name record
                 /// </summary>
+                /// <since_tizen> 4 </since_tizen>
                 Name,
             }
 
@@ -771,66 +849,82 @@ namespace Tizen.Pims.Contacts
                 /// <summary>
                 /// None
                 /// </summary>
+                /// <since_tizen> 4 </since_tizen>
                 None,
                 /// <summary>
                 /// Name
                 /// </summary>
+                /// <since_tizen> 4 </since_tizen>
                 Name = 1,
                 /// <summary>
                 /// Address
                 /// </summary>
+                /// <since_tizen> 4 </since_tizen>
                 Address = 2,
                 /// <summary>
                 /// Messenger
                 /// </summary>
+                /// <since_tizen> 4 </since_tizen>
                 Messenger = 3,
                 /// <summary>
                 /// URL
                 /// </summary>
+                /// <since_tizen> 4 </since_tizen>
                 URL = 4,
                 /// <summary>
                 /// Event
                 /// </summary>
+                /// <since_tizen> 4 </since_tizen>
                 Event = 5,
                 /// <summary>
                 /// Company
                 /// </summary>
+                /// <since_tizen> 4 </since_tizen>
                 Company = 6,
                 /// <summary>
                 /// Nickname
                 /// </summary>
+                /// <since_tizen> 4 </since_tizen>
                 Nickname = 7,
                 /// <summary>
                 /// Number
                 /// </summary>
+                /// <since_tizen> 4 </since_tizen>
                 Number = 8,
                 /// <summary>
                 /// Email
                 /// </summary>
+                /// <since_tizen> 4 </since_tizen>
                 Email = 9,
                 /// <summary>
                 /// Profile
                 /// </summary>
+                /// <since_tizen> 4 </since_tizen>
                 Profile = 10,
                 /// <summary>
                 /// Relationship
                 /// </summary>
+                /// <since_tizen> 4 </since_tizen>
                 Relationship = 11,
                 /// <summary>
                 /// Note
                 /// </summary>
+                /// <since_tizen> 4 </since_tizen>
                 Note = 12,
                 /// <summary>
                 /// Image
                 /// </summary>
+                /// <since_tizen> 4 </since_tizen>
                 Image = 13,
                 /// <summary>
                 /// SIP
                 /// </summary>
+                /// <since_tizen> 4 </since_tizen>
                 Sip = 14,
                 /// <summary>
                 /// Extension
                 /// </summary>
+                /// <since_tizen> 4 </since_tizen>
                 Extension = 100
             }
         }
@@ -844,62 +938,77 @@ namespace Tizen.Pims.Contacts
             /// <summary>
             /// Identifier of this simple contact view
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const string Uri = "tizen.contacts_view.simple_contact";
             /// <summary>
             /// DB record ID of the contact
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint Id = (uint)Property.Id.ContactId;
             /// <summary>
             /// Display name of the contact
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint DisplayName = (uint)Property.Id.ContactDisplayName;
             /// <summary>
             /// The source type of display name, refer to the Contact.DisplayNameSourceType
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint DisplaySourceType = (uint)Property.Id.ContactDisplaySourceDataId;
             /// <summary>
             /// AddressBook that the contact belongs to
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint AddressBookId = (uint)Property.Id.ContactAddressBookId;
             /// <summary>
             /// Ringtone path of the contact
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint RingtonePath = (uint)Property.Id.ContactRingtone;
             /// <summary>
             /// Image thumbnail path of the contact
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint ThumbnailPath = (uint)Property.Id.ContactThumbnail;
             /// <summary>
             /// The contact is favorite or not
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint IsFavorite = (uint)Property.Id.ContactIsFavorite;
             /// <summary>
             /// The contact has phone number or not
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint HasPhoneNumber = (uint)Property.Id.ContactHasPhoneNumber;
             /// <summary>
             /// The contact has email or not
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint HasEmail = (uint)Property.Id.ContactHasEmail;
             /// <summary>
             /// Person ID that the contact belongs to
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint PersonId = (uint)Property.Id.ContactPersonId;
             /// <summary>
             /// Unique identifier
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint UId = (uint)Property.Id.ContactUId;
             /// <summary>
             /// Vibration path of the contact
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint Vibration = (uint)Property.Id.ContactVibration;
             /// <summary>
             /// Message alert path of the contact
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint MessageAlert = (uint)Property.Id.ContactMessageAlert;
             /// <summary>
             /// Last changed contact time
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint ChangedTime = (uint)Property.Id.ContactChangedTime;
         }
 
@@ -912,90 +1021,112 @@ namespace Tizen.Pims.Contacts
             /// <summary>
             /// Identifier of this my profile view
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const string Uri = "tizen.contacts_view.my_profile";
             /// <summary>
             /// DB record ID of the my profile
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint Id = (uint)Property.Id.MyProfileId;
             /// <summary>
             /// Display name of the profile
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint DisplayName = (uint)Property.Id.MyProfileDisplayName;
             /// <summary>
             /// AddressBook ID that the profile belongs to
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint AddressBookId = (uint)Property.Id.MyProfileAddressBookId;
             /// <summary>
             /// Image thumbnail path of the profile
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint ThumbnailPath = (uint)Property.Id.MyProfileThumbnail;
             /// <summary>
             /// Unique identifier
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint UId = (uint)Property.Id.MyProfileUId;
             /// <summary>
             /// Last changed profile time
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint ChangedTime = (uint)Property.Id.MyProfileChangedTime;
             /// <summary>
             /// Name child record (single)
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint Name = (uint)Property.Id.MyProfileName;
             /// <summary>
             /// Company child record (multiple)
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint Company = (uint)Property.Id.MyProfileCompany;
             /// <summary>
             /// Note child record (multiple)
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint Note = (uint)Property.Id.MyProfileNote;
             /// <summary>
             /// Number child record (multiple)
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint Number = (uint)Property.Id.MyProfileNumber;
             /// <summary>
             /// Email child record (multiple)
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint Email = (uint)Property.Id.MyProfileEmail;
             /// <summary>
             /// Event child record (multiple)
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint Event = (uint)Property.Id.MyProfileEvent;
             /// <summary>
             /// Messenger child record (multiple)
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint Messenger = (uint)Property.Id.MyProfileMessenger;
             /// <summary>
             /// Address child record (multiple)
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint Address = (uint)Property.Id.MyProfileAddress;
             /// <summary>
             /// URL child record (multiple)
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint URL = (uint)Property.Id.MyProfileURL;
             /// <summary>
             /// Nickname child record (multiple)
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint Nickname = (uint)Property.Id.MyProfileNickname;
             /// <summary>
             /// Profile child record (multiple)
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint Profile = (uint)Property.Id.MyProfileProfile;
             /// <summary>
             /// Relationship child record (multiple)
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint Relationship = (uint)Property.Id.MyProfileRelationship;
             /// <summary>
             /// Image child record (multiple)
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint Image = (uint)Property.Id.MyProfileImage;
             /// <summary>
             /// Extension child record (multiple)
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint Extension = (uint)Property.Id.MyProfileExtension;
             /// <summary>
             /// Sip child record (multiple)
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint Sip = (uint)Property.Id.MyProfileSip;
         }
 
@@ -1008,46 +1139,57 @@ namespace Tizen.Pims.Contacts
             /// <summary>
             /// Identifier of this contacts name view
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const string Uri = "tizen.contacts_view.name";
             /// <summary>
             /// DB record ID of the name
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint Id = (uint)Property.Id.NameId;
             /// <summary>
             /// Contacts ID that the name record belongs to
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint ContactId = (uint)Property.Id.NameContactId;
             /// <summary>
             /// First name
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint First = (uint)Property.Id.NameFirst;
             /// <summary>
             /// Last name
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint Last = (uint)Property.Id.NameLast;
             /// <summary>
             /// Middle name
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint Addition = (uint)Property.Id.NameAddition;
             /// <summary>
             /// Suffix
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint Suffix = (uint)Property.Id.NameSuffix;
             /// <summary>
             /// Prefix
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint Prefix = (uint)Property.Id.NamePrefix;
             /// <summary>
             /// Pronounce the first name
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint PhoneticFirst = (uint)Property.Id.NamePhoneticFirst;
             /// <summary>
             /// Pronounce the middle name
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint PhoneticMiddle = (uint)Property.Id.NamePhoneticMiddle;
             /// <summary>
             /// Pronounce the last name
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint PhoneticLast = (uint)Property.Id.NamePhoneticLast;
         }
 
@@ -1060,42 +1202,52 @@ namespace Tizen.Pims.Contacts
             /// <summary>
             /// Identifier of this contacts number view
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const string Uri = "tizen.contacts_view.number";
             /// <summary>
             /// DB record ID of the number
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint Id = (uint)Property.Id.NumberId;
             /// <summary>
             /// Contact ID that the number belongs to
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint ContactId = (uint)Property.Id.NumberContactId;
             /// <summary>
             /// Number type, refer to the Types
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint Type = (uint)Property.Id.NumberType;
             /// <summary>
             /// Custom number type label, when the number type is Types.Custom
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint Label = (uint)Property.Id.NumberLabel;
             /// <summary>
             /// The number is default number or not
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint IsDefault = (uint)Property.Id.NumberIsDefault;
             /// <summary>
             /// Number
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint NumberData = (uint)Property.Id.NumberNumber;
             /// <summary>
             /// You can only use this property for search filter.
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint NormalizedNumber = (uint)Property.Id.NumberNormalizedNumber;
             /// <summary>
             /// You can only use this property for search filter.
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint CleanedNumber = (uint)Property.Id.NumberCleanedNumber;
             /// <summary>
             /// You can only use this property for search filter.
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint NumberFilter = (uint)Property.Id.NumberNumberFilter;
 
             /// <summary>
@@ -1108,78 +1260,97 @@ namespace Tizen.Pims.Contacts
                 /// <summary>
                 /// Other number type
                 /// </summary>
+                /// <since_tizen> 4 </since_tizen>
                 Other = 0,
                 /// <summary>
                 /// Custom number type
                 /// </summary>
+                /// <since_tizen> 4 </since_tizen>
                 Custom = 1 << 0,
                 /// <summary>
                 /// A telephone number associated with a residence
                 /// </summary>
+                /// <since_tizen> 4 </since_tizen>
                 Home = 1 << 1,
                 /// <summary>
                 /// A telephone number associated with a place of work
                 /// </summary>
+                /// <since_tizen> 4 </since_tizen>
                 Work = 1 << 2,
                 /// <summary>
                 /// A voice telephone number
                 /// </summary>
+                /// <since_tizen> 4 </since_tizen>
                 Voice = 1 << 3,
                 /// <summary>
                 /// A facsimile telephone number
                 /// </summary>
+                /// <since_tizen> 4 </since_tizen>
                 Fax = 1 << 4,
                 /// <summary>
                 /// The telephone number has voice messaging support
                 /// </summary>
+                /// <since_tizen> 4 </since_tizen>
                 Message = 1 << 5,
                 /// <summary>
                 /// A cellular telephone number
                 /// </summary>
+                /// <since_tizen> 4 </since_tizen>
                 Cell = 1 << 6,
                 /// <summary>
                 /// A paging device telephone number
                 /// </summary>
+                /// <since_tizen> 4 </since_tizen>
                 Pager = 1 << 7,
                 /// <summary>
                 /// A bulletin board system telephone number
                 /// </summary>
+                /// <since_tizen> 4 </since_tizen>
                 BBS = 1 << 8,
                 /// <summary>
                 /// A MODEM connected telephone number
                 /// </summary>
+                /// <since_tizen> 4 </since_tizen>
                 Modem = 1 << 9,
                 /// <summary>
                 /// A car-phone telephone number
                 /// </summary>
+                /// <since_tizen> 4 </since_tizen>
                 Car = 1 << 10,
                 /// <summary>
                 /// An ISDN service telephone number
                 /// </summary>
+                /// <since_tizen> 4 </since_tizen>
                 ISDN = 1 << 11,
                 /// <summary>
                 /// A video conferencing telephone number
                 /// </summary>
+                /// <since_tizen> 4 </since_tizen>
                 Video = 1 << 12,
                 /// <summary>
                 /// A personal communication services telephone number
                 /// </summary>
+                /// <since_tizen> 4 </since_tizen>
                 PCS = 1 << 13,
                 /// <summary>
                 /// A company main number
                 /// </summary>
+                /// <since_tizen> 4 </since_tizen>
                 Company = 1 << 14,
                 /// <summary>
                 /// A radio phone number
                 /// </summary>
+                /// <since_tizen> 4 </since_tizen>
                 Radio = 1 << 15,
                 /// <summary>
                 /// An additional type for main
                 /// </summary>
+                /// <since_tizen> 4 </since_tizen>
                 Main = 1 << 29,
                 /// <summary>
                 /// An additional type for assistant
                 /// </summary>
+                /// <since_tizen> 4 </since_tizen>
                 Assistant = 1 << 30,
             }
         }
@@ -1193,30 +1364,37 @@ namespace Tizen.Pims.Contacts
             /// <summary>
             /// Identifier of this contacts email view
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const string Uri = "tizen.contacts_view.email";
             /// <summary>
             /// DB record ID of the email
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint Id = (uint)Property.Id.EmailId;
             /// <summary>
             /// Contact ID that the email belongs to
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint ContactId = (uint)Property.Id.EmailContactId;
             /// <summary>
             /// Email type, refer to the Types
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint Type = (uint)Property.Id.EmailType;
             /// <summary>
             /// Custom mail type label, when the email type is Types.Custom
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint Label = (uint)Property.Id.EmailLabel;
             /// <summary>
             /// The email is default email or not
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint IsDefault = (uint)Property.Id.EmailIsDefault;
             /// <summary>
             /// Email address
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint Address = (uint)Property.Id.EmailEmail;
 
             /// <summary>
@@ -1229,22 +1407,27 @@ namespace Tizen.Pims.Contacts
                 /// <summary>
                 /// Other email type
                 /// </summary>
+                /// <since_tizen> 4 </since_tizen>
                 Other = 0,
                 /// <summary>
                 /// Custom email type
                 /// </summary>
+                /// <since_tizen> 4 </since_tizen>
                 Custom = 1 << 0,
                 /// <summary>
                 /// An email address associated with a residence
                 /// </summary>
+                /// <since_tizen> 4 </since_tizen>
                 Home = 1 << 1,
                 /// <summary>
                 /// An email address associated with a place of work
                 /// </summary>
+                /// <since_tizen> 4 </since_tizen>
                 Work = 1 << 2,
                 /// <summary>
                 /// A mobile email address
                 /// </summary>
+                /// <since_tizen> 4 </since_tizen>
                 Mobile = 1 << 3,
             }
         }
@@ -1258,54 +1441,67 @@ namespace Tizen.Pims.Contacts
             /// <summary>
             /// Identifier of this contacts address view
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const string Uri = "tizen.contacts_view.address";
             /// <summary>
             /// DB record ID of the address
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint Id = (uint)Property.Id.AddressId;
             /// <summary>
             /// Contact ID that the address belongs to
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint ContactId = (uint)Property.Id.AddressContactId;
             /// <summary>
             /// Address type, refer to the Types
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint Type = (uint)Property.Id.AddressType;
             /// <summary>
             /// Address type label, when the address type is Types.Custom
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint Label = (uint)Property.Id.AddressLabel;
             /// <summary>
             /// Post office box
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint Postbox = (uint)Property.Id.AddressPostbox;
             /// <summary>
             /// Postal code
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint PostalCode = (uint)Property.Id.AddressPostalCode;
             /// <summary>
             /// Region
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint Region = (uint)Property.Id.AddressRegion;
             /// <summary>
             /// Locality
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint Locality = (uint)Property.Id.AddressLocality;
             /// <summary>
             /// Street
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint Street = (uint)Property.Id.AddressStreet;
             /// <summary>
             /// Country
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint Country = (uint)Property.Id.AddressCountry;
             /// <summary>
             /// Extended address
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint Extended = (uint)Property.Id.AddressExtended;
             /// <summary>
             /// The address is default or not
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint IsDefault = (uint)Property.Id.AddressIsDefault;
 
             /// <summary>
@@ -1318,34 +1514,42 @@ namespace Tizen.Pims.Contacts
                 /// <summary>
                 /// Other address type
                 /// </summary>
+                /// <since_tizen> 4 </since_tizen>
                 Other = 0,
                 /// <summary>
                 /// Custom address type
                 /// </summary>
+                /// <since_tizen> 4 </since_tizen>
                 Custom = 1 << 0,
                 /// <summary>
                 /// A delivery address for a residence
                 /// </summary>
+                /// <since_tizen> 4 </since_tizen>
                 Home = 1 << 1,
                 /// <summary>
                 /// A delivery address for a place of work
                 /// </summary>
+                /// <since_tizen> 4 </since_tizen>
                 Work = 1 << 2,
                 /// <summary>
                 /// A domestic delivery address
                 /// </summary>
+                /// <since_tizen> 4 </since_tizen>
                 Domestic = 1 << 3,
                 /// <summary>
                 /// An international delivery address
                 /// </summary>
+                /// <since_tizen> 4 </since_tizen>
                 International = 1 << 4,
                 /// <summary>
                 /// A postal delivery address
                 /// </summary>
+                /// <since_tizen> 4 </since_tizen>
                 Postal = 1 << 5,
                 /// <summary>
                 /// A parcel delivery address
                 /// </summary>
+                /// <since_tizen> 4 </since_tizen>
                 Parcel = 1 << 6,
             }
         }
@@ -1359,18 +1563,22 @@ namespace Tizen.Pims.Contacts
             /// <summary>
             /// Identifier of this contacts note view
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const string Uri = "tizen.contacts_view.note";
             /// <summary>
             /// DB record ID of the note
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint Id = (uint)Property.Id.NoteId;
             /// <summary>
             /// Contact ID that the note belongs to
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint ContactId = (uint)Property.Id.NoteContactId;
             /// <summary>
             /// Note contents
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint Contents = (uint)Property.Id.NoteNote;
         }
 
@@ -1383,26 +1591,32 @@ namespace Tizen.Pims.Contacts
             /// <summary>
             /// Identifier of this contacts URL view
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const string Uri = "tizen.contacts_view.url";
             /// <summary>
             /// DB record ID of the URL
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint Id = (uint)Property.Id.URLId;
             /// <summary>
             /// Contact ID that the URL belongs to
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint ContactId = (uint)Property.Id.URLContactId;
             /// <summary>
             /// URL type, refer to the TypeValue
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint Type = (uint)Property.Id.URLType;
             /// <summary>
             /// Custom URL type label, when the URL type is TypeValue.Custom
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint Label = (uint)Property.Id.URLLabel;
             /// <summary>
             /// URL
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint URLData = (uint)Property.Id.URLData;
 
             /// <summary>
@@ -1414,18 +1628,22 @@ namespace Tizen.Pims.Contacts
                 /// <summary>
                 /// Other URL type
                 /// </summary>
+                /// <since_tizen> 4 </since_tizen>
                 Other,
                 /// <summary>
                 /// Custom URL type
                 /// </summary>
+                /// <since_tizen> 4 </since_tizen>
                 Custom,
                 /// <summary>
                 /// Home URL type
                 /// </summary>
+                /// <since_tizen> 4 </since_tizen>
                 Home,
                 /// <summary>
                 /// Work URL type
                 /// </summary>
+                /// <since_tizen> 4 </since_tizen>
                 Work,
             }
         }
@@ -1440,30 +1658,37 @@ namespace Tizen.Pims.Contacts
             /// <summary>
             /// Identifier of this contacts event view
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const string Uri = "tizen.contacts_view.event";
             /// <summary>
             /// DB record ID of the event
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint Id = (uint)Property.Id.EventId;
             /// <summary>
             /// Contact ID that the event belongs to
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint ContactId = (uint)Property.Id.EventContactId;
             /// <summary>
             /// Event type, refer to the TypeValue
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint Type = (uint)Property.Id.EventType;
             /// <summary>
             /// Custom event type label, when the event type is TypeValue.Custom
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint Label = (uint)Property.Id.EventLabel;
             /// <summary>
             /// Event date(YYYYMMDD). e.g. 2014/1/1 : 20140101. Even if the calendar_type is set as CONTACTS_EVENT_CALENDAR_TYPE_CHINESE, you SHOULD set Gregorian date
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint Date = (uint)Property.Id.EventDate;
             /// <summary>
             /// Calendar type, refer to the CalendarType
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint IsLeapMonth = (uint)Property.Id.EventIsLeapMonth;
 
             /// <summary>
@@ -1475,18 +1700,22 @@ namespace Tizen.Pims.Contacts
                 /// <summary>
                 /// Other event type
                 /// </summary>
+                /// <since_tizen> 4 </since_tizen>
                 Other,
                 /// <summary>
                 /// Custom event type
                 /// </summary>
+                /// <since_tizen> 4 </since_tizen>
                 Custom,
                 /// <summary>
                 /// Birthday event type
                 /// </summary>
+                /// <since_tizen> 4 </since_tizen>
                 Birthday,
                 /// <summary>
                 /// Anniversary event type
                 /// </summary>
+                /// <since_tizen> 4 </since_tizen>
                 Anniversary
             }
 
@@ -1499,10 +1728,12 @@ namespace Tizen.Pims.Contacts
                 /// <summary>
                 /// Gregorian calendar
                 /// </summary>
+                /// <since_tizen> 4 </since_tizen>
                 Gregorian,
                 /// <summary>
                 /// Chinese calendar
                 /// </summary>
+                /// <since_tizen> 4 </since_tizen>
                 Chinese
             }
         }
@@ -1516,26 +1747,32 @@ namespace Tizen.Pims.Contacts
             /// <summary>
             /// Identifier of this relationship view
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const string Uri = "tizen.contacts_view.relationship";
             /// <summary>
             /// DB record ID of the relationship
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint Id = (uint)Property.Id.RelationshipId;
             /// <summary>
             /// Contact ID that the relationship belongs to
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint ContactId = (uint)Property.Id.RelationshipContactId;
             /// <summary>
             /// Relationship type, refer to the TypeValue
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint Type = (uint)Property.Id.RelationshipType;
             /// <summary>
             /// Custom relationship type label, when the relationship type is TypeValue.Custom
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint Label = (uint)Property.Id.RelationshipLabel;
             /// <summary>
             /// Selected contact name that the relationship belongs to
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint Name = (uint)Property.Id.RelationshipName;
 
             /// <summary>
@@ -1547,66 +1784,82 @@ namespace Tizen.Pims.Contacts
                 /// <summary>
                 /// Other relationship type
                 /// </summary>
+                /// <since_tizen> 4 </since_tizen>
                 Other,
                 /// <summary>
                 /// Assistant type
                 /// </summary>
+                /// <since_tizen> 4 </since_tizen>
                 Assistant,
                 /// <summary>
                 /// Brother type
                 /// </summary>
+                /// <since_tizen> 4 </since_tizen>
                 Brother,
                 /// <summary>
                 /// Child type
                 /// </summary>
+                /// <since_tizen> 4 </since_tizen>
                 Child,
                 /// <summary>
                 /// Domestic Partner type
                 /// </summary>
+                /// <since_tizen> 4 </since_tizen>
                 DomesticPartner,
                 /// <summary>
                 /// Father type
                 /// </summary>
+                /// <since_tizen> 4 </since_tizen>
                 Father,
                 /// <summary>
                 /// Friend type
                 /// </summary>
+                /// <since_tizen> 4 </since_tizen>
                 Friend,
                 /// <summary>
                 /// Manager type
                 /// </summary>
+                /// <since_tizen> 4 </since_tizen>
                 Manager,
                 /// <summary>
                 /// Mother type
                 /// </summary>
+                /// <since_tizen> 4 </since_tizen>
                 Mother,
                 /// <summary>
                 /// Parent type
                 /// </summary>
+                /// <since_tizen> 4 </since_tizen>
                 Parent,
                 /// <summary>
                 /// Partner type
                 /// </summary>
+                /// <since_tizen> 4 </since_tizen>
                 Partner,
                 /// <summary>
                 /// Referred by type
                 /// </summary>
+                /// <since_tizen> 4 </since_tizen>
                 ReferredBy,
                 /// <summary>
                 /// Relative type
                 /// </summary>
+                /// <since_tizen> 4 </since_tizen>
                 Relative,
                 /// <summary>
                 /// Sister type
                 /// </summary>
+                /// <since_tizen> 4 </since_tizen>
                 Sister,
                 /// <summary>
                 /// Spouse type
                 /// </summary>
+                /// <since_tizen> 4 </since_tizen>
                 Spouse,
                 /// <summary>
                 /// Custom type
                 /// </summary>
+                /// <since_tizen> 4 </since_tizen>
                 Custom,
             }
         }
@@ -1620,30 +1873,37 @@ namespace Tizen.Pims.Contacts
             /// <summary>
             /// Identifier of this contacts image view
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const string Uri = "tizen.contacts_view.image";
             /// <summary>
             /// DB record ID of the image
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint Id = (uint)Property.Id.ImageId;
             /// <summary>
             /// Contact ID that the image belongs to
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint ContactId = (uint)Property.Id.ImageContactId;
             /// <summary>
             /// Image type, refer to the TypeValue
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint Type = (uint)Property.Id.ImageType;
             /// <summary>
             /// Custom image type label, when the image type is TypeValue.Custom
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint Label = (uint)Property.Id.ImageLabel;
             /// <summary>
             /// Image thumbnail path
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint Path = (uint)Property.Id.ImagePath;
             /// <summary>
             /// The Image is default or not
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint IsDefault = (uint)Property.Id.ImageIsDefault;
 
             /// <summary>
@@ -1655,10 +1915,12 @@ namespace Tizen.Pims.Contacts
                 /// <summary>
                 /// Other type
                 /// </summary>
+                /// <since_tizen> 4 </since_tizen>
                 Other,
                 /// <summary>
                 /// Custom type
                 /// </summary>
+                /// <since_tizen> 4 </since_tizen>
                 Custom,
             }
         }
@@ -1672,58 +1934,72 @@ namespace Tizen.Pims.Contacts
             /// <summary>
             /// Identifier of this contacts company view
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const string Uri = "tizen.contacts_view.company";
             /// <summary>
             /// DB record ID of the company
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint Id = (uint)Property.Id.CompanyId;
             /// <summary>
             /// Contact ID that the company belongs to
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint ContactId = (uint)Property.Id.CompanyContactId;
             /// <summary>
             /// Company type, refer to the TypeValue
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint Type = (uint)Property.Id.CompanyType;
             /// <summary>
             /// Custom company type label, when the company type is TypeValue.Custom
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint Label = (uint)Property.Id.CompanyLabel;
             /// <summary>
             /// Company name
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint Name = (uint)Property.Id.CompanyName;
             /// <summary>
             /// Department
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint Department = (uint)Property.Id.CompanyDepartment;
             /// <summary>
             /// Job title
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint JobTitle = (uint)Property.Id.CompanyJobTitle;
             /// <summary>
             /// Assistant name
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint AssistantName = (uint)Property.Id.CompanyAssistantName;
             /// <summary>
             /// Role
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint Role = (uint)Property.Id.CompanyRole;
             /// <summary>
             /// Company logo image file path
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint Logo = (uint)Property.Id.CompanyLogo;
             /// <summary>
             /// Company location
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint Location = (uint)Property.Id.CompanyLocation;
             /// <summary>
             /// Description
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint Description = (uint)Property.Id.CompanyDescription;
             /// <summary>
             /// Pronounce the company name
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint PhoneticName = (uint)Property.Id.CompanyPhoneticName;
 
             /// <summary>
@@ -1735,14 +2011,17 @@ namespace Tizen.Pims.Contacts
                 /// <summary>
                 /// Other type
                 /// </summary>
+                /// <since_tizen> 4 </since_tizen>
                 Other = 0,
                 /// <summary>
                 /// Custom type
                 /// </summary>
+                /// <since_tizen> 4 </since_tizen>
                 Custom = 1 << 0,
                 /// <summary>
                 /// Work type
                 /// </summary>
+                /// <since_tizen> 4 </since_tizen>
                 Work = 1 << 1,
             }
         }
@@ -1756,18 +2035,22 @@ namespace Tizen.Pims.Contacts
             /// <summary>
             /// Identifier of this contacts nickname view
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const string Uri = "tizen.contacts_view.nickname";
             /// <summary>
             /// DB record ID of the nickname
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint Id = (uint)Property.Id.NicknameId;
             /// <summary>
             /// Contact ID that the nickname belongs to
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint ContactId = (uint)Property.Id.NicknameContactId;
             /// <summary>
             /// Nickname
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint Name = (uint)Property.Id.NicknameName;
         }
 
@@ -1780,26 +2063,32 @@ namespace Tizen.Pims.Contacts
             /// <summary>
             /// Identifier of this contacts messenger view
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const string Uri = "tizen.contacts_view.messenger";
             /// <summary>
             /// DB record ID of the messenger
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint Id = (uint)Property.Id.MessengerId;
             /// <summary>
             /// Contact ID that the messenger belongs to
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint ContactId = (uint)Property.Id.MessengerContactId;
             /// <summary>
             /// Messenger type, refer to the TypeValue
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint Type = (uint)Property.Id.MessengerType;
             /// <summary>
             /// Custom messenger type label, when the messenger type is TypeValue.Custom
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint Label = (uint)Property.Id.MessengerLabel;
             /// <summary>
             /// Messenger ID (email address or email ID...)
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint IMId = (uint)Property.Id.MessengerIMId;
 
             /// <summary>
@@ -1811,50 +2100,62 @@ namespace Tizen.Pims.Contacts
                 /// <summary>
                 /// Other messenger type
                 /// </summary>
+                /// <since_tizen> 4 </since_tizen>
                 Other,
                 /// <summary>
                 /// Custom messenger type
                 /// </summary>
+                /// <since_tizen> 4 </since_tizen>
                 Custom,
                 /// <summary>
                 /// Google messenger type
                 /// </summary>
+                /// <since_tizen> 4 </since_tizen>
                 Google,
                 /// <summary>
                 /// Windows live messenger type
                 /// </summary>
+                /// <since_tizen> 4 </since_tizen>
                 WindowsLive,
                 /// <summary>
                 /// Yahoo messenger type
                 /// </summary>
+                /// <since_tizen> 4 </since_tizen>
                 Yahoo,
                 /// <summary>
                 /// Facebook messenger type
                 /// </summary>
+                /// <since_tizen> 4 </since_tizen>
                 Facebook,
                 /// <summary>
                 /// ICQ type
                 /// </summary>
+                /// <since_tizen> 4 </since_tizen>
                 ICQ,
                 /// <summary>
                 /// AOL instance messenger type
                 /// </summary>
+                /// <since_tizen> 4 </since_tizen>
                 AOL,
                 /// <summary>
                 /// QQ type
                 /// </summary>
+                /// <since_tizen> 4 </since_tizen>
                 QQ,
                 /// <summary>
                 /// Jabber type
                 /// </summary>
+                /// <since_tizen> 4 </since_tizen>
                 Jabber,
                 /// <summary>
                 /// Skype type
                 /// </summary>
+                /// <since_tizen> 4 </since_tizen>
                 Skype,
                 /// <summary>
                 /// IRC type
                 /// </summary>
+                /// <since_tizen> 4 </since_tizen>
                 IRC,
             }
         }
@@ -1869,50 +2170,62 @@ namespace Tizen.Pims.Contacts
             /// <summary>
             /// Identifier of this contacts profile view
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const string Uri = "tizen.contacts_view.profile";
             /// <summary>
             /// DB record ID of profile
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint Id = (uint)Property.Id.ProfileId;
             /// <summary>
             /// Contacts ID that the profile belongs to
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint ContactId = (uint)Property.Id.ProfileContactId;
             /// <summary>
             /// Unique identifier
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint UId = (uint)Property.Id.ProfileUId;
             /// <summary>
             /// Profile contents
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint Text = (uint)Property.Id.ProfileText;
             /// <summary>
             /// Priority to display the profile
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint Order = (uint)Property.Id.ProfileOrder;
             /// <summary>
             /// Data for app_control_set_operation
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint ServiceOperation = (uint)Property.Id.ProfileServiceOperation;
             /// <summary>
             /// Data for app_control_set_mime
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint Mime = (uint)Property.Id.ProfileMIME;
             /// <summary>
             /// Data for app_control_set_app_id
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint AppId = (uint)Property.Id.ProfileAppId;
             /// <summary>
             /// Data for app_control_set_uri
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint ProfileUri = (uint)Property.Id.ProfileUri;
             /// <summary>
             /// Data for app_control_set_category
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint Category = (uint)Property.Id.ProfileCategory;
             /// <summary>
             /// It includes "key:value,key:value," pairs. You should parse it. And you must base64 encode each key and value
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint ExtraData = (uint)Property.Id.ProfileExtraData;
         }
 
@@ -1925,26 +2238,32 @@ namespace Tizen.Pims.Contacts
             /// <summary>
             /// Identifier of this contacts sip view
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const string Uri = "tizen.contacts_view.sip";
             /// <summary>
             /// DB record ID of the sip
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint Id = (uint)Property.Id.SipId;
             /// <summary>
             /// Contact ID that the sip belongs to
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint ContactId = (uint)Property.Id.SipContactId;
             /// <summary>
             /// SIP address
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint Address = (uint)Property.Id.SipAddress;
             /// <summary>
             /// sip type, refer to the TypeValue
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint Type = (uint)Property.Id.SipType;
             /// <summary>
             /// Custom sip type label, when the sip type is TypeValue.Custom
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint Label = (uint)Property.Id.SipLabel;
 
             /// <summary>
@@ -1956,18 +2275,22 @@ namespace Tizen.Pims.Contacts
                 /// <summary>
                 /// Other SIP type
                 /// </summary>
+                /// <since_tizen> 4 </since_tizen>
                 Other,
                 /// <summary>
                 /// Custom SIP type
                 /// </summary>
+                /// <since_tizen> 4 </since_tizen>
                 Custom,
                 /// <summary>
                 /// Home SIP type
                 /// </summary>
+                /// <since_tizen> 4 </since_tizen>
                 Home,
                 /// <summary>
                 /// Work SIP type
                 /// </summary>
+                /// <since_tizen> 4 </since_tizen>
                 Work,
             }
         }
@@ -1981,62 +2304,77 @@ namespace Tizen.Pims.Contacts
             /// <summary>
             /// Identifier of this contacts extension view
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const string Uri = "tizen.contacts_view.extension";
             /// <summary>
             /// DB record ID of the contact extension
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint Id = (uint)Property.Id.ExtensionId;
             /// <summary>
             /// Contact ID that the contact extension belongs to
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint ContactId = (uint)Property.Id.ExtensionContactId;
             /// <summary>
             /// The extra child record format for non-provided from contacts-service
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint Data1 = (uint)Property.Id.ExtensionData1;
             /// <summary>
             /// The extra child record format for non-provided from contacts-service
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint Data2 = (uint)Property.Id.ExtensionData2;
             /// <summary>
             /// The extra child record format for non-provided from contacts-service
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint Data3 = (uint)Property.Id.ExtensionData3;
             /// <summary>
             /// The extra child record format for non-provided from contacts-service
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint Data4 = (uint)Property.Id.ExtensionData4;
             /// <summary>
             /// The extra child record format for non-provided from contacts-service
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint Data5 = (uint)Property.Id.ExtensionData5;
             /// <summary>
             /// The extra child record format for non-provided from contacts-service
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint Data6 = (uint)Property.Id.ExtensionData6;
             /// <summary>
             /// The extra child record format for non-provided from contacts-service
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint Data7 = (uint)Property.Id.ExtensionData7;
             /// <summary>
             /// The extra child record format for non-provided from contacts-service
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint Data8 = (uint)Property.Id.ExtensionData8;
             /// <summary>
             /// The extra child record format for non-provided from contacts-service
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint Data9 = (uint)Property.Id.ExtensionData9;
             /// <summary>
             /// The extra child record format for non-provided from contacts-service
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint Data10 = (uint)Property.Id.ExtensionData10;
             /// <summary>
             /// The extra child record format for non-provided from contacts-service
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint Data11 = (uint)Property.Id.ExtensionData11;
             /// <summary>
             /// The extra child record format for non-provided from contacts-service
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint Data12 = (uint)Property.Id.ExtensionData12;
         }
 
@@ -2049,22 +2387,27 @@ namespace Tizen.Pims.Contacts
             /// <summary>
             /// Identifier of this relationship view
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const string Uri = "tizen.contacts_view.group_relation";
             /// <summary>
             /// DB record ID of the group relation (can not be used as filter)
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint Id = (uint)Property.Id.GroupRelationId;
             /// <summary>
             /// DB record ID of the group
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint GroupId = (uint)Property.Id.GroupRelationGroupId;
             /// <summary>
             /// DB record ID of the contact
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint ContactId = (uint)Property.Id.GroupRelationContactId;
             /// <summary>
             /// Group name
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint Name = (uint)Property.Id.GroupRelationGroupName;
         }
 
@@ -2077,50 +2420,62 @@ namespace Tizen.Pims.Contacts
             /// <summary>
             /// Identifier of this contact speed dial view
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const string Uri = "tizen.contacts_view.speeddial";
             /// <summary>
             /// Stored speed dial number
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint SpeedDialNumber = (uint)Property.Id.SpeedDialDialNumber;
             /// <summary>
             /// Number ID that the speed dial belongs to
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint NumberId = (uint)Property.Id.SpeedDialNumberId;
             /// <summary>
             /// Contact number of specified speed dial
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint Number = (uint)Property.Id.SpeedDialNumber;
             /// <summary>
             /// Contact number label of specified speed dial, when the number type is Number.Types.Custom
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint NumberLabel = (uint)Property.Id.SpeedDialNumberLabel;
             /// <summary>
             /// Contact number type, refer to the Number.Types
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint NumberType = (uint)Property.Id.SpeedDialNumberType;
             /// <summary>
             ///	Person ID that the speed dial belongs to
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint PersonId = (uint)Property.Id.SpeedDialPersonId;
             /// <summary>
             /// Display name that the speed dial belongs to
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint DisplayName = (uint)Property.Id.SpeedDialDisplayName;
             /// <summary>
             /// Image thumbnail path that the speed dial belongs to
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint ThumbnailPath = (uint)Property.Id.SpeedDialThumbnail;
             /// <summary>
             /// You can only use this property for search filter
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint NormalizedNumber = (uint)Property.Id.SpeedDialNormalizedNumber;
             /// <summary>
             /// You can only use this property for search filter
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint CleanedNumber = (uint)Property.Id.SpeedDialCleanedNumber;
             /// <summary>
             /// If you add filter with this property, the string will be normalized as minimal match length internally and the match rule will be applied ContactsFilter.StringMatchType.Exactly
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint NumberFilter = (uint)Property.Id.SpeedDialNumberFilter;
         }
 
@@ -2133,50 +2488,62 @@ namespace Tizen.Pims.Contacts
             /// <summary>
             /// Identifier of this phone log view
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const string Uri = "tizen.contacts_view.phonelog";
             /// <summary>
             /// DB record ID of phone log
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint Id = (uint)Property.Id.PhonelogId;
             /// <summary>
             /// Person ID that the phone log belongs to
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint PersonId = (uint)Property.Id.PhonelogPersonId;
             /// <summary>
             /// Number or Email that the phone log displays
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint Address = (uint)Property.Id.PhonelogAddress;
             /// <summary>
             /// Call end time. The value means number of seconds since 1970-01-01 00:00:00 (UTC)
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint LogTime = (uint)Property.Id.PhonelogLogTime;
             /// <summary>
             /// Log type, refer to the Type
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint LogType = (uint)Property.Id.PhonelogLogType;
             /// <summary>
             /// You can set the related integer data (e.g. message_id, email_id or duration(seconds) of call)
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint ExtraData1 = (uint)Property.Id.PhonelogExtraData1;
             /// <summary>
             /// You can set the related string data (e.g. short message, subject)
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint ExtraData2 = (uint)Property.Id.PhonelogExtraData2;
             /// <summary>
             /// You can only use this property for search filter
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint NormalizedAddress = (uint)Property.Id.PhonelogNormalizedAddress;
             /// <summary>
             /// You can only use this property for search filter
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint CleanedAddress = (uint)Property.Id.PhonelogCleanedAddress;
             /// <summary>
             /// You can only use this property for search filter
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint AddressFilter = (uint)Property.Id.PhonelogAddressFilter;
             /// <summary>
             /// You can set the related Sim slot number. SimSlotNo 0 means first Sim card, SimSlotNo 1 means second Sim.
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint SimSlotNo = (uint)Property.Id.PhonelogSimSlotNo;
 
             /// <summary>
@@ -2188,86 +2555,107 @@ namespace Tizen.Pims.Contacts
                 /// <summary>
                 /// None
                 /// </summary>
+                /// <since_tizen> 4 </since_tizen>
                 None,
                 /// <summary>
                 /// Incoming call
                 /// </summary>
+                /// <since_tizen> 4 </since_tizen>
                 VoiceIncoming = 1,
                 /// <summary>
                 /// Outgoing call
                 /// </summary>
+                /// <since_tizen> 4 </since_tizen>
                 VoiceOutgoing = 2,
                 /// <summary>
                 /// Incoming video call
                 /// </summary>
+                /// <since_tizen> 4 </since_tizen>
                 VideoIncoming = 3,
                 /// <summary>
                 /// Outgoing video call
                 /// </summary>
+                /// <since_tizen> 4 </since_tizen>
                 VideoOutgoing = 4,
                 /// <summary>
                 /// Not confirmed missed call
                 /// </summary>
+                /// <since_tizen> 4 </since_tizen>
                 VoiceMissedUnseen = 5,
                 /// <summary>
                 /// Confirmed missed call
                 /// </summary>
+                /// <since_tizen> 4 </since_tizen>
                 VoiceMissedSeen = 6,
                 /// <summary>
                 /// Not confirmed missed video call
                 /// </summary>
+                /// <since_tizen> 4 </since_tizen>
                 VideoMissedUnseen = 7,
                 /// <summary>
                 /// Confirmed missed video call
                 /// </summary>
+                /// <since_tizen> 4 </since_tizen>
                 VideoMissedSeen = 8,
                 /// <summary>
                 /// Rejected call
                 /// </summary>
+                /// <since_tizen> 4 </since_tizen>
                 VoiceRejected = 9,
                 /// <summary>
                 /// Rejected video call
                 /// </summary>
+                /// <since_tizen> 4 </since_tizen>
                 VideoRejected = 10,
                 /// <summary>
                 /// Blocked call
                 /// </summary>
+                /// <since_tizen> 4 </since_tizen>
                 VoiceBlocked = 11,
                 /// <summary>
                 /// Blocked video call
                 /// </summary>
+                /// <since_tizen> 4 </since_tizen>
                 VideoBlocked = 12,
                 /// <summary>
                 /// Incoming MMS
                 /// </summary>
+                /// <since_tizen> 4 </since_tizen>
                 MMSIncoming = 101,
                 /// <summary>
                 /// Outgoing MMS
                 /// </summary>
+                /// <since_tizen> 4 </since_tizen>
                 MMSOutgoing = 102,
                 /// <summary>
                 /// Incoming SMS
                 /// </summary>
+                /// <since_tizen> 4 </since_tizen>
                 SMSIncoming = 103,
                 /// <summary>
                 /// Outgoing SMS
                 /// </summary>
+                /// <since_tizen> 4 </since_tizen>
                 SMSOutgoing = 104,
                 /// <summary>
                 /// Blocked SMS
                 /// </summary>
+                /// <since_tizen> 4 </since_tizen>
                 SMSBlocked = 105,
                 /// <summary>
                 /// Blocked MMS
                 /// </summary>
+                /// <since_tizen> 4 </since_tizen>
                 MMSBlocked = 106,
                 /// <summary>
                 /// Received email
                 /// </summary>
+                /// <since_tizen> 4 </since_tizen>
                 EmailReceived = 201,
                 /// <summary>
                 /// Sent email
                 /// </summary>
+                /// <since_tizen> 4 </since_tizen>
                 EmailSent = 202,
 
             }
@@ -2283,26 +2671,32 @@ namespace Tizen.Pims.Contacts
             /// <summary>
             /// Identifier of this contact updated info view
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const string Uri = "tizen.contacts_view.contacts_updated_info";
             /// <summary>
             /// Updated contact ID
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint ContactId = (uint)Property.Id.UpdateInfoId;
             /// <summary>
             /// AddressBook ID that the updated contact belongs to
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint AddressBookId = (uint)Property.Id.UpdateInfoAddressBookId;
             /// <summary>
             /// Contact change type, refer to the ContactsViews.ChangeType
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint Type = (uint)Property.Id.UpdateInfoType;
             /// <summary>
             /// Updated version
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint Version = (uint)Property.Id.UpdateInfoVersion;
             /// <summary>
             /// Contact image is changed or not
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint ImageChanged = (uint)Property.Id.UpdateInfoImageChanged;
         }
 
@@ -2316,18 +2710,22 @@ namespace Tizen.Pims.Contacts
             /// <summary>
             /// Identifier of this my profile updated info view
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const string Uri = "tizen.contacts_view.my_profile_updated_info";
             /// <summary>
             /// Address book ID that the updated my profile belongs to
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint AddressBookId = (uint)Property.Id.UpdateInfoAddressBookId;
             /// <summary>
             /// MyProfile change type, refer to the ContactsViews.ChangeType
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint LastChangedType = (uint)Property.Id.UpdateInfoLastChangedType;
             /// <summary>
             /// Updated version
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint Version = (uint)Property.Id.UpdateInfoVersion;
         }
 
@@ -2341,22 +2739,27 @@ namespace Tizen.Pims.Contacts
             /// <summary>
             /// Identifier of this group updated info view
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const string Uri = "tizen.contacts_view.groups_updated_info";
             /// <summary>
             /// Updated group ID
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint GroupId = (uint)Property.Id.UpdateInfoId;
             /// <summary>
             /// Address book ID that the updated group belongs to
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint AddressBookId = (uint)Property.Id.UpdateInfoAddressBookId;
             /// <summary>
             /// Group change type, refer to the ContactsViews.ChangeType
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint Type = (uint)Property.Id.UpdateInfoType;
             /// <summary>
             /// Updated version
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint Version = (uint)Property.Id.UpdateInfoVersion;
         }
 
@@ -2370,18 +2773,22 @@ namespace Tizen.Pims.Contacts
             /// <summary>
             /// Identifier of this group member updated info view
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const string Uri = "tizen.contacts_view.groups_member_updated_info";
             /// <summary>
             /// Updated group ID
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint GroupId = (uint)Property.Id.UpdateInfoId;
             /// <summary>
             /// Address book ID that the updated group belongs to
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint AddressBookId = (uint)Property.Id.UpdateInfoAddressBookId;
             /// <summary>
             /// Updated version
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint Version = (uint)Property.Id.UpdateInfoVersion;
         }
 
@@ -2395,26 +2802,32 @@ namespace Tizen.Pims.Contacts
             /// <summary>
             /// Identifier of this group relation updated info view
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const string Uri = "tizen.contacts_view.group_relations_updated_info";
             /// <summary>
             /// Group ID of group relation
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint GroupId = (uint)Property.Id.GroupId;
             /// <summary>
             /// Contact ID of the updated group relation
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint ContactId = (uint)Property.Id.ContactId;
             /// <summary>
             /// Address book ID of contact that the updated group relation
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint AddressBookId = (uint)Property.Id.AddressBookId;
             /// <summary>
             /// Group relation change type, refer to the ContactsViews.ChangeType
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint Type = (uint)Property.Id.UpdateInfoType;
             /// <summary>
             /// Updated version
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint Version = (uint)Property.Id.UpdateInfoVersion;
         }
 
@@ -2428,86 +2841,107 @@ namespace Tizen.Pims.Contacts
             /// <summary>
             /// Identifier of this person contact view
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const string Uri = "tizen.contacts_view.person/simple_contact";
             /// <summary>
             /// DB record ID of the person
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint PersonId = (uint)Property.Id.PersonId;
             /// <summary>
             /// Display name of the person
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint DisplayName = (uint)Property.Id.PersonDisplayName;
             /// <summary>
             /// The first character of first string for grouping. This is normalized using ICU (projection)
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint DisplayNameIndex = (uint)Property.Id.PersonDisplayNameIndex;
             /// <summary>
             /// Display contact ID that the person belongs to (projection)
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint DisplayContactId = (uint)Property.Id.PersonDisplayContactId;
             /// <summary>
             /// Ringtone path of the person (projection)
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint RingtonePath = (uint)Property.Id.PersonRingtone;
             /// <summary>
             /// Image thumbnail path of the person (projection)
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint ThumbnailPath = (uint)Property.Id.PersonThumbnail;
             /// <summary>
             /// Vibration path of the person (projection)
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint Vibration = (uint)Property.Id.PersonVibration;
             /// <summary>
             /// Message alert path of the person (projection)
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint MessageAlert = (uint)Property.Id.PersonMessageAlert;
             /// <summary>
             /// Status of social account (projection)
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint Status = (uint)Property.Id.PersonStatus;
             /// <summary>
             /// The person is favorite or not
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint IsFavorite = (uint)Property.Id.PersonIsFavorite;
             /// <summary>
             /// Link count of contact records (projection)
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint LinkCount = (uint)Property.Id.PersonLinkCount;
             /// <summary>
             /// Contact ID that the person belongs to
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint ContactId = (uint)Property.Id.ContactId;
             /// <summary>
             /// AddressBook IDs that the person belongs to (projection)
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint AddressBookIds = (uint)Property.Id.PersonAddressBookIds;
             /// <summary>
             /// The person has phone number or not
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint HasPhoneNumber = (uint)Property.Id.PersonHasPhoneNumber;
             /// <summary>
             /// The person has email or not
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint HasEmail = (uint)Property.Id.PersonHasEmail;
             /// <summary>
             /// AddressBook ID that the person belongs to
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint AddressBookId = (uint)Property.Id.ContactAddressBookId;
             /// <summary>
             /// AddressBook mode, refer to the AddressBook.Mode
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint AddressBookMode = (uint)Property.Id.AddressBookMode;
             /// <summary>
             ///	AddressBook name that the person belongs to
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint AddressBookName = (uint)Property.Id.AddressBookName;
             /// <summary>
             /// keyword matched data type, refer to the Contact.DataType
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint SnippetType = (uint)Property.Id.PersonSnippetType;
             /// <summary>
             /// keyword matched data string
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint SnippetString = (uint)Property.Id.PersonSnippetString;
         };
 
@@ -2521,90 +2955,112 @@ namespace Tizen.Pims.Contacts
             /// <summary>
             /// Identifier of this person number view
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const string Uri = "tizen.contacts_view.person/simple_contact/number";
             /// <summary>
             /// DB record ID of the person
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint PersonId = (uint)Property.Id.PersonId;
             /// <summary>
             /// Display name of the person
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint DisplayName = (uint)Property.Id.PersonDisplayName;
             /// <summary>
             /// The first character of first string for grouping. This is normalized using ICU (projection)
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint DisplayNameIndex = (uint)Property.Id.PersonDisplayNameIndex;
             /// <summary>
             /// Display contact ID that the person belongs to (projection)
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint DisplayContactId = (uint)Property.Id.PersonDisplayContactId;
             /// <summary>
             /// Ringtone path of the person (projection)
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint RingtonePath = (uint)Property.Id.PersonRingtone;
             /// <summary>
             /// Image thumbnail path of the person (projection)
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint ThumbnailPath = (uint)Property.Id.PersonThumbnail;
             /// <summary>
             /// Vibration path of the person (projection)
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint Vibration = (uint)Property.Id.PersonVibration;
             /// <summary>
             /// Message alert path of the person (projection)
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint MessageAlert = (uint)Property.Id.PersonMessageAlert;
             /// <summary>
             /// The person is favorite or not
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint IsFavorite = (uint)Property.Id.PersonIsFavorite;
             /// <summary>
             /// The person has phone number or not
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint HasPhoneNumber = (uint)Property.Id.PersonHasPhoneNumber;
             /// <summary>
             /// The person has email or not
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint HasEmail = (uint)Property.Id.PersonHasEmail;
             /// <summary>
             /// Number ID that the person belongs to
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint NumberId = (uint)Property.Id.NumberId;
             /// <summary>
             /// Number type, refer to the Number.Types (projection)
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint Type = (uint)Property.Id.NumberType;
             /// <summary>
             /// Custom number type label, when the number type is Number.Types.Custom (projection)
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint Label = (uint)Property.Id.NumberLabel;
             /// <summary>
             /// The number is default number or not
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint IsPrimaryDefault = (uint)Property.Id.DataIsPrimaryDefault;
             /// <summary>
             /// Number
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint Number = (uint)Property.Id.NumberNumber;
             /// <summary>
             /// If you add filter with this property, the string will be normalized as minimal match length internally and the match rule will be applied ContactsFilter.StringMatchType.Exactly.
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint NumberFilter = (uint)Property.Id.NumberNumberFilter;
             /// <summary>
             /// You can only use this property for search filter
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint NormalizedNumber = (uint)Property.Id.NumberNormalizedNumber;
             /// <summary>
             /// You can only use this property for search filter
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint CleanedNumber = (uint)Property.Id.NumberCleanedNumber;
             /// <summary>
             /// keyword matched data type, refer to they Contact.DataType
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint SnippetType = (uint)Property.Id.PersonSnippetType;
             /// <summary>
             /// keyword matched data string
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint SnippetString = (uint)Property.Id.PersonSnippetString;
         };
 
@@ -2618,78 +3074,97 @@ namespace Tizen.Pims.Contacts
             /// <summary>
             /// Identifier of this person email view
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const string Uri = "tizen.contacts_view.person/simple_contact/email";
             /// <summary>
             /// DB record ID of the person
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint PersonId = (uint)Property.Id.PersonId;
             /// <summary>
             /// Display name of the person
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint DisplayName = (uint)Property.Id.PersonDisplayName;
             /// <summary>
             /// The first character of first string for grouping. This is normalized using ICU (projection)
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint DisplayNameIndex = (uint)Property.Id.PersonDisplayNameIndex;
             /// <summary>
             /// Display contact ID that the person belongs to (projection)
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint DisplayContactId = (uint)Property.Id.PersonDisplayContactId;
             /// <summary>
             /// Ringtone path of the person (projection)
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint RingtonePath = (uint)Property.Id.PersonRingtone;
             /// <summary>
             /// Image thumbnail path of the person (projection)
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint ThumbnailPath = (uint)Property.Id.PersonThumbnail;
             /// <summary>
             /// Vibration path of the person (projection)
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint Vibration = (uint)Property.Id.PersonVibration;
             /// <summary>
             /// Message alert path of the person (projection)
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint MessageAlert = (uint)Property.Id.PersonMessageAlert;
             /// <summary>
             /// The person is favorite or not
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint IsFavorite = (uint)Property.Id.PersonIsFavorite;
             /// <summary>
             /// The person has phone number or not
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint HasPhoneNumber = (uint)Property.Id.PersonHasPhoneNumber;
             /// <summary>
             /// The person has email or not
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint HasEmail = (uint)Property.Id.PersonHasEmail;
             /// <summary>
             /// Email ID that the person belongs to
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint EmailId = (uint)Property.Id.EmailId;
             /// <summary>
             /// Email type, refer to the Email.Types (projection)
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint Type = (uint)Property.Id.EmailType;
             /// <summary>
             /// Custom mail type label, when the email type is Email.Types.Custom (projection)
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint Label = (uint)Property.Id.EmailLabel;
             /// <summary>
             /// The email is default email or not
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint IsPrimaryDefault = (uint)Property.Id.DataIsPrimaryDefault;
             /// <summary>
             /// Email address
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint Email = (uint)Property.Id.EmailEmail;
             /// <summary>
             /// keyword matched data type, refer to they Contact.DataType
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint SnippetType = (uint)Property.Id.PersonSnippetType;
             /// <summary>
             /// keyword matched data string
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint SnippetString = (uint)Property.Id.PersonSnippetString;
         };
 
@@ -2703,90 +3178,112 @@ namespace Tizen.Pims.Contacts
             /// <summary>
             /// Identifier of this person group relation view
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const string Uri = "tizen.contacts_view.person/simple_contact/group";
             /// <summary>
             /// DB record ID of the person
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint PersonId = (uint)Property.Id.PersonId;
             /// <summary>
             /// Display name of the person
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint DisplayName = (uint)Property.Id.PersonDisplayName;
             /// <summary>
             /// The first character of first string for grouping. This is normalized using ICU (projection)
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint DisplayNameIndex = (uint)Property.Id.PersonDisplayNameIndex;
             /// <summary>
             /// Display contact ID that the person belongs to (projection)
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint DisplayContactId = (uint)Property.Id.PersonDisplayContactId;
             /// <summary>
             /// Ringtone path of the person (projection)
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint RingtonePath = (uint)Property.Id.PersonRingtone;
             /// <summary>
             /// Image thumbnail path of the person (projection)
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint ThumbnailPath = (uint)Property.Id.PersonThumbnail;
             /// <summary>
             /// Vibration path of the person (projection)
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint Vibration = (uint)Property.Id.PersonVibration;
             /// <summary>
             /// Message alert path of the person (projection)
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint MessageAlert = (uint)Property.Id.PersonMessageAlert;
             /// <summary>
             /// Status of social account (projection)
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint Status = (uint)Property.Id.PersonStatus;
             /// <summary>
             /// The person is favorite or not
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint IsFavorite = (uint)Property.Id.PersonIsFavorite;
             /// <summary>
             /// The person has phone number or not
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint HasPhoneNumber = (uint)Property.Id.PersonHasPhoneNumber;
             /// <summary>
             /// The person has email or not
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint HasEmail = (uint)Property.Id.PersonHasEmail;
             /// <summary>
             /// Link count of contact records (projection)
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint LinkCount = (uint)Property.Id.PersonLinkCount;
             /// <summary>
             /// AddressBook IDs that the person belongs to (projection)
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint AddressBookIds = (uint)Property.Id.PersonAddressBookIds;
             /// <summary>
             /// AddressBook ID that the person belongs to
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint AddressBookId = (uint)Property.Id.ContactAddressBookId;
             /// <summary>
             /// AddressBook name that the person belongs to
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint AddressBookName = (uint)Property.Id.AddressBookName;
             /// <summary>
             /// AddressBook mode, refer to the AddressBook.Mode
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint AddressBookMode = (uint)Property.Id.AddressBookMode;
             /// <summary>
             /// Group ID that the person belongs to
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint GroupId = (uint)Property.Id.GroupRelationGroupId;
             /// <summary>
             /// Contact ID that the person belongs to (projection)
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint ContactId = (uint)Property.Id.GroupRelationContactId;
             /// <summary>
             /// keyword matched data type, refer to they Contact.DataType
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint SnippetType = (uint)Property.Id.PersonSnippetType;
             /// <summary>
             /// keyword matched data string
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint SnippetString = (uint)Property.Id.PersonSnippetString;
         };
 
@@ -2800,86 +3297,107 @@ namespace Tizen.Pims.Contacts
             /// <summary>
             /// Identifier of this person group assigned view
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const string Uri = "tizen.contacts_view.person/simple_contact/group_assigned";
             /// <summary>
             /// DB record ID of the person
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint PersonId = (uint)Property.Id.PersonId;
             /// <summary>
             /// Display name of the person
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint DisplayName = (uint)Property.Id.PersonDisplayName;
             /// <summary>
             /// The first character of first string for grouping. This is normalized using ICU (projection)
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint DisplayNameIndex = (uint)Property.Id.PersonDisplayNameIndex;
             /// <summary>
             /// Display contact ID that the person belongs to (projection)
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint DisplayContactId = (uint)Property.Id.PersonDisplayContactId;
             /// <summary>
             /// Ringtone path of the person (projection)
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint RingtonePath = (uint)Property.Id.PersonRingtone;
             /// <summary>
             /// Image thumbnail path of the person (projection)
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint ThumbnailPath = (uint)Property.Id.PersonThumbnail;
             /// <summary>
             /// Vibration path of the person (projection)
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint Vibration = (uint)Property.Id.PersonVibration;
             /// <summary>
             /// Message alert path of the person (projection)
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint MessageAlert = (uint)Property.Id.PersonMessageAlert;
             /// <summary>
             /// Status of social account (projection)
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint Status = (uint)Property.Id.PersonStatus;
             /// <summary>
             /// The person is favorite or not
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint IsFavorite = (uint)Property.Id.PersonIsFavorite;
             /// <summary>
             /// The person has phone number or not
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint HasPhoneNumber = (uint)Property.Id.PersonHasPhoneNumber;
             /// <summary>
             /// The person has email or not
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint HasEmail = (uint)Property.Id.PersonHasEmail;
             /// <summary>
             /// Link count of contact records (projection)
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint LinkCount = (uint)Property.Id.PersonLinkCount;
             /// <summary>
             /// AddressBook IDs that the linked person belongs to (projection)
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint AddressBookIds = (uint)Property.Id.PersonAddressBookIds;
             /// <summary>
             /// AddressBook ID that the person belongs to
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint AddressBookId = (uint)Property.Id.ContactAddressBookId;
             /// <summary>
             /// AddressBook mode, refer to the AddressBook.Mode
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint AddressBookMode = (uint)Property.Id.AddressBookMode;
             /// <summary>
             /// Group ID that the person belongs to
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint GroupId = (uint)Property.Id.GroupRelationGroupId;
             /// <summary>
             /// Contact ID that the person belongs to (projection)
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint ContactId = (uint)Property.Id.GroupRelationContactId;
             /// <summary>
             /// keyword matched data type, refer to they Contact.DataType
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint SnippetType = (uint)Property.Id.PersonSnippetType;
             /// <summary>
             /// keyword matched data string
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint SnippetString = (uint)Property.Id.PersonSnippetString;
         };
 
@@ -2893,82 +3411,102 @@ namespace Tizen.Pims.Contacts
             /// <summary>
             /// Identifier of this person group not assigned view
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const string Uri = "tizen.contacts_view.person/simple_contact/group_not_assigned";
             /// <summary>
             /// DB record ID of the person
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint PersonId = (uint)Property.Id.PersonId;
             /// <summary>
             /// Display name of the person
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint DisplayName = (uint)Property.Id.PersonDisplayName;
             /// <summary>
             /// The first character of first string for grouping. This is normalized using ICU (projection)
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint DisplayNameIndex = (uint)Property.Id.PersonDisplayNameIndex;
             /// <summary>
             /// Display contact ID that the person belongs to (projection)
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint DisplayContactId = (uint)Property.Id.PersonDisplayContactId;
             /// <summary>
             /// Ringtone path of the person (projection)
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint RingtonePath = (uint)Property.Id.PersonRingtone;
             /// <summary>
             /// Image thumbnail path of the person (projection)
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint ThumbnailPath = (uint)Property.Id.PersonThumbnail;
             /// <summary>
             /// Vibration path of the person (projection)
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint Vibration = (uint)Property.Id.PersonVibration;
             /// <summary>
             /// Message alert path of the person (projection)
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint MessageAlert = (uint)Property.Id.PersonMessageAlert;
             /// <summary>
             /// Status of social account (projection)
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint Status = (uint)Property.Id.PersonStatus;
             /// <summary>
             /// The person is favorite or not
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint IsFavorite = (uint)Property.Id.PersonIsFavorite;
             /// <summary>
             /// The person has phone number or not
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint HasPhoneNumber = (uint)Property.Id.PersonHasPhoneNumber;
             /// <summary>
             /// The person has email or not
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint HasEmail = (uint)Property.Id.PersonHasEmail;
             /// <summary>
             /// Link count of contact records (projection)
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint LinkCount = (uint)Property.Id.PersonLinkCount;
             /// <summary>
             /// AddressBook IDs that the linked person belongs to (projection)
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint AddressBookIds = (uint)Property.Id.PersonAddressBookIds;
             /// <summary>
             /// AddressBook ID that the person belongs to
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint AddressBookId = (uint)Property.Id.ContactAddressBookId;
             /// <summary>
             /// AddressBook mode, refer to the AddressBook.Mode
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint AddressBookMode = (uint)Property.Id.AddressBookMode;
             /// <summary>
             /// Contact ID that the person belongs to (projection)
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint ContactId = (uint)Property.Id.ContactId;
             /// <summary>
             /// keyword matched data type, refer to they Contact.DataType
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint SnippetType = (uint)Property.Id.PersonSnippetType;
             /// <summary>
             /// keyword matched data string
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint SnippetString = (uint)Property.Id.PersonSnippetString;
         };
 
@@ -2982,62 +3520,77 @@ namespace Tizen.Pims.Contacts
             /// <summary>
             /// Identifier of this phone log view
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const string Uri = "tizen.contacts_view.person/simple_contact/phonelog";
             /// <summary>
             /// DB record ID of the person
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint PersonId = (uint)Property.Id.PersonId;
             /// <summary>
             /// Display name of the person
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint DisplayName = (uint)Property.Id.PersonDisplayName;
             /// <summary>
             /// Image thumbnail path of the person (projection)
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint ThumbnailPath = (uint)Property.Id.PersonThumbnail;
             /// <summary>
             /// DB record ID of phone log
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint LogId = (uint)Property.Id.PhonelogId;
             /// <summary>
             /// Number or Email that the phone log displays
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint Address = (uint)Property.Id.PhonelogAddress;
             /// <summary>
             /// Number or Email type (projection)
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint AddressType = (uint)Property.Id.DataData1;
             /// <summary>
             /// Call end time. The value means number of seconds since 1970-01-01 00:00:00 (UTC)
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint LogTime = (uint)Property.Id.PhonelogLogTime;
             /// <summary>
             /// Log type, refer to the PhoneLog.Types
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint LogType = (uint)Property.Id.PhonelogLogType;
             /// <summary>
             /// You can set the related integer data (e.g. message_id, email_id or duration(seconds) of call) (projection)
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint ExtraData1 = (uint)Property.Id.PhonelogExtraData1;
             /// <summary>
             /// You can set the related string data (e.g. short message, subject) (projection)
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint ExtraData2 = (uint)Property.Id.PhonelogExtraData2;
             /// <summary>
             /// You can only use this property for search filter
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint NormalizedAddress = (uint)Property.Id.PhonelogNormalizedAddress;
             /// <summary>
             /// You can only use this property for search filter
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint CleanedAddress = (uint)Property.Id.PhonelogCleanedAddress;
             /// <summary>
             /// You can only use this property for search filter
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint AddressFilter = (uint)Property.Id.PhonelogAddressFilter;
             /// <summary>
             /// It is related to the Sim slot number. SimSlotNo 0 means first Sim card, SimSlotNo 1 means second Sim.
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint SimSlotNo = (uint)Property.Id.PhonelogSimSlotNo;
         };
 
@@ -3051,58 +3604,72 @@ namespace Tizen.Pims.Contacts
             /// <summary>
             /// Identifier of this person usage view
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const string Uri = "tizen.contacts_view.person/usag";
             /// <summary>
             /// DB record ID of the person
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint PersonId = (uint)Property.Id.PersonId;
             /// <summary>
             /// Display name of the person
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint DisplayName = (uint)Property.Id.PersonDisplayName;
             /// <summary>
             /// The first character of first string for grouping. This is normalized using ICU (projection)
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint DisplayNameIndex = (uint)Property.Id.PersonDisplayNameIndex;
             /// <summary>
             /// Display contact ID that the person belongs to (projection)
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint DisplayContactId = (uint)Property.Id.PersonDisplayContactId;
             /// <summary>
             /// Ringtone path of the person (projection)
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint RingtonePath = (uint)Property.Id.PersonRingtone;
             /// <summary>
             /// Image thumbnail path of the person (projection)
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint ThumbnailPath = (uint)Property.Id.PersonThumbnail;
             /// <summary>
             /// Vibration path of the person (projection)
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint Vibration = (uint)Property.Id.PersonVibration;
             /// <summary>
             /// Message alert path of the person (projection)
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint MessageAlert = (uint)Property.Id.PersonMessageAlert;
             /// <summary>
             /// The person is favorite or not
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint IsFavorite = (uint)Property.Id.PersonIsFavorite;
             /// <summary>
             /// The person has phone number or not
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint HasPhoneNumber = (uint)Property.Id.PersonHasPhoneNumber;
             /// <summary>
             /// The person has email or not
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint HasEmail = (uint)Property.Id.PersonHasEmail;
             /// <summary>
             /// Usage type, refer to the Type
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint UsageType = (uint)Property.Id.PersonUsageType;
             /// <summary>
             /// Usage number of person
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint TimesUsed = (uint)Property.Id.PersonTimesUsed;
 
             /// <summary>
@@ -3114,46 +3681,57 @@ namespace Tizen.Pims.Contacts
                 /// <summary>
                 /// None
                 /// </summary>
+                /// <since_tizen> 4 </since_tizen>
                 None,
                 /// <summary>
                 /// Outgoing call
                 /// </summary>
+                /// <since_tizen> 4 </since_tizen>
                 OutgoingCall,
                 /// <summary>
                 /// Outgoing message
                 /// </summary>
+                /// <since_tizen> 4 </since_tizen>
                 OutgoingMessage,
                 /// <summary>
                 /// Outgoing email
                 /// </summary>
+                /// <since_tizen> 4 </since_tizen>
                 OutgoingEmail,
                 /// <summary>
                 /// Incoming call
                 /// </summary>
+                /// <since_tizen> 4 </since_tizen>
                 IncomingCall,
                 /// <summary>
                 /// Incoming message
                 /// </summary>
+                /// <since_tizen> 4 </since_tizen>
                 IncomingMessage,
                 /// <summary>
                 /// Incoming email
                 /// </summary>
+                /// <since_tizen> 4 </since_tizen>
                 IncomingEmail,
                 /// <summary>
                 /// Missed call
                 /// </summary>
+                /// <since_tizen> 4 </since_tizen>
                 MissedCall,
                 /// <summary>
                 /// Rejected call
                 /// </summary>
+                /// <since_tizen> 4 </since_tizen>
                 RejectedCall,
                 /// <summary>
                 /// Blocked call
                 /// </summary>
+                /// <since_tizen> 4 </since_tizen>
                 BlockedCall,
                 /// <summary>
                 /// Blocked message
                 /// </summary>
+                /// <since_tizen> 4 </since_tizen>
                 BlockedMessage
             }
         };
@@ -3168,66 +3746,82 @@ namespace Tizen.Pims.Contacts
             /// <summary>
             /// Identifier of this contacts number view
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const string Uri = "tizen.contacts_view.simple_contact/number";
             /// <summary>
             /// Contact ID that the number belongs to
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint ContactId = (uint)Property.Id.ContactId;
             /// <summary>
             /// Display name of contact that the number belongs to
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint DisplayName = (uint)Property.Id.ContactDisplayName;
             /// <summary>
             /// The source type of display name, refer to the Contact.DisplayNameSourceType (projection)
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint DisplaySourceType = (uint)Property.Id.ContactDisplaySourceDataId;
             /// <summary>
             /// AddressBook ID that the number belongs to
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint AddressBookId = (uint)Property.Id.ContactAddressBookId;
             /// <summary>
             /// Person ID that the number belongs to
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint PersonId = (uint)Property.Id.ContactPersonId;
             /// <summary>
             /// Ringtone path that the number belongs to (projection)
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint RingtonePath = (uint)Property.Id.ContactRingtone;
             /// <summary>
             /// Image thumbnail path that the number belongs to (projection)
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint ThumbnailPath = (uint)Property.Id.ContactThumbnail;
             /// <summary>
             /// DB record ID of the number
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint NumberId = (uint)Property.Id.NumberId;
             /// <summary>
             /// Number type, refer to the Number.Types (projection)
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint Type = (uint)Property.Id.NumberType;
             /// <summary>
             /// Custom number type label, when the number type is Number.Types.Custom (projection)
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint Label = (uint)Property.Id.NumberLabel;
             /// <summary>
             /// The number is default number or not
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint IsDefault = (uint)Property.Id.NumberIsDefault;
             /// <summary>
             /// Number
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint Number = (uint)Property.Id.NumberNumber;
             /// <summary>
             /// If you add filter with this property, the string will be normalized as minimal match length internally and the match rule will be applied ContactsFilter.StringMatchType.Exactly
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint NumberFilter = (uint)Property.Id.NumberNumberFilter;
             /// <summary>
             /// You can only use this property for search filter
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint NormalizedNumber = (uint)Property.Id.NumberNormalizedNumber;
             /// <summary>
             /// You can only use this property for search filter
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint CleanedNumber = (uint)Property.Id.NumberCleanedNumber;
         };
 
@@ -3241,54 +3835,67 @@ namespace Tizen.Pims.Contacts
             /// <summary>
             /// Identifier of this contacts email view
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const string Uri = "tizen.contacts_view.simple_contact/email";
             /// <summary>
             /// Contact ID that the number belongs to
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint ContactId = (uint)Property.Id.ContactId;
             /// <summary>
             /// Display name of contact that the number belongs to
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint DisplayName = (uint)Property.Id.ContactDisplayName;
             /// <summary>
             /// The source type of display name, refer to the Contact.DisplayNameSourceType (projection)
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint DisplaySourceType = (uint)Property.Id.ContactDisplaySourceDataId;
             /// <summary>
             /// AddressBook ID that the number belongs to
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint AddressBookId = (uint)Property.Id.ContactAddressBookId;
             /// <summary>
             /// Person ID that the number belongs to
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint PersonId = (uint)Property.Id.ContactPersonId;
             /// <summary>
             /// Ringtone path that the number belongs to (projection)
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint RingtonePath = (uint)Property.Id.ContactRingtone;
             /// <summary>
             /// Image thumbnail path that the number belongs to (projection)
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint ThumbnailPath = (uint)Property.Id.ContactThumbnail;
             /// <summary>
             /// DB record ID of the email
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint EmailId = (uint)Property.Id.EmailId;
             /// <summary>
             /// Email type, refer to the Email.Types (projection)
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint Type = (uint)Property.Id.EmailType;
             /// <summary>
             /// Custom mail type label, when the email type is Email.Types.Custom (projection)
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint Label = (uint)Property.Id.EmailLabel;
             /// <summary>
             /// Email is default email or not
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint IsDefault = (uint)Property.Id.EmailIsDefault;
             /// <summary>
             /// Email address
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint Email = (uint)Property.Id.EmailEmail;
         };
 
@@ -3302,42 +3909,52 @@ namespace Tizen.Pims.Contacts
             /// <summary>
             /// Identifier of this contact group relation view
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const string Uri = "tizen.contacts_view.simple_contact/group";
             /// <summary>
             /// Contact ID that the number belongs to
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint ContactId = (uint)Property.Id.ContactId;
             /// <summary>
             /// Display name of contact that the number belongs to
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint DisplayName = (uint)Property.Id.ContactDisplayName;
             /// <summary>
             /// The source type of display name, refer to the Contact.DisplayNameSourceType (projection)
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint DisplaySourceType = (uint)Property.Id.ContactDisplaySourceDataId;
             /// <summary>
             /// AddressBook ID that the number belongs to
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint AddressBookId = (uint)Property.Id.ContactAddressBookId;
             /// <summary>
             /// Person ID that the number belongs to
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint PersonId = (uint)Property.Id.ContactPersonId;
             /// <summary>
             /// Ringtone path that the number belongs to (projection)
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint RingtonePath = (uint)Property.Id.ContactRingtone;
             /// <summary>
             /// Image thumbnail path that the number belongs to (projection)
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint ThumbnailPath = (uint)Property.Id.ContactThumbnail;
             /// <summary>
             /// DB record ID of the group relation
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint GroupId = (uint)Property.Id.GroupRelationGroupId;
             /// <summary>
             /// Group name (projection)
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint GroupName = (uint)Property.Id.GroupRelationGroupName;
         };
 
@@ -3351,18 +3968,22 @@ namespace Tizen.Pims.Contacts
             /// <summary>
             /// Identifier of this log statistics view
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const string Uri = "tizen.contacts_view.phonelog_stat";
             /// <summary>
             /// Log count (projection)
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint LogCount = (uint)Property.Id.PhonelogStatLogCount;
             /// <summary>
             /// Log type, see the contacts_phone_log_type_e
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint LogType = (uint)Property.Id.PhonelogStatLogType;
             /// <summary>
             /// It is related to the Sim slot number. sim_slot_no 0 means first Sim card, sim_slot_no 1 means second Sim. It is same with handle index of telephony handle list. Refer to the telephony_init()
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public const uint SimSlotNo = (uint)Property.Id.PhonelogStatSimSlotNo;
         };
     }

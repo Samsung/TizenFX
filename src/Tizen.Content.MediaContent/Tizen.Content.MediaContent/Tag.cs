@@ -23,6 +23,7 @@ namespace Tizen.Content.MediaContent
     /// Tagging allows a user to organize large number of items into logical groups providing
     /// a simplified and faster way of accessing media items.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public class Tag
     {
         internal Tag(IntPtr handle)
@@ -35,12 +36,14 @@ namespace Tizen.Content.MediaContent
         /// Gets the ID of the tag.
         /// </summary>
         /// <value>The unique ID of the tag.</value>
+        /// <since_tizen> 3 </since_tizen>
         public int Id { get; }
 
         /// <summary>
         /// Gets the name of the tag.
         /// </summary>
         /// <value>The name of the tag.</value>
+        /// <since_tizen> 3 </since_tizen>
         public string Name { get; }
 
         internal static Tag FromHandle(IntPtr handle) => new Tag(handle);
@@ -49,6 +52,7 @@ namespace Tizen.Content.MediaContent
         /// Returns a string representation of the tag.
         /// </summary>
         /// <returns>A string representation of the current tag.</returns>
+        /// <since_tizen> 4 </since_tizen>
         public override string ToString() => $"Id={Id}, Name={Name}";
 
     }

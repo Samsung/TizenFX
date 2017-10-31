@@ -23,6 +23,7 @@ namespace Tizen.Messaging.Email
     /// <summary>
     /// This class contains the Messaging API to support sending email messages.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public class EmailMessage : IDisposable
     {
         internal IntPtr _emailHandle = IntPtr.Zero;
@@ -37,6 +38,7 @@ namespace Tizen.Messaging.Email
         /// <summary>
         /// The constructor.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public EmailMessage()
         {
             int ret = Interop.Email.CreateEmail(out _emailHandle);
@@ -50,6 +52,7 @@ namespace Tizen.Messaging.Email
         /// <summary>
         /// The subject of the email message.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public string Subject
         {
             set
@@ -72,6 +75,7 @@ namespace Tizen.Messaging.Email
         /// <summary>
         /// The body of the email message.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public string Body
         {
             set
@@ -93,6 +97,7 @@ namespace Tizen.Messaging.Email
         /// <summary>
         /// The list of file attachments.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public IList<EmailAttachment> Attachments
         {
             get
@@ -107,6 +112,7 @@ namespace Tizen.Messaging.Email
         /// <remarks>
         /// The email address should be in the standard format (as described in the Internet standards RFC 5321 and RFC 5322).
         /// </remarks>
+        /// <since_tizen> 3 </since_tizen>
         public ICollection<EmailRecipient> To
         {
             get
@@ -121,6 +127,7 @@ namespace Tizen.Messaging.Email
         /// <remarks>
         /// The email address should be in the standard format (as described in the Internet standards RFC 5321 and RFC 5322).
         /// </remarks>
+        /// <since_tizen> 3 </since_tizen>
         public ICollection<EmailRecipient> Cc
         {
             get
@@ -135,6 +142,7 @@ namespace Tizen.Messaging.Email
         /// <remarks>
         /// The email address should be in the standard format (as described in the Internet standards RFC 5321 and RFC 5322).
         /// </remarks>
+        /// <since_tizen> 3 </since_tizen>
         public ICollection<EmailRecipient> Bcc
         {
             get
@@ -160,6 +168,7 @@ namespace Tizen.Messaging.Email
         /// <summary>
         /// Releases all resources used by the EmailMessage.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public void Dispose()
         {
             Dispose(true);
@@ -170,6 +179,7 @@ namespace Tizen.Messaging.Email
         /// Releases all resources used by the EmailMessage.
         /// </summary>
         /// <param name="disposing">Disposing by User</param>
+        /// <since_tizen> 3 </since_tizen>
         protected virtual void Dispose(bool disposing)
         {
             if (_disposed)

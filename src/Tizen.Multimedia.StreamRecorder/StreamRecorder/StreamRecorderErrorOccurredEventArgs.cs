@@ -21,6 +21,7 @@ namespace Tizen.Multimedia
     /// <summary>
     /// Provides data for the <see cref="StreamRecorder.ErrorOccurred"/> event.
     /// </summary>
+    /// <since_tizen> 4 </since_tizen>
     public class StreamRecorderErrorOccurredEventArgs : EventArgs
     {
         internal StreamRecorderErrorOccurredEventArgs(StreamRecorderError error, RecorderState state)
@@ -32,11 +33,13 @@ namespace Tizen.Multimedia
         /// <summary>
         /// Gets the error code.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         public StreamRecorderError Error { get; }
 
         /// <summary>
         /// Gets the state of the recorder.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         public RecorderState State { get; }
 
     }

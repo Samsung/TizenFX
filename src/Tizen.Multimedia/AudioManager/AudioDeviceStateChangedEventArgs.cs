@@ -21,6 +21,7 @@ namespace Tizen.Multimedia
     /// <summary>
     /// Provides data for the <see cref="AudioManager.DeviceStateChanged"/> event.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public class AudioDeviceStateChangedEventArgs : EventArgs
     {
         internal AudioDeviceStateChangedEventArgs(AudioDevice device, AudioDeviceState changedState)
@@ -33,12 +34,14 @@ namespace Tizen.Multimedia
         /// Gets the device.
         /// </summary>
         /// <value>The <see cref="AudioDevice"/>.</value>
+        /// <since_tizen> 3 </since_tizen>
         public AudioDevice Device { get; }
 
         /// <summary>
         /// Gets the state of the device.
         /// </summary>
         /// <value>The <see cref="AudioDeviceState"/> of the device.</value>
+        /// <since_tizen> 4 </since_tizen>
         public AudioDeviceState State { get; }
     }
 }

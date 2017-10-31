@@ -33,11 +33,13 @@ namespace Tizen.Multimedia
     /// var display = new Display((Tizen.Multimedia.MediaView)mediaView.NativeView);
     /// </code>
     /// </example>
+    /// <since_tizen> 3 </since_tizen>
     public class MediaView : EvasObject
     {
         /// <summary>
         /// This constructor is used by the infrastructure and is not intended to be used directly from application code.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public MediaView(EvasObject parent) : base(parent)
         {
         }
@@ -45,6 +47,7 @@ namespace Tizen.Multimedia
         /// <summary>
         /// This method is used by the infrastructure and is not intended to be used directly from application code.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         protected override IntPtr CreateHandle(EvasObject parent)
         {
             IntPtr evas = Interop.EvasObject.evas_object_evas_get(parent);

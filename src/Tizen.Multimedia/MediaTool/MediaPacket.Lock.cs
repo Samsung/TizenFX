@@ -25,6 +25,7 @@ namespace Tizen.Multimedia
     /// <summary>
     /// Represents a packet for multimedia.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public abstract partial class MediaPacket : IDisposable
     {
         private readonly LockState _lock = new LockState();

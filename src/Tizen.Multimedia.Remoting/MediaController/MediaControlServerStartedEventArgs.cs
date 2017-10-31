@@ -21,6 +21,7 @@ namespace Tizen.Multimedia.Remoting
     /// <summary>
     /// Provides data for the <see cref="MediaControllerManager.ServerStarted"/> event.
     /// </summary>
+    /// <since_tizen> 4 </since_tizen>
     public class MediaControlServerStartedEventArgs : EventArgs
     {
         /// <summary>
@@ -28,6 +29,7 @@ namespace Tizen.Multimedia.Remoting
         /// </summary>
         /// <param name="mediaController">A <see cref="MediaController"/> of the server.</param>
         /// <exception cref="ArgumentNullException"><paramref name="mediaController"/> is null.</exception>
+        /// <since_tizen> 4 </since_tizen>
         public MediaControlServerStartedEventArgs(MediaController mediaController)
         {
             if (mediaController == null)
@@ -42,6 +44,7 @@ namespace Tizen.Multimedia.Remoting
         /// Gets the controller of the server added.
         /// </summary>
         /// <value>A <see cref="MediaController"/>.</value>
+        /// <since_tizen> 4 </since_tizen>
         public MediaController Controller { get; }
     }
 }

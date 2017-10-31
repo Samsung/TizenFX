@@ -24,6 +24,7 @@ namespace Tizen.Applications
     /// <summary>
     /// Enumeration for alarm week flag, the days of the week.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     [Flags]
     public enum AlarmWeekFlag
     {
@@ -90,6 +91,7 @@ namespace Tizen.Applications
     /// }
     /// </code>
     /// </example>
+    /// <since_tizen> 3 </since_tizen>
 
     public static class AlarmManager
     {
@@ -129,6 +131,7 @@ namespace Tizen.Applications
         /// <exception cref="UnauthorizedAccessException">Thrown in case of a permission denied.</exception>
         /// <exception cref="InvalidOperationException">Thrown in case of any internal error.</exception>
         /// <privilege>http://tizen.org/privilege/alarm.set</privilege>
+        /// <since_tizen> 3 </since_tizen>
         public static Alarm CreateAlarm(int delay, int period, AppControl appControl)
         {
             Alarm alarm = null;
@@ -155,6 +158,7 @@ namespace Tizen.Applications
         /// <exception cref="UnauthorizedAccessException">Thrown in case of a permission denied.</exception>
         /// <exception cref="InvalidOperationException">Thrown in case of any internal error.</exception>
         /// <privilege>http://tizen.org/privilege/alarm.set</privilege>
+        /// <since_tizen> 3 </since_tizen>
         public static Alarm CreateAlarm(int delay, AppControl appControl)
         {
             Alarm alarm = null;
@@ -181,6 +185,7 @@ namespace Tizen.Applications
         /// <exception cref="UnauthorizedAccessException">Thrown in case of a permission denied.</exception>
         /// <exception cref="InvalidOperationException">Thrown in case of any internal error.</exception>
         /// <privilege>http://tizen.org/privilege/alarm.set</privilege>
+        /// <since_tizen> 3 </since_tizen>
         public static Alarm CreateAlarm(DateTime value, AppControl appControl)
         {
             Alarm alarm = null;
@@ -211,6 +216,7 @@ namespace Tizen.Applications
         /// <exception cref="UnauthorizedAccessException">Thrown in case of a permission denied.</exception>
         /// <exception cref="InvalidOperationException">Thrown in case of any internal error.</exception>
         /// <privilege>http://tizen.org/privilege/alarm.set</privilege>
+        /// <since_tizen> 3 </since_tizen>
         public static Alarm CreateAlarm(DateTime value, AlarmWeekFlag weekFlag, AppControl appControl)
         {
             Alarm alarm = null;
@@ -238,6 +244,7 @@ namespace Tizen.Applications
         /// <exception cref="InvalidOperationException">Thrown in case of any internal error.</exception>
         /// <privilege>http://tizen.org/privilege/alarm.set</privilege>
         /// <privilege>http://tizen.org/privilege/notification</privilege>
+        /// <since_tizen> 3 </since_tizen>
         public static Alarm CreateAlarm(DateTime dateTime, Notification notification)
         {
             Alarm alarm = null;
@@ -268,6 +275,7 @@ namespace Tizen.Applications
         /// <exception cref="InvalidOperationException">Thrown in case of any internal error.</exception>
         /// <privilege>http://tizen.org/privilege/alarm.set</privilege>
         /// <privilege>http://tizen.org/privilege/notification</privilege>
+        /// <since_tizen> 3 </since_tizen>
         public static Alarm CreateAlarm(int delay, int period, Notification notification)
         {
             Alarm alarm = null;
@@ -300,6 +308,7 @@ namespace Tizen.Applications
         /// <exception cref="InvalidOperationException">Thrown in case of any internal error.</exception>
         /// <privilege>http://tizen.org/privilege/alarm.set</privilege>
         /// <privilege>http://tizen.org/privilege/notification</privilege>
+        /// <since_tizen> 3 </since_tizen>
         public static Alarm CreateAlarm(DateTime dateTime, AlarmWeekFlag weekFlag, Notification notification)
         {
             Alarm alarm = null;
@@ -329,6 +338,7 @@ namespace Tizen.Applications
         /// <exception cref="InvalidOperationException">Thrown in case of any internal error.</exception>
         /// <privilege>http://tizen.org/privilege/alarm.set</privilege>
         /// <privilege>http://tizen.org/privilege/notification</privilege>
+        /// <since_tizen> 3 </since_tizen>
         public static Alarm CreateAlarm(int delay, Notification notification)
         {
             Alarm alarm = null;
@@ -351,6 +361,7 @@ namespace Tizen.Applications
         /// <exception cref="UnauthorizedAccessException">Thrown in case of a permission denied.</exception>
         /// <exception cref="InvalidOperationException">Thrown in case of any internal error.</exception>
         /// <privilege>http://tizen.org/privilege/alarm.set</privilege>
+        /// <since_tizen> 3 </since_tizen>
         public static void CancelAll()
         {
             AlarmError ret = (AlarmError)Interop.Alarm.CancelAllAlarms();
@@ -367,6 +378,7 @@ namespace Tizen.Applications
         /// <exception cref="UnauthorizedAccessException">Thrown in case of a permission denied.</exception>
         /// <exception cref="InvalidOperationException">Thrown in case of any internal error.</exception>
         /// <privilege>http://tizen.org/privilege/alarm.get</privilege>
+        /// <since_tizen> 4 </since_tizen>
         public static IEnumerable<Alarm> GetAllScheduledAlarms()
         {
             List<Alarm> alarms = new List<Alarm>();
@@ -390,6 +402,7 @@ namespace Tizen.Applications
         /// </summary>
         /// <returns>The current system time.</returns>
         /// <exception cref="InvalidOperationException">Thrown in case of any internal error.</exception>
+        /// <since_tizen> 3 </since_tizen>
         public static DateTime GetCurrentTime()
         {
             DateTime time;

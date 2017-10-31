@@ -19,6 +19,7 @@ namespace Tizen.Uix.InputMethod
     /// <summary>
     /// This Class contains data related to SurroundingTextUpdated Event
     /// </summary>
+    /// <since_tizen> 4 </since_tizen>
     public class SurroundingTextUpdatedEventArgs
     {
         internal SurroundingTextUpdatedEventArgs(int contextId, string text, int cursorPos)
@@ -31,6 +32,7 @@ namespace Tizen.Uix.InputMethod
         /// <summary>
         /// The input context identification value of an associated text input UI control
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         public int ContextId
         {
             get;
@@ -40,6 +42,7 @@ namespace Tizen.Uix.InputMethod
         /// <summary>
         /// The cursor position
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         public int CursorPosition
         {
             get;
@@ -49,6 +52,7 @@ namespace Tizen.Uix.InputMethod
         /// <summary>
         /// The string requested
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         public string Text
         {
             get;

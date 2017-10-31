@@ -19,6 +19,7 @@ namespace Tizen.Applications
     /// <summary>
     /// Represents directory information of the application.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public class DirectoryInfo
     {
         private string _dataPath;
@@ -42,6 +43,7 @@ namespace Tizen.Applications
         /// <summary>
         /// Gets the absolute path to the application's data directory, which is used to store private data of the application.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public string Data
         {
             get
@@ -55,6 +57,7 @@ namespace Tizen.Applications
         /// <summary>
         /// Gets the absolute path to the application's cache directory, which is used to store temporary data of the application.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public string Cache
         {
             get
@@ -68,6 +71,7 @@ namespace Tizen.Applications
         /// <summary>
         /// Gets the absolute path to the application resource directory. The resource files are delivered with the application package.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public string Resource
         {
             get
@@ -81,6 +85,7 @@ namespace Tizen.Applications
         /// <summary>
         /// Gets the absolute path to the application's shared data directory, which is used to share data with other applications.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public string SharedData
         {
             get
@@ -94,6 +99,7 @@ namespace Tizen.Applications
         /// <summary>
         /// Gets the absolute path to the application's shared resource directory, which is used to share resources with other applications.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public string SharedResource
         {
             get
@@ -108,6 +114,7 @@ namespace Tizen.Applications
         /// <summary>
         /// Gets the absolute path to the application's shared trusted directory, which is used to share data with a family of trusted applications.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public string SharedTrusted
         {
             get
@@ -121,6 +128,7 @@ namespace Tizen.Applications
         /// <summary>
         /// Gets the absolute path to the application's external data directory, which is used to store data of the application.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public string ExternalData
         {
             get
@@ -134,6 +142,7 @@ namespace Tizen.Applications
         /// <summary>
         /// Gets the absolute path to the application's external cache directory, which is used to store temporary data of the application.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public string ExternalCache
         {
             get
@@ -147,6 +156,7 @@ namespace Tizen.Applications
         /// <summary>
         /// Gets the absolute path to the application's external shared data directory, which is used to share data with other applications.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public string ExternalSharedData
         {
             get
@@ -160,6 +170,7 @@ namespace Tizen.Applications
         /// <summary>
         /// Gets the absolute path to the application's TEP(Tizen Expansion Package) directory. The resource files are delivered with the expansion package.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public string ExpansionPackageResource
         {
             get

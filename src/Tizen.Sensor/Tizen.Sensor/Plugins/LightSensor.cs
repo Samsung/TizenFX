@@ -21,6 +21,7 @@ namespace Tizen.Sensor
     /// <summary>
     /// The LightSensor class is used for registering callbacks for the light sensor and getting the light data.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public sealed class LightSensor : Sensor
     {
         private const string LightSensorKey = "http://tizen.org/feature/sensor.photometer";

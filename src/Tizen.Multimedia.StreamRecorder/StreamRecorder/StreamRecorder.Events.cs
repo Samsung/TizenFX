@@ -20,32 +20,38 @@ using Native = Interop.StreamRecorder;
 
 namespace Tizen.Multimedia
 {
+    /// <since_tizen> 3 </since_tizen>
     public partial class StreamRecorder
     {
         /// <summary>
         /// Occurs when <see cref="StreamRecorder"/> state is changed.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         public event EventHandler<StreamRecorderStateChangedEventArgs> StateChanged;
 
 
         /// <summary>
         /// Occurs when a buffer had consumed completely.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public event EventHandler<StreamRecorderBufferConsumedEventArgs> BufferConsumed;
 
         /// <summary>
         /// Occurs when recording status is changed.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public event EventHandler<RecordingStatusChangedEventArgs> RecordingStatusChanged;
 
         /// <summary>
         /// Occurs when recording limit is reached.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public event EventHandler<RecordingLimitReachedEventArgs> RecordingLimitReached;
 
         /// <summary>
         /// Occurs when an error occurred during a recorder operation.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         public event EventHandler<StreamRecorderErrorOccurredEventArgs> ErrorOccurred;
 
         private Native.RecordingLimitReachedCallback _recordingLimitReachedCallback;

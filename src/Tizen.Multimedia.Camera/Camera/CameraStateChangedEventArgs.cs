@@ -21,6 +21,7 @@ namespace Tizen.Multimedia
     /// <summary>
     /// Provides data for the <see cref="Camera.StateChanged"/> event.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public class CameraStateChangedEventArgs : EventArgs
     {
         internal CameraStateChangedEventArgs(CameraState previous, CameraState current, bool policy)

@@ -21,6 +21,7 @@ namespace Tizen.Sensor
     /// <summary>
     /// The OrientationSensor changed event arguments class is used for storing the data returned by a orientation sensor.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public class OrientationSensorDataUpdatedEventArgs : EventArgs
     {
         internal OrientationSensorDataUpdatedEventArgs(float[] values)

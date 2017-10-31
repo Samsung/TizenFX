@@ -47,6 +47,7 @@ namespace Tizen.Account.FidoClient
         ///     }
         /// </code>
         /// </example>
+        /// <since_tizen> 3 </since_tizen>
         public static async Task<IEnumerable<AuthenticatorInformation>> DiscoverAuthenticatorsAsync()
         {
             IEnumerable<AuthenticatorInformation> result = null;

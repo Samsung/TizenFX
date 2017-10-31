@@ -163,6 +163,7 @@ namespace Tizen.Multimedia
         /// <summary>
         /// Gets the media format of the current packet.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public MediaFormat Format
         {
             get
@@ -179,6 +180,7 @@ namespace Tizen.Multimedia
         /// <exception cref="InvalidOperationException">
         ///     The MediaPacket is not in the writable state, which means it is being used by another module.
         /// </exception>
+        /// <since_tizen> 3 </since_tizen>
         public ulong Pts
         {
             get
@@ -210,6 +212,7 @@ namespace Tizen.Multimedia
         /// <exception cref="InvalidOperationException">
         ///     The MediaPacket is not in the writable state, which means it is being used by another module.
         /// </exception>
+        /// <since_tizen> 3 </since_tizen>
         public ulong Dts
         {
             get
@@ -239,6 +242,7 @@ namespace Tizen.Multimedia
         /// </summary>
         /// <value>true if the packet is the encoded type; otherwise, false.</value>
         /// <exception cref="ObjectDisposedException">The MediaPacket has already been disposed of.</exception>
+        /// <since_tizen> 3 </since_tizen>
         public bool IsEncoded
         {
             get
@@ -266,6 +270,7 @@ namespace Tizen.Multimedia
         /// <exception cref="ObjectDisposedException">The MediaPacket has already been disposed of.</exception>
         /// <seealso cref="IsEncoded"/>
         /// <seealso cref="VideoPlanes"/>
+        /// <since_tizen> 3 </since_tizen>
         public IMediaBuffer Buffer
         {
             get
@@ -292,6 +297,7 @@ namespace Tizen.Multimedia
         ///     -or-<br/>
         ///     The MediaPacket is not in the writable state, which means it is being used by another module.
         ///     </exception>
+        /// <since_tizen> 3 </since_tizen>
         public int BufferWrittenLength
         {
             get
@@ -339,6 +345,7 @@ namespace Tizen.Multimedia
         /// <exception cref="ObjectDisposedException">The MediaPacket has already been disposed of.</exception>
         /// <seealso cref="IsEncoded"/>
         /// <seealso cref="Buffer"/>
+        /// <since_tizen> 3 </since_tizen>
         public MediaPacketVideoPlane[] VideoPlanes
         {
             get
@@ -366,6 +373,7 @@ namespace Tizen.Multimedia
         /// <exception cref="InvalidOperationException">
         ///     The MediaPacket is not in the writable state, which means it is being used by another module.
         /// </exception>
+        /// <since_tizen> 3 </since_tizen>
         public MediaPacketBufferFlags BufferFlags
         {
             get
@@ -398,6 +406,7 @@ namespace Tizen.Multimedia
         /// Gets a value indicating whether the packet has been disposed of.
         /// </summary>
         /// <value>true if the packet has been disposed of; otherwise, false.</value>
+        /// <since_tizen> 3 </since_tizen>
         public bool IsDisposed => _isDisposed;
 
         private bool _isDisposed = false;
@@ -409,6 +418,7 @@ namespace Tizen.Multimedia
         /// <exception cref="InvalidOperationException">
         ///     The MediaPacket can not be disposed, which means it is being used by another module.
         /// </exception>
+        /// <since_tizen> 3 </since_tizen>
         public void Dispose()
         {
             if (_isDisposed)
@@ -427,6 +437,7 @@ namespace Tizen.Multimedia
         /// <param name="disposing">
         /// true to release both managed and unmanaged resources; false to release only unmanaged resources.
         /// </param>
+        /// <since_tizen> 3 </since_tizen>
         protected virtual void Dispose(bool disposing)
         {
             if (_isDisposed)
@@ -550,6 +561,7 @@ namespace Tizen.Multimedia
         /// </summary>
         /// <param name="format">The media format for the new packet.</param>
         /// <returns>A new MediaPacket object.</returns>
+        /// <since_tizen> 3 </since_tizen>
         public static MediaPacket Create(MediaFormat format)
         {
             return new SimpleMediaPacket(format);

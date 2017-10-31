@@ -21,6 +21,7 @@ namespace Tizen.Sensor
     /// <summary>
     /// The FaceDownGestureDetector class is used for registering callbacks for the face down gesture detector and getting the face down state.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public sealed class FaceDownGestureDetector : Sensor
     {
         private static string GestureDetectorKey = "http://tizen.org/feature/sensor.gesture_recognition";

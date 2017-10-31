@@ -27,6 +27,7 @@ namespace Tizen.Multimedia
     /// If you provide invalid data, you won't receive an error until <see cref="Player.Start"/> is called.
     /// </remarks>
     /// <seealso cref="Player.SetSource(MediaSource)"/>
+    /// <since_tizen> 3 </since_tizen>
     public sealed class MediaBufferSource : MediaSource
     {
         private byte[] _buffer;
@@ -40,6 +41,7 @@ namespace Tizen.Multimedia
         ///     -or-<br/>
         ///     <paramref name="length"/> is less than zero.
         /// </exception>
+        /// <since_tizen> 3 </since_tizen>
         public MediaBufferSource(int length)
         {
             if (length <= 0)
@@ -56,6 +58,7 @@ namespace Tizen.Multimedia
         /// </summary>
         /// <param name="buffer">The source array to be copied into the buffer.</param>
         /// <exception cref="ArgumentNullException"><paramref name="buffer"/> is null.</exception>
+        /// <since_tizen> 3 </since_tizen>
         public MediaBufferSource(byte[] buffer) : this(buffer, buffer == null ? 0 : buffer.Length)
         {
         }
@@ -76,6 +79,7 @@ namespace Tizen.Multimedia
         ///     -or-<br/>
         ///     <paramref name="offset"/>+<paramref name="length"/> is greater than buffer.Length.
         /// </exception>
+        /// <since_tizen> 3 </since_tizen>
         public MediaBufferSource(byte[] buffer, int length, int offset = 0)
         {
             if (buffer == null)
@@ -113,6 +117,7 @@ namespace Tizen.Multimedia
         /// </summary>
         /// <param name="buffer">The array to be wrapped.</param>
         /// <returns>A MediaBufferSource wrapping the byte array.</returns>
+        /// <since_tizen> 3 </since_tizen>
         public static MediaBufferSource Wrap(byte[] buffer)
         {
             if (buffer == null)
@@ -129,6 +134,7 @@ namespace Tizen.Multimedia
         /// <summary>
         /// Gets the byte array of this buffer.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public byte[] Buffer => _buffer;
 
         internal override void OnAttached(Player player)

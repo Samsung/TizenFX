@@ -23,11 +23,13 @@ namespace Tizen.Applications
     /// <summary>
     /// Represents the proxy class for the widget application.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public class RemoteView
     {
         /// <summary>
         /// The event types to send.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public enum Event
         {
             /// <summary>
@@ -45,12 +47,14 @@ namespace Tizen.Applications
         /// Layout object including preview image, overlay text, loading text, and remote screen image.
         /// </summary>
         /// <privilege>http://tizen.org/privilege/widget.viewer</privilege>
+        /// <since_tizen> 3 </since_tizen>
         public Layout Layout { get; internal set; }
 
         /// <summary>
         /// The widget ID.
         /// </summary>
         /// <privilege>http://tizen.org/privilege/widget.viewer</privilege>
+        /// <since_tizen> 3 </since_tizen>
         public string Id
         {
             get
@@ -65,6 +69,7 @@ namespace Tizen.Applications
         /// The update period.
         /// </summary>
         /// <privilege>http://tizen.org/privilege/widget.viewer</privilege>
+        /// <since_tizen> 3 </since_tizen>
         public double Period
         {
             get
@@ -80,6 +85,7 @@ namespace Tizen.Applications
         /// This string can be used for creating contents of the widget again after rebooting a device or it can be recovered from a crash (abnormal status).
         /// </remarks>
         /// <privilege>http://tizen.org/privilege/widget.viewer</privilege>
+        /// <since_tizen> 3 </since_tizen>
         public string Content
         {
             get
@@ -94,6 +100,7 @@ namespace Tizen.Applications
         /// Summarized string of the widget content for accessibility.
         /// </summary>
         /// <privilege>http://tizen.org/privilege/widget.viewer</privilege>
+        /// <since_tizen> 3 </since_tizen>
         public string Title
         {
             get
@@ -139,6 +146,7 @@ namespace Tizen.Applications
         /// <exception cref="InvalidOperationException">Thrown when this operation failed.</exception>
         /// <exception cref="UnauthorizedAccessException">Thrown when this operation is denied.</exception>
         /// <exception cref="NotSupportedException">Thrown when this operation is not supported for this device.</exception>
+        /// <since_tizen> 3 </since_tizen>
         public static void PauseAll()
         {
             CheckException(Interop.WidgetViewerEvas.NotifyPausedStatusOfViewer());
@@ -151,6 +159,7 @@ namespace Tizen.Applications
         /// <exception cref="InvalidOperationException">Thrown when this operation failed.</exception>
         /// <exception cref="UnauthorizedAccessException">Thrown when this operation is denied.</exception>
         /// <exception cref="NotSupportedException">Thrown when this operation is not supported for this device.</exception>
+        /// <since_tizen> 3 </since_tizen>
         public static void ResumeAll()
         {
             CheckException(Interop.WidgetViewerEvas.NotifyResumedStatusOfViewer());
@@ -163,6 +172,7 @@ namespace Tizen.Applications
         /// <exception cref="InvalidOperationException">Thrown when this operation failed.</exception>
         /// <exception cref="UnauthorizedAccessException">Thrown when this operation is denied.</exception>
         /// <exception cref="NotSupportedException">Thrown when this operation is not supported for this device.</exception>
+        /// <since_tizen> 3 </since_tizen>
         public void Pause()
         {
             CheckException(Interop.WidgetViewerEvas.PauseWidget(Layout));
@@ -175,6 +185,7 @@ namespace Tizen.Applications
         /// <exception cref="InvalidOperationException">Thrown when this operation failed.</exception>
         /// <exception cref="UnauthorizedAccessException">Thrown when this operation is denied.</exception>
         /// <exception cref="NotSupportedException">Thrown when this operation is not supported for this device.</exception>
+        /// <since_tizen> 3 </since_tizen>
         public void Resume()
         {
             CheckException(Interop.WidgetViewerEvas.ResumeWidget(Layout));
@@ -186,6 +197,7 @@ namespace Tizen.Applications
         /// <privilege>http://tizen.org/privilege/widget.viewer</privilege>
         /// <exception cref="UnauthorizedAccessException">Thrown when this operation is denied.</exception>
         /// <exception cref="NotSupportedException">Thrown when this operation is not supported for this device.</exception>
+        /// <since_tizen> 3 </since_tizen>
         public void SendEvent(Event ev)
         {
             switch (ev)

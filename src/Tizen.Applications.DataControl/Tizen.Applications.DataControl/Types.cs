@@ -22,6 +22,7 @@ namespace Tizen.Applications.DataControl
     /// <summary>
     /// Enumeration for the DataControl column types.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public enum ColumnType : short
     {
         /// <summary>
@@ -45,6 +46,7 @@ namespace Tizen.Applications.DataControl
     /// <summary>
     /// Enumeration for the DataControl column types.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public enum ChangeType : short
     {
         /// <summary>
@@ -76,6 +78,7 @@ namespace Tizen.Applications.DataControl
     /// <summary>
     /// Enumeration for the DataControl result types.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public enum ResultType : int
     {
         /// <summary>

@@ -24,6 +24,7 @@ using static Interop;
 
 namespace Tizen.Multimedia
 {
+    /// <since_tizen> 3 </since_tizen>
     public partial class Player
     {
         private void RetrieveProperties()
@@ -39,6 +40,7 @@ namespace Tizen.Multimedia
         /// </summary>
         /// <value>An IntPtr that contains the native handle of the player.</value>
         /// <exception cref="ObjectDisposedException">The player has already been disposed of.</exception>
+        /// <since_tizen> 3 </since_tizen>
         public IntPtr Handle
         {
             get
@@ -59,6 +61,7 @@ namespace Tizen.Multimedia
         /// <exception cref="InvalidOperationException">The player is not in the valid state.</exception>
         /// <exception cref="ObjectDisposedException">The player has already been disposed of.</exception>
         /// <exception cref="ArgumentNullException">The value to set is null.</exception>
+        /// <since_tizen> 3 </since_tizen>
         public string Cookie
         {
             get
@@ -89,6 +92,7 @@ namespace Tizen.Multimedia
         /// <exception cref="InvalidOperationException">The player is not in the valid state.</exception>
         /// <exception cref="ObjectDisposedException">The player has already been disposed of.</exception>
         /// <exception cref="ArgumentNullException">The value to set is null.</exception>
+        /// <since_tizen> 3 </since_tizen>
         public string UserAgent
         {
             get
@@ -118,6 +122,7 @@ namespace Tizen.Multimedia
         /// </summary>
         /// <value>The current state of the player.</value>
         /// <exception cref="ObjectDisposedException">The player has already been disposed of.</exception>
+        /// <since_tizen> 3 </since_tizen>
         public PlayerState State
         {
             get
@@ -150,6 +155,7 @@ namespace Tizen.Multimedia
         /// </remarks>
         /// <exception cref="ObjectDisposedException">The player has already been disposed of.</exception>
         /// <exception cref="ArgumentException">The value is not valid.</exception>
+        /// <since_tizen> 3 </since_tizen>
         public AudioLatencyMode AudioLatencyMode
         {
             get
@@ -181,6 +187,7 @@ namespace Tizen.Multimedia
         /// </summary>
         /// <value>true if the playback is looping; otherwise, false. The default value is false.</value>
         /// <exception cref="ObjectDisposedException">The player has already been disposed of.</exception>
+        /// <since_tizen> 3 </since_tizen>
         public bool IsLooping
         {
             get
@@ -208,6 +215,7 @@ namespace Tizen.Multimedia
         /// Gets the display settings.
         /// </summary>
         /// <value>A <see cref="PlayerDisplaySettings"/> that specifies the display settings.</value>
+        /// <since_tizen> 3 </since_tizen>
         public PlayerDisplaySettings DisplaySettings { get; }
 
         private Display _display;
@@ -237,6 +245,7 @@ namespace Tizen.Multimedia
         /// <exception cref="ObjectDisposedException">The player has already been disposed of.</exception>
         /// <exception cref="ArgumentException">The value has already been assigned to another player.</exception>
         /// <exception cref="InvalidOperationException">The player is not in the valid state.</exception>
+        /// <since_tizen> 3 </since_tizen>
         public Display Display
         {
             get
@@ -287,6 +296,7 @@ namespace Tizen.Multimedia
         /// Gets the track info for the audio.
         /// </summary>
         /// <value>A <see cref="PlayerTrackInfo"/> for audio.</value>
+        /// <since_tizen> 3 </since_tizen>
         public PlayerTrackInfo AudioTrackInfo
         {
             get
@@ -305,6 +315,7 @@ namespace Tizen.Multimedia
         /// Gets the track info for the subtitle.
         /// </summary>
         /// <value>A <see cref="PlayerTrackInfo"/> for the subtitle.</value>
+        /// <since_tizen> 3 </since_tizen>
         public PlayerTrackInfo SubtitleTrackInfo
         {
             get
@@ -323,6 +334,7 @@ namespace Tizen.Multimedia
         /// Gets the stream information.
         /// </summary>
         /// <value>A <see cref="StreamInfo"/> for this player.</value>
+        /// <since_tizen> 3 </since_tizen>
         public StreamInfo StreamInfo
         {
             get
@@ -342,6 +354,7 @@ namespace Tizen.Multimedia
         /// </summary>
         /// <feature>http://tizen.org/feature/multimedia.custom_audio_effect</feature>
         /// <exception cref="NotSupportedException">The required feature is not supported.</exception>
+        /// <since_tizen> 3 </since_tizen>
         public AudioEffect AudioEffect
         {
             get
@@ -360,6 +373,7 @@ namespace Tizen.Multimedia
         /// </summary>
         /// <value>true if the player is muted; otherwise, false.</value>
         /// <exception cref="ObjectDisposedException">The player has already been disposed of.</exception>
+        /// <since_tizen> 3 </since_tizen>
         public bool Muted
         {
             get
@@ -387,6 +401,7 @@ namespace Tizen.Multimedia
         ///     -or-<br/>
         ///     <paramref name="value"/> is greater than 1.0.
         /// </exception>
+        /// <since_tizen> 3 </since_tizen>
         public float Volume
         {
             get

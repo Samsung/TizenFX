@@ -23,6 +23,7 @@ namespace Tizen.System
     /// The SystemInfo class provides static system feature.
     /// Please use Tizen.System.Information class. Information class supports same function.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     [Obsolete("Use class Tizen.System.Information")]
     [EditorBrowsable(EditorBrowsableState.Never)]
     public static class SystemInfo
@@ -94,6 +95,7 @@ namespace Tizen.System
         /// <param name="key">The name of the feature.</param>
         /// <param name="value">The value of the given feature.</param>
         /// <returns>Returns true on success, otherwise false.</returns>
+        /// <since_tizen> 3 </since_tizen>
         public static bool TryGetValue<T>(string key, out T value)
         {
             bool res = false;
@@ -134,6 +136,7 @@ namespace Tizen.System
         /// <param name="key">The name of the feature.</param>
         /// <param name="value">The value of the given feature.</param>
         /// <returns>Returns true on success, otherwise false.</returns>
+        /// <since_tizen> 3 </since_tizen>
         public static bool TryGetValue(string key, out bool value)
         {
             Interop.SystemInfo.SystemInfoValueType valueType;
@@ -167,6 +170,7 @@ namespace Tizen.System
         /// <param name="key">The name of the feature.</param>
         /// <param name="value">The value of the given feature.</param>
         /// <returns>Returns true on success, otherwise false.</returns>
+        /// <since_tizen> 3 </since_tizen>
         public static bool TryGetValue(string key, out int value)
         {
             Interop.SystemInfo.SystemInfoValueType valueType;
@@ -201,6 +205,7 @@ namespace Tizen.System
         /// <param name="key">The name of the feature.</param>
         /// <param name="value">The value of the given feature.</param>
         /// <returns>Returns true on success, otherwise false.</returns>
+        /// <since_tizen> 3 </since_tizen>
         public static bool TryGetValue(string key, out double value)
         {
             Interop.SystemInfo.SystemInfoValueType valueType;
@@ -235,6 +240,7 @@ namespace Tizen.System
         /// <param name="key">The name of the feature.</param>
         /// <param name="value">The value of the given feature.</param>
         /// <returns>Returns true on success, otherwise false.</returns>
+        /// <since_tizen> 3 </since_tizen>
         public static bool TryGetValue(string key, out string value)
         {
             Interop.SystemInfo.SystemInfoValueType valueType;

@@ -28,6 +28,7 @@ namespace Tizen.System
     /// <privilege>
     /// http://tizen.org/privilege/display
     /// </privilege>
+    /// <since_tizen> 3 </since_tizen>
     public static class Power
     {
         /// <summary>

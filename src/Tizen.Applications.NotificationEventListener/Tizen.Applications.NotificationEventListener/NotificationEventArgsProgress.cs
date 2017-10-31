@@ -24,21 +24,25 @@ namespace Tizen.Applications.NotificationEventListener
         /// <summary>
         ///  Class to get infomation about progress notification.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         public class ProgressArgs
         {
             /// <summary>
             /// Gets category of ProgressType.
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public ProgressCategory Category { get; internal set; }
 
             /// <summary>
             /// Gets current value of ProgressType.
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public double Current { get; internal set; }
 
             /// <summary>
             /// Gets max value of ProgressType.
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public double Max { get; internal set; }
         }
     }

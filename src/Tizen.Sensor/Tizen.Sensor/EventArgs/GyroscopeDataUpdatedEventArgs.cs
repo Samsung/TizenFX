@@ -21,6 +21,7 @@ namespace Tizen.Sensor
     /// <summary>
     /// The Gyroscope changed event arguments class is used for storing the data returned by a gyroscope.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public class GyroscopeDataUpdatedEventArgs : EventArgs
     {
         internal GyroscopeDataUpdatedEventArgs(float[] values)

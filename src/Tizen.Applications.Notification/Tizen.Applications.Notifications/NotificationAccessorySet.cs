@@ -31,6 +31,7 @@ namespace Tizen.Applications.Notifications
         /// <summary>
         ///  Class for notification AccessorySet, which includes vibration, LED, and sound option.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public sealed class AccessorySet : MakerBase
         {
             /// <summary>
@@ -39,17 +40,20 @@ namespace Tizen.Applications.Notifications
             /// <remarks>
             /// If you set AccessoryOption.Custom, you must the SoundPath. Otherwise, an exception is thrown.
             /// </remarks>
+            /// <since_tizen> 3 </since_tizen>
             public AccessoryOption SoundOption { get; set; } = AccessoryOption.Off;
 
             /// <summary>
             /// Gets or sets the sound path, It will play on the sound file you set.
             /// You should set an absolute path for a sound file.
             /// </summary>
+            /// <since_tizen> 3 </since_tizen>
             public string SoundPath { get; set; }
 
             /// <summary>
             /// Gets or sets a value indicating whether vibration is operated. Default is false.
             /// </summary>
+            /// <since_tizen> 3 </since_tizen>
             public bool CanVibrate { get; set; } = false;
 
             /// <summary>
@@ -58,6 +62,7 @@ namespace Tizen.Applications.Notifications
             /// <remarks>
             /// If you set AccessoryOption.Custom and not set LedColor, the LED will show default color.
             /// </remarks>
+            /// <since_tizen> 3 </since_tizen>
             public AccessoryOption LedOption { get; set; } = AccessoryOption.Off;
 
             /// <summary>
@@ -68,6 +73,7 @@ namespace Tizen.Applications.Notifications
             /// The rate is specified in terms of the number of Milliseconds to be on.
             /// You must set the on and off times at the same time. Otherwise, it may not operate normally.
             /// </remarks>
+            /// <since_tizen> 3 </since_tizen>
             public int LedOnMillisecond { get; set; }
 
             /// <summary>
@@ -77,6 +83,7 @@ namespace Tizen.Applications.Notifications
             /// The rate is specified in terms of the number of Milliseconds to be off.
             /// You must set the on and off times at the same time. Otherwise, it may not operate normally.
             /// </remarks>
+            /// <since_tizen> 3 </since_tizen>
             public int LedOffMillisecond { get; set; }
 
             /// <summary>
@@ -85,6 +92,7 @@ namespace Tizen.Applications.Notifications
             /// <remarks>
             /// If you want to set LedColor, you should always set LedOption as AccessoryOption.Custom, otherwise, it may operate default LED color.
             /// </remarks>
+            /// <since_tizen> 3 </since_tizen>
             public Color LedColor { get; set; }
 
             internal override void Make(Notification notification)

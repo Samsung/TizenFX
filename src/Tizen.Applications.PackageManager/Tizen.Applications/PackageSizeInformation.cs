@@ -21,6 +21,7 @@ namespace Tizen.Applications
     /// <summary>
     /// This class has read-only properties to get the package size information.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public class PackageSizeInformation
     {
         private long _dataSize;
@@ -35,31 +36,37 @@ namespace Tizen.Applications
         /// <summary>
         /// Data size for the package.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public long DataSize { get { return _dataSize; } }
 
         /// <summary>
         /// Cache size for the package.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public long CacheSize { get { return _cacheSize; } }
 
         /// <summary>
         /// Application size for the package.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public long AppSize { get { return _appSize; } }
 
         /// <summary>
         /// External data size for the package.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public long ExternalDataSize { get { return _externalDataSize; } }
 
         /// <summary>
         /// External cache size for the package.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public long ExternalCacheSize { get { return _externalCacheSize; } }
 
         /// <summary>
         /// External application size for the package.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public long ExternalAppSize { get { return _externalAppSize; } }
 
         // This method assumes that pass handle is already validated

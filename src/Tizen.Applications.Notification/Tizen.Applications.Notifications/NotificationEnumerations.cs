@@ -21,6 +21,7 @@ namespace Tizen.Applications.Notifications
     /// <summary>
     /// Enumeration for the progress category.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public enum ProgressCategory
     {
         /// <summary>
@@ -42,6 +43,7 @@ namespace Tizen.Applications.Notifications
     /// <summary>
     /// Enumeration for the accessory option.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public enum AccessoryOption
     {
         /// <summary>
@@ -63,6 +65,7 @@ namespace Tizen.Applications.Notifications
     /// <summary>
     /// Enumeration for the button index.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public enum ButtonIndex
     {
         /// <summary>
@@ -89,6 +92,7 @@ namespace Tizen.Applications.Notifications
     /// <summary>
     /// Enumeration for the notification particular property.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     [Flags]
     public enum NotificationProperty
     {
@@ -100,6 +104,7 @@ namespace Tizen.Applications.Notifications
         /// <summary>
         /// Value for display only SIM card inserted.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         DisplayOnlySimMode = 0x01,
 
         /// <summary>
@@ -121,6 +126,7 @@ namespace Tizen.Applications.Notifications
     /// <summary>
     /// Enumeration for the block state.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public enum NotificationBlockState
     {
         /// <summary>

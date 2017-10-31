@@ -23,6 +23,7 @@ namespace Tizen.Applications
     /// <summary>
     /// Represents an application that has an UI screen. The events for resuming and pausing are provided.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public class CoreUIApplication : CoreApplication
     {
         /// <summary>
@@ -31,6 +32,7 @@ namespace Tizen.Applications
         /// <remarks>
         /// The default backend for the UI application will be used.
         /// </remarks>
+        /// <since_tizen> 3 </since_tizen>
         public CoreUIApplication() : base(new UICoreBackend())
         {
         }
@@ -42,6 +44,7 @@ namespace Tizen.Applications
         /// If you want to change the backend, use this constructor.
         /// </remarks>
         /// <param name="backend">The backend instance implementing the ICoreBacked interface.</param>
+        /// <since_tizen> 3 </since_tizen>
         public CoreUIApplication(ICoreBackend backend) : base(backend)
         {
         }
@@ -49,17 +52,20 @@ namespace Tizen.Applications
         /// <summary>
         /// Occurs whenever the application is resumed.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public event EventHandler Resumed;
 
         /// <summary>
         /// Occurs whenever the application is paused.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public event EventHandler Paused;
 
         /// <summary>
         /// Runs the UI application's main loop.
         /// </summary>
         /// <param name="args">Arguments from the commandline.</param>
+        /// <since_tizen> 3 </since_tizen>
         public override void Run(string[] args)
         {
             Backend.AddEventHandler(EventType.PreCreated, OnPreCreate);
@@ -71,6 +77,7 @@ namespace Tizen.Applications
         /// <summary>
         /// Overrides this method if you want to handle the behavior before calling OnCreate().
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         protected virtual void OnPreCreate()
         {
         }
@@ -79,6 +86,7 @@ namespace Tizen.Applications
         /// Overrides this method if you want to handle the behavior when the application is resumed.
         /// If base.OnResume() is not called, the event 'Resumed' will not be emitted.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         protected virtual void OnResume()
         {
             Resumed?.Invoke(this, EventArgs.Empty);
@@ -88,6 +96,7 @@ namespace Tizen.Applications
         /// Overrides this method if you want to handle the behavior when the application is paused.
         /// If base.OnPause() is not called, the event 'Paused' will not be emitted.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         protected virtual void OnPause()
         {
             Paused?.Invoke(this, EventArgs.Empty);

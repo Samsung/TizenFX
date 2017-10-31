@@ -38,6 +38,7 @@ namespace Tizen.Multimedia
     /// and functions for picture manipulations like sepia, negative, and many more.
     /// It also notifies you when a significant picture parameter changes, (For example, focus).
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public class Camera : IDisposable, IDisplayable<CameraError>
     {
         private IntPtr _handle = IntPtr.Zero;
@@ -74,6 +75,7 @@ namespace Tizen.Multimedia
         /// <summary>
         /// Gets the native handle of the camera.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public IntPtr Handle => GetHandle();
 
         internal IntPtr GetHandle()
@@ -87,6 +89,7 @@ namespace Tizen.Multimedia
         /// Releases the unmanaged resources used by the camera.
         /// </summary>
         /// <param name="disposing">true to release both managed and unmanaged resources; false to release only unmanaged resources.</param>
+        /// <since_tizen> 3 </since_tizen>
         protected virtual void Dispose(bool disposing)
         {
             if (!_disposed)
@@ -152,6 +155,7 @@ namespace Tizen.Multimedia
         /// <summary>
         /// An event that occurs when the camera interrupt is started by the policy.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         public event EventHandler<CameraInterruptStartedEventArgs> InterruptStarted;
         private Native.InterruptStartedCallback _interruptStartedCallback;
 
@@ -364,13 +368,13 @@ namespace Tizen.Multimedia
         /// <summary>
         /// Gets or sets the various camera settings.
         /// </summary>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 4 </since_tizen>
         public CameraSettings Settings { get; }
 
         /// <summary>
         /// Gets the various camera capabilities.
         /// </summary>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 4 </since_tizen>
         public CameraCapabilities Capabilities { get; }
 
         /// <summary>
@@ -569,7 +573,7 @@ namespace Tizen.Multimedia
         /// <summary>
         /// Gets the device state.
         /// </summary>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 4 </since_tizen>
         /// <param name="device">The device to get the state.</param>
         /// <returns>Returns the state of the camera device.</returns>
         /// <exception cref="ArgumentException">In case of invalid parameters.</exception>

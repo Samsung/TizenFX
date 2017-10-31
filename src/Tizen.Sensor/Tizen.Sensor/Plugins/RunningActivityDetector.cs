@@ -21,6 +21,7 @@ namespace Tizen.Sensor
     /// <summary>
     /// The RunningActivityDetector class is used for registering callbacks for running the activity detector and getting the running state.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public sealed class RunningActivityDetector : ActivityDetector
     {
         private static string ActivityDetectorKey = "http://tizen.org/feature/sensor.activity_recognition";

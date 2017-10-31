@@ -22,6 +22,7 @@ namespace Tizen.Applications.Notifications
     /// <summary>
     /// NotificationManager class to post, update, delete, and get notification.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public static class NotificationManager
     {
         /// <summary>
@@ -54,6 +55,7 @@ namespace Tizen.Applications.Notifications
         /// </code>
         /// </example>
         /// <privilege>http://tizen.org/privilege/notification</privilege>
+        /// <since_tizen> 3 </since_tizen>
         public static void Post(Notification notification)
         {
             if (notification == null)
@@ -132,6 +134,7 @@ namespace Tizen.Applications.Notifications
         /// <pre>
         /// Post method should be called on the notification object.
         /// </pre>
+        /// <since_tizen> 3 </since_tizen>
         public static void Update(Notification notification)
         {
             if (notification == null || notification.Handle == null || notification.Handle.IsInvalid)
@@ -174,6 +177,7 @@ namespace Tizen.Applications.Notifications
         /// <pre>
         /// Post method should be called on the notification object.
         /// </pre>
+        /// <since_tizen> 3 </since_tizen>
         public static void Delete(Notification notification)
         {
             if (notification == null || notification.Handle == null || notification.Handle.IsInvalid)
@@ -216,6 +220,7 @@ namespace Tizen.Applications.Notifications
         /// </code>
         /// </example>
         /// <privilege>http://tizen.org/privilege/notification</privilege>
+        /// <since_tizen> 3 </since_tizen>
         public static void DeleteAll()
         {
             NotificationError ret;
@@ -262,6 +267,7 @@ namespace Tizen.Applications.Notifications
         /// </code>
         /// </example>
         /// <privilege>http://tizen.org/privilege/notification</privilege>
+        /// <since_tizen> 3 </since_tizen>
         public static Notification Load(string tag)
         {
             IntPtr ptr = IntPtr.Zero;
@@ -335,6 +341,7 @@ namespace Tizen.Applications.Notifications
         /// </code>
         /// </example>
         /// <privilege>http://tizen.org/privilege/notification</privilege>
+        /// <since_tizen> 3 </since_tizen>
         public static void SaveTemplate(Notification notification, string name)
         {
             if (notification == null || string.IsNullOrEmpty(name))
@@ -392,6 +399,7 @@ namespace Tizen.Applications.Notifications
         /// </code>
         /// </example>
         /// <privilege>http://tizen.org/privilege/notification</privilege>
+        /// <since_tizen> 3 </since_tizen>
         public static Notification LoadTemplate(string name)
         {
             IntPtr handle = IntPtr.Zero;
@@ -436,6 +444,7 @@ namespace Tizen.Applications.Notifications
         /// <exception cref="UnauthorizedAccessException">Thrown in case of a permission is denied.</exception>
         /// <exception cref="InvalidOperationException">Thrown in case of any internal error.</exception>
         /// <privilege>http://tizen.org/privilege/notification</privilege>
+        /// <since_tizen> 3 </since_tizen>
         public static NotificationBlockState GetBlockState()
         {
             NotificationBlockState state;
@@ -457,6 +466,7 @@ namespace Tizen.Applications.Notifications
         /// <param name="notification">The Notification class.</param>
         /// <returns>The NotificationSafeHandle class.</returns>
         /// <exception cref="ArgumentException">Thrown when an argument is invalid.</exception>
+        /// <since_tizen> 3 </since_tizen>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static NotificationSafeHandle MakeNotificationSafeHandle(Notification notification)
         {
@@ -476,6 +486,7 @@ namespace Tizen.Applications.Notifications
         /// <param name="handle">The NotificationSafeHandle class.</param>
         /// <returns>The Notification class.</returns>
         /// <exception cref="ArgumentException">Thrown when an argument is invalid.</exception>
+        /// <since_tizen> 3 </since_tizen>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static Notification MakeNotification(NotificationSafeHandle handle)
         {

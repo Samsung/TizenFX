@@ -128,12 +128,14 @@ namespace Tizen.Multimedia
     /// <summary>
     /// The exception that is thrown when there is no available space in a buffer.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public class NoBufferSpaceException : InvalidOperationException
     {
         /// <summary>
         /// Initializes a new instance of the NoBufferSpaceException class with a specified error message.
         /// </summary>
         /// <param name="message">Error description.</param>
+        /// <since_tizen> 3 </since_tizen>
         public NoBufferSpaceException(string message) : base(message)
         {
         }
@@ -142,12 +144,14 @@ namespace Tizen.Multimedia
     /// <summary>
     /// The exception that is thrown when there is no available resource for internal use.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public class ResourceLimitException : InvalidOperationException
     {
         /// <summary>
         /// Initializes a new instance of the ResourceLimitException class with a specified error message.
         /// </summary>
         /// <param name="message">Error description.</param>
+        /// <since_tizen> 3 </since_tizen>
         public ResourceLimitException(string message) : base(message)
         {
         }

@@ -21,6 +21,7 @@ namespace Tizen.Network.Nsd
     /// <summary>
     /// This interface is used for managing local service registration using DNSSD/SSDP.
     /// </summary>
+    /// <since_tizen> 4 </since_tizen>
     public interface INsdService : IDisposable
     {
         /// <summary>

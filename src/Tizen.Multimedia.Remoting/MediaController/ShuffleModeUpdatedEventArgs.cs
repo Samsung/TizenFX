@@ -21,12 +21,14 @@ namespace Tizen.Multimedia.Remoting
     /// <summary>
     /// Provides data for the <see cref="MediaController.ShuffleModeUpdated"/> event.
     /// </summary>
+    /// <since_tizen> 4 </since_tizen>
     public class ShuffleModeUpdatedEventArgs : EventArgs
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="ShuffleModeUpdatedEventArgs"/> class.
         /// </summary>
         /// <param name="enabled">A value indicating whether the shuffle mode is enabled.</param>
+        /// <since_tizen> 4 </since_tizen>
         public ShuffleModeUpdatedEventArgs(bool enabled)
         {
             Enabled = enabled;
@@ -36,6 +38,7 @@ namespace Tizen.Multimedia.Remoting
         /// Gets a value indicating whether the shuffle mode is enabled.
         /// </summary>
         /// <value>true if the shuffle mode is enabled; otherwise, false.</value>
+        /// <since_tizen> 4 </since_tizen>
         public bool Enabled { get; }
     }
 }

@@ -29,12 +29,16 @@ namespace Tizen.Security.TEEC
     public class LoginMethod
     {
         /// <summary>No login data is provided.</summary>
+        /// <since_tizen> 3 </since_tizen>
         public const uint Public      = 0x00000000;
         /// <summary>Login data about the user running the client application process is provided.</summary>
+        /// <since_tizen> 3 </since_tizen>
         public const uint User        = 0x00000001;
         /// <summary>Login data about the group running the client application process is provided.</summary>
+        /// <since_tizen> 3 </since_tizen>
         public const uint Group       = 0x00000002;
         /// <summary>Login data about the running client application itself is provided.</summary>
+        /// <since_tizen> 3 </since_tizen>
         public const uint Application = 0x00000003;
     }
 

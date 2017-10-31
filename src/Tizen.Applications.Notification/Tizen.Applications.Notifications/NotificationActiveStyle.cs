@@ -27,11 +27,13 @@ namespace Tizen.Applications.Notifications
     /// It is created to notify information to the user through the application.
     /// This class helps you to provide method and property for creating notification object.
     /// </remarks>
+    /// <since_tizen> 3 </since_tizen>
     public sealed partial class Notification
     {
         /// <summary>
         ///  Class for generating active style notification.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public sealed class ActiveStyle : StyleBase
         {
             private IDictionary<ButtonIndex, ButtonAction> buttonDictionary;
@@ -41,6 +43,7 @@ namespace Tizen.Applications.Notifications
             /// <summary>
             /// Initializes a new instance of the <see cref="ActiveStyle"/> class.
             /// </summary>
+            /// <since_tizen> 3 </since_tizen>
             public ActiveStyle()
             {
                 buttonDictionary = new Dictionary<ButtonIndex, ButtonAction>();
@@ -49,6 +52,7 @@ namespace Tizen.Applications.Notifications
             /// <summary>
             /// Gets or sets an absolute path for an image file to display on the background of active notification.
             /// </summary>
+            /// <since_tizen> 3 </since_tizen>
             public string BackgroundImage { get; set; }
 
             /// <summary>
@@ -59,6 +63,7 @@ namespace Tizen.Applications.Notifications
             /// When 'IsAutoRemove' is set as false, the active notification will not be removed as long as the user removes
             /// it or the application, which posted the active notification.
             /// </remarks>>
+            /// <since_tizen> 3 </since_tizen>
             public bool IsAutoRemove { get; set; } = true;
 
             /// <summary>
@@ -68,6 +73,7 @@ namespace Tizen.Applications.Notifications
             /// The default button for display highlight is only reflected on the Tizen TV.
             /// If you use this property on other profile, this value has no effect.
             /// </remarks>
+            /// <since_tizen> 3 </since_tizen>
             public ButtonIndex DefaultButton { get; set; } = ButtonIndex.None;
 
             /// <summary>
@@ -110,6 +116,7 @@ namespace Tizen.Applications.Notifications
             /// active.AddButtonAction(button);
             /// </code>
             /// </example>
+            /// <since_tizen> 3 </since_tizen>
             public ReplyAction ReplyAction { get; set; }
 
             /// <summary>
@@ -121,6 +128,7 @@ namespace Tizen.Applications.Notifications
             /// If you use this API on other profile, this action have no effect
             /// </remarks>
             /// <seealso cref="Tizen.Applications.AppControl"></seealso>
+            /// <since_tizen> 4 </since_tizen>
             public AppControl HiddenByUserAction { get; set; }
 
             /// <summary>
@@ -133,6 +141,7 @@ namespace Tizen.Applications.Notifications
             /// If you use this API on other profile, this action settings have no effect
             /// </remarks>
             /// <seealso cref="Tizen.Applications.AppControl"></seealso>
+            /// <since_tizen> 4 </since_tizen>
             public AppControl HiddenByTimeoutAction { get; set; }
 
             /// <summary>
@@ -144,6 +153,7 @@ namespace Tizen.Applications.Notifications
             /// If you use this API on other profile, this action settings have no effect
             /// </remarks>
             /// <seealso cref="Tizen.Applications.AppControl"></seealso>
+            /// <since_tizen> 4 </since_tizen>
             public AppControl HiddenByExternalAction { get; set; }
 
             /// <summary>
@@ -167,6 +177,7 @@ namespace Tizen.Applications.Notifications
             /// <param name="hideTime">The value in seconds when the notification can be hidden from the notification viewer after the notification is posted.</param>
             /// <param name="deleteTime">The value in seconds when the notification can be deleted from the notification list in setting application after notification is posted.</param>
             /// <exception cref="ArgumentException">Thrown when argument is invalid.</exception>
+            /// <since_tizen> 3 </since_tizen>
             public void SetRemoveTime(int hideTime, int deleteTime)
             {
                 if (hideTime < 0 || deleteTime < 0)
@@ -183,6 +194,7 @@ namespace Tizen.Applications.Notifications
             /// </summary>
             /// <param name="hideTime">The value in seconds when the notification can be hidden from the notification viewer after notification is posted.</param>
             /// <param name="deleteTime">The value in seconds when the notification can be deleted from the notification list in setting application after notification is posted.</param>
+            /// <since_tizen> 3 </since_tizen>
             public void GetRemoveTime(out int hideTime, out int deleteTime)
             {
                 hideTime = hideTimeout;
@@ -219,6 +231,7 @@ namespace Tizen.Applications.Notifications
             ///
             /// </code>
             /// </example>
+            /// <since_tizen> 3 </since_tizen>
             public void AddButtonAction(ButtonAction button)
             {
                 if (button == null)
@@ -247,6 +260,7 @@ namespace Tizen.Applications.Notifications
             /// </summary>
             /// <param name="index">The index to remove a button.</param>
             /// <returns>true if the element is successfully found and removed; otherwise, false.</returns>
+            /// <since_tizen> 3 </since_tizen>
             public bool RemoveButtonAction(ButtonIndex index)
             {
                 bool ret = buttonDictionary.Remove(index);
@@ -269,6 +283,7 @@ namespace Tizen.Applications.Notifications
             /// <param name="index">The index to get a button you already added.</param>
             /// <returns>The ButtonAction object, which you already added.</returns>
             /// <exception cref="ArgumentException">Thrown when an argument is invalid.</exception>
+            /// <since_tizen> 3 </since_tizen>
             public ButtonAction GetButtonAction(ButtonIndex index)
             {
                 ButtonAction button = null;

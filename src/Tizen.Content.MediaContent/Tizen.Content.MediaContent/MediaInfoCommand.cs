@@ -26,6 +26,7 @@ namespace Tizen.Content.MediaContent
     /// <summary>
     /// Provides commands to manage the media information and query related items in the database.
     /// </summary>
+    /// <since_tizen> 4 </since_tizen>
     public class MediaInfoCommand : MediaCommand
     {
         /// <summary>
@@ -34,6 +35,7 @@ namespace Tizen.Content.MediaContent
         /// <param name="database">The <see cref="MediaDatabase"/> that the commands run on.</param>
         /// <exception cref="ArgumentNullException"><paramref name="database"/> is null.</exception>
         /// <exception cref="ObjectDisposedException"><paramref name="database"/> has already been disposed of.</exception>
+        /// <since_tizen> 4 </since_tizen>
         public MediaInfoCommand(MediaDatabase database) : base(database)
         {
         }
@@ -48,6 +50,7 @@ namespace Tizen.Content.MediaContent
         /// <exception cref="MediaDatabaseException">An error occurred while executing the command.</exception>
         /// <exception cref="ArgumentNullException"><paramref name="mediaId"/> is null.</exception>
         /// <exception cref="ArgumentException"><paramref name="mediaId"/> is a zero-length string, contains only white space.</exception>
+        /// <since_tizen> 4 </since_tizen>
         public int CountBookmark(string mediaId)
         {
             return CountBookmark(mediaId, null);
@@ -64,6 +67,7 @@ namespace Tizen.Content.MediaContent
         /// <exception cref="MediaDatabaseException">An error occurred while executing the command.</exception>
         /// <exception cref="ArgumentNullException"><paramref name="mediaId"/> is null.</exception>
         /// <exception cref="ArgumentException"><paramref name="mediaId"/> is a zero-length string, contains only white space.</exception>
+        /// <since_tizen> 4 </since_tizen>
         public int CountBookmark(string mediaId, CountArguments arguments)
         {
             ValidateDatabase();
@@ -83,6 +87,7 @@ namespace Tizen.Content.MediaContent
         /// <exception cref="MediaDatabaseException">An error occurred while executing the command.</exception>
         /// <exception cref="ArgumentNullException"><paramref name="mediaId"/> is null.</exception>
         /// <exception cref="ArgumentException"><paramref name="mediaId"/> is a zero-length string, contains only white space.</exception>
+        /// <since_tizen> 4 </since_tizen>
         public MediaDataReader<Bookmark> SelectBookmark(string mediaId)
         {
             return SelectBookmark(mediaId, null);
@@ -99,6 +104,7 @@ namespace Tizen.Content.MediaContent
         /// <exception cref="MediaDatabaseException">An error occurred while executing the command.</exception>
         /// <exception cref="ArgumentNullException"><paramref name="mediaId"/> is null.</exception>
         /// <exception cref="ArgumentException"><paramref name="mediaId"/> is a zero-length string, contains only white space.</exception>
+        /// <since_tizen> 4 </since_tizen>
         public MediaDataReader<Bookmark> SelectBookmark(string mediaId, SelectArguments filter)
         {
             ValidateDatabase();
@@ -119,6 +125,7 @@ namespace Tizen.Content.MediaContent
         /// <exception cref="MediaDatabaseException">An error occurred while executing the command.</exception>
         /// <exception cref="ArgumentNullException"><paramref name="mediaId"/> is null.</exception>
         /// <exception cref="ArgumentException"><paramref name="mediaId"/> is a zero-length string, contains only white space.</exception>
+        /// <since_tizen> 4 </since_tizen>
         public int CountFaceInfo(string mediaId)
         {
             return CountFaceInfo(mediaId, null);
@@ -135,6 +142,7 @@ namespace Tizen.Content.MediaContent
         /// <exception cref="MediaDatabaseException">An error occurred while executing the command.</exception>
         /// <exception cref="ArgumentNullException"><paramref name="mediaId"/> is null.</exception>
         /// <exception cref="ArgumentException"><paramref name="mediaId"/> is a zero-length string, contains only white space.</exception>
+        /// <since_tizen> 4 </since_tizen>
         public int CountFaceInfo(string mediaId, CountArguments arguments)
         {
             ValidateDatabase();
@@ -154,6 +162,7 @@ namespace Tizen.Content.MediaContent
         /// <exception cref="MediaDatabaseException">An error occurred while executing the command.</exception>
         /// <exception cref="ArgumentNullException"><paramref name="mediaId"/> is null.</exception>
         /// <exception cref="ArgumentException"><paramref name="mediaId"/> is a zero-length string, contains only white space.</exception>
+        /// <since_tizen> 4 </since_tizen>
         public MediaDataReader<FaceInfo> SelectFaceInfo(string mediaId)
         {
             return SelectFaceInfo(mediaId, null);
@@ -170,6 +179,7 @@ namespace Tizen.Content.MediaContent
         /// <exception cref="MediaDatabaseException">An error occurred while executing the command.</exception>
         /// <exception cref="ArgumentNullException"><paramref name="mediaId"/> is null.</exception>
         /// <exception cref="ArgumentException"><paramref name="mediaId"/> is a zero-length string, contains only white space.</exception>
+        /// <since_tizen> 4 </since_tizen>
         public MediaDataReader<FaceInfo> SelectFaceInfo(string mediaId, SelectArguments arguments)
         {
             ValidateDatabase();
@@ -190,6 +200,7 @@ namespace Tizen.Content.MediaContent
         /// <exception cref="MediaDatabaseException">An error occurred while executing the command.</exception>
         /// <exception cref="ArgumentNullException"><paramref name="mediaId"/> is null.</exception>
         /// <exception cref="ArgumentException"><paramref name="mediaId"/> is a zero-length string, contains only white space.</exception>
+        /// <since_tizen> 4 </since_tizen>
         public int CountTag(string mediaId)
         {
             return CountTag(mediaId, null);
@@ -206,6 +217,7 @@ namespace Tizen.Content.MediaContent
         /// <exception cref="MediaDatabaseException">An error occurred while executing the command.</exception>
         /// <exception cref="ArgumentNullException"><paramref name="mediaId"/> is null.</exception>
         /// <exception cref="ArgumentException"><paramref name="mediaId"/> is a zero-length string, contains only white space.</exception>
+        /// <since_tizen> 4 </since_tizen>
         public int CountTag(string mediaId, CountArguments arguments)
         {
             ValidateDatabase();
@@ -225,6 +237,7 @@ namespace Tizen.Content.MediaContent
         /// <exception cref="MediaDatabaseException">An error occurred while executing the command.</exception>
         /// <exception cref="ArgumentNullException"><paramref name="mediaId"/> is null.</exception>
         /// <exception cref="ArgumentException"><paramref name="mediaId"/> is a zero-length string, contains only white space.</exception>
+        /// <since_tizen> 4 </since_tizen>
         public MediaDataReader<Tag> SelectTag(string mediaId)
         {
             return SelectTag(mediaId, null);
@@ -241,6 +254,7 @@ namespace Tizen.Content.MediaContent
         /// <exception cref="MediaDatabaseException">An error occurred while executing the command.</exception>
         /// <exception cref="ArgumentNullException"><paramref name="mediaId"/> is null.</exception>
         /// <exception cref="ArgumentException"><paramref name="mediaId"/> is a zero-length string, contains only white space.</exception>
+        /// <since_tizen> 4 </since_tizen>
         public MediaDataReader<Tag> SelectTag(string mediaId, SelectArguments filter)
         {
             ValidateDatabase();
@@ -258,6 +272,7 @@ namespace Tizen.Content.MediaContent
         /// <exception cref="InvalidOperationException">The <see cref="MediaDatabase"/> is disconnected.</exception>
         /// <exception cref="ObjectDisposedException">The <see cref="MediaDatabase"/> has already been disposed of.</exception>
         /// <exception cref="MediaDatabaseException">An error occurred while executing the command.</exception>
+        /// <since_tizen> 4 </since_tizen>
         public int CountMedia()
         {
             return CountMedia(null);
@@ -271,6 +286,7 @@ namespace Tizen.Content.MediaContent
         /// <exception cref="InvalidOperationException">The <see cref="MediaDatabase"/> is disconnected.</exception>
         /// <exception cref="ObjectDisposedException">The <see cref="MediaDatabase"/> has already been disposed of.</exception>
         /// <exception cref="MediaDatabaseException">An error occurred while executing the command.</exception>
+        /// <since_tizen> 4 </since_tizen>
         public int CountMedia(CountArguments arguments)
         {
             ValidateDatabase();
@@ -288,6 +304,7 @@ namespace Tizen.Content.MediaContent
         /// <exception cref="MediaDatabaseException">An error occurred while executing the command.</exception>
         /// <exception cref="ArgumentNullException"><paramref name="mediaId"/> is null.</exception>
         /// <exception cref="ArgumentException"><paramref name="mediaId"/> is a zero-length string, contains only white space.</exception>
+        /// <since_tizen> 4 </since_tizen>
         public MediaInfo SelectMedia(string mediaId)
         {
             ValidateDatabase();
@@ -316,6 +333,7 @@ namespace Tizen.Content.MediaContent
         /// <exception cref="ObjectDisposedException">The <see cref="MediaDatabase"/> has already been disposed of.</exception>
         /// <exception cref="MediaDatabaseException">An error occurred while executing the command.</exception>
         /// <exception cref="ArgumentException"><paramref name="columnKey"/> is invalid.</exception>
+        /// <since_tizen> 4 </since_tizen>
         public int CountGroupBy(MediaInfoColumnKey columnKey)
         {
             return CountGroupBy(columnKey, null);
@@ -331,6 +349,7 @@ namespace Tizen.Content.MediaContent
         /// <exception cref="ObjectDisposedException">The <see cref="MediaDatabase"/> has already been disposed of.</exception>
         /// <exception cref="MediaDatabaseException">An error occurred while executing the command.</exception>
         /// <exception cref="ArgumentException"><paramref name="columnKey"/> is invalid.</exception>
+        /// <since_tizen> 4 </since_tizen>
         public int CountGroupBy(MediaInfoColumnKey columnKey, CountArguments arguments)
         {
             ValidateDatabase();
@@ -353,6 +372,7 @@ namespace Tizen.Content.MediaContent
         /// <exception cref="ObjectDisposedException">The <see cref="MediaDatabase"/> has already been disposed of.</exception>
         /// <exception cref="MediaDatabaseException">An error occurred while executing the command.</exception>
         /// <exception cref="ArgumentException"><paramref name="columnKey"/> is invalid.</exception>
+        /// <since_tizen> 4 </since_tizen>
         public MediaDataReader<string> SelectGroupBy(MediaInfoColumnKey columnKey)
         {
             return SelectGroupBy(columnKey, null);
@@ -368,6 +388,7 @@ namespace Tizen.Content.MediaContent
         /// <exception cref="ObjectDisposedException">The <see cref="MediaDatabase"/> has already been disposed of.</exception>
         /// <exception cref="MediaDatabaseException">An error occurred while executing the command.</exception>
         /// <exception cref="ArgumentException"><paramref name="columnKey"/> is invalid.</exception>
+        /// <since_tizen> 4 </since_tizen>
         public MediaDataReader<string> SelectGroupBy(MediaInfoColumnKey columnKey, SelectArguments arguments)
         {
             ValidateDatabase();
@@ -396,6 +417,7 @@ namespace Tizen.Content.MediaContent
         /// <exception cref="InvalidOperationException">The <see cref="MediaDatabase"/> is disconnected.</exception>
         /// <exception cref="ObjectDisposedException">The <see cref="MediaDatabase"/> has already been disposed of.</exception>
         /// <exception cref="MediaDatabaseException">An error occurred while executing the command.</exception>
+        /// <since_tizen> 4 </since_tizen>
         public MediaDataReader<MediaInfo> SelectMedia()
         {
             return SelectMedia(arguments: null);
@@ -409,6 +431,7 @@ namespace Tizen.Content.MediaContent
         /// <exception cref="InvalidOperationException">The <see cref="MediaDatabase"/> is disconnected.</exception>
         /// <exception cref="ObjectDisposedException">The <see cref="MediaDatabase"/> has already been disposed of.</exception>
         /// <exception cref="MediaDatabaseException">An error occurred while executing the command.</exception>
+        /// <since_tizen> 4 </since_tizen>
         public MediaDataReader<MediaInfo> SelectMedia(SelectArguments arguments)
         {
             ValidateDatabase();
@@ -460,6 +483,7 @@ namespace Tizen.Content.MediaContent
         /// <exception cref="ArgumentNullException"><paramref name="mediaId"/> is null.</exception>
         /// <exception cref="ArgumentException"><paramref name="mediaId"/> is a zero-length string, contains only white space.</exception>
         /// <exception cref="UnauthorizedAccessException">The caller has no required privilege.</exception>
+        /// <since_tizen> 4 </since_tizen>
         public bool Delete(string mediaId)
         {
             ValidateDatabase();
@@ -505,6 +529,7 @@ namespace Tizen.Content.MediaContent
         /// </exception>
         /// <exception cref="FileNotFoundException"><paramref name="path"/> does not exists.</exception>
         /// <exception cref="UnauthorizedAccessException">The caller has no required privilege.</exception>
+        /// <since_tizen> 4 </since_tizen>
         public MediaInfo Add(string path)
         {
             ValidateDatabase();
@@ -593,6 +618,7 @@ namespace Tizen.Content.MediaContent
         /// </exception>
         /// <exception cref="FileNotFoundException"><paramref name="paths"/> contains a path that does not exist.</exception>
         /// <exception cref="UnauthorizedAccessException">The caller has no required privilege.</exception>
+        /// <since_tizen> 4 </since_tizen>
         public async Task AddAsync(IEnumerable<string> paths)
         {
             ValidateDatabase();
@@ -635,6 +661,7 @@ namespace Tizen.Content.MediaContent
         /// <exception cref="ArgumentNullException"><paramref name="mediaId"/> is null.</exception>
         /// <exception cref="ArgumentException"><paramref name="mediaId"/> is a zero-length string, contains only white space.</exception>
         /// <exception cref="UnauthorizedAccessException">The caller has no required privilege.</exception>
+        /// <since_tizen> 4 </since_tizen>
         public bool UpdateFavorite(string mediaId, bool value)
         {
             ValidateDatabase();
@@ -701,6 +728,7 @@ namespace Tizen.Content.MediaContent
         /// </exception>
         /// <exception cref="FileNotFoundException"><paramref name="newPath"/> does not exists.</exception>
         /// <exception cref="UnauthorizedAccessException">The caller has no required privilege.</exception>
+        /// <since_tizen> 4 </since_tizen>
         public bool Move(string mediaId, string newPath)
         {
             ValidateDatabase();
@@ -766,6 +794,7 @@ namespace Tizen.Content.MediaContent
         ///     -or-<br/>
         ///     The media is in the external USB storage (<see cref="MediaInfo.StorageType"/> is <see cref="StorageType.ExternalUsb"/>).
         /// </exception>
+        /// <since_tizen> 4 </since_tizen>
         public Task<string> CreateThumbnailAsync(string mediaId)
         {
             return CreateThumbnailAsync(mediaId, CancellationToken.None);
@@ -797,6 +826,7 @@ namespace Tizen.Content.MediaContent
         ///     -or-<br/>
         ///     The media is in the external USB storage (<see cref="MediaInfo.StorageType"/> is <see cref="StorageType.ExternalUsb"/>).
         /// </exception>
+        /// <since_tizen> 4 </since_tizen>
         public Task<string> CreateThumbnailAsync(string mediaId, CancellationToken cancellationToken)
         {
             ValidateDatabase();
@@ -904,6 +934,7 @@ namespace Tizen.Content.MediaContent
         /// <exception cref="UnsupportedContentException">Face detection is not available for the given media.</exception>
         /// <exception cref="NotSupportedException">The required feature is not supported.</exception>
         /// <exception cref="UnauthorizedAccessException">The caller has no required privilege.</exception>
+        /// <since_tizen> 4 </since_tizen>
         public Task<int> DetectFaceAsync(string mediaId)
         {
             return DetectFaceAsync(mediaId, CancellationToken.None);
@@ -940,6 +971,7 @@ namespace Tizen.Content.MediaContent
         ///     The media is in the external USB storage (<see cref="MediaInfo.StorageType"/> is <see cref="StorageType.ExternalUsb"/>).
         /// </exception>
         /// <exception cref="NotSupportedException">The required feature is not supported.</exception>
+        /// <since_tizen> 4 </since_tizen>
         public Task<int> DetectFaceAsync(string mediaId, CancellationToken cancellationToken)
         {
             if (Features.IsSupported(Features.FaceRecognition) == false)

@@ -23,6 +23,7 @@ namespace Tizen.Applications.DataControl
     /// <summary>
     /// Represents the Consumer class for the DataControl consumer application.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public abstract class Consumer : IDisposable
     {
 
@@ -453,6 +454,7 @@ namespace Tizen.Applications.DataControl
         /// <exception cref="InvalidOperationException">Thrown in case of any internal error.</exception>
         /// <privilege>http://tizen.org/privilege/datasharing</privilege>
         /// <privilege>http://tizen.org/privilege/appmanager.launch</privilege>
+        /// <since_tizen> 3 </since_tizen>
         public void Insert(Bundle insertData)
         {
             int reqId;
@@ -488,6 +490,7 @@ namespace Tizen.Applications.DataControl
         /// <exception cref="InvalidOperationException">Thrown in case of any internal error.</exception>
         /// <privilege>http://tizen.org/privilege/datasharing</privilege>
         /// <privilege>http://tizen.org/privilege/appmanager.launch</privilege>
+        /// <since_tizen> 3 </since_tizen>
         public void Select(string[] columnList, string where, string order, int pageNumber = 1, int countPerPage = 20)
         {
             int reqId, i;
@@ -526,6 +529,7 @@ namespace Tizen.Applications.DataControl
         /// <exception cref="InvalidOperationException">Thrown in case of any internal error.</exception>
         /// <privilege>http://tizen.org/privilege/datasharing</privilege>
         /// <privilege>http://tizen.org/privilege/appmanager.launch</privilege>
+        /// <since_tizen> 3 </since_tizen>
         public void Delete(string where)
         {
             int reqId;
@@ -554,6 +558,7 @@ namespace Tizen.Applications.DataControl
         /// <exception cref="InvalidOperationException">Thrown in case of any internal error.</exception>
         /// <privilege>http://tizen.org/privilege/datasharing</privilege>
         /// <privilege>http://tizen.org/privilege/appmanager.launch</privilege>
+        /// <since_tizen> 3 </since_tizen>
         public void Update(Bundle updateData, string where)
         {
             int reqId;
@@ -591,6 +596,7 @@ namespace Tizen.Applications.DataControl
         /// <exception cref="InvalidOperationException">Thrown in case of any internal error.</exception>
         /// <privilege>http://tizen.org/privilege/datasharing</privilege>
         /// <privilege>http://tizen.org/privilege/appmanager.launch</privilege>
+        /// <since_tizen> 3 </since_tizen>
         public void BulkInsert(BulkData insertData)
         {
             int reqId;
@@ -624,6 +630,7 @@ namespace Tizen.Applications.DataControl
         /// <exception cref="InvalidOperationException">Thrown in case of any internal error.</exception>
         /// <privilege>http://tizen.org/privilege/datasharing</privilege>
         /// <privilege>http://tizen.org/privilege/appmanager.launch</privilege>
+        /// <since_tizen> 3 </since_tizen>
         public void MapAdd(string key, string value)
         {
             int reqId;
@@ -657,6 +664,7 @@ namespace Tizen.Applications.DataControl
         /// <exception cref="InvalidOperationException">Thrown in case of any internal error.</exception>
         /// <privilege>http://tizen.org/privilege/datasharing</privilege>
         /// <privilege>http://tizen.org/privilege/appmanager.launch</privilege>
+        /// <since_tizen> 3 </since_tizen>
         public void MapGet(string key, int pageNumber = 1, int countPerPage = 20)
         {
             int reqId;
@@ -689,6 +697,7 @@ namespace Tizen.Applications.DataControl
         /// <exception cref="InvalidOperationException">Thrown in case of any internal error.</exception>
         /// <privilege>http://tizen.org/privilege/datasharing</privilege>
         /// <privilege>http://tizen.org/privilege/appmanager.launch</privilege>
+        /// <since_tizen> 3 </since_tizen>
         public void MapRemove(string key, string value)
         {
             int reqId;
@@ -723,6 +732,7 @@ namespace Tizen.Applications.DataControl
         /// <exception cref="InvalidOperationException">Thrown in case of any internal error.</exception>
         /// <privilege>http://tizen.org/privilege/datasharing</privilege>
         /// <privilege>http://tizen.org/privilege/appmanager.launch</privilege>
+        /// <since_tizen> 3 </since_tizen>
         public void MapSet(string key, string oldValue, string newValue)
         {
             int reqId;
@@ -755,6 +765,7 @@ namespace Tizen.Applications.DataControl
         /// <exception cref="InvalidOperationException">Thrown in case of any internal error.</exception>
         /// <privilege>http://tizen.org/privilege/datasharing</privilege>
         /// <privilege>http://tizen.org/privilege/appmanager.launch</privilege>
+        /// <since_tizen> 3 </since_tizen>
         public void MapBulkAdd(BulkData addData)
         {
             int reqId;
@@ -795,6 +806,7 @@ namespace Tizen.Applications.DataControl
         /// <exception cref="InvalidOperationException">Thrown in case of any internal error.</exception>
         /// <privilege>http://tizen.org/privilege/datasharing</privilege>
         /// <privilege>http://tizen.org/privilege/appmanager.launch</privilege>
+        /// <since_tizen> 3 </since_tizen>
         public void DataChangeListen()
         {
             ResultType ret;
@@ -823,6 +835,7 @@ namespace Tizen.Applications.DataControl
         /// <param name="dataId">The DataControl Data ID.</param>
         /// <exception cref="ArgumentException">Thrown in case of an invalid parmaeter.</exception>
         /// <exception cref="InvalidOperationException">Thrown in case of any internal error.</exception>
+        /// <since_tizen> 3 </since_tizen>
         public Consumer(string providerId, string dataId)
         {
             ResultType ret;
@@ -861,6 +874,7 @@ namespace Tizen.Applications.DataControl
         /// <summary>
         /// Overrides this method if you want to handle the behavior when the DataChangeListen result is received.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         protected virtual void OnDataChangeListenResult(DataChangeListenResult result)
         {
             Log.Info(LogTag, "The OnDataChangeListenResult is not implemented.");
@@ -869,6 +883,7 @@ namespace Tizen.Applications.DataControl
         /// <summary>
         /// Overrides this method if you want to handle the behavior when the data change event is received.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         protected virtual void OnDataChange(ChangeType type, Bundle data)
         {
             Log.Info(LogTag, "The OnDataChange is not implemented.");
@@ -877,25 +892,30 @@ namespace Tizen.Applications.DataControl
         /// <summary>
         /// Overrides this method if you want to handle the behavior when the select response is received.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         protected abstract void OnSelectResult(SelectResult result);
 
         /// <summary>
         /// Overrides this method if you want to handle the behavior when the insert response is received.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         protected abstract void OnInsertResult(InsertResult result);
 
         /// <summary>
         /// Overrides this method if you want to handle the behavior when the update response is received.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         protected abstract void OnUpdateResult(UpdateResult result);
 
         /// <summary>
         /// Overrides this method if want to handle the behavior when the delete response is received.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         protected abstract void OnDeleteResult(DeleteResult result);
         /// <summary>
         /// Overrides this method if you want to handle the behavior when the BulkInsert response is received.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         protected virtual void OnBulkInsertResult(BulkInsertResult result)
         {
             Log.Info(LogTag, "The OnBulkInsertResult is not implemented.");
@@ -904,6 +924,7 @@ namespace Tizen.Applications.DataControl
         /// <summary>
         /// Overrides this method if you want to handle the behavior when the map get response is received.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         protected virtual void OnMapGetResult(MapGetResult result)
         {
             Log.Info(LogTag, "The OnMapGetResult is not implemented.");
@@ -912,6 +933,7 @@ namespace Tizen.Applications.DataControl
         /// <summary>
         /// Overrides this method if you want to handle the behavior when the map add response is received.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         protected virtual void OnMapAddResult(MapAddResult result)
         {
             Log.Info(LogTag, "The OnMapAddResult is not implemented.");
@@ -920,6 +942,7 @@ namespace Tizen.Applications.DataControl
         /// <summary>
         /// Overrides this method if you want to handle the behavior when the map set response is received.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         protected virtual void OnMapSetResult(MapSetResult result)
         {
             Log.Info(LogTag, "The OnMapSetResult is not implemented.");
@@ -928,6 +951,7 @@ namespace Tizen.Applications.DataControl
         /// <summary>
         /// Overrides this method if you want to handle the behavior when the map remove response is received.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         protected virtual void OnMapRemoveResult(MapRemoveResult result)
         {
             Log.Info(LogTag, "The OnMapRemoveResult is not implemented.");
@@ -936,6 +960,7 @@ namespace Tizen.Applications.DataControl
         /// <summary>
         /// Overrides this method if you want to handle the behavior when the BulkAdd response is received.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         protected virtual void OnMapBulkAddResult(MapBulkAddResult result)
         {
             Log.Info(LogTag, "The OnMapBulkAddResult is not implemented.");
@@ -945,6 +970,7 @@ namespace Tizen.Applications.DataControl
         /// Releases the unmanaged resources used by the Consumer class specifying whether to perform a normal dispose operation.
         /// </summary>
         /// <param name="disposing">true for a normal dispose operation; false to finalize the handle.</param>
+        /// <since_tizen> 3 </since_tizen>
         protected virtual void Dispose(bool disposing)
         {
             if (!_disposed)
@@ -968,6 +994,7 @@ namespace Tizen.Applications.DataControl
         /// <summary>
         /// Releases all resources used by the Consumer class.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public void Dispose()
         {
             Dispose(true);

@@ -27,7 +27,7 @@ namespace Tizen.Network.Mtp
     /// <summary>
     /// Enumeration for Mtp Error.
     /// </summary>
-    /// <since_tizen> 5 </since_tizen>
+    /// <since_tizen> 4 </since_tizen>
     public enum MtpError
     {
         /// <summary>

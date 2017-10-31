@@ -22,6 +22,7 @@ namespace Tizen.WebView
     /// <summary>
     /// Argument from the SmartCallback.
     /// </summary>
+    /// <since_tizen> 4 </since_tizen>
     public class SmartCallbackArgs : EventArgs
     {
         private IntPtr _arg;
@@ -35,6 +36,7 @@ namespace Tizen.WebView
         /// Gets argument as integer type.
         /// </summary>
         /// <returns>Argument as integer type</returns>
+        /// <since_tizen> 4 </since_tizen>
         public int GetAsInteger()
         {
             if (_arg == IntPtr.Zero)
@@ -48,6 +50,7 @@ namespace Tizen.WebView
         /// Gets argument as double type.
         /// </summary>
         /// <returns>Argument as double type</returns>
+        /// <since_tizen> 4 </since_tizen>
         public double GetAsDouble()
         {
             if (_arg == IntPtr.Zero)
@@ -63,6 +66,7 @@ namespace Tizen.WebView
         /// Gets argument as boolean type.
         /// </summary>
         /// <returns>Argument as boolean type</returns>
+        /// <since_tizen> 4 </since_tizen>
         public bool GetAsBoolean()
         {
             if (_arg == IntPtr.Zero)
@@ -76,6 +80,7 @@ namespace Tizen.WebView
         /// Gets argument as string type.
         /// </summary>
         /// <returns>Argument as string type</returns>
+        /// <since_tizen> 4 </since_tizen>
         public string GetAsString()
         {
             if (_arg == IntPtr.Zero)

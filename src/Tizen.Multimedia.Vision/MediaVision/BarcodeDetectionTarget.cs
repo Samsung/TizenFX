@@ -19,7 +19,7 @@ namespace Tizen.Multimedia.Vision
     /// <summary>
     /// Specifies the target of <see cref="BarcodeDetector"/>.
     /// </summary>
-    /// <since_tizen> 3 </since_tizen>
+    /// <since_tizen> 4 </since_tizen>
     public enum BarcodeDetectionTarget
     {
         /// <summary>

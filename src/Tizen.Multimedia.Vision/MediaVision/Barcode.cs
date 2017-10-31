@@ -19,13 +19,13 @@ namespace Tizen.Multimedia.Vision
     /// <summary>
     /// Represents a detected barcode.
     /// </summary>
-    /// <since_tizen> 3</since_tizen>
+    /// <since_tizen> 4</since_tizen>
     public class Barcode
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="Barcode"/> class.
         /// </summary>
-        /// <since_tizen> 3</since_tizen>
+        /// <since_tizen> 4</since_tizen>
         public Barcode(Quadrangle region, string message, BarcodeType type)
         {
             Region = region;
@@ -36,25 +36,26 @@ namespace Tizen.Multimedia.Vision
         /// <summary>
         /// The quadrangle location of the detected barcode.
         /// </summary>
-        /// <since_tizen> 3</since_tizen>
+        /// <since_tizen> 4</since_tizen>
         public Quadrangle Region { get; }
 
         /// <summary>
         /// The decoded message of the barcode.
         /// </summary>
-        /// <since_tizen> 3</since_tizen>
+        /// <since_tizen> 4</since_tizen>
         public string Message { get; }
 
         /// <summary>
         /// The type of the detected barcode.
         /// </summary>
-        /// <since_tizen> 3</since_tizen>
+        /// <since_tizen> 4</since_tizen>
         public BarcodeType Type { get; }
 
         /// <summary>
         /// Returns a string that represents the current object.
         /// </summary>
         /// <returns>A string that represents the current object.</returns>
+        /// <since_tizen> 4 </since_tizen>
         public override string ToString() =>
             $"Region={Region}, Message={Message}, Type={Type.ToString()}";
     }

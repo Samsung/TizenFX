@@ -6,6 +6,7 @@ namespace Tizen.Applications.AttachPanel
     /// <summary>
     /// Attach panel internal implementation
     /// </summary>
+    /// <since_tizen> 4 </since_tizen>
     public partial class AttachPanel
     {
         private static IntPtr _attachPanel;

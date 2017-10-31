@@ -22,6 +22,7 @@ namespace Tizen.Network.Bluetooth
     /// This class is used to notify changes of the target device (For example, media player) to the control device (For example, headset).
     /// </summary>
     /// <privilege> http://tizen.org/privilege/bluetooth </privilege>
+    /// <since_tizen> 3 </since_tizen>
     public class BluetoothAvrcp : BluetoothProfile
     {
         internal BluetoothAvrcp()
@@ -31,6 +32,7 @@ namespace Tizen.Network.Bluetooth
         /// <summary>
         /// The TargetConnectionStateChanged event is invoked when the connection state is changed.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public event EventHandler<TargetConnectionStateChangedEventArgs> TargetConnectionStateChanged
         {
             add
@@ -46,6 +48,7 @@ namespace Tizen.Network.Bluetooth
         /// <summary>
         /// The EqualizerStateChanged event is invoked when the equalizer state is changed by the remote control device.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public event EventHandler<EqualizerStateChangedEventArgs> EqualizerStateChanged
         {
             add
@@ -61,6 +64,7 @@ namespace Tizen.Network.Bluetooth
         /// <summary>
         /// The RepeatModeChanged event is invoked when the repeat mode is changed by the remote control device.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public event EventHandler<RepeatModeChangedEventArgs> RepeatModeChanged
         {
             add
@@ -76,6 +80,7 @@ namespace Tizen.Network.Bluetooth
         /// <summary>
         /// The ShuffleModeChanged event is invoked when the shuffle mode is changed by the remote control device.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public event EventHandler<ShuffleModeChangedeventArgs> ShuffleModeChanged
         {
             add
@@ -91,6 +96,7 @@ namespace Tizen.Network.Bluetooth
         /// <summary>
         /// The ScanModeChanged event is invoked when the scan mode is changed by the remote control device.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public event EventHandler<ScanModeChangedEventArgs> ScanModeChanged
         {
             add
@@ -113,6 +119,7 @@ namespace Tizen.Network.Bluetooth
         /// <exception cref="NotSupportedException">Thrown when the Bluetooth is not supported.</exception>
         /// <exception cref="InvalidOperationException">Thrown when the Bluetooth is not enabled
         /// or when notifying the equalizer state to the remote device fails.</exception>
+        /// <since_tizen> 3 </since_tizen>
         public void NotifyEqualizerState(EqualizerState state)
         {
             if (BluetoothAdapter.IsBluetoothEnabled && Globals.IsInitialize)
@@ -136,6 +143,7 @@ namespace Tizen.Network.Bluetooth
         /// <exception cref="InvalidOperationException">Thrown when the Bluetooth is not enabled
         /// or when notifying the repeat mode state to the remote device fails.
         /// </exception>
+        /// <since_tizen> 3 </since_tizen>
         public void NotifyRepeatMode(RepeatMode mode)
         {
             if (BluetoothAdapter.IsBluetoothEnabled && Globals.IsInitialize)
@@ -158,6 +166,7 @@ namespace Tizen.Network.Bluetooth
         /// <exception cref="NotSupportedException">Thrown when the Bluetooth is not supported.</exception>
         /// <exception cref="InvalidOperationException">Thrown when the Bluetooth is not enabled
         /// or when notifying the shuffle mode state to the remote device fails.</exception>
+        /// <since_tizen> 3 </since_tizen>
         public void NotifyShuffleMode(ShuffleMode mode)
         {
             if (BluetoothAdapter.IsBluetoothEnabled && Globals.IsInitialize)
@@ -180,6 +189,7 @@ namespace Tizen.Network.Bluetooth
         /// <exception cref="NotSupportedException">Thrown when the Bluetooth is not supported.</exception>
         /// <exception cref="InvalidOperationException">Thrown when the Bluetooth is not enabled
         /// or when notifying the scan mode state to the remote device fails.</exception>
+        /// <since_tizen> 3 </since_tizen>
         public void NotifyScanMode(ScanMode mode)
         {
             if (BluetoothAdapter.IsBluetoothEnabled && Globals.IsInitialize)
@@ -202,6 +212,7 @@ namespace Tizen.Network.Bluetooth
         /// <exception cref="NotSupportedException">Thrown when the Bluetooth is not supported.</exception>
         /// <exception cref="InvalidOperationException">Thrown when the Bluetooth is not enabled
         /// or when notifying the player state to the remote device fails.</exception>
+        /// <since_tizen> 3 </since_tizen>
         public void NotifyPlayerState(PlayerState state)
         {
             if (BluetoothAdapter.IsBluetoothEnabled && Globals.IsInitialize)
@@ -224,6 +235,7 @@ namespace Tizen.Network.Bluetooth
         /// <exception cref="NotSupportedException">Thrown when the Bluetooth is not supported.</exception>
         /// <exception cref="InvalidOperationException">Thrown when the Bluetooth is not enabled
         /// or when notifying the current position state to the remote device fails.</exception>
+        /// <since_tizen> 3 </since_tizen>
         public void NotifyCurrentPosition(uint position)
         {
             if (BluetoothAdapter.IsBluetoothEnabled && Globals.IsInitialize)
@@ -246,6 +258,7 @@ namespace Tizen.Network.Bluetooth
         /// <exception cref="NotSupportedException">Thrown when the Bluetooth is not supported.</exception>
         /// <exception cref="InvalidOperationException">Thrown when the Bluetooth is not enabled
         /// or when notifying the shuffle track state to the remote device fails.</exception>
+        /// <since_tizen> 3 </since_tizen>
         public void NotifyTrack(Track trackData)
         {
             if (BluetoothAdapter.IsBluetoothEnabled && Globals.IsInitialize)

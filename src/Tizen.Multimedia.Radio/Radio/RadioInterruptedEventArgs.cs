@@ -21,6 +21,7 @@ namespace Tizen.Multimedia
     /// <summary>
     /// Provides data for the <see cref="Radio.Interrupted"/> event.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public class RadioInterruptedEventArgs : EventArgs
     {
         internal RadioInterruptedEventArgs(RadioInterruptedReason reason)
@@ -32,12 +33,14 @@ namespace Tizen.Multimedia
         /// Gets the reason.
         /// </summary>
         /// <value>The reason for interruption.</value>
+        /// <since_tizen> 3 </since_tizen>
         public RadioInterruptedReason Reason { get; }
 
         /// <summary>
         /// Returns a string that represents the current object.
         /// </summary>
         /// <returns>A string that represents the current object.</returns>
+        /// <since_tizen> 3 </since_tizen>
         public override string ToString() => $"Reason={ Reason.ToString() }";
     }
 }

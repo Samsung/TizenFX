@@ -21,6 +21,7 @@ namespace Tizen.Content.MediaContent
     /// <summary>
     /// Specifies the database errors.
     /// </summary>
+    /// <since_tizen> 4 </since_tizen>
     public enum MediaDatabaseError
     {
         /// <summary>
@@ -37,6 +38,7 @@ namespace Tizen.Content.MediaContent
     /// <summary>
     /// The exception that is thrown when a database operation failed.
     /// </summary>
+    /// <since_tizen> 4 </since_tizen>
     public class MediaDatabaseException : Exception
     {
         internal MediaDatabaseException(MediaDatabaseError error) : this(error, error.ToString())
@@ -57,6 +59,7 @@ namespace Tizen.Content.MediaContent
         /// Gets the error that causes the exception.
         /// </summary>
         /// <value>The <see cref="MediaDatabaseError"/> that causes the exception.</value>
+        /// <since_tizen> 4 </since_tizen>
         public MediaDatabaseError Error { get; }
     }
 }

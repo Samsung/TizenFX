@@ -27,22 +27,27 @@ namespace Tizen.Network.Nsd
         /// <summary>
         /// Available DNS-SD service found.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         Available,
         /// <summary>
         /// DNS-SD service not available.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         Unavailable,
         /// <summary>
         /// Lookup failure for service name.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         ServiceNameLookupFailed,
         /// <summary>
         /// Lookup failure for host name and port number.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         HostNameLookupFailed,
         /// <summary>
         /// Lookup failure for IP address.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         AddressLookupFailed
     }
 
@@ -55,10 +60,12 @@ namespace Tizen.Network.Nsd
         /// <summary>
         /// Available SSDP service found.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         Available,
         /// <summary>
         /// SSDP service not available.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         Unavailable
     }
 

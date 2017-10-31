@@ -21,6 +21,7 @@ namespace Tizen.Multimedia
     /// <summary>
     /// Provides data for the <see cref="Camera.Capturing"/> event.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public class CameraCapturingEventArgs : EventArgs
     {
         internal CameraCapturingEventArgs(StillImage main, StillImage post, StillImage thumbnail)
@@ -33,7 +34,7 @@ namespace Tizen.Multimedia
         /// <summary>
         /// Gets the main image data of the captured still image.
         /// </summary>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 4 </since_tizen>
         public StillImage MainImage { get; }
 
         /// <summary>

@@ -25,6 +25,7 @@ namespace Tizen.Multimedia
     /// <seealso cref="StreamRecorder"/>
     /// <seealso cref="StreamRecorderOptions"/>
     /// <seealso cref="StreamRecorderVideoOptions"/>
+    /// <since_tizen> 4 </since_tizen>
     public class StreamRecorderAudioOptions
     {
         private const int DefaultSampleRate = 0;
@@ -39,6 +40,7 @@ namespace Tizen.Multimedia
         /// <see cref="SampleRate"/>, <see cref="BitRate"/> and <see cref="Channels"/> will be set as default.
         /// </remarks>
         /// <exception cref="ArgumentException"><paramref name="codec"/> is not valid.</exception>
+        /// <since_tizen> 4 </since_tizen>
         public StreamRecorderAudioOptions(RecorderAudioCodec codec) :
             this(codec, DefaultSampleRate, DefaultBitRate, DefaultChannels)
         {
@@ -60,6 +62,7 @@ namespace Tizen.Multimedia
         ///     -or-<br/>
         ///     <paramref name="channels"/> is less than or equal to zero.
         /// </exception>
+        /// <since_tizen> 4 </since_tizen>
         public StreamRecorderAudioOptions(RecorderAudioCodec codec, int sampleRate, int bitRate, int channels)
         {
             Codec = codec;
@@ -76,6 +79,7 @@ namespace Tizen.Multimedia
         /// <value>The codec for audio stream recording.</value>
         /// <exception cref="ArgumentException"><paramref name="value"/> is not valid.</exception>
         /// <seealso cref="StreamRecorder.GetSupportedAudioCodecs"/>
+        /// <since_tizen> 4 </since_tizen>
         public RecorderAudioCodec Codec
         {
             get => _codec;
@@ -100,6 +104,7 @@ namespace Tizen.Multimedia
         /// <remarks>If the value is zero, the sample rate will be decided based on input buffers.</remarks>
         /// <value>The sample rate value for stream recorder. The default is zero.</value>
         /// <exception cref="ArgumentOutOfRangeException"><paramref name="value"/> is less than zero.</exception>
+        /// <since_tizen> 4 </since_tizen>
         public int SampleRate
         {
             get => _sampleRate;
@@ -122,6 +127,7 @@ namespace Tizen.Multimedia
         /// </summary>
         /// <value>The bit rate value for audio stream recording. The default is 128000.</value>
         /// <exception cref="ArgumentOutOfRangeException"><paramref name="value"/> is less than or equal to zero.</exception>
+        /// <since_tizen> 4 </since_tizen>
         public int BitRate
         {
             get => _bitRate;
@@ -144,6 +150,7 @@ namespace Tizen.Multimedia
         /// </summary>
         /// <value>The number of audio channels for audio stream recording. The default is 2.</value>
         /// <exception cref="ArgumentOutOfRangeException"><paramref name="value"/> is less than or equal to zero.</exception>
+        /// <since_tizen> 4 </since_tizen>
         public int Channels
         {
             get => _channels;

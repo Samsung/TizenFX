@@ -21,6 +21,7 @@ namespace Tizen.Multimedia
     /// <summary>
     /// Provides data for the <see cref="Recorder.RecordingLimitReached"/> event.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public class RecordingLimitReachedEventArgs : EventArgs
     {
         /// <summary>
@@ -28,6 +29,7 @@ namespace Tizen.Multimedia
         /// with the specified type.
         /// </summary>
         /// <param name="type">The type of the limit.</param>
+        /// <since_tizen> 3 </since_tizen>
         public RecordingLimitReachedEventArgs(RecordingLimitType type)
         {
             Type = type;
@@ -36,6 +38,7 @@ namespace Tizen.Multimedia
         /// <summary>
         /// Gets the type of the limit.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public RecordingLimitType Type { get; }
     }
 }

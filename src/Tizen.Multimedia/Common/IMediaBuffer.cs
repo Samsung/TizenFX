@@ -21,6 +21,7 @@ namespace Tizen.Multimedia
     /// <summary>
     /// Provides functionality to read and write the media buffer.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public interface IMediaBuffer
     {
         /// <summary>
@@ -34,6 +35,7 @@ namespace Tizen.Multimedia
         /// </exception>
         /// <exception cref="ObjectDisposedException">The object that owns the current buffer has already been disposed of.</exception>
         /// <exception cref="InvalidOperationException">The buffer is not available, i.e. not writable state.</exception>
+        /// <since_tizen> 4 </since_tizen>
         byte this[int index]
         {
             get;
@@ -43,12 +45,14 @@ namespace Tizen.Multimedia
         /// <summary>
         /// Gets the size of the buffer, in bytes.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         int Length { get; }
 
         /// <summary>
         /// Gets the value indicating whether the <see cref="IMediaBuffer"/> is read-only.
         /// </summary>
         /// <value> true if the <see cref="IMediaBuffer"/> is read-only; otherwise, false.</value>
+        /// <since_tizen> 4 </since_tizen>
         bool IsReadOnly { get; }
 
         /// <summary>
@@ -60,6 +64,7 @@ namespace Tizen.Multimedia
         /// <exception cref="ArgumentNullException"><paramref name="dest"/> is null.</exception>
         /// <exception cref="ArgumentOutOfRangeException"><paramref name="startIndex"/> or <paramref name="length"/> is not valid.</exception>
         /// <exception cref="ObjectDisposedException">The object that owns the current buffer has already been disposed of.</exception>
+        /// <since_tizen> 4 </since_tizen>
         void CopyTo(byte[] dest, int startIndex, int length);
 
         /// <summary>
@@ -73,6 +78,7 @@ namespace Tizen.Multimedia
         /// <exception cref="ArgumentOutOfRangeException"><paramref name="startIndex"/>, <paramref name="length"/>,
         ///     or <paramref name="offset"/> is not valid.</exception>
         /// <exception cref="ObjectDisposedException">The object that owns the current buffer has already been disposed of.</exception>
+        /// <since_tizen> 4 </since_tizen>
         void CopyTo(byte[] dest, int startIndex, int length, int offset);
 
         /// <summary>
@@ -85,6 +91,7 @@ namespace Tizen.Multimedia
         /// <exception cref="ArgumentOutOfRangeException"><paramref name="startIndex"/> or <paramref name="length"/> is not valid.</exception>
         /// <exception cref="ObjectDisposedException">The object that owns the current buffer has already been disposed of.</exception>
         /// <exception cref="InvalidOperationException">The buffer is not available. i.e. not writable state.</exception>
+        /// <since_tizen> 3 </since_tizen>
         void CopyFrom(byte[] source, int startIndex, int length);
 
         /// <summary>
@@ -99,6 +106,7 @@ namespace Tizen.Multimedia
         ///     or <paramref name="offset"/> is not valid.</exception>
         /// <exception cref="ObjectDisposedException">The object that owns the current buffer has already been disposed of.</exception>
         /// <exception cref="InvalidOperationException">The buffer is not available. i.e. not writable state.</exception>
+        /// <since_tizen> 3 </since_tizen>
         void CopyFrom(byte[] source, int startIndex, int length, int offset);
     }
 }

@@ -22,6 +22,7 @@ namespace Tizen.Applications
     /// <summary>
     /// Represents a factory class for making the RemoteView objects.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public static class RemoteViewFactory
     {
         private static bool _ready;
@@ -36,6 +37,7 @@ namespace Tizen.Applications
         /// <exception cref="InvalidOperationException">Thrown when this operation failed.</exception>
         /// <exception cref="UnauthorizedAccessException">Thrown when this operation is denied.</exception>
         /// <exception cref="NotSupportedException">Thrown when this operation is not supported for this device.</exception>
+        /// <since_tizen> 3 </since_tizen>
         public static void Init(EvasObject win)
         {
             if (_ready)
@@ -59,6 +61,7 @@ namespace Tizen.Applications
         /// <exception cref="InvalidOperationException">Thrown when this operation failed.</exception>
         /// <exception cref="UnauthorizedAccessException">Thrown when this operation is denied.</exception>
         /// <exception cref="NotSupportedException">Thrown when this operation is not supported for this device.</exception>
+        /// <since_tizen> 3 </since_tizen>
         public static RemoteView Create(EvasObject parent, string widgetId, string content, double period,
             bool previewImage = true, bool overlayText = true, bool loadingMessage = true)
         {
@@ -89,6 +92,7 @@ namespace Tizen.Applications
         /// <exception cref="InvalidOperationException">Thrown when this operation failed.</exception>
         /// <exception cref="UnauthorizedAccessException">Thrown when this operation is denied.</exception>
         /// <exception cref="NotSupportedException">Thrown when this operation is not supported for this device.</exception>
+        /// <since_tizen> 3 </since_tizen>
         public static void Shutdown()
         {
             if (!_ready)

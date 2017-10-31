@@ -21,6 +21,7 @@ namespace Tizen.Network.Bluetooth
     /// Any common properties/functions can be added in this class in future.
     /// </summary>
     /// <privilege> http://tizen.org/privilege/bluetooth </privilege>
+    /// <since_tizen> 3 </since_tizen>
     public abstract class BluetoothProfile
     {
         internal string RemoteAddress { get; set; }

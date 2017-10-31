@@ -19,7 +19,7 @@ namespace Tizen.Multimedia.Vision
     /// <summary>
     /// Represents the result of <see cref="FaceRecognizer"/> operations.
     /// </summary>
-    /// <since_tizen> 3 </since_tizen>
+    /// <since_tizen> 4 </since_tizen>
     public class FaceRecognitionResult
     {
         internal FaceRecognitionResult(bool recognized, double confidence, int label, Rectangle? area)
@@ -33,19 +33,19 @@ namespace Tizen.Multimedia.Vision
         /// <summary>
         /// Gets the value indicating the recognition is successful.
         /// </summary>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 4 </since_tizen>
         public bool Success { get; }
 
         /// <summary>
         /// Gets the label of the recognized face.
         /// </summary>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 4 </since_tizen>
         public int Label { get; }
 
         /// <summary>
         /// Gets the location of the recognized face.
         /// </summary>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 4 </since_tizen>
         public Rectangle? Area { get; }
 
         /// <summary>
@@ -54,7 +54,7 @@ namespace Tizen.Multimedia.Vision
         /// threshold for this value can be high (0.85-0.95). If model was learned for small amount of examples,
         /// then threshold can be reduced (0.5-0.85).
         /// </summary>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 4 </since_tizen>
         public double Confidence { get; }
     }
 }

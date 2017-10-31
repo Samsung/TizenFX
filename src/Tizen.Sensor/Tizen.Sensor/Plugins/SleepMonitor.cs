@@ -21,6 +21,7 @@ namespace Tizen.Sensor
     /// <summary>
     /// The SleepMonitor class is used for registering callbacks for the sleep monitor and getting the sleep data.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public sealed class SleepMonitor : Sensor
     {
         private static string SleepMonitorKey = "http://tizen.org/feature/sensor.sleep_monitor";

@@ -21,6 +21,7 @@ namespace Tizen.Applications
     /// <summary>
     /// This class is a parameter of the PackageManager::GetPackages method.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public class PackageFilter
     {
         private IDictionary<string, bool> _filter;
@@ -28,6 +29,7 @@ namespace Tizen.Applications
         /// <summary>
         /// The default constructor with an empty filter list. All the installed applications will satisfy this filter unless updated with more specific filters.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public PackageFilter()
         {
             _filter = new Dictionary<string, bool>();
@@ -36,6 +38,7 @@ namespace Tizen.Applications
         /// <summary>
         /// The constructor with specific filters. Using this will filter out the installed packages which do not meet the filter criteria.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public PackageFilter(IDictionary<string, bool> filter)
         {
             _filter = filter;
@@ -44,6 +47,7 @@ namespace Tizen.Applications
         /// <summary>
         /// Filters to be used in the GetPackages method.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public IDictionary<string, bool> Filters
         {
             get
@@ -55,27 +59,33 @@ namespace Tizen.Applications
         /// <summary>
         /// This class contains possible keys for the filter to be used in the GetPackages method.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public static class Keys
         {
             /// <summary>
             /// Key of the boolean property for filtering if the package is removable.
             /// </summary>
+            /// <since_tizen> 3 </since_tizen>
             public const string Removable = "PMINFO_PKGINFO_PROP_PACKAGE_REMOVABLE";
             /// <summary>
             /// Key of the boolean property for filtering if the package is read-only.
             /// </summary>
+            /// <since_tizen> 3 </since_tizen>
             public const string ReadOnly = "PMINFO_PKGINFO_PROP_PACKAGE_READONLY";
             /// <summary>
             /// Key of the boolean property for filtering if the package supports disabling.
             /// </summary>
+            /// <since_tizen> 3 </since_tizen>
             public const string SupportsDisable = "PMINFO_PKGINFO_PROP_PACKAGE_SUPPORT_DISABLE";
             /// <summary>
             /// Key of the boolean property for filtering if the package is disabled.
             /// </summary>
+            /// <since_tizen> 3 </since_tizen>
             public const string Disable = "PMINFO_PKGINFO_PROP_PACKAGE_DISABLE";
             /// <summary>
             /// Key of the boolean property for filtering if the package is preloaded.
             /// </summary>
+            /// <since_tizen> 3 </since_tizen>
             public const string Preload = "PMINFO_PKGINFO_PROP_PACKAGE_PRELOAD";
         }
     }

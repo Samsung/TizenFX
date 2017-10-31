@@ -21,6 +21,7 @@ namespace Tizen.Applications
     /// <summary>
     /// The class containing common properties of the Badge.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public class Badge
     {
         private int count = 0;
@@ -75,7 +76,7 @@ namespace Tizen.Applications
         /// <summary>
         /// Property for display visibility. True if the badge display visible, otherwise false..
         /// </summary>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 4 </since_tizen>
         public bool Visible{ get; set; }
 
         private bool IsNegativeNumber(int number)

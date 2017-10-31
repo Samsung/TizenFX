@@ -19,12 +19,14 @@ namespace Tizen.WebView
     /// <summary>
     /// This class provides methods to initialize and shutdown Chromium-efl.
     /// </summary>
+    /// <since_tizen> 4 </since_tizen>
     public static class Chromium
     {
         /// <summary>
         /// Initializes Chromium's instance.
         /// </summary>
         /// <returns>A reference count of Chromium's instance</returns>
+        /// <since_tizen> 4 </since_tizen>
         public static int Initialize()
         {
             return Interop.ChromiumEwk.ewk_init();
@@ -34,6 +36,7 @@ namespace Tizen.WebView
         /// Decreases a reference count of WebKit's instance, possibly destroying it.
         /// </summary>
         /// <returns>A reference count of Chromium's instance</returns>
+        /// <since_tizen> 4 </since_tizen>
         public static int Shutdown()
         {
             return Interop.ChromiumEwk.ewk_shutdown();

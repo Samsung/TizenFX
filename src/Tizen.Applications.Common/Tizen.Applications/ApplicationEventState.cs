@@ -21,6 +21,7 @@ namespace Tizen.Applications
     /// <summary>
     /// Enumeration for the application event state.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public enum ApplicationEventState
     {
         /// <summary>

@@ -285,6 +285,7 @@ namespace Tizen.Applications.Messages
         /// Releases the unmanaged resources used by the RemotePort class specifying whether to perform a normal dispose operation.
         /// </summary>
         /// <param name="disposing">true for a normal dispose operation; false to finalize the handle.</param>
+        /// <since_tizen> 4 </since_tizen>
         protected virtual void Dispose(bool disposing)
         {
             if (_disposed)
@@ -317,10 +318,12 @@ namespace Tizen.Applications.Messages
         /// <summary>
         /// Value representing Remote Port state is unregistered
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         Unregistered = 0,
         /// <summary>
         /// Value representing Remote Port state is registered
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         Registered = 1
     }
 }

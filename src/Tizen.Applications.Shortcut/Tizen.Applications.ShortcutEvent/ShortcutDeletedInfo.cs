@@ -19,16 +19,19 @@ namespace Tizen.Applications.Shortcut
     /// <summary>
     /// A class for getting information of the Shortcut.
     /// </summary>
+    /// <since_tizen> 4 </since_tizen>
     public class ShortcutDeletedInfo
     {
         /// <summary>
         /// Gets the name of package.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         public string AppId { get; internal set; }
 
         /// <summary>
         /// Gets the name of the created shortcut icon.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         public string ShortcutName { get; internal set; }
     }
 }

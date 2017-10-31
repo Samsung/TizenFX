@@ -21,6 +21,7 @@ namespace Tizen.WebView
     /// <summary>
     /// Enumeration that contains option for cache model.
     /// </summary>
+    /// <since_tizen> 4 </since_tizen>
     public enum CacheModel
     {
         /// <summary>
@@ -44,6 +45,7 @@ namespace Tizen.WebView
     /// Applications have the option of creating a context different from the default one and using it for a group of pages.
     /// All pages in the same context share the same preferences, visited link set, local storage, and so on.
     /// </remarks>
+    /// <since_tizen> 4 </since_tizen>
     public class Context
     {
         private IntPtr _handle;
@@ -60,6 +62,7 @@ namespace Tizen.WebView
         /// <remarks>
         /// The default cache model is DocumentViewer.
         /// </remarks>
+        /// <since_tizen> 4 </since_tizen>
         public CacheModel CacheModel
         {
             get
@@ -77,6 +80,7 @@ namespace Tizen.WebView
         /// Gets the CookieManager object for this context.
         /// </summary>
         /// <returns>The CookieManager object</returns>
+        /// <since_tizen> 4 </since_tizen>
         public CookieManager GetCookieManager()
         {
             if (_cookieManager == null)

@@ -21,6 +21,7 @@ namespace Tizen.Sensor
     /// <summary>
     /// The TemperatureSensor class is used for registering callbacks for the temperature sensor and getting the temperature data.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public sealed class TemperatureSensor : Sensor
     {
         private static string TemperatureSensorKey = "http://tizen.org/feature/sensor.temperature";

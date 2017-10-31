@@ -21,6 +21,7 @@ namespace Tizen.Multimedia
     /// <summary>
     /// Provides a means to get max volume levels.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public class MaxVolumeLevel
     {
         internal MaxVolumeLevel()
@@ -34,6 +35,7 @@ namespace Tizen.Multimedia
         /// <value>The maximum volume level.</value>
         /// <exception cref="ArgumentException"><paramref name="type"/> is invalid.</exception>
         /// <exception cref="ArgumentOutOfRangeException"><paramref name="type"/> is <see cref="AudioVolumeType.None"/>.</exception>
+        /// <since_tizen> 3 </since_tizen>
         public int this[AudioVolumeType type]
         {
             get

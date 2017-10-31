@@ -21,6 +21,7 @@ namespace Tizen.Sensor
     /// <summary>
     /// The SleepMonitor changed event arguments class is used for storing the data returned by a sleep monitor.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public class SleepMonitorDataUpdatedEventArgs : EventArgs
     {
         internal SleepMonitorDataUpdatedEventArgs(int sleepState)

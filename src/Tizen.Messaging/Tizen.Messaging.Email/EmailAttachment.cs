@@ -19,15 +19,18 @@ namespace Tizen.Messaging.Email
     /// <summary>
     /// Represents an email attachment.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public class EmailAttachment
     {
         /// <summary>
         /// The absolute full path of the file to be attached.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public string FilePath { get; set; }
         /// <summary>
         /// The constructor.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public EmailAttachment()
         {
 

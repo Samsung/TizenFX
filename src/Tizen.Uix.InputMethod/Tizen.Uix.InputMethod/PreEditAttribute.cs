@@ -23,6 +23,7 @@ namespace Tizen.Uix.InputMethod
     /// <summary>
     /// Enumeration for Attribute Type
     /// </summary>
+    /// <since_tizen> 4 </since_tizen>
     public enum AttributeType
     {
         /// <summary>
@@ -37,11 +38,13 @@ namespace Tizen.Uix.InputMethod
     /// <summary>
     /// This class represents the attributes for preedit string.
     /// </summary>
+    /// <since_tizen> 4 </since_tizen>
     public class PreEditAttribute
     {
         /// <summary>
         /// The start position in the string of this attribute
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         public uint Start
         {
             get;
@@ -51,6 +54,7 @@ namespace Tizen.Uix.InputMethod
         /// <summary>
         /// The character length of this attribute, the range is [Start, Start+Length]
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         public uint Length
         {
             get;
@@ -60,6 +64,7 @@ namespace Tizen.Uix.InputMethod
         /// <summary>
         /// The type of this attribute
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         public AttributeType Type
         {
             get;
@@ -69,6 +74,7 @@ namespace Tizen.Uix.InputMethod
         /// <summary>
         /// The value of this attribute
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         public uint Value
         {
             get;

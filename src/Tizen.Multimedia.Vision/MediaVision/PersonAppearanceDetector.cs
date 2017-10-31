@@ -25,7 +25,7 @@ namespace Tizen.Multimedia.Vision
     /// <feature>http://tizen.org/feature/vision.face_recognition</feature>
     /// <feature>http://tizen.org/feature/vision.image_recognition</feature>
     /// <seealso cref="PersonAppearanceDetectionConfiguration"/>
-    /// <since_tizen> 3 </since_tizen>
+    /// <since_tizen> 4 </since_tizen>
     public class PersonAppearanceDetector : SurveillanceEngine
     {
         private const string KeyAppearedNumber = "NUMBER_OF_APPEARED_PERSONS";
@@ -41,7 +41,7 @@ namespace Tizen.Multimedia.Vision
         /// Initializes a new instance of the <see cref="PersonAppearanceDetector"/> class.
         /// </summary>
         /// <exception cref="NotSupportedException">The required features are not supported.</exception>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 4 </since_tizen>
         public PersonAppearanceDetector() : base(PersonAppearanceEventType)
         {
         }
@@ -50,7 +50,7 @@ namespace Tizen.Multimedia.Vision
         /// Occurs when the any appearance changes detected.
         /// </summary>
         /// <remarks>The event handler will be executed on an internal thread.</remarks>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 4 </since_tizen>
         public event EventHandler<PersonAppearanceDetectedEventArgs> Detected;
 
         internal override void OnEventDetected(IntPtr trigger, IntPtr source, int streamId,
@@ -97,7 +97,7 @@ namespace Tizen.Multimedia.Vision
         /// <exception cref="ArgumentNullException"><paramref name="source"/> is null.</exception>
         /// <exception cref="ObjectDisposedException">The <see cref="PersonAppearanceDetector"/> has already been disposed of.</exception>
         /// <see cref="SurveillanceSource.Push(MediaVisionSource)"/>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 4 </since_tizen>
         public void AddSource(SurveillanceSource source)
         {
             AddSource(source, null);
@@ -115,7 +115,7 @@ namespace Tizen.Multimedia.Vision
         ///     <paramref name="config"/> has already been disposed of.
         /// </exception>
         /// <see cref="SurveillanceSource.Push(MediaVisionSource)"/>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 4 </since_tizen>
         public void AddSource(SurveillanceSource source, PersonAppearanceDetectionConfiguration config)
         {
             InvokeAddSource(source, config);

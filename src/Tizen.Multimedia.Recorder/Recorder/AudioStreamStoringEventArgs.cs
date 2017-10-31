@@ -21,6 +21,7 @@ namespace Tizen.Multimedia
     /// <summary>
     /// Provides data for the <see cref="Recorder.AudioStreamStoring"/> event.
     /// </summary>
+    /// <since_tizen> 4 </since_tizen>
     public class AudioStreamStoringEventArgs : EventArgs
     {
         internal AudioStreamStoringEventArgs(IMediaBuffer stream, AudioSampleType type, int channel,
@@ -41,21 +42,25 @@ namespace Tizen.Multimedia
         /// The buffer is only valid in the event.<br/>
         /// Any attempt to access to this buffer after the event ends will throw an exception.
         /// </remarks>
+        /// <since_tizen> 4 </since_tizen>
         public IMediaBuffer Stream { get; }
 
         /// <summary>
         /// Gets the audio format type.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         public AudioSampleType Type { get; }
 
         /// <summary>
         /// Gets the number of channels.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         public int Channels { get; }
 
         /// <summary>
         /// Gets the timestamp(PTS) of stream buffer in milliseconds.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         public long Timestamp { get; }
     }
 }

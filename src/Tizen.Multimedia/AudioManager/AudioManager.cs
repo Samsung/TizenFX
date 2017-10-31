@@ -22,6 +22,7 @@ namespace Tizen.Multimedia
     /// <summary>
     /// Provides the ability to control volume levels and monitor audio devices.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public static class AudioManager
     {
         static AudioManager()
@@ -33,12 +34,14 @@ namespace Tizen.Multimedia
         /// Gets the volume controller.
         /// </summary>
         /// <value>The <see cref="AudioVolume"/>.</value>
+        /// <since_tizen> 3 </since_tizen>
         public static AudioVolume VolumeController { get; }
 
         /// <summary>
         /// Gets the all devices currently connected.
         /// </summary>
         /// <returns>An IEnumerable&lt;AudioDevice&gt; that contains connected devices.</returns>
+        /// <since_tizen> 4 </since_tizen>
         public static IEnumerable<AudioDevice> GetConnectedDevices()
         {
             IntPtr deviceListHandle = IntPtr.Zero;
@@ -87,6 +90,7 @@ namespace Tizen.Multimedia
         /// <summary>
         /// Occurs when the state of a connection of an audio device changes.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public static event EventHandler<AudioDeviceConnectionChangedEventArgs> DeviceConnectionChanged
         {
             add
@@ -148,6 +152,7 @@ namespace Tizen.Multimedia
         /// <summary>
         /// Occurs when the state of an audio device changes.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public static event EventHandler<AudioDeviceStateChangedEventArgs> DeviceStateChanged
         {
             add

@@ -21,6 +21,7 @@ namespace Tizen.Sensor
     /// <summary>
     /// The InVehicleActivityDetector changed event arguments class is used for storing the data returned by a in-vehicle activity detector.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public class InVehicleActivityDetectorDataUpdatedEventArgs : EventArgs
     {
         internal InVehicleActivityDetectorDataUpdatedEventArgs(float state)

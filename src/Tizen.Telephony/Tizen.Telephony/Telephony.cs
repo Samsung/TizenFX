@@ -24,6 +24,7 @@ namespace Tizen.Telephony
     /// <summary>
     /// Enumeration for the telephony states.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public enum State
     {
         /// <summary>
@@ -43,6 +44,7 @@ namespace Tizen.Telephony
     /// <summary>
     /// Enumeration for the preferred voice call subscription.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public enum CallPreferredVoiceSubscription
     {
         /// <summary>
@@ -71,6 +73,7 @@ namespace Tizen.Telephony
     /// This class provides APIs to initialize and deinitialize the framework.
     /// It also provides APIs to get the SlotHandles, which can then be used to get other Network/Sim/Call/Modem information.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public static class Manager
     {
         internal static List<SlotHandle> _telephonyHandle = new List<SlotHandle>();

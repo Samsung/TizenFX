@@ -28,6 +28,7 @@ namespace Tizen.Multimedia
     /// </summary>
     /// <remarks>The source must be set as a source to a player before pushing.</remarks>
     /// <seealso cref="Player.SetSource(MediaSource)"/>
+    /// <since_tizen> 3 </since_tizen>
     public sealed class MediaStreamSource : MediaSource
     {
         private readonly MediaFormat _audioMediaFormat;
@@ -36,6 +37,7 @@ namespace Tizen.Multimedia
         /// <summary>
         /// Gets all supported audio types.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public static IEnumerable<MediaFormatAudioMimeType> SupportedAudioTypes
         {
             get
@@ -47,6 +49,7 @@ namespace Tizen.Multimedia
         /// <summary>
         /// Gets all supported video types.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public static IEnumerable<MediaFormatVideoMimeType> SupportedVideoTypes
         {
             get
@@ -105,6 +108,7 @@ namespace Tizen.Multimedia
         /// </exception>
         /// <seealso cref="SupportedAudioTypes"/>
         /// <seealso cref="SupportedVideoTypes"/>
+        /// <since_tizen> 3 </since_tizen>
         public MediaStreamSource(AudioMediaFormat audioMediaFormat, VideoMediaFormat videoMediaFormat)
         {
             if (audioMediaFormat == null && videoMediaFormat == null)
@@ -127,6 +131,7 @@ namespace Tizen.Multimedia
         /// <exception cref="ArgumentNullException"><paramref name="audioMediaFormat"/> is null.</exception>
         /// <exception cref="ArgumentException"><paramref name="audioMediaFormat"/> is not supported.</exception>
         /// <seealso cref="SupportedAudioTypes"/>
+        /// <since_tizen> 3 </since_tizen>
         public MediaStreamSource(AudioMediaFormat audioMediaFormat)
         {
             if (audioMediaFormat == null)
@@ -146,6 +151,7 @@ namespace Tizen.Multimedia
         /// <exception cref="ArgumentNullException"><paramref name="videoMediaFormat"/> is null.</exception>
         /// <exception cref="ArgumentException"><paramref name="videoMediaFormat"/> is not supported.</exception>
         /// <seealso cref="SupportedVideoTypes"/>
+        /// <since_tizen> 3 </since_tizen>
         public MediaStreamSource(VideoMediaFormat videoMediaFormat)
         {
             if (videoMediaFormat == null)
@@ -161,11 +167,13 @@ namespace Tizen.Multimedia
         /// <summary>
         /// Gets the audio configuration, or null if no AudioMediaFormat is specified in the constructor.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public MediaStreamConfiguration AudioConfiguration { get; }
 
         /// <summary>
         /// Gets the video configuration, or null if no VideoMediaFormat is specified in the constructor.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public MediaStreamConfiguration VideoConfiguration { get; }
 
         /// <summary>
@@ -190,6 +198,7 @@ namespace Tizen.Multimedia
         /// <seealso cref="Player.SetSource(MediaSource)"/>
         /// <seealso cref="MediaStreamConfiguration.BufferMaxSize"/>
         /// <seealso cref="MediaPacket"/>
+        /// <since_tizen> 3 </since_tizen>
         public void Push(MediaPacket packet)
         {
             if (_player == null)
@@ -292,6 +301,7 @@ namespace Tizen.Multimedia
         /// Gets the <see cref="Player"/> that this source is assigned to as a source, or null if this source is not assigned.
         /// </summary>
         /// <seealso cref="Player.SetSource(MediaSource)"/>
+        /// <since_tizen> 3 </since_tizen>
         public Player Player => _player;
 
     }

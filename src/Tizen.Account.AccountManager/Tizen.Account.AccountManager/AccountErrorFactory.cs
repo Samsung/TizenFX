@@ -44,7 +44,7 @@ namespace Tizen.Account.AccountManager
         /// <summary>
         /// Same user name exists in your application.
         /// </summary>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 4 </since_tizen>
         Duplicated = -0x01000000 | 0x01,
         /// <summary>
         /// Empty data.

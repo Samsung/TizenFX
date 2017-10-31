@@ -27,6 +27,7 @@ namespace Tizen.Sensor
     /// <summary>
     /// The Sensor class is used for storing the hardware information about a particular sensor.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public abstract class Sensor : IDisposable
     {
         private string _name;
@@ -357,6 +358,7 @@ namespace Tizen.Sensor
         /// <summary>
         /// Destroy the current object.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public void Dispose()
         {
             Dispose(true);
@@ -370,6 +372,7 @@ namespace Tizen.Sensor
         /// true if managed resources should be disposed
         /// otherwise, false.
         /// </param>
+        /// <since_tizen> 3 </since_tizen>
         protected virtual void Dispose(bool disposing)
         {
             if (_disposed)

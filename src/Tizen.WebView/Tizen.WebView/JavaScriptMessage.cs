@@ -24,11 +24,13 @@ namespace Tizen.WebView
     /// The callback function that is invoked when the message is received from the script.
     /// </summary>
     /// <param name="message">The JavaScriptMessage returned by the script</param>
+    /// <since_tizen> 4 </since_tizen>
     public delegate void JavaScriptMessageHandler(JavaScriptMessage message);
 
     /// <summary>
     /// A Script message contains information that sent from JavaScript runtime.
     /// </summary>
+    /// <since_tizen> 4 </since_tizen>
     public class JavaScriptMessage
     {
         private string _name;
@@ -43,6 +45,7 @@ namespace Tizen.WebView
         /// <summary>
         /// Obect name in JavaScript.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         public string Name
         {
             get
@@ -55,6 +58,7 @@ namespace Tizen.WebView
         /// Gets the value of body as integer type.
         /// </summary>
         /// <returns>The value of body as integer type</returns>
+        /// <since_tizen> 4 </since_tizen>
         public int GetBodyAsInteger()
         {
             if (_body == IntPtr.Zero)
@@ -68,6 +72,7 @@ namespace Tizen.WebView
         /// Gets the value of body as double type.
         /// </summary>
         /// <returns>The value of body as double type</returns>
+        /// <since_tizen> 4 </since_tizen>
         public double GetBodyAsDouble()
         {
             if (_body == IntPtr.Zero)
@@ -83,6 +88,7 @@ namespace Tizen.WebView
         /// Gets the value of body as boolean type.
         /// </summary>
         /// <returns>The value of body as boolean type</returns>
+        /// <since_tizen> 4 </since_tizen>
         public bool GetBodyAsBoolean()
         {
             if (_body == IntPtr.Zero)
@@ -96,6 +102,7 @@ namespace Tizen.WebView
         /// Gets the value of body as string type.
         /// </summary>
         /// <returns>The value of body as string type</returns>
+        /// <since_tizen> 4 </since_tizen>
         public string GetBodyAsString()
         {
             if (_body == IntPtr.Zero)

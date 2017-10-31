@@ -196,10 +196,12 @@ namespace Tizen.Context.AppHistory
             /// <summary>
             /// Sorts the apps by the last launch time, the most recently launched apps appear first (default).
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             LastLaunchTimeNewest = 0,
             /// <summary>
             /// Sorts the apps by the launch count of being launched, the most frequently launched apps appear first.
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             LaunchCountMost
         }
     }

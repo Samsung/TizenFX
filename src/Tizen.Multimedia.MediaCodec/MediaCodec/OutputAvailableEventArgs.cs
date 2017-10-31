@@ -22,6 +22,7 @@ namespace Tizen.Multimedia.MediaCodec
     /// Provides data for the <see cref="MediaCodec.OutputAvailable"/> event.
     /// </summary>
     /// <remarks>The output packet needs to be disposed after it is used to clean up unmanaged resources.</remarks>
+    /// <since_tizen> 3 </since_tizen>
     public class OutputAvailableEventArgs : EventArgs
     {
         internal OutputAvailableEventArgs(IntPtr packetHandle)
@@ -32,6 +33,7 @@ namespace Tizen.Multimedia.MediaCodec
         /// <summary>
         /// Gets the result packet.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public MediaPacket Packet { get; }
     }
 }

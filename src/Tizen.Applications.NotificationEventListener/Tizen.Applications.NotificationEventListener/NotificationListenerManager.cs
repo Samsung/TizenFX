@@ -27,6 +27,7 @@ namespace Tizen.Applications.NotificationEventListener
     /// <remarks>
     /// The event listener can use this class to get a list of notifications or to clear notifications.
     /// </remarks>
+    /// <since_tizen> 4 </since_tizen>
     public partial class NotificationListenerManager
     {
         private const string LogTag = "Tizen.Applications.NotificationEventListener";
@@ -67,6 +68,7 @@ namespace Tizen.Applications.NotificationEventListener
         /// <exception cref="UnauthorizedAccessException"> Thrown in case of a permission is denied.</exception>
         /// <exception cref="InvalidOperationException">Thrown in case of any internal error.</exception>
         /// <privilege>http://tizen.org/privilege/notification</privilege>
+        /// <since_tizen> 4 </since_tizen>
         public static event EventHandler<NotificationEventArgs> Added
         {
             add
@@ -113,6 +115,7 @@ namespace Tizen.Applications.NotificationEventListener
         /// <exception cref="UnauthorizedAccessException"> Thrown in case of a permission is denied.</exception>
         /// <exception cref="InvalidOperationException">Thrown in case of any internal error.</exception>
         /// <privilege>http://tizen.org/privilege/notification</privilege>
+        /// <since_tizen> 4 </since_tizen>
         public static event EventHandler<NotificationEventArgs> Updated
         {
             add
@@ -159,6 +162,7 @@ namespace Tizen.Applications.NotificationEventListener
         /// <exception cref="UnauthorizedAccessException"> Thrown in case of a permission is denied.</exception>
         /// <exception cref="InvalidOperationException">Thrown in case of any internal error.</exception>
         /// <privilege>http://tizen.org/privilege/notification</privilege>
+        /// <since_tizen> 4 </since_tizen>
         public static event EventHandler<NotificationDeleteEventArgs> Deleted
         {
             add
@@ -294,6 +298,7 @@ namespace Tizen.Applications.NotificationEventListener
         /// <exception cref="UnauthorizedAccessException"> Thrown in case of a permission is denied.</exception>
         /// <exception cref="InvalidOperationException">Thrown in case of any internal error.</exception>
         /// <privilege>http://tizen.org/privilege/notification</privilege>
+        /// <since_tizen> 4 </since_tizen>
         public static void Delete(string appId, int uniqueNumber)
         {
             Interop.NotificationEventListener.ErrorCode err;
@@ -316,6 +321,7 @@ namespace Tizen.Applications.NotificationEventListener
         /// <exception cref="UnauthorizedAccessException"> Thrown in case of a permission is denied.</exception>
         /// <exception cref="InvalidOperationException">Thrown in case of any internal error.</exception>
         /// <privilege>http://tizen.org/privilege/notification</privilege>
+        /// <since_tizen> 4 </since_tizen>
         public static void DeleteAll()
         {
             Interop.NotificationEventListener.ErrorCode err;
@@ -339,6 +345,7 @@ namespace Tizen.Applications.NotificationEventListener
         /// <exception cref="UnauthorizedAccessException"> Thrown in case of a permission is denied.</exception>
         /// <exception cref="InvalidOperationException">Thrown in case of any internal error.</exception>
         /// <privilege>http://tizen.org/privilege/notification</privilege>
+        /// <since_tizen> 4 </since_tizen>
         public static IList<NotificationEventArgs> GetList()
         {
             Interop.NotificationEventListener.ErrorCode err;
@@ -411,6 +418,7 @@ namespace Tizen.Applications.NotificationEventListener
         /// <exception cref="UnauthorizedAccessException"> Thrown in case of a permission is denied.</exception>
         /// <exception cref="InvalidOperationException">Thrown in case of any internal error.</exception>
         /// <privilege>http://tizen.org/privilege/notification</privilege>
+        /// <since_tizen> 4 </since_tizen>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static void SendEvent(int uniqueNumber, UserEventType type)
         {
@@ -431,6 +439,7 @@ namespace Tizen.Applications.NotificationEventListener
         /// <exception cref="UnauthorizedAccessException"> Thrown in case of a permission is denied.</exception>
         /// <exception cref="InvalidOperationException">Thrown in case of any internal error.</exception>
         /// <privilege>http://tizen.org/privilege/notification</privilege>
+        /// <since_tizen> 4 </since_tizen>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static NotificationEventArgs GetNotificationEventArgs(int uniqueNumber)
         {

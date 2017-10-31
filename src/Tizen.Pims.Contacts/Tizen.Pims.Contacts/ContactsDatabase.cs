@@ -51,10 +51,12 @@ namespace Tizen.Pims.Contacts
             /// <summary>
             /// Normal
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             Normal,
             /// <summary>
             /// Changing collation.
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             ChangingCollation
         }
 
@@ -68,22 +70,27 @@ namespace Tizen.Pims.Contacts
             /// <summary>
             /// None
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             None = 0,
             /// <summary>
             /// Search record from name
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             Name = 0x00000001,
             /// <summary>
             /// Search record from number
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             Number = 0x00000002,
             /// <summary>
             /// Search record from data
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             Data = 0x00000004,
             /// <summary>
             /// Search record from email. Now, support only PersonEmail view
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             Email = 0x00000008,
         }
 

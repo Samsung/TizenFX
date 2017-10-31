@@ -19,6 +19,7 @@ namespace Tizen.Multimedia
     /// <summary>
     /// Represents the synchronized lyrics information of the media.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public class SyncLyrics
     {
         /// <summary>

@@ -141,7 +141,7 @@ namespace Tizen.Maps
         /// <summary>
         /// Gets a free text associated with this address.
         /// </summary>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 4 </since_tizen>
         public string FreeText
         {
             get
@@ -219,6 +219,7 @@ namespace Tizen.Maps
         /// Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.
         /// </summary>
         /// <param name="disposing">If true, managed and unmanaged resources can be disposed, otherwise only unmanaged resources can be disposed.</param>
+        /// <since_tizen> 3 </since_tizen>
         protected virtual void Dispose(bool disposing)
         {
             if (!_disposedValue)

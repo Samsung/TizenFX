@@ -23,7 +23,7 @@ namespace Tizen.Network.Mtp
     /// <summary>
     /// A class for Mtp Device information. It allows applications to handle device information.
     /// </summary>
-    /// <since_tizen> 5 </since_tizen>
+    /// <since_tizen> 4 </since_tizen>
     public class MtpDevice : IDisposable
     {
         private int _deviceHandle = -1;
@@ -34,7 +34,7 @@ namespace Tizen.Network.Mtp
         /// Gets the manufacturer name of the device information.
         /// </summary>
         /// <value>Manufacture name of device.</value>
-        /// <since_tizen> 5 </since_tizen>
+        /// <since_tizen> 4 </since_tizen>
         public string ManufacturerName
         {
             get
@@ -54,7 +54,7 @@ namespace Tizen.Network.Mtp
         /// Gets the model name of the device information.
         /// </summary>
         /// <value>Model name of device.</value>
-        /// <since_tizen> 5 </since_tizen>
+        /// <since_tizen> 4 </since_tizen>
         public string ModelName
         {
             get
@@ -74,7 +74,7 @@ namespace Tizen.Network.Mtp
         /// Gets the serial number of the device information.
         /// </summary>
         /// <value>Serial number of device.</value>
-        /// <since_tizen> 5 </since_tizen>
+        /// <since_tizen> 4 </since_tizen>
         public string SerialNumber
         {
             get
@@ -94,7 +94,7 @@ namespace Tizen.Network.Mtp
         /// Gets the device version of the device information.
         /// </summary>
         /// <value>Version number of device.</value>
-        /// <since_tizen> 5 </since_tizen>
+        /// <since_tizen> 4 </since_tizen>
         public string DeviceVersion
         {
             get
@@ -126,6 +126,7 @@ namespace Tizen.Network.Mtp
         /// <summary>
         /// Dispose
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         public void Dispose()
         {
             Dispose(true);
@@ -162,7 +163,7 @@ namespace Tizen.Network.Mtp
         /// <feature>http://tizen.org/feature/network.mtp</feature>
         /// <exception cref="NotSupportedException">Thrown when Mtp is not supported.</exception>
         /// <exception cref="InvalidOperationException">Thrown when the method failed due to invalid operation.</exception>
-        /// <since_tizen> 5 </since_tizen>
+        /// <since_tizen> 4 </since_tizen>
         public IEnumerable<MtpStorage> GetStorages()
         {
             IntPtr storagePtr;

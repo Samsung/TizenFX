@@ -23,6 +23,7 @@ namespace Tizen.Multimedia
     /// Provides data for the <see cref="Camera.FaceDetected"/> event.
     /// If the user needs to keep the faces data, the user has to copy the data.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public class FaceDetectedEventArgs : EventArgs
     {
         internal FaceDetectedEventArgs(List<FaceDetectionData> faces)

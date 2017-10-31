@@ -24,26 +24,31 @@ namespace Tizen.Applications.NotificationEventListener
         /// <summary>
         ///  Class to get infomation about notification ButtonAction.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         public class ButtonActionArgs
         {
             /// <summary>
             /// Gets the index of the button, which appears at notification.
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public ButtonIndex Index { get; internal set; }
 
             /// <summary>
             /// Gets the text that describes the button.
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public string Text { get; internal set; }
 
             /// <summary>
             /// Gets the image's path that represents the button.
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public string ImagePath { get; internal set; }
 
             /// <summary>
             /// Gets the AppControl that is invoked when the button is clicked.
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public AppControl Action { get; internal set; }
         }
     }

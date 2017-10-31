@@ -21,6 +21,7 @@ namespace Tizen.Applications
     /// <summary>
     /// The information of Watch Time
     /// </summary>
+    /// <since_tizen> 4 </since_tizen>
     public class WatchTime
     {
         private readonly SafeWatchTimeHandle _handle;
@@ -36,6 +37,7 @@ namespace Tizen.Applications
         /// </summary>
         /// <feature>http://tizen.org/feature/watch_app</feature>
         /// <exception cref="NotSupportedException">Thrown when the property is not supported.</exception>
+        /// <since_tizen> 4 </since_tizen>
         public int Year
         {
             get
@@ -59,6 +61,7 @@ namespace Tizen.Applications
         /// </summary>
         /// <feature>http://tizen.org/feature/watch_app</feature>
         /// <exception cref="NotSupportedException">Thrown when the property is not supported.</exception>
+        /// <since_tizen> 4 </since_tizen>
         public int Month
         {
             get
@@ -82,6 +85,7 @@ namespace Tizen.Applications
         /// </summary>
         /// <feature>http://tizen.org/feature/watch_app</feature>
         /// <exception cref="NotSupportedException">Thrown when the property is not supported.</exception>
+        /// <since_tizen> 4 </since_tizen>
         public int Day
         {
             get
@@ -105,6 +109,7 @@ namespace Tizen.Applications
         /// </summary>
         /// <feature>http://tizen.org/feature/watch_app</feature>
         /// <exception cref="NotSupportedException">Thrown when the property is not supported.</exception>
+        /// <since_tizen> 4 </since_tizen>
         public int DayOfWeek
         {
             get
@@ -128,6 +133,7 @@ namespace Tizen.Applications
         /// </summary>
         /// <feature>http://tizen.org/feature/watch_app</feature>
         /// <exception cref="NotSupportedException">Thrown when the property is not supported.</exception>
+        /// <since_tizen> 4 </since_tizen>
         public int Hour
         {
             get
@@ -151,6 +157,7 @@ namespace Tizen.Applications
         /// </summary>
         /// <feature>http://tizen.org/feature/watch_app</feature>
         /// <exception cref="NotSupportedException">Thrown when the property is not supported.</exception>
+        /// <since_tizen> 4 </since_tizen>
         public int Hour24
         {
             get
@@ -174,6 +181,7 @@ namespace Tizen.Applications
         /// </summary>
         /// <feature>http://tizen.org/feature/watch_app</feature>
         /// <exception cref="NotSupportedException">Thrown when the property is not supported.</exception>
+        /// <since_tizen> 4 </since_tizen>
         public int Minute
         {
             get
@@ -197,6 +205,7 @@ namespace Tizen.Applications
         /// </summary>
         /// <feature>http://tizen.org/feature/watch_app</feature>
         /// <exception cref="NotSupportedException">Thrown when the property is not supported.</exception>
+        /// <since_tizen> 4 </since_tizen>
         public int Second
         {
             get
@@ -220,6 +229,7 @@ namespace Tizen.Applications
         /// </summary>
         /// <feature>http://tizen.org/feature/watch_app</feature>
         /// <exception cref="NotSupportedException">Thrown when the property is not supported.</exception>
+        /// <since_tizen> 4 </since_tizen>
         public int Millisecond
         {
             get
@@ -243,6 +253,7 @@ namespace Tizen.Applications
         /// </summary>
         /// <feature>http://tizen.org/feature/watch_app</feature>
         /// <exception cref="NotSupportedException">Thrown when the property is not supported.</exception>
+        /// <since_tizen> 4 </since_tizen>
         public string TimeZone
         {
             get
@@ -266,6 +277,7 @@ namespace Tizen.Applications
         /// </summary>
         /// <feature>http://tizen.org/feature/watch_app</feature>
         /// <exception cref="NotSupportedException">Thrown when the property is not supported.</exception>
+        /// <since_tizen> 4 </since_tizen>
         public DateTime UtcTimestamp
         {
             get

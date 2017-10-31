@@ -21,6 +21,7 @@ namespace Tizen.System
     /// <summary>
     /// The class to access the storage device information.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public class Storage
     {
         private const string LogTag = "Tizen.System";

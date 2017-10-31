@@ -5,6 +5,7 @@ namespace Tizen.Applications.AttachPanel
     /// <summary>
     /// Class for event arguments of the result event
     /// </summary>
+    /// <since_tizen> 4 </since_tizen>
     public class ResultEventArgs : EventArgs
     {
         private readonly ContentCategory _category;
@@ -21,6 +22,7 @@ namespace Tizen.Applications.AttachPanel
         /// <summary>
         /// Results are from the content category.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         public ContentCategory Category
         {
             get
@@ -33,6 +35,7 @@ namespace Tizen.Applications.AttachPanel
         /// Property for result
         /// The caller app has to use ExtraData property to get received data.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         public AppControl Result
         {
             get
@@ -44,6 +47,7 @@ namespace Tizen.Applications.AttachPanel
         /// <summary>
         /// Property for result of AppControl
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         public AppControlReplyResult ResultCode
         {
             get

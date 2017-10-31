@@ -25,7 +25,7 @@ namespace Tizen.Multimedia.Vision
     /// <seealso cref="MovementDetector"/>
     /// <seealso cref="PersonAppearanceDetector"/>
     /// <seealso cref="PersonRecognizer"/>
-    /// <since_tizen> 3 </since_tizen>
+    /// <since_tizen> 4 </since_tizen>
     public class SurveillanceSource
     {
         private static int _nextStreamId = int.MinValue;
@@ -46,7 +46,7 @@ namespace Tizen.Multimedia.Vision
         /// <summary>
         /// Initializes a new instance of the <see cref="SurveillanceSource"/> class.
         /// </summary>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 4 </since_tizen>
         public SurveillanceSource()
         {
             StreamId = GetNextStreamId();
@@ -64,7 +64,7 @@ namespace Tizen.Multimedia.Vision
         /// <seealso cref="PersonAppearanceDetector.AddSource(SurveillanceSource)"/>
         /// <seealso cref="PersonAppearanceDetector.AddSource(SurveillanceSource, PersonAppearanceDetectionConfiguration)"/>
         /// <seealso cref="PersonRecognizer.AddSource(SurveillanceSource, PersonRecognitionConfiguration)"/>
-        /// <since_tizen> 3</since_tizen>
+        /// <since_tizen> 4</since_tizen>
         public void Push(MediaVisionSource source)
         {
             if (source == null)

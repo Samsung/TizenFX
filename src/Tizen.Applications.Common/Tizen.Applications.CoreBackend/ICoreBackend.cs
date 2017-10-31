@@ -21,6 +21,7 @@ namespace Tizen.Applications.CoreBackend
     /// <summary>
     /// An interface that represents the backend lifecycles.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public interface ICoreBackend : IDisposable
     {
         /// <summary>
@@ -28,6 +29,7 @@ namespace Tizen.Applications.CoreBackend
         /// </summary>
         /// <param name="evType">The type of event.</param>
         /// <param name="handler">The handler method without arguments.</param>
+        /// <since_tizen> 3 </since_tizen>
         void AddEventHandler(EventType evType, Action handler);
 
         /// <summary>
@@ -36,17 +38,20 @@ namespace Tizen.Applications.CoreBackend
         /// <typeparam name="TEventArgs">The EventArgs type used in arguments of the handler method.</typeparam>
         /// <param name="evType">The type of event.</param>
         /// <param name="handler">The handler method with a TEventArgs type argument.</param>
+        /// <since_tizen> 3 </since_tizen>
         void AddEventHandler<TEventArgs>(EventType evType, Action<TEventArgs> handler) where TEventArgs : EventArgs;
 
         /// <summary>
         /// Runs the mainloop of the backend.
         /// </summary>
         /// <param name="args"></param>
+        /// <since_tizen> 3 </since_tizen>
         void Run(string[] args);
 
         /// <summary>
         /// Exits the mainloop of the backend.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         void Exit();
     }
 }

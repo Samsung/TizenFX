@@ -25,6 +25,7 @@ namespace Tizen.Multimedia
     /// The CameraCapabilities class provides properties
     /// to get various capability information of the camera device.
     /// </summary>
+    /// <since_tizen> 4 </since_tizen>
     public class CameraCapabilities
     {
         internal readonly Camera _camera;
@@ -84,97 +85,97 @@ namespace Tizen.Multimedia
         /// Gets the face detection feature's supported state.
         /// </summary>
         /// <value>true if supported, otherwise false.</value>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 4 </since_tizen>
         public bool IsFaceDetectionSupported { get; }
 
         /// <summary>
         /// Gets the media packet preview callback feature's supported state.
         /// </summary>
         /// <value>true if supported, otherwise false.</value>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 4 </since_tizen>
         public bool IsMediaPacketPreviewCallbackSupported { get; }
 
         /// <summary>
         /// Gets the zero shutter lag feature's supported state.
         /// </summary>
         /// <value>true if supported, otherwise false.</value>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 4 </since_tizen>
         public bool IsZeroShutterLagSupported { get; }
 
         /// <summary>
         /// Gets the continuous capture feature's supported state.
         /// </summary>
         /// <value>true if supported, otherwise false.</value>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 4 </since_tizen>
         public bool IsContinuousCaptureSupported { get; }
 
         /// <summary>
         /// Gets the support state of the HDR capture.
         /// </summary>
         /// <value>true if supported, otherwise false.</value>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 4 </since_tizen>
         public bool IsHdrCaptureSupported { get; }
 
         /// <summary>
         /// Gets the support state of the anti-shake feature.
         /// </summary>
         /// <value>true if supported, otherwise false.</value>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 4 </since_tizen>
         public bool IsAntiShakeSupported { get; }
 
         /// <summary>
         /// Gets the support state of the video stabilization feature.
         /// </summary>
         /// <value>true if supported, otherwise false.</value>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 4 </since_tizen>
         public bool IsVideoStabilizationSupported { get; }
 
         /// <summary>
         /// Gets the support state of auto contrast feature.
         /// </summary>
         /// <value>true if supported, otherwise false.</value>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 4 </since_tizen>
         public bool IsAutoContrastSupported { get; }
 
         /// <summary>
         /// Gets the support state of the brightness feature.
         /// </summary>
         /// <value>true if supported, otherwise false.</value>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 4 </since_tizen>
         public bool IsBrigtnessSupported { get; }
 
         /// <summary>
         /// Gets the support state of the exposure feature.
         /// </summary>
         /// <value>true if supported, otherwise false.</value>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 4 </since_tizen>
         public bool IsExposureSupported { get; }
 
         /// <summary>
         /// Gets the support state of the zoom feature.
         /// </summary>
         /// <value>true if supported, otherwise false.</value>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 4 </since_tizen>
         public bool IsZoomSupported { get; }
 
         /// <summary>
         /// Gets the support state of the pan feature.
         /// </summary>
         /// <value>true if supported, otherwise false.</value>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 4 </since_tizen>
         public bool IsPanSupported { get; }
 
         /// <summary>
         /// Gets the support state of the tilt feature.
         /// </summary>
         /// <value>true if supported, otherwise false.</value>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 4 </since_tizen>
         public bool IsTiltSupported { get; }
 
         /// <summary>
         /// Retrieves all the preview resolutions supported by the camera.
         /// </summary>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 4 </since_tizen>
         /// <returns>
         /// It returns a list containing all the supported preview resolutions.
         /// </returns>
@@ -195,7 +196,7 @@ namespace Tizen.Multimedia
         /// <summary>
         /// Retrieves all the capture resolutions supported by the camera.
         /// </summary>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 4 </since_tizen>
         /// <returns>
         /// It returns a list containing all the supported capture resolutions.
         /// </returns>
@@ -216,7 +217,7 @@ namespace Tizen.Multimedia
         /// <summary>
         /// Retrieves all the capture formats supported by the camera.
         /// </summary>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 4 </since_tizen>
         /// <returns>
         /// It returns a list containing all the supported <see cref="CameraPixelFormat"/>.
         /// </returns>
@@ -237,7 +238,7 @@ namespace Tizen.Multimedia
         /// <summary>
         /// Retrieves all the preview formats supported by the camera.
         /// </summary>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 4 </since_tizen>
         /// <returns>
         /// It returns a list containing all the supported <see cref="CameraPixelFormat"/>.
         /// </returns>
@@ -258,7 +259,7 @@ namespace Tizen.Multimedia
         /// <summary>
         /// Retrieves all the fps supported by the camera.
         /// </summary>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 4 </since_tizen>
         /// <returns>
         /// It returns a list containing all the supported <see cref="CameraFps"/>.
         /// </returns>
@@ -279,7 +280,7 @@ namespace Tizen.Multimedia
         /// <summary>
         /// Retrieves all the fps by resolution supported by the camera.
         /// </summary>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 4 </since_tizen>
         /// <param name="width">The width of required preview resolution.</param>
         /// <param name="height">The height of required preview resolution.</param>
         /// <returns>
@@ -294,7 +295,7 @@ namespace Tizen.Multimedia
         /// <summary>
         /// Retrieves all the fps by resolution supported by the camera.
         /// </summary>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 4 </since_tizen>
         /// <param name="size">The size of required preview resolution.</param>
         /// <returns>
         /// It returns a list containing all the supported <see cref="CameraFps"/> by resolution.
@@ -308,7 +309,7 @@ namespace Tizen.Multimedia
         /// <summary>
         /// Retrieves all the auto focus modes supported by the camera.
         /// </summary>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 4 </since_tizen>
         /// <returns>
         /// It returns a list containing all the supported <see cref="CameraAutoFocusMode"/>.
         /// </returns>
@@ -329,7 +330,7 @@ namespace Tizen.Multimedia
         /// <summary>
         /// Retrieves all the exposure modes supported by the camera.
         /// </summary>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 4 </since_tizen>
         /// <returns>
         /// It returns a list containing all the supported <see cref="CameraExposureMode"/>.
         /// </returns>
@@ -350,7 +351,7 @@ namespace Tizen.Multimedia
         /// <summary>
         /// Retrieves all the ISO levels supported by the camera.
         /// </summary>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 4 </since_tizen>
         /// <returns>
         /// It returns a list containing all the supported <see cref="CameraIsoLevel"/>.
         /// </returns>
@@ -371,7 +372,7 @@ namespace Tizen.Multimedia
         /// <summary>
         /// Retrieves all the theater modes supported by the camera.
         /// </summary>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 4 </since_tizen>
         /// <returns>
         /// It returns a list containing all the supported <see cref="CameraTheaterMode"/>.
         /// </returns>
@@ -392,7 +393,7 @@ namespace Tizen.Multimedia
         /// <summary>
         /// Retrieves all the white balance modes supported by the camera.
         /// </summary>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 4 </since_tizen>
         /// <returns>
         /// It returns a list containing all the supported <see cref="CameraWhiteBalance"/>.
         /// </returns>
@@ -413,7 +414,7 @@ namespace Tizen.Multimedia
         /// <summary>
         /// Retrieves all the flash modes supported by the camera.
         /// </summary>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 4 </since_tizen>
         /// <returns>
         /// It returns a list containing all the supported <see cref="CameraFlashMode"/>.
         /// </returns>
@@ -434,7 +435,7 @@ namespace Tizen.Multimedia
         /// <summary>
         /// Retrieves all the scene modes supported by the camera.
         /// </summary>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 4 </since_tizen>
         /// <returns>
         /// It returns a list containing all the supported <see cref="CameraSceneMode"/>.
         /// </returns>
@@ -455,7 +456,7 @@ namespace Tizen.Multimedia
         /// <summary>
         /// Retrieves all the effect modes supported by the camera.
         /// </summary>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 4 </since_tizen>
         /// <returns>
         /// It returns a list containing all the supported <see cref="CameraEffectMode"/>.
         /// </returns>
@@ -476,7 +477,7 @@ namespace Tizen.Multimedia
         /// <summary>
         /// Retrieves all the stream rotations supported by the camera.
         /// </summary>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 4 </since_tizen>
         /// <returns>
         /// An IEnumerable containing all the supported <see cref="Rotation"/>.
         /// </returns>
@@ -497,7 +498,7 @@ namespace Tizen.Multimedia
         /// <summary>
         /// Retrieves all the flips supported by the camera.
         /// </summary>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 4 </since_tizen>
         /// <returns>
         /// It returns a list containing all the supported <see cref="Flips"/>.
         /// </returns>
@@ -518,7 +519,7 @@ namespace Tizen.Multimedia
         /// <summary>
         /// Retrieves all the PTZ types by the camera.
         /// </summary>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 4 </since_tizen>
         /// <returns>
         /// It returns a list containing all the supported <see cref="CameraPtzType"/>.
         /// </returns>

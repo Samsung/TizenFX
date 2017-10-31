@@ -21,6 +21,7 @@ namespace Tizen.Multimedia
     /// <summary>
     /// Provides data for the <see cref="Camera.DeviceStateChanged"/> event.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public class CameraDeviceStateChangedEventArgs : EventArgs
     {
         internal CameraDeviceStateChangedEventArgs(CameraDevice device, CameraDeviceState state)

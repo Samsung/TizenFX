@@ -23,6 +23,7 @@ namespace Tizen.Pims.Calendar
     /// </summary>
     /// <param name="record">The record</param>
     /// <returns>true to continue with the next iteration of the loop, otherwise false to break out of the loop</returns>
+    /// <since_tizen> 4 </since_tizen>
     public delegate bool ParseCallback(CalendarRecord record);
 
     /// <summary>
@@ -31,6 +32,7 @@ namespace Tizen.Pims.Calendar
     /// <remarks>
     /// It's based on the vCalendar v2.0 specification
     /// </remarks>
+    /// <since_tizen> 4 </since_tizen>
     public static class CalendarVcalendar
     {
         /// <summary>
@@ -42,6 +44,7 @@ namespace Tizen.Pims.Calendar
         /// </returns>
         /// <exception cref="ArgumentException">Thrown when one of the arguments provided to a method is not valid</exception>
         /// <exception cref="OutOfMemoryException">Thrown when failed due to out of memory</exception>
+        /// <since_tizen> 4 </since_tizen>
         public static string Compose(CalendarList list)
         {
             string stream;
@@ -63,6 +66,7 @@ namespace Tizen.Pims.Calendar
         /// </returns>
         /// <exception cref="ArgumentException">Thrown when one of the arguments provided to a method is not valid</exception>
         /// <exception cref="OutOfMemoryException">Thrown when failed due to out of memory</exception>
+        /// <since_tizen> 4 </since_tizen>
         public static CalendarList Parse(string stream)
         {
             int error = 0;
@@ -84,6 +88,7 @@ namespace Tizen.Pims.Calendar
         /// <exception cref="InvalidOperationException">Thrown when method failed due to invalid operation</exception>
         /// <exception cref="ArgumentException">Thrown when one of the arguments provided to a method is not valid</exception>
         /// <exception cref="OutOfMemoryException">Thrown when failed due to out of memory</exception>
+        /// <since_tizen> 4 </since_tizen>
         public static void ParseForEach(string path, ParseCallback callback)
         {
             int error = 0;

@@ -25,7 +25,7 @@ namespace Tizen.Multimedia.Vision
     /// <feature>http://tizen.org/feature/vision.face_recognition</feature>
     /// <feature>http://tizen.org/feature/vision.image_recognition</feature>
     /// <seealso cref="MovementDetectionConfiguration"/>
-    /// <since_tizen> 3 </since_tizen>
+    /// <since_tizen> 4 </since_tizen>
     public class MovementDetector : SurveillanceEngine
     {
         private const string KeyNumberOfRegions = "NUMBER_OF_MOVEMENT_REGIONS";
@@ -37,7 +37,7 @@ namespace Tizen.Multimedia.Vision
         /// Initializes a new instance of the <see cref="MovementDetector"/> class.
         /// </summary>
         /// <exception cref="NotSupportedException">The required features are not supported.</exception>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 4 </since_tizen>
         public MovementDetector() : base(MovementDetectedEventType)
         {
         }
@@ -46,7 +46,7 @@ namespace Tizen.Multimedia.Vision
         /// Occurs when the movement detected.
         /// </summary>
         /// <remarks>The event handler will be executed on an internal thread.</remarks>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 4 </since_tizen>
         public event EventHandler<MovementDetectedEventArgs> Detected;
 
         internal override void OnEventDetected(IntPtr trigger, IntPtr source, int streamId,
@@ -92,7 +92,7 @@ namespace Tizen.Multimedia.Vision
         /// <exception cref="ArgumentNullException"><paramref name="source"/> is null.</exception>
         /// <exception cref="ObjectDisposedException">The <see cref="MovementDetector"/> has already been disposed of.</exception>
         /// <see cref="SurveillanceSource.Push(MediaVisionSource)"/>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 4 </since_tizen>
         public void AddSource(SurveillanceSource source)
         {
             AddSource(source, null);
@@ -110,7 +110,7 @@ namespace Tizen.Multimedia.Vision
         ///     <paramref name="config"/> has already been disposed of.
         /// </exception>
         /// <see cref="SurveillanceSource.Push(MediaVisionSource)"/>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 4 </since_tizen>
         public void AddSource(SurveillanceSource source, MovementDetectionConfiguration config)
         {
             InvokeAddSource(source, config);

@@ -21,6 +21,7 @@ namespace Tizen.Sensor
     /// <summary>
     /// The PickUpGestureDetector class is used for registering callbacks for the pick up activity detector and getting the pick up state.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public sealed class PickUpGestureDetector : Sensor
     {
         private static string GestureDetectorKey = "http://tizen.org/feature/sensor.gesture_recognition";

@@ -85,6 +85,7 @@ namespace Tizen.Network.Smartcard
         /// <summary>
         /// Dispose
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public void Dispose()
         {
             Dispose(true);

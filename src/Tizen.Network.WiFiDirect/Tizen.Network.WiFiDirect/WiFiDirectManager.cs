@@ -24,6 +24,7 @@ namespace Tizen.Network.WiFiDirect
     /// A class which is used to manage settings of Wi-Fi Direct.<br/>
     /// This class is used to discover peer devices and manage settings of Wi-Fi Direct.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public static class WiFiDirectManager
     {
         /// <summary>
@@ -40,6 +41,7 @@ namespace Tizen.Network.WiFiDirect
         /// </remarks>
         /// <exception cref="NotSupportedException">The required feature is not supported.</exception>
         /// <exception cref="UnauthorizedAccessException">Thrown when application does not have privilege to access this method.</exception>
+        /// <since_tizen> 3 </since_tizen>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static bool IsInitialized
         {
@@ -63,6 +65,7 @@ namespace Tizen.Network.WiFiDirect
         /// </remarks>
         /// <exception cref="NotSupportedException">The required feature is not supported.</exception>
         /// <exception cref="UnauthorizedAccessException">Thrown when application does not have privilege to access this method.</exception>
+        /// <since_tizen> 3 </since_tizen>
         public static bool IsGroupOwner
         {
             get
@@ -94,6 +97,7 @@ namespace Tizen.Network.WiFiDirect
         /// </remarks>
         /// <exception cref="NotSupportedException">The required feature is not supported.</exception>
         /// <exception cref="UnauthorizedAccessException">Thrown when application does not have privilege to access this method.</exception>
+        /// <since_tizen> 3 </since_tizen>
         public static bool IsAutonomousGroup
         {
             get
@@ -124,6 +128,7 @@ namespace Tizen.Network.WiFiDirect
         /// </remarks>
         /// <exception cref="NotSupportedException">The required feature is not supported.</exception>
         /// <exception cref="UnauthorizedAccessException">Thrown when application does not have privilege to access this method.</exception>
+        /// <since_tizen> 3 </since_tizen>
         public static string Ssid
         {
             get
@@ -155,6 +160,7 @@ namespace Tizen.Network.WiFiDirect
         /// </remarks>
         /// <exception cref="NotSupportedException">The required feature is not supported.</exception>
         /// <exception cref="UnauthorizedAccessException">Thrown when application does not have privilege to access this method.</exception>
+        /// <since_tizen> 3 </since_tizen>
         public static string NetworkInterface
         {
             get
@@ -186,6 +192,7 @@ namespace Tizen.Network.WiFiDirect
         /// </remarks>
         /// <exception cref="NotSupportedException">The required feature is not supported.</exception>
         /// <exception cref="UnauthorizedAccessException">Thrown when application does not have privilege to access this method.</exception>
+        /// <since_tizen> 3 </since_tizen>
         public static string IpAddress
         {
             get
@@ -217,6 +224,7 @@ namespace Tizen.Network.WiFiDirect
         /// </remarks>
         /// <exception cref="NotSupportedException">The required feature is not supported.</exception>
         /// <exception cref="UnauthorizedAccessException">Thrown when application does not have privilege to access this method.</exception>
+        /// <since_tizen> 3 </since_tizen>
         public static string SubnetMask
         {
             get
@@ -248,6 +256,7 @@ namespace Tizen.Network.WiFiDirect
         /// </remarks>
         /// <exception cref="NotSupportedException">The required feature is not supported.</exception>
         /// <exception cref="UnauthorizedAccessException">Thrown when application does not have privilege to access this method.</exception>
+        /// <since_tizen> 3 </since_tizen>
         public static string GatewayAddress
         {
             get
@@ -278,6 +287,7 @@ namespace Tizen.Network.WiFiDirect
         /// </remarks>
         /// <exception cref="NotSupportedException">The required feature is not supported.</exception>
         /// <exception cref="UnauthorizedAccessException">Thrown when application does not have privilege to access this method.</exception>
+        /// <since_tizen> 3 </since_tizen>
         public static string MacAddress
         {
             get
@@ -305,6 +315,7 @@ namespace Tizen.Network.WiFiDirect
         /// </privilege>
         /// <exception cref="NotSupportedException">The required feature is not supported.</exception>
         /// <exception cref="UnauthorizedAccessException">Thrown when application does not have privilege to access this method.</exception>
+        /// <since_tizen> 3 </since_tizen>
         public static WiFiDirectState State
         {
             get
@@ -324,6 +335,7 @@ namespace Tizen.Network.WiFiDirect
         /// </privilege>
         /// <exception cref="NotSupportedException">The required feature is not supported.</exception>
         /// <exception cref="UnauthorizedAccessException">Thrown when application does not have privilege to access this method.</exception>
+        /// <since_tizen> 3 </since_tizen>
         public static bool IsDiscoverable
         {
             get
@@ -355,6 +367,7 @@ namespace Tizen.Network.WiFiDirect
         /// </remarks>
         /// <exception cref="NotSupportedException">The required feature is not supported.</exception>
         /// <exception cref="UnauthorizedAccessException">Thrown when application does not have privilege to access this method.</exception>
+        /// <since_tizen> 3 </since_tizen>
         public static bool IsListenOnly
         {
             get
@@ -385,6 +398,7 @@ namespace Tizen.Network.WiFiDirect
         /// </remarks>
         /// <exception cref="NotSupportedException">The required feature is not supported.</exception>
         /// <exception cref="UnauthorizedAccessException">Thrown when application does not have privilege to access this method.</exception>
+        /// <since_tizen> 3 </since_tizen>
         public static WiFiDirectPrimaryDeviceType PrimaryType
         {
             get
@@ -415,6 +429,7 @@ namespace Tizen.Network.WiFiDirect
         /// </remarks>
         /// <exception cref="NotSupportedException">The required feature is not supported.</exception>
         /// <exception cref="UnauthorizedAccessException">Thrown when application does not have privilege to access this method.</exception>
+        /// <since_tizen> 3 </since_tizen>
         public static WiFiDirectSecondaryDeviceType SecondaryType
         {
             get
@@ -445,6 +460,7 @@ namespace Tizen.Network.WiFiDirect
         /// </remarks>
         /// <exception cref="NotSupportedException">The required feature is not supported.</exception>
         /// <exception cref="UnauthorizedAccessException">Thrown when application does not have privilege to access this method.</exception>
+        /// <since_tizen> 3 </since_tizen>
         public static int WpsMode
         {
             get
@@ -472,6 +488,7 @@ namespace Tizen.Network.WiFiDirect
         /// </privilege>
         /// <exception cref="NotSupportedException">The required feature is not supported.</exception>
         /// <exception cref="UnauthorizedAccessException">Thrown when application does not have privilege to access this method.</exception>
+        /// <since_tizen> 3 </since_tizen>
         public static WiFiDirectWpsType Wps
         {
             get
@@ -502,6 +519,7 @@ namespace Tizen.Network.WiFiDirect
         /// </remarks>
         /// <exception cref="NotSupportedException">The required feature is not supported.</exception>
         /// <exception cref="UnauthorizedAccessException">Thrown when application does not have privilege to access this method.</exception>
+        /// <since_tizen> 3 </since_tizen>
         public static int OperatingChannel
         {
             get
@@ -530,6 +548,7 @@ namespace Tizen.Network.WiFiDirect
         /// <exception cref="InvalidOperationException">The object is in invalid state.</exception>
         /// <exception cref="NotSupportedException">The required feature is not supported.</exception>
         /// <exception cref="UnauthorizedAccessException">Thrown when application does not have privilege to access this method.</exception>
+        /// <since_tizen> 3 </since_tizen>
         public static bool PersistentGroupEnabled
         {
             get
@@ -566,6 +585,7 @@ namespace Tizen.Network.WiFiDirect
         /// <exception cref="InvalidOperationException">The object is in invalid state.</exception>
         /// <exception cref="NotSupportedException">The required feature is not supported.</exception>
         /// <exception cref="UnauthorizedAccessException">Thrown when application does not have privilege to access this method.</exception>
+        /// <since_tizen> 3 </since_tizen>
         public static bool AutoConnect
         {
             get
@@ -606,6 +626,7 @@ namespace Tizen.Network.WiFiDirect
         /// <exception cref="InvalidOperationException">The object is in invalid state.</exception>
         /// <exception cref="NotSupportedException">The required feature is not supported.</exception>
         /// <exception cref="UnauthorizedAccessException">Thrown when application does not have privilege to access this method.</exception>
+        /// <since_tizen> 3 </since_tizen>
         public static string WpsPin
         {
             get
@@ -648,6 +669,7 @@ namespace Tizen.Network.WiFiDirect
         /// <exception cref="InvalidOperationException">The object is in invalid state.</exception>
         /// <exception cref="NotSupportedException">The required feature is not supported.</exception>
         /// <exception cref="UnauthorizedAccessException">Thrown when application does not have privilege to access this method.</exception>
+        /// <since_tizen> 3 </since_tizen>
         public static string Name
         {
             get
@@ -684,6 +706,7 @@ namespace Tizen.Network.WiFiDirect
         /// <exception cref="InvalidOperationException">The object is in invalid state.</exception>
         /// <exception cref="NotSupportedException">The required feature is not supported.</exception>
         /// <exception cref="UnauthorizedAccessException">Thrown when application does not have privilege to access this method.</exception>
+        /// <since_tizen> 3 </since_tizen>
         public static WiFiDirectWpsType RequestedWps
         {
             get
@@ -720,6 +743,7 @@ namespace Tizen.Network.WiFiDirect
         /// <exception cref="InvalidOperationException">The object is in invalid state.</exception>
         /// <exception cref="NotSupportedException">The required feature is not supported.</exception>
         /// <exception cref="UnauthorizedAccessException">Thrown when application does not have privilege to access this method.</exception>
+        /// <since_tizen> 3 </since_tizen>
         public static int GroupOwnerIntent
         {
             get
@@ -756,6 +780,7 @@ namespace Tizen.Network.WiFiDirect
         /// <exception cref="InvalidOperationException">The object is in invalid state.</exception>
         /// <exception cref="NotSupportedException">The required feature is not supported.</exception>
         /// <exception cref="UnauthorizedAccessException">Thrown when application does not have privilege to access this method.</exception>
+        /// <since_tizen> 3 </since_tizen>
         public static int MaxClients
         {
             get
@@ -797,6 +822,7 @@ namespace Tizen.Network.WiFiDirect
         /// <exception cref="InvalidOperationException">The object is in invalid state.</exception>
         /// <exception cref="NotSupportedException">The required feature is not supported.</exception>
         /// <exception cref="UnauthorizedAccessException">Thrown when application does not have privilege to access this method.</exception>
+        /// <since_tizen> 3 </since_tizen>
         public static string Passphrase
         {
             get
@@ -843,6 +869,7 @@ namespace Tizen.Network.WiFiDirect
         /// <exception cref="InvalidOperationException">The object is in invalid state.</exception>
         /// <exception cref="NotSupportedException">The required feature is not supported.</exception>
         /// <exception cref="UnauthorizedAccessException">Thrown when application does not have privilege to access this method.</exception>
+        /// <since_tizen> 3 </since_tizen>
         public static int SessionTimer
         {
             get
@@ -876,6 +903,7 @@ namespace Tizen.Network.WiFiDirect
         /// <summary>
         /// (event) StateChanged is raised when Wi-Fi Direct state is changed.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public static event EventHandler<StateChangedEventArgs> StateChanged
         {
             add
@@ -892,6 +920,7 @@ namespace Tizen.Network.WiFiDirect
         /// <summary>
         /// (event) DiscoveryStateChanged is raised when Wi-Fi Direct discovery state is changed.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public static event EventHandler<DiscoveryStateChangedEventArgs> DiscoveryStateChanged
         {
             add
@@ -914,6 +943,7 @@ namespace Tizen.Network.WiFiDirect
         /// <summary>
         /// (event) DeviceStateChanged is raised when device state is changed.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public static event EventHandler<DeviceStateChangedEventArgs> DeviceStateChanged
         {
             add
@@ -936,6 +966,7 @@ namespace Tizen.Network.WiFiDirect
         /// <summary>
         /// (event) PeerFound is raised when peer is found.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public static event EventHandler<PeerFoundEventArgs> PeerFound
         {
             add
@@ -958,6 +989,7 @@ namespace Tizen.Network.WiFiDirect
         /// <summary>
         /// (event) ConnectionStatusChanged is raised when status of connection is changed.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public static event EventHandler<ConnectionStatusChangedEventArgs> ConnectionStatusChanged
         {
             add
@@ -986,6 +1018,7 @@ namespace Tizen.Network.WiFiDirect
         /// <exception cref="InvalidOperationException">The object is in invalid state.</exception>
         /// <exception cref="NotSupportedException">The required feature is not supported.</exception>
         /// <exception cref="UnauthorizedAccessException">Thrown when application does not have privilege to access this method.</exception>
+        /// <since_tizen> 3 </since_tizen>
         public static void Activate()
         {
             if (Globals.IsInitialize)
@@ -1016,6 +1049,7 @@ namespace Tizen.Network.WiFiDirect
         /// <exception cref="InvalidOperationException">The object is in invalid state.</exception>
         /// <exception cref="NotSupportedException">The required feature is not supported.</exception>
         /// <exception cref="UnauthorizedAccessException">Thrown when application does not have privilege to access this method.</exception>
+        /// <since_tizen> 3 </since_tizen>
         public static void Deactivate()
         {
             if (Globals.IsActivated)
@@ -1049,6 +1083,7 @@ namespace Tizen.Network.WiFiDirect
         /// <exception cref="InvalidOperationException">The object is in invalid state.</exception>
         /// <exception cref="NotSupportedException">The required feature is not supported.</exception>
         /// <exception cref="UnauthorizedAccessException">Thrown when application does not have privilege to access this method.</exception>
+        /// <since_tizen> 3 </since_tizen>
         public static void StartDiscovery(bool listenOnly, int duration, WiFiDirectDiscoveryChannel channel = WiFiDirectDiscoveryChannel.FullScan)
         {
             if (Globals.IsActivated)
@@ -1079,6 +1114,7 @@ namespace Tizen.Network.WiFiDirect
         /// <exception cref="InvalidOperationException">The object is in invalid state.</exception>
         /// <exception cref="NotSupportedException">The required feature is not supported.</exception>
         /// <exception cref="UnauthorizedAccessException">Thrown when application does not have privilege to access this method.</exception>
+        /// <since_tizen> 3 </since_tizen>
         public static void CancelDiscovery()
         {
             if (WiFiDirectManager.State == WiFiDirectState.Discovering)
@@ -1109,6 +1145,7 @@ namespace Tizen.Network.WiFiDirect
         /// <exception cref="InvalidOperationException">The object is in invalid state.</exception>
         /// <exception cref="NotSupportedException">The required feature is not supported.</exception>
         /// <exception cref="UnauthorizedAccessException">Thrown when application does not have privilege to access this method.</exception>
+        /// <since_tizen> 3 </since_tizen>
         public static IEnumerable<WiFiDirectPeer> GetDiscoveredPeers()
         {
             if (Globals.IsActivated)
@@ -1138,6 +1175,7 @@ namespace Tizen.Network.WiFiDirect
         /// <exception cref="InvalidOperationException">The object is in invalid state.</exception>
         /// <exception cref="NotSupportedException">The required feature is not supported.</exception>
         /// <exception cref="UnauthorizedAccessException">Thrown when application does not have privilege to access this method.</exception>
+        /// <since_tizen> 3 </since_tizen>
         public static IEnumerable<WiFiDirectPeer> GetConnectedPeers()
         {
             if (Globals.IsActivated)
@@ -1167,6 +1205,7 @@ namespace Tizen.Network.WiFiDirect
         /// <exception cref="InvalidOperationException">The object is in invalid state.</exception>
         /// <exception cref="NotSupportedException">The required feature is not supported.</exception>
         /// <exception cref="UnauthorizedAccessException">Thrown when application does not have privilege to access this method.</exception>
+        /// <since_tizen> 3 </since_tizen>
         public static void DisconnectAll()
         {
             if (Globals.IsActivated)
@@ -1197,6 +1236,7 @@ namespace Tizen.Network.WiFiDirect
         /// <exception cref="InvalidOperationException">The object is in invalid state.</exception>
         /// <exception cref="NotSupportedException">The required feature is not supported.</exception>
         /// <exception cref="UnauthorizedAccessException">Thrown when application does not have privilege to access this method.</exception>
+        /// <since_tizen> 3 </since_tizen>
         public static void CreateGroup()
         {
             if (Globals.IsActivated)
@@ -1227,6 +1267,7 @@ namespace Tizen.Network.WiFiDirect
         /// <exception cref="InvalidOperationException">The object is in invalid state.</exception>
         /// <exception cref="NotSupportedException">The required feature is not supported.</exception>
         /// <exception cref="UnauthorizedAccessException">Thrown when application does not have privilege to access this method.</exception>
+        /// <since_tizen> 3 </since_tizen>
         public static void DestroyGroup()
         {
             if (Globals.IsActivated)
@@ -1253,6 +1294,7 @@ namespace Tizen.Network.WiFiDirect
         /// <exception cref="InvalidOperationException">The object is in invalid state.</exception>
         /// <exception cref="NotSupportedException">The required feature is not supported.</exception>
         /// <exception cref="UnauthorizedAccessException">Thrown when application does not have privilege to access this method.</exception>
+        /// <since_tizen> 3 </since_tizen>
         public static void ActivatePushButton()
         {
             if (Globals.IsActivated)
@@ -1280,6 +1322,7 @@ namespace Tizen.Network.WiFiDirect
         /// <exception cref="InvalidOperationException">The object is in invalid state.</exception>
         /// <exception cref="NotSupportedException">The required feature is not supported.</exception>
         /// <exception cref="UnauthorizedAccessException">Thrown when application does not have privilege to access this method.</exception>
+        /// <since_tizen> 3 </since_tizen>
         public static IEnumerable<WiFiDirectWpsType> GetSupportedWpsTypes()
         {
             if (Globals.IsInitialize)
@@ -1306,6 +1349,7 @@ namespace Tizen.Network.WiFiDirect
         /// <exception cref="InvalidOperationException">The object is in invalid state.</exception>
         /// <exception cref="NotSupportedException">The required feature is not supported.</exception>
         /// <exception cref="UnauthorizedAccessException">Thrown when application does not have privilege to access this method.</exception>
+        /// <since_tizen> 3 </since_tizen>
         public static IEnumerable<WiFiDirectPersistentGroup> GetPersistentGroups()
         {
             if (Globals.IsInitialize)
@@ -1332,6 +1376,7 @@ namespace Tizen.Network.WiFiDirect
         /// <exception cref="InvalidOperationException">The object is in invalid state.</exception>
         /// <exception cref="NotSupportedException">The required feature is not supported.</exception>
         /// <exception cref="UnauthorizedAccessException">Thrown when application does not have privilege to access this method.</exception>
+        /// <since_tizen> 3 </since_tizen>
         public static void RemovePersistentGroup(WiFiDirectPersistentGroup group)
         {
             if (Globals.IsInitialize)
@@ -1367,6 +1412,7 @@ namespace Tizen.Network.WiFiDirect
         /// </exception>
         /// <exception cref="InvalidOperationException">The object is in invalid state.</exception>
         /// <exception cref="UnauthorizedAccessException">Thrown when application does not have privilege to access this method.</exception>
+        /// <since_tizen> 3 </since_tizen>
         public static void InitMiracast(bool enable)
         {
             if (Globals.IsActivated)
@@ -1401,6 +1447,7 @@ namespace Tizen.Network.WiFiDirect
         /// </exception>
         /// <exception cref="InvalidOperationException">The object is in invalid state.</exception>
         /// <exception cref="UnauthorizedAccessException">Thrown when application does not have privilege to access this method.</exception>
+        /// <since_tizen> 3 </since_tizen>
         public static void InitDisplay()
         {
             if (Globals.IsActivated)
@@ -1435,6 +1482,7 @@ namespace Tizen.Network.WiFiDirect
         /// </exception>
         /// <exception cref="InvalidOperationException">The object is in invalid state.</exception>
         /// <exception cref="UnauthorizedAccessException">Thrown when application does not have privilege to access this method.</exception>
+        /// <since_tizen> 3 </since_tizen>
         public static void DeinitDisplay()
         {
             if (Globals.IsActivated && Globals.s_isDisplay)
@@ -1472,6 +1520,7 @@ namespace Tizen.Network.WiFiDirect
         /// </exception>
         /// <exception cref="InvalidOperationException">The object is in invalid state.</exception>
         /// <exception cref="UnauthorizedAccessException">Thrown when application does not have privilege to access this method.</exception>
+        /// <since_tizen> 3 </since_tizen>
         public static void SetDisplay(WiFiDirectDisplayType type, int port, int hdcp)
         {
             if (Globals.IsActivated && Globals.s_isDisplay)
@@ -1507,6 +1556,7 @@ namespace Tizen.Network.WiFiDirect
         /// </exception>
         /// <exception cref="InvalidOperationException">The object is in invalid state.</exception>
         /// <exception cref="UnauthorizedAccessException">Thrown when application does not have privilege to access this method.</exception>
+        /// <since_tizen> 3 </since_tizen>
         public static void SetDisplayAvailability(bool availability)
         {
             if (Globals.IsActivated && Globals.s_isDisplay)
@@ -1538,6 +1588,7 @@ namespace Tizen.Network.WiFiDirect
         /// <exception cref="InvalidOperationException">The object is in invalid state.</exception>
         /// <exception cref="NotSupportedException">The required feature is not supported.</exception>
         /// <exception cref="UnauthorizedAccessException">Thrown when application does not have privilege to access this method.</exception>
+        /// <since_tizen> 3 </since_tizen>
         public static void SetAutoGroupRemove(bool enable)
         {
             if (Globals.IsActivated)
@@ -1577,6 +1628,7 @@ namespace Tizen.Network.WiFiDirect
         /// </exception>
         /// <exception cref="InvalidOperationException">The object is in invalid state.</exception>
         /// <exception cref="UnauthorizedAccessException">Thrown when application does not have privilege to access this method.</exception>
+        /// <since_tizen> 3 </since_tizen>
         public static uint RegisterService(WiFiDirectServiceType type, string info, string serviceInfo)
         {
             if (Globals.IsActivated)
@@ -1611,6 +1663,7 @@ namespace Tizen.Network.WiFiDirect
         /// </exception>
         /// <exception cref="InvalidOperationException">The object is in invalid state.</exception>
         /// <exception cref="UnauthorizedAccessException">Thrown when application does not have privilege to access this method.</exception>
+        /// <since_tizen> 3 </since_tizen>
         public static void DeregisterService(uint serviceId)
         {
             if (Globals.IsActivated)

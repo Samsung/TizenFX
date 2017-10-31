@@ -20,6 +20,7 @@ namespace Tizen.Telephony
     /// <summary>
     /// This class contains the data related to the Notification event.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public class ChangeNotificationEventArgs : EventArgs
     {
         internal ChangeNotificationEventArgs(Notification noti, object data)
@@ -31,6 +32,7 @@ namespace Tizen.Telephony
         /// <summary>
         /// Enumeration for the Telephony Notification.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public enum Notification
         {
             /// <summary>

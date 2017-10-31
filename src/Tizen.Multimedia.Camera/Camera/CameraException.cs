@@ -21,11 +21,13 @@ namespace Tizen.Multimedia
     /// <summary>
     /// The base exception class that is thrown when specific camera related error occurs.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public class CameraException : Exception
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="CameraException"/> class.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public CameraException() : base()
         {
         }
@@ -33,6 +35,7 @@ namespace Tizen.Multimedia
         /// <summary>
         /// Initializes a new instance of the <see cref="CameraException"/> class with a specified error message.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public CameraException(string message) : base(message)
         {
         }
@@ -41,11 +44,13 @@ namespace Tizen.Multimedia
     /// <summary>
     /// The exception that is thrown when a camera device-related error occurs.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public class CameraDeviceException : CameraException
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="CameraDeviceException"/> class.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public CameraDeviceException() : base()
         {
         }
@@ -53,6 +58,7 @@ namespace Tizen.Multimedia
         /// <summary>
         /// Initializes a new instance of the <see cref="CameraDeviceException"/> class with a specified error message.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public CameraDeviceException(string message) : base(message)
         {
         }
@@ -61,11 +67,13 @@ namespace Tizen.Multimedia
     /// <summary>
     /// The exception that is thrown when a camera device is not available.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public class CameraDeviceNotFoundException : CameraException
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="CameraDeviceNotFoundException"/> class.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public CameraDeviceNotFoundException() : base()
         {
         }
@@ -73,6 +81,7 @@ namespace Tizen.Multimedia
         /// <summary>
         /// Initializes a new instance of the <see cref="CameraDeviceNotFoundException"/> class with a specified error message.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public CameraDeviceNotFoundException(string message) : base(message)
         {
         }

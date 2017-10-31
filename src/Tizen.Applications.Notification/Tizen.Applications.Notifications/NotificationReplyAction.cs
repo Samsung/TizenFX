@@ -30,6 +30,7 @@ namespace Tizen.Applications.Notifications
         ///  Class for displaying direct-reply on notification.
         ///  You must set a ReplyMax and Button. Otherwise, user can't send written text to application which is set by AppControl.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public sealed class ReplyAction : MakerBase
         {
             /// <summary>
@@ -37,12 +38,14 @@ namespace Tizen.Applications.Notifications
             /// If you set ParentIndex, ReplyAction is displayed when button matches with ParentIndex that is clicked by the user.
             /// If you don't set ParentIndex, it appears as notification directly.
             /// </summary>
+            /// <since_tizen> 3 </since_tizen>
             public ButtonIndex ParentIndex { get; set; } = ButtonIndex.None;
 
             /// <summary>
             /// Gets or sets the PlaceHolderText of ReplyAction which appears at notification.
             /// If you set PlaceHolderText, it is displayed to placeholder in notification.
             /// </summary>
+            /// <since_tizen> 3 </since_tizen>
             public string PlaceHolderText { get; set; }
 
             /// <summary>
@@ -52,6 +55,7 @@ namespace Tizen.Applications.Notifications
             /// <value>
             /// Default value is 160.
             /// </value>
+            /// <since_tizen> 3 </since_tizen>
             public int ReplyMax { get; set; } = 160;
 
             /// <summary>
@@ -77,6 +81,7 @@ namespace Tizen.Applications.Notifications
             /// };
             /// </code>
             /// </example>
+            /// <since_tizen> 3 </since_tizen>
             public ButtonAction Button { get; set; }
 
             internal override void Make(Notification notification)

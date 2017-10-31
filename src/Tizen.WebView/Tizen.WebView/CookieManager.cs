@@ -20,6 +20,7 @@ namespace Tizen.WebView
     /// <summary>
     /// Enumeration that contains accept policies for the cookies.
     /// </summary>
+    /// <since_tizen> 4 </since_tizen>
     public enum CookieAcceptPolicy
     {
         /// <summary>
@@ -39,6 +40,7 @@ namespace Tizen.WebView
     /// <summary>
     /// Enumeration that creates a type name for the storage of persistent cookies.
     /// </summary>
+    /// <since_tizen> 4 </since_tizen>
     public enum CookiePersistentStorage
     {
         /// <summary>
@@ -54,6 +56,7 @@ namespace Tizen.WebView
     /// <summary>
     /// This class provides methods for the cookie manager.
     /// </summary>
+    /// <since_tizen> 4 </since_tizen>
     public class CookieManager
     {
         private IntPtr _handle;
@@ -70,6 +73,7 @@ namespace Tizen.WebView
         /// By default, only cookies set by the main document loaded are accepted.
         /// </remarks>
         /// <param name="policy">The cookie acceptance policy</param>
+        /// <since_tizen> 4 </since_tizen>
         public void SetCookieAcceptPolicy(CookieAcceptPolicy policy)
         {
             Interop.ChromiumEwk.ewk_cookie_manager_accept_policy_set(_handle, (Interop.ChromiumEwk.CookieAcceptPolicy)policy);
@@ -78,6 +82,7 @@ namespace Tizen.WebView
         /// <summary>
         /// Deletes all the cookies.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         public void ClearCookies()
         {
             Interop.ChromiumEwk.ewk_cookie_manager_cookies_clear(_handle);
@@ -90,6 +95,7 @@ namespace Tizen.WebView
         /// <privilege>http://tizen.org/privilege/externalstorage</privilege>
         /// <param name="path">The path where to read/write Cookies</param>
         /// <param name="storage">The type of storage</param>
+        /// <since_tizen> 4 </since_tizen>
         public void SetPersistentStorage(string path, CookiePersistentStorage storage)
         {
             Interop.ChromiumEwk.ewk_cookie_manager_persistent_storage_set(_handle, path, (Interop.ChromiumEwk.CookiePersistentStorage)storage);

@@ -20,6 +20,7 @@ namespace Tizen.Multimedia
     /// <summary>
     /// Provides data for the <see cref="Player.VideoStreamChanged"/> event.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public class VideoStreamChangedEventArgs : EventArgs
     {
         /// <summary>
@@ -35,22 +36,26 @@ namespace Tizen.Multimedia
         /// <summary>
         /// Gets the <see cref="Size"/> of the new video.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public Size Size { get; }
 
         /// <summary>
         /// Gets the fps of the new video.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public int Fps { get; }
 
         /// <summary>
         /// Gets the bit rate of the new video.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public int BitRate { get; }
 
         /// <summary>
         /// Returns a string that represents the current object.
         /// </summary>
         /// <returns>A string that represents the current object.</returns>
+        /// <since_tizen> 3 </since_tizen>
         public override string ToString()
         {
             return $"Size=({ Size.ToString() }), Fps={ Fps.ToString() }, BitRate={ BitRate.ToString() }";

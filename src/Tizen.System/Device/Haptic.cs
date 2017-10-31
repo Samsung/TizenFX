@@ -34,6 +34,7 @@ namespace Tizen.System
     ///     Console.WriteLine("Total number of Vibrators are: {0}", Tizen.System.Vibrator.NumberOfVibrators);
     /// </code>
     /// </example>
+    /// <since_tizen> 3 </since_tizen>
     public class Vibrator : IDisposable
     {
         private readonly int _vibratorId;

@@ -32,6 +32,7 @@ namespace Tizen.Applications.Notifications
         ///  Class for displaying progress notification.
         ///  You must initialize progress category, current, and max value when you create an object.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public sealed class ProgressType : MakerBase
         {
             private double progressCurrent;
@@ -45,6 +46,7 @@ namespace Tizen.Applications.Notifications
             /// <param name="current">The current value of the progress.</param>
             /// <param name="max">The max value of the progress.</param>
             /// <exception cref="ArgumentException">Thrown when an argument is invalid.</exception>
+            /// <since_tizen> 3 </since_tizen>
             public ProgressType(ProgressCategory category, double current, double max)
             {
                 if (IsNegativeNumber(current))
@@ -66,12 +68,14 @@ namespace Tizen.Applications.Notifications
             /// Gets or sets category of ProgressType.
             /// </summary>
             /// <seealso cref="Tizen.Applications.Notifications.ProgressCategory"></seealso>
+            /// <since_tizen> 3 </since_tizen>
             public ProgressCategory Category { get; set; }
 
             /// <summary>
             /// Gets or sets current value of ProgressType.
             /// </summary>
             /// <exception cref="ArgumentException">Thrown when argument is invalid.</exception>
+            /// <since_tizen> 3 </since_tizen>
             public double ProgressCurrent
             {
                 get
@@ -94,6 +98,7 @@ namespace Tizen.Applications.Notifications
             /// Gets or sets max value of ProgressType.
             /// </summary>
             /// <exception cref="ArgumentException">Thrown when argument is invalid.</exception>
+            /// <since_tizen> 3 </since_tizen>
             public double ProgressMax
             {
                 get

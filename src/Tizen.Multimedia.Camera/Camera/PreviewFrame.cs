@@ -24,6 +24,7 @@ namespace Tizen.Multimedia
     /// <summary>
     /// The class containing the preview image data.
     /// </summary>
+    /// <since_tizen> 4 </since_tizen>
     public class PreviewFrame
     {
         internal PreviewFrame(IntPtr ptr)
@@ -87,31 +88,31 @@ namespace Tizen.Multimedia
         /// <summary>
         /// The pixel format of the image.
         /// </summary>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 4 </since_tizen>
         public CameraPixelFormat Format { get; }
 
         /// <summary>
         /// The resolution of the preview image.
         /// </summary>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 4 </since_tizen>
         public Size Resolution { get; }
 
         /// <summary>
         /// The time stamp of the preview frame.
         /// </summary>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 4 </since_tizen>
         public uint TimeStamp { get; }
 
         /// <summary>
         /// The type of the preview plane. <see cref="Tizen.Multimedia.PlaneType"/>
         /// </summary>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 4 </since_tizen>
         public PlaneType PlaneType { get; }
 
         /// <summary>
         /// The buffer including the preview frame.
         /// </summary>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 4 </since_tizen>
         public IPreviewPlane Plane { get; }
     }
 }

@@ -23,6 +23,7 @@ namespace Tizen.Network.Bluetooth
     /// A class which is used to handle the connection and send and receive the object over Opp profile.
     /// </summary>
     /// <privilege> http://tizen.org/privilege/bluetooth </privilege>
+    /// <since_tizen> 4 </since_tizen>
     public class BluetoothOppServer
     {
         private static BluetoothOppServerImpl _impl;
@@ -31,6 +32,7 @@ namespace Tizen.Network.Bluetooth
         /// <summary>
         /// The constructor
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         public BluetoothOppServer()
         {
             _impl = BluetoothOppServerImpl.Instance;
@@ -39,6 +41,7 @@ namespace Tizen.Network.Bluetooth
         /// <summary>
         /// (event) ConnectionRequested is called when OPP client requests for connection.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         public event EventHandler<ConnectionRequestedEventArgs> ConnectionRequested
         {
             add
@@ -54,6 +57,7 @@ namespace Tizen.Network.Bluetooth
         /// <summary>
         /// (event) TransferProgress is called when the file transfer state is changed.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         public event EventHandler<TransferProgressEventArgs> TransferProgress
         {
             add
@@ -69,6 +73,7 @@ namespace Tizen.Network.Bluetooth
         /// <summary>
         /// (event) TransferFinished is called when the file tranfser is completed.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         public event EventHandler<TransferFinishedEventArgs> TransferFinished
         {
             add
@@ -92,6 +97,7 @@ namespace Tizen.Network.Bluetooth
         /// <exception cref="NotSupportedException">Thrown when the required feature is not Supported.</exception>
         /// <exception cref="NotSupportedException">Thrown when the BT/BTLE is not Supported.</exception>
         /// <exception cref="InvalidOperationException">Thrown when the BT/BTLE is not Enabled or Other Bluetooth Errors.</exception>
+        /// <since_tizen> 4 </since_tizen>
         public static BluetoothOppServer StartServer(string FilePath)
         {
             if (BluetoothAdapter.IsBluetoothEnabled && Globals.IsInitialize)
@@ -124,6 +130,7 @@ namespace Tizen.Network.Bluetooth
         /// <exception cref="NotSupportedException">Thrown when the required feature is not Supported.</exception>
         /// <exception cref="NotSupportedException">Thrown when the BT/BTLE is not Supported.</exception>
         /// <exception cref="InvalidOperationException">Thrown when the BT/BTLE is not Enabled or Other Bluetooth Errors.</exception>
+        /// <since_tizen> 4 </since_tizen>
         public void StopServer()
         {
             if (BluetoothAdapter.IsBluetoothEnabled && Globals.IsInitialize)
@@ -154,6 +161,7 @@ namespace Tizen.Network.Bluetooth
         /// <exception cref="NotSupportedException">Thrown when the required feature is not Supported.</exception>
         /// <exception cref="NotSupportedException">Thrown when the BT/BTLE is not Supported.</exception>
         /// <exception cref="InvalidOperationException">Thrown when the BT/BTLE is not Enabled or Other Bluetooth Errors.</exception>
+        /// <since_tizen> 4 </since_tizen>
         public int AcceptPush(string FileName)
         {
             int _transitionId = -1;
@@ -180,6 +188,7 @@ namespace Tizen.Network.Bluetooth
         /// <exception cref="NotSupportedException">Thrown when the required feature is not Supported.</exception>
         /// <exception cref="NotSupportedException">Thrown when the BT/BTLE is not Supported.</exception>
         /// <exception cref="InvalidOperationException">Thrown when the BT/BTLE is not Enabled or Other Bluetooth Errors.</exception>
+        /// <since_tizen> 4 </since_tizen>
         public void RejectPush()
         {
             if (BluetoothAdapter.IsBluetoothEnabled && Globals.IsInitialize)
@@ -205,6 +214,7 @@ namespace Tizen.Network.Bluetooth
         /// <exception cref="NotSupportedException">Thrown when the required feature is not Supported.</exception>
         /// <exception cref="NotSupportedException">Thrown when the BT/BTLE is not Supported.</exception>
         /// <exception cref="InvalidOperationException">Thrown when the BT/BTLE is not Enabled or Other Bluetooth Errors.</exception>
+        /// <since_tizen> 4 </since_tizen>
         public void CancelTransfer(int TransferId)
         {
             if (BluetoothAdapter.IsBluetoothEnabled && Globals.IsInitialize)
@@ -230,6 +240,7 @@ namespace Tizen.Network.Bluetooth
         /// <exception cref="NotSupportedException">Thrown when the required feature is not Supported.</exception>
         /// <exception cref="NotSupportedException">Thrown when the BT/BTLE is not Supported.</exception>
         /// <exception cref="InvalidOperationException">Thrown when the BT/BTLE is not Enabled or Other Bluetooth Errors.</exception>
+        /// <since_tizen> 4 </since_tizen>
         public void SetDestinationPath(string FilePath)
         {
             if (BluetoothAdapter.IsBluetoothEnabled && Globals.IsInitialize)
@@ -252,6 +263,7 @@ namespace Tizen.Network.Bluetooth
     /// A class which is used to handle the connection and send and receive the object over Opp profile.
     /// </summary>
     /// <privilege> http://tizen.org/privilege/bluetooth </privilege>
+    /// <since_tizen> 4 </since_tizen>
     public class BluetoothOppClient : BluetoothProfile
     {
         internal BluetoothOppClient()
@@ -261,6 +273,7 @@ namespace Tizen.Network.Bluetooth
         /// <summary>
         /// (event) PushResponded is called when remote OPP Server responds to a File push request.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         public event EventHandler<PushRespondedEventArgs> PushResponded
         {
             add
@@ -276,6 +289,7 @@ namespace Tizen.Network.Bluetooth
         /// <summary>
         /// (event) PushProgress is called when the file transfer state is changed.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         public event EventHandler<PushProgressEventArgs> PushProgress
         {
             add
@@ -291,6 +305,7 @@ namespace Tizen.Network.Bluetooth
         /// <summary>
         /// (event) PushFinished is called when the file tranfser is completed.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         public event EventHandler<PushFinishedEventArgs> PushFinished
         {
             add
@@ -311,6 +326,7 @@ namespace Tizen.Network.Bluetooth
         /// <exception cref="NotSupportedException">Thrown when the required feature is not Supported.</exception>
         /// <exception cref="NotSupportedException">Thrown when the BT/BTLE is not Supported.</exception>
         /// <exception cref="InvalidOperationException">Thrown when the BT/BTLE is not Enabled or Other Bluetooth Errors.</exception>
+        /// <since_tizen> 4 </since_tizen>
         public void AddFile(string FilePath)
         {
             if (BluetoothAdapter.IsBluetoothEnabled && Globals.IsInitialize)
@@ -335,6 +351,7 @@ namespace Tizen.Network.Bluetooth
         /// <exception cref="NotSupportedException">Thrown when the required feature is not Supported.</exception>
         /// <exception cref="NotSupportedException">Thrown when the BT/BTLE is not Supported.</exception>
         /// <exception cref="InvalidOperationException">Thrown when the BT/BTLE is not Enabled or Other Bluetooth Errors.</exception>
+        /// <since_tizen> 4 </since_tizen>
         public void ClearFiles()
         {
             if (BluetoothAdapter.IsBluetoothEnabled && Globals.IsInitialize)
@@ -359,6 +376,7 @@ namespace Tizen.Network.Bluetooth
         /// <exception cref="NotSupportedException">Thrown when the required feature is not Supported.</exception>
         /// <exception cref="NotSupportedException">Thrown when the BT/BTLE is not Supported.</exception>
         /// <exception cref="InvalidOperationException">Thrown when the BT/BTLE is not Enabled or Other Bluetooth Errors.</exception>
+        /// <since_tizen> 4 </since_tizen>
         public void CancelPush()
         {
             if (BluetoothAdapter.IsBluetoothEnabled && Globals.IsInitialize)
@@ -384,6 +402,7 @@ namespace Tizen.Network.Bluetooth
         /// <exception cref="NotSupportedException">Thrown when the required feature is not Supported.</exception>
         /// <exception cref="NotSupportedException">Thrown when the BT/BTLE is not Supported.</exception>
         /// <exception cref="InvalidOperationException">Thrown when the BT/BTLE is not Enabled or Other Bluetooth Errors.</exception>
+        /// <since_tizen> 4 </since_tizen>
         public void PushFile(string Destination)
         {
             if (BluetoothAdapter.IsBluetoothEnabled && Globals.IsInitialize)

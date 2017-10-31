@@ -22,12 +22,14 @@ namespace Tizen.Internals.Errors
     /// <summary>
     /// Provides functions that return additional information about the <see cref="ErrorCode"/>
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public static class ErrorFacts
     {
         /// <summary>
         /// Gets the last error code in the thread.
         /// </summary>
         /// <returns>One of <see cref="ErrorCode"/></returns>
+        /// <since_tizen> 3 </since_tizen>
         public static int GetLastResult()
         {
             return Interop.CommonError.GetLastResult();
@@ -38,6 +40,7 @@ namespace Tizen.Internals.Errors
         /// </summary>
         /// <param name="errorCode">One of <see cref="ErrorCode"/></param>
         /// <returns></returns>
+        /// <since_tizen> 3 </since_tizen>
         public static string GetErrorMessage(int errorCode)
         {
             IntPtr errorPtr = Interop.CommonError.GetErrorMessage(errorCode);

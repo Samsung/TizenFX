@@ -23,6 +23,7 @@ namespace Tizen.Network.Bluetooth
     /// like headset, hands-free, and headphone.
     /// </summary>
     /// <privilege> http://tizen.org/privilege/bluetooth </privilege>
+    /// <since_tizen> 3 </since_tizen>
     public class BluetoothAudio : BluetoothProfile
     {
         internal BluetoothAudio()
@@ -32,6 +33,7 @@ namespace Tizen.Network.Bluetooth
         /// <summary>
         /// The AudioConnectionStateChanged event is called when the audio connection state is changed.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public event EventHandler<AudioConnectionStateChangedEventArgs> AudioConnectionStateChanged
         {
             add
@@ -56,6 +58,7 @@ namespace Tizen.Network.Bluetooth
         /// <exception cref="NotSupportedException">Thrown when the Bluetooth is not supported.</exception>
         /// <exception cref="InvalidOperationException">Thrown when the Bluetooth is not enabled
         /// or when the connection attempt fails.</exception>
+        /// <since_tizen> 3 </since_tizen>
         public void Connect(BluetoothAudioProfileType profileType)
         {
             if (BluetoothAdapter.IsBluetoothEnabled && Globals.IsInitialize)
@@ -85,6 +88,7 @@ namespace Tizen.Network.Bluetooth
         /// <exception cref="NotSupportedException">Thrown when the Bluetooth is not supported.</exception>
         /// <exception cref="InvalidOperationException">Thrown when the Bluetooth is not enabled
         /// or when Disconnection attempt fails.</exception>
+        /// <since_tizen> 3 </since_tizen>
         public void Disconnect(BluetoothAudioProfileType type)
         {
             if (BluetoothAdapter.IsBluetoothEnabled && Globals.IsInitialize)

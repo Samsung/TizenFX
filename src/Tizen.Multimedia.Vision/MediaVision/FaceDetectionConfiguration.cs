@@ -22,7 +22,7 @@ namespace Tizen.Multimedia.Vision
     /// Represents a configuration of <see cref="FaceDetector"/> instances.
     /// </summary>
     /// <feature>http://tizen.org/feature/vision.face_recognition</feature>
-    /// <since_tizen> 3 </since_tizen>
+    /// <since_tizen> 4 </since_tizen>
     public class FaceDetectionConfiguration : EngineConfiguration
     {
         private const string KeyModelFilePath = "MV_FACE_DETECTION_MODEL_FILE_PATH";
@@ -37,7 +37,7 @@ namespace Tizen.Multimedia.Vision
         /// Initializes a new instance of the <see cref="FaceDetectionConfiguration"/> class.
         /// </summary>
         /// <exception cref="NotSupportedException">The feature is not supported.</exception>
-        /// <since_tizen> 3</since_tizen>
+        /// <since_tizen> 4</since_tizen>
         public FaceDetectionConfiguration() : base("face_recognition")
         {
         }
@@ -46,7 +46,7 @@ namespace Tizen.Multimedia.Vision
         /// Gets or sets the face detection haarcascade xml file for face detection.
         /// </summary>
         /// <exception cref="ArgumentNullException"><paramref name="value"/> is null.</exception>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 4 </since_tizen>
         public string ModelFilePath
         {
             get
@@ -71,7 +71,7 @@ namespace Tizen.Multimedia.Vision
         /// Default value is null (all detected faces will be applied), which can be changed to specify the minimum face height.
         /// </remarks>
         /// <exception cref="ArgumentOutOfRangeException"><paramref name="value"/> is less than zero.</exception>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 4 </since_tizen>
         public int? MinHeight
         {
             get
@@ -99,7 +99,7 @@ namespace Tizen.Multimedia.Vision
         /// Default value is null (all detected faces will be applied), which can be changed to specify the minimum face width.
         /// </remarks>
         /// <exception cref="ArgumentOutOfRangeException"><paramref name="value"/> is less than zero.</exception>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 4 </since_tizen>
         public int? MinWidth
         {
             get
@@ -139,7 +139,7 @@ namespace Tizen.Multimedia.Vision
         ///     -or-<br/>
         ///     The y position of <paramref name="value"/> is less than zero.
         /// </exception>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 4 </since_tizen>
         public Rectangle? Roi
         {
             get

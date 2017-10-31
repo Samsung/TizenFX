@@ -19,6 +19,7 @@ namespace Tizen.Multimedia.Util
     /// <summary>
     /// Specifies image formats for <see cref="ImageDecoder"/>, <see cref="ImageEncoder"/> and <see cref="ImageUtil"/>.
     /// </summary>
+    /// <since_tizen> 4 </since_tizen>
     public enum ImageFormat
     {
         /// <summary>

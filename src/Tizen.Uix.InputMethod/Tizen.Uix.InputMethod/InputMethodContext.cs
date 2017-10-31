@@ -23,6 +23,7 @@ namespace Tizen.Uix.InputMethod
     /// <summary>
     /// Enumeration for Input Panel Layout
     /// </summary>
+    /// <since_tizen> 4 </since_tizen>
     public enum InputPanelLayout
     {
         /// <summary>
@@ -94,6 +95,7 @@ namespace Tizen.Uix.InputMethod
     /// <summary>
     /// Enumeration for Layout Variation
     /// </summary>
+    /// <since_tizen> 4 </since_tizen>
     public enum LayoutVariation
     {
         /// <summary>
@@ -141,6 +143,7 @@ namespace Tizen.Uix.InputMethod
     /// <summary>
     /// Enumeration for AutoCapital Type
     /// </summary>
+    /// <since_tizen> 4 </since_tizen>
     public enum AutoCapitalization
     {
         /// <summary>
@@ -168,6 +171,7 @@ namespace Tizen.Uix.InputMethod
     /// <summary>
     /// Enumeration for InputPanel ReturnKey Type
     /// </summary>
+    /// <since_tizen> 4 </since_tizen>
     public enum InputPanelReturnKey
     {
         /// <summary>
@@ -215,6 +219,7 @@ namespace Tizen.Uix.InputMethod
     /// <summary>
     /// Enumeration for InputHints
     /// </summary>
+    /// <since_tizen> 4 </since_tizen>
     public enum InputHints
     {
         /// <summary>
@@ -242,6 +247,7 @@ namespace Tizen.Uix.InputMethod
     /// <summary>
     /// Enumeration for BiDi Direction
     /// </summary>
+    /// <since_tizen> 4 </since_tizen>
     public enum BiDirection
     {
         /// <summary>
@@ -265,6 +271,7 @@ namespace Tizen.Uix.InputMethod
     /// <summary>
     /// Enumeration for InputPanel Language
     /// </summary>
+    /// <since_tizen> 4 </since_tizen>
     public enum InputPanelLanguage
     {
         /// <summary>
@@ -284,6 +291,7 @@ namespace Tizen.Uix.InputMethod
     /// <summary>
     /// This class represents the context of InputMethodEditor
     /// </summary>
+    /// <since_tizen> 4 </since_tizen>
     public class InputMethodContext
     {
         private IntPtr _handle;
@@ -295,6 +303,7 @@ namespace Tizen.Uix.InputMethod
         /// <summary>
         /// Gets the layout information.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         public InputPanelLayout Layout
         {
             get
@@ -313,6 +322,7 @@ namespace Tizen.Uix.InputMethod
         /// <summary>
         /// Gets the layout variation information.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         public LayoutVariation LayoutVariation
         {
             get
@@ -331,6 +341,7 @@ namespace Tizen.Uix.InputMethod
         /// <summary>
         /// Gets the cursor position information.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         public int CursorPosition
         {
             get
@@ -349,6 +360,7 @@ namespace Tizen.Uix.InputMethod
         /// <summary>
         /// Gets the autocapital type information.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         public AutoCapitalization AutoCapitalization
         {
             get
@@ -367,6 +379,7 @@ namespace Tizen.Uix.InputMethod
         /// <summary>
         /// Gets the Return key label type information.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         public InputPanelReturnKey ReturnKey
         {
             get
@@ -385,6 +398,7 @@ namespace Tizen.Uix.InputMethod
         /// <summary>
         /// Gets the Return key state information.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         public bool ReturnKeyState
         {
             get
@@ -403,6 +417,7 @@ namespace Tizen.Uix.InputMethod
         /// <summary>
         /// Gets the prediction mode information.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         public bool PredictionMode
         {
             get
@@ -421,6 +436,7 @@ namespace Tizen.Uix.InputMethod
         /// <summary>
         /// Gets the password mode information.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         public bool PasswordMode
         {
             get
@@ -439,6 +455,7 @@ namespace Tizen.Uix.InputMethod
         /// <summary>
         /// Gets the input hint information.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         public InputHints InputHint
         {
             get
@@ -457,6 +474,7 @@ namespace Tizen.Uix.InputMethod
         /// <summary>
         /// Gets the text bidirectional information.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         public BiDirection BiDirection
         {
             get
@@ -475,6 +493,7 @@ namespace Tizen.Uix.InputMethod
         /// <summary>
         /// Gets the preferred language information.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         public InputPanelLanguage Language
         {
             get

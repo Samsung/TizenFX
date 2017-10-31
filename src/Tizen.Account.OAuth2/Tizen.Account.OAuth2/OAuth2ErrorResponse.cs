@@ -21,6 +21,7 @@ namespace Tizen.Account.OAuth2
     /// <summary>
     /// Exception wrapper for OAuth2 related exception
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public class OAuth2Exception : Exception
     {
         internal OAuth2Exception()

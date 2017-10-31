@@ -21,12 +21,14 @@ namespace Tizen.Applications
     /// <summary>
     /// The class for the argument of the LowBattery EventHandler
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public class LowBatteryEventArgs : EventArgs
     {
         /// <summary>
         /// Initializes LowBatteryEventArgs class
         /// </summary>
         /// <param name="status">The information of the LowBatteryEventArgs</param>
+        /// <since_tizen> 3 </since_tizen>
         public LowBatteryEventArgs(LowBatteryStatus status)
         {
             LowBatteryStatus = status;
@@ -35,6 +37,7 @@ namespace Tizen.Applications
         /// <summary>
         /// The property to get the intformation of the LowBatteryStatus
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public LowBatteryStatus LowBatteryStatus { get; private set; }
     }
 }

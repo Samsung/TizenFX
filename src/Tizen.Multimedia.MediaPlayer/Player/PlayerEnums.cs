@@ -23,6 +23,7 @@ namespace Tizen.Multimedia
     /// </summary>
     /// <seealso cref="Player.ErrorOccurred"/>
     /// <seealso cref="PlayerErrorOccurredEventArgs"/>
+    /// <since_tizen> 3 </since_tizen>
     public enum PlayerError
     {
         /// <summary>
@@ -83,11 +84,13 @@ namespace Tizen.Multimedia
         /// <summary>
         /// Not supported audio codec.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         AudioCodecNotSupported = PlayerErrorCode.NotSupportedAudioCodec,
 
         /// <summary>
         /// Not supported video codec.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         VideoCodecNotSupported = PlayerErrorCode.NotSupportedVideoCodec,
 
         /// <summary>
@@ -99,6 +102,7 @@ namespace Tizen.Multimedia
     /// <summary>
     /// Specifies states that a <see cref="Player"/> can have.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public enum PlayerState
     {
         /// <summary>
@@ -144,6 +148,7 @@ namespace Tizen.Multimedia
     /// Specifies audio latency modes for <see cref="Player"/>.
     /// </summary>
     /// <seealso cref="Player.AudioLatencyMode"/>
+    /// <since_tizen> 3 </since_tizen>
     public enum AudioLatencyMode
     {
         /// <summary>
@@ -166,6 +171,7 @@ namespace Tizen.Multimedia
     /// Specifies display modes for <see cref="Player"/>.
     /// </summary>
     /// <seealso cref="PlayerDisplaySettings.Mode"/>
+    /// <since_tizen> 3 </since_tizen>
     public enum PlayerDisplayMode
     {
         /// <summary>
@@ -224,6 +230,7 @@ namespace Tizen.Multimedia
     /// </summary>
     /// <seealso cref="MediaStreamConfiguration.BufferStatusChanged"/>
     /// <seealso cref="MediaStreamBufferStatusChangedEventArgs"/>
+    /// <since_tizen> 3 </since_tizen>
     public enum MediaStreamBufferStatus
     {
         /// <summary>
@@ -241,6 +248,7 @@ namespace Tizen.Multimedia
     /// Specifies the reason for the playback interruption.
     /// </summary>
     /// <seealso cref="Player.PlaybackInterrupted"/>
+    /// <since_tizen> 3 </since_tizen>
     public enum PlaybackInterruptionReason
     {
         /// <summary>
@@ -253,6 +261,7 @@ namespace Tizen.Multimedia
     /// Specifies keys for the metadata.
     /// </summary>
     /// <seealso cref="StreamInfo.GetMetadata(StreamMetadataKey)"/>
+    /// <since_tizen> 3 </since_tizen>
     public enum StreamMetadataKey
     {
         /// <summary>

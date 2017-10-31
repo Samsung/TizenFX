@@ -23,6 +23,7 @@ namespace Tizen.Multimedia
     /// <summary>
     /// The class contains the details of the detected face.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public class FaceDetectionData
     {
         internal FaceDetectionData(IntPtr ptr)

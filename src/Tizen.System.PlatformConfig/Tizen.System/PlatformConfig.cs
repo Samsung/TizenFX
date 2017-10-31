@@ -21,6 +21,7 @@ using System.ComponentModel;
 
 namespace Tizen.System
 {
+    /// <since_tizen> 4 </since_tizen>
     [EditorBrowsable(EditorBrowsableState.Never)]
     public class PlatformConfig
     {
@@ -29,6 +30,7 @@ namespace Tizen.System
             return Interop.PlatformConfig.GetId(name);
         }
 
+        /// <since_tizen> 4 </since_tizen>
         public static string GetEnv(string name)
 	{
             return Interop.PlatformConfig.GetEnv(Interop.PlatformConfig.GetId(name));

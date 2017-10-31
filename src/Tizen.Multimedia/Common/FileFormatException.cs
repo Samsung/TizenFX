@@ -22,11 +22,13 @@ namespace Tizen.Multimedia
     /// The exception that is thrown when an input file or a data stream that is supposed to conform
     /// to a certain file format specification, is malformed.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public class FileFormatException : FormatException
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="FileFormatException"/> class.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public FileFormatException()
         {
         }
@@ -34,6 +36,7 @@ namespace Tizen.Multimedia
         /// <summary>
         /// Initializes a new instance of the <see cref="FileFormatException"/> class with a specified error message.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public FileFormatException(string message) : base(message)
         {
         }

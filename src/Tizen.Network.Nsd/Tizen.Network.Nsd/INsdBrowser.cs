@@ -21,6 +21,7 @@ namespace Tizen.Network.Nsd
     /// <summary>
     /// This interface is used for managing network service discovery using DNSSD/SSDP.
     /// </summary>
+    /// <since_tizen> 4 </since_tizen>
     public interface INsdBrowser
     {
         /// <summary>

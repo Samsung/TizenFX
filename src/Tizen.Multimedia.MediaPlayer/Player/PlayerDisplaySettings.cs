@@ -24,11 +24,13 @@ namespace Tizen.Multimedia
     /// <summary>
     /// Provides a means to configure display settings for video <see cref="Player"/>.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public class PlayerDisplaySettings
     {
         /// <summary>
         /// This constructor supports the product infrastructure and is not intended to be used directly from application code.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected PlayerDisplaySettings(Player player)
         {
@@ -46,6 +48,7 @@ namespace Tizen.Multimedia
         /// Gets the player of this instance.
         /// </summary>
         /// <value>The <see cref="Player"/> of this <see cref="PlayerDisplaySettings"/> instance.</value>
+        /// <since_tizen> 4 </since_tizen>
         protected Player Player { get; }
 
         /// <summary>
@@ -56,6 +59,7 @@ namespace Tizen.Multimedia
         /// </exception>
         /// <exception cref="ObjectDisposedException">The player has already been disposed of.</exception>
         /// <exception cref="ArgumentException">The specified value to set is invalid.</exception>
+        /// <since_tizen> 3 </since_tizen>
         public PlayerDisplayMode Mode
         {
             get
@@ -82,6 +86,7 @@ namespace Tizen.Multimedia
         ///     Operation failed; internal error.
         /// </exception>
         /// <exception cref="ObjectDisposedException">The player has already been disposed of.</exception>
+        /// <since_tizen> 3 </since_tizen>
         public bool IsVisible
         {
             get
@@ -107,6 +112,7 @@ namespace Tizen.Multimedia
         /// </exception>
         /// <exception cref="ObjectDisposedException">The player has already been disposed of.</exception>
         /// <exception cref="ArgumentException">The specified value to set is invalid.</exception>
+        /// <since_tizen> 3 </since_tizen>
         public Rotation Rotation
         {
             get
@@ -139,6 +145,7 @@ namespace Tizen.Multimedia
         /// </exception>
         /// <exception cref="ObjectDisposedException">The player has already been disposed of.</exception>
         /// <exception cref="ArgumentOutOfRangeException">The width or the height is less than or equal to zero.</exception>
+        /// <since_tizen> 3 </since_tizen>
         public void SetRoi(Rectangle roi)
         {
             if (roi.Width <= 0)

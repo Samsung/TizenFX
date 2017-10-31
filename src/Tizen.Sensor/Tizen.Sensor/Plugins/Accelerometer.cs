@@ -21,6 +21,7 @@ namespace Tizen.Sensor
     /// <summary>
     /// The Accelerometer Sensor class is used for registering callbacks for the accelerometer and getting the accelerometer data.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public sealed class Accelerometer : Sensor
     {
         private static string AccelerometerKey = "http://tizen.org/feature/sensor.accelerometer";

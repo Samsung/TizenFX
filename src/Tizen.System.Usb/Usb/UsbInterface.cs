@@ -22,6 +22,7 @@ namespace Tizen.System.Usb
     /// <summary>
     /// Class to manage USB Interfaces.
     /// </summary>
+    /// <since_tizen> 4 </since_tizen>
     public class UsbInterface
     {
         internal readonly Interop.UsbInterfaceHandle _handle;
@@ -38,6 +39,7 @@ namespace Tizen.System.Usb
         /// <summary>
         /// Gets number of given interface.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         public int Id
         {
             get
@@ -50,6 +52,7 @@ namespace Tizen.System.Usb
         /// <summary>
         /// Sets alternative setting. Use index of new alternative setting for given interface.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         public int AlternateSetting
         {
             set
@@ -62,6 +65,7 @@ namespace Tizen.System.Usb
         /// <summary>
         /// Dictionary mapping endpoint Ids to endpoint instances for given interface.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         public IReadOnlyDictionary<int, UsbEndpoint> Endpoints
         {
             get
@@ -88,6 +92,7 @@ namespace Tizen.System.Usb
         /// Gets string describing an interface.
         /// </summary>
         /// <returns></returns>
+        /// <since_tizen> 4 </since_tizen>
         public string InterfaceString()
         {
             ThrowIfDisposed();
@@ -101,6 +106,7 @@ namespace Tizen.System.Usb
         /// <exception cref="InvalidOperationException">
         /// Throws exception if device is disconnected or not opened for operation or another program or driver has claimed the interface.
         /// </exception>
+        /// <since_tizen> 4 </since_tizen>
         public void Claim(bool force)
         {
             ThrowIfDisposed();
@@ -115,6 +121,7 @@ namespace Tizen.System.Usb
         /// </summary>
         /// <exception cref="InvalidOperationException">Throws exception if device is disconnected or not opened for operation.</exception>
         /// <exception cref="UnauthorizedAccessException">Throws exception if user has insufficient permission on device.</exception>
+        /// <since_tizen> 4 </since_tizen>
         public void Release()
         {
             ThrowIfDisposed();

@@ -19,6 +19,7 @@ namespace Tizen.Uix.InputMethod
     /// <summary>
     /// This Class contains data related to FocusedOut Event
     /// </summary>
+    /// <since_tizen> 4 </since_tizen>
     public class FocusedOutEventArgs
     {
         internal FocusedOutEventArgs(int contextId)
@@ -29,6 +30,7 @@ namespace Tizen.Uix.InputMethod
         /// <summary>
         /// The input context identification value of an associated text input UI control
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         public int ContextId
         {
             get;

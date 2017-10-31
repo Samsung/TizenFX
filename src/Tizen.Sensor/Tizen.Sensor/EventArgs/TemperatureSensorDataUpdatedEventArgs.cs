@@ -21,6 +21,7 @@ namespace Tizen.Sensor
     /// <summary>
     /// The TemperatureSensor changed event arguments class is used for storing the data returned by a temperature sensor.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public class TemperatureSensorDataUpdatedEventArgs : EventArgs
     {
         internal TemperatureSensorDataUpdatedEventArgs(float temperature)

@@ -19,6 +19,7 @@ namespace Tizen.Multimedia
     /// <summary>
     /// Specifies states of the <see cref="Radio"/>.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public enum RadioState
     {
         /// <summary>

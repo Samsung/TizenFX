@@ -22,6 +22,7 @@ namespace Tizen.Content.MediaContent
     /// <summary>
     /// Represents the image media stored in the device.
     /// </summary>
+    /// <since_tizen> 4 </since_tizen>
     public class ImageInfo : MediaInfo
     {
         internal ImageInfo(Interop.MediaInfoHandle handle) : base(handle)
@@ -58,48 +59,56 @@ namespace Tizen.Content.MediaContent
         /// Gets the image width in pixels.
         /// </summary>
         /// <value>The image width in pixels.</value>
+        /// <since_tizen> 4 </since_tizen>
         public int Width { get; }
 
         /// <summary>
         /// Gets the image height in pixels.
         /// </summary>
         /// <value>The image height in pixels.</value>
+        /// <since_tizen> 4 </since_tizen>
         public int Height { get; }
 
         /// <summary>
         /// Gets the orientation of image.
         /// </summary>
         /// <value>The orientation of image.</value>
+        /// <since_tizen> 4 </since_tizen>
         public Orientation Orientation { get; }
 
         /// <summary>
         /// Gets the date of the creation time as a formatted string.
         /// </summary>
         /// <value>The date of the creation time as a formatted string.</value>
+        /// <since_tizen> 4 </since_tizen>
         public string DateTaken { get; }
 
         /// <summary>
         /// Gets the exposure time from EXIF.
         /// </summary>
         /// <value>The exposure time from EXIF.</value>
+        /// <since_tizen> 4 </since_tizen>
         public string ExposureTime { get; }
 
         /// <summary>
         /// Gets the FNumber from EXIF.
         /// </summary>
         /// <value>The FNumber from EXIF.</value>
+        /// <since_tizen> 4 </since_tizen>
         public double FNumber { get; }
 
         /// <summary>
         /// Gets the ISO from EXIF.
         /// </summary>
         /// <value>The iso from EXIF.</value>
+        /// <since_tizen> 4 </since_tizen>
         public int Iso { get; }
 
         /// <summary>
         /// Gets the model from EXIF.
         /// </summary>
         /// <value>The model from EXIF.</value>
+        /// <since_tizen> 4 </since_tizen>
         public string Model { get; }
     }
 }

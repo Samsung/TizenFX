@@ -22,13 +22,13 @@ namespace Tizen.Multimedia.Vision
     /// <summary>
     /// Provides data for the <see cref="PersonAppearanceDetector.Detected"/> event.
     /// </summary>
-    /// <since_tizen> 3 </since_tizen>
+    /// <since_tizen> 4 </since_tizen>
     public class PersonAppearanceDetectedEventArgs : EventArgs
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="PersonAppearanceDetectedEventArgs"/> class.
         /// </summary>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 4 </since_tizen>
         public PersonAppearanceDetectedEventArgs(IEnumerable<Rectangle> appeared,
             IEnumerable<Rectangle> disappeared, IEnumerable<Rectangle> tracked)
         {
@@ -40,19 +40,19 @@ namespace Tizen.Multimedia.Vision
         /// <summary>
         /// Gets a set of rectangular regions where appearances of the persons were detected.
         /// </summary>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 4 </since_tizen>
         public IEnumerable<Rectangle> AppearanceAreas { get; }
 
         /// <summary>
         /// Gets a set of rectangular regions where disappearances of the persons were detected.
         /// </summary>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 4 </since_tizen>
         public IEnumerable<Rectangle> DisappearanceAreas { get; }
 
         /// <summary>
         /// Gets a set of rectangular regions where persons were tracked.
         /// </summary>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 4 </since_tizen>
         public IEnumerable<Rectangle> TrackedAreas { get; }
     }
 }

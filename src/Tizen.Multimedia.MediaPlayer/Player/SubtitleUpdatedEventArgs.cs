@@ -20,6 +20,7 @@ namespace Tizen.Multimedia
     /// <summary>
     /// Provides data for the <see cref="Player.SubtitleUpdated"/> event.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public class SubtitleUpdatedEventArgs : EventArgs
     {
         internal SubtitleUpdatedEventArgs(uint duration, string text)
@@ -31,17 +32,20 @@ namespace Tizen.Multimedia
         /// <summary>
         /// Gets the duration of the updated subtitle.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public uint Duration { get; }
 
         /// <summary>
         /// Gets the text of the updated subtitle.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public string Text { get; }
 
         /// <summary>
         /// Returns a string that represents the current object.
         /// </summary>
         /// <returns>A string that represents the current object.</returns>
+        /// <since_tizen> 3 </since_tizen>
         public override string ToString()
         {
             return $"Duration={ Duration.ToString() }, Text={ Text }";

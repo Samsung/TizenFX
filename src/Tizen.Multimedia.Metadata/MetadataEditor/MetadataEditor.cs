@@ -29,6 +29,7 @@ namespace Tizen.Multimedia
     /// Or if you want to access only an external storage,
     /// you should add privilege http://tizen.org/privilege/externalstorage.
     /// </privilege>
+    /// <since_tizen> 3 </since_tizen>
     public class MetadataEditor : IDisposable
     {
         private bool _disposed = false;
@@ -363,6 +364,7 @@ namespace Tizen.Multimedia
         ///     The file is read-only.
         /// </exception>
         /// <exception cref="ObjectDisposedException">The <see cref="MetadataEditor"/> has already been disposed of.</exception>
+        /// <since_tizen> 3 </since_tizen>
         public void Commit()
         {
             if (_isFileReadOnly)
@@ -519,6 +521,7 @@ namespace Tizen.Multimedia
         /// <param name="disposing">
         /// true to release both managed and unmanaged resources; false to release only unmanaged resources.
         /// </param>
+        /// <since_tizen> 3 </since_tizen>
         protected virtual void Dispose(bool disposing)
         {
             if (!_disposed)
@@ -536,6 +539,7 @@ namespace Tizen.Multimedia
         /// <summary>
         /// Releases all resources used by the <see cref="MetadataEditor"/> object.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public void Dispose()
         {
             Dispose(true);
