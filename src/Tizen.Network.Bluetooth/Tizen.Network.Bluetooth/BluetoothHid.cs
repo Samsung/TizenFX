@@ -6,6 +6,7 @@ namespace Tizen.Network.Bluetooth
     /// A class which is used to handle the connection to Bluetooth HID like keyboards and mouse.
     /// </summary>
     /// <privilege> http://tizen.org/privilege/bluetooth </privilege>
+    /// <since_tizen> 3 </since_tizen>
     public class BluetoothHid : BluetoothProfile
     {
         internal BluetoothHid()
@@ -15,6 +16,7 @@ namespace Tizen.Network.Bluetooth
         /// <summary>
         /// The HidConnectionStateChanged event is called when the HID host connection state is changed.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public event EventHandler<HidConnectionStateChangedEventArgs> HidConnectionStateChanged
         {
             add
@@ -36,6 +38,7 @@ namespace Tizen.Network.Bluetooth
         /// </remarks>
         /// <exception cref="InvalidOperationException">Thrown when the Bluetooth is not enabled
         /// or when the connection attempt to the remote device fails.</exception>
+        /// <since_tizen> 3 </since_tizen>
         public void Connect()
         {
             if (BluetoothAdapter.IsBluetoothEnabled && Globals.IsInitialize)
@@ -58,6 +61,7 @@ namespace Tizen.Network.Bluetooth
         /// </summary>
         /// <exception cref="InvalidOperationException">Thrown when the Bluetooth is not enabled
         /// or when the disconnection attempt to the remote device fails.</exception>
+        /// <since_tizen> 3 </since_tizen>
         public void Disconnect()
         {
             if (BluetoothAdapter.IsBluetoothEnabled && Globals.IsInitialize)

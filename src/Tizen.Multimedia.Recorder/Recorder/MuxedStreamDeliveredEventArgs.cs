@@ -21,6 +21,7 @@ namespace Tizen.Multimedia
     /// <summary>
     /// Provides data for the <see cref="Recorder.MuxedStreamDelivered"/> event.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public class MuxedStreamDeliveredEventArgs : EventArgs
     {
         internal MuxedStreamDeliveredEventArgs(IMediaBuffer stream, ulong offset)
@@ -36,11 +37,13 @@ namespace Tizen.Multimedia
         /// This buffer is read-only and only valid in the event.<br/>
         /// Any attempt to access to this buffer after the event ends will throw an exception.
         /// </remarks>
+        /// <since_tizen> 3 </since_tizen>
         public IMediaBuffer Stream { get; }
 
         /// <summary>
         /// The file offset where the buffer will be written.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public long Offset { get; }
     }
 }

@@ -27,6 +27,7 @@ namespace Tizen.Multimedia.Util
     /// <summary>
     /// Provides the ability to extract the thumbnail from media files.
     /// </summary>
+    /// <since_tizen> 4 </since_tizen>
     public static class ThumbnailExtractor
     {
         private static Handle CreateHandle()
@@ -39,7 +40,7 @@ namespace Tizen.Multimedia.Util
         /// <summary>
         /// Extracts the thumbnail for the given media with the specified path.
         /// </summary>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 4 </since_tizen>
         /// <returns>A task that represents the asynchronous extracting operation.</returns>
         /// <remarks>The size of the thumbnail will be the default size (320x240).</remarks>
         /// <param name="path">The path of the media file to extract the thumbnail.</param>
@@ -65,6 +66,7 @@ namespace Tizen.Multimedia.Util
         /// <exception cref="InvalidOperationException">An internal error occurs.</exception>
         /// <exception cref="UnauthorizedAccessException">The caller does not have required privilege for accessing the <paramref name="path"/>.</exception>
         /// <exception cref="FileFormatException">The specified file is not supported.</exception>
+        /// <since_tizen> 4 </since_tizen>
         public static Task<ThumbnailExtractionResult> ExtractAsync(string path, CancellationToken cancellationToken)
         {
             return RunExtractAsync(path, null, cancellationToken);
@@ -73,7 +75,7 @@ namespace Tizen.Multimedia.Util
         /// <summary>
         /// Extracts the thumbnail for the given media with the specified path and size.
         /// </summary>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 4 </since_tizen>
         /// <returns>A task that represents the asynchronous extracting operation.</returns>
         /// <remarks>
         /// If the width is not a multiple of 8, it can be changed by the inner process.<br/>
@@ -97,7 +99,7 @@ namespace Tizen.Multimedia.Util
         /// <summary>
         /// Extracts the thumbnail for the given media with the specified path and size.
         /// </summary>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 4 </since_tizen>
         /// <returns>A task that represents the asynchronous extracting operation.</returns>
         /// <remarks>
         /// If the width is not a multiple of 8, it can be changed by the inner process.<br/>

@@ -21,6 +21,7 @@ namespace Tizen.System
     /// <summary>
     /// The class for system memory information.
     /// </summary>
+    /// <since_tizen> 4 </since_tizen>
     public class SystemMemoryUsage
     {
         private Interop.RuntimeInfo.MemoryInfo Info;

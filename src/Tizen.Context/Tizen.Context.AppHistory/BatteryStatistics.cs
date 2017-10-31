@@ -214,6 +214,7 @@ namespace Tizen.Context.AppHistory
             /// <summary>
             /// Sorts the apps by consumption, the most battery consuming apps appear first (default).
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             ConsumptionMost = 0
         }
     }

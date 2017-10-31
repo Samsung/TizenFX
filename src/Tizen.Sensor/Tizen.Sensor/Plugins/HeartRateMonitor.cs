@@ -21,6 +21,7 @@ namespace Tizen.Sensor
     /// <summary>
     /// The HeartRateMonitor class is used for registering callbacks for the heart rate monitor and getting the heart rate data.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public sealed class HeartRateMonitor : Sensor
     {
         private const string HRMKey = "http://tizen.org/feature/sensor.heart_rate_monitor";

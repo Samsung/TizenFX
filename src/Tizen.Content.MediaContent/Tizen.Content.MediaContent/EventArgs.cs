@@ -22,6 +22,7 @@ namespace Tizen.Content.MediaContent
     /// <summary>
     /// Provides data for the <see cref="MediaDatabase.MediaInfoUpdated"/> event.
     /// </summary>
+    /// <since_tizen> 4 </since_tizen>
     public class MediaInfoUpdatedEventArgs : EventArgs
     {
         internal MediaInfoUpdatedEventArgs(int pid,
@@ -40,6 +41,7 @@ namespace Tizen.Content.MediaContent
         /// Gets the process ID which triggers the event.
         /// </summary>
         /// <value>The process ID which triggers the event.</value>
+        /// <since_tizen> 4 </since_tizen>
         public int ProcessId
         {
             get;
@@ -49,6 +51,7 @@ namespace Tizen.Content.MediaContent
         /// Gets the operation type.
         /// </summary>
         /// <value>The operation type which triggers the event.</value>
+        /// <since_tizen> 4 </since_tizen>
         public OperationType OperationType
         {
             get;
@@ -58,6 +61,7 @@ namespace Tizen.Content.MediaContent
         /// Gets the ID of the media updated.
         /// </summary>
         /// <value>The ID of the media updated.</value>
+        /// <since_tizen> 4 </since_tizen>
         public string Id
         {
             get;
@@ -67,6 +71,7 @@ namespace Tizen.Content.MediaContent
         /// Gets the path of the media updated.
         /// </summary>
         /// <value>The path of the media updated.</value>
+        /// <since_tizen> 4 </since_tizen>
         public string Path
         {
             get;
@@ -76,6 +81,7 @@ namespace Tizen.Content.MediaContent
         /// Gets the type of the media updated.
         /// </summary>
         /// <value>The <see cref="MediaContent.MediaType"/> of the media updated.</value>
+        /// <since_tizen> 4 </since_tizen>
         public MediaType MediaType
         {
             get;
@@ -85,6 +91,7 @@ namespace Tizen.Content.MediaContent
         /// The MIME type of the media updated.
         /// </summary>
         /// <value>The MIME type of the media updated.</value>
+        /// <since_tizen> 4 </since_tizen>
         public string MimeType
         {
             get;
@@ -95,6 +102,7 @@ namespace Tizen.Content.MediaContent
     /// <summary>
     /// Provides data for the <see cref="MediaDatabase.FolderUpdated"/> event.
     /// </summary>
+    /// <since_tizen> 4 </since_tizen>
     public class FolderUpdatedEventArgs : EventArgs
     {
         internal FolderUpdatedEventArgs(OperationType operationType, string id, string path)
@@ -108,6 +116,7 @@ namespace Tizen.Content.MediaContent
         /// Gets the operation type.
         /// </summary>
         /// <value>The operation type which triggers the event.</value>
+        /// <since_tizen> 4 </since_tizen>
         public OperationType OperationType
         {
             get;
@@ -117,6 +126,7 @@ namespace Tizen.Content.MediaContent
         /// Gets the ID of the folder updated.
         /// </summary>
         /// <value>The ID of the folder updated.</value>
+        /// <since_tizen> 4 </since_tizen>
         public string Id
         {
             get;
@@ -126,6 +136,7 @@ namespace Tizen.Content.MediaContent
         /// Gets the path of the folder updated.
         /// </summary>
         /// <value>The path of the folder updated.</value>
+        /// <since_tizen> 4 </since_tizen>
         public string Path
         {
             get;

@@ -19,6 +19,7 @@ namespace Tizen.Multimedia
     /// <summary>
     /// Specifies the directions of rotation.
     /// </summary>
+    /// <since_tizen> 4 </since_tizen>
     public enum Rotation
     {
         /// <summary>

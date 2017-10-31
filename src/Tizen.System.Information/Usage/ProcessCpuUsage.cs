@@ -25,6 +25,7 @@ namespace Tizen.System
     /// <summary>
     /// The class for CPU usage per process.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public class ProcessCpuUsage
     {
         private int[] Pids;

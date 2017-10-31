@@ -26,6 +26,7 @@ namespace Tizen.Applications.DataControl
     /// <summary>
     /// Represents the MatrixCursor class for the DataControl provider's matrix cursor.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public class MatrixCursor : IDisposable, ICursor
     {
         private const string LogTag = "Tizen.Applications.DataControl";
@@ -166,6 +167,7 @@ namespace Tizen.Applications.DataControl
         /// <summary>
         /// Gets the column count of the MatrixCursor.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public int GetColumnCount()
         {
             return _columnTypes.Length;
@@ -176,6 +178,7 @@ namespace Tizen.Applications.DataControl
         /// </summary>
         /// <param name="index">Target column index</param>
         /// <exception cref="ArgumentException">Thrown in case of an invalid parameter.</exception>
+        /// <since_tizen> 3 </since_tizen>
         public ColumnType GetColumnType(int index)
         {
             if (index < 0 || index >= _columnTypes.Length)
@@ -191,6 +194,7 @@ namespace Tizen.Applications.DataControl
         /// </summary>
         /// <param name="index">The target column index.</param>
         /// <exception cref="ArgumentException">Thrown in case of an invalid parameter.</exception>
+        /// <since_tizen> 3 </since_tizen>
         public string GetColumnName(int index)
         {
             if (index < 0 || index >= _columnTypes.Length)
@@ -204,6 +208,7 @@ namespace Tizen.Applications.DataControl
         /// <summary>
         /// Gets the MatrixCursor's row count.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public long GetRowCount()
         {
             return _rowCount;
@@ -212,6 +217,7 @@ namespace Tizen.Applications.DataControl
         /// <summary>
         /// Move the MatrixCursor to the next row.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public bool Next()
         {
             if (_currentRowIndex >= _rowCount - 1)
@@ -226,6 +232,7 @@ namespace Tizen.Applications.DataControl
         /// <summary>
         /// Move the MatrixCursor to the previous row.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public bool Prev()
         {
             if (_currentRowIndex <= 0)
@@ -240,6 +247,7 @@ namespace Tizen.Applications.DataControl
         /// <summary>
         /// Move the MatrixCursor to the first row.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public bool Reset()
         {
             _currentRowIndex = 0;
@@ -250,6 +258,7 @@ namespace Tizen.Applications.DataControl
         /// Returns the value of the requested column as an integer.
         /// </summary>
         /// <exception cref="ArgumentException">Thrown in case of an invalid parameter.</exception>
+        /// <since_tizen> 3 </since_tizen>
         public int GetIntValue(int index)
         {
             int ret;
@@ -274,6 +283,7 @@ namespace Tizen.Applications.DataControl
         /// Returns the value of the requested column as int64.
         /// </summary>
         /// <exception cref="ArgumentException">Thrown in case of an invalid parameter.</exception>
+        /// <since_tizen> 3 </since_tizen>
         public Int64 GetInt64Value(int index)
         {
             Int64 ret;
@@ -298,6 +308,7 @@ namespace Tizen.Applications.DataControl
         /// Returns the value of the requested column as a double.
         /// </summary>
         /// <exception cref="ArgumentException">Thrown in case of an invalid parameter.</exception>
+        /// <since_tizen> 3 </since_tizen>
         public double GetDoubleValue(int index)
         {
             double ret;
@@ -322,6 +333,7 @@ namespace Tizen.Applications.DataControl
         /// Returns the value of the requested column as a string.
         /// </summary>
         /// <exception cref="ArgumentException">Thrown in case of an invalid parameter.</exception>
+        /// <since_tizen> 3 </since_tizen>
         public string GetStringValue(int index)
         {
             string ret;
@@ -348,6 +360,7 @@ namespace Tizen.Applications.DataControl
         /// Returns the value of the requested column as a BLOB.
         /// </summary>
         /// <exception cref="ArgumentException">Thrown in case of an invalid parameter.</exception>
+        /// <since_tizen> 3 </since_tizen>
         public byte[] GetBlobValue(int index)
         {
             byte[] byte_array;
@@ -398,6 +411,7 @@ namespace Tizen.Applications.DataControl
         /// <param name="columnTypes">The MatrixCursor's column type list.</param>
         /// <exception cref="ArgumentException">Thrown in case of an invalid parameter.</exception>
         ///  <exception cref="InvalidOperationException">Thrown in case of any internal error.</exception>
+        /// <since_tizen> 3 </since_tizen>
         public MatrixCursor(string[] columnNames, ColumnType[] columnTypes)
         {
             byte[] byte_tmp, length_tmp, string_tmp;
@@ -486,6 +500,7 @@ namespace Tizen.Applications.DataControl
         /// </summary>
         /// <param name="columnValues">New column values</param>
         /// <exception cref="ArgumentException">Thrown in case of an invalid parameter.</exception>
+        /// <since_tizen> 3 </since_tizen>
         public void AddRow(object[] columnValues)
         {
             int i, size = 0;
@@ -588,6 +603,7 @@ namespace Tizen.Applications.DataControl
         /// <summary>
         /// Releases all the resources used by the MatrixCursor class.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public void Dispose()
         {
             Dispose(true);
@@ -597,6 +613,7 @@ namespace Tizen.Applications.DataControl
         /// Releases the unmanaged resources used by the MatrixCursor class specifying whether to perform a normal dispose operation.
         /// </summary>
         /// <param name="disposing">true for a normal dispose operation; false to finalize the handle.</param>
+        /// <since_tizen> 3 </since_tizen>
         protected virtual void Dispose(bool disposing)
         {
             if (!_disposed)

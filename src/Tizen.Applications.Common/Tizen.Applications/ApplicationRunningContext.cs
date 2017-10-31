@@ -23,6 +23,7 @@ namespace Tizen.Applications
     /// <summary>
     /// This class provides methods and properties to get information of the application.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public class ApplicationRunningContext : IDisposable
     {
         private const string LogTag = "Tizen.Applications";
@@ -42,6 +43,7 @@ namespace Tizen.Applications
         /// <exception cref="ArgumentException">Thrown when failed because of an invalid argument.</exception>
         /// <exception cref="InvalidOperationException">Thrown when failed because of the "application not exist" error or the system error.</exception>
         /// <exception cref="OutOfMemoryException">Thrown when failed because of out of memory.</exception>
+        /// <since_tizen> 3 </since_tizen>
         public ApplicationRunningContext(string applicationId)
         {
             IntPtr contextHandle = IntPtr.Zero;
@@ -72,6 +74,7 @@ namespace Tizen.Applications
         /// <exception cref="ArgumentException">Thrown when failed of invalid argument.</exception>
         /// <exception cref="InvalidOperationException">Thrown when failed because of application not exist error or system error.</exception>
         /// <exception cref="OutOfMemoryException">Thrown when failed because of out of memory.</exception>
+        /// <since_tizen> 4 </since_tizen>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public ApplicationRunningContext(string applicationId, string instanceId)
         {
@@ -106,6 +109,7 @@ namespace Tizen.Applications
         /// <summary>
         /// Enumeration for the application state.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public enum AppState
         {
             /// <summary>
@@ -137,6 +141,7 @@ namespace Tizen.Applications
         /// <summary>
         /// Gets the application ID.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public string ApplicationId
         {
             get
@@ -154,6 +159,7 @@ namespace Tizen.Applications
         /// <summary>
         /// Gets the package ID of the application.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public string PackageId
         {
             get
@@ -171,6 +177,7 @@ namespace Tizen.Applications
         /// <summary>
         /// Gets the application's process ID.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public int ProcessId
         {
             get
@@ -188,6 +195,7 @@ namespace Tizen.Applications
         /// <summary>
         /// Gets the state of the application.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public AppState State
         {
             get
@@ -206,6 +214,7 @@ namespace Tizen.Applications
         /// <summary>
         /// Gets whether the application is sub application of the application group.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public bool IsSubApp
         {
             get
@@ -227,6 +236,7 @@ namespace Tizen.Applications
         /// <exception cref="UnauthorizedAccessException">Thrown when failed because of permission denied.</exception>
         /// <exception cref="InvalidOperationException">Thrown when failed because of system error.</exception>
         /// <privilege>http://tizen.org/privilege/appmanager.kill</privilege>
+        /// <since_tizen> 4 </since_tizen>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void Terminate()
         {
@@ -252,6 +262,7 @@ namespace Tizen.Applications
         /// <exception cref="UnauthorizedAccessException">Thrown when failed because of permission denied.</exception>
         /// <exception cref="InvalidOperationException">Thrown when failed because of system error.</exception>
         /// <privilege>http://tizen.org/privilege/appmanager.launch</privilege>
+        /// <since_tizen> 4 </since_tizen>
         public void Resume()
         {
             err = Interop.ApplicationManager.AppManagerResumeApp(_contextHandle);
@@ -272,6 +283,7 @@ namespace Tizen.Applications
         /// <summary>
         /// Releases all resources used by the ApplicationRunningContext class.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public void Dispose()
         {
             Dispose(true);

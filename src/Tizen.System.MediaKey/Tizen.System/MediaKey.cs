@@ -21,6 +21,7 @@ namespace Tizen.System
     /// <summary>
     /// The class for event arguments of the media key.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public class MediaKeyEventArgs : EventArgs
     {
         /// <summary>
@@ -118,6 +119,7 @@ namespace Tizen.System
     /// <summary>
     /// The class for receiving events of media keys.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public static class MediaKey
     {
         private static EventHandler<MediaKeyEventArgs> s_eventHandler;

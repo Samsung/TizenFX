@@ -509,8 +509,8 @@ namespace Tizen.Pims.Calendar
 
         /// <summary>
         /// Registers a callback function to be invoked when a record changes.
-        /// <since_tizen> 4 </since_tizen>
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         /// <param name="viewUri">The view URI of the record to subscribe for change notifications</param>
         /// <param name="DBChanged">The EventHandler to register</param>
         /// <privilege>http://tizen.org/privilege/calendar.read</privilege>

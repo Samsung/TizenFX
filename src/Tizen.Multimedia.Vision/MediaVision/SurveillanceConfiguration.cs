@@ -21,7 +21,7 @@ namespace Tizen.Multimedia.Vision
     /// </summary>
     /// <feature>http://tizen.org/feature/vision.face_recognition</feature>
     /// <feature>http://tizen.org/feature/vision.image_recognition</feature>
-    /// <since_tizen> 3 </since_tizen>
+    /// <since_tizen> 4 </since_tizen>
     public class SurveillanceEngineConfiguration : EngineConfiguration
     {
         internal SurveillanceEngineConfiguration() : base("face_recognition", "image_recognition")

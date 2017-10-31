@@ -23,6 +23,7 @@ namespace Tizen.Messaging.Messages
     /// <summary>
     /// This class represents all the messages.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public abstract class Message : IDisposable
     {
         internal IntPtr _messageHandle = IntPtr.Zero;
@@ -70,6 +71,7 @@ namespace Tizen.Messaging.Messages
         /// <summary>
         /// Releases all resources used by the Message.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public void Dispose()
         {
             Dispose(true);
@@ -186,6 +188,7 @@ namespace Tizen.Messaging.Messages
         /// <remarks>
         /// After creating the Message object, the default value of this property is 0. After sending, this value is changed.
         /// </remarks>
+        /// <since_tizen> 3 </since_tizen>
         public int Id
         {
             get
@@ -204,6 +207,7 @@ namespace Tizen.Messaging.Messages
         /// <summary>
         /// The destination port of the message.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public int Port
         {
             get
@@ -222,6 +226,7 @@ namespace Tizen.Messaging.Messages
         /// <summary>
         /// The message box type.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public MessageBoxType BoxType
         {
             get
@@ -249,6 +254,7 @@ namespace Tizen.Messaging.Messages
         /// <summary>
         /// The text of the message.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public string Text
         {
             get
@@ -276,6 +282,7 @@ namespace Tizen.Messaging.Messages
         /// <summary>
         /// The time of the message.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public DateTime Time
         {
             get
@@ -303,6 +310,7 @@ namespace Tizen.Messaging.Messages
         /// <summary>
         /// The SIM slot index of the message.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public SimSlotId SimId
         {
             get
@@ -330,6 +338,7 @@ namespace Tizen.Messaging.Messages
         /// <summary>
         /// Indicates the sender of the message.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public IReadOnlyCollection<MessagesAddress> From
         {
             get

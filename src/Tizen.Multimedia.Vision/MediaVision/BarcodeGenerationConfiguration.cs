@@ -23,7 +23,7 @@ namespace Tizen.Multimedia.Vision
     /// Represents a configuration of <see cref="BarcodeGenerator"/> instances.
     /// </summary>
     /// <seealso cref="BarcodeGenerator"/>
-    /// <since_tizen> 3 </since_tizen>
+    /// <since_tizen> 4 </since_tizen>
     public class BarcodeGenerationConfiguration : EngineConfiguration
     {
         private const string KeyTextAttr = "MV_BARCODE_GENERATE_ATTR_TEXT";
@@ -34,7 +34,7 @@ namespace Tizen.Multimedia.Vision
         /// Initializes a new instance of the <see cref="BarcodeGenerationConfiguration"/> class.
         /// </summary>
         /// <exception cref="NotSupportedException">The feature is not supported.</exception>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 4 </since_tizen>
         public BarcodeGenerationConfiguration() : base("barcode_generation")
         {
         }
@@ -44,7 +44,7 @@ namespace Tizen.Multimedia.Vision
         /// </summary>
         /// <exception cref="ArgumentException"><paramref name="value"/> is not valid.</exception>
         /// <exception cref="ObjectDisposedException">The <see cref="BarcodeGenerationConfiguration"/> already has been disposed of.</exception>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 4 </since_tizen>
         public Visibility TextVisibility
         {
             get
@@ -67,7 +67,7 @@ namespace Tizen.Multimedia.Vision
         /// The alpha value of the color will be ignored.
         /// </remarks>
         /// <exception cref="ObjectDisposedException">The <see cref="BarcodeGenerationConfiguration"/> already has been disposed of.</exception>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 4 </since_tizen>
         public Color ForegroundColor
         {
             get
@@ -90,7 +90,7 @@ namespace Tizen.Multimedia.Vision
         /// The alpha value of the color will be ignored.
         /// </remarks>
         /// <exception cref="ObjectDisposedException">The <see cref="BarcodeGenerationConfiguration"/> already has been disposed of.</exception>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 4 </since_tizen>
         public Color BackgroundColor
         {
             get

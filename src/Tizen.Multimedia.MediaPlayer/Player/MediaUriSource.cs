@@ -28,6 +28,7 @@ namespace Tizen.Multimedia
     /// The externalstorage privilege(http://tizen.org/privilege/externalstorage) must be added if any video/audio files are used to play located in the external storage.
     /// </remarks>
     /// <seealso cref="Player.SetSource(MediaSource)"/>
+    /// <since_tizen> 3 </since_tizen>
     public sealed class MediaUriSource : MediaSource
     {
         // TODO consider using Uri class.
@@ -37,6 +38,7 @@ namespace Tizen.Multimedia
         /// <remarks>For HTTP or RSTP, uri should start with "http://" or "rtsp://".
         /// The default protocol is "file://".
         /// If you provide an invalid uri, you won't receive an error until <see cref="Player.Start"/> is called.</remarks>
+        /// <since_tizen> 3 </since_tizen>
         public MediaUriSource(string uri)
         {
             Uri = uri ?? throw new ArgumentNullException(nameof(uri));
@@ -45,6 +47,7 @@ namespace Tizen.Multimedia
         /// <summary>
         /// Gets the uri.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public string Uri { get; }
 
         internal override void OnAttached(Player player)

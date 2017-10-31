@@ -23,7 +23,7 @@ namespace Tizen.Network.Mtp
     /// <summary>
     /// A class for Mtp Storage information. It allows applications to handle storage information.
     /// </summary>
-    /// <since_tizen> 5 </since_tizen>
+    /// <since_tizen> 4 </since_tizen>
     public class MtpStorage : IDisposable
     {
         private int _deviceHandle = -1;
@@ -37,7 +37,7 @@ namespace Tizen.Network.Mtp
         /// Gets the description of the storage information.
         /// </summary>
         /// <value>Description of storage.</value>
-        /// <since_tizen> 5 </since_tizen>
+        /// <since_tizen> 4 </since_tizen>
         public string Description
         {
             get
@@ -57,7 +57,7 @@ namespace Tizen.Network.Mtp
         /// Gets the free space of the storage information in bytes.
         /// </summary>
         /// <value>Free space of storage(bytes).</value>
-        /// <since_tizen> 5 </since_tizen>
+        /// <since_tizen> 4 </since_tizen>
         public UInt64 FreeSpace
         {
             get
@@ -76,7 +76,7 @@ namespace Tizen.Network.Mtp
         /// Gets the max capacity of the storage information in bytes.
         /// </summary>
         /// <value>Max capacity of storage(bytes).</value>
-        /// <since_tizen> 5 </since_tizen>
+        /// <since_tizen> 4 </since_tizen>
         public UInt64 MaxCapacity
         {
             get
@@ -95,7 +95,7 @@ namespace Tizen.Network.Mtp
         /// Gets the storage type of the storage information.
         /// </summary>
         /// <value>Type of storage.</value>
-        /// <since_tizen> 5 </since_tizen>
+        /// <since_tizen> 4 </since_tizen>
         public MtpStorageType StorageType
         {
             get
@@ -114,7 +114,7 @@ namespace Tizen.Network.Mtp
         /// Gets the volume identifier of the storage information.
         /// </summary>
         /// <value>Volume identifier of stroage.</value>
-        /// <since_tizen> 5 </since_tizen>
+        /// <since_tizen> 4 </since_tizen>
         public string VolumeIdentifier
         {
             get
@@ -147,6 +147,7 @@ namespace Tizen.Network.Mtp
         /// <summary>
         /// Dispose
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         public void Dispose()
         {
             Dispose(true);
@@ -186,7 +187,7 @@ namespace Tizen.Network.Mtp
         /// http://tizen.org/privilege/mediastorage is needed if input or output path are relevant to media storage.
         /// http://tizen.org/privilege/externalstorage is needed if input or output path are relevant to external storage.
         /// </remarks>
-        /// <since_tizen> 5 </since_tizen>
+        /// <since_tizen> 4 </since_tizen>
         public MtpObject GetRootObject()
         {
             _rootObject = new MtpObject(_deviceHandle, 0);
@@ -208,7 +209,7 @@ namespace Tizen.Network.Mtp
         /// <exception cref="NotSupportedException">Thrown when Mtp is not supported.</exception>
         /// <exception cref="ArgumentException">Thrown when method is failed due to an invalid parameter.</exception>
         /// <exception cref="InvalidOperationException">Thrown when the method failed due to invalid operation.</exception>
-        /// <since_tizen> 5 </since_tizen>
+        /// <since_tizen> 4 </since_tizen>
         public IEnumerable<MtpObject> GetObjectList(MtpObject parentObject, MtpFileType fileType)
         {
             IntPtr objectPtr;

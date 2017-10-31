@@ -21,6 +21,7 @@ namespace Tizen.Applications
     /// <summary>
     /// Enumeration for the package types.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public enum PackageType
     {
         /// <summary>

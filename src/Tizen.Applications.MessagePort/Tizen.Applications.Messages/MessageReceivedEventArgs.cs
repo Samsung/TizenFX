@@ -20,16 +20,19 @@ namespace Tizen.Applications.Messages
     /// <summary>
     /// An extended EventArgs class, which contains remote message port information and message.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public class MessageReceivedEventArgs : EventArgs
     {
         /// <summary>
         /// Contains AppId, port name, and trusted.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public RemoteValues Remote { get; internal set; }
 
         /// <summary>
         /// The message passed from the remote application.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public Bundle Message { get; internal set; }
     }
 }

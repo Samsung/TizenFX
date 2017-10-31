@@ -22,6 +22,7 @@ namespace Tizen.Multimedia
     /// <summary>
     /// The class containing the encoded image data.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public class EncodedPlane : IPreviewPlane
     {
         internal EncodedPlane(EncodedPlaneStruct unmanagedData)

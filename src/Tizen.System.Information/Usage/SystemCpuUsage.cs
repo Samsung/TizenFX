@@ -22,6 +22,7 @@ namespace Tizen.System
     /// <summary>
     /// The class for system CPU usage.
     /// </summary>
+    /// <since_tizen> 4 </since_tizen>
     public class SystemCpuUsage
     {
         private Interop.RuntimeInfo.CpuUsage Usage;

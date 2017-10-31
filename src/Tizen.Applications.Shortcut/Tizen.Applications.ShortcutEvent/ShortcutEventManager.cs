@@ -25,6 +25,7 @@ namespace Tizen.Applications.Shortcut
     /// </summary>
     /// <param name="args">Object that contain shortcut info to add.</param>
     /// <returns>The result of handling a shortcut add request</returns>
+    /// <since_tizen> 4 </since_tizen>
     public delegate ShortcutError ShortcutAdded(ShortcutAddedInfo args);
 
     /// <summary>
@@ -32,11 +33,13 @@ namespace Tizen.Applications.Shortcut
     /// </summary>
     /// <param name="args">Object that contain shortcut info to delete.</param>
     /// <returns>The result of handling a shortcut delete request</returns>
+    /// <since_tizen> 4 </since_tizen>
     public delegate ShortcutError ShortcutDeleted(ShortcutDeletedInfo args);
 
     /// <summary>
     /// This class provides a way to register callback function for shortcut add, delete events.
     /// </summary>
+    /// <since_tizen> 4 </since_tizen>
     public static class ShortcutEventManager
     {
         private static Interop.Shortcut.AddCallback shortcutAddCallback;
@@ -52,7 +55,7 @@ namespace Tizen.Applications.Shortcut
         /// <summary>
         /// Registers a callback function to listen requests from applications.
         /// </summary>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 4 </since_tizen>
         /// <param name="addedEvent">The callback function pointer that is invoked when Add() is requested</param>
         /// <feature>http://tizen.org/feature/shortcut</feature>
         /// <privilege>http://tizen.org/privilege/shortcut</privilege>
@@ -88,7 +91,7 @@ namespace Tizen.Applications.Shortcut
         /// <summary>
         /// Registers a callback function to listen requests from applications.
         /// </summary>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 4 </since_tizen>
         /// <param name="deletedEvent">The callback function pointer that is invoked when Delete() is requested</param>
         /// <feature>http://tizen.org/feature/shortcut</feature>
         /// <privilege>http://tizen.org/privilege/shortcut</privilege>
@@ -124,7 +127,7 @@ namespace Tizen.Applications.Shortcut
         /// <summary>
         /// Unregisters a callback for the shortcut request.
         /// </summary>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 4 </since_tizen>
         /// <param name="addedEvent">The callback function pointer that used for RegisterCallback</param>
         /// <feature>http://tizen.org/feature/shortcut</feature>
         /// <privilege>http://tizen.org/privilege/shortcut</privilege>
@@ -158,7 +161,7 @@ namespace Tizen.Applications.Shortcut
         /// <summary>
         /// Unregisters a callback for the shortcut request.
         /// </summary>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 4 </since_tizen>
         /// <param name="deletedEvent">The callback function pointer that used for RegisterCallback</param>
         /// <feature>http://tizen.org/feature/shortcut</feature>
         /// <privilege>http://tizen.org/privilege/shortcut</privilege>
@@ -192,7 +195,7 @@ namespace Tizen.Applications.Shortcut
         /// <summary>
         /// Gets the preset list of shortcut template from the installed package.
         /// </summary>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 4 </since_tizen>
         /// <param name="appId">Application ID.</param>
         /// <returns>The List of ShortcutTemplate.</returns>
         /// <feature>http://tizen.org/feature/shortcut</feature>

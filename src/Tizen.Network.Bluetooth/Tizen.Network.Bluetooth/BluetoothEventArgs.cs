@@ -22,6 +22,7 @@ namespace Tizen.Network.Bluetooth
     /// <summary>
     /// An extended EventArgs class contains the changed Bluetooth state.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public class StateChangedEventArgs : EventArgs
     {
         private BluetoothState _type;
@@ -36,6 +37,7 @@ namespace Tizen.Network.Bluetooth
         /// <summary>
         /// The state of Bluetooth.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public BluetoothState BTState
         {
             get
@@ -47,6 +49,7 @@ namespace Tizen.Network.Bluetooth
         /// <summary>
         /// The BluetoothError result.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public BluetoothError Result
         {
             get
@@ -59,6 +62,7 @@ namespace Tizen.Network.Bluetooth
     /// <summary>
     /// An extended EventArgs class contains the changed Bluetooth name.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public class NameChangedEventArgs : EventArgs
     {
         private string _name;
@@ -71,6 +75,7 @@ namespace Tizen.Network.Bluetooth
         /// <summary>
         /// The name of the device.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public string DeviceName
         {
             get
@@ -83,6 +88,7 @@ namespace Tizen.Network.Bluetooth
     /// <summary>
     /// An extended EventArgs class contains the changed Bluetooth visibility mode.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public class VisibilityModeChangedEventArgs : EventArgs
     {
         private VisibilityMode _mode;
@@ -97,6 +103,7 @@ namespace Tizen.Network.Bluetooth
         /// <summary>
         /// The visibility mode.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public VisibilityMode Visibility
         {
             get
@@ -108,6 +115,7 @@ namespace Tizen.Network.Bluetooth
         /// <summary>
         /// The BluetoothError result.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public BluetoothError Result
         {
             get
@@ -120,6 +128,7 @@ namespace Tizen.Network.Bluetooth
     /// <summary>
     /// An extended EventArgs class contains the duration until the visibility mode is changed from TimeLimitedDiscoverable to NonDiscoverable.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public class VisibilityDurationChangedEventArgs : EventArgs
     {
         private int _duration;
@@ -132,6 +141,7 @@ namespace Tizen.Network.Bluetooth
         /// <summary>
         /// The duration.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public int Duration
         {
             get
@@ -144,6 +154,7 @@ namespace Tizen.Network.Bluetooth
     /// <summary>
     /// An extended EventArgs class contains the changed Bluetooth device discovery state and the discovered device information.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public class DiscoveryStateChangedEventArgs : EventArgs
     {
         private BluetoothError _result;
@@ -166,6 +177,7 @@ namespace Tizen.Network.Bluetooth
         /// <summary>
         /// The BluetoothError result.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public BluetoothError Result
         {
             get
@@ -177,6 +189,7 @@ namespace Tizen.Network.Bluetooth
         /// <summary>
         /// The state of the discovery.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public BluetoothDeviceDiscoveryState DiscoveryState
         {
             get
@@ -188,6 +201,7 @@ namespace Tizen.Network.Bluetooth
         /// <summary>
         /// The remote device found.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public BluetoothDevice DeviceFound
         {
             get
@@ -200,6 +214,7 @@ namespace Tizen.Network.Bluetooth
     /// <summary>
     /// An extended EventArgs class contains the bonded device information.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public class BondCreatedEventArgs : EventArgs
     {
         private BluetoothError _result;
@@ -214,6 +229,7 @@ namespace Tizen.Network.Bluetooth
         /// <summary>
         /// The BluetoothError result.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public BluetoothError Result
         {
             get
@@ -225,6 +241,7 @@ namespace Tizen.Network.Bluetooth
         /// <summary>
         /// The remote device.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public BluetoothDevice Device
         {
             get
@@ -237,6 +254,7 @@ namespace Tizen.Network.Bluetooth
     /// <summary>
     /// An extended EventArgs class contains the address of the remote Bluetooth device to destroy bond with.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public class BondDestroyedEventArgs : EventArgs
     {
         private BluetoothError _result;
@@ -251,6 +269,7 @@ namespace Tizen.Network.Bluetooth
         /// <summary>
         /// The BluetoothError result.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public BluetoothError Result
         {
             get
@@ -263,6 +282,7 @@ namespace Tizen.Network.Bluetooth
         /// The remote device address.
         /// </summary>
         /// <value>The device address.</value>
+        /// <since_tizen> 3 </since_tizen>
         public string DeviceAddress
         {
             get
@@ -275,6 +295,7 @@ namespace Tizen.Network.Bluetooth
     /// <summary>
     /// An extended EventArgs class contains the authorization state and the address of the remote Bluetooth device.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public class AuthorizationChangedEventArgs : EventArgs
     {
         private BluetoothAuthorizationType _authType;
@@ -289,6 +310,7 @@ namespace Tizen.Network.Bluetooth
         /// <summary>
         /// The authorization.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public BluetoothAuthorizationType Authorization
         {
             get
@@ -300,6 +322,7 @@ namespace Tizen.Network.Bluetooth
         /// <summary>
         /// The device address.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public string DeviceAddress
         {
             get
@@ -313,6 +336,7 @@ namespace Tizen.Network.Bluetooth
     /// <summary>
     /// An extended EventArgs class contains the service lists found on the remote Bluetooth device.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public class ServiceSearchedEventArgs : EventArgs
     {
         private BluetoothDeviceSdpData _sdpData;
@@ -327,6 +351,7 @@ namespace Tizen.Network.Bluetooth
         /// <summary>
         /// The BluetoothError result.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public BluetoothError Result
         {
             get
@@ -337,6 +362,7 @@ namespace Tizen.Network.Bluetooth
         /// <summary>
         /// The sdp data.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public BluetoothDeviceSdpData SdpData
         {
             get
@@ -349,6 +375,7 @@ namespace Tizen.Network.Bluetooth
     /// <summary>
     /// An extended EventArgs class contains the connection state and the connection information of the remote device.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public class DeviceConnectionStateChangedEventArgs : EventArgs
     {
         private bool _isConnected;
@@ -363,6 +390,7 @@ namespace Tizen.Network.Bluetooth
         /// <summary>
         /// A value indicating whether the device is connected.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public bool IsConnected
         {
             get
@@ -374,6 +402,7 @@ namespace Tizen.Network.Bluetooth
         /// <summary>
         /// The device connection data.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public BluetoothDeviceConnectionData ConnectionData
         {
             get
@@ -386,6 +415,7 @@ namespace Tizen.Network.Bluetooth
     /// <summary>
     /// An extended EventArgs class contains the data received information.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public class SocketDataReceivedEventArgs : EventArgs
     {
         private SocketData _data;
@@ -398,6 +428,7 @@ namespace Tizen.Network.Bluetooth
         /// <summary>
         /// The socket data.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public SocketData Data
         {
             get
@@ -410,6 +441,7 @@ namespace Tizen.Network.Bluetooth
     /// <summary>
     /// An extended EventArgs class contains the changed connection state.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public class SocketConnectionStateChangedEventArgs : EventArgs
     {
         private BluetoothError _result;
@@ -426,6 +458,7 @@ namespace Tizen.Network.Bluetooth
         /// <summary>
         /// The BluetoothError result.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public BluetoothError Result
         {
             get
@@ -437,6 +470,7 @@ namespace Tizen.Network.Bluetooth
         /// <summary>
         /// The socket state.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public BluetoothSocketState State
         {
             get
@@ -448,6 +482,7 @@ namespace Tizen.Network.Bluetooth
         /// <summary>
         /// The socket connection.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public SocketConnection Connection
         {
             get
@@ -460,6 +495,7 @@ namespace Tizen.Network.Bluetooth
     /// <summary>
     /// The AcceptStateChanged event is raised when the socket connection state is changed.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public class AcceptStateChangedEventArgs : EventArgs
     {
         private BluetoothError _result;
@@ -478,6 +514,7 @@ namespace Tizen.Network.Bluetooth
         /// <summary>
         /// The BluetoothError result.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public BluetoothError Result
         {
             get
@@ -489,6 +526,7 @@ namespace Tizen.Network.Bluetooth
         /// <summary>
         /// The socket state.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public BluetoothSocketState State
         {
             get
@@ -500,6 +538,7 @@ namespace Tizen.Network.Bluetooth
         /// <summary>
         /// The socket connection.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public SocketConnection Connection
         {
             get
@@ -511,6 +550,7 @@ namespace Tizen.Network.Bluetooth
         /// <summary>
         /// The server socket instance.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public IBluetoothServerSocket Server
         {
             get
@@ -523,6 +563,7 @@ namespace Tizen.Network.Bluetooth
     /// <summary>
     /// An extended EventArgs class contains the connection state, remote address, and the type of audio profile.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public class AudioConnectionStateChangedEventArgs : EventArgs
     {
         private int _result;
@@ -541,6 +582,7 @@ namespace Tizen.Network.Bluetooth
         /// <summary>
         /// The result.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public int Result
         {
             get
@@ -552,6 +594,7 @@ namespace Tizen.Network.Bluetooth
         /// <summary>
         /// A value indicating whether this instance is connected.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public bool IsConnected
         {
             get
@@ -563,6 +606,7 @@ namespace Tizen.Network.Bluetooth
         /// <summary>
         /// The address.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public string Address
         {
             get
@@ -574,6 +618,7 @@ namespace Tizen.Network.Bluetooth
         /// <summary>
         /// The type of the audio profile.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public BluetoothAudioProfileType ProfileType
         {
             get
@@ -586,6 +631,7 @@ namespace Tizen.Network.Bluetooth
     /// <summary>
     /// An extended EventArgs class contains the connection state and the address of the remote Bluetooth device.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public class HidConnectionStateChangedEventArgs : EventArgs
     {
         private int _result;
@@ -602,6 +648,7 @@ namespace Tizen.Network.Bluetooth
         /// <summary>
         /// The result.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public int Result
         {
             get
@@ -613,6 +660,7 @@ namespace Tizen.Network.Bluetooth
         /// <summary>
         /// A value indicating whether this instance is connected.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public bool IsConnected
         {
             get
@@ -624,6 +672,7 @@ namespace Tizen.Network.Bluetooth
         /// <summary>
         /// The address.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public string Address
         {
             get
@@ -636,6 +685,7 @@ namespace Tizen.Network.Bluetooth
     /// <summary>
     /// An extended EventArgs class contains the changed equalizer state.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public class EqualizerStateChangedEventArgs : EventArgs
     {
         private EqualizerState _state;
@@ -648,6 +698,7 @@ namespace Tizen.Network.Bluetooth
         /// <summary>
         /// The state of the equalizer.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public EqualizerState State
         {
             get
@@ -660,6 +711,7 @@ namespace Tizen.Network.Bluetooth
     /// <summary>
     /// An extended EventArgs class contains the changed repeat mode.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public class RepeatModeChangedEventArgs : EventArgs
     {
         private RepeatMode _mode;
@@ -672,6 +724,7 @@ namespace Tizen.Network.Bluetooth
         /// <summary>
         /// The repeat mode.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public RepeatMode Mode
         {
             get
@@ -684,6 +737,7 @@ namespace Tizen.Network.Bluetooth
     /// <summary>
     /// An extended EventArgs class contains the changed shuffle mode.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public class ShuffleModeChangedeventArgs : EventArgs
     {
         private ShuffleMode _mode;
@@ -696,6 +750,7 @@ namespace Tizen.Network.Bluetooth
         /// <summary>
         /// The shuffle mode.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public ShuffleMode Mode
         {
             get
@@ -708,6 +763,7 @@ namespace Tizen.Network.Bluetooth
     /// <summary>
     /// An extended EventArgs class contains the changed scan mode.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public class ScanModeChangedEventArgs : EventArgs
     {
         private ScanMode _mode;
@@ -720,6 +776,7 @@ namespace Tizen.Network.Bluetooth
         /// <summary>
         /// The scan mode.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public ScanMode Mode
         {
             get
@@ -732,6 +789,7 @@ namespace Tizen.Network.Bluetooth
     /// <summary>
     /// An extended EventArgs class contains the connection state and the remote device address.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public class TargetConnectionStateChangedEventArgs : EventArgs
     {
         private bool _isConnected;
@@ -746,6 +804,7 @@ namespace Tizen.Network.Bluetooth
         /// <summary>
         /// A value indicating whether this instance is connected.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public bool IsConnected
         {
             get
@@ -757,6 +816,7 @@ namespace Tizen.Network.Bluetooth
         /// <summary>
         /// The address.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public string Address
         {
             get
@@ -769,6 +829,7 @@ namespace Tizen.Network.Bluetooth
     /// <summary>
     /// An extended EventArgs class contains the changed Bluetooth LE advertising state changed information.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public class AdvertisingStateChangedEventArgs : EventArgs
     {
         private BluetoothLeAdvertisingState _state;
@@ -787,6 +848,7 @@ namespace Tizen.Network.Bluetooth
         /// <summary>
         /// The result.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public int Result
         {
             get
@@ -798,6 +860,7 @@ namespace Tizen.Network.Bluetooth
         /// <summary>
         /// The advertiser handle.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public IntPtr AdvertiserHandle
         {
             get
@@ -809,6 +872,7 @@ namespace Tizen.Network.Bluetooth
         /// <summary>
         /// The LE advertising state.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public BluetoothLeAdvertisingState State
         {
             get
@@ -821,6 +885,7 @@ namespace Tizen.Network.Bluetooth
     /// <summary>
     /// An extended EventArgs class contains the changed Bluetooth LE scan result information.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public class AdapterLeScanResultChangedEventArgs : EventArgs
     {
         private BluetoothLeDevice _deviceData;
@@ -835,6 +900,7 @@ namespace Tizen.Network.Bluetooth
         /// <summary>
         /// The result.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public BluetoothError Result
         {
             get
@@ -846,6 +912,7 @@ namespace Tizen.Network.Bluetooth
         /// <summary>
         /// The LE device data.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public BluetoothLeDevice DeviceData
         {
             get
@@ -858,6 +925,7 @@ namespace Tizen.Network.Bluetooth
     /// <summary>
     /// An extended EventArgs class contains the changed Bluetooth LE GATT connection state.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public class GattConnectionStateChangedEventArgs : EventArgs
     {
         private bool _isConnected;
@@ -874,6 +942,7 @@ namespace Tizen.Network.Bluetooth
         /// <summary>
         /// The result.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public int Result
         {
             get
@@ -885,6 +954,7 @@ namespace Tizen.Network.Bluetooth
         /// <summary>
         /// A value indicating whether this instance is connected.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public bool IsConnected
         {
             get
@@ -896,6 +966,7 @@ namespace Tizen.Network.Bluetooth
         /// <summary>
         /// The remote address.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public string RemoteAddress
         {
             get
@@ -908,6 +979,7 @@ namespace Tizen.Network.Bluetooth
     /// <summary>
     /// An extended EventArgs class contains the changed attribute value.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public class ValueChangedEventArgs : EventArgs
     {
         internal ValueChangedEventArgs(byte[] value)
@@ -918,12 +990,14 @@ namespace Tizen.Network.Bluetooth
         /// <summary>
         /// The attribute value.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public byte[] Value { get; }
     }
 
     /// <summary>
     /// An extended EventArgs class contains the read value request data.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public class ReadRequestedEventArgs : EventArgs
     {
         internal ReadRequestedEventArgs(BluetoothGattServer server, string clientAddress, int requestId, int offset)
@@ -937,24 +1011,29 @@ namespace Tizen.Network.Bluetooth
         /// <summary>
         /// The GATT server instance.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public BluetoothGattServer Server { get; }
         /// <summary>
         /// The client address.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public string ClientAddress { get; }
         /// <summary>
         /// The request identifier.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public int RequestId { get; }
         /// <summary>
         /// The offset.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public int Offset { get; }
     }
 
     /// <summary>
     /// An extended EventArgs class contains the read value request data.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public class WriteRequestedEventArgs : EventArgs
     {
         internal WriteRequestedEventArgs(BluetoothGattServer server, string clientAddress, int requestId, byte[] value, int offset, bool response_needed)
@@ -970,32 +1049,39 @@ namespace Tizen.Network.Bluetooth
         /// <summary>
         /// The GATT server instance.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public BluetoothGattServer Server { get; }
         /// <summary>
         /// The client address.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public string ClientAddress { get; }
         /// <summary>
         /// The request identifier.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public int RequestId { get; }
         /// <summary>
         /// The read value.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public byte[] Value { get; }
         /// <summary>
         /// The offset.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public int Offset { get; }
         /// <summary>
         /// Indicates whether a response is required by the remote device.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public bool Response_needed { get; }
     }
 
     /// <summary>
     /// An extended EventArgs class contains the client preference to enable or disable the Notification/Indication.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public class NotificationStateChangedEventArg : EventArgs
     {
         internal NotificationStateChangedEventArg(BluetoothGattServer server, bool value)
@@ -1007,16 +1093,19 @@ namespace Tizen.Network.Bluetooth
         /// <summary>
         /// The GATT server instance.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public BluetoothGattServer Server { get; }
         /// <summary>
         /// A value indicating whether the notification is enabled.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public bool Value { get; }
     }
 
     /// <summary>
     /// An extended EventArgs class contains the read value request data.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public class NotificationSentEventArg : EventArgs
     {
         internal NotificationSentEventArg(BluetoothGattServer server, string clientAddress, int result, bool completed)
@@ -1030,24 +1119,29 @@ namespace Tizen.Network.Bluetooth
         /// <summary>
         /// The GATT server instance.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public BluetoothGattServer Server { get; }
         /// <summary>
         /// The client address.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public string ClientAddress { get; }
         /// <summary>
         /// The result.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public int Result { get; }
         /// <summary>
         /// Gets a value indicating whether the notification sent is completed.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public bool Completed { get; }
     }
 
     /// <summary>
     /// An extended EventArgs class which contains the connection state and address of the remote Bluetooth device.
     /// </summary>
+    /// <since_tizen> 4 </since_tizen>
     public class ConnectionRequestedEventArgs : EventArgs
     {
         private string _address;
@@ -1060,6 +1154,7 @@ namespace Tizen.Network.Bluetooth
         /// <summary>
         /// The address.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         public string Address
         {
             get
@@ -1072,6 +1167,7 @@ namespace Tizen.Network.Bluetooth
     /// <summary>
     /// An extended EventArgs class which contains the file transfer progress state, file transfer progress by percent.
     /// </summary>
+    /// <since_tizen> 4 </since_tizen>
     public class TransferProgressEventArgs : EventArgs
     {
         private string _file;
@@ -1088,6 +1184,7 @@ namespace Tizen.Network.Bluetooth
         /// <summary>
         /// The File name.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         public string File
         {
             get
@@ -1099,6 +1196,7 @@ namespace Tizen.Network.Bluetooth
         /// <summary>
         /// The File size.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         public long Size
         {
             get
@@ -1110,6 +1208,7 @@ namespace Tizen.Network.Bluetooth
         /// <summary>
         /// The File transfer percent.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         public int Percent
         {
             get
@@ -1122,6 +1221,7 @@ namespace Tizen.Network.Bluetooth
     /// <summary>
     /// An extended EventArgs class which contains the file transfer finished state and file state.
     /// </summary>
+    /// <since_tizen> 4 </since_tizen>
     public class TransferFinishedEventArgs : EventArgs
     {
         private string _file;
@@ -1138,6 +1238,7 @@ namespace Tizen.Network.Bluetooth
         /// <summary>
         /// The File name.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         public string File
         {
             get
@@ -1149,6 +1250,7 @@ namespace Tizen.Network.Bluetooth
         /// <summary>
         /// The File size.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         public long Size
         {
             get
@@ -1160,6 +1262,7 @@ namespace Tizen.Network.Bluetooth
         /// <summary>
         /// The return value.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         public int Result
         {
             get
@@ -1172,6 +1275,7 @@ namespace Tizen.Network.Bluetooth
     /// <Summary>
     /// An extended EventArgs class which contains the Push Request respond state
     /// </Summary>
+    /// <since_tizen> 4 </since_tizen>
 
     public class PushRespondedEventArgs : EventArgs
     {
@@ -1187,6 +1291,7 @@ namespace Tizen.Network.Bluetooth
         /// <summary>
         /// The return value.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         public int Result
         {
             get
@@ -1198,6 +1303,7 @@ namespace Tizen.Network.Bluetooth
         /// <summary>
         /// The address.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         public string Address
         {
             get
@@ -1210,6 +1316,7 @@ namespace Tizen.Network.Bluetooth
     /// <summary>
     /// An extended EventArgs class which contains the file push progress state, push progress by percent.
     /// </summary>
+    /// <since_tizen> 4 </since_tizen>
     public class PushProgressEventArgs : EventArgs
     {
         private string _file;
@@ -1226,6 +1333,7 @@ namespace Tizen.Network.Bluetooth
         /// <summary>
         /// The File name.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         public string File
         {
             get
@@ -1237,6 +1345,7 @@ namespace Tizen.Network.Bluetooth
         /// <summary>
         /// The File size.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         public long Size
         {
             get
@@ -1248,6 +1357,7 @@ namespace Tizen.Network.Bluetooth
         /// <summary>
         /// The File transfer percent.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         public int Percent
         {
             get
@@ -1260,6 +1370,7 @@ namespace Tizen.Network.Bluetooth
     /// <Summary>
     /// An extended EventArgs class which contains the Push Request respond state
     /// </Summary>
+    /// <since_tizen> 4 </since_tizen>
 
     public class PushFinishedEventArgs : EventArgs
     {
@@ -1275,6 +1386,7 @@ namespace Tizen.Network.Bluetooth
         /// <summary>
         /// The return value.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         public int Result
         {
             get
@@ -1286,6 +1398,7 @@ namespace Tizen.Network.Bluetooth
         /// <summary>
         /// The address.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         public string Address
         {
             get

@@ -24,6 +24,7 @@ namespace Tizen.Multimedia.Remoting
     /// Provides a means to retrieve the audio information which is negotiated with the source device.
     /// </summary>
     /// <seealso cref="ScreenMirroring"/>
+    /// <since_tizen> 4 </since_tizen>
     public class ScreenMirroringAudioInfo
     {
         private readonly ScreenMirroring _owner;
@@ -42,6 +43,7 @@ namespace Tizen.Multimedia.Remoting
         ///     An internal error occurs.
         /// </exception>
         /// <exception cref="ObjectDisposedException">The <see cref="ScreenMirroring"/> has already been disposed.</exception>
+        /// <since_tizen> 4 </since_tizen>
         public ScreenMirroringAudioCodec Codec
         {
             get
@@ -64,6 +66,7 @@ namespace Tizen.Multimedia.Remoting
         ///     An internal error occurs.
         /// </exception>
         /// <exception cref="ObjectDisposedException">The <see cref="ScreenMirroring"/> has already been disposed.</exception>
+        /// <since_tizen> 4 </since_tizen>
         public int Channels
         {
             get
@@ -86,6 +89,7 @@ namespace Tizen.Multimedia.Remoting
         ///     An internal error occurs.
         /// </exception>
         /// <exception cref="ObjectDisposedException">The <see cref="ScreenMirroring"/> has already been disposed.</exception>
+        /// <since_tizen> 4 </since_tizen>
         public int SampleRate
         {
             get
@@ -108,6 +112,7 @@ namespace Tizen.Multimedia.Remoting
         ///     An internal error occurs.
         /// </exception>
         /// <exception cref="ObjectDisposedException">The <see cref="ScreenMirroring"/> has already been disposed.</exception>
+        /// <since_tizen> 4 </since_tizen>
         public int BitWidth
         {
             get

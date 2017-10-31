@@ -31,6 +31,7 @@ namespace Tizen.Applications.Notifications
         /// <summary>
         /// An object that helps notification to make to SafeHandle.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public abstract class MakerBase
         {

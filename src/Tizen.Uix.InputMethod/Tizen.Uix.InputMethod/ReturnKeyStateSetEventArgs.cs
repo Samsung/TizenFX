@@ -19,6 +19,7 @@ namespace Tizen.Uix.InputMethod
     /// <summary>
     /// This Class contains data related to ReturnKeyStateSet Event
     /// </summary>
+    /// <since_tizen> 4 </since_tizen>
     public class ReturnKeyStateSetEventArgs
     {
         internal ReturnKeyStateSetEventArgs(bool state)
@@ -29,6 +30,7 @@ namespace Tizen.Uix.InputMethod
         /// <summary>
         /// The bool state to disable Return key. The Return key is enabled by default
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         public bool State
         {
             get;

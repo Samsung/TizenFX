@@ -24,6 +24,7 @@ namespace Tizen.Multimedia.Util
     /// <summary>
     /// Provides utilities for images.
     /// </summary>
+    /// <since_tizen> 4 </since_tizen>
     public static class ImageUtil
     {
         /// <summary>
@@ -32,6 +33,7 @@ namespace Tizen.Multimedia.Util
         /// <returns>An IEnumerable of <see cref="ColorSpace"/> representing the supported color-spaces.</returns>
         /// <param name="format">The <see cref="ImageFormat"/>.</param>
         /// <exception cref="ArgumentException"><paramref name="format"/> is invalid.</exception>
+        /// <since_tizen> 4 </since_tizen>
         public static IEnumerable<ColorSpace> GetSupportedColorSpaces(ImageFormat format)
         {
             ValidationUtil.ValidateEnum(typeof(ImageFormat), format, nameof(format));
@@ -57,6 +59,7 @@ namespace Tizen.Multimedia.Util
         ///     height of <paramref name="resolution"/> is less than or equal to zero.
         /// </exception>
         /// <exception cref="ArgumentException"><paramref name="colorSpace"/> is invalid.</exception>
+        /// <since_tizen> 4 </since_tizen>
         public static int CalculateBufferSize(Size resolution, ColorSpace colorSpace)
         {
             if (resolution.Width <= 0)
@@ -95,6 +98,7 @@ namespace Tizen.Multimedia.Util
         ///     -or-<br/>
         ///     height of <paramref name="size"/> is less than or equal to zero.
         /// </exception>
+        /// <since_tizen> 4 </since_tizen>
         public static Color GetColor(byte[] buffer, Size size)
         {
             if (buffer == null)

@@ -20,6 +20,7 @@ namespace Tizen.Account.OAuth2
     /// The class contains request parameters for retreiving authorization code in Authorization Code Grant flow.
     /// Please refer https://tools.ietf.org/html/rfc6749#section-4.1.1 for more details
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public class CodeGrantAuthorizationRequest : AuthorizationRequest
     {
         /// <summary>

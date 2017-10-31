@@ -21,12 +21,14 @@ namespace Tizen.Common
     /// <summary>
     /// The DotnetUtil class provides the .NET API version.
     /// </summary>
+    /// <since_tizen> 4 </since_tizen>
     public static class DotnetUtil
     {
         /// <summary>
         /// Gets the version of Tizen .NET API.
         /// </summary>
         /// <returns>The Tizen .NET API version</returns>
+        /// <since_tizen> 4 </since_tizen>
         public static int TizenAPIVersion
         {
             get

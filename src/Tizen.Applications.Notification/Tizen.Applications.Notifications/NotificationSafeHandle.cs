@@ -23,12 +23,14 @@ namespace Tizen.Applications.Notifications
     /// <summary>
     /// This class manages the notification handle resources.
     /// </summary>
+    /// <since_tizen> 4 </since_tizen>
     [EditorBrowsable(EditorBrowsableState.Never)]
     public sealed class NotificationSafeHandle : SafeHandle
     {
         /// <summary>
         /// Initializes a new instance of the NotificationSafeHandle class.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public NotificationSafeHandle()
             : base(IntPtr.Zero, true)
@@ -43,6 +45,7 @@ namespace Tizen.Applications.Notifications
         /// <summary>
         /// Gets a value that indicates whether the handle is invalid.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public override bool IsInvalid
         {

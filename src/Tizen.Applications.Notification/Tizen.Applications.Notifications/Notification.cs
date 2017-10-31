@@ -42,6 +42,7 @@ namespace Tizen.Applications.Notifications
         /// <summary>
         /// Initializes a new instance of the <see cref="Notification"/> class.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public Notification()
         {
             styleDictionary = new Dictionary<string, StyleBase>();
@@ -51,17 +52,20 @@ namespace Tizen.Applications.Notifications
         /// <summary>
         /// Gets or sets the tag of notification.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public string Tag { get; set; } = string.Empty;
 
         /// <summary>
         /// Gets or sets the title of notification.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public string Title { get; set; } = string.Empty;
 
         /// <summary>
         /// Gets or sets the icon of notification.
         /// You should set an absolute path for an image file.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public string Icon { get; set; } = string.Empty;
 
         /// <summary>
@@ -69,17 +73,20 @@ namespace Tizen.Applications.Notifications
         /// This SubIcon is displayed in Icon you set.
         /// You should set an absolute path for an image file.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public string SubIcon { get; set; } = string.Empty;
 
         /// <summary>
         /// Gets or sets the content of notification.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public string Content { get; set; } = string.Empty;
 
         /// <summary>
         /// Gets or sets a value indicating whether TimeStamp of the notification is Visible or not.
         /// Default to true.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public bool IsTimeStampVisible { get; set; } = true;
 
         /// <summary>
@@ -90,6 +97,7 @@ namespace Tizen.Applications.Notifications
         /// TimeStamp requires NotificationManager.Post() to be called.
         /// If you set IsVisibleTimeStamp property to false, TimeStamp is not visible in notification.
         /// </remarks>
+        /// <since_tizen> 3 </since_tizen>
         public DateTime TimeStamp { get; set; }
 
         /// <summary>
@@ -99,6 +107,7 @@ namespace Tizen.Applications.Notifications
         /// If you set it to null, the already set AppControl will be removed and nothing will happen when you click on notification.
         /// </remarks>
         /// <seealso cref="Tizen.Applications.AppControl"></seealso>
+        /// <since_tizen> 3 </since_tizen>
         public AppControl Action { get; set; }
 
         /// <summary>
@@ -109,6 +118,7 @@ namespace Tizen.Applications.Notifications
         /// If you set count to negative number, this property throws exception.
         /// </remarks>
         /// <exception cref="ArgumentException">Thrown when argument is invalid.</exception>
+        /// <since_tizen> 3 </since_tizen>
         public int Count
         {
             get
@@ -132,6 +142,7 @@ namespace Tizen.Applications.Notifications
         /// Gets or sets a value indicating whether the notification is Onging or not.
         /// Default value is false.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public bool IsOngoing { get; set; } = false;
 
@@ -139,12 +150,14 @@ namespace Tizen.Applications.Notifications
         /// Gets or sets property.
         /// </summary>
         /// <seealso cref="Tizen.Applications.Notifications.NotificationProperty"></seealso>
+        /// <since_tizen> 3 </since_tizen>
         public NotificationProperty Property { get; set; } = NotificationProperty.None;
 
         /// <summary>
         /// Gets or sets <see cref="Notification.ProgressType"/> object for display at notification.
         /// </summary>
         /// <seealso cref="Tizen.Applications.Notifications.Notification.ProgressType"></seealso>
+        /// <since_tizen> 3 </since_tizen>
         public ProgressType Progress { get; set; }
 
         /// <summary>
@@ -179,12 +192,14 @@ namespace Tizen.Applications.Notifications
         /// NotificationManager.Post(notification);
         /// </code>
         /// </example>
+        /// <since_tizen> 3 </since_tizen>
         public AccessorySet Accessory { get; set; }
 
         /// <summary>
         /// Gets or sets a value indicating whether notification is displayed on the default viewer.
         /// If you set false and add style, you can see only style notification.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         public bool IsVisible { get; set; } = true;
 
         /// <summary>
@@ -244,6 +259,7 @@ namespace Tizen.Applications.Notifications
         /// NotificationManager.Post(notification);
         /// </code>
         /// </example>
+        /// <since_tizen> 3 </since_tizen>
         public void AddStyle(StyleBase style)
         {
             if (style == null)
@@ -268,6 +284,7 @@ namespace Tizen.Applications.Notifications
         /// </summary>
         /// <typeparam name="T">Type of notification style to be queried.</typeparam>
         /// <exception cref="ArgumentException">Thrown when argument is invalid.</exception>
+        /// <since_tizen> 3 </since_tizen>
         public void RemoveStyle<T>() where T : Notification.StyleBase, new()
         {
             T type = new T();
@@ -291,6 +308,7 @@ namespace Tizen.Applications.Notifications
         /// The Notification.Style object associated with the given style.
         /// </returns>
         /// <exception cref="ArgumentException">Thrown when argument is invalid.</exception>
+        /// <since_tizen> 3 </since_tizen>
         public T GetStyle<T>() where T : Notification.StyleBase, new()
         {
             T type = new T();
@@ -333,6 +351,7 @@ namespace Tizen.Applications.Notifications
         /// notification.SetExtraData("firstKey", bundle);
         /// </code>
         /// </example>
+        /// <since_tizen> 4 </since_tizen>
         public void SetExtraData(string key, Bundle value)
         {
             if (value == null || value.SafeBundleHandle.IsInvalid || string.IsNullOrEmpty(key))
@@ -360,6 +379,7 @@ namespace Tizen.Applications.Notifications
         /// </remarks>
         /// <param name="key">The key of the extra data to add.</param>
         /// <exception cref="ArgumentException">Thrown when argument is invalid.</exception>
+        /// <since_tizen> 4 </since_tizen>
         public void RemoveExtraData(string key)
         {
             if (string.IsNullOrEmpty(key))
@@ -383,6 +403,7 @@ namespace Tizen.Applications.Notifications
         /// <param name="key">The key of the extra data to get.</param>
         /// <returns>Bundle Object that include extra data</returns>
         /// <exception cref="ArgumentException">Thrown when argument is invalid.</exception>
+        /// <since_tizen> 4 </since_tizen>
         public Bundle GetExtraData(string key)
         {
             if (string.IsNullOrEmpty(key))
@@ -402,6 +423,7 @@ namespace Tizen.Applications.Notifications
         /// <summary>
         /// Releases any unmanaged resources used by this object.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public void Dispose()
         {
             Dispose(true);

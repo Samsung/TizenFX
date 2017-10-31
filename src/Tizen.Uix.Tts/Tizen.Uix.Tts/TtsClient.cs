@@ -370,7 +370,7 @@ namespace Tizen.Uix.Tts
         /// <summary>
         /// Event to be invoked when an error occurs.
         /// </summary>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 4 </since_tizen>
         public event EventHandler<ErrorOccurredEventArgs> ErrorOccurred
         {
             add

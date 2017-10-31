@@ -22,6 +22,7 @@ namespace Tizen.Content.MediaContent
     /// Represents the media bookmark that allows you to mark an interesting moment
     /// in media (video and audio) to enable fast searching.
     /// </summary>
+    /// <since_tizen> 4 </since_tizen>
     public class Bookmark
     {
         internal Bookmark(IntPtr handle)
@@ -36,24 +37,28 @@ namespace Tizen.Content.MediaContent
         /// Gets the ID of the bookmark.
         /// </summary>
         /// <value>The ID of the bookmark.</value>
+        /// <since_tizen> 4 </since_tizen>
         public int Id { get; }
 
         /// <summary>
         /// Gets the thumbnail path of the bookmark.
         /// </summary>
         /// <value>The thumbnail path of the bookmark.</value>
+        /// <since_tizen> 4 </since_tizen>
         public string ThumbnailPath { get; }
 
         /// <summary>
         /// Gets the offset in milliseconds.
         /// </summary>
         /// <value>The offset of the bookmark in media in milliseconds.</value>
+        /// <since_tizen> 4 </since_tizen>
         public int Offset { get; }
 
         /// <summary>
         /// Gets the name of the bookmark.
         /// </summary>
         /// <value>The name of the bookmark.</value>
+        /// <since_tizen> 4 </since_tizen>
         public string Name { get; }
 
         internal static Bookmark FromHandle(IntPtr handle) => new Bookmark(handle);
@@ -62,6 +67,7 @@ namespace Tizen.Content.MediaContent
         /// Returns a string representation of the bookmark.
         /// </summary>
         /// <returns>A string representation of the current bookmark.</returns>
+        /// <since_tizen> 4 </since_tizen>
         public override string ToString() =>
             $"Id={Id}, Name={Name}, ThumbnailPath={ThumbnailPath}, Offset={Offset}";
     }

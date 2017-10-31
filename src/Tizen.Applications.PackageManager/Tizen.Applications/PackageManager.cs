@@ -28,6 +28,7 @@ namespace Tizen.Applications
     /// The package manager is one of the core modules of the Tizen application framework and responsible for getting their information.
     /// You can also retrieve information related to the packages that are installed on the device.
     /// </remarks>
+    /// <since_tizen> 3 </since_tizen>
     public static class PackageManager
     {
         private const string LogTag = "Tizen.Applications.PackageManager";
@@ -50,6 +51,7 @@ namespace Tizen.Applications
         /// <param name="eventType">Event type of the request.</param>
         /// <param name="eventState">Current event state of the request.</param>
         /// <param name="progress">Progress for the request being processed by the package manager (in percent).</param>
+        /// <since_tizen> 3 </since_tizen>
         public delegate void RequestEventCallback(string type, string packageId, PackageEventType eventType, PackageEventState eventState, int progress);
 
         private static Dictionary<int, RequestEventCallback> RequestCallbacks = new Dictionary<int, RequestEventCallback>();
@@ -61,6 +63,7 @@ namespace Tizen.Applications
         /// <summary>
         /// InstallProgressChanged event. This event occurs when a package is getting installed and the progress of the request to the package manager is changed.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public static event EventHandler<PackageManagerEventArgs> InstallProgressChanged
         {
             add
@@ -80,6 +83,7 @@ namespace Tizen.Applications
         /// <summary>
         /// UninstallProgressChanged event. This event occurs when a package is getting uninstalled and the progress of the request to the package manager is changed.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public static event EventHandler<PackageManagerEventArgs> UninstallProgressChanged
         {
             add
@@ -99,6 +103,7 @@ namespace Tizen.Applications
         /// <summary>
         /// UpdateProgressChanged event. This event occurs when a package is getting updated and the progress of the request to the package manager is changed.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public static event EventHandler<PackageManagerEventArgs> UpdateProgressChanged
         {
             add
@@ -118,6 +123,7 @@ namespace Tizen.Applications
         /// <summary>
         /// MoveProgressChanged event. This event occurs when a package is getting moved and the progress of the request to the package manager is changed.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public static event EventHandler<PackageManagerEventArgs> MoveProgressChanged
         {
             add
@@ -137,6 +143,7 @@ namespace Tizen.Applications
         /// <summary>
         /// ClearDataProgressChanged event. This event occurs when data directories are cleared in the given package.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public static event EventHandler<PackageManagerEventArgs> ClearDataProgressChanged
         {
             add
@@ -202,6 +209,7 @@ namespace Tizen.Applications
         /// <exception cref="OutOfMemoryException">Thrown when there is not enough memory to continue the execution of the method.</exception>
         /// <exception cref="UnauthorizedAccessException">Thrown when an application does not have the privilege to access this method.</exception>
         /// <privilege>http://tizen.org/privilege/packagemanager.info</privilege>
+        /// <since_tizen> 3 </since_tizen>
         public static string GetPackageIdByApplicationId(string applicationId)
         {
             string packageId;
@@ -227,6 +235,7 @@ namespace Tizen.Applications
         /// <exception cref="System.IO.IOException">Thrown when the method fails due to an internal I/O error.</exception>
         /// <exception cref="UnauthorizedAccessException">Thrown when an application does not have the privilege to access this method.</exception>
         /// <privilege>http://tizen.org/privilege/packagemanager.info</privilege>
+        /// <since_tizen> 3 </since_tizen>
         public static Package GetPackage(string packageId)
         {
             return Package.GetPackage(packageId);
@@ -241,6 +250,7 @@ namespace Tizen.Applications
         /// <exception cref="UnauthorizedAccessException">Thrown when an application does not have the privilege to access this method.</exception>
         /// <exception cref="SystemException">Thrown when the method failed due to an internal system error.</exception>
         /// <privilege>http://tizen.org/privilege/packagemanager.clearcache</privilege>
+        /// <since_tizen> 3 </since_tizen>
         public static void ClearCacheDirectory(string packageId)
         {
             Interop.PackageManager.ErrorCode err = Interop.PackageManager.PackageManagerClearCacheDir(packageId);
@@ -260,6 +270,7 @@ namespace Tizen.Applications
         /// <exception cref="SystemException">Thrown when the method failed due to an internal system error.</exception>
         /// <privilege>http://tizen.org/privilege/packagemanager.admin</privilege>
         /// <privlevel>platform</privlevel>
+        /// <since_tizen> 3 </since_tizen>
         public static void ClearAllCacheDirectory()
         {
             var err = Interop.PackageManager.PackageManagerClearAllCacheDir();
@@ -284,6 +295,7 @@ namespace Tizen.Applications
         /// <exception cref="SystemException">Thrown when the method failed due to an internal system error.</exception>
         /// <privilege>http://tizen.org/privilege/packagemanager.admin</privilege>
         /// <privlevel>platform</privlevel>
+        /// <since_tizen> 3 </since_tizen>
         public static void ClearDataDirectory(string packageId)
         {
             Interop.PackageManager.ErrorCode err = Interop.PackageManager.PackageManagerClearDataDir(packageId);
@@ -299,6 +311,7 @@ namespace Tizen.Applications
         /// </summary>
         /// <returns>Returns the list of packages.</returns>
         /// <privilege>http://tizen.org/privilege/packagemanager.info</privilege>
+        /// <since_tizen> 3 </since_tizen>
         public static IEnumerable<Package> GetPackages()
         {
             return GetPackages(null);
@@ -310,6 +323,7 @@ namespace Tizen.Applications
         /// <param name="filter">Optional - package filters.</param>
         /// <returns>Returns the list of packages.</returns>
         /// <privilege>http://tizen.org/privilege/packagemanager.info</privilege>
+        /// <since_tizen> 3 </since_tizen>
         public static IEnumerable<Package> GetPackages(PackageFilter filter)
         {
             List<Package> packageList = new List<Package>();
@@ -363,6 +377,7 @@ namespace Tizen.Applications
         /// </summary>
         /// <returns>Returns the total package size information asynchronously.</returns>
         /// <privilege>http://tizen.org/privilege/packagemanager.info</privilege>
+        /// <since_tizen> 3 </since_tizen>
         public static async Task<PackageSizeInformation> GetTotalSizeInformationAsync()
         {
             TaskCompletionSource<PackageSizeInformation> tcs = new TaskCompletionSource<PackageSizeInformation>();
@@ -394,6 +409,7 @@ namespace Tizen.Applications
         /// </remarks>
         /// <privilege>http://tizen.org/privilege/packagemanager.admin</privilege>
         /// <privlevel>platform</privlevel>
+        /// <since_tizen> 3 </since_tizen>
         public static bool Install(string packagePath, InstallationMode installMode = InstallationMode.Normal)
         {
             return Install(packagePath, null, PackageType.UNKNOWN, null, installMode);
@@ -412,6 +428,7 @@ namespace Tizen.Applications
         /// </remarks>
         /// <privilege>http://tizen.org/privilege/packagemanager.admin</privilege>
         /// <privlevel>platform</privlevel>
+        /// <since_tizen> 3 </since_tizen>
         public static bool Install(string packagePath, RequestEventCallback eventCallback, InstallationMode installMode = InstallationMode.Normal)
         {
             return Install(packagePath, null, PackageType.UNKNOWN, eventCallback, installMode);
@@ -430,6 +447,7 @@ namespace Tizen.Applications
         /// </remarks>
         /// <privilege>http://tizen.org/privilege/packagemanager.admin</privilege>
         /// <privlevel>platform</privlevel>
+        /// <since_tizen> 3 </since_tizen>
         public static bool Install(string packagePath, PackageType type, InstallationMode installMode = InstallationMode.Normal)
         {
             return Install(packagePath, null, type, null, installMode);
@@ -448,6 +466,7 @@ namespace Tizen.Applications
         /// </remarks>
         /// <privilege>http://tizen.org/privilege/packagemanager.admin</privilege>
         /// <privlevel>platform</privlevel>
+        /// <since_tizen> 3 </since_tizen>
         public static bool Install(string packagePath, string expansionPackagePath, InstallationMode installMode = InstallationMode.Normal)
         {
             return Install(packagePath, expansionPackagePath, PackageType.UNKNOWN, null, installMode);
@@ -467,6 +486,7 @@ namespace Tizen.Applications
         /// </remarks>
         /// <privilege>http://tizen.org/privilege/packagemanager.admin</privilege>
         /// <privlevel>platform</privlevel>
+        /// <since_tizen> 3 </since_tizen>
         public static bool Install(string packagePath, PackageType type, RequestEventCallback eventCallback, InstallationMode installMode = InstallationMode.Normal)
         {
             return Install(packagePath, null, type, eventCallback, installMode);
@@ -486,6 +506,7 @@ namespace Tizen.Applications
         /// </remarks>
         /// <privilege>http://tizen.org/privilege/packagemanager.admin</privilege>
         /// <privlevel>platform</privlevel>
+        /// <since_tizen> 3 </since_tizen>
         public static bool Install(string packagePath, string expansionPackagePath, RequestEventCallback eventCallback, InstallationMode installMode = InstallationMode.Normal)
         {
             return Install(packagePath, expansionPackagePath, PackageType.UNKNOWN, eventCallback, installMode);
@@ -505,6 +526,7 @@ namespace Tizen.Applications
         /// </remarks>
         /// <privilege>http://tizen.org/privilege/packagemanager.admin</privilege>
         /// <privlevel>platform</privlevel>
+        /// <since_tizen> 3 </since_tizen>
         public static bool Install(string packagePath, string expansionPackagePath, PackageType type, InstallationMode installMode = InstallationMode.Normal)
         {
             return Install(packagePath, expansionPackagePath, type, null, installMode);
@@ -525,6 +547,7 @@ namespace Tizen.Applications
         /// </remarks>
         /// <privilege>http://tizen.org/privilege/packagemanager.admin</privilege>
         /// <privlevel>platform</privlevel>
+        /// <since_tizen> 3 </since_tizen>
         public static bool Install(string packagePath, string expansionPackagePath, PackageType type, RequestEventCallback eventCallback, InstallationMode installMode = InstallationMode.Normal)
         {
             SafePackageManagerRequestHandle RequestHandle;
@@ -626,6 +649,7 @@ namespace Tizen.Applications
         /// </remarks>
         /// <privilege>http://tizen.org/privilege/packagemanager.admin</privilege>
         /// <privlevel>platform</privlevel>
+        /// <since_tizen> 3 </since_tizen>
         public static bool Uninstall(string packageId)
         {
             return Uninstall(packageId, PackageType.UNKNOWN, null);
@@ -643,6 +667,7 @@ namespace Tizen.Applications
         /// </remarks>
         /// <privilege>http://tizen.org/privilege/packagemanager.admin</privilege>
         /// <privlevel>platform</privlevel>
+        /// <since_tizen> 3 </since_tizen>
         public static bool Uninstall(string packageId, PackageType type)
         {
             return Uninstall(packageId, type, null);
@@ -660,6 +685,7 @@ namespace Tizen.Applications
         /// </remarks>
         /// <privilege>http://tizen.org/privilege/packagemanager.admin</privilege>
         /// <privlevel>platform</privlevel>
+        /// <since_tizen> 3 </since_tizen>
         public static bool Uninstall(string packageId, RequestEventCallback eventCallback)
         {
             return Uninstall(packageId, PackageType.UNKNOWN, eventCallback);
@@ -678,6 +704,7 @@ namespace Tizen.Applications
         /// </remarks>
         /// <privilege>http://tizen.org/privilege/packagemanager.admin</privilege>
         /// <privlevel>platform</privlevel>
+        /// <since_tizen> 3 </since_tizen>
         public static bool Uninstall(string packageId, PackageType type, RequestEventCallback eventCallback)
         {
             SafePackageManagerRequestHandle RequestHandle;
@@ -748,6 +775,7 @@ namespace Tizen.Applications
         /// </remarks>
         /// <privilege>http://tizen.org/privilege/packagemanager.admin</privilege>
         /// <privlevel>platform</privlevel>
+        /// <since_tizen> 3 </since_tizen>
         public static bool Move(string packageId, StorageType newStorage)
         {
             return Move(packageId, PackageType.UNKNOWN, newStorage, null);
@@ -766,6 +794,7 @@ namespace Tizen.Applications
         /// </remarks>
         /// <privilege>http://tizen.org/privilege/packagemanager.admin</privilege>
         /// <privlevel>platform</privlevel>
+        /// <since_tizen> 3 </since_tizen>
         public static bool Move(string packageId, PackageType type, StorageType newStorage)
         {
             return Move(packageId, type, newStorage, null);
@@ -784,6 +813,7 @@ namespace Tizen.Applications
         /// </remarks>
         /// <privilege>http://tizen.org/privilege/packagemanager.admin</privilege>
         /// <privlevel>platform</privlevel>
+        /// <since_tizen> 3 </since_tizen>
         public static bool Move(string packageId, StorageType newStorage, RequestEventCallback eventCallback)
         {
             return Move(packageId, PackageType.UNKNOWN, newStorage, eventCallback);
@@ -803,6 +833,7 @@ namespace Tizen.Applications
         /// </remarks>
         /// <privilege>http://tizen.org/privilege/packagemanager.admin</privilege>
         /// <privlevel>platform</privlevel>
+        /// <since_tizen> 3 </since_tizen>
         public static bool Move(string packageId, PackageType type, StorageType newStorage, RequestEventCallback eventCallback)
         {
             SafePackageManagerRequestHandle RequestHandle;
@@ -870,6 +901,7 @@ namespace Tizen.Applications
         /// <privilege>http://tizen.org/privilege/packagemanager.info</privilege>
         /// <exception cref="ArgumentException">Thrown when the failed input package ID is invalid.</exception>
         /// <exception cref="UnauthorizedAccessException">Thrown when an application does not have the privilege to access this method.</exception>
+        /// <since_tizen> 3 </since_tizen>
         public static PermissionType GetPermissionTypeByApplicationId(string applicationId)
         {
             Interop.PackageManager.PackageManagerPermissionType permissionType;
@@ -890,6 +922,7 @@ namespace Tizen.Applications
         /// <privilege>http://tizen.org/privilege/packagemanager.info</privilege>
         /// <exception cref="ArgumentException">Thrown when the failed input package ID is invalid.</exception>
         /// <exception cref="UnauthorizedAccessException">Thrown when an application does not have the privilege to access this method.</exception>
+        /// <since_tizen> 3 </since_tizen>
         public static bool IsPreloadPackageByApplicationId(string applicationId)
         {
             bool isPreloadPackage;
@@ -910,6 +943,7 @@ namespace Tizen.Applications
         /// <returns>Returns certificate comparison result.</returns>
         /// <exception cref="ArgumentException">Thrown when the failed input package ID is invalid.</exception>
         /// <exception cref="System.IO.IOException">Thrown when the method failed due to an internal I/O error.</exception>
+        /// <since_tizen> 3 </since_tizen>
         public static CertCompareResultType CompareCertInfo(string lhsPackageId, string rhsPackageId)
         {
             Interop.PackageManager.CertCompareResultType compareResult;
@@ -930,6 +964,7 @@ namespace Tizen.Applications
         /// <returns>Returns certificate comparison result.</returns>
         /// <exception cref="ArgumentException">Thrown when the failed input package ID is invalid.</exception>
         /// <exception cref="System.IO.IOException">Thrown when the method failed due to an internal I/O error.</exception>
+        /// <since_tizen> 3 </since_tizen>
         public static CertCompareResultType CompareCertInfoByApplicationId(string lhsApplicationId, string rhsApplicationId)
         {
             Interop.PackageManager.CertCompareResultType compareResult;
@@ -945,6 +980,7 @@ namespace Tizen.Applications
         /// <summary>
         /// Drm nested class. This class has the PackageManager's drm related methods.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public static class Drm
         {
             /// <summary>
@@ -958,6 +994,7 @@ namespace Tizen.Applications
             /// <exception cref="OutOfMemoryException">Thrown when there is not enough memory to continue the execution of the method.</exception>
             /// <exception cref="UnauthorizedAccessException">Thrown when an application does not have the privilege to access this method.</exception>
             /// <exception cref="SystemException">Thrown when the method failed due to an internal system error.</exception>
+            /// <since_tizen> 3 </since_tizen>
             public static PackageDrm GenerateLicenseRequest(string responseData)
             {
                 return PackageDrm.GenerateLicenseRequest(responseData);
@@ -975,6 +1012,7 @@ namespace Tizen.Applications
             /// <exception cref="OutOfMemoryException">Thrown when there is not enough memory to continue the execution of the method.</exception>
             /// <exception cref="UnauthorizedAccessException">Thrown when an application does not have the privilege to access this method.</exception>
             /// <exception cref="SystemException">Thrown when the method failed due to internal system error.</exception>
+            /// <since_tizen> 3 </since_tizen>
             public static bool RegisterLicense(string responseData)
             {
                 Interop.PackageManager.ErrorCode err = Interop.PackageManager.PackageManagerDrmRegisterLicense(responseData);
@@ -998,6 +1036,7 @@ namespace Tizen.Applications
             /// <exception cref="OutOfMemoryException">Thrown when there is not enough memory to continue the execution of the method.</exception>
             /// <exception cref="UnauthorizedAccessException">Thrown when an application does not have the privilege to access this method.</exception>
             /// <exception cref="SystemException">Thrown when the method failed due to an internal system error.</exception>
+            /// <since_tizen> 3 </since_tizen>
             public static bool DecryptPackage(string drmFilePath, string decryptedFilePath)
             {
                 Interop.PackageManager.ErrorCode err = Interop.PackageManager.PackageManagerDrmDecryptPackage(drmFilePath, decryptedFilePath);

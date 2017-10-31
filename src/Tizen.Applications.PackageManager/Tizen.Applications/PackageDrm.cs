@@ -24,6 +24,7 @@ namespace Tizen.Applications
     /// <summary>
     /// This class provides the methods and properties for the DRM operation.
     /// </summary>
+    /// <since_tizen> 4 </since_tizen>
     public class PackageDrm
     {
         private string _responseData;
@@ -40,18 +41,21 @@ namespace Tizen.Applications
         /// Returns the response data.
         /// </summary>
         /// <returns>Returns the response data which is given when GenerateLicenseRequest has been invoked.</returns>
+        /// <since_tizen> 4 </since_tizen>
         public string ResponseData { get { return _responseData; } }
 
         /// <summary>
         /// Returns the request data.
         /// </summary>
         /// <returns>Returns the request data which is generated when GenerateLicenseRequest has been invoked.</returns>
+        /// <since_tizen> 4 </since_tizen>
         public string RequestData { get { return _requestData; } }
 
         /// <summary>
         /// Returns the license URL.
         /// </summary>
         /// <returns>Returns the license URL which is generated when GenerateLicenseRequest has been invoked.</returns>
+        /// <since_tizen> 4 </since_tizen>
         public string LicenseUrl { get { return _licenseUrl; } }
 
         internal static PackageDrm CreateDrmRequest(string responseData, string requestData, string licenseUrl)

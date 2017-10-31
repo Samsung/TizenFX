@@ -22,6 +22,7 @@ namespace Tizen.Content.MediaContent
     /// Represents a logical collection grouping of related media information.
     /// </summary>
     /// <seealso cref="AlbumCommand"/>
+    /// <since_tizen> 3 </since_tizen>
     public class Album
     {
         internal Album(IntPtr handle)
@@ -39,30 +40,35 @@ namespace Tizen.Content.MediaContent
         /// Gets the ID of the album.
         /// </summary>
         /// <value>The unique ID of the album.</value>
+        /// <since_tizen> 3 </since_tizen>
         public int Id { get; }
 
         /// <summary>
         /// Gets the artist name of the album.
         /// </summary>
         /// <value>The artist name.</value>
+        /// <since_tizen> 3 </since_tizen>
         public string Artist { get; }
 
         /// <summary>
         /// Gets the path to the album art.
         /// </summary>
         /// <value>The path to the album art.</value>
+        /// <since_tizen> 4 </since_tizen>
         public string AlbumArtPath { get; }
 
         /// <summary>
         /// Gets the name of the album.
         /// </summary>
         /// <value>The album name.</value>
+        /// <since_tizen> 3 </since_tizen>
         public string Name { get; }
 
         /// <summary>
         /// Returns a string representation of the album.
         /// </summary>
         /// <returns>A string representation of the current album.</returns>
+        /// <since_tizen> 4 </since_tizen>
         public override string ToString() =>
             $"Id={Id}, Name={Name}, Artist={Artist}, AlbumArtPath={AlbumArtPath}";
     }

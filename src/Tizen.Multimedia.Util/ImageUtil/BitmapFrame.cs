@@ -23,6 +23,7 @@ namespace Tizen.Multimedia.Util
     /// <summary>
     /// Represents the image data returned by a decoder class.
     /// </summary>
+    /// <since_tizen> 4 </since_tizen>
     public class BitmapFrame
     {
         internal BitmapFrame(IntPtr nativeBuffer, int width, int height, int size)
@@ -40,11 +41,13 @@ namespace Tizen.Multimedia.Util
         /// <summary>
         /// Gets the raw image data.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         public byte[] Buffer { get; }
 
         /// <summary>
         /// Gets the size of the image.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         public Size Size { get; }
     }
 }

@@ -21,6 +21,7 @@ namespace Tizen.Sensor
     /// <summary>
     /// The ProximitySensor class is used for registering callbacks for the proximity sensor and getting the proximity data.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public sealed class ProximitySensor : Sensor
     {
         private static string ProximitySensorKey = "http://tizen.org/feature/sensor.proximity";

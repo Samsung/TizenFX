@@ -21,6 +21,7 @@ namespace Tizen.Multimedia
     /// <summary>
     /// Provides data for the <see cref="Recorder.DeviceStateChanged"/> event.
     /// </summary>
+    /// <since_tizen> 4 </since_tizen>
     public class RecorderDeviceStateChangedEventArgs : EventArgs
     {
         internal RecorderDeviceStateChangedEventArgs(RecorderType type, RecorderDeviceState state)
@@ -32,11 +33,13 @@ namespace Tizen.Multimedia
         /// <summary>
         /// Gets the recorder type.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         public RecorderType Type { get; }
 
         /// <summary>
         /// Gets the device state.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         public RecorderDeviceState DeviceState { get; }
     }
 }

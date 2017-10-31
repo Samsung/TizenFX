@@ -22,11 +22,13 @@ namespace Tizen.Applications
     /// <summary>
     /// Represents a wrapper class for an unmanaged bundle handle.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public sealed class SafeBundleHandle : SafeHandle
     {
         /// <summary>
         /// Initializes a new instance of the SafeBundleHandle class.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public SafeBundleHandle() : base(IntPtr.Zero, true)
         {
         }
@@ -36,6 +38,7 @@ namespace Tizen.Applications
         /// </summary>
         /// <param name="existingHandle">An IntPtr object that represents the pre-existing handle to use.</param>
         /// <param name="ownsHandle">true to reliably release the handle during the finalization phase; false to prevent reliable release.</param>
+        /// <since_tizen> 3 </since_tizen>
         public SafeBundleHandle(IntPtr existingHandle, bool ownsHandle) : base(IntPtr.Zero, ownsHandle)
         {
             SetHandle(existingHandle);
@@ -44,6 +47,7 @@ namespace Tizen.Applications
         /// <summary>
         /// Gets a value that indicates whether the handle is invalid.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public override bool IsInvalid
         {
             get { return this.handle == IntPtr.Zero; }

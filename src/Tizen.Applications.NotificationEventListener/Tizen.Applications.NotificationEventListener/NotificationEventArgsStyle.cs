@@ -24,6 +24,7 @@ namespace Tizen.Applications.NotificationEventListener
         /// <summary>
         /// An object can get a rich notification style to a notification object.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         public abstract class StyleArgs
         {
             internal abstract string Key { get; }

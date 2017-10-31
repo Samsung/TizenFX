@@ -21,6 +21,7 @@ namespace Tizen.Sensor
     /// <summary>
     /// The WalkingActivityDetector changed event arguments class is used for storing the data returned by a walking activity detector.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public class WalkingActivityDetectorDataUpdatedEventArgs : EventArgs
     {
         internal WalkingActivityDetectorDataUpdatedEventArgs(float state)

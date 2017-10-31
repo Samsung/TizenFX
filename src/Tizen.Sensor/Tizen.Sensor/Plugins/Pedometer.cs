@@ -21,6 +21,7 @@ namespace Tizen.Sensor
     /// <summary>
     /// The Pedometer Sensor class is used for registering callbacks for the pedometer and getting the pedometer data.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public sealed class Pedometer : Sensor
     {
         private static string PedometerKey = "http://tizen.org/feature/sensor.pedometer";

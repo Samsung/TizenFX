@@ -22,6 +22,7 @@ namespace Tizen.Multimedia
     /// <summary>
     /// Represents a video media format. This class cannot be inherited.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public sealed class VideoMediaFormat : MediaFormat
     {
         private const int DefaultFrameRate = 0;
@@ -35,6 +36,7 @@ namespace Tizen.Multimedia
         /// <param name="height">The height value of the format</param>
         /// <exception cref="ArgumentException"><paramref name="mimeType"/> is invalid (i.e. undefined value).</exception>
         /// <exception cref="ArgumentOutOfRangeException"><paramref name="width"/> or <paramref name="height"/> is less than zero.</exception>
+        /// <since_tizen> 3 </since_tizen>
         public VideoMediaFormat(MediaFormatVideoMimeType mimeType, int width, int height)
             : this(mimeType, width, height, DefaultFrameRate)
         {
@@ -47,6 +49,7 @@ namespace Tizen.Multimedia
         /// <param name="size">The size of the format.</param>
         /// <exception cref="ArgumentException"><paramref name="mimeType"/> is invalid (i.e. undefined value).</exception>
         /// <exception cref="ArgumentOutOfRangeException">The width or the height of <paramref name="size"/> is less than zero.</exception>
+        /// <since_tizen> 3 </since_tizen>
         public VideoMediaFormat(MediaFormatVideoMimeType mimeType, Size size)
             : this(mimeType, size, DefaultFrameRate)
         {
@@ -64,6 +67,7 @@ namespace Tizen.Multimedia
         /// <exception cref="ArgumentOutOfRangeException">
         ///     <paramref name="width"/>, <paramref name="height"/>, or <paramref name="frameRate"/> is less than zero.
         /// </exception>
+        /// <since_tizen> 3 </since_tizen>
         public VideoMediaFormat(MediaFormatVideoMimeType mimeType, int width, int height, int frameRate)
             : this(mimeType, width, height, frameRate, DefaultBitRate)
         {
@@ -82,6 +86,7 @@ namespace Tizen.Multimedia
         ///     -or-<br/>
         ///     <paramref name="frameRate"/> is less than zero.
         /// </exception>
+        /// <since_tizen> 3 </since_tizen>
         public VideoMediaFormat(MediaFormatVideoMimeType mimeType, Size size,
             int frameRate)
             : this(mimeType, size, frameRate, DefaultBitRate)
@@ -101,6 +106,7 @@ namespace Tizen.Multimedia
         /// <exception cref="ArgumentOutOfRangeException">
         ///     <paramref name="width"/>, <paramref name="height"/>, <paramref name="frameRate"/>, or <paramref name="bitRate"/> is less than zero.
         /// </exception>
+        /// <since_tizen> 3 </since_tizen>
         public VideoMediaFormat(MediaFormatVideoMimeType mimeType, int width, int height,
             int frameRate, int bitRate)
             : this(mimeType, new Size(width, height), frameRate, bitRate)
@@ -123,6 +129,7 @@ namespace Tizen.Multimedia
         ///     -or-<br/>
         ///     <paramref name="bitRate"/> is less than zero.
         /// </exception>
+        /// <since_tizen> 3 </since_tizen>
         public VideoMediaFormat(MediaFormatVideoMimeType mimeType, Size size,
             int frameRate, int bitRate)
             : base(MediaFormatType.Video)
@@ -242,27 +249,32 @@ namespace Tizen.Multimedia
         /// <summary>
         /// Gets the mime type of the current format.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public MediaFormatVideoMimeType MimeType { get; }
 
         /// <summary>
         /// Gets the size of the current format.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public Size Size { get; }
 
         /// <summary>
         /// Gets the frame rate value of the current format.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public int FrameRate { get; }
 
         /// <summary>
         /// Gets the bit rate value of the current format.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public int BitRate { get; }
 
         /// <summary>
         /// Returns a string that represents the current object.
         /// </summary>
         /// <returns>A string that represents the current object.</returns>
+        /// <since_tizen> 3 </since_tizen>
         public override string ToString()
             => $@"MimeType={ MimeType.ToString() }, Size=({ Size.ToString() }), FrameRate=
                 { FrameRate.ToString() }, BitRate={ BitRate.ToString() }";
@@ -272,6 +284,7 @@ namespace Tizen.Multimedia
         /// </summary>
         /// <param name="obj">A <see cref="Object"/> to compare.</param>
         /// <returns>true if the formats are equal; otherwise, false.</returns>
+        /// <since_tizen> 3 </since_tizen>
         public override bool Equals(object obj)
         {
             var rhs = obj as VideoMediaFormat;
@@ -288,6 +301,7 @@ namespace Tizen.Multimedia
         /// Gets the hash code for this instance of <see cref="VideoMediaFormat"/>.
         /// </summary>
         /// <returns>The hash code for this instance of <see cref="VideoMediaFormat"/>.</returns>
+        /// <since_tizen> 3 </since_tizen>
         public override int GetHashCode()
             => new { MimeType, Size, FrameRate, BitRate }.GetHashCode();
     }

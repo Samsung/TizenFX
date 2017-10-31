@@ -19,6 +19,7 @@ namespace Tizen.System
     /// <summary>
     /// Enumeration for all the available system settings.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public enum SystemSettingsKeys : int
     {
         /// <summary>
@@ -60,6 +61,7 @@ namespace Tizen.System
         /// <summary>
         /// GET (string) Indicates the lock-screen application package name.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         LockScreenApp = Data3GNetworkEnabled + 2,
         /// <summary>
         /// GET (string) The current system default font type (only supports Get).
@@ -153,11 +155,13 @@ namespace Tizen.System
         /// <summary>
         /// GET (bool) Indicates whether the the accessibility TTS is enabled on the device.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         AccessibilityTtsEnabled,
     }
     /// <summary>
     /// Enumeration for the Idle Lock State.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public enum SystemSettingsIdleLockState : int
     {
         /// <summary>
@@ -176,6 +180,7 @@ namespace Tizen.System
     /// <summary>
     /// Enumeration for the font size.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public enum SystemSettingsFontSize : int
     {
         /// <summary>
@@ -202,6 +207,7 @@ namespace Tizen.System
     /// <summary>
     /// Enumeration for the ultra data save.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public enum SystemSettingsUdsState : int
     {
         /// <summary>

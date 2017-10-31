@@ -119,6 +119,7 @@ namespace Tizen.Network.Nfc
         /// <summary>
         /// Dispose
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public void Dispose()
         {
             Dispose(true);

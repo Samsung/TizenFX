@@ -21,11 +21,13 @@ namespace Tizen.Applications
     /// <summary>
     /// This class is an event argument of the PreferenceChanged event.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public class PreferenceChangedEventArgs : EventArgs
     {
         /// <summary>
         /// The key of the preference whose value is changed.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public string Key { get; internal set; }
     }
 }

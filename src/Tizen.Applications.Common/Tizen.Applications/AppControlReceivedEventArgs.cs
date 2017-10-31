@@ -21,12 +21,14 @@ namespace Tizen.Applications
     /// <summary>
     /// Arguments for the event that raised when the application receives the AppControl.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public class AppControlReceivedEventArgs : EventArgs
     {
         /// <summary>
         /// Initializes the AppControlReceivedEventArgs class.
         /// </summary>
         /// <param name="appControl"></param>
+        /// <since_tizen> 3 </since_tizen>
         public AppControlReceivedEventArgs(ReceivedAppControl appControl)
         {
             ReceivedAppControl = appControl;
@@ -35,6 +37,7 @@ namespace Tizen.Applications
         /// <summary>
         /// The received AppControl.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public ReceivedAppControl ReceivedAppControl { get; private set; }
     }
 }

@@ -21,6 +21,7 @@ namespace Tizen.Applications
     /// <summary>
     /// The class for event arguments of the badge event.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public class BadgeEventArgs : EventArgs
     {
         internal BadgeEventArgs()

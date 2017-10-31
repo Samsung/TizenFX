@@ -21,6 +21,7 @@ namespace Tizen.Sensor
     /// <summary>
     /// The UncalibratedGyroscope changed event arguments class is used for storing the data returned by a uncalibrated gyroscope.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public class UncalibratedGyroscopeDataUpdatedEventArgs : EventArgs
     {
         internal UncalibratedGyroscopeDataUpdatedEventArgs(float[] values)

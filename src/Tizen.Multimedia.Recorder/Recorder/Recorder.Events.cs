@@ -25,24 +25,28 @@ namespace Tizen.Multimedia
         /// <summary>
         /// Occurs when an error occurs during the recorder operation.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public event EventHandler<RecordingErrorOccurredEventArgs> ErrorOccurred;
         private Native.RecorderErrorCallback _errorOccurredCallback;
 
         /// <summary>
         /// Occurs after interrupt handling is completed.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public event EventHandler<RecorderInterruptedEventArgs> Interrupted;
         private Native.InterruptedCallback _interruptedCallback;
 
         /// <summary>
         /// This event occurs when the recorder state is changed.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public event EventHandler<RecorderStateChangedEventArgs> StateChanged;
         private Native.StatechangedCallback _stateChangedCallback;
 
         /// <summary>
         /// Occurs when the recording information changes.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         public event EventHandler<RecordingStatusChangedEventArgs> RecordingStatusChanged;
         private Native.RecordingProgressCallback _recordingProgressCallback;
 
@@ -53,6 +57,7 @@ namespace Tizen.Multimedia
         /// <remarks>
         /// Do not call <see cref="Commit"/> and <see cref="Cancel"/> in this event.
         /// </remarks>
+        /// <since_tizen> 4 </since_tizen>
         public event EventHandler<AudioStreamStoringEventArgs> AudioStreamStoring;
         private Native.AudioStreamCallback _audioStreamCallback;
 
@@ -62,12 +67,14 @@ namespace Tizen.Multimedia
         /// <remarks>
         /// After this event is raised, the recording data is discarded and not written in the recording file.
         /// </remarks>
+        /// <since_tizen> 3 </since_tizen>
         public event EventHandler<RecordingLimitReachedEventArgs> RecordingLimitReached;
         private Native.RecordingLimitReachedCallback _recordingLimitReachedCallback;
 
         /// <summary>
         /// Occurs when the muxed stream data is being delivered.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public event EventHandler<MuxedStreamDeliveredEventArgs> MuxedStreamDelivered;
         private Native.MuxedStreamCallback _muxedStreamCallback;
 
@@ -176,6 +183,7 @@ namespace Tizen.Multimedia
         /// <summary>
         /// Occurs before interrupt handling is started.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         public event EventHandler<RecorderInterruptingEventArgs> Interrupting;
         private Native.InterruptStartedCallback _interruptingCallback;
 
@@ -200,6 +208,7 @@ namespace Tizen.Multimedia
         /// <summary>
         /// Occurs when a recorder device state changes.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         public static event EventHandler<RecorderDeviceStateChangedEventArgs> DeviceStateChanged
         {
             add

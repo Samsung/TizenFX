@@ -21,6 +21,7 @@ namespace Tizen.Sensor
     /// <summary>
     /// The Magnetometer class is used for registering callbacks for the magnetometer and getting the magnetometer data.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public sealed class Magnetometer : Sensor
     {
         private static string MagnetometerKey = "http://tizen.org/feature/sensor.magnetometer";

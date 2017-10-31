@@ -19,6 +19,7 @@ namespace Tizen.Uix.InputMethod
     /// <summary>
     /// This Class contains data related to ReturnKeySet Event
     /// </summary>
+    /// <since_tizen> 4 </since_tizen>
     public class ReturnKeySetEventArgs
     {
         internal ReturnKeySetEventArgs(InputPanelReturnKey type)
@@ -29,6 +30,7 @@ namespace Tizen.Uix.InputMethod
         /// <summary>
         /// The type of Return key on the input panel
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         public InputPanelReturnKey Type
         {
             get;

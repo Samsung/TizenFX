@@ -21,6 +21,7 @@ namespace Tizen.Content.MediaContent
     /// <summary>
     /// Represents the face information for the media.
     /// </summary>
+    /// <since_tizen> 4 </since_tizen>
     public class FaceInfo
     {
         internal FaceInfo(IntPtr handle)
@@ -49,30 +50,35 @@ namespace Tizen.Content.MediaContent
         /// <remarks>
         /// The coordinates of the rectangle are orientation-applied values.
         /// </remarks>
+        /// <since_tizen> 4 </since_tizen>
         public Rectangle Rect { get; }
 
         /// <summary>
         /// Gets the ID of face information.
         /// </summary>
         /// <value>The unique ID of face information.</value>
+        /// <since_tizen> 4 </since_tizen>
         public string Id { get; }
 
         /// <summary>
         /// Gets the media ID that the face information is added.
         /// </summary>
         /// <value>The media ID that the face information is added.</value>
+        /// <since_tizen> 4 </since_tizen>
         public string MediaInfoId { get; }
 
         /// <summary>
         /// Gets the tag.
         /// </summary>
         /// <value>The tag of face information.</value>
+        /// <since_tizen> 4 </since_tizen>
         public string Tag { get; }
 
         /// <summary>
         /// Gets the orientation of face information.
         /// </summary>
         /// <value>The orientation of face information.</value>
+        /// <since_tizen> 4 </since_tizen>
         public Orientation Orientation { get; }
 
         internal static FaceInfo FromHandle(IntPtr handle)
@@ -84,6 +90,7 @@ namespace Tizen.Content.MediaContent
         /// Returns a string representation of the face information.
         /// </summary>
         /// <returns>A string representation of the current face info.</returns>
+        /// <since_tizen> 4 </since_tizen>
         public override string ToString() =>
             $"Id={Id}, MediaInfoId={MediaInfoId}, Rect=({Rect}), Tag={Tag}";
     }

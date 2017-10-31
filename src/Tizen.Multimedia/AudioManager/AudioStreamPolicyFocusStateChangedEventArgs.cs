@@ -21,6 +21,7 @@ namespace Tizen.Multimedia
     /// <summary>
     /// Provides data for the <see cref="AudioStreamPolicy.FocusStateChanged"/> event.
     /// </summary>
+    /// <since_tizen> 4 </since_tizen>
     public class AudioStreamPolicyFocusStateChangedEventArgs : EventArgs
     {
         internal AudioStreamPolicyFocusStateChangedEventArgs(AudioStreamFocusOptions options,
@@ -38,24 +39,28 @@ namespace Tizen.Multimedia
         /// Gets the focus options.
         /// </summary>
         /// <value>The focus options.</value>
+        /// <since_tizen> 4 </since_tizen>
         public AudioStreamFocusOptions FocusOptions { get; }
 
         /// <summary>
         /// Gets the focus state.
         /// </summary>
         /// <value>The focus state.</value>
+        /// <since_tizen> 4 </since_tizen>
         public AudioStreamFocusState FocusState { get; }
 
         /// <summary>
         /// Gets the reason for state change of the focus.
         /// </summary>
         /// <value>The reason for state change of the focus.</value>
+        /// <since_tizen> 4 </since_tizen>
         public AudioStreamFocusChangedReason Reason { get; }
 
         /// <summary>
         /// Gets the requested behaviors that should be followed.
         /// </summary>
         /// <value>The requested behaviors that should be followed.</value>
+        /// <since_tizen> 4 </since_tizen>
         public AudioStreamBehaviors Behaviors { get; }
 
         /// <summary>
@@ -67,6 +72,7 @@ namespace Tizen.Multimedia
         /// </value>
         /// <seealso cref="AudioStreamPolicy.AcquireFocus(AudioStreamFocusOptions, AudioStreamBehaviors, string)"/>
         /// <seealso cref="AudioStreamPolicy.ReleaseFocus(AudioStreamFocusOptions, AudioStreamBehaviors, string)"/>
+        /// <since_tizen> 4 </since_tizen>
         public string ExtraInfo { get; }
     }
 }

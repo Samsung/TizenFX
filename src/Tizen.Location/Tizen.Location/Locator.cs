@@ -155,7 +155,7 @@ namespace Tizen.Location
         /// The time interval between the position collection in batch mode.
         /// Should be in the range of 1~255 seconds.
         /// </summary>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 4 </since_tizen>
         /// <exception cref="ArgumentException">Thrown when an invalid argument is used.</exception>
         public int BatchInterval
         {
@@ -183,7 +183,7 @@ namespace Tizen.Location
         /// The time interval between batch callback updates. The BatchPeriod should be greater than or equal to the BatchInterval. If the BatchPeriod is zero or smaller than the BatchInterval, then the batch mode will not work. In addition, sometimes the period may not work as you intended, the maximum permissible value for the batch period is device specific.
         /// Should be in the range of 0~60000 seconds.
         /// </summary>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 4 </since_tizen>
         /// <exception cref="ArgumentException">Thrown when an invalid argument is used.</exception>
         public int BatchPeriod
         {
@@ -564,6 +564,7 @@ namespace Tizen.Location
         /// <summary>
         /// Dispose.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         protected virtual void Dispose(bool disposing)
         {
             if (_disposed)

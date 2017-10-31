@@ -21,6 +21,7 @@ namespace Tizen.Multimedia
     /// <summary>
     /// Provides data for the <see cref="Camera.Interrupted"/> event.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public class CameraInterruptedEventArgs : EventArgs
     {
         internal CameraInterruptedEventArgs(CameraPolicy policy, CameraState previous, CameraState current)

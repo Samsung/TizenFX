@@ -26,6 +26,7 @@ namespace Tizen.Network.Bluetooth
     /// <summary>
     /// This class is used to handle the device class types and the service.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public class BluetoothClass
     {
         internal BluetoothMajorDeviceClassType MajorType;
@@ -39,6 +40,7 @@ namespace Tizen.Network.Bluetooth
         /// <summary>
         /// The type of the major device class.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public BluetoothMajorDeviceClassType MajorDeviceClassType
         {
             get
@@ -49,6 +51,7 @@ namespace Tizen.Network.Bluetooth
         /// <summary>
         /// The type of the minor device class.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public BluetoothMinorDeviceClassType MinorDeviceClassType
         {
             get
@@ -59,6 +62,7 @@ namespace Tizen.Network.Bluetooth
         /// <summary>
         /// The major service class mask.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public int MajorServiceClassMask
         {
             get
@@ -71,11 +75,13 @@ namespace Tizen.Network.Bluetooth
     /// <summary>
     /// This class contains the information of the Bluetooth OOB data.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public class BluetoothOobData
     {
         /// <summary>
         /// The default constructor. Initializes an object of the BluetoothOobData.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public BluetoothOobData()
         {
         }
@@ -83,6 +89,7 @@ namespace Tizen.Network.Bluetooth
         /// <summary>
         /// The hash value.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public byte[] HashValue
         {
             get;
@@ -91,6 +98,7 @@ namespace Tizen.Network.Bluetooth
         /// <summary>
         /// The randomizer value.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public byte[] RandomizerValue
         {
             get;
@@ -101,6 +109,7 @@ namespace Tizen.Network.Bluetooth
     /// <summary>
     /// This class contains the information of the Bluetooth device SDP data.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public class BluetoothDeviceSdpData
     {
         internal string Address;
@@ -113,6 +122,7 @@ namespace Tizen.Network.Bluetooth
         /// <summary>
         /// The device address.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public string DeviceAddress
         {
             get
@@ -123,6 +133,7 @@ namespace Tizen.Network.Bluetooth
         /// <summary>
         /// The service UUID.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public IEnumerable<string> ServiceUuid
         {
             get
@@ -135,6 +146,7 @@ namespace Tizen.Network.Bluetooth
     /// <summary>
     /// This class contains the information of the Bluetooth device connection data.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public class BluetoothDeviceConnectionData
     {
         internal string RemoteAddress;
@@ -148,6 +160,7 @@ namespace Tizen.Network.Bluetooth
         /// <summary>
         /// The device address.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public string Address
         {
             get
@@ -158,6 +171,7 @@ namespace Tizen.Network.Bluetooth
         /// <summary>
         /// The type of the connection link.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public BluetoothConnectionLinkType LinkType
         {
             get
@@ -168,6 +182,7 @@ namespace Tizen.Network.Bluetooth
         /// <summary>
         /// The disconnect reason.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public BluetoothDisconnectReason DisconnectReason
         {
             get
@@ -180,11 +195,13 @@ namespace Tizen.Network.Bluetooth
     /// <summary>
     /// This class contains the information of the track data.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public class Track
     {
         /// <summary>
         /// The default constructor. Initializes an object of the track.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public Track()
         {
         }
@@ -192,6 +209,7 @@ namespace Tizen.Network.Bluetooth
         /// <summary>
         /// The title of the track.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public string Title
         {
             get;
@@ -200,6 +218,7 @@ namespace Tizen.Network.Bluetooth
         /// <summary>
         /// The artist of the track.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public string Artist
         {
             get;
@@ -208,6 +227,7 @@ namespace Tizen.Network.Bluetooth
         /// <summary>
         /// The album of the track.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public string Album
         {
             get;
@@ -216,6 +236,7 @@ namespace Tizen.Network.Bluetooth
         /// <summary>
         /// The genre of the track.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public string Genre
         {
             get;
@@ -224,6 +245,7 @@ namespace Tizen.Network.Bluetooth
         /// <summary>
         /// The track number.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public uint TrackNum
         {
             get;
@@ -232,6 +254,7 @@ namespace Tizen.Network.Bluetooth
         /// <summary>
         /// The number of all tracks.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public uint TotalTracks
         {
             get;
@@ -240,6 +263,7 @@ namespace Tizen.Network.Bluetooth
         /// <summary>
         /// The duration of the track in milliseconds.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public uint Duration
         {
             get;
@@ -250,11 +274,13 @@ namespace Tizen.Network.Bluetooth
     /// <summary>
     /// This class contains the information of the manufacturer data.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public class ManufacturerData
     {
         /// <summary>
         /// The default Constructor. Initializes an object of the ManufacturerData.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public ManufacturerData()
         {
         }
@@ -262,6 +288,7 @@ namespace Tizen.Network.Bluetooth
         /// <summary>
         /// The manufacturer ID.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public int Id
         {
             get;
@@ -270,6 +297,7 @@ namespace Tizen.Network.Bluetooth
         /// <summary>
         /// The length of the manufacturer data.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public int DataLength
         {
             get;
@@ -278,6 +306,7 @@ namespace Tizen.Network.Bluetooth
         /// <summary>
         /// The manufacturer data.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public byte[] Data
         {
             get;
@@ -327,11 +356,13 @@ namespace Tizen.Network.Bluetooth
     /// <summary>
     /// This class contains the information of the Bluetooth service data.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public class BluetoothServiceData
     {
         /// <summary>
         /// The default constructor. Initializes an object of the BluetoothServiceData.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public BluetoothServiceData()
         {
         }
@@ -339,6 +370,7 @@ namespace Tizen.Network.Bluetooth
         /// <summary>
         /// The UUID of the service.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public string Uuid
         {
             get;
@@ -347,6 +379,7 @@ namespace Tizen.Network.Bluetooth
         /// <summary>
         /// The data length of the service data.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public int DataLength
         {
             get;
@@ -355,6 +388,7 @@ namespace Tizen.Network.Bluetooth
         /// <summary>
         /// The service data.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public byte[] Data
         {
             get;
@@ -365,6 +399,7 @@ namespace Tizen.Network.Bluetooth
     /// <summary>
     /// This class contains the service data information.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public class BluetoothLeServiceData
     {
         internal string Uuid;
@@ -378,6 +413,7 @@ namespace Tizen.Network.Bluetooth
         /// <summary>
         /// The Bluetooth LE service UUID.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public string ServiceUuid
         {
             get
@@ -388,6 +424,7 @@ namespace Tizen.Network.Bluetooth
         /// <summary>
         /// The Bluetooth LE service data.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public byte[] ServiceData
         {
             get
@@ -398,6 +435,7 @@ namespace Tizen.Network.Bluetooth
         /// <summary>
         /// The length of the service data.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public int ServiceDataLength
         {
             get
@@ -410,6 +448,7 @@ namespace Tizen.Network.Bluetooth
     /// <summary>
     /// This class contains the information of the socket data.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public class SocketData
     {
         internal string RecvData;
@@ -423,6 +462,7 @@ namespace Tizen.Network.Bluetooth
         /// <summary>
         /// The socket FD.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public int SocketFd
         {
             get
@@ -433,6 +473,7 @@ namespace Tizen.Network.Bluetooth
         /// <summary>
         /// The length of the received data.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public int DataSize
         {
             get
@@ -443,6 +484,7 @@ namespace Tizen.Network.Bluetooth
         /// <summary>
         /// The received data.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public string Data
         {
             get
@@ -455,6 +497,7 @@ namespace Tizen.Network.Bluetooth
     /// <summary>
     /// This class contains the information of the socket connection.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public class SocketConnection
     {
         internal string Uuid;
@@ -468,6 +511,7 @@ namespace Tizen.Network.Bluetooth
         /// <summary>
         /// The connected socket FD.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public int SocketFd
         {
             get
@@ -478,6 +522,7 @@ namespace Tizen.Network.Bluetooth
         /// <summary>
         /// The remote device address.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public string Address
         {
             get
@@ -488,6 +533,7 @@ namespace Tizen.Network.Bluetooth
         /// <summary>
         /// The service UUID.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public string ServiceUuid
         {
             get

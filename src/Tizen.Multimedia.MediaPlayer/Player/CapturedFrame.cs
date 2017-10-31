@@ -20,6 +20,7 @@ namespace Tizen.Multimedia
     /// <summary>
     /// Represents data for a video frame captured.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public class CapturedFrame
     {
         internal CapturedFrame(byte[] imageBuffer, int width, int height)
@@ -37,11 +38,13 @@ namespace Tizen.Multimedia
         /// Gets the raw buffer of the captured image.
         /// </summary>
         /// <remarks>The color space format is RGB888.</remarks>
+        /// <since_tizen> 3 </since_tizen>
         public byte[] Buffer { get; }
 
         /// <summary>
         /// Gets the size.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public Size Size { get; }
     }
 }

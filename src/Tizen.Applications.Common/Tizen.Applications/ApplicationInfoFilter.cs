@@ -22,11 +22,13 @@ namespace Tizen.Applications
     /// <summary>
     /// This class is a parameter of the GetInstalledApplicationsAsync method.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public class ApplicationInfoFilter
     {
         /// <summary>
         ///
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public ApplicationInfoFilter()
         {
             Filter = new Dictionary<string, string>();
@@ -35,33 +37,40 @@ namespace Tizen.Applications
         /// <summary>
         /// This class is a possible key to use in the InstalledApplicationFilter.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public static class Keys
         {
             /// <summary>
             ///
             /// </summary>
+            /// <since_tizen> 3 </since_tizen>
             public const string Id = "PACKAGE_INFO_PROP_APP_ID";
             /// <summary>
             ///
             /// </summary>
+            /// <since_tizen> 3 </since_tizen>
             public const string Type = "PACKAGE_INFO_PROP_APP_TYPE";
             /// <summary>
             ///
             /// </summary>
+            /// <since_tizen> 3 </since_tizen>
             public const string Category = "PACKAGE_INFO_PROP_APP_CATEGORY";
             /// <summary>
             ///
             /// </summary>
+            /// <since_tizen> 3 </since_tizen>
             public const string NoDisplay = "PACKAGE_INFO_PROP_APP_NODISPLAY";
             /// <summary>
             ///
             /// </summary>
+            /// <since_tizen> 3 </since_tizen>
             public const string TaskManage = "PACKAGE_INFO_PROP_APP_TASKMANAGE";
         }
 
         /// <summary>
         ///
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public IDictionary<string, string> Filter
         {
             get; private set;

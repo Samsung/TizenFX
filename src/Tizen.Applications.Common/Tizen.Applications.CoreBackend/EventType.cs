@@ -18,61 +18,73 @@ namespace Tizen.Applications.CoreBackend
     /// <summary>
     /// This class represents the type of event for backends. This class can be converted from the string type.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public class EventType
     {
         /// <summary>
         /// Pre-defined event type "PreCreated".
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public static readonly EventType PreCreated = "PreCreated";
 
         /// <summary>
         /// Pre-defined event type "Created".
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public static readonly EventType Created = "Created";
 
         /// <summary>
         /// Pre-defined event type "Terminated".
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public static readonly EventType Terminated = "Terminated";
 
         /// <summary>
         /// Pre-defined event type "AppControlReceived".
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public static readonly EventType AppControlReceived = "AppControlReceived";
 
         /// <summary>
         /// Pre-defined event type "Resumed".
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public static readonly EventType Resumed = "Resumed";
 
         /// <summary>
         /// Pre-defined event type "Paused".
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public static readonly EventType Paused = "Paused";
 
         /// <summary>
         /// Pre-defined event type "LowMemory".
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public static readonly EventType LowMemory = "LowMemory";
 
         /// <summary>
         /// Pre-defined event type "LowBattery".
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public static readonly EventType LowBattery = "LowBattery";
 
         /// <summary>
         /// Pre-defined event type "LocaleChanged".
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public static readonly EventType LocaleChanged = "LocaleChanged";
 
         /// <summary>
         /// Pre-defined event type "RegionFormatChanged".
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public static readonly EventType RegionFormatChanged = "RegionFormatChanged";
 
         /// <summary>
         /// Pre-defined event type "DeviceOrientationChanged".
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public static readonly EventType DeviceOrientationChanged = "DeviceOrientationChanged";
 
         private string _typeName;
@@ -81,6 +93,7 @@ namespace Tizen.Applications.CoreBackend
         /// Initializes the EventType class.
         /// </summary>
         /// <param name="name">The name of event type.</param>
+        /// <since_tizen> 3 </since_tizen>
         public EventType(string name)
         {
             _typeName = name;
@@ -89,6 +102,7 @@ namespace Tizen.Applications.CoreBackend
         /// <summary>
         /// Returns the name of event type.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public override string ToString()
         {
             return _typeName;
@@ -97,6 +111,7 @@ namespace Tizen.Applications.CoreBackend
         /// <summary>
         /// Returns the hash code for event type string.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public override int GetHashCode()
         {
             if (_typeName == null) return 0;
@@ -106,6 +121,7 @@ namespace Tizen.Applications.CoreBackend
         /// <summary>
         /// Determines whether this instance and a specified object.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public override bool Equals(object obj)
         {
             EventType other = obj as EventType;
@@ -115,6 +131,7 @@ namespace Tizen.Applications.CoreBackend
         /// <summary>
         /// Converts a string to EventType instance.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public static implicit operator EventType(string value)
         {
             return new EventType(value);

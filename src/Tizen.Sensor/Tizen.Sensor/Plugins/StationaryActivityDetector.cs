@@ -21,6 +21,7 @@ namespace Tizen.Sensor
     /// <summary>
     /// The StationaryActivityDetector class is used for registering callbacks for the stationary activity detector and getting the stationary state.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public sealed class StationaryActivityDetector : ActivityDetector
     {
         private static string ActivityDetectorKey = "http://tizen.org/feature/sensor.activity_recognition";

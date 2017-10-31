@@ -22,6 +22,7 @@ namespace Tizen.Telephony
     /// <summary>
     /// This class provides APIs that allow you to extract the information stored on a SIM card.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public class Sim
     {
         internal IntPtr _handle;
@@ -51,6 +52,7 @@ namespace Tizen.Telephony
         /// <summary>
         /// Enumeration for the state of the SIM card.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public enum State
         {
             /// <summary>
@@ -74,6 +76,7 @@ namespace Tizen.Telephony
         /// <summary>
         /// Enumeration for the lock state of the SIM card.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public enum LockState
         {
             /// <summary>
@@ -101,6 +104,7 @@ namespace Tizen.Telephony
         /// <summary>
         /// Enumeration for the type of the SIM card.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public enum ApplicationType
         {
             /// <summary>

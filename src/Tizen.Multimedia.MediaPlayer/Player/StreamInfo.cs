@@ -22,6 +22,7 @@ namespace Tizen.Multimedia
     /// <summary>
     /// Represents properties for the audio stream.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public struct AudioStreamProperties
     {
         /// <summary>
@@ -30,6 +31,7 @@ namespace Tizen.Multimedia
         /// <param name="sampleRate">The sample rate of the stream.</param>
         /// <param name="channels">The number of channels of the stream.</param>
         /// <param name="bitRate">The bit rate of the stream.</param>
+        /// <since_tizen> 3 </since_tizen>
         public AudioStreamProperties(int sampleRate, int channels, int bitRate)
         {
             SampleRate = sampleRate;
@@ -42,6 +44,7 @@ namespace Tizen.Multimedia
         /// Gets or sets the sample rate.
         /// </summary>
         /// <value>The audio sample rate(Hz).</value>
+        /// <since_tizen> 3 </since_tizen>
         public int SampleRate
         {
             get;
@@ -51,6 +54,7 @@ namespace Tizen.Multimedia
         /// <summary>
         /// Gets or sets the channels.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public int Channels
         {
             get;
@@ -61,6 +65,7 @@ namespace Tizen.Multimedia
         /// Gets or sets the bit rate.
         /// </summary>
         /// <value>The audio bit rate(Hz).</value>
+        /// <since_tizen> 3 </since_tizen>
         public int BitRate
         {
             get;
@@ -71,6 +76,7 @@ namespace Tizen.Multimedia
         /// Returns a string that represents the current object.
         /// </summary>
         /// <returns>A string that represents the current object.</returns>
+        /// <since_tizen> 3 </since_tizen>
         public override string ToString() =>
             $"SampleRate={ SampleRate.ToString() }, Channels={ Channels.ToString() }, BitRate={ BitRate.ToString() }";
     }
@@ -78,6 +84,7 @@ namespace Tizen.Multimedia
     /// <summary>
     /// Represents properties for the video stream.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public struct VideoStreamProperties
     {
         /// <summary>
@@ -86,6 +93,7 @@ namespace Tizen.Multimedia
         /// <param name="fps">The fps of the stream.</param>
         /// <param name="bitRate">The bit rate of the stream.</param>
         /// <param name="size">The size of the stream.</param>
+        /// <since_tizen> 3 </since_tizen>
         public VideoStreamProperties(int fps, int bitRate, Size size)
         {
             Fps = fps;
@@ -101,6 +109,7 @@ namespace Tizen.Multimedia
         /// <param name="bitRate">The bit rate of the stream.</param>
         /// <param name="width">The width of the stream.</param>
         /// <param name="height">The height of the stream.</param>
+        /// <since_tizen> 3 </since_tizen>
         public VideoStreamProperties(int fps, int bitRate, int width, int height)
         {
             Fps = fps;
@@ -113,6 +122,7 @@ namespace Tizen.Multimedia
         /// <summary>
         /// Gets or sets the fps.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public int Fps
         {
             get;
@@ -121,6 +131,7 @@ namespace Tizen.Multimedia
         /// <summary>
         /// Gets or sets the bit rate.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public int BitRate
         {
             get;
@@ -130,6 +141,7 @@ namespace Tizen.Multimedia
         /// <summary>
         /// Gets or sets the size.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public Size Size
         {
             get;
@@ -140,6 +152,7 @@ namespace Tizen.Multimedia
         /// Returns a string that represents the current object.
         /// </summary>
         /// <returns>A string that represents the current object.</returns>
+        /// <since_tizen> 3 </since_tizen>
         public override string ToString()
         {
             return $"Fps={ Fps.ToString() }, BitRate={ BitRate.ToString() }, Size=[{ Size.ToString() }]";
@@ -149,6 +162,7 @@ namespace Tizen.Multimedia
     /// <summary>
     /// Provides a means to retrieve stream information.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public class StreamInfo
     {
         internal StreamInfo(Player owner)
@@ -170,6 +184,7 @@ namespace Tizen.Multimedia
         /// <exception cref="InvalidOperationException">
         /// The <see cref="Multimedia.Player"/> that this instance belongs to is not in the valid state.
         /// </exception>
+        /// <since_tizen> 3 </since_tizen>
         public byte[] GetAlbumArt()
         {
             Player.ValidatePlayerState(PlayerState.Ready, PlayerState.Playing, PlayerState.Paused);
@@ -221,6 +236,7 @@ namespace Tizen.Multimedia
         /// Retrieves the codec name of the audio or null if there is no audio.
         /// </summary>
         /// <returns>A string that represents the codec name.</returns>
+        /// <since_tizen> 3 </since_tizen>
         public string GetAudioCodec()
         {
             return GetCodecInfo(true);
@@ -230,6 +246,7 @@ namespace Tizen.Multimedia
         /// Retrieves the codec name of the video or null if there is no video.
         /// </summary>
         /// <returns>A string that represents the codec name.</returns>
+        /// <since_tizen> 3 </since_tizen>
         public string GetVideoCodec()
         {
             return GetCodecInfo(false);
@@ -249,6 +266,7 @@ namespace Tizen.Multimedia
         /// <exception cref="InvalidOperationException">
         /// The <see cref="Multimedia.Player"/> that this instance belongs to is not in the valid state.
         /// </exception>
+        /// <since_tizen> 3 </since_tizen>
         public int GetDuration()
         {
             Player.ValidatePlayerState(PlayerState.Ready, PlayerState.Playing, PlayerState.Paused);
@@ -275,6 +293,7 @@ namespace Tizen.Multimedia
         /// <exception cref="InvalidOperationException">
         /// The <see cref="Multimedia.Player"/> that this instance belongs to is not in the valid state.
         /// </exception>
+        /// <since_tizen> 3 </since_tizen>
         public AudioStreamProperties GetAudioProperties()
         {
             Player.ValidatePlayerState(PlayerState.Ready, PlayerState.Playing, PlayerState.Paused);
@@ -303,6 +322,7 @@ namespace Tizen.Multimedia
         /// <exception cref="InvalidOperationException">
         /// The <see cref="Multimedia.Player"/> that this instance belongs to is not in the valid state.
         /// </exception>
+        /// <since_tizen> 3 </since_tizen>
         public VideoStreamProperties GetVideoProperties()
         {
             Player.ValidatePlayerState(PlayerState.Ready, PlayerState.Playing, PlayerState.Paused);
@@ -343,6 +363,7 @@ namespace Tizen.Multimedia
         /// <exception cref="InvalidOperationException">
         /// The <see cref="Multimedia.Player"/> that this instance belongs to is not in the valid state.
         /// </exception>
+        /// <since_tizen> 3 </since_tizen>
         public string GetMetadata(StreamMetadataKey key)
         {
             Player.ValidatePlayerState(PlayerState.Ready, PlayerState.Playing, PlayerState.Paused);
@@ -367,6 +388,7 @@ namespace Tizen.Multimedia
         /// <summary>
         /// Gets the <see cref="Multimedia.Player"/> that owns this instance.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public Player Player { get; }
     }
 }

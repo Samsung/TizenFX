@@ -19,6 +19,7 @@ namespace Tizen.Uix.InputMethod
     /// <summary>
     /// This Class contains data related to CursorPositionUpdated Event
     /// </summary>
+    /// <since_tizen> 4 </since_tizen>
     public class CursorPositionUpdatedEventArgs
     {
         internal CursorPositionUpdatedEventArgs(int cursorPos)
@@ -29,6 +30,7 @@ namespace Tizen.Uix.InputMethod
         /// <summary>
         /// The cursor position
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         public int CursorPosition
         {
             get;

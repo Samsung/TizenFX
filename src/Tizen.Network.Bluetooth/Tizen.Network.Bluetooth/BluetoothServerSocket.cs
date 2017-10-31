@@ -23,6 +23,7 @@ namespace Tizen.Network.Bluetooth
     /// <summary>
     /// The BluetoothSocket provides functions for managing connections to other devices and exchanging data.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public class BluetoothServerSocket : IDisposable
     {
         private event EventHandler<AcceptStateChangedEventArgs> _acceptStateChanged;
@@ -35,6 +36,7 @@ namespace Tizen.Network.Bluetooth
         /// </summary>
         /// <exception cref="InvalidOperationException">Thrown when the Bluetooth is not enabled
         /// or when the register accpet state changed callback fails.</exception>
+        /// <since_tizen> 3 </since_tizen>
         public event EventHandler<AcceptStateChangedEventArgs> AcceptStateChanged
         {
             add
@@ -102,6 +104,7 @@ namespace Tizen.Network.Bluetooth
         /// </remarks>
         /// <exception cref="InvalidOperationException">Thrown when the Bluetooth is not enabled
         /// or when the listen on socket procedure fails.</exception>
+        /// <since_tizen> 3 </since_tizen>
         public void Listen()
         {
             int ret = Interop.Bluetooth.Listen(socketFd, 1);
@@ -123,6 +126,7 @@ namespace Tizen.Network.Bluetooth
         /// <summary>
         /// Dispose
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public void Dispose()
         {
             Dispose(true);

@@ -24,7 +24,7 @@ namespace Tizen.Multimedia.Vision
     /// </remarks>
     /// <seealso cref="BarcodeDetector"/>
     /// <seealso cref="BarcodeGenerator"/>
-    /// <since_tizen> 3 </since_tizen>
+    /// <since_tizen> 4 </since_tizen>
     public enum BarcodeType
     {
         /// <summary>

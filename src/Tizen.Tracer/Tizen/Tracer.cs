@@ -21,6 +21,7 @@ namespace Tizen
     /// <summary>
     /// Provides functions for writing a trace message to the system trace buffer.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public static class Tracer
     {
         /// <summary>
@@ -31,6 +32,7 @@ namespace Tizen
         /// </remarks>
         /// <param name="name">The name of an event (optionally containing format specifiers).</param>
         /// <seealso cref="Tizen.Tracer.End()"/>
+        /// <since_tizen> 3 </since_tizen>
         public static void Begin (String name)
         {
             Interop.Tracer.Begin (name);
@@ -44,6 +46,7 @@ namespace Tizen
         /// The specific error code can be obtained using the Tizen.Internals.Errors.ErrorFacts.GetLastResult() method.
         /// </remarks>
         /// <seealso cref="Tizen.Tracer.Begin(String)"/>
+        /// <since_tizen> 3 </since_tizen>
         public static void End ()
         {
             Interop.Tracer.End ();
@@ -58,6 +61,7 @@ namespace Tizen
         /// <param name="cookie">An unique identifier for distinguishing simultaneous events.</param>
         /// <param name="name">The name of an event (optionally containing format specifiers).</param>
         /// <seealso cref="Tizen.Tracer.AsyncEnd(int, String)"/>
+        /// <since_tizen> 3 </since_tizen>
         public static void AsyncBegin (int cookie, String name)
         {
             Interop.Tracer.AsyncBegin (cookie, name);
@@ -73,6 +77,7 @@ namespace Tizen
         /// <param name="cookie">An unique identifier for distinguishing simultaneous events.</param>
         /// <param name="name">The name of an event (optionally containing format specifiers).</param>
         /// <seealso cref="Tizen.Tracer.AsyncBegin(int, String)"/>
+        /// <since_tizen> 3 </since_tizen>
         public static void AsyncEnd (int cookie, String name)
         {
             Interop.Tracer.AsyncEnd (cookie, name);
@@ -86,6 +91,7 @@ namespace Tizen
         /// </remarks>
         /// <param name="value">The integer variable to trace.</param>
         /// <param name="name">The name of an event (optionally containing format specifiers).</param>
+        /// <since_tizen> 3 </since_tizen>
         public static void TraceValue (int value, String name)
         {
             Interop.Tracer.TraceValue (value, name);

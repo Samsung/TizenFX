@@ -19,21 +19,25 @@ namespace Tizen.Applications.Shortcut
     /// <summary>
     /// A class to get information of the Shortcut.
     /// </summary>
+    /// <since_tizen> 4 </since_tizen>
     public class ShortcutInfo
     {
         /// <summary>
         /// Gets or sets the name of the created shortcut icon.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         public string ShortcutName { get; set; } = string.Empty;
 
         /// <summary>
         /// Gets or sets the absolute path of an icon file for this shortcut.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         public string IconPath { get; set; } = string.Empty;
 
         /// <summary>
         /// Gets or sets a value indicating whether to allow or not to allow duplication.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         public bool IsAllowDuplicate { get; set; }
     }
 }

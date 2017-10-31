@@ -22,6 +22,7 @@ namespace Tizen.Content.MediaContent
     /// Represents the location of the object bounded by the rectangle defined by
     /// coordinates of top left corner, width, and height.
     /// </summary>
+    /// <since_tizen> 4 </since_tizen>
     public struct Rectangle
     {
         /// <summary>
@@ -31,6 +32,7 @@ namespace Tizen.Content.MediaContent
         /// <param name="y">The y-coordinate of the upper-left corner of the rectangle.</param>
         /// <param name="width">The width of the rectangle.</param>
         /// <param name="height">The height of the rectangle.</param>
+        /// <since_tizen> 4 </since_tizen>
         public Rectangle(int x, int y, int width, int height)
         {
             X = x;
@@ -43,54 +45,63 @@ namespace Tizen.Content.MediaContent
         /// Gets or sets the x-coordinate of the upper-left corner of the rectangle.
         /// </summary>
         /// <value>The x-coordinate of the upper-left edge of the rectangle.</value>
+        /// <since_tizen> 4 </since_tizen>
         public int X { get; set; }
 
         /// <summary>
         /// Gets or sets the y-coordinate of the upper-left corner of the rectangle.
         /// </summary>
         /// <value>The y-coordinate of the upper-left edge of the rectangle.</value>
+        /// <since_tizen> 4 </since_tizen>
         public int Y { get; set; }
 
         /// <summary>
         /// Gets or sets the width of the rectangle.
         /// </summary>
         /// <value>The width of the rectangle.</value>
+        /// <since_tizen> 4 </since_tizen>
         public int Width { get; set; }
 
         /// <summary>
         /// Gets or sets the height of the rectangle.
         /// </summary>
         /// <value>The height of the rectangle.</value>
+        /// <since_tizen> 4 </since_tizen>
         public int Height { get; set; }
 
         /// <summary>
         /// Gets the x-coordinate of the left edge of the rectangle.
         /// </summary>
         /// <value>The x-coordinate of the left edge of the rectangle.</value>
+        /// <since_tizen> 4 </since_tizen>
         public int Left => X;
 
         /// <summary>
         /// Gets the y-coordinate of the top edge of the rectangle.
         /// </summary>
         /// <value>The y-coordinate of the top edge of the rectangle.</value>
+        /// <since_tizen> 4 </since_tizen>
         public int Top => Y;
 
         /// <summary>
         /// Gets the x-coordinate of the right edge of the rectangle.
         /// </summary>
         /// <value>The x-coordinate of the right edge of the rectangle.</value>
+        /// <since_tizen> 4 </since_tizen>
         public int Right => X + Width;
 
         /// <summary>
         /// Gets the y-coordinate of the bottom edge of the rectangle.
         /// </summary>
         /// <value>The y-coordinate of the bottom edge of the rectangle.</value>
+        /// <since_tizen> 4 </since_tizen>
         public int Bottom => Y + Height;
 
         /// <summary>
         /// Returns a string representation of the rectangle.
         /// </summary>
         /// <returns>A string representation of the current rectangle.</returns>
+        /// <since_tizen> 4 </since_tizen>
         public override string ToString() =>
             $"X={X.ToString()}, Y={Y.ToString()}, Width={Width.ToString()}, Height={Height.ToString()}";
 
@@ -98,6 +109,7 @@ namespace Tizen.Content.MediaContent
         /// Returns the hash code for this rectangle structure.
         /// </summary>
         /// <returns>An integer that represents the hash code for this rectangle.</returns>
+        /// <since_tizen> 4 </since_tizen>
         public override int GetHashCode() => new { X, Y, Width, Height }.GetHashCode();
 
         /// <summary>
@@ -108,6 +120,7 @@ namespace Tizen.Content.MediaContent
         /// true if object is a rectangle structure and its x, y, width, and height properties are
         /// equal to the corresponding properties of this rectangle structure; otherwise, false.
         /// </returns>
+        /// <since_tizen> 4 </since_tizen>
         public override bool Equals(object obj) => obj is Rectangle && this == (Rectangle)obj;
 
         /// <summary>
@@ -116,6 +129,7 @@ namespace Tizen.Content.MediaContent
         /// <param name="rect1">The <see cref="Rectangle"/> to compare.</param>
         /// <param name="rect2">The <see cref="Rectangle"/> to compare.</param>
         /// <returns>true if the two rectangle structures have equal x, y, width, and height properties; otherwise, false.</returns>
+        /// <since_tizen> 4 </since_tizen>
         public static bool operator ==(Rectangle rect1, Rectangle rect2)
             => rect1.X == rect2.X && rect1.Y == rect2.Y && rect1.Width == rect2.Width && rect1.Height == rect2.Height;
 
@@ -125,6 +139,7 @@ namespace Tizen.Content.MediaContent
         /// <param name="rect1">The <see cref="Rectangle"/> to compare.</param>
         /// <param name="rect2">The <see cref="Rectangle"/> to compare.</param>
         /// <returns>true if any of the x, y, width, or height properties of the two rectangle structures are unequal; otherwise false.</returns>
+        /// <since_tizen> 4 </since_tizen>
         public static bool operator !=(Rectangle rect1, Rectangle rect2) => !(rect1 == rect2);
     }
 }

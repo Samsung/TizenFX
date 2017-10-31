@@ -22,6 +22,7 @@ namespace Tizen.Multimedia
     /// <summary>
     /// The class containing image data which has two planes.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public class DoublePlane : IPreviewPlane
     {
         internal DoublePlane(DoublePlaneStruct unmanaged)

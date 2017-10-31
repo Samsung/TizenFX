@@ -23,6 +23,7 @@ namespace Tizen.System.Usb
     /// <summary>
     /// Class to manage USB Configuration.
     /// </summary>
+    /// <since_tizen> 4 </since_tizen>
     public class UsbConfiguration : IDisposable
     {
         internal readonly Interop.UsbConfigHandle _handle;
@@ -38,6 +39,7 @@ namespace Tizen.System.Usb
         /// <summary>
         /// Checks if device is self-powered in given configuration.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         public bool IsSelfPowered
         {
             get
@@ -50,6 +52,7 @@ namespace Tizen.System.Usb
         /// <summary>
         /// Checks if device in given configuration supports remote wakeup.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         public bool SupportRemoteWakeup
         {
             get
@@ -62,6 +65,7 @@ namespace Tizen.System.Usb
         /// <summary>
         /// Gets maximum power required in given configuration, in mA.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         public int MaximumPowerRequired
         {
             get
@@ -74,6 +78,7 @@ namespace Tizen.System.Usb
         /// <summary>
         /// Dictionary mapping interfaces Ids to interface instances for given configuration.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         public IReadOnlyDictionary<int, UsbInterface> Interfaces
         {
             get
@@ -98,6 +103,7 @@ namespace Tizen.System.Usb
         /// <summary>
         /// Configuration string.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         public string ConfigurationString
         {
             get
@@ -113,6 +119,7 @@ namespace Tizen.System.Usb
         /// <exception cref="InvalidOperationException">
         /// Throws exception if device is disconnected or not opened for operation or busy as its interfaces are currently claimed.
         /// </exception>
+        /// <since_tizen> 4 </since_tizen>
         public void SetAsActive()
         {
             ThrowIfDisposed();
@@ -131,6 +138,7 @@ namespace Tizen.System.Usb
         /// <summary>
         /// Releases all resources used by the ConnectionProfile.
         /// It should be called after finished using of the object.</summary>
+        /// <since_tizen> 4 </since_tizen>
         protected virtual void Dispose(bool disposing)
         {
             if (!disposedValue)
@@ -151,6 +159,7 @@ namespace Tizen.System.Usb
         /// <summary>
         /// Releases all resources used by the ConnectionProfile.
         /// It should be called after finished using of the object.</summary>
+        /// <since_tizen> 4 </since_tizen>
         public void Dispose()
         {
             Dispose(true);

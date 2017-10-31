@@ -24,12 +24,14 @@ namespace Tizen.Applications
     /// <summary>
     /// The class for receiving widget events and sending data to the widget.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public class WidgetControl : IDisposable
     {
         private const string LogTag = "Tizen.Applications.WidgetControl";
         /// <summary>
         /// Class for the widget instance.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public class Instance
         {
             private string _widgetId;
@@ -131,6 +133,7 @@ namespace Tizen.Applications
         /// <summary>
         /// The class for the widget size information.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public class Scale
         {
 

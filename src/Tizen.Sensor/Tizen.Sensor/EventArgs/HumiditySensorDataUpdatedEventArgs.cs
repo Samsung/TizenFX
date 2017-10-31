@@ -21,6 +21,7 @@ namespace Tizen.Sensor
     /// <summary>
     /// The HumiditySensor changed event arguments class is used for storing the data returned by a humidity sensor.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public class HumiditySensorDataUpdatedEventArgs : EventArgs
     {
         internal HumiditySensorDataUpdatedEventArgs(float humidity)

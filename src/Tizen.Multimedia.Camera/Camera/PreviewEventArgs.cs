@@ -21,6 +21,7 @@ namespace Tizen.Multimedia
     /// <summary>
     /// Provides data for the <see cref="Camera.Preview"/> event.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public class PreviewEventArgs : EventArgs
     {
         internal PreviewEventArgs(PreviewFrame preview)

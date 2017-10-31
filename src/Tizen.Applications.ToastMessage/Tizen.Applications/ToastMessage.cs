@@ -25,12 +25,14 @@ namespace Tizen.Applications
     /// <summary>
     /// The class helps you to create and show the ToastMessage which is a view quick message for the user.
     /// </summary>
+    /// <since_tizen> 4 </since_tizen>
     public sealed class ToastMessage
     {
 
         /// <summary>
         /// Gets and sets a message to post the ToastMessage.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         public string Message { get; set; }
 
         /// <summary>
@@ -46,6 +48,7 @@ namespace Tizen.Applications
         /// toast.Post();
         /// </code>
         /// </example>
+        /// <since_tizen> 4 </since_tizen>
         public void Post()
         {
             int ret = Interop.ToastMessage.ToastMessagePost(Message);

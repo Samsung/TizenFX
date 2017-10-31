@@ -28,12 +28,14 @@ namespace Tizen.Multimedia
         /// <summary>
         /// Occurs when the playback of a media is finished.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public event EventHandler<EventArgs> PlaybackCompleted;
         private NativePlayer.PlaybackCompletedCallback _playbackCompletedCallback;
 
         /// <summary>
         /// Occurs when the playback of a media is interrupted.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public event EventHandler<PlaybackInterruptedEventArgs> PlaybackInterrupted;
         private NativePlayer.PlaybackInterruptedCallback _playbackInterruptedCallback;
 
@@ -41,6 +43,7 @@ namespace Tizen.Multimedia
         /// Occurs when any error occurs.
         /// </summary>
         /// <remarks>The event handler will be executed on an internal thread.</remarks>
+        /// <since_tizen> 3 </since_tizen>
         public event EventHandler<PlayerErrorOccurredEventArgs> ErrorOccurred;
         private NativePlayer.PlaybackErrorCallback _playbackErrorCallback;
 
@@ -48,6 +51,7 @@ namespace Tizen.Multimedia
         /// Occurs when the video stream is changed.
         /// </summary>
         /// <remarks>The event handler will be executed on an internal thread.</remarks>
+        /// <since_tizen> 3 </since_tizen>
         public event EventHandler<VideoStreamChangedEventArgs> VideoStreamChanged;
         private NativePlayer.VideoStreamChangedCallback _videoStreamChangedCallback;
 
@@ -55,12 +59,14 @@ namespace Tizen.Multimedia
         /// Occurs when the subtitle is updated.
         /// </summary>
         /// <remarks>The event handler will be executed on an internal thread.</remarks>
+        /// <since_tizen> 3 </since_tizen>
         public event EventHandler<SubtitleUpdatedEventArgs> SubtitleUpdated;
         private NativePlayer.SubtitleUpdatedCallback _subtitleUpdatedCallback;
 
         /// <summary>
         /// Occurs when there is a change in the buffering status of streaming.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public event EventHandler<BufferingProgressChangedEventArgs> BufferingProgressChanged;
         private NativePlayer.BufferingProgressCallback _bufferingProgressCallback;
 
@@ -170,6 +176,7 @@ namespace Tizen.Multimedia
         /// <feature>http://tizen.org/feature/multimedia.raw_video</feature>
         /// <exception cref="NotSupportedException">The required feature is not supported.</exception>
         /// <seealso cref="VideoFrameDecodedEventArgs.Packet"/>
+        /// <since_tizen> 3 </since_tizen>
         public event EventHandler<VideoFrameDecodedEventArgs> VideoFrameDecoded
         {
             add

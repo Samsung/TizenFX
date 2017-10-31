@@ -21,12 +21,14 @@ namespace Tizen.Multimedia.Remoting
     /// <summary>
     /// Provides data for the <see cref="MediaController.MetadataUpdated"/> event.
     /// </summary>
+    /// <since_tizen> 4 </since_tizen>
     public class MetadataUpdatedEventArgs : EventArgs
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="MetadataUpdatedEventArgs"/> class.
         /// </summary>
         /// <param name="metadata">The updated <see cref="MediaControlMetadata"/>.</param>
+        /// <since_tizen> 4 </since_tizen>
         public MetadataUpdatedEventArgs(MediaControlMetadata metadata)
         {
             Metadata = metadata;
@@ -36,6 +38,7 @@ namespace Tizen.Multimedia.Remoting
         /// Gets the metadata.
         /// </summary>
         /// <value>The updated <see cref="MediaControlMetadata"/>.</value>
+        /// <since_tizen> 4 </since_tizen>
         public MediaControlMetadata Metadata { get; }
     }
 }

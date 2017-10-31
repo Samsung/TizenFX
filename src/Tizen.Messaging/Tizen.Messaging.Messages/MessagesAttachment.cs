@@ -19,16 +19,19 @@ namespace Tizen.Messaging.Messages
     /// <summary>
     /// This class is used to manage the information of the message attachment.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public class MessagesAttachment
     {
         /// <summary>
         /// The media type of the attachment.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public MediaType Type { get; }
 
         /// <summary>
         /// The file path of the attachment.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public string FilePath { get; }
 
         /// <summary>
@@ -36,6 +39,7 @@ namespace Tizen.Messaging.Messages
         /// </summary>
         /// <param name="type">The attachment's type.</param>
         /// <param name="filePath">The file path to attach.</param>
+        /// <since_tizen> 3 </since_tizen>
         public MessagesAttachment(MediaType type, string filePath)
         {
             Type = type;

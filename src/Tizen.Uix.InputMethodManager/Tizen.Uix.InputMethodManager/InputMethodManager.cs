@@ -25,6 +25,7 @@ namespace Tizen.Uix.InputMethodManager
     /// The manager is a module for managing the installed IMEs.
     /// IME developers can use this module to open the installed IME list or the selector menu after their IME installation, and then guide to select the installed IME.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public static class Manager
     {
         /// <summary>
@@ -39,6 +40,7 @@ namespace Tizen.Uix.InputMethodManager
         /// 1) The application does not have the privilege to call this function.
         /// 2) Operation failed.
         /// </exception>
+        /// <since_tizen> 3 </since_tizen>
         public static void ShowIMEList()
         {
             ErrorCode error = ImeManagerShowImeList();
@@ -61,6 +63,7 @@ namespace Tizen.Uix.InputMethodManager
         /// 1) The application does not have the privilege to call this function.
         /// 2) Operation failed.
         /// </exception>
+        /// <since_tizen> 3 </since_tizen>
         public static void ShowIMESelector()
         {
             ErrorCode error = ImeManagerShowImeSelector();
@@ -88,6 +91,7 @@ namespace Tizen.Uix.InputMethodManager
         /// 1) The application does not have the privilege to call this function.
         /// 2) Operation failed.
         /// </exception>
+        /// <since_tizen> 3 </since_tizen>
         public static bool IsIMEEnabled(string appId)
         {
             bool isIMEEnabled;
@@ -115,6 +119,7 @@ namespace Tizen.Uix.InputMethodManager
         /// 1) The application does not have the privilege to call this function.
         /// 2) Operation failed.
         /// </exception>
+        /// <since_tizen> 3 </since_tizen>
         public static string GetActiveIME()
         {
             string activeIME;
@@ -142,6 +147,7 @@ namespace Tizen.Uix.InputMethodManager
         /// 1) The application does not have the privilege to call this function.
         /// 2) Operation failed.
         /// </exception>
+        /// <since_tizen> 3 </since_tizen>
         public static int GetEnabledIMECount()
         {
             int activeIME = ImeManagerGetEnabledImeCount();

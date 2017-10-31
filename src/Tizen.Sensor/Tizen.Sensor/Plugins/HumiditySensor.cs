@@ -21,6 +21,7 @@ namespace Tizen.Sensor
     /// <summary>
     /// The HumiditySensor class is used for registering callbacks for the humidity sensor and getting the humidity data.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public sealed class HumiditySensor : Sensor
     {
         private const string HumiditySensorKey = "http://tizen.org/feature/sensor.humidity";

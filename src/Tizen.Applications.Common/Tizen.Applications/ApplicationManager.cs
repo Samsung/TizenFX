@@ -25,6 +25,7 @@ namespace Tizen.Applications
     /// <summary>
     /// This class has the methods and events of the ApplicationManager.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public static class ApplicationManager
     {
         private const string LogTag = "Tizen.Applications";
@@ -39,6 +40,7 @@ namespace Tizen.Applications
         /// <summary>
         /// Occurs whenever the installed application is enabled.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public static event EventHandler<ApplicationEnabledEventArgs> ApplicationEnabled
         {
             add
@@ -62,6 +64,7 @@ namespace Tizen.Applications
         /// <summary>
         /// Occurs whenever the installed application is disabled.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public static event EventHandler<ApplicationDisabledEventArgs> ApplicationDisabled
         {
             add
@@ -85,6 +88,7 @@ namespace Tizen.Applications
         /// <summary>
         /// Occurs whenever the installed applications get launched.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public static event EventHandler<ApplicationLaunchedEventArgs> ApplicationLaunched
         {
             add
@@ -108,6 +112,7 @@ namespace Tizen.Applications
         /// <summary>
         /// Occurs whenever the installed applications get terminated.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public static event EventHandler<ApplicationTerminatedEventArgs> ApplicationTerminated
         {
             add
@@ -131,6 +136,7 @@ namespace Tizen.Applications
         /// <summary>
         /// Gets the information of the installed applications asynchronously.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public static async Task<IEnumerable<ApplicationInfo>> GetInstalledApplicationsAsync()
         {
             return await Task.Run(() =>
@@ -168,6 +174,7 @@ namespace Tizen.Applications
         /// Gets the information of the installed applications with the ApplicationInfoFilter asynchronously.
         /// </summary>
         /// <param name="filter">Key-value pairs for filtering.</param>
+        /// <since_tizen> 3 </since_tizen>
         public static async Task<IEnumerable<ApplicationInfo>> GetInstalledApplicationsAsync(ApplicationInfoFilter filter)
         {
             return await Task.Run(() =>
@@ -200,6 +207,7 @@ namespace Tizen.Applications
         /// Gets the information of the installed applications with the ApplicationInfoMetadataFilter asynchronously.
         /// </summary>
         /// <param name="filter">Key-value pairs for filtering.</param>
+        /// <since_tizen> 3 </since_tizen>
         public static async Task<IEnumerable<ApplicationInfo>> GetInstalledApplicationsAsync(ApplicationInfoMetadataFilter filter)
         {
             return await Task.Run(() =>
@@ -231,6 +239,7 @@ namespace Tizen.Applications
         /// <summary>
         /// Gets the information of the running applications asynchronously.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public static async Task<IEnumerable<ApplicationRunningContext>> GetRunningApplicationsAsync()
         {
             return await Task.Run(() =>
@@ -268,6 +277,7 @@ namespace Tizen.Applications
         /// <summary>
         /// Gets the information of the running applications including subapp asynchronously.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public static async Task<IEnumerable<ApplicationRunningContext>> GetAllRunningApplicationsAsync()
         {
             return await Task.Run(() =>
@@ -306,6 +316,7 @@ namespace Tizen.Applications
         /// Gets the information of the specified application with the application ID.
         /// </summary>
         /// <param name="applicationId">Application ID.</param>
+        /// <since_tizen> 3 </since_tizen>
         public static ApplicationInfo GetInstalledApplication(string applicationId)
         {
             IntPtr infoHandle = IntPtr.Zero;
@@ -324,6 +335,7 @@ namespace Tizen.Applications
         /// <param name="applicationId">The application ID.</param>
         /// <returns>Returns true if the given application is running, otherwise false.</returns>
         /// <exception cref="ArgumentException">Thrown when the given parameter is invalid.</exception>
+        /// <since_tizen> 3 </since_tizen>
         public static bool IsRunning(string applicationId)
         {
             bool isRunning = false;
@@ -424,6 +436,7 @@ namespace Tizen.Applications
         /// </summary>
         /// <returns>Returns a dictionary containing all the recent application info.</returns>
         /// <exception cref="InvalidOperationException">Thrown when failed because of an invalid operation.</exception>
+        /// <since_tizen> 3 </since_tizen>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static IEnumerable<RecentApplicationInfo> GetRecentApplications()
         {

@@ -21,6 +21,7 @@ namespace Tizen.Sensor
     /// <summary>
     /// The FaceDownGestureDetector changed event arguments class is used for storing the data returned by a face down gesture detector.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public class FaceDownGestureDetectorDataUpdatedEventArgs : EventArgs
     {
         internal FaceDownGestureDetectorDataUpdatedEventArgs(float state)

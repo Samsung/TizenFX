@@ -19,6 +19,7 @@ namespace Tizen.Multimedia
     /// <summary>
     /// The location class containing GPS data details.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public class Location
     {
         /// <summary>
@@ -27,6 +28,7 @@ namespace Tizen.Multimedia
         /// <param name="latitude">The latitude data.</param>
         /// <param name="longitude">The longitude data.</param>
         /// <param name="altitude">The altitude data.</param>
+        /// <since_tizen> 3 </since_tizen>
         public Location(double latitude, double longitude, double altitude)
         {
             Latitude = latitude;

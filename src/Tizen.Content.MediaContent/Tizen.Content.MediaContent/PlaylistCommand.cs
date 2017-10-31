@@ -25,6 +25,7 @@ namespace Tizen.Content.MediaContent
     /// Provides the commands to manage playlists in the database.
     /// </summary>
     /// <seealso cref="Playlist"/>
+    /// <since_tizen> 4 </since_tizen>
     public class PlaylistCommand : MediaCommand
     {
         /// <summary>
@@ -33,6 +34,7 @@ namespace Tizen.Content.MediaContent
         /// <param name="database">A <see cref="MediaDatabase"/> that the commands run on.</param>
         /// <exception cref="ArgumentNullException"><paramref name="database"/> is null.</exception>
         /// <exception cref="ObjectDisposedException"><paramref name="database"/> has already been disposed of.</exception>
+        /// <since_tizen> 4 </since_tizen>
         public PlaylistCommand(MediaDatabase database) : base(database)
         {
         }
@@ -44,6 +46,7 @@ namespace Tizen.Content.MediaContent
         /// <exception cref="InvalidOperationException">The <see cref="MediaDatabase"/> is disconnected.</exception>
         /// <exception cref="ObjectDisposedException">The <see cref="MediaDatabase"/> has already been disposed of.</exception>
         /// <exception cref="MediaDatabaseException">An error occurred while executing the command.</exception>
+        /// <since_tizen> 4 </since_tizen>
         public int Count()
         {
             return Count(null);
@@ -57,6 +60,7 @@ namespace Tizen.Content.MediaContent
         /// <exception cref="InvalidOperationException">The <see cref="MediaDatabase"/> is disconnected.</exception>
         /// <exception cref="ObjectDisposedException">The <see cref="MediaDatabase"/> has already been disposed of.</exception>
         /// <exception cref="MediaDatabaseException">An error occurred while executing the command.</exception>
+        /// <since_tizen> 4 </since_tizen>
         public int Count(CountArguments arguments)
         {
             ValidateDatabase();
@@ -78,6 +82,7 @@ namespace Tizen.Content.MediaContent
         ///     -or-<br/>
         ///     <paramref name="memberId"/> is less than or equal to zero.
         /// </exception>
+        /// <since_tizen> 4 </since_tizen>
         public int GetPlayOrder(int playlistId, int memberId)
         {
             ValidateDatabase();
@@ -110,6 +115,7 @@ namespace Tizen.Content.MediaContent
         /// <exception cref="MediaDatabaseException">An error occurred while executing the command.</exception>
         /// <exception cref="ArgumentOutOfRangeException"><paramref name="playlistId"/> is less than or equal to zero.</exception>
         /// <exception cref="UnauthorizedAccessException">The caller has no required privilege.</exception>
+        /// <since_tizen> 4 </since_tizen>
         public bool Delete(int playlistId)
         {
             ValidateDatabase();
@@ -157,6 +163,7 @@ namespace Tizen.Content.MediaContent
         /// </exception>
         /// <exception cref="FileNotFoundException"><paramref name="path"/> does not exists.</exception>
         /// <exception cref="UnauthorizedAccessException">The caller has no required privilege.</exception>
+        /// <since_tizen> 4 </since_tizen>
         public Playlist InsertFromFile(string name, string path)
         {
             ValidateDatabase();
@@ -214,6 +221,7 @@ namespace Tizen.Content.MediaContent
         /// <exception cref="ArgumentOutOfRangeException"><paramref name="playlistId"/> is less than or equal to zero.</exception>
         /// <exception cref="RecordNotFoundException">No matching playlist exists.</exception>
         /// <exception cref="UnauthorizedAccessException">The caller has no required privilege.</exception>
+        /// <since_tizen> 4 </since_tizen>
         public void ExportToFile(int playlistId, string path)
         {
             ValidateDatabase();
@@ -259,6 +267,7 @@ namespace Tizen.Content.MediaContent
         /// <exception cref="ArgumentNullException"><paramref name="name"/> is null.</exception>
         /// <exception cref="ArgumentException"><paramref name="name"/> is a zero-length string.</exception>
         /// <exception cref="UnauthorizedAccessException">The caller has no required privilege.</exception>
+        /// <since_tizen> 4 </since_tizen>
         public Playlist Insert(string name)
         {
             return Insert(name, null);
@@ -277,6 +286,7 @@ namespace Tizen.Content.MediaContent
         /// <exception cref="ArgumentNullException"><paramref name="name"/> is null.</exception>
         /// <exception cref="ArgumentException"><paramref name="name"/> is a zero-length string.</exception>
         /// <exception cref="UnauthorizedAccessException">The caller has no required privilege.</exception>
+        /// <since_tizen> 4 </since_tizen>
         public Playlist Insert(string name, string thumbnailPath)
         {
             ValidateDatabase();
@@ -322,6 +332,7 @@ namespace Tizen.Content.MediaContent
         /// <exception cref="InvalidOperationException">The <see cref="MediaDatabase"/> is disconnected.</exception>
         /// <exception cref="ObjectDisposedException">The <see cref="MediaDatabase"/> has already been disposed of.</exception>
         /// <exception cref="MediaDatabaseException">An error occurred while executing the command.</exception>
+        /// <since_tizen> 4 </since_tizen>
         public MediaDataReader<Playlist> Select()
         {
             return Select(null);
@@ -335,6 +346,7 @@ namespace Tizen.Content.MediaContent
         /// <exception cref="InvalidOperationException">The <see cref="MediaDatabase"/> is disconnected.</exception>
         /// <exception cref="ObjectDisposedException">The <see cref="MediaDatabase"/> has already been disposed of.</exception>
         /// <exception cref="MediaDatabaseException">An error occurred while executing the command.</exception>
+        /// <since_tizen> 4 </since_tizen>
         public MediaDataReader<Playlist> Select(SelectArguments filter)
         {
             ValidateDatabase();
@@ -352,6 +364,7 @@ namespace Tizen.Content.MediaContent
         /// <exception cref="ObjectDisposedException">The <see cref="MediaDatabase"/> has already been disposed of.</exception>
         /// <exception cref="MediaDatabaseException">An error occurred while executing the command.</exception>
         /// <exception cref="ArgumentOutOfRangeException"><paramref name="playlistId"/> is less than or equal to zero.</exception>
+        /// <since_tizen> 4 </since_tizen>
         public Playlist Select(int playlistId)
         {
             ValidateDatabase();
@@ -393,6 +406,7 @@ namespace Tizen.Content.MediaContent
         /// <exception cref="ObjectDisposedException">The <see cref="MediaDatabase"/> has already been disposed of.</exception>
         /// <exception cref="MediaDatabaseException">An error occurred while executing the command.</exception>
         /// <exception cref="ArgumentOutOfRangeException"><paramref name="playlistId"/> is less than or equal to zero.</exception>
+        /// <since_tizen> 4 </since_tizen>
         public int CountMember(int playlistId)
         {
             return CountMember(playlistId, null);
@@ -408,6 +422,7 @@ namespace Tizen.Content.MediaContent
         /// <exception cref="ObjectDisposedException">The <see cref="MediaDatabase"/> has already been disposed of.</exception>
         /// <exception cref="MediaDatabaseException">An error occurred while executing the command.</exception>
         /// <exception cref="ArgumentOutOfRangeException"><paramref name="playlistId"/> is less than or equal to zero.</exception>
+        /// <since_tizen> 4 </since_tizen>
         public int CountMember(int playlistId, CountArguments arguments)
         {
             ValidateDatabase();
@@ -465,6 +480,7 @@ namespace Tizen.Content.MediaContent
         /// <exception cref="ArgumentOutOfRangeException"><paramref name="playlistId"/> is less than or equal to zero.</exception>
         /// <exception cref="ArgumentNullException"><paramref name="mediaId"/> is null.</exception>
         /// <exception cref="ArgumentException"><paramref name="mediaId"/> is a zero-length string, contains only white space.</exception>
+        /// <since_tizen> 4 </since_tizen>
         public int GetMemberId(int playlistId, string mediaId)
         {
             ValidateDatabase();
@@ -495,6 +511,7 @@ namespace Tizen.Content.MediaContent
         /// <exception cref="ObjectDisposedException">The <see cref="MediaDatabase"/> has already been disposed of.</exception>
         /// <exception cref="MediaDatabaseException">An error occurred while executing the command.</exception>
         /// <exception cref="ArgumentOutOfRangeException"><paramref name="playlistId"/> is less than or equal to zero.</exception>
+        /// <since_tizen> 4 </since_tizen>
         public MediaDataReader<PlaylistMember> SelectMember(int playlistId)
         {
             return SelectMember(playlistId, null);
@@ -510,6 +527,7 @@ namespace Tizen.Content.MediaContent
         /// <exception cref="ObjectDisposedException">The <see cref="MediaDatabase"/> has already been disposed of.</exception>
         /// <exception cref="MediaDatabaseException">An error occurred while executing the command.</exception>
         /// <exception cref="ArgumentOutOfRangeException"><paramref name="playlistId"/> is less than or equal to zero.</exception>
+        /// <since_tizen> 4 </since_tizen>
         public MediaDataReader<PlaylistMember> SelectMember(int playlistId, SelectArguments filter)
         {
             ValidateDatabase();
@@ -537,6 +555,7 @@ namespace Tizen.Content.MediaContent
         /// <exception cref="ArgumentNullException"><paramref name="values"/> is null.</exception>
         /// <exception cref="ArgumentOutOfRangeException"><paramref name="playlistId"/> is less than or equal to zero.</exception>
         /// <exception cref="UnauthorizedAccessException">The caller has no required privilege.</exception>
+        /// <since_tizen> 4 </since_tizen>
         public bool Update(int playlistId, PlaylistUpdateValues values)
         {
             ValidateDatabase();
@@ -597,6 +616,7 @@ namespace Tizen.Content.MediaContent
         /// <exception cref="ArgumentNullException"><paramref name="mediaId"/> is null.</exception>
         /// <exception cref="ArgumentException"><paramref name="mediaId"/> is a zero-length string, contains only white space.</exception>
         /// <exception cref="ArgumentOutOfRangeException"><paramref name="playlistId"/> is less than or equal to zero.</exception>
+        /// <since_tizen> 4 </since_tizen>
         public bool AddMember(int playlistId, string mediaId)
         {
             ValidationUtil.ValidateNotNullOrEmpty(mediaId, nameof(mediaId));
@@ -623,6 +643,7 @@ namespace Tizen.Content.MediaContent
         ///     <paramref name="mediaIds"/> contains a zero-length string or white space.
         /// </exception>
         /// <exception cref="ArgumentOutOfRangeException"><paramref name="playlistId"/> is less than or equal to zero.</exception>
+        /// <since_tizen> 4 </since_tizen>
         public bool AddMembers(int playlistId, IEnumerable<string> mediaIds)
         {
             ValidateDatabase();
@@ -696,6 +717,7 @@ namespace Tizen.Content.MediaContent
         ///     -or-<br/>
         ///     <paramref name="memberId"/> is less than or equal to zero.
         /// </exception>
+        /// <since_tizen> 4 </since_tizen>
         public bool RemoveMember(int playlistId, int memberId)
         {
             if (memberId <= 0)
@@ -724,6 +746,7 @@ namespace Tizen.Content.MediaContent
         ///     <paramref name="memberIds"/> contains a value which is less than or equal to zero.
         /// </exception>
         /// <exception cref="ArgumentOutOfRangeException"><paramref name="playlistId"/> is less than or equal to zero.</exception>
+        /// <since_tizen> 4 </since_tizen>
         public bool RemoveMembers(int playlistId, IEnumerable<int> memberIds)
         {
             ValidateDatabase();
@@ -790,6 +813,7 @@ namespace Tizen.Content.MediaContent
         /// <exception cref="MediaDatabaseException">An error occurred while executing the command.</exception>
         /// <exception cref="ArgumentNullException"><paramref name="playOrder"/> is null.</exception>
         /// <exception cref="ArgumentOutOfRangeException"><paramref name="playlistId"/> is less than or equal to zero.</exception>
+        /// <since_tizen> 4 </since_tizen>
         public bool UpdatePlayOrder(int playlistId, PlayOrder playOrder)
         {
             if (playOrder == null)
@@ -816,6 +840,7 @@ namespace Tizen.Content.MediaContent
         ///     <paramref name="orders"/> contains a null value.
         /// </exception>
         /// <exception cref="ArgumentOutOfRangeException"><paramref name="playlistId"/> is less than or equal to zero.</exception>
+        /// <since_tizen> 4 </since_tizen>
         public bool UpdatePlayOrders(int playlistId, IEnumerable<PlayOrder> orders)
         {
             ValidateDatabase();

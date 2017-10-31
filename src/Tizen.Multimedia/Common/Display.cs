@@ -90,6 +90,7 @@ namespace Tizen.Multimedia
     /// <seealso cref="T:Tizen.Multimedia.Player"/>
     /// <seealso cref="T:Tizen.Multimedia.Camera"/>
     /// <seealso cref="T:Tizen.Multimedia.Remoting.ScreenMirroring"/>
+    /// <since_tizen> 3 </since_tizen>
     public class Display
     {
         private readonly IDisplaySetter _setter;
@@ -100,6 +101,7 @@ namespace Tizen.Multimedia
         /// <param name="mediaView">A <see cref="MediaView"/> to display.</param>
         /// <feature>http://tizen.org/feature/multimedia.raw_video</feature>
         /// <exception cref="NotSupportedException">The required feature is not supported.</exception>
+        /// <since_tizen> 3 </since_tizen>
         public Display(MediaView mediaView)
         {
             ValidationUtil.ValidateFeatureSupported(Features.RawVideo);
@@ -116,6 +118,7 @@ namespace Tizen.Multimedia
         /// Initializes a new instance of the <see cref="Display"/> class with a <see cref="Window"/> class.
         /// </summary>
         /// <param name="window">A <see cref="Window"/> to display.</param>
+        /// <since_tizen> 3 </since_tizen>
         public Display(Window window)
         {
             if (window == null)
@@ -134,6 +137,7 @@ namespace Tizen.Multimedia
         /// The <see cref="NUI.Window.BackgroundColor"/> must be <see cref="NUI.Color.Transparent"/>
         /// for the <see cref="Display"/> to be rendered correctly.
         /// </remarks>
+        /// <since_tizen> 3 </since_tizen>
         public Display(NUI.Window window)
         {
             if (window == null)

@@ -22,6 +22,7 @@ namespace Tizen.Multimedia
     /// <summary>
     /// Represents a container media format. This class cannot be inherited.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public sealed class ContainerMediaFormat : MediaFormat
     {
         /// <summary>
@@ -29,6 +30,7 @@ namespace Tizen.Multimedia
         /// </summary>
         /// <param name="mimeType">The mime type of the container format.</param>
         /// <exception cref="ArgumentException"><paramref name="mimeType"/> is invalid (i.e. undefined value).</exception>
+        /// <since_tizen> 3 </since_tizen>
         public ContainerMediaFormat(MediaFormatContainerMimeType mimeType)
             : base(MediaFormatType.Container)
         {
@@ -63,6 +65,7 @@ namespace Tizen.Multimedia
         /// <summary>
         /// Gets the mime type of the current format.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public MediaFormatContainerMimeType MimeType { get; }
 
         internal override void AsNativeHandle(IntPtr handle)
@@ -78,6 +81,7 @@ namespace Tizen.Multimedia
         /// Returns a string that represents the current object.
         /// </summary>
         /// <returns>A string that represents the current object.</returns>
+        /// <since_tizen> 3 </since_tizen>
         public override string ToString() => $"MimeType={ MimeType.ToString() }";
 
         /// <summary>
@@ -85,6 +89,7 @@ namespace Tizen.Multimedia
         /// </summary>
         /// <param name="obj">A <see cref="Object"/> to compare.</param>
         /// <returns>true if the formats are equal; otherwise, false.</returns>
+        /// <since_tizen> 3 </since_tizen>
         public override bool Equals(object obj)
         {
             var rhs = obj as ContainerMediaFormat;
@@ -100,6 +105,7 @@ namespace Tizen.Multimedia
         /// Gets the hash code for this instance of <see cref="ContainerMediaFormat"/>.
         /// </summary>
         /// <returns>The hash code for this instance of <see cref="ContainerMediaFormat"/>.</returns>
+        /// <since_tizen> 3 </since_tizen>
         public override int GetHashCode()
             => (int)MimeType;
     }

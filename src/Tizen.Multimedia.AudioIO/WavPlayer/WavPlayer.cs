@@ -25,6 +25,7 @@ namespace Tizen.Multimedia
     /// <summary>
     /// Provides the ability to play a wav file.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public static class WavPlayer
     {
         /// <summary>
@@ -42,6 +43,7 @@ namespace Tizen.Multimedia
         /// <exception cref="FileNotFoundException"><paramref name="path"/> does not exists.</exception>
         /// <exception cref="FileFormatException">The format of <paramref name="path"/> is not supported.</exception>
         /// <exception cref="ObjectDisposedException"><paramref name="streamPolicy"/> has already been disposed of.</exception>
+        /// <since_tizen> 3 </since_tizen>
         public static Task StartAsync(string path, AudioStreamPolicy streamPolicy)
         {
             return StartAsync(path, streamPolicy, CancellationToken.None);
@@ -63,6 +65,7 @@ namespace Tizen.Multimedia
         /// <exception cref="FileNotFoundException"><paramref name="path"/> does not exists.</exception>
         /// <exception cref="FileFormatException">The format of <paramref name="path"/> is not supported.</exception>
         /// <exception cref="ObjectDisposedException"><paramref name="streamPolicy"/> has already been disposed of.</exception>
+        /// <since_tizen> 3 </since_tizen>
         public static Task StartAsync(string path, AudioStreamPolicy streamPolicy,
             CancellationToken cancellationToken)
         {

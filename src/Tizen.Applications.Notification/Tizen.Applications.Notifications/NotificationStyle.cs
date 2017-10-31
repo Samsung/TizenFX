@@ -30,6 +30,7 @@ namespace Tizen.Applications.Notifications
         /// An object can apply a rich notification style to a notification object.
         /// If the platform does not provide rich notification, styles in this class have no effect.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public abstract class StyleBase : MakerBase
         {
             internal abstract string Key { get; }

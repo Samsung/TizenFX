@@ -19,6 +19,7 @@ namespace Tizen.Multimedia.Util
     /// <summary>
     /// Represents the result of the thumbnail extraction.
     /// </summary>
+    /// <since_tizen> 4 </since_tizen>
     public class ThumbnailExtractionResult
     {
         internal ThumbnailExtractionResult(byte[] thumbnailData, int width, int height)
@@ -30,13 +31,13 @@ namespace Tizen.Multimedia.Util
         /// <summary>
         /// The thumbnail data.
         /// </summary>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 4 </since_tizen>
         public byte[] RawData { get; }
 
         /// <summary>
         /// The size of the thumbnail.
         /// </summary>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 4 </since_tizen>
         public Size Size { get; }
     }
 }

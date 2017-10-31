@@ -23,6 +23,7 @@ namespace Tizen.Telephony
     /// <summary>
     /// This class provides APIs that provide functionality related to the slot handle.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public class SlotHandle
     {
         internal IntPtr _handle;
@@ -37,6 +38,7 @@ namespace Tizen.Telephony
         /// The event handler for receiving the Telephony state changes.
         /// This event will be triggered for the NotificationIds given in the SetNotificationId API.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public event EventHandler<ChangeNotificationEventArgs> ChangeNotification;
 
         internal IntPtr Handle

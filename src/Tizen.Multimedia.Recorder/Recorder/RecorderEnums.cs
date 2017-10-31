@@ -20,11 +20,13 @@ namespace Tizen.Multimedia
     /// Specifies audio codecs for <see cref="Recorder"/>.
     /// </summary>
     /// <seealso cref="Recorder.GetSupportedAudioCodecs"/>
+    /// <since_tizen> 3 </since_tizen>
     public enum RecorderAudioCodec
     {
         /// <summary>
         /// Disabled.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         None = -1,
         /// <summary>
         /// AMR codec.
@@ -51,6 +53,7 @@ namespace Tizen.Multimedia
     /// <summary>
     /// Specifies audio capture devices for <see cref="Recorder"/>.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public enum RecorderAudioDevice
     {
         /// <summary>
@@ -67,6 +70,7 @@ namespace Tizen.Multimedia
     /// Specifies container formats for <see cref="Recorder"/>.
     /// </summary>
     /// <seealso cref="Recorder.GetSupportedFileFormats"/>
+    /// <since_tizen> 3 </since_tizen>
     public enum RecorderFileFormat
     {
         /// <summary>
@@ -105,6 +109,7 @@ namespace Tizen.Multimedia
     /// <seealso cref="Recorder.StateChanged"/>
     /// <seealso cref="Recorder.Interrupting"/>
     /// <seealso cref="Recorder.Interrupted"/>
+    /// <since_tizen> 3 </since_tizen>
     public enum RecorderPolicy
     {
         /// <summary>
@@ -123,6 +128,7 @@ namespace Tizen.Multimedia
     /// <seealso cref="Recorder.SizeLimit"/>
     /// <seealso cref="Recorder.TimeLimit"/>
     /// <seealso cref="Recorder.RecordingLimitReached"/>
+    /// <since_tizen> 3 </since_tizen>
     public enum RecordingLimitType
     {
         /// <summary>
@@ -142,11 +148,13 @@ namespace Tizen.Multimedia
     /// <summary>
     /// Specifies states for <see cref="Recorder"/>.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public enum RecorderState
     {
         /// <summary>
         /// Recorder is created, but not prepared.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         Idle = 1,
         /// <summary>
         /// Recorder is ready to record. In case of a video recorder,
@@ -167,6 +175,7 @@ namespace Tizen.Multimedia
     /// Specifies video codecs for <see cref="VideoRecorder"/>.
     /// </summary>
     /// <seealso cref="VideoRecorder.GetSupportedVideoCodecs"/>
+    /// <since_tizen> 3 </since_tizen>
     public enum RecorderVideoCodec
     {
         /// <summary>
@@ -191,6 +200,7 @@ namespace Tizen.Multimedia
     /// Specifies errors for <see cref="Recorder"/>.
     /// </summary>
     /// <seealso cref="Recorder.ErrorOccurred"/>
+    /// <since_tizen> 4 </since_tizen>
     public enum RecorderError
     {
         /// <summary>
@@ -222,6 +232,7 @@ namespace Tizen.Multimedia
     /// <summary>
     /// Specifies recorder types for <see cref="Recorder.DeviceStateChanged"/>.
     /// </summary>
+    /// <since_tizen> 4 </since_tizen>
     public enum RecorderType
     {
         /// <summary>
@@ -238,6 +249,7 @@ namespace Tizen.Multimedia
     /// <summary>
     /// Specifies recorder device states for <see cref="Recorder.DeviceStateChanged"/>.
     /// </summary>
+    /// <since_tizen> 4 </since_tizen>
     public enum RecorderDeviceState
     {
         /// <summary>

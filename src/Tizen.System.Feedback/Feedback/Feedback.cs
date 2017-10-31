@@ -83,6 +83,7 @@ namespace Tizen.System
     /// bool res = feedback.IsSupportedPattern(FeedbackType.Vibration, "Tap");
     /// </code>
     /// </example>
+    /// <since_tizen> 3 </since_tizen>
     public class Feedback
     {
         private const string LogTag = "Tizen.System.Feedback";

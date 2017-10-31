@@ -23,11 +23,13 @@ namespace Tizen.Applications
     /// <summary>
     /// The class for getting the resource path.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public static class ResourceManager
     {
         /// <summary>
         /// Enumeration for the resource category.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public enum Category : int
         {
             /// <summary>
@@ -76,6 +78,7 @@ namespace Tizen.Applications
         /// <param name="id">ID to search.</param>
         /// <returns>Found resource path.</returns>
         /// <exception cref="InvalidOperationException">Thrown in case of failed conditions.</exception>
+        /// <since_tizen> 3 </since_tizen>
         public static string GetPath(Category category, string id)
         {
             string path;
@@ -103,6 +106,7 @@ namespace Tizen.Applications
         /// <param name="id">ID to search.</param>
         /// <returns>Found resource path or null when the resource doesn't exist.</returns>
         /// <exception cref="InvalidOperationException">Thrown in case of failed conditions.</exception>
+        /// <since_tizen> 3 </since_tizen>
         public static string TryGetPath(Category category, string id)
         {
             string path;

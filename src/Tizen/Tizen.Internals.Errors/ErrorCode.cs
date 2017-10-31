@@ -19,6 +19,7 @@ namespace Tizen.Internals.Errors
     /// <summary>
     /// Error codes used inside Tizen .NET API implementation
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public enum ErrorCode : int
     {
         /// <summary>

@@ -23,6 +23,7 @@ namespace Tizen.Multimedia
     /// <summary>
     /// Represents the video metadata information.
     /// </summary>
+    /// <since_tizen> 4 </since_tizen>
     public class VideoMetadata
     {
         private VideoMetadata(int streamCount, MetadataExtractor extractor)
@@ -49,42 +50,42 @@ namespace Tizen.Multimedia
         /// <summary>
         /// Gets the bitrate.
         /// </summary>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 4 </since_tizen>
         /// <value>The bitrate value, or null if the information does not exist.</value>
         public int? BitRate { get; }
 
         /// <summary>
         /// Gets the video fps.
         /// </summary>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 4 </since_tizen>
         /// <value>The fps value, or null if the information does not exist.</value>
         public int? Fps { get; }
 
         /// <summary>
         /// Gets the width of the video.
         /// </summary>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 4 </since_tizen>
         /// <value>The width value, or null if the information does not exist.</value>
         public int? Width { get; }
 
         /// <summary>
         /// Gets the height of the video.
         /// </summary>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 4 </since_tizen>
         /// <value>The height value, or null if the information does not exist.</value>
         public int? Height { get; }
 
         /// <summary>
         /// Gets the codec type of the video.
         /// </summary>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 4 </since_tizen>
         /// <value>A string representing the codec type, or null if the information does not exist.</value>
         public string Codec { get; }
 
         /// <summary>
         /// Gets the video stream count.
         /// </summary>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 4 </since_tizen>
         /// <value>The number of video streams.</value>
         public int StreamCount { get; }
 
@@ -94,12 +95,14 @@ namespace Tizen.Multimedia
         /// Returns a string that represents the current object.
         /// </summary>
         /// <returns>A string that represents the current object.</returns>
+        /// <since_tizen> 4 </since_tizen>
         public override string ToString() => _description.Value;
     }
 
     /// <summary>
     /// Represents the audio metadata information.
     /// </summary>
+    /// <since_tizen> 4 </since_tizen>
     public class AudioMetadata
     {
         private AudioMetadata(int streamCount, MetadataExtractor extractor)
@@ -126,42 +129,42 @@ namespace Tizen.Multimedia
         /// <summary>
         /// Gets the audio bitrate.
         /// </summary>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 4 </since_tizen>
         /// <value>The bit rate value, or null if the information does not exist.</value>
         public int? BitRate { get; }
 
         /// <summary>
         /// Gets the audio channels.
         /// </summary>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 4 </since_tizen>
         /// <value>The number of the audio channels, or null if the information does not exist.</value>
         public int? Channels { get; }
 
         /// <summary>
         /// Gets the audio sample rate.
         /// </summary>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 4 </since_tizen>
         /// <value>The sample rate, or null if the information does not exist.</value>
         public int? SampleRate { get; }
 
         /// <summary>
         /// Gets the bit per sample of the audio.
         /// </summary>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 4 </since_tizen>
         /// <value>The bit per sample, or null if the information does not exist.</value>
         public int? BitPerSample { get; }
 
         /// <summary>
         /// Gets the audio stream count.
         /// </summary>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 4 </since_tizen>
         /// <value>The number of audio streams.</value>
         public int StreamCount { get; }
 
         /// <summary>
         /// Gets the audio codec type.
         /// </summary>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 4 </since_tizen>
         public string Codec { get; }
 
         private Lazy<string> _description;
@@ -170,12 +173,14 @@ namespace Tizen.Multimedia
         /// Returns a string that represents the current object.
         /// </summary>
         /// <returns>A string that represents the current object.</returns>
+        /// <since_tizen> 4 </since_tizen>
         public override string ToString() => _description.Value;
     }
 
     /// <summary>
     /// Represents the metadata information of a media.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public class Metadata
     {
         internal Metadata(MetadataExtractor extractor)
@@ -215,21 +220,21 @@ namespace Tizen.Multimedia
         /// <summary>
         /// Gets the duration of the media.
         /// </summary>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 4 </since_tizen>
         /// <value>The duration value, or null if the information does not exist.</value>
         public int? Duration { get; }
 
         /// <summary>
         /// Gets the video metadata.
         /// </summary>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 4 </since_tizen>
         /// <value>The video metadata, or null if the information does not exist.</value>
         public VideoMetadata Video { get; }
 
         /// <summary>
         /// Gets the audio metadata.
         /// </summary>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 4 </since_tizen>
         /// <value>The audio metadata, or null if the information does not exist.</value>
         public AudioMetadata Audio { get; }
 
@@ -285,7 +290,7 @@ namespace Tizen.Multimedia
         /// <summary>
         /// Gets the release date of the media.
         /// </summary>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 4 </since_tizen>
         /// <value>A string representing the release date, or null if the information does not exist.</value>
         public string DateReleased { get; }
 
@@ -327,21 +332,21 @@ namespace Tizen.Multimedia
         /// <summary>
         /// Gets the longitude of the media.
         /// </summary>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 4 </since_tizen>
         /// <value>The longitude value, or null if the information does not exist.</value>
         public double? Longitude { get; }
 
         /// <summary>
         /// Gets the latitude of the media.
         /// </summary>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 4 </since_tizen>
         /// <value>The latitude value, or null if the information does not exist.</value>
         public double? Latitude { get; }
 
         /// <summary>
         /// Gets the altitude of the media.
         /// </summary>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 4 </since_tizen>
         /// <value>The altitude value, or null if the information does not exist.</value>
         public double? Altitude { get; }
 
@@ -355,28 +360,28 @@ namespace Tizen.Multimedia
         /// <summary>
         /// Gets the unsynchronized lyrics of the media.
         /// </summary>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 4 </since_tizen>
         /// <value>A string representing the unsynchronized lyrics, or null if the information does not exist.</value>
         public string UnsyncLyrics { get; }
 
         /// <summary>
         /// Gets the number of synchronized lyrics of the media.
         /// </summary>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 4 </since_tizen>
         /// <value>The number of the synchronized lyrics.</value>
         public int SyncLyricsCount { get; }
 
         /// <summary>
         /// Gets the recording date of the media.
         /// </summary>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 4 </since_tizen>
         /// <value>A string representing the recording date, or null if the information does not exist.</value>
         public string DateRecorded { get; }
 
         /// <summary>
         /// Gets the rotate(orientation) information of the media.
         /// </summary>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 4 </since_tizen>
         /// <value>A string representing the rotation information, or null if the information does not exist.</value>
         public string Rotation { get; }
 
@@ -393,6 +398,7 @@ namespace Tizen.Multimedia
         /// Returns a string that represents the current object.
         /// </summary>
         /// <returns>A string that represents the current object.</returns>
+        /// <since_tizen> 3 </since_tizen>
         public override string ToString() => _description.Value;
     }
 }

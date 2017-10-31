@@ -21,9 +21,11 @@ namespace Tizen.System.Usb
     /// <summary>
     /// USB Endpoint class.
     /// </summary>
+    /// <since_tizen> 4 </since_tizen>
     public class UsbEndpoint
     {
         internal readonly Interop.UsbEndpointHandle _handle;
+        /// <since_tizen> 4 </since_tizen>
         protected readonly UsbInterface _parent;
 
         internal UsbEndpoint(UsbInterface parent, Interop.UsbEndpointHandle handle)
@@ -35,6 +37,7 @@ namespace Tizen.System.Usb
         /// <summary>
         /// Gets number of this endpoint.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         public int Id
         {
             get
@@ -47,6 +50,7 @@ namespace Tizen.System.Usb
         /// <summary>
         /// Gets direction of this endpoint.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         public EndpointDirection Direction
         {
             get
@@ -59,6 +63,7 @@ namespace Tizen.System.Usb
         /// <summary>
         /// Gets max packet size of given endpoint.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         public int MaxPacketSize
         {
             get
@@ -74,6 +79,7 @@ namespace Tizen.System.Usb
             _parent?.ThrowIfDisposed();
         }
 
+        /// <since_tizen> 4 </since_tizen>
         protected int TransferImpl(byte[] buffer, int length, uint timeout)
         {
             ThrowIfDisposed();

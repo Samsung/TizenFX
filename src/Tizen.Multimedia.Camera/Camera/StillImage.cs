@@ -24,6 +24,7 @@ namespace Tizen.Multimedia
     /// <summary>
     /// The class containing the captured still image.
     /// </summary>
+    /// <since_tizen> 4 </since_tizen>
     public class StillImage
     {
         internal StillImage(IntPtr ptr)
@@ -54,26 +55,26 @@ namespace Tizen.Multimedia
         /// <summary>
         /// The pixel format of the still image.
         /// </summary>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 4 </since_tizen>
         public CameraPixelFormat Format { get; }
 
         /// <summary>
         /// The resolution of the still image.
         /// </summary>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 4 </since_tizen>
         public Size Resolution { get; }
 
         /// <summary>
         /// The buffer containing the still image.
         /// </summary>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 4 </since_tizen>
         public byte[] Data { get; }
 
         /// <summary>
         /// The Exif data describing additional metadata of still image.
         /// Please refer Exif specification for more details.
         /// </summary>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 4 </since_tizen>
         public byte[] Exif { get; }
     }
 }

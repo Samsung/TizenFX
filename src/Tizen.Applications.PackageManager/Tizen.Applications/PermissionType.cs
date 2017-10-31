@@ -21,6 +21,7 @@ namespace Tizen.Applications
     /// <summary>
     /// Enumeration for the permission types.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public enum PermissionType
     {
         /// <summary>

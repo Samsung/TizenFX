@@ -22,11 +22,13 @@ namespace Tizen.Multimedia.Util
     /// <summary>
     /// Provides the ability to transform an image.
     /// </summary>
+    /// <since_tizen> 4 </since_tizen>
     public class ImageTransformer : IDisposable
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="ImageTransformer"/> class.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         public ImageTransformer()
         {
         }
@@ -44,6 +46,7 @@ namespace Tizen.Multimedia.Util
         /// </exception>
         /// <exception cref="ObjectDisposedException">The <see cref="ImageTransformer"/> has already been disposed of.</exception>
         /// <exception cref="InvalidOperationException">Failed to apply <see cref="ImageTransform"/>.</exception>
+        /// <since_tizen> 4 </since_tizen>
         public Task<MediaPacket> TransformAsync(MediaPacket source, ImageTransform item)
         {
             if (_disposed)
@@ -71,6 +74,7 @@ namespace Tizen.Multimedia.Util
         /// Releases the unmanaged resources used by the ImageTransformer.
         /// </summary>
         /// <param name="disposing">true to release both managed and unmanaged resources; false to release only unmanaged resources.</param>
+        /// <since_tizen> 4 </since_tizen>
         protected virtual void Dispose(bool disposing)
         {
             if (!_disposed)
@@ -82,6 +86,7 @@ namespace Tizen.Multimedia.Util
         /// <summary>
         /// Releases all resources used by the ImageTransformer.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         public void Dispose()
         {
             Dispose(true);

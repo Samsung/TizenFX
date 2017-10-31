@@ -23,11 +23,13 @@ namespace Tizen.Account.AccountManager
     /// <summary>
     /// Represents a wrapper class for a unmanaged Account handle.
     /// </summary>
+    /// <since_tizen> 4 </since_tizen>
     public sealed class SafeAccountHandle : SafeHandle
     {
         /// <summary>
         /// Initializes a new instance of the SafeAppControlHandle class.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         public SafeAccountHandle() : base(IntPtr.Zero, true)
         {
         }
@@ -37,6 +39,7 @@ namespace Tizen.Account.AccountManager
         /// </summary>
         /// <param name="existingHandle">An IntPtr object that represents the pre-existing handle to use.</param>
         /// <param name="ownsHandle">true to reliably release the handle during the finalization phase; false to prevent reliable release.</param>
+        /// <since_tizen> 4 </since_tizen>
         public SafeAccountHandle(IntPtr existingHandle, bool ownsHandle) : base(IntPtr.Zero, ownsHandle)
         {
             SetHandle(existingHandle);
@@ -45,6 +48,7 @@ namespace Tizen.Account.AccountManager
         /// <summary>
         /// Gets a value that indicates whether the handle is invalid.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         public override bool IsInvalid
         {
             get { return this.handle == IntPtr.Zero; }

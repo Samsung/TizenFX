@@ -22,6 +22,7 @@ namespace Tizen.Applications
     /// <summary>
     /// This class is a parameter of the GetInstalledApplicationsAsync method.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public class ApplicationInfoMetadataFilter : ApplicationInfoFilter
     {
     }

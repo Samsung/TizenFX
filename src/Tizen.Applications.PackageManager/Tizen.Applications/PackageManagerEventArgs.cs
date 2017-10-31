@@ -21,6 +21,7 @@ namespace Tizen.Applications
     /// <summary>
     /// PackageManagerEventArgs class. This class is an event arguments of the InstallProgressChanged, UninstallProgressChanged, and UpdateProgressChanged events.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public class PackageManagerEventArgs : EventArgs
     {
         private readonly PackageType _packageType;
@@ -39,21 +40,25 @@ namespace Tizen.Applications
         /// <summary>
         /// Type of the package to be installed, uninstalled, or updated.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public PackageType PackageType { get { return _packageType; } }
 
         /// <summary>
         /// Package ID to be installed, uninstalled, or updated.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public string PackageId { get { return _packageId; } }
 
         /// <summary>
         /// Current state of the request to the package manager.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public PackageEventState State { get { return _state; } }
 
         /// <summary>
         /// Progress for the request being processed by the package manager (in percent).
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public int Progress { get { return _progress; } }
     }
 }

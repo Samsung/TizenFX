@@ -22,6 +22,7 @@ namespace Tizen.Multimedia
     /// <summary>
     /// Represents an audio media format. This class cannot be inherited.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public sealed class AudioMediaFormat : MediaFormat
     {
 
@@ -38,6 +39,7 @@ namespace Tizen.Multimedia
         /// <exception cref="ArgumentOutOfRangeException">
         ///     <paramref name="channel"/>, <paramref name="sampleRate"/>, <paramref name="bit"/>, or <paramref name="bitRate"/> is less than zero.
         /// </exception>
+        /// <since_tizen> 3 </since_tizen>
         public AudioMediaFormat(MediaFormatAudioMimeType mimeType,
             int channel, int sampleRate, int bit, int bitRate)
         : this(mimeType, channel, sampleRate, bit, bitRate, MediaFormatAacType.None)
@@ -62,6 +64,7 @@ namespace Tizen.Multimedia
         /// <exception cref="ArgumentOutOfRangeException">
         ///     <paramref name="channel"/>, <paramref name="sampleRate"/>, <paramref name="bit"/>, or <paramref name="bitRate"/> is less than zero.
         /// </exception>
+        /// <since_tizen> 3 </since_tizen>
         public AudioMediaFormat(MediaFormatAudioMimeType mimeType,
             int channel, int sampleRate, int bit, int bitRate, MediaFormatAacType aacType)
             : base(MediaFormatType.Audio)
@@ -221,37 +224,44 @@ namespace Tizen.Multimedia
         /// <summary>
         /// Gets the mime type of the current format.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public MediaFormatAudioMimeType MimeType { get; }
 
         /// <summary>
         /// Gets the channel value of the current format.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public int Channel { get; }
 
         /// <summary>
         /// Gets the sample rate value of the current format.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public int SampleRate { get; }
 
         /// <summary>
         /// Gets the bit value of the current format.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public int Bit { get; }
 
         /// <summary>
         /// Gets the bit rate value of the current format.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public int BitRate { get; }
 
         /// <summary>
         /// Gets the AAC type of the current format.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public MediaFormatAacType AacType { get; }
 
         /// <summary>
         /// Returns a string that represents the current object.
         /// </summary>
         /// <returns>A string that represents the current object.</returns>
+        /// <since_tizen> 3 </since_tizen>
         public override string ToString()
             => $@"MimeType={ MimeType.ToString() }, Channel={ Channel.ToString() }, SampleRate=
                 { SampleRate }, Bit={ Bit.ToString() }, BitRate={ BitRate.ToString() }, AacType={ AacType.ToString() }";
@@ -261,6 +271,7 @@ namespace Tizen.Multimedia
         /// </summary>
         /// <param name="obj">A <see cref="Object"/> to compare.</param>
         /// <returns>true if the formats are equal; otherwise, false.</returns>
+        /// <since_tizen> 3 </since_tizen>
         public override bool Equals(object obj)
         {
             var rhs = obj as AudioMediaFormat;
@@ -277,6 +288,7 @@ namespace Tizen.Multimedia
         /// Gets the hash code for this instance of <see cref="AudioMediaFormat"/>.
         /// </summary>
         /// <returns>The hash code for this instance of <see cref="AudioMediaFormat"/>.</returns>
+        /// <since_tizen> 3 </since_tizen>
         public override int GetHashCode()
             => new { MimeType, Channel, SampleRate, Bit, BitRate }.GetHashCode();
     }

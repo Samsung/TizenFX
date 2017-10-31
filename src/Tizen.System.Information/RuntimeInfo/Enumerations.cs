@@ -84,6 +84,7 @@ namespace Tizen.System
     /// <summary>
     /// Enumeration for the GPS status.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public enum GpsStatus
     {
         /// <summary>
@@ -103,6 +104,7 @@ namespace Tizen.System
     /// <summary>
     /// Enumeration for the type of audio jack connected.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public enum AudioJackConnectionType
     {
         /// <summary>

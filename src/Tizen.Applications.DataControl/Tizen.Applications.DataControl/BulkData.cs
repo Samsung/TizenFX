@@ -21,6 +21,7 @@ namespace Tizen.Applications.DataControl
     /// <summary>
     /// Represents the BulkData class for the DataControl bulk request.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public class BulkData : IDisposable
     {
         private bool _disposed = false;
@@ -30,6 +31,7 @@ namespace Tizen.Applications.DataControl
         /// Initializes the BulkData class.
         /// </summary>
         /// <exception cref="InvalidOperationException">Thrown in case of any internal error.</exception>
+        /// <since_tizen> 3 </since_tizen>
         public BulkData()
         {
             ResultType ret;
@@ -84,6 +86,7 @@ namespace Tizen.Applications.DataControl
         /// </summary>
         /// <param name="data">Bulk data</param>
         /// <exception cref="ArgumentException">Thrown in case of an invalid parameter.</exception>
+        /// <since_tizen> 3 </since_tizen>
         public void Add(Bundle data)
         {
             ResultType ret;
@@ -103,6 +106,7 @@ namespace Tizen.Applications.DataControl
         /// <summary>
         /// Gets the current data count.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public int GetCount()
         {
             int count;
@@ -122,6 +126,7 @@ namespace Tizen.Applications.DataControl
         /// </summary>
         /// <param name="index">The target data index.</param>
         /// <exception cref="ArgumentException">Thrown in case of an invalid parameter.</exception>
+        /// <since_tizen> 3 </since_tizen>
         public Bundle GetData(int index)
         {
             IntPtr bundlePtr;
@@ -146,6 +151,7 @@ namespace Tizen.Applications.DataControl
         /// <summary>
         /// Releases all the resources used by the BulkData class.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public void Dispose()
         {
             Dispose(true);
@@ -156,6 +162,7 @@ namespace Tizen.Applications.DataControl
         /// Releases any unmanaged resources used by this object. Can also dispose any other disposable objects.
         /// </summary>
         /// <param name="disposing">If true, disposes any disposable objects. If false, does not dispose disposable objects.</param>
+        /// <since_tizen> 3 </since_tizen>
         protected virtual void Dispose(bool disposing)
         {
             if (!_disposed)
@@ -181,6 +188,7 @@ namespace Tizen.Applications.DataControl
     /// <summary>
     /// Represents the BulkResultData class for the DataControl bulk request.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public class BulkResultData : IDisposable
     {
         private const string LogTag = "Tizen.Applications.DataControl";
@@ -190,6 +198,7 @@ namespace Tizen.Applications.DataControl
         /// Initializes the BulkResultData class.
         /// </summary>
         /// <exception cref="InvalidOperationException">Thrown in case of any internal error.</exception>
+        /// <since_tizen> 3 </since_tizen>
         public BulkResultData()
         {
             ResultType ret;
@@ -240,6 +249,7 @@ namespace Tizen.Applications.DataControl
         /// <param name="data">The result data.</param>
         /// <param name="result">Result.</param>
         /// <exception cref="ArgumentException">Thrown in case of an invalid parameter.</exception>
+        /// <since_tizen> 3 </since_tizen>
         public void Add(Bundle data, int result)
         {
             ResultType ret;
@@ -264,6 +274,7 @@ namespace Tizen.Applications.DataControl
         /// <summary>
         /// Gets the current result data count.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public int GetCount()
         {
             int count;
@@ -283,6 +294,7 @@ namespace Tizen.Applications.DataControl
         /// </summary>
         /// <param name="index">The target result data index.</param>
         /// <exception cref="ArgumentException">Thrown in case of an invalid parameter.</exception>
+        /// <since_tizen> 3 </since_tizen>
         public Bundle GetData(int index)
         {
             IntPtr bundlePtr;
@@ -310,6 +322,7 @@ namespace Tizen.Applications.DataControl
         /// </summary>
         /// <param name="index">The target result index.</param>
         /// <exception cref="ArgumentException">Thrown in case of an invalid parameter.</exception>
+        /// <since_tizen> 3 </since_tizen>
         public int GetResult(int index)
         {
             IntPtr bundlePtr;
@@ -333,6 +346,7 @@ namespace Tizen.Applications.DataControl
         /// <summary>
         /// Releases all the resources used by the BulkResultData class.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public void Dispose()
         {
             Dispose(true);
@@ -343,6 +357,7 @@ namespace Tizen.Applications.DataControl
         /// Releases any unmanaged resources used by this object. Can also dispose any other disposable objects.
         /// </summary>
         /// <param name="disposing">If true, disposes any disposable objects. If false, does not dispose disposable objects.</param>
+        /// <since_tizen> 3 </since_tizen>
         protected virtual void Dispose(bool disposing)
         {
             if (!_disposed)

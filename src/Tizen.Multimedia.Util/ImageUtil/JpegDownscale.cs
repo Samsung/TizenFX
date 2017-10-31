@@ -19,6 +19,7 @@ namespace Tizen.Multimedia.Util
     /// <summary>
     /// Specifies the JPEG Downscale options for decoding.
     /// </summary>
+    /// <since_tizen> 4 </since_tizen>
     public enum JpegDownscale
     {
         /// <summary>

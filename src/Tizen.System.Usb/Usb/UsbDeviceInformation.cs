@@ -21,6 +21,7 @@ namespace Tizen.System.Usb
     /// <summary>
     /// Device information for USB device.
     /// </summary>
+    /// <since_tizen> 4 </since_tizen>
     public class UsbDeviceInformation
     {
         private readonly UsbDevice _device;
@@ -34,6 +35,7 @@ namespace Tizen.System.Usb
         /// USB specification release number as binary-coded decimal.
         /// </summary>
         /// <exception cref="UnauthorizedAccessException">Throws exception if user has insufficient permission on device.</exception>
+        /// <since_tizen> 4 </since_tizen>
         public int UsbVersion
         {
             get
@@ -46,6 +48,7 @@ namespace Tizen.System.Usb
         /// <summary>
         /// Gets device class.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         public int Class
         {
             get
@@ -58,6 +61,7 @@ namespace Tizen.System.Usb
         /// <summary>
         /// Gets device sub class.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         public int Subclass
         {
             get
@@ -70,6 +74,7 @@ namespace Tizen.System.Usb
         /// <summary>
         /// Gets device protocol.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         public int Protocol
         {
             get
@@ -82,6 +87,7 @@ namespace Tizen.System.Usb
         /// <summary>
         /// Gets vendor id.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         public int VendorId
         {
             get
@@ -94,6 +100,7 @@ namespace Tizen.System.Usb
         /// <summary>
         /// Gets product id.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         public int ProductId
         {
             get
@@ -106,6 +113,7 @@ namespace Tizen.System.Usb
         /// <summary>
         /// Gets device release number in binary-coded decimal.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         public int DeviceVersion
         {
             get

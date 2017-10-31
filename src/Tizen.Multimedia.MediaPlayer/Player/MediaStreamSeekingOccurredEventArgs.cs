@@ -21,12 +21,14 @@ namespace Tizen.Multimedia
     /// <summary>
     /// Provides data for the <see cref="MediaStreamConfiguration.SeekingOccurred"/> event.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public class MediaStreamSeekingOccurredEventArgs : EventArgs
     {
         /// <summary>
         /// Initializes a new instance of the MediaStreamSeekingOccurredEventArgs class.
         /// </summary>
         /// <param name="offset">The value indicating the new position to seek.</param>
+        /// <since_tizen> 3 </since_tizen>
         public MediaStreamSeekingOccurredEventArgs(ulong offset)
         {
             Offset = offset;
@@ -35,12 +37,14 @@ namespace Tizen.Multimedia
         /// <summary>
         /// Gets the offset.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public ulong Offset { get; }
 
         /// <summary>
         /// Returns a string that represents the current object.
         /// </summary>
         /// <returns>A string that represents the current object.</returns>
+        /// <since_tizen> 3 </since_tizen>
         public override string ToString() => $"Offset : { Offset.ToString() }";
     }
 }

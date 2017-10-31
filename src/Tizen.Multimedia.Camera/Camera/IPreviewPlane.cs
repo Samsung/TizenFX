@@ -19,6 +19,7 @@ namespace Tizen.Multimedia
     /// <summary>
     /// Provides interface for various preview plane types.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public interface IPreviewPlane
     {
     }

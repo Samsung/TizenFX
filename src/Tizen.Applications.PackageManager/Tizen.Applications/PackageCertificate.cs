@@ -23,6 +23,7 @@ namespace Tizen.Applications
     /// <summary>
     /// This class provides information about the package certification.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public class PackageCertificate
     {
         private const string LogTag = "Tizen.Applications";
@@ -41,16 +42,19 @@ namespace Tizen.Applications
         /// <summary>
         /// Root certificate.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public string Root { get { return _root;  } }
 
         /// <summary>
         /// Intermediate certificate.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public string Intermediate { get { return _intermediate; } }
 
         /// <summary>
         /// Signer certificate.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public string Signer { get { return _signer; } }
 
         internal static IReadOnlyDictionary<CertificateType, PackageCertificate> GetPackageCertificates(IntPtr packageInfoHandle)

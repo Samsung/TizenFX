@@ -21,6 +21,7 @@ namespace Tizen.Sensor
     /// <summary>
     /// The Magnetometer changed event arguments class is used for storing the data returned by a magnetometer sensor.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public class MagnetometerDataUpdatedEventArgs : EventArgs
     {
         internal MagnetometerDataUpdatedEventArgs(float[] values)

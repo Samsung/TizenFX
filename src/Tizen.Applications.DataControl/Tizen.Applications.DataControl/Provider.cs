@@ -26,6 +26,7 @@ namespace Tizen.Applications.DataControl
     /// <summary>
     /// Represents the Provider class for the DataControl provider application.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public abstract class Provider : IDisposable
     {
         private const string LogTag = "Tizen.Applications.DataControl";
@@ -45,6 +46,7 @@ namespace Tizen.Applications.DataControl
         /// <summary>
         /// Gets the data ID.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public string DataID
         {
             get;
@@ -840,6 +842,7 @@ namespace Tizen.Applications.DataControl
         /// <exception cref="UnauthorizedAccessException">Thrown in case a permission is denied.</exception>
         /// <exception cref="InvalidOperationException">Thrown in case of any internal error.</exception>
         /// <privilege>http://tizen.org/privilege/datasharing</privilege>
+        /// <since_tizen> 3 </since_tizen>
         public void SendDataChange(ChangeType type, Bundle changedData)
         {
             ResultType ret;
@@ -866,6 +869,7 @@ namespace Tizen.Applications.DataControl
         /// </summary>
         /// <param name="dataID">The DataControl Data ID.</param>
         /// <exception cref="ArgumentException">Thrown in case of an invalid parameter.</exception>
+        /// <since_tizen> 3 </since_tizen>
         public Provider(string dataID)
         {
             if (string.IsNullOrEmpty(dataID))
@@ -883,6 +887,7 @@ namespace Tizen.Applications.DataControl
         /// <exception cref="UnauthorizedAccessException">Thrown in case a permission is denied.</exception>
         /// <exception cref="InvalidOperationException">Thrown in case of any internal error.</exception>
         /// <privilege>http://tizen.org/privilege/datasharing</privilege>
+        /// <since_tizen> 3 </since_tizen>
         public void Run()
         {
             ResultType ret;
@@ -965,6 +970,7 @@ namespace Tizen.Applications.DataControl
         /// <summary>
         /// Stops the Provider service.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public void Stop()
         {
             if (_isRunning == true)
@@ -986,26 +992,31 @@ namespace Tizen.Applications.DataControl
         /// <summary>
         /// Overrides this method if you want to handle the behavior when the select request is received.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         protected abstract SelectResult OnSelect(string query, string where, string[] columList, int columnCount, string order, int pageNum, int countPerPage);
 
         /// <summary>
         /// Overrides this method if you want to handle the behavior when the insert request is received.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         protected abstract InsertResult OnInsert(string query, Bundle insertData);
 
         /// <summary>
         /// Overrides this method if you want to handle the behavior when the update request is received.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         protected abstract UpdateResult OnUpdate(string query, string where, Bundle updateData);
 
         /// <summary>
         /// Overrides this method if you want to handle the behavior when the delete request is received.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         protected abstract DeleteResult OnDelete(string query, string where);
 
         /// <summary>
         /// Overrides this method if you want to handle the behavior when the bulk insert request is received.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         protected virtual BulkInsertResult OnBulkInsert(IEnumerable<string> query, BulkData bulkInsertData)
         {
             Log.Info(LogTag, "The OnBulkInsert is not implemented.");
@@ -1015,6 +1026,7 @@ namespace Tizen.Applications.DataControl
         /// <summary>
         /// Overrides this method if you want to handle the behavior when the map get request is received.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         protected virtual MapGetResult OnMapGet(string key)
         {
             Log.Info(LogTag, "The OnMapGet is not implemented.");
@@ -1024,6 +1036,7 @@ namespace Tizen.Applications.DataControl
         /// <summary>
         /// Overrides this method if you want to handle the behavior when the map add request is received.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         protected virtual MapAddResult OnMapAdd(string key, string value)
         {
             Log.Info(LogTag, "The OnMapAdd is not implemented.");
@@ -1033,6 +1046,7 @@ namespace Tizen.Applications.DataControl
         /// <summary>
         /// Overrides this method if you want to handle the behavior when the update request is received.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         protected virtual MapSetResult OnMapSet(string key, string oldValue, string newValue)
         {
             Log.Info(LogTag, "The OnMapSet is not implemented.");
@@ -1042,6 +1056,7 @@ namespace Tizen.Applications.DataControl
         /// <summary>
         /// Overrides this method if you want to handle the behavior when the delete request is received.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         protected virtual MapRemoveResult OnMapRemove(string key, string value)
         {
             Log.Info(LogTag, "The OnMapRemove is not implemented.");
@@ -1051,6 +1066,7 @@ namespace Tizen.Applications.DataControl
         /// <summary>
         /// Overrides this method if you want to handle the behavior when the bulk add request is received.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         protected virtual MapBulkAddResult OnMapBulkAdd(BulkData bulkAddData)
         {
             Log.Info(LogTag, "The OnMapBulkAdd is not implemented.");
@@ -1060,6 +1076,7 @@ namespace Tizen.Applications.DataControl
         /// <summary>
         /// Overrides this method if you want to handle the behavior when the data change listen request is received.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         protected virtual DataChangeListenResult OnDataChangeListenRequest(string requestAppID)
         {
             Log.Info(LogTag, "The OnDataChangeListenRequest is not implemented.");
@@ -1070,6 +1087,7 @@ namespace Tizen.Applications.DataControl
         /// Releases unmanaged resources used by the Provider class specifying whether to perform a normal dispose operation.
         /// </summary>
         /// <param name="disposing">true for a normal dispose operation; false to finalize the handle.</param>
+        /// <since_tizen> 3 </since_tizen>
         protected virtual void Dispose(bool disposing)
         {
             if (!_disposed)
@@ -1086,6 +1104,7 @@ namespace Tizen.Applications.DataControl
         /// <summary>
         /// Releases all the resources used by the Provider class.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public void Dispose()
         {
             Dispose(true);

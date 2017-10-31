@@ -21,6 +21,7 @@ namespace Tizen.Multimedia
     /// <summary>
     /// Provides data for the <see cref="Recorder.ErrorOccurred"/> event.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public class RecordingErrorOccurredEventArgs : EventArgs
     {
         internal RecordingErrorOccurredEventArgs(RecorderError error, RecorderState state)
@@ -31,6 +32,7 @@ namespace Tizen.Multimedia
         /// <summary>
         /// Gets the error.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public RecorderError Error { get; }
     }
 }

@@ -21,6 +21,7 @@ namespace Tizen.Sensor
     /// <summary>
     /// The RotationVectorSensor class is used for registering callbacks for the rotation vector sensor and getting the rotation vector data.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public sealed class RotationVectorSensor : Sensor
     {
         private static string RotationVectorKey = "http://tizen.org/feature/sensor.rotation_vector";

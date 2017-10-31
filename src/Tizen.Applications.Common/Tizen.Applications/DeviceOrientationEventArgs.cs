@@ -21,12 +21,14 @@ namespace Tizen.Applications
     /// <summary>
     /// The class for event arguments of the DeviceOrientationChanged.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public class DeviceOrientationEventArgs : EventArgs
     {
         /// <summary>
         /// Initializes the DeviceOrientationEventArgs class.
         /// </summary>
         /// <param name="orientation">The information of the DeviceOrientation</param>
+        /// <since_tizen> 3 </since_tizen>
         public DeviceOrientationEventArgs(DeviceOrientation orientation)
         {
             DeviceOrientation = orientation;
@@ -35,6 +37,7 @@ namespace Tizen.Applications
         /// <summary>
         /// The received DeviceOrientation.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public DeviceOrientation DeviceOrientation { get; private set; }
     }
 }

@@ -22,6 +22,7 @@ namespace Tizen.Multimedia
     /// <summary>
     /// Provides data for the <see cref="StreamRecorder.BufferConsumed"/> event.
     /// </summary>
+    /// <since_tizen> 4 </since_tizen>
     public class StreamRecorderBufferConsumedEventArgs : EventArgs
     {
         internal StreamRecorderBufferConsumedEventArgs(MediaPacket packet)
@@ -32,6 +33,7 @@ namespace Tizen.Multimedia
         /// <summary>
         /// Gets the packet that has consumed.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         public MediaPacket Packet { get; }
     }
 }

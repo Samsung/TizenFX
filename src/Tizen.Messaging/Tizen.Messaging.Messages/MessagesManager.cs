@@ -24,6 +24,7 @@ namespace Tizen.Messaging.Messages
     /// This class is used for the message management. It allows applications to use the message service.
     /// </summary>
     /// <privilege>http://tizen.org/privilege/message.read</privilege>
+    /// <since_tizen> 3 </since_tizen>
     public static class MessagesManager
     {
         /// <summary>
@@ -37,6 +38,7 @@ namespace Tizen.Messaging.Messages
         /// <exception cref="NotSupportedException">Thrown when the message service is not supported.</exception>
         /// <exception cref="ArgumentException">Thrown when input coordinates are invalid.</exception>
         /// <exception cref="UnauthorizedAccessException">Thrown when an application does not have proper privileges.</exception>
+        /// <since_tizen> 3 </since_tizen>
         public static Task<SentResult> SendMessageAsync(Message message, bool saveToSentbox)
         {
             return MessagesManagerImpl.Instance.SendMessageAsync(message, saveToSentbox);
@@ -53,6 +55,7 @@ namespace Tizen.Messaging.Messages
         /// <exception cref="ArgumentException">Thrown when input coordinates are invalid.</exception>
         /// <exception cref="OutOfMemoryException">Thrown when failed due to out of memory.</exception>
         /// <exception cref="UnauthorizedAccessException">Thrown when an application does not have proper privileges.</exception>
+        /// <since_tizen> 3 </since_tizen>
         public static Task<IEnumerable<Message>> SearchMessageAsync(MessagesSearchFilter filter)
         {
             return MessagesManagerImpl.Instance.SearchMessageAsync(filter);
@@ -62,6 +65,7 @@ namespace Tizen.Messaging.Messages
         /// The MessageReceived event that is raised when receiving a message.
         /// </summary>
         /// <privilege>http://tizen.org/privilege/message.read</privilege>
+        /// <since_tizen> 3 </since_tizen>
         static public event EventHandler<MessageReceivedEventArgs> MessageReceived
         {
             add

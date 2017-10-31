@@ -21,6 +21,7 @@ namespace Tizen.Multimedia
     /// <summary>
     /// Provides data for the <see cref="Camera.FocusStateChanged"/> event.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public class CameraFocusStateChangedEventArgs : EventArgs
     {
         internal CameraFocusStateChangedEventArgs(CameraFocusState state)

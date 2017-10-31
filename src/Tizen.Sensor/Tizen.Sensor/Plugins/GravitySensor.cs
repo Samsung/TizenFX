@@ -21,6 +21,7 @@ namespace Tizen.Sensor
     /// <summary>
     /// The GravitySensor class is used for registering callbacks for the gravity sensor and getting the gravity data.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public sealed class GravitySensor : Sensor
     {
         private const string GravitySensorKey = "http://tizen.org/feature/sensor.gravity";

@@ -23,12 +23,14 @@ namespace Tizen.Applications
     /// <summary>
     /// Represents a widget application.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public class WidgetApplication : CoreApplication
     {
         /// <summary>
         /// Initializes the WidgetApplication class with the type and application ID.
         /// </summary>
         /// <param name="typeInfo">Map structure for the derived class type and widget ID.</param>
+        /// <since_tizen> 3 </since_tizen>
         public WidgetApplication(IDictionary<Type, string> typeInfo) : base(new WidgetCoreBackend())
         {
             WidgetCoreBackend core = Backend as WidgetCoreBackend;
@@ -41,6 +43,7 @@ namespace Tizen.Applications
         /// </summary>
         /// <remarks>Widget ID will be replaced as the application ID.</remarks>
         /// <param name="type">Derived class type.</param>
+        /// <since_tizen> 3 </since_tizen>
         public WidgetApplication(Type type) : base(new WidgetCoreBackend())
         {
             WidgetCoreBackend core = Backend as WidgetCoreBackend;
@@ -52,6 +55,7 @@ namespace Tizen.Applications
         /// Gets all instances of the widget associated with the type.
         /// </summary>
         /// <param name="type">Class type for the widget.</param>
+        /// <since_tizen> 3 </since_tizen>
         public IEnumerable<WidgetBase> GetInstances(Type type)
         {
             WidgetCoreBackend core = Backend as WidgetCoreBackend;
@@ -74,6 +78,7 @@ namespace Tizen.Applications
         /// Runs the widget application's main loop.
         /// </summary>
         /// <param name="args">Arguments from the commandline.</param>
+        /// <since_tizen> 3 </since_tizen>
         public override void Run(string[] args)
         {
             base.Run(args);

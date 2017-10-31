@@ -22,6 +22,7 @@ namespace Tizen.Content.MediaContent
     /// <summary>
     /// Represents a video media information.
     /// </summary>
+    /// <since_tizen> 4 </since_tizen>
     public class VideoInfo : MediaInfo
     {
         internal VideoInfo(Interop.MediaInfoHandle handle) : base(handle)
@@ -59,78 +60,91 @@ namespace Tizen.Content.MediaContent
         /// Gets the album name.
         /// </summary>
         /// <value>The album name from the metadata.</value>
+        /// <since_tizen> 4 </since_tizen>
         public string Album { get; }
 
         /// <summary>
         /// Gets the artist name.
         /// </summary>
         /// <value>The artist name from the metadata.</value>
+        /// <since_tizen> 4 </since_tizen>
         public string Artist { get; }
 
         /// <summary>
         /// Gets the album artist name.
         /// </summary>
         /// <value>The album artist name from the metadata.</value>
+        /// <since_tizen> 4 </since_tizen>
         public string AlbumArtist { get; }
 
         /// <summary>
         /// Gets the genre.
         /// </summary>
         /// <value>The genre name from the metadata.</value>
+        /// <since_tizen> 4 </since_tizen>
         public string Genre { get; }
 
         /// <summary>
         /// Gets the composer name.
         /// </summary>
         /// <value>The composer name from the metadata.</value>
+        /// <since_tizen> 4 </since_tizen>
         public string Composer { get; }
 
         /// <summary>
         /// Gets the year.
         /// </summary>
         /// <value>The year from the metadata.</value>
+        /// <since_tizen> 4 </since_tizen>
         public string Year { get; }
 
         /// <summary>
         /// Gets the recorded date.
         /// </summary>
         /// <value>The recorded date information from the metadata if exists; otherwise, the modified date of the file.</value>
+        /// <since_tizen> 4 </since_tizen>
         public string DateRecorded { get; }
 
         /// <summary>
         /// Gets the copyright notice.
         /// </summary>
         /// <value>The copyright notice from the metadata.</value>
+        /// <since_tizen> 4 </since_tizen>
         public string Copyright { get; }
 
         /// <summary>
         /// Gets the track number.
         /// </summary>
         /// <value>The track number from the metadata.</value>
+        /// <since_tizen> 4 </since_tizen>
         public string TrackNumber { get; }
 
         /// <summary>
         /// Gets the bitrate in bit per second.
         /// </summary>
         /// <value>The bit rate of the video.</value>
+        /// <since_tizen> 4 </since_tizen>
         public int BitRate { get; }
 
         /// <summary>
         /// Gets the track duration in milliseconds.
         /// </summary>
         /// <value>The track duration of the video in milliseconds.</value>
+        /// <since_tizen> 4 </since_tizen>
         public int Duration { get; }
 
         /// <summary>
         /// Gets the video width in pixels.
         /// </summary>
         /// <value>The width of the video in pixels.</value>
+        /// <since_tizen> 4 </since_tizen>
         public int Width { get; }
 
         /// <summary>
         /// Gets the video height in pixels.
         /// </summary>
         /// <value>The height of the video in pixels.</value>
+        /// <since_tizen> 4 </since_tizen>
         public int Height { get; }
 
     }

@@ -21,6 +21,7 @@ namespace Tizen.Applications
     /// <summary>
     /// Enumeration for the certificate compare result type.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public enum CertCompareResultType
     {
         /// <summary>

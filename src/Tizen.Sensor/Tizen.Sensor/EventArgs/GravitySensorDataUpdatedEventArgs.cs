@@ -21,6 +21,7 @@ namespace Tizen.Sensor
     /// <summary>
     /// The GravitySensor changed event arguments class is used for storing the data returned by a gravity sensor.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public class GravitySensorDataUpdatedEventArgs : EventArgs
     {
         internal GravitySensorDataUpdatedEventArgs(float[] values)

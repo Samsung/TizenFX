@@ -26,26 +26,31 @@ namespace Tizen.Applications.NotificationEventListener
         /// <summary>
         /// Class to get infomation about notification accessory.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         public class AccessoryArgs
         {
             /// <summary>
             /// Gets the sound option.
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public AccessoryOption SoundOption { get; internal set; }
 
             /// <summary>
             /// Gets the sound path.
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public string SoundPath { get; internal set; }
 
             /// <summary>
             /// Gets the vibration option.
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public bool CanVibrate { get; internal set; }
 
             /// <summary>
             /// Gets the LED option.
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public AccessoryOption LedOption { get; internal set; }
 
             /// <summary>
@@ -55,6 +60,7 @@ namespace Tizen.Applications.NotificationEventListener
             /// Default value of LedOnMilliseconds is 0.
             /// The rate is specified in terms of the number of milliseconds to be on.
             /// </value>
+            /// <since_tizen> 4 </since_tizen>
             public int LedOnMillisecond { get; internal set; }
 
             /// <summary>
@@ -64,11 +70,13 @@ namespace Tizen.Applications.NotificationEventListener
             /// Default value of LedOffMillisecond is 0.
             /// The rate is specified in terms of the number of millisecond to be off.
             /// </value>
+            /// <since_tizen> 4 </since_tizen>
             public int LedOffMillisecond { get; internal set; }
 
             /// <summary>
             /// Gets LED color that you would like the LED on the device to blink.
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public Color LedColor { get; internal set; }
         }
     }

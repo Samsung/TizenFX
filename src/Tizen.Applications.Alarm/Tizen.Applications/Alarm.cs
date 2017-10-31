@@ -31,6 +31,7 @@ namespace Tizen.Applications
     /// }
     /// </code>
     /// </example>
+    /// <since_tizen> 3 </since_tizen>
     public class Alarm
     {
         private const string _logTag = "Tizen.Applications.Alarm";
@@ -47,6 +48,7 @@ namespace Tizen.Applications
         /// <summary>
         /// The alarm ID uniquely identifies an alarm.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public int AlarmId
         {
             get; private set;
@@ -59,6 +61,7 @@ namespace Tizen.Applications
         /// <remarks>
         /// week_flag may be a combination of days, like Tuesday | Friday.
         /// </remarks>
+        /// <since_tizen> 3 </since_tizen>
         public AlarmWeekFlag WeekFlag
         {
             get
@@ -78,6 +81,7 @@ namespace Tizen.Applications
         /// Gets the scheduled time.
         /// </summary>
         /// <privilege>http://tizen.org/privilege/alarm.get</privilege>
+        /// <since_tizen> 3 </since_tizen>
         public DateTime ScheduledDate
         {
             get
@@ -98,6 +102,7 @@ namespace Tizen.Applications
         /// Gets the period of time between the recurrent alarms.
         /// </summary>
         /// <privilege>http://tizen.org/privilege/alarm.get</privilege>
+        /// <since_tizen> 3 </since_tizen>
         public int Period
         {
             get
@@ -117,6 +122,7 @@ namespace Tizen.Applications
         /// Gets the AppControl to be invoked when the the alarm is triggered.
         /// </summary>
         /// <privilege>http://tizen.org/privilege/alarm.get</privilege>
+        /// <since_tizen> 3 </since_tizen>
         public AppControl AlarmAppControl
         {
             get
@@ -138,6 +144,7 @@ namespace Tizen.Applications
         /// </summary>
         /// <privilege>http://tizen.org/privilege/alarm.set</privilege>
         /// <privilege>http://tizen.org/privilege/alarm.get</privilege>
+        /// <since_tizen> 3 </since_tizen>
         public bool Global
         {
             get
@@ -169,6 +176,7 @@ namespace Tizen.Applications
         /// <exception cref="UnauthorizedAccessException">Thrown in case of a permission denied due to insufficient privileges.</exception>
         /// <exception cref="InvalidOperationException">Thrown in case of any internal error.</exception>
         /// <privilege>http://tizen.org/privilege/alarm.set</privilege>
+        /// <since_tizen> 3 </since_tizen>
         public void Cancel()
         {
             AlarmError ret = (AlarmError)Interop.Alarm.CancelAlarm(AlarmId);

@@ -19,6 +19,7 @@ namespace Tizen.Multimedia
     /// <summary>
     /// Specifies <see cref="Radio"/> interrupted reasons.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public enum RadioInterruptedReason
     {
         /// <summary>

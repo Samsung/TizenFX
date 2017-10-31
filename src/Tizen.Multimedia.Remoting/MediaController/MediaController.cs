@@ -23,6 +23,7 @@ namespace Tizen.Multimedia.Remoting
     /// <summary>
     /// Provides a means to to send commands to and handle events from media control server.
     /// </summary>
+    /// <since_tizen> 4 </since_tizen>
     public class MediaController
     {
         internal MediaController(MediaControllerManager manager, string serverAppId)
@@ -40,12 +41,14 @@ namespace Tizen.Multimedia.Remoting
         /// Gets the application id of the server.
         /// </summary>
         /// <value>The server application id.</value>
+        /// <since_tizen> 4 </since_tizen>
         public string ServerAppId { get; }
 
         /// <summary>
         /// Gets a value indicating whether the sever has been stopped.
         /// </summary>
         /// <value>true if the server has been stopped; otherwise, false.</value>
+        /// <since_tizen> 4 </since_tizen>
         public bool IsStopped
         {
             get;
@@ -63,6 +66,7 @@ namespace Tizen.Multimedia.Remoting
         /// <summary>
         /// Occurs when the server is stopped.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         public event EventHandler ServerStopped;
 
         internal void RaiseStoppedEvent()
@@ -74,6 +78,7 @@ namespace Tizen.Multimedia.Remoting
         /// <summary>
         /// Occurs when the playback state is updated.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         public event EventHandler<PlaybackStateUpdatedEventArgs> PlaybackStateUpdated;
 
         private PlaybackStateUpdatedEventArgs CreatePlaybackUpdatedEventArgs(IntPtr playbackHandle)
@@ -113,6 +118,7 @@ namespace Tizen.Multimedia.Remoting
         /// <summary>
         /// Occurs when the metadata is updated.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         public event EventHandler<MetadataUpdatedEventArgs> MetadataUpdated;
 
         private MetadataUpdatedEventArgs CreateMetadataUpdatedEventArgs(IntPtr metadataHandle)
@@ -148,6 +154,7 @@ namespace Tizen.Multimedia.Remoting
         /// <summary>
         /// Occurs when the shuffle mode is updated.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         public event EventHandler<ShuffleModeUpdatedEventArgs> ShuffleModeUpdated;
 
         internal void RaiseShuffleModeUpdatedEvent(MediaControllerShuffleMode mode)
@@ -158,6 +165,7 @@ namespace Tizen.Multimedia.Remoting
         /// <summary>
         /// Occurs when the repeat mode is updated.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         public event EventHandler<RepeatModeUpdatedEventArgs> RepeatModeUpdated;
 
         internal void RaiseRepeatModeUpdatedEvent(MediaControlRepeatMode mode)
@@ -176,6 +184,7 @@ namespace Tizen.Multimedia.Remoting
         /// </exception>
         /// <exception cref="ObjectDisposedException">The <see cref="MediaControllerManager"/> has already been disposed of.</exception>
         /// <seealso cref="MediaControlServer.SetPlaybackState(MediaControlPlaybackState, long)"/>
+        /// <since_tizen> 4 </since_tizen>
         public MediaControlPlaybackState GetPlaybackState()
         {
             ThrowIfStopped();
@@ -210,6 +219,7 @@ namespace Tizen.Multimedia.Remoting
         /// </exception>
         /// <exception cref="ObjectDisposedException">The <see cref="MediaControllerManager"/> has already been disposed of.</exception>
         /// <seealso cref="MediaControlServer.SetPlaybackState(MediaControlPlaybackState, long)"/>
+        /// <since_tizen> 4 </since_tizen>
         public long GetPlaybackPosition()
         {
             ThrowIfStopped();
@@ -244,6 +254,7 @@ namespace Tizen.Multimedia.Remoting
         /// </exception>
         /// <exception cref="ObjectDisposedException">The <see cref="MediaControllerManager"/> has already been disposed of.</exception>
         /// <seealso cref="MediaControlServer.SetMetadata(MediaControlMetadata)"/>
+        /// <since_tizen> 4 </since_tizen>
         public MediaControlMetadata GetMetadata()
         {
             ThrowIfStopped();
@@ -277,6 +288,7 @@ namespace Tizen.Multimedia.Remoting
         /// </exception>
         /// <exception cref="ObjectDisposedException">The <see cref="MediaControllerManager"/> has already been disposed of.</exception>
         /// <seealso cref="MediaControlServer.SetShuffleModeEnabled(bool)"/>
+        /// <since_tizen> 4 </since_tizen>
         public bool IsShuffleModeEnabled()
         {
             ThrowIfStopped();
@@ -298,6 +310,7 @@ namespace Tizen.Multimedia.Remoting
         /// </exception>
         /// <exception cref="ObjectDisposedException">The <see cref="MediaControllerManager"/> has already been disposed of.</exception>
         /// <seealso cref="MediaControlServer.SetRepeatMode(MediaControlRepeatMode)"/>
+        /// <since_tizen> 4 </since_tizen>
         public MediaControlRepeatMode GetRepeatMode()
         {
             ThrowIfStopped();
@@ -319,6 +332,7 @@ namespace Tizen.Multimedia.Remoting
         /// <exception cref="ArgumentException"><paramref name="command"/> is not valid.</exception>
         /// <exception cref="ObjectDisposedException">The <see cref="MediaControllerManager"/> has already been disposed of.</exception>
         /// <seealso cref="MediaControlServer.PlaybackCommandReceived"/>
+        /// <since_tizen> 4 </since_tizen>
         public void SendPlaybackCommand(MediaControlPlaybackCommand command)
         {
             ThrowIfStopped();

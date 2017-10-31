@@ -28,10 +28,12 @@ namespace Tizen.Pims.Contacts
         /// <summary>
         /// First name comes at the first
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         FirstLast,
         /// <summary>
         /// First name comes at the last
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         LastFirst
     };
 
@@ -44,10 +46,12 @@ namespace Tizen.Pims.Contacts
         /// <summary>
         /// Contacts are first sorted based on the first name
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         FirstLast,
         /// <summary>
         /// Contacts are first sorted based on the last name
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         LastFirst
     };
 

@@ -21,6 +21,7 @@ namespace Tizen.Sensor
     /// <summary>
     /// The WristUpGestureDetector class is used for registering callbacks for the wrist up gesture detector and getting the wrist up state.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public sealed class WristUpGestureDetector : Sensor
     {
         private static string WristUpKey = "http://tizen.org/feature/sensor.wrist_up";

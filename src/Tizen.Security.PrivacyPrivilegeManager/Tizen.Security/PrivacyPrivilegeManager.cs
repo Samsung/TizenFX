@@ -23,6 +23,7 @@ namespace Tizen.Security
     /// <summary>
     /// The PrivacyPrivilegeManager provides the properties or methods to check and request a permission for privacy privilege.
     /// </summary>
+    /// <since_tizen> 4 </since_tizen>
     public static class PrivacyPrivilegeManager
     {
         private const string LogTag = "Tizen.Privilege";
@@ -70,6 +71,7 @@ namespace Tizen.Security
         ///     }
         /// </code>
         /// </example>
+        /// <since_tizen> 4 </since_tizen>
         public static CheckResult CheckPermission(string privilege)
         {
             Interop.PrivacyPrivilegeManager.CheckResult result;
@@ -107,6 +109,7 @@ namespace Tizen.Security
         ///     }
         /// </code>
         /// </example>
+        /// <since_tizen> 4 </since_tizen>
         public static void RequestPermission(string privilege)
         {
             int ret = (int)Interop.PrivacyPrivilegeManager.RequestPermission(privilege, s_requestResponseCb, IntPtr.Zero);
@@ -167,6 +170,7 @@ namespace Tizen.Security
         ///     }
         /// </code>
         /// </example>
+        /// <since_tizen> 4 </since_tizen>
         public static WeakReference<ResponseContext> GetResponseContext(string privilege)
         {
             if (!s_responseMap.ContainsKey(privilege))
@@ -180,6 +184,7 @@ namespace Tizen.Security
         /// This class manages event handlers of the privilege permission requests.
         /// This class enables having event handlers for an individual privilege.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         public class ResponseContext
         {
             private string _privilege;
@@ -192,6 +197,7 @@ namespace Tizen.Security
             /// Occurs when the response for a permission request is fetched.
             /// </summary>
             /// <exception cref="System.InvalidOperationException">Thrown when the bundle instance has been disposed.</exception>
+            /// <since_tizen> 4 </since_tizen>
             public event EventHandler<RequestResponseEventArgs> ResponseFetched
             {
                 add

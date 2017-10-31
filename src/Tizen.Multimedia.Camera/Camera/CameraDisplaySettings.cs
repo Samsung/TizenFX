@@ -24,6 +24,7 @@ namespace Tizen.Multimedia
     /// It allows to set and get various display properties, such as
     /// rotation, display visibility, and display mode.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public class CameraDisplaySettings
     {
         internal readonly Camera _camera;

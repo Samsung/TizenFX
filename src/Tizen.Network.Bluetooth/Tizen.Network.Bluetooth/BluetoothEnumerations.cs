@@ -22,6 +22,7 @@ namespace Tizen.Network.Bluetooth
     /// <summary>
     /// Enumeration for the Bluetooth states.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public enum BluetoothState
     {
         /// <summary>
@@ -37,6 +38,7 @@ namespace Tizen.Network.Bluetooth
     /// <summary>
     /// Enumeration for the Bluetooth errors.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public enum BluetoothError
     {
         /// <summary>
@@ -140,6 +142,7 @@ namespace Tizen.Network.Bluetooth
     /// <summary>
     /// Enumeration for the Bluetooth visibility modes.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public enum VisibilityMode
     {
         /// <summary>
@@ -159,6 +162,7 @@ namespace Tizen.Network.Bluetooth
     /// <summary>
     /// Enumeration for the Bluetooth major device class types.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public enum BluetoothMajorDeviceClassType
     {
         /// <summary>
@@ -210,6 +214,7 @@ namespace Tizen.Network.Bluetooth
     /// <summary>
     /// Enumeration for the Bluetooth minor device class types.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public enum BluetoothMinorDeviceClassType
     {
         /// <summary>
@@ -541,6 +546,7 @@ namespace Tizen.Network.Bluetooth
     /// <summary>
     /// Enumeration for the Bluetooth device discovery states.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public enum BluetoothDeviceDiscoveryState
     {
         /// <summary>
@@ -560,6 +566,7 @@ namespace Tizen.Network.Bluetooth
     /// <summary>
     /// Enumeration for the Bluetooth appearance types.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public enum BluetoothAppearanceType
     {
         /// <summary>
@@ -583,6 +590,7 @@ namespace Tizen.Network.Bluetooth
     /// <summary>
     /// Enumeration for the Bluetooth audio profile types.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public enum BluetoothAudioProfileType
     {
         /// <summary>
@@ -610,6 +618,7 @@ namespace Tizen.Network.Bluetooth
     /// <summary>
     /// Enumeration for the Bluetooth service class types.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public enum BluetoothServiceClassType
     {
         /// <summary>
@@ -721,6 +730,7 @@ namespace Tizen.Network.Bluetooth
     /// <summary>
     /// Enumeration for the Bluetooth profile types.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public enum BluetoothProfileType
     {
         /// <summary>
@@ -764,6 +774,7 @@ namespace Tizen.Network.Bluetooth
     /// <summary>
     /// Enumeration for the Bluetooth authorization types.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public enum BluetoothAuthorizationType
     {
         /// <summary>
@@ -779,6 +790,7 @@ namespace Tizen.Network.Bluetooth
     /// <summary>
     /// Enumeration for the Bluetooth connection link types.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public enum BluetoothConnectionLinkType
     {
         /// <summary>
@@ -798,6 +810,7 @@ namespace Tizen.Network.Bluetooth
     /// <summary>
     /// Enumeration for the Bluetooth disconnect reason.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public enum BluetoothDisconnectReason
     {
         /// <summary>
@@ -821,6 +834,7 @@ namespace Tizen.Network.Bluetooth
     /// <summary>
     /// Enumeration for the connected Bluetooth device event roles.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public enum BluetoothSocketRole
     {
         /// <summary>
@@ -840,6 +854,7 @@ namespace Tizen.Network.Bluetooth
     /// <summary>
     /// Enumeration for the Bluetooth socket connection states.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public enum BluetoothSocketState
     {
         /// <summary>
@@ -855,6 +870,7 @@ namespace Tizen.Network.Bluetooth
     /// <summary>
     /// Enumeration for the equalizer states.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public enum EqualizerState
     {
         /// <summary>
@@ -870,6 +886,7 @@ namespace Tizen.Network.Bluetooth
     /// <summary>
     /// Enumeration for the repeat modes.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public enum RepeatMode
     {
         /// <summary>
@@ -893,6 +910,7 @@ namespace Tizen.Network.Bluetooth
     /// <summary>
     /// Enumeration for the shuffle modes.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public enum ShuffleMode
     {
         /// <summary>
@@ -912,6 +930,7 @@ namespace Tizen.Network.Bluetooth
     /// <summary>
     /// Enumeration for the scan modes.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public enum ScanMode
     {
         /// <summary>
@@ -931,6 +950,7 @@ namespace Tizen.Network.Bluetooth
     /// <summary>
     /// Enumeration for the player states.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public enum PlayerState
     {
         /// <summary>
@@ -958,6 +978,7 @@ namespace Tizen.Network.Bluetooth
     /// <summary>
     /// Enumeration for the Bluetooth LE device address types.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public enum BluetoothLeDeviceAddressType
     {
         /// <summary>
@@ -973,6 +994,7 @@ namespace Tizen.Network.Bluetooth
     /// <summary>
     /// Enumeration for the Bluetooth LePacket types.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public enum BluetoothLePacketType
     {
         /// <summary>
@@ -988,6 +1010,7 @@ namespace Tizen.Network.Bluetooth
     /// <summary>
     /// Enumeration for the Bluetooth LE data types.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public enum BluetoothLeDataType
     {
         /// <summary>
@@ -1003,6 +1026,7 @@ namespace Tizen.Network.Bluetooth
     /// <summary>
     /// Enumeration for the Bluetooth LE advertising mode types.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public enum BluetoothLeAdvertisingMode
     {
         /// <summary>
@@ -1022,6 +1046,7 @@ namespace Tizen.Network.Bluetooth
     /// <summary>
     /// Enumeration for the Bluetooth LE advertising mode type.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public enum BluetoothLeAdvertisingState
     {
         /// <summary>
@@ -1037,6 +1062,7 @@ namespace Tizen.Network.Bluetooth
     /// <summary>
     /// Enumeration for the integer type for GATT handle's values.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public enum IntDataType
     {
         /// <summary>
@@ -1068,6 +1094,7 @@ namespace Tizen.Network.Bluetooth
     /// <summary>
     /// Enumerations of the float type for GATT handle's values.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public enum FloatDataType
     {
         /// <summary>
@@ -1083,6 +1110,7 @@ namespace Tizen.Network.Bluetooth
     /// <summary>
     /// Enumeration for the GATT handle's types.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public enum GattHandleType
     {
         /// <summary>
@@ -1102,6 +1130,7 @@ namespace Tizen.Network.Bluetooth
     /// <summary>
     /// Enumeration for the service types.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public enum BluetoothGattServiceType
     {
         /// <summary>
@@ -1117,6 +1146,7 @@ namespace Tizen.Network.Bluetooth
     /// <summary>
     /// Enumeration for the characteristic's property.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     [Flags]
     public enum BluetoothGattProperty
     {
@@ -1157,6 +1187,7 @@ namespace Tizen.Network.Bluetooth
     /// <summary>
     /// Enumeration for the Bluetooth GATT permission types.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     [Flags]
     public enum BluetoothGattPermission
     {
@@ -1173,6 +1204,7 @@ namespace Tizen.Network.Bluetooth
     /// <summary>
     /// Enumeration for the write types.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public enum BluetoothGattWriteType
     {
         /// <summary>
@@ -1188,6 +1220,7 @@ namespace Tizen.Network.Bluetooth
     /// <summary>
     /// Enumeration for the remote device request types for attributes.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public enum BluetoothGattRequestType
     {
         /// <summary>

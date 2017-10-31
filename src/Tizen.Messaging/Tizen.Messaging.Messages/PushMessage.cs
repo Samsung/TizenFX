@@ -21,6 +21,7 @@ namespace Tizen.Messaging.Messages
     /// <summary>
     /// This class represents the WAP push messages.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public class PushMessage : Message
     {
         internal PushMessage(IntPtr messageHandle) : base(messageHandle)

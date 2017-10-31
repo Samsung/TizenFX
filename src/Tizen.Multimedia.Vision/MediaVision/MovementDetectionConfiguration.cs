@@ -23,7 +23,7 @@ namespace Tizen.Multimedia.Vision
     /// </summary>
     /// <feature>http://tizen.org/feature/vision.face_recognition</feature>
     /// <feature>http://tizen.org/feature/vision.image_recognition</feature>
-    /// <since_tizen> 3 </since_tizen>
+    /// <since_tizen> 4 </since_tizen>
     public class MovementDetectionConfiguration : SurveillanceEngineConfiguration
     {
         private const string KeyThreshold = "MV_SURVEILLANCE_MOVEMENT_DETECTION_THRESHOLD";
@@ -31,14 +31,14 @@ namespace Tizen.Multimedia.Vision
         /// <summary>
         /// A read-only field that represents the default value of <see cref="Threshold"/>.
         /// </summary>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 4 </since_tizen>
         public static readonly int DefaultThreshold = 10;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="MovementDetectionConfiguration"/> class.
         /// </summary>
         /// <exception cref="NotSupportedException">The required features are not supported.</exception>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 4 </since_tizen>
         public MovementDetectionConfiguration()
         {
         }
@@ -60,7 +60,7 @@ namespace Tizen.Multimedia.Vision
         ///     -or-<br/>
         ///     <paramref name="value"/> is greater than 255.
         /// </exception>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 4 </since_tizen>
         public int Threshold
         {
             get

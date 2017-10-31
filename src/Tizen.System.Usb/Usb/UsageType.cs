@@ -19,6 +19,7 @@ namespace Tizen.System.Usb
     /// <summary>
     /// Enumeration of an endpoint's usage type.
     /// </summary>
+    /// <since_tizen> 4 </since_tizen>
     public enum UsageType
     {
         /// <summary>

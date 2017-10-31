@@ -23,6 +23,7 @@ namespace Tizen.Multimedia
     /// <summary>
     /// Provides extension methods for <see cref="Recorder"/>.
     /// </summary>
+    /// <since_tizen> 4 </since_tizen>
     public static class RecorderExtensions
     {
         /// <summary>
@@ -31,6 +32,7 @@ namespace Tizen.Multimedia
         /// <returns>An IEnumerable of <see cref="RecorderFileFormat"/> representing the supported file formats.</returns>
         /// <param name="videoCodec">The <see cref="RecorderVideoCodec"/>.</param>
         /// <exception cref="ArgumentException"><paramref name="videoCodec"/> is invalid.</exception>
+        /// <since_tizen> 4 </since_tizen>
         public static IEnumerable<RecorderFileFormat> GetSupportedFileFormats(this RecorderVideoCodec videoCodec)
         {
             ValidationUtil.ValidateEnum(typeof(RecorderVideoCodec), videoCodec, nameof(videoCodec));
@@ -60,6 +62,7 @@ namespace Tizen.Multimedia
         /// <returns>An IEnumerable of <see cref="RecorderFileFormat"/> representing the supported file formats.</returns>
         /// <param name="audioCodec">The <see cref="RecorderAudioCodec"/>.</param>
         /// <exception cref="ArgumentException"><paramref name="audioCodec"/> is invalid.</exception>
+        /// <since_tizen> 4 </since_tizen>
         public static IEnumerable<RecorderFileFormat> GetSupportedFileFormats(this RecorderAudioCodec audioCodec)
         {
             ValidationUtil.ValidateEnum(typeof(RecorderAudioCodec), audioCodec, nameof(audioCodec));

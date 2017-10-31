@@ -91,6 +91,7 @@ namespace Tizen.Maps
         /// <summary>
         /// Indicates availability of scale bar on the map.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         ViewScaleBar = Interop.ServiceData.ViewScaleBar,
     }
 }

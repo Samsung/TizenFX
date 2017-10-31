@@ -44,6 +44,7 @@ namespace Tizen.Multimedia
         /// <summary>
         /// Initializes a new instance of the <see cref="Player"/> class.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public Player()
         {
             NativePlayer.Create(out _handle).ThrowIfFailed("Failed to create player");
@@ -87,6 +88,7 @@ namespace Tizen.Multimedia
         /// <summary>
         /// Releases all resources used by the current instance.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public void Dispose()
         {
             Dispose(true);
@@ -144,6 +146,7 @@ namespace Tizen.Multimedia
         ///     The player is not in the valid state.
         ///     </exception>
         /// <exception cref="ObjectDisposedException">The player has already been disposed of.</exception>
+        /// <since_tizen> 3 </since_tizen>
         public DownloadProgress GetDownloadProgress()
         {
             ValidatePlayerState(PlayerState.Playing, PlayerState.Paused);
@@ -169,6 +172,7 @@ namespace Tizen.Multimedia
         /// <exception cref="ArgumentException"><paramref name="path"/> is an empty string.</exception>
         /// <exception cref="FileNotFoundException">The specified path does not exist.</exception>
         /// <exception cref="ArgumentNullException"><paramref name="path"/> is null.</exception>
+        /// <since_tizen> 3 </since_tizen>
         public void SetSubtitle(string path)
         {
             ValidateNotDisposed();
@@ -198,6 +202,7 @@ namespace Tizen.Multimedia
         /// <remarks>The player must be in the <see cref="PlayerState.Idle"/> state.</remarks>
         /// <exception cref="ObjectDisposedException">The player has already been disposed of.</exception>
         /// <exception cref="InvalidOperationException">The player is not in the valid state.</exception>
+        /// <since_tizen> 3 </since_tizen>
         public void ClearSubtitle()
         {
             ValidatePlayerState(PlayerState.Idle);
@@ -218,6 +223,7 @@ namespace Tizen.Multimedia
         ///     No subtitle is set.
         /// </exception>
         /// <seealso cref="SetSubtitle(string)"/>
+        /// <since_tizen> 3 </since_tizen>
         public void SetSubtitleOffset(int offset)
         {
             ValidatePlayerState(PlayerState.Playing, PlayerState.Paused);
@@ -240,6 +246,7 @@ namespace Tizen.Multimedia
         /// <summary>
         /// Called when the <see cref="Prepare"/> is invoked.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         protected virtual void OnPreparing()
         {
             RegisterEvents();
@@ -254,6 +261,7 @@ namespace Tizen.Multimedia
         /// <exception cref="InvalidOperationException">No source is set.</exception>
         /// <exception cref="ObjectDisposedException">The player has already been disposed of.</exception>
         /// <exception cref="InvalidOperationException">The player is not in the valid state.</exception>
+        /// <since_tizen> 3 </since_tizen>
         public virtual Task PrepareAsync()
         {
             if (_source == null)
@@ -300,6 +308,7 @@ namespace Tizen.Multimedia
         /// </remarks>
         /// <exception cref="ObjectDisposedException">The player has already been disposed of.</exception>
         /// <exception cref="InvalidOperationException">The player is not in the valid state.</exception>
+        /// <since_tizen> 3 </since_tizen>
         public virtual void Unprepare()
         {
             if (State == PlayerState.Idle)
@@ -318,6 +327,7 @@ namespace Tizen.Multimedia
         /// Called after the <see cref="Player"/> is unprepared.
         /// </summary>
         /// <seealso cref="Unprepare"/>
+        /// <since_tizen> 3 </since_tizen>
         protected virtual void OnUnprepared()
         {
             _source?.DetachFrom(this);
@@ -340,6 +350,7 @@ namespace Tizen.Multimedia
         /// <seealso cref="Pause"/>
         /// <seealso cref="PlaybackCompleted"/>
         /// <seealso cref="ApplyAudioStreamPolicy"/>
+        /// <since_tizen> 3 </since_tizen>
         public virtual void Start()
         {
             if (State == PlayerState.Playing)
@@ -363,6 +374,7 @@ namespace Tizen.Multimedia
         /// <exception cref="InvalidOperationException">The player is not in the valid state.</exception>
         /// <seealso cref="Start"/>
         /// <seealso cref="Pause"/>
+        /// <since_tizen> 3 </since_tizen>
         public virtual void Stop()
         {
             if (State == PlayerState.Ready)
@@ -385,6 +397,7 @@ namespace Tizen.Multimedia
         /// <exception cref="ObjectDisposedException">The player has already been disposed of.</exception>
         /// <exception cref="InvalidOperationException">The player is not in the valid state.</exception>
         /// <seealso cref="Start"/>
+        /// <since_tizen> 3 </since_tizen>
         public virtual void Pause()
         {
             if (State == PlayerState.Paused)
@@ -412,6 +425,7 @@ namespace Tizen.Multimedia
         ///     It is not able to assign the source to the player.
         ///     </exception>
         /// <seealso cref="PrepareAsync"/>
+        /// <since_tizen> 3 </since_tizen>
         public void SetSource(MediaSource source)
         {
             ValidatePlayerState(PlayerState.Idle);
@@ -438,6 +452,7 @@ namespace Tizen.Multimedia
         /// <exception cref="ObjectDisposedException">The player has already been disposed of.</exception>
         /// <exception cref="InvalidOperationException">The player is not in the valid state.</exception>
         /// <exception cref="NotSupportedException">The required feature is not supported.</exception>
+        /// <since_tizen> 3 </since_tizen>
         public async Task<CapturedFrame> CaptureVideoAsync()
         {
             ValidationUtil.ValidateFeatureSupported(Features.RawVideo);
@@ -473,6 +488,7 @@ namespace Tizen.Multimedia
         /// <exception cref="ObjectDisposedException">The player has already been disposed of.</exception>
         /// <exception cref="InvalidOperationException">The player is not in the valid state.</exception>
         /// <seealso cref="SetPlayPositionAsync(int, bool)"/>
+        /// <since_tizen> 3 </since_tizen>
         public int GetPlayPosition()
         {
             ValidatePlayerState(PlayerState.Ready, PlayerState.Paused, PlayerState.Playing);
@@ -520,6 +536,7 @@ namespace Tizen.Multimedia
         /// <exception cref="InvalidOperationException">The player is not in the valid state.</exception>
         /// <exception cref="ArgumentOutOfRangeException">The specified position is not valid.</exception>
         /// <seealso cref="GetPlayPosition"/>
+        /// <since_tizen> 3 </since_tizen>
         public async Task SetPlayPositionAsync(int position, bool accurate)
         {
             ValidatePlayerState(PlayerState.Ready, PlayerState.Playing, PlayerState.Paused);
@@ -564,6 +581,7 @@ namespace Tizen.Multimedia
         ///     -or-<br/>
         ///     <paramref name="rate"/> is zero.
         /// </exception>
+        /// <since_tizen> 3 </since_tizen>
         public void SetPlaybackRate(float rate)
         {
             if (rate < -5.0F || 5.0F < rate || rate == 0.0F)
@@ -600,6 +618,7 @@ namespace Tizen.Multimedia
         ///     <see cref="AudioStreamType"/> of <paramref name="policy"/> is not supported by <see cref="Player"/>.
         /// </exception>
         /// <seealso cref="AudioStreamPolicy"/>
+        /// <since_tizen> 3 </since_tizen>
         public void ApplyAudioStreamPolicy(AudioStreamPolicy policy)
         {
             if (policy == null)
@@ -638,6 +657,7 @@ namespace Tizen.Multimedia
         /// <summary>
         /// This method supports the product infrastructure and is not intended to be used directly from application code.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected static Exception GetException(int errorCode, string message) =>
             ((PlayerErrorCode)errorCode).GetException(message);

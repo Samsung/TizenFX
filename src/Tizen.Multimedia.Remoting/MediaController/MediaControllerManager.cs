@@ -26,6 +26,7 @@ namespace Tizen.Multimedia.Remoting
     /// <summary>
     /// Provides a means to retrieve active controllers and observe controllers added and removed.
     /// </summary>
+    /// <since_tizen> 4 </since_tizen>
     public partial class MediaControllerManager : IDisposable
     {
         private NativeHandle _handle;
@@ -53,6 +54,7 @@ namespace Tizen.Multimedia.Remoting
         /// <privilege>http://tizen.org/privilege/mediacontroller.client</privilege>
         /// <exception cref="InvalidOperationException">An internal error occurs.</exception>
         /// <exception cref="UnauthorizedAccessException">The caller does not have required privilege.</exception>
+        /// <since_tizen> 4 </since_tizen>
         public MediaControllerManager()
         {
             Native.Create(out _handle).ThrowIfError("Failed to create media controller client.");
@@ -67,6 +69,7 @@ namespace Tizen.Multimedia.Remoting
         /// <summary>
         /// Releases all resources used by the <see cref="MediaControllerManager"/>.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         public void Dispose()
         {
             Dispose(true);
@@ -76,6 +79,7 @@ namespace Tizen.Multimedia.Remoting
         /// Releases the unmanaged resources used by the <see cref="MediaControllerManager"/>.
         /// </summary>
         /// <param name="disposing">true to release both managed and unmanaged resources; false to release only unmanaged resources.</param>
+        /// <since_tizen> 4 </since_tizen>
         protected virtual void Dispose(bool disposing)
         {
             if (!_disposed)
@@ -94,6 +98,7 @@ namespace Tizen.Multimedia.Remoting
         /// Gets the active controllers.
         /// </summary>
         /// <returns>An array of <see cref="MediaController"/>.</returns>
+        /// <since_tizen> 4 </since_tizen>
         public MediaController[] GetActiveControllers()
         {
             if (_disposed)

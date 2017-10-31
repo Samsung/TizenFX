@@ -19,6 +19,7 @@ namespace Tizen.Multimedia
     /// <summary>
     /// MediaSource is a base class for <see cref="Player"/> sources.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public abstract class MediaSource
     {
         internal MediaSource()

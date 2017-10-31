@@ -21,6 +21,7 @@ namespace Tizen.Multimedia.Remoting
     /// <summary>
     /// Provides data for the <see cref="MediaControllerManager.ServerStopped"/> event.
     /// </summary>
+    /// <since_tizen> 4 </since_tizen>
     public class MediaControlServerStoppedEventArgs : EventArgs
     {
         /// <summary>
@@ -28,6 +29,7 @@ namespace Tizen.Multimedia.Remoting
         /// </summary>
         /// <param name="serverAppId">The application id of the server stopped.</param>
         /// <exception cref="ArgumentNullException"><paramref name="serverAppId"/> is null.</exception>
+        /// <since_tizen> 4 </since_tizen>
         public MediaControlServerStoppedEventArgs(string serverAppId)
         {
             if (serverAppId == null)
@@ -42,6 +44,7 @@ namespace Tizen.Multimedia.Remoting
         /// Gets the application id of the server.
         /// </summary>
         /// <value>A string represents the application id.</value>
+        /// <since_tizen> 4 </since_tizen>
         public string ServerAppId { get; }
     }
 }

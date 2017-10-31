@@ -27,6 +27,7 @@ namespace Tizen.Multimedia
     /// <seealso cref="StreamRecorder.Prepare(StreamRecorderOptions)"/>
     /// <seealso cref="StreamRecorderAudioOptions"/>
     /// <seealso cref="StreamRecorderVideoOptions"/>
+    /// <since_tizen> 4 </since_tizen>
     public class StreamRecorderOptions
     {
         /// <summary>
@@ -41,6 +42,7 @@ namespace Tizen.Multimedia
         ///     -or-<br/>
         ///     <paramref name="fileFormat"/> is not valid.
         /// </exception>
+        /// <since_tizen> 4 </since_tizen>
         public StreamRecorderOptions(string savePath, RecorderFileFormat fileFormat)
         {
             SavePath = savePath;
@@ -57,6 +59,7 @@ namespace Tizen.Multimedia
         /// </remarks>
         /// <exception cref="ArgumentNullException"><paramref name="value"/>is null.</exception>
         /// <exception cref="ArgumentException"><paramref name="value"/>is an empty string.</exception>
+        /// <since_tizen> 4 </since_tizen>
         public string SavePath
         {
             get => _savePath;
@@ -83,6 +86,7 @@ namespace Tizen.Multimedia
         /// </summary>
         /// <exception cref="ArgumentException"><paramref name="value"/> is not valid.</exception>
         /// <seealso cref="StreamRecorder.GetSupportedFileFormats"/>
+        /// <since_tizen> 4 </since_tizen>
         public RecorderFileFormat FileFormat
         {
             get => _fileFormat;
@@ -109,6 +113,7 @@ namespace Tizen.Multimedia
         /// <exception cref="ArgumentOutOfRangeException"><paramref name="value"/> is less than zero.</exception>
         /// <seealso cref="StreamRecorder.RecordingLimitReached"/>
         /// <seealso cref="SizeLimit"/>
+        /// <since_tizen> 4 </since_tizen>
         public int TimeLimit
         {
             get => _timeLimit;
@@ -139,6 +144,7 @@ namespace Tizen.Multimedia
         /// <exception cref="ArgumentOutOfRangeException"><paramref name="value"/> is less than zero.</exception>
         /// <seealso cref="StreamRecorder.RecordingLimitReached"/>
         /// <seealso cref="TimeLimit"/>
+        /// <since_tizen> 4 </since_tizen>
         public int SizeLimit
         {
             get => _sizeLimit;
@@ -161,6 +167,7 @@ namespace Tizen.Multimedia
         /// <see cref="Audio"/> or <see cref="Video"/> must be set for recording.
         /// </remarks>
         /// <seealso cref="Video"/>
+        /// <since_tizen> 4 </since_tizen>
         public StreamRecorderAudioOptions Audio { get; set; }
 
         /// <summary>
@@ -170,6 +177,7 @@ namespace Tizen.Multimedia
         /// <see cref="Audio"/> or <see cref="Video"/> must be set for recording.
         /// </remarks>
         /// <seealso cref="Audio"/>
+        /// <since_tizen> 4 </since_tizen>
         public StreamRecorderVideoOptions Video { get; set; }
 
         private StreamRecorderSourceType GetSourceType()

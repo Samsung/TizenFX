@@ -20,6 +20,7 @@ namespace Tizen.Multimedia
     /// Specifies the media format types.
     /// </summary>
     /// <seealso cref="MediaFormat"/>
+    /// <since_tizen> 3 </since_tizen>
     public enum MediaFormatType
     {
         /// <summary>
@@ -62,6 +63,7 @@ namespace Tizen.Multimedia
     /// <summary>
     /// Specifies the mime types for audio media formats.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public enum MediaFormatAudioMimeType
     {
         /// <summary>
@@ -143,6 +145,7 @@ namespace Tizen.Multimedia
     /// <summary>
     /// Specifies the mime types for video media formats.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public enum MediaFormatVideoMimeType
     {
         /// <summary>
@@ -285,6 +288,7 @@ namespace Tizen.Multimedia
     /// <summary>
     /// Specifies the mime types for container media formats.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public enum MediaFormatContainerMimeType
     {
         /// <summary>
@@ -346,6 +350,7 @@ namespace Tizen.Multimedia
     /// <summary>
     /// Specifies the text mime types.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public enum MediaFormatTextMimeType
     {
         /// <summary>

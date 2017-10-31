@@ -21,6 +21,7 @@ namespace Tizen.Sensor
     /// <summary>
     /// The InVehicleActivityDetector class is used for registering callbacks for the in-vehicle activity detector and getting the in-vehicle state.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public sealed class InVehicleActivityDetector : ActivityDetector
     {
         private const string ActivityDetectorKey = "http://tizen.org/feature/sensor.activity_recognition";

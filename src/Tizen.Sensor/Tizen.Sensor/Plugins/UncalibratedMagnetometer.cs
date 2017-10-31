@@ -21,6 +21,7 @@ namespace Tizen.Sensor
     /// <summary>
     /// The UncalibratedMagnetometer sensor class is used for registering callbacks for the uncalibrated magnetometer and getting the uncalibrated magnetometer data.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public sealed class UncalibratedMagnetometer : Sensor
     {
         private static string UncalibratedMagnetometerKey = "http://tizen.org/feature/sensor.magnetometer.uncalibrated";

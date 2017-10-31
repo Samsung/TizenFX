@@ -22,6 +22,7 @@ namespace Tizen.System
     /// <summary>
     /// The StorageManager provides the properties or methods to access storage in the device.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public static class StorageManager
     {
         private const string LogTag = "Tizen.System";

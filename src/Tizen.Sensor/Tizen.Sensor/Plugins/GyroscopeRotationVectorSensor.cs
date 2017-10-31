@@ -21,6 +21,7 @@ namespace Tizen.Sensor
     /// <summary>
     /// The GyroscopeRotationVectorSensor class is used for registering callbacks for the gyroscope rotation vector sensor and getting the gyroscope rotation vector data.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public sealed class GyroscopeRotationVectorSensor : Sensor
     {
         private const string GyroscopeRVKey = "http://tizen.org/feature/sensor.gyroscope_rotation_vector";

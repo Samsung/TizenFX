@@ -21,11 +21,13 @@ namespace Tizen.Content.MediaContent
     /// <summary>
     /// The exception that is thrown when a requested operation is not supported for content.
     /// </summary>
+    /// <since_tizen> 4 </since_tizen>
     public class UnsupportedContentException : Exception
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="UnsupportedContentException"/> class.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         public UnsupportedContentException() : base("The operation is not supported for the given media.")
         {
         }
@@ -34,6 +36,7 @@ namespace Tizen.Content.MediaContent
         /// Initializes a new instance of the <see cref="UnsupportedContentException"/> class with a specified error message.
         /// </summary>
         /// <param name="message">The message that describes the error.</param>
+        /// <since_tizen> 4 </since_tizen>
         public UnsupportedContentException(string message) : base(message)
         {
         }
@@ -44,6 +47,7 @@ namespace Tizen.Content.MediaContent
         /// </summary>
         /// <param name="message">The message that describes the error.</param>
         /// <param name="innerException">The exception that is the cause of the current exception.</param>
+        /// <since_tizen> 4 </since_tizen>
         public UnsupportedContentException(string message, Exception innerException) : base(message, innerException)
         {
         }

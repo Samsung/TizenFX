@@ -32,6 +32,7 @@ namespace Tizen.System
     ///     Console.WriteLine("IR availability for this device is: {0}", IR.IsAvailable);
     /// </code>
     /// </example>
+    /// <since_tizen> 3 </since_tizen>
     public static class IR
     {
         /// <summary>

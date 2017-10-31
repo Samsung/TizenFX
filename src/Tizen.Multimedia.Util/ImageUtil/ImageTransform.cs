@@ -28,6 +28,7 @@ namespace Tizen.Multimedia.Util
     /// <summary>
     /// A base class for image transformations.
     /// </summary>
+    /// <since_tizen> 4 </since_tizen>
     public abstract class ImageTransform
     {
         internal ImageTransform()
@@ -88,6 +89,7 @@ namespace Tizen.Multimedia.Util
     /// <summary>
     /// Represents a collection of <see cref="ImageTransform"/> objects that can be individually accessed by index.
     /// </summary>
+    /// <since_tizen> 4 </since_tizen>
     public class ImageTransformCollection : IEnumerable<ImageTransform>, IList<ImageTransform>
     {
         private List<ImageTransform> _list = new List<ImageTransform>();
@@ -95,6 +97,7 @@ namespace Tizen.Multimedia.Util
         /// <summary>
         /// Initializes a new instance of the ImageTransformCollection class.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         public ImageTransformCollection()
         {
         }
@@ -109,6 +112,7 @@ namespace Tizen.Multimedia.Util
         ///     -or-<br/>
         ///     index is equal to or greater than <see cref="Count"/>.
         /// </exception>
+        /// <since_tizen> 4 </since_tizen>
         public ImageTransform this[int index]
         {
             get { return _list[index]; }
@@ -118,6 +122,7 @@ namespace Tizen.Multimedia.Util
         /// <summary>
         /// Gets the number of items contained in the TransformCollection.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         public int Count => _list.Count;
 
         bool ICollection<ImageTransform>.IsReadOnly => false;
@@ -129,6 +134,7 @@ namespace Tizen.Multimedia.Util
         /// <remarks>
         /// <see cref="ImageTransformCollection"/> accepts null as a valid value for reference types and allows duplicate elements.
         /// </remarks>
+        /// <since_tizen> 4 </since_tizen>
         public void Add(ImageTransform item)
         {
             if (item == null)
@@ -141,6 +147,7 @@ namespace Tizen.Multimedia.Util
         /// <summary>
         /// Removes all items.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         public void Clear() => _list.Clear();
 
         /// <summary>
@@ -148,6 +155,7 @@ namespace Tizen.Multimedia.Util
         /// </summary>
         /// <param name="item">The <see cref="ImageTransform"/> to locate in the collection.</param>
         /// <returns>true if the <see cref="ImageTransform"/> is found in the collection; otherwise, false.</returns>
+        /// <since_tizen> 4 </since_tizen>
         public bool Contains(ImageTransform item) => _list.Contains(item);
 
         /// <summary>
@@ -160,6 +168,7 @@ namespace Tizen.Multimedia.Util
         /// <exception cref="ArgumentException">
         /// The number of elements in the source collection is greater than the available space from arrayIndex to the end of the destination array.
         /// </exception>
+        /// <since_tizen> 4 </since_tizen>
         public void CopyTo(ImageTransform[] array, int arrayIndex) => _list.CopyTo(array, arrayIndex);
 
         /// <summary>
@@ -167,6 +176,7 @@ namespace Tizen.Multimedia.Util
         /// </summary>
         /// <param name="item">The <see cref="ImageTransform"/> to locate in the collection.</param>
         /// <returns>The index of value if found in the <see cref="ImageTransformCollection"/>; otherwise, -1.</returns>
+        /// <since_tizen> 4 </since_tizen>
         public int IndexOf(ImageTransform item) => _list.IndexOf(item);
 
         /// <summary>
@@ -180,6 +190,7 @@ namespace Tizen.Multimedia.Util
         ///     -or-<br/>
         ///     index is greater than <see cref="Count"/>.
         /// </exception>
+        /// <since_tizen> 4 </since_tizen>
         public void Insert(int index, ImageTransform item)
         {
             if (item == null)
@@ -194,6 +205,7 @@ namespace Tizen.Multimedia.Util
         /// </summary>
         /// <param name="item">The <see cref="ImageTransform"/> to remove.</param>
         /// <returns>true if <paramref name="item"/> was removed from the collection; otherwise, false.</returns>
+        /// <since_tizen> 4 </since_tizen>
         public bool Remove(ImageTransform item) => _list.Remove(item);
 
         /// <summary>
@@ -205,12 +217,14 @@ namespace Tizen.Multimedia.Util
         ///     -or-<br/>
         ///     index is equal to or greater than <see cref="Count"/>.
         /// </exception>
+        /// <since_tizen> 4 </since_tizen>
         public void RemoveAt(int index) => _list.RemoveAt(index);
 
         /// <summary>
         /// Returns an enumerator that can iterate through the collection.
         /// </summary>
         /// <returns>An enumerator that can be used to iterate through the collection.</returns>
+        /// <since_tizen> 4 </since_tizen>
         public IEnumerator<ImageTransform> GetEnumerator() => _list.GetEnumerator();
 
         IEnumerator IEnumerable.GetEnumerator() => _list.GetEnumerator();
@@ -220,16 +234,19 @@ namespace Tizen.Multimedia.Util
     /// <summary>
     /// Represents a <see cref="ImageTransform"/> that is a composite of the transforms.
     /// </summary>
+    /// <since_tizen> 4 </since_tizen>
     public class ImageTransformGroup : ImageTransform
     {
         /// <summary>
         /// Gets or sets the <see cref="ImageTransformCollection"/>.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         public ImageTransformCollection Children { get; set; }
 
         /// <summary>
         /// Initializes a new instance of the ImageTransformGroup class.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         public ImageTransformGroup()
         {
             Children = new ImageTransformCollection();
@@ -272,6 +289,7 @@ namespace Tizen.Multimedia.Util
     /// Rotates an image.
     /// </summary>
     /// <seealso cref="Rotation"/>
+    /// <since_tizen> 4 </since_tizen>
     public class RotateTransform : ImageTransform
     {
         private Rotation _rotation;
@@ -282,6 +300,7 @@ namespace Tizen.Multimedia.Util
         /// <param name="rotation">The value how to rotate an image.</param>
         /// <exception cref="ArgumentException"><paramref name="rotation"/> is invalid.</exception>
         /// <exception cref="ArgumentOutOfRangeException"><paramref name="rotation"/> is <see cref="Rotation.Rotate90"/>.</exception>
+        /// <since_tizen> 4 </since_tizen>
         public RotateTransform(Rotation rotation)
         {
             Rotation = rotation;
@@ -293,6 +312,7 @@ namespace Tizen.Multimedia.Util
         /// </summary>
         /// <exception cref="ArgumentException"><paramref name="value"/> is invalid.</exception>
         /// <exception cref="ArgumentOutOfRangeException"><paramref name="value"/> is <see cref="Rotation.Rotate90"/>.</exception>
+        /// <since_tizen> 4 </since_tizen>
         public Rotation Rotation
         {
             get { return _rotation; }
@@ -333,6 +353,7 @@ namespace Tizen.Multimedia.Util
     /// Flips an image.
     /// </summary>
     /// <seealso cref="Rotation"/>
+    /// <since_tizen> 4 </since_tizen>
     public class FlipTransform : ImageTransform
     {
         private Flips _flip;
@@ -343,6 +364,7 @@ namespace Tizen.Multimedia.Util
         /// <param name="flip">The value how to flip an image.</param>
         /// <exception cref="ArgumentException"><paramref name="flip"/> is invalid.</exception>
         /// <exception cref="ArgumentOutOfRangeException"><paramref name="flip"/> is <see cref="Flips.None"/>.</exception>
+        /// <since_tizen> 4 </since_tizen>
         public FlipTransform(Flips flip)
         {
             Flip = flip;
@@ -353,6 +375,7 @@ namespace Tizen.Multimedia.Util
         /// </summary>
         /// <exception cref="ArgumentException"><paramref name="value"/> is invalid.</exception>
         /// <exception cref="ArgumentOutOfRangeException"><paramref name="value"/> is <see cref="Flips.None"/>.</exception>
+        /// <since_tizen> 4 </since_tizen>
         public Flips Flip
         {
             get { return _flip; }
@@ -408,6 +431,7 @@ namespace Tizen.Multimedia.Util
     /// Changes the colorspace of an image.
     /// </summary>
     /// <seealso cref="ColorSpace"/>
+    /// <since_tizen> 4 </since_tizen>
     public class ColorSpaceTransform : ImageTransform
     {
         private ImageColorSpace _imageColorSpace;
@@ -419,6 +443,7 @@ namespace Tizen.Multimedia.Util
         /// <exception cref="ArgumentException"><paramref name="colorSpace"/> is invalid.</exception>
         /// <exception cref="NotSupportedException"><paramref name="colorSpace"/> is not supported.</exception>
         /// <seealso cref="SupportedColorSpaces"/>
+        /// <since_tizen> 4 </since_tizen>
         public ColorSpaceTransform(ColorSpace colorSpace)
         {
             ColorSpace = colorSpace;
@@ -430,6 +455,7 @@ namespace Tizen.Multimedia.Util
         /// <exception cref="ArgumentException"><paramref name="value"/> is invalid.</exception>
         /// <exception cref="NotSupportedException"><paramref name="value"/> is not supported.</exception>
         /// <seealso cref="SupportedColorSpaces"/>
+        /// <since_tizen> 4 </since_tizen>
         public ColorSpace ColorSpace
         {
             get { return _imageColorSpace.ToCommonColorSpace(); }
@@ -449,6 +475,7 @@ namespace Tizen.Multimedia.Util
         /// <summary>
         /// Gets the supported colorspaces for <see cref="ColorSpaceTransform"/>.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         public static IEnumerable<ColorSpace> SupportedColorSpaces
         {
             get
@@ -464,6 +491,7 @@ namespace Tizen.Multimedia.Util
     /// <summary>
     /// Crops an image.
     /// </summary>
+    /// <since_tizen> 4 </since_tizen>
     public class CropTransform : ImageTransform
     {
         private Rectangle _region;
@@ -481,6 +509,7 @@ namespace Tizen.Multimedia.Util
         ///     -or-<br/>
         ///     The height of <paramref name="region"/> is less than or equal to zero.
         /// </exception>
+        /// <since_tizen> 4 </since_tizen>
         public CropTransform(Rectangle region)
         {
             Region = region;
@@ -498,6 +527,7 @@ namespace Tizen.Multimedia.Util
         ///     -or-<br/>
         ///     The height of <paramref name="value"/> is less than or equal to zero.
         /// </exception>
+        /// <since_tizen> 4 </since_tizen>
         public Rectangle Region
         {
             get { return _region; }
@@ -541,6 +571,7 @@ namespace Tizen.Multimedia.Util
     /// <summary>
     /// Resizes an image.
     /// </summary>
+    /// <since_tizen> 4 </since_tizen>
     public class ResizeTransform : ImageTransform
     {
         private Size _size;
@@ -554,6 +585,7 @@ namespace Tizen.Multimedia.Util
         ///     -or-<br/>
         ///     The height of <paramref name="size"/> is less than or equal to zero.
         /// </exception>
+        /// <since_tizen> 4 </since_tizen>
         public ResizeTransform(Size size)
         {
             Size = size;
@@ -567,6 +599,7 @@ namespace Tizen.Multimedia.Util
         ///     -or-<br/>
         ///     The height of <paramref name="value"/> is less than or equal to zero.
         /// </exception>
+        /// <since_tizen> 4 </since_tizen>
         public Size Size
         {
             get { return _size; }

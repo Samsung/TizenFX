@@ -21,6 +21,7 @@ namespace Tizen.Sensor
     /// <summary>
     /// The MagnetometerRotationVectorSensor changed event arguments class is used for storing the data returned by a magnetometer rotation vector sensor.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public class MagnetometerRotationVectorSensorDataUpdatedEventArgs : EventArgs
     {
         internal MagnetometerRotationVectorSensorDataUpdatedEventArgs(float[] values, SensorDataAccuracy accuracy)

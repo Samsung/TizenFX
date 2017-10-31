@@ -21,6 +21,7 @@ namespace Tizen.Messaging.Messages
     /// <summary>
     /// This class represents the cell broadcast messages.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public class CBMessage : Message
     {
         internal CBMessage(IntPtr messageHandle) : base(messageHandle)

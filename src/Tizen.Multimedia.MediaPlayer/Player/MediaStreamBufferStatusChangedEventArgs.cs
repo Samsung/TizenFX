@@ -22,12 +22,14 @@ namespace Tizen.Multimedia
     /// <summary>
     /// Provides data for the <see cref="MediaStreamConfiguration.BufferStatusChanged"/> event.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public class MediaStreamBufferStatusChangedEventArgs : EventArgs
     {
         /// <summary>
         /// Initializes a new instance of the MediaStreamBufferStatusChangedEventArgs class.
         /// </summary>
         /// <param name="status">The value indicating the status of the stream.</param>
+        /// <since_tizen> 3 </since_tizen>
         public MediaStreamBufferStatusChangedEventArgs(MediaStreamBufferStatus status)
         {
             Status = status;
@@ -36,12 +38,14 @@ namespace Tizen.Multimedia
         /// <summary>
         /// Gets the status.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public MediaStreamBufferStatus Status { get; }
 
         /// <summary>
         /// Returns a string that represents the current object.
         /// </summary>
         /// <returns>A string that represents the current object.</returns>
+        /// <since_tizen> 3 </since_tizen>
         public override string ToString()
         {
             return $"Status : { Status.ToString() }";

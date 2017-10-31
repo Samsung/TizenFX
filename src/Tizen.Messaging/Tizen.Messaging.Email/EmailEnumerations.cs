@@ -19,6 +19,7 @@ namespace Tizen.Messaging.Email
     /// <summary>
     /// Result of sending the email.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public enum EmailSendResult
     {
         /// <summary>

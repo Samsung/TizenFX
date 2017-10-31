@@ -21,6 +21,7 @@ namespace Tizen.Applications
     /// <summary>
     /// The class for the argument of the RegionFormatChanged EventHandler
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public class RegionFormatChangedEventArgs : EventArgs
     {
 
@@ -28,6 +29,7 @@ namespace Tizen.Applications
         /// Initializes RegionFormatChangedEventArgs class
         /// </summary>
         /// <param name="region">The information of the Region</param>
+        /// <since_tizen> 3 </since_tizen>
         public RegionFormatChangedEventArgs(string region)
         {
             Region = region;
@@ -36,6 +38,7 @@ namespace Tizen.Applications
         /// <summary>
         /// The property to get the intformation of the Region
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public string Region { get; private set; }
     }
 }

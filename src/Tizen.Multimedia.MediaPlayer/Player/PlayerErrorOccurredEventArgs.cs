@@ -20,12 +20,14 @@ namespace Tizen.Multimedia
     /// <summary>
     /// Provides data for the <see cref="Player.ErrorOccurred"/> event.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public class PlayerErrorOccurredEventArgs : EventArgs
     {
         /// <summary>
         /// Initializes a new instance of the PlayerErrorOccurredEventArgs class.
         /// </summary>
         /// <param name="error">The value indicating the kind of error occurred.</param>
+        /// <since_tizen> 3 </since_tizen>
         public PlayerErrorOccurredEventArgs(PlayerError error)
         {
             Error = error;
@@ -34,12 +36,14 @@ namespace Tizen.Multimedia
         /// <summary>
         /// Gets the error.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public PlayerError Error { get; }
 
         /// <summary>
         /// Returns a string that represents the current object.
         /// </summary>
         /// <returns>A string that represents the current object.</returns>
+        /// <since_tizen> 3 </since_tizen>
         public override string ToString()
         {
             return $"Error={ Error.ToString() }";

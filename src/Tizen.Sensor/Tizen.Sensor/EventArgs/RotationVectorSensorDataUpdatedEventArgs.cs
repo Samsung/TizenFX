@@ -21,6 +21,7 @@ namespace Tizen.Sensor
     /// <summary>
     /// The RotationVectorSensor changed event arguments class is used for storing the data returned by a rotation vector sensor.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public class RotationVectorSensorDataUpdatedEventArgs : EventArgs
     {
         internal RotationVectorSensorDataUpdatedEventArgs(float[] values, SensorDataAccuracy accuracy)

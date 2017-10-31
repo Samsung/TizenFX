@@ -19,6 +19,7 @@ namespace Tizen.Uix.InputMethod
     /// <summary>
     /// This Class contains data related to RotationChanged Event
     /// </summary>
+    /// <since_tizen> 4 </since_tizen>
     public class RotationChangedEventArgs
     {
         internal RotationChangedEventArgs(int degree)
@@ -29,6 +30,7 @@ namespace Tizen.Uix.InputMethod
         /// <summary>
         /// The rotation degree
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         public int Degree
         {
             get;

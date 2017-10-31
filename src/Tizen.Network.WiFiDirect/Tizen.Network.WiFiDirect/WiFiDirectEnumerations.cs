@@ -22,6 +22,7 @@ namespace Tizen.Network.WiFiDirect
     /// <summary>
     /// Enumeration for the Wi-Fi Direct discovery state.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public enum WiFiDirectDiscoveryState
     {
         /// <summary>
@@ -49,6 +50,7 @@ namespace Tizen.Network.WiFiDirect
     /// <summary>
     /// Enumeration for the Wi-Fi Direct display device types.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public enum WiFiDirectDisplayType
     {
         /// <summary>
@@ -72,6 +74,7 @@ namespace Tizen.Network.WiFiDirect
     /// <summary>
     /// Enumeration for the Wi-Fi Discovery channel.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public enum WiFiDirectDiscoveryChannel
     {
         /// <summary>
@@ -99,6 +102,7 @@ namespace Tizen.Network.WiFiDirect
     /// <summary>
     /// Enumeration for the Wi-Fi Direct connection state.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public enum WiFiDirectConnectionState
     {
         /// <summary>
@@ -142,6 +146,7 @@ namespace Tizen.Network.WiFiDirect
     /// <summary>
     /// Enumeration for the Wi-Fi Direct primary device type.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public enum WiFiDirectPrimaryDeviceType
     {
         /// <summary>
@@ -197,6 +202,7 @@ namespace Tizen.Network.WiFiDirect
     /// <summary>
     /// Enumeration for the Wi-Fi Direct secondary device type.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public enum WiFiDirectSecondaryDeviceType
     {
         /// <summary>
@@ -432,6 +438,7 @@ namespace Tizen.Network.WiFiDirect
     /// <summary>
     /// Enumeration for the Wi-Fi Direct link status.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public enum WiFiDirectState
     {
         /// <summary>
@@ -475,6 +482,7 @@ namespace Tizen.Network.WiFiDirect
     /// <summary>
     /// Enumeration for the Wi-Fi WPS type.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public enum WiFiDirectWpsType
     {
         /// <summary>
@@ -498,6 +506,7 @@ namespace Tizen.Network.WiFiDirect
     /// <summary>
     /// Enumeration for the service discovery type.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public enum WiFiDirectServiceType
     {
         /// <summary>
@@ -537,6 +546,7 @@ namespace Tizen.Network.WiFiDirect
     /// <summary>
     /// Enumeration for the Wi-Fi Direct service discovery state.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public enum WiFiDirectServiceDiscoveryState
     {
         /// <summary>
@@ -556,6 +566,7 @@ namespace Tizen.Network.WiFiDirect
     /// <summary>
     /// Enumeration for the Wi-Fi Direct device state.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public enum WiFiDirectDeviceState
     {
         /// <summary>
@@ -571,6 +582,7 @@ namespace Tizen.Network.WiFiDirect
     /// <summary>
     /// Enumeration for the Wi-Fi Direct error code.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public enum WiFiDirectError
     {
         /// <summary>

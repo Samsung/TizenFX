@@ -85,7 +85,7 @@ namespace Tizen.Maps
         /// <summary>
         /// Gets a user consent for the map service provider
         /// </summary>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 4 </since_tizen>
         /// <privilege>http://tizen.org/privilege/mapservice</privilege>
         public bool UserConsented
         {
@@ -195,7 +195,7 @@ namespace Tizen.Maps
         /// <summary>
         /// Gets the user's consent to use maps data.
         /// </summary>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 4 </since_tizen>
         /// <returns>Returns true if user agreed that the application can use maps data, otherwise false.</returns>
         /// <privilege>http://tizen.org/privilege/mapservice</privilege>
         /// <exception cref="System.NotSupportedException">Thrown when the required feature is not supported.</exception>
@@ -362,6 +362,7 @@ namespace Tizen.Maps
         /// Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.
         /// </summary>
         /// <param name="disposing">If true, managed and unmanaged resources can be disposed, otherwise only unmanaged resources can be disposed.</param>
+        /// <since_tizen> 3 </since_tizen>
         protected virtual void Dispose(bool disposing)
         {
             if (!_disposedValue)

@@ -24,28 +24,33 @@ namespace Tizen.Applications.NotificationEventListener
         /// <summary>
         ///  Class to get infomation about notification ReplyAction.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         public class ReplyActionArgs
         {
             /// <summary>
             /// Gets index of button, which appears at notification.
             /// If there is no ParentIndex, the ReplyAction should be displayed directly on the active notification.
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public ButtonIndex ParentIndex { get; internal set; } = ButtonIndex.None;
 
             /// <summary>
             /// Gets the PlaceHolderText of ReplyAction, which appears at notification.
             /// It will be displayed to the text input box on the active notification.
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public string PlaceHolderText { get; internal set; }
 
             /// <summary>
             /// Gets a max length of text input.
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public int ReplyMax { get; internal set; }
 
             /// <summary>
             /// Gets the button displayed in the replyaction.
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public ButtonActionArgs Button { get; internal set; }
         }
     }

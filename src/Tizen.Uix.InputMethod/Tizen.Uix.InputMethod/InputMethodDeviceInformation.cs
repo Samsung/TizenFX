@@ -24,6 +24,7 @@ namespace Tizen.Uix.InputMethod
     /// <summary>
     /// Enumeration for Device Class
     /// </summary>
+    /// <since_tizen> 4 </since_tizen>
     public enum DeviceClass
     {
         /// <summary>
@@ -67,6 +68,7 @@ namespace Tizen.Uix.InputMethod
     /// <summary>
     /// Enumeration for Device SubClass
     /// </summary>
+    /// <since_tizen> 4 </since_tizen>
     public enum DeviceSubclass
     {
         /// <summary>
@@ -122,6 +124,7 @@ namespace Tizen.Uix.InputMethod
     /// <summary>
     /// this class gives the device information, like the name, class and subclass
     /// </summary>
+    /// <since_tizen> 4 </since_tizen>
     public class InputMethodDeviceInformation
     {
         private IntPtr _handle;
@@ -133,6 +136,7 @@ namespace Tizen.Uix.InputMethod
         /// <summary>
         /// Gets the device name of the key event.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         public string Name
         {
             get
@@ -151,6 +155,7 @@ namespace Tizen.Uix.InputMethod
         /// <summary>
         /// Gets the device class of the key event.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         public DeviceClass DeviceClass
         {
             get
@@ -169,6 +174,7 @@ namespace Tizen.Uix.InputMethod
         /// <summary>
         /// Gets the device subclass of the key event.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         public DeviceSubclass DeviceSubclass
         {
             get

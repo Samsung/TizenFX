@@ -19,6 +19,7 @@ namespace Tizen.Applications.Shortcut
     /// <summary>
     /// Enumeration for sizes of shortcut widget.
     /// </summary>
+    /// <since_tizen> 4 </since_tizen>
     public enum ShortcutWidgetSize
     {
         /// <summary>

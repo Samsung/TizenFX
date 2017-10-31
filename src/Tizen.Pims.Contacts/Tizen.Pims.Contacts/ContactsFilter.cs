@@ -199,26 +199,32 @@ namespace Tizen.Pims.Contacts
             /// <summary>
             /// Full string, case-sensitive
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             Exactly,
             /// <summary>
             /// Full string, case-insensitive
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             FullString,
             /// <summary>
             /// Sub string, case-insensitive
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             Contains,
             /// <summary>
             /// Start with, case-insensitive
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             StartsWith,
             /// <summary>
             /// End with, case-insensitive
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             EndsWith,
             /// <summary>
             /// IS NOT NUL
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             Exists,
         }
 
@@ -231,30 +237,37 @@ namespace Tizen.Pims.Contacts
             /// <summary>
             /// =
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             Equal,
             /// <summary>
             /// &gt;
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             GreaterThan,
             /// <summary>
             /// &gt;=
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             GreaterThanOrEqual,
             /// <summary>
             /// &lt;
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             LessThan,
             /// <summary>
             /// &lt;=
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             LessThanOrEqual,
             /// <summary>
             /// &lt;&gt;, this flag can yield poor performance
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             NotEqual,
             /// <summary>
             /// IS NULL
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             None,
         }
 
@@ -267,10 +280,12 @@ namespace Tizen.Pims.Contacts
             /// <summary>
             /// AND
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             And,
             /// <summary>
             /// OR
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             Or,
         }
 

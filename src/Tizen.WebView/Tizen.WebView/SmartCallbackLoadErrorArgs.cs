@@ -22,6 +22,7 @@ namespace Tizen.WebView
     /// <summary>
     /// Enumeration that provides an option to error codes.
     /// </summary>
+    /// <since_tizen> 4 </since_tizen>
     public enum LoadErrorCode
     {
         /// <summary>
@@ -89,6 +90,7 @@ namespace Tizen.WebView
     /// <summary>
     /// Argument from the LoadError SmartCallback.
     /// </summary>
+    /// <since_tizen> 4 </since_tizen>
     public class SmartCallbackLoadErrorArgs : EventArgs
     {
         IntPtr _handle;
@@ -101,6 +103,7 @@ namespace Tizen.WebView
         /// <summary>
         /// Failing URL for the error.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         public string Url
         {
             get
@@ -112,6 +115,7 @@ namespace Tizen.WebView
         /// <summary>
         /// The error code.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         public LoadErrorCode Code
         {
             get
@@ -123,6 +127,7 @@ namespace Tizen.WebView
         /// <summary>
         /// The description for the error.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         public string Description
         {
             get
@@ -134,6 +139,7 @@ namespace Tizen.WebView
         /// <summary>
         /// Whether the error should be treated as a cancellation.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         public bool Cancellation
         {
             get
