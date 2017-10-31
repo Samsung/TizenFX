@@ -22,6 +22,7 @@ namespace ElmSharp
     /// <summary>
     /// The Color is a struct to record Check's state.
     /// </summary>
+    /// <since_tizen> preview </since_tizen>
     public struct Color
     {
         readonly int _a;
@@ -43,6 +44,7 @@ namespace ElmSharp
         /// <remarks>
         /// In default Color instance,Mode type is Default,RGBA all set as -1.
         /// </remarks>
+        /// <since_tizen> preview </since_tizen>
         public static Color Default
         {
             get { return new Color(-1, -1, -1, -1, Mode.Default); }
@@ -52,6 +54,7 @@ namespace ElmSharp
         /// Gets whether the Color instance's mode is default or not.
         /// Return type is bool.
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         public bool IsDefault
         {
             get { return _mode == Mode.Default; }
@@ -61,6 +64,7 @@ namespace ElmSharp
         /// Gets A value of RGBA.
         /// A means the Alpha in color.
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         public int A
         {
             get { return _a; }
@@ -70,6 +74,7 @@ namespace ElmSharp
         /// Gets R value of RGBA.
         /// R means the Red in color.
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         public int R
         {
             get { return _r; }
@@ -79,6 +84,7 @@ namespace ElmSharp
         /// Gets G value of RGBA.
         /// G means the Green in color.
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         public int G
         {
             get { return _g; }
@@ -88,6 +94,7 @@ namespace ElmSharp
         /// Gets B value of RGBA.
         /// B means the Blue in color.
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         public int B
         {
             get { return _b; }
@@ -100,6 +107,7 @@ namespace ElmSharp
         /// <param name="r">Red of RGB</param>
         /// <param name="g">Green of RGB</param>
         /// <param name="b">Blue of RGB</param>
+        /// <since_tizen> preview </since_tizen>
         public Color(int r, int g, int b) : this(r, g, b, 255)
         {
         }
@@ -112,6 +120,7 @@ namespace ElmSharp
         /// <param name="g">Green of RGBA</param>
         /// <param name="b">Blue of RGBA</param>
         /// <param name="a">Alpha of RGBA</param>
+        /// <since_tizen> preview </since_tizen>
         public Color(int r, int g, int b, int a) : this(r, g, b, a, Mode.Rgb)
         {
         }
@@ -136,6 +145,7 @@ namespace ElmSharp
         /// Returns the hash code for this instance.
         /// </summary>
         /// <returns>A 32-bit signed integer hash code.</returns>
+        /// <since_tizen> preview </since_tizen>
         public override int GetHashCode()
         {
             int hashcode = _r.GetHashCode();
@@ -153,6 +163,7 @@ namespace ElmSharp
         /// true if obj and this instance are the same type and represent the same value.
         /// otherwise, false.
         /// </returns>
+        /// <since_tizen> preview </since_tizen>
         public override bool Equals(object obj)
         {
             if (obj is Color)
@@ -170,6 +181,7 @@ namespace ElmSharp
         /// <returns>The result whether two instance is same or not.
         /// Return type is bool.If they are same, return true.
         /// </returns>
+        /// <since_tizen> preview </since_tizen>
         public static bool operator ==(Color a, Color b)
         {
             if (ReferenceEquals(a, b))
@@ -189,6 +201,7 @@ namespace ElmSharp
         /// <returns>The result whether two instance is different or not.
         /// Return type is bool.If they are different, return true.
         /// </returns>
+        /// <since_tizen> preview </since_tizen>
         public static bool operator !=(Color a, Color b)
         {
             return !(a == b);
@@ -205,6 +218,7 @@ namespace ElmSharp
         /// Returns the fully qualified type name of this instance.
         /// </summary>
         /// <returns>The fully qualified type name.</returns>
+        /// <since_tizen> preview </since_tizen>
         public override string ToString()
         {
             return string.Format(CultureInfo.InvariantCulture, "[Color: R={0}, G={1}, B={2}, A={3}]", R, G, B, A);
@@ -215,6 +229,7 @@ namespace ElmSharp
         /// </summary>
         /// <param name="hex">Hexadecimal string.</param>
         /// <returns>New instance of Color struct.</returns>
+        /// <since_tizen> preview </since_tizen>
         public static Color FromHex(string hex)
         {
             hex = hex.Replace("#", "");
@@ -238,6 +253,7 @@ namespace ElmSharp
         /// </summary>
         /// <param name="argb">Unsigned integer indicates RGBA.</param>
         /// <returns>New instance of Color struct.</returns>
+        /// <since_tizen> preview </since_tizen>
         public static Color FromUint(uint argb)
         {
             return FromRgba((byte)((argb & 0x00ff0000) >> 0x10), (byte)((argb & 0x0000ff00) >> 0x8), (byte)(argb & 0x000000ff), (byte)((argb & 0xff000000) >> 0x18));
@@ -251,6 +267,7 @@ namespace ElmSharp
         /// <param name="b">Blue in RGBA.</param>
         /// <param name="a">Alpha in RGBA.</param>
         /// <returns>New instance of Color struct.</returns>
+        /// <since_tizen> preview </since_tizen>
         public static Color FromRgba(int r, int g, int b, int a)
         {
             return new Color(r, g, b, a);
@@ -263,6 +280,7 @@ namespace ElmSharp
         /// <param name="g">Green in RGB.</param>
         /// <param name="b">Blue in RGB.</param>
         /// <returns>New instance of Color struct.</returns>
+        /// <since_tizen> preview </since_tizen>
         public static Color FromRgb(int r, int g, int b)
         {
             return FromRgba(r, g, b, 255);
@@ -277,78 +295,97 @@ namespace ElmSharp
         /// <summary>
         /// The Tansparent is a predefined Color, it's rgba value is (0, 0, 0, 0).
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         public static readonly Color Transparent = FromRgba(0, 0, 0, 0);
         /// <summary>
         /// The Aqua is a predefined Color instance, it's rgb value is (0, 255, 255).
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         public static readonly Color Aqua = FromRgb(0, 255, 255);
         /// <summary>
         /// The Black is a predefined Color instance, it's rgb value is (0, 0, 0).
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         public static readonly Color Black = FromRgb(0, 0, 0);
         /// <summary>
         /// The Blue is a predefined Color instance, it's rgb value is (0, 0, 255).
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         public static readonly Color Blue = FromRgb(0, 0, 255);
         /// <summary>
         /// The Fuchsia is a predefined Color instance, it's rgb value is (255, 0, 255).
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         public static readonly Color Fuchsia = FromRgb(255, 0, 255);
         /// <summary>
         /// The Gray is a predefined Color instance, it's rgb value is (128, 128, 128).
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         public static readonly Color Gray = FromRgb(128, 128, 128);
         /// <summary>
         /// The Green is a predefined Color instance, it's rgb value is (0, 128, 0).
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         public static readonly Color Green = FromRgb(0, 128, 0);
         /// <summary>
         /// The Lime is a predefined Color instance, it's rgb value is (0, 255, 0).
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         public static readonly Color Lime = FromRgb(0, 255, 0);
         /// <summary>
         /// The Maroon is a predefined Color instance, it's rgb value is (128, 0, 0).
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         public static readonly Color Maroon = FromRgb(128, 0, 0);
         /// <summary>
         /// The Navy is a predefined Color instance, it's rgb value is (0, 0, 128).
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         public static readonly Color Navy = FromRgb(0, 0, 128);
         /// <summary>
         /// The Olive is a predefined Color instance, it's rgb value is (128, 128, 0).
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         public static readonly Color Olive = FromRgb(128, 128, 0);
         /// <summary>
         /// The Orange is a predefined Color instance, it's rgb value is (255, 165, 0).
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         public static readonly Color Orange = FromRgb(255, 165, 0);
         /// <summary>
         /// The Purple is a predefined Color instance, it's rgb value is (128, 0, 128).
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         public static readonly Color Purple = FromRgb(128, 0, 128);
         /// <summary>
         /// The Pink is a predefined Color instance, it's rgb value is (255, 102, 255).
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         public static readonly Color Pink = FromRgb(255, 102, 255);
         /// <summary>
         /// The Red is a predefined Color instance, it's rgb value is (255, 0, 0).
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         public static readonly Color Red = FromRgb(255, 0, 0);
         /// <summary>
         /// The Silver is a predefined Color instance, it's rgb value is (192, 192, 192).
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         public static readonly Color Silver = FromRgb(192, 192, 192);
         /// <summary>
         /// The Teal is a predefined Color instance, it's rgb value is (0, 128, 128).
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         public static readonly Color Teal = FromRgb(0, 128, 128);
         /// <summary>
         /// The White is a predefined Color instance, it's rgb value is (255, 255, 255).
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         public static readonly Color White = FromRgb(255, 255, 255);
         /// <summary>
         /// The Yellow is a predefined Color instance, it's rgb value is (255, 255, 0).
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         public static readonly Color Yellow = FromRgb(255, 255, 0);
         #endregion
     }

@@ -21,11 +21,13 @@ namespace ElmSharp
     /// <summary>
     /// The HoverselItemEventArgs is an HoverselItem's EventArgs
     /// </summary>
+    /// <since_tizen> preview </since_tizen>
     public class HoverselItemEventArgs : EventArgs
     {
         /// <summary>
         /// Hoversel's Item
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         public HoverselItem Item { get; set; }
 
         internal static HoverselItemEventArgs CreateFromSmartEvent(IntPtr data, IntPtr obj, IntPtr info)
@@ -38,6 +40,7 @@ namespace ElmSharp
     /// <summary>
     /// The hoversel is a button that pops up a list of items.
     /// </summary>
+    /// <since_tizen> preview </since_tizen>
     public class Hoversel : Layout
     {
         SmartEvent _clicked;
@@ -50,6 +53,7 @@ namespace ElmSharp
         /// Creates and initializes a new instance of the Hoversel class.
         /// </summary>
         /// <param name="parent">The parent is a given container which will be attached by Hoversel as a child. It's <see cref="EvasObject"/> type.</param>
+        /// <since_tizen> preview </since_tizen>
         public Hoversel(EvasObject parent) : base(parent)
         {
             _clicked = new SmartEvent(this, "clicked");
@@ -82,26 +86,31 @@ namespace ElmSharp
         /// <summary>
         /// Clicked will be triggered when Hoversel is clicked
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         public event EventHandler Clicked;
 
         /// <summary>
         /// Expanded will be triggered when Hoversel is activated by clicking the hoversel or by a function
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         public event EventHandler Expanded;
 
         /// <summary>
         /// Dismissed will be triggered when Hoversel Dismissed
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         public event EventHandler Dismissed;
 
         /// <summary>
         /// ItemSelected will be triggered when Hoversel's Item Selected
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         public event EventHandler<HoverselItemEventArgs> ItemSelected;
 
         /// <summary>
         /// Gets or sets the status to control whether the hoversel should expand horizontally.
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         public bool IsHorizontal
         {
             get
@@ -117,6 +126,7 @@ namespace ElmSharp
         /// <summary>
         /// Gets or sets the hover parent.
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         public IntPtr HoverParent
         {
             get
@@ -132,6 +142,7 @@ namespace ElmSharp
         /// <summary>
         /// Gets the flag of whether the hoversel is expanded.
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         public bool IsExpanded
         {
             get
@@ -143,6 +154,7 @@ namespace ElmSharp
         /// <summary>
         /// Gets or sets the status of whether update icon and text of hoversel same to those of selected item automatically.
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         public bool AutoUpdate
         {
             get
@@ -158,6 +170,7 @@ namespace ElmSharp
         /// <summary>
         /// This triggers the hoversel popup from code, the same as if the user had clicked the button.
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         public void HoverBegin()
         {
             Interop.Elementary.elm_hoversel_hover_begin(RealHandle);
@@ -166,6 +179,7 @@ namespace ElmSharp
         /// <summary>
         /// This dismisses the hoversel popup as if the user had clicked outside the hover.
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         public void HoverEnd()
         {
             Interop.Elementary.elm_hoversel_hover_end(RealHandle);
@@ -174,6 +188,7 @@ namespace ElmSharp
         /// <summary>
         /// This will remove all the children items from the hoversel.
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         public void Clear()
         {
             Interop.Elementary.elm_hoversel_clear(RealHandle);
@@ -185,6 +200,7 @@ namespace ElmSharp
         /// </summary>
         /// <param name="label">Item's label</param>
         /// <returns>A handle to the added item.</returns>
+        /// <since_tizen> preview </since_tizen>
         public HoverselItem AddItem(string label)
         {
             HoverselItem item = new HoverselItem();
@@ -198,6 +214,7 @@ namespace ElmSharp
         /// </summary>
         /// <param name="parent">Parent EvasObject</param>
         /// <returns>Handle IntPtr</returns>
+        /// <since_tizen> preview </since_tizen>
         protected override IntPtr CreateHandle(EvasObject parent)
         {
             IntPtr handle = Interop.Elementary.elm_layout_add(parent.Handle);

@@ -21,12 +21,14 @@ namespace ElmSharp
     /// <summary>
     /// The FloatingButton is a widget that to add floating area for buttons.
     /// </summary>
+    /// <since_tizen> preview </since_tizen>
     public class FloatingButton : Layout
     {
         /// <summary>
         /// Creates and initializes a new instance of the FloatingButton class.
         /// </summary>
         /// <param name="parent">Created on this parent container..</param>
+        /// <since_tizen> preview </since_tizen>
         public FloatingButton(EvasObject parent) : base(parent)
         {
         }
@@ -34,6 +36,7 @@ namespace ElmSharp
         /// <summary>
         /// Sets or gets floatingbutton mode.
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         public FloatingButtonMode Mode
         {
             get
@@ -49,6 +52,7 @@ namespace ElmSharp
         /// <summary>
         /// Gets floatingbutton Position.
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         public FloatingButtonPosition Position
         {
             get
@@ -60,6 +64,7 @@ namespace ElmSharp
         /// <summary>
         /// Sets or gets movability for a given floatingbutton widget.
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         public bool MovementBlock
         {
             get
@@ -75,6 +80,7 @@ namespace ElmSharp
         /// <summary>
         /// Get Opacity's value of the given FloatingButton.
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         public override int Opacity
         {
             get
@@ -93,6 +99,7 @@ namespace ElmSharp
         /// </summary>
         /// <param name="position">Button position</param>
         /// <param name="animated">Animat flag</param>
+        /// <since_tizen> preview </since_tizen>
         public void SetPosition(FloatingButtonPosition position, bool animated)
         {
             if (animated)
@@ -110,6 +117,7 @@ namespace ElmSharp
         /// </summary>
         /// <param name="parent">Parent EvasObject</param>
         /// <returns>Handle IntPtr</returns>
+        /// <since_tizen> preview </since_tizen>
         protected override IntPtr CreateHandle(EvasObject parent)
         {
             return Interop.Eext.eext_floatingbutton_add(parent.Handle);
@@ -119,6 +127,7 @@ namespace ElmSharp
     /// <summary>
     /// Enumeration for FloatingButtonMode
     /// </summary>
+    /// <since_tizen> preview </since_tizen>
     public enum FloatingButtonMode
     {
         /// <summary>
@@ -135,6 +144,7 @@ namespace ElmSharp
     /// <summary>
     /// Enumeration for FloatingButtonPosition
     /// </summary>
+    /// <since_tizen> preview </since_tizen>
     public enum FloatingButtonPosition
     {
         /// <summary>

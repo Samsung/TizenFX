@@ -21,12 +21,14 @@ namespace ElmSharp
     /// The IndexItem is used to manage index item
     /// Inherits ItemObject
     /// </summary>
+    /// <since_tizen> preview </since_tizen>
     public class IndexItem : ItemObject
     {
         /// <summary>
         /// Creates and initializes a new instance of IndexItem class.
         /// </summary>
         /// <param name="text">the text is set to the Text. It's 'string' type.</param>
+        /// <since_tizen> preview </since_tizen>
         public IndexItem(string text) : base(IntPtr.Zero)
         {
             Text = text;
@@ -35,17 +37,20 @@ namespace ElmSharp
         /// <summary>
         /// Selected will be triggered when the index item is selected
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         public event EventHandler Selected;
 
         /// <summary>
         /// Gets the text
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         public string Text { get; private set; }
 
         /// <summary>
         /// Sets the selected state of an item.
         /// </summary>
         /// <param name="selected">The selected state</param>
+        /// <since_tizen> preview </since_tizen>
         public void Select(bool selected)
         {
             Interop.Elementary.elm_index_item_selected_set(Handle, selected);

@@ -23,15 +23,18 @@ namespace ElmSharp
     /// It inherits System.EventArgs.
     /// The EcoreKeyEventArgs is a EventArgs to record Ecore event's key name and key code.
     /// </summary>
+    /// <since_tizen> preview </since_tizen>
     public class EcoreKeyEventArgs : EventArgs
     {
         /// <summary>
         /// Gets the KeyName property.The return type is string.
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         public string KeyName { get; private set; }
         /// <summary>
         /// Gets the KeyCode property.The return type is int.
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         public int KeyCode { get; private set; }
 
         /// <summary>
@@ -41,6 +44,7 @@ namespace ElmSharp
         /// <param name="type">type</param>
         /// <param name="info">information </param>
         /// <returns>new instance of the EcoreKeyEventArgs class</returns>
+        /// <since_tizen> preview </since_tizen>
         public static EcoreKeyEventArgs Create(IntPtr data, EcoreEventType type, IntPtr info)
         {
             var evt = Marshal.PtrToStructure<EcoreEventKey>(info);

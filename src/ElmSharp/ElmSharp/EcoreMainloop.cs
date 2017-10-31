@@ -22,6 +22,7 @@ namespace ElmSharp
     /// <summary>
     /// EcoreMainloop is a helper class, it provide functions relative Ecore's main loop.
     /// </summary>
+    /// <since_tizen> preview </since_tizen>
     public static class EcoreMainloop
     {
         static readonly Dictionary<int, Func<bool>> _taskMap = new Dictionary<int, Func<bool>>();
@@ -41,11 +42,13 @@ namespace ElmSharp
         /// Checks if you are calling this function from the main thread.
         /// </summary>
         /// <remarks>True is the calling function is the same thread, false otherwise.</remarks>
+        /// <since_tizen> preview </since_tizen>
         public static bool IsMainThread => Interop.Eina.eina_main_loop_is();
 
         /// <summary>
         /// Runs the application main loop.
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         public static void Begin()
         {
             Interop.Ecore.ecore_main_loop_begin();
@@ -54,6 +57,7 @@ namespace ElmSharp
         /// <summary>
         /// Quits the main loop once all the events currently on the queue have been processed.
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         public static void Quit()
         {
             Interop.Ecore.ecore_main_loop_quit();
@@ -63,6 +67,7 @@ namespace ElmSharp
         /// Adds an idler handler.
         /// </summary>
         /// <param name="task">The action to call when idling</param>
+        /// <since_tizen> preview </since_tizen>
         public static void Post(Action task)
         {
             int id = RegistHandler(() => { task(); return false; });
@@ -73,6 +78,7 @@ namespace ElmSharp
         /// Calls callback asynchronously in the main loop.
         /// </summary>
         /// <param name="task">The action wanted to be called</param>
+        /// <since_tizen> preview </since_tizen>
         public static void PostAndWakeUp(Action task)
         {
             int id = RegistHandler(() => { task(); return false; });
@@ -83,6 +89,7 @@ namespace ElmSharp
         /// Calls callback synchronously in the main loop.
         /// </summary>
         /// <param name="task">The action wanted to be called</param>
+        /// <since_tizen> preview </since_tizen>
         public static void Send(Action task)
         {
             int id = RegistHandler(() => { task(); return false; });
@@ -95,6 +102,7 @@ namespace ElmSharp
         /// <param name="interval">The interval in seconds.</param>
         /// <param name="handler">The given function.</param>
         /// <returns>A timer object handler on success, NULL on failure.</returns>
+        /// <since_tizen> preview </since_tizen>
         public static IntPtr AddTimer(double interval, Func<bool> handler)
         {
             int id = RegistHandler(handler);
@@ -105,6 +113,7 @@ namespace ElmSharp
         /// Removes the specified timer from the timer list.
         /// </summary>
         /// <param name="id">The specified timer handler</param>
+        /// <since_tizen> preview </since_tizen>
         public static void RemoveTimer(IntPtr id)
         {
             int taskId = (int)Interop.Ecore.ecore_timer_del(id);

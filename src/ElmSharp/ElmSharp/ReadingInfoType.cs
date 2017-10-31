@@ -21,6 +21,7 @@ namespace ElmSharp.Accessible
     /// <summary>
     /// Enumeration for ReadingInfoType.
     /// </summary>
+    /// <since_tizen> preview </since_tizen>
     [Flags]
     public enum ReadingInfoType
     {

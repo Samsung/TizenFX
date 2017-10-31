@@ -24,6 +24,7 @@ namespace ElmSharp.Wearable
     /// The Circle DateTime Selector is a widget to display and handle datetime value by rotary event
     /// Inherits <see cref="DateTimeSelector"/>
     /// </summary>
+    /// <since_tizen> preview </since_tizen>
     public class CircleDateTimeSelector : DateTimeSelector, IRotaryActionWidget
     {
         IntPtr _circleHandle;
@@ -34,6 +35,7 @@ namespace ElmSharp.Wearable
         /// </summary>
         /// <param name="parent">The parent of new Circle DateTime instance</param>
         /// <param name="surface">The surface for drawing circle features for this widget.</param>
+        /// <since_tizen> preview </since_tizen>
         public CircleDateTimeSelector(EvasObject parent, CircleSurface surface) : base()
         {
             Debug.Assert(parent == null || surface == null || parent.IsRealized);
@@ -45,6 +47,7 @@ namespace ElmSharp.Wearable
         /// Creates and initializes a new instance of the Circle DateTimeSelector class.
         /// </summary>
         /// <param name="parent">The parent of new Circle CircleDateTimeSelector instance</param>
+        /// <since_tizen> preview </since_tizen>
         [Obsolete("It is not safe for guess circle surface from parent and create new surface by every new widget")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public CircleDateTimeSelector(EvasObject parent) : this(parent, CircleSurface.CreateCircleSurface(parent))
@@ -55,16 +58,19 @@ namespace ElmSharp.Wearable
         /// <summary>
         /// Gets the handle for Circle Widget.
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         public virtual IntPtr CircleHandle => _circleHandle;
 
         /// <summary>
         /// Gets the handle for Circle Surface used in this widget
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         public virtual CircleSurface CircleSurface => _surface;
 
         /// <summary>
         /// Sets or gets disabled state of this widget.
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         [Obsolete("Use IsEnabled")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public bool Disabled
@@ -76,6 +82,7 @@ namespace ElmSharp.Wearable
         /// <summary>
         /// Sets or gets the state of the widget, which might be enabled or disabled.
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         public override bool IsEnabled
         {
             get
@@ -91,6 +98,7 @@ namespace ElmSharp.Wearable
         /// <summary>
         /// Sets or gets the color of the marker
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         public Color MarkerColor
         {
             get
@@ -108,6 +116,7 @@ namespace ElmSharp.Wearable
         /// <summary>
         /// Sets or gets the line width of the marker
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         public int MarkerLineWidth
         {
             get
@@ -123,6 +132,7 @@ namespace ElmSharp.Wearable
         /// <summary>
         /// Sets or gets the radius at which the center of the marker lies
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         public double MarkerRadius
         {
             get
@@ -140,6 +150,7 @@ namespace ElmSharp.Wearable
         /// </summary>
         /// <param name="parent">Parent EvasObject</param>
         /// <returns>Handle IntPtr</returns>
+        /// <since_tizen> preview </since_tizen>
         protected override IntPtr CreateHandle(EvasObject parent)
         {
             var handle = base.CreateHandle(parent);

@@ -21,12 +21,14 @@ namespace ElmSharp
     /// <summary>
     /// The Polygon is a widget that used to draw a polygon (filled).
     /// </summary>
+    /// <since_tizen> preview </since_tizen>
     public class Polygon : EvasObject
     {
         /// <summary>
         /// Creates and initializes a new instance of the Polygon class.
         /// <param name="parent">The EvasObject to which the new Polygon will be attached as a child.</param>
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         public Polygon(EvasObject parent) : base(parent)
         {
         }
@@ -36,6 +38,7 @@ namespace ElmSharp
         /// <param name="x">The X coordinate of the new vertex.</param>
         /// <param name="y">The Y coordinate of the new vertex.</param>
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         public void AddPoint(int x, int y)
         {
             Interop.Evas.evas_object_polygon_point_add(Handle, x, y);
@@ -45,6 +48,7 @@ namespace ElmSharp
         /// Adds a new vertex to the Polygon.
         /// <param name="p">The coordinates of the new vertex.</param>
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         public void AddPoint(Point p)
         {
             AddPoint(p.X, p.Y);
@@ -53,6 +57,7 @@ namespace ElmSharp
         /// <summary>
         /// Removes all the vertices of the Polygon, making it empty.
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         public void ClearPoints()
         {
             Interop.Evas.evas_object_polygon_points_clear(Handle);
@@ -63,6 +68,7 @@ namespace ElmSharp
         /// </summary>
         /// <param name="parent">Parent EvasObject</param>
         /// <returns>Handle IntPtr</returns>
+        /// <since_tizen> preview </since_tizen>
         protected override IntPtr CreateHandle(EvasObject parent)
         {
             IntPtr evas = Interop.Evas.evas_object_evas_get(parent.Handle);

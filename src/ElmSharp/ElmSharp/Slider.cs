@@ -21,6 +21,7 @@ namespace ElmSharp
     /// <summary>
     /// Enumeration for the Slider's indicator visiblity mode.
     /// </summary>
+    /// <since_tizen> preview </since_tizen>
     public enum SliderIndicatorVisibleMode
     {
         /// <summary>
@@ -47,6 +48,7 @@ namespace ElmSharp
     /// <summary>
     /// The Slider is a widget that adds a draggable slider widget for selecting the value of something within a range.
     /// </summary>
+    /// <since_tizen> preview </since_tizen>
     public class Slider : Layout
     {
         double _minimum = 0.0;
@@ -61,6 +63,7 @@ namespace ElmSharp
         /// Creates and initializes a new instance of the Slider class.
         /// </summary>
         /// <param name="parent">The <see cref="EvasObject"/> to which the new Slider will be attached as a child.</param>
+        /// <since_tizen> preview </since_tizen>
         public Slider(EvasObject parent) : base(parent)
         {
             _changed = new SmartEvent(this, this.RealHandle, "changed");
@@ -79,6 +82,7 @@ namespace ElmSharp
         /// <summary>
         /// ValueChanged will be triggered when the Slider value is changed by the user.
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         public event EventHandler ValueChanged;
 
         /// <summary>
@@ -86,16 +90,19 @@ namespace ElmSharp
         /// This will be called only when the user stops dragging for a very short period or when they release their finger/mouse,
         /// so it avoids possibly expensive reactions to the value change.
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         public event EventHandler DelayedValueChanged;
 
         /// <summary>
         /// DragStarted will be triggered when dragging the Slider indicator around has started.
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         public event EventHandler DragStarted;
 
         /// <summary>
         /// DragStopped will be triggered when dragging the Slider indicator around has stopped.
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         public event EventHandler DragStopped;
 
         /// <summary>
@@ -107,6 +114,7 @@ namespace ElmSharp
         /// Use this when you're not setting other size hints expanding on the given direction
         /// (like weight and alignment hints), and you would like it to have a specific size.
         /// </remarks>
+        /// <since_tizen> preview </since_tizen>
         public int SpanSize
         {
             get
@@ -131,6 +139,7 @@ namespace ElmSharp
         /// such as "%1.2f meters" for example, and it displays values like: "3.14 meters" for a value
         /// equal to 3.14159.By default, the indicator label is disabled.
         /// </remarks>
+        /// <since_tizen> preview </since_tizen>
         public string IndicatorFormat
         {
             get
@@ -149,6 +158,7 @@ namespace ElmSharp
         /// <remarks>
         /// The orientation may be vertically or horizontally.By default, it's displayed horizontally.
         /// </remarks>
+        /// <since_tizen> preview </since_tizen>
         public bool IsHorizontal
         {
             get
@@ -169,6 +179,7 @@ namespace ElmSharp
         /// If the actual value is less than min, it is updated to min.
         /// Actual value can be obtained with Value.By default, min is equal to 0.0.
         /// </remarks>
+        /// <since_tizen> preview </since_tizen>
         public double Minimum
         {
             get
@@ -191,6 +202,7 @@ namespace ElmSharp
         /// Actual value can be obtained with Value.By default, min is equal to 0.0, and max is equal to 1.0.
         /// Maximum must be greater than minimum, otherwise the behavior is undefined.
         /// </remarks>
+        /// <since_tizen> preview </since_tizen>
         public double Maximum
         {
             get
@@ -211,6 +223,7 @@ namespace ElmSharp
         /// Value will be presented on the unit label following format specified with UnitFormat and
         /// on indicator with IndicatorFormat.The value must to be between Minimum and Maximum values.
         /// </remarks>
+        /// <since_tizen> preview </since_tizen>
         public double Value
         {
             get
@@ -232,6 +245,7 @@ namespace ElmSharp
         /// is set and the flick event is used to inc/dec slider values.
         /// By default, the step value is equal to 0.05.
         /// </remarks>
+        /// <since_tizen> preview </since_tizen>
         public double Step
         {
             get
@@ -253,6 +267,7 @@ namespace ElmSharp
         /// as opposed to normally have the low values on the former and high values on the latter,
         /// respectively, for the horizontal and vertical modes.
         /// </remarks>
+        /// <since_tizen> preview </since_tizen>
         public bool IsInverted
         {
             get
@@ -272,6 +287,7 @@ namespace ElmSharp
         /// By default, the indicator is bigger when dragged by the user.
         /// It won't display values set with IndicatorFormat if you disable the indicator.
         /// </remarks>
+        /// <since_tizen> preview </since_tizen>
         public bool IsIndicatorVisible
         {
             get
@@ -287,6 +303,7 @@ namespace ElmSharp
         /// <summary>
         /// Sets or gets the visible mode of slider indicator.
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         public SliderIndicatorVisibleMode IndicatorVisibleMode
         {
             get
@@ -302,6 +319,7 @@ namespace ElmSharp
         /// <summary>
         /// Sets or gets whether to Show the indicator of slider on focus.
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         public bool IsIndicatorFocusable
         {
             get
@@ -319,6 +337,7 @@ namespace ElmSharp
         /// </summary>
         /// <param name="parent">Parent EvasObject</param>
         /// <returns>Handle IntPtr</returns>
+        /// <since_tizen> preview </since_tizen>
         protected override IntPtr CreateHandle(EvasObject parent)
         {
             IntPtr handle = Interop.Elementary.elm_layout_add(parent.Handle);

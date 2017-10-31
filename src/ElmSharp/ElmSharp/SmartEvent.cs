@@ -29,6 +29,7 @@ namespace ElmSharp
     /// They are defined by an event string, which identifies them uniquely.
     /// </summary>
     /// <typeparam name="TEventArgs">The parameter for the event.</typeparam>
+    /// <since_tizen> preview </since_tizen>
     public class SmartEvent<TEventArgs> : IInvalidatable where TEventArgs : EventArgs
     {
         /// <summary>
@@ -38,6 +39,7 @@ namespace ElmSharp
         /// <param name="obj">The sender obj.</param>
         /// <param name="info">The item sender obj.</param>
         /// <returns>Return smart event item args.</returns>
+        /// <since_tizen> preview </since_tizen>
         public delegate TEventArgs SmartEventInfoParser(IntPtr data, IntPtr obj, IntPtr info);
 
         private EvasObject _sender;
@@ -52,6 +54,7 @@ namespace ElmSharp
         /// <param name="sender">The source of the event.</param>
         /// <param name="eventName">The event name.</param>
         /// <param name="parser">The event parameter.</param>
+        /// <since_tizen> preview </since_tizen>
         public SmartEvent(EvasObject sender, string eventName, SmartEventInfoParser parser) : this(sender, sender.Handle, eventName, parser)
         {
         }
@@ -63,6 +66,7 @@ namespace ElmSharp
         /// <param name="handle">Teh event handler.</param>
         /// <param name="eventName">The event name.</param>
         /// <param name="parser">The event parser.</param>
+        /// <since_tizen> preview </since_tizen>
         [EditorBrowsableAttribute(EditorBrowsableState.Never)]
         public SmartEvent(EvasObject sender, IntPtr handle, string eventName, SmartEventInfoParser parser)
         {
@@ -78,6 +82,7 @@ namespace ElmSharp
         /// </summary>
         /// <param name="sender">The source of the event.</param>
         /// <param name="eventName">The event name.</param>
+        /// <since_tizen> preview </since_tizen>
         public SmartEvent(EvasObject sender, string eventName) : this(sender, eventName, null)
         {
         }
@@ -99,6 +104,7 @@ namespace ElmSharp
         /// <summary>
         /// Adds or removes delegate for event.
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         public event EventHandler<TEventArgs> On
         {
             add
@@ -136,6 +142,7 @@ namespace ElmSharp
         /// <summary>
         /// Destroy current object
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         public void Dispose()
         {
             Dispose(true);
@@ -145,6 +152,7 @@ namespace ElmSharp
         /// <summary>
         /// Make current instance invalidate.
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         public void MakeInvalidate()
         {
             _sender = null;
@@ -158,6 +166,7 @@ namespace ElmSharp
         /// true if managed resources should be disposed
         /// otherwise, false.
         /// </param>
+        /// <since_tizen> preview </since_tizen>
         protected virtual void Dispose(bool disposing)
         {
             if (disposing)
@@ -181,6 +190,7 @@ namespace ElmSharp
     /// This way, you can extend EvasObject's own <see cref="EvasObjectEvent"/>.
     /// They are defined by an event string, which identifies them uniquely.
     /// </summary>
+    /// <since_tizen> preview </since_tizen>
     public class SmartEvent : IInvalidatable
     {
         private SmartEvent<EventArgs> _smartEvent;
@@ -192,6 +202,7 @@ namespace ElmSharp
         /// </summary>
         /// <param name="sender">The source of the event.</param>
         /// <param name="eventName">The event name.</param>
+        /// <since_tizen> preview </since_tizen>
         public SmartEvent(EvasObject sender, string eventName) : this(sender, sender.RealHandle, eventName)
         {
         }
@@ -202,6 +213,7 @@ namespace ElmSharp
         /// <param name="sender">The source of the event.</param>
         /// <param name="handle">The event handler.</param>
         /// <param name="eventName">The event name.</param>
+        /// <since_tizen> preview </since_tizen>
         [EditorBrowsableAttribute(EditorBrowsableState.Never)]
         public SmartEvent(EvasObject sender, IntPtr handle, string eventName)
         {
@@ -219,6 +231,7 @@ namespace ElmSharp
         /// <summary>
         /// Adds or removes delegate for event.
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         public event EventHandler On
         {
             add
@@ -248,6 +261,7 @@ namespace ElmSharp
         /// <summary>
         /// Destroy current object
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         public void Dispose()
         {
             Dispose(true);
@@ -257,6 +271,7 @@ namespace ElmSharp
         /// <summary>
         /// Make current instance invalidate.
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         public void MakeInvalidate()
         {
             _smartEvent.MakeInvalidate();
@@ -269,6 +284,7 @@ namespace ElmSharp
         /// true if managed resources should be disposed
         /// otherwise, false.
         /// </param>
+        /// <since_tizen> preview </since_tizen>
         protected virtual void Dispose(bool disposing)
         {
             if (disposing)

@@ -22,6 +22,7 @@ namespace ElmSharp
     /// The NaviItem is a widget to contain the contents to show in Naviframe.
     /// Inherits ItemObject
     /// </summary>
+    /// <since_tizen> preview </since_tizen>
     public class NaviItem : ItemObject
     {
         EvasObject _content;
@@ -45,11 +46,13 @@ namespace ElmSharp
         /// <summary>
         /// Popped will be triggered when NaviItem is removed.
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         public event EventHandler Popped;
 
         /// <summary>
         /// Gets the content object. The name of content part is "elm.swallow.content".
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         public EvasObject Content
         {
             get { return _content; }
@@ -58,6 +61,7 @@ namespace ElmSharp
         /// <summary>
         /// Sets or gets a value whether title area is enabled or not.
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         public bool TitleBarVisible
         {
             get
@@ -73,6 +77,7 @@ namespace ElmSharp
         /// <summary>
         ///  Sets or gets the title bar background color
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         public Color TitleBarBackgroundColor
         {
             get
@@ -96,6 +101,7 @@ namespace ElmSharp
         /// <summary>
         /// Sets or gets an item style.
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         public override string Style
         {
             get
@@ -112,6 +118,7 @@ namespace ElmSharp
         /// Invalidate the EventArgs if _isPopped is false.
         /// The method should be overridden in children class.
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         protected override void OnInvalidate()
         {
             if (!_isPopped)

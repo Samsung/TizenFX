@@ -23,6 +23,7 @@ namespace ElmSharp
     /// <summary>
     /// Enumeration for the focus direction.
     /// </summary>
+    /// <since_tizen> preview </since_tizen>
     public enum FocusDirection
     {
         /// <summary>
@@ -60,6 +61,7 @@ namespace ElmSharp
     /// The Widget is abstract class, it is the parent of other widgets.
     /// Inherits from <see cref="EvasObject"/>.
     /// </summary>
+    /// <since_tizen> preview </since_tizen>
     public abstract class Widget : AccessibleObject
     {
         Dictionary<string, EvasObject> _partContents = new Dictionary<string, EvasObject>();
@@ -73,6 +75,7 @@ namespace ElmSharp
         /// <summary>
         /// Creates and initializes a new instance of Widget class.
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         protected Widget()
         {
         }
@@ -81,6 +84,7 @@ namespace ElmSharp
         /// Creates and initializes a new instance of the Widget class.
         /// </summary>
         /// <param name="parent">The parent of new Widget instance</param>
+        /// <since_tizen> preview </since_tizen>
         protected Widget(EvasObject parent) : base(parent)
         {
         }
@@ -90,6 +94,7 @@ namespace ElmSharp
         /// </summary>
         /// <param name="content">The content which put to the part</param>
         /// <param name="part">The updated part</param>
+        /// <since_tizen> preview </since_tizen>
         protected void UpdatePartContents(EvasObject content, string part = "__default__")
         {
             _partContents[part] = content;
@@ -98,16 +103,19 @@ namespace ElmSharp
         /// <summary>
         /// Focused will be triggered when the widget is focused.
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         public event EventHandler Focused;
 
         /// <summary>
         /// Unfocused will be triggered when the widget is unfocused.
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         public event EventHandler Unfocused;
 
         /// <summary>
         /// Sets or gets the state of the widget, which might be enabled or disabled.
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         public virtual bool IsEnabled
         {
             get
@@ -123,6 +131,7 @@ namespace ElmSharp
         /// <summary>
         /// Sets or gets the style of the widget.
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         public string Style
         {
             get
@@ -138,6 +147,7 @@ namespace ElmSharp
         /// <summary>
         /// Gets whether this widget is focused.
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         public bool IsFocused
         {
             get
@@ -150,6 +160,7 @@ namespace ElmSharp
         /// Gets whether a widget is focusable or not.
         /// </summary>
         /// <remarks>Widgets which are meant to be interacted with by input events are created able to be focused, by default</remarks>
+        /// <since_tizen> preview </since_tizen>
         public bool IsFocusAllowed
         {
             get
@@ -162,6 +173,7 @@ namespace ElmSharp
         /// Sets or gets the text of the widget.
         /// </summary>
         /// <remarks>It could be override by special child class</remarks>
+        /// <since_tizen> preview </since_tizen>
         public virtual string Text
         {
             get
@@ -178,6 +190,7 @@ namespace ElmSharp
         /// Sets or gets the background color of the widget.
         /// </summary>
         /// <remarks>It could be override by special child class</remarks>
+        /// <since_tizen> preview </since_tizen>
         public virtual Color BackgroundColor
         {
             get
@@ -206,6 +219,7 @@ namespace ElmSharp
         /// Sets or gets the opacity of the widget.
         /// </summary>
         /// <remarks>It could be override by special child class</remarks>
+        /// <since_tizen> preview </since_tizen>
         public virtual int Opacity
         {
             get
@@ -226,6 +240,7 @@ namespace ElmSharp
         /// <summary>
         /// Sets or gets whether a widget and its children are focusable or not.
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         public bool AllowTreeFocus
         {
             get
@@ -241,6 +256,7 @@ namespace ElmSharp
         /// <summary>
         /// Sets or gets the widget's mirrored mode.
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         public bool IsMirroredMode
         {
             get
@@ -257,6 +273,7 @@ namespace ElmSharp
         /// Sets or gets the widget's mirrored mode setting.
         /// When widget set automatic mode(true), it follows the system mirrored mode.
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         public bool IsAutoMirroredMode
         {
             get
@@ -273,6 +290,7 @@ namespace ElmSharp
         /// Sets the widget to be focused or not.
         /// </summary>
         /// <param name="isFocus">Weather be focused</param>
+        /// <since_tizen> preview </since_tizen>
         public void SetFocus(bool isFocus)
         {
             Interop.Elementary.elm_object_focus_set(RealHandle, isFocus);
@@ -282,6 +300,7 @@ namespace ElmSharp
         /// Sets the ability for a widget to be focused.
         /// </summary>
         /// <param name="isAllowFocus">True if the object can be focused, false if not(and on errors)</param>
+        /// <since_tizen> preview </since_tizen>
         public void AllowFocus(bool isAllowFocus)
         {
             Interop.Elementary.elm_object_focus_allow_set(RealHandle, isAllowFocus);
@@ -291,6 +310,7 @@ namespace ElmSharp
         /// Gives focus to next widget in widget tree.
         /// </summary>
         /// <param name="direction">Direction to move the focus</param>
+        /// <since_tizen> preview </since_tizen>
         public void FocusNext(FocusDirection direction)
         {
             Interop.Elementary.elm_object_focus_next(RealHandle, (int)direction);
@@ -301,6 +321,7 @@ namespace ElmSharp
         /// </summary>
         /// <param name="next">Focus next widget</param>
         /// <param name="direction">Focus direction</param>
+        /// <since_tizen> preview </since_tizen>
         public void SetNextFocusObject(EvasObject next, FocusDirection direction)
         {
             Interop.Elementary.elm_object_focus_next_object_set(RealHandle, next.RealHandle, (int)direction);
@@ -312,6 +333,7 @@ namespace ElmSharp
         /// <param name="part">The name of particular part</param>
         /// <param name="content">The content</param>
         /// <seealso cref="SetPartContent(string, EvasObject, bool)"/>
+        /// <since_tizen> preview </since_tizen>
         public virtual bool SetPartContent(string part, EvasObject content)
         {
             return SetPartContent(part, content, false);
@@ -324,6 +346,7 @@ namespace ElmSharp
         /// <param name="content">The content</param>
         /// <param name="preserveOldContent">true, preserve old content will be unset. false, preserve old content will not be unset.</param>
         /// <seealso cref="SetPartContent(string, EvasObject)"/>
+        /// <since_tizen> preview </since_tizen>
         public virtual bool SetPartContent(string part, EvasObject content, bool preserveOldContent)
         {
             if (preserveOldContent)
@@ -340,6 +363,7 @@ namespace ElmSharp
         /// </summary>
         /// <param name="content">The content</param>
         /// <seealso cref="SetContent(EvasObject, bool)"/>
+        /// <since_tizen> preview </since_tizen>
         public void SetContent(EvasObject content)
         {
             SetContent(content, false);
@@ -351,6 +375,7 @@ namespace ElmSharp
         /// <param name="content">The content</param>
         /// <param name="preserveOldContent">true, preserve old content will be unset. false, preserve old content will not be unset.</param>
         /// <seealso cref="SetContent(EvasObject)"/>
+        /// <since_tizen> preview </since_tizen>
         public void SetContent(EvasObject content, bool preserveOldContent)
         {
             if (preserveOldContent)
@@ -367,6 +392,7 @@ namespace ElmSharp
         /// </summary>
         /// <param name="part">The name of particular part</param>
         /// <param name="text">The text</param>
+        /// <since_tizen> preview </since_tizen>
         public virtual bool SetPartText(string part, string text)
         {
             Interop.Elementary.elm_object_part_text_set(RealHandle, part, text);
@@ -378,6 +404,7 @@ namespace ElmSharp
         /// </summary>
         /// <param name="part">The name of particular part</param>
         /// <returns>Text of the particular part of the widget</returns>
+        /// <since_tizen> preview </since_tizen>
         public virtual string GetPartText(string part)
         {
             return Interop.Elementary.elm_object_part_text_get(RealHandle, part);
@@ -389,6 +416,7 @@ namespace ElmSharp
         /// <param name="part">The name of particular part</param>
         /// <param name="color">The color be set to widget</param>
         /// <remarks>This method is a virtual method, it could be override by special child class</remarks>
+        /// <since_tizen> preview </since_tizen>
         public virtual void SetPartColor(string part, Color color)
         {
             Interop.Elementary.elm_object_color_class_color_set(RealHandle, part, color.R * color.A / 255,
@@ -403,6 +431,7 @@ namespace ElmSharp
         /// <param name="part">The name of particular part</param>
         /// <returns>The color of the particular part</returns>
         /// <remarks>This method is a virtual method, it could be override by special child class</remarks>
+        /// <since_tizen> preview </since_tizen>
         public virtual Color GetPartColor(string part)
         {
             int r, g, b, a;
@@ -415,6 +444,7 @@ namespace ElmSharp
         /// </summary>
         /// <param name="part">The name of particular part</param>
         /// <param name="opacity">The opacity of the particular part</param>
+        /// <since_tizen> preview </since_tizen>
         public void SetPartOpacity(string part, int opacity)
         {
             Interop.Elementary.elm_object_color_class_color_set(Handle, part, 255, 255, 255, opacity);
@@ -425,6 +455,7 @@ namespace ElmSharp
         /// </summary>
         /// <param name="part">The name of particular part</param>
         /// <returns>Opacity value of the particular part</returns>
+        /// <since_tizen> preview </since_tizen>
         public int GetPartOpacity(string part)
         {
             int r, g, b, a;
@@ -437,6 +468,7 @@ namespace ElmSharp
         /// </summary>
         /// <param name="emission">The signal's name.</param>
         /// <param name="source">The signal's source.</param>
+        /// <since_tizen> preview </since_tizen>
         public void SignalEmit(string emission, string source)
         {
             Interop.Elementary.elm_object_signal_emit(Handle, emission, source);
@@ -445,6 +477,7 @@ namespace ElmSharp
         /// <summary>
         /// The callback of Realized Event
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         protected override void OnRealized()
         {
             base.OnRealized();

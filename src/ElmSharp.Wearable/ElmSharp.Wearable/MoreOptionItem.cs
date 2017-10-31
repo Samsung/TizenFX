@@ -23,6 +23,7 @@ namespace ElmSharp.Wearable
     /// <summary>
     /// The MoreOptionItem is a item of MoreOption widget.
     /// </summary>
+    /// <since_tizen> preview </since_tizen>
     public class MoreOptionItem
     {
         const string MainTextPartName = "selector,main_text";
@@ -37,6 +38,7 @@ namespace ElmSharp.Wearable
         /// <summary>
         /// Sets or gets the more option item handle.
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         public IntPtr Handle
         {
             get
@@ -59,6 +61,7 @@ namespace ElmSharp.Wearable
         /// <summary>
         /// Creates and initializes a new instance of MoreOptionItem class.
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         public MoreOptionItem()
         {
             _icon = null;
@@ -67,6 +70,7 @@ namespace ElmSharp.Wearable
         /// <summary>
         /// Sets or gets the main text of a more option object.
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         public string MainText
         {
             set
@@ -88,6 +92,7 @@ namespace ElmSharp.Wearable
         /// <summary>
         /// Sets or gets the sub text of a more option object.
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         public string SubText
         {
             set
@@ -109,6 +114,7 @@ namespace ElmSharp.Wearable
         /// <summary>
         /// Sets or gets the icon image
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         public Image Icon
         {
             set

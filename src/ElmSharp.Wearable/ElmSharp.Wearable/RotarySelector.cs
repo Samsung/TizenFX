@@ -26,6 +26,7 @@ namespace ElmSharp.Wearable
     /// And an item can be selected by rotary event or user item click.
     /// Inherits <see cref="Layout"/>.
     /// </summary>
+    /// <since_tizen> preview </since_tizen>
     public class RotarySelector : Layout
     {
         const string IconPartName = "selector,icon";
@@ -38,11 +39,13 @@ namespace ElmSharp.Wearable
         /// <summary>
         /// Selected will be triggered when selected an item.
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         public event EventHandler<RotarySelectorItemEventArgs> Selected;
 
         /// <summary>
         /// Clicked will be triggered when selecting again the alredy selected item or selecting a selector.
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         public event EventHandler<RotarySelectorItemEventArgs> Clicked;
 
         SmartEvent<PointerEventArgs> _selectedEvent;
@@ -52,12 +55,14 @@ namespace ElmSharp.Wearable
         /// <summary>
         /// Gets the rotary selector item list of a rotary selector object.
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         public IList<RotarySelectorItem> Items { get; private set; }
 
         /// <summary>
         /// Creates and initializes a new instance of the Rotary Selector class.
         /// </summary>
         /// <param name="parent">The parent of new Rotary Selector instance</param>
+        /// <since_tizen> preview </since_tizen>
         public RotarySelector(EvasObject parent) : base(parent)
         {
             Items = new RotarySelectorList(this);
@@ -80,6 +85,7 @@ namespace ElmSharp.Wearable
         /// <summary>
         /// Sets or gets the selected item of a rotary selector object.
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         public RotarySelectorItem SelectedItem
         {
             get
@@ -118,6 +124,7 @@ namespace ElmSharp.Wearable
         /// <summary>
         /// Sets or gets the background image of a rotary selector object.
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         public Image BackgroundImage { set => setPart(ref _normalBgImage, BgPartName, State.Normal, value); get => _normalBgImage; }
 
         /// <summary>
@@ -125,6 +132,7 @@ namespace ElmSharp.Wearable
         /// </summary>
         /// <param name="parent">Parent EvasObject</param>
         /// <returns>Handle IntPtr</returns>
+        /// <since_tizen> preview </since_tizen>
         protected override IntPtr CreateHandle(EvasObject parent)
         {
             IntPtr ptr = Interop.Eext.eext_rotary_selector_add(parent);

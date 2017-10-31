@@ -22,6 +22,7 @@ namespace ElmSharp
     /// <summary>
     /// Enumeration for setting list's resizing behavior, transverse axis scrolling and items cropping.
     /// </summary>
+    /// <since_tizen> preview </since_tizen>
     public enum ListMode
     {
         /// <summary>
@@ -52,11 +53,13 @@ namespace ElmSharp
     /// It contains Item which is <see cref="ListItem"/> type.
     /// All events of List contain ListItemEventArgs as a parameter.
     /// </summary>
+    /// <since_tizen> preview </since_tizen>
     public class ListItemEventArgs : EventArgs
     {
         /// <summary>
         /// Gets or sets List item. The return type is <see cref="ListItem"/>.
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         public ListItem Item { get; set; }
 
         internal static ListItemEventArgs CreateFromSmartEvent(IntPtr data, IntPtr obj, IntPtr info)
@@ -73,6 +76,7 @@ namespace ElmSharp
     /// </summary>
     /// <seealso cref="GenList"/>
     /// <seealso cref="GenGrid"/>
+    /// <since_tizen> preview </since_tizen>
     public class List : Layout
     {
         HashSet<ListItem> _children = new HashSet<ListItem>();
@@ -86,6 +90,7 @@ namespace ElmSharp
         /// Creates and initializes a new instance of the List class.
         /// </summary>
         /// <param name="parent">The parent is a given container which will be attached by List as a child. It's <see cref="EvasObject"/> type.</param>
+        /// <since_tizen> preview </since_tizen>
         public List(EvasObject parent) : base(parent)
         {
             _selected = new SmartEvent<ListItemEventArgs>(this, this.RealHandle, "selected", ListItemEventArgs.CreateFromSmartEvent);
@@ -103,6 +108,7 @@ namespace ElmSharp
         /// <summary>
         /// Gets or sets which mode to use for the list.
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         public ListMode Mode
         {
             get
@@ -118,6 +124,7 @@ namespace ElmSharp
         /// <summary>
         /// Gets the selected item.
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         public ListItem SelectedItem
         {
             get
@@ -130,26 +137,31 @@ namespace ElmSharp
         /// <summary>
         /// ItemSelected is raised when a new list item is selected.
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         public event EventHandler<ListItemEventArgs> ItemSelected;
 
         /// <summary>
         /// ItemUnselected is raised when the list item is Unselected.
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         public event EventHandler<ListItemEventArgs> ItemUnselected;
 
         /// <summary>
         /// ItemDoubleClicked is raised when a new list item is double clicked.
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         public event EventHandler<ListItemEventArgs> ItemDoubleClicked;
 
         /// <summary>
         /// ItemLongPressed is raised when a list item is pressed for a certain amount of time. By default it's 1 second.
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         public event EventHandler<ListItemEventArgs> ItemLongPressed;
 
         /// <summary>
         /// ItemActivated is raised when a new list item is double clicked or pressed (enter|return|spacebar).
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         public event EventHandler<ListItemEventArgs> ItemActivated;
 
         /// <summary>
@@ -157,6 +169,7 @@ namespace ElmSharp
         /// Call before running <see cref="EvasObject.Show"/> on the list object.
         /// If not called, it won't display the list properly.
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         public void Update()
         {
             Interop.Elementary.elm_list_go(RealHandle);
@@ -168,6 +181,7 @@ namespace ElmSharp
         /// <param name="label">The text for the item.</param>
         /// <returns>Return a new added list item that contains a text.</returns>
         /// <seealso cref="ListItem"/>
+        /// <since_tizen> preview </since_tizen>
         public ListItem Append(string label)
         {
             return Append(label, null, null);
@@ -181,6 +195,7 @@ namespace ElmSharp
         /// <param name="rightIcon">The right icon for the item.</param>
         /// <returns>Return a new added list item that contains a text and 2 icons.</returns>
         /// <seealso cref="ListItem"/>
+        /// <since_tizen> preview </since_tizen>
         public ListItem Append(string label, EvasObject leftIcon, EvasObject rightIcon)
         {
             ListItem item = new ListItem(label, leftIcon, rightIcon);
@@ -194,6 +209,7 @@ namespace ElmSharp
         /// </summary>
         /// <param name="label">The text for the item.</param>
         /// <returns>Return a new added list item that contains a text.</returns>
+        /// <since_tizen> preview </since_tizen>
         public ListItem Prepend(string label)
         {
             return Prepend(label, null, null);
@@ -206,6 +222,7 @@ namespace ElmSharp
         /// <param name="leftIcon">The left icon for the item.</param>
         /// <param name="rigthIcon">The right icon for the item.</param>
         /// <returns>Return a new added list item that contains a text and 2 icons.</returns>
+        /// <since_tizen> preview </since_tizen>
         public ListItem Prepend(string label, EvasObject leftIcon, EvasObject rigthIcon)
         {
             ListItem item = new ListItem(label, leftIcon, rigthIcon);
@@ -218,6 +235,7 @@ namespace ElmSharp
         /// Removes all items from a given list widget.
         /// To delete just one item, use <see cref="ItemObject.Delete"/>.
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         public void Clear()
         {
             Interop.Elementary.elm_list_clear(RealHandle);
@@ -233,6 +251,7 @@ namespace ElmSharp
         /// </summary>
         /// <param name="parent">Parent EvasObject</param>
         /// <returns>Handle IntPtr</returns>
+        /// <since_tizen> preview </since_tizen>
         protected override IntPtr CreateHandle(EvasObject parent)
         {
             IntPtr handle = Interop.Elementary.elm_layout_add(parent.Handle);

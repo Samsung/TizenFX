@@ -19,12 +19,14 @@ namespace ElmSharp
     /// <summary>
     /// This class is a static class for a utility methods.
     /// </summary>
+    /// <since_tizen> preview </since_tizen>
     public static class Utility
     {
         /// <summary>
         /// Appends a font path to the list of font paths used by the application.
         /// </summary>
         /// <param name="path">The new font path.</param>
+        /// <since_tizen> preview </since_tizen>
         public static void AppendGlobalFontPath(string path)
         {
             Interop.Evas.evas_font_path_global_append(path);
@@ -34,6 +36,7 @@ namespace ElmSharp
         /// Prepends a font path to the list of font paths used by the application.
         /// </summary>
         /// <param name="path">The new font path.</param>
+        /// <since_tizen> preview </since_tizen>
         public static void PrependEvasGlobalFontPath(string path)
         {
             Interop.Evas.evas_font_path_global_prepend(path);
@@ -42,6 +45,7 @@ namespace ElmSharp
         /// <summary>
         /// Removes all font paths loaded into memory by evas_font_path_app_* APIs for the application.
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         public static void ClearEvasGlobalFontPath()
         {
             Interop.Evas.evas_font_path_global_clear();
@@ -64,6 +68,7 @@ namespace ElmSharp
         /// <param name="shadowBlue">Shadow Bluevalue</param>
         /// <param name="shadowAlpha">Shadow Alpha value</param>
         /// <returns></returns>
+        /// <since_tizen> preview </since_tizen>
         public static bool SetEdjeColorClass(string colorClass, int red, int green, int blue, int alpha, int outlineRed, int outlineGreen, int outlineBlue, int outlineAlpha,
             int shadowRed, int shadowGreen, int shadowBlue, int shadowAlpha)
         {
@@ -87,6 +92,7 @@ namespace ElmSharp
         /// <param name="shadowBlue">Shadow Bluevalue</param>
         /// <param name="shadowAlpha">Shadow Alpha value</param>
         /// <returns></returns>
+        /// <since_tizen> preview </since_tizen>
         public static bool GetEdjeColorClass(string colorClass, out int red, out int green, out int blue, out int alpha, out int outlineRed, out int outlineGreen, out int outlineBlue,
             out int outlineAlpha, out int shadowRed, out int shadowGreen, out int shadowBlue, out int shadowAlpha)
         {
@@ -98,6 +104,7 @@ namespace ElmSharp
         /// Processes all queued up edje messages.
         /// This function triggers the processing of messages addressed to any (alive) edje objects.
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         public static void ProcessEdjeMessageSignal()
         {
             Interop.Elementary.edje_message_signal_process();
@@ -110,6 +117,7 @@ namespace ElmSharp
         /// <param name="font">The font name</param>
         /// <param name="size">The font size</param>
         /// <returns>True, on success or false, on error</returns>
+        /// <since_tizen> preview </since_tizen>
         public static bool SetEdjeTextClass(string textClass, string font, int size)
         {
             return Interop.Elementary.edje_text_class_set(textClass, font, size);
@@ -122,6 +130,7 @@ namespace ElmSharp
         /// <param name="font">The font name</param>
         /// <param name="size">The font size</param>
         /// <returns>True, on success or false, on error</returns>
+        /// <since_tizen> preview </since_tizen>
         public static bool GetEdjeTextClass(string textClass, out string font, out int size)
         {
             return Interop.Elementary.edje_text_class_get(textClass, out font, out size);
@@ -131,6 +140,7 @@ namespace ElmSharp
         /// Delete the text class.
         /// </summary>
         /// <param name="textClass"></param>
+        /// <since_tizen> preview </since_tizen>
         public static void DeleteEdjeTextClass(string textClass)
         {
             Interop.Elementary.edje_text_class_del(textClass);
@@ -143,6 +153,7 @@ namespace ElmSharp
         /// <param name="red">The Red component of the color</param>
         /// <param name="green">The Green component of the color</param>
         /// <param name="blue">The Blue component of the color</param>
+        /// <since_tizen> preview </since_tizen>
         public static void PremulityplyEvasColorByAlpha(int alpha, ref int red, ref int green, ref int blue)
         {
             Interop.Evas.evas_color_argb_premul(alpha, ref red, ref green, ref blue);
@@ -155,6 +166,7 @@ namespace ElmSharp
         /// <param name="red">The Red component of the color</param>
         /// <param name="green">The Green component of the color</param>
         /// <param name="blue">The Blue component of the color</param>
+        /// <since_tizen> preview </since_tizen>
         public static void UnPremulityplyEvasColorByAlpha(int alpha, ref int red, ref int green, ref int blue)
         {
             Interop.Evas.evas_color_argb_unpremul(alpha, ref red, ref green, ref blue);

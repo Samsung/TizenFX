@@ -23,6 +23,7 @@ namespace ElmSharp
     /// <summary>
     /// The EdjeObject is a class that evas object exist in
     /// </summary>
+    /// <since_tizen> preview </since_tizen>
     public class EdjeObject
     {
         IntPtr _edjeHandle;
@@ -40,6 +41,7 @@ namespace ElmSharp
         /// <remarks>This call is useful, for example, when one could expect a given GUI element, depending on the theme applied to obj.</remarks>
         /// <param name="part">The part's name to check for existence in obj's group</param>
         /// <returns>TRUE, if the edje part exists in obj's group, otherwise FALSE</returns>
+        /// <since_tizen> preview </since_tizen>
         public EdjeTextPartObject this[string part]
         {
             get
@@ -57,6 +59,7 @@ namespace ElmSharp
         /// </summary>
         /// <param name="emission">The signal's "emission" string</param>
         /// <param name="source">The signal's "source" string</param>
+        /// <since_tizen> preview </since_tizen>
         public void EmitSignal(string emission, string source)
         {
             Interop.Elementary.edje_object_signal_emit(_edjeHandle, emission, source);
@@ -68,6 +71,7 @@ namespace ElmSharp
         /// </summary>
         /// <remarks>Deleting the color class defined in the theme file.</remarks>
         /// <param name="part">The color class to be deleted</param>
+        /// <since_tizen> preview </since_tizen>
         public void DeleteColorClass(string part)
         {
             Interop.Elementary.edje_object_color_class_del(_edjeHandle, part);
@@ -90,6 +94,7 @@ namespace ElmSharp
         /// <param name="shadowBlue">The shadow Blue value.</param>
         /// <param name="shadowAlpha">The shadow Alpha value.</param>
         /// <returns>True if succeed, otherwise False</returns>
+        /// <since_tizen> preview </since_tizen>
         public bool SetColorClass(string colorClass, int red, int green, int blue, int alpha, int outlineRed, int outlineGreen, int outlineBlue, int outlineAlpha,
             int shadowRed, int shadowGreen, int shadowBlue, int shadowAlpha)
         {
@@ -114,6 +119,7 @@ namespace ElmSharp
         /// <param name="shadowBlue">The shadow Blue value.</param>
         /// <param name="shadowAlpha">The shadow Alpha value.</param>
         /// <returns>True if succeed, otherwise False</returns>
+        /// <since_tizen> preview </since_tizen>
         public bool GetColorClass(string colorClass, out int red, out int green, out int blue, out int alpha, out int outlineRed, out int outlineGreen, out int outlineBlue, out int outlineAlpha,
             out int shadowRed, out int shadowGreen, out int shadowBlue, out int shadowAlpha)
         {
@@ -128,6 +134,7 @@ namespace ElmSharp
         /// <param name="font">	Font name.</param>
         /// <param name="fontSize">Font size.</param>
         /// <returns>True if succeed, otherwise False</returns>
+        /// <since_tizen> preview </since_tizen>
         public bool SetTextClass(string textClass, string font, int fontSize)
         {
             return Interop.Elementary.edje_object_text_class_set(_edjeHandle, textClass, font, fontSize);
@@ -140,6 +147,7 @@ namespace ElmSharp
         /// <param name="font">Font name.</param>
         /// <param name="fontSize">Font size.</param>
         /// <returns>True if succeed, otherwise False</returns>
+        /// <since_tizen> preview </since_tizen>
         public bool GetTextClass(string textClass, out string font, out int fontSize)
         {
             return Interop.Elementary.edje_object_text_class_get(_edjeHandle, textClass, out font, out fontSize);
@@ -151,6 +159,7 @@ namespace ElmSharp
         /// <param name="emission">The signal's "emission" string</param>
         /// <param name="source">The signal's "source" string</param>
         /// <param name="action">The action to be executed when the signal is emitted</param>
+        /// <since_tizen> preview </since_tizen>
         public void AddSignalAction(string emission, string source, Action<string, string> action)
         {
             if (emission != null && source != null && action != null)
@@ -175,6 +184,7 @@ namespace ElmSharp
         /// <param name="emission">The signal's "emission" string</param>
         /// <param name="source">The signal's "source" string</param>
         /// <param name="action">The action to be executed when the signal is emitted</param>
+        /// <since_tizen> preview </since_tizen>
         public void DeleteSignalAction(string emission, string source, Action<string, string> action)
         {
             if (emission != null && source != null && action != null)
@@ -237,6 +247,7 @@ namespace ElmSharp
     /// <summary>
     /// An EdjeTextPartObject is a class dealing with parts of type text.
     /// </summary>
+    /// <since_tizen> preview </since_tizen>
     public class EdjeTextPartObject
     {
         string _part;
@@ -251,11 +262,13 @@ namespace ElmSharp
         /// <summary>
         /// Gets the name of the EdjeTextPartObject
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         public string Name { get { return _part; } }
 
         /// <summary>
         /// Gets or sets the text for an object part.
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         public string Text
         {
             get
@@ -271,6 +284,7 @@ namespace ElmSharp
         /// <summary>
         /// Sets or gets the style of the object part.
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         public string TextStyle
         {
             get
@@ -293,6 +307,7 @@ namespace ElmSharp
         /// <summary>
         /// Gets the geometry of a given edje part, in a given edje object's group definition, relative to the object's area.
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         public Rect Geometry
         {
             get
@@ -306,6 +321,7 @@ namespace ElmSharp
         /// <summary>
         /// Gets the native width and height.
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         public Size TextBlockNativeSize
         {
             get
@@ -321,6 +337,7 @@ namespace ElmSharp
         /// <summary>
         /// Gets the formatted width and height.
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         public Size TextBlockFormattedSize
         {
             get

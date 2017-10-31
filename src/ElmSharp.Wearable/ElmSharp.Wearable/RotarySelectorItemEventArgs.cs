@@ -24,11 +24,13 @@ namespace ElmSharp.Wearable
     /// <see cref="RotarySelector.Selected"/> and <see cref="RotarySelector.Clicked"/> events of RotarySelector contain RotarySelectorItemEventArgs as a parameter.
     /// Inherits <see cref="EventArgs"/>.
     /// </summary>
+    /// <since_tizen> preview </since_tizen>
     public class RotarySelectorItemEventArgs : EventArgs
     {
         /// <summary>
         /// Sets or gets the rotary selector item.
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         public RotarySelectorItem Item { get; set; }
     }
 }

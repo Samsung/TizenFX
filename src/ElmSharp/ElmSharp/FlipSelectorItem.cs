@@ -21,22 +21,26 @@ namespace ElmSharp
     /// <summary>
     /// Iterm class of FlipSelector
     /// </summary>
+    /// <since_tizen> preview </since_tizen>
     public class FlipSelectorItem : ItemObject
     {
         /// <summary>
         /// Sets or gets the Text of FlipSelectorItem
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         public string Text { get; private set; }
 
         /// <summary>
         /// Selected will be triggered when Selected
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         public event EventHandler Selected;
 
         /// <summary>
         /// Creates and initializes a new instance of the FlipSelectorItem.
         /// </summary>
         /// <param name="text">FlipSelectorItem's text</param>
+        /// <since_tizen> preview </since_tizen>
         public FlipSelectorItem(string text) : base(IntPtr.Zero)
         {
             Text = text;

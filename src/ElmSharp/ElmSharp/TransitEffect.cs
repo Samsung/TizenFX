@@ -22,6 +22,7 @@ namespace ElmSharp
     /// <summary>
     /// The axis along which flip effect should be applied.
     /// </summary>
+    /// <since_tizen> preview </since_tizen>
     public enum FlipAxis
     {
         /// <summary>
@@ -38,6 +39,7 @@ namespace ElmSharp
     /// <summary>
     /// The direction in which the wipe effect should occur.
     /// </summary>
+    /// <since_tizen> preview </since_tizen>
     public enum WipeDirection
     {
         /// <summary>
@@ -64,6 +66,7 @@ namespace ElmSharp
     /// <summary>
     /// Whether the wipe effect should show or hide the object.
     /// </summary>
+    /// <since_tizen> preview </since_tizen>
     public enum WipeType
     {
         /// <summary>
@@ -80,6 +83,7 @@ namespace ElmSharp
     /// <summary>
     /// The type of acceleration used in the transition.
     /// </summary>
+    /// <since_tizen> preview </since_tizen>
     public enum TweenMode
     {
         /// <summary>
@@ -126,11 +130,13 @@ namespace ElmSharp
     /// <summary>
     /// Blend effect class.
     /// </summary>
+    /// <since_tizen> preview </since_tizen>
     public class BlendEffect : EffectBase
     {
         /// <summary>
         /// Creates and initializes a new instance of BlendEffect class.
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         public BlendEffect()
         {
         }
@@ -144,6 +150,7 @@ namespace ElmSharp
     /// <summary>
     /// Color effect class.
     /// </summary>
+    /// <since_tizen> preview </since_tizen>
     public class ColorEffect : EffectBase
     {
         Color _begin;
@@ -154,6 +161,7 @@ namespace ElmSharp
         /// </summary>
         /// <param name="beginColor">The begin color of the effect</param>
         /// <param name="endColor">The end color of the effect</param>
+        /// <since_tizen> preview </since_tizen>
         public ColorEffect(Color beginColor, Color endColor)
         {
             _begin = beginColor;
@@ -163,6 +171,7 @@ namespace ElmSharp
         /// <summary>
         /// The begin color of the effect
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         public Color BeginColor
         {
             get { return _begin; }
@@ -171,6 +180,7 @@ namespace ElmSharp
         /// <summary>
         /// The end color of the effect
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         public Color EndColor
         {
             get { return _end; }
@@ -185,11 +195,13 @@ namespace ElmSharp
     /// <summary>
     /// Fade effect class.
     /// </summary>
+    /// <since_tizen> preview </since_tizen>
     public class FadeEffect : EffectBase
     {
         /// <summary>
         /// Creates and initializes a new instance of FadeEffect class.
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         public FadeEffect()
         {
         }
@@ -203,6 +215,7 @@ namespace ElmSharp
     /// <summary>
     /// Flip effect class.
     /// </summary>
+    /// <since_tizen> preview </since_tizen>
     public class FlipEffect : EffectBase
     {
         FlipAxis _axis;
@@ -215,6 +228,7 @@ namespace ElmSharp
         /// <param name="axis">Flipping Axis(X or Y).</param>
         /// <param name="clockWise">Flipping Direction. True is clock-wise.</param>
         /// <param name="resizable">Resizable effect with FlipEffect</param>
+        /// <since_tizen> preview </since_tizen>
         public FlipEffect(FlipAxis axis, bool clockWise, bool resizable = false)
         {
             _axis = axis;
@@ -225,6 +239,7 @@ namespace ElmSharp
         /// <summary>
         /// Flipping Axis(X or Y).
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         public FlipAxis Axis
         {
             get { return _axis; }
@@ -233,6 +248,7 @@ namespace ElmSharp
         /// <summary>
         /// Flipping Direction. True is clock-wise.
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         public bool ClockWise
         {
             get { return _clockWise; }
@@ -241,6 +257,7 @@ namespace ElmSharp
         /// <summary>
         /// Resizable FlipEffect.
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         public bool Resizable
         {
             get { return _resizable; }
@@ -257,6 +274,7 @@ namespace ElmSharp
     /// <summary>
     /// Resizing effect class.
     /// </summary>
+    /// <since_tizen> preview </since_tizen>
     public class ResizingEffect : EffectBase
     {
         Size _begin;
@@ -267,6 +285,7 @@ namespace ElmSharp
         /// </summary>
         /// <param name="beginSize">The begin Size of the effect</param>
         /// <param name="endSize">The end Size of the effect</param>
+        /// <since_tizen> preview </since_tizen>
         public ResizingEffect(Size beginSize, Size endSize)
         {
             _begin = beginSize;
@@ -276,6 +295,7 @@ namespace ElmSharp
         /// <summary>
         /// The begin Size of the effect
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         public Size BeginSize
         {
             get { return _begin; }
@@ -284,6 +304,7 @@ namespace ElmSharp
         /// <summary>
         /// The end Size of the effect
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         public Size EndSize
         {
             get { return _end; }
@@ -298,6 +319,7 @@ namespace ElmSharp
     /// <summary>
     /// Rotation effect class.
     /// </summary>
+    /// <since_tizen> preview </since_tizen>
     public class RotationEffect : EffectBase
     {
         float _begin;
@@ -308,6 +330,7 @@ namespace ElmSharp
         /// </summary>
         /// <param name="beginDegree">The begin degree of the effect</param>
         /// <param name="endDegree">The end degree of the effect</param>
+        /// <since_tizen> preview </since_tizen>
         public RotationEffect(float beginDegree, float endDegree)
         {
             _begin = beginDegree;
@@ -317,6 +340,7 @@ namespace ElmSharp
         /// <summary>
         /// The begin degree of the effect
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         public float BeginDegree
         {
             get { return _begin; }
@@ -325,6 +349,7 @@ namespace ElmSharp
         /// <summary>
         /// The end degree of the effect
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         public float EndDegree
         {
             get { return _end; }
@@ -339,6 +364,7 @@ namespace ElmSharp
     /// <summary>
     /// Translation effect class.
     /// </summary>
+    /// <since_tizen> preview </since_tizen>
     public class TranslationEffect : EffectBase
     {
         Point _begin;
@@ -349,6 +375,7 @@ namespace ElmSharp
         /// </summary>
         /// <param name="beginPoint">The begin Point of the effect</param>
         /// <param name="endPoint">The end Point of the effect</param>
+        /// <since_tizen> preview </since_tizen>
         public TranslationEffect(Point beginPoint, Point endPoint)
         {
             _begin = beginPoint;
@@ -358,6 +385,7 @@ namespace ElmSharp
         /// <summary>
         /// The begin Point of the effect
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         public Point BeginPoint
         {
             get { return _begin; }
@@ -366,6 +394,7 @@ namespace ElmSharp
         /// <summary>
         /// The end Point of the effect
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         public Point EndPoint
         {
             get { return _end; }
@@ -380,6 +409,7 @@ namespace ElmSharp
     /// <summary>
     /// Wipe effect class.
     /// </summary>
+    /// <since_tizen> preview </since_tizen>
     public class WipeEffect : EffectBase
     {
         WipeType _type;
@@ -390,6 +420,7 @@ namespace ElmSharp
         /// </summary>
         /// <param name="type">Wipe type. Hide or show.</param>
         /// <param name="direction">Wipe Direction.</param>
+        /// <since_tizen> preview </since_tizen>
         public WipeEffect(WipeType type, WipeDirection direction)
         {
             _type = type;
@@ -399,6 +430,7 @@ namespace ElmSharp
         /// <summary>
         /// Wipe type. Hide or show.
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         public WipeType Type
         {
             get { return _type; }
@@ -407,6 +439,7 @@ namespace ElmSharp
         /// <summary>
         /// Wipe Direction.
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         public WipeDirection Direction
         {
             get { return _direction; }
@@ -421,6 +454,7 @@ namespace ElmSharp
     /// <summary>
     /// Zoom effect class.
     /// </summary>
+    /// <since_tizen> preview </since_tizen>
     public class ZoomEffect : EffectBase
     {
         float _begin;
@@ -431,6 +465,7 @@ namespace ElmSharp
         /// </summary>
         /// <param name="beginRate">The begin rate of the effect</param>
         /// <param name="endRate">The end rate of the effect</param>
+        /// <since_tizen> preview </since_tizen>
         public ZoomEffect(float beginRate, float endRate)
         {
             _begin = beginRate;
@@ -440,6 +475,7 @@ namespace ElmSharp
         /// <summary>
         /// The begin rate of the effect
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         public float BeginRate
         {
             get { return _begin; }
@@ -448,6 +484,7 @@ namespace ElmSharp
         /// <summary>
         /// The end rate of the effect
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         public float EndRate
         {
             get { return _end; }

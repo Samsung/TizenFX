@@ -22,6 +22,7 @@ namespace ElmSharp
     /// <summary>
     /// EcoreAnimator is a helper class, it provides functions to manager animations.
     /// </summary>
+    /// <since_tizen> preview </since_tizen>
     public static class EcoreAnimator
     {
         static readonly Dictionary<int, Func<bool>> _taskMap = new Dictionary<int, Func<bool>>();
@@ -39,6 +40,7 @@ namespace ElmSharp
         /// Gets current system time as a floating point value in seconds.
         /// </summary>
         /// <returns>Current system time</returns>
+        /// <since_tizen> preview </since_tizen>
         public static double GetCurrentTime()
         {
             return Interop.Ecore.ecore_time_get();
@@ -49,6 +51,7 @@ namespace ElmSharp
         /// </summary>
         /// <param name="handler">The function to call when it ticks off</param>
         /// <returns>A handle to the new animator</returns>
+        /// <since_tizen> preview </since_tizen>
         public static IntPtr AddAnimator(Func<bool> handler)
         {
             int id = RegistHandler(handler);
@@ -59,6 +62,7 @@ namespace ElmSharp
         /// Removes the specified animator from the animator list.
         /// </summary>
         /// <param name="anim">The specified animator handle</param>
+        /// <since_tizen> preview </since_tizen>
         public static void RemoveAnimator(IntPtr anim)
         {
             int taskId = (int)Interop.Ecore.ecore_animator_del(anim);

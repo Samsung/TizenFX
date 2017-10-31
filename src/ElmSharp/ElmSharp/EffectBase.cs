@@ -21,11 +21,13 @@ namespace ElmSharp
     /// <summary>
     /// EffectBase class for the TransitEffect
     /// </summary>
+    /// <since_tizen> preview </since_tizen>
     public abstract class EffectBase
     {
         /// <summary>
         /// EffectEneded event will be triggered when be effect ended.
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         public event EventHandler EffectEnded;
 
         internal abstract IntPtr CreateEffect(IntPtr transit);

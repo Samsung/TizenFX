@@ -21,6 +21,7 @@ namespace ElmSharp
     /// <summary>
     /// Enumeration for visible type of scrollbar.
     /// </summary>
+    /// <since_tizen> preview </since_tizen>
     public enum ScrollBarVisiblePolicy
     {
         /// <summary>
@@ -42,6 +43,7 @@ namespace ElmSharp
     /// <summary>
     /// Enumeration for visible type of scrollbar.
     /// </summary>
+    /// <since_tizen> preview </since_tizen>
     public enum ScrollBlock
     {
         /// <summary>
@@ -63,6 +65,7 @@ namespace ElmSharp
     /// <summary>
     /// Type that controls how the content is scrolled.
     /// </summary>
+    /// <since_tizen> preview </since_tizen>
     public enum ScrollSingleDirection
     {
         /// <summary>
@@ -84,6 +87,7 @@ namespace ElmSharp
     /// <summary>
     /// The Scroller is a container that holds and clips a single object and allows you to scroll across it.
     /// </summary>
+    /// <since_tizen> preview </since_tizen>
     public class Scroller : Layout
     {
         SmartEvent _scroll;
@@ -95,6 +99,7 @@ namespace ElmSharp
         /// Creates and initializes a new instance of the Scroller class.
         /// </summary>
         /// <param name="parent">The <see cref="EvasObject"/> to which the new Scroller will be attached as a child.</param>
+        /// <since_tizen> preview </since_tizen>
         public Scroller(EvasObject parent) : base(parent)
         {
         }
@@ -102,6 +107,7 @@ namespace ElmSharp
         /// <summary>
         /// Creates and initializes a new instance of the Scroller class.
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         public Scroller() : base()
         {
         }
@@ -109,6 +115,7 @@ namespace ElmSharp
         /// <summary>
         /// Scrolled will be triggered when the content has been scrolled.
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         public event EventHandler Scrolled
         {
             add
@@ -124,6 +131,7 @@ namespace ElmSharp
         /// <summary>
         /// DragStart will be triggered when dragging the contents around has started.
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         public event EventHandler DragStart
         {
             add
@@ -139,6 +147,7 @@ namespace ElmSharp
         /// <summary>
         /// DragStop will be triggered when dragging the contents around has stopped.
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         public event EventHandler DragStop
         {
             add
@@ -154,6 +163,7 @@ namespace ElmSharp
         /// <summary>
         /// PageScrolled will be triggered when the visible page has changed.
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         public event EventHandler PageScrolled
         {
             add
@@ -169,6 +179,7 @@ namespace ElmSharp
         /// <summary>
         /// Gets the current region in the content object that is visible through the Scroller.
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         public Rect CurrentRegion
         {
             get
@@ -186,6 +197,7 @@ namespace ElmSharp
         /// ScrollBarVisiblePolicy.Auto means the horizontal scrollbar is made visible if it is needed, and otherwise kept hidden.
         /// ScrollBarVisiblePolicy.Visible turns it on all the time, and ScrollBarVisiblePolicy.Invisible always keeps it off.
         /// </remarks>
+        /// <since_tizen> preview </since_tizen>
         public virtual ScrollBarVisiblePolicy HorizontalScrollBarVisiblePolicy
         {
             get
@@ -208,6 +220,7 @@ namespace ElmSharp
         /// ScrollBarVisiblePolicy.Auto means the vertical scrollbar is made visible if it is needed, and otherwise kept hidden.
         /// ScrollBarVisiblePolicy.Visible turns it on all the time, and ScrollBarVisiblePolicy.Invisible always keeps it off.
         /// </remarks>
+        /// <since_tizen> preview </since_tizen>
         public virtual ScrollBarVisiblePolicy VerticalScrollBarVisiblePolicy
         {
             get
@@ -230,6 +243,7 @@ namespace ElmSharp
         /// This function will block scrolling movement  in a given direction.One can disable movements in the X axis, the Y axis or both.
         /// The default value is ScrollBlock.None, where movements are allowed in both directions.
         /// </remarks>
+        /// <since_tizen> preview </since_tizen>
         public ScrollBlock ScrollBlock
         {
             get
@@ -250,6 +264,7 @@ namespace ElmSharp
         /// If there are two or more pages in the viewport, it returns the number of the page which meets the top of the viewport.
         /// The page number starts from 0. 0 is the first page.
         /// </remarks>
+        /// <since_tizen> preview </since_tizen>
         public int VerticalPageIndex
         {
             get
@@ -268,6 +283,7 @@ namespace ElmSharp
         /// If there are two or more pages in the viewport, it returns the number of the page which meets the left of the viewport.
         /// The page number starts from 0. 0 is the first page.
         /// </remarks>
+        /// <since_tizen> preview </since_tizen>
         public int HorizontalPageIndex
         {
             get
@@ -281,6 +297,7 @@ namespace ElmSharp
         /// <summary>
         /// Sets or gets the maximum limit of the movable page at vertical direction.
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         public int VerticalPageScrollLimit
         {
             get
@@ -299,6 +316,7 @@ namespace ElmSharp
         /// <summary>
         /// Sets or gets the maximum limit of the movable page at horizontal direction.
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         public int HorizontalPageScrollLimit
         {
             get
@@ -321,6 +339,7 @@ namespace ElmSharp
         /// This is enabled by default for both axis.
         /// This API will set if it is enabled for the given axis with the boolean parameters for each axis.
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         public bool VerticalBounce
         {
             get
@@ -343,6 +362,7 @@ namespace ElmSharp
         /// This is enabled by default for both axis.
         /// This API will set if it is enabled for the given axis with the boolean parameters for each axis.
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         public bool HorizontalBounce
         {
             get
@@ -361,6 +381,7 @@ namespace ElmSharp
         /// <summary>
         /// Gets the width of the content object of the scroller.
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         public int ChildWidth
         {
             get
@@ -374,6 +395,7 @@ namespace ElmSharp
         /// <summary>
         /// Gets the height of the content object of the scroller.
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         public int ChildHeight
         {
             get
@@ -391,6 +413,7 @@ namespace ElmSharp
         /// x=0.0, for staying where it is relative to the left edge of the content x=1.0, for staying where it is relative to the rigth edge of the content y=0.0, for staying where it is relative to the top edge of the content y=1.0, for staying where it is relative to the bottom edge of the content
         /// Default values for x and y are 0.0
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         public double HorizontalGravity
         {
             get
@@ -413,6 +436,7 @@ namespace ElmSharp
         /// x=0.0, for staying where it is relative to the left edge of the content x=1.0, for staying where it is relative to the rigth edge of the content y=0.0, for staying where it is relative to the top edge of the content y=1.0, for staying where it is relative to the bottom edge of the content
         /// Default values for x and y are 0.0
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         public double VerticalGravity
         {
             get
@@ -432,6 +456,7 @@ namespace ElmSharp
         /// Get scroll last page number.
         /// The page number starts from 0. 0 is the first page. This returns the last page number among the pages.
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         public int LastVerticalPageNumber
         {
             get
@@ -446,6 +471,7 @@ namespace ElmSharp
         /// Get scroll last page number.
         /// The page number starts from 0. 0 is the first page. This returns the last page number among the pages.
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         public int LastHorizontalPageNumber
         {
             get
@@ -461,6 +487,7 @@ namespace ElmSharp
         /// This function sets the infinite loop vertically.
         /// If the content is set, it will be shown repeatedly.
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         public bool VerticalLoop
         {
             get
@@ -481,6 +508,7 @@ namespace ElmSharp
         /// This function sets the infinite loop horizontally.
         /// If the content is set, it will be shown repeatedly.
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         public bool HorizontalLoop
         {
             get
@@ -499,6 +527,7 @@ namespace ElmSharp
         /// <summary>
         /// Gets or sets a given scroller widget's scrolling page size, relative to its viewport size.
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         public double VerticalRelativePageSize
         {
             get
@@ -517,6 +546,7 @@ namespace ElmSharp
         /// <summary>
         /// Gets or sets a given scroller widget's scrolling page size, relative to its viewport size.
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         public double HorizontalRelativePageSize
         {
             get
@@ -541,6 +571,7 @@ namespace ElmSharp
         /// it will stop at the next page boundaries. This is disabled, by default, for both axis.
         /// This function will set if it that is enabled or not, for each axis.
         /// </remarks>
+        /// <since_tizen> preview </since_tizen>
         public bool VerticalSnap
         {
             get
@@ -565,6 +596,7 @@ namespace ElmSharp
         /// it will stop at the next page boundaries. This is disabled, by default, for both axis.
         /// This function will set if it that is enabled or not, for each axis.
         /// </remarks>
+        /// <since_tizen> preview </since_tizen>
         public bool HorizontalSnap
         {
             get
@@ -583,6 +615,7 @@ namespace ElmSharp
         /// <summary>
         /// Gets or sets the page size to an absolute fixed value, with 0 turning it off for that axis.
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         public int PageHeight
         {
             get
@@ -601,6 +634,7 @@ namespace ElmSharp
         /// <summary>
         /// Gets or sets the page size to an absolute fixed value, with 0 turning it off for that axis.
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         public int PageWidth
         {
             get
@@ -621,6 +655,7 @@ namespace ElmSharp
         /// This enables or disables event propagation from the scroller content to the scroller and its parent.
         /// By default event propagation is enabled.
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         public bool ContentPropagateEvents
         {
             get
@@ -636,6 +671,7 @@ namespace ElmSharp
         /// <summary>
         /// Gets or sets the step size to move scroller by key event.
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         public int HorizontalStepSize
         {
             get
@@ -654,6 +690,7 @@ namespace ElmSharp
         /// <summary>
         /// Gets or sets the step size to move scroller by key event.
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         public int VerticalStepSize
         {
             get
@@ -672,6 +709,7 @@ namespace ElmSharp
         /// <summary>
         /// Gets or sets a value whether mouse wheel is enabled or not over the scroller.
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         public bool WheelDisabled
         {
             get
@@ -687,6 +725,7 @@ namespace ElmSharp
         /// <summary>
         /// Gets or sets the type of single direction scroll.
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         public ScrollSingleDirection SingleDirection
         {
             get
@@ -706,6 +745,7 @@ namespace ElmSharp
         /// </summary>
         /// <param name="horizontal">Enable limiting minimum size horizontally</param>
         /// <param name="vertical">Enable limiting minimum size vertically</param>
+        /// <since_tizen> preview </since_tizen>
         public void MinimumLimit(bool horizontal, bool vertical)
         {
             Interop.Elementary.elm_scroller_content_min_limit(RealHandle, horizontal, vertical);
@@ -716,6 +756,7 @@ namespace ElmSharp
         /// </summary>
         /// <param name="width">The horizontal page size.</param>
         /// <param name="height">The vertical page size.</param>
+        /// <since_tizen> preview </since_tizen>
         public void SetPageSize(int width, int height)
         {
             Interop.Elementary.elm_scroller_page_size_set(RealHandle, width, height);
@@ -735,6 +776,7 @@ namespace ElmSharp
         /// </remarks>
         /// <param name="width">The horizontal page relative size.</param>
         /// <param name="height">The vertical page relative size.</param>
+        /// <since_tizen> preview </since_tizen>
         public void SetPageSize(double width, double height)
         {
             Interop.Elementary.elm_scroller_page_relative_set(RealHandle, width, height);
@@ -747,6 +789,7 @@ namespace ElmSharp
         /// <param name="horizontalPageIndex">The horizontal page number.</param>
         /// <param name="verticalPageIndex">The vertical page number.</param>
         /// <param name="animated">True means slider with animation.</param>
+        /// <since_tizen> preview </since_tizen>
         public void ScrollTo(int horizontalPageIndex, int verticalPageIndex, bool animated)
         {
             if (animated)
@@ -771,6 +814,7 @@ namespace ElmSharp
         /// </remarks>
         /// <param name="region">Rect struct of region.</param>
         /// <param name="animated">True means allows the scroller to "smoothly slide" to this location.</param>
+        /// <since_tizen> preview </since_tizen>
         public void ScrollTo(Rect region, bool animated)
         {
             if (animated)
@@ -786,6 +830,7 @@ namespace ElmSharp
         /// <summary>
         /// The callback of Realized Event
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         protected override void OnRealized()
         {
             base.OnRealized();
@@ -800,6 +845,7 @@ namespace ElmSharp
         /// </summary>
         /// <param name="parent">Parent EvasObject</param>
         /// <returns>Handle IntPtr</returns>
+        /// <since_tizen> preview </since_tizen>
         protected override IntPtr CreateHandle(EvasObject parent)
         {
             IntPtr handle = Interop.Elementary.elm_layout_add(parent.Handle);

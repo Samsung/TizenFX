@@ -22,6 +22,7 @@ namespace ElmSharp
     /// It inherits <see cref="ItemObject"/>.
     /// A instance to the ContextPopup item added.
     /// </summary>
+    /// <since_tizen> preview </since_tizen>
     public class ContextPopupItem : ItemObject
     {
         internal ContextPopupItem(string text, EvasObject icon) : base(IntPtr.Zero)
@@ -33,16 +34,19 @@ namespace ElmSharp
         /// <summary>
         /// Gets the Text property of the given ContextPopupItem.
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         public string Text { get; internal set; }
 
         /// <summary>
         /// Gets the Icon(type is <see cref="EvasObject"/>) property of the given ContextPopupItem.
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         public EvasObject Icon { get; internal set; }
 
         /// <summary>
         /// Selected will be triggered when the ContextPopupItem is Selected.
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         public event EventHandler Selected;
 
         internal void SendSelected()

@@ -23,6 +23,7 @@ namespace ElmSharp
     /// An index widget gives you an index for fast access to whichever group of other UI items one might have.
     /// Inherits Layout
     /// </summary>
+    /// <since_tizen> preview </since_tizen>
     public class Index : Layout
     {
         HashSet<IndexItem> _children = new HashSet<IndexItem>();
@@ -32,6 +33,7 @@ namespace ElmSharp
         /// Creates and initializes a new instance of Index class.
         /// </summary>
         /// <param name="parent">The parent is a given container which will be attached by Index as a child. It's <see cref="EvasObject"/> type.</param>
+        /// <since_tizen> preview </since_tizen>
         public Index(EvasObject parent) : base(parent)
         {
             _delayedChanged = new SmartEvent(this, this.RealHandle, "delay,changed");
@@ -41,11 +43,13 @@ namespace ElmSharp
         /// <summary>
         /// Changed will be triggered when the selected index item is changed.
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         public event EventHandler Changed;
 
         /// <summary>
         /// Sets or gets the auto hiding feature is enabled or not for a given index widget.
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         public bool AutoHide
         {
             get
@@ -61,6 +65,7 @@ namespace ElmSharp
         /// <summary>
         /// Sets or gets a value whether horizontal mode is enabled or not.
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         public bool IsHorizontal
         {
             get
@@ -76,6 +81,7 @@ namespace ElmSharp
         /// <summary>
         /// Sets or gets the value of indicator's disabled status.
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         public bool IndicatorVisible
         {
             get
@@ -91,6 +97,7 @@ namespace ElmSharp
         /// <summary>
         /// Sets or gets the omit feature is enabled or not for a given index widget.
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         public bool OmitEnabled
         {
             get
@@ -107,6 +114,7 @@ namespace ElmSharp
         /// Set a delay change time for index object.
         /// delay time is 0.2 sec by default.
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         public double Delay
         {
             get
@@ -122,6 +130,7 @@ namespace ElmSharp
         /// <summary>
         /// Gets or sets the items level for a given index widget.
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         public int Level
         {
             get
@@ -138,6 +147,7 @@ namespace ElmSharp
         /// Control standard_priority group of index.
         /// Priority group will be shown as many items as it can, and other group will be shown one character only.
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         public int Priority
         {
             get
@@ -153,6 +163,7 @@ namespace ElmSharp
         /// <summary>
         /// Gets the last selected item, for a given index widget.
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         public IndexItem SelectedItem
         {
             get
@@ -167,6 +178,7 @@ namespace ElmSharp
         /// </summary>
         /// <param name="label">the label which the item should be indexed</param>
         /// <returns>A object to the IndexItem added or null, on errors</returns>
+        /// <since_tizen> preview </since_tizen>
         public IndexItem Append(string label)
         {
             IndexItem item = new IndexItem(label);
@@ -179,6 +191,7 @@ namespace ElmSharp
         /// </summary>
         /// <param name="label">the label which the item should be indexed</param>
         /// <returns>A handle to the item added or NULL, on errors</returns>
+        /// <since_tizen> preview </since_tizen>
         public IndexItem Prepend(string label)
         {
             IndexItem item = new IndexItem(label);
@@ -192,6 +205,7 @@ namespace ElmSharp
         /// <param name="label">the label which the item should be indexed</param>
         /// <param name="before">The index item to insert after.</param>
         /// <returns>A object to the IndexItem added or null, on errors</returns>
+        /// <since_tizen> preview </since_tizen>
         public IndexItem InsertBefore(string label, IndexItem before)
         {
             IndexItem item = new IndexItem(label);
@@ -205,6 +219,7 @@ namespace ElmSharp
         /// <param name="label">the label which the item should be indexed</param>
         /// <param name="after">The index item to insert after.</param>
         /// <returns>A object to the IndexItem added or null, on errors</returns>
+        /// <since_tizen> preview </since_tizen>
         public IndexItem InsertAfter(string label, IndexItem after)
         {
             IndexItem item = new IndexItem(label);
@@ -216,6 +231,7 @@ namespace ElmSharp
         /// Flush the changes made to the index items so they work correctly.
         /// </summary>
         /// <param name="level">The index level (one of 0 or 1) where changes were made</param>
+        /// <since_tizen> preview </since_tizen>
         public void Update(int level)
         {
             Interop.Elementary.elm_index_level_go(RealHandle, level);
@@ -224,6 +240,7 @@ namespace ElmSharp
         /// <summary>
         /// Removes all items from a given index widget.
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         public void Clear()
         {
             Interop.Elementary.elm_index_item_clear(RealHandle);
@@ -234,6 +251,7 @@ namespace ElmSharp
         /// </summary>
         /// <param name="parent">Parent EvasObject</param>
         /// <returns>Handle IntPtr</returns>
+        /// <since_tizen> preview </since_tizen>
         protected override IntPtr CreateHandle(EvasObject parent)
         {
             IntPtr handle = Interop.Elementary.elm_layout_add(parent.Handle);

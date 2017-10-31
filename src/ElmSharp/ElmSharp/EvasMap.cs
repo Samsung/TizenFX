@@ -21,6 +21,7 @@ namespace ElmSharp
     /// <summary>
     /// The EvasMap is an opaque handle to map points.
     /// </summary>
+    /// <since_tizen> preview </since_tizen>
     public class EvasMap
     {
         IntPtr _evasMap;
@@ -30,6 +31,7 @@ namespace ElmSharp
         /// Creates and initializes a new instance of the EvasMap class.
         /// </summary>
         /// <param name="count">The number of points in the map</param>
+        /// <since_tizen> preview </since_tizen>
         public EvasMap(int count)
         {
             _evasMap = Interop.Evas.evas_map_new(count);
@@ -64,6 +66,7 @@ namespace ElmSharp
         /// <summary>
         /// Gets or sets the flag of the object move synchronization for map rendering.
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         public bool IsMoveSync
         {
             get
@@ -80,6 +83,7 @@ namespace ElmSharp
         /// Populates source and destination map points to exactly match the object.
         /// </summary>
         /// <param name="obj">The object to use unmapped geometry to populate map coordinates</param>
+        /// <since_tizen> preview </since_tizen>
         public void PopulatePoints(EvasObject obj)
         {
             Interop.Evas.evas_map_util_points_populate_from_object_full(_evasMap, obj, 0);
@@ -92,6 +96,7 @@ namespace ElmSharp
         /// <param name="z">
         /// The point Z coordinate hint (pre-perspective transform)This value is used for all four points.
         /// </param>
+        /// <since_tizen> preview </since_tizen>
         public void PopulatePoints(EvasObject obj, int z)
         {
             Interop.Evas.evas_map_util_points_populate_from_object_full(_evasMap, obj, z);
@@ -102,6 +107,7 @@ namespace ElmSharp
         /// </summary>
         /// <param name="geometry">The geometry value contains X coordinate,Y coordinate,the width and height to use to calculate second and third points</param>
         /// <param name="z">The Z coordinate hint (pre-perspective transform) This value is used for all four points.</param>
+        /// <since_tizen> preview </since_tizen>
         public void PopulatePoints(Rect geometry, int z)
         {
             Interop.Evas.evas_map_util_points_populate_from_geometry(_evasMap, geometry.X, geometry.Y, geometry.Width, geometry.Height, z);
@@ -113,6 +119,7 @@ namespace ElmSharp
         /// <param name="degrees">The abount of degrees from 0.0 to 360.0 to rotate</param>
         /// <param name="cx">rotation's center horizontal position.</param>
         /// <param name="cy">rotation's center vertical position.</param>
+        /// <since_tizen> preview </since_tizen>
         public void Rotate(double degrees, int cx, int cy)
         {
             Interop.Evas.evas_map_util_rotate(_evasMap, degrees, cx, cy);
@@ -127,6 +134,7 @@ namespace ElmSharp
         /// <param name="cx">The rotation's center horizontal position</param>
         /// <param name="cy">The rotation's center vertical position</param>
         /// <param name="cz">The rotation's center depth position</param>
+        /// <since_tizen> preview </since_tizen>
         public void Rotate3D(double dx, double dy, double dz, int cx, int cy, int cz)
         {
             Interop.Evas.evas_map_util_3d_rotate(_evasMap, dx, dy, dz, cx, cy, cz);
@@ -137,6 +145,7 @@ namespace ElmSharp
         /// </summary>
         /// <param name="idx">The index of point to change ,this must be smaller than map size.</param>
         /// <param name="point">3D Point coordinate</param>
+        /// <since_tizen> preview </since_tizen>
         public void SetPointCoordinate(int idx, Point3D point)
         {
             Interop.Evas.evas_map_point_coord_set(_evasMap, idx, point.X, point.Y, point.Z);
@@ -147,6 +156,7 @@ namespace ElmSharp
         /// </summary>
         /// <param name="idx">The index of point to change ,this must be smaller than map size.</param>
         /// <returns>The coordinates of the given point in the map.</returns>
+        /// <since_tizen> preview </since_tizen>
         public Point3D GetPointCoordinate(int idx)
         {
             Point3D point;
@@ -161,6 +171,7 @@ namespace ElmSharp
         /// <param name="y">The vertical zoom to use</param>
         /// <param name="cx">The zooming center horizontal position</param>
         /// <param name="cy">The zooming center vertical position</param>
+        /// <since_tizen> preview </since_tizen>
         public void Zoom(double x, double y, int cx, int cy)
         {
             Interop.Evas.evas_map_util_zoom(_evasMap, x, y, cx, cy);
