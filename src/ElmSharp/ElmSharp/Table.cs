@@ -22,6 +22,7 @@ namespace ElmSharp
     /// The Table is a container widget to arrange other widgets in a table where items can span multiple columns or rows .
     /// Inherits <see cref="Container"/>.
     /// </summary>
+    /// <since_tizen> preview </since_tizen>
     public class Table : Container
     {
         int _paddingX = 0;
@@ -33,6 +34,7 @@ namespace ElmSharp
         /// <param name="parent">
         /// A <see cref="EvasObject"/> to which the new Table instance will be attached.
         /// </param>
+        /// <since_tizen> preview </since_tizen>
         public Table(EvasObject parent) : base(parent)
         {
         }
@@ -41,6 +43,7 @@ namespace ElmSharp
         /// Sets or gets whether the layout of this table is homogeneous.
         /// </summary>
         /// <remarks>True for homogeneous, False for no homogeneous</remarks>
+        /// <since_tizen> preview </since_tizen>
         public bool Homogeneous
         {
             get
@@ -56,6 +59,7 @@ namespace ElmSharp
         /// <summary>
         /// Sets or gets the horizontal padding between the cells.
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         public int PaddingX
         {
             get
@@ -72,6 +76,7 @@ namespace ElmSharp
         /// <summary>
         /// Sets or gets the vertical padding between the cells.
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         public int PaddingY
         {
             get
@@ -92,6 +97,7 @@ namespace ElmSharp
         /// <param name="row">The row number</param>
         /// <param name="colspan">The column span</param>
         /// <param name="rowspan">The row span</param>
+        /// <since_tizen> preview </since_tizen>
         public void Pack(EvasObject obj, int col, int row, int colspan, int rowspan)
         {
             if (obj == null)
@@ -104,6 +110,7 @@ namespace ElmSharp
         /// Removes the child from the table.
         /// </summary>
         /// <param name="obj">The subobject</param>
+        /// <since_tizen> preview </since_tizen>
         public void Unpack(EvasObject obj)
         {
             if (obj == null)
@@ -115,6 +122,7 @@ namespace ElmSharp
         /// <summary>
         /// Removes all child objects from a table object.
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         public void Clear()
         {
             Interop.Elementary.elm_table_clear(RealHandle, false);
@@ -126,6 +134,7 @@ namespace ElmSharp
         /// </summary>
         /// <param name="part">The name of part class</param>
         /// <param name="color">The color</param>
+        /// <since_tizen> preview </since_tizen>
         public override void SetPartColor(string part, Color color)
         {
             Interop.Elementary.elm_object_color_class_color_set(Handle, part, color.R * color.A / 255,
@@ -139,6 +148,7 @@ namespace ElmSharp
         /// </summary>
         /// <param name="part">The name of part class, it could be 'bg', 'elm.swllow.content'</param>
         /// <returns>The color of the particular part</returns>
+        /// <since_tizen> preview </since_tizen>
         public override Color GetPartColor(string part)
         {
             int r, g, b, a;
@@ -151,6 +161,7 @@ namespace ElmSharp
         /// </summary>
         /// <param name="parent">Parent EvasObject</param>
         /// <returns>Handle IntPtr</returns>
+        /// <since_tizen> preview </since_tizen>
         protected override IntPtr CreateHandle(EvasObject parent)
         {
             IntPtr handle = Interop.Elementary.elm_layout_add(parent);

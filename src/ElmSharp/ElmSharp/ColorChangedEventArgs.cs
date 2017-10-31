@@ -23,16 +23,19 @@ namespace ElmSharp
     /// Event ColorChanged of ColorSelector contain ColorChangedEventArgs as a parameter.
     /// Refer to <see cref="ColorSelector"/>type.
     /// </summary>
+    /// <since_tizen> preview </since_tizen>
     public class ColorChangedEventArgs : EventArgs
     {
         /// <summary>
         /// Gets old color in color changed event.
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         public Color OldColor { get; private set; }
 
         /// <summary>
         /// Gets new color in color changed event.
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         public Color NewColor { get; private set; }
 
         /// <summary>
@@ -40,6 +43,7 @@ namespace ElmSharp
         /// </summary>
         /// <param name="oldColor">old color</param>
         /// <param name="newColor">new color</param>
+        /// <since_tizen> preview </since_tizen>
         public ColorChangedEventArgs(Color oldColor, Color newColor)
         {
             this.OldColor = oldColor;

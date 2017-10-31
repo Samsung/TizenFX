@@ -21,16 +21,19 @@ namespace ElmSharp
     /// <summary>
     /// The Size is a struct that defining height and width as a pair of generic type.
     /// </summary>
+    /// <since_tizen> preview </since_tizen>
     public struct Size : IEquatable<Size>
     {
         /// <summary>
         /// Magnitude along the horizontal axis, in platform-defined units.
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         public int Width;
 
         /// <summary>
         /// Magnitude along the vertical axis, in platform-specific units.
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         public int Height;
 
         /// <summary>
@@ -38,6 +41,7 @@ namespace ElmSharp
         /// </summary>
         /// <param name="width">The width to set</param>
         /// <param name="height">The height to set</param>
+        /// <since_tizen> preview </since_tizen>
         public Size(int width, int height)
         {
             Width = width;
@@ -48,6 +52,7 @@ namespace ElmSharp
         /// A human-readable representation of the <see cref="T:Tizen.UI.Size" />.
         /// </summary>
         /// <returns>The string is formatted as "{{Width={0} Height={1}}}".</returns>
+        /// <since_tizen> preview </since_tizen>
         public override string ToString()
         {
             return string.Format("{{Width={0} Height={1}}}", Width, Height);
@@ -57,6 +62,7 @@ namespace ElmSharp
         /// Gets hash code.
         /// </summary>
         /// <returns>The hash code.</returns>
+        /// <since_tizen> preview </since_tizen>
         public override int GetHashCode()
         {
             unchecked
@@ -73,6 +79,7 @@ namespace ElmSharp
         /// true if obj and this instance are the same type and represent the same value.
         /// otherwise, false.
         /// </returns>
+        /// <since_tizen> preview </since_tizen>
         public override bool Equals(object obj)
         {
             if (!(obj is Size))
@@ -89,6 +96,7 @@ namespace ElmSharp
         /// true if obj and this instance are the same type and represent the same value.
         /// otherwise, false.
         /// </returns>
+        /// <since_tizen> preview </since_tizen>
         public bool Equals(Size other)
         {
             return Width.Equals(other.Width) && Height.Equals(other.Height);
@@ -100,6 +108,7 @@ namespace ElmSharp
         /// <param name="s1">A <see cref="T:Tizen.UI.Size" /> on the left hand side.</param>
         /// <param name="s2">A <see cref="T:Tizen.UI.Size" /> on the right hand side.</param>
         /// <returns>True if the two <see cref="T:Tizen.UI.Size" />s have equal values.</returns>
+        /// <since_tizen> preview </since_tizen>
         public static bool operator ==(Size s1, Size s2)
         {
             return s1.Equals(s2);
@@ -111,6 +120,7 @@ namespace ElmSharp
         /// <param name="s1">A <see cref="T:Tizen.UI.Size" /> on the left hand side.</param>
         /// <param name="s2">A <see cref="T:Tizen.UI.Size" /> on the right hand side.</param>
         /// <returns>True if the two <see cref="T:Tizen.UI.Size" />s do not have equal values.</returns>
+        /// <since_tizen> preview </since_tizen>
         public static bool operator !=(Size s1, Size s2)
         {
             return !s1.Equals(s2);

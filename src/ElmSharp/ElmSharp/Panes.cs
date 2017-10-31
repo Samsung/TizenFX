@@ -22,6 +22,7 @@ namespace ElmSharp
     /// The Panes is a widget that adds a draggable bar between two contents.
     /// When dragged this bar resizes contents' size.
     /// </summary>
+    /// <since_tizen> preview </since_tizen>
     public class Panes : Layout
     {
         SmartEvent _press;
@@ -31,6 +32,7 @@ namespace ElmSharp
         /// Creates and initializes a new instance of the Panes class.
         /// </summary>
         /// <param name="parent">The EvasObject to which the new Panes will be attached as a child.</param>
+        /// <since_tizen> preview </since_tizen>
         public Panes(EvasObject parent) : base(parent)
         {
             _press = new SmartEvent(this, this.RealHandle, "press");
@@ -43,17 +45,20 @@ namespace ElmSharp
         /// <summary>
         /// Pressed will be triggered when panes have been pressed (button isn't released yet).
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         public event EventHandler Pressed;
 
         /// <summary>
         /// Unpressed will be triggered when panes are released after being pressed.
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         public event EventHandler Unpressed;
 
         /// <summary>
         /// Sets or gets resize mode of a given Panes widget.
         /// True means the left and right panes resize homogeneously.
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         public bool IsFixed
         {
             get
@@ -78,6 +83,7 @@ namespace ElmSharp
         ///
         /// The value is float type and between 0.0 and 1.0 representing the size proportion of the left side.
         /// </remarks>
+        /// <since_tizen> preview </since_tizen>
         public double Proportion
         {
             get
@@ -98,6 +104,7 @@ namespace ElmSharp
         /// Horizontal panes have "top" and "bottom" contents, vertical panes have "left" and "right" contents.
         /// By default panes is in a vertical mode.
         /// </remarks>
+        /// <since_tizen> preview </since_tizen>
         public bool IsHorizontal
         {
             get
@@ -115,6 +122,7 @@ namespace ElmSharp
         /// If displayed vertically, left content is displayed at top.
         /// value representing minimum size of left side in pixels.
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         public int LeftMinimumSize
         {
             get
@@ -133,6 +141,7 @@ namespace ElmSharp
         /// If displayed vertically, left content is displayed at top.
         /// value between 0.0 and 1.0 representing size proportion of minimum size of left side.
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         public double LeftMinimumRelativeSize
         {
             get
@@ -150,6 +159,7 @@ namespace ElmSharp
         /// If displayed vertically, right content is displayed at top.
         /// value representing minimum size of right side in pixels.
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         public int RightMinimumSize
         {
             get
@@ -168,6 +178,7 @@ namespace ElmSharp
         /// If displayed vertically, right content is displayed at top.
         /// value between 0.0 and 1.0 representing size proportion of minimum size of right side.
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         public double RightMinimumRelativeSize
         {
             get
@@ -185,6 +196,7 @@ namespace ElmSharp
         /// </summary>
         /// <param name="parent">Parent EvasObject</param>
         /// <returns>Handle IntPtr</returns>
+        /// <since_tizen> preview </since_tizen>
         protected override IntPtr CreateHandle(EvasObject parent)
         {
             IntPtr handle = Interop.Elementary.elm_layout_add(parent.Handle);

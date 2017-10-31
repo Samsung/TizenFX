@@ -20,33 +20,39 @@ namespace ElmSharp.Accessible
     /// <summary>
     /// IAccessibleRelation is a interface which defines the relationship between two accessible objects.
     /// </summary>
+    /// <since_tizen> preview </since_tizen>
     public interface IAccessibleRelation
     {
 
         /// <summary>
         /// Gets or sets the target object.
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         AccessibleObject Target { get; set; }
 
         /// <summary>
         /// Gets the type.
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         int Type { get; }
     }
 
     /// <summary>
     /// To define label info for accessible object.
     /// </summary>
+    /// <since_tizen> preview </since_tizen>
     public class LabelledBy : IAccessibleRelation
     {
         /// <summary>
         /// Gets or sets the target object which is LabelledBy.
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         public AccessibleObject Target { get; set; }
 
         /// <summary>
         /// Gets the LabelledBy type.
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         public int Type
         {
             get { return (int)Interop.Elementary.Elm_Atspi_Relation_Type.ELM_ATSPI_RELATION_LABELLED_BY; }
@@ -56,16 +62,19 @@ namespace ElmSharp.Accessible
     /// <summary>
     /// To define label info for accessible object.
     /// </summary>
+    /// <since_tizen> preview </since_tizen>
     public class LabelFor : IAccessibleRelation
     {
         /// <summary>
         /// Gets or sets the target object which is LabelFor.
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         public AccessibleObject Target { get; set; }
 
         /// <summary>
         /// Gets the LabelFor type.
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         public int Type
         {
             get { return (int)Interop.Elementary.Elm_Atspi_Relation_Type.ELM_ATSPI_RELATION_LABEL_FOR; }
@@ -75,16 +84,19 @@ namespace ElmSharp.Accessible
     /// <summary>
     /// To define control relationship for accessible object.
     /// </summary>
+    /// <since_tizen> preview </since_tizen>
     public class ControllerFor : IAccessibleRelation
     {
         /// <summary>
         /// Gets or sets the target object which is ControllerFor.
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         public AccessibleObject Target { get; set; }
 
         /// <summary>
         /// Gets the ControllerFor type.
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         public int Type
         {
             get { return (int)Interop.Elementary.Elm_Atspi_Relation_Type.ELM_ATSPI_RELATION_CONTROLLER_FOR; }
@@ -94,16 +106,19 @@ namespace ElmSharp.Accessible
     /// <summary>
     /// To define control relationship for accessible object.
     /// </summary>
+    /// <since_tizen> preview </since_tizen>
     public class ControlledBy : IAccessibleRelation
     {
         /// <summary>
         /// Gets or sets the target object which is ControlledBy.
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         public AccessibleObject Target { get; set; }
 
         /// <summary>
         /// Gets the ControlledBy type.
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         public int Type
         {
             get { return (int)Interop.Elementary.Elm_Atspi_Relation_Type.ELM_ATSPI_RELATION_CONTROLLED_BY; }
@@ -113,16 +128,19 @@ namespace ElmSharp.Accessible
     /// <summary>
     /// To define member relationship for accessible object.
     /// </summary>
+    /// <since_tizen> preview </since_tizen>
     public class MemberOf : IAccessibleRelation
     {
         /// <summary>
         /// Gets or sets the target object which is MemberOf.
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         public AccessibleObject Target { get; set; }
 
         /// <summary>
         /// Gets the MemberOf type.
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         public int Type
         {
             get { return (int)Interop.Elementary.Elm_Atspi_Relation_Type.ELM_ATSPI_RELATION_MEMBER_OF; }
@@ -132,16 +150,19 @@ namespace ElmSharp.Accessible
     /// <summary>
     /// To define tooltip for accessible object.
     /// </summary>
+    /// <since_tizen> preview </since_tizen>
     public class TooltipFor : IAccessibleRelation
     {
         /// <summary>
         /// Gets or sets the target object which is TooltipFor.
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         public AccessibleObject Target { get; set; }
 
         /// <summary>
         /// Gets the TooltipFor type.
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         public int Type
         {
             get { return (int)Interop.Elementary.Elm_Atspi_Relation_Type.ELM_ATSPI_RELATION_TOOLTIP_FOR; }
@@ -151,16 +172,19 @@ namespace ElmSharp.Accessible
     /// <summary>
     /// To define child for accessible object.
     /// </summary>
+    /// <since_tizen> preview </since_tizen>
     public class ChildOf : IAccessibleRelation
     {
         /// <summary>
         /// Gets or sets the target object which is ChildOf.
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         public AccessibleObject Target { get; set; }
 
         /// <summary>
         /// Gets the ChildOf type.
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         public int Type
         {
             get { return (int)Interop.Elementary.Elm_Atspi_Relation_Type.ELM_ATSPI_RELATION_NODE_CHILD_OF; }
@@ -170,16 +194,19 @@ namespace ElmSharp.Accessible
     /// <summary>
     /// To define parent for accessible object.
     /// </summary>
+    /// <since_tizen> preview </since_tizen>
     public class ParentOf : IAccessibleRelation
     {
         /// <summary>
         /// Gets or sets the target object which is ParentOf.
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         public AccessibleObject Target { get; set; }
 
         /// <summary>
         /// Gets the ParentOf type.
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         public int Type
         {
             get { return (int)Interop.Elementary.Elm_Atspi_Relation_Type.ELM_ATSPI_RELATION_NODE_PARENT_OF; }
@@ -189,16 +216,19 @@ namespace ElmSharp.Accessible
     /// <summary>
     /// To define extend for accessible object.
     /// </summary>
+    /// <since_tizen> preview </since_tizen>
     public class Extended : IAccessibleRelation
     {
         /// <summary>
         /// Gets or sets the target object which is Extended.
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         public AccessibleObject Target { get; set; }
 
         /// <summary>
         /// Gets the Extended type.
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         public int Type
         {
             get { return (int)Interop.Elementary.Elm_Atspi_Relation_Type.ELM_ATSPI_RELATION_EXTENDED; }
@@ -208,16 +238,19 @@ namespace ElmSharp.Accessible
     /// <summary>
     /// To define the custom reading order.
     /// </summary>
+    /// <since_tizen> preview </since_tizen>
     public class FlowsTo : IAccessibleRelation
     {
         /// <summary>
         /// Gets or sets the target object which is FlowsTo.
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         public AccessibleObject Target { get; set; }
 
         /// <summary>
         /// Gets the FlowsTo type.
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         public int Type
         {
             get { return (int)Interop.Elementary.Elm_Atspi_Relation_Type.ELM_ATSPI_RELATION_FLOWS_TO; }
@@ -227,16 +260,19 @@ namespace ElmSharp.Accessible
     /// <summary>
     /// To define the custom reading order.
     /// </summary>
+    /// <since_tizen> preview </since_tizen>
     public class FlowsFrom : IAccessibleRelation
     {
         /// <summary>
         /// Gets or sets the target object which is FlowsFrom.
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         public AccessibleObject Target { get; set; }
 
         /// <summary>
         /// Gets the FlowsFrom type.
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         public int Type
         {
             get { return (int)Interop.Elementary.Elm_Atspi_Relation_Type.ELM_ATSPI_RELATION_FLOWS_FROM; }
@@ -246,16 +282,19 @@ namespace ElmSharp.Accessible
     /// <summary>
     /// To define subwindow for accessible object.
     /// </summary>
+    /// <since_tizen> preview </since_tizen>
     public class SubwindowOf : IAccessibleRelation
     {
         /// <summary>
         /// Gets or sets the target object which is SubwindowOf.
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         public AccessibleObject Target { get; set; }
 
         /// <summary>
         /// Gets the SubwindowOf type.
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         public int Type
         {
             get { return (int)Interop.Elementary.Elm_Atspi_Relation_Type.ELM_ATSPI_RELATION_SUBWINDOW_OF; }
@@ -265,16 +304,19 @@ namespace ElmSharp.Accessible
     /// <summary>
     /// To define embed for accessible object.
     /// </summary>
+    /// <since_tizen> preview </since_tizen>
     public class Embeds : IAccessibleRelation
     {
         /// <summary>
         /// Gets or sets the target object which is Embeds.
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         public AccessibleObject Target { get; set; }
 
         /// <summary>
         /// Gets the Embeds type.
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         public int Type
         {
             get { return (int)Interop.Elementary.Elm_Atspi_Relation_Type.ELM_ATSPI_RELATION_EMBEDS; }
@@ -284,16 +326,19 @@ namespace ElmSharp.Accessible
     /// <summary>
     /// To define embed for accessible object.
     /// </summary>
+    /// <since_tizen> preview </since_tizen>
     public class EmbeddedBy : IAccessibleRelation
     {
         /// <summary>
         /// Gets or sets the target object which is EmbeddedBy.
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         public AccessibleObject Target { get; set; }
 
         /// <summary>
         /// Gets the EmbeddedBy type.
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         public int Type
         {
             get { return (int)Interop.Elementary.Elm_Atspi_Relation_Type.ELM_ATSPI_RELATION_EMBEDDED_BY; }
@@ -303,16 +348,19 @@ namespace ElmSharp.Accessible
     /// <summary>
     /// To define popup for accessible object.
     /// </summary>
+    /// <since_tizen> preview </since_tizen>
     public class PopupFor : IAccessibleRelation
     {
         /// <summary>
         /// Gets or sets the target object which is PopupFor.
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         public AccessibleObject Target { get; set; }
 
         /// <summary>
         /// Gets the PopupFor type.
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         public int Type
         {
             get { return (int)Interop.Elementary.Elm_Atspi_Relation_Type.ELM_ATSPI_RELATION_POPUP_FOR; }
@@ -322,16 +370,19 @@ namespace ElmSharp.Accessible
     /// <summary>
     /// To define parent window for accessible object.
     /// </summary>
+    /// <since_tizen> preview </since_tizen>
     public class ParentWindowOf : IAccessibleRelation
     {
         /// <summary>
         /// Gets or sets the target object which is ParentWindowOf.
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         public AccessibleObject Target { get; set; }
 
         /// <summary>
         /// Gets the ParentWindowOf type.
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         public int Type
         {
             get { return (int)Interop.Elementary.Elm_Atspi_Relation_Type.ELM_ATSPI_RELATION_PARENT_WINDOW_OF; }
@@ -341,16 +392,19 @@ namespace ElmSharp.Accessible
     /// <summary>
     /// To define description for accessible object.
     /// </summary>
+    /// <since_tizen> preview </since_tizen>
     public class DescriptionFor : IAccessibleRelation
     {
         /// <summary>
         /// Gets or sets the target object which is DescriptionFor.
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         public AccessibleObject Target { get; set; }
 
         /// <summary>
         /// Gets the DescriptionFor type.
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         public int Type
         {
             get { return (int)Interop.Elementary.Elm_Atspi_Relation_Type.ELM_ATSPI_RELATION_DESCRIPTION_FOR; }
@@ -360,16 +414,19 @@ namespace ElmSharp.Accessible
     /// <summary>
     /// To define description for accessible object.
     /// </summary>
+    /// <since_tizen> preview </since_tizen>
     public class DescribedBy : IAccessibleRelation
     {
         /// <summary>
         /// Gets or sets the target object which is DescribedBy.
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         public AccessibleObject Target { get; set; }
 
         /// <summary>
         /// Gets the DescribedBy type.
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         public int Type
         {
             get { return (int)Interop.Elementary.Elm_Atspi_Relation_Type.ELM_ATSPI_RELATION_DESCRIBED_BY; }

@@ -24,6 +24,7 @@ namespace ElmSharp
     /// It represents the GenGrid or GenList item class definition field details.
     /// It has some display styles, such as "default", "full" and "group_index".
     /// </summary>
+    /// <since_tizen> preview </since_tizen>
     public class GenItemClass : IDisposable
     {
         static Dictionary<IntPtr, EvasObject> s_HandleToEvasObject = new Dictionary<IntPtr, EvasObject>();
@@ -34,6 +35,7 @@ namespace ElmSharp
         /// <param name="data">The item data.</param>
         /// <param name="part">The part where the data should be shown.</param>
         /// <returns>Return string that should be shown.</returns>
+        /// <since_tizen> preview </since_tizen>
         public delegate string GetTextDelegate(object data, string part);
 
         /// <summary>
@@ -42,12 +44,14 @@ namespace ElmSharp
         /// <param name="data">The item data.</param>
         /// <param name="part">The part where the data should be shown.</param>
         /// <returns>Return content that should be shown.</returns>
+        /// <since_tizen> preview </since_tizen>
         public delegate EvasObject GetContentDelegate(object data, string part);
 
         /// <summary>
         /// The delegate to define <see cref="DeleteHandler"/>.
         /// </summary>
         /// <param name="data">The item data.</param>
+        /// <since_tizen> preview </since_tizen>
         public delegate void DeleteDelegate(object data);
 
         /// <summary>
@@ -57,6 +61,7 @@ namespace ElmSharp
         /// <param name="part">The part where the data should be shown.</param>
         /// <param name="old">The content has been added in gengrid.</param>
         /// <returns>Return content that should be shown.</returns>
+        /// <since_tizen> preview </since_tizen>
         public delegate EvasObject GetReusableContentDelegate(object data, string part, EvasObject old);
 
         ItemClass _itemClass;
@@ -67,6 +72,7 @@ namespace ElmSharp
         /// Creates and initializes a new instance of the GenItemClass.
         /// </summary>
         /// <param name="style">The item display style.</param>
+        /// <since_tizen> preview </since_tizen>
         public GenItemClass(string style)
         {
             _style = style;
@@ -94,30 +100,35 @@ namespace ElmSharp
         /// <summary>
         /// Gets the item style.
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         public string ItemStyle { get { return _style; } }
 
         /// <summary>
         /// Gets or sets the callback that defines how to display item text.
         /// If get, return <see cref="GetTextDelegate"/>.
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         public GetTextDelegate GetTextHandler { get; set; }
 
         /// <summary>
         /// Gets or sets the callback that defines how to display item content.
         /// If get, return <see cref="GetContentDelegate"/>.
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         public GetContentDelegate GetContentHandler { get; set; }
 
         /// <summary>
         /// Gets or sets the callback that defines how to delete item text and content.
         /// If get, return <see cref="DeleteDelegate"/>.
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         public DeleteDelegate DeleteHandler { get; set; }
 
         /// <summary>
         /// Gets or sets the callback that defines how to reuse item content.
         /// If get, return <see cref="GetReusableContentDelegate"/>.
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         public GetReusableContentDelegate ReusableContentHandler { get; set; }
 
         internal IntPtr UnmanagedPtr
@@ -140,6 +151,7 @@ namespace ElmSharp
         /// true if managed resources should be disposed
         /// otherwise, false.
         /// </param>
+        /// <since_tizen> preview </since_tizen>
         protected virtual void Dispose(bool disposing)
         {
             if (_unmanagedPtr != IntPtr.Zero)
@@ -152,6 +164,7 @@ namespace ElmSharp
         /// <summary>
         /// Destroy current object
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         public void Dispose()
         {
             Dispose(true);
@@ -168,6 +181,7 @@ namespace ElmSharp
         /// Create a new genlist item class in a given genlist widget.
         /// </summary>
         /// <returns>The new item class object.</returns>
+        /// <since_tizen> preview </since_tizen>
         protected virtual IntPtr CreateItemClass()
         {
             return Interop.Elementary.elm_genlist_item_class_new();
@@ -177,6 +191,7 @@ namespace ElmSharp
         /// Remove an item class in a given genlist widget.
         /// </summary>
         /// <param name="unmanagedPtr">The object to be removed.</param>
+        /// <since_tizen> preview </since_tizen>
         protected virtual void ReleaseItemClass(IntPtr unmanagedPtr)
         {
             Interop.Elementary.elm_genlist_item_class_free(unmanagedPtr);
@@ -231,12 +246,14 @@ namespace ElmSharp
     /// <summary>
     /// It represents the GenGrid item class definition field details.
     /// </summary>
+    /// <since_tizen> preview </since_tizen>
     public class GenGridItemClass : GenItemClass
     {
         /// <summary>
         /// Create the GenGridItemClass instance.
         /// </summary>
         /// <param name="style">The item display style.</param>
+        /// <since_tizen> preview </since_tizen>
         public GenGridItemClass(string style) : base(style)
         {
         }
@@ -245,6 +262,7 @@ namespace ElmSharp
         /// Add a new gengrid item class in a given gengrid widget.
         /// </summary>
         /// <returns>The new instance.</returns>
+        /// <since_tizen> preview </since_tizen>
         protected override IntPtr CreateItemClass()
         {
             return Interop.Elementary.elm_gengrid_item_class_new();
@@ -254,6 +272,7 @@ namespace ElmSharp
         /// Remove an item class in a given gengrid widget.
         /// </summary>
         /// <param name="unmanagedPtr">The object to be removed.</param>
+        /// <since_tizen> preview </since_tizen>
         protected override void ReleaseItemClass(IntPtr unmanagedPtr)
         {
             Interop.Elementary.elm_gengrid_item_class_free(unmanagedPtr);
@@ -263,16 +282,22 @@ namespace ElmSharp
     [StructLayout(LayoutKind.Sequential)]
     internal class ItemClass
     {
+        /// <since_tizen> preview </since_tizen>
         public delegate string GetTextCallback(IntPtr data, IntPtr obj, IntPtr part);
 
+        /// <since_tizen> preview </since_tizen>
         public delegate IntPtr GetContentCallback(IntPtr data, IntPtr obj, IntPtr part);
 
+        /// <since_tizen> preview </since_tizen>
         public delegate int GetStateCallback(IntPtr data, IntPtr obj, IntPtr part);
 
+        /// <since_tizen> preview </since_tizen>
         public delegate void DelCallback(IntPtr data, IntPtr obj);
 
+        /// <since_tizen> preview </since_tizen>
         public delegate int FilterCallback(IntPtr data, IntPtr obj, IntPtr key);
 
+        /// <since_tizen> preview </since_tizen>
         public delegate IntPtr GetReusableContentCallback(IntPtr data, IntPtr obj, IntPtr part, IntPtr old);
 
         public int version;

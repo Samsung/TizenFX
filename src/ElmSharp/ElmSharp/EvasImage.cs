@@ -25,6 +25,7 @@ namespace ElmSharp
     /// <summary>
     /// This group provides functions for image objects.
     /// </summary>
+    /// <since_tizen> preview </since_tizen>
     public class EvasImage : EvasObject
     {
         EvasObject _source = null;
@@ -34,6 +35,7 @@ namespace ElmSharp
         /// Creates and initializes a new instance of EvasImage class.
         /// </summary>
         /// <param name="parent">The parent is a given container which will be attached by EvasImage as a child. It's <see cref="EvasObject"/> type.</param>
+        /// <since_tizen> preview </since_tizen>
         public EvasImage(EvasObject parent) : base(parent)
         {
         }
@@ -47,6 +49,7 @@ namespace ElmSharp
         /// <summary>
         /// Sets or gets the source file from where an image object must fetch the real image data
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         public string File
         {
             get
@@ -64,6 +67,7 @@ namespace ElmSharp
         /// <summary>
         /// Sets or gets the source object to be visible.
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         public bool IsSourceVisible
         {
             get
@@ -79,6 +83,7 @@ namespace ElmSharp
         /// <summary>
         /// Sets or gets whether an object is clipped by source object's clipper.
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         public bool IsSourceClipped
         {
             get
@@ -99,6 +104,7 @@ namespace ElmSharp
         /// This function sets if the center part of the scaled image is to be drawn or left completely blank, or forced to be solid.
         /// Very useful for frames and decorations.
         /// </remarks>
+        /// <since_tizen> preview </since_tizen>
         public ImageBorderFillMode BorderCenterFillMode
         {
             get
@@ -114,6 +120,7 @@ namespace ElmSharp
         /// <summary>
         /// Sets or gets whether the image object's fill property should track the object's size.
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         public bool IsFilled
         {
             get
@@ -129,6 +136,7 @@ namespace ElmSharp
         /// <summary>
         /// Sets or gets the scaling factor (multiplier) for the borders of an image object.
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         public double BorderScale
         {
             get
@@ -144,6 +152,7 @@ namespace ElmSharp
         /// <summary>
         /// Sets or gets the size of the given image object.
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         public Size Size
         {
             get
@@ -161,6 +170,7 @@ namespace ElmSharp
         /// <summary>
         /// Gets the row stride of the given image object.
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         public int Stride
         {
             get
@@ -172,6 +182,7 @@ namespace ElmSharp
         /// <summary>
         /// Sets or gets whether alpha channel data is being used on the given image object.
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         public bool IsOpaque
         {
             get
@@ -187,6 +198,7 @@ namespace ElmSharp
         /// <summary>
         /// Sets or gets whether to use high-quality image scaling algorithm on the given image object.
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         public bool IsSmoothScaled
         {
             get
@@ -203,6 +215,7 @@ namespace ElmSharp
         /// Sets how to fill an image object's drawing rectangle given the (real) image bound to it.
         /// </summary>
         /// <param name="geometry"></param>
+        /// <since_tizen> preview </since_tizen>
         public void SetFill(Rect geometry)
         {
             Interop.Evas.evas_object_image_fill_set(RealHandle, geometry.X, geometry.Y, geometry.Width, geometry.Height);
@@ -213,6 +226,7 @@ namespace ElmSharp
         /// </summary>
         /// <param name="file">The image file path</param>
         /// <param name="key">The image key in file (if its an Eet one), otherwise set null</param>
+        /// <since_tizen> preview </since_tizen>
         public void SetFile(string file, string key)
         {
             Interop.Evas.evas_object_image_file_set(RealHandle, file, key);
@@ -222,6 +236,7 @@ namespace ElmSharp
         /// Sets the data for an image from memory to be loaded.
         /// </summary>
         /// <param name="stream">memory stream</param>
+        /// <since_tizen> preview </since_tizen>
         public void SetStream(Stream stream)
         {
             if (stream == null)
@@ -245,6 +260,7 @@ namespace ElmSharp
         /// </summary>
         /// <param name="source">The proxy (image) object</param>
         /// <returns>true if the source object is set successfully, ortherwise false on error</returns>
+        /// <since_tizen> preview </since_tizen>
         public bool SetSource(EvasObject source)
         {
             bool result = false;
@@ -259,6 +275,7 @@ namespace ElmSharp
         /// Set the native surface of a given image of the canvas
         /// </summary>
         /// <param name="surface">The surface.</param>
+        /// <since_tizen> preview </since_tizen>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void SetNativeSurface(IntPtr surface)
         {
@@ -272,6 +289,7 @@ namespace ElmSharp
         /// <param name="right">The border's right width</param>
         /// <param name="top">The border's top width</param>
         /// <param name="bottom">The border's bottom width</param>
+        /// <since_tizen> preview </since_tizen>
         public void SetBorder(int left, int right, int top, int bottom)
         {
             Interop.Evas.evas_object_image_border_set(RealHandle, left, right, top, bottom);
@@ -282,6 +300,7 @@ namespace ElmSharp
         /// </summary>
         /// <param name="parent">The parent is a given container which will be attached by Image as a child. It's <see cref="EvasObject"/> type.</param>
         /// <returns>The new object, otherwise null if it cannot be created</returns>
+        /// <since_tizen> preview </since_tizen>
         protected override IntPtr CreateHandle(EvasObject parent)
         {
             return _handle != IntPtr.Zero ? _handle : Interop.Evas.evas_object_image_add(Interop.Evas.evas_object_evas_get(parent.Handle));

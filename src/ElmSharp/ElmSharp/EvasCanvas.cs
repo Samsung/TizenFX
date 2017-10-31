@@ -29,6 +29,7 @@ namespace ElmSharp
     /// Most users will be using Evas by means of the Ecore_Evas wrapper, which deals with all the above mentioned issues automatically for them.Thus, you'll be looking at this section only if you're building low level stuff.
     /// The groups within present you functions that deal with the canvas directly, too, and not yet with its objects.They are the functions you need to use at a minimum to get a working canvas.
     /// </summary>
+    /// <since_tizen> preview </since_tizen>
     public class EvasCanvas
     {
         IntPtr _handle = IntPtr.Zero;
@@ -43,6 +44,7 @@ namespace ElmSharp
         /// Gets the current known default pointer coordinates.
         /// This function returns the current known canvas unit coordinates of the mouse pointer.
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         public Point Pointer
         {
             get
@@ -57,6 +59,7 @@ namespace ElmSharp
         /// Gets or sets the image cache.
         /// This function returns the image cache size of canvas in bytes.
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         public int ImageCacheSize
         {
             get
@@ -72,6 +75,7 @@ namespace ElmSharp
         /// <summary>
         /// Flush the image cache of the canvas.
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         public void FlushImageCache()
         {
             Interop.Evas.evas_image_cache_flush(_handle);
@@ -84,6 +88,7 @@ namespace ElmSharp
         /// <param name="y">The rectangle's top left corner's vertical coordinate.</param>
         /// <param name="width">The rectangle's width.</param>
         /// <param name="height">The rectangle's height.</param>
+        /// <since_tizen> preview </since_tizen>
         public void AddDamageRectangle(int x, int y, int width, int height)
         {
             Interop.Evas.evas_damage_rectangle_add(_handle, x, y, width, height);
@@ -96,6 +101,7 @@ namespace ElmSharp
         /// <param name="y">The rectangle's top left corner's vertical coordinate.</param>
         /// <param name="width">The rectangle's width.</param>
         /// <param name="height">The rectangle's height.</param>
+        /// <since_tizen> preview </since_tizen>
         public void AddObscuredRectangle(int x, int y, int width, int height)
         {
             Interop.Evas.evas_obscured_rectangle_add(_handle, x, y, width, height);
@@ -104,6 +110,7 @@ namespace ElmSharp
         /// <summary>
         /// Remove all "obscured regions" from an Evas canvas.
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         public void ClearObscuredRectangle()
         {
             Interop.Evas.evas_obscured_clear(_handle);
@@ -114,6 +121,7 @@ namespace ElmSharp
         /// </summary>
         /// <param name="type">The type of event that triggers</param>
         /// <param name="action">The action to be called when the event is triggered</param>
+        /// <since_tizen> preview </since_tizen>
         public void AddEventAction(EvasObjectCallbackType type, Action action)
         {
             if (action != null)
@@ -134,6 +142,7 @@ namespace ElmSharp
         /// </summary>
         /// <param name="type">The type of event that triggers</param>
         /// <param name="action">The action to be called when the event is triggered</param>
+        /// <since_tizen> preview </since_tizen>
         public void DeleteEventAction(EvasObjectCallbackType type, Action action)
         {
             if (action != null)

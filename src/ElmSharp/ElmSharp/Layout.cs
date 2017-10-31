@@ -22,6 +22,7 @@ namespace ElmSharp
     /// This is a container widget that takes a standard Edje design file and wraps it very thinly in a widget.
     /// Inherits Widget
     /// </summary>
+    /// <since_tizen> preview </since_tizen>
     public class Layout : Container
     {
         SmartEvent _languageChanged;
@@ -33,6 +34,7 @@ namespace ElmSharp
         /// Creates and initializes a new instance of Layout class.
         /// </summary>
         /// <param name="parent">The parent is a given container which will be attached by Layout as a child. It's <see cref="EvasObject"/> type.</param>
+        /// <since_tizen> preview </since_tizen>
         public Layout(EvasObject parent) : base(parent)
         {
         }
@@ -40,6 +42,7 @@ namespace ElmSharp
         /// <summary>
         /// Creates and initializes a new instance of Layout class.
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         protected Layout() : base()
         {
         }
@@ -47,16 +50,19 @@ namespace ElmSharp
         /// <summary>
         /// LanguageChanged will be triggered when the program's language is changed.
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         public event EventHandler LanguageChanged;
 
         /// <summary>
         /// ThemeChanged will be triggered when the theme is changed.
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         public event EventHandler ThemeChanged;
 
         /// <summary>
         /// Gets the edje layout.
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         public EdjeObject EdjeObject
         {
             get
@@ -70,6 +76,7 @@ namespace ElmSharp
         /// <summary>
         /// Gets or sets accessibility state of texblock(text) parts in the layout object.
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         public bool TextBlockAccessibility
         {
             get
@@ -88,6 +95,7 @@ namespace ElmSharp
         /// Successive freezes will nest, requiring an equal number of thaws.
         /// </summary>
         /// <returns>The frozen state or 0 if the object is not frozen or on error.</returns>
+        /// <since_tizen> preview </since_tizen>
         public int Freeze()
         {
             return Interop.Elementary.elm_layout_freeze(RealHandle);
@@ -98,6 +106,7 @@ namespace ElmSharp
         /// If sucessives freezes were done, an equal number of thaws will be required.
         /// </summary>
         /// <returns>The frozen state or 0 if the object is not frozen or on error.</returns>
+        /// <since_tizen> preview </since_tizen>
         public int Thaw()
         {
             return Interop.Elementary.elm_layout_thaw(RealHandle);
@@ -111,6 +120,7 @@ namespace ElmSharp
         /// The minimum size of the theme is calculated based on minimum size of parts, the size of elements inside containers like box and table, etc.
         /// All of this can change due to state changes, and that's when this function should be called.
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         public void Resizing()
         {
             Interop.Elementary.elm_layout_sizing_eval(RealHandle);
@@ -122,6 +132,7 @@ namespace ElmSharp
         /// </summary>
         /// <param name="width">Restrict minimum size ot the current width.</param>
         /// <param name="height">Restrict minimum size ot the current height.</param>
+        /// <since_tizen> preview </since_tizen>
         public void Resizing(bool width, bool height)
         {
             Interop.Elementary.elm_layout_sizing_restricted_eval(RealHandle, width, height);
@@ -134,6 +145,7 @@ namespace ElmSharp
         /// </summary>
         /// <param name="key">The data key</param>
         /// <returns>The data</returns>
+        /// <since_tizen> preview </since_tizen>
         public string GetEdjeData(string key)
         {
             return Interop.Elementary.elm_layout_data_get(RealHandle, key);
@@ -144,6 +156,7 @@ namespace ElmSharp
         /// </summary>
         /// <param name="part">The TEXT part to retrieve the text off.</param>
         /// <returns></returns>
+        /// <since_tizen> preview </since_tizen>
         public override string GetPartText(string part)
         {
             return Interop.Elementary.elm_layout_text_get(RealHandle, part);
@@ -155,6 +168,7 @@ namespace ElmSharp
         /// <param name="part">The TEXT part to retrieve the text off.</param>
         /// <param name="text">The text to set.</param>
         /// <returns></returns>
+        /// <since_tizen> preview </since_tizen>
         public override bool SetPartText(string part, string text)
         {
             return Interop.Elementary.elm_layout_text_set(RealHandle, part, text);
@@ -168,6 +182,7 @@ namespace ElmSharp
         /// <param name="part">The part</param>
         /// <param name="child">The Object to append</param>
         /// <returns>Sucess is true</returns>
+        /// <since_tizen> preview </since_tizen>
         public bool BoxAppend(string part, EvasObject child)
         {
             AddChild(child);
@@ -182,6 +197,7 @@ namespace ElmSharp
         /// <param name="part">The part</param>
         /// <param name="child">The Object to prepend</param>
         /// <returns>Sucess is true</returns>
+        /// <since_tizen> preview </since_tizen>
         public bool BoxPrepend(string part, EvasObject child)
         {
             AddChild(child);
@@ -195,6 +211,7 @@ namespace ElmSharp
         /// <param name="part">The part</param>
         /// <param name="child">The Object to remove</param>
         /// <returns>Sucess is true</returns>
+        /// <since_tizen> preview </since_tizen>
         public bool BoxRemove(string part, EvasObject child)
         {
             RemoveChild(child);
@@ -208,6 +225,7 @@ namespace ElmSharp
         /// <param name="part">The part</param>
         /// <param name="clear">If true, then all objects will be deleted as well, otherwise they will just be removed and will be dangling on the canvas.</param>
         /// <returns>Sucess is true</returns>
+        /// <since_tizen> preview </since_tizen>
         public bool BoxRemoveAll(string part, bool clear)
         {
             ClearChildren();
@@ -223,6 +241,7 @@ namespace ElmSharp
         /// <param name="child">The child object to insert into box.</param>
         /// <param name="position">The numeric position >=0 to insert the child.</param>
         /// <returns>Sucess is true</returns>
+        /// <since_tizen> preview </since_tizen>
         public bool BoxInsertAt(string part, EvasObject child, uint position)
         {
             AddChild(child);
@@ -238,6 +257,7 @@ namespace ElmSharp
         /// <param name="child">The child object to insert into box.</param>
         /// <param name="reference">Another reference object to insert before in box.</param>
         /// <returns>Sucess is true</returns>
+        /// <since_tizen> preview </since_tizen>
         public bool BoxInsertBefore(string part, EvasObject child, EvasObject reference)
         {
             AddChild(child);
@@ -250,6 +270,7 @@ namespace ElmSharp
         /// <param name="part">The swallow part name in the edje file</param>
         /// <param name="content">The child that will be added in this layout object.</param>
         /// <returns>TRUE on success, FALSE otherwise</returns>
+        /// <since_tizen> preview </since_tizen>
         public override bool SetPartContent(string part, EvasObject content)
         {
             return SetPartContent(part, content, false);
@@ -262,6 +283,7 @@ namespace ElmSharp
         /// <param name="content">The content</param>
         /// <param name="preserveOldContent">true, preserve old content will be unset. false, preserve old content will not be unset.</param>
         /// <returns>TRUE on success, FALSE otherwise</returns>
+        /// <since_tizen> preview </since_tizen>
         public override bool SetPartContent(string part, EvasObject content, bool preserveOldContent)
         {
             if (preserveOldContent)
@@ -278,6 +300,7 @@ namespace ElmSharp
         /// <param name="klass">The class of the group</param>
         /// <param name="group">The group</param>
         /// <param name="style">The style to use</param>
+        /// <since_tizen> preview </since_tizen>
         public void SetTheme(string klass, string group, string style)
         {
             Interop.Elementary.elm_layout_theme_set(RealHandle, klass, group, style);
@@ -288,6 +311,7 @@ namespace ElmSharp
         /// </summary>
         /// <param name="file">The path to the file (edj) that is used as a layout</param>
         /// <param name="group">The group that the layout belongs to in the edje file</param>
+        /// <since_tizen> preview </since_tizen>
         public void SetFile(string file, string group)
         {
             Interop.Elementary.elm_layout_file_set(RealHandle, file, group);
@@ -296,6 +320,7 @@ namespace ElmSharp
         /// <summary>
         /// Sets the back ground color of layout
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         public override Color BackgroundColor
         {
             set
@@ -319,6 +344,7 @@ namespace ElmSharp
         /// <remarks>
         /// API, elm_layout_text_valign_set, is an internal API only in Tizen. Avalilable since Tizen_4.0.
         /// </remarks>
+        /// <since_tizen> preview </since_tizen>
         public virtual void SetVerticalTextAlignment(string part, double valign)
         {
             Interop.Elementary.elm_layout_text_valign_set(RealHandle, part, valign);
@@ -330,6 +356,7 @@ namespace ElmSharp
         /// <remarks>
         /// API, elm_layout_text_valign_get, is internal API only in Tizen. Avalilable since Tizen_4.0.
         /// </remarks>
+        /// <since_tizen> preview </since_tizen>
         public virtual double GetVerticalTextAlignment(string part)
         {
             return Interop.Elementary.elm_layout_text_valign_get(RealHandle, part);
@@ -338,6 +365,7 @@ namespace ElmSharp
         /// <summary>
         /// The callback of Realized Event
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         protected override void OnRealized()
         {
             base.OnRealized();
@@ -359,6 +387,7 @@ namespace ElmSharp
         /// </summary>
         /// <param name="parent">The parent is a given container which will be attached by Layout as a child. It's <see cref="EvasObject"/> type.</param>
         /// <returns>The new object, otherwise null if it cannot be created</returns>
+        /// <since_tizen> preview </since_tizen>
         protected override IntPtr CreateHandle(EvasObject parent)
         {
             return Interop.Elementary.elm_layout_add(parent.Handle);

@@ -21,12 +21,14 @@ namespace ElmSharp
     /// <summary>
     /// The ItemObjectExtension is used to manage item object extension
     /// </summary>
+    /// <since_tizen> preview </since_tizen>
     public static class ItemObjectExtension
     {
         /// <summary>
         /// Grab high light of item object
         /// </summary>
         /// <param name="obj">the item object which is grabbed high light</param>
+        /// <since_tizen> preview </since_tizen>
         public static void GrabHighlight(this ItemObject obj)
         {
             Interop.Elementary.elm_atspi_component_highlight_grab(obj.Handle);
@@ -36,6 +38,7 @@ namespace ElmSharp
         /// Clear high light of item object
         /// </summary>
         /// <param name="obj">the item object which is cleared high light</param>
+        /// <since_tizen> preview </since_tizen>
         public static void ClearHighlight(this ItemObject obj)
         {
             Interop.Elementary.elm_atspi_component_highlight_clear(obj.Handle);

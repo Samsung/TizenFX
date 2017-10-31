@@ -21,6 +21,7 @@ namespace ElmSharp
     /// <summary>
     /// The ToolbarItem is a item of Toolbar.
     /// </summary>
+    /// <since_tizen> preview </since_tizen>
     public class ToolbarItem : ItemObject
     {
         string _icon;
@@ -34,6 +35,7 @@ namespace ElmSharp
         /// <summary>
         /// Sets or gets the icon path of the item.
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         public string Icon
         {
             get
@@ -50,6 +52,7 @@ namespace ElmSharp
         /// <summary>
         /// Sets or gets the text string of the item.
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         public string Text
         {
             get
@@ -66,6 +69,7 @@ namespace ElmSharp
         /// <summary>
         /// Sets or gets the enable of the item.
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         [Obsolete("Enabled is obsolete as of version v1.1.0-beta-023. Please use IsEnabled instead.")]
         public bool Enabled
         {
@@ -83,6 +87,7 @@ namespace ElmSharp
         /// Sets or gets whether displaying the item as a separator.
         /// </summary>
         /// <remarks>Items aren't set as a separator by default. If set as a separator it displays a separator theme, so it won't display icons or labels.</remarks>
+        /// <since_tizen> preview </since_tizen>
         public bool IsSeparator
         {
             get
@@ -98,6 +103,7 @@ namespace ElmSharp
         /// <summary>
         /// Sets or gets whether the item is selected.
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         public bool IsSelected
         {
             get
@@ -113,16 +119,19 @@ namespace ElmSharp
         /// <summary>
         /// Selected will be triggered when the item is selected.
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         public event EventHandler Selected;
 
         /// <summary>
         /// LongPressed will be triggered when the item is pressed long time.
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         public event EventHandler LongPressed;
 
         /// <summary>
         /// Clicked will be triggered when the item is clicked.
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         public event EventHandler Clicked;
 
         internal void SendSelected()

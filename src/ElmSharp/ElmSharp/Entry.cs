@@ -23,6 +23,7 @@ namespace ElmSharp
     /// <summary>
     /// Enumeration for describing InputPanel layout type.
     /// </summary>
+    /// <since_tizen> preview </since_tizen>
     public enum InputPanelLayout
     {
         /// <summary>
@@ -99,6 +100,7 @@ namespace ElmSharp
     /// <summary>
     /// Enumeration that defines the "Return" key types on the input panel (virtual keyboard).
     /// </summary>
+    /// <since_tizen> preview </since_tizen>
     public enum InputPanelReturnKeyType
     {
         /// <summary>
@@ -150,6 +152,7 @@ namespace ElmSharp
     /// <summary>
     /// Enumeration that defines the autocapitalization types.
     /// </summary>
+    /// <since_tizen> preview </since_tizen>
     public enum AutoCapital
     {
         /// <summary>
@@ -176,6 +179,7 @@ namespace ElmSharp
     /// <summary>
     /// Enumeration that defines the entry's copy and paste policy.
     /// </summary>
+    /// <since_tizen> preview </since_tizen>
     public enum CopyAndPasteMode
     {
         /// <summary>
@@ -197,6 +201,7 @@ namespace ElmSharp
     /// <summary>
     /// Enumeration that defines the text format types.
     /// </summary>
+    /// <since_tizen> preview </since_tizen>
     public enum TextFormat
     {
         /// <summary>
@@ -213,6 +218,7 @@ namespace ElmSharp
     /// <summary>
     /// Enumeration that defines the types of Input Hints.
     /// </summary>
+    /// <since_tizen> preview </since_tizen>
     public enum InputHints
     {
         /// <summary>
@@ -234,6 +240,7 @@ namespace ElmSharp
     /// <summary>
     /// Enumeration that defines the input panel (virtual keyboard) language modes.
     /// </summary>
+    /// <since_tizen> preview </since_tizen>
     public enum InputPanelLanguage
     {
         /// <summary>
@@ -250,6 +257,7 @@ namespace ElmSharp
     /// <summary>
     /// The entry is a convenience widget that shows a box in which the user can enter text.
     /// </summary>
+    /// <since_tizen> preview </since_tizen>
     public class Entry : Layout
     {
         SmartEvent _clicked;
@@ -264,6 +272,7 @@ namespace ElmSharp
         /// Creates and initializes a new instance of the Entry class.
         /// </summary>
         /// <param name="parent">The EvasObject to which the new Entry will be attached as a child.</param>
+        /// <since_tizen> preview </since_tizen>
         public Entry(EvasObject parent) : base(parent)
         {
             _clicked = new SmartEvent(this, this.RealHandle, "clicked");
@@ -282,26 +291,31 @@ namespace ElmSharp
         /// <summary>
         /// Activated will be triggered when the entry in Activated stated.
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         public event EventHandler Activated;
 
         /// <summary>
         /// Clicked will be triggered when the entry is clicked.
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         public event EventHandler Clicked;
 
         /// <summary>
         /// ChangedByUser will be triggered when the entry changed by user.
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         public event EventHandler ChangedByUser;
 
         /// <summary>
         /// CursorChanged will be triggered when the Cursor in the entry is changed.
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         public event EventHandler CursorChanged;
 
         /// <summary>
         /// Sets or gets the entry to the single line mode.
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         public bool IsSingleLine
         {
             get
@@ -317,6 +331,7 @@ namespace ElmSharp
         /// <summary>
         /// Sets or gets the entry to the password mode.
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         public bool IsPassword
         {
             get
@@ -332,6 +347,7 @@ namespace ElmSharp
         /// <summary>
         /// Sets or gets whether the entry is editable.
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         public bool IsEditable
         {
             get
@@ -347,6 +363,7 @@ namespace ElmSharp
         /// <summary>
         /// Sets or gets whether the entry is empty.
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         public bool IsEmpty
         {
             get
@@ -358,6 +375,7 @@ namespace ElmSharp
         /// <summary>
         /// Sets or gets text currently shown in the object entry.
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         public override string Text
         {
             get
@@ -374,6 +392,7 @@ namespace ElmSharp
         /// Sets or gets the style on the top of the user style stack.
         /// </summary>
         /// <remarks>If there is styles in the user style stack, the properties in the top style of user style stack will replace the properties in current theme. The input style is specified in format tag='property=value' (i.e. DEFAULT='font=Sans font_size=60'hilight=' + font_weight=Bold').</remarks>
+        /// <since_tizen> preview </since_tizen>
         public string TextStyle
         {
             get
@@ -389,6 +408,7 @@ namespace ElmSharp
         /// <summary>
         /// Sets or gets the current position of the cursor in the entry.
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         public int CursorPosition
         {
             get
@@ -404,6 +424,7 @@ namespace ElmSharp
         /// <summary>
         /// Sets or gets the scrollable state of the entry.
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         public bool Scrollable
         {
             get
@@ -426,6 +447,7 @@ namespace ElmSharp
         /// <summary>
         /// Sets or Gets the autocapitalization type on the immodule.
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         public AutoCapital AutoCapital
         {
             get
@@ -441,6 +463,7 @@ namespace ElmSharp
         /// <summary>
         /// Sets or Gets the entry object's 'autosave' status.
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         public bool IsAutoSave
         {
             get
@@ -456,6 +479,7 @@ namespace ElmSharp
         /// <summary>
         /// Sets or Gets entry text paste/drop mode.
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         public CopyAndPasteMode CopyAndPasteMode
         {
             get
@@ -471,6 +495,7 @@ namespace ElmSharp
         /// <summary>
         /// Gets the geometry of the cursor.
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         public Rect CursorGeometry
         {
             get
@@ -484,6 +509,7 @@ namespace ElmSharp
         /// <summary>
         /// Gets whether a format node exists at the current cursor position.
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         public bool IsCursorFormat
         {
             get
@@ -495,6 +521,7 @@ namespace ElmSharp
         /// <summary>
         /// Gets if the current cursor position holds a visible format node.
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         public bool IsCursorVisibelFormat
         {
             get
@@ -506,6 +533,7 @@ namespace ElmSharp
         /// <summary>
         /// Sets or Gets the value of input hint.
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         public InputHints InputHint
         {
             get
@@ -521,6 +549,7 @@ namespace ElmSharp
         /// <summary>
         ///  Sets or gets the language mode of the input panel.
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         public InputPanelLanguage InputPanelLanguage
         {
             get
@@ -536,6 +565,7 @@ namespace ElmSharp
         /// <summary>
         /// Sets or gets the input panel layout variation of the entry.
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         public int InputPanelVariation
         {
             get
@@ -551,6 +581,7 @@ namespace ElmSharp
         /// <summary>
         /// Sets or gets the line wrap type to use on multi-line entries.
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         public WrapType LineWrapType
         {
             get
@@ -566,6 +597,7 @@ namespace ElmSharp
         /// <summary>
         /// Sets or gets whether the entry should allow to use the text prediction.
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         public bool PredictionAllowed
         {
             get
@@ -581,6 +613,7 @@ namespace ElmSharp
         /// <summary>
         /// Sets or gets whether the return key on the input panel should be disabled or not.
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         public bool InputPanelReturnKeyDisabled
         {
             get
@@ -598,6 +631,7 @@ namespace ElmSharp
         /// It doesn't request to show the input panel even though it has focus.
         /// If true, the input panel will be shown in case of only Mouse up event. (Focus event will be ignored.)
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         public bool InputPanelShowByOnDemand
         {
             get
@@ -615,6 +649,7 @@ namespace ElmSharp
         /// </summary>
         /// <param name="file">The path to the file to load and save</param>
         /// <param name="textFormat">The file format</param>
+        /// <since_tizen> preview </since_tizen>
         public void SetFile(string file, TextFormat textFormat)
         {
             Interop.Elementary.elm_entry_file_set(RealHandle, file, (Interop.Elementary.TextFormat)textFormat);
@@ -625,6 +660,7 @@ namespace ElmSharp
         /// </summary>
         /// <param name="markup">The string (in markup) to be converted</param>
         /// <returns>The converted string (in UTF-8) </returns>
+        /// <since_tizen> preview </since_tizen>
         public static string ConvertMarkupToUtf8(string markup)
         {
             return Interop.Elementary.elm_entry_markup_to_utf8(markup);
@@ -634,6 +670,7 @@ namespace ElmSharp
         /// Moves the cursor by one position to the right within the entry.
         /// </summary>
         /// <returns></returns>
+        /// <since_tizen> preview </since_tizen>
         public bool MoveCursorNext()
         {
             return Interop.Elementary.elm_entry_cursor_next(RealHandle);
@@ -643,6 +680,7 @@ namespace ElmSharp
         /// Moves the cursor one place to the left within the entry.
         /// </summary>
         /// <returns>TRUE on success, otherwise FALSE on failure</returns>
+        /// <since_tizen> preview </since_tizen>
         public bool MoveCursorPrev()
         {
             return Interop.Elementary.elm_entry_cursor_prev(RealHandle);
@@ -652,6 +690,7 @@ namespace ElmSharp
         /// Moves the cursor one line up within the entry.
         /// </summary>
         /// <returns>TRUE on success, otherwise FALSE on failure</returns>
+        /// <since_tizen> preview </since_tizen>
         public bool MoveCursorUp()
         {
             return Interop.Elementary.elm_entry_cursor_up(RealHandle);
@@ -661,6 +700,7 @@ namespace ElmSharp
         /// Moves the cursor one line down within the entry.
         /// </summary>
         /// <returns>TRUE on success, otherwise FALSE on failure</returns>
+        /// <since_tizen> preview </since_tizen>
         public bool MoveCursorDown()
         {
             return Interop.Elementary.elm_entry_cursor_down(RealHandle);
@@ -669,6 +709,7 @@ namespace ElmSharp
         /// <summary>
         /// Moves the cursor to the beginning of the entry.
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         public void MoveCursorBegin()
         {
             Interop.Elementary.elm_entry_cursor_begin_set(RealHandle);
@@ -677,6 +718,7 @@ namespace ElmSharp
         /// <summary>
         /// Moves the cursor to the end of the entry.
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         public void MoveCursorEnd()
         {
             Interop.Elementary.elm_entry_cursor_end_set(RealHandle);
@@ -685,6 +727,7 @@ namespace ElmSharp
         /// <summary>
         /// Moves the cursor to the beginning of the current line.
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         public void MoveCursorLineBegin()
         {
             Interop.Elementary.elm_entry_cursor_line_begin_set(RealHandle);
@@ -693,6 +736,7 @@ namespace ElmSharp
         /// <summary>
         /// Moves the cursor to the end of the current line.
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         public void MoveCursorLineEnd()
         {
             Interop.Elementary.elm_entry_cursor_line_end_set(RealHandle);
@@ -702,6 +746,7 @@ namespace ElmSharp
         /// Sets the input panel layout of the entry.
         /// </summary>
         /// <param name="layout">The layout type</param>
+        /// <since_tizen> preview </since_tizen>
         public void SetInputPanelLayout(InputPanelLayout layout)
         {
             Interop.Elementary.elm_entry_input_panel_layout_set(RealHandle, (Interop.Elementary.InputPanelLayout)layout);
@@ -711,6 +756,7 @@ namespace ElmSharp
         /// Sets the attribute to show the input panel automatically.
         /// </summary>
         /// <param name="enabled">If true the input panel appears when the entry is clicked or has focus, otherwise false</param>
+        /// <since_tizen> preview </since_tizen>
         public void SetInputPanelEnabled(bool enabled)
         {
             Interop.Elementary.elm_entry_input_panel_enabled_set(RealHandle, enabled);
@@ -720,6 +766,7 @@ namespace ElmSharp
         /// Sets the "return" key type. This type is used to set the string or icon on the "return" key of the input panel.
         /// </summary>
         /// <param name="keyType">The type of "return" key on the input panel</param>
+        /// <since_tizen> preview </since_tizen>
         public void SetInputPanelReturnKeyType(InputPanelReturnKeyType keyType)
         {
             Interop.Elementary.elm_entry_input_panel_return_key_type_set(RealHandle, (Interop.Elementary.ReturnKeyType)keyType);
@@ -732,6 +779,7 @@ namespace ElmSharp
         /// Note that the input panel is shown or hidden automatically according to the focus state of the entry widget.
         /// This API can be used in case of manually controlling by using SetInputPanelEnabled(false).
         /// </remarks>
+        /// <since_tizen> preview </since_tizen>
         public void HideInputPanel()
         {
             Interop.Elementary.elm_entry_input_panel_hide(RealHandle);
@@ -740,6 +788,7 @@ namespace ElmSharp
         /// <summary>
         /// Selects all the text within the entry.
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         public void SelectAll()
         {
             Interop.Elementary.elm_entry_select_all(RealHandle);
@@ -748,6 +797,7 @@ namespace ElmSharp
         /// <summary>
         /// Drops any existing text selection within the entry.
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         public void SelectNone()
         {
             Interop.Elementary.elm_entry_select_none(RealHandle);
@@ -756,6 +806,7 @@ namespace ElmSharp
         /// <summary>
         /// Forces calculation of the entry size and text layouting.
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         public void ForceCalculation()
         {
             Interop.Elementary.elm_entry_calc_force(RealHandle);
@@ -765,6 +816,7 @@ namespace ElmSharp
         /// Gets the string by the cursor at its current position.
         /// </summary>
         /// <returns></returns>
+        /// <since_tizen> preview </since_tizen>
         public string GetCursorContent()
         {
             return Interop.Elementary.elm_entry_cursor_content_get(RealHandle);
@@ -773,6 +825,7 @@ namespace ElmSharp
         /// <summary>
         /// Begins a selection within the entry as though the user were holding down the mouse button to make a selection.
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         public void BeginCursorSelection()
         {
             Interop.Elementary.elm_entry_cursor_selection_begin(RealHandle);
@@ -782,6 +835,7 @@ namespace ElmSharp
         /// Appends the text of the entry.
         /// </summary>
         /// <param name="text">The text to be displayed</param>
+        /// <since_tizen> preview </since_tizen>
         public void AppendText(string text)
         {
             Interop.Elementary.elm_entry_entry_append(RealHandle, text);
@@ -794,6 +848,7 @@ namespace ElmSharp
         /// ScrollBarVisiblePolicy.Auto means the horizontal scrollbar is made visible if it is needed, and otherwise kept hidden.
         /// ScrollBarVisiblePolicy.Visible turns it on all the time, and ScrollBarVisiblePolicy.Invisible always keeps it off.
         /// </remarks>
+        /// <since_tizen> preview </since_tizen>
         public virtual ScrollBarVisiblePolicy HorizontalScrollBarVisiblePolicy
         {
             get
@@ -816,6 +871,7 @@ namespace ElmSharp
         /// ScrollBarVisiblePolicy.Auto means the vertical scrollbar is made visible if it is needed, and otherwise kept hidden.
         /// ScrollBarVisiblePolicy.Visible turns it on all the time, and ScrollBarVisiblePolicy.Invisible always keeps it off.
         /// </remarks>
+        /// <since_tizen> preview </since_tizen>
         public virtual ScrollBarVisiblePolicy VerticalScrollBarVisiblePolicy
         {
             get
@@ -838,6 +894,7 @@ namespace ElmSharp
         /// This is enabled by default for both axis.
         /// This API will set if it is enabled for the given axis with the boolean parameters for each axis.
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         public bool VerticalBounce
         {
             get
@@ -860,6 +917,7 @@ namespace ElmSharp
         /// This is enabled by default for both axis.
         /// This API will set if it is enabled for the given axis with the boolean parameters for each axis.
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         public bool HorizontalBounce
         {
             get
@@ -879,6 +937,7 @@ namespace ElmSharp
         /// Inserts the given text into the entry at the current cursor position.
         /// </summary>
         /// <param name="text"></param>
+        /// <since_tizen> preview </since_tizen>
         public void InsertTextToCursor(string text)
         {
             Interop.Elementary.elm_entry_entry_insert(RealHandle, text);
@@ -887,6 +946,7 @@ namespace ElmSharp
         /// <summary>
         /// Ends a selection within the entry as though the user had just released the mouse button while making a selection.
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         public void EndCursorSelection()
         {
             Interop.Elementary.elm_entry_cursor_selection_end(RealHandle);
@@ -895,6 +955,7 @@ namespace ElmSharp
         /// <summary>
         /// Writes any changes made to the file that is set by File.
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         public void SaveFile()
         {
             Interop.Elementary.elm_entry_file_save(RealHandle);
@@ -907,6 +968,7 @@ namespace ElmSharp
         /// Note that input panel is shown or hidden automatically according to the focus state of entry widget.
         /// This API can be used in the case of manually controlling by using SetInputPanelEnabled(false).
         /// </remarks>
+        /// <since_tizen> preview </since_tizen>
         public void ShowInputPanel()
         {
             Interop.Elementary.elm_entry_input_panel_show(RealHandle);
@@ -916,6 +978,7 @@ namespace ElmSharp
         /// This appends a custom item provider to the list for that entry.
         /// </summary>
         /// <param name="func">This function is used to provide items.</param>
+        /// <since_tizen> preview </since_tizen>
         public void AppendItemProvider(Func<string, EvasObject> func)
         {
             if (func != null)
@@ -938,6 +1001,7 @@ namespace ElmSharp
         /// This prepends a custom item provider to the list for that entry.
         /// </summary>
         /// <param name="func">This function is used to provide items.</param>
+        /// <since_tizen> preview </since_tizen>
         public void PrependItemProvider(Func<string, EvasObject> func)
         {
             if (!_itemsProvider.ContainsKey(func))
@@ -957,6 +1021,7 @@ namespace ElmSharp
         /// This removes a custom item provider to the list for that entry.
         /// </summary>
         /// <param name="func">This function is used to provide items.</param>
+        /// <since_tizen> preview </since_tizen>
         public void RemoveItemProvider(Func<string, EvasObject> func)
         {
             if (_itemsProvider.ContainsKey(func))
@@ -973,6 +1038,7 @@ namespace ElmSharp
         /// Append a markup filter function for text inserted in the entry.
         /// </summary>
         /// <param name="filter">This function type is used by entry filters to modify text.</param>
+        /// <since_tizen> preview </since_tizen>
         public void AppendMarkUpFilter(Func<Entry, string, string> filter)
         {
             if (!_textFilters.ContainsKey(filter))
@@ -998,6 +1064,7 @@ namespace ElmSharp
         /// Prepend a markup filter function for text inserted in the entry.
         /// </summary>
         /// <param name="filter">This function type is used by entry filters to modify text.</param>
+        /// <since_tizen> preview </since_tizen>
         public void PrependMarkUpFilter(Func<Entry, string, string> filter)
         {
             if (!_textFilters.ContainsKey(filter))
@@ -1023,6 +1090,7 @@ namespace ElmSharp
         /// Remove a markup filter
         /// </summary>
         /// <param name="filter">This function type is used by entry filters to modify text.</param>
+        /// <since_tizen> preview </since_tizen>
         public void RemoveMarkUpFilter(Func<Entry, string, string> filter)
         {
             if (_textFilters.ContainsKey(filter))
@@ -1038,6 +1106,7 @@ namespace ElmSharp
         /// <summary>
         /// This executes a "copy" action on the selected text in the entry.
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         public void CopySelection()
         {
             Interop.Elementary.elm_entry_selection_copy(RealHandle);
@@ -1046,6 +1115,7 @@ namespace ElmSharp
         /// <summary>
         /// This executes a "cut" action on the selected text in the entry.
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         public void CutSelection()
         {
             Interop.Elementary.elm_entry_selection_cut(RealHandle);
@@ -1054,6 +1124,7 @@ namespace ElmSharp
         /// <summary>
         /// This executes a "paste" action in the entry.
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         public void PasteSelection()
         {
             Interop.Elementary.elm_entry_selection_paste(RealHandle);
@@ -1063,6 +1134,7 @@ namespace ElmSharp
         /// This disabled the entry's selection.
         /// </summary>
         /// <param name="disable">If true, the selection are disabled.</param>
+        /// <since_tizen> preview </since_tizen>
         public void DisableSelection(bool disable)
         {
             Interop.Elementary.elm_entry_selection_handler_disabled_set(RealHandle, disable);
@@ -1072,6 +1144,7 @@ namespace ElmSharp
         /// Get any selected text within the entry.
         /// </summary>
         /// <returns>Selection's value</returns>
+        /// <since_tizen> preview </since_tizen>
         public string GetSelection()
         {
             return Interop.Elementary.elm_entry_selection_get(RealHandle);
@@ -1082,6 +1155,7 @@ namespace ElmSharp
         /// </summary>
         /// <param name="start">The starting position.</param>
         /// <param name="end">The end position.</param>
+        /// <since_tizen> preview </since_tizen>
         public void SetSelectionRegion(int start, int end)
         {
             Interop.Elementary.elm_entry_select_region_set(RealHandle, start, end);
@@ -1091,6 +1165,7 @@ namespace ElmSharp
         /// Sets the visibility of the left-side widget of the entry
         /// </summary>
         /// <param name="isDisplay">true if the object should be displayed, false if not.</param>
+        /// <since_tizen> preview </since_tizen>
         public void SetIconVisible(bool isDisplay)
         {
             Interop.Elementary.elm_entry_icon_visible_set(RealHandle, isDisplay);
@@ -1100,6 +1175,7 @@ namespace ElmSharp
         /// Set whether the return key on the input panel is disabled automatically when entry has no text.
         /// </summary>
         /// <param name="enable">If enabled is true, the return key is automatically disabled when the entry has no text.</param>
+        /// <since_tizen> preview </since_tizen>
         public void SetInputPanelReturnKeyAutoEnable(bool enable)
         {
             Interop.Elementary.elm_entry_input_panel_return_key_autoenabled_set(RealHandle, enable);
@@ -1110,6 +1186,7 @@ namespace ElmSharp
         /// </summary>
         /// <param name="parent">Parent EvasObject</param>
         /// <returns>Handle IntPtr</returns>
+        /// <since_tizen> preview </since_tizen>
         protected override IntPtr CreateHandle(EvasObject parent)
         {
             return Interop.Elementary.elm_entry_add(parent.Handle);

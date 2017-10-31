@@ -22,6 +22,7 @@ namespace ElmSharp
     /// <summary>
     /// Enumeration for the selection mode of Toolbar.
     /// </summary>
+    /// <since_tizen> preview </since_tizen>
     public enum ToolbarSelectionMode
     {
         /// <summary>
@@ -48,6 +49,7 @@ namespace ElmSharp
     /// <summary>
     /// Enumeration that sets the toolbar items display behavior, it can be scrollable, can show a menu with exceeding items, or simply hide them.
     /// </summary>
+    /// <since_tizen> preview </since_tizen>
     public enum ToolbarShrinkMode
     {
         /// <summary>
@@ -79,6 +81,7 @@ namespace ElmSharp
     /// <summary>
     /// Enumeration for the icon lookup order of Toolbar.
     /// </summary>
+    /// <since_tizen> preview </since_tizen>
     public enum ToolbarIconLookupOrder
     {
         /// <summary>
@@ -108,11 +111,13 @@ namespace ElmSharp
     /// <remarks>
     /// Inherits EventArgs.
     /// </remarks>
+    /// <since_tizen> preview </since_tizen>
     public class ToolbarItemEventArgs : EventArgs
     {
         /// <summary>
         /// Gets the ToolbarItem.
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         public ToolbarItem Item { get; private set; }
 
         internal static ToolbarItemEventArgs CreateFromSmartEvent(IntPtr data, IntPtr obj, IntPtr info)
@@ -125,6 +130,7 @@ namespace ElmSharp
     /// <summary>
     /// The Toolbar is a widget that displays a list of items inside a box.
     /// </summary>
+    /// <since_tizen> preview </since_tizen>
     public class Toolbar : Widget
     {
         SmartEvent<ToolbarItemEventArgs> _clicked;
@@ -137,6 +143,7 @@ namespace ElmSharp
         /// <param name="parent">
         /// A EvasObject to which the new Table instance will be attached.
         /// </param>
+        /// <since_tizen> preview </since_tizen>
         public Toolbar(EvasObject parent) : base(parent)
         {
             _selected = new SmartEvent<ToolbarItemEventArgs>(this, this.RealHandle, "selected", ToolbarItemEventArgs.CreateFromSmartEvent);
@@ -163,12 +170,14 @@ namespace ElmSharp
         /// <summary>
         /// Selected will be triggered when toolbar have been selected.
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         public event EventHandler<ToolbarItemEventArgs> Selected;
 
         /// <summary>
         /// Sets or gets whether the layout of this toolbar is homogeneous.
         /// </summary>
         /// <remarks>True for homogeneous, False for no homogeneous</remarks>
+        /// <since_tizen> preview </since_tizen>
         public bool Homogeneous
         {
             get
@@ -184,6 +193,7 @@ namespace ElmSharp
         /// <summary>
         /// Sets or gets the slection mode of a given Toolbar widget.
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         public ToolbarSelectionMode SelectionMode
         {
             get
@@ -199,6 +209,7 @@ namespace ElmSharp
         /// <summary>
         /// Sets or gets the shrink mode of a given Toolbar widget.
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         public ToolbarShrinkMode ShrinkMode
         {
             get
@@ -214,6 +225,7 @@ namespace ElmSharp
         /// <summary>
         /// Sets or gets toolbar's current orientation.
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public bool IsHorizontal
         {
@@ -232,6 +244,7 @@ namespace ElmSharp
         /// The default lookup order is ToolbarIocnLookupOrder.ThemeFreedesktop.
         /// Icons added before calling this function will not be affected.
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         public ToolbarIconLookupOrder IconLookupOrder
         {
             get
@@ -248,6 +261,7 @@ namespace ElmSharp
         /// Sets or gets the icon size of a given toolbar widget.
         /// Default value is 32 pixels, to be used by toolbar items.
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         public int IconSize
         {
             get
@@ -263,6 +277,7 @@ namespace ElmSharp
         /// <summary>
         /// Gets the number of items in a toolbar widget.
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         public int ItemsCount
         {
             get
@@ -275,6 +290,7 @@ namespace ElmSharp
         /// Sets or gets the alignment of the items.
         /// </summary>
         /// <remarks>The toolbar items alignment, a float between 0.0 and 1.0</remarks>
+        /// <since_tizen> preview </since_tizen>
         public double ItemAlignment
         {
             get
@@ -294,6 +310,7 @@ namespace ElmSharp
         /// The transverse expansion of the item, true for on and false for off.
         /// By default it's false.
         /// </remarks>
+        /// <since_tizen> preview </since_tizen>
         public bool TransverseExpansion
         {
             get
@@ -313,6 +330,7 @@ namespace ElmSharp
         /// <returns>The new ToolbarItem which appended to the toolbar</returns>
         /// <seealso cref="Append(string, string)"/>
         /// <seealso cref="Prepend(string)"/>
+        /// <since_tizen> preview </since_tizen>
         public ToolbarItem Append(string label)
         {
             return Append(label, null);
@@ -327,6 +345,7 @@ namespace ElmSharp
         /// <seealso cref="Append(string)"/>
         /// <seealso cref="Prepend(string)"/>
         /// <seealso cref="Prepend(string, string)"/>
+        /// <since_tizen> preview </since_tizen>
         public ToolbarItem Append(string label, string icon)
         {
             ToolbarItem item = new ToolbarItem(label, icon);
@@ -342,6 +361,7 @@ namespace ElmSharp
         /// <seealso cref="Append(string)"/>
         /// <seealso cref="Append(string, string)"/>
         /// <seealso cref="Prepend(string, string)"/>
+        /// <since_tizen> preview </since_tizen>
         public ToolbarItem Prepend(string label)
         {
             return Prepend(label, null);
@@ -356,6 +376,7 @@ namespace ElmSharp
         /// <seealso cref="Append(string)"/>
         /// <seealso cref="Append(string, string)"/>
         /// <seealso cref="Prepend(string)"/>
+        /// <since_tizen> preview </since_tizen>
         public ToolbarItem Prepend(string label, string icon)
         {
             ToolbarItem item = new ToolbarItem(label, icon);
@@ -370,6 +391,7 @@ namespace ElmSharp
         /// <param name="label">The label of the item</param>
         /// <returns>The new <see cref="ToolbarItem"/> which insert into the toolbar</returns>
         /// <seealso cref="InsertBefore(ToolbarItem, string, string)"/>
+        /// <since_tizen> preview </since_tizen>
         public ToolbarItem InsertBefore(ToolbarItem before, string label)
         {
             return InsertBefore(before, label, string.Empty);
@@ -383,6 +405,7 @@ namespace ElmSharp
         /// <param name="icon">A string with the icon name or the absolute path of an image file</param>
         /// <returns>The new <see cref="ToolbarItem"/> which insert into the toolbar</returns>
         /// <seealso cref="InsertBefore(ToolbarItem, string)"/>
+        /// <since_tizen> preview </since_tizen>
         public ToolbarItem InsertBefore(ToolbarItem before, string label, string icon)
         {
             ToolbarItem item = new ToolbarItem(label, icon);
@@ -397,6 +420,7 @@ namespace ElmSharp
         /// <param name="label">The label of the item</param>
         /// <param name="icon">A string with the icon name or the absolute path of an image file</param>
         /// <returns>The new <see cref="ToolbarItem"/> which insert into the toolbar</returns>
+        /// <since_tizen> preview </since_tizen>
         public ToolbarItem InsertAfter(ToolbarItem after, string label, string icon)
         {
             ToolbarItem item = new ToolbarItem(label, icon);
@@ -409,6 +433,7 @@ namespace ElmSharp
         /// </summary>
         /// <param name="label">The label of the item</param>
         /// <returns>The <see cref="ToolbarItem"/> into the toolbar</returns>
+        /// <since_tizen> preview </since_tizen>
         public ToolbarItem FindItemByLabel(string label)
         {
             IntPtr handle = Interop.Elementary.elm_toolbar_item_find_by_label(RealHandle, label);
@@ -418,6 +443,7 @@ namespace ElmSharp
         /// <summary>
         /// Gets the selected ToolbarItemItem of the toolbar.
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         public ToolbarItem SelectedItem
         {
             get
@@ -430,6 +456,7 @@ namespace ElmSharp
         /// <summary>
         /// Gets the first ToolbarItemItem of the toolbar.
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         public ToolbarItem FirstItem
         {
             get
@@ -442,6 +469,7 @@ namespace ElmSharp
         /// <summary>
         /// Gets the last ToolbarItemItem of the toolbar.
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         public ToolbarItem LastItem
         {
             get
@@ -456,6 +484,7 @@ namespace ElmSharp
         /// </summary>
         /// <param name="parent">Parent EvasObject</param>
         /// <returns>Handle IntPtr</returns>
+        /// <since_tizen> preview </since_tizen>
         protected override IntPtr CreateHandle(EvasObject parent)
         {
             IntPtr handle = Interop.Elementary.elm_layout_add(parent.Handle);

@@ -22,6 +22,7 @@ namespace ElmSharp
     /// <summary>
     /// The EvasKeyEventArgs is an EvasKey EventArgs
     /// </summary>
+    /// <since_tizen> preview </since_tizen>
     public class EvasKeyEventArgs : EventArgs
     {
         IntPtr _nativeEventInfo;
@@ -29,26 +30,31 @@ namespace ElmSharp
         /// <summary>
         /// BackButton name in Platform
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         public const string PlatformBackButtonName = "XF86Back";
 
         /// <summary>
         /// MenuButton name in Platform
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         public const string PlatformMenuButtonName = "XF86Menu";
 
         /// <summary>
         /// HomeButton name in Platform
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         public const string PlatformHomeButtonName = "XF86Home";
 
         /// <summary>
         /// Gets the name of Key
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         public string KeyName { get; private set; }
 
         /// <summary>
         /// Sets or gets the flags.
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         public EvasEventFlag Flags
         {
             get
@@ -77,6 +83,7 @@ namespace ElmSharp
         /// <param name="obj"> object </param>
         /// <param name="info">information </param>
         /// <returns>EvasKey eventArgs</returns>
+        /// <since_tizen> preview </since_tizen>
         static public EvasKeyEventArgs Create(IntPtr data, IntPtr obj, IntPtr info)
         {
             return new EvasKeyEventArgs(info);
@@ -145,6 +152,7 @@ namespace ElmSharp
     /// <summary>
     /// Flags for Events
     /// </summary>
+    /// <since_tizen> preview </since_tizen>
     [Flags]
     public enum EvasEventFlag
     {

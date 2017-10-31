@@ -21,6 +21,7 @@ namespace ElmSharp
     /// <summary>
     /// The HoverselItem is the Item of Hoversel
     /// </summary>
+    /// <since_tizen> preview </since_tizen>
     public class HoverselItem : ItemObject
     {
         internal HoverselItem() : base(IntPtr.Zero)
@@ -30,11 +31,13 @@ namespace ElmSharp
         /// <summary>
         /// HoverselItem's label
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         public string Label { get; internal set; }
 
         /// <summary>
         /// ItemSelected will be triggered when HoverselItem Selected
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         public event EventHandler ItemSelected;
 
         internal void SendItemSelected()

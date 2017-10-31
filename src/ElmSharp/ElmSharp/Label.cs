@@ -21,6 +21,7 @@ namespace ElmSharp
     /// Label is a widget to display text, with simple html-like markup.
     /// Inherits Layout
     /// </summary>
+    /// <since_tizen> preview </since_tizen>
     public class Label : Layout
     {
         SmartEvent _slideCompleted;
@@ -29,6 +30,7 @@ namespace ElmSharp
         /// Creates and initializes a new instance of Label class.
         /// </summary>
         /// <param name="parent">The parent is a given container which will be attached by Label as a child. It's <see cref="EvasObject"/> type.</param>
+        /// <since_tizen> preview </since_tizen>
         public Label(EvasObject parent) : base(parent)
         {
             _slideCompleted = new SmartEvent(this, this.RealHandle, "slide,end");
@@ -41,11 +43,13 @@ namespace ElmSharp
         /// <summary>
         /// SlideCompleted will be triggered when the slide is completed.
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         public event EventHandler SlideCompleted;
 
         /// <summary>
         /// Sets or gets wrap width of the label.
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         public int LineWrapWidth
         {
             get
@@ -61,6 +65,7 @@ namespace ElmSharp
         /// <summary>
         /// Sets or gets the wrapping behavior of the label.
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         public WrapType LineWrapType
         {
             get
@@ -81,6 +86,7 @@ namespace ElmSharp
         /// <summary>
         /// Sets or gets the slide mode of the label widget.
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         public LabelSlideMode SlideMode
         {
             get
@@ -96,6 +102,7 @@ namespace ElmSharp
         /// <summary>
         /// Sets or gets the slide duration of the label.
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         public double SlideDuration
         {
             get
@@ -116,6 +123,7 @@ namespace ElmSharp
         /// If you set the duration of the slide using elm_label_slide_duration_set() you cannot get the correct speed using this function until the label is actually rendered and resized.
         /// </remarks>
         /// <seealso cref="SlideDuration"/>
+        /// <since_tizen> preview </since_tizen>
         public double SlideSpeed
         {
             get
@@ -131,6 +139,7 @@ namespace ElmSharp
         /// <summary>
         /// Sets or gets the ellipsis behavior of the label.
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         public bool IsEllipsis
         {
             get
@@ -150,6 +159,7 @@ namespace ElmSharp
         /// APIs, elm_label_text_style_user_peek/pop/push, are internal APIs only in Tizen. Avalilable since Tizen_4.0.
         /// </remarks>
         /// 
+        /// <since_tizen> preview </since_tizen>
         public string TextStyle
         {
             get
@@ -172,6 +182,7 @@ namespace ElmSharp
         /// <summary>
         /// Start slide effect.
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         public void PlaySlide()
         {
             Interop.Elementary.elm_label_slide_go(RealHandle);
@@ -182,6 +193,7 @@ namespace ElmSharp
         /// </summary>
         /// <param name="parent">EvasObject</param>
         /// <returns>The new object, otherwise null if it cannot be created</returns>
+        /// <since_tizen> preview </since_tizen>
         protected override IntPtr CreateHandle(EvasObject parent)
         {            
             return Interop.Elementary.elm_label_add(parent.Handle);
@@ -191,6 +203,7 @@ namespace ElmSharp
     /// <summary>
     /// Enumeration for slide mode of a label widget
     /// </summary>
+    /// <since_tizen> preview </since_tizen>
     public enum LabelSlideMode
     {
         /// <summary>

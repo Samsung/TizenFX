@@ -24,6 +24,7 @@ namespace ElmSharp
     /// <summary>
     /// Enumeration for event periodicity, used to define if a mark should be repeated beyond event's day. It's set when a mark is added.
     /// </summary>
+    /// <since_tizen> preview </since_tizen>
     public enum CalendarMarkRepeatType
     {
         /// <summary>
@@ -60,6 +61,7 @@ namespace ElmSharp
     /// <summary>
     /// Enumeration for the mode, which determine how user could select a day.
     /// </summary>
+    /// <since_tizen> preview </since_tizen>
     public enum CalendarSelectMode
     {
         /// <summary>
@@ -86,6 +88,7 @@ namespace ElmSharp
     /// <summary>
     /// Enumeration used to define which fields of a tm struct will be taken into account
     /// </summary>
+    /// <since_tizen> preview </since_tizen>
     [Flags]
     public enum CalendarSelectable
     {
@@ -110,6 +113,7 @@ namespace ElmSharp
     /// <summary>
     /// The CalendarMark is a Item for marking a Calendar's type,date and repeat type.
     /// </summary>
+    /// <since_tizen> preview </since_tizen>
     public class CalendarMark
     {
         internal IntPtr Handle;
@@ -117,16 +121,19 @@ namespace ElmSharp
         /// <summary>
         /// A string used to define the type of mark.
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         public string Type;
 
         /// <summary>
         /// A time struct to represent the date of inclusion of the mark.
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         public DateTime Date;
 
         /// <summary>
         /// Repeat the event following this periodicity.
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         public CalendarMarkRepeatType Repeat;
 
         /// <summary>
@@ -135,6 +142,7 @@ namespace ElmSharp
         /// <param name="type">Type of mark</param>
         /// <param name="date">Date of inclusion of the mark</param>
         /// <param name="repeat">Repeat type</param>
+        /// <since_tizen> preview </since_tizen>
         public CalendarMark(string type, DateTime date, CalendarMarkRepeatType repeat)
         {
             Handle = IntPtr.Zero;
@@ -147,6 +155,7 @@ namespace ElmSharp
     /// <summary>
     /// The Calendar is a widget that helps applications to flexibly display a calender with day of the week, date, year and month.
     /// </summary>
+    /// <since_tizen> preview </since_tizen>
     public class Calendar : Layout
     {
         SmartEvent _changed;
@@ -163,6 +172,7 @@ namespace ElmSharp
         /// <param name="parent">
         /// The EvasObject to which the new Calendar will be attached as a child.
         /// </param>
+        /// <since_tizen> preview </since_tizen>
         public Calendar(EvasObject parent) : base(parent)
         {
             _changed = new SmartEvent(this, this.RealHandle, "changed");
@@ -187,11 +197,13 @@ namespace ElmSharp
         /// <summary>
         /// DateChanged will be triggered when the date in the calendar is changed.
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         public event EventHandler<DateChangedEventArgs> DateChanged;
 
         /// <summary>
         /// DisplayedMonthChanged will be triggered when the current month displayed in the calendar is changed.
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         public event EventHandler<DisplayedMonthChangedEventArgs> DisplayedMonthChanged;
 
         /// <summary>
@@ -199,11 +211,13 @@ namespace ElmSharp
         /// </summary>
         /// <param name="time">DateTime</param>
         /// <returns></returns>
+        /// <since_tizen> preview </since_tizen>
         public delegate string DateFormatDelegate(DateTime time);
 
         /// <summary>
         /// Sets or gets the minimum for year.
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         public int MinimumYear
         {
             get
@@ -229,6 +243,7 @@ namespace ElmSharp
         /// <summary>
         /// Sets or gets the maximum for the year.
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         public int MaximumYear
         {
             get
@@ -250,6 +265,7 @@ namespace ElmSharp
         /// <summary>
         /// Sets or gets the first day of week, who are used on Calendar.
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         public DateTime DisplayedTime
         {
             get
@@ -275,6 +291,7 @@ namespace ElmSharp
         /// <summary>
         /// Sets or gets the first day of week, who are used on Calendar.
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         public DayOfWeek FirstDayOfWeek
         {
             get
@@ -295,6 +312,7 @@ namespace ElmSharp
         /// <![CDATA[List<string> weekDayNames = new List<string>() { "S", "M", "T", "W", "T", "F", "S" };]]>
         /// Calendar.WeekDayNames = weekDayNames;
         /// </remarks>
+        /// <since_tizen> preview </since_tizen>
         public IReadOnlyList<string> WeekDayNames
         {
             get
@@ -319,6 +337,7 @@ namespace ElmSharp
         /// <remarks>
         /// Selected date changes when the user goes to next/previous month or select a day pressing over it on calendar.
         /// </remarks>
+        /// <since_tizen> preview </since_tizen>
         public DateTime SelectedDate
         {
             get
@@ -343,6 +362,7 @@ namespace ElmSharp
         /// Sets or gets the interval on time updates for an user mouse button
         /// hold on calendar widgets' month/year selection.
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         public double Interval
         {
             get
@@ -358,6 +378,7 @@ namespace ElmSharp
         /// <summary>
         /// Gets or sets the select day mode used.
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         public CalendarSelectMode SelectMode
         {
             get
@@ -373,6 +394,7 @@ namespace ElmSharp
         /// <summary>
         /// Gets or sets fields of a datetime will be taken into account, when SelectedDate set is invoked.
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         public CalendarSelectable Selectable
         {
             get
@@ -388,6 +410,7 @@ namespace ElmSharp
         /// <summary>
         /// Gets or sets date format the string that will be used to display month and year.
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         public DateFormatDelegate DateFormat
         {
             get
@@ -415,6 +438,7 @@ namespace ElmSharp
         /// <param name="date">A time struct to represent the date of inclusion of the mark. For marks that repeats it will just be displayed after the inclusion date in the calendar.</param>
         /// <param name="repeat">Repeat the event following this periodicity. Can be a unique mark (that don't repeat), daily, weekly, monthly or annually.</param>
         /// <returns>Item for a calendar mark.</returns>
+        /// <since_tizen> preview </since_tizen>
         public CalendarMark AddMark(string type, DateTime date, CalendarMarkRepeatType repeat)
         {
             CalendarMark mark = new CalendarMark(type, date, repeat);
@@ -429,6 +453,7 @@ namespace ElmSharp
         /// Delete mark from the calendar.
         /// </summary>
         /// <param name="mark">Item for a calendar mark</param>
+        /// <since_tizen> preview </since_tizen>
         public void DeleteMark(CalendarMark mark)
         {
             Interop.Elementary.elm_calendar_mark_del(mark.Handle);
@@ -437,6 +462,7 @@ namespace ElmSharp
         /// <summary>
         /// Draw calendar marks.
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         public void DrawMarks()
         {
             Interop.Elementary.elm_calendar_marks_draw(RealHandle);
@@ -445,6 +471,7 @@ namespace ElmSharp
         /// <summary>
         /// Remove all calendar's marks.
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         public void ClearMarks()
         {
             Interop.Elementary.elm_calendar_marks_clear(RealHandle);
@@ -455,6 +482,7 @@ namespace ElmSharp
         /// </summary>
         /// <param name="parent">Parent EvasObject</param>
         /// <returns>Handle IntPtr</returns>
+        /// <since_tizen> preview </since_tizen>
         protected override IntPtr CreateHandle(EvasObject parent)
         {
             IntPtr handle = Interop.Elementary.elm_layout_add(parent.Handle);

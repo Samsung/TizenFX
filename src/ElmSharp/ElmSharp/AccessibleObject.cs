@@ -23,6 +23,7 @@ namespace ElmSharp.Accessible
     /// </summary>
     /// <param name="obj">The sender obj.</param>
     /// <returns>Return information for Name or Description.</returns>
+    /// <since_tizen> preview </since_tizen>
     public delegate string AccessibleInfoProvider (AccessibleObject obj);
 
     /// <summary>
@@ -30,6 +31,7 @@ namespace ElmSharp.Accessible
     /// It provides available definitions for the screen reader, such as <see cref="IAccessibleObject.Name"/>, <see cref="IAccessibleObject.Description"/>, <see cref="IAccessibleObject.ReadingInfoType"/>, etc.
     /// There's many the relationship between two accessible objects, like <see cref="ChildOf"/>, <see cref="ParentOf"/>, <see cref="FlowsTo"/>, <see cref="FlowsFrom"/>, etc.
     /// </summary>
+    /// <since_tizen> preview </since_tizen>
     public abstract class AccessibleObject : EvasObject, IAccessibleObject
     {
 
@@ -196,6 +198,7 @@ namespace ElmSharp.Accessible
         /// Creates and initializes a new instance of the AccessibleObject class with parent EvasObject class parameter.
         /// </summary>
         /// <param name="parent">Parent EvasObject class </param>
+        /// <since_tizen> preview </since_tizen>
         public AccessibleObject(EvasObject parent) : base(parent)
         {
         }
@@ -203,6 +206,7 @@ namespace ElmSharp.Accessible
         /// <summary>
         /// Creates and initializes a new instance of the AccessibleObject class.
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         public AccessibleObject() : base()
         {
         }
@@ -232,6 +236,7 @@ namespace ElmSharp.Accessible
         /// <summary>
         /// Highlights accessible widget.
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         public void Highlight()
         {
             Interop.Elementary.elm_atspi_component_highlight_grab(RealHandle);
@@ -240,6 +245,7 @@ namespace ElmSharp.Accessible
         /// <summary>
         /// Clears highlight of accessible widget.
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         public void Unhighlight()
         {
             Interop.Elementary.elm_atspi_component_highlight_clear(RealHandle);

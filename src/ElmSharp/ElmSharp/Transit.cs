@@ -28,6 +28,7 @@ namespace ElmSharp
     /// For using these effects, create an Transit and add the desired transition effects.
     /// </summary>
     /// <remarks>Transit is not reusable. If the effect ends, the transit is destroyed automatically.</remarks>
+    /// <since_tizen> preview </since_tizen>
     public class Transit : IDisposable
     {
         IntPtr _handle = IntPtr.Zero;
@@ -42,11 +43,13 @@ namespace ElmSharp
         /// <summary>
         /// A callback called when the transit is deleted.
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         public event EventHandler Deleted;
 
         /// <summary>
         /// Creates and initializes a new instance of Transit class.
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         public Transit()
         {
             _handle = Interop.Elementary.elm_transit_add();
@@ -71,6 +74,7 @@ namespace ElmSharp
         /// <summary>
         /// Gets or sets the transit animation time
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         public double Duration
         {
             get
@@ -87,6 +91,7 @@ namespace ElmSharp
         /// Gets or sets a value whether the objects states will be keep or not.
         /// If it is not kept, the objects states will be reset when transition ends.
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         public bool ObjectStateKeep
         {
             get
@@ -102,6 +107,7 @@ namespace ElmSharp
         /// <summary>
         /// Gets or sets the transit animation acceleration type.
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         public TweenMode TweenMode
         {
             get
@@ -118,6 +124,7 @@ namespace ElmSharp
         /// Gets or sets the transit repeat count.
         /// If the repeat is a negative number, it will repeat infinite times.
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         public int Repeat
         {
             get
@@ -133,6 +140,7 @@ namespace ElmSharp
         /// <summary>
         /// Gets or sets if the auto reverse is on.
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         public bool AutoReverse
         {
             get
@@ -148,6 +156,7 @@ namespace ElmSharp
         /// <summary>
         /// Gets or sets the event enabled when transit is operating.
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         public bool EventEnabled
         {
             get
@@ -164,6 +173,7 @@ namespace ElmSharp
         /// Gets or sets the smooth scaling for transit map rendering
         /// This gets smooth scaling for transit map rendering.
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         public bool Smooth
         {
             get
@@ -181,6 +191,7 @@ namespace ElmSharp
         /// The value returned is a fraction(current time / total time).
         /// It represents the progression position relative to the total.
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         public double Progress
         {
             get
@@ -193,6 +204,7 @@ namespace ElmSharp
         /// Gets or sets the transit animation tween mode acceleration factor.
         /// </summary>
         /// <returns>A factor value from 0.0 to 1.0.</returns>
+        /// <since_tizen> preview </since_tizen>
         public double BeginAccelerationFactor
         {
             get
@@ -211,6 +223,7 @@ namespace ElmSharp
         /// Gets or sets the transit animation tween mode acceleration factor.
         /// </summary>
         /// <returns>A factor value from 0.0 to 1.0.</returns>
+        /// <since_tizen> preview </since_tizen>
         public double EndAccelerationFactor
         {
             get
@@ -230,6 +243,7 @@ namespace ElmSharp
         /// Once this API is called, the transit begins to measure the time.
         /// </summary>
         /// <param name="interval">The interval value in seconds</param>
+        /// <since_tizen> preview </since_tizen>
         public void Go(double interval = 0)
         {
             Interop.Elementary.elm_transit_go_in(_handle, interval);
@@ -238,6 +252,7 @@ namespace ElmSharp
         /// <summary>
         /// Pause the transition.
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         public void Pause()
         {
             if (Interop.Elementary.elm_transit_paused_get(_handle) == false)
@@ -247,6 +262,7 @@ namespace ElmSharp
         /// <summary>
         /// Resume the transition.
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         public void Resume()
         {
             if (Interop.Elementary.elm_transit_paused_get(_handle) == true)
@@ -257,6 +273,7 @@ namespace ElmSharp
         /// Get the current chained transit list.
         /// </summary>
         /// <remarks>Cannot add the duplicate transit.</remarks>
+        /// <since_tizen> preview </since_tizen>
         public IList<Transit> Chains
         {
             get { return _chains; }
@@ -266,6 +283,7 @@ namespace ElmSharp
         /// Get the objects list of the transit.
         /// </summary>
         /// <remarks>Cannot add the duplicate object.</remarks>
+        /// <since_tizen> preview </since_tizen>
         public IList<EvasObject> Objects
         {
             get { return _objects; }
@@ -275,6 +293,7 @@ namespace ElmSharp
         /// Add the effect.
         /// </summary>
         /// <param name="effect">EffectBase object.</param>
+        /// <since_tizen> preview </since_tizen>
         public void AddEffect(EffectBase effect)
         {
             IntPtr _effect = effect.CreateEffect(_handle);
@@ -286,6 +305,7 @@ namespace ElmSharp
         /// <summary>
         /// Destroy current object
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         public void Dispose()
         {
             Dispose(true);
@@ -299,6 +319,7 @@ namespace ElmSharp
         /// true if managed resources should be disposed
         /// otherwise, false.
         /// </param>
+        /// <since_tizen> preview </since_tizen>
         protected virtual void Dispose(bool disposing)
         {
             if (_isDisposed)

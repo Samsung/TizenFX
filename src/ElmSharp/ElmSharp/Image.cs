@@ -26,6 +26,7 @@ namespace ElmSharp
     /// be it from a disk file or from a memory region.
     /// Inherits Widget
     /// </summary>
+    /// <since_tizen> preview </since_tizen>
     public class Image : Widget
     {
         bool _canScaleUp = true;
@@ -39,6 +40,7 @@ namespace ElmSharp
         /// Creates and initializes a new instance of Image class.
         /// </summary>
         /// <param name="parent">The parent is a given container which will be attached by Image as a child. It's <see cref="EvasObject"/> type.</param>
+        /// <since_tizen> preview </since_tizen>
         public Image(EvasObject parent) : base(parent)
         {
             _clicked = new SmartEvent(this, "clicked");
@@ -48,21 +50,25 @@ namespace ElmSharp
         /// <summary>
         /// Clicked will be triggered when the image is clicked.
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         public event EventHandler Clicked;
 
         /// <summary>
         /// LoadingCompleted will be triggered when the image is loaded completely.
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         public event EventHandler LoadingCompleted;
 
         /// <summary>
         /// Clicked will be triggered when the image is fail to load.
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         public event EventHandler LoadingFailed;
 
         /// <summary>
         /// Gets the file that is used as an image.
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         public string File
         {
             get
@@ -74,6 +80,7 @@ namespace ElmSharp
         /// <summary>
         /// Sets or gets the smooth effect for an image.
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         public bool IsSmooth
         {
             get
@@ -89,6 +96,7 @@ namespace ElmSharp
         /// <summary>
         /// Sets or gets whether scaling is disabled on the object.
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         public bool IsScaling
         {
             get
@@ -104,6 +112,7 @@ namespace ElmSharp
         /// <summary>
         /// Sets or gets whether the object is down resizeable.
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         public bool CanScaleDown
         {
             get
@@ -120,6 +129,7 @@ namespace ElmSharp
         /// <summary>
         /// Sets or gets whether the object is up resizeable.
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         public bool CanScaleUp
         {
             get
@@ -136,6 +146,7 @@ namespace ElmSharp
         /// <summary>
         /// Sets or gets whether the image fills the entire object area, when keeping the aspect ratio.
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         public bool CanFillOutside
         {
             get
@@ -151,6 +162,7 @@ namespace ElmSharp
         /// <summary>
         /// Sets or gets the prescale size for the image.
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         public int PrescaleSize
         {
             get
@@ -166,6 +178,7 @@ namespace ElmSharp
         /// <summary>
         /// Sets or gets whether the original aspect ratio of the image should be kept on resize.
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         public bool IsFixedAspect
         {
             get
@@ -181,6 +194,7 @@ namespace ElmSharp
         /// <summary>
         /// Sets or gets whether an image object (which supports animation) is to animate itself.
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         public bool IsAnimated
         {
             get
@@ -196,6 +210,7 @@ namespace ElmSharp
         /// <summary>
         /// Gets whether an image object supports animation.
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         public bool IsAnimatedAvailable
         {
             get
@@ -211,6 +226,7 @@ namespace ElmSharp
         /// An image object, even if it supports animation, will be displayed by default without animation.
         /// To actually start playing any image object's animation, <see cref="IsAnimated"/> should be TRUE before setting this property true.
         /// </remarks>
+        /// <since_tizen> preview </since_tizen>
         public bool IsAnimationPlaying
         {
             get
@@ -226,6 +242,7 @@ namespace ElmSharp
         /// <summary>
         /// Sets or gets whether the image is 'editable'.
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         public bool IsEditable
         {
             get
@@ -241,6 +258,7 @@ namespace ElmSharp
         /// <summary>
         /// Gets the current size of the image.
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         public Size ObjectSize
         {
             get
@@ -253,6 +271,7 @@ namespace ElmSharp
         /// <summary>
         /// Sets or gets whether alpha channel data is being used on the given image object.
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         public bool IsOpaque
         {
             get
@@ -275,6 +294,7 @@ namespace ElmSharp
         /// <summary>
         /// Sets or gets the image orientation.
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         public ImageOrientation Orientation
         {
             get
@@ -290,6 +310,7 @@ namespace ElmSharp
         /// <summary>
         /// Sets or gets the image color
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         public override Color Color
         {
             get
@@ -316,6 +337,7 @@ namespace ElmSharp
         /// <summary>
         /// Sets the background color
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         public override Color BackgroundColor
         {
             set
@@ -337,6 +359,7 @@ namespace ElmSharp
         /// This property allows one to get the underlying EvasObject of type Image from this elementary widget. It can be useful to do things like save the image to a file, etc.
         /// </summary>
         /// <remarks>Be careful to not manipulate it, as it is under the control of widget.</remarks>
+        /// <since_tizen> preview </since_tizen>
         public EvasImage ImageObject
         {
             get
@@ -361,6 +384,7 @@ namespace ElmSharp
         /// <param name="right">The border's right width</param>
         /// <param name="top">The border's top width</param>
         /// <param name="bottom">The border's bottom width</param>
+        /// <since_tizen> preview </since_tizen>
         public void SetBorder(int left, int right, int top, int bottom)
         {
             ImageObject?.SetBorder(left, right, top, bottom);
@@ -374,6 +398,7 @@ namespace ElmSharp
         /// This function sets if the center part of the scaled image is to be drawn or left completely blank, or forced to be solid.
         /// Very useful for frames and decorations.
         /// </remarks>
+        /// <since_tizen> preview </since_tizen>
         public ImageBorderFillMode BorderCenterFillMode
         {
             get
@@ -402,6 +427,7 @@ namespace ElmSharp
         /// </summary>
         /// <param name="file">The path to the file that is used as an image source</param>
         /// <returns>(true = success, false = error)</returns>
+        /// <since_tizen> preview </since_tizen>
         public bool Load(string file)
         {
             if (file == null)
@@ -417,6 +443,7 @@ namespace ElmSharp
         /// </summary>
         /// <param name="uri">The uri to the file that is used as an image source</param>
         /// <returns>(true = success, false = error)</returns>
+        /// <since_tizen> preview </since_tizen>
         public bool Load(Uri uri)
         {
             if (uri == null)
@@ -436,6 +463,7 @@ namespace ElmSharp
         /// <param name="img">The binary data that is used as an image source</param>
         /// <param name="size">The size of the binary data blob img</param>
         /// <returns>(true = success, false = error)</returns>
+        /// <since_tizen> preview </since_tizen>
         [Obsolete("This method will be removed. Use Load(Stream stream) instead.")]
         public unsafe bool Load(byte* img, long size)
         {
@@ -452,6 +480,7 @@ namespace ElmSharp
         /// </summary>
         /// <param name="stream">The stream that is used as an image source</param>
         /// <returns>(true = success, false = error)</returns>
+        /// <since_tizen> preview </since_tizen>
         public bool Load(Stream stream)
         {
             if (stream == null)
@@ -477,6 +506,7 @@ namespace ElmSharp
         /// <param name="file">The path to the file that is used as an image source</param>
         /// <param name="cancellationToken">cancellation token</param>
         /// <returns>(true = success, false = error)</returns>
+        /// <since_tizen> preview </since_tizen>
         public Task<bool> LoadAsync(string file, CancellationToken cancellationToken = default(CancellationToken))
         {
             if (file == null)
@@ -532,6 +562,7 @@ namespace ElmSharp
         /// <param name="uri">The uri to the file that is used as an image source</param>
         /// <param name="cancellationToken">cancellation token</param>
         /// <returns>(true = success, false = error)</returns>
+        /// <since_tizen> preview </since_tizen>
         public Task<bool> LoadAsync(Uri uri, CancellationToken cancellationToken = default(CancellationToken))
         {
             if (uri == null)
@@ -546,6 +577,7 @@ namespace ElmSharp
         /// <param name="stream">The stream that is used as an image source</param>
         /// <param name="cancellationToken">cancellation token</param>
         /// <returns>(true = success, false = error)</returns>
+        /// <since_tizen> preview </since_tizen>
         public async Task<bool> LoadAsync(Stream stream, CancellationToken cancellationToken = default(CancellationToken))
         {
             if (stream == null)
@@ -612,6 +644,7 @@ namespace ElmSharp
         /// </summary>
         /// <param name="part">The name of color class.</param>
         /// <param name="color">The struct of color</param>
+        /// <since_tizen> preview </since_tizen>
         public override void SetPartColor(string part, Color color)
         {
             Interop.Elementary.elm_object_color_class_color_set(Handle, part, color.R * color.A / 255,
@@ -625,6 +658,7 @@ namespace ElmSharp
         /// </summary>
         /// <param name="part">The name of color class.</param>
         /// <returns>color object</returns>
+        /// <since_tizen> preview </since_tizen>
         public override Color GetPartColor(string part)
         {
             Interop.Elementary.elm_object_color_class_color_get(Handle, part, out int r, out int g, out int b, out int a);
@@ -636,6 +670,7 @@ namespace ElmSharp
         /// </summary>
         /// <param name="parent">The parent is a given container which will be attached by Image as a child. It's <see cref="EvasObject"/> type.</param>
         /// <returns>The new object, otherwise null if it cannot be created</returns>
+        /// <since_tizen> preview </since_tizen>
         protected override IntPtr CreateHandle(EvasObject parent)
         {
             IntPtr handle = Interop.Elementary.elm_layout_add(parent);
@@ -651,6 +686,7 @@ namespace ElmSharp
     /// <summary>
     /// Enumeration for the fill mode of image border
     /// </summary>
+    /// <since_tizen> preview </since_tizen>
     public enum ImageBorderFillMode
     {
         /// <summary>
@@ -672,6 +708,7 @@ namespace ElmSharp
     /// <summary>
     /// Enumeration for the possible orientation options
     /// </summary>
+    /// <since_tizen> preview </since_tizen>
     public enum ImageOrientation : int
     {
         /// <summary>

@@ -25,17 +25,20 @@ namespace ElmSharp
     /// IInvalidatable is a interface which can be overrided by its children class.
     /// Inherits IDisposable
     /// </summary>
+    /// <since_tizen> preview </since_tizen>
     public interface IInvalidatable : IDisposable
     {
         /// <summary>
         /// Make current instance invalidate
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         void MakeInvalidate();
     }
 
     /// <summary>
     /// Enumeration for EvasObjectCallbackType
     /// </summary>
+    /// <since_tizen> preview </since_tizen>
     public enum EvasObjectCallbackType
     {
         /// <summary>
@@ -223,6 +226,7 @@ namespace ElmSharp
     /// Event class for EvasObject
     /// </summary>
     /// <typeparam name="TEventArgs">Kinds of EventArgs</typeparam>
+    /// <since_tizen> preview </since_tizen>
     public class EvasObjectEvent<TEventArgs> : IInvalidatable where TEventArgs : EventArgs
     {
         /// <summary>
@@ -232,6 +236,7 @@ namespace ElmSharp
         /// <param name="obj">obj</param>
         /// <param name="info">info</param>
         /// <returns> delegate handle</returns>
+        /// <since_tizen> preview </since_tizen>
         public delegate TEventArgs SmartEventInfoParser(IntPtr data, IntPtr obj, IntPtr info);
 
         private bool _disposed = false;
@@ -247,6 +252,7 @@ namespace ElmSharp
         /// <param name="sender">EvasObject class belong to</param>
         /// <param name="type">EvasObjectCallbackType</param>
         /// <param name="parser">SmartEventInfoParser</param>
+        /// <since_tizen> preview </since_tizen>
         public EvasObjectEvent(EvasObject sender, EvasObjectCallbackType type, SmartEventInfoParser parser) : this(sender, sender.Handle, type, parser)
         {
         }
@@ -258,6 +264,7 @@ namespace ElmSharp
         /// <param name="handle">EvasObject handle</param>
         /// <param name="type">EvasObjectCallbackType</param>
         /// <param name="parser">SmartEventInfoParser</param>
+        /// <since_tizen> preview </since_tizen>
         [EditorBrowsableAttribute(EditorBrowsableState.Never)]
         public EvasObjectEvent(EvasObject sender, IntPtr handle, EvasObjectCallbackType type, SmartEventInfoParser parser)
         {
@@ -273,6 +280,7 @@ namespace ElmSharp
         /// </summary>
         /// <param name="sender">EvasObject class belong with</param>
         /// <param name="type">SmartEventInfoParser</param>
+        /// <since_tizen> preview </since_tizen>
         public EvasObjectEvent(EvasObject sender, EvasObjectCallbackType type) : this(sender, type, null)
         {
         }
@@ -294,6 +302,7 @@ namespace ElmSharp
         /// <summary>
         /// On Event Handler of EvasObjectEvent
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         public event EventHandler<TEventArgs> On
         {
             add
@@ -335,6 +344,7 @@ namespace ElmSharp
         /// true if managed resources should be disposed
         /// otherwise, false.
         /// </param>
+        /// <since_tizen> preview </since_tizen>
         protected virtual void Dispose(bool disposing)
         {
             if (!_disposed)
@@ -358,6 +368,7 @@ namespace ElmSharp
         /// <summary>
         /// Destroy current object
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         public void Dispose()
         {
             Dispose(true);
@@ -367,6 +378,7 @@ namespace ElmSharp
         /// <summary>
         /// Make current instance invalidate
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         public void MakeInvalidate()
         {
             _sender = null;
@@ -377,6 +389,7 @@ namespace ElmSharp
     /// <summary>
     /// Event class for EvasObject
     /// </summary>
+    /// <since_tizen> preview </since_tizen>
     public class EvasObjectEvent : IInvalidatable
     {
         private EvasObjectEvent<EventArgs> _evasObjectEvent;
@@ -390,6 +403,7 @@ namespace ElmSharp
         /// </summary>
         /// <param name="sender">EvasObject class belong to</param>
         /// <param name="type">EvasObjectCallbackType</param>
+        /// <since_tizen> preview </since_tizen>
         public EvasObjectEvent(EvasObject sender, EvasObjectCallbackType type) : this(sender, sender.Handle, type)
         {
         }
@@ -400,6 +414,7 @@ namespace ElmSharp
         /// <param name="sender">EvasObject class belong to</param>
         /// <param name="handle">EvasObject handle</param>
         /// <param name="type">EvasObjectCallbackType</param>
+        /// <since_tizen> preview </since_tizen>
         [EditorBrowsableAttribute(EditorBrowsableState.Never)]
         public EvasObjectEvent(EvasObject sender, IntPtr handle, EvasObjectCallbackType type)
         {
@@ -417,6 +432,7 @@ namespace ElmSharp
         /// <summary>
         /// On Event Handler of EvasObjectEvent
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         public event EventHandler On
         {
             add
@@ -450,6 +466,7 @@ namespace ElmSharp
         /// true if managed resources should be disposed
         /// otherwise, false.
         /// </param>
+        /// <since_tizen> preview </since_tizen>
         protected virtual void Dispose(bool disposing)
         {
             if (!_disposed)
@@ -465,6 +482,7 @@ namespace ElmSharp
         /// <summary>
         /// Destroy current object
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         public void Dispose()
         {
             Dispose(true);
@@ -474,6 +492,7 @@ namespace ElmSharp
         /// <summary>
         /// Make current instance invalidate
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         public void MakeInvalidate()
         {
             _evasObjectEvent.MakeInvalidate();

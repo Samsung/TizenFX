@@ -20,6 +20,7 @@ namespace ElmSharp.Accessible
     /// <summary>
     /// Enumeration for AccessRole.
     /// </summary>
+    /// <since_tizen> preview </since_tizen>
     public enum AccessRole
     {
         /// <summary>

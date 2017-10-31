@@ -21,6 +21,7 @@ namespace ElmSharp
     /// <summary>
     /// Enumeration for the wrap type.
     /// </summary>
+    /// <since_tizen> preview </since_tizen>
     public enum WrapType
     {
         /// <summary>
