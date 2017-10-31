@@ -27,6 +27,7 @@ namespace Tizen.NUI
     /// - Cancelled by the system.<br />
     /// A pan gesture will continue to be sent to the actor under than initial pan until it ends.<br />
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public class PanGesture : Gesture
     {
         private global::System.Runtime.InteropServices.HandleRef swigCPtr;

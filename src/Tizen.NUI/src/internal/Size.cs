@@ -129,6 +129,7 @@ namespace Tizen.NUI
         /// <param name="arg1">Size to assign A.</param>
         /// <param name="arg2">Size to assign B.</param>
         /// <returns>A size containing the result of the addition.</returns>
+        /// <since_tizen> 3 </since_tizen>
         public static Size operator +(Size arg1, Size arg2)
         {
             return arg1.Add(arg2);
@@ -140,6 +141,7 @@ namespace Tizen.NUI
         /// <param name="arg1">Size to subtract A.</param>
         /// <param name="arg2">Size to subtract B.</param>
         /// <returns>The size containing the result of the subtraction.</returns>
+        /// <since_tizen> 3 </since_tizen>
         public static Size operator -(Size arg1, Size arg2)
         {
             return arg1.Subtract(arg2);
@@ -150,6 +152,7 @@ namespace Tizen.NUI
         /// </summary>
         /// <param name="arg1">Size for unary negation.</param>
         /// <returns>A size containing the negation.</returns>
+        /// <since_tizen> 3 </since_tizen>
         public static Size operator -(Size arg1)
         {
             return arg1.Subtract();
@@ -161,6 +164,7 @@ namespace Tizen.NUI
         /// <param name="arg1">Size for multiplication.</param>
         /// <param name="arg2">The size to multiply.</param>
         /// <returns>A size containing the result of the multiplication.</returns>
+        /// <since_tizen> 3 </since_tizen>
         public static Size operator *(Size arg1, Size arg2)
         {
             return arg1.Multiply(arg2);
@@ -172,6 +176,7 @@ namespace Tizen.NUI
         /// <param name="arg1">Size for multiplication.</param>
         /// <param name="arg2">The float value to scale the size.</param>
         /// <returns>A size containing the result of the scaling.</returns>
+        /// <since_tizen> 3 </since_tizen>
         public static Size operator *(Size arg1, float arg2)
         {
             return arg1.Multiply(arg2);
@@ -183,6 +188,7 @@ namespace Tizen.NUI
         /// <param name="arg1">Size for division.</param>
         /// <param name="arg2">The size to divide.</param>
         /// <returns>A size containing the result of the division.</returns>
+        /// <since_tizen> 3 </since_tizen>
         public static Size operator /(Size arg1, Size arg2)
         {
             return arg1.Divide(arg2);
@@ -194,6 +200,7 @@ namespace Tizen.NUI
         /// <param name="arg1">Size for division.</param>
         /// <param name="arg2">The float value to scale the size by.</param>
         /// <returns>A Size containing the result of the scaling.</returns>
+        /// <since_tizen> 3 </since_tizen>
         public static Size operator /(Size arg1, float arg2)
         {
             return arg1.Divide(arg2);
@@ -204,6 +211,7 @@ namespace Tizen.NUI
         /// </summary>
         /// <param name="index">Subscript index.</param>
         /// <returns>The float at the given index.</returns>
+        /// <since_tizen> 3 </since_tizen>
         public float this[uint index]
         {
             get
@@ -222,6 +230,7 @@ namespace Tizen.NUI
         /// <summary>
         /// The constructor.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public Size() : this(NDalicPINVOKE.new_Vector3__SWIG_0(), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
@@ -233,6 +242,7 @@ namespace Tizen.NUI
         /// <param name="x">The x (or width) component.</param>
         /// <param name="y">The y (or height) component.</param>
         /// <param name="z">The z (or depth) component.</param>
+        /// <since_tizen> 3 </since_tizen>
         public Size(float x, float y, float z) : this(NDalicPINVOKE.new_Vector3__SWIG_1(x, y, z), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
@@ -242,6 +252,7 @@ namespace Tizen.NUI
         /// The constructor.
         /// </summary>
         /// <param name="size2d">Size2D with x (width) and y (height).</param>
+        /// <since_tizen> 3 </since_tizen>
         public Size(Size2D size2d) : this(NDalicPINVOKE.new_Vector3__SWIG_3(Size2D.getCPtr(size2d)), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
@@ -250,6 +261,7 @@ namespace Tizen.NUI
         /// <summary>
         /// The Zero constant, (0.0f, 0.0f, 0.0f).
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public static Size Zero
         {
             get
@@ -323,6 +335,7 @@ namespace Tizen.NUI
         /// </summary>
         /// <param name="rhs">The size to test against.</param>
         /// <returns>True if the sizes are equal.</returns>
+        /// <since_tizen> 3 </since_tizen>
         public bool EqualTo(Size rhs)
         {
             bool ret = NDalicPINVOKE.Vector3_EqualTo(swigCPtr, Size.getCPtr(rhs));
@@ -336,6 +349,7 @@ namespace Tizen.NUI
         /// </summary>
         /// <param name="rhs">The size to test against.</param>
         /// <returns>True if the sizes are not equal.</returns>
+        /// <since_tizen> 3 </since_tizen>
         public bool NotEqualTo(Size rhs)
         {
             bool ret = NDalicPINVOKE.Vector3_NotEqualTo(swigCPtr, Size.getCPtr(rhs));
@@ -346,6 +360,7 @@ namespace Tizen.NUI
         /// <summary>
         /// The Width property for the width component of size
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public float Width
         {
             set
@@ -364,6 +379,7 @@ namespace Tizen.NUI
         /// <summary>
         /// The Height property for the height component of size.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public float Height
         {
             set
@@ -382,6 +398,7 @@ namespace Tizen.NUI
         /// <summary>
         /// The Depth property for the depth component of size.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public float Depth
         {
             set
@@ -401,6 +418,7 @@ namespace Tizen.NUI
         /// The type cast operator, Size to Vector3.
         /// </summary>
         /// <param name="size">The object of size type.</param>
+        /// <since_tizen> 3 </since_tizen>
         public static implicit operator Vector3(Size size)
         {
             return new Vector3(size.Width, size.Height, size.Depth);
@@ -410,6 +428,7 @@ namespace Tizen.NUI
         /// The type cast operator, Vector3 to Size type.
         /// </summary>
         /// <param name="vec">The object of Vector3 type.</param>
+        /// <since_tizen> 3 </since_tizen>
         public static implicit operator Size(Vector3 vec)
         {
             return new Size(vec.Width, vec.Height, vec.Depth);

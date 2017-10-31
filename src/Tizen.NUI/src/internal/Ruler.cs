@@ -207,6 +207,7 @@ namespace Tizen.NUI
             return ret;
         }
 
+        /// <since_tizen> 3 </since_tizen>
         public enum RulerType
         {
             Fixed,

@@ -23,12 +23,14 @@ namespace Tizen.NUI
     /// A Gesture is an event that is produced from a combination of several touch events
     /// in a particular order or within a certain time frame (for example, pinch).<br />
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public class Gesture : global::System.IDisposable
     {
         private global::System.Runtime.InteropServices.HandleRef swigCPtr;
         /// <summary>
         /// swigCMemOwn.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         protected bool swigCMemOwn;
 
         internal Gesture(global::System.IntPtr cPtr, bool cMemoryOwn)
@@ -47,6 +49,7 @@ namespace Tizen.NUI
         /// <summary>
         /// A Flat to check if it is already disposed.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         protected bool disposed = false;
 
         /// <summary>

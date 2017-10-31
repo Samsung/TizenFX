@@ -23,6 +23,7 @@ namespace Tizen.NUI
     /// RelativeVector2 is a two-dimensional vector.
     /// Both values (x and y) should be between [0, 1].
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public class RelativeVector2 : global::System.IDisposable
     {
         private global::System.Runtime.InteropServices.HandleRef swigCPtr;

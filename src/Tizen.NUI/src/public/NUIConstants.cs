@@ -201,6 +201,7 @@ namespace Tizen.NUI
         /// <summary>
         /// This Actor will clip all children within a screen-aligned rectangle encompassing its boundaries (the actor will also be visible itself).
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         ClipToBoundingBox
     }
 
@@ -323,54 +324,67 @@ namespace Tizen.NUI
         /// <summary>
         /// Not a device
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         None,
         /// <summary>
         /// The normal flat of your finger
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         Finger,
         /// <summary>
         /// A fingernail
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         Fingernail,
         /// <summary>
         /// A Knuckle
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         Knuckle,
         /// <summary>
         /// The palm of a users hand
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         Palm,
         /// <summary>
         /// The side of your hand
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         HandSide,
         /// <summary>
         /// The flat of your hand
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         HandFlat,
         /// <summary>
         /// The tip of a pen
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         PenTip,
         /// <summary>
         /// A trackpad style mouse
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         Trackpad,
         /// <summary>
         /// A trackpoint style mouse
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         Trackpoint,
         /// <summary>
         /// A trackball style mouse
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         Trackball,
         /// <summary>
         /// A remote controller
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         Remocon,
         /// <summary>
         /// A virtual keyboard
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         VirtualKeyboard
     }
 
@@ -440,6 +454,7 @@ namespace Tizen.NUI
         /// <summary>
         /// An extents type.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         Extents
     }
 
@@ -1118,70 +1133,87 @@ namespace Tizen.NUI
         /// <summary>
         /// The URL of the image.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public static readonly int URL = NDalic.IMAGE_VISUAL_URL;
         /// <summary>
         /// The URL of the alpha mask image.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public static readonly int AlphaMaskURL = NDalic.IMAGE_VISUAL_ALPHA_MASK_URL;
         /// <summary>
         /// Fitting options, used when resizing images to fit desired dimensions.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public static readonly int FittingMode = NDalic.IMAGE_VISUAL_FITTING_MODE;
         /// <summary>
         /// Filtering options, used when resizing images to sample original pixels.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public static readonly int SamplingMode = NDalic.IMAGE_VISUAL_SAMPLING_MODE;
         /// <summary>
         /// The desired image width.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public static readonly int DesiredWidth = NDalic.IMAGE_VISUAL_DESIRED_WIDTH;
         /// <summary>
         /// The desired image height.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public static readonly int DesiredHeight = NDalic.IMAGE_VISUAL_DESIRED_HEIGHT;
         /// <summary>
         /// Whether to load the image synchronously.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public static readonly int SynchronousLoading = NDalic.IMAGE_VISUAL_SYNCHRONOUS_LOADING;
         /// <summary>
         /// If true, only draws the borders.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public static readonly int BorderOnly = NDalic.IMAGE_VISUAL_BORDER_ONLY;
         /// <summary>
         /// The image area to be displayed.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public static readonly int PixelArea = NDalic.IMAGE_VISUAL_PIXEL_AREA;
         /// <summary>
         /// The wrap mode for u coordinate.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public static readonly int WrapModeU = NDalic.IMAGE_VISUAL_WRAP_MODE_U;
         /// <summary>
         /// The wrap mode for v coordinate.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public static readonly int WrapModeV = NDalic.IMAGE_VISUAL_WRAP_MODE_V;
         /// <summary>
         /// The border of the image.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public static readonly int Border = NDalic.IMAGE_VISUAL_BORDER;
         /// <summary>
         /// The scale factor to apply to the content image before masking.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         public static readonly int MaskContentScale = NDalic.IMAGE_VISUAL_MASK_CONTENT_SCALE;
         /// <summary>
         /// Whether to crop image to mask or scale mask to fit image
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         public static readonly int CropToMask = NDalic.IMAGE_VISUAL_CROP_TO_MASK;
         /// <summary>
         /// Defines the batch size for pre-loading images in the AnimatedImageVisual
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         public static readonly int BatchSize = NDalic.IMAGE_VISUAL_BATCH_SIZE;
         /// <summary>
         /// Defines the cache size for loading images in the AnimatedImageVisual
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         public static readonly int CacheSize = NDalic.IMAGE_VISUAL_CACHE_SIZE;
         /// <summary>
         /// The number of milliseconds between each frame in the AnimatedImageVisual
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         public static readonly int FrameDelay = NDalic.IMAGE_VISUAL_FRAME_DELAY;
 
     }
@@ -1195,30 +1227,37 @@ namespace Tizen.NUI
         /// <summary>
         /// The location of the ".obj" file.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public static readonly int ObjectURL = NDalic.MESH_VISUAL_OBJECT_URL;
         /// <summary>
         /// The location of the ".mtl" file.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public static readonly int MaterialtURL = NDalic.MESH_VISUAL_MATERIAL_URL;
         /// <summary>
         /// Path to the directory the textures (including gloss and normal) are stored in.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public static readonly int TexturesPath = NDalic.MESH_VISUAL_TEXTURES_PATH;
         /// <summary>
         /// Sets the type of shading mode that the mesh will use.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public static readonly int ShadingMode = NDalic.MESH_VISUAL_SHADING_MODE;
         /// <summary>
         /// Whether to use mipmaps for textures or not.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public static readonly int UseMipmapping = NDalic.MESH_VISUAL_USE_MIPMAPPING;
         /// <summary>
         /// Whether to average normals at each point to smooth textures or not.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public static readonly int UseSoftNormals = NDalic.MESH_VISUAL_USE_SOFT_NORMALS;
         /// <summary>
         /// The position, in stage space, of the point light that applies lighting to the model.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public static readonly int LightPosition = NDalic.MESH_VISUAL_LIGHT_POSITION;
     }
 
@@ -1231,50 +1270,62 @@ namespace Tizen.NUI
         /// <summary>
         /// The specific shape to render.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public static readonly int Shape = NDalic.PRIMITIVE_VISUAL_SHAPE;
         /// <summary>
         /// The color of the shape.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public static readonly int MixColor = NDalic.PRIMITIVE_VISUAL_MIX_COLOR;
         /// <summary>
         /// The number of slices as you go around the shape.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public static readonly int Slices = NDalic.PRIMITIVE_VISUAL_SLICES;
         /// <summary>
         /// The number of stacks as you go down the shape.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public static readonly int Stacks = NDalic.PRIMITIVE_VISUAL_STACKS;
         /// <summary>
         /// The scale of the radius of the top circle of a conical frustrum.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public static readonly int ScaleTopRadius = NDalic.PRIMITIVE_VISUAL_SCALE_TOP_RADIUS;
         /// <summary>
         /// The scale of the radius of the bottom circle of a conical frustrum.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public static readonly int ScaleBottomRadius = NDalic.PRIMITIVE_VISUAL_SCALE_BOTTOM_RADIUS;
         /// <summary>
         /// The scale of the height of a conic.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public static readonly int ScaleHeight = NDalic.PRIMITIVE_VISUAL_SCALE_HEIGHT;
         /// <summary>
         /// The scale of the radius of a cylinder.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public static readonly int ScaleRadius = NDalic.PRIMITIVE_VISUAL_SCALE_RADIUS;
         /// <summary>
         /// The dimensions of a cuboid. Scales in the same fashion as a 9-patch image.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public static readonly int ScaleDimensions = NDalic.PRIMITIVE_VISUAL_SCALE_DIMENSIONS;
         /// <summary>
         /// Determines how bevelled the cuboid should be, based off the smallest dimension.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public static readonly int BevelPercentage = NDalic.PRIMITIVE_VISUAL_BEVEL_PERCENTAGE;
         /// <summary>
         /// Defines how smooth the bevelled edges should be.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public static readonly int BevelSmoothness = NDalic.PRIMITIVE_VISUAL_BEVEL_SMOOTHNESS;
         /// <summary>
         /// The position, in stage space, of the point light that applies lighting to the model.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public static readonly int LightPosition = NDalic.PRIMITIVE_VISUAL_LIGHT_POSITION;
     }
 
@@ -1287,38 +1338,47 @@ namespace Tizen.NUI
         /// <summary>
         /// The text to display in UTF-8 format.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public static readonly int Text = NDalic.TEXT_VISUAL_TEXT;
         /// <summary>
         /// The requested font family to use.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public static readonly int FontFamily = NDalic.TEXT_VISUAL_FONT_FAMILY;
         /// <summary>
         /// The requested font style to use.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public static readonly int FontStyle = NDalic.TEXT_VISUAL_FONT_STYLE;
         /// <summary>
         /// The size of font in points.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public static readonly int PointSize = NDalic.TEXT_VISUAL_POINT_SIZE;
         /// <summary>
         /// The single-line or multi-line layout option.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public static readonly int MultiLine = NDalic.TEXT_VISUAL_MULTI_LINE;
         /// <summary>
         /// The line horizontal alignment.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public static readonly int HorizontalAlignment = NDalic.TEXT_VISUAL_HORIZONTAL_ALIGNMENT;
         /// <summary>
         /// The line vertical alignment.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public static readonly int VerticalAlignment = NDalic.TEXT_VISUAL_VERTICAL_ALIGNMENT;
         /// <summary>
         /// The color of the text.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public static readonly int TextColor = NDalic.TEXT_VISUAL_TEXT_COLOR;
         /// <summary>
         /// Whether the mark-up processing is enabled.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public static readonly int EnableMarkup = NDalic.TEXT_VISUAL_ENABLE_MARKUP;
     }
 
@@ -1331,46 +1391,57 @@ namespace Tizen.NUI
         /// <summary>
         /// The URL of the image.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public static readonly int URL = NDalic.IMAGE_VISUAL_URL;
         /// <summary>
         /// Fitting options, used when resizing images to fit desired dimensions.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public static readonly int FittingMode = NDalic.IMAGE_VISUAL_FITTING_MODE;
         /// <summary>
         /// Filtering options, used when resizing images to sample original pixels.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public static readonly int SamplingMode = NDalic.IMAGE_VISUAL_SAMPLING_MODE;
         /// <summary>
         /// The desired image width.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public static readonly int DesiredWidth = NDalic.IMAGE_VISUAL_DESIRED_WIDTH;
         /// <summary>
         /// The desired image height.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public static readonly int DesiredHeight = NDalic.IMAGE_VISUAL_DESIRED_HEIGHT;
         /// <summary>
         /// Whether to load the image synchronously.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public static readonly int SynchronousLoading = NDalic.IMAGE_VISUAL_SYNCHRONOUS_LOADING;
         /// <summary>
         /// If true, only draws the borders.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public static readonly int BorderOnly = NDalic.IMAGE_VISUAL_BORDER_ONLY;
         /// <summary>
         /// The image area to be displayed.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public static readonly int PixelArea = NDalic.IMAGE_VISUAL_PIXEL_AREA;
         /// <summary>
         /// The wrap mode for u coordinate.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public static readonly int WrapModeU = NDalic.IMAGE_VISUAL_WRAP_MODE_U;
         /// <summary>
         /// The wrap mode for v coordinate.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public static readonly int WrapModeV = NDalic.IMAGE_VISUAL_WRAP_MODE_V;
         /// <summary>
         /// The border of the image.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public static readonly int Border = NDalic.IMAGE_VISUAL_WRAP_MODE_V + 1;
     }
 
@@ -1383,18 +1454,22 @@ namespace Tizen.NUI
         /// <summary>
         /// The mode for input text display.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public static readonly int Mode = NDalicManualPINVOKE.HIDDENINPUT_PROPERTY_MODE_get();
         /// <summary>
         /// All input characters are substituted by this character.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public static readonly int SubstituteCharacter = NDalicManualPINVOKE.HIDDENINPUT_PROPERTY_SUBSTITUTE_CHARACTER_get();
         /// <summary>
         /// Length of text to show or hide, available when HIDE_COUNT/SHOW_COUNT mode is used.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public static readonly int SubstituteCount = NDalicManualPINVOKE.HIDDENINPUT_PROPERTY_SUBSTITUTE_COUNT_get();
         /// <summary>
         /// Hide last character after this duration, available when SHOW_LAST_CHARACTER mode.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         public static readonly int ShowLastCharacterDuration = NDalicManualPINVOKE.HIDDENINPUT_PROPERTY_SHOW_LAST_CHARACTER_DURATION_get();
     }
 
@@ -1947,7 +2022,7 @@ namespace Tizen.NUI
     /// <summary>
     /// An enum of screen mode.
     /// </summary>
-    /// <since_tizen> 3 </since_tizen>
+    /// <since_tizen> 4 </since_tizen>
     public enum ScreenOffMode {
         /// <summary>
         /// The mode which turns the screen off after a timeout.
@@ -2256,11 +2331,13 @@ namespace Tizen.NUI
         /// <summary>
         /// The word mode will move a word to the next line.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         Word,
 
         /// <summary>
         /// character will move character by character to the next line.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         Character
     }
 

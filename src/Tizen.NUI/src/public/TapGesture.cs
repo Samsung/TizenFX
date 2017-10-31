@@ -21,6 +21,7 @@ namespace Tizen.NUI
     /// <summary>
     /// A TapGesture is emitted when the user taps the screen with the stated number of fingers a stated number of times.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public class TapGesture : Gesture
     {
         private global::System.Runtime.InteropServices.HandleRef swigCPtr;
@@ -38,6 +39,7 @@ namespace Tizen.NUI
         /// <summary>
         /// Dispose.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         protected override void Dispose(DisposeTypes type)
         {
             if(disposed)

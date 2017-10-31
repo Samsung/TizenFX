@@ -23,6 +23,7 @@ namespace Tizen.NUI
     /// <summary>
     /// Please do not use! this will be deprecated
     /// </summary>
+    /// <since_tizen> 4 </since_tizen>
     [EditorBrowsable(EditorBrowsableState.Never)]
     public class LanguageChangedSignalType : global::System.IDisposable
     {
@@ -30,6 +31,7 @@ namespace Tizen.NUI
         /// <summary>
         /// LanguageChangedSignalType
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         protected bool swigCMemOwn;
 
         internal LanguageChangedSignalType(global::System.IntPtr cPtr, bool cMemoryOwn)
@@ -48,7 +50,7 @@ namespace Tizen.NUI
         /// <summary>
         /// A Flat to check if it is already disposed.
         /// </summary>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 4 </since_tizen>
         protected bool disposed = false;
 
         /// <summary>
@@ -66,6 +68,7 @@ namespace Tizen.NUI
         /// <summary>
         /// Dispose
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         public void Dispose()
         {
             //Throw excpetion if Dispose() is called in separate thread.
@@ -88,6 +91,7 @@ namespace Tizen.NUI
         /// <summary>
         /// Dispose
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         protected virtual void Dispose(DisposeTypes type)
         {
             if (disposed)
@@ -124,6 +128,7 @@ namespace Tizen.NUI
         /// Queries whether there are any connected slots.
         /// </summary>
         /// <returns>True if there are any slots connected to the signal</returns>
+        /// <since_tizen> 4 </since_tizen>
         public bool Empty()
         {
             bool ret = NDalicManualPINVOKE.LanguageChangedSignalType_Empty(swigCPtr);
@@ -135,6 +140,7 @@ namespace Tizen.NUI
         /// Queries the number of slots.
         /// </summary>
         /// <returns>The number of slots connected to this signal</returns>
+        /// <since_tizen> 4 </since_tizen>
         public uint GetConnectionCount()
         {
             uint ret = NDalicManualPINVOKE.LanguageChangedSignalType_GetConnectionCount(swigCPtr);
@@ -146,6 +152,7 @@ namespace Tizen.NUI
         /// Connects a member function.
         /// </summary>
         /// <param name="func">The member function to connect</param>
+        /// <since_tizen> 4 </since_tizen>
         public void Connect(System.Delegate func)
         {
             System.IntPtr ip = System.Runtime.InteropServices.Marshal.GetFunctionPointerForDelegate(func);
@@ -159,6 +166,7 @@ namespace Tizen.NUI
         /// Disconnects a function.
         /// </summary>
         /// <param name="func">The function to disconnect</param>
+        /// <since_tizen> 4 </since_tizen>
         public void Disconnect(System.Delegate func)
         {
             System.IntPtr ip = System.Runtime.InteropServices.Marshal.GetFunctionPointerForDelegate(func);
@@ -171,6 +179,7 @@ namespace Tizen.NUI
         /// <summary>
         /// Emits the signal.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         public void Emit(int arg)
         {
             NDalicManualPINVOKE.LanguageChangedSignalType_Emit(swigCPtr, arg);
@@ -180,6 +189,7 @@ namespace Tizen.NUI
         /// <summary>
         /// The contructor.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         public LanguageChangedSignalType() : this(NDalicManualPINVOKE.new_LanguageChangedSignalType(), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();

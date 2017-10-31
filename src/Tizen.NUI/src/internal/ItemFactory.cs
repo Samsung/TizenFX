@@ -162,8 +162,11 @@ namespace Tizen.NUI
             ItemReleased(itemId, new View(actor, true));
         }
 
+        /// <since_tizen> 3 </since_tizen>
         public delegate uint SwigDelegateItemFactory_0();
+        /// <since_tizen> 3 </since_tizen>
         public delegate global::System.IntPtr SwigDelegateItemFactory_1(uint itemId);
+        /// <since_tizen> 3 </since_tizen>
         public delegate void SwigDelegateItemFactory_2(uint itemId, global::System.IntPtr actor);
 
         private SwigDelegateItemFactory_0 swigDelegate0;

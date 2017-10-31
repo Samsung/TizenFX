@@ -31,6 +31,7 @@ namespace Tizen.NUI
     /// And this would make some problem, because dotnet runtime would change the address of memory allocated.
     /// So this is required to be removed.
     /// currently no use. will be added later
+    /// <since_tizen> 3 </since_tizen>
     [EditorBrowsable(EditorBrowsableState.Never)]
     public class PixelData : BaseHandle
     {

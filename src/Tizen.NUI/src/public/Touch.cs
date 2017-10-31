@@ -23,6 +23,7 @@ namespace Tizen.NUI
     /// When a multi-touch event occurs, each point represents the points that are currently being
     /// touched or the points where a touch has stopped.<br />
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public class Touch : BaseHandle
     {
         private global::System.Runtime.InteropServices.HandleRef swigCPtr;

@@ -23,12 +23,14 @@ namespace Tizen.NUI
     /// <summary>
     /// The gesture state.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public class PaddingType : global::System.IDisposable
     {
         private global::System.Runtime.InteropServices.HandleRef swigCPtr;
         /// <summary>
         /// swigCMemOwn
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         protected bool swigCMemOwn;
 
         internal PaddingType(global::System.IntPtr cPtr, bool cMemoryOwn)
@@ -47,6 +49,7 @@ namespace Tizen.NUI
         /// <summary>
         /// A Flat to check if it is already disposed.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         protected bool disposed = false;
 
         /// <summary>
@@ -202,6 +205,7 @@ namespace Tizen.NUI
         /// </summary>
         /// Please DO NOT use! This will be deprecated!
         /// instead please use Start property.
+        /// <since_tizen> 3 </since_tizen>
         [Obsolete("Please DO NOT use! This will be Deprecated!. Please USE Tizen.NUI.PaddingType.Start instead!")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public float Left
@@ -219,6 +223,7 @@ namespace Tizen.NUI
         /// <summary>
         /// The Start value.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         public float Start
         {
             set
@@ -236,6 +241,7 @@ namespace Tizen.NUI
         /// </summary>
         /// Please DO NOT use! This will be deprecated!
         /// instead please use Start property.
+        /// <since_tizen> 3 </since_tizen>
         [Obsolete("Please DO NOT use! This will be Deprecated!. Please USE Tizen.NUI.PaddingType.End instead!")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public float Right
@@ -253,6 +259,7 @@ namespace Tizen.NUI
         /// <summary>
         /// The End value.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         public float End
         {
             set
@@ -313,6 +320,7 @@ namespace Tizen.NUI
         /// <param name="end">End padding or Y coordinate</param>
         /// <param name="top">Top padding or Height</param>
         /// <param name="bottom">Bottom padding or Width</param>
+        /// <since_tizen> 3 </since_tizen>
         public PaddingType(float start, float end, float top, float bottom) : this(NDalicPINVOKE.new_PaddingType__SWIG_1(start, end, top, bottom), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
@@ -325,6 +333,7 @@ namespace Tizen.NUI
         /// <param name="newEnd">End padding or Y coordinate</param>
         /// <param name="newTop">Top padding or Height</param>
         /// <param name="newBottom">Bottom padding or Width</param>
+        /// <since_tizen> 3 </since_tizen>
         public void Set(float newStart, float newEnd, float newTop, float newBottom)
         {
             NDalicPINVOKE.PaddingType_Set(swigCPtr, newStart, newEnd, newTop, newBottom);

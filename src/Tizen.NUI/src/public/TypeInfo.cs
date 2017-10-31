@@ -21,6 +21,7 @@ namespace Tizen.NUI
     /// <summary>
     /// TypeInfo class for instantiation of registered types and introspection of their actions and signals.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public class TypeInfo : BaseHandle
     {
         private global::System.Runtime.InteropServices.HandleRef swigCPtr;

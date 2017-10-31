@@ -23,6 +23,7 @@ namespace Tizen.NUI
     /// <summary>
     /// A ToggleButton allows the user to change a setting between two or more states.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public class ToggleButton : Tizen.NUI.UIComponents.Button
     {
         private global::System.Runtime.InteropServices.HandleRef swigCPtr;

@@ -20,6 +20,7 @@ namespace Tizen.NUI.BaseComponents
     /// <summary>
     /// CustomView provides some common functionality required by all views.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public class CustomView : ViewWrapper
     {
         /// <summary>
@@ -210,6 +211,7 @@ namespace Tizen.NUI.BaseComponents
         /// At the end of event processing, the relayout process starts and all controls which requested relayout will have their sizes (re)negotiated.<br />
         /// It can be called multiple times; the size negotiation is still only performed once, i.e., there is no need to keep track of this in the calling side.<br />
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         protected void RelayoutRequest()
         {
             viewWrapperImpl.RelayoutRequest();
@@ -220,6 +222,7 @@ namespace Tizen.NUI.BaseComponents
         /// </summary>
         /// <param name="width">The width to use.</param>
         /// <returns>The height based on the width.</returns>
+        /// <since_tizen> 3 </since_tizen>
         protected float GetHeightForWidthBase(float width)
         {
             return viewWrapperImpl.GetHeightForWidthBase(width);
@@ -230,6 +233,7 @@ namespace Tizen.NUI.BaseComponents
         /// </summary>
         /// <param name="height">The height to use.</param>
         /// <returns>The width based on the height.</returns>
+        /// <since_tizen> 3 </since_tizen>
         protected float GetWidthForHeightBase(float height)
         {
             return viewWrapperImpl.GetWidthForHeightBase(height);
@@ -241,6 +245,7 @@ namespace Tizen.NUI.BaseComponents
         /// <param name="child">The child view to calculate the size for.</param>
         /// <param name="dimension">The dimension to calculate the size, for example, the width or the height.</param>
         /// <returns>Return the calculated size for the given dimension. If more than one dimension is requested, just return the first one found.</returns>
+        /// <since_tizen> 3 </since_tizen>
         protected float CalculateChildSizeBase(View child, DimensionType dimension)
         {
             return viewWrapperImpl.CalculateChildSizeBase(child, dimension);
@@ -251,6 +256,7 @@ namespace Tizen.NUI.BaseComponents
         /// </summary>
         /// <param name="dimension">The dimension(s) to check for.</param>
         /// <returns>Return if the view is dependent on it's children.</returns>
+        /// <since_tizen> 3 </since_tizen>
         protected bool RelayoutDependentOnChildrenBase(DimensionType dimension)
         {
             return viewWrapperImpl.RelayoutDependentOnChildrenBase(dimension);
@@ -260,6 +266,7 @@ namespace Tizen.NUI.BaseComponents
         /// Determines if this view is dependent on it's children for relayout from the base class.
         /// </summary>
         /// <returns>Return if the view is dependent on it's children.</returns>
+        /// <since_tizen> 3 </since_tizen>
         protected bool RelayoutDependentOnChildrenBase()
         {
             return viewWrapperImpl.RelayoutDependentOnChildrenBase();
@@ -272,6 +279,7 @@ namespace Tizen.NUI.BaseComponents
         /// </summary>
         /// <param name="index">The property index of the visual used to reference visual.</param>
         /// <param name="visual">The visual to register.</param>
+        /// <since_tizen> 3 </since_tizen>
         protected void RegisterVisual(int index, VisualBase visual)
         {
             viewWrapperImpl.RegisterVisual(index, visual);
@@ -285,6 +293,7 @@ namespace Tizen.NUI.BaseComponents
         /// <param name="index">The property index of the visual used to reference visual.</param>
         /// <param name="visual">The visual to register.</param>
         /// <param name="enabled">False if derived class wants to control when the visual is set on the stage.</param>
+        /// <since_tizen> 3 </since_tizen>
         protected void RegisterVisual(int index, VisualBase visual, bool enabled)
         {
             viewWrapperImpl.RegisterVisual(index, visual, enabled);
@@ -294,6 +303,7 @@ namespace Tizen.NUI.BaseComponents
         /// Erases the entry matching the given index from the list of registered visuals.
         /// </summary>
         /// <param name="index">The property index of the visual used to reference visual.</param>
+        /// <since_tizen> 3 </since_tizen>
         protected void UnregisterVisual(int index)
         {
             viewWrapperImpl.UnregisterVisual(index);
@@ -305,6 +315,7 @@ namespace Tizen.NUI.BaseComponents
         /// </summary>
         /// <param name="index">The property index of the visual used to reference visual.</param>
         /// <returns>The registered visual if exists, otherwise an empty handle.</returns>
+        /// <since_tizen> 3 </since_tizen>
         protected VisualBase GetVisual(int index)
         {
             return viewWrapperImpl.GetVisual(index);
@@ -316,6 +327,7 @@ namespace Tizen.NUI.BaseComponents
         /// </summary>
         /// <param name="index">The property index of the visual, used to reference visual.</param>
         /// <param name="enable">Flag set to enabled or disabled.</param>
+        /// <since_tizen> 3 </since_tizen>
         protected void EnableVisual(int index, bool enable)
         {
             viewWrapperImpl.EnableVisual(index, enable);
@@ -327,6 +339,7 @@ namespace Tizen.NUI.BaseComponents
         /// </summary>
         /// <param name="index">The property index of the visual.</param>
         /// <returns>Whether visual is enabled or not.</returns>
+        /// <since_tizen> 3 </since_tizen>
         protected bool IsVisualEnabled(int index)
         {
             return viewWrapperImpl.IsVisualEnabled(index);
@@ -337,6 +350,7 @@ namespace Tizen.NUI.BaseComponents
         /// </summary>
         /// <param name="transitionData">The transition data describing the effect to create.</param>
         /// <returns>A handle to an animation defined with the given effect, or an empty handle if no properties match.</returns>
+        /// <since_tizen> 3 </since_tizen>
         protected Animation CreateTransition(TransitionData transitionData)
         {
             return viewWrapperImpl.CreateTransition(transitionData);
@@ -347,6 +361,7 @@ namespace Tizen.NUI.BaseComponents
         /// Should be called last by the control after it acts on the input focus change.<br />
         /// </summary>
         /// <param name="focusGained">True if gained, false if lost.</param>
+        /// <since_tizen> 3 </since_tizen>
         protected void EmitFocusSignal(bool focusGained)
         {
             viewWrapperImpl.EmitFocusSignal(focusGained);

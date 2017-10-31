@@ -28,6 +28,7 @@ namespace Tizen.NUI
     ///<summary>
     ///Spins the CustomView class.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public class Spin : CustomView
     {
         private VisualBase _arrowVisual;
@@ -234,6 +235,7 @@ namespace Tizen.NUI
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         // MinValue property of type int:
+        /// <since_tizen> 3 </since_tizen>
         [ScriptableProperty()]
         public int MinValue
         {
@@ -252,6 +254,7 @@ namespace Tizen.NUI
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         // MaxValue property of type int:
+        /// <since_tizen> 3 </since_tizen>
         [ScriptableProperty()]
         public int MaxValue
         {
@@ -270,6 +273,7 @@ namespace Tizen.NUI
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         // Step property of type int:
+        /// <since_tizen> 3 </since_tizen>
         [ScriptableProperty()]
         public int Step
         {
@@ -288,6 +292,7 @@ namespace Tizen.NUI
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         // WrappingEnabled property of type bool:
+        /// <since_tizen> 3 </since_tizen>
         [ScriptableProperty()]
         public bool WrappingEnabled
         {
@@ -306,6 +311,7 @@ namespace Tizen.NUI
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         // TextPointSize property of type int:
+        /// <since_tizen> 3 </since_tizen>
         [ScriptableProperty()]
         public int TextPointSize
         {
@@ -325,6 +331,7 @@ namespace Tizen.NUI
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         // TextColor property of type Color:
+        /// <since_tizen> 3 </since_tizen>
         [ScriptableProperty()]
         public Color TextColor
         {
@@ -346,6 +353,7 @@ namespace Tizen.NUI
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         // MaxTextLength property of type int:
+        /// <since_tizen> 3 </since_tizen>
         [ScriptableProperty()]
         public int MaxTextLength
         {

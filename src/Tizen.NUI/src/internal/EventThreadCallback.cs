@@ -22,6 +22,7 @@ namespace Tizen.NUI
     {
         private global::System.Runtime.InteropServices.HandleRef swigCPtr;
         protected bool swigCMemOwn;
+        /// <since_tizen> 3 </since_tizen>
         public delegate void CallbackDelegate();
 
         internal EventThreadCallback(global::System.IntPtr cPtr, bool cMemoryOwn)

@@ -71,11 +71,13 @@ namespace Tizen.NUI
 
 
 
+        /// <since_tizen> 3 </since_tizen>
         public class DetectedEventArgs : EventArgs
         {
             private View _view;
             private PanGesture _panGesture;
 
+            /// <since_tizen> 3 </since_tizen>
             public View View
             {
                 get
@@ -88,6 +90,7 @@ namespace Tizen.NUI
                 }
             }
 
+            /// <since_tizen> 3 </since_tizen>
             public PanGesture PanGesture
             {
                 get
@@ -163,9 +166,11 @@ namespace Tizen.NUI
         }
 
 
+        /// <since_tizen> 3 </since_tizen>
         public class Property : global::System.IDisposable
         {
             private global::System.Runtime.InteropServices.HandleRef swigCPtr;
+            /// <since_tizen> 3 </since_tizen>
             protected bool swigCMemOwn;
 
             internal Property(global::System.IntPtr cPtr, bool cMemoryOwn)
@@ -182,6 +187,7 @@ namespace Tizen.NUI
             //A Flag to check who called Dispose(). (By User or DisposeQueue)
             private bool isDisposeQueued = false;
             //A Flat to check if it is already disposed.
+            /// <since_tizen> 3 </since_tizen>
             protected bool disposed = false;
 
 
@@ -194,6 +200,7 @@ namespace Tizen.NUI
                 }
             }
 
+            /// <since_tizen> 3 </since_tizen>
             public void Dispose()
             {
                 //Throw excpetion if Dispose() is called in separate thread.
@@ -213,6 +220,7 @@ namespace Tizen.NUI
                 }
             }
 
+            /// <since_tizen> 3 </since_tizen>
             protected virtual void Dispose(DisposeTypes type)
             {
                 if (disposed)
@@ -245,17 +253,25 @@ namespace Tizen.NUI
                 disposed = true;
             }
 
+            /// <since_tizen> 3 </since_tizen>
             public Property() : this(NDalicPINVOKE.new_PanGestureDetector_Property(), true)
             {
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
 
+            /// <since_tizen> 3 </since_tizen>
             public static readonly int SCREEN_POSITION = NDalicPINVOKE.PanGestureDetector_Property_SCREEN_POSITION_get();
+            /// <since_tizen> 3 </since_tizen>
             public static readonly int SCREEN_DISPLACEMENT = NDalicPINVOKE.PanGestureDetector_Property_SCREEN_DISPLACEMENT_get();
+            /// <since_tizen> 3 </since_tizen>
             public static readonly int SCREEN_VELOCITY = NDalicPINVOKE.PanGestureDetector_Property_SCREEN_VELOCITY_get();
+            /// <since_tizen> 3 </since_tizen>
             public static readonly int LOCAL_POSITION = NDalicPINVOKE.PanGestureDetector_Property_LOCAL_POSITION_get();
+            /// <since_tizen> 3 </since_tizen>
             public static readonly int LOCAL_DISPLACEMENT = NDalicPINVOKE.PanGestureDetector_Property_LOCAL_DISPLACEMENT_get();
+            /// <since_tizen> 3 </since_tizen>
             public static readonly int LOCAL_VELOCITY = NDalicPINVOKE.PanGestureDetector_Property_LOCAL_VELOCITY_get();
+            /// <since_tizen> 3 </since_tizen>
             public static readonly int PANNING = NDalicPINVOKE.PanGestureDetector_Property_PANNING_get();
 
         }

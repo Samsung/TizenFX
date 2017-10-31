@@ -23,7 +23,7 @@ namespace Tizen.NUI
     /// <summary>
     /// Please do not use! this will be deprecated
     /// </summary>
-    /// <since_tizen> 3 </since_tizen>
+    /// <since_tizen> 4 </since_tizen>
     [EditorBrowsable(EditorBrowsableState.Never)]
     public class ConnectionTrackerInterface : SignalObserver
     {
@@ -42,7 +42,7 @@ namespace Tizen.NUI
         /// <summary>
         /// Dispose
         /// </summary>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 4 </since_tizen>
         protected override void Dispose(DisposeTypes type)
         {
             if (disposed)
@@ -81,7 +81,7 @@ namespace Tizen.NUI
         /// </summary>
         /// <param name="slotObserver">The slot observer i.e. a signal. Ownership is not passed</param>
         /// <param name="callback">The call back. Ownership is not passed</param>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 4 </since_tizen>
         public virtual void SignalConnected(SlotObserver slotObserver, SWIGTYPE_p_CallbackBase callback)
         {
             NDalicPINVOKE.ConnectionTrackerInterface_SignalConnected(swigCPtr, SlotObserver.getCPtr(slotObserver), SWIGTYPE_p_CallbackBase.getCPtr(callback));

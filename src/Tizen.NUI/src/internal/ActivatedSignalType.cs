@@ -181,7 +181,7 @@ namespace Tizen.NUI
         /// Emits the signal.
         /// </summary>
         /// <param name="arg">The first value to pass to callbacks</param>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 4 </since_tizen>
         public void Emit(ImfManager arg)
         {
             NDalicManualPINVOKE.ActivatedSignalType_Emit(swigCPtr, ImfManager.getCPtr(arg));

@@ -23,6 +23,7 @@ namespace Tizen.NUI.BaseComponents
     /// FlexContainer has the ability to alter the width and the height of its children (i.e., flex items) to fill the available space in the best possible way on different screen sizes.<br />
     /// FlexContainer can expand items to fill available free space, or shrink them to prevent overflow.<br />
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public class FlexContainer : View
     {
         private global::System.Runtime.InteropServices.HandleRef swigCPtr;
@@ -87,6 +88,7 @@ namespace Tizen.NUI.BaseComponents
         /// <summary>
         /// Enumeration for the instance of child properties belonging to the FlexContainer class.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public class ChildProperty
         {
             internal static readonly int FLEX = NDalicPINVOKE.FlexContainer_ChildProperty_FLEX_get();
@@ -98,6 +100,7 @@ namespace Tizen.NUI.BaseComponents
         /// Creates a FlexContainer handle.
         /// Calling member functions with an uninitialized handle is not allowed.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public FlexContainer() : this(NDalicPINVOKE.FlexContainer_New(), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();

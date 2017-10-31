@@ -71,6 +71,7 @@ namespace Tizen.NUI
     /// </remarks>
     ///
     ///
+    /// <since_tizen> 3 </since_tizen>
     public class ScriptableProperty : System.Attribute
     {
         /// <summary>
@@ -86,11 +87,11 @@ namespace Tizen.NUI
             Default,    // Read Writable, non-animatable property, event thread only
                         //  Animatable // Animatable property, Currently disabled, UK
         }
-        /// <since_tizen> 4 </since_tizen>
+        /// <since_tizen> 3 </since_tizen>
         public readonly ScriptableType type;
 
 
-        /// <since_tizen> 4 </since_tizen>
+        /// <since_tizen> 3 </since_tizen>
         public ScriptableProperty(ScriptableType type = ScriptableType.Default)
         {
             this.type = type;
@@ -131,6 +132,7 @@ namespace Tizen.NUI
     ///
     ///
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public sealed class CustomViewRegistry
     {
         /// <summary>
@@ -253,7 +255,7 @@ namespace Tizen.NUI
 
         }
 
-        /// <since_tizen> 4 </since_tizen>
+        /// <since_tizen> 3 </since_tizen>
         public static CustomViewRegistry Instance
         {
             get
@@ -281,7 +283,7 @@ namespace Tizen.NUI
         /// }
         ///
         /// </summary>
-        /// <since_tizen> 4 </since_tizen>
+        /// <since_tizen> 3 </since_tizen>
         public void Register(Func<CustomView> createFunction, System.Type viewType)
         {
             // add the mapping between the view name and it's create function

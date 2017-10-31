@@ -25,13 +25,13 @@ namespace Tizen.NUI
     /// Abstract Interface used by a slot to inform a signal it is disconnecting.<br />
     /// This is used by the slot if wants to disconnect or is deleted.<br />
     /// </summary>
-    /// <since_tizen> 3 </since_tizen>
+    /// <since_tizen> 4 </since_tizen>
     [EditorBrowsable(EditorBrowsableState.Never)]
     public class SlotObserver : global::System.IDisposable
     {
         private global::System.Runtime.InteropServices.HandleRef swigCPtr;
         /// <summary>swigCMemOwn.</summary>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 4 </since_tizen>
         protected bool swigCMemOwn;
 
         internal SlotObserver(global::System.IntPtr cPtr, bool cMemoryOwn)
@@ -50,7 +50,7 @@ namespace Tizen.NUI
         /// <summary>
         /// A Flat to check if it is already disposed.
         /// </summary>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 4 </since_tizen>
         protected bool disposed = false;
 
         /// <summary>
@@ -69,7 +69,7 @@ namespace Tizen.NUI
         /// <summary>
         /// Dispose.
         /// </summary>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 4 </since_tizen>
         public void Dispose()
         {
             //Throw excpetion if Dispose() is called in separate thread.
@@ -92,7 +92,7 @@ namespace Tizen.NUI
         /// <summary>
         /// Dispose.
         /// </summary>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 4 </since_tizen>
         protected virtual void Dispose(DisposeTypes type)
         {
             if (disposed)
@@ -129,7 +129,7 @@ namespace Tizen.NUI
         /// This method is called when the slot is disconnecting.
         /// </summary>
         /// <param name="callback">The callback attached to the signal disconnected.</param>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 4 </since_tizen>
         public virtual void SlotDisconnected(SWIGTYPE_p_Dali__CallbackBase callback)
         {
             NDalicPINVOKE.SlotObserver_SlotDisconnected(swigCPtr, SWIGTYPE_p_Dali__CallbackBase.getCPtr(callback));

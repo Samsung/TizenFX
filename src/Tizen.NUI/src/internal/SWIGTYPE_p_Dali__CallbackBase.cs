@@ -16,7 +16,7 @@ namespace Tizen.NUI
     /// <summary>
     /// This should be internal, please do not use.
     /// </summary>
-    /// <since_tizen> 3 </since_tizen>
+    /// <since_tizen> 4 </since_tizen>
     [EditorBrowsable(EditorBrowsableState.Never)]
     public class SWIGTYPE_p_Dali__CallbackBase
     {
@@ -30,7 +30,7 @@ namespace Tizen.NUI
         /// <summary>
         /// The Constructor.
         /// </summary>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 4 </since_tizen>
         protected SWIGTYPE_p_Dali__CallbackBase()
         {
             swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);

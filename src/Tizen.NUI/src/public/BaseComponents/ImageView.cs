@@ -25,6 +25,7 @@ namespace Tizen.NUI.BaseComponents
     /// ImageView is a class for displaying an image resource.<br />
     /// An instance of ImageView can be created using a URL or an image instance.<br />
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public class ImageView : View
     {
         private global::System.Runtime.InteropServices.HandleRef swigCPtr;
@@ -43,6 +44,7 @@ namespace Tizen.NUI.BaseComponents
         /// <summary>
         /// Event arguments of resource ready.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public class ResourceReadyEventArgs : EventArgs
         {
             private View _view;
@@ -195,6 +197,7 @@ namespace Tizen.NUI.BaseComponents
         /// </summary>
         /// Please do not use! this will be deprecated!
         /// Instead please use as keyword.
+        /// <since_tizen> 3 </since_tizen>
         [Obsolete("Please DO NOT use! This will be deprecated, instead please USE as keyword.")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public new static ImageView DownCast(BaseHandle handle)

@@ -73,9 +73,11 @@ namespace Tizen.NUI
             return ret;
         }
 
+        /// <since_tizen> 3 </since_tizen>
         public class Property : global::System.IDisposable
         {
             private global::System.Runtime.InteropServices.HandleRef swigCPtr;
+            /// <since_tizen> 3 </since_tizen>
             protected bool swigCMemOwn;
 
             internal Property(global::System.IntPtr cPtr, bool cMemoryOwn)
@@ -92,6 +94,7 @@ namespace Tizen.NUI
             //A Flag to check who called Dispose(). (By User or DisposeQueue)
             private bool isDisposeQueued = false;
             //A Flat to check if it is already disposed.
+            /// <since_tizen> 3 </since_tizen>
             protected bool disposed = false;
 
 
@@ -104,6 +107,7 @@ namespace Tizen.NUI
                 }
             }
 
+            /// <since_tizen> 3 </since_tizen>
             public void Dispose()
             {
                 //Throw excpetion if Dispose() is called in separate thread.
@@ -123,6 +127,7 @@ namespace Tizen.NUI
                 }
             }
 
+            /// <since_tizen> 3 </since_tizen>
             protected virtual void Dispose(DisposeTypes type)
             {
                 if (disposed)
@@ -155,14 +160,19 @@ namespace Tizen.NUI
                 disposed = true;
             }
 
+            /// <since_tizen> 3 </since_tizen>
             public Property() : this(NDalicPINVOKE.new_RenderTask_Property(), true)
             {
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
 
+            /// <since_tizen> 3 </since_tizen>
             public static readonly int VIEWPORT_POSITION = NDalicPINVOKE.RenderTask_Property_VIEWPORT_POSITION_get();
+            /// <since_tizen> 3 </since_tizen>
             public static readonly int VIEWPORT_SIZE = NDalicPINVOKE.RenderTask_Property_VIEWPORT_SIZE_get();
+            /// <since_tizen> 3 </since_tizen>
             public static readonly int CLEAR_COLOR = NDalicPINVOKE.RenderTask_Property_CLEAR_COLOR_get();
+            /// <since_tizen> 3 </since_tizen>
             public static readonly int REQUIRES_SYNC = NDalicPINVOKE.RenderTask_Property_REQUIRES_SYNC_get();
 
         }
@@ -491,6 +501,7 @@ namespace Tizen.NUI
             return ret;
         }
 
+        /// <since_tizen> 3 </since_tizen>
         public enum RefreshRate
         {
             REFRESH_ONCE = 0,

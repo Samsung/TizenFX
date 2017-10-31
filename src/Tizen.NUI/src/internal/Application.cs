@@ -403,6 +403,7 @@ namespace Tizen.NUI
             base.Dispose(type);
         }
 
+        /// <since_tizen> 4 </since_tizen>
         public enum BatteryStatus
         {
             Normal,
@@ -410,6 +411,7 @@ namespace Tizen.NUI
             PowerOff
         };
 
+        /// <since_tizen> 4 </since_tizen>
         public enum MemoryStatus
         {
             Normal,
@@ -1342,6 +1344,7 @@ namespace Tizen.NUI
             return ret;
         }
 
+        /// <since_tizen> 3 </since_tizen>
         public enum WindowMode
         {
             Opaque = 0,

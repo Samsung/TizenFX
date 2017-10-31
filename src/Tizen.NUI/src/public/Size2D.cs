@@ -21,6 +21,7 @@ namespace Tizen.NUI
     /// <summary>
     /// A two-dimensional size.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public class Size2D : global::System.IDisposable
     {
         private global::System.Runtime.InteropServices.HandleRef swigCPtr;

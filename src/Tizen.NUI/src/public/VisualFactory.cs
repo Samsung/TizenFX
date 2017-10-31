@@ -24,6 +24,7 @@ namespace Tizen.NUI
     /// <summary>
     /// The VisualFactory is a singleton object that provides and shares visuals between views.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public class VisualFactory : BaseHandle
     {
         private global::System.Runtime.InteropServices.HandleRef swigCPtr;
@@ -81,6 +82,7 @@ namespace Tizen.NUI
         /// <summary>
         /// Please do not use! this will be deprecated, please use VisualFactory.Instance instead.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static VisualFactory Get()
         {

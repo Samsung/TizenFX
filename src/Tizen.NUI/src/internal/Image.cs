@@ -74,6 +74,7 @@ namespace Tizen.NUI
           * @brief Event arguments that passed via Uploaded signal
           *
           */
+        /// <since_tizen> 3 </since_tizen>
         public class UploadedEventArgs : EventArgs
         {
             private Image _image;
@@ -81,6 +82,7 @@ namespace Tizen.NUI
               * @brief Image - is the image data that gets uploaded to GL.
               *
               */
+            /// <since_tizen> 3 </since_tizen>
             public Image Image
             {
                 get

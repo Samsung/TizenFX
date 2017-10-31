@@ -29,6 +29,7 @@ namespace Tizen.NUI
     /// If the application wants to customize the theme, RequestThemeChange needs to be called.<br />
     /// It provides the path to the application resource root folder, from there the filename can be specified along with any subfolders, for example, Images, Models, etc.<br />
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public class StyleManager : BaseHandle
     {
         private global::System.Runtime.InteropServices.HandleRef swigCPtr;
@@ -49,6 +50,7 @@ namespace Tizen.NUI
         /// Please DO NOT use! This will be deprecated!
         /// Dispose() method in Singletone classes (ex: FocusManager, StyleManager, VisualFactory, IMFManager, TtsPlayer, Window) is not required.
         /// Because it is Sigletone, so it is alive for one thread until the NUI is terminated, so it never be disposed.
+        /// <since_tizen> 3 </since_tizen>
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected override void Dispose(DisposeTypes type)
         {
@@ -89,6 +91,7 @@ namespace Tizen.NUI
         /// <summary>
         /// Style changed event arguments.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public class StyleChangedEventArgs : EventArgs
         {
             private StyleManager _styleManager;

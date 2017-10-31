@@ -24,6 +24,7 @@ namespace Tizen.NUI
     /// <summary>
     /// Specifically manages the input method framework which enables the virtual or hardware keyboards.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public class ImfManager : BaseHandle
     {
         private global::System.Runtime.InteropServices.HandleRef swigCPtr;
@@ -112,6 +113,7 @@ namespace Tizen.NUI
         /// <summary>
         /// This structure is used to pass on data from the IMF regarding predictive text.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public class ImfEventData : global::System.IDisposable
         {
             private global::System.Runtime.InteropServices.HandleRef swigCPtr;
@@ -284,6 +286,7 @@ namespace Tizen.NUI
             /// The name of the event from the IMF.
             /// </summary>
             //Please do not use! this will be deprecated
+            /// <since_tizen> 3 </since_tizen>
             [EditorBrowsable(EditorBrowsableState.Never)]
             public ImfManager.ImfEvent eventName
             {
@@ -323,6 +326,7 @@ namespace Tizen.NUI
             /// The start position from the current cursor position to start deleting characters.
             /// </summary>
             //Please do not use! this will be deprecated
+            /// <since_tizen> 3 </since_tizen>
             [EditorBrowsable(EditorBrowsableState.Never)]
             public int cursorOffset
             {
@@ -362,6 +366,7 @@ namespace Tizen.NUI
             /// The number of characters to delete from the cursorOffset.
             /// </summary>
             //Please do not use! this will be deprecated
+            /// <since_tizen> 3 </since_tizen>
             [EditorBrowsable(EditorBrowsableState.Never)]
             public int numberOfChars
             {
@@ -402,6 +407,7 @@ namespace Tizen.NUI
         /// <summary>
         /// Data required by the IMF from the callback.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public class ImfCallbackData : global::System.IDisposable
         {
             private global::System.Runtime.InteropServices.HandleRef swigCPtr;
@@ -541,6 +547,7 @@ namespace Tizen.NUI
             /// The current text string.
             /// </summary>
             //Please do not use! this will be deprecated
+            /// <since_tizen> 3 </since_tizen>
             [EditorBrowsable(EditorBrowsableState.Never)]
             public string currentText
             {
@@ -580,6 +587,7 @@ namespace Tizen.NUI
             /// The current text string.
             /// </summary>
             //Please do not use! this will be deprecated
+            /// <since_tizen> 3 </since_tizen>
             [EditorBrowsable(EditorBrowsableState.Never)]
             public int cursorPosition
             {
@@ -619,6 +627,7 @@ namespace Tizen.NUI
             /// If the cursor position needs to be updated.
             /// </summary>
             //Please do not use! this will be deprecated
+            /// <since_tizen> 3 </since_tizen>
             [EditorBrowsable(EditorBrowsableState.Never)]
             public bool update
             {
@@ -658,6 +667,7 @@ namespace Tizen.NUI
             /// Flags if preedit reset is required.
             /// </summary>
             //Please do not use! this will be deprecated
+            /// <since_tizen> 3 </since_tizen>
             [EditorBrowsable(EditorBrowsableState.Never)]
             public bool preeditResetRequired
             {
@@ -698,6 +708,7 @@ namespace Tizen.NUI
         /// <summary>
         /// Finalize the IMF.<br/>
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         public void Finalize()
         {
             NDalicManualPINVOKE.ImfManager_Finalize(swigCPtr);
@@ -889,7 +900,7 @@ namespace Tizen.NUI
         /// Gets the specific data of the current active input panel.
         /// </summary>
         /// <param name="text">The specific data to be received from the input panel.</param>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 4 </since_tizen>
         public void GetInputPanelUserData(out string text)
         {
             NDalicManualPINVOKE.ImfManager_GetInputPanelUserData(swigCPtr, out text);
@@ -990,6 +1001,7 @@ namespace Tizen.NUI
         /// ImfManager activated event arguments.
         /// </summary>
         //Please do not use! this will be deprecated
+        /// <since_tizen> 3 </since_tizen>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public class ImfManagerActivatedEventArgs : EventArgs
         {
@@ -1013,6 +1025,7 @@ namespace Tizen.NUI
         /// ImfManager activated event.
         /// </summary>
         //Please do not use! this will be deprecated
+        /// <since_tizen> 3 </since_tizen>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public event EventHandler<ImfManagerActivatedEventArgs> ImfManagerActivated
         {
@@ -1055,12 +1068,13 @@ namespace Tizen.NUI
         /// <summary>
         /// ImfManager activated event arguments.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         public class ActivatedEventArgs : EventArgs
         {
             /// <summary>
             /// ImfManager
             /// </summary>
-            /// <since_tizen> 3 </since_tizen>
+            /// <since_tizen> 4 </since_tizen>
             public ImfManager ImfManager
             {
                 get;
@@ -1119,6 +1133,7 @@ namespace Tizen.NUI
         /// ImfManager activated signal.
         /// </summary>
         //Please do not use! this will be internal
+        /// <since_tizen> 3 </since_tizen>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public ActivatedSignalType ActivatedSignal()
         {
@@ -1131,6 +1146,7 @@ namespace Tizen.NUI
         /// ImfManager event received event arguments.
         /// </summary>
         //Please do not use! this will be deprecated
+        /// <since_tizen> 3 </since_tizen>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public class ImfManagerEventReceivedEventArgs : EventArgs
         {
@@ -1153,6 +1169,7 @@ namespace Tizen.NUI
         /// ImfManager event received.
         /// </summary>
         //Please do not use! this will be deprecated
+        /// <since_tizen> 3 </since_tizen>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public event EventHandler<ImfManagerEventReceivedEventArgs> ImfManagerEventReceived
         {
@@ -1195,12 +1212,13 @@ namespace Tizen.NUI
         /// <summary>
         /// ImfManager event received event arguments.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         public class EventReceivedEventArgs : EventArgs
         {
             /// <summary>
             /// ImfManager
             /// </summary>
-            /// <since_tizen> 3 </since_tizen>
+            /// <since_tizen> 4 </since_tizen>
             public ImfManager ImfManager
             {
                 get;
@@ -1210,7 +1228,7 @@ namespace Tizen.NUI
             /// <summary>
             /// ImfEventData
             /// </summary>
-            /// <since_tizen> 3 </since_tizen>
+            /// <since_tizen> 4 </since_tizen>
             public ImfEventData ImfEventData
             {
                 get;
@@ -1282,6 +1300,7 @@ namespace Tizen.NUI
         /// ImfManager event received signal.
         /// </summary>
         //Please do not use! this will be internal
+        /// <since_tizen> 3 </since_tizen>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public ImfEventSignalType EventReceivedSignal()
         {
@@ -1294,6 +1313,7 @@ namespace Tizen.NUI
         /// ImfManager status changed event arguments.
         /// </summary>
         //Please do not use! this will be deprecated
+        /// <since_tizen> 3 </since_tizen>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public class ImfManagerStatusChangedEventArgs : EventArgs
         {
@@ -1316,6 +1336,7 @@ namespace Tizen.NUI
         /// ImfManager status changed.
         /// </summary>
         //Please do not use! this will be deprecated
+        /// <since_tizen> 3 </since_tizen>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public event EventHandler<ImfManagerStatusChangedEventArgs> ImfManagerStatusChanged
         {
@@ -1358,12 +1379,13 @@ namespace Tizen.NUI
         /// <summary>
         /// ImfManager status changed event arguments.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         public class StatusChangedEventArgs : EventArgs
         {
             /// <summary>
             /// ImfManager status
             /// </summary>
-            /// <since_tizen> 3 </since_tizen>
+            /// <since_tizen> 4 </since_tizen>
             public bool StatusChanged
             {
                 get;
@@ -1418,6 +1440,7 @@ namespace Tizen.NUI
         /// ImfManager status changed signal.
         /// </summary>
         //Please do not use! this will be internal
+        /// <since_tizen> 3 </since_tizen>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public StatusSignalType StatusChangedSignal()
         {
@@ -1430,6 +1453,7 @@ namespace Tizen.NUI
         /// ImfManager resized event arguments.
         /// </summary>
         //Please do not use! this will be deprecated
+        /// <since_tizen> 3 </since_tizen>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public class ImfManagerResizedEventArgs : EventArgs
         {
@@ -1452,6 +1476,7 @@ namespace Tizen.NUI
         /// ImfManager resized event.
         /// </summary>
         //Please do not use! this will be deprecated
+        /// <since_tizen> 3 </since_tizen>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public event EventHandler<ImfManagerResizedEventArgs> ImfManagerResized
         {
@@ -1494,11 +1519,13 @@ namespace Tizen.NUI
         /// <summary>
         /// ImfManager resized event.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         public class ResizedEventArgs : EventArgs
         {
             /// <summary>
             /// resized.
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public int Resized
             {
                 get;
@@ -1552,6 +1579,7 @@ namespace Tizen.NUI
         /// ImfManager resized signal.
         /// </summary>
         //Please do not use! this will be internal
+        /// <since_tizen> 3 </since_tizen>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public KeyboardResizedSignalType ResizedSignal()
         {
@@ -1564,6 +1592,7 @@ namespace Tizen.NUI
         /// ImfManager language changed event arguments.
         /// </summary>
         //Please do not use! this will be deprecated
+        /// <since_tizen> 3 </since_tizen>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public class ImfManagerLanguageChangedEventArgs : EventArgs
         {
@@ -1586,6 +1615,7 @@ namespace Tizen.NUI
         /// ImfManager language changed event.
         /// </summary>
         //Please do not use! this will be deprecated
+        /// <since_tizen> 3 </since_tizen>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public event EventHandler<ImfManagerLanguageChangedEventArgs> ImfManagerLanguageChanged
         {
@@ -1628,11 +1658,13 @@ namespace Tizen.NUI
         /// <summary>
         /// ImfManager language changed event args.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         public class LanguageChangedEventArgs : EventArgs
         {
             /// <summary>
             /// language changed.
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public int LanguageChanged
             {
                 get;
@@ -1686,6 +1718,7 @@ namespace Tizen.NUI
         /// ImfManager language changed signal.
         /// </summary>
         //Please do not use! this will be internal
+        /// <since_tizen> 3 </since_tizen>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public LanguageChangedSignalType LanguageChangedSignal()
         {
@@ -1697,12 +1730,13 @@ namespace Tizen.NUI
         /// <summary>
         /// ImfManager keyboard type changed event arguments.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         public class KeyboardTypeChangedEventArgs : EventArgs
         {
             /// <summary>
             /// ImfManager keyboard type
             /// </summary>
-            /// <since_tizen> 3 </since_tizen>
+            /// <since_tizen> 4 </since_tizen>
             public KeyboardType KeyboardType
             {
                 get;
@@ -1779,56 +1813,66 @@ namespace Tizen.NUI
         /// <summary>
         /// Events that are generated by the IMF.
         /// </summary>
-        /// <since_tizen> 4 </since_tizen>
+        /// <since_tizen> 3 </since_tizen>
         public enum ImfEvent
         {
             /// <summary>
             /// No event.
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             Void,
             /// <summary>
             /// Pre-Edit changed.
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             Preedit,
             /// <summary>
             /// Commit received.
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             Commit,
             /// <summary>
             /// An event to delete a range of characters from the string.
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             DeleteSurrounding,
             /// <summary>
             /// An event to query string and the cursor position.
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             GetSurrounding,
             /// <summary>
             /// Private command sent from the input panel.
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             PrivateCommand
         }
 
         /// <summary>
         /// Enumeration for the state of the input panel.
         /// </summary>
-        /// <since_tizen> 4 </since_tizen>
+        /// <since_tizen> 3 </since_tizen>
         public enum State
         {
             /// <summary>
             /// Unknown state.
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             Default = 0,
             /// <summary>
             /// Input panel is shown.
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             Show,
             /// <summary>
             /// Input panel is hidden.
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             Hide,
             /// <summary>
             /// Input panel in process of being shown.
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             WillShow
         }
 
@@ -1841,10 +1885,12 @@ namespace Tizen.NUI
             /// <summary>
             /// Software keyboard (virtual keyboard) is default.
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             SoftwareKeyboard,
             /// <summary>
             /// Hardware keyboard.
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             HardwareKeyboard
         }
     }

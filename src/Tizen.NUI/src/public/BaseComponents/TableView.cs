@@ -27,6 +27,7 @@ namespace Tizen.NUI.BaseComponents
     /// The Z position and depth are left intact so that the 3D model actors can also be laid out
     /// in a grid without loosing their depth scaling.<br />
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public class TableView : View
     {
         private global::System.Runtime.InteropServices.HandleRef swigCPtr;
@@ -99,6 +100,7 @@ namespace Tizen.NUI.BaseComponents
         /// <summary>
         /// Class to specify the layout position for the child view.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public class CellPosition : global::System.IDisposable
         {
             private global::System.Runtime.InteropServices.HandleRef swigCPtr;

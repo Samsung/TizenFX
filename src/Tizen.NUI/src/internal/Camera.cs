@@ -66,9 +66,11 @@ namespace Tizen.NUI
 
 
 
+        /// <since_tizen> 3 </since_tizen>
         public class Property : global::System.IDisposable
         {
             private global::System.Runtime.InteropServices.HandleRef swigCPtr;
+            /// <since_tizen> 3 </since_tizen>
             protected bool swigCMemOwn;
 
             internal Property(global::System.IntPtr cPtr, bool cMemoryOwn)
@@ -85,6 +87,7 @@ namespace Tizen.NUI
             //A Flag to check who called Dispose(). (By User or DisposeQueue)
             private bool isDisposeQueued = false;
             //A Flat to check if it is already disposed.
+            /// <since_tizen> 3 </since_tizen>
             protected bool disposed = false;
 
             ~Property()
@@ -96,6 +99,7 @@ namespace Tizen.NUI
                 }
             }
 
+            /// <since_tizen> 3 </since_tizen>
             public void Dispose()
             {
                 //Throw excpetion if Dispose() is called in separate thread.
@@ -115,6 +119,7 @@ namespace Tizen.NUI
                 }
             }
 
+            /// <since_tizen> 3 </since_tizen>
             protected virtual void Dispose(DisposeTypes type)
             {
                 if (disposed)
@@ -148,24 +153,39 @@ namespace Tizen.NUI
             }
 
 
+            /// <since_tizen> 3 </since_tizen>
             public Property() : this(NDalicPINVOKE.new_CameraActor_Property(), true)
             {
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
 
+            /// <since_tizen> 3 </since_tizen>
             public static readonly int TYPE = NDalicPINVOKE.CameraActor_Property_TYPE_get();
+            /// <since_tizen> 3 </since_tizen>
             public static readonly int PROJECTION_MODE = NDalicPINVOKE.CameraActor_Property_PROJECTION_MODE_get();
+            /// <since_tizen> 3 </since_tizen>
             public static readonly int FIELD_OF_VIEW = NDalicPINVOKE.CameraActor_Property_FIELD_OF_VIEW_get();
+            /// <since_tizen> 3 </since_tizen>
             public static readonly int ASPECT_RATIO = NDalicPINVOKE.CameraActor_Property_ASPECT_RATIO_get();
+            /// <since_tizen> 3 </since_tizen>
             public static readonly int NEAR_PLANE_DISTANCE = NDalicPINVOKE.CameraActor_Property_NEAR_PLANE_DISTANCE_get();
+            /// <since_tizen> 3 </since_tizen>
             public static readonly int FAR_PLANE_DISTANCE = NDalicPINVOKE.CameraActor_Property_FAR_PLANE_DISTANCE_get();
+            /// <since_tizen> 3 </since_tizen>
             public static readonly int LEFT_PLANE_DISTANCE = NDalicPINVOKE.CameraActor_Property_LEFT_PLANE_DISTANCE_get();
+            /// <since_tizen> 3 </since_tizen>
             public static readonly int RIGHT_PLANE_DISTANCE = NDalicPINVOKE.CameraActor_Property_RIGHT_PLANE_DISTANCE_get();
+            /// <since_tizen> 3 </since_tizen>
             public static readonly int TOP_PLANE_DISTANCE = NDalicPINVOKE.CameraActor_Property_TOP_PLANE_DISTANCE_get();
+            /// <since_tizen> 3 </since_tizen>
             public static readonly int BOTTOM_PLANE_DISTANCE = NDalicPINVOKE.CameraActor_Property_BOTTOM_PLANE_DISTANCE_get();
+            /// <since_tizen> 3 </since_tizen>
             public static readonly int TARGET_POSITION = NDalicPINVOKE.CameraActor_Property_TARGET_POSITION_get();
+            /// <since_tizen> 3 </since_tizen>
             public static readonly int PROJECTION_MATRIX = NDalicPINVOKE.CameraActor_Property_PROJECTION_MATRIX_get();
+            /// <since_tizen> 3 </since_tizen>
             public static readonly int VIEW_MATRIX = NDalicPINVOKE.CameraActor_Property_VIEW_MATRIX_get();
+            /// <since_tizen> 3 </since_tizen>
             public static readonly int INVERT_Y_AXIS = NDalicPINVOKE.CameraActor_Property_INVERT_Y_AXIS_get();
 
         }

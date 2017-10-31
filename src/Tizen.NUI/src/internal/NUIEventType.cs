@@ -22,12 +22,14 @@ namespace Tizen.NUI
     /// <summary>
     /// Class that represents the type of NUI event for backends. This class can be converted from string type.
     /// </summary>
+    /// <since_tizen> 4 </since_tizen>
     public class NUIEventType : EventType
     {
         /// <summary>
         /// Initializes the EventType class.
         /// </summary>
         /// <param name="name">The name of event type.</param>
+        /// <since_tizen> 4 </since_tizen>
         public NUIEventType(string name) : base(name)
         {
         }
@@ -35,21 +37,25 @@ namespace Tizen.NUI
         /// <summary>
         /// Pre-defined event type. "TimeTick"
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         public static readonly NUIEventType TimeTick = "TimeTick";
 
         /// <summary>
         /// Pre-defined event type. "AmbientTick"
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         public static readonly NUIEventType AmbientTick = "AmbientTick";
 
         /// <summary>
         /// Pre-defined event type. "AmbientChanged"
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         public static readonly NUIEventType AmbientChanged = "AmbientChanged";
 
         /// <summary>
         /// Converts a string to NUIEventType instance.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         public static implicit operator NUIEventType(string value)
         {
             return new NUIEventType(value);

@@ -20,43 +20,81 @@ namespace Tizen.NUI
     internal sealed class ViewWrapperImpl : ViewImpl
     {
         private global::System.Runtime.InteropServices.HandleRef swigCPtr;
+        /// <since_tizen> 3 </since_tizen>
         public delegate void OnStageConnectionDelegate(int depth);
+        /// <since_tizen> 3 </since_tizen>
         public delegate void OnStageDisconnectionDelegate();
+        /// <since_tizen> 3 </since_tizen>
         public delegate void OnChildAddDelegate(View view);
+        /// <since_tizen> 3 </since_tizen>
         public delegate void OnChildRemoveDelegate(View view);
+        /// <since_tizen> 3 </since_tizen>
         public delegate void OnPropertySetDelegate(int index, PropertyValue propertyValue);
+        /// <since_tizen> 3 </since_tizen>
         public delegate void OnSizeSetDelegate(Vector3 targetSize);
+        /// <since_tizen> 3 </since_tizen>
         public delegate void OnSizeAnimationDelegate(Animation animation, Vector3 targetSize);
+        /// <since_tizen> 3 </since_tizen>
         public delegate bool OnTouchDelegate(Touch touch);
+        /// <since_tizen> 3 </since_tizen>
         public delegate bool OnHoverDelegate(Hover hover);
+        /// <since_tizen> 3 </since_tizen>
         public delegate bool OnKeyDelegate(Key key);
+        /// <since_tizen> 3 </since_tizen>
         public delegate bool OnWheelDelegate(Wheel wheel);
+        /// <since_tizen> 3 </since_tizen>
         public delegate void OnRelayoutDelegate(Vector2 size, RelayoutContainer container);
+        /// <since_tizen> 3 </since_tizen>
         public delegate void OnSetResizePolicyDelegate(ResizePolicyType policy, DimensionType dimension);
+        /// <since_tizen> 3 </since_tizen>
         public delegate Size2D GetNaturalSizeDelegate();
+        /// <since_tizen> 3 </since_tizen>
         public delegate float CalculateChildSizeDelegate(View child, DimensionType dimension);
+        /// <since_tizen> 3 </since_tizen>
         public delegate float GetHeightForWidthDelegate(float width);
+        /// <since_tizen> 3 </since_tizen>
         public delegate float GetWidthForHeightDelegate(float height);
+        /// <since_tizen> 3 </since_tizen>
         public delegate bool RelayoutDependentOnChildrenDimensionDelegate(DimensionType dimension);
+        /// <since_tizen> 3 </since_tizen>
         public delegate bool RelayoutDependentOnChildrenDelegate();
+        /// <since_tizen> 3 </since_tizen>
         public delegate void OnCalculateRelayoutSizeDelegate(DimensionType dimension);
+        /// <since_tizen> 3 </since_tizen>
         public delegate void OnLayoutNegotiatedDelegate(float size, DimensionType dimension);
+        /// <since_tizen> 3 </since_tizen>
         public delegate void OnControlChildAddDelegate(View child);
+        /// <since_tizen> 3 </since_tizen>
         public delegate void OnControlChildRemoveDelegate(View child);
+        /// <since_tizen> 3 </since_tizen>
         public delegate void OnStyleChangeDelegate(StyleManager styleManager, StyleChangeType change);
+        /// <since_tizen> 3 </since_tizen>
         public delegate bool OnAccessibilityActivatedDelegate();
+        /// <since_tizen> 3 </since_tizen>
         public delegate bool OnAccessibilityPanDelegate(PanGesture gestures);
+        /// <since_tizen> 3 </since_tizen>
         public delegate bool OnAccessibilityTouchDelegate(Touch touch);
+        /// <since_tizen> 3 </since_tizen>
         public delegate bool OnAccessibilityValueChangeDelegate(bool isIncrease);
+        /// <since_tizen> 3 </since_tizen>
         public delegate bool OnAccessibilityZoomDelegate();
+        /// <since_tizen> 3 </since_tizen>
         public delegate void OnFocusGainedDelegate();
+        /// <since_tizen> 3 </since_tizen>
         public delegate void OnFocusLostDelegate();
+        /// <since_tizen> 3 </since_tizen>
         public delegate View GetNextFocusableViewDelegate(View currentFocusedView, View.FocusDirection direction, bool loopEnabled);
+        /// <since_tizen> 3 </since_tizen>
         public delegate void OnFocusChangeCommittedDelegate(View commitedFocusableView);
+        /// <since_tizen> 3 </since_tizen>
         public delegate bool OnKeyboardEnterDelegate();
+        /// <since_tizen> 3 </since_tizen>
         public delegate void OnPinchDelegate(PinchGesture pinch);
+        /// <since_tizen> 3 </since_tizen>
         public delegate void OnPanDelegate(PanGesture pan);
+        /// <since_tizen> 3 </since_tizen>
         public delegate void OnTapDelegate(TapGesture tap);
+        /// <since_tizen> 3 </since_tizen>
         public delegate void OnLongPressDelegate(LongPressGesture longPress);
 
         public new OnStageConnectionDelegate OnStageConnection;
@@ -526,46 +564,87 @@ namespace Tizen.NUI
             OnLongPress(new LongPressGesture(longPress, false));
         }
 
+        /// <since_tizen> 3 </since_tizen>
         public delegate void DelegateViewWrapperImpl_0(int depth);
+        /// <since_tizen> 3 </since_tizen>
         public delegate void DelegateViewWrapperImpl_1();
+        /// <since_tizen> 3 </since_tizen>
         public delegate void DelegateViewWrapperImpl_2(global::System.IntPtr child);
+        /// <since_tizen> 3 </since_tizen>
         public delegate void DelegateViewWrapperImpl_3(global::System.IntPtr child);
+        /// <since_tizen> 3 </since_tizen>
         public delegate void DelegateViewWrapperImpl_4(int index, global::System.IntPtr propertyValue);
+        /// <since_tizen> 3 </since_tizen>
         public delegate void DelegateViewWrapperImpl_5(global::System.IntPtr targetSize);
+        /// <since_tizen> 3 </since_tizen>
         public delegate void DelegateViewWrapperImpl_6(global::System.IntPtr animation, global::System.IntPtr targetSize);
+        /// <since_tizen> 3 </since_tizen>
         public delegate bool DelegateViewWrapperImpl_7(global::System.IntPtr arg0);
+        /// <since_tizen> 3 </since_tizen>
         public delegate bool DelegateViewWrapperImpl_8(global::System.IntPtr arg0);
+        /// <since_tizen> 3 </since_tizen>
         public delegate bool DelegateViewWrapperImpl_9(global::System.IntPtr arg0);
+        /// <since_tizen> 3 </since_tizen>
         public delegate bool DelegateViewWrapperImpl_10(global::System.IntPtr arg0);
+        /// <since_tizen> 3 </since_tizen>
         public delegate void DelegateViewWrapperImpl_11(global::System.IntPtr size, global::System.IntPtr container);
+        /// <since_tizen> 3 </since_tizen>
         public delegate void DelegateViewWrapperImpl_12(int policy, int dimension);
+        /// <since_tizen> 3 </since_tizen>
         public delegate global::System.IntPtr DelegateViewWrapperImpl_13();
+        /// <since_tizen> 3 </since_tizen>
         public delegate float DelegateViewWrapperImpl_14(global::System.IntPtr child, int dimension);
+        /// <since_tizen> 3 </since_tizen>
         public delegate float DelegateViewWrapperImpl_15(float width);
+        /// <since_tizen> 3 </since_tizen>
         public delegate float DelegateViewWrapperImpl_16(float height);
+        /// <since_tizen> 3 </since_tizen>
         public delegate bool DelegateViewWrapperImpl_17(int dimension);
+        /// <since_tizen> 3 </since_tizen>
         public delegate bool DelegateViewWrapperImpl_18();
+        /// <since_tizen> 3 </since_tizen>
         public delegate void DelegateViewWrapperImpl_19(int dimension);
+        /// <since_tizen> 3 </since_tizen>
         public delegate void DelegateViewWrapperImpl_20(float size, int dimension);
+        /// <since_tizen> 3 </since_tizen>
         public delegate void DelegateViewWrapperImpl_21();
+        /// <since_tizen> 3 </since_tizen>
         public delegate void DelegateViewWrapperImpl_22(global::System.IntPtr child);
+        /// <since_tizen> 3 </since_tizen>
         public delegate void DelegateViewWrapperImpl_23(global::System.IntPtr child);
+        /// <since_tizen> 3 </since_tizen>
         public delegate void DelegateViewWrapperImpl_24(global::System.IntPtr styleManager, int change);
+        /// <since_tizen> 3 </since_tizen>
         public delegate bool DelegateViewWrapperImpl_25();
+        /// <since_tizen> 3 </since_tizen>
         public delegate bool DelegateViewWrapperImpl_26(global::System.IntPtr gesture);
+        /// <since_tizen> 3 </since_tizen>
         public delegate bool DelegateViewWrapperImpl_27(global::System.IntPtr touch);
+        /// <since_tizen> 3 </since_tizen>
         public delegate bool DelegateViewWrapperImpl_28(bool isIncrease);
+        /// <since_tizen> 3 </since_tizen>
         public delegate bool DelegateViewWrapperImpl_29();
+        /// <since_tizen> 3 </since_tizen>
         public delegate void DelegateViewWrapperImpl_30();
+        /// <since_tizen> 3 </since_tizen>
         public delegate void DelegateViewWrapperImpl_31();
+        /// <since_tizen> 3 </since_tizen>
         public delegate global::System.IntPtr DelegateViewWrapperImpl_32(global::System.IntPtr currentFocusedActor, int direction, bool loopEnabled);
+        /// <since_tizen> 3 </since_tizen>
         public delegate void DelegateViewWrapperImpl_33(global::System.IntPtr commitedFocusableActor);
+        /// <since_tizen> 3 </since_tizen>
         public delegate bool DelegateViewWrapperImpl_34();
+        /// <since_tizen> 3 </since_tizen>
         public delegate void DelegateViewWrapperImpl_35(global::System.IntPtr pinch);
+        /// <since_tizen> 3 </since_tizen>
         public delegate void DelegateViewWrapperImpl_36(global::System.IntPtr pan);
+        /// <since_tizen> 3 </since_tizen>
         public delegate void DelegateViewWrapperImpl_37(global::System.IntPtr tap);
+        /// <since_tizen> 3 </since_tizen>
         public delegate void DelegateViewWrapperImpl_38(global::System.IntPtr longPress);
+        /// <since_tizen> 3 </since_tizen>
         public delegate void DelegateViewWrapperImpl_39(global::System.IntPtr slotObserver, global::System.IntPtr callback);
+        /// <since_tizen> 3 </since_tizen>
         public delegate void DelegateViewWrapperImpl_40(global::System.IntPtr slotObserver, global::System.IntPtr callback);
 
         private DelegateViewWrapperImpl_0 Delegate0;
