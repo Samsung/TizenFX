@@ -1,0 +1,15 @@
+<Project>
+
+  <Target Name="CopyToArtifactsDirectory"
+          Condition="'$(ArtifactsDirectory)' != ''"
+          DependsOnTargets="GetCopyToOutputDirectoryItems">
+    <ItemGroup>
+      <OutputFilesToCopy Include="$(OutDir)**" />
+    </ItemGroup>
+
+    <Copy SourceFiles="@(OutputFilesToCopy)"
+          DestinationFiles="$(ArtifactsDirectory)%(RecursiveDir)%(Filename)%(Extension)" />
+
+  </Target>
+
+</Project>

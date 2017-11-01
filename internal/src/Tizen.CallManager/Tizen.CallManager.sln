@@ -4,9 +4,9 @@ VisualStudioVersion = 15.0.26430.13
 MinimumVisualStudioVersion = 15.0.26124.0
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tizen.CallManager", "Tizen.CallManager.csproj", "{18DF1A45-32B3-4577-84DF-BB3A1537ADC9}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tizen", "..\Tizen\Tizen.csproj", "{D06D0004-6A5F-4D6C-98C4-ADD3766A867A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tizen", "..\..\..\src\Tizen\Tizen.csproj", "{D06D0004-6A5F-4D6C-98C4-ADD3766A867A}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tizen.Log", "..\Tizen.Log\Tizen.Log.csproj", "{78875590-41AB-4382-B64E-73A50DE0851C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tizen.Log", "..\..\..\src\Tizen.Log\Tizen.Log.csproj", "{78875590-41AB-4382-B64E-73A50DE0851C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

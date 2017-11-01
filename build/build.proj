@@ -2,11 +2,6 @@
 
   <Import Project="$(MSBuildThisFileDirectory)directories.props" />
 
-  <!-- Common Properties -->
-  <PropertyGroup>
-    <PublicModuleListFile>$(PackageSrcDir)PublicModuleList.txt</PublicModuleListFile>
-  </PropertyGroup>
-
   <!-- Build Properties -->
   <PropertyGroup>
     <Configuration>Release</Configuration>
@@ -16,6 +11,7 @@
   <ItemGroup>
     <ProjectToBuild Include="$(ProjectSrcDir)\$(Project)\$(Project).csproj" Condition="'$(Project)' != ''" />
     <ProjectToBuild Include="$(ProjectSrcDir)**\*.csproj" Condition="'$(Project)' == ''" />
+    <ProjectToBuild Include="$(InternalProjectSrcDir)**\*.csproj" Condition="'$(Project)' == ''" />
   </ItemGroup>
 
   <!--
@@ -24,10 +20,11 @@
     Delete all artifacts,
     including the Artifacts/ directory and the obj/ directories for all projects.
   -->
-  <Target Name="Clean" Condition="'$(Project)' == ''" >
+  <Target Name="Clean">
 
     <ItemGroup>
       <ProjectIntermediateAllFiles Include="$(ProjectSrcDir)**\obj\*" />
+      <ProjectIntermediateAllFiles Include="$(InternalProjectSrcDir)**\obj\*" />
       <ProjectIntermediateDir Include="@(ProjectIntermediateAllFiles->'%(RootDir)%(Directory)'->Distinct())" />
     </ItemGroup>
 
@@ -40,44 +37,37 @@
 
   </Target>
 
-
   <!--
-    Target : Build
+    Target : Restore
     ==============
-    Build all projects in src/ directory.
-    The output(.dll, .pdb, .xml) of the project specfied in
-    pkg/PublicModuleList.txt is copied to Artifacts/bin/public,
-    and the rest are copied to Artifacts/bin/platform.
+    Restore all projects.
   -->
-  <Target Name="Build" DependsOnTargets="Clean">
+  <Target Name="Restore">
 
     <MSBuild Projects="@(ProjectToBuild)"
              Properties="Configuration=$(Configuration);RestoreSources=$(RestoreSources)"
              BuildInParallel="false"
              Targets="Restore" />
 
+  </Target>
+
+  <!--
+    Target : Build
+    ==============
+    Build all projects.
+  -->
+  <Target Name="Build">
+
     <MSBuild Projects="@(ProjectToBuild)"
-             Properties="Configuration=$(Configuration);OutDir=$(OutputPlatformDir)"
+             Properties="Configuration=$(Configuration)"
              BuildInParallel="true"
              UseResultsCache="true"
              Targets="Build" />
 
-    <ReadLinesFromFile File="$(PublicModuleListFile)">
-      <Output TaskParameter="Lines" ItemName="PublicProject" />
-    </ReadLinesFromFile>
-
-    <ItemGroup>
-      <PlatformFiles Include="$(OutputPlatformDir)**" />
-      <_PublicFilesToMove Include="$(OutputPlatformDir)%(PublicProject.Identity).dll" />
-      <_PublicFilesToMove Include="$(OutputPlatformDir)%(PublicProject.Identity).pdb" />
-      <_PublicFilesToMove Include="$(OutputPlatformDir)%(PublicProject.Identity).xml" />
-      <_PublicFilesToMove Include="$(OutputPlatformDir)*\%(PublicProject.Identity).dll" />
-      <PublicFilesToMove Include="@(_PublicFilesToMove)" Condition="'@(PlatformFiles)' == '@(_PublicFilesToMove)' and '%(Identity)' != '' " />
-    </ItemGroup>
-
-    <Move SourceFiles="@(PublicFilesToMove)" DestinationFiles="$(OutputPublicDir)%(RecursiveDir)%(Filename)%(Extension)" />
-
-    <Message Text="The assemblies written in pkg/PublicModuleList.txt were moved to $(OutputPublicDir)" Importance="High" />
+    <MSBuild Projects="@(ProjectToBuild)"
+             Properties="Configuration=$(Configuration)"
+             BuildInParallel="false"
+             Targets="CopyToArtifactsDirectory" />
 
   </Target>
 

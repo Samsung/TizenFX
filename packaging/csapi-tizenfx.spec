@@ -3,13 +3,15 @@
 %define DOTNET_ASSEMBLY_RES_PATH %{DOTNET_ASSEMBLY_PATH}/res
 %define DOTNET_NUGET_SOURCE /nuget
 
-%define DOTNET_TIZEN_API_VERSION 5
-
 %define _tizenfx_bin_path Artifacts
+
+%define TIZEN_NET_API_VERSION 5
+%define TIZEN_NET_NUGET_VERSION 5.0.0-preview1-00360
+%define TIZEN_NET_INTERNAL_NUGET_VERSION 5.0.0.360
 
 Name:       csapi-tizenfx
 Summary:    Assemblies of Tizen .NET
-Version:    5.0.0.b358+nui61
+Version:    5.0.0.b360+nui61
 Release:    1
 Group:      Development/Libraries
 License:    Apache-2.0
@@ -144,7 +146,7 @@ rm -fr %{_tizenfx_bin_path}
 export DOTNET_SKIP_FIRST_TIME_EXPERIENCE=true
 ./build.sh --full
 ./build.sh --dummy
-./build.sh --pack 5.0.0-preview1-00358
+./build.sh --pack %{TIZEN_NET_NUGET_VERSION} %{TIZEN_NET_INTERNAL_NUGET_VERSION}
 
 %install
 mkdir -p %{buildroot}%{DOTNET_ASSEMBLY_PATH}
@@ -152,16 +154,28 @@ mkdir -p %{buildroot}%{DOTNET_ASSEMBLY_DUMMY_PATH}
 mkdir -p %{buildroot}%{DOTNET_ASSEMBLY_RES_PATH}
 mkdir -p %{buildroot}%{DOTNET_NUGET_SOURCE}
 
+# Install Runtime Assemblies
 install -p -m 644 %{_tizenfx_bin_path}/bin/public/*.dll %{buildroot}%{DOTNET_ASSEMBLY_PATH}
+install -p -m 644 %{_tizenfx_bin_path}/bin/internal/*.dll %{buildroot}%{DOTNET_ASSEMBLY_PATH}
+
+# Install Debug Symbols
 install -p -m 644 %{_tizenfx_bin_path}/bin/public/*.pdb %{buildroot}%{DOTNET_ASSEMBLY_PATH}
-install -p -m 644 %{_tizenfx_bin_path}/bin/platform/*.dll %{buildroot}%{DOTNET_ASSEMBLY_PATH}
-install -p -m 644 %{_tizenfx_bin_path}/bin/platform/*.pdb %{buildroot}%{DOTNET_ASSEMBLY_PATH}
-install -p -m 644 %{_tizenfx_bin_path}/bin/platform/res/* %{buildroot}%{DOTNET_ASSEMBLY_RES_PATH}
+install -p -m 644 %{_tizenfx_bin_path}/bin/internal/*.pdb %{buildroot}%{DOTNET_ASSEMBLY_PATH}
+
+# Install Resource files
+[ -d %{_tizenfx_bin_path}/bin/public/res ] \
+  && install -p -m 644 %{_tizenfx_bin_path}/bin/public/res/* %{buildroot}%{DOTNET_ASSEMBLY_RES_PATH}
+[ -d %{_tizenfx_bin_path}/bin/internal/res ] \
+  && install -p -m 644 %{_tizenfx_bin_path}/bin/internal/res/* %{buildroot}%{DOTNET_ASSEMBLY_RES_PATH}
+
+# Install Dummy Assemblies
 install -p -m 644 %{_tizenfx_bin_path}/bin/dummy/*.dll %{buildroot}%{DOTNET_ASSEMBLY_DUMMY_PATH}
+
+# Install NuGet Packages
 install -p -m 644 %{_tizenfx_bin_path}/*.nupkg %{buildroot}%{DOTNET_NUGET_SOURCE}
 
 %post
-vconftool set -t int "db/dotnet/tizen_api_version" %{DOTNET_TIZEN_API_VERSION} -f
+vconftool set -t int "db/dotnet/tizen_api_version" %{TIZEN_NET_API_VERSION} -f
 
 
 %files
