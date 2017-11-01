@@ -24,6 +24,7 @@ namespace Tizen.Applications
     /// <summary>
     /// Provides a synchronization context for the Tizen application model.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public class TizenSynchronizationContext : SynchronizationContext
     {
         private readonly Interop.Glib.GSourceFunc _wrapperHandler;
@@ -34,6 +35,7 @@ namespace Tizen.Applications
         /// <summary>
         /// Initializes a new instance of the TizenSynchronizationContext class.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public TizenSynchronizationContext()
         {
             _wrapperHandler = new Interop.Glib.GSourceFunc(Handler);
@@ -48,6 +50,7 @@ namespace Tizen.Applications
         /// SetSynchronizationContext(new TizenSynchronizationContext());
         /// </code>
         /// </remarks>
+        /// <since_tizen> 3 </since_tizen>
         public static void Initialize()
         {
             SetSynchronizationContext(new TizenSynchronizationContext());
@@ -61,6 +64,7 @@ namespace Tizen.Applications
         /// <param name="state"><see cref="System.Object"/>The object passed to the delegate.</param>
         /// <remarks>
         /// The post method starts an asynchronous request to post a message.</remarks>
+        /// <since_tizen> 3 </since_tizen>
         public override void Post(SendOrPostCallback d, object state)
         {
             Post(() =>
@@ -76,6 +80,7 @@ namespace Tizen.Applications
         /// <param name="state"><see cref="System.Object"/>The object passed to the delegate.</param>
         /// <remarks>
         /// The send method starts a synchronous request to send a message.</remarks>
+        /// <since_tizen> 3 </since_tizen>
         public override void Send(SendOrPostCallback d, object state)
         {
             var mre = new ManualResetEvent(false);

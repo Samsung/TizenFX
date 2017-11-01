@@ -22,6 +22,7 @@ namespace Tizen.Multimedia
     /// Provides the ability to control the volume levels.
     /// </summary>
     /// <seealso cref="AudioManager"/>
+    /// <since_tizen> 3 </since_tizen>
     public class AudioVolume
     {
         private const string Tag = "Tizen.Multimedia.AudioVolume";
@@ -41,6 +42,7 @@ namespace Tizen.Multimedia
         /// <summary>
         /// Occurs when the volume level is changed.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public event EventHandler<VolumeChangedEventArgs> Changed
         {
             add
@@ -76,6 +78,7 @@ namespace Tizen.Multimedia
         /// Gets the volume type of the sound being currently played.
         /// </summary>
         /// <value>The volume type of the sound being currently played.</value>
+        /// <since_tizen> 3 </since_tizen>
         public AudioVolumeType CurrentPlaybackType
         {
             get
@@ -95,12 +98,14 @@ namespace Tizen.Multimedia
         /// Gets the <see cref="VolumeLevel"/>.
         /// </summary>
         /// <value>The <see cref="VolumeLevel"/>.</value>
+        /// <since_tizen> 3 </since_tizen>
         public VolumeLevel Level { get; }
 
         /// <summary>
         /// Gets the <see cref="MaxVolumeLevel"/>.
         /// </summary>
         /// <value>The <see cref="MaxVolumeLevel"/>.</value>
+        /// <since_tizen> 3 </since_tizen>
         public MaxVolumeLevel MaxLevel { get; }
 
         private void RegisterVolumeChangedEvent()

@@ -24,11 +24,13 @@ namespace Tizen.Applications.CoreBackend
     /// <summary>
     /// An abstract class to provide default event handlers for apps.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public abstract class DefaultCoreBackend : ICoreBackend
     {
         /// <summary>
         /// Low level event types.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public enum AppEventType
         {
             /// <summary>
@@ -66,17 +68,20 @@ namespace Tizen.Applications.CoreBackend
         /// Tag string for this class.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 3 </since_tizen>
         protected static readonly string LogTag = typeof(DefaultCoreBackend).Namespace;
 
         /// <summary>
         /// Data structure for event handlers.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 3 </since_tizen>
         protected IDictionary<EventType, object> Handlers = new Dictionary<EventType, object>();
 
         /// <summary>
         /// Constructor of DefaultCoreBackend class.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public DefaultCoreBackend()
         {
         }
@@ -94,6 +99,7 @@ namespace Tizen.Applications.CoreBackend
         /// </summary>
         /// <param name="evType">The type of event.</param>
         /// <param name="handler">The handler method without arguments.</param>
+        /// <since_tizen> 3 </since_tizen>
         public virtual void AddEventHandler(EventType evType, Action handler)
         {
             Handlers.Add(evType, handler);
@@ -105,6 +111,7 @@ namespace Tizen.Applications.CoreBackend
         /// <typeparam name="TEventArgs">The EventArgs type used in arguments of the handler method.</typeparam>
         /// <param name="evType">The type of event.</param>
         /// <param name="handler">The handler method with a TEventArgs type argument.</param>
+        /// <since_tizen> 3 </since_tizen>
         public virtual void AddEventHandler<TEventArgs>(EventType evType, Action<TEventArgs> handler) where TEventArgs : EventArgs
         {
             Handlers.Add(evType, handler);
@@ -114,6 +121,7 @@ namespace Tizen.Applications.CoreBackend
         /// Runs the mainloop of the backend.
         /// </summary>
         /// <param name="args"></param>
+        /// <since_tizen> 3 </since_tizen>
         public virtual void Run(string[] args)
         {
             TizenSynchronizationContext.Initialize();
@@ -122,11 +130,13 @@ namespace Tizen.Applications.CoreBackend
         /// <summary>
         /// Exits the mainloop of the backend.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public abstract void Exit();
 
         /// <summary>
         /// Releases all resources.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public void Dispose()
         {
             Dispose(true);
@@ -137,6 +147,7 @@ namespace Tizen.Applications.CoreBackend
         /// Releases any unmanaged resources used by this object. Can also dispose any other disposable objects.
         /// </summary>
         /// <param name="disposing">If true, disposes any disposable objects. If false, does not dispose disposable objects.</param>
+        /// <since_tizen> 3 </since_tizen>
         protected abstract void Dispose(bool disposing);
 
         /// <summary>
@@ -144,6 +155,7 @@ namespace Tizen.Applications.CoreBackend
         /// </summary>
         /// <param name="infoHandle"></param>
         /// <param name="data"></param>
+        /// <since_tizen> 3 </since_tizen>
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected virtual void OnLowMemoryNative(IntPtr infoHandle, IntPtr data)
         {
@@ -165,6 +177,7 @@ namespace Tizen.Applications.CoreBackend
         /// </summary>
         /// <param name="infoHandle"></param>
         /// <param name="data"></param>
+        /// <since_tizen> 3 </since_tizen>
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected virtual void OnLowBatteryNative(IntPtr infoHandle, IntPtr data)
         {
@@ -186,6 +199,7 @@ namespace Tizen.Applications.CoreBackend
         /// </summary>
         /// <param name="infoHandle"></param>
         /// <param name="data"></param>
+        /// <since_tizen> 3 </since_tizen>
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected virtual void OnLocaleChangedNative(IntPtr infoHandle, IntPtr data)
         {
@@ -207,6 +221,7 @@ namespace Tizen.Applications.CoreBackend
         /// </summary>
         /// <param name="infoHandle"></param>
         /// <param name="data"></param>
+        /// <since_tizen> 3 </since_tizen>
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected virtual void OnRegionChangedNative(IntPtr infoHandle, IntPtr data)
         {
@@ -228,6 +243,7 @@ namespace Tizen.Applications.CoreBackend
         /// </summary>
         /// <param name="infoHandle"></param>
         /// <param name="data"></param>
+        /// <since_tizen> 3 </since_tizen>
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected virtual void OnDeviceOrientationChangedNative(IntPtr infoHandle, IntPtr data)
         {

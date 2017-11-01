@@ -24,6 +24,7 @@ namespace Tizen.Applications
     /// The preference class provides APIs to store and retrieve an application specific data/preference. A preference is saved in the form of a key-value pair.
     /// Keys are always text strings and the value can be any one of the four types: integer, double, string, and boolean.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public static class Preference
     {
         private const string LogTag = "Tizen.Applications";
@@ -63,6 +64,7 @@ namespace Tizen.Applications
         ///     }
         /// </code>
         /// </example>
+        /// <since_tizen> 3 </since_tizen>
         public static IEnumerable<string> Keys
         {
             get
@@ -109,6 +111,7 @@ namespace Tizen.Applications
         ///     }
         /// </code>
         /// </example>
+        /// <since_tizen> 3 </since_tizen>
         public static WeakReference<EventContext> GetEventContext(string key)
         {
             if (!s_eventMap.ContainsKey(key))
@@ -144,6 +147,7 @@ namespace Tizen.Applications
         ///     }
         /// </code>
         /// </example>
+        /// <since_tizen> 3 </since_tizen>
         public static bool Contains(string key)
         {
             bool contains;
@@ -176,6 +180,7 @@ namespace Tizen.Applications
         ///     Preference.Set("brightness", "0.6");
         /// </code>
         /// </example>
+        /// <since_tizen> 3 </since_tizen>
         public static void Set(string key, object value)
         {
             int ret = 0;
@@ -242,6 +247,7 @@ namespace Tizen.Applications
         ///     }
         /// </code>
         /// </example>
+        /// <since_tizen> 3 </since_tizen>
         public static T Get<T>(string key)
         {
             object result = null;
@@ -300,6 +306,7 @@ namespace Tizen.Applications
         ///     }
         /// </code>
         /// </example>
+        /// <since_tizen> 3 </since_tizen>
         public static void Remove(string key)
         {
             int ret = Interop.Preference.Remove(key);
@@ -323,6 +330,7 @@ namespace Tizen.Applications
         ///     Preference.RemoveAll();
         /// </code>
         /// </example>
+        /// <since_tizen> 3 </since_tizen>
         public static void RemoveAll()
         {
             int ret = Interop.Preference.RemoveAll();
@@ -356,6 +364,7 @@ namespace Tizen.Applications
         /// <summary>
         /// The class manages event handlers of the preference keys. The class enables having event handlers for individual preference keys.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public class EventContext
         {
             private string _key;
@@ -392,6 +401,7 @@ namespace Tizen.Applications
             ///     }
             /// </code>
             /// </example>
+            /// <since_tizen> 3 </since_tizen>
             public event EventHandler<PreferenceChangedEventArgs> Changed
             {
                 add

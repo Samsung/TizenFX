@@ -23,6 +23,7 @@ namespace ElmSharp.Accessible
     /// <summary>
     /// Enumeration for ReadingStatus.
     /// </summary>
+    /// <since_tizen> preview </since_tizen>
     public enum ReadingStatus
     {
         /// <summary>
@@ -46,6 +47,7 @@ namespace ElmSharp.Accessible
     /// <summary>
     /// AccessibleUtil provides a method to set the reading information.
     /// </summary>
+    /// <since_tizen> preview </since_tizen>
     public static class AccessibleUtil
     {
 
@@ -79,6 +81,7 @@ namespace ElmSharp.Accessible
         /// <param name="text">The reading text.</param>
         /// <param name="discardable">If true, reading can be discarded by subsequent reading requests, if false the reading must finish before next reading request can be started.</param>
         /// <returns>Return a task with reading status.</returns>
+        /// <since_tizen> preview </since_tizen>
         public static Task<ReadingStatus> Say(string text, bool discardable)
         {
             var tcs = new TaskCompletionSource<ReadingStatus>();

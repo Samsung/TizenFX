@@ -20,6 +20,7 @@ namespace Tizen.Multimedia
     /// <summary>
     /// Provides data for the <see cref="Player.VideoFrameDecoded"/> event.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public class VideoFrameDecodedEventArgs : EventArgs
     {
         /// <summary>
@@ -33,6 +34,7 @@ namespace Tizen.Multimedia
         /// <summary>
         /// Gets the packet containing the decoded frame.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public MediaPacket Packet { get; }
 
     }

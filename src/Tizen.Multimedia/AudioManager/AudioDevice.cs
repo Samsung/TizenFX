@@ -22,6 +22,7 @@ namespace Tizen.Multimedia
     /// <summary>
     /// Provides the ability to query the information of sound devices.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public class AudioDevice
     {
         private readonly int _id;
@@ -49,30 +50,35 @@ namespace Tizen.Multimedia
         /// Gets the ID of the device.
         /// </summary>
         /// <value>The id of the device.</value>
+        /// <since_tizen> 3 </since_tizen>
         public int Id => _id;
 
         /// <summary>
         /// Gets the name of the device.
         /// </summary>
         /// <value>The name of the device.</value>
+        /// <since_tizen> 3 </since_tizen>
         public string Name { get; }
 
         /// <summary>
         /// Gets the type of the device.
         /// </summary>
         /// <value>The <see cref="AudioDeviceType"/> of the device.</value>
+        /// <since_tizen> 3 </since_tizen>
         public AudioDeviceType Type => _type;
 
         /// <summary>
         /// Gets the IO direction of the device.
         /// </summary>
         /// <value>The IO direction of the device.</value>
+        /// <since_tizen> 3 </since_tizen>
         public AudioDeviceIoDirection IoDirection => _ioDirection;
 
         /// <summary>
         /// Gets the state of the device.
         /// </summary>
         /// <value>The <see cref="AudioDeviceState"/> of the device.</value>
+        /// <since_tizen> 3 </since_tizen>
         public AudioDeviceState State
         {
             get
@@ -88,6 +94,7 @@ namespace Tizen.Multimedia
         /// Returns a string that represents the current object.
         /// </summary>
         /// <returns>A string that represents the current object.</returns>
+        /// <since_tizen> 4 </since_tizen>
         public override string ToString() =>
             $"Id={Id}, Name={Name}, Type={Type}, IoDirection={IoDirection}, State={State}";
 
@@ -96,6 +103,7 @@ namespace Tizen.Multimedia
         /// </summary>
         /// <param name="obj">A <see cref="Object"/> to compare.</param>
         /// <returns>true if the two devices are equal; otherwise, false.</returns>
+        /// <since_tizen> 4 </since_tizen>
         public override bool Equals(object obj)
         {
             var rhs = obj as AudioDevice;
@@ -112,6 +120,7 @@ namespace Tizen.Multimedia
         /// Gets the hash code for this instance of <see cref="AudioDevice"/>.
         /// </summary>
         /// <returns>The hash code for this instance of <see cref="AudioDevice"/>.</returns>
+        /// <since_tizen> 4 </since_tizen>
         public override int GetHashCode()
         {
             return Id.GetHashCode();

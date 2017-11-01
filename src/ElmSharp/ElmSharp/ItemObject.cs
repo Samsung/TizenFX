@@ -22,6 +22,7 @@ namespace ElmSharp
     /// <summary>
     /// The ItemObject is used to manage item object
     /// </summary>
+    /// <since_tizen> preview </since_tizen>
     public class ItemObject
     {
         private static Dictionary<int, ItemObject> s_IdToItemTable = new Dictionary<int, ItemObject>();
@@ -38,6 +39,7 @@ namespace ElmSharp
         /// Creates and initializes a new instance of ItemObject class.
         /// </summary>
         /// <param name="handle">IntPtr</param>
+        /// <since_tizen> preview </since_tizen>
         protected ItemObject(IntPtr handle)
         {
             _deleteCallback = DeleteCallbackHandler;
@@ -58,11 +60,13 @@ namespace ElmSharp
         /// <summary>
         /// Gets the id of item object
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         public int Id { get; private set; }
 
         /// <summary>
         /// Sets or gets whether the item object is enabled
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         public bool IsEnabled
         {
             get { return !Interop.Elementary.elm_object_item_disabled_get(Handle); }
@@ -72,6 +76,7 @@ namespace ElmSharp
         /// <summary>
         /// Gets track object of the item.
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         public EvasObject TrackObject
         {
             get
@@ -85,6 +90,7 @@ namespace ElmSharp
         /// <summary>
         /// Sets or gets the style of the Item.
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         public virtual string Style
         {
             get
@@ -121,11 +127,13 @@ namespace ElmSharp
         /// <summary>
         /// Deleted will be triggered when the item object is deleted
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         public event EventHandler Deleted;
 
         /// <summary>
         /// Delete the item object
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         public void Delete()
         {
             Interop.Elementary.elm_object_item_del(Handle);
@@ -137,6 +145,7 @@ namespace ElmSharp
         /// </summary>
         /// <param name="part">The content part name (null for the default content)</param>
         /// <param name="content">The content of the object item</param>
+        /// <since_tizen> preview </since_tizen>
         public void SetPartContent(string part, EvasObject content)
         {
             SetPartContent(part, content, false);
@@ -148,6 +157,7 @@ namespace ElmSharp
         /// <param name="part">The content part name (null for the default content)</param>
         /// <param name="content">The content of the object item</param>
         /// <param name="preserveOldContent">judge whether delete old content</param>
+        /// <since_tizen> preview </since_tizen>
         public void SetPartContent(string part, EvasObject content, bool preserveOldContent)
         {
             IntPtr oldContent = Interop.Elementary.elm_object_item_part_content_unset(Handle, part);
@@ -164,6 +174,7 @@ namespace ElmSharp
         /// </summary>
         /// <param name="part">The text part name (null for the default label)</param>
         /// <param name="text">Text of the label</param>
+        /// <since_tizen> preview </since_tizen>
         public void SetPartText(string part, string text)
         {
             Interop.Elementary.elm_object_item_part_text_set(Handle, part, text);
@@ -174,6 +185,7 @@ namespace ElmSharp
         /// </summary>
         /// <param name="part">The text part name (null for the default label)</param>
         /// <returns></returns>
+        /// <since_tizen> preview </since_tizen>
         public string GetPartText(string part)
         {
             return Interop.Elementary.elm_object_item_part_text_get(Handle, part);
@@ -184,6 +196,7 @@ namespace ElmSharp
         /// </summary>
         /// <param name="part">The text part name (null for the default label)</param>
         /// <param name="color">the color</param>
+        /// <since_tizen> preview </since_tizen>
         public void SetPartColor(string part, Color color)
         {
             Interop.Elementary.elm_object_item_color_class_color_set(Handle, part, color.R * color.A / 255,
@@ -197,6 +210,7 @@ namespace ElmSharp
         /// </summary>
         /// <param name="part">The text part name (null for the default label)</param>
         /// <returns>the color of object item</returns>
+        /// <since_tizen> preview </since_tizen>
         public Color GetPartColor(string part)
         {
             int r, g, b, a;
@@ -208,6 +222,7 @@ namespace ElmSharp
         /// Deletes color of an object item
         /// </summary>
         /// <param name="part">The text part name</param>
+        /// <since_tizen> preview </since_tizen>
         public void DeletePartColor(string part)
         {
             Interop.Elementary.elm_object_item_color_class_del(Handle, part);
@@ -219,6 +234,7 @@ namespace ElmSharp
         /// <param name="emission">The signal's name.</param>
         /// <param name="source">The signal's source.</param>
         /// <param name="func">The function to be executed when the signal is emitted.</param>
+        /// <since_tizen> preview </since_tizen>
         public void AddSignalHandler(string emission, string source, Func<string, string, bool> func)
         {
             if (emission != null && source != null && func != null)
@@ -241,6 +257,7 @@ namespace ElmSharp
         /// <param name="emission">The signal's name.</param>
         /// <param name="source">The signal's source.</param>
         /// <param name="func">The function to be executed when the signal is emitted.</param>
+        /// <since_tizen> preview </since_tizen>
         public void RemoveSignalHandler(string emission, string source, Func<string, string, bool> func)
         {
             if (emission != null && source != null && func != null)
@@ -263,6 +280,7 @@ namespace ElmSharp
         /// </summary>
         /// <param name="emission">The signal's name.</param>
         /// <param name="source">The signal's source.</param>
+        /// <since_tizen> preview </since_tizen>
         public void EmitSignal(string emission, string source)
         {
             Interop.Elementary.elm_object_item_signal_emit(Handle, emission, source);
@@ -272,6 +290,7 @@ namespace ElmSharp
         /// Gets the handle of object item
         /// </summary>
         /// <param name="obj">ItemObject</param>
+        /// <since_tizen> preview </since_tizen>
         public static implicit operator IntPtr(ItemObject obj)
         {
             if (obj == null)
@@ -282,6 +301,7 @@ namespace ElmSharp
         /// <summary>
         /// OnInvalidate of object item
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         protected virtual void OnInvalidate() { }
 
         internal static ItemObject GetItemById(int id)

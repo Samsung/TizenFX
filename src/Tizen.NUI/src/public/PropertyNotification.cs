@@ -25,6 +25,7 @@ namespace Tizen.NUI
     /// Issues a notification upon a condition of the property being met.
     /// See PropertyCondition for available defined conditions.
     ///</summary>
+    /// <since_tizen> 4 </since_tizen>
     public class PropertyNotification : BaseHandle
     {
         private global::System.Runtime.InteropServices.HandleRef swigCPtr;
@@ -42,7 +43,7 @@ namespace Tizen.NUI
         /// <summary>
         /// Dispose.
         /// </summary>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 4 </since_tizen>
         protected override void Dispose(DisposeTypes type)
         {
             if (disposed)
@@ -78,6 +79,7 @@ namespace Tizen.NUI
         ///<summary>
         /// Event arguments that passed via Notify signal
         ///</summary>
+        /// <since_tizen> 3 </since_tizen>
         public class NotifyEventArgs : EventArgs
         {
             private PropertyNotification _propertyNotification;
@@ -85,7 +87,7 @@ namespace Tizen.NUI
             ///<summary>
             /// PropertyNotification - is the PropertyNotification handle that has the notification properties.
             ///</summary>
-            /// <since_tizen> 4 </since_tizen>
+            /// <since_tizen> 3 </since_tizen>
             public PropertyNotification PropertyNotification
             {
                 get
@@ -285,6 +287,7 @@ namespace Tizen.NUI
         /// Connects to this signal to be notified when the notification has occurred.
         /// </summary>
         /// <returns>A signal object to Connect() with</returns>
+        /// <since_tizen> 4 </since_tizen>
         public PropertyNotifySignal NotifySignal()
         {
             PropertyNotifySignal ret = new PropertyNotifySignal(NDalicPINVOKE.PropertyNotification_NotifySignal(swigCPtr), false);
@@ -295,7 +298,7 @@ namespace Tizen.NUI
         /// <summary>
         /// Enumeration for description of how to check condition.
         /// </summary>
-        /// <since_tizen> 4 </since_tizen>
+        /// <since_tizen> 3 </since_tizen>
         public enum NotifyMode
         {
             /// <summary>

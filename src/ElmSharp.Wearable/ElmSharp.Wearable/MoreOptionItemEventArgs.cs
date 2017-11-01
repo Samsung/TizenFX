@@ -22,11 +22,13 @@ namespace ElmSharp.Wearable
     /// The MoreOptionItemEventArgs is a event args class for MoreOptionItem.
     /// Inherits EventArgs
     /// </summary>
+    /// <since_tizen> preview </since_tizen>
     public class MoreOptionItemEventArgs : EventArgs
     {
         /// <summary>
         /// Sets or gets the more option item
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         public MoreOptionItem Item { get; set; }
     }
 }

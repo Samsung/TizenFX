@@ -25,7 +25,7 @@ namespace Tizen.Multimedia.Vision
     /// Represents the face recognition model interface.
     /// </summary>
     /// <feature>http://tizen.org/feature/vision.face_recognition</feature>
-    /// <since_tizen> 3 </since_tizen>
+    /// <since_tizen> 4 </since_tizen>
     public class FaceRecognitionModel : IDisposable
     {
         private IntPtr _handle = IntPtr.Zero;
@@ -35,7 +35,7 @@ namespace Tizen.Multimedia.Vision
         /// Initializes a new instance of the <see cref="FaceRecognitionModel"/> class.
         /// </summary>
         /// <exception cref="NotSupportedException">The feature is not supported.</exception>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 4 </since_tizen>
         public FaceRecognitionModel()
         {
             InteropModel.Create(out _handle).Validate("Failed to create FaceRecognitionModel");
@@ -57,7 +57,7 @@ namespace Tizen.Multimedia.Vision
         /// </exception>
         /// <exception cref="UnauthorizedAccessException">No permission to access the specified file.</exception>
         /// <seealso cref="Save(string)"/>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 4 </since_tizen>
         public FaceRecognitionModel(string modelPath)
         {
             if (modelPath == null)
@@ -81,7 +81,7 @@ namespace Tizen.Multimedia.Vision
         /// Gets labels that had been learned by the model.
         /// </summary>
         /// <exception cref="ObjectDisposedException">The <see cref="FaceRecognitionModel"/> has already been disposed of.</exception>
-        /// <since_tizen> 3</since_tizen>
+        /// <since_tizen> 4</since_tizen>
         public int[] Labels
         {
             get
@@ -115,7 +115,7 @@ namespace Tizen.Multimedia.Vision
         /// <exception cref="UnauthorizedAccessException">No permission to write to the specified path.</exception>
         /// <exception cref="ObjectDisposedException">The <see cref="FaceRecognitionModel"/> has already been disposed of.</exception>
         /// <exception cref="DirectoryNotFoundException">The directory for <paramref name="path"/> does not exist.</exception>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 4 </since_tizen>
         public void Save(string path)
         {
             if (path == null)
@@ -158,7 +158,7 @@ namespace Tizen.Multimedia.Vision
         ///     <paramref name="source"/> has already been dispose of.
         /// </exception>
         /// <seealso cref="Learn(FaceRecognitionConfiguration)"/>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 4 </since_tizen>
         public void Add(MediaVisionSource source, int label)
         {
             if (source == null)
@@ -184,7 +184,7 @@ namespace Tizen.Multimedia.Vision
         ///     <paramref name="source"/> has already been dispose of.
         /// </exception>
         /// <seealso cref="Learn(FaceRecognitionConfiguration)"/>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 4 </since_tizen>
         public void Add(MediaVisionSource source, int label, Rectangle area)
         {
             if (source == null)
@@ -203,7 +203,7 @@ namespace Tizen.Multimedia.Vision
         /// <returns>true if the examples are successfully removed; otherwise, false if there is no example labeled with the specified label.</returns>
         /// <seealso cref="Add(MediaVisionSource, int)"/>
         /// <seealso cref="Add(MediaVisionSource, int, Rectangle)"/>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 4 </since_tizen>
         public bool Remove(int label)
         {
             var ret = InteropModel.Remove(Handle, ref label);
@@ -221,7 +221,7 @@ namespace Tizen.Multimedia.Vision
         /// Removes all face examples.
         /// </summary>
         /// <exception cref="ObjectDisposedException">The <see cref="FaceRecognitionModel"/> has already been disposed of.</exception>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 4 </since_tizen>
         public void Reset()
         {
             InteropModel.Reset(Handle).Validate("Failed to reset image example");
@@ -241,7 +241,7 @@ namespace Tizen.Multimedia.Vision
         /// <exception cref="InvalidOperationException">No examples added.</exception>
         /// <seealso cref="Add(MediaVisionSource, int)"/>
         /// <seealso cref="Add(MediaVisionSource, int, Rectangle)"/>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 4 </since_tizen>
         public void Learn()
         {
             Learn(null);
@@ -265,7 +265,7 @@ namespace Tizen.Multimedia.Vision
         /// <exception cref="InvalidOperationException">No examples added.</exception>
         /// <seealso cref="Add(MediaVisionSource, int)"/>
         /// <seealso cref="Add(MediaVisionSource, int, Rectangle)"/>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 4 </since_tizen>
         public void Learn(FaceRecognitionConfiguration config)
         {
             InteropModel.Learn(EngineConfiguration.GetHandle(config), Handle).
@@ -275,6 +275,7 @@ namespace Tizen.Multimedia.Vision
         /// <summary>
         /// Releases all the resources used by the <see cref="FaceRecognitionModel"/> object.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         public void Dispose()
         {
             Dispose(true);
@@ -287,6 +288,7 @@ namespace Tizen.Multimedia.Vision
         /// <param name="disposing">
         /// true to release both managed and unmanaged resources; otherwise false to release only unmanaged resources.
         /// </param>
+        /// <since_tizen> 4 </since_tizen>
         protected virtual void Dispose(bool disposing)
         {
             if (_disposed)

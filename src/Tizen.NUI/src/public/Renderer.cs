@@ -20,6 +20,7 @@ namespace Tizen.NUI
     /// <summary>
     /// Renderer is a handle to an object used to show content by combining a Geometry, a TextureSet and a shader.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public class Renderer : Animatable
     {
         private global::System.Runtime.InteropServices.HandleRef swigCPtr;

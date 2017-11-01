@@ -22,6 +22,7 @@ namespace Tizen.Multimedia
     /// <summary>
     /// Provides the ability to control the sound stream.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public class AudioStreamPolicy : IDisposable
     {
         private AudioStreamPolicyHandle _handle;
@@ -38,6 +39,7 @@ namespace Tizen.Multimedia
         /// </remarks>
         /// <param name="streamType">The type of the sound stream for which the policy needs to be created.</param>
         /// <exception cref="ArgumentException"><paramref name="streamType"/> is invalid.</exception>
+        /// <since_tizen> 3 </since_tizen>
         public AudioStreamPolicy(AudioStreamType streamType)
         {
             ValidationUtil.ValidateEnum(typeof(AudioStreamType), streamType, nameof(streamType));
@@ -62,6 +64,7 @@ namespace Tizen.Multimedia
         /// <remarks>
         /// The event is raised in the internal thread.
         /// </remarks>
+        /// <since_tizen> 4 </since_tizen>
         public event EventHandler<AudioStreamPolicyFocusStateChangedEventArgs> FocusStateChanged;
 
         /// <summary>
@@ -73,6 +76,7 @@ namespace Tizen.Multimedia
         /// </remarks>
         /// <value>The <see cref="AudioVolumeType"/> of the policy instance.</value>
         /// <exception cref="ObjectDisposedException">The <see cref="AudioStreamPolicy"/> has already been disposed of.</exception>
+        /// <since_tizen> 3 </since_tizen>
         public AudioVolumeType VolumeType
         {
             get
@@ -103,6 +107,7 @@ namespace Tizen.Multimedia
         /// </summary>
         /// <value>The state of focus for playback.</value>
         /// <exception cref="ObjectDisposedException">The <see cref="AudioStreamPolicy"/> has already been disposed of.</exception>
+        /// <since_tizen> 3 </since_tizen>
         public AudioStreamFocusState PlaybackFocusState => GetFocusState(true);
 
         /// <summary>
@@ -110,6 +115,7 @@ namespace Tizen.Multimedia
         /// </summary>
         /// <value>The state of focus for recording.</value>
         /// <exception cref="ObjectDisposedException">The <see cref="AudioStreamPolicy"/> has already been disposed of.</exception>
+        /// <since_tizen> 3 </since_tizen>
         public AudioStreamFocusState RecordingFocusState => GetFocusState(false);
 
         /// <summary>
@@ -124,6 +130,7 @@ namespace Tizen.Multimedia
         /// disable the focus reacquisition.
         /// </remarks>
         /// <exception cref="ObjectDisposedException">The <see cref="AudioStreamPolicy"/> has already been disposed of.</exception>
+        /// <since_tizen> 3 </since_tizen>
         public bool FocusReacquisitionEnabled
         {
             get
@@ -167,6 +174,7 @@ namespace Tizen.Multimedia
         /// <exception cref="InvalidOperationException">The focus has already been acquired.</exception>
         /// <exception cref="AudioPolicyException">Called in <see cref="FocusStateChanged"/> raised by releasing focus.</exception>
         /// <exception cref="ObjectDisposedException">The <see cref="AudioStreamPolicy"/> has already been disposed of.</exception>
+        /// <since_tizen> 3 </since_tizen>
         public void AcquireFocus(AudioStreamFocusOptions options, AudioStreamBehaviors behaviors, string extraInfo)
         {
             if (options == 0)
@@ -202,6 +210,7 @@ namespace Tizen.Multimedia
         /// </exception>
         /// <exception cref="InvalidOperationException">The focus has not been acquired.</exception>
         /// <exception cref="ObjectDisposedException">The <see cref="AudioStreamPolicy"/> has already been disposed of.</exception>
+        /// <since_tizen> 3 </since_tizen>
         public void ReleaseFocus(AudioStreamFocusOptions options, AudioStreamBehaviors behaviors, string extraInfo)
         {
             if (options == 0)
@@ -232,6 +241,7 @@ namespace Tizen.Multimedia
         /// <seealso cref="AddDeviceForStreamRouting(AudioDevice)"/>
         /// <seealso cref="RemoveDeviceForStreamRouting(AudioDevice)"/>
         /// <exception cref="ObjectDisposedException">The <see cref="AudioStreamPolicy"/> has already been disposed of.</exception>
+        /// <since_tizen> 3 </since_tizen>
         public void ApplyStreamRouting()
         {
             Interop.AudioStreamPolicy.ApplyStreamRouting(Handle).Validate("Failed to apply stream routing");
@@ -254,6 +264,7 @@ namespace Tizen.Multimedia
         /// <exception cref="ObjectDisposedException">The <see cref="AudioStreamPolicy"/> has already been disposed of.</exception>
         /// <seealso cref="AudioManager.GetConnectedDevices()"/>
         /// <seealso cref="ApplyStreamRouting"/>
+        /// <since_tizen> 3 </since_tizen>
         public void AddDeviceForStreamRouting(AudioDevice device)
         {
             if (device == null)
@@ -282,6 +293,7 @@ namespace Tizen.Multimedia
         /// <exception cref="ArgumentNullException"><paramref name="device"/> is null.</exception>
         /// <exception cref="ObjectDisposedException">The <see cref="AudioStreamPolicy"/> has already been disposed of.</exception>
         /// <seealso cref="AudioManager.GetConnectedDevices()"/>
+        /// <since_tizen> 3 </since_tizen>
         public void RemoveDeviceForStreamRouting(AudioDevice device)
         {
             if (device == null)
@@ -296,6 +308,7 @@ namespace Tizen.Multimedia
         /// <summary>
         /// Releases all resources used by the <see cref="AudioStreamPolicy"/>.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public void Dispose()
         {
             Dispose(true);
@@ -305,6 +318,7 @@ namespace Tizen.Multimedia
         /// Releases the unmanaged resources used by the <see cref="AudioStreamPolicy"/>.
         /// </summary>
         /// <param name="disposing">true to release both managed and unmanaged resources; false to release only unmanaged resources.</param>
+        /// <since_tizen> 3 </since_tizen>
         protected virtual void Dispose(bool disposing)
         {
             if (!_disposed)
@@ -327,6 +341,7 @@ namespace Tizen.Multimedia
         /// <summary>
         /// Occurs when the focus state for stream types is changed regardless of the process.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public static event EventHandler<StreamFocusStateChangedEventArgs> StreamFocusStateChanged
         {
             add

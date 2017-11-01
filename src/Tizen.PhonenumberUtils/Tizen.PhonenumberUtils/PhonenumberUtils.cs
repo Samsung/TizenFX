@@ -21,7 +21,7 @@ namespace Tizen.PhonenumberUtils
     /// <summary>
     /// The PhonenumberUtils class provides methods for parsing, formatting and normalizing phone numbers.
     /// </summary>
-    /// <since_tizen> 4 </since_tizen>
+    /// <since_tizen> 3 </since_tizen>
     public class PhonenumberUtils : IDisposable
     {
         private bool disposed = false;
@@ -32,7 +32,7 @@ namespace Tizen.PhonenumberUtils
         /// <feature>http://tizen.org/feature/network.telephony</feature>
         /// <exception cref="InvalidOperationException">Thrown when method failed due to invalid operation</exception>
         /// <exception cref="NotSupportedException">Thrown when feature is not supported</exception>
-        /// <since_tizen> 4 </since_tizen>
+        /// <since_tizen> 3 </since_tizen>
         public PhonenumberUtils()
         {
             int ret;
@@ -58,7 +58,7 @@ namespace Tizen.PhonenumberUtils
         /// Releases all resources used by the PhonenumberUtils.
         /// It should be called after finished using of the object.
         /// </summary>
-        /// <since_tizen> 4 </since_tizen>
+        /// <since_tizen> 3 </since_tizen>
         public void Dispose()
         {
             Dispose(true);
@@ -92,7 +92,7 @@ namespace Tizen.PhonenumberUtils
         /// <exception cref="NotSupportedException">Thrown when feature is not supported</exception>
         /// <exception cref="ArgumentException">Thrown when input coordinates are invalid</exception>
         /// <exception cref="OutOfMemoryException">Thrown when failed due to out of memory</exception>
-        /// <since_tizen> 4 </since_tizen>
+        /// <since_tizen> 3 </since_tizen>
         public string GetLocationFromNumber(string number, Region region, Language language)
         {
             int ret;
@@ -119,7 +119,7 @@ namespace Tizen.PhonenumberUtils
         /// <exception cref="NotSupportedException">Thrown when feature is not supported</exception>
         /// <exception cref="ArgumentException">Thrown when input coordinates are invalid</exception>
         /// <exception cref="OutOfMemoryException">Thrown when failed due to out of memory</exception>
-        /// <since_tizen> 4 </since_tizen>
+        /// <since_tizen> 3 </since_tizen>
         public string GetFormattedNumber(string number, Region region)
         {
             int ret;
@@ -151,7 +151,7 @@ namespace Tizen.PhonenumberUtils
         /// Normalized number starts with plus('+') and country code, and excludes the separators such as dash or space.
         /// It is a format of E.164 standard including the country code based on current network.
         /// </remarks>
-        /// <since_tizen> 4 </since_tizen>
+        /// <since_tizen> 3 </since_tizen>
         public string GetNormalizedNumber(string number)
         {
             int ret;

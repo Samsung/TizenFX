@@ -31,6 +31,7 @@ namespace Tizen.Multimedia.MediaCodec
     /// This enumeration has a <see cref="FlagsAttribute"/> attribute that allows a bitwise combination of its member values.
     /// </para>
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     [Flags]
     public enum MediaCodecTypes
     {

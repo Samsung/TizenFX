@@ -25,6 +25,7 @@ namespace Tizen.NUI.UIComponents
     /// The ScrollBar is a UI component that can be linked to the scrollable objects
     /// indicating the current scroll position of the scrollable object.<br />
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public class ScrollBar : View
     {
         private global::System.Runtime.InteropServices.HandleRef swigCPtr;
@@ -42,6 +43,7 @@ namespace Tizen.NUI.UIComponents
         /// <summary>
         /// To dispose the ScrollBar instance.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         protected override void Dispose(DisposeTypes type)
         {
             if (disposed)
@@ -86,6 +88,7 @@ namespace Tizen.NUI.UIComponents
         /// <summary>
         /// Event arguments that passed via the PanFinished event.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public class PanFinishedEventArgs : EventArgs
         {
         }
@@ -93,6 +96,7 @@ namespace Tizen.NUI.UIComponents
         /// <summary>
         /// Event arguments that passed via the ScrollPositionIntervalReached event.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public class ScrollIntervalEventArgs : EventArgs
         {
             private float _currentScrollPosition;
@@ -165,7 +169,7 @@ namespace Tizen.NUI.UIComponents
         /// <summary>
         /// This is the event emitted when the current scroll position of the scrollable content.
         /// </summary>
-        /// <since_tizen> 4 </since_tizen>
+        /// <since_tizen> 3 </since_tizen>
         public event EventHandler<ScrollIntervalEventArgs> ScrollInterval
         {
             add

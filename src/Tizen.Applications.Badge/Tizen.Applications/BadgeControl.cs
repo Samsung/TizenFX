@@ -21,6 +21,7 @@ namespace Tizen.Applications
     /// <summary>
     /// The class for badge operation.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public static class BadgeControl
     {
         private static event EventHandler<BadgeEventArgs> s_changed;
@@ -130,7 +131,7 @@ namespace Tizen.Applications
         /// <summary>
         /// Removes the badge information.
         /// </summary>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 4 </since_tizen>
         /// <param name="badge">The Badge object.</param>
         /// <feature>http://tizen.org/feature/badge</feature>
         /// <privilege>http://tizen.org/privilege/notification</privilege>
@@ -151,7 +152,7 @@ namespace Tizen.Applications
         /// <summary>
         /// Adds the badge information.
         /// </summary>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 4 </since_tizen>
         /// <param name="badge">The Badge object.</param>
         /// <feature>http://tizen.org/feature/badge</feature>
         /// <privilege>http://tizen.org/privilege/notification</privilege>
@@ -186,7 +187,7 @@ namespace Tizen.Applications
         /// <summary>
         /// Updates the badge information.
         /// </summary>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 4 </since_tizen>
         /// <param name="badge">The Badge object.</param>
         /// <feature>http://tizen.org/feature/badge</feature>
         /// <privilege>http://tizen.org/privilege/notification</privilege>

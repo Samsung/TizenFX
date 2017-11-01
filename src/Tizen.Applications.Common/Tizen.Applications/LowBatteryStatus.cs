@@ -19,6 +19,7 @@ namespace Tizen.Applications
     /// <summary>
     /// Enumeration for the low battery status.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public enum LowBatteryStatus
     {
         /// <summary>

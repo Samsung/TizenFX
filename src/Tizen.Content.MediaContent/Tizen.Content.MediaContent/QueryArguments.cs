@@ -27,6 +27,7 @@ namespace Tizen.Content.MediaContent
     /// A filter is required for filtering information associated with Album, Folder, Tag, Bookmark, Playlist,
     /// and MediaInfo on the basis of details like limit, order, and condition.
     /// </remarks>
+    /// <since_tizen> 4 </since_tizen>
     public class QueryArguments
     {
         private string _filter;
@@ -70,6 +71,7 @@ namespace Tizen.Content.MediaContent
         /// <seealso cref="TagColumns"/>
         /// <seealso cref="BookmarkColumns"/>
         /// <seealso cref="FaceInfoColumns"/>
+        /// <since_tizen> 4 </since_tizen>
         public string FilterExpression
         {
             get => _filter;
@@ -92,6 +94,7 @@ namespace Tizen.Content.MediaContent
         /// </summary>
         /// <value>The storage ID to restrict storage to search, or null for all storages.</value>
         /// <exception cref="ArgumentException"><paramref name="value"/> is a zero-length string, contains only white space.</exception>
+        /// <since_tizen> 4 </since_tizen>
         public string StorageId
         {
             get => _storageId;
@@ -168,6 +171,7 @@ namespace Tizen.Content.MediaContent
     /// A filter is required for filtering information associated with Album, Folder, Tag, Bookmark, Playlist,
     /// and MediaInfo.
     /// </remarks>
+    /// <since_tizen> 4 </since_tizen>
     public class SelectArguments : QueryArguments
     {
         private int _startRowIndex;
@@ -177,6 +181,7 @@ namespace Tizen.Content.MediaContent
         /// </summary>
         /// <value>An integer value that indicates the starting row position of a query.</value>
         /// <exception cref="ArgumentOutOfRangeException"><paramref name="value"/> is less than zero.<br/></exception>
+        /// <since_tizen> 4 </since_tizen>
         public int StartRowIndex
         {
             get => _startRowIndex;
@@ -198,6 +203,7 @@ namespace Tizen.Content.MediaContent
         /// </summary>
         /// <value>An integer value that indicates the limit of rows of the result.</value>
         /// <exception cref="ArgumentOutOfRangeException"><paramref name="value"/> is less than zero.</exception>
+        /// <since_tizen> 4 </since_tizen>
         public int TotalRowCount
         {
             get => _totalRowCount;
@@ -230,6 +236,7 @@ namespace Tizen.Content.MediaContent
         /// <seealso cref="TagColumns"/>
         /// <seealso cref="BookmarkColumns"/>
         /// <seealso cref="FaceInfoColumns"/>
+        /// <since_tizen> 4 </since_tizen>
         public string SortOrder
         {
             get => _sortOrder;
@@ -273,6 +280,7 @@ namespace Tizen.Content.MediaContent
     /// A filter is required for filtering information associated with Album, Folder, Tag, Bookmark, Playlist,
     /// and MediaInfo.
     /// </remarks>
+    /// <since_tizen> 4 </since_tizen>
     public class CountArguments : QueryArguments
     {
     }

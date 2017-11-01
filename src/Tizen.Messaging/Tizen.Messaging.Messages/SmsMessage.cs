@@ -22,11 +22,13 @@ namespace Tizen.Messaging.Messages
     /// <summary>
     /// This class represents short text messages.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public class SmsMessage : Message
     {
         /// <summary>
         /// Creates a short text message.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public SmsMessage() : base(MessageType.Sms)
         {
         }
@@ -38,6 +40,7 @@ namespace Tizen.Messaging.Messages
         /// <summary>
         /// The collection of normal message recipients.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public ICollection<MessagesAddress> To
         {
             get

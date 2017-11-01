@@ -22,5 +22,6 @@ namespace Tizen.Applications
     /// <param name="launchRequest">The AppControl of the launch request that has been sent</param>
     /// <param name="replyRequest">The AppControl in which the results of the callee are contained</param>
     /// <param name="result">The result of the launch request</param>
+    /// <since_tizen> 3 </since_tizen>
     public delegate void AppControlReplyCallback(AppControl launchRequest, AppControl replyRequest, AppControlReplyResult result);
 }

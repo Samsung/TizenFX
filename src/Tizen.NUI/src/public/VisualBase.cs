@@ -26,6 +26,7 @@ namespace Tizen.NUI
     /// Visuals reuse geometry, shader etc. across controls. They ensure that the renderer and texture sets exist only when control is on window.<br />
     /// Each visual also responds to actor size and color change, and provides clipping at the renderer level.<br />
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public class VisualBase : BaseHandle
     {
         private global::System.Runtime.InteropServices.HandleRef swigCPtr;
@@ -201,6 +202,7 @@ namespace Tizen.NUI
         /// <summary>
         /// Creates the property map representing this visual.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         [Obsolete("Please be caution! this will be readonly.")]
         public PropertyMap Creation
         {

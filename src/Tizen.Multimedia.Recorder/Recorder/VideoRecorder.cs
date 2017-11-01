@@ -87,6 +87,7 @@ namespace Tizen.Multimedia
         /// <seealso cref="RecorderExtensions.GetSupportedFileFormats(RecorderVideoCodec)"/>
         /// <seealso cref="SetFormatAndCodec(RecorderVideoCodec, RecorderFileFormat)"/>
         /// <seealso cref="SetFormatAndCodec(RecorderVideoCodec, RecorderAudioCodec, RecorderFileFormat)"/>
+        /// <since_tizen> 4 </since_tizen>
         public VideoRecorder(Camera camera, RecorderVideoCodec videoCodec, RecorderFileFormat fileFormat) :
             this(camera, videoCodec, RecorderAudioCodec.None, fileFormat)
         {
@@ -136,6 +137,7 @@ namespace Tizen.Multimedia
         /// <seealso cref="RecorderExtensions.GetSupportedFileFormats(RecorderVideoCodec)"/>
         /// <seealso cref="SetFormatAndCodec(RecorderVideoCodec, RecorderFileFormat)"/>
         /// <seealso cref="SetFormatAndCodec(RecorderVideoCodec, RecorderAudioCodec, RecorderFileFormat)"/>
+        /// <since_tizen> 4 </since_tizen>
         public VideoRecorder(Camera camera, RecorderVideoCodec videoCodec,
             RecorderAudioCodec audioCodec, RecorderFileFormat fileFormat) : base(CreateHandle(camera))
         {
@@ -162,6 +164,7 @@ namespace Tizen.Multimedia
         /// <seealso cref="RecorderExtensions.GetSupportedFileFormats(RecorderVideoCodec)"/>
         /// <seealso cref="SetFormatAndCodec(RecorderVideoCodec, RecorderAudioCodec, RecorderFileFormat)"/>
         /// <seealso cref="Recorder.Start(string)"/>
+        /// <since_tizen> 4 </since_tizen>
         public void SetFormatAndCodec(RecorderVideoCodec videoCodec, RecorderFileFormat fileFormat)
         {
             SetFormatAndCodec(videoCodec, RecorderAudioCodec.None, fileFormat);
@@ -196,6 +199,7 @@ namespace Tizen.Multimedia
         /// <seealso cref="RecorderExtensions.GetSupportedFileFormats(RecorderVideoCodec)"/>
         /// <seealso cref="SetFormatAndCodec(RecorderVideoCodec, RecorderFileFormat)"/>
         /// <seealso cref="Recorder.Start(string)"/>
+        /// <since_tizen> 4 </since_tizen>
         public void SetFormatAndCodec(RecorderVideoCodec videoCodec, RecorderAudioCodec audioCodec, RecorderFileFormat fileFormat)
         {
             ThrowIfCodecAndFormatNotValid(videoCodec, audioCodec, fileFormat);
@@ -212,6 +216,7 @@ namespace Tizen.Multimedia
         /// <summary>
         /// Gets the audio codec for encoding an audio stream.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         public RecorderVideoCodec VideoCodec
         {
             get => _videoCodec;
@@ -240,6 +245,7 @@ namespace Tizen.Multimedia
         /// <exception cref="ArgumentOutOfRangeException">The <paramref name="value"/> is less than or equal to 0.</exception>
         /// <exception cref="InvalidOperationException">The recorder is not in the valid state.</exception>
         /// <exception cref="ObjectDisposedException">The recorder already has been disposed of.</exception>
+        /// <since_tizen> 4 </since_tizen>
         public double VideoMotionRate
         {
             get
@@ -270,6 +276,7 @@ namespace Tizen.Multimedia
         /// <value>A <see cref="Rotation"/> that specifies the type of orientation.</value>
         /// <exception cref="ArgumentException"><paramref name="value"/> is not valid.</exception>
         /// <exception cref="ObjectDisposedException">The recorder already has been disposed of.</exception>
+        /// <since_tizen> 4 </since_tizen>
         public Rotation VideoOrientationTag
         {
             get
@@ -299,6 +306,7 @@ namespace Tizen.Multimedia
         /// <exception cref="InvalidOperationException">The recorder is not in the valid state.</exception>
         /// <exception cref="ObjectDisposedException">The recorder already has been disposed of.</exception>
         /// <seealso cref="VideoRecorder.GetSupportedVideoResolutions(CameraDevice)"/>
+        /// <since_tizen> 4 </since_tizen>
         public Size VideoResolution
         {
             get
@@ -339,6 +347,7 @@ namespace Tizen.Multimedia
         /// <exception cref="ArgumentOutOfRangeException"><paramref name="value"/> is less than or equal to zero.</exception>
         /// <exception cref="InvalidOperationException">The recorder is not in the valid state.</exception>
         /// <exception cref="ObjectDisposedException">The recorder already has been disposed of.</exception>
+        /// <since_tizen> 4 </since_tizen>
         public int VideoBitRate
         {
             get

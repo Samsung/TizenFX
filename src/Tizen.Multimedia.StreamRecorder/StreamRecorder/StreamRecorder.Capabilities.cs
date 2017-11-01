@@ -93,6 +93,7 @@ namespace Tizen.Multimedia
         /// Gets the file formats that the current device supports.
         /// </summary>
         /// <returns>An IEnumerable of <see cref="RecorderFileFormat"/> representing the supported file formats.</returns>
+        /// <since_tizen> 4 </since_tizen>
         public IEnumerable<RecorderFileFormat> GetSupportedFileFormats() => _fileFormats;
 
         private IEnumerable<RecorderAudioCodec> _audioCodecs;
@@ -101,6 +102,7 @@ namespace Tizen.Multimedia
         /// Gets the audio codecs that the current device supports.
         /// </summary>
         /// <returns>An IEnumerable of <see cref="RecorderAudioCodec"/> representing the supported audio codecs.</returns>
+        /// <since_tizen> 4 </since_tizen>
         public IEnumerable<RecorderAudioCodec> GetSupportedAudioCodecs() => _audioCodecs;
 
         private IEnumerable<RecorderVideoCodec> _videoCodecs;
@@ -109,6 +111,7 @@ namespace Tizen.Multimedia
         /// Gets the video codecs that the current device supports.
         /// </summary>
         /// <returns>An IEnumerable of <see cref="RecorderVideoCodec"/> representing the supported video codecs.</returns>
+        /// <since_tizen> 4 </since_tizen>
         public IEnumerable<RecorderVideoCodec> GetSupportedVideoCodecs() => _videoCodecs;
 
         private IEnumerable<Size> _videoResolutions;
@@ -117,6 +120,7 @@ namespace Tizen.Multimedia
         /// Gets the video resolutions that the current device supports.
         /// </summary>
         /// <returns>An IEnumerable of <see cref="Size"/> representing the supported resolutions.</returns>
+        /// <since_tizen> 4 </since_tizen>
         public IEnumerable<Size> GetSupportedVideoResolutions() => _videoResolutions;
 
         internal void ValidateFileFormat(RecorderFileFormat format)

@@ -21,12 +21,14 @@ namespace Tizen.Multimedia
     /// <summary>
     /// Provides data for the <see cref="Player.PlaybackInterrupted"/> event.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public class PlaybackInterruptedEventArgs : EventArgs
     {
         /// <summary>
         /// Initializes a new instance of the PlaybackInterruptedEventArgs class.
         /// </summary>
         /// <param name="reason">The enum value indicating the reason.</param>
+        /// <since_tizen> 3 </since_tizen>
         public PlaybackInterruptedEventArgs(PlaybackInterruptionReason reason)
         {
             Reason = reason;
@@ -35,12 +37,14 @@ namespace Tizen.Multimedia
         /// <summary>
         /// Gets the reason.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public PlaybackInterruptionReason Reason { get; }
 
         /// <summary>
         /// Returns a string that represents the current object.
         /// </summary>
         /// <returns>A string that represents the current object.</returns>
+        /// <since_tizen> 3 </since_tizen>
         public override string ToString()
         {
             return $"Reason : { Reason.ToString() }";

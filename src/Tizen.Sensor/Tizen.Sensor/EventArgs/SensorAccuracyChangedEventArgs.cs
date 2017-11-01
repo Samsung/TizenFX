@@ -21,6 +21,7 @@ namespace Tizen.Sensor
     /// <summary>
     /// The sensor accuracy changed event arguments class contains the parameters to be returned through the accuracy callback.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public class SensorAccuracyChangedEventArgs : EventArgs
     {
         internal SensorAccuracyChangedEventArgs(TimeSpan timespan, SensorDataAccuracy accuracy)

@@ -21,12 +21,14 @@ namespace Tizen.System
     /// <summary>
     /// RuntimeFeatureStatusChangedEventArgs is an extended EventArgs class. This class contains event arguments for runtime event listeners.
     /// </summary>
+    /// <since_tizen> 4 </since_tizen>
     public class RuntimeFeatureStatusChangedEventArgs : EventArgs
     {
         /// <summary>
         /// The key indicating the runtime system preference which was changed.
         /// It includes the prefix "http://" though you don't use for registering callback.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         public String Key { get; internal set; }
     }
 }

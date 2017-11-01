@@ -21,6 +21,7 @@ namespace Tizen.Messaging.Messages
     /// <summary>
     /// An extended EventArgs class, which contains a received message.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public class MessageReceivedEventArgs : EventArgs
     {
         private Message _message;
@@ -33,6 +34,7 @@ namespace Tizen.Messaging.Messages
         /// <summary>
         /// The received message.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public Message ReceivedMessage
         {
             get

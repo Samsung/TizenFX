@@ -21,6 +21,7 @@ namespace Tizen.System.Usb
     /// <summary>
     /// USB Control Endpoint class.
     /// </summary>
+    /// <since_tizen> 4 </since_tizen>
     public class UsbControlEndpoint : UsbEndpoint
     {
         private readonly UsbDevice _device;
@@ -33,6 +34,7 @@ namespace Tizen.System.Usb
         /// <summary>
         /// Gets number of this endpoint.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         public new int Id
         {
             get
@@ -44,6 +46,7 @@ namespace Tizen.System.Usb
         /// <summary>
         /// Gets direction of this endpoint.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         public new EndpointDirection Direction
         {
             get
@@ -55,6 +58,7 @@ namespace Tizen.System.Usb
         /// <summary>
         /// Gets max packet size of given endpoint.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         public new int MaxPacketSize
         {
             get
@@ -80,6 +84,7 @@ namespace Tizen.System.Usb
         /// <returns>Transferred Number of transferred bytes.</returns>
         /// <exception cref="InvalidOperationException">Throws exception if device is disconnected or not opened for operation.</exception>
         /// <exception cref="TimeoutException">Throws exception if transfer timed-out.</exception>
+        /// <since_tizen> 4 </since_tizen>
         public int Transfer(byte requestType, byte request, ushort value, ushort index, byte[] data, ushort length, uint timeout)
         {
             _device.ThrowIfDisposed();

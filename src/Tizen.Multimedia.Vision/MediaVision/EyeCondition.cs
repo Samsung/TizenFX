@@ -19,7 +19,7 @@ namespace Tizen.Multimedia.Vision
     /// <summary>
     /// Specifies the eyes state types.
     /// </summary>
-    /// <since_tizen> 3 </since_tizen>
+    /// <since_tizen> 4 </since_tizen>
     public enum EyeCondition
     {
         /// <summary>

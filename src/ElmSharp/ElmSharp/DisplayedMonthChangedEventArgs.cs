@@ -23,16 +23,19 @@ namespace ElmSharp
     /// The DisplayedMonthChangedEvent in Calendar contain
     /// DisplayedMonthChangedEventArgs as a parameter.
     /// </summary>
+    /// <since_tizen> preview </since_tizen>
     public class DisplayedMonthChangedEventArgs : EventArgs
     {
         /// <summary>
         /// Gets the OldMonth property of the given DisplayedMonthChangedEventArgs.
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         public int OldMonth { get; private set; }
 
         /// <summary>
         /// Gets the NewMonth property of the given DisplayedMonthChangedEventArgs.
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         public int NewMonth { get; private set; }
 
         /// <summary>
@@ -44,6 +47,7 @@ namespace ElmSharp
         /// <param name="newMonth">
         /// new month of date when DisplayedMonthChangedEvent triggered.
         /// </param>
+        /// <since_tizen> preview </since_tizen>
         public DisplayedMonthChangedEventArgs(int oldMonth, int newMonth)
         {
             this.OldMonth = oldMonth;

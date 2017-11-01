@@ -25,6 +25,7 @@ namespace Tizen.Telephony
     /// The Call APIs allow you to get the voice and video call states.
     /// It provides the list of CallHandle which can be used to get the information about call related actions.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public class Call
     {
         internal IntPtr _handle;

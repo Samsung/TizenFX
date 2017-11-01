@@ -19,6 +19,7 @@ namespace Tizen.Multimedia
     /// <summary>
     /// Specifies the audio codec.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public enum ToneType
     {
         /// <summary>
@@ -116,6 +117,7 @@ namespace Tizen.Multimedia
         /// <summary>
         /// Call supervisory tone, Congestion: CEPT, JAPAN: 425Hz, 200ms ON, 200ms OFF.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         SupCongestion,
         /// <summary>
         /// Call supervisory tone, Congestion: ANSI (IS-95): 480Hz+620Hz, 250ms ON, 250ms OFF.
@@ -132,6 +134,7 @@ namespace Tizen.Multimedia
         /// <summary>
         /// Call supervisory tone, Radio path not available: 425Hz, 200ms ON, 200 OFF 3 bursts.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         SupRadioNotAvailable,
         /// <summary>
         /// Call supervisory tone, Error/Special info: 950Hz+1400Hz+1800Hz, 330ms ON, 1s OFF.
@@ -232,6 +235,7 @@ namespace Tizen.Multimedia
         /// <summary>
         /// CDMA Network Callwaiting tone: 440Hz 300ms ON.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         CdmaNetworkCallWaiting,
         /// <summary>
         /// CDMA PIP tone: 480Hz 100ms ON, 100ms OFF repeated for 4 times.
@@ -408,6 +412,7 @@ namespace Tizen.Multimedia
         /// <summary>
         ///CDMA Alert Auto Redial tone: {1245Hz 62ms ON, 659Hz 62ms ON} 3 times, 1245 62ms ON.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         CdmaAlertAutoRedialLite,
         /// <summary>
         /// CDMA One Min Beep tone: 1150Hz+770Hz 400ms ON.
@@ -440,6 +445,7 @@ namespace Tizen.Multimedia
         /// <summary>
         /// CDMA CALLDROP LITE tone: 1480Hz 125ms, 1397Hz 125ms, 784Hz 125ms.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         CdmaCallDropLite,
         /// <summary>
         /// CDMA_NETWORK_BUSY_ONE_SHOT tone: 425Hz 500ms ON, 500ms OFF.

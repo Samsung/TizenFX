@@ -21,101 +21,121 @@ namespace Tizen.Common
     /// <summary>
     /// Structure that represents a color as RGBA.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public struct Color : IEquatable<Color>
     {
         /// <summary>
         /// Empty color instance. All components are 0.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public static readonly Color Empty = FromRgba(0, 0, 0, 0);
 
         /// <summary>
         /// Transparent color instance. All components are 0.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public static readonly Color Transparent = FromRgba(0, 0, 0, 0);
 
         /// <summary>
         /// Aqua color instance. Its RGB value is (0, 255, 255).
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public static readonly Color Aqua = FromRgb(0, 255, 255);
 
         /// <summary>
         /// Black color instance. Its RGB value is (0, 0, 0).
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public static readonly Color Black = FromRgb(0, 0, 0);
 
         /// <summary>
         /// Blue color instance. Its RGB value is (0, 0, 255).
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public static readonly Color Blue = FromRgb(0, 0, 255);
 
         /// <summary>
         /// Fuchsia color instance. Its RGB value is (255, 0, 255).
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public static readonly Color Fuchsia = FromRgb(255, 0, 255);
 
         /// <summary>
         /// Gray color instance. Its RGB value is (128, 128, 128).
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public static readonly Color Gray = FromRgb(128, 128, 128);
 
         /// <summary>
         /// Green color instance. Its RGB value is (0, 128, 0).
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public static readonly Color Green = FromRgb(0, 128, 0);
 
         /// <summary>
         /// Lime color instance. Its RGB value is (0, 255, 0).
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public static readonly Color Lime = FromRgb(0, 255, 0);
 
         /// <summary>
         /// Maroon color instance. Its RGB value is (128, 0, 0).
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public static readonly Color Maroon = FromRgb(128, 0, 0);
 
         /// <summary>
         /// Navy color instance. Its RGB value is (0, 0, 128).
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public static readonly Color Navy = FromRgb(0, 0, 128);
 
         /// <summary>
         /// Olive color instance. Its RGB value is (128, 128, 0).
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public static readonly Color Olive = FromRgb(128, 128, 0);
 
         /// <summary>
         /// Purple color instance. Its RGB value is (128, 0, 128).
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public static readonly Color Purple = FromRgb(128, 0, 128);
 
         /// <summary>
         /// Pink color instance. Its RGB value is (255, 102, 255).
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public static readonly Color Pink = FromRgb(255, 102, 255);
 
         /// <summary>
         /// Red color instance. Its RGB value is (255, 0, 0).
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public static readonly Color Red = FromRgb(255, 0, 0);
 
         /// <summary>
         /// Silver color instance. Its RGB value is (192, 192, 192).
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public static readonly Color Silver = FromRgb(192, 192, 192);
 
         /// <summary>
         /// Teal color instance. Its RGB value is (0, 128, 128).
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public static readonly Color Teal = FromRgb(0, 128, 128);
 
         /// <summary>
         /// White color instance. Its RGB value is (255, 255, 255).
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public static readonly Color White = FromRgb(255, 255, 255);
 
         /// <summary>
         /// Yellow color instance. Its RGB value is (255, 255, 0).
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public static readonly Color Yellow = FromRgb(255, 255, 0);
 
         private int _value;
@@ -127,6 +147,7 @@ namespace Tizen.Common
         /// <param name="g">Green (0 ~ 255)</param>
         /// <param name="b">Blue (0 ~ 255)</param>
         /// <param name="a">Alpha (0 ~ 255)</param>
+        /// <since_tizen> 3 </since_tizen>
         public Color(int r, int g, int b, int a)
         {
             if (r > 255 || r < 0)
@@ -147,6 +168,7 @@ namespace Tizen.Common
         /// <param name="r">Red (0 ~ 255)</param>
         /// <param name="g">Green (0 ~ 255)</param>
         /// <param name="b">Blue (0 ~ 255)</param>
+        /// <since_tizen> 3 </since_tizen>
         public Color(int r, int g, int b) : this(r, g, b, 255)
         {
         }
@@ -156,6 +178,7 @@ namespace Tizen.Common
         /// <summary>
         /// Gets the Red component of the color.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public int R
         {
             get { return (byte)(_value >> 24); }
@@ -164,6 +187,7 @@ namespace Tizen.Common
         /// <summary>
         /// Gets the Green component of the color.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public int G
         {
             get { return (byte)(_value >> 16); }
@@ -172,6 +196,7 @@ namespace Tizen.Common
         /// <summary>
         /// Gets the blue component of the color.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public int B
         {
             get { return (byte)(_value >> 8); }
@@ -180,6 +205,7 @@ namespace Tizen.Common
         /// <summary>
         /// Gets the alpha component of the color.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public int A
         {
             get { return (byte)_value; }
@@ -195,6 +221,7 @@ namespace Tizen.Common
         /// <param name="color1">The first Color to compare.</param>
         /// <param name="color2">The second Color to compare.</param>
         /// <returns>True if the Colors are equal; False otherwise.</returns>
+        /// <since_tizen> 3 </since_tizen>
         public static bool operator ==(Color color1, Color color2)
         {
             return color1.Equals(color2);
@@ -206,6 +233,7 @@ namespace Tizen.Common
         /// <param name="color1">The first Color to compare.</param>
         /// <param name="color2">The second Color to compare.</param>
         /// <returns>True if the Colors are not equal; False if they are equal.</returns>
+        /// <since_tizen> 3 </since_tizen>
         public static bool operator !=(Color color1, Color color2)
         {
             return !color1.Equals(color2);
@@ -218,6 +246,7 @@ namespace Tizen.Common
         /// <param name="g">The green component of the color.</param>
         /// <param name="b">The blue component of the color.</param>
         /// <returns></returns>
+        /// <since_tizen> 3 </since_tizen>
         public static Color FromRgb(int r, int g, int b)
         {
             return new Color(r, g, b);
@@ -231,6 +260,7 @@ namespace Tizen.Common
         /// <param name="b">The blue component of the color.</param>
         /// <param name="a">The alpha component of the color.</param>
         /// <returns>the RGBA color instance.</returns>
+        /// <since_tizen> 3 </since_tizen>
         public static Color FromRgba(int r, int g, int b, int a)
         {
             return new Color(r, g, b, a);
@@ -241,6 +271,7 @@ namespace Tizen.Common
         /// </summary>
         /// <param name="hex">A string that contains the hexadecimal RGB(A) color representation.</param>
         /// <returns>the RGBA color instance.</returns>
+        /// <since_tizen> 3 </since_tizen>
         public static Color FromHex(string hex)
         {
             if (hex == null)
@@ -280,6 +311,7 @@ namespace Tizen.Common
         /// <summary>
         /// Gets the 32-bits RGBA value of the color.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public int GetRgba()
         {
             return _value;
@@ -288,6 +320,7 @@ namespace Tizen.Common
         /// <summary>
         /// Gets the 32-bits ARGB value of the color.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public int GetArgb()
         {
             return (int)((uint)A << 24 | (uint)R << 16 | (uint)G << 8 | (uint)B);
@@ -297,6 +330,7 @@ namespace Tizen.Common
         /// Returns a string representation in Hex. (ex: \#FFFFFFFF in RGBA order)
         /// </summary>
         /// <returns>The string representation in Hex.</returns>
+        /// <since_tizen> 3 </since_tizen>
         public string ToHex()
         {
             return "#" + _value.ToString("X8");
@@ -307,6 +341,7 @@ namespace Tizen.Common
         /// </summary>
         /// <param name="other">The Color to compare this instance to.</param>
         /// <returns>True if the other Color is equal to this instance; False otherwise.</returns>
+        /// <since_tizen> 3 </since_tizen>
         public bool Equals(Color other)
         {
             return _value == other._value;
@@ -317,6 +352,7 @@ namespace Tizen.Common
         /// </summary>
         /// <param name="obj">The Object to compare against.</param>
         /// <returns>True if the Object is equal to this Color; False otherwise.</returns>
+        /// <since_tizen> 3 </since_tizen>
         public override bool Equals(object obj)
         {
             if (obj is Color)
@@ -330,6 +366,7 @@ namespace Tizen.Common
         /// Returns a string representation of the Color.
         /// </summary>
         /// <returns>The string representation.</returns>
+        /// <since_tizen> 3 </since_tizen>
         public override string ToString()
         {
             return string.Format("Color [R={0}, G={1}, B={2}, A={3}]", R, G, B, A);
@@ -339,6 +376,7 @@ namespace Tizen.Common
         /// Returns the hash code for this instance.
         /// </summary>
         /// <returns>The hash code.</returns>
+        /// <since_tizen> 3 </since_tizen>
         public override int GetHashCode()
         {
             return _value.GetHashCode();

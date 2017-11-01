@@ -25,6 +25,7 @@ namespace Tizen.Multimedia
     /// </summary>
     /// <seealso cref="Player.SubtitleTrackInfo"/>
     /// <seealso cref="Player.AudioTrackInfo"/>
+    /// <since_tizen> 3 </since_tizen>
     public class PlayerTrackInfo
     {
         private readonly int _streamType;
@@ -49,6 +50,7 @@ namespace Tizen.Multimedia
         /// </remarks>
         /// <exception cref="ObjectDisposedException">The <see cref="Player"/> that this instance belongs to has been disposed of.</exception>
         /// <exception cref="InvalidOperationException">The <see cref="Player"/> that this instance belongs to is not in the valid state.</exception>
+        /// <since_tizen> 3 </since_tizen>
         public int GetCount()
         {
             _owner.ValidatePlayerState(PlayerState.Ready, PlayerState.Playing, PlayerState.Paused);
@@ -76,6 +78,7 @@ namespace Tizen.Multimedia
         ///     -or-<br/>
         ///     <paramref name="index"/> is equal to or greater than <see cref="GetCount()"/>.
         /// </exception>
+        /// <since_tizen> 3 </since_tizen>
         public string GetLanguageCode(int index)
         {
             _owner.ValidatePlayerState(PlayerState.Ready, PlayerState.Playing, PlayerState.Paused);
@@ -125,6 +128,7 @@ namespace Tizen.Multimedia
         ///     -or-<br/>
         ///     <paramref name="value"/> is equal to or greater than <see cref="GetCount()"/>.
         /// </exception>
+        /// <since_tizen> 3 </since_tizen>
         public int Selected
         {
             get

@@ -21,6 +21,7 @@ namespace Tizen.Sensor
     /// <summary>
     /// The WristUpGestureDetector changed event arguments class is used for storing the data returned by a wrist up gesture detector.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public class WristUpGestureDetectorDataUpdatedEventArgs : EventArgs
     {
         internal WristUpGestureDetectorDataUpdatedEventArgs(float state)

@@ -26,6 +26,7 @@ namespace Tizen.Multimedia
     /// <summary>
     /// Provides a means for using the radio feature.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public class Radio : IDisposable
     {
         private RadioHandle _handle;
@@ -36,6 +37,7 @@ namespace Tizen.Multimedia
         /// Initializes a new instance of the Radio class.
         /// </summary>
         /// <exception cref="NotSupportedException">The radio feature is not supported.</exception>
+        /// <since_tizen> 3 </since_tizen>
         public Radio()
         {
             CompatibilitySupport.DisableSessionBackwardCompatibility();
@@ -96,26 +98,31 @@ namespace Tizen.Multimedia
         /// <summary>
         /// Occurs when the radio scanning information is updated.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public event EventHandler<ScanUpdatedEventArgs> ScanUpdated;
 
         /// <summary>
         /// Occurs when the radio scanning stops.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public event EventHandler ScanStopped;
 
         /// <summary>
         /// Occurs when the radio scanning is completed.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public event EventHandler ScanCompleted;
 
         /// <summary>
         /// Occurs when the radio is interrupted.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public event EventHandler<RadioInterruptedEventArgs> Interrupted;
 
         /// <summary>
         /// Gets the current state of the radio.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public RadioState State
         {
             get
@@ -133,6 +140,7 @@ namespace Tizen.Multimedia
         ///     -or- <br/>
         ///     <paramref name="value"/> is greater than <see cref="Range.Max"/> of <see cref="FrequencyRange"/>.
         /// </exception>
+        /// <since_tizen> 3 </since_tizen>
         public int Frequency
         {
             get
@@ -155,6 +163,7 @@ namespace Tizen.Multimedia
         /// <summary>
         /// Gets the current signal strength in the range of -128 ~ 128 dBm.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public int SignalStrength
         {
             get
@@ -172,6 +181,7 @@ namespace Tizen.Multimedia
         /// true if the radio is muted; otherwise, false.
         /// The default is false.
         /// </value>
+        /// <since_tizen> 3 </since_tizen>
         public bool IsMuted
         {
             get
@@ -188,6 +198,7 @@ namespace Tizen.Multimedia
         /// <summary>
         /// Gets the channel spacing for the current region.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public int ChannelSpacing
         {
             get
@@ -208,6 +219,7 @@ namespace Tizen.Multimedia
         ///     -or-<br/>
         ///     <paramref name="value"/> is greater than 1.0.
         /// </exception>
+        /// <since_tizen> 3 </since_tizen>
         public float Volume
         {
             get
@@ -230,6 +242,7 @@ namespace Tizen.Multimedia
         /// <summary>
         /// Gets the frequency for the region in the range of 87500 ~ 108000 kHz.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public Range FrequencyRange
         {
             get
@@ -246,6 +259,7 @@ namespace Tizen.Multimedia
         /// </summary>
         /// <remarks>The radio must be in the <see cref="RadioState.Ready"/> state.</remarks>
         /// <exception cref="InvalidOperationException">The radio is not in the valid state.</exception>
+        /// <since_tizen> 3 </since_tizen>
         public void Start()
         {
             ValidateRadioState(RadioState.Ready);
@@ -258,6 +272,7 @@ namespace Tizen.Multimedia
         /// </summary>
         /// <remarks>The radio must be in the <see cref="RadioState.Playing"/> state.</remarks>
         /// <exception cref="InvalidOperationException">The radio is not in the valid state.</exception>
+        /// <since_tizen> 3 </since_tizen>
         public void Stop()
         {
             ValidateRadioState(RadioState.Playing);
@@ -272,6 +287,7 @@ namespace Tizen.Multimedia
         /// <exception cref="InvalidOperationException">The radio is not in the valid state.</exception>
         /// <seealso cref="ScanUpdated"/>
         /// <seealso cref="ScanCompleted"/>
+        /// <since_tizen> 3 </since_tizen>
         public void StartScan()
         {
             ValidateRadioState(RadioState.Ready, RadioState.Playing);
@@ -285,6 +301,7 @@ namespace Tizen.Multimedia
         /// <remarks>The radio must be in the <see cref="RadioState.Scanning"/> state.</remarks>
         /// <exception cref="InvalidOperationException">The radio is not in the valid state.</exception>
         /// <seealso cref="ScanStopped"/>
+        /// <since_tizen> 3 </since_tizen>
         public void StopScan()
         {
             ValidateRadioState(RadioState.Scanning);
@@ -306,6 +323,7 @@ namespace Tizen.Multimedia
         ///     -or-<br/>
         ///     Seeking is in progress.
         /// </exception>
+        /// <since_tizen> 3 </since_tizen>
         public Task<int> SeekUpAsync()
         {
             return SeekAsync(Native.SeekUp);
@@ -325,6 +343,7 @@ namespace Tizen.Multimedia
         ///     -or-<br/>
         ///     Seeking is in progress.
         /// </exception>
+        /// <since_tizen> 3 </since_tizen>
         public Task<int> SeekDownAsync()
         {
             return SeekAsync(Native.SeekDown);
@@ -373,6 +392,7 @@ namespace Tizen.Multimedia
         /// <param name="disposing">
         /// true to release both managed and unmanaged resources; false to release only unmanaged resources.
         /// </param>
+        /// <since_tizen> 3 </since_tizen>
         protected virtual void Dispose(bool disposing)
         {
             if (!_disposed)
@@ -388,6 +408,7 @@ namespace Tizen.Multimedia
         /// <summary>
         /// Releases all resources used by the <see cref="Radio"/> object.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public void Dispose()
         {
             Dispose(true);

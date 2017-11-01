@@ -62,6 +62,7 @@ namespace Tizen.Multimedia
         }
     }
 
+    /// <since_tizen> 3 </since_tizen>
     public partial class Recorder
     {
         internal static Lazy<Capabilities> Capabilities { get; } = new Lazy<Capabilities>(LoadCapabilities);
@@ -86,11 +87,13 @@ namespace Tizen.Multimedia
         /// <summary>
         /// Gets the file formats that the current device supports.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         public static IEnumerable<RecorderFileFormat> GetSupportedFileFormats() => Capabilities.Value.SupportedFileFormats;
 
         /// <summary>
         /// Gets the audio encoders that the current device supports.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         public static IEnumerable<RecorderAudioCodec> GetSupportedAudioCodecs() => Capabilities.Value.SupportedAudioCodecs;
 
         internal static void ValidateFileFormat(RecorderFileFormat format)

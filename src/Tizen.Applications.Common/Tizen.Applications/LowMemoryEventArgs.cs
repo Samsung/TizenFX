@@ -21,12 +21,14 @@ namespace Tizen.Applications
     /// <summary>
     /// The class for the argument of the LowMemory EventHandler
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public class LowMemoryEventArgs : EventArgs
     {
         /// <summary>
         /// Initializes LowMemoryEventArgs class
         /// </summary>
         /// <param name="status">The information of the LowMemoryStatus</param>
+        /// <since_tizen> 3 </since_tizen>
         public LowMemoryEventArgs(LowMemoryStatus status)
         {
             LowMemoryStatus = status;
@@ -35,6 +37,7 @@ namespace Tizen.Applications
         /// <summary>
         /// The property to get the intformation of the LowMemoryStatus
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public LowMemoryStatus LowMemoryStatus { get; private set; }
     }
 }

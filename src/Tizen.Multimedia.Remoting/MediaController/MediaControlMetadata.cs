@@ -23,11 +23,13 @@ namespace Tizen.Multimedia.Remoting
     /// <summary>
     /// Represents metadata for media control.
     /// </summary>
+    /// <since_tizen> 4 </since_tizen>
     public class MediaControlMetadata
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="MediaControlMetadata"/> class.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         public MediaControlMetadata()
         {
         }
@@ -52,56 +54,67 @@ namespace Tizen.Multimedia.Remoting
         /// <summary>
         /// Gets or sets the title.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         public string Title { get; set; }
 
         /// <summary>
         /// Gets or sets the artist.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         public string Artist { get; set; }
 
         /// <summary>
         /// Gets or sets the album.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         public string Album { get; set; }
 
         /// <summary>
         /// Gets or sets the author.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         public string Author { get; set; }
 
         /// <summary>
         /// Gets or sets the genre.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         public string Genre { get; set; }
 
         /// <summary>
         /// Gets or sets the duration.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         public string Duration { get; set; }
 
         /// <summary>
         /// Gets or sets the date.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         public string Date { get; set; }
 
         /// <summary>
         /// Gets or sets the copyright.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         public string Copyright { get; set; }
 
         /// <summary>
         /// Gets or sets the description.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         public string Description { get; set; }
 
         /// <summary>
         /// Gets or sets the track number.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         public string TrackNumber { get; set; }
 
         /// <summary>
         /// Gets or sets the path of the album art.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         public string AlbumArtPath { get; set; }
     }
 }

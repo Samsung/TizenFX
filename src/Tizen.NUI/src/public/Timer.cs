@@ -30,6 +30,7 @@ namespace Tizen.NUI
     /// This class is a handle class so it can be stack allocated and used
     /// as a member.<br />
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public class Timer : BaseHandle
     {
         private global::System.Runtime.InteropServices.HandleRef swigCPtr;
@@ -88,6 +89,7 @@ namespace Tizen.NUI
         /// <summary>
         /// Event arguments that passed via the tick event.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public class TickEventArgs : EventArgs
         {
         }

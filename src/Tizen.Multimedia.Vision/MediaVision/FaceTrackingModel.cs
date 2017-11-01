@@ -24,7 +24,7 @@ namespace Tizen.Multimedia.Vision
     /// Represents the face tracking model.
     /// </summary>
     /// <feature>http://tizen.org/feature/vision.face_recognition</feature>
-    /// <since_tizen> 3 </since_tizen>
+    /// <since_tizen> 4 </since_tizen>
     public class FaceTrackingModel : IDisposable
     {
         private IntPtr _handle = IntPtr.Zero;
@@ -34,7 +34,7 @@ namespace Tizen.Multimedia.Vision
         /// Initializes a new instance of the <see cref="FaceTrackingModel"/> class.
         /// </summary>
         /// <exception cref="NotSupportedException">The feature is not supported.</exception>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 4 </since_tizen>
         public FaceTrackingModel()
         {
             InteropModel.Create(out _handle).Validate("Failed to create FaceTrackingModel.");
@@ -56,7 +56,7 @@ namespace Tizen.Multimedia.Vision
         /// </exception>
         /// <exception cref="UnauthorizedAccessException">No permission to access the specified file.</exception>
         /// <seealso cref="Save(string)"/>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 4 </since_tizen>
         public FaceTrackingModel(string modelPath)
         {
             if (modelPath == null)
@@ -108,7 +108,7 @@ namespace Tizen.Multimedia.Vision
         ///     -or-<br/>
         ///     <paramref name="source"/> has already bean disposed of.
         /// </exception>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 4 </since_tizen>
         public void Prepare(MediaVisionSource source, Quadrangle region)
         {
             if (source == null)
@@ -127,7 +127,7 @@ namespace Tizen.Multimedia.Vision
         /// <exception cref="UnauthorizedAccessException">No permission to write to the specified path.</exception>
         /// <exception cref="ObjectDisposedException">The <see cref="FaceTrackingModel"/> has already been disposed of.</exception>
         /// <exception cref="DirectoryNotFoundException">The directory for <paramref name="path"/> does not exist.</exception>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 4 </since_tizen>
         public void Save(string path)
         {
             if (path == null)
@@ -148,6 +148,7 @@ namespace Tizen.Multimedia.Vision
         /// <summary>
         /// Releases all the resources used by the <see cref="FaceTrackingModel"/> object.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         public void Dispose()
         {
             Dispose(true);
@@ -160,6 +161,7 @@ namespace Tizen.Multimedia.Vision
         /// <param name="disposing">
         /// true to release both managed and unmanaged resources; otherwise false to release only unmanaged resources.
         /// </param>
+        /// <since_tizen> 4 </since_tizen>
         protected virtual void Dispose(bool disposing)
         {
             if (_disposed)

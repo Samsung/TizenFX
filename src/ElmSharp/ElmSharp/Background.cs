@@ -22,12 +22,14 @@ namespace ElmSharp
     /// The Background is a widget that use for setting (solid) background decorations to a window (unless it has transparency enabled)
     /// or to any container object.
     /// </summary>
+    /// <since_tizen> preview </since_tizen>
     public class Background : Layout
     {
         /// <summary>
         /// Creates and initializes a new instance of the Background class.
         /// </summary>
         /// <param name="parent">The EvasObject to which the new Background will be attached as a child.</param>
+        /// <since_tizen> preview </since_tizen>
         public Background(EvasObject parent) : base(parent)
         {
             Style = "transparent";
@@ -36,6 +38,7 @@ namespace ElmSharp
         /// <summary>
         /// Sets or gets color to Background.
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         public override Color Color
         {
             get
@@ -66,6 +69,7 @@ namespace ElmSharp
         /// <summary>
         /// Sets or gets image to Background.
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         public string File
         {
             get
@@ -86,6 +90,7 @@ namespace ElmSharp
         /// This will only work if the File was previously set with an image file on obj.
         /// The image can be display tiled, scaled, centered or stretched. scaled by default.
         /// </remarks>
+        /// <since_tizen> preview </since_tizen>
         public BackgroundOptions BackgroundOption
         {
             get
@@ -106,6 +111,7 @@ namespace ElmSharp
         /// </summary>
         /// <param name="w">The new width of the image pixmap representation.</param>
         /// <param name="h">The new height of the image pixmap representation.</param>
+        /// <since_tizen> preview </since_tizen>
         public void SetFileLoadSize(int w, int h)
         {
             if (File != null)
@@ -123,6 +129,7 @@ namespace ElmSharp
         /// </summary>
         /// <param name="parent">Parent EvasObject</param>
         /// <returns>Handle IntPtr</returns>
+        /// <since_tizen> preview </since_tizen>
         protected override IntPtr CreateHandle(EvasObject parent)
         {
             IntPtr handle = Interop.Elementary.elm_layout_add(parent.Handle);
@@ -138,6 +145,7 @@ namespace ElmSharp
     /// <summary>
     /// Enumeration for the background type.
     /// </summary>
+    /// <since_tizen> preview </since_tizen>
     public enum BackgroundOptions
     {
         /// <summary>

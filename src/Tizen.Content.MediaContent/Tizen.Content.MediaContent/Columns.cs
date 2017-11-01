@@ -46,6 +46,7 @@ namespace Tizen.Content.MediaContent
     /// <seealso cref="TagCommand.CountMedia(int, CountArguments)"/>
     /// <seealso cref="TagCommand.Select(SelectArguments)"/>
     /// <seealso cref="TagCommand.SelectMedia(int, SelectArguments)"/>
+    /// <since_tizen> 4 </since_tizen>
     public static class MediaInfoColumns
     {
         /// <summary>
@@ -54,6 +55,7 @@ namespace Tizen.Content.MediaContent
         /// <value>The column name for the ID of media.</value>
         /// <remarks>The value type is string.</remarks>
         /// <seealso cref="MediaInfo.Id"/>
+        /// <since_tizen> 4 </since_tizen>
         public static string Id => "MEDIA_ID";
 
         /// <summary>
@@ -62,6 +64,7 @@ namespace Tizen.Content.MediaContent
         /// <value>The column name for the file path of media.</value>
         /// <remarks>The value type is string.</remarks>
         /// <seealso cref="MediaInfo.Path"/>
+        /// <since_tizen> 4 </since_tizen>
         public static string Path => "MEDIA_PATH";
 
         /// <summary>
@@ -70,6 +73,7 @@ namespace Tizen.Content.MediaContent
         /// <value>The column name for the display name of media.</value>
         /// <remarks>The value type is string.</remarks>
         /// <seealso cref="MediaInfo.DisplayName"/>
+        /// <since_tizen> 4 </since_tizen>
         public static string DisplayName => "MEDIA_DISPLAY_NAME";
 
         /// <summary>
@@ -81,6 +85,7 @@ namespace Tizen.Content.MediaContent
         /// The value should be an integer that is one of the <see cref="MediaContent.MediaType"/> values.
         /// </remarks>
         /// <seealso cref="MediaInfo.MediaType"/>
+        /// <since_tizen> 4 </since_tizen>
         public static string MediaType => "MEDIA_TYPE";
 
         /// <summary>
@@ -89,6 +94,7 @@ namespace Tizen.Content.MediaContent
         /// <value>The column name for the mime type of media.</value>
         /// <remarks>The value type is string.</remarks>
         /// <seealso cref="MediaInfo.MimeType"/>
+        /// <since_tizen> 4 </since_tizen>
         public static string MimeType => "MEDIA_MIME_TYPE";
 
         /// <summary>
@@ -97,6 +103,7 @@ namespace Tizen.Content.MediaContent
         /// <value>The column name for the file size of media.</value>
         /// <remarks>The value type is integer.</remarks>
         /// <seealso cref="MediaInfo.FileSize"/>
+        /// <since_tizen> 4 </since_tizen>
         public static string FileSize => "MEDIA_SIZE";
 
         /// <summary>
@@ -109,6 +116,7 @@ namespace Tizen.Content.MediaContent
         /// </remarks>
         /// <seealso cref="MediaInfo.DateAdded"/>
         /// <seealso cref="DateTimeOffset.ToUnixTimeSeconds"/>
+        /// <since_tizen> 4 </since_tizen>
         public static string DateAdded => "MEDIA_ADDED_TIME";
 
         /// <summary>
@@ -121,6 +129,7 @@ namespace Tizen.Content.MediaContent
         /// </remarks>
         /// <seealso cref="MediaInfo.DateModified"/>
         /// <seealso cref="DateTimeOffset.ToUnixTimeSeconds"/>
+        /// <since_tizen> 4 </since_tizen>
         public static string DateModified => "MEDIA_MODIFIED_TIME";
 
         /// <summary>
@@ -133,6 +142,7 @@ namespace Tizen.Content.MediaContent
         /// </remarks>
         /// <seealso cref="MediaInfo.Timeline"/>
         /// <seealso cref="DateTimeOffset.ToUnixTimeSeconds"/>
+        /// <since_tizen> 4 </since_tizen>
         public static string Timeline => "MEDIA_TIMELINE";
 
         /// <summary>
@@ -143,6 +153,7 @@ namespace Tizen.Content.MediaContent
         /// The value type is string.
         /// </remarks>
         /// <seealso cref="MediaInfo.ThumbnailPath"/>
+        /// <since_tizen> 4 </since_tizen>
         public static string ThumbnailPath => "MEDIA_THUMBNAIL_PATH";
 
         /// <summary>
@@ -153,6 +164,7 @@ namespace Tizen.Content.MediaContent
         /// The value type is string.
         /// </remarks>
         /// <seealso cref="MediaInfo.Title"/>
+        /// <since_tizen> 4 </since_tizen>
         public static string Title => "MEDIA_TITLE";
 
         /// <summary>
@@ -163,6 +175,7 @@ namespace Tizen.Content.MediaContent
         /// The value type is string.
         /// </remarks>
         /// <seealso cref="AudioInfo.Album"/>
+        /// <since_tizen> 4 </since_tizen>
         public static string Album => "MEDIA_ALBUM";
 
         /// <summary>
@@ -174,6 +187,7 @@ namespace Tizen.Content.MediaContent
         /// </remarks>
         /// <seealso cref="AudioInfo.Artist"/>
         /// <seealso cref="VideoInfo.Artist"/>
+        /// <since_tizen> 4 </since_tizen>
         public static string Artist => "MEDIA_ARTIST";
 
         /// <summary>
@@ -185,6 +199,7 @@ namespace Tizen.Content.MediaContent
         /// </remarks>
         /// <seealso cref="AudioInfo.AlbumArtist"/>
         /// <seealso cref="VideoInfo.AlbumArtist"/>
+        /// <since_tizen> 4 </since_tizen>
         public static string AlbumArtist => "MEDIA_ALBUM_ARTIST";
 
         /// <summary>
@@ -196,6 +211,7 @@ namespace Tizen.Content.MediaContent
         /// </remarks>
         /// <seealso cref="AudioInfo.Genre"/>
         /// <seealso cref="VideoInfo.Genre"/>
+        /// <since_tizen> 4 </since_tizen>
         public static string Genre => "MEDIA_GENRE";
 
         /// <summary>
@@ -207,6 +223,7 @@ namespace Tizen.Content.MediaContent
         /// </remarks>
         /// <seealso cref="AudioInfo.Composer"/>
         /// <seealso cref="VideoInfo.Composer"/>
+        /// <since_tizen> 4 </since_tizen>
         public static string Composer => "MEDIA_COMPOSER";
 
         /// <summary>
@@ -218,6 +235,7 @@ namespace Tizen.Content.MediaContent
         /// </remarks>
         /// <seealso cref="AudioInfo.Year"/>
         /// <seealso cref="VideoInfo.Year"/>
+        /// <since_tizen> 4 </since_tizen>
         public static string Year => "MEDIA_YEAR";
 
         /// <summary>
@@ -229,6 +247,7 @@ namespace Tizen.Content.MediaContent
         /// </remarks>
         /// <seealso cref="AudioInfo.DateRecorded"/>
         /// <seealso cref="VideoInfo.DateRecorded"/>
+        /// <since_tizen> 4 </since_tizen>
         public static string DateRecorded => "MEDIA_RECORDED_DATE";
 
         /// <summary>
@@ -240,6 +259,7 @@ namespace Tizen.Content.MediaContent
         /// </remarks>
         /// <seealso cref="AudioInfo.Copyright"/>
         /// <seealso cref="VideoInfo.Copyright"/>
+        /// <since_tizen> 4 </since_tizen>
         public static string Copyright => "MEDIA_COPYRIGHT";
 
         /// <summary>
@@ -251,6 +271,7 @@ namespace Tizen.Content.MediaContent
         /// </remarks>
         /// <seealso cref="AudioInfo.TrackNumber"/>
         /// <seealso cref="VideoInfo.TrackNumber"/>
+        /// <since_tizen> 4 </since_tizen>
         public static string TrackNumber => "MEDIA_TRACK_NUM";
 
         /// <summary>
@@ -261,6 +282,7 @@ namespace Tizen.Content.MediaContent
         /// The value type is string.
         /// </remarks>
         /// <seealso cref="MediaInfo.Description"/>
+        /// <since_tizen> 4 </since_tizen>
         public static string Description => "MEDIA_DESCRIPTION";
 
         /// <summary>
@@ -272,6 +294,7 @@ namespace Tizen.Content.MediaContent
         /// </remarks>
         /// <seealso cref="AudioInfo.BitRate"/>
         /// <seealso cref="VideoInfo.BitRate"/>
+        /// <since_tizen> 4 </since_tizen>
         public static string BitRate => "MEDIA_BITRATE";
 
         /// <summary>
@@ -282,6 +305,7 @@ namespace Tizen.Content.MediaContent
         /// The value type is integer.
         /// </remarks>
         /// <seealso cref="AudioInfo.BitPerSample"/>
+        /// <since_tizen> 4 </since_tizen>
         public static string BitPerSample => "MEDIA_BITPERSAMPLE";
 
         /// <summary>
@@ -292,6 +316,7 @@ namespace Tizen.Content.MediaContent
         /// The value type is integer.
         /// </remarks>
         /// <seealso cref="AudioInfo.SampleRate"/>
+        /// <since_tizen> 4 </since_tizen>
         public static string SampleRate => "MEDIA_SAMPLERATE";
 
         /// <summary>
@@ -302,6 +327,7 @@ namespace Tizen.Content.MediaContent
         /// The value type is integer.
         /// </remarks>
         /// <seealso cref="AudioInfo.Channels"/>
+        /// <since_tizen> 4 </since_tizen>
         public static string Channels => "MEDIA_CHANNEL";
 
         /// <summary>
@@ -313,6 +339,7 @@ namespace Tizen.Content.MediaContent
         /// </remarks>
         /// <seealso cref="AudioInfo.Duration"/>
         /// <seealso cref="VideoInfo.Duration"/>
+        /// <since_tizen> 4 </since_tizen>
         public static string Duration => "MEDIA_DURATION";
 
         /// <summary>
@@ -323,6 +350,7 @@ namespace Tizen.Content.MediaContent
         /// The value type is real.
         /// </remarks>
         /// <seealso cref="MediaInfo.Longitude"/>
+        /// <since_tizen> 4 </since_tizen>
         public static string Longitude => "MEDIA_LONGITUDE";
 
         /// <summary>
@@ -333,6 +361,7 @@ namespace Tizen.Content.MediaContent
         /// The value type is real.
         /// </remarks>
         /// <seealso cref="MediaInfo.Latitude"/>
+        /// <since_tizen> 4 </since_tizen>
         public static string Latitude => "MEDIA_LATITUDE";
 
         /// <summary>
@@ -343,6 +372,7 @@ namespace Tizen.Content.MediaContent
         /// The value type is real.
         /// </remarks>
         /// <seealso cref="MediaInfo.Altitude"/>
+        /// <since_tizen> 4 </since_tizen>
         public static string Altitude => "MEDIA_ALTITUDE";
 
         /// <summary>
@@ -354,6 +384,7 @@ namespace Tizen.Content.MediaContent
         /// </remarks>
         /// <seealso cref="ImageInfo.Width"/>
         /// <seealso cref="VideoInfo.Width"/>
+        /// <since_tizen> 4 </since_tizen>
         public static string Width => "MEDIA_WIDTH";
 
         /// <summary>
@@ -365,6 +396,7 @@ namespace Tizen.Content.MediaContent
         /// </remarks>
         /// <seealso cref="ImageInfo.Height"/>
         /// <seealso cref="VideoInfo.Height"/>
+        /// <since_tizen> 4 </since_tizen>
         public static string Height => "MEDIA_HEIGHT";
 
         /// <summary>
@@ -375,6 +407,7 @@ namespace Tizen.Content.MediaContent
         /// The value type is integer.
         /// </remarks>
         /// <seealso cref="ImageInfo.DateTaken"/>
+        /// <since_tizen> 4 </since_tizen>
         public static string DateTaken => "MEDIA_DATETAKEN";
 
         /// <summary>
@@ -387,6 +420,7 @@ namespace Tizen.Content.MediaContent
         /// </remarks>
         /// <seealso cref="MediaContent.Orientation"/>
         /// <seealso cref="ImageInfo.Orientation"/>
+        /// <since_tizen> 4 </since_tizen>
         public static string Orientation => "MEDIA_ORIENTATION";
 
         /// <summary>
@@ -397,6 +431,7 @@ namespace Tizen.Content.MediaContent
         /// The value type is integer.
         /// </remarks>
         /// <seealso cref="MediaInfo.Rating"/>
+        /// <since_tizen> 4 </since_tizen>
         public static string Rating => "MEDIA_RATING";
 
         /// <summary>
@@ -407,6 +442,7 @@ namespace Tizen.Content.MediaContent
         /// The value type is integer (1 : true, 0 : false).
         /// </remarks>
         /// <seealso cref="MediaInfo.IsFavorite"/>
+        /// <since_tizen> 4 </since_tizen>
         public static string Favorite => "MEDIA_FAVOURITE";
 
         /// <summary>
@@ -417,6 +453,7 @@ namespace Tizen.Content.MediaContent
         /// The value type is integer (1 : true, 0 : false).
         /// </remarks>
         /// <seealso cref="MediaInfo.IsDrm"/>
+        /// <since_tizen> 4 </since_tizen>
         public static string IsDrm => "MEDIA_IS_DRM";
 
         /// <summary>
@@ -428,6 +465,7 @@ namespace Tizen.Content.MediaContent
         /// The value should be an integer that is one of the <see cref="MediaContent.StorageType"/> values.
         /// </remarks>
         /// <seealso cref="MediaInfo.StorageType"/>
+        /// <since_tizen> 4 </since_tizen>
         public static string StorageType => "MEDIA_STORAGE_TYPE";
 
         /// <summary>
@@ -438,6 +476,7 @@ namespace Tizen.Content.MediaContent
         /// The value type is integer.
         /// </remarks>
         /// <seealso cref="ImageInfo.ExposureTime"/>
+        /// <since_tizen> 4 </since_tizen>
         public static string ExposureTime => "MEDIA_EXPOSURE_TIME";
 
         /// <summary>
@@ -448,6 +487,7 @@ namespace Tizen.Content.MediaContent
         /// The value type is integer.
         /// </remarks>
         /// <seealso cref="ImageInfo.FNumber"/>
+        /// <since_tizen> 4 </since_tizen>
         public static string FNumber => "MEDIA_FNUMBER";
 
         /// <summary>
@@ -458,6 +498,7 @@ namespace Tizen.Content.MediaContent
         /// The value type is integer.
         /// </remarks>
         /// <seealso cref="ImageInfo.Iso"/>
+        /// <since_tizen> 4 </since_tizen>
         public static string Iso => "MEDIA_ISO";
 
         /// <summary>
@@ -468,6 +509,7 @@ namespace Tizen.Content.MediaContent
         /// The value type is string.
         /// </remarks>
         /// <seealso cref="ImageInfo.Model"/>
+        /// <since_tizen> 4 </since_tizen>
         public static string Model => "MEDIA_MODEL";
     }
 
@@ -480,6 +522,7 @@ namespace Tizen.Content.MediaContent
     /// <seealso cref="SelectArguments.SortOrder"/>
     /// <seealso cref="AlbumCommand.Count(CountArguments)"/>
     /// <seealso cref="AlbumCommand.Select(SelectArguments)"/>
+    /// <since_tizen> 4 </since_tizen>
     public static class AlbumColumns
     {
         /// <summary>
@@ -490,6 +533,7 @@ namespace Tizen.Content.MediaContent
         /// The value type is string.
         /// </remarks>
         /// <seealso cref="Album.Name"/>
+        /// <since_tizen> 4 </since_tizen>
         public static string Name => "MEDIA_ALBUM";
 
         /// <summary>
@@ -500,6 +544,7 @@ namespace Tizen.Content.MediaContent
         /// The value type is string.
         /// </remarks>
         /// <seealso cref="Album.Artist"/>
+        /// <since_tizen> 4 </since_tizen>
         public static string Artist => "MEDIA_ARTIST";
     }
 
@@ -512,6 +557,7 @@ namespace Tizen.Content.MediaContent
     /// <seealso cref="SelectArguments.SortOrder"/>
     /// <seealso cref="FolderCommand.Count(CountArguments)"/>
     /// <seealso cref="FolderCommand.Select(SelectArguments)"/>
+    /// <since_tizen> 4 </since_tizen>
     public static class FolderColumns
     {
         /// <summary>
@@ -522,6 +568,7 @@ namespace Tizen.Content.MediaContent
         /// The value type is string.
         /// </remarks>
         /// <seealso cref="Folder.Id"/>
+        /// <since_tizen> 4 </since_tizen>
         public static string Id => "FOLDER_ID";
 
         /// <summary>
@@ -532,6 +579,7 @@ namespace Tizen.Content.MediaContent
         /// The value type is string.
         /// </remarks>
         /// <seealso cref="Folder.Path"/>
+        /// <since_tizen> 4 </since_tizen>
         public static string Path => "FOLDER_PATH";
 
         /// <summary>
@@ -542,6 +590,7 @@ namespace Tizen.Content.MediaContent
         /// The value type is string.
         /// </remarks>
         /// <seealso cref="Folder.Name"/>
+        /// <since_tizen> 4 </since_tizen>
         public static string Name => "FOLDER_NAME";
 
         /// <summary>
@@ -553,6 +602,7 @@ namespace Tizen.Content.MediaContent
         /// The value should be an integer that is one of the <see cref="MediaContent.StorageType"/> values.
         /// </remarks>
         /// <seealso cref="Folder.StorageType"/>
+        /// <since_tizen> 4 </since_tizen>
         public static string StorageType => "FOLDER_STORAGE_TYPE";
     }
 
@@ -565,6 +615,7 @@ namespace Tizen.Content.MediaContent
     /// <seealso cref="SelectArguments.SortOrder"/>
     /// <seealso cref="PlaylistCommand.Count(CountArguments)"/>
     /// <seealso cref="PlaylistCommand.Select(SelectArguments)"/>
+    /// <since_tizen> 4 </since_tizen>
     public static class PlaylistColumns
     {
         /// <summary>
@@ -575,6 +626,7 @@ namespace Tizen.Content.MediaContent
         /// The value type is string.
         /// </remarks>
         /// <seealso cref="Playlist.Name"/>
+        /// <since_tizen> 4 </since_tizen>
         public static string Name => "PLAYLIST_NAME";
 
         /// <summary>
@@ -585,6 +637,7 @@ namespace Tizen.Content.MediaContent
         /// The value type is integer.
         /// </remarks>
         /// <seealso cref="Playlist.Id"/>
+        /// <since_tizen> 4 </since_tizen>
         public static string Id => "PLAYLIST_ID";
 
         /// <summary>
@@ -595,6 +648,7 @@ namespace Tizen.Content.MediaContent
         /// The value type is integer.
         /// </remarks>
         /// <seealso cref="PlaylistCommand.UpdatePlayOrder(int, PlayOrder)"/>
+        /// <since_tizen> 4 </since_tizen>
         public static string MemberOrder => "PLAYLIST_MEMBER_ORDER";
 
         /// <summary>
@@ -606,6 +660,7 @@ namespace Tizen.Content.MediaContent
         /// </remarks>
         /// <seealso cref="PlaylistCommand.AddMember(int, string)"/>
         /// <seealso cref="PlaylistCommand.RemoveMember(int, int)"/>
+        /// <since_tizen> 4 </since_tizen>
         public static string Count => "PLAYLIST_MEDIA_COUNT";
     }
 
@@ -622,6 +677,7 @@ namespace Tizen.Content.MediaContent
     /// <seealso cref="TagCommand.CountMedia(int, CountArguments)"/>
     /// <seealso cref="TagCommand.Select(SelectArguments)"/>
     /// <seealso cref="TagCommand.SelectMedia(int, SelectArguments)"/>
+    /// <since_tizen> 4 </since_tizen>
     public static class TagColumns
     {
         /// <summary>
@@ -632,6 +688,7 @@ namespace Tizen.Content.MediaContent
         /// The value type is string.
         /// </remarks>
         /// <seealso cref="Tag.Name"/>
+        /// <since_tizen> 4 </since_tizen>
         public static string Name => "TAG_NAME";
 
         /// <summary>
@@ -643,6 +700,7 @@ namespace Tizen.Content.MediaContent
         /// </remarks>
         /// <seealso cref="TagCommand.AddMedia(int, string)"/>
         /// <seealso cref="TagCommand.RemoveMedia(int, string)"/>
+        /// <since_tizen> 4 </since_tizen>
         public static string Count => "TAG_MEDIA_COUNT";
 
         /// <summary>
@@ -653,6 +711,7 @@ namespace Tizen.Content.MediaContent
         /// The value type is integer.
         /// </remarks>
         /// <seealso cref="Tag.Id"/>
+        /// <since_tizen> 4 </since_tizen>
         public static string Id => "TAG_ID";
     }
 
@@ -667,6 +726,7 @@ namespace Tizen.Content.MediaContent
     /// <seealso cref="BookmarkCommand.Select(SelectArguments)"/>
     /// <seealso cref="MediaInfoCommand.CountBookmark(string, CountArguments)"/>
     /// <seealso cref="MediaInfoCommand.SelectBookmark(string, SelectArguments)"/>
+    /// <since_tizen> 4 </since_tizen>
     public static class BookmarkColumns
     {
         /// <summary>
@@ -677,6 +737,7 @@ namespace Tizen.Content.MediaContent
         /// The value type is integer.
         /// </remarks>
         /// <seealso cref="Bookmark.Offset"/>
+        /// <since_tizen> 4 </since_tizen>
         public static string Offset => "BOOKMARK_MARKED_TIME";
 
         /// <summary>
@@ -687,6 +748,7 @@ namespace Tizen.Content.MediaContent
         /// The value type is integer.
         /// </remarks>
         /// <seealso cref="Bookmark.Id"/>
+        /// <since_tizen> 4 </since_tizen>
         public static string Id => "BOOKMARK_ID";
 
         /// <summary>
@@ -697,6 +759,7 @@ namespace Tizen.Content.MediaContent
         /// The value type is string.
         /// </remarks>
         /// <seealso cref="Bookmark.Name"/>
+        /// <since_tizen> 4 </since_tizen>
         public static string Name => "BOOKMARK_NAME";
     }
 
@@ -710,6 +773,7 @@ namespace Tizen.Content.MediaContent
     /// <seealso cref="FaceInfoCommand.Select(SelectArguments)"/>
     /// <seealso cref="MediaInfoCommand.CountFaceInfo(string, CountArguments)"/>
     /// <seealso cref="MediaInfoCommand.SelectFaceInfo(string, SelectArguments)"/>
+    /// <since_tizen> 4 </since_tizen>
     public static class FaceInfoColumns
     {
         /// <summary>
@@ -720,6 +784,7 @@ namespace Tizen.Content.MediaContent
         /// The value type is string.
         /// </remarks>
         /// <seealso cref="FaceInfo.Tag"/>
+        /// <since_tizen> 4 </since_tizen>
         public static string Tag => "MEDIA_FACE_TAG";
 
         /// <summary>
@@ -730,6 +795,7 @@ namespace Tizen.Content.MediaContent
         /// The value type is string.
         /// </remarks>
         /// <seealso cref="FaceInfo.Id"/>
+        /// <since_tizen> 4 </since_tizen>
         public static string Id => "MEDIA_FACE_ID";
     }
 
@@ -742,6 +808,7 @@ namespace Tizen.Content.MediaContent
     /// <seealso cref="SelectArguments.SortOrder"/>
     /// <seealso cref="StorageCommand.Count(CountArguments)"/>
     /// <seealso cref="StorageCommand.Select(SelectArguments)"/>
+    /// <since_tizen> 4 </since_tizen>
     public static class StorageColumns
     {
         /// <summary>
@@ -752,6 +819,7 @@ namespace Tizen.Content.MediaContent
         /// The value type is string.
         /// </remarks>
         /// <seealso cref="Storage.Id"/>
+        /// <since_tizen> 4 </since_tizen>
         public static string Id => "STORAGE_ID";
 
         /// <summary>
@@ -762,6 +830,7 @@ namespace Tizen.Content.MediaContent
         /// The value type is string.
         /// </remarks>
         /// <seealso cref="Storage.Path"/>
+        /// <since_tizen> 4 </since_tizen>
         public static string Path => "STORAGE_PATH";
 
         /// <summary>
@@ -773,6 +842,7 @@ namespace Tizen.Content.MediaContent
         /// The value should be an integer that is one of the <see cref="MediaContent.StorageType"/> values.
         /// </remarks>
         /// <seealso cref="Storage.Type"/>
+        /// <since_tizen> 4 </since_tizen>
         public static string Type => "MEDIA_STORAGE_TYPE";
     }
 }

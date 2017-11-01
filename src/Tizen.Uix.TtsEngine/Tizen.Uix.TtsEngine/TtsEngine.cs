@@ -23,6 +23,7 @@ namespace Tizen.Uix.TtsEngine
     /// <summary>
     /// Enumeration for audio type.
     /// </summary>
+    /// <since_tizen> 4 </since_tizen>
     public enum AudioType
     {
         /// <summary>
@@ -42,6 +43,7 @@ namespace Tizen.Uix.TtsEngine
     /// <summary>
     /// Enumeration for result.
     /// </summary>
+    /// <since_tizen> 4 </since_tizen>
     public enum ResultEvent
     {
         /// <summary>
@@ -65,6 +67,7 @@ namespace Tizen.Uix.TtsEngine
     /// <summary>
     /// Enumeration for Voice Type
     /// </summary>
+    /// <since_tizen> 4 </since_tizen>
     public enum VoiceType
     {
         /// <summary>
@@ -84,6 +87,7 @@ namespace Tizen.Uix.TtsEngine
     /// <summary>
     /// Enum for Error values that can occur
     /// </summary>
+    /// <since_tizen> 4 </since_tizen>
     public enum Error
     {
         /// <summary>
@@ -135,6 +139,7 @@ namespace Tizen.Uix.TtsEngine
     /// <summary>
     /// This Class represents the Tts Engine which has to be inherited to make the engine.
     /// </summary>
+    /// <since_tizen> 4 </since_tizen>
     public abstract class Engine
     {
         private CallbackStructGCHandle _callbackStructGCHandle = new CallbackStructGCHandle();
@@ -152,6 +157,7 @@ namespace Tizen.Uix.TtsEngine
         /// <param name="a">The Input Parameter 1</param>
         /// <param name="b">The Input Parameter 2</param>
         /// <returns>Error Value</returns>
+        /// <since_tizen> 4 </since_tizen>
         public delegate Error Action<T>(T a, T b);
 
         /// <summary>
@@ -161,6 +167,7 @@ namespace Tizen.Uix.TtsEngine
         /// <param name="a">The Input Parameter 1</param>
         /// <param name="b">The Input Parameter 2</param>
         /// <returns>Error Value</returns>
+        /// <since_tizen> 4 </since_tizen>
         public delegate Error OutAction<T>(T a, out T b);
 
         /// <summary>
@@ -176,6 +183,7 @@ namespace Tizen.Uix.TtsEngine
         /// <param name="userData">The user data passed from ForEachSupportedVoices()</param>
         /// <returns>true to continue with the next iteration of the loop false to break out of the loop</returns>
         /// <precondition>ForEachSupportedVoices() will invoke this callback function.</precondition>
+        /// <since_tizen> 4 </since_tizen>
         public delegate bool SupportedVoice(string language, VoiceType type, IntPtr userData);
 
         /// <summary>
@@ -204,6 +212,7 @@ namespace Tizen.Uix.TtsEngine
         /// 7. PermissionDenied
         /// </returns>
         /// <postcondition>This function invokes SendResult()</postcondition>
+        /// <since_tizen> 4 </since_tizen>
         public abstract Error StartSynthesis(string language, int type, string text, int speed, string appid, string credential, IntPtr userData);
 
         /// <summary>
@@ -223,6 +232,7 @@ namespace Tizen.Uix.TtsEngine
         /// 1. None
         /// 2. InvalidState
         /// </returns>
+        /// <since_tizen> 4 </since_tizen>
         public abstract Error GetInformation(out string engineUuid, out string engineName, out string engineSetting, out bool useNetwork);
 
         /// <summary>
@@ -235,6 +245,7 @@ namespace Tizen.Uix.TtsEngine
         /// 3. NotSupportedFeature
         /// 4. PermissionDenied
         /// </returns>
+        /// <since_tizen> 4 </since_tizen>
         public abstract Error Initialize();
 
         /// <summary>
@@ -248,6 +259,7 @@ namespace Tizen.Uix.TtsEngine
         /// 1. None
         /// 2. InvalidState
         /// </returns>
+        /// <since_tizen> 4 </since_tizen>
         public abstract Error Deinitialize();
 
         /// <summary>
@@ -264,6 +276,7 @@ namespace Tizen.Uix.TtsEngine
         /// 2. OperationFailed
         /// </returns>
         /// <postcondition>This callback function invokes SupportedVoice() repeatedly for getting all supported voices.</postcondition>
+        /// <since_tizen> 4 </since_tizen>
         public abstract Error ForEachSupportedVoices(SupportedVoice callback, IntPtr userData);
 
         /// <summary>
@@ -278,6 +291,7 @@ namespace Tizen.Uix.TtsEngine
         /// 1. None
         /// 2. InvalidParameter
         /// </returns>
+        /// <since_tizen> 4 </since_tizen>
         public abstract Error IsValidVoice(string language, int type, out bool isValid);
 
         /// <summary>
@@ -291,6 +305,7 @@ namespace Tizen.Uix.TtsEngine
         /// 3. OperationFailed
         /// 4. InvalidParameter
         /// </returns>
+        /// <since_tizen> 4 </since_tizen>
         public abstract Error SetPitch(int pitch);
 
         /// <summary>
@@ -308,6 +323,7 @@ namespace Tizen.Uix.TtsEngine
         /// 5. InvalidParameter
         /// 6. OutOfMemory
         /// </returns>
+        /// <since_tizen> 4 </since_tizen>
         public abstract Error LoadVoice(string language, int type);
 
         /// <summary>
@@ -324,6 +340,7 @@ namespace Tizen.Uix.TtsEngine
         /// 4. InvalidVoice
         /// 5. InvalidParameter
         /// </returns>
+        /// <since_tizen> 4 </since_tizen>
         public abstract Error UnloadVoice(string language, int type);
 
         /// <summary>
@@ -346,12 +363,14 @@ namespace Tizen.Uix.TtsEngine
         /// 3. NotSupportedFeature
         /// 4. InvalidParameter
         /// </returns>
+        /// <since_tizen> 4 </since_tizen>
         public abstract Error CheckAppAgreed(string appid, out bool isAgreed);
 
         /// <summary>
         /// Called when the engine service user checks whether TTS engine needs the application's credential.
         /// </summary>
         /// <returns>    true if TTS engine needs the application's credential, otherwise false </returns>
+        /// <since_tizen> 4 </since_tizen>
         public abstract bool NeedAppCredential();
 
         /// <summary>
@@ -365,6 +384,7 @@ namespace Tizen.Uix.TtsEngine
         /// <precondition>
         /// StartSynthesis should be performed
         /// </precondition>
+        /// <since_tizen> 4 </since_tizen>
         public abstract Error CancelSynthesis();
 
         /// <summary>
@@ -373,6 +393,7 @@ namespace Tizen.Uix.TtsEngine
         /// <feature>
         /// http://tizen.org/feature/speech.synthesis
         /// </feature>
+        /// <since_tizen> 4 </since_tizen>
         public Engine()
         {
             _engine = this;
@@ -392,6 +413,7 @@ namespace Tizen.Uix.TtsEngine
         /// <param name="argv">The argument(original)</param>
         /// <exception cref="NotSupportedException">Thrown in case of Not supported</exception>
         /// <exception cref="InvalidOperationException">thrown in case of Operation failure</exception>
+        /// <since_tizen> 4 </since_tizen>
         public void EngineMain(int argc, string[] argv)
         {
             _callbackStructGCHandle.CallbackStruct.version = 1;
@@ -433,6 +455,7 @@ namespace Tizen.Uix.TtsEngine
         /// <param name="max">The maximum speed value</param>
         /// <exception cref="NotSupportedException">Thrown in case of Not supported</exception>
         /// <exception cref="InvalidOperationException">thrown in case of Operation failure</exception>
+        /// <since_tizen> 4 </since_tizen>
         public void GetSpeedRange(out int min, out int normal, out int max)
         {
             Error error = TTSEGetSpeedRange(out min, out normal, out max);
@@ -458,6 +481,7 @@ namespace Tizen.Uix.TtsEngine
         /// <param name="max">The maximum pitch value</param>
         /// <exception cref="NotSupportedException">Thrown in case of Not supported</exception>
         /// <exception cref="InvalidOperationException">thrown in case of Operation failure</exception>
+        /// <since_tizen> 4 </since_tizen>
         public void GetPitchRange(out int min, out int normal, out int max)
         {
             Error error = TTSEGetPitchRange(out min, out normal, out max);
@@ -490,6 +514,7 @@ namespace Tizen.Uix.TtsEngine
         /// <precondition>
         /// EngineMain function should be invoked before this function is called. StartSynthesis() will invoke this function.
         /// </precondition>
+        /// <since_tizen> 4 </since_tizen>
         public void SendResult(ResultEvent resultEvent, IntPtr data, int dataSize, AudioType audioType, int rate)
         {
             Error error = TTSESendResult(resultEvent, data, dataSize, audioType, rate, IntPtr.Zero);
@@ -513,6 +538,7 @@ namespace Tizen.Uix.TtsEngine
         /// <precondition>
         /// EngineMain function should be invoked before this function is called.
         /// </precondition>
+        /// <since_tizen> 4 </since_tizen>
         public void SendError(Error error, string msg)
         {
             Error err = TTSESendError(error, msg);
@@ -547,6 +573,7 @@ namespace Tizen.Uix.TtsEngine
         /// <precondition>
         /// Main function should be invoked before this function is called.
         /// </precondition>
+        /// <since_tizen> 4 </since_tizen>
         public void SetPrivateDataSetDelegate(Action<string> callback)
         {
             if (null == callback)
@@ -593,6 +620,7 @@ namespace Tizen.Uix.TtsEngine
         /// <precondition>
         /// Main function should be invoked before this function is called.
         /// </precondition>
+        /// <since_tizen> 4 </since_tizen>
         public void SetPrivateDataRequestedDelegate(OutAction<string> callback)
         {
             if (null == callback)

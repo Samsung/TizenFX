@@ -24,6 +24,7 @@ namespace ElmSharp
     /// The GestureLayer is used to detect gestures.
     /// Inherits Widget
     /// </summary>
+    /// <since_tizen> preview </since_tizen>
     public class GestureLayer : Widget
     {
         private readonly Interop.Elementary.GestureEventCallback _gestureCallback;
@@ -37,6 +38,7 @@ namespace ElmSharp
         /// Creates and initializes a new instance of GestureLayer class.
         /// </summary>
         /// <param name="parent">The parent is a given container which will be attached by GestureLayer as a child. It's <see cref="EvasObject"/> type.</param>
+        /// <since_tizen> preview </since_tizen>
         public GestureLayer(EvasObject parent) : base(parent)
         {
             _gestureCallback = new Interop.Elementary.GestureEventCallback(GestureCallbackHandler);
@@ -45,6 +47,7 @@ namespace ElmSharp
         /// <summary>
         /// Enumeration for supported gesture types.
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         public enum GestureType
         {
             /// <summary>
@@ -96,6 +99,7 @@ namespace ElmSharp
         /// <summary>
         /// Enumeration for gesture states.
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         public enum GestureState
         {
             /// <summary>
@@ -129,6 +133,7 @@ namespace ElmSharp
         /// <summary>
         /// Sets or gets the repeat-events setting.
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         public bool HoldEvents
         {
             get
@@ -144,6 +149,7 @@ namespace ElmSharp
         /// <summary>
         /// Sets or gets the gesture layer continues enable of an object
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         public bool Continues
         {
             get
@@ -159,6 +165,7 @@ namespace ElmSharp
         /// <summary>
         /// Sets or gets the gesture layer finger-size for taps.
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         public int TapFingerSize
         {
             get
@@ -174,6 +181,7 @@ namespace ElmSharp
         /// <summary>
         /// Sets or gets the gesture layer long tap start timeout of an object
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         public double LongTapTimeout
         {
             get
@@ -189,6 +197,7 @@ namespace ElmSharp
         /// <summary>
         /// Sets or gets the gesture layer double tap timeout of an object
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         public double DoubleTapTimeout
         {
             get
@@ -204,6 +213,7 @@ namespace ElmSharp
         /// <summary>
         /// Sets or gets the gesture layer flick time limit (in ms) of an object
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         public int FlickTimeLimit
         {
             get
@@ -219,6 +229,7 @@ namespace ElmSharp
         /// <summary>
         /// Sets or gets the gesture layer line min length of an object
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         public int MinimumLineLength
         {
             get
@@ -234,6 +245,7 @@ namespace ElmSharp
         /// <summary>
         /// Sets or gets  the gesture layer line angular tolerance of an object
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         public double LineAngularTolerance
         {
             get
@@ -249,6 +261,7 @@ namespace ElmSharp
         /// <summary>
         /// Sets or gets the gesture layer line distance tolerance of an object
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         public int LineDistanceTolerance
         {
             get
@@ -264,6 +277,7 @@ namespace ElmSharp
         /// <summary>
         /// Sets or gets step-value for rotate action.
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         public double RotateStep
         {
             get
@@ -279,6 +293,7 @@ namespace ElmSharp
         /// <summary>
         /// Sets or gets the gesture layer rotate angular tolerance of an object
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         public double RotateAngularTolerance
         {
             get
@@ -294,6 +309,7 @@ namespace ElmSharp
         /// <summary>
         /// Sets or gets control step value for zoom action.
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         public double ZoomStep
         {
             get
@@ -309,6 +325,7 @@ namespace ElmSharp
         /// <summary>
         /// Sets or gets the gesture layer zoom distance tolerance of an object
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         public int ZoomDistanceTolerance
         {
             get
@@ -324,6 +341,7 @@ namespace ElmSharp
         /// <summary>
         /// Sets or gets the gesture layer zoom finger factor of an object
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         public double ZoomFingerFactor
         {
             get
@@ -339,6 +357,7 @@ namespace ElmSharp
         /// <summary>
         /// Sets or gets the gesture layer zoom wheel factor of an object
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         public double ZoomWheelFactor
         {
             get
@@ -358,6 +377,7 @@ namespace ElmSharp
         /// A gesture layer's target may be any Evas object. This object will be used to listen to mouse and key events.
         /// </summary>
         /// <param name="target">The object to attach.</param>
+        /// <since_tizen> preview </since_tizen>
         public void Attach(EvasObject target)
         {
             Interop.Elementary.elm_gesture_layer_attach(Handle, target.Handle);
@@ -370,6 +390,7 @@ namespace ElmSharp
         /// <param name="type">The gesture you want to track state of.</param>
         /// <param name="state">The event the callback tracks (START, MOVE, END, ABORT).</param>
         /// <param name="action">The callback itself.</param>
+        /// <since_tizen> preview </since_tizen>
         public void SetGestureCallback(GestureType type, GestureState state, Action<object> action)
         {
             lock (_handlers)
@@ -412,6 +433,7 @@ namespace ElmSharp
         /// <summary>
         /// clear the gesture state change callback.
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         public void ClearCallbacks()
         {
             lock (_handlers)
@@ -438,6 +460,7 @@ namespace ElmSharp
         /// <param name="type">The gesture you want to track state of.</param>
         /// <param name="state">The event the callback tracks (START, MOVE, END, ABORT).</param>
         /// <param name="action">The callback itself.</param>
+        /// <since_tizen> preview </since_tizen>
         public void SetTapCallback(GestureType type, GestureState state, Action<TapData> action)
         {
             SetCallback(type, state, action);
@@ -448,6 +471,7 @@ namespace ElmSharp
         /// </summary>
         /// <param name="state">The event the callback tracks (START, MOVE, END, ABORT).</param>
         /// <param name="action">The callback itself.</param>
+        /// <since_tizen> preview </since_tizen>
         public void SetMomentumCallback(GestureState state, Action<MomentumData> action)
         {
             SetCallback(GestureType.Momentum, state, action);
@@ -458,6 +482,7 @@ namespace ElmSharp
         /// </summary>
         /// <param name="state">The event the callback tracks (START, MOVE, END, ABORT).</param>
         /// <param name="action">The callback itself.</param>
+        /// <since_tizen> preview </since_tizen>
         public void SetLineCallback(GestureState state, Action<LineData> action)
         {
             SetCallback(GestureType.Line, state, action);
@@ -468,6 +493,7 @@ namespace ElmSharp
         /// </summary>
         /// <param name="state">The event the callback tracks (START, MOVE, END, ABORT).</param>
         /// <param name="action">The callback itself.</param>
+        /// <since_tizen> preview </since_tizen>
         public void SetFlickCallback(GestureState state, Action<LineData> action)
         {
             SetCallback(GestureType.Flick, state, action);
@@ -478,6 +504,7 @@ namespace ElmSharp
         /// </summary>
         /// <param name="state">The event the callback tracks (START, MOVE, END, ABORT).</param>
         /// <param name="action">The callback itself.</param>
+        /// <since_tizen> preview </since_tizen>
         public void SetZoomCallback(GestureState state, Action<ZoomData> action)
         {
             SetCallback(GestureType.Zoom, state, action);
@@ -488,6 +515,7 @@ namespace ElmSharp
         /// </summary>
         /// <param name="state">The event the callback tracks (START, MOVE, END, ABORT).</param>
         /// <param name="action">The callback itself.</param>
+        /// <since_tizen> preview </since_tizen>
         public void SetRotateCallback(GestureState state, Action<RotateData> action)
         {
             SetCallback(GestureType.Rotate, state, action);
@@ -500,6 +528,7 @@ namespace ElmSharp
         /// </summary>
         /// <param name="parent">The gesture layer's parent widget.</param>
         /// <returns></returns>
+        /// <since_tizen> preview </since_tizen>
         protected override IntPtr CreateHandle(EvasObject parent)
         {
             return Interop.Elementary.elm_gesture_layer_add(parent);
@@ -508,6 +537,7 @@ namespace ElmSharp
         /// <summary>
         /// clear the gesture state change callback.
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         protected override void OnUnrealize()
         {
             ClearCallbacks();
@@ -566,17 +596,20 @@ namespace ElmSharp
         /// <summary>
         /// The struct of TapData
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         [StructLayout(LayoutKind.Sequential)]
         public struct TapData
         {
             /// <summary>
             /// The x coordinate of the center point.
             /// </summary>
+            /// <since_tizen> preview </since_tizen>
             public Int32 X;
 
             /// <summary>
             /// The y coordinate of the center point.
             /// </summary>
+            /// <since_tizen> preview </since_tizen>
             public Int32 Y;
 
 #pragma warning disable 3003
@@ -584,11 +617,13 @@ namespace ElmSharp
             /// <summary>
             /// The number of fingers tapped.
             /// </summary>
+            /// <since_tizen> preview </since_tizen>
             public UInt32 FingersCount;
 
             /// <summary>
             /// The timestamp.
             /// </summary>
+            /// <since_tizen> preview </since_tizen>
             public UInt32 Timestamp;
 
 #pragma warning restore 3003
@@ -597,27 +632,32 @@ namespace ElmSharp
         /// <summary>
         /// The struct of MomentumData
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         [StructLayout(LayoutKind.Sequential)]
         public struct MomentumData
         {
             /// <summary>
             /// Final-swipe direction starting point on X.
             /// </summary>
+            /// <since_tizen> preview </since_tizen>
             public Int32 X1;
 
             /// <summary>
             /// Final-swipe direction starting point on Y.
             /// </summary>
+            /// <since_tizen> preview </since_tizen>
             public Int32 Y1;
 
             /// <summary>
             /// Final-swipe direction ending point on X.
             /// </summary>
+            /// <since_tizen> preview </since_tizen>
             public Int32 X2;
 
             /// <summary>
             /// Final-swipe direction ending point on Y
             /// </summary>
+            /// <since_tizen> preview </since_tizen>
             public Int32 Y2;
 
 #pragma warning disable 3003
@@ -625,26 +665,31 @@ namespace ElmSharp
             /// <summary>
             /// Timestamp of start of final x-swipe.
             /// </summary>
+            /// <since_tizen> preview </since_tizen>
             public UInt32 HorizontalSwipeTimestamp;
 
             /// <summary>
             /// Timestamp of start of final y-swipe.
             /// </summary>
+            /// <since_tizen> preview </since_tizen>
             public UInt32 VerticalSwipeTimestamp;
 
             /// <summary>
             /// Momentum on X.
             /// </summary>
+            /// <since_tizen> preview </since_tizen>
             public Int32 HorizontalMomentum;
 
             /// <summary>
             /// Momentum on Y.
             /// </summary>
+            /// <since_tizen> preview </since_tizen>
             public Int32 VerticalMomentum;
 
             /// <summary>
             /// Number of fingers.
             /// </summary>
+            /// <since_tizen> preview </since_tizen>
             public UInt32 FingersCount;
 
 #pragma warning restore 3003
@@ -653,27 +698,32 @@ namespace ElmSharp
         /// <summary>
         /// The struct of LineData
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         [StructLayout(LayoutKind.Sequential)]
         public struct LineData
         {
             /// <summary>
             /// Final-swipe direction starting point on X.
             /// </summary>
+            /// <since_tizen> preview </since_tizen>
             public Int32 X1;
 
             /// <summary>
             /// Final-swipe direction starting point on Y.
             /// </summary>
+            /// <since_tizen> preview </since_tizen>
             public Int32 Y1;
 
             /// <summary>
             /// Final-swipe direction ending point on X.
             /// </summary>
+            /// <since_tizen> preview </since_tizen>
             public Int32 X2;
 
             /// <summary>
             /// Final-swipe direction ending point on Y
             /// </summary>
+            /// <since_tizen> preview </since_tizen>
             public Int32 Y2;
 
 #pragma warning disable 3003
@@ -681,26 +731,31 @@ namespace ElmSharp
             /// <summary>
             /// Timestamp of start of final x-swipe.
             /// </summary>
+            /// <since_tizen> preview </since_tizen>
             public UInt32 HorizontalSwipeTimestamp;
 
             /// <summary>
             /// Timestamp of start of final y-swipe.
             /// </summary>
+            /// <since_tizen> preview </since_tizen>
             public UInt32 VerticalSwipeTimestamp;
 
             /// <summary>
             /// Momentum on X.
             /// </summary>
+            /// <since_tizen> preview </since_tizen>
             public Int32 HorizontalMomentum;
 
             /// <summary>
             /// Momentum on Y.
             /// </summary>
+            /// <since_tizen> preview </since_tizen>
             public Int32 VerticalMomentum;
 
             /// <summary>
             /// Number of fingers.
             /// </summary>
+            /// <since_tizen> preview </since_tizen>
             public UInt32 FingersCount;
 
 #pragma warning restore 3003
@@ -708,33 +763,39 @@ namespace ElmSharp
             /// <summary>
             /// Angle (direction) of lines.
             /// </summary>
+            /// <since_tizen> preview </since_tizen>
             public double Angle;
         }
 
         /// <summary>
         /// The struct of ZoomData
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         [StructLayout(LayoutKind.Sequential)]
         public struct ZoomData
         {
             /// <summary>
             /// The x coordinate of zoom center point reported to user.
             /// </summary>
+            /// <since_tizen> preview </since_tizen>
             public Int32 X;
 
             /// <summary>
             /// The y coordinate of zoom center point reported to user.
             /// </summary>
+            /// <since_tizen> preview </since_tizen>
             public Int32 Y;
 
             /// <summary>
             /// The radius (distance) between fingers reported to user.
             /// </summary>
+            /// <since_tizen> preview </since_tizen>
             public Int32 Radius;
 
             /// <summary>
             /// The zoom value. 1.0 means no zoom.
             /// </summary>
+            /// <since_tizen> preview </since_tizen>
             public double Zoom;
 
             /// <summary>
@@ -746,32 +807,38 @@ namespace ElmSharp
         /// <summary>
         /// The struct of RotateData
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         [StructLayout(LayoutKind.Sequential)]
         public struct RotateData
         {
             /// <summary>
             /// The x coordinate of rotation center point reported to user.
             /// </summary>
+            /// <since_tizen> preview </since_tizen>
             public Int32 X;
 
             /// <summary>
             /// The y coordinate of rotation center point reported to user.
             /// </summary>
+            /// <since_tizen> preview </since_tizen>
             public Int32 Y;
 
             /// <summary>
             /// The radius (distance) between fingers reported to user.
             /// </summary>
+            /// <since_tizen> preview </since_tizen>
             public Int32 Radius;
 
             /// <summary>
             /// The start-angle.
             /// </summary>
+            /// <since_tizen> preview </since_tizen>
             public double BaseAngle;
 
             /// <summary>
             /// The rotation value. 0.0 means no rotation.
             /// </summary>
+            /// <since_tizen> preview </since_tizen>
             public double Angle;
 
             /// <summary>
@@ -785,11 +852,13 @@ namespace ElmSharp
         /// <summary>
         /// Config is a static class, it provides gestureLayer's timeout information.
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         public static class Config
         {
             /// <summary>
             /// Sets or gets the duration for occurring long tap event of gesture layer.
             /// </summary>
+            /// <since_tizen> preview </since_tizen>
             public static double DefaultLongTapTimeout
             {
                 get
@@ -805,6 +874,7 @@ namespace ElmSharp
             /// <summary>
             /// Sets or gets the duration for occurring double tap event of gesture layer.
             /// </summary>
+            /// <since_tizen> preview </since_tizen>
             public static double DefaultDoubleTapTimeout
             {
                 get

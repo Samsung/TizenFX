@@ -24,6 +24,7 @@ namespace Tizen.NUI
     /// Widget object should be created by WidgetApplication.
     /// </summary>
     /// This is an experimental feature. We do recommend not to use it.
+    /// <since_tizen> 4 </since_tizen>
     [EditorBrowsable(EditorBrowsableState.Never)]
     public class Widget : BaseHandle
     {
@@ -42,6 +43,7 @@ namespace Tizen.NUI
         /// <summary>
         /// To make Widget instance be disposed.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         protected override void Dispose(DisposeTypes type)
         {
             if(disposed)
@@ -127,6 +129,7 @@ namespace Tizen.NUI
         /// <summary>
         /// Event arguments that passed via KeyEvent signal.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         public class CreateEventArgs : EventArgs
         {
             /// <summary>
@@ -221,6 +224,7 @@ namespace Tizen.NUI
         /// <summary>
         /// Event arguments that passed via terminate event signal.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         public class TerminateEventArgs : EventArgs
         {
             /// <summary>
@@ -311,6 +315,7 @@ namespace Tizen.NUI
         /// <summary>
         /// Event arguments that passed via pause event signal.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         public class PauseEventArgs : EventArgs
         {
             /// <summary>
@@ -375,6 +380,7 @@ namespace Tizen.NUI
         /// <summary>
         /// Event arguments that passed via pause event signal.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         public class ResumeEventArgs : EventArgs
         {
             /// <summary>
@@ -439,6 +445,7 @@ namespace Tizen.NUI
         /// <summary>
         /// Event arguments that passed via resize signal.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         public class ResizeEventArgs : EventArgs
         {
             /// <summary>
@@ -517,6 +524,7 @@ namespace Tizen.NUI
         /// <summary>
         /// Event arguments that passed via update event signal.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         public class UpdateEventArgs : EventArgs
         {
             /// <summary>
@@ -617,10 +625,12 @@ namespace Tizen.NUI
             /// <summary>
             /// User deleted this widget from the viewer
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             Permanent,
             /// <summary>
             /// Widget is deleted because of other reasons (e.g. widget process is terminated temporarily by the system)
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             Temporary
         }
 
@@ -633,22 +643,27 @@ namespace Tizen.NUI
             /// <summary>
             /// The widget is dead.
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             AppDead = 0,
             /// <summary>
             /// The widget is dead.
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             Create = 1,
             /// <summary>
             /// The widget is destroyed.
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             Destroy = 2,
             /// <summary>
             /// The widget is paused.
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             Pause = 3,
             /// <summary>
             /// The widget is resumed.
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             Resume = 4
         }
     }

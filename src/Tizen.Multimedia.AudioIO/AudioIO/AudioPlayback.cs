@@ -22,18 +22,21 @@ namespace Tizen.Multimedia
     /// <summary>
     /// Provides the ability to directly manage the system audio output devices and play the PCM (pulse-code modulation) data.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public class AudioPlayback : IDisposable
     {
         /// <summary>
         /// Specifies the minimum value allowed for the audio capture, in Hertz (Hz).
         /// </summary>
         /// <seealso cref="SampleRate"/>
+        /// <since_tizen> 3 </since_tizen>
         public static readonly int MinSampleRate = 8000;
 
         /// <summary>
         /// Specifies the maximum value allowed for the audio capture, in Hertz (Hz).
         /// </summary>
         /// <seealso cref="SampleRate"/>
+        /// <since_tizen> 3 </since_tizen>
         public static readonly int MaxSampleRate = 48000;
 
         private IntPtr _handle = IntPtr.Zero;
@@ -45,6 +48,7 @@ namespace Tizen.Multimedia
         /// Occurs when the audio playback data can be written.
         /// </summary>
         /// <seealso cref="Write(byte[])"/>
+        /// <since_tizen> 3 </since_tizen>
         public event EventHandler<AudioPlaybackBufferAvailableEventArgs> BufferAvailable;
 
         private AudioStreamCallback _streamCallback;
@@ -64,6 +68,7 @@ namespace Tizen.Multimedia
         /// <summary>
         /// Occurs when the state of the AudioPlayback is changed.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public event EventHandler<AudioIOStateChangedEventArgs> StateChanged;
 
         private AudioStateChangedCallback _stateChangedCallback;
@@ -100,6 +105,7 @@ namespace Tizen.Multimedia
         ///     -or-<br/>
         ///     <paramref name="sampleType"/> is invalid.
         /// </exception>
+        /// <since_tizen> 3 </since_tizen>
         public AudioPlayback(int sampleRate, AudioChannel channel, AudioSampleType sampleType)
         {
             if (sampleRate < MinSampleRate || MaxSampleRate < sampleRate)
@@ -137,6 +143,7 @@ namespace Tizen.Multimedia
         /// <summary>
         /// Releases all resources used by the <see cref="AudioPlayback"/> object.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public void Dispose()
         {
             Dispose(true);
@@ -149,6 +156,7 @@ namespace Tizen.Multimedia
         /// <param name="disposing">
         /// true to release both managed and unmanaged resources; false to release only unmanaged resources.
         /// </param>
+        /// <since_tizen> 3 </since_tizen>
         protected virtual void Dispose(bool disposing)
         {
             if (_isDisposed)
@@ -194,22 +202,26 @@ namespace Tizen.Multimedia
         /// <summary>
         /// Gets the sample rate of the audio output data stream, in Hertz (Hz).
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public int SampleRate { get; }
 
         /// <summary>
         /// Gets the channel type of the audio output data stream.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public AudioChannel Channel { get; }
 
         /// <summary>
         /// Gets the sample type of the audio output data stream.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public AudioSampleType SampleType { get; }
 
         /// <summary>
         /// Gets the sound type supported by the audio output device.
         /// </summary>
         /// <exception cref="ObjectDisposedException">The AudioPlayback has already been disposed of.</exception>
+        /// <since_tizen> 3 </since_tizen>
         public AudioStreamType StreamType
         {
             get
@@ -228,6 +240,7 @@ namespace Tizen.Multimedia
         /// Gets the size allocated for the audio output buffer.
         /// </summary>
         /// <exception cref="ObjectDisposedException">The AudioPlayback has already been disposed of.</exception>
+        /// <since_tizen> 3 </since_tizen>
         public int GetBufferSize()
         {
             AudioIOUtil.ThrowIfError(AudioOutput.GetBufferSize(_handle, out var size));
@@ -240,6 +253,7 @@ namespace Tizen.Multimedia
         /// </summary>
         /// <exception cref="ObjectDisposedException">The AudioPlayback has already been disposed of.</exception>
         /// <exception cref="InvalidOperationException">The current state is <see cref="AudioIOState.Idle"/>.</exception>
+        /// <since_tizen> 3 </since_tizen>
         public void Drain()
         {
             ValidateState(AudioIOState.Running, AudioIOState.Paused);
@@ -258,6 +272,7 @@ namespace Tizen.Multimedia
         /// <exception cref="ArgumentException">The length of <paramref name="buffer"/> is zero.</exception>
         /// <exception cref="InvalidOperationException">The current state is not <see cref="AudioIOState.Running"/>.</exception>
         /// <exception cref="ObjectDisposedException">The AudioPlayback has already been disposed of.</exception>
+        /// <since_tizen> 3 </since_tizen>
         public int Write(byte[] buffer)
         {
             ValidateState(AudioIOState.Running);
@@ -292,6 +307,7 @@ namespace Tizen.Multimedia
         /// </exception>
         /// <exception cref="ObjectDisposedException">The AudioPlayback has already been disposed of.</exception>
         /// <seealso cref="Unprepare"/>
+        /// <since_tizen> 3 </since_tizen>
         public void Prepare()
         {
             ValidateState(AudioIOState.Idle);
@@ -310,6 +326,7 @@ namespace Tizen.Multimedia
         /// </exception>
         /// <exception cref="ObjectDisposedException">The AudioPlayback has already been disposed of.</exception>
         /// <seealso cref="Prepare"/>
+        /// <since_tizen> 3 </since_tizen>
         public void Unprepare()
         {
             ValidateState(AudioIOState.Running, AudioIOState.Paused);
@@ -329,6 +346,7 @@ namespace Tizen.Multimedia
         /// </exception>
         /// <exception cref="ObjectDisposedException">The AudioPlayback has already been disposed of.</exception>
         /// <seealso cref="Resume"/>
+        /// <since_tizen> 3 </since_tizen>
         public void Pause()
         {
             if (_state == AudioIOState.Paused)
@@ -351,6 +369,7 @@ namespace Tizen.Multimedia
         /// </exception>
         /// <exception cref="ObjectDisposedException">The AudioPlayback has already been disposed of.</exception>
         /// <seealso cref="Pause"/>
+        /// <since_tizen> 3 </since_tizen>
         public void Resume()
         {
             if (_state == AudioIOState.Running)
@@ -367,6 +386,7 @@ namespace Tizen.Multimedia
         /// </summary>
         /// <exception cref="InvalidOperationException">The current state is <see cref="AudioIOState.Idle"/>.</exception>
         /// <exception cref="ObjectDisposedException">The AudioPlayback has already been disposed of.</exception>
+        /// <since_tizen> 3 </since_tizen>
         public void Flush()
         {
             ValidateState(AudioIOState.Running, AudioIOState.Paused);
@@ -388,6 +408,7 @@ namespace Tizen.Multimedia
         /// </exception>
         /// <exception cref="NotSupportedException"><paramref name="streamPolicy"/> is not supported.</exception>
         /// <exception cref="ArgumentException">Not able to retrieve information from <paramref name="streamPolicy"/>.</exception>
+        /// <since_tizen> 3 </since_tizen>
         public void ApplyStreamPolicy(AudioStreamPolicy streamPolicy)
         {
             if (streamPolicy == null)

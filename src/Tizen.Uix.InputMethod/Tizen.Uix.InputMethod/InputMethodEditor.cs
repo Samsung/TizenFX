@@ -27,6 +27,7 @@ namespace Tizen.Uix.InputMethod
     /// If keycode &amp; 0xff000000 == 0x01000000 then this key code is directly encoded 24-bit UCS character.The UCS value is keycode &amp; 0x00ffffff.
     /// Defines the list of keys supported by the system.Note that certain keys may not be available on all devices.
     /// </summary>
+    /// <since_tizen> 4 </since_tizen>
     public enum KeyCode
     {
         /// <summary>
@@ -907,6 +908,7 @@ namespace Tizen.Uix.InputMethod
     /// Enumeration of the key masks.
     /// The key masks indicate which modifier keys is pressed down during the keyboard hit.The special MASK_RELEASED indicates the key release event.
     /// </summary>
+    /// <since_tizen> 4 </since_tizen>
     public enum KeyMask
     {
         /// <summary>
@@ -954,6 +956,7 @@ namespace Tizen.Uix.InputMethod
     /// <summary>
     /// This class contains api's related to IME(Input method editor)
     /// </summary>
+    /// <since_tizen> 4 </since_tizen>
     public static class InputMethodEditor
     {
         private static Object thisLock = new Object();
@@ -1021,6 +1024,7 @@ namespace Tizen.Uix.InputMethod
         /// <summary>
         /// Structure representing ContextId
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         public struct ContextId : IEquatable<ContextId>
         {
             internal ContextId(int id)
@@ -1037,6 +1041,7 @@ namespace Tizen.Uix.InputMethod
             /// <summary>
             /// compare whether ContextId are equal
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public bool Equals(ContextId other)
             {
                 return this.Id == other.Id;
@@ -1046,26 +1051,31 @@ namespace Tizen.Uix.InputMethod
         /// <summary>
         /// rectangle representing the position and size of UI Control
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         public struct Rect
         {
             /// <summary>
             /// The x position in screen
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public int x;
 
             /// <summary>
             /// The y position in screen
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public int y;
 
             /// <summary>
             /// The window width
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public int w;
 
             /// <summary>
             /// The window height
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public int h;
         }
 
@@ -1074,6 +1084,7 @@ namespace Tizen.Uix.InputMethod
         /// </summary>
         /// <typeparam name="T">Generic Type</typeparam>
         /// <param name="a">The out parameter</param>
+        /// <since_tizen> 4 </since_tizen>
         public delegate void OutAction<T>(out T a);
 
         /// <summary>
@@ -1081,6 +1092,7 @@ namespace Tizen.Uix.InputMethod
         /// </summary>
         /// <typeparam name="T">Generic Type</typeparam>
         /// <param name="a">The out parameter 1</param>
+        /// <since_tizen> 4 </since_tizen>
         public delegate void OutArrayAction<T>(out T[] a);
 
         /// <summary>
@@ -1093,11 +1105,13 @@ namespace Tizen.Uix.InputMethod
         /// <param name="b">The Input Parameter 2</param>
         /// <param name="c">The Input Parameter 3</param>
         /// <returns></returns>
+        /// <since_tizen> 4 </since_tizen>
         public delegate bool BoolAction<T, T1, T2>(T a, T1 b, T2 c);
 
         /// <summary>
         /// Called when an associated text input UI control has focus.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         public static event EventHandler<FocusedInEventArgs> FocusedIn
         {
             add
@@ -1132,6 +1146,7 @@ namespace Tizen.Uix.InputMethod
         /// <summary>
         /// Called when an associated text input UI control loses focus.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         public static event EventHandler<FocusedOutEventArgs> FocusedOut
         {
             add
@@ -1166,6 +1181,7 @@ namespace Tizen.Uix.InputMethod
         /// <summary>
         /// Called when an associated text input UI control responds to a request with the surrounding text.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         public static event EventHandler<SurroundingTextUpdatedEventArgs> SurroundingTextUpdated
         {
             add
@@ -1200,6 +1216,7 @@ namespace Tizen.Uix.InputMethod
         /// <summary>
         /// Called to reset the input context of an associated text input UI control.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         public static event EventHandler<EventArgs> InputContextReset
         {
             add
@@ -1233,6 +1250,7 @@ namespace Tizen.Uix.InputMethod
         /// <summary>
         /// Called when the position of the cursor in an associated text input UI control changes.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         public static event EventHandler<CursorPositionUpdatedEventArgs> CursorPositionUpdated
         {
             add
@@ -1268,6 +1286,7 @@ namespace Tizen.Uix.InputMethod
         /// Called to set the preferred language to the input panel.
         /// It will be only called when the client application changes the edit field's language attribute after the input panel is shown.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         public static event EventHandler<LanguageSetEventArgs> LanguageSet
         {
             add
@@ -1302,6 +1321,7 @@ namespace Tizen.Uix.InputMethod
         /// <summary>
         /// Called to set the application specific data to deliver to the input panel.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         public static event EventHandler<SetDataEventArgs> DataSet
         {
             add
@@ -1339,6 +1359,7 @@ namespace Tizen.Uix.InputMethod
         /// Called when an associated text input UI control requests the input panel to set its layout.
         /// It will be only called when the client application changes the edit field's layout attribute after the input panel is shown.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         public static event EventHandler<LayoutSetEventArgs> LayoutSet
         {
             add
@@ -1374,6 +1395,7 @@ namespace Tizen.Uix.InputMethod
         /// Called when an associated text input UI control requests the input panel to set the Return key label.
         /// The input panel can show text or image on the Return button according to the Return key action.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         public static event EventHandler<ReturnKeySetEventArgs> ReturnKeySet
         {
             add
@@ -1408,6 +1430,7 @@ namespace Tizen.Uix.InputMethod
         /// <summary>
         /// Called when an associated text input UI control requests the input panel to enable or disable the Return key state.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         public static event EventHandler<ReturnKeyStateSetEventArgs> ReturnKeyStateSet
         {
             add
@@ -1442,6 +1465,7 @@ namespace Tizen.Uix.InputMethod
         /// <summary>
         /// Called when the system display Language is changed.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         public static event EventHandler<DisplayLanguageChangedEventArgs> DisplayLanguageChanged
         {
             add
@@ -1476,6 +1500,7 @@ namespace Tizen.Uix.InputMethod
         /// <summary>
         /// Called when the device is rotated.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         public static event EventHandler<RotationChangedEventArgs> RotationChanged
         {
             add
@@ -1510,6 +1535,7 @@ namespace Tizen.Uix.InputMethod
         /// <summary>
         /// Called when Accessibility in Settings application is on or off.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         public static event EventHandler<AccessibilityStateChangedEventArgs> AccessibilityStateChanged
         {
             add
@@ -1547,6 +1573,7 @@ namespace Tizen.Uix.InputMethod
         /// <param name="languageRequested">
         /// Called when an associated text input UI control requests the language from the input panel, requesting for language code.
         /// </param>
+        /// <since_tizen> 4 </since_tizen>
         public static void SetLanguageRequestedCallback(OutAction<string> languageRequested)
         {
             _imeLanguageRequestedDelegate = (IntPtr userData, out IntPtr langCode) =>
@@ -1573,6 +1600,7 @@ namespace Tizen.Uix.InputMethod
         /// The Action is alled when the key event is received from the external devices or SendKey function.
         /// This Event processes the key event before an associated text input UI control does.
         /// </param>
+        /// <since_tizen> 4 </since_tizen>
         public static void SetProcessKeyCallback(BoolAction<KeyCode, KeyMask, InputMethodDeviceInformation> processKey)
         {
             _imeProcessKeyDelegate = (KeyCode keyCode, KeyMask keyMask, IntPtr devInfo, IntPtr userData) =>
@@ -1593,6 +1621,7 @@ namespace Tizen.Uix.InputMethod
         /// <param name="imDataRequested">
         /// Called when an associated text input UI control requests the application specific data from the input panel, requesting for data array and it's length.
         /// </param>
+        /// <since_tizen> 4 </since_tizen>
         public static void SetDataRequestedCallback(OutArrayAction<byte> imDataRequested)
         {
             _imeImDataRequestedDelegate = (IntPtr userData, out IntPtr data, out uint dataLength) =>
@@ -1617,6 +1646,7 @@ namespace Tizen.Uix.InputMethod
         /// <param name="geometryRequested">
         /// Called when an associated text input UI control requests the position and size from the input panel, requesting for x,y,w,h values.
         /// </param>
+        /// <since_tizen> 4 </since_tizen>
         public static void SetGeometryRequestedCallback(OutAction<Rect> geometryRequested)
         {
             _imeGeometryRequestedDelegate = (IntPtr userData, out int x, out int y, out int w, out int h) =>
@@ -1661,6 +1691,7 @@ namespace Tizen.Uix.InputMethod
         /// 1) The application does not have the privilege to call this function
         /// 2) Operation failed
         /// </exception>
+        /// <since_tizen> 4 </since_tizen>
         public static void Run(Action create, Action terminate, Action<ContextId, InputMethodContext> show, Action<ContextId> hide)
         {
             _userCreate = create;
@@ -1699,6 +1730,7 @@ namespace Tizen.Uix.InputMethod
         /// 1) The application does not have the privilege to call this function
         /// 2) IME main loop isn't started yet
         /// </exception>
+        /// <since_tizen> 4 </since_tizen>
         public static void SendKeyEvent(KeyCode keyCode, KeyMask keyMask, bool forwardKey = false)
         {
             ErrorCode error = ImeSendKeyEvent(keyCode, keyMask, forwardKey);
@@ -1721,6 +1753,7 @@ namespace Tizen.Uix.InputMethod
         /// 1) The application does not have the privilege to call this function
         /// 2) IME main loop isn't started yet
         /// </exception>
+        /// <since_tizen> 4 </since_tizen>
         public static void CommitString(string str)
         {
             ErrorCode error = ImeCommitString(str);
@@ -1742,6 +1775,7 @@ namespace Tizen.Uix.InputMethod
         /// 1) The application does not have the privilege to call this function
         /// 2) IME main loop isn't started yet
         /// </exception>
+        /// <since_tizen> 4 </since_tizen>
         public static void ShowPreEditString()
         {
             ErrorCode error = ImeShowPreeditString();
@@ -1763,6 +1797,7 @@ namespace Tizen.Uix.InputMethod
         /// 1) The application does not have the privilege to call this function
         /// 2) IME main loop isn't started yet
         /// </exception>
+        /// <since_tizen> 4 </since_tizen>
         public static void HidePreEditString()
         {
             ErrorCode error = ImeHidePreeditString();
@@ -1790,6 +1825,7 @@ namespace Tizen.Uix.InputMethod
         /// 2) IME main loop isn't started yet
         /// 3) Invalid Parameter
         /// </exception>
+        /// <since_tizen> 4 </since_tizen>
         public static void UpdatePreEditString(string str, IEnumerable<PreEditAttribute> attrs)
         {
             IntPtr einaList = IntPtr.Zero;
@@ -1833,6 +1869,7 @@ namespace Tizen.Uix.InputMethod
         /// <postcondition>
         /// The requested surrounding text can be received using the SurroundingTextUpdated Event, only if it is set.
         /// </postcondition>
+        /// <since_tizen> 4 </since_tizen>
         public static void RequestSurroundingText(int maxLenBefore, int maxLenAfter)
         {
             ErrorCode error = ImeRequestSurroundingText(maxLenBefore, maxLenAfter);
@@ -1857,6 +1894,7 @@ namespace Tizen.Uix.InputMethod
         /// 2) IME main loop isn't started yet
         /// 3) Invalid Parameter
         /// </exception>
+        /// <since_tizen> 4 </since_tizen>
         public static void DeleteSurroundingText(int offset, int len)
         {
             ErrorCode error = ImeDeleteSurroundingText(offset, len);
@@ -1884,6 +1922,7 @@ namespace Tizen.Uix.InputMethod
         /// 3) Invalid Parameter
         /// 4) Failed to obtain text due to out of memory
         /// </exception>
+        /// <since_tizen> 4 </since_tizen>
         public static void GetSurroundingText(int maxLenBefore, int maxLenAfter, out string text, out int cursorPosition)
         {
             IntPtr txt;
@@ -1910,6 +1949,7 @@ namespace Tizen.Uix.InputMethod
         /// 2) IME main loop isn't started yet
         /// 3) Invalid Parameter
         /// </exception>
+        /// <since_tizen> 4 </since_tizen>
         public static void SetSelection(int start, int end)
         {
             ErrorCode error = ImeSetSelection(start, end);
@@ -1933,6 +1973,7 @@ namespace Tizen.Uix.InputMethod
         /// 2) IME main loop isn't started yet
         /// 3) Operation Failed
         /// </exception>
+        /// <since_tizen> 4 </since_tizen>
         public static EditorWindow GetMainWindow()
         {
             EditorWindow._handle = ImeGetMainWindow();
@@ -1957,6 +1998,7 @@ namespace Tizen.Uix.InputMethod
         /// 1) The application does not have the privilege to call this function
         /// 2) Operation Failed
         /// </exception>
+        /// <since_tizen> 4 </since_tizen>
         public static void Create()
         {
             ErrorCode error = ImeInitialize();
@@ -1987,6 +2029,7 @@ namespace Tizen.Uix.InputMethod
         /// 1) The application does not have the privilege to call this function
         /// 2) Operation Failed
         /// </exception>
+        /// <since_tizen> 4 </since_tizen>
         public static void Destroy()
         {
             ErrorCode error = ImeFinalize();

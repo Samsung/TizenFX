@@ -19,6 +19,7 @@ namespace Tizen.Applications
     /// <summary>
     /// Enumeration for the application control result.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public enum AppControlReplyResult
     {
         /// <summary>

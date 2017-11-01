@@ -21,6 +21,7 @@ namespace Tizen.Content.MediaContent
     /// <summary>
     /// Provides commands to manage folders and query related media items in the database.
     /// </summary>
+    /// <since_tizen> 4 </since_tizen>
     public class FolderCommand : MediaCommand
     {
         /// <summary>
@@ -29,6 +30,7 @@ namespace Tizen.Content.MediaContent
         /// <param name="database">The <see cref="MediaDatabase"/> that the commands run on.</param>
         /// <exception cref="ArgumentNullException"><paramref name="database"/> is null.</exception>
         /// <exception cref="ObjectDisposedException"><paramref name="database"/> has already been disposed of.</exception>
+        /// <since_tizen> 4 </since_tizen>
         public FolderCommand(MediaDatabase database) : base(database)
         {
         }
@@ -40,6 +42,7 @@ namespace Tizen.Content.MediaContent
         /// <exception cref="InvalidOperationException">The <see cref="MediaDatabase"/> is disconnected.</exception>
         /// <exception cref="ObjectDisposedException">The <see cref="MediaDatabase"/> has already been disposed of.</exception>
         /// <exception cref="MediaDatabaseException">An error occurred while executing the command.</exception>
+        /// <since_tizen> 4 </since_tizen>
         public int Count()
         {
             return Count(null);
@@ -53,6 +56,7 @@ namespace Tizen.Content.MediaContent
         /// <exception cref="InvalidOperationException">The <see cref="MediaDatabase"/> is disconnected.</exception>
         /// <exception cref="ObjectDisposedException">The <see cref="MediaDatabase"/> has already been disposed of.</exception>
         /// <exception cref="MediaDatabaseException">An error occurred while executing the command.</exception>
+        /// <since_tizen> 4 </since_tizen>
         public int Count(CountArguments arguments)
         {
             ValidateDatabase();
@@ -67,6 +71,7 @@ namespace Tizen.Content.MediaContent
         /// <exception cref="InvalidOperationException">The <see cref="MediaDatabase"/> is disconnected.</exception>
         /// <exception cref="ObjectDisposedException">The <see cref="MediaDatabase"/> has already been disposed of.</exception>
         /// <exception cref="MediaDatabaseException">An error occurred while executing the command.</exception>
+        /// <since_tizen> 4 </since_tizen>
         public MediaDataReader<Folder> Select()
         {
             return Select(arguments: null);
@@ -80,6 +85,7 @@ namespace Tizen.Content.MediaContent
         /// <exception cref="InvalidOperationException">The <see cref="MediaDatabase"/> is disconnected.</exception>
         /// <exception cref="ObjectDisposedException">The <see cref="MediaDatabase"/> has already been disposed of.</exception>
         /// <exception cref="MediaDatabaseException">An error occurred while executing the command.</exception>
+        /// <since_tizen> 4 </since_tizen>
         public MediaDataReader<Folder> Select(SelectArguments arguments)
         {
             ValidateDatabase();
@@ -97,6 +103,7 @@ namespace Tizen.Content.MediaContent
         /// <exception cref="MediaDatabaseException">An error occurred while executing the command.</exception>
         /// <exception cref="ArgumentNullException"><paramref name="folderId"/> is null.</exception>
         /// <exception cref="ArgumentException"><paramref name="folderId"/> is a zero-length string, contains only white space.</exception>
+        /// <since_tizen> 4 </since_tizen>
         public Folder Select(string folderId)
         {
             ValidateDatabase();
@@ -130,6 +137,7 @@ namespace Tizen.Content.MediaContent
         /// <exception cref="MediaDatabaseException">An error occurred while executing the command.</exception>
         /// <exception cref="ArgumentNullException"><paramref name="folderId"/> is null.</exception>
         /// <exception cref="ArgumentException"><paramref name="folderId"/> is a zero-length string, contains only white space.</exception>
+        /// <since_tizen> 4 </since_tizen>
         public int CountMedia(string folderId)
         {
             return CountMedia(folderId, null);
@@ -146,6 +154,7 @@ namespace Tizen.Content.MediaContent
         /// <exception cref="MediaDatabaseException">An error occurred while executing the command.</exception>
         /// <exception cref="ArgumentNullException"><paramref name="folderId"/> is null.</exception>
         /// <exception cref="ArgumentException"><paramref name="folderId"/> is a zero-length string, contains only white space.</exception>
+        /// <since_tizen> 4 </since_tizen>
         public int CountMedia(string folderId, CountArguments arguments)
         {
             ValidateDatabase();
@@ -165,6 +174,7 @@ namespace Tizen.Content.MediaContent
         /// <exception cref="MediaDatabaseException">An error occurred while executing the command.</exception>
         /// <exception cref="ArgumentNullException"><paramref name="folderId"/> is null.</exception>
         /// <exception cref="ArgumentException"><paramref name="folderId"/> is a zero-length string, contains only white space.</exception>
+        /// <since_tizen> 4 </since_tizen>
         public MediaDataReader<MediaInfo> SelectMedia(string folderId)
         {
             return SelectMedia(folderId, null);
@@ -181,6 +191,7 @@ namespace Tizen.Content.MediaContent
         /// <exception cref="MediaDatabaseException">An error occurred while executing the command.</exception>
         /// <exception cref="ArgumentNullException"><paramref name="folderId"/> is null.</exception>
         /// <exception cref="ArgumentException"><paramref name="folderId"/> is a zero-length string, contains only white space.</exception>
+        /// <since_tizen> 4 </since_tizen>
         public MediaDataReader<MediaInfo> SelectMedia(string folderId, SelectArguments filter)
         {
             ValidateDatabase();

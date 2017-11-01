@@ -42,6 +42,7 @@ namespace Tizen.Content.MediaContent
     /// <summary>
     /// Specifies the storage types.
     /// </summary>
+    /// <since_tizen> 4 </since_tizen>
     public enum StorageType
     {
         /// <summary>
@@ -63,6 +64,7 @@ namespace Tizen.Content.MediaContent
     /// <summary>
     /// Specifies database operation types.
     /// </summary>
+    /// <since_tizen> 4 </since_tizen>
     public enum OperationType
     {
         /// <summary>
@@ -90,6 +92,7 @@ namespace Tizen.Content.MediaContent
     /// <summary>
     /// Specifies types of the <see cref="MediaInfo"/>.
     /// </summary>
+    /// <since_tizen> 4 </since_tizen>
     public enum MediaType
     {
         /// <summary>
@@ -125,6 +128,7 @@ namespace Tizen.Content.MediaContent
     /// <summary>
     /// Specifies orientation types of media.
     /// </summary>
+    /// <since_tizen> 4 </since_tizen>
     public enum Orientation
     {
         /// <summary>

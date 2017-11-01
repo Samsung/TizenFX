@@ -65,6 +65,7 @@ namespace Tizen.Multimedia
     /// <summary>
     /// Specifies the audio device types.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public enum AudioDeviceType
     {
         /// <summary>
@@ -108,6 +109,7 @@ namespace Tizen.Multimedia
     /// <summary>
     /// Specifies the audio device directions.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public enum AudioDeviceIoDirection
     {
         /// <summary>
@@ -127,6 +129,7 @@ namespace Tizen.Multimedia
     /// <summary>
     /// Specifies the audio device states.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public enum AudioDeviceState
     {
         /// <summary>
@@ -142,6 +145,7 @@ namespace Tizen.Multimedia
     /// <summary>
     /// Specifies the audio volume types.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public enum AudioVolumeType
     {
         /// <summary>
@@ -186,6 +190,7 @@ namespace Tizen.Multimedia
     /// <summary>
     /// Specifies the audio stream types.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public enum AudioStreamType
     {
         /// <summary>
@@ -233,6 +238,7 @@ namespace Tizen.Multimedia
     /// <summary>
     /// Specifies the change reasons of the audio stream focus state.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public enum AudioStreamFocusChangedReason
     {
         /// <summary>
@@ -287,6 +293,7 @@ namespace Tizen.Multimedia
     /// This enumeration has a <see cref="FlagsAttribute"/> attribute that allows a bitwise combination of its member values.
     /// </para>
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     [Flags]
     public enum AudioStreamFocusOptions
     {
@@ -303,6 +310,7 @@ namespace Tizen.Multimedia
     /// <summary>
     /// Specifies the audio stream focus states.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public enum AudioStreamFocusState
     {
         /// <summary>
@@ -321,6 +329,7 @@ namespace Tizen.Multimedia
     /// This enumeration has a <see cref="FlagsAttribute"/> attribute that allows a bitwise combination of its member values.
     /// </para>
     /// </summary>
+    /// <since_tizen> 4 </since_tizen>
     [Flags]
     public enum AudioStreamBehaviors
     {

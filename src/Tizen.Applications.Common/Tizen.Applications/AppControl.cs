@@ -40,6 +40,7 @@ namespace Tizen.Applications
     /// }
     /// </code>
     /// </example>
+    /// <since_tizen> 3 </since_tizen>
     public class AppControl
     {
         private const string LogTag = "Tizen.Applications";
@@ -60,6 +61,7 @@ namespace Tizen.Applications
         /// Initializes the instance of the AppControl class.
         /// </summary>
         /// <exception cref="InvalidOperationException">Thrown when failed to create the AppControl handle.</exception>
+        /// <since_tizen> 3 </since_tizen>
         public AppControl()
         {
             Interop.AppControl.ErrorCode err = Interop.AppControl.Create(out _handle);
@@ -74,6 +76,7 @@ namespace Tizen.Applications
         /// </summary>
         /// <param name="enableAppStartedResultEvent">The flag value to receive an additional launch result event on the launch request.</param>
         /// <exception cref="InvalidOperationException">Thrown when failed to create the AppControl handle.</exception>
+        /// <since_tizen> 3 </since_tizen>
         public AppControl(bool enableAppStartedResultEvent)
         {
             Interop.AppControl.ErrorCode err = Interop.AppControl.Create(out _handle);
@@ -96,6 +99,7 @@ namespace Tizen.Applications
         /// Initializes the instance of the AppControl class with the SafeAppControlHandle.
         /// </summary>
         /// <param name="handle"></param>
+        /// <since_tizen> 3 </since_tizen>
         public AppControl(SafeAppControlHandle handle)
         {
             if (handle == null)
@@ -124,6 +128,7 @@ namespace Tizen.Applications
         /// <summary>
         /// Gets the SafeAppControlHandle instance.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public SafeAppControlHandle SafeAppControlHandle
         {
             get
@@ -148,6 +153,7 @@ namespace Tizen.Applications
         /// Log.Debug(LogTag, "Operation: " + appControl.Operation);
         /// </code>
         /// </example>
+        /// <since_tizen> 3 </since_tizen>
         public string Operation
         {
             get
@@ -189,6 +195,7 @@ namespace Tizen.Applications
         /// Log.Debug(LogTag, "Mime: " + appControl.Mime);
         /// </code>
         /// </example>
+        /// <since_tizen> 3 </since_tizen>
         public string Mime
         {
             get
@@ -245,6 +252,7 @@ namespace Tizen.Applications
         /// }
         /// </code>
         /// </example>
+        /// <since_tizen> 3 </since_tizen>
         public string Uri
         {
             get
@@ -279,6 +287,7 @@ namespace Tizen.Applications
         /// <value>
         /// (if the category is null for setter, it clears the previous value.)
         /// </value>
+        /// <since_tizen> 3 </since_tizen>
         public string Category
         {
             get
@@ -320,6 +329,7 @@ namespace Tizen.Applications
         /// Log.Debug(LogTag, "ApplicationId: " + appControl.ApplicationId);
         /// </code>
         /// </example>
+        /// <since_tizen> 3 </since_tizen>
         public string ApplicationId
         {
             get
@@ -366,6 +376,7 @@ namespace Tizen.Applications
         /// appControl.LaunchMode = AppControlLaunchMode.Group;
         /// </code>
         /// </example>
+        /// <since_tizen> 3 </since_tizen>
         public AppControlLaunchMode LaunchMode
         {
             get
@@ -401,6 +412,7 @@ namespace Tizen.Applications
         /// ...
         /// </code>
         /// </example>
+        /// <since_tizen> 3 </since_tizen>
         public ExtraDataCollection ExtraData
         {
             get
@@ -431,6 +443,7 @@ namespace Tizen.Applications
         /// }
         /// </code>
         /// </example>
+        /// <since_tizen> 3 </since_tizen>
         public static IEnumerable<string> GetMatchedApplicationIds(AppControl control)
         {
             if (control == null)
@@ -482,6 +495,7 @@ namespace Tizen.Applications
         /// AppControl.SendLaunchRequest(appControl);
         /// </code>
         /// </example>
+        /// <since_tizen> 3 </since_tizen>
         public static void SendLaunchRequest(AppControl launchRequest)
         {
             SendLaunchRequest(launchRequest, null);
@@ -517,6 +531,7 @@ namespace Tizen.Applications
         /// });
         /// </code>
         /// </example>
+        /// <since_tizen> 3 </since_tizen>
         public static void SendLaunchRequest(AppControl launchRequest, AppControlReplyCallback replyAfterLaunching)
         {
             if (launchRequest == null)
@@ -600,6 +615,7 @@ namespace Tizen.Applications
         /// AppControl.SendTerminateRequest(terminateRequest);
         /// </code>
         /// </example>
+        /// <since_tizen> 3 </since_tizen>
         public static void SendTerminateRequest(AppControl terminateRequest)
         {
             if (terminateRequest == null)
@@ -627,6 +643,7 @@ namespace Tizen.Applications
         /// <summary>
         /// Class for extra data.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public class ExtraDataCollection
         {
             private readonly SafeAppControlHandle _handle;
@@ -652,6 +669,7 @@ namespace Tizen.Applications
             /// appControl.ExtraData.Add("myKey", "myValue");
             /// </code>
             /// </example>
+            /// <since_tizen> 3 </since_tizen>
             public void Add(string key, string value)
             {
                 if (string.IsNullOrEmpty(key))
@@ -694,6 +712,7 @@ namespace Tizen.Applications
             /// appControl.ExtraData.Add("myKey", myValues);
             /// </code>
             /// </example>
+            /// <since_tizen> 3 </since_tizen>
             public void Add(string key, IEnumerable<string> value)
             {
                 if (string.IsNullOrEmpty(key))
@@ -735,6 +754,7 @@ namespace Tizen.Applications
             /// string myValue = appControl.ExtraData.Get&lt;string&gt;("myKey");
             /// </code>
             /// </example>
+            /// <since_tizen> 3 </since_tizen>
             public T Get<T>(string key)
             {
                 object ret = Get(key);
@@ -759,6 +779,7 @@ namespace Tizen.Applications
             /// }
             /// </code>
             /// </example>
+            /// <since_tizen> 3 </since_tizen>
             public object Get(string key)
             {
                 if (IsCollection(key))
@@ -789,6 +810,7 @@ namespace Tizen.Applications
             /// }
             /// </code>
             /// </example>
+            /// <since_tizen> 3 </since_tizen>
             public IEnumerable<string> GetKeys()
             {
                 List<string> keys = new List<string>();
@@ -832,6 +854,7 @@ namespace Tizen.Applications
             /// }
             /// </code>
             /// </example>
+            /// <since_tizen> 3 </since_tizen>
             public bool TryGet(string key, out string value)
             {
                 if (string.IsNullOrEmpty(key))
@@ -873,6 +896,7 @@ namespace Tizen.Applications
             /// }
             /// </code>
             /// </example>
+            /// <since_tizen> 3 </since_tizen>
             public bool TryGet(string key, out IEnumerable<string> value)
             {
                 if (string.IsNullOrEmpty(key))
@@ -915,6 +939,7 @@ namespace Tizen.Applications
             /// appControl.ExtraData.Remove("myKey");
             /// </code>
             /// </example>
+            /// <since_tizen> 3 </since_tizen>
             public void Remove(string key)
             {
                 if (string.IsNullOrEmpty(key))
@@ -949,6 +974,7 @@ namespace Tizen.Applications
             /// int numberOfKeys = appControl.ExtraData.Count();
             /// </code>
             /// </example>
+            /// <since_tizen> 3 </since_tizen>
             public int Count()
             {
                 return GetKeys().Count();
@@ -967,6 +993,7 @@ namespace Tizen.Applications
             /// bool result = appControl.ExtraData.IsCollection("myKey");
             /// </code>
             /// </example>
+            /// <since_tizen> 3 </since_tizen>
             public bool IsCollection(string key)
             {
                 if (string.IsNullOrEmpty(key))

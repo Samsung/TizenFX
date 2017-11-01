@@ -23,6 +23,7 @@ namespace Tizen.Multimedia
     /// <summary>
     /// MediaFormat is a base class for media formats.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public abstract class MediaFormat
     {
         /// <summary>
@@ -37,6 +38,7 @@ namespace Tizen.Multimedia
         /// <summary>
         /// Gets the type of the current format.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public MediaFormatType Type
         {
             get;

@@ -21,6 +21,7 @@ namespace Tizen.Sensor
     /// <summary>
     /// The LinearAccelerationSensor changed event arguments class is used for storing the data returned by a linear acceleration sensor.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public class LinearAccelerationSensorDataUpdatedEventArgs : EventArgs
     {
         internal LinearAccelerationSensorDataUpdatedEventArgs(float[] values)

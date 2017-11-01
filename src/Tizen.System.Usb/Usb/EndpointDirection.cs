@@ -19,6 +19,7 @@ namespace Tizen.System.Usb
     /// <summary>
     /// Enumeration of transfer direction for Endpoints.
     /// </summary>
+    /// <since_tizen> 4 </since_tizen>
     public enum EndpointDirection
     {
         /// <summary>

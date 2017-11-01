@@ -21,6 +21,7 @@ namespace Tizen.Multimedia
     /// <summary>
     /// Provides data for the <see cref="Recorder.RecordingStatusChanged"/> event.
     /// </summary>
+    /// <since_tizen> 4 </since_tizen>
     public class RecordingStatusChangedEventArgs : EventArgs
     {
         /// <summary>
@@ -29,6 +30,7 @@ namespace Tizen.Multimedia
         /// </summary>
         /// <param name="elapsedTime">The time of the recording in milliseconds.</param>
         /// <param name="fileSize">The size of the recording in kilobytes.</param>
+        /// <since_tizen> 4 </since_tizen>
         public RecordingStatusChangedEventArgs(long elapsedTime, long fileSize)
         {
             ElapsedTime = elapsedTime;
@@ -38,11 +40,13 @@ namespace Tizen.Multimedia
         /// <summary>
         /// Gets the time of the recording in milliseconds.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         public long ElapsedTime { get; }
 
         /// <summary>
         /// Gets the size of the recording file in kilobytes.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         public long FileSize { get; }
     }
 }

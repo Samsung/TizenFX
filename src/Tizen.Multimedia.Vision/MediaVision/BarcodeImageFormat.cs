@@ -20,7 +20,7 @@ namespace Tizen.Multimedia.Vision
     /// Specifies the supported image formats for <see cref="BarcodeGenerator"/>
     /// </summary>
     /// <seealso cref="BarcodeImageConfiguration"/>
-    /// <since_tizen> 3 </since_tizen>
+    /// <since_tizen> 4 </since_tizen>
     public enum BarcodeImageFormat
     {
         /// <summary>

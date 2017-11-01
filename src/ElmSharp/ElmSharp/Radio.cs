@@ -21,6 +21,7 @@ namespace ElmSharp
     /// <summary>
     /// The Radio is a widget that allows for 1 or more options to be displayed and have the user choose only 1 of them.
     /// </summary>
+    /// <since_tizen> preview </since_tizen>
     public class Radio : Layout
     {
         SmartEvent _changed;
@@ -29,6 +30,7 @@ namespace ElmSharp
         /// Creates and initializes a new instance of the Radio class.
         /// </summary>
         /// <param name="parent">The EvasObject to which the new Radio will be attached as a child.</param>
+        /// <since_tizen> preview </since_tizen>
         public Radio(EvasObject parent) : base(parent)
         {
             _changed = new SmartEvent(this, this.RealHandle, "changed");
@@ -38,11 +40,13 @@ namespace ElmSharp
         /// <summary>
         /// ValueChanged will be triggered when value of Radio change.
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         public event EventHandler ValueChanged;
 
         /// <summary>
         /// Sets or gets a unique value to each Radio button.
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         public int StateValue
         {
             get
@@ -58,6 +62,7 @@ namespace ElmSharp
         /// <summary>
         /// Sets or gets the value of the radio group.
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         public int GroupValue
         {
             get
@@ -74,6 +79,7 @@ namespace ElmSharp
         /// Adds this radio to a group of other radio objects.
         /// </summary>
         /// <param name="group">Group which add radio in.</param>
+        /// <since_tizen> preview </since_tizen>
         public void SetGroup(Radio group)
         {
             if (group == null)
@@ -88,6 +94,7 @@ namespace ElmSharp
         /// </summary>
         /// <param name="parent">Parent EvasObject</param>
         /// <returns>Handle IntPtr</returns>
+        /// <since_tizen> preview </since_tizen>
         protected override IntPtr CreateHandle(EvasObject parent)
         {
             IntPtr handle = Interop.Elementary.elm_layout_add(parent.Handle);

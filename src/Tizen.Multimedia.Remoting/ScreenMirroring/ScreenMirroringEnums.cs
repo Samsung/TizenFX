@@ -22,6 +22,7 @@ namespace Tizen.Multimedia.Remoting
     /// Specifies the audio codecs for <see cref="ScreenMirroring"/>.
     /// </summary>
     /// <seealso cref="ScreenMirroringAudioInfo"/>
+    /// <since_tizen> 4 </since_tizen>
     public enum ScreenMirroringAudioCodec
     {
         /// <summary>
@@ -46,6 +47,7 @@ namespace Tizen.Multimedia.Remoting
     /// Specifies the video codecs for <see cref="ScreenMirroring"/>.
     /// </summary>
     /// <seealso cref="ScreenMirroringVideoInfo"/>
+    /// <since_tizen> 4 </since_tizen>
     public enum ScreenMirroringVideoCodec
     {
         /// <summary>
@@ -61,6 +63,7 @@ namespace Tizen.Multimedia.Remoting
     /// <summary>
     /// Specifies the available combinations of resolutions and fps for <see cref="ScreenMirroring"/>.
     /// </summary>
+    /// <since_tizen> 4 </since_tizen>
     [Flags]
     public enum ScreenMirroringResolutions
     {
@@ -97,6 +100,7 @@ namespace Tizen.Multimedia.Remoting
     /// <summary>
     /// Specifies the states of <see cref="ScreenMirroring"/>.
     /// </summary>
+    /// <since_tizen> 4 </since_tizen>
     public enum ScreenMirroringState
     {
         /// <summary>
@@ -138,6 +142,7 @@ namespace Tizen.Multimedia.Remoting
     /// <summary>
     /// Specifies the errors for <see cref="ScreenMirroring"/>.
     /// </summary>
+    /// <since_tizen> 4 </since_tizen>
     public enum ScreenMirroringError
     {
         /// <summary>

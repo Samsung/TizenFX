@@ -21,6 +21,7 @@ namespace Tizen.Applications
     /// <summary>
     /// The class that represents a Tizen application.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public abstract class Application : IDisposable
     {
         internal const string LogTag = "Tizen.Applications";
@@ -35,11 +36,13 @@ namespace Tizen.Applications
         /// <summary>
         /// Gets the instance of the current application.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public static Application Current { get { return s_CurrentApplication; } }
 
         /// <summary>
         /// Gets the class representing directory information of the current application.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public DirectoryInfo DirectoryInfo
         {
             get
@@ -58,6 +61,7 @@ namespace Tizen.Applications
         /// <summary>
         /// Gets the class representing information of the current application.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public ApplicationInfo ApplicationInfo
         {
             get
@@ -82,6 +86,7 @@ namespace Tizen.Applications
         /// Runs the application's main loop.
         /// </summary>
         /// <param name="args">Arguments from commandline.</param>
+        /// <since_tizen> 3 </since_tizen>
         public virtual void Run(string[] args)
         {
             if (args == null)
@@ -94,6 +99,7 @@ namespace Tizen.Applications
         /// <summary>
         /// Exits the main loop of the application.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public abstract void Exit();
 
         #region IDisposable Support
@@ -103,6 +109,7 @@ namespace Tizen.Applications
         /// Releases any unmanaged resources used by this object. Can also dispose any other disposable objects.
         /// </summary>
         /// <param name="disposing">If true, disposes any disposable objects. If false, does not dispose disposable objects.</param>
+        /// <since_tizen> 3 </since_tizen>
         protected virtual void Dispose(bool disposing)
         {
             if (!_disposedValue)
@@ -130,6 +137,7 @@ namespace Tizen.Applications
         /// <summary>
         /// Releases all resources used by the application class.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public void Dispose()
         {
             Dispose(true);

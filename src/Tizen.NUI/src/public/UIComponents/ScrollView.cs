@@ -25,6 +25,7 @@ namespace Tizen.NUI
     /// <summary>
     /// ScrollView contains views that can be scrolled manually (via touch).
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public class ScrollView : Scrollable
     {
         private global::System.Runtime.InteropServices.HandleRef swigCPtr;
@@ -84,6 +85,7 @@ namespace Tizen.NUI
         /// <summary>
         /// Event arguments that passed via the SnapStarted signal.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public class SnapStartedEventArgs : EventArgs
         {
             private Tizen.NUI.ScrollView.SnapEvent _snapEvent;
@@ -165,6 +167,7 @@ namespace Tizen.NUI
         /// <summary>
         /// Snaps signal event's data.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public class SnapEvent : global::System.IDisposable
         {
             private global::System.Runtime.InteropServices.HandleRef swigCPtr;
@@ -191,6 +194,7 @@ namespace Tizen.NUI
             /// A Flat to check if it is already disposed.
             /// </summary>
             /// swigCMemOwn
+            /// <since_tizen> 3 </since_tizen>
             protected bool disposed = false;
 
             /// <summary>

@@ -503,6 +503,7 @@ namespace Tizen.Network.WiFi
     /// <summary>
     /// A class which is used to represent WPS PBC information of the access point.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public class WpsPbcInfo : WpsInfo
     {
     }
@@ -510,6 +511,7 @@ namespace Tizen.Network.WiFi
     /// <summary>
     /// A class which is used to represent WPS PIN information of the access point.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public class WpsPinInfo : WpsInfo
     {
         private string _pin;

@@ -24,6 +24,7 @@ namespace Tizen.NUI
     /// <summary>
     /// Layers provide a mechanism for overlaying groups of actors on top of each other.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public class Layer : Container
     {
         private global::System.Runtime.InteropServices.HandleRef swigCPtr;
@@ -94,7 +95,7 @@ namespace Tizen.NUI
         /// Get parent of the layer.
         /// </summary>
         /// <returns>The view's container</returns>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 4 </since_tizen>
         public override Container GetParent()
         {
             return null;
@@ -104,7 +105,7 @@ namespace Tizen.NUI
         /// Get the child count of the layer.
         /// </summary>
         /// <returns>The child count of the layer.</returns>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 4 </since_tizen>
         public override uint GetChildCount()
         {
             return Convert.ToUInt32(Children.Count);

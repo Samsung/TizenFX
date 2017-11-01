@@ -25,7 +25,7 @@ namespace Tizen.Multimedia.Vision
     /// <summary>
     /// Provides the ability to detect barcodes on image sources.
     /// </summary>
-    /// <since_tizen> 3 </since_tizen>
+    /// <since_tizen> 4 </since_tizen>
     public static class BarcodeDetector
     {
         /// <summary>
@@ -39,7 +39,7 @@ namespace Tizen.Multimedia.Vision
         /// <exception cref="ObjectDisposedException"><paramref name="source"/> already has been disposed of.</exception>
         /// <returns>A task that represents the asynchronous detect operation.</returns>
         /// <seealso cref="Barcode"/>
-        /// <since_tizen> 3</since_tizen>
+        /// <since_tizen> 4</since_tizen>
         public static async Task<IEnumerable<Barcode>> DetectAsync(MediaVisionSource source,
             Rectangle roi)
         {
@@ -62,7 +62,7 @@ namespace Tizen.Multimedia.Vision
         ///     <paramref name="config"/> already has been disposed of.
         /// </exception>
         /// <seealso cref="Barcode"/>
-        /// <since_tizen> 3</since_tizen>
+        /// <since_tizen> 4</since_tizen>
         public static async Task<IEnumerable<Barcode>> DetectAsync(MediaVisionSource source,
             Rectangle roi, BarcodeDetectionConfiguration config)
         {

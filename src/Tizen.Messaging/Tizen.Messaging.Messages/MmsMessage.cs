@@ -22,6 +22,7 @@ namespace Tizen.Messaging.Messages
     /// <summary>
     /// This class represents multimedia messages.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public class MmsMessage : Message
     {
         private IList<MessagesAttachment> _attachment = new List<MessagesAttachment>();
@@ -29,6 +30,7 @@ namespace Tizen.Messaging.Messages
         /// <summary>
         /// Creates a multimedia message.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public MmsMessage() : base(MessageType.Mms)
         {
         }
@@ -41,6 +43,7 @@ namespace Tizen.Messaging.Messages
         /// <summary>
         /// The subject of the multimedia message.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public string Subject
         {
             get
@@ -68,6 +71,7 @@ namespace Tizen.Messaging.Messages
         /// <summary>
         /// The collection of normal message recipients.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public ICollection<MessagesAddress> To
         {
             get
@@ -79,6 +83,7 @@ namespace Tizen.Messaging.Messages
         /// <summary>
         /// The collection of CC (carbon copy) message recipients.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public ICollection<MessagesAddress> Cc
         {
             get
@@ -90,6 +95,7 @@ namespace Tizen.Messaging.Messages
         /// <summary>
         /// The collection of BCC (blind carbon copy) message recipients.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public ICollection<MessagesAddress> Bcc
         {
             get
@@ -101,6 +107,7 @@ namespace Tizen.Messaging.Messages
         /// <summary>
         /// The list of attachment files.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public IList<MessagesAttachment> Attachments
         {
             get

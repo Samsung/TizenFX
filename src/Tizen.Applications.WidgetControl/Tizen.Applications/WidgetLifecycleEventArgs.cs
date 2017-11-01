@@ -21,6 +21,7 @@ namespace Tizen.Applications
     /// <summary>
     /// The class for event arguments of the widget lifecycle.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public class WidgetLifecycleEventArgs : EventArgs
     {
         internal WidgetLifecycleEventArgs()
@@ -30,6 +31,7 @@ namespace Tizen.Applications
         /// <summary>
         /// Enumeration for the event type.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public enum EventType
         {
             /// <summary>
@@ -56,16 +58,19 @@ namespace Tizen.Applications
         /// <summary>
         ///  The widget ID.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public string WidgetId { get; internal set; }
 
         /// <summary>
         /// The widget instance ID.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public string InstanceId { get; internal set; }
 
         /// <summary>
         /// The event type.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public EventType Type { get; internal set; }
     }
 }

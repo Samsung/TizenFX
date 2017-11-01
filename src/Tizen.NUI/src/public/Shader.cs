@@ -20,6 +20,7 @@ namespace Tizen.NUI
     /// <summary>
     /// Shader.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public class Shader : Animatable
     {
         private global::System.Runtime.InteropServices.HandleRef swigCPtr;

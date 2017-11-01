@@ -19,18 +19,21 @@ namespace Tizen.Content.MediaContent
     /// <summary>
     /// Represents a member of the <see cref="Playlist"/>.
     /// </summary>
+    /// <since_tizen> 4 </since_tizen>
     public class PlaylistMember
     {
         /// <summary>
         /// Gets the member ID.
         /// </summary>
         /// <value>The member ID of the playlist.</value>
+        /// <since_tizen> 4 </since_tizen>
         public int MemberId { get; }
 
         /// <summary>
         /// Gets the media information of the member.
         /// </summary>
         /// <value>The <see cref="MediaInfo"/> of the member.</value>
+        /// <since_tizen> 4 </since_tizen>
         public MediaInfo MediaInfo { get; }
 
         internal PlaylistMember(int memberId, MediaInfo mediaInfo)

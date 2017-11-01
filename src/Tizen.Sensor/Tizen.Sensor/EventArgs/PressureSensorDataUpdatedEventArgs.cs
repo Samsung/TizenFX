@@ -21,6 +21,7 @@ namespace Tizen.Sensor
     /// <summary>
     /// The PressureSensor changed event arguments class is used for storing the data returned by a pressure sensor.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public class PressureSensorDataUpdatedEventArgs : EventArgs
     {
         internal PressureSensorDataUpdatedEventArgs(float pressure)

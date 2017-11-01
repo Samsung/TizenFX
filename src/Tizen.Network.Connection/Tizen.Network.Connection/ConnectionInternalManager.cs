@@ -766,11 +766,19 @@ namespace Tizen.Network.Connection
             int ret = Interop.Connection.GetCurrentProfile(GetHandle(), out ProfileHandle);
             if ((ConnectionError)ret != ConnectionError.None)
             {
-                Log.Error(Globals.LogTag, "It failed to get current profile, " + (ConnectionError)ret);
-                ConnectionErrorFactory.CheckFeatureUnsupportedException(ret, "http://tizen.org/feature/network.telephony " + "http://tizen.org/feature/network.wifi " + "http://tizen.org/feature/network.tethering.bluetooth " + "http://tizen.org/feature/network.ethernet");
-                ConnectionErrorFactory.CheckPermissionDeniedException(ret, "(http://tizen.org/privilege/network.get)");
-                ConnectionErrorFactory.CheckHandleNullException(ret, (GetHandle() == IntPtr.Zero), "Connection Handle may have been disposed or released");
-                ConnectionErrorFactory.ThrowConnectionException(ret);
+                if ((ConnectionError)ret == ConnectionError.NoConnection)
+                {
+                    Log.Error(Globals.LogTag, "No connection " + (ConnectionError)ret);
+                    return null;
+                }
+                else
+                {
+                    Log.Error(Globals.LogTag, "It failed to get current profile, " + (ConnectionError)ret);
+                    ConnectionErrorFactory.CheckFeatureUnsupportedException(ret, "http://tizen.org/feature/network.telephony " + "http://tizen.org/feature/network.wifi " + "http://tizen.org/feature/network.tethering.bluetooth " + "http://tizen.org/feature/network.ethernet");
+                    ConnectionErrorFactory.CheckPermissionDeniedException(ret, "(http://tizen.org/privilege/network.get)");
+                    ConnectionErrorFactory.CheckHandleNullException(ret, (GetHandle() == IntPtr.Zero), "Connection Handle may have been disposed or released");
+                    ConnectionErrorFactory.ThrowConnectionException(ret);
+                }
             }
 
             ConnectionProfile Profile = new ConnectionProfile(ProfileHandle);

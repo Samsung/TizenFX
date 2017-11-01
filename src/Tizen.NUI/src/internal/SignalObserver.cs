@@ -24,7 +24,7 @@ namespace Tizen.NUI
     /// <summary>
     /// Please do not use! this will be deprecated
     /// </summary>
-    /// <since_tizen> 3 </since_tizen>
+    /// <since_tizen> 4 </since_tizen>
     [EditorBrowsable(EditorBrowsableState.Never)]
     public class SignalObserver : global::System.IDisposable
     {
@@ -32,7 +32,7 @@ namespace Tizen.NUI
         /// <summary>
         /// swigCMemOwn
         /// </summary>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 4 </since_tizen>
         protected bool swigCMemOwn;
 
         internal SignalObserver(global::System.IntPtr cPtr, bool cMemoryOwn)
@@ -51,7 +51,7 @@ namespace Tizen.NUI
         /// <summary>
         /// A Flat to check if it is already disposed.
         /// </summary>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 4 </since_tizen>
         protected bool disposed = false;
 
         /// <summary>
@@ -70,7 +70,7 @@ namespace Tizen.NUI
         /// <summary>
         /// Dispose
         /// </summary>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 4 </since_tizen>
         public void Dispose()
         {
             //Throw excpetion if Dispose() is called in separate thread.
@@ -93,7 +93,7 @@ namespace Tizen.NUI
         /// <summary>
         /// Dispose
         /// </summary>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 4 </since_tizen>
         protected virtual void Dispose(DisposeTypes type)
         {
             if (disposed)
@@ -131,7 +131,7 @@ namespace Tizen.NUI
         /// </summary>
         /// <param name="slotObserver">The signal that has disconnected</param>
         /// <param name="callback">The callback attached to the signal disconnected</param>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 4 </since_tizen>
         public virtual void SignalDisconnected(SlotObserver slotObserver, SWIGTYPE_p_Dali__CallbackBase callback)
         {
             NDalicPINVOKE.SignalObserver_SignalDisconnected(swigCPtr, SlotObserver.getCPtr(slotObserver), SWIGTYPE_p_Dali__CallbackBase.getCPtr(callback));

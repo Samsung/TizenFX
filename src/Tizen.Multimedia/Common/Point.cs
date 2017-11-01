@@ -21,6 +21,7 @@ namespace Tizen.Multimedia
     /// <summary>
     /// Represents a point in the 2D space.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public struct Point
     {
 
@@ -29,6 +30,7 @@ namespace Tizen.Multimedia
         /// </summary>
         /// <param name="x">X-axis coordinate of the point in the 2D space.</param>
         /// <param name="y">Y-axis coordinate of the point in the 2D space.</param>
+        /// <since_tizen> 3 </since_tizen>
         public Point(int x, int y)
         {
             X = x;
@@ -38,6 +40,7 @@ namespace Tizen.Multimedia
         /// <summary>
         /// Gets or sets the X-axis coordinate of the point in the 2D space.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public int X
         {
             get;
@@ -47,6 +50,7 @@ namespace Tizen.Multimedia
         /// <summary>
         /// Gets or sets the Y-axis coordinate of the point in the 2D space.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public int Y
         {
             get;
@@ -57,12 +61,14 @@ namespace Tizen.Multimedia
         /// Returns a string that represents the current object.
         /// </summary>
         /// <returns>A string that represents the current object.</returns>
+        /// <since_tizen> 3 </since_tizen>
         public override string ToString() => $"X={X.ToString()}, Y={Y.ToString()}";
 
         /// <summary>
         /// Gets the hash code for this instance of <see cref="Point"/>.
         /// </summary>
         /// <returns>The hash code for this instance of <see cref="Point"/>.</returns>
+        /// <since_tizen> 3 </since_tizen>
         public override int GetHashCode()
         {
             return new { X, Y }.GetHashCode();
@@ -73,6 +79,7 @@ namespace Tizen.Multimedia
         /// </summary>
         /// <param name="obj">A <see cref="Object"/> to compare.</param>
         /// <returns>true if the points are equal; otherwise, false.</returns>
+        /// <since_tizen> 3 </since_tizen>
         public override bool Equals(object obj)
         {
             return obj is Point && this == (Point)obj;
@@ -84,6 +91,7 @@ namespace Tizen.Multimedia
         /// <param name="point1">A <see cref="Point"/> to compare.</param>
         /// <param name="point2">A <see cref="Point"/> to compare.</param>
         /// <returns>true if the two instances of <see cref="Point"/> are equal; otherwise false.</returns>
+        /// <since_tizen> 3 </since_tizen>
         public static bool operator ==(Point point1, Point point2)
         {
             return point1.X == point2.X && point1.Y == point2.Y;
@@ -95,6 +103,7 @@ namespace Tizen.Multimedia
         /// <param name="point1">A <see cref="Point"/> to compare.</param>
         /// <param name="point2">A <see cref="Point"/> to compare.</param>
         /// <returns>true if the two instances of <see cref="Point"/> are not equal; otherwise false.</returns>
+        /// <since_tizen> 3 </since_tizen>
         public static bool operator !=(Point point1, Point point2)
         {
             return !(point1 == point2);

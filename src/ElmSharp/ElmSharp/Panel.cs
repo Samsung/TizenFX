@@ -21,6 +21,7 @@ namespace ElmSharp
     /// <summary>
     /// Enumeration for paneldirection type.
     /// </summary>
+    /// <since_tizen> preview </since_tizen>
     public enum PanelDirection
     {
         /// <summary>
@@ -44,6 +45,7 @@ namespace ElmSharp
     /// <summary>
     /// The Panel is a container that can contain subobjects.
     /// </summary>
+    /// <since_tizen> preview </since_tizen>
     public class Panel : Layout
     {
         SmartEvent _toggled;
@@ -52,6 +54,7 @@ namespace ElmSharp
         /// Creates and initializes a new instance of Panel class.
         /// </summary>
         /// <param name="parent">The EvasObject to which the new Panel will be attached as a child.</param>
+        /// <since_tizen> preview </since_tizen>
         public Panel(EvasObject parent) : base(parent)
         {
             _toggled = new SmartEvent(this, this.RealHandle, "toggled");
@@ -61,6 +64,7 @@ namespace ElmSharp
         /// <summary>
         /// Sets or gets the hidden status of a given Panel widget.
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         public bool IsOpen
         {
             get
@@ -76,6 +80,7 @@ namespace ElmSharp
         /// <summary>
         /// Sets or gets the direction of a given Panel widget.
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         public PanelDirection Direction
         {
             get
@@ -91,6 +96,7 @@ namespace ElmSharp
         /// <summary>
         /// Toggled will be triggered when toggles Panel.
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         public event EventHandler Toggled;
 
         /// <summary>
@@ -99,6 +105,7 @@ namespace ElmSharp
         /// <param name="enable">
         /// Bool value can be false or true.
         /// </param>
+        /// <since_tizen> preview </since_tizen>
         public void SetScrollable(bool enable)
         {
             Interop.Elementary.elm_panel_scrollable_set(RealHandle, enable);
@@ -110,6 +117,7 @@ namespace ElmSharp
         /// <param name="ratio">
         /// The size of scroll area.
         /// </param>
+        /// <since_tizen> preview </since_tizen>
         public void SetScrollableArea(double ratio)
         {
             Interop.Elementary.elm_panel_scrollable_content_size_set(RealHandle, ratio);
@@ -118,6 +126,7 @@ namespace ElmSharp
         /// <summary>
         /// Toggles the hidden state of the Panel.
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         public void Toggle()
         {
             Interop.Elementary.elm_panel_toggle(RealHandle);
@@ -128,6 +137,7 @@ namespace ElmSharp
         /// </summary>
         /// <param name="parent">Parent EvasObject</param>
         /// <returns>Handle IntPtr</returns>
+        /// <since_tizen> preview </since_tizen>
         protected override IntPtr CreateHandle(EvasObject parent)
         {
             IntPtr handle = Interop.Elementary.elm_layout_add(parent);

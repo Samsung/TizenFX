@@ -23,6 +23,7 @@ namespace ElmSharp
     /// <summary>
     /// Focus Autoscroll Mode
     /// </summary>
+    /// <since_tizen> preview </since_tizen>
     public enum FocusAutoScrollMode
     {
         /// <summary>
@@ -44,6 +45,7 @@ namespace ElmSharp
     /// <summary>
     /// The Elementary is a General Elementary,a VERY SIMPLE toolkit.
     /// </summary>
+    /// <since_tizen> preview </since_tizen>
     public static class Elementary
     {
         private static readonly string _themeFilePath = "/usr/share/elm-sharp/elm-sharp-theme.edj";
@@ -51,6 +53,7 @@ namespace ElmSharp
         /// <summary>
         /// Gets or sets the configured finger size.
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         public static int FingerSize
         {
             get
@@ -66,6 +69,7 @@ namespace ElmSharp
         /// <summary>
         /// Gets or sets the enable status of the focus highlight animation
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         public static bool IsFocusHighlightAnimation
         {
             get
@@ -82,6 +86,7 @@ namespace ElmSharp
         /// Gets or sets the system mirrored mode.
         /// This determines the default mirrored mode of widgets.
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         public static bool IsMirrored
         {
             get
@@ -97,6 +102,7 @@ namespace ElmSharp
         /// <summary>
         /// Gets or sets the enable status of the focus highlight.
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         public static bool CanFocusHighlight
         {
             get
@@ -112,6 +118,7 @@ namespace ElmSharp
         /// <summary>
         /// Gets or sets the base scale of the application.
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         public static double AppBaseScale
         {
             get
@@ -127,6 +134,7 @@ namespace ElmSharp
         /// <summary>
         /// Gets or sets the global scaling factor.
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         public static double Scale
         {
             get
@@ -142,6 +150,7 @@ namespace ElmSharp
         /// <summary>
         /// Gets or sets the amount of inertia a scroller imposes during region bring animations.
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         public static double BringInScrollFriction
         {
             get
@@ -157,6 +166,7 @@ namespace ElmSharp
         /// <summary>
         /// Gets of sets focus auto scroll mode.
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         public static FocusAutoScrollMode FocusAutoScrollMode
         {
             get
@@ -172,6 +182,7 @@ namespace ElmSharp
         /// <summary>
         /// Initializes Elementary.
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         public static void Initialize()
         {
             Interop.Elementary.elm_init(0, null);
@@ -180,6 +191,7 @@ namespace ElmSharp
         /// <summary>
         /// Shuts down Elementary.
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         public static void Shutdown()
         {
             Interop.Elementary.elm_shutdown();
@@ -188,6 +200,7 @@ namespace ElmSharp
         /// <summary>
         /// Runs Elementary's main loop.
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         public static void Run()
         {
             Interop.Elementary.elm_run();
@@ -196,6 +209,7 @@ namespace ElmSharp
         /// <summary>
         /// Prepends a theme overlay to the list of overlays
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static void ThemeOverlay()
         {
@@ -209,6 +223,7 @@ namespace ElmSharp
         /// Prepends a theme overlay to the list of overlays
         /// </summary>
         /// <param name="filePath">The Edje file path to be used.</param>
+        /// <since_tizen> preview </since_tizen>
         public static void AddThemeOverlay(string filePath)
         {
             Interop.Elementary.elm_theme_overlay_add(IntPtr.Zero, filePath);
@@ -218,6 +233,7 @@ namespace ElmSharp
         /// Delete a theme overlay from the list of overlays
         /// </summary>
         /// <param name="filePath">The name of the theme overlay.</param>
+        /// <since_tizen> preview </since_tizen>
         public static void DeleteThemeOverlay(string filePath)
         {
             Interop.Elementary.elm_theme_overlay_del(IntPtr.Zero, filePath);
@@ -226,6 +242,7 @@ namespace ElmSharp
         /// <summary>
         /// Free a theme
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         public static void FreeTheme()
         {
             Interop.Elementary.elm_theme_free(IntPtr.Zero);
@@ -236,6 +253,7 @@ namespace ElmSharp
         /// </summary>
         /// <param name="theme">Theme search string</param>
         /// <remarks>This sets the search string for the theme in path-notation from first theme to search, to last, delimited by the : character. Example:"shiny:/path/to/file.edj:default"</remarks>
+        /// <since_tizen> preview </since_tizen>
         public static void SetTheme(string theme)
         {
             Interop.Elementary.elm_theme_set(IntPtr.Zero, theme);
@@ -244,6 +262,7 @@ namespace ElmSharp
         /// <summary>
         /// Flush the current theme.
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         public static void FlushTheme()
         {
             Interop.Elementary.elm_theme_flush(IntPtr.Zero);
@@ -252,6 +271,7 @@ namespace ElmSharp
         /// <summary>
         /// This flushes all themes (default and specific ones).
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         public static void FlushAllThemes()
         {
             Interop.Elementary.elm_theme_full_flush();
@@ -261,6 +281,7 @@ namespace ElmSharp
         /// Deletes a theme extension from the list of extensions.
         /// </summary>
         /// <param name="item">The name of the theme extension.</param>
+        /// <since_tizen> preview </since_tizen>
         public static void DeleteThemeExtention(string item)
         {
             Interop.Elementary.elm_theme_extension_del(IntPtr.Zero, item);
@@ -269,6 +290,7 @@ namespace ElmSharp
         /// <summary>
         /// Gets the amount of inertia a scroller imposes during region bring animations.
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static double GetSystemScrollFriction()
         {
@@ -278,6 +300,7 @@ namespace ElmSharp
         /// <summary>
         /// Sets the amount of inertia a scroller imposes during region bring animations.
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static void SetSystemScrollFriction(double timeSet)
 
@@ -288,6 +311,7 @@ namespace ElmSharp
         /// <summary>
         /// Get Elementary's profile in use
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static string GetProfile()
         {
@@ -297,6 +321,7 @@ namespace ElmSharp
         /// <summary>
         /// Set the global scaling factor
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static void SetScale(double scale)
         {
@@ -306,6 +331,7 @@ namespace ElmSharp
         /// <summary>
         /// Get the global scaling factor
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static double GetScale()
         {
@@ -316,6 +342,7 @@ namespace ElmSharp
         /// Flush all caches.
         /// Frees all data that was in cache and is not currently being used to reduce memory usage. This frees Edje's, Evas' and Eet's cache.
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         public static void FlushAllCashe()
         {
             Interop.Elementary.elm_cache_all_flush();
@@ -325,6 +352,7 @@ namespace ElmSharp
         /// Changes the language of the current application.
         /// </summary>
         /// <param name="language">The language to set, must be the full name of the locale.</param>
+        /// <since_tizen> preview </since_tizen>
         public static void SetLanguage(string language)
         {
             Interop.Elementary.elm_language_set(language);
@@ -336,6 +364,7 @@ namespace ElmSharp
         /// <param name="policy">The policy identifier</param>
         /// <param name="value">The policy value, which depends on the identifier</param>
         /// <returns></returns>
+        /// <since_tizen> preview </since_tizen>
         public static bool SetPolicy(uint policy, int value)
         {
             return Interop.Elementary.elm_policy_set(policy, value);
@@ -344,6 +373,7 @@ namespace ElmSharp
         /// <summary>
         /// Reload Elementary's configuration, bounded to current selected profile.
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static void ReloadConfig()
         {
@@ -353,6 +383,7 @@ namespace ElmSharp
         /// <summary>
         /// Flushes all config settings and then applies those settings to all applications using elementary on the current display.
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         public static void FlushAllConfig()
         {
             Interop.Elementary.elm_config_all_flush();

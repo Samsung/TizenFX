@@ -22,6 +22,7 @@ namespace Tizen.Network.WiFiDirect
     /// <summary>
     /// An extended EventArgs class which contains the changed connection state during connecting or disconnecting the peer device.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public class ConnectionStateChangedEventArgs : EventArgs
     {
         private WiFiDirectError _error;
@@ -38,6 +39,7 @@ namespace Tizen.Network.WiFiDirect
         /// <summary>
         /// The Wi-Fi Direct result.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public WiFiDirectError Error
         {
             get
@@ -49,6 +51,7 @@ namespace Tizen.Network.WiFiDirect
         /// <summary>
         /// The Wi-Fi Direct connection state of the peer.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public WiFiDirectConnectionState State
         {
             get
@@ -60,6 +63,7 @@ namespace Tizen.Network.WiFiDirect
         /// <summary>
         /// The MacAddress of the peer.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public string MacAddress
         {
             get
@@ -72,6 +76,7 @@ namespace Tizen.Network.WiFiDirect
     /// <summary>
     /// An extended EventArgs class which contains address properties of the peer when it connects to a group owner.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public class IpAddressAssignedEventArgs : EventArgs
     {
         private string _macAddress;
@@ -88,6 +93,7 @@ namespace Tizen.Network.WiFiDirect
         /// <summary>
         /// The MacAddress of the connected peer.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public string MacAddress
         {
             get
@@ -99,6 +105,7 @@ namespace Tizen.Network.WiFiDirect
         /// <summary>
         /// The IpAddress of the connected peer.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public string IpAddress
         {
             get
@@ -110,6 +117,7 @@ namespace Tizen.Network.WiFiDirect
         /// <summary>
         /// The InterfaceAddress of the connected peer.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public string InterfaceAddress
         {
             get
@@ -122,6 +130,7 @@ namespace Tizen.Network.WiFiDirect
     /// <summary>
     /// An extended EventArgs class which contains the changed Wi-Fi Direct state of the local device.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public class StateChangedEventArgs : EventArgs
     {
         private WiFiDirectState _state;
@@ -134,6 +143,7 @@ namespace Tizen.Network.WiFiDirect
         /// <summary>
         /// The Wi-Fi Direct state.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public WiFiDirectState State
         {
             get
@@ -146,6 +156,7 @@ namespace Tizen.Network.WiFiDirect
     /// <summary>
     /// An extended EventArgs class which contains the changed Wi-Fi Direct discovery state during the Wi-Fi Direct scan operation.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public class DiscoveryStateChangedEventArgs : EventArgs
     {
         private WiFiDirectError _error;
@@ -160,6 +171,7 @@ namespace Tizen.Network.WiFiDirect
         /// <summary>
         /// The Wi-Fi Direct result.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public WiFiDirectError Error
         {
             get
@@ -171,6 +183,7 @@ namespace Tizen.Network.WiFiDirect
         /// <summary>
         /// The Wi-Fi Direct discovery state.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public WiFiDirectDiscoveryState DiscoveryState
         {
             get
@@ -183,6 +196,7 @@ namespace Tizen.Network.WiFiDirect
     /// <summary>
     /// An extended EventArgs class which contains the found peer information during the Wi-Fi Direct scan operation.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public class PeerFoundEventArgs : EventArgs
     {
         private WiFiDirectError _error;
@@ -199,6 +213,7 @@ namespace Tizen.Network.WiFiDirect
         /// <summary>
         /// The Wi-Fi Direct result.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public WiFiDirectError Error
         {
             get
@@ -210,6 +225,7 @@ namespace Tizen.Network.WiFiDirect
         /// <summary>
         /// The Wi-Fi Direct discovery state.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public WiFiDirectDiscoveryState DiscoveryState
         {
             get
@@ -221,6 +237,7 @@ namespace Tizen.Network.WiFiDirect
         /// <summary>
         /// The found peer.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public WiFiDirectPeer Peer
         {
             get
@@ -233,6 +250,7 @@ namespace Tizen.Network.WiFiDirect
     /// <summary>
     /// An extended EventArgs class which contains the changed device state during activation or deactivation.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public class DeviceStateChangedEventArgs : EventArgs
     {
         private WiFiDirectError _error;
@@ -247,6 +265,7 @@ namespace Tizen.Network.WiFiDirect
         /// <summary>
         /// The Wi-Fi Direct result.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public WiFiDirectError Error
         {
             get
@@ -258,6 +277,7 @@ namespace Tizen.Network.WiFiDirect
         /// <summary>
         /// The state of the device.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public WiFiDirectDeviceState DeviceState
         {
             get
@@ -270,6 +290,7 @@ namespace Tizen.Network.WiFiDirect
     /// <summary>
     /// An extended EventArgs class which contains the changed service information during the service discovery.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public class ServiceStateChangedEventArgs : EventArgs
     {
         private WiFiDirectError _error;
@@ -290,6 +311,7 @@ namespace Tizen.Network.WiFiDirect
         /// <summary>
         /// The Wi-Fi Direct result.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public WiFiDirectError Error
         {
             get
@@ -301,6 +323,7 @@ namespace Tizen.Network.WiFiDirect
         /// <summary>
         /// The service discovery state.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public WiFiDirectServiceDiscoveryState ServiceDiscoveryState
         {
             get
@@ -312,6 +335,7 @@ namespace Tizen.Network.WiFiDirect
         /// <summary>
         /// The types of service.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public WiFiDirectServiceType ServiceType
         {
             get
@@ -323,6 +347,7 @@ namespace Tizen.Network.WiFiDirect
         /// <summary>
         /// The received response.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public string Response
         {
             get
@@ -334,6 +359,7 @@ namespace Tizen.Network.WiFiDirect
         /// <summary>
         /// The peer servicing device.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public WiFiDirectPeer Peer
         {
             get
@@ -346,6 +372,7 @@ namespace Tizen.Network.WiFiDirect
     /// <summary>
     /// An extended EventArgs class which contains the changed connection state during disconnecting of all peers or grouping related operations.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public class ConnectionStatusChangedEventArgs : EventArgs
     {
         private WiFiDirectError _error;
@@ -360,6 +387,7 @@ namespace Tizen.Network.WiFiDirect
         /// <summary>
         /// The Wi-Fi Direct result.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public WiFiDirectError Error
         {
             get
@@ -371,6 +399,7 @@ namespace Tizen.Network.WiFiDirect
         /// <summary>
         /// The connection state.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public WiFiDirectConnectionState ConnectionState
         {
             get

@@ -19,6 +19,7 @@ namespace Tizen.Uix.InputMethod
     /// <summary>
     /// This Class contains data related to LayoutSet Event
     /// </summary>
+    /// <since_tizen> 4 </since_tizen>
     public class LayoutSetEventArgs
     {
         internal LayoutSetEventArgs(InputPanelLayout layout)
@@ -29,6 +30,7 @@ namespace Tizen.Uix.InputMethod
         /// <summary>
         /// The input panel layout
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         public InputPanelLayout Layout
         {
             get;

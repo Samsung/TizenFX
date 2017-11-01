@@ -21,6 +21,7 @@ namespace Tizen.NUI
     /// <summary>
     /// Geometry is handle to an object that can be used to define a geometric elements.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public class Geometry : BaseHandle
     {
         private global::System.Runtime.InteropServices.HandleRef swigCPtr;
@@ -73,8 +74,8 @@ namespace Tizen.NUI
 
         /// <summary>
         /// Create an instance of Geometry.
-        /// <since_tizen> 3 </since_tizen>
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public Geometry() : this(NDalicPINVOKE.Geometry_New(), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();

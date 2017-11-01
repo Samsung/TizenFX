@@ -23,6 +23,7 @@ namespace ElmSharp
     /// A instance to the list item added.
     /// It contains Text, LeftIcon and RightIcon properties to show a list item which is given.
     /// </summary>
+    /// <since_tizen> preview </since_tizen>
     public class ListItem : ItemObject
     {
         internal ListItem(string text, EvasObject leftIcon, EvasObject rightIcon) : base(IntPtr.Zero)
@@ -35,16 +36,19 @@ namespace ElmSharp
         /// <summary>
         /// Gets the text for the list item.
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         public string Text { get; internal set; }
 
         /// <summary>
         /// Gets the left icon for the list item.
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         public EvasObject LeftIcon { get; internal set; }
 
         /// <summary>
         /// Gets the right icon for the list item.
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         public EvasObject RightIcon { get; internal set; }
     }
 }

@@ -19,6 +19,7 @@ namespace Tizen.Multimedia.MediaCodec
     /// <summary>
     /// Specifies the status of a codec.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public enum MediaCodecStatus
     {
         /// <summary>

@@ -23,6 +23,7 @@ namespace Tizen.Applications
     /// <summary>
     /// The class that represents a Tizen watch application.
     /// </summary>
+    /// <since_tizen> 4 </since_tizen>
     public class WatchApplication : CoreApplication
     {
         /// <summary>
@@ -31,6 +32,7 @@ namespace Tizen.Applications
         /// <remarks>
         /// Default backend for Watch application will be used.
         /// </remarks>
+        /// <since_tizen> 4 </since_tizen>
         public WatchApplication() : base(new WatchCoreBackend())
         {
         }
@@ -42,6 +44,7 @@ namespace Tizen.Applications
         /// If want to change the backend , use this constructor
         /// </remarks>
         /// <param name="backend">The backend instance implementing ICoreBackend interface.</param>
+        /// <since_tizen> 4 </since_tizen>
         public WatchApplication(ICoreBackend backend) : base(backend)
         {
         }
@@ -49,37 +52,44 @@ namespace Tizen.Applications
         /// <summary>
         /// Instance for the window
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         protected Window Window;
 
         /// <summary>
         /// Occurs whenever the application is resumed.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         public event EventHandler Resumed;
 
         /// <summary>
         /// Occurs whenever the application is paused.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         public event EventHandler Paused;
 
         /// <summary>
         /// Occurs whenever the time tick comes.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         public event EventHandler<TimeEventArgs> TimeTick;
 
         /// <summary>
         /// Occurs whenever the time tick comes in ambient mode.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         public event EventHandler<TimeEventArgs> AmbientTick;
 
         /// <summary>
         /// Occurs when the ambient mode is changed.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         public event EventHandler<AmbientEventArgs> AmbientChanged;
 
         /// <summary>
         /// Runs the UI applications' main loop.
         /// </summary>
         /// <param name="args">Arguments from commandline.</param>
+        /// <since_tizen> 4 </since_tizen>
         public override void Run(string[] args)
         {
             Backend.AddEventHandler(EventType.Resumed, OnResume);
@@ -96,6 +106,7 @@ namespace Tizen.Applications
         /// Overrides this method if want to handle behavior when the application is launched.
         /// If base.OnCreate() is not called, the event 'Created' will not be emitted.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         protected override void OnCreate()
         {
             base.OnCreate();
@@ -110,6 +121,7 @@ namespace Tizen.Applications
         /// Overrides this method if want to handle behavior when the application is resumed.
         /// If base.OnResume() is not called, the event 'Resumed' will not be emitted.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         protected virtual void OnResume()
         {
             Resumed?.Invoke(this, EventArgs.Empty);
@@ -119,6 +131,7 @@ namespace Tizen.Applications
         /// Overrides this method if want to handle behavior when the application is paused.
         /// If base.OnPause() is not called, the event 'Paused' will not be emitted.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         protected virtual void OnPause()
         {
             Paused?.Invoke(this, EventArgs.Empty);
@@ -129,6 +142,7 @@ namespace Tizen.Applications
         /// If base.OnTick() is not called, the event 'TimeTick' will not be emitted.
         /// </summary>
         /// <param name="time">The received TimeEventArgs to get time information.</param>
+        /// <since_tizen> 4 </since_tizen>
         protected virtual void OnTick(TimeEventArgs time)
         {
             TimeTick?.Invoke(this, time);
@@ -140,6 +154,7 @@ namespace Tizen.Applications
         /// </summary>
         /// <param name="time">The received TimeEventArgs to get time information.</param>
         /// <privilege>http://tizen.org/privilege/alarm.set</privilege>
+        /// <since_tizen> 4 </since_tizen>
         protected virtual void OnAmbientTick(TimeEventArgs time)
         {
             AmbientTick?.Invoke(this, time);
@@ -150,6 +165,7 @@ namespace Tizen.Applications
         /// If base.OnAmbientChanged() is not called, the event 'AmbientChanged' will not be emitted.
         /// </summary>
         /// <param name="mode">The received AmbientEventArgs</param>
+        /// <since_tizen> 4 </since_tizen>
         protected virtual void OnAmbientChanged(AmbientEventArgs mode)
         {
             AmbientChanged?.Invoke(this, mode);
@@ -182,6 +198,7 @@ namespace Tizen.Applications
         /// }
         /// </code>
         /// </example>
+        /// <since_tizen> 4 </since_tizen>
         protected WatchTime GetCurrentTime()
         {
             SafeWatchTimeHandle handle;
@@ -225,6 +242,7 @@ namespace Tizen.Applications
         /// }
         /// </code>
         /// </example>
+        /// <since_tizen> 4 </since_tizen>
         protected AmbientTickType GetAmbientTickType()
         {
             AmbientTickType ambientTickType;
@@ -269,6 +287,7 @@ namespace Tizen.Applications
         /// }
         /// </code>
         /// </example>
+        /// <since_tizen> 4 </since_tizen>
         protected void SetAmbientTickType(AmbientTickType ambientTickType)
         {
             Interop.Watch.ErrorCode err = Interop.Watch.SetAmbientTickType(ambientTickType);
@@ -310,6 +329,7 @@ namespace Tizen.Applications
         /// }
         /// </code>
         /// </example>
+        /// <since_tizen> 4 </since_tizen>
         protected void SetTimeTickFrequency(int ticks, TimeTickResolution type)
         {
             Interop.Watch.ErrorCode err = Interop.Watch.SetTimeTickFrequency(ticks, type);
@@ -351,6 +371,7 @@ namespace Tizen.Applications
         /// }
         /// </code>
         /// </example>
+        /// <since_tizen> 4 </since_tizen>
         protected void GetTimeTickFrequency(out int ticks, out TimeTickResolution type)
         {
             Interop.Watch.ErrorCode err = Interop.Watch.GetTimeTickFrequency(out ticks, out type);

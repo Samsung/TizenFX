@@ -3,6 +3,7 @@ namespace Tizen.Applications.AttachPanel
     /// <summary>
     /// Enumeration for the attach panel event.
     /// </summary>
+    /// <since_tizen> 4 </since_tizen>
     public enum EventType
     {
         /// <summary>

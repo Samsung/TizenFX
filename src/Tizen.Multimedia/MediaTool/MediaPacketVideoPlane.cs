@@ -23,6 +23,7 @@ namespace Tizen.Multimedia
     /// Represents a video plane for the <see cref="MediaPacket"/>.
     /// This class is used if and only if the format of the packet is the raw video.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public class MediaPacketVideoPlane
     {
         private readonly MediaPacket _packet;
@@ -59,6 +60,7 @@ namespace Tizen.Multimedia
         /// Gets the buffer of the current video plane.
         /// </summary>
         /// <exception cref="ObjectDisposedException">The MediaPacket that owns the current buffer has already been disposed of.</exception>
+        /// <since_tizen> 3 </since_tizen>
         public IMediaBuffer Buffer
         {
             get
@@ -72,6 +74,7 @@ namespace Tizen.Multimedia
         /// Gets the stride width of the current video plane.
         /// </summary>
         /// <exception cref="ObjectDisposedException">The MediaPacket that owns the current buffer has already been disposed of.</exception>
+        /// <since_tizen> 3 </since_tizen>
         public int StrideWidth
         {
             get
@@ -85,6 +88,7 @@ namespace Tizen.Multimedia
         /// Gets the stride height of the current video plane.
         /// </summary>
         /// <exception cref="ObjectDisposedException">The MediaPacket that owns the current buffer has already been disposed of.</exception>
+        /// <since_tizen> 3 </since_tizen>
         public int StrideHeight
         {
             get

@@ -21,6 +21,7 @@ namespace Tizen.Sensor
     /// <summary>
     /// The Pedometer changed event arguments class is used for storing the data returned by a pedometer.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public class PedometerDataUpdatedEventArgs : EventArgs
     {
         internal PedometerDataUpdatedEventArgs(float[] values)

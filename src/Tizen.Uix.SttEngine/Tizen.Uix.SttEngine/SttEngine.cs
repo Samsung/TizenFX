@@ -23,6 +23,7 @@ namespace Tizen.Uix.SttEngine
     /// <summary>
     /// Enumeration for audio type.
     /// </summary>
+    /// <since_tizen> 4 </since_tizen>
     public enum AudioType
     {
         /// <summary>
@@ -38,6 +39,7 @@ namespace Tizen.Uix.SttEngine
     /// <summary>
     /// Enumeration for result.
     /// </summary>
+    /// <since_tizen> 4 </since_tizen>
     public enum ResultEvent
     {
         /// <summary>
@@ -57,6 +59,7 @@ namespace Tizen.Uix.SttEngine
     /// <summary>
     /// Enumeration for result time.
     /// </summary>
+    /// <since_tizen> 4 </since_tizen>
     public enum TimeEvent
     {
         /// <summary>
@@ -76,6 +79,7 @@ namespace Tizen.Uix.SttEngine
     /// <summary>
     /// Enumeration for speech status.
     /// </summary>
+    /// <since_tizen> 4 </since_tizen>
     public enum SpeechStatus
     {
         /// <summary>
@@ -91,6 +95,7 @@ namespace Tizen.Uix.SttEngine
     /// <summary>
     /// Enumeration representing the result message
     /// </summary>
+    /// <since_tizen> 4 </since_tizen>
     public enum ResultMessage
     {
         /// <summary>
@@ -127,6 +132,7 @@ namespace Tizen.Uix.SttEngine
     /// <summary>
     /// Enum for Error values that can occur
     /// </summary>
+    /// <since_tizen> 4 </since_tizen>
     public enum Error
     {
         /// <summary>
@@ -182,6 +188,7 @@ namespace Tizen.Uix.SttEngine
     /// <summary>
     /// This Class represents the Stt Engine which has to be inherited to make the engine.
     /// </summary>
+    /// <since_tizen> 4 </since_tizen>
     public abstract class Engine
     {
         private CallbackStructGCHandle _callbackStructGCHandle = new CallbackStructGCHandle();
@@ -199,6 +206,7 @@ namespace Tizen.Uix.SttEngine
         /// <param name="a">The Input Parameter 1</param>
         /// <param name="b">The Input Parameter 2</param>
         /// <returns>Error Value</returns>
+        /// <since_tizen> 4 </since_tizen>
         public delegate Error Action<T>(T a, T b);
 
         /// <summary>
@@ -208,6 +216,7 @@ namespace Tizen.Uix.SttEngine
         /// <param name="a">The Input Parameter 1</param>
         /// <param name="b">The Input Parameter 2</param>
         /// <returns>Error Value</returns>
+        /// <since_tizen> 4 </since_tizen>
         public delegate Error OutAction<T>(T a, out T b);
 
         /// <summary>
@@ -222,6 +231,7 @@ namespace Tizen.Uix.SttEngine
         /// <param name="userData">The User data</param>
         /// <returns>true to continue with the next iteration of the loop, false to break out of the loop</returns>
         /// <precondition>SendResult() should be called.</precondition>
+        /// <since_tizen> 4 </since_tizen>
         public delegate bool ResultTime(int index, TimeEvent resultEvent, string text, long startTime, long endTime, IntPtr userData);
 
         /// <summary>
@@ -234,6 +244,7 @@ namespace Tizen.Uix.SttEngine
         /// <param name="userData">The User data</param>
         /// <returns>true to continue with the next iteration of the loop, false to break out of the loop</returns>
         /// <precondition>ForEachSupportedLanguages() should be called</precondition>
+        /// <since_tizen> 4 </since_tizen>
         public delegate bool SupportedLanguages(string language, IntPtr userData);
 
         /// <summary>
@@ -252,6 +263,7 @@ namespace Tizen.Uix.SttEngine
         /// 2. OperationFailed
         /// 3. InvalidParameter
         /// </returns>
+        /// <since_tizen> 4 </since_tizen>
         public abstract Error GetInformation(out string engineUuid, out string engineName, out string engineSetting, out bool useNetwork);
 
         /// <summary>
@@ -265,6 +277,7 @@ namespace Tizen.Uix.SttEngine
         /// 3. InvalidState
         /// 4. OperationFailed
         /// </returns>
+        /// <since_tizen> 4 </since_tizen>
         public abstract Error Initialize();
 
         /// <summary>
@@ -276,6 +289,7 @@ namespace Tizen.Uix.SttEngine
         /// 1. None
         /// 2. InvalidState
         /// </returns>
+        /// <since_tizen> 4 </since_tizen>
         public abstract Error Deinitialize();
 
         /// <summary>
@@ -296,6 +310,7 @@ namespace Tizen.Uix.SttEngine
         /// <postcondition>
         /// This callback function invokes SupportedLanguages repeatedly for getting supported languages.
         /// </postcondition>
+        /// <since_tizen> 4 </since_tizen>
         public abstract Error ForEachSupportedLanguages(SupportedLanguages callback, IntPtr userData);
 
         /// <summary>
@@ -309,12 +324,14 @@ namespace Tizen.Uix.SttEngine
         /// 1. None
         /// 2. InvalidParameter
         /// </returns>
+        /// <since_tizen> 4 </since_tizen>
         public abstract Error IsValidLanguage(string language, out bool isValid);
 
         /// <summary>
         /// Called when the engine service user checks whether Stt engine supports silence detection.
         /// </summary>
         /// <returns>true to support silence detection, false not to support silence detection</returns>
+        /// <since_tizen> 4 </since_tizen>
         public abstract bool SupportSilenceDetection();
 
         /// <summary>
@@ -328,6 +345,7 @@ namespace Tizen.Uix.SttEngine
         /// 1. None
         /// 2. InvalidParameter
         /// </returns>
+        /// <since_tizen> 4 </since_tizen>
         public abstract Error SupportRecognitionType(string type, out bool isSupported);
 
         /// <summary>
@@ -342,6 +360,7 @@ namespace Tizen.Uix.SttEngine
         /// 1. None
         /// 2. InvalidState
         /// </returns>
+        /// <since_tizen> 4 </since_tizen>
         public abstract Error GetRecordingFormat(out AudioType types, out int rate, out int channels);
 
         /// <summary>
@@ -355,6 +374,7 @@ namespace Tizen.Uix.SttEngine
         /// 2. InvalidState
         /// 3. NotSupportedFeature
         /// </returns>
+        /// <since_tizen> 4 </since_tizen>
         public abstract Error SetSilenceDetection(bool isSet);
 
         /// <summary>
@@ -370,12 +390,14 @@ namespace Tizen.Uix.SttEngine
         /// 2. InvalidState
         /// 3. NotSupportedFeature
         /// </returns>
+        /// <since_tizen> 4 </since_tizen>
         public abstract Error CheckAppAgreed(string appid, out bool isAgreed);
 
         /// <summary>
         /// Called when the engine service user checks whether Stt engine needs the application's credential.
         /// </summary>
         /// <returns>true if Stt engine needs the application's credential, otherwise false </returns>
+        /// <since_tizen> 4 </since_tizen>
         public abstract bool NeedAppCredential();
 
         /// <summary>
@@ -401,6 +423,7 @@ namespace Tizen.Uix.SttEngine
         /// <postcondition>
         /// This function invokes ResultTime repeatedly for getting result time information.
         /// </postcondition>
+        /// <since_tizen> 4 </since_tizen>
         public abstract Error ForEachResultTime(IntPtr timeInfo, ResultTime callback, IntPtr userData);
 
         /// <summary>
@@ -426,6 +449,7 @@ namespace Tizen.Uix.SttEngine
         /// <precondition>
         /// The engine is not in recognition processing.
         /// </precondition>
+        /// <since_tizen> 4 </since_tizen>
         public abstract Error Start(string language, string type, string appid, string credential, IntPtr userData);
 
         /// <summary>
@@ -446,6 +470,7 @@ namespace Tizen.Uix.SttEngine
         /// Start should succeed</precondition>
         /// <postcondition>
         /// If the engine supports partial result, SendResult() should be invoked.</postcondition>
+        /// <since_tizen> 4 </since_tizen>
         public abstract Error SetRecordingData(string data, uint length);
 
         /// <summary>
@@ -462,6 +487,7 @@ namespace Tizen.Uix.SttEngine
         /// Start should succeed</precondition>
         /// <postcondition>
         /// After processing of the engine, , SendResult() should be invoked.</postcondition>
+        /// <since_tizen> 4 </since_tizen>
         public abstract Error Stop();
 
         /// <summary>
@@ -474,6 +500,7 @@ namespace Tizen.Uix.SttEngine
         /// 2. InvalidState
         /// </returns>
         /// <precondition>Stt engine is in recognition processing or recording.</precondition>
+        /// <since_tizen> 4 </since_tizen>
         public abstract Error Cancel();
 
         /// <summary>
@@ -483,6 +510,7 @@ namespace Tizen.Uix.SttEngine
         /// http://tizen.org/feature/speech.recognition
         /// http://tizen.org/feature/microphone
         /// </feature>
+        /// <since_tizen> 4 </since_tizen>
         public Engine()
         {
             _engine = this;
@@ -507,6 +535,7 @@ namespace Tizen.Uix.SttEngine
         /// <exception cref="UnauthorizedAccessException">Thrown in case of Permission denied</exception>
         /// <exception cref="NotSupportedException">Thrown in case of Not supported</exception>
         /// <exception cref="InvalidOperationException">thrown in case of Operation failure</exception>
+        /// <since_tizen> 4 </since_tizen>
         public void EngineMain(int argc, string[] argv)
         {
             _callbackStructGCHandle.CallbackStruct.version = 1;
@@ -566,6 +595,7 @@ namespace Tizen.Uix.SttEngine
         /// <postcondition>
         /// This function invokes ForEachResultTime
         /// </postcondition>
+        /// <since_tizen> 4 </since_tizen>
         public void SendResult(ResultEvent resultEvent, string type, string[] result, int resultCount, ResultMessage msg, IntPtr timeInfo)
         {
             if ((result != null) && (result.Length != 0))
@@ -632,6 +662,7 @@ namespace Tizen.Uix.SttEngine
         /// <precondition>
         /// Main function should be invoked before this function is called.
         /// </precondition>
+        /// <since_tizen> 4 </since_tizen>
         public void SendError(Error error, string msg)
         {
             Error err = STTESendError(error, msg);
@@ -659,6 +690,7 @@ namespace Tizen.Uix.SttEngine
         /// <precondition>
         /// Main function should be invoked before this function is called. Start() and SetRecordingData() will invoke this function.
         /// </precondition>
+        /// <since_tizen> 4 </since_tizen>
         public void SendSpeechStatus(SpeechStatus status)
         {
             Error error = STTESendSpeechStatus(status, IntPtr.Zero);
@@ -698,6 +730,7 @@ namespace Tizen.Uix.SttEngine
         /// <precondition>
         /// Main function should be invoked before this function is called.
         /// </precondition>
+        /// <since_tizen> 4 </since_tizen>
         public void SetPrivateDataSetDelegate(Action<string> callback)
         {
             if (null == callback)
@@ -748,6 +781,7 @@ namespace Tizen.Uix.SttEngine
         /// <precondition>
         /// Main function should be invoked before this function is called.
         /// </precondition>
+        /// <since_tizen> 4 </since_tizen>
         public void SetPrivateDataRequestedDelegate(OutAction<string> callback)
         {
             if (null == callback)

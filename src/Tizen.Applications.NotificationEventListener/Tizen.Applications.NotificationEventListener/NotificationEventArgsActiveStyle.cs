@@ -26,11 +26,13 @@ namespace Tizen.Applications.NotificationEventListener
         /// <summary>
         /// Class to get infomation about notification active style.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         public class ActiveStyleArgs : StyleArgs
         {
             /// <summary>
             /// Initializes a new instance of the <see cref="ActiveStyleArgs"/> class.
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public ActiveStyleArgs()
             {
                 Button = new List<ButtonActionArgs>();
@@ -44,26 +46,31 @@ namespace Tizen.Applications.NotificationEventListener
             /// When 'IsAutoRemove' is set as false, the active notification will not be removed as long as the user removes
             /// the active notification, or the app which posted the active notification removes the active notification.
             /// </value>
+            /// <since_tizen> 4 </since_tizen>
             public bool IsAutoRemove { get; internal set; }
 
             /// <summary>
             /// Gets an absolute path for an image file to display on the background of active notification.
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public string BackgroundImage { get; internal set; }
 
             /// <summary>
             /// Gets the default button to display highlight on the active notification.
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public ButtonIndex DefaultButton { get; internal set; }
 
             /// <summary>
             /// Gets timeout value in seconds when the notification can be hidden from the viewer.
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public int HideTimeout { get; internal set; }
 
             /// <summary>
             /// Gets timeout value in seconds when the notification can be deleted from the viewer.
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public int DeleteTimeout { get; internal set; }
 
             /// <summary>
@@ -73,6 +80,7 @@ namespace Tizen.Applications.NotificationEventListener
             /// The property is only reflected on Tizen TV.
             /// If you use this API on other profile, this action have no effect
             /// </remarks>
+            /// <since_tizen> 4 </since_tizen>
             public AppControl HiddenByUserAction { get; internal set; }
 
             /// <summary>
@@ -82,6 +90,7 @@ namespace Tizen.Applications.NotificationEventListener
             /// The property is only reflected on Tizen TV.
             /// If you use this API on other profile, this action settings have no effect
             /// </remarks>
+            /// <since_tizen> 4 </since_tizen>
             public AppControl HiddenByTimeoutAction { get; internal set; }
 
             /// <summary>
@@ -90,17 +99,20 @@ namespace Tizen.Applications.NotificationEventListener
             /// <remarks>
             /// If you use this API on other profile, this action settings have no effect
             /// </remarks>
+            /// <since_tizen> 4 </since_tizen>
             public AppControl HiddenByExternalAction { get; internal set; }
 
             /// <summary>
             /// Gets a button to this active notification style.
             /// Buttons are displayed in the notification content.
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public IList<ButtonActionArgs> Button { get; internal set; }
 
             /// <summary>
             /// Gets a ReplyAction to this active notification style.
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public ReplyActionArgs Reply { get; internal set; }
 
             internal override string Key

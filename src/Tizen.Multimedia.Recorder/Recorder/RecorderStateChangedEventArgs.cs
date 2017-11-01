@@ -21,6 +21,7 @@ namespace Tizen.Multimedia
     /// <summary>
     /// Provides data for the <see cref="Recorder.StateChanged"/> event.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public class RecorderStateChangedEventArgs : EventArgs
     {
         internal RecorderStateChangedEventArgs(RecorderState previous, RecorderState current, bool byPolicy)
@@ -33,17 +34,20 @@ namespace Tizen.Multimedia
         /// <summary>
         /// Gets the previous state of the recorder.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         public RecorderState PreviousState { get; }
 
         /// <summary>
         /// Gets the current state of the recorder.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         public RecorderState CurrentState { get; }
 
         /// <summary>
         /// Gets the value indicating whether the state is changed by policy.
         /// </summary>
         /// <value>true if the state changed by policy such as resource conflict or security, otherwise false.</value>
+        /// <since_tizen> 3 </since_tizen>
         public bool IsStateChangedByPolicy { get; }
     }
 }

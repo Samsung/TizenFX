@@ -23,6 +23,7 @@ namespace Tizen.Multimedia
     /// <summary>
     /// Provides the ability to control audio recording.
     /// </summary>
+    /// <since_tizen> 4 </since_tizen>
     public class AudioRecorder : Recorder
     {
         private static NativeHandle CreateHandle()
@@ -69,6 +70,7 @@ namespace Tizen.Multimedia
         /// <seealso cref="Recorder.GetSupportedFileFormats"/>
         /// <seealso cref="RecorderExtensions.GetSupportedFileFormats(RecorderAudioCodec)"/>
         /// <seealso cref="SetFormatAndCodec(RecorderAudioCodec, RecorderFileFormat)"/>
+        /// <since_tizen> 4 </since_tizen>
         public AudioRecorder(RecorderAudioCodec audioCodec, RecorderFileFormat fileFormat) : base(CreateHandle())
         {
             SetFormatAndCodec(audioCodec, fileFormat);
@@ -96,6 +98,7 @@ namespace Tizen.Multimedia
         /// <seealso cref="Recorder.GetSupportedFileFormats"/>
         /// <seealso cref="RecorderExtensions.GetSupportedFileFormats(RecorderAudioCodec)"/>
         /// <seealso cref="Recorder.Start(string)"/>
+        /// <since_tizen> 4 </since_tizen>
         public void SetFormatAndCodec(RecorderAudioCodec audioCodec, RecorderFileFormat fileFormat)
         {
             ThrowIfCodecAndFormatNotValid(audioCodec, fileFormat);

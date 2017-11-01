@@ -461,7 +461,7 @@ namespace Tizen.Uix.Stt
         /// <summary>
         /// Event to be invoked when an error occurs.
         /// </summary>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 4 </since_tizen>
         public event EventHandler<ErrorOccurredEventArgs> ErrorOccurred
         {
             add
@@ -1016,7 +1016,7 @@ namespace Tizen.Uix.Stt
         /// The language is specified as an ISO 3166 alpha-2 two letter country-code followed by ISO 639-1 for the two-letter language code.
         /// For example, "ko_KR" for Korean, "en_US" for American English.
         /// </summary>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 4 </since_tizen>
         /// <privilege>
         /// http://tizen.org/privilege/recorder
         /// </privilege>

@@ -21,6 +21,7 @@ namespace Tizen.Applications
     /// <summary>
     /// Enumeration for Ambient tick type.
     /// </summary>
+    /// <since_tizen> 4 </since_tizen>
     public enum AmbientTickType
     {
         /// <summary>

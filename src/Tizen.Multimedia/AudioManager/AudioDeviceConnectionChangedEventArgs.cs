@@ -21,6 +21,7 @@ namespace Tizen.Multimedia
     /// <summary>
     /// Provides data for the <see cref="AudioManager.DeviceConnectionChanged"/> event.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public class AudioDeviceConnectionChangedEventArgs : EventArgs
     {
         internal AudioDeviceConnectionChangedEventArgs(AudioDevice device, bool isConnected)
@@ -33,12 +34,14 @@ namespace Tizen.Multimedia
         /// Gets the device.
         /// </summary>
         /// <value>The <see cref="AudioDevice"/>.</value>
+        /// <since_tizen> 3 </since_tizen>
         public AudioDevice Device { get; }
 
         /// <summary>
         /// Gets the connection state of the device.
         /// </summary>
         /// <value>true if the device is connected; otherwise, false.</value>
+        /// <since_tizen> 3 </since_tizen>
         public bool IsConnected { get; }
     }
 }

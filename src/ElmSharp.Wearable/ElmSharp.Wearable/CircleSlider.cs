@@ -23,6 +23,7 @@ namespace ElmSharp.Wearable
     /// <summary>
     /// Circle slider is circular designed widget to select a value in a range by rotary event.
     /// </summary>
+    /// <since_tizen> preview </since_tizen>
     public class CircleSlider : Widget, IRotaryActionWidget
     {
         SmartEvent _changedEvent;
@@ -33,6 +34,7 @@ namespace ElmSharp.Wearable
         /// </summary>
         /// <param name="parent">The EvasObject to which the new CircleSlider will be attached as a child.</param>
         /// <param name="surface">The surface for drawing circle features for this widget.</param>
+        /// <since_tizen> preview </since_tizen>
         public CircleSlider(EvasObject parent, CircleSurface surface) : base()
         {
             Debug.Assert(parent == null || surface == null || parent.IsRealized);
@@ -44,6 +46,7 @@ namespace ElmSharp.Wearable
         /// Creates and initializes a new instance of the Circle Slider class.
         /// </summary>
         /// <param name="parent">The parent of new Circle CircleSlider instance</param>
+        /// <since_tizen> preview </since_tizen>
         [Obsolete("It is not safe for guess circle surface from parent and create new surface by every new widget")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public CircleSlider(EvasObject parent) : this(parent, CircleSurface.CreateCircleSurface(parent))
@@ -54,16 +57,19 @@ namespace ElmSharp.Wearable
         /// <summary>
         /// Changed will be triggered when the circle slider value changes.
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         public event EventHandler ValueChanged;
 
         /// <summary>
         /// Gets the handle for Circle Widget.
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         public virtual IntPtr CircleHandle => RealHandle;
 
         /// <summary>
         /// Gets the handle for Circle Surface used in this widget
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         public virtual CircleSurface CircleSurface => _surface;
 
         /// <summary>
@@ -73,6 +79,7 @@ namespace ElmSharp.Wearable
         /// This value is used when circle slider value is changed by an drag or rotary event
         /// The value of the slider is increased/decreased by the step value.
         /// </remarks>
+        /// <since_tizen> preview </since_tizen>
         public double Step
         {
             get
@@ -88,6 +95,7 @@ namespace ElmSharp.Wearable
         /// <summary>
         /// Sets or gets disabled state of this widget.
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         [Obsolete("Use IsEnabled")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public bool Disabled
@@ -99,6 +107,7 @@ namespace ElmSharp.Wearable
         /// <summary>
         /// Sets or gets the state of the widget, which might be enabled or disabled.
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         public override bool IsEnabled
         {
             get
@@ -114,6 +123,7 @@ namespace ElmSharp.Wearable
         /// <summary>
         /// Sets or gets color of the circle slider bar.
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         public Color BarColor
         {
             get
@@ -134,6 +144,7 @@ namespace ElmSharp.Wearable
         /// <summary>
         /// Sets or gets color of the circle slider background.
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         public override Color BackgroundColor
         {
             get
@@ -154,6 +165,7 @@ namespace ElmSharp.Wearable
         /// <summary>
         /// Sets or gets the line with of the circle slider bar.
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         public int BarLineWidth
         {
             get
@@ -169,6 +181,7 @@ namespace ElmSharp.Wearable
         /// <summary>
         /// Sets or gets the line with of the circle slider background.
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         public int BackgroundLineWidth
         {
             get
@@ -184,6 +197,7 @@ namespace ElmSharp.Wearable
         /// <summary>
         /// Sets or gets the angle in degree of the circle slider bar.
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         public double BarAngle
         {
             get
@@ -199,6 +213,7 @@ namespace ElmSharp.Wearable
         /// <summary>
         /// Sets or gets the angle in degree of the circle slider background.
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         public double BackgroundAngle
         {
             get
@@ -215,6 +230,7 @@ namespace ElmSharp.Wearable
         /// Sets or gets the angle offset for the slider bar.
         /// offset value means start position of the slider bar.
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         public double BarAngleOffset
         {
             get
@@ -231,6 +247,7 @@ namespace ElmSharp.Wearable
         /// Sets or gets the angle offset for the circle slider background.
         /// offset value means start position of the slider background.
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         public double BackgroundAngleOffset
         {
             get
@@ -246,6 +263,7 @@ namespace ElmSharp.Wearable
         /// <summary>
         /// Sets or gets the minimum angle of the circle slider bar.
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         public double BarAngleMinimum
         {
             get
@@ -265,6 +283,7 @@ namespace ElmSharp.Wearable
         /// <summary>
         /// Sets or gets the maximum angle of the circle slider bar.
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         public double BarAngleMaximum
         {
             get
@@ -289,6 +308,7 @@ namespace ElmSharp.Wearable
         /// If the actual value is less than min, it is updated to min.
         /// Actual value can be obtained with Value.By default, min is equal to 0.0.
         /// </remarks>
+        /// <since_tizen> preview </since_tizen>
         public double Minimum
         {
             get
@@ -314,6 +334,7 @@ namespace ElmSharp.Wearable
         /// Actual value can be obtained with Value.By default, min is equal to 0.0, and max is equal to 1.0.
         /// Maximum must be greater than minimum, otherwise the behavior is undefined.
         /// </remarks>
+        /// <since_tizen> preview </since_tizen>
         public double Maximum
         {
             get
@@ -336,6 +357,7 @@ namespace ElmSharp.Wearable
         /// <remarks>
         /// The value must to be between Minimum and Maximum values.
         /// </remarks>
+        /// <since_tizen> preview </since_tizen>
         public double Value
         {
             get
@@ -351,6 +373,7 @@ namespace ElmSharp.Wearable
         /// <summary>
         /// Gets or sets the radius value for the circle slider bar.
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         public double BarRadius
         {
             get
@@ -366,6 +389,7 @@ namespace ElmSharp.Wearable
         /// <summary>
         /// Gets or sets the radius value for the circle slider background.
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         public double BackgroundRadius
         {
             get
@@ -381,6 +405,7 @@ namespace ElmSharp.Wearable
         /// <summary>
         /// The callback of Realized Event
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         protected override void OnRealized()
         {
             base.OnRealized();
@@ -393,6 +418,7 @@ namespace ElmSharp.Wearable
         /// </summary>
         /// <param name="parent">Parent EvasObject</param>
         /// <returns>Handle IntPtr</returns>
+        /// <since_tizen> preview </since_tizen>
         protected override IntPtr CreateHandle(EvasObject parent)
         {
             return Interop.Eext.eext_circle_object_slider_add(parent, CircleSurface.Handle);

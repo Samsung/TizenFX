@@ -21,11 +21,13 @@ namespace Tizen.Applications
     /// <summary>
     /// Arguments for the event raised when the application is terminated.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public class ApplicationTerminatedEventArgs : EventArgs
     {
         /// <summary>
         /// The information of the application.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public ApplicationRunningContext ApplicationRunningContext { get; internal set; }
     }
 }

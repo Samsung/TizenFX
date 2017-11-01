@@ -19,6 +19,7 @@ namespace Tizen.Applications.Shortcut
     /// <summary>
     /// Enumeration for values of shortcut response types.
     /// </summary>
+    /// <since_tizen> 4 </since_tizen>
     public enum ShortcutError
     {
         /// <summary>

@@ -22,6 +22,7 @@ namespace Tizen.Content.MediaContent
     /// Provides commands to manage face information in the database.
     /// </summary>
     /// <seealso cref="Album"/>
+    /// <since_tizen> 4 </since_tizen>
     public class FaceInfoCommand : MediaCommand
     {
         /// <summary>
@@ -30,6 +31,7 @@ namespace Tizen.Content.MediaContent
         /// <param name="database">The <see cref="MediaDatabase"/> that the commands run on.</param>
         /// <exception cref="ArgumentNullException"><paramref name="database"/> is null.</exception>
         /// <exception cref="ObjectDisposedException"><paramref name="database"/> has already been disposed of.</exception>
+        /// <since_tizen> 4 </since_tizen>
         public FaceInfoCommand(MediaDatabase database) : base(database)
         {
         }
@@ -46,6 +48,7 @@ namespace Tizen.Content.MediaContent
         /// <exception cref="ArgumentNullException"><paramref name="faceInfoId"/> is null.</exception>
         /// <exception cref="ArgumentException"><paramref name="faceInfoId"/> is a zero-length string, contains only white space.</exception>
         /// <exception cref="UnauthorizedAccessException">The caller has no required privilege.</exception>
+        /// <since_tizen> 4 </since_tizen>
         public bool Delete(string faceInfoId)
         {
             ValidateDatabase();
@@ -70,6 +73,7 @@ namespace Tizen.Content.MediaContent
         /// <exception cref="InvalidOperationException">The <see cref="MediaDatabase"/> is disconnected.</exception>
         /// <exception cref="ObjectDisposedException">The <see cref="MediaDatabase"/> has already been disposed of.</exception>
         /// <exception cref="MediaDatabaseException">An error occurred while executing the command.</exception>
+        /// <since_tizen> 4 </since_tizen>
         public MediaDataReader<FaceInfo> Select()
         {
             return Select(null);
@@ -83,6 +87,7 @@ namespace Tizen.Content.MediaContent
         /// <exception cref="InvalidOperationException">The <see cref="MediaDatabase"/> is disconnected.</exception>
         /// <exception cref="ObjectDisposedException">The <see cref="MediaDatabase"/> has already been disposed of.</exception>
         /// <exception cref="MediaDatabaseException">An error occurred while executing the command.</exception>
+        /// <since_tizen> 4 </since_tizen>
         public MediaDataReader<FaceInfo> Select(SelectArguments filter)
         {
             ValidateDatabase();
@@ -103,6 +108,7 @@ namespace Tizen.Content.MediaContent
         /// <exception cref="ArgumentNullException"><paramref name="faceInfoId"/> is null.</exception>
         /// <exception cref="ArgumentException"><paramref name="faceInfoId"/> is a zero-length string, contains only white space.</exception>
         /// <exception cref="UnauthorizedAccessException">The caller has no required privilege.</exception>
+        /// <since_tizen> 4 </since_tizen>
         public bool UpdateTag(string faceInfoId, string tag)
         {
             ValidateDatabase();

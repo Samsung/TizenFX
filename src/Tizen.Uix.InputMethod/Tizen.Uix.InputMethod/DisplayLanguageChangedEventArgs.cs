@@ -19,6 +19,7 @@ namespace Tizen.Uix.InputMethod
     /// <summary>
     /// This Class contains data related to DisplayLanguageChanged Event
     /// </summary>
+    /// <since_tizen> 4 </since_tizen>
     public class DisplayLanguageChangedEventArgs
     {
         internal DisplayLanguageChangedEventArgs(string language)
@@ -29,6 +30,7 @@ namespace Tizen.Uix.InputMethod
         /// <summary>
         /// The language code
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         public string Language
         {
             get;

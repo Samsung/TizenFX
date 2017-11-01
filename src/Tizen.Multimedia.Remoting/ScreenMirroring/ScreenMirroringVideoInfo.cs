@@ -23,6 +23,7 @@ namespace Tizen.Multimedia.Remoting
     /// <summary>
     /// Provides a means to retrieve the video information which is negotiated with the source device.
     /// </summary>
+    /// <since_tizen> 4 </since_tizen>
     public class ScreenMirroringVideoInfo
     {
         private readonly ScreenMirroring _owner;
@@ -41,6 +42,7 @@ namespace Tizen.Multimedia.Remoting
         ///     An internal error occurs.
         /// </exception>
         /// <exception cref="ObjectDisposedException">The <see cref="ScreenMirroring"/> has already been disposed.</exception>
+        /// <since_tizen> 4 </since_tizen>
         public ScreenMirroringVideoCodec Codec
         {
             get
@@ -63,6 +65,7 @@ namespace Tizen.Multimedia.Remoting
         ///     An internal error occurs.
         /// </exception>
         /// <exception cref="ObjectDisposedException">The <see cref="ScreenMirroring"/> has already been disposed.</exception>
+        /// <since_tizen> 4 </since_tizen>
         public Size Resolution
         {
             get
@@ -86,6 +89,7 @@ namespace Tizen.Multimedia.Remoting
         ///     An internal error occurs.
         /// </exception>
         /// <exception cref="ObjectDisposedException">The <see cref="ScreenMirroring"/> has already been disposed.</exception>
+        /// <since_tizen> 4 </since_tizen>
         public int FrameRate
         {
             get

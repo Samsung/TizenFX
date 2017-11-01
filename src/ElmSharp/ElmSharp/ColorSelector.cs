@@ -21,6 +21,7 @@ namespace ElmSharp
     /// <summary>
     /// Enumeration for mode of ColorSelector
     /// </summary>
+    /// <since_tizen> preview </since_tizen>
     public enum ColorSelectorMode
     {
         /// <summary>
@@ -68,6 +69,7 @@ namespace ElmSharp
     /// The colors can be picked by user from the color set by clicking on individual
     /// color item on the palette or by selecting it from selector.
     /// </remarks>
+    /// <since_tizen> preview </since_tizen>
     public class ColorSelector : Layout
     {
         private readonly SmartEvent<ColorChangedEventArgs> _changed;
@@ -77,6 +79,7 @@ namespace ElmSharp
         /// Creates and initializes a new instance of the ColorSelector class.
         /// </summary>
         /// <param name="parent"></param>
+        /// <since_tizen> preview </since_tizen>
         public ColorSelector(EvasObject parent) : base(parent)
         {
             _changed = new SmartEvent<ColorChangedEventArgs>(this, "changed", (data, obj, info) =>
@@ -88,6 +91,7 @@ namespace ElmSharp
         /// <summary>
         /// ColorChanged will be triggered when the SelectedColor changed.
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         public event EventHandler<ColorChangedEventArgs> ColorChanged
         {
             add { _changed.On += value; }
@@ -97,6 +101,7 @@ namespace ElmSharp
         /// <summary>
         /// Gets or sets color of colorselector.
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         public Color SelectedColor
         {
             get
@@ -116,6 +121,7 @@ namespace ElmSharp
         /// <summary>
         /// Gets Alpha of a default Color Class(Value is -1).
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         public override int Opacity
         {
             get
@@ -132,6 +138,7 @@ namespace ElmSharp
         /// <summary>
         /// Gets or sets Colorselector's mode.
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         public ColorSelectorMode Mode
         {
             get
@@ -150,6 +157,7 @@ namespace ElmSharp
         /// <summary>
         /// Get or set current palette's name.
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         public string PaletteName
         {
             get
@@ -167,6 +175,7 @@ namespace ElmSharp
         /// </summary>
         /// <param name="color">Color item to add</param>
         /// <returns>A new color palette Item.</returns>
+        /// <since_tizen> preview </since_tizen>
         public ColorSelectorItem AddPaletteColor(Color color)
         {
             ColorSelectorItem item = new ColorSelectorItem();
@@ -177,6 +186,7 @@ namespace ElmSharp
         /// <summary>
         /// Clear the palette items.
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         public void ClearPalette()
         {
             Interop.Elementary.elm_colorselector_palette_clear(Handle);
@@ -187,6 +197,7 @@ namespace ElmSharp
         /// </summary>
         /// <param name="parent">Parent EvasObject</param>
         /// <returns>Handle IntPtr</returns>
+        /// <since_tizen> preview </since_tizen>
         protected override IntPtr CreateHandle(EvasObject parent)
         {
             return Interop.Elementary.elm_colorselector_add(parent.Handle);

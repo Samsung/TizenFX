@@ -25,6 +25,7 @@ namespace Tizen.System
     /// <summary>
     /// The class for memory information per process.
     /// </summary>
+    /// <since_tizen> 4 </since_tizen>
     public class ProcessMemoryUsage
     {
         private int[] Pids;

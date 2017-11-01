@@ -21,6 +21,7 @@ namespace Tizen.Multimedia.Remoting
     /// <summary>
     /// Provides data for the <see cref="MediaControlServer.PlaybackCommandReceived"/> event.
     /// </summary>
+    /// <since_tizen> 4 </since_tizen>
     public class PlaybackCommandReceivedEventArgs : EventArgs
     {
         /// <summary>
@@ -30,6 +31,7 @@ namespace Tizen.Multimedia.Remoting
         /// <param name="command">The playback command.</param>
         /// <exception cref="ArgumentNullException"><paramref name="clientAppId"/> is null.</exception>
         /// <exception cref="ArgumentException"><paramref name="command"/> is invalid.</exception>
+        /// <since_tizen> 4 </since_tizen>
         public PlaybackCommandReceivedEventArgs(string clientAppId, MediaControlPlaybackCommand command)
         {
             if (clientAppId == null)
@@ -47,12 +49,14 @@ namespace Tizen.Multimedia.Remoting
         /// Gets the application id of the client that sent command.
         /// </summary>
         /// <value>The client application id.</value>
+        /// <since_tizen> 4 </since_tizen>
         public string ClientAppId { get; }
 
         /// <summary>
         /// Gets the command.
         /// </summary>
         /// <value>The <see cref="MediaControlPlaybackCommand"/>.</value>
+        /// <since_tizen> 4 </since_tizen>
         public MediaControlPlaybackCommand Command { get; }
     }
 }

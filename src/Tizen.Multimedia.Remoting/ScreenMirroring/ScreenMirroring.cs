@@ -27,6 +27,7 @@ namespace Tizen.Multimedia.Remoting
     /// Provides the ability to connect to and disconnect from a screen mirroring source,
     /// start, pause, and resume the screen mirroring as a sink.
     /// </summary>
+    /// <since_tizen> 4 </since_tizen>
     public class ScreenMirroring : IDisposable, IDisplayable<ScreenMirroringErrorCode>
     {
         private const string Feature = "http://tizen.org/feature/network.wifi.direct.display";
@@ -58,6 +59,7 @@ namespace Tizen.Multimedia.Remoting
         /// </summary>
         /// <feature>http://tizen.org/feature/network.wifi.direct.display</feature>
         /// <exception cref="NotSupportedException">The feature is not supported.</exception>
+        /// <since_tizen> 4 </since_tizen>
         public ScreenMirroring()
         {
             if (IsSupported() == false)
@@ -86,11 +88,13 @@ namespace Tizen.Multimedia.Remoting
         /// <summary>
         /// Occurs when the state is changed.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         public event EventHandler<ScreenMirroringStateChangedEventArgs> StateChanged;
 
         /// <summary>
         /// Occurs when an error occurs.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         public event EventHandler<ScreenMirroringErrorOccurredEventArgs> ErrorOccurred;
 
         #region Display support
@@ -136,11 +140,13 @@ namespace Tizen.Multimedia.Remoting
         /// <summary>
         /// Gets the negotiated audio info.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         public ScreenMirroringAudioInfo AudioInfo { get; }
 
         /// <summary>
         /// Gets the negotiated video info.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         public ScreenMirroringVideoInfo VideoInfo { get; }
 
         private bool IsConnected
@@ -181,6 +187,7 @@ namespace Tizen.Multimedia.Remoting
         ///     An internal error occurs.
         /// </exception>
         /// <exception cref="ObjectDisposedException">The <see cref="ScreenMirroring"/> has already been disposed.</exception>
+        /// <since_tizen> 4 </since_tizen>
         public void Prepare(Display display)
         {
             PrepareCore(display, (ScreenMirroringResolutions)0);
@@ -206,6 +213,7 @@ namespace Tizen.Multimedia.Remoting
         ///     An internal error occurs.
         /// </exception>
         /// <exception cref="ObjectDisposedException">The <see cref="ScreenMirroring"/> has already been disposed.</exception>
+        /// <since_tizen> 4 </since_tizen>
         public void Prepare(Display display, ScreenMirroringResolutions resolutions)
         {
             ValidationUtil.ValidateFlagsEnum(resolutions, (ScreenMirroringResolutions)((1 << 7) - 1), nameof(resolutions));
@@ -251,6 +259,7 @@ namespace Tizen.Multimedia.Remoting
         /// <exception cref="ArgumentException"><paramref name="sourceIp"/> is a zero-length string, contains only white space.</exception>
         /// <exception cref="ObjectDisposedException">The <see cref="ScreenMirroring"/> has already been disposed.</exception>
         /// <exception cref="UnauthorizedAccessException">Caller does not have required permission.</exception>
+        /// <since_tizen> 4 </since_tizen>
         public Task ConnectAsync(string sourceIp)
         {
             if (sourceIp == null)
@@ -294,6 +303,7 @@ namespace Tizen.Multimedia.Remoting
         /// </exception>
         /// <exception cref="ObjectDisposedException">The <see cref="ScreenMirroring"/> has already been disposed.</exception>
         /// <exception cref="UnauthorizedAccessException">Caller does not have required permission.</exception>
+        /// <since_tizen> 4 </since_tizen>
         public Task StartAsync()
         {
             ValidateState(ScreenMirroringState.Connected);
@@ -325,6 +335,7 @@ namespace Tizen.Multimedia.Remoting
         /// </exception>
         /// <exception cref="ObjectDisposedException">The <see cref="ScreenMirroring"/> has already been disposed.</exception>
         /// <exception cref="UnauthorizedAccessException">Caller does not have required permission.</exception>
+        /// <since_tizen> 4 </since_tizen>
         public Task PauseAsync()
         {
             ValidateState(ScreenMirroringState.Playing);
@@ -356,6 +367,7 @@ namespace Tizen.Multimedia.Remoting
         /// </exception>
         /// <exception cref="ObjectDisposedException">The <see cref="ScreenMirroring"/> has already been disposed.</exception>
         /// <exception cref="UnauthorizedAccessException">Caller does not have required permission.</exception>
+        /// <since_tizen> 4 </since_tizen>
         public Task ResumeAsync()
         {
             ValidateState(ScreenMirroringState.Paused);
@@ -386,6 +398,7 @@ namespace Tizen.Multimedia.Remoting
         /// </exception>
         /// <exception cref="ObjectDisposedException">The <see cref="ScreenMirroring"/> has already been disposed.</exception>
         /// <exception cref="UnauthorizedAccessException">Caller does not have required permission.</exception>
+        /// <since_tizen> 4 </since_tizen>
         public void Disconnect()
         {
             ValidateState(ScreenMirroringState.Connected, ScreenMirroringState.Playing,
@@ -407,6 +420,7 @@ namespace Tizen.Multimedia.Remoting
         ///     An internal error occurs.
         /// </exception>
         /// <exception cref="ObjectDisposedException">The <see cref="ScreenMirroring"/> has already been disposed.</exception>
+        /// <since_tizen> 4 </since_tizen>
         public void Unprepare()
         {
             ValidateState(ScreenMirroringState.Prepared, ScreenMirroringState.Disconnected);
@@ -434,6 +448,7 @@ namespace Tizen.Multimedia.Remoting
         /// <see cref="ScreenMirroring"/> so the garbage collector can reclaim the memory that the
         /// <see cref="ScreenMirroring"/> was occupying.
         /// </remarks>
+        /// <since_tizen> 4 </since_tizen>
         public void Dispose()
         {
             Dispose(true);
@@ -446,6 +461,7 @@ namespace Tizen.Multimedia.Remoting
         /// <param name="disposing">
         /// true to release both managed and unmanaged resources; false to release only unmanaged resources.
         /// </param>
+        /// <since_tizen> 4 </since_tizen>
         protected virtual void Dispose(bool disposing)
         {
             if (!_disposed)

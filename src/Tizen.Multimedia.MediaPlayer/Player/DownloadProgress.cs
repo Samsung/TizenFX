@@ -20,6 +20,7 @@ namespace Tizen.Multimedia
     /// <summary>
     /// Represents data for a downloading status.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public struct DownloadProgress
     {
         /// <summary>
@@ -27,6 +28,7 @@ namespace Tizen.Multimedia
         /// </summary>
         /// <param name="start">The position that downloading started in percentage.</param>
         /// <param name="current">The position indicating the current downloading progress in percentage.</param>
+        /// <since_tizen> 3 </since_tizen>
         public DownloadProgress(int start, int current)
         {
             Start = start;
@@ -38,6 +40,7 @@ namespace Tizen.Multimedia
         /// Gets or sets the start position.
         /// </summary>
         /// <value>The position that downloading started in percentage.</value>
+        /// <since_tizen> 3 </since_tizen>
         public int Start
         {
             get;
@@ -48,6 +51,7 @@ namespace Tizen.Multimedia
         /// Gets or sets the current position.
         /// </summary>
         /// <value>The position indicating the current downloading progress in percentage.</value>
+        /// <since_tizen> 3 </since_tizen>
         public int Current
         {
             get;
@@ -58,6 +62,7 @@ namespace Tizen.Multimedia
         /// Returns a string that represents the current object.
         /// </summary>
         /// <returns>A string that represents the current object.</returns>
+        /// <since_tizen> 3 </since_tizen>
         public override string ToString()
         {
             return $"Start={ Start.ToString() }, Current={ Current.ToString() }";

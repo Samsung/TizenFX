@@ -34,6 +34,7 @@ namespace Tizen.Applications.NotificationEventListener
         /// <summary>
         /// Initializes a new instance of the <see cref="NotificationEventArgs"/> class.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         public NotificationEventArgs()
         {
             Style = new Dictionary<string, StyleArgs>();
@@ -43,36 +44,43 @@ namespace Tizen.Applications.NotificationEventListener
         /// <summary>
         /// Gets the unique ID of the notification.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         public int UniqueNumber { get; internal set; }
 
         /// <summary>
         /// Gets the appId of the notification.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         public string AppID { get; internal set; }
 
         /// <summary>
         /// Gets the title of the notification.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         public string Title { get; internal set; }
 
         /// <summary>
         /// Gets the content text of the notification.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         public string Content { get; internal set; }
 
         /// <summary>
         /// Gets the icon's path of the notification.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         public string Icon { get; internal set; }
 
         /// <summary>
         /// Gets the sub icon path of the notification.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         public string SubIcon { get; internal set; }
 
         /// <summary>
         /// Gets the timestamp if the notification is visible or not.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         public bool IsTimeStampVisible { get; internal set; }
 
         /// <summary>
@@ -81,21 +89,25 @@ namespace Tizen.Applications.NotificationEventListener
         /// <remarks>
         /// If IsTimeStampVisible property is set false, this TimeStamp property is meaningless.
         /// </remarks>
+        /// <since_tizen> 4 </since_tizen>
         public DateTime TimeStamp { get; internal set; }
 
         /// <summary>
         /// Gets the count, which is displayed at the right side of notification.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         public int Count { get; internal set; }
 
         /// <summary>
         /// Gets the tag of notification.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         public string Tag { get; internal set; }
 
         /// <summary>
         /// Gets a value indicating whether the notification is Onging or not.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public bool IsOngoing { get; internal set; } = false;
 
@@ -103,33 +115,39 @@ namespace Tizen.Applications.NotificationEventListener
         /// Gets a value that determines whether notification is displayed on the default viewer.
         /// If IsDisplay property is set as false and add style, you can see only style notification.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         public bool IsVisible { get; internal set; } = true;
 
         /// <summary>
         /// Gets the event flag.
         /// If this flag is true, you can do SendEvent.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public bool HasEventFlag { get; internal set; } = false;
 
         /// <summary>
         /// Gets the AppControl, which is invoked when notification is clicked.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         public AppControl Action { get; internal set; }
 
         /// <summary>
         /// Gets the object of the progress notification.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         public ProgressArgs Progress { get; internal set; }
 
         /// <summary>
         /// Gets the AccessoryArgs, which has option of sound, vibration, and LED.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         public AccessoryArgs Accessory { get; internal set; }
 
         /// <summary>
         /// Gets the key for extra data.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         public ICollection<string> ExtraDataKey
         {
             get
@@ -141,6 +159,7 @@ namespace Tizen.Applications.NotificationEventListener
         /// <summary>
         /// Gets the property.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         public NotificationProperty Property { get; internal set; }
 
         /// <summary>
@@ -149,6 +168,7 @@ namespace Tizen.Applications.NotificationEventListener
         /// <typeparam name="T">Type of notification style to be queried.</typeparam>
         /// <returns>The NotificationEventListener.StyleArgs object associated with the given style.</returns>
         /// <exception cref="ArgumentException">Thrown when an argument is invalid.</exception>
+        /// <since_tizen> 4 </since_tizen>
         public T GetStyle<T>() where T : StyleArgs, new()
         {
             T type = new T();
@@ -172,6 +192,7 @@ namespace Tizen.Applications.NotificationEventListener
         /// </summary>
         /// <param name="key">The key that specifies which extra data.</param>
         /// <returns>Returns the bundle for key.</returns>
+        /// <since_tizen> 4 </since_tizen>
         public Bundle GetExtraData(string key)
         {
             Bundle bundle;

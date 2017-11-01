@@ -24,6 +24,7 @@ namespace Tizen
     /// <summary>
     /// Provides methods to print log messages to the Tizen logging system.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public class Log
     {
         /// <summary>
@@ -127,6 +128,7 @@ namespace Tizen
     /// <summary>
     /// Provides methods to print log messages to the Tizen logging system.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     [EditorBrowsable(EditorBrowsableState.Never)]
     public class InternalLog
     {
@@ -232,6 +234,7 @@ namespace Tizen
     /// <summary>
     /// Provides methods to print log messages to the Tizen logging system.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     [EditorBrowsable(EditorBrowsableState.Never)]
     public class SecureLog
     {

@@ -21,6 +21,7 @@ namespace Tizen.Sensor
     /// <summary>
     /// The UncalibratedMagnetometer changed event arguments class is used for storing the data returned by a uncalibrated magnetometer.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public class UncalibratedMagnetometerDataUpdatedEventArgs : EventArgs
     {
         internal UncalibratedMagnetometerDataUpdatedEventArgs(float[] values)

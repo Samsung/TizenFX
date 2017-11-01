@@ -28,6 +28,7 @@ namespace Tizen.Applications.Messages
     /// If a remote application sends a message, the registered callback function of the local port is called.
     /// The trusted message-port API allows communications between applications that are signed by the same developer(author) certificate.
     /// </remarks>
+    /// <since_tizen> 3 </since_tizen>
     public class MessagePort : IDisposable
     {
         private static readonly object s_lock = new object();
@@ -58,6 +59,7 @@ namespace Tizen.Applications.Messages
         /// MessagePort messagePort = new MessagePort("SenderPort", true);
         /// </code>
         /// </example>
+        /// <since_tizen> 3 </since_tizen>
         public MessagePort(string portName, bool trusted)
         {
             if (String.IsNullOrEmpty(portName))
@@ -92,11 +94,13 @@ namespace Tizen.Applications.Messages
         /// }
         /// </code>
         /// </example>
+        /// <since_tizen> 3 </since_tizen>
         public event EventHandler<MessageReceivedEventArgs> MessageReceived;
 
         /// <summary>
         /// The name of the local message port.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public string PortName
         {
             get
@@ -107,6 +111,7 @@ namespace Tizen.Applications.Messages
         /// <summary>
         /// If true, the message port is a trusted port, otherwise false.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public bool Trusted
         {
             get
@@ -118,6 +123,7 @@ namespace Tizen.Applications.Messages
         /// <summary>
         /// If true, the message port is listening, otherwise false.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public bool Listening
         {
             get
@@ -139,6 +145,7 @@ namespace Tizen.Applications.Messages
         /// messagePort.Listen();
         /// </code>
         /// </example>
+        /// <since_tizen> 3 </since_tizen>
         public void Listen()
         {
             lock (s_lock)
@@ -197,6 +204,7 @@ namespace Tizen.Applications.Messages
         /// messagePort.StopListening();
         /// </code>
         /// </example>
+        /// <since_tizen> 3 </since_tizen>
         public void StopListening()
         {
             if (!_listening)
@@ -243,6 +251,7 @@ namespace Tizen.Applications.Messages
         /// }
         /// </code>
         /// </example>
+        /// <since_tizen> 3 </since_tizen>
         public void Send(Bundle message, string remoteAppId, string remotePortName)
         {
             Send(message, remoteAppId, remotePortName, false);
@@ -272,6 +281,7 @@ namespace Tizen.Applications.Messages
         /// }
         /// </code>
         /// </example>
+        /// <since_tizen> 3 </since_tizen>
         public void Send(Bundle message, string remoteAppId, string remotePortName, bool trusted)
         {
             if (!_listening)
@@ -300,6 +310,7 @@ namespace Tizen.Applications.Messages
         /// Releases the unmanaged resources used by the MessagePort class specifying whether to perform a normal dispose operation.
         /// </summary>
         /// <param name="disposing">true for a normal dispose operation; false to finalize the handle.</param>
+        /// <since_tizen> 3 </since_tizen>
         protected virtual void Dispose(bool disposing)
         {
             if (_listening)
@@ -318,6 +329,7 @@ namespace Tizen.Applications.Messages
         /// <summary>
         /// Releases all resources used by the MessagePort class.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public void Dispose()
         {
             Dispose(true);

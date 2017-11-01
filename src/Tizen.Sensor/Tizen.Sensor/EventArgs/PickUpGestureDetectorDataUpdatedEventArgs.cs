@@ -21,6 +21,7 @@ namespace Tizen.Sensor
     /// <summary>
     /// The PickUpGestureDetector changed event arguments class is used for storing the data returned by a pickup gesture detector.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public class PickUpGestureDetectorDataUpdatedEventArgs : EventArgs
     {
         internal PickUpGestureDetectorDataUpdatedEventArgs(float state)

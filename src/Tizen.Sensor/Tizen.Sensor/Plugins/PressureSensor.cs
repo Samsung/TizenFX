@@ -21,6 +21,7 @@ namespace Tizen.Sensor
     /// <summary>
     /// The PressureSensor class is used for registering callbacks for the pressure sensor and getting the pressure data.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public sealed class PressureSensor : Sensor
     {
         private static string PressureSensorKey = "http://tizen.org/feature/sensor.barometer";

@@ -20,12 +20,14 @@ namespace Tizen.NUI
     /// <summary>
     /// Extents class describing the a collection of uint16_t.
     /// </summary>
+    /// <since_tizen> 4 </since_tizen>
     public class Extents : global::System.IDisposable
     {
         private global::System.Runtime.InteropServices.HandleRef swigCPtr;
         /// <summary>
         /// Extents class
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         protected bool swigCMemOwn;
 
         internal Extents(global::System.IntPtr cPtr, bool cMemoryOwn)
@@ -44,6 +46,7 @@ namespace Tizen.NUI
         /// <summary>
         /// A Flat to check if it is already disposed.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         protected bool disposed = false;
 
         /// <summary>
@@ -86,6 +89,7 @@ namespace Tizen.NUI
         /// To make a Extents instance be disposed.
         /// </summary>
         /// <param name="type">Extents type</param>
+        /// <since_tizen> 4 </since_tizen>
         protected virtual void Dispose(DisposeTypes type)
         {
             if (disposed)

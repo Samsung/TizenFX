@@ -21,11 +21,13 @@ namespace Tizen.Applications
     /// <summary>
     /// Represents the service applications.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public class ServiceApplication : CoreApplication
     {
         /// <summary>
         /// Initializes the ServiceApplication class.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public ServiceApplication() : base(new ServiceCoreBackend())
         {
         }
@@ -34,6 +36,7 @@ namespace Tizen.Applications
         /// Runs the service application's main loop.
         /// </summary>
         /// <param name="args">Arguments from commandline.</param>
+        /// <since_tizen> 3 </since_tizen>
         public override void Run(string[] args)
         {
             base.Run(args);

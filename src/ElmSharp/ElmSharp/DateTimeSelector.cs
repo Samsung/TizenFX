@@ -21,6 +21,7 @@ namespace ElmSharp
     /// <summary>
     /// Enumeration of datetime field types for DateTimeSelector.
     /// </summary>
+    /// <since_tizen> preview </since_tizen>
     public enum DateTimeFieldType
     {
         /// <summary>
@@ -55,6 +56,7 @@ namespace ElmSharp
     /// This widget displays date and time as per the system's locale settings
     /// (Date includes Day, Month &amp; Year along with the defined separators and Time includes Hour, Minute &amp; AM/PM fields. Separator for AM/PM field is ignored.
     /// </summary>
+    /// <since_tizen> preview </since_tizen>
     public class DateTimeSelector : Layout
     {
         SmartEvent _changed;
@@ -65,6 +67,7 @@ namespace ElmSharp
         /// </summary>
         /// <param name="parent">The parent is a given container which will be attached by DateTimeSelector
         ///as a child.It's <see cref="EvasObject"/> type.</param>
+        /// <since_tizen> preview </since_tizen>
         public DateTimeSelector(EvasObject parent) : base(parent)
         {
         }
@@ -72,6 +75,7 @@ namespace ElmSharp
         /// <summary>
         /// Creates and initializes a new instance of DateTimeSelector class.
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         protected DateTimeSelector() : base()
         {
         }
@@ -79,6 +83,7 @@ namespace ElmSharp
         /// <summary>
         /// ItemSelected is raised when Datetime field value changed.
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         public event EventHandler<DateChangedEventArgs> DateTimeChanged;
 
         /// <summary>
@@ -87,6 +92,7 @@ namespace ElmSharp
         /// <remarks>
         /// format is a combination of allowed LIBC date format specifiers like: "%b %d, %Y %I : %M %p".
         /// </remarks>
+        /// <since_tizen> preview </since_tizen>
         public string Format
         {
             get
@@ -102,6 +108,7 @@ namespace ElmSharp
         /// <summary>
         /// Gets or sets the upper boundary of DateTime field.
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         public DateTime MaximumDateTime
         {
             get
@@ -120,6 +127,7 @@ namespace ElmSharp
         /// <summary>
         /// Gets or sets the lower boundary of DateTime field.
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         public DateTime MinimumDateTime
         {
             get
@@ -138,6 +146,7 @@ namespace ElmSharp
         /// <summary>
         /// Gets or sets the current value of DateTime field.
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         public DateTime DateTime
         {
             get
@@ -162,6 +171,7 @@ namespace ElmSharp
         /// The field is visible or not.
         /// Type is bool.If visible, return true.
         /// </returns>
+        /// <since_tizen> preview </since_tizen>
         public bool IsFieldVisible(DateTimeFieldType type)
         {
             return Interop.Elementary.elm_datetime_field_visible_get(RealHandle, (int)type);
@@ -173,6 +183,7 @@ namespace ElmSharp
         /// <param name="type">Enumeration <see cref="DateTimeFieldType"/></param>
         /// <param name="minimum">minimum limit</param>
         /// <param name="maximum">maximum limit</param>
+        /// <since_tizen> preview </since_tizen>
         public void SetFieldLimit(DateTimeFieldType type, int minimum, int maximum)
         {
             Interop.Elementary.elm_datetime_field_limit_set(RealHandle, (int)type, minimum, maximum);
@@ -183,6 +194,7 @@ namespace ElmSharp
         /// </summary>
         /// <param name="type">Enumeration <see cref="DateTimeFieldType"/></param>
         /// <param name="visible">When set as true, the field type visible.</param>
+        /// <since_tizen> preview </since_tizen>
         public void SetFieldVisible(DateTimeFieldType type, bool visible)
         {
             Interop.Elementary.elm_datetime_field_visible_set(RealHandle, (int)type, visible);
@@ -191,6 +203,7 @@ namespace ElmSharp
         /// <summary>
         /// The callback of Realized Event
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         protected override void OnRealized()
         {
             base.OnRealized();
@@ -208,6 +221,7 @@ namespace ElmSharp
         /// </summary>
         /// <param name="parent">Parent EvasObject</param>
         /// <returns>Handle IntPtr</returns>
+        /// <since_tizen> preview </since_tizen>
         protected override IntPtr CreateHandle(EvasObject parent)
         {
             IntPtr handle = Interop.Elementary.elm_layout_add(parent.Handle);

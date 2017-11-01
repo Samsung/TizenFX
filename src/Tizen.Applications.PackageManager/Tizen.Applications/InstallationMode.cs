@@ -19,6 +19,7 @@ namespace Tizen.Applications
     /// <summary>
     /// Enumeration for installation mode.
     /// </summary>
+    /// <since_tizen> 4 </since_tizen>
     public enum InstallationMode
     {
         /// <summary>

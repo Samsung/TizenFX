@@ -21,11 +21,13 @@ namespace Tizen.Sensor
     /// <summary>
     /// The Activity Detector class is used for storing the common activity information.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public abstract class ActivityDetector : Sensor
     {
         /// <summary>
         /// Attribute key for a activity detector.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         protected const int ActivityAttribute = (((int)SensorType.StationaryActivityDetector << 8) | 0x80 | 0x1);
 
         /// <summary>

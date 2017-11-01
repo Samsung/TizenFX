@@ -60,6 +60,7 @@ namespace Tizen.System
     ///     Console.WriteLine("Total number of Displays are: {0}", Tizen.System.Display.NumberOfDisplays);
     /// </code>
     /// </example>
+    /// <since_tizen> 3 </since_tizen>
     public class Display
     {
         private readonly int _displayId;

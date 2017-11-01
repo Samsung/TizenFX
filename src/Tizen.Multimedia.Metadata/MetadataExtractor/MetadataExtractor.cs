@@ -23,6 +23,7 @@ namespace Tizen.Multimedia
     /// <summary>
     /// Provides a means to get the metadata from a media file.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public class MetadataExtractor : IDisposable
     {
         private bool _disposed = false;
@@ -282,6 +283,7 @@ namespace Tizen.Multimedia
         /// <param name="disposing">
         /// true to release both managed and unmanaged resources; false to release only unmanaged resources.
         /// </param>
+        /// <since_tizen> 3 </since_tizen>
         protected virtual void Dispose(bool disposing)
         {
             if (!_disposed)
@@ -314,6 +316,7 @@ namespace Tizen.Multimedia
         /// <summary>
         /// Releases all resources used by the <see cref="MetadataExtractor"/> object.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public void Dispose()
         {
             Dispose(true);

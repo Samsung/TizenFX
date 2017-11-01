@@ -20,6 +20,7 @@ namespace Tizen.NUI
     /// <summary>
     /// A condition that can be evaluated on a Property Value
     /// </summary>
+    /// <since_tizen> 4 </since_tizen>
     public class PropertyCondition : BaseHandle
     {
         private global::System.Runtime.InteropServices.HandleRef swigCPtr;
@@ -37,7 +38,7 @@ namespace Tizen.NUI
         /// <summary>
         /// Dispose.
         /// </summary>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 4 </since_tizen>
         protected override void Dispose(DisposeTypes type)
         {
             if (disposed)

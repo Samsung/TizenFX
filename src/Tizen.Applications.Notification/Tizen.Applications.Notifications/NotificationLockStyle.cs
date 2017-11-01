@@ -29,16 +29,19 @@ namespace Tizen.Applications.Notifications
         /// <summary>
         /// Class for generating lock style notification.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public sealed class LockStyle : StyleBase
         {
             /// <summary>
             /// Gets or sets an absolute path for an image file to display the icon of lock style.
             /// </summary>
+            /// <since_tizen> 3 </since_tizen>
             public string IconPath { get; set; }
 
             /// <summary>
             /// Gets or sets an absolute path for a thumbnail image file to display on lock style.
             /// </summary>
+            /// <since_tizen> 3 </since_tizen>
             public string ThumbnailPath { get; set; }
 
             /// <summary>

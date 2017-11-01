@@ -71,6 +71,7 @@ namespace Tizen.System
     ///     Console.WriteLine("battery Charging state is: {0}", Tizen.System.Battery.IsCharging);
     ///     Console.WriteLine("battery Percent is: {0}", Tizen.System.Battery.Percent);
     /// </code>
+    /// <since_tizen> 3 </since_tizen>
     public static class Battery
     {
         private static readonly object s_lock = new object();

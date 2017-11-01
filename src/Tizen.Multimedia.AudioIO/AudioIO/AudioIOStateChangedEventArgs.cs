@@ -21,6 +21,7 @@ namespace Tizen.Multimedia
     /// <summary>
     /// Provides data for the <see cref="AudioCaptureBase.StateChanged"/> event and the <see cref="AudioPlayback.StateChanged"/> event.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public class AudioIOStateChangedEventArgs : EventArgs
     {
         internal AudioIOStateChangedEventArgs(AudioIOState previous, AudioIOState current, bool byPolicy)
@@ -33,16 +34,19 @@ namespace Tizen.Multimedia
         /// <summary>
         /// Gets the previous state.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public AudioIOState Previous { get; }
 
         /// <summary>
         /// Gets the current state.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public AudioIOState Current { get; }
 
         /// <summary>
         /// Gets the value indicating whether the state is changed by a policy or not.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public bool ByPolicy { get; }
     }
 }

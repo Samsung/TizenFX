@@ -20,12 +20,14 @@ namespace Tizen.Multimedia
     /// <summary>
     /// Provides data for the <see cref="Player.BufferingProgressChanged"/> event.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public class BufferingProgressChangedEventArgs : EventArgs
     {
         /// <summary>
         /// Initializes a new instance of the BufferingProgressChangedEventArgs class.
         /// </summary>
         /// <param name="percent">The value indicating the buffering percentage.</param>
+        /// <since_tizen> 3 </since_tizen>
         public BufferingProgressChangedEventArgs(int percent)
         {
             Percent = percent;
@@ -35,12 +37,14 @@ namespace Tizen.Multimedia
         /// Gets the value indicating the buffering percentage.
         /// </summary>
         /// <value>The percentage of the buffering.</value>
+        /// <since_tizen> 3 </since_tizen>
         public int Percent { get; }
 
         /// <summary>
         /// Returns a string that represents the current object.
         /// </summary>
         /// <returns>A string that represents the current object.</returns>
+        /// <since_tizen> 3 </since_tizen>
         public override string ToString()
         {
             return $"Percent={ Percent.ToString() }";

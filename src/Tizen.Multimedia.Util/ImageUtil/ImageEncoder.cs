@@ -29,6 +29,7 @@ namespace Tizen.Multimedia.Util
     /// <summary>
     /// This is a base class for image encoders.
     /// </summary>
+    /// <since_tizen> 4 </since_tizen>
     public abstract class ImageEncoder : IDisposable
     {
         private ImageEncoderHandle _handle;
@@ -60,6 +61,7 @@ namespace Tizen.Multimedia.Util
         /// <summary>
         /// Gets the image format of this encoder.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         public ImageFormat OutputFormat { get; }
 
         /// <summary>
@@ -71,6 +73,7 @@ namespace Tizen.Multimedia.Util
         ///     -or-<br/>
         ///     The height of <paramref name="resolution"/> is less than or equal to zero.
         /// </exception>
+        /// <since_tizen> 4 </since_tizen>
         public void SetResolution(Size resolution)
         {
             if (resolution.Width <= 0)
@@ -97,6 +100,7 @@ namespace Tizen.Multimedia.Util
         /// <exception cref="ArgumentException"><paramref name="colorSpace"/> is invalid.</exception>
         /// <exception cref="NotSupportedException"><paramref name="colorSpace"/> is not supported by the encoder.</exception>
         /// <seealso cref="ImageUtil.GetSupportedColorSpaces(ImageFormat)"/>
+        /// <since_tizen> 4 </since_tizen>
         public void SetColorSpace(ColorSpace colorSpace)
         {
             ValidationUtil.ValidateEnum(typeof(ColorSpace), colorSpace, nameof(colorSpace));
@@ -184,6 +188,7 @@ namespace Tizen.Multimedia.Util
         /// <exception cref="InvalidOperationException">The resolution is not set.</exception>
         /// <exception cref="ObjectDisposedException">The <see cref="ImageEncoder"/> has already been disposed of.</exception>
         /// <seealso cref="SetResolution"/>
+        /// <since_tizen> 4 </since_tizen>
         public Task EncodeAsync(byte[] inputBuffer, Stream outStream)
         {
             if (inputBuffer == null)
@@ -222,6 +227,7 @@ namespace Tizen.Multimedia.Util
         /// Releases the unmanaged resources used by the ImageEncoder.
         /// </summary>
         /// <param name="disposing">true to release both managed and unmanaged resources; false to release only unmanaged resources.</param>
+        /// <since_tizen> 4 </since_tizen>
         protected virtual void Dispose(bool disposing)
         {
             if (!_disposed)
@@ -237,6 +243,7 @@ namespace Tizen.Multimedia.Util
         /// <summary>
         /// Releases all resources used by the ImageEncoder.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         public void Dispose()
         {
             Dispose(true);
@@ -247,12 +254,14 @@ namespace Tizen.Multimedia.Util
     /// <summary>
     /// Provides the ability to encode the Bitmap (BMP) format images.
     /// </summary>
+    /// <since_tizen> 4 </since_tizen>
     public class BmpEncoder : ImageEncoder
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="BmpEncoder"/> class.
         /// </summary>
         /// <remarks><see cref="ImageEncoder.OutputFormat"/> will be the <see cref="ImageFormat.Bmp"/>.</remarks>
+        /// <since_tizen> 4 </since_tizen>
         public BmpEncoder() : base(ImageFormat.Bmp)
         {
         }
@@ -265,11 +274,13 @@ namespace Tizen.Multimedia.Util
     /// <summary>
     /// Provides the ability to encode the Portable Network Graphics (PNG) format images.
     /// </summary>
+    /// <since_tizen> 4 </since_tizen>
     public class PngEncoder : ImageEncoder
     {
         /// <summary>
         /// A read-only field that represents the default value of <see cref="Compression"/>.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         public static readonly PngCompression DefaultCompression = PngCompression.Level6;
 
         private PngCompression? _compression;
@@ -278,6 +289,7 @@ namespace Tizen.Multimedia.Util
         /// Initializes a new instance of the <see cref="PngEncoder"/> class.
         /// </summary>
         /// <remarks><see cref="ImageEncoder.OutputFormat"/> will be the <see cref="ImageFormat.Png"/>.</remarks>
+        /// <since_tizen> 4 </since_tizen>
         public PngEncoder() :
             base(ImageFormat.Png)
         {
@@ -289,6 +301,7 @@ namespace Tizen.Multimedia.Util
         /// <remarks><see cref="ImageEncoder.OutputFormat"/> will be the <see cref="ImageFormat.Png"/>.</remarks>
         /// <param name="compression">The compression level of the encoder.</param>
         /// <exception cref="ArgumentException"><paramref name="compression"/> is invalid.</exception>
+        /// <since_tizen> 4 </since_tizen>
         public PngEncoder(PngCompression compression) :
             base(ImageFormat.Png)
         {
@@ -300,6 +313,7 @@ namespace Tizen.Multimedia.Util
         /// </summary>
         /// <value>The compression level. The default is <see cref="PngCompression.Level6"/>.</value>
         /// <exception cref="ArgumentException"><paramref name="value"/> is invalid.</exception>
+        /// <since_tizen> 4 </since_tizen>
         public PngCompression Compression
         {
             get { return _compression ?? DefaultCompression; }
@@ -324,11 +338,13 @@ namespace Tizen.Multimedia.Util
     /// <summary>
     /// Provides the ability to encode the Joint Photographic Experts Group (JPEG) format images.
     /// </summary>
+    /// <since_tizen> 4 </since_tizen>
     public class JpegEncoder : ImageEncoder
     {
         /// <summary>
         /// A read-only field that represents the default value of <see cref="Quality"/>.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         public static readonly int DefaultQuality = 75;
 
         private int? _quality;
@@ -337,6 +353,7 @@ namespace Tizen.Multimedia.Util
         /// Initializes a new instance of the <see cref="JpegEncoder"/> class.
         /// </summary>
         /// <remarks><see cref="ImageEncoder.OutputFormat"/> will be the <see cref="ImageFormat.Jpeg"/>.</remarks>
+        /// <since_tizen> 4 </since_tizen>
         public JpegEncoder() : base(ImageFormat.Jpeg)
         {
         }
@@ -352,6 +369,7 @@ namespace Tizen.Multimedia.Util
         ///     -or-<br/>
         ///     <paramref name="quality"/> is greater than 100.
         /// </exception>
+        /// <since_tizen> 4 </since_tizen>
         public JpegEncoder(int quality) :
             base(ImageFormat.Jpeg)
         {
@@ -370,6 +388,7 @@ namespace Tizen.Multimedia.Util
         ///     -or-<br/>
         ///     <paramref name="value"/> is greater than 100.
         /// </exception>
+        /// <since_tizen> 4 </since_tizen>
         public int Quality
         {
             get { return _quality ?? DefaultQuality; }
@@ -397,12 +416,14 @@ namespace Tizen.Multimedia.Util
     /// <summary>
     /// Provides the ability to encode the Graphics Interchange Format (GIF) format images.
     /// </summary>
+    /// <since_tizen> 4 </since_tizen>
     public class GifEncoder : ImageEncoder
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="GifEncoder"/> class.
         /// </summary>
         /// <remarks><see cref="ImageEncoder.OutputFormat"/> will be the <see cref="ImageFormat.Gif"/>.</remarks>
+        /// <since_tizen> 4 </since_tizen>
         public GifEncoder() : base(ImageFormat.Gif)
         {
         }
@@ -430,6 +451,7 @@ namespace Tizen.Multimedia.Util
         /// <exception cref="InvalidOperationException">The resolution is not set.</exception>
         /// <exception cref="ObjectDisposedException">The <see cref="ImageEncoder"/> has already been disposed of.</exception>
         /// <seealso cref="ImageEncoder.SetResolution"/>
+        /// <since_tizen> 4 </since_tizen>
         public Task EncodeAsync(IEnumerable<GifFrame> frames, Stream outStream)
         {
             if (frames == null)

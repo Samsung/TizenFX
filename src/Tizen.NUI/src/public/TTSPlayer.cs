@@ -24,6 +24,7 @@ namespace Tizen.NUI
     /// <summary>
     /// The Text-to-speech (TTS) player.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public class TTSPlayer : BaseHandle
     {
         private global::System.Runtime.InteropServices.HandleRef swigCPtr;
@@ -200,11 +201,13 @@ namespace Tizen.NUI
         /// <summary>
         /// State changed argument.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public class StateChangedEventArgs : EventArgs
         {
             /// <summary>
             /// PrevState.
             /// </summary>
+            /// <since_tizen> 3 </since_tizen>
             public TTSState PrevState
             {
                 get;
@@ -214,6 +217,7 @@ namespace Tizen.NUI
             /// <summary>
             /// NextState.
             /// </summary>
+            /// <since_tizen> 3 </since_tizen>
             public TTSState NextState
             {
                 get;

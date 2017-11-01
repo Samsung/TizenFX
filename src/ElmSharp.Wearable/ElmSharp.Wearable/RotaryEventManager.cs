@@ -24,6 +24,7 @@ namespace ElmSharp.Wearable
     /// <summary>
     /// RotaryEventManager serve functions for global Rotary event like Galaxy Gear.
     /// </summary>
+    /// <since_tizen> preview </since_tizen>
     public static class RotaryEventManager
     {
         static Dictionary<RotaryEventHandler, Interop.Eext.Eext_Rotary_Handler_Cb> s_rotaryEventHandlers = new Dictionary<RotaryEventHandler, Interop.Eext.Eext_Rotary_Handler_Cb>();
@@ -31,6 +32,7 @@ namespace ElmSharp.Wearable
         /// <summary>
         /// Rotated will triggered when rotatable device like Galaxy Gear Bezel is rotated.
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         public static event RotaryEventHandler Rotated
         {
             add
@@ -67,6 +69,7 @@ namespace ElmSharp.Wearable
     /// <summary>
     /// RotaryEventManager serve extension functions for Rotary event to EvasObject on device like Galaxy Gear.
     /// </summary>
+    /// <since_tizen> preview </since_tizen>
     public static class RotaryEventExtensions
     {
         static Dictionary<EvasObject, RotaryEventHandler> s_rotaryObjectEventHandlers = new Dictionary<EvasObject, RotaryEventHandler>();
@@ -77,6 +80,7 @@ namespace ElmSharp.Wearable
         /// </summary>
         /// <param name="obj">Target EvasObject</param>
         /// <param name="handler">Event handler for Rotary event</param>
+        /// <since_tizen> preview </since_tizen>
         public static void AddRotaryEventHandler(this EvasObject obj, RotaryEventHandler handler)
         {
             EnableRotaryEventHandler(obj);
@@ -96,6 +100,7 @@ namespace ElmSharp.Wearable
         /// </summary>
         /// <param name="obj">Target EvasObject</param>
         /// <param name="handler">Event handler for Rotary event</param>
+        /// <since_tizen> preview </since_tizen>
         public static void RemoveRotaryEventHandler(this EvasObject obj, RotaryEventHandler handler)
         {
             if (s_rotaryObjectEventHandlers.ContainsKey(obj))
@@ -113,6 +118,7 @@ namespace ElmSharp.Wearable
         /// Activate this circle widget can take Rotary event.
         /// </summary>
         /// <param name="widget">Target circle widget</param>
+        /// <since_tizen> preview </since_tizen>
         public static void Activate(this IRotaryActionWidget widget)
         {
             Interop.Eext.eext_rotary_object_event_activated_set(widget.CircleHandle, true);
@@ -122,6 +128,7 @@ namespace ElmSharp.Wearable
         /// Deactivate this circle widget is blocked from Rotary event.
         /// </summary>
         /// <param name="widget">Target circle widget</param>
+        /// <since_tizen> preview </since_tizen>
         public static void Deactivate(this IRotaryActionWidget widget)
         {
             Interop.Eext.eext_rotary_object_event_activated_set(widget.CircleHandle, false);
@@ -131,6 +138,7 @@ namespace ElmSharp.Wearable
         /// Activate this object can take Rotary event.
         /// </summary>
         /// <param name="obj">Target object</param>
+        /// <since_tizen> preview </since_tizen>
         public static void Activate(this EvasObject obj)
         {
             Interop.Eext.eext_rotary_object_event_activated_set(obj, true);
@@ -140,6 +148,7 @@ namespace ElmSharp.Wearable
         /// Deactivate this object is blocked from Rotary event.
         /// </summary>
         /// <param name="obj">Target object</param>
+        /// <since_tizen> preview </since_tizen>
         public static void Deactivate(this EvasObject obj)
         {
             Interop.Eext.eext_rotary_object_event_activated_set(obj, false);
@@ -188,21 +197,25 @@ namespace ElmSharp.Wearable
     /// Handler for Rotary event
     /// </summary>
     /// <param name="args">Rotary event information</param>
+    /// <since_tizen> preview </since_tizen>
     public delegate void RotaryEventHandler(RotaryEventArgs args);
 
     /// <summary>
     /// RotaryEventArgs serve information for triggered rotary event.
     /// </summary>
+    /// <since_tizen> preview </since_tizen>
     public class RotaryEventArgs : EventArgs
     {
         /// <summary>
         /// IsClockwise is true when Rotary device rotated clockwise direction or false on counter clockwise.
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         public bool IsClockwise { get; set; }
 
         /// <summary>
         /// Timestamp of rotary event
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         public uint Timestamp { get; set; }
     }
 }

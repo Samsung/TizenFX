@@ -22,6 +22,7 @@ namespace Tizen.Multimedia
     /// <summary>
     /// Represents a text media format. This class cannot be inherited.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public sealed class TextMediaFormat : MediaFormat
     {
         /// <summary>
@@ -33,6 +34,7 @@ namespace Tizen.Multimedia
         /// <exception cref="ArgumentException">
         ///     <paramref name="mimeType"/> or <paramref name="textType"/> is invalid (i.e. undefined value).
         /// </exception>
+        /// <since_tizen> 3 </since_tizen>
         public TextMediaFormat(MediaFormatTextMimeType mimeType, MediaFormatTextType textType)
             : base(MediaFormatType.Text)
         {
@@ -105,17 +107,20 @@ namespace Tizen.Multimedia
         /// <summary>
         /// Gets the mime type of the current format.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public MediaFormatTextMimeType MimeType { get; }
 
         /// <summary>
         /// Gets the text type of the current format.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public MediaFormatTextType TextType { get; }
 
         /// <summary>
         /// Returns a string that represents the current object.
         /// </summary>
         /// <returns>A string that represents the current object.</returns>
+        /// <since_tizen> 3 </since_tizen>
         public override string ToString()
             => $"MimeType={ MimeType.ToString() }, TextType={ TextType.ToString() }";
 
@@ -124,6 +129,7 @@ namespace Tizen.Multimedia
         /// </summary>
         /// <param name="obj">A <see cref="Object"/> to compare.</param>
         /// <returns>true if the formats are equal; otherwise, false.</returns>
+        /// <since_tizen> 3 </since_tizen>
         public override bool Equals(object obj)
         {
             var rhs = obj as TextMediaFormat;
@@ -139,6 +145,7 @@ namespace Tizen.Multimedia
         /// Gets the hash code for this instance of <see cref="TextMediaFormat"/>.
         /// </summary>
         /// <returns>The hash code for this instance of <see cref="TextMediaFormat"/>.</returns>
+        /// <since_tizen> 3 </since_tizen>
         public override int GetHashCode() => new { MimeType, TextType }.GetHashCode();
     }
 }

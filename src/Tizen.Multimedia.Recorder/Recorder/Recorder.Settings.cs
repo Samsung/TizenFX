@@ -28,6 +28,7 @@ namespace Tizen.Multimedia
         /// Gets the audio codec for encoding an audio stream.
         /// </summary>
         /// <seealso cref="GetSupportedAudioCodecs"/>
+        /// <since_tizen> 4 </since_tizen>
         public RecorderAudioCodec AudioCodec
         {
             get => _audioCodec;
@@ -52,6 +53,7 @@ namespace Tizen.Multimedia
         /// Gets the file format of the recording result.
         /// </summary>
         /// <seealso cref="GetSupportedFileFormats"/>
+        /// <since_tizen> 4 </since_tizen>
         public RecorderFileFormat FileFormat
         {
             get => _fileFormat;
@@ -80,6 +82,7 @@ namespace Tizen.Multimedia
         /// <exception cref="ArgumentOutOfRangeException"><paramref name="value"/> is less than or equal to zero.</exception>
         /// <exception cref="InvalidOperationException">The recorder is not in the valid state.</exception>
         /// <exception cref="ObjectDisposedException">The recorder already has been disposed of.</exception>
+        /// <since_tizen> 4 </since_tizen>
         public int AudioChannels
         {
             get
@@ -113,6 +116,7 @@ namespace Tizen.Multimedia
         /// <exception cref="ArgumentException"><paramref name="value"/> is not valid.</exception>
         /// <exception cref="InvalidOperationException">The recorder is not in the valid state.</exception>
         /// <exception cref="ObjectDisposedException">The recorder already has been disposed of.</exception>
+        /// <since_tizen> 4 </since_tizen>
         public RecorderAudioDevice AudioDevice
         {
             get
@@ -141,6 +145,7 @@ namespace Tizen.Multimedia
         /// <exception cref="ArgumentOutOfRangeException"><paramref name="value"/> is less than or equal to zero.</exception>
         /// <exception cref="InvalidOperationException">The recorder is not in the valid state.</exception>
         /// <exception cref="ObjectDisposedException">The recorder already has been disposed of.</exception>
+        /// <since_tizen> 4 </since_tizen>
         public int AudioSampleRate
         {
             get
@@ -175,6 +180,7 @@ namespace Tizen.Multimedia
         /// <exception cref="ArgumentOutOfRangeException"><paramref name="value"/> is less than or equal to zero.</exception>
         /// <exception cref="InvalidOperationException">The recorder is not in the valid state.</exception>
         /// <exception cref="ObjectDisposedException">The recorder already has been disposed of.</exception>
+        /// <since_tizen> 4 </since_tizen>
         public int AudioBitRate
         {
             get
@@ -214,6 +220,7 @@ namespace Tizen.Multimedia
         /// <exception cref="ArgumentOutOfRangeException"><paramref name="value"/> is less than zero.</exception>
         /// <exception cref="InvalidOperationException">The recorder is not in the valid state.</exception>
         /// <exception cref="ObjectDisposedException">The recorder already has been disposed of.</exception>
+        /// <since_tizen> 4 </since_tizen>
         public int SizeLimit
         {
             get
@@ -255,6 +262,7 @@ namespace Tizen.Multimedia
         /// <exception cref="ArgumentOutOfRangeException"><paramref name="value"/> is less than zero.</exception>
         /// <exception cref="InvalidOperationException">The recorder is not in the valid state.</exception>
         /// <exception cref="ObjectDisposedException">The recorder already has been disposed of.</exception>
+        /// <since_tizen> 4 </since_tizen>
         public int TimeLimit
         {
             get
@@ -283,6 +291,7 @@ namespace Tizen.Multimedia
         /// Gets or sets the mute state of a recorder.
         /// </summary>
         /// <exception cref="ObjectDisposedException">The recorder already has been disposed of.</exception>
+        /// <since_tizen> 4 </since_tizen>
         public bool Muted
         {
             get => Native.GetMute(Handle);

@@ -22,6 +22,7 @@ namespace Tizen.Multimedia
     /// <summary>
     /// The class containing the image data, which has a single plane.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public class SinglePlane : IPreviewPlane
     {
         internal SinglePlane(SinglePlaneStruct unmanaged)

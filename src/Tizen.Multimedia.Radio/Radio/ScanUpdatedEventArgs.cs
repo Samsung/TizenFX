@@ -21,6 +21,7 @@ namespace Tizen.Multimedia
     /// <summary>
     /// Provides data for the <see cref="Radio.ScanUpdated"/> event.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public class ScanUpdatedEventArgs : EventArgs
     {
         internal ScanUpdatedEventArgs(int tunedFrequency)
@@ -31,12 +32,14 @@ namespace Tizen.Multimedia
         /// <summary>
         /// Gets the tuned radio frequency that is scanned, in the range of 87500 ~ 108000 kHz.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public int Frequency { get; }
 
         /// <summary>
         /// Returns a string that represents the current object.
         /// </summary>
         /// <returns>A string that represents the current object.</returns>
+        /// <since_tizen> 3 </since_tizen>
         public override string ToString()
         {
             return $"Frequency={ Frequency.ToString() }";

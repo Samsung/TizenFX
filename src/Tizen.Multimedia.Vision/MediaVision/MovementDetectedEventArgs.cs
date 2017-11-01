@@ -22,13 +22,13 @@ namespace Tizen.Multimedia.Vision
     /// <summary>
     /// Provides data for the <see cref="MovementDetector.Detected"/> event.
     /// </summary>
-    /// <since_tizen> 3 </since_tizen>
+    /// <since_tizen> 4 </since_tizen>
     public class MovementDetectedEventArgs : EventArgs
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="MovementDetectedEventArgs"/> class.
         /// </summary>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 4 </since_tizen>
         public MovementDetectedEventArgs(IEnumerable<Rectangle> areas)
         {
             Areas = areas;
@@ -37,7 +37,7 @@ namespace Tizen.Multimedia.Vision
         /// <summary>
         /// Gets a set of rectangular regions where movement was detected.
         /// </summary>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 4 </since_tizen>
         public IEnumerable<Rectangle> Areas { get; }
     }
 }

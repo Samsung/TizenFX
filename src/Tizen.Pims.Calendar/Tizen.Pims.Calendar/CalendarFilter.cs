@@ -199,6 +199,7 @@ namespace Tizen.Pims.Calendar
         /// <summary>
         /// Enumeration for the filter match type of a string.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         public enum StringMatchType
         {
             /// <summary>
@@ -230,6 +231,7 @@ namespace Tizen.Pims.Calendar
         /// <summary>
         /// Enumeration for the filter match type of an integer.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         public enum IntegerMatchType
         {
             /// <summary>
@@ -265,6 +267,7 @@ namespace Tizen.Pims.Calendar
         /// <summary>
         /// Enumeration for a filter operator.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         public enum LogicalOperator
         {
             /// <summary>
@@ -284,6 +287,7 @@ namespace Tizen.Pims.Calendar
         /// Dispose
         /// </summary>
         /// <param name="disposing">true to release both managed and unmanaged resources; false to release only unmanaged resources.</param>
+        /// <since_tizen> 4 </since_tizen>
         protected virtual void Dispose(bool disposing)
         {
             if (!disposedValue)
@@ -303,6 +307,7 @@ namespace Tizen.Pims.Calendar
         /// Releases all resources used by the CalendarFilter.
         /// It should be called after having finished using of the object.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         public void Dispose()
         {
             Dispose(true);

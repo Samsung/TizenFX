@@ -21,6 +21,7 @@ namespace Tizen.Sensor
     /// <summary>
     /// The Gyroscope Sensor class is used for registering callbacks for the gyroscope and getting the gyroscope data.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public sealed class Gyroscope : Sensor
     {
         private const string GyroscopeKey = "http://tizen.org/feature/sensor.gyroscope";

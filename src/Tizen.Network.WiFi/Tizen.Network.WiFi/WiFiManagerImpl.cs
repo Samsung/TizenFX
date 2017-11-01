@@ -264,8 +264,16 @@ namespace Tizen.Network.WiFi
             int ret = Interop.WiFi.GetConnectedAP(GetSafeHandle(), out apHandle);
             if (ret != (int)WiFiError.None)
             {
-                Log.Error(Globals.LogTag, "Failed to connect with AP, Error - " + (WiFiError)ret);
-                WiFiErrorFactory.ThrowWiFiException(ret, GetSafeHandle().DangerousGetHandle(), "http://tizen.org/privilege/network.get");
+                if (ret == (int)WiFiError.NoConnectionError)
+                {
+                    Log.Error(Globals.LogTag, "No connection " + (WiFiError)ret);
+                    return null;
+                }
+                else
+                {
+                    Log.Error(Globals.LogTag, "Failed to get connected AP, Error - " + (WiFiError)ret);
+                    WiFiErrorFactory.ThrowWiFiException(ret, GetSafeHandle().DangerousGetHandle(), "http://tizen.org/privilege/network.get");
+                }
             }
             WiFiAP ap = new WiFiAP(apHandle);
             return ap;

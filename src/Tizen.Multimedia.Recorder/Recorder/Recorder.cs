@@ -71,6 +71,7 @@ namespace Tizen.Multimedia
         /// <summary>
         /// Releases the unmanaged resources used by the Recorder.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public void Dispose()
         {
             Dispose(true);
@@ -82,6 +83,7 @@ namespace Tizen.Multimedia
         /// <param name="disposing">
         /// true to release both managed and unmanaged resources; false to release only unmanaged resources.
         /// </param>
+        /// <since_tizen> 3 </since_tizen>
         protected virtual void Dispose(bool disposing)
         {
             if (!_disposed)
@@ -122,6 +124,7 @@ namespace Tizen.Multimedia
         /// </summary>
         /// <value>A <see cref="RecorderState"/> that specifies the state of the recorder.</value>
         /// <exception cref="ObjectDisposedException">The recorder already has been disposed of.</exception>
+        /// <since_tizen> 3 </since_tizen>
         public RecorderState State
         {
             get
@@ -148,6 +151,7 @@ namespace Tizen.Multimedia
         ///     An internal error occurred.
         /// </exception>
         /// <exception cref="ObjectDisposedException">The recorder already has been disposed of.</exception>
+        /// <since_tizen> 3 </since_tizen>
         public void Prepare()
         {
             if (_state == RecorderState.Ready)
@@ -184,6 +188,7 @@ namespace Tizen.Multimedia
         ///     An internal error occurred.
         /// </exception>
         /// <exception cref="ObjectDisposedException">The recorder already has been disposed of.</exception>
+        /// <since_tizen> 3 </since_tizen>
         public void Unprepare()
         {
             ThrowIfAccessedInAudioStreamStoring();
@@ -229,6 +234,7 @@ namespace Tizen.Multimedia
         /// <exception cref="UnauthorizedAccessException">Caller does not have required privilege.</exception>
         /// <seealso cref="Commit"/>
         /// <seealso cref="Cancel"/>
+        /// <since_tizen> 4 </since_tizen>
         public void Start(string savePath)
         {
             ValidateState(RecorderState.Ready);
@@ -264,6 +270,7 @@ namespace Tizen.Multimedia
         ///     An internal error occurred.
         /// </exception>
         /// <exception cref="ObjectDisposedException">The recorder already has been disposed of.</exception>
+        /// <since_tizen> 4 </since_tizen>
         public void Resume()
         {
             if (_state == RecorderState.Recording)
@@ -292,6 +299,7 @@ namespace Tizen.Multimedia
         ///     An internal error occurred.
         /// </exception>
         /// <exception cref="ObjectDisposedException">The recorder already has been disposed of.</exception>
+        /// <since_tizen> 3 </since_tizen>
         public void Pause()
         {
             if (_state == RecorderState.Paused)
@@ -321,6 +329,7 @@ namespace Tizen.Multimedia
         ///     An internal error occurred.
         /// </exception>
         /// <exception cref="ObjectDisposedException">The recorder already has been disposed of.</exception>
+        /// <since_tizen> 3 </since_tizen>
         public void Commit()
         {
             ThrowIfAccessedInAudioStreamStoring();
@@ -348,6 +357,7 @@ namespace Tizen.Multimedia
         ///     An internal error occurred.
         /// </exception>
         /// <exception cref="ObjectDisposedException">The recorder already has been disposed of.</exception>
+        /// <since_tizen> 3 </since_tizen>
         public void Cancel()
         {
             ThrowIfAccessedInAudioStreamStoring();
@@ -379,6 +389,7 @@ namespace Tizen.Multimedia
         ///     -or-<br/>
         ///     <paramref name="policy"/> already has been disposed of.
         /// </exception>
+        /// <since_tizen> 4 </since_tizen>
         public void ApplyAudioStreamPolicy(AudioStreamPolicy policy)
         {
             if (policy == null)
@@ -400,6 +411,7 @@ namespace Tizen.Multimedia
         /// The recorder must be in the <see cref="RecorderState.Recording"/> or the <see cref="RecorderState.Paused"/> state.
         /// </remarks>
         /// <exception cref="ObjectDisposedException">The recorder already has been disposed of.</exception>
+        /// <since_tizen> 4 </since_tizen>
         public double GetPeakAudioLevel()
         {
             ValidateState(RecorderState.Recording, RecorderState.Paused);
@@ -413,6 +425,7 @@ namespace Tizen.Multimedia
         /// Returns the state of recorder device.
         /// </summary>
         /// <exception cref="ArgumentException"><paramref name="type"/> is invalid.</exception>
+        /// <since_tizen> 4 </since_tizen>
         public static RecorderDeviceState GetDeviceState(RecorderType type)
         {
             ValidationUtil.ValidateEnum(typeof(RecorderType), type, nameof(type));

@@ -44,6 +44,7 @@ namespace Tizen.Account.AccountManager
     /// <summary>
     /// Enumeration for the state of account secrecy.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public enum AccountSecrecyState
     {
         /// <summary>

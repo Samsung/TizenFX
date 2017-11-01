@@ -21,6 +21,7 @@ namespace Tizen.Multimedia
     /// <summary>
     /// Provides data for the <see cref="Camera.HdrCaptureProgress"/> event.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public class HdrCaptureProgressEventArgs : EventArgs
     {
         internal HdrCaptureProgressEventArgs(int percent)

@@ -48,6 +48,7 @@ namespace Tizen.Multimedia.MediaCodec
     /// Specifies the errors of <see cref="MediaCodec"/>.
     /// </summary>
     /// <seealso cref="MediaCodec.ErrorOccurred"/>
+    /// <since_tizen> 3 </since_tizen>
     public enum MediaCodecError
     {
         /// <summary>

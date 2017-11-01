@@ -24,6 +24,7 @@ namespace Tizen.Multimedia
     /// <seealso cref="AudioCapture"/>
     /// <seealso cref="AsyncAudioCapture"/>
     /// <seealso cref="AudioPlayback"/>
+    /// <since_tizen> 3 </since_tizen>
     public enum AudioChannel
     {
         /// <summary>
@@ -56,6 +57,7 @@ namespace Tizen.Multimedia
     /// <summary>
     /// Specifies the states for the <see cref="AudioPlayback"/>, <see cref="AudioCapture"/>, and <see cref="AsyncAudioCapture"/>.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public enum AudioIOState
     {
         /// <summary>
@@ -77,6 +79,7 @@ namespace Tizen.Multimedia
     /// <summary>
     /// Specifies the audio sample types.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public enum AudioSampleType
     {
         /// <summary>

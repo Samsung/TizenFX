@@ -19,6 +19,7 @@ namespace Tizen.Multimedia
     /// <summary>
     /// Specifies the text types.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public enum MediaFormatTextType
     {
         /// <summary>

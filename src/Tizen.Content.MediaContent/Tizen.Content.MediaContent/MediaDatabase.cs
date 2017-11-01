@@ -24,11 +24,13 @@ namespace Tizen.Content.MediaContent
     /// <summary>
     /// Provides the ability to connect to and manage the database.
     /// </summary>
+    /// <since_tizen> 4 </since_tizen>
     public class MediaDatabase : IDisposable
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="MediaDatabase"/> class.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         public MediaDatabase()
         {
         }
@@ -41,6 +43,7 @@ namespace Tizen.Content.MediaContent
         /// <exception cref="InvalidOperationException">The database is already connected.</exception>
         /// <exception cref="ObjectDisposedException">The <see cref="MediaDatabase"/> has already been disposed of.</exception>
         /// <exception cref="MediaDatabaseException">An error occurred while connecting.</exception>
+        /// <since_tizen> 4 </since_tizen>
         public void Connect()
         {
             ValidateNotDisposed();
@@ -64,6 +67,7 @@ namespace Tizen.Content.MediaContent
         /// <exception cref="InvalidOperationException">The database is not connected.</exception>
         /// <exception cref="ObjectDisposedException">The <see cref="MediaDatabase"/> has already been disposed of.</exception>
         /// <exception cref="MediaDatabaseException">An error occurred while connecting.</exception>
+        /// <since_tizen> 4 </since_tizen>
         public void Disconnect()
         {
             ValidateNotDisposed();
@@ -101,6 +105,7 @@ namespace Tizen.Content.MediaContent
         /// <summary>
         /// Occurs when there is a change for media in the database.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         public static event EventHandler<MediaInfoUpdatedEventArgs> MediaInfoUpdated
         {
             add
@@ -154,6 +159,7 @@ namespace Tizen.Content.MediaContent
         /// <summary>
         /// Occurs when there is a change for the folder in the database.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         public static event EventHandler<FolderUpdatedEventArgs> FolderUpdated
         {
             add
@@ -217,6 +223,7 @@ namespace Tizen.Content.MediaContent
         ///     <paramref name="path"/> contains a directory containing the ".scan_ignore" file.
         /// </exception>
         /// <exception cref="UnauthorizedAccessException">The caller has no required privilege.</exception>
+        /// <since_tizen> 4 </since_tizen>
         public void ScanFile(string path)
         {
             ValidateState();
@@ -250,6 +257,7 @@ namespace Tizen.Content.MediaContent
         ///     -or-<br/>
         ///     <paramref name="folderPath"/> contains a directory containing the ".scan_ignore" file.
         /// </exception>
+        /// <since_tizen> 4 </since_tizen>
         public Task ScanFolderAsync(string folderPath)
         {
             return ScanFolderAsync(folderPath, true);
@@ -280,6 +288,7 @@ namespace Tizen.Content.MediaContent
         ///     -or-<br/>
         ///     <paramref name="folderPath"/> contains a directory containing the ".scan_ignore" file.
         /// </exception>
+        /// <since_tizen> 4 </since_tizen>
         public Task ScanFolderAsync(string folderPath, bool recursive)
         {
             return ScanFolderAsync(folderPath, recursive, CancellationToken.None);
@@ -310,6 +319,7 @@ namespace Tizen.Content.MediaContent
         ///     -or-<br/>
         ///     <paramref name="folderPath"/> contains a directory containing the ".scan_ignore" file.
         /// </exception>
+        /// <since_tizen> 4 </since_tizen>
         public Task ScanFolderAsync(string folderPath, CancellationToken cancellationToken)
         {
             return ScanFolderAsync(folderPath, true, cancellationToken);
@@ -341,6 +351,7 @@ namespace Tizen.Content.MediaContent
         ///     -or-<br/>
         ///     <paramref name="folderPath"/> contains a directory containing the ".scan_ignore" file.
         /// </exception>
+        /// <since_tizen> 4 </since_tizen>
         public Task ScanFolderAsync(string folderPath, bool recursive, CancellationToken cancellationToken)
         {
             ValidateState();
@@ -434,6 +445,7 @@ namespace Tizen.Content.MediaContent
         /// Disposes of the resources (other than memory) used by the MediaDatabase.
         /// </summary>
         /// <param name="disposing">true to release both managed and unmanaged resources; false to release only unmanaged resources.</param>
+        /// <since_tizen> 4 </since_tizen>
         protected virtual void Dispose(bool disposing)
         {
             if (!_disposed)
@@ -455,6 +467,7 @@ namespace Tizen.Content.MediaContent
         /// <summary>
         /// Releases all the resources.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         public void Dispose()
         {
             Dispose(true);
@@ -464,6 +477,7 @@ namespace Tizen.Content.MediaContent
         /// Gets the value indicating whether the database has been disposed of.
         /// </summary>
         /// <value>true if the database has been disposed of; otherwise, false.</value>
+        /// <since_tizen> 4 </since_tizen>
         public bool IsDisposed => _disposed;
         #endregion
 

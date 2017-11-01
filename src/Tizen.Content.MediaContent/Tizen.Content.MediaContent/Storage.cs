@@ -25,6 +25,7 @@ namespace Tizen.Content.MediaContent
     /// The system generates the storage ID when the external storage is added and manages the media information
     /// in each of the storage by using the storage ID.
     /// </remarks>
+    /// <since_tizen> 3 </since_tizen>
     public class Storage
     {
         internal Storage(IntPtr handle)
@@ -40,24 +41,28 @@ namespace Tizen.Content.MediaContent
         /// Gets the ID of the storage.
         /// </summary>
         /// <value>The unique ID of the storage.</value>
+        /// <since_tizen> 3 </since_tizen>
         public string Id { get; }
 
         /// <summary>
         /// Gets the path of the storage.
         /// </summary>
         /// <value>The path of the storage.</value>
+        /// <since_tizen> 4 </since_tizen>
         public string Path { get; }
 
         /// <summary>
         /// Gets the type of the storage.
         /// </summary>
         /// <value>The type of the storage.</value>
+        /// <since_tizen> 4 </since_tizen>
         public StorageType Type { get; }
 
         /// <summary>
         /// Returns a string representation of the storage.
         /// </summary>
         /// <returns>A string representation of the current storage.</returns>
+        /// <since_tizen> 4 </since_tizen>
         public override string ToString() =>
             $"Id={Id}, Path={Path}, Type={Type}";
     }

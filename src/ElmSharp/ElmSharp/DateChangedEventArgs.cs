@@ -23,16 +23,19 @@ namespace ElmSharp
     /// The DateChanged event in Calendar and DateTimeChanged event in DateTimeSelector.
     /// contain DateChangedEventArgs as a parameter.
     /// </summary>
+    /// <since_tizen> preview </since_tizen>
     public class DateChangedEventArgs : EventArgs
     {
         /// <summary>
         /// Gets the OldDate property of the given DateChangedEventArgs.
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         public DateTime OldDate { get; private set; }
 
         /// <summary>
         /// Gets the NewDate property of the given DateChangedEventArgs.
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         public DateTime NewDate { get; private set; }
 
         /// <summary>
@@ -44,6 +47,7 @@ namespace ElmSharp
         /// <param name="newDate">
         /// New date when DateChanged event or DateTimeChanged event triggered
         /// </param>
+        /// <since_tizen> preview </since_tizen>
         public DateChangedEventArgs(DateTime oldDate, DateTime newDate)
         {
             this.OldDate = oldDate;

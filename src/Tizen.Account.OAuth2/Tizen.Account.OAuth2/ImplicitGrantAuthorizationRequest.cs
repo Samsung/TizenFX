@@ -19,6 +19,7 @@ namespace Tizen.Account.OAuth2
     /// <summary>
     /// The class contains request parameters for retreiving access token in Implicit Grant flow.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public class ImplicitGrantAuthorizationRequest : AuthorizationRequest
     {
         /// <summary>

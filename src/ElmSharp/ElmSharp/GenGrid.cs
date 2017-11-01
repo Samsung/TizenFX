@@ -24,11 +24,13 @@ namespace ElmSharp
     /// It contains Item which is <see cref="GenGridItem"/> type.
     /// All events of GenGrid contain GenGridItemEventArgs as a parameter.
     /// </summary>
+    /// <since_tizen> preview </since_tizen>
     public class GenGridItemEventArgs : EventArgs
     {
         /// <summary>
         /// Gets or sets GenGrid item.The return type is <see cref="GenGridItem"/>.
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         public GenGridItem Item { get; set; }
 
         internal static GenGridItemEventArgs CreateFromSmartEvent(IntPtr data, IntPtr obj, IntPtr info)
@@ -44,6 +46,7 @@ namespace ElmSharp
     /// It has two direction in which a given GenGrid widget expands while placing its items, horizontal and vertical.
     /// The GenGrid items are represented through <see cref="GenItemClass"/> definition field details.
     /// </summary>
+    /// <since_tizen> preview </since_tizen>
     public class GenGrid : Layout
     {
         HashSet<GenGridItem> _children = new HashSet<GenGridItem>();
@@ -63,6 +66,7 @@ namespace ElmSharp
         /// Creates and initializes a new instance of the GenGrid class.
         /// </summary>
         /// <param name="parent">The parent is a given container which will be attached by GenGrid as a child. It's <see cref="EvasObject"/> type.</param>
+        /// <since_tizen> preview </since_tizen>
         public GenGrid(EvasObject parent) : base(parent)
         {
             InitializeSmartEvent();
@@ -71,51 +75,61 @@ namespace ElmSharp
         /// <summary>
         /// ItemSelected is raised when a new gengrid item is selected.
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         public event EventHandler<GenGridItemEventArgs> ItemSelected;
 
         /// <summary>
         /// ItemUnselected is raised when the gengrid item is Unselected.
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         public event EventHandler<GenGridItemEventArgs> ItemUnselected;
 
         /// <summary>
         /// ItemPressed is raised when a new gengrid item is pressed.
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         public event EventHandler<GenGridItemEventArgs> ItemPressed;
 
         /// <summary>
         /// ItemReleased is raised when a new gengrid item is released.
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         public event EventHandler<GenGridItemEventArgs> ItemReleased;
 
         /// <summary>
         /// ItemActivated is raised when a new gengrid item is double clicked or pressed (enter|return|spacebar).
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         public event EventHandler<GenGridItemEventArgs> ItemActivated;
 
         /// <summary>
         /// ItemDoubleClicked is raised when a new gengrid item is double clicked.
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         public event EventHandler<GenGridItemEventArgs> ItemDoubleClicked;
 
         /// <summary>
         /// ItemRealized is raised when a gengrid item is implementing through <see cref="GenItemClass"/>.
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         public event EventHandler<GenGridItemEventArgs> ItemRealized;
 
         /// <summary>
         /// ItemUnrealized is raised when the gengrid item is deleted.
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         public event EventHandler<GenGridItemEventArgs> ItemUnrealized;
 
         /// <summary>
         /// ItemLongPressed is raised when a gengrid item is pressed for a certain amount of time. By default it's 1 second.
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         public event EventHandler<GenGridItemEventArgs> ItemLongPressed;
 
         /// <summary>
         ///  Changed is raised when an item is added, removed, resized or moved and when the gengrid is resized or gets "horizontal" property changes.
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         public event EventHandler Changed;
 
         /// <summary>
@@ -123,6 +137,7 @@ namespace ElmSharp
         /// Accepted values are in the 0.0 to 1.0 range, with the special value -1.0 used to specify "justify" or "fill" by some users.
         /// By default, value is 0.0, meaning that the gengrid has its items grid placed exactly in the left along x-axis.
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         public double ItemAlignmentX
         {
             get
@@ -143,6 +158,7 @@ namespace ElmSharp
         /// Accepted values are in the 0.0 to 1.0 range, with the special value -1.0 used to specify "justify" or "fill" by some users.
         /// By default, value is 0.0, meaning that the gengrid has its items grid placed exactly in the top along y-axis.
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         public double ItemAlignmentY
         {
             get
@@ -162,6 +178,7 @@ namespace ElmSharp
         /// Gets or sets the manner in which the items grid is filled within a given gengrid widget.
         /// It is filled if true, otherwise false.
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         public bool FillItems
         {
             get
@@ -183,6 +200,7 @@ namespace ElmSharp
         /// A click on an already selected item unselects it. If interacting via the keyboard, multi-selection is enabled while holding the "Shift" key.
         /// By default, multi-selection is disabled.
         /// </remarks>
+        /// <since_tizen> preview </since_tizen>
         public bool MultipleSelection
         {
             get
@@ -203,6 +221,7 @@ namespace ElmSharp
         /// The default width and height just have one finger wide.
         /// Use this property to force a custom width for your items, making them as big as you wish.
         /// </remarks>
+        /// <since_tizen> preview </since_tizen>
         public int ItemWidth
         {
             get
@@ -226,6 +245,7 @@ namespace ElmSharp
         /// The default width and height just have one finger wide.
         /// Use this property to force a custom height for your items, making them as big as you wish.
         /// </remarks>
+        /// <since_tizen> preview </since_tizen>
         public int ItemHeight
         {
             get
@@ -244,6 +264,7 @@ namespace ElmSharp
         /// <summary>
         /// Gets or sets the gengrid select mode by <see cref="GenItemSelectionMode"/>.
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         public GenItemSelectionMode SelectionMode
         {
             get
@@ -263,6 +284,7 @@ namespace ElmSharp
         /// If true, items are placed in columns from top to bottom and when the space for a column is filled, another one is started on the right, thus expanding the grid horizontally.
         /// If false, items are placed in rows from left to right, and when the space for a row is filled, another one is started below, thus expanding the grid vertically.
         /// </remarks>
+        /// <since_tizen> preview </since_tizen>
         public bool IsHorizontal
         {
             get
@@ -278,6 +300,7 @@ namespace ElmSharp
         /// <summary>
         /// Gets or sets whether the gengrid items should be highlighted when an item is selected.
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         public bool IsHighlight
         {
             get
@@ -297,6 +320,7 @@ namespace ElmSharp
         /// ScrollBarVisiblePolicy.Auto means the horizontal scrollbar is made visible if it is needed, and otherwise kept hidden.
         /// ScrollBarVisiblePolicy.Visible turns it on all the time, and ScrollBarVisiblePolicy.Invisible always keeps it off.
         /// </remarks>
+        /// <since_tizen> preview </since_tizen>
         public ScrollBarVisiblePolicy HorizontalScrollBarVisiblePolicy
         {
             get
@@ -319,6 +343,7 @@ namespace ElmSharp
         /// ScrollBarVisiblePolicy.Auto means the vertical scrollbar is made visible if it is needed, and otherwise kept hidden.
         /// ScrollBarVisiblePolicy.Visible turns it on all the time, and ScrollBarVisiblePolicy.Invisible always keeps it off.
         /// </remarks>
+        /// <since_tizen> preview </since_tizen>
         public ScrollBarVisiblePolicy VerticalScrollBarVisiblePolicy
         {
             get
@@ -337,6 +362,7 @@ namespace ElmSharp
         /// <summary>
         /// Gets the first item in a given gengrid widget.
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         public GenGridItem FirstItem
         {
             get
@@ -349,6 +375,7 @@ namespace ElmSharp
         /// <summary>
         /// Gets the last item in a given gengrid widget.
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         public GenGridItem LastItem
         {
             get
@@ -361,6 +388,7 @@ namespace ElmSharp
         /// <summary>
         /// Gets the items count in a given gengrid widget.
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         public uint ItemCount
         {
             get
@@ -372,6 +400,7 @@ namespace ElmSharp
         /// <summary>
         /// Gets the selected item in a given gengrid widget.
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         public GenGridItem SelectedItem
         {
             get
@@ -384,6 +413,7 @@ namespace ElmSharp
         /// <summary>
         /// Gets or sets whether a given gengrid widget is or not able have items reordered.
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         public bool ReorderMode
         {
             get
@@ -404,6 +434,7 @@ namespace ElmSharp
         /// <returns>Return a gengrid item that contains data and itemClass.</returns>
         /// <seealso cref="GenItemClass"/>
         /// <seealso cref="GenGridItem"/>
+        /// <since_tizen> preview </since_tizen>
         public GenGridItem Append(GenItemClass itemClass, object data)
         {
             GenGridItem item = new GenGridItem(data, itemClass);
@@ -421,6 +452,7 @@ namespace ElmSharp
         /// <returns>Return a gengrid item that contains data and itemClass.</returns>
         /// <seealso cref="GenItemClass"/>
         /// <seealso cref="GenGridItem"/>
+        /// <since_tizen> preview </since_tizen>
         public GenGridItem Prepend(GenItemClass itemClass, object data)
         {
             GenGridItem item = new GenGridItem(data, itemClass);
@@ -439,6 +471,7 @@ namespace ElmSharp
         /// <returns>Return a gengrid item that contains data and itemClass./></returns>
         /// <seealso cref="GenItemClass"/>
         /// <seealso cref="GenGridItem"/>
+        /// <since_tizen> preview </since_tizen>
         public GenGridItem InsertBefore(GenItemClass itemClass, object data, GenGridItem before)
         {
             GenGridItem item = new GenGridItem(data, itemClass);
@@ -457,6 +490,7 @@ namespace ElmSharp
         /// <returns>Return a gengrid item that contains data and itemClass.</returns>
         /// <seealso cref="GenItemClass"/>
         /// <seealso cref="GenGridItem"/>
+        /// <since_tizen> preview </since_tizen>
         public GenGridItem InsertAfter(GenItemClass itemClass, object data, GenGridItem after)
         {
             GenGridItem item = new GenGridItem(data, itemClass);
@@ -473,6 +507,7 @@ namespace ElmSharp
         /// <param name="data">The item data.</param>
         /// <param name="comparison">User defined comparison function that defines the sort order based on gengrid item and its data.</param>
         /// <returns>Return a gengrid item that contains data and itemClass.</returns>
+        /// <since_tizen> preview </since_tizen>
         public GenGridItem InsertSorted(GenItemClass itemClass, object data, Comparison<object> comparison)
         {
             GenGridItem item = new GenGridItem(data, itemClass);
@@ -501,6 +536,7 @@ namespace ElmSharp
         /// If animated is false, the gengrid shows item by jumping if it's not fully visible.
         /// </remarks>
         /// <seealso cref="ScrollToPosition"/>
+        /// <since_tizen> preview </since_tizen>
         public void ScrollTo(GenGridItem item, ScrollToPosition position, bool animated)
         {
             if (animated)
@@ -521,6 +557,7 @@ namespace ElmSharp
         /// <remarks>
         /// <see cref="GenItem.Update()"/> to update just one item.
         /// </remarks>
+        /// <since_tizen> preview </since_tizen>
         public void UpdateRealizedItems()
         {
             Interop.Elementary.elm_gengrid_realized_items_update(RealHandle);
@@ -533,6 +570,7 @@ namespace ElmSharp
         /// <remarks>
         /// <see cref="ItemObject.Delete()"/> to delete just one item.
         /// </remarks>
+        /// <since_tizen> preview </since_tizen>
         public void Clear()
         {
             Interop.Elementary.elm_gengrid_clear(RealHandle);
@@ -550,6 +588,7 @@ namespace ElmSharp
         /// -1, 0 or 1, depending if the coordinate is on the upper portion of that item (-1), on the middle section (0) or on the lower part (1).
         /// </param>
         /// <returns></returns>
+        /// <since_tizen> preview </since_tizen>
         public GenGridItem GetItemByPosition(int x, int y, out int portionX, out int portionY)
         {
             IntPtr handle = Interop.Elementary.elm_gengrid_at_xy_item_get(RealHandle, x, y, out portionX, out portionY);
@@ -561,6 +600,7 @@ namespace ElmSharp
         /// </summary>
         /// <param name="parent">Parent EvasObject</param>
         /// <returns>Handle IntPtr</returns>
+        /// <since_tizen> preview </since_tizen>
         protected override IntPtr CreateHandle(EvasObject parent)
         {
             IntPtr handle = Interop.Elementary.elm_layout_add(parent.Handle);

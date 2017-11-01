@@ -25,6 +25,7 @@ namespace Tizen.Multimedia
     /// <seealso cref="StreamRecorder"/>
     /// <seealso cref="StreamRecorderOptions"/>
     /// <seealso cref="StreamRecorderAudioOptions"/>
+    /// <since_tizen> 4 </since_tizen>
     public class StreamRecorderVideoOptions
     {
         private const int DefaultBitRate = 0;
@@ -50,6 +51,7 @@ namespace Tizen.Multimedia
         ///     -or-<br/>
         ///     <paramref name="frameRate"/> is less than or equal to zero.
         /// </exception>
+        /// <since_tizen> 4 </since_tizen>
         public StreamRecorderVideoOptions(RecorderVideoCodec codec, Size resolution,
             StreamRecorderVideoFormat sourceFormat, int frameRate) :
             this(codec, resolution, sourceFormat, frameRate, DefaultBitRate)
@@ -77,6 +79,7 @@ namespace Tizen.Multimedia
         ///     -or-<br/>
         ///     <paramref name="bitRate"/> is less than zero.
         /// </exception>
+        /// <since_tizen> 4 </since_tizen>
         public StreamRecorderVideoOptions(RecorderVideoCodec codec, Size resolution,
             StreamRecorderVideoFormat sourceFormat, int frameRate, int bitRate)
         {
@@ -95,6 +98,7 @@ namespace Tizen.Multimedia
         /// <value>The codec for video stream recording.</value>
         /// <exception cref="ArgumentException"><paramref name="value"/> is not valid.</exception>
         /// <seealso cref="StreamRecorder.GetSupportedVideoCodecs"/>
+        /// <since_tizen> 4 </since_tizen>
         public RecorderVideoCodec Codec
         {
             get => _codec;
@@ -116,6 +120,7 @@ namespace Tizen.Multimedia
         ///     Width or height of <paramref name="value"/> is less than or equal to zero.
         /// </exception>
         /// <seealso cref="StreamRecorder.GetSupportedVideoResolutions"/>
+        /// <since_tizen> 4 </since_tizen>
         public Size Resolution
         {
             get => _resolution;
@@ -138,6 +143,7 @@ namespace Tizen.Multimedia
         /// </summary>
         /// <value>The frame rate value for video stream recording.</value>
         /// <exception cref="ArgumentOutOfRangeException"><paramref name="value"/> is less than or equal to zero.</exception>
+        /// <since_tizen> 4 </since_tizen>
         public int FrameRate
         {
             get => _frameRate;
@@ -159,6 +165,7 @@ namespace Tizen.Multimedia
         /// </summary>
         /// <value>The source format of buffers for video stream recording.</value>
         /// <exception cref="ArgumentException"><paramref name="value"/> is not valid.</exception>
+        /// <since_tizen> 4 </since_tizen>
         public StreamRecorderVideoFormat SourceFormat
         {
             get => _sourceFormat;
@@ -177,6 +184,7 @@ namespace Tizen.Multimedia
         /// </summary>
         /// <value>The bit rate value for video stream recording. The default is 0.</value>
         /// <exception cref="ArgumentOutOfRangeException"><paramref name="value"/> is less than zero.</exception>
+        /// <since_tizen> 4 </since_tizen>
         public int BitRate
         {
             get => _bitRate;

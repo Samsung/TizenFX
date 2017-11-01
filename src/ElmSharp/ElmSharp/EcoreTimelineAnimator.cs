@@ -21,6 +21,7 @@ namespace ElmSharp
     /// <summary>
     /// EcoreTimelineAnimator is a helper class, it provides functions to manager animations.
     /// </summary>
+    /// <since_tizen> preview </since_tizen>
     public class EcoreTimelineAnimator
     {
         double _runtime;
@@ -32,6 +33,7 @@ namespace ElmSharp
         /// <summary>
         /// It occurs when the animator is complete.
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         public event EventHandler Finished;
 
         /// <summary>
@@ -39,6 +41,7 @@ namespace ElmSharp
         /// </summary>
         /// <param name="runtime">The time to run in seconds</param>
         /// <param name="timelineCallback">Functions called at each time line</param>
+        /// <since_tizen> preview </since_tizen>
         public EcoreTimelineAnimator(double runtime, Action timelineCallback)
         {
             _runtime = runtime;
@@ -50,16 +53,19 @@ namespace ElmSharp
         /// <summary>
         /// Gets whether the animation is running.
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         public bool IsRunning { get; private set; }
 
         /// <summary>
         /// Gets the current position of the animation.
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         public double Position => _position;
 
         /// <summary>
         /// Starts an animator that runs for a limited time.for a limited time.
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         public void Start()
         {
             IsRunning = true;
@@ -69,6 +75,7 @@ namespace ElmSharp
         /// <summary>
         /// Stops an animator that running.
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         public void Stop()
         {
             IsRunning = false;
@@ -78,6 +85,7 @@ namespace ElmSharp
         /// <summary>
         /// Suspends the specified animator.
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         public void Freeze()
         {
             Interop.Ecore.ecore_animator_freeze(_animator);
@@ -86,6 +94,7 @@ namespace ElmSharp
         /// <summary>
         /// Restores execution of the specified animator.
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         public void Thaw()
         {
             Interop.Ecore.ecore_animator_thaw(_animator);
@@ -94,6 +103,7 @@ namespace ElmSharp
         /// <summary>
         /// Callback that is called when ticks off
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         protected void OnTimeline()
         {
             _timelineCallback();

@@ -21,11 +21,13 @@ namespace Tizen.Content.MediaContent
     /// <summary>
     /// The exception that is thrown when no record is found in the database.
     /// </summary>
+    /// <since_tizen> 4 </since_tizen>
     public class RecordNotFoundException : Exception
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="RecordNotFoundException"/> class.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         public RecordNotFoundException() : base("No record found.")
         {
         }
@@ -34,6 +36,7 @@ namespace Tizen.Content.MediaContent
         /// Initializes a new instance of the <see cref="RecordNotFoundException"/> class with a specified error message.
         /// </summary>
         /// <param name="message">The message that describes the error.</param>
+        /// <since_tizen> 4 </since_tizen>
         public RecordNotFoundException(string message) : base(message)
         {
         }
@@ -44,6 +47,7 @@ namespace Tizen.Content.MediaContent
         /// </summary>
         /// <param name="message">The message that describes the error.</param>
         /// <param name="innerException">The exception that is the cause of the current exception.</param>
+        /// <since_tizen> 4 </since_tizen>
         public RecordNotFoundException(string message, Exception innerException) : base(message, innerException)
         {
         }

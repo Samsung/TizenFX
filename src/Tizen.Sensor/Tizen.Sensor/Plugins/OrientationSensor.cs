@@ -21,6 +21,7 @@ namespace Tizen.Sensor
     /// <summary>
     /// The OrientationSensor class is used for registering callbacks for the orientation sensor and getting the orientation data.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public sealed class OrientationSensor : Sensor
     {
         private static string OrientationSensorKey = "http://tizen.org/feature/sensor.tiltmeter";

@@ -3,6 +3,7 @@ namespace Tizen.Applications.AttachPanel
     /// <summary>
     /// Enumeration for the attach panel's window state.
     /// </summary>
+    /// <since_tizen> 4 </since_tizen>
     public enum StateType
     {
         /// <summary>

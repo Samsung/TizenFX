@@ -29,17 +29,20 @@ namespace Tizen.Applications.Notifications
         /// <summary>
         ///  Class for generating indicator style notification.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public sealed class IndicatorStyle : StyleBase
         {
             /// <summary>
             /// Gets or sets an absolute path for an image file.
             /// If you set IconPath, you can see the icon on the right side of indicator.
             /// </summary>
+            /// <since_tizen> 3 </since_tizen>
             public string IconPath { get; set; }
 
             /// <summary>
             /// Gets or sets a sub text for displaying indicator style.
             /// </summary>
+            /// <since_tizen> 3 </since_tizen>
             public string SubText { get; set; }
 
             /// <summary>

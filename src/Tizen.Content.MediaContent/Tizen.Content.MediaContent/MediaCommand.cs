@@ -22,6 +22,7 @@ namespace Tizen.Content.MediaContent
     /// <summary>
     /// The <see cref="MediaCommand"/> is a base class for command classes.
     /// </summary>
+    /// <since_tizen> 4 </since_tizen>
     public abstract class MediaCommand
     {
         /// <summary>
@@ -30,6 +31,7 @@ namespace Tizen.Content.MediaContent
         /// <param name="database">The <see cref="MediaDatabase"/> that the commands run on.</param>
         /// <exception cref="ArgumentNullException"><paramref name="database"/> is null.</exception>
         /// <exception cref="ObjectDisposedException"><paramref name="database"/> has already been disposed of.</exception>
+        /// <since_tizen> 4 </since_tizen>
         protected MediaCommand(MediaDatabase database)
         {
             Database = database ?? throw new ArgumentNullException(nameof(database));
@@ -49,24 +51,28 @@ namespace Tizen.Content.MediaContent
         /// Gets the <see cref="MediaDatabase"/>.
         /// </summary>
         /// <value>The <see cref="MediaDatabase"/> which commands execute on.</value>
+        /// <since_tizen> 4 </since_tizen>
         public MediaDatabase Database { get; }
     }
 
     /// <summary>
     /// Provides a means of reading results obtained by executing a query.
     /// </summary>
+    /// <since_tizen> 4 </since_tizen>
     public interface IMediaDataReader
     {
         /// <summary>
         /// Advances to the next record.
         /// </summary>
         /// <returns>true if there are more rows; otherwise false.</returns>
+        /// <since_tizen> 4 </since_tizen>
         bool Read();
 
         /// <summary>
         /// Gets the current record.
         /// </summary>
         /// <value>The current record object.</value>
+        /// <since_tizen> 4 </since_tizen>
         object Current { get; }
     }
 
@@ -74,6 +80,7 @@ namespace Tizen.Content.MediaContent
     /// Provides a means of reading results obtained by executing a query.
     /// </summary>
     /// <typeparam name="TRecord"></typeparam>
+    /// <since_tizen> 4 </since_tizen>
     public class MediaDataReader<TRecord> : IMediaDataReader, IDisposable
     {
         private readonly IEnumerator<TRecord> _enumerator;
@@ -87,6 +94,7 @@ namespace Tizen.Content.MediaContent
         /// Gets the current record.
         /// </summary>
         /// <value>The current record if the position is valid; otherwise null.</value>
+        /// <since_tizen> 4 </since_tizen>
         public TRecord Current
         {
             get
@@ -100,6 +108,7 @@ namespace Tizen.Content.MediaContent
         /// Advances to the next record.
         /// </summary>
         /// <returns>true if there are more rows; otherwise false.</returns>
+        /// <since_tizen> 4 </since_tizen>
         public bool Read()
         {
             ValidateNotDisposed();
@@ -115,6 +124,7 @@ namespace Tizen.Content.MediaContent
         /// Disposes of the resources (other than memory) used by the MediaDataReader.
         /// </summary>
         /// <param name="disposing">true to release both managed and unmanaged resources; false to release only unmanaged resources.</param>
+        /// <since_tizen> 4 </since_tizen>
         protected virtual void Dispose(bool disposing)
         {
             if (!_disposed)
@@ -126,6 +136,7 @@ namespace Tizen.Content.MediaContent
         /// <summary>
         /// Releases all resources used by the current instance.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         public void Dispose()
         {
             Dispose(true);

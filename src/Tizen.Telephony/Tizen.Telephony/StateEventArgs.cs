@@ -20,6 +20,7 @@ namespace Tizen.Telephony
     /// <summary>
     /// This class contains the data related to the State changed event.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public class StateEventArgs : EventArgs
     {
         internal StateEventArgs(State s)

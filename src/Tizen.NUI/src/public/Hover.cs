@@ -23,6 +23,7 @@ namespace Tizen.NUI
     /// When a multi-event occurs, each point represents the points that are currently being
     /// hovered or the points where a hover has stopped.<br />
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public class Hover : global::System.IDisposable
     {
         private global::System.Runtime.InteropServices.HandleRef swigCPtr;

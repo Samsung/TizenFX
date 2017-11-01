@@ -21,6 +21,7 @@ namespace Tizen.Sensor
     /// <summary>
     /// The HeartRateMonitor changed event arguments class is used for storing the data returned by a heart rate monitor.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public class HeartRateMonitorDataUpdatedEventArgs : EventArgs
     {
         internal HeartRateMonitorDataUpdatedEventArgs(int heartRate)

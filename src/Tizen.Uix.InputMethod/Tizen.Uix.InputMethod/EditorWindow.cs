@@ -24,6 +24,7 @@ namespace Tizen.Uix.InputMethod
     /// <summary>
     /// The Editor window class
     /// </summary>
+    /// <since_tizen> 4 </since_tizen>
     public class EditorWindow : Window
     {
         internal static IntPtr _handle = IntPtr.Zero;
@@ -37,6 +38,7 @@ namespace Tizen.Uix.InputMethod
         /// <summary>
         /// This API creates handle for editor window.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         protected override IntPtr CreateHandle(EvasObject parent)
         {
             return _handle;
@@ -45,6 +47,7 @@ namespace Tizen.Uix.InputMethod
         /// <summary>
         /// This API gets handle for editor window.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         public IntPtr GetHandle()
         {
             return _handle;
@@ -65,6 +68,7 @@ namespace Tizen.Uix.InputMethod
         /// 1) The application does not have the privilege to call this function
         /// 2) IME main loop isn't started yet
         /// </exception>
+        /// <since_tizen> 4 </since_tizen>
         public static void SetSize(int portraitWidth, int portraitHeight, int landscapeWidth, int landscapeHeight)
         {
             ErrorCode error = ImeSetSize(portraitWidth, portraitHeight, landscapeWidth, landscapeHeight);

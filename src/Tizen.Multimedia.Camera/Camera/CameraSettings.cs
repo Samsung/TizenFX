@@ -25,6 +25,7 @@ namespace Tizen.Multimedia
     /// The camera setting class provides methods/properties to get and
     /// set basic camera attributes.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public class CameraSettings
     {
         internal readonly Camera _camera;
@@ -883,7 +884,7 @@ namespace Tizen.Multimedia
         /// <summary>
         /// Turn the shutter sound on or off, if it is permitted by policy.
         /// </summary>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 4 </since_tizen>
         /// <param name="shutterSound">Shutter sound On/Off flag</param>
         /// <remarks>
         /// If this value is true, shutter sound will be disabled, otherwise enabled.

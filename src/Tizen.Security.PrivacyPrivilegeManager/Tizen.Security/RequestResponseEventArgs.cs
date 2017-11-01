@@ -21,22 +21,26 @@ namespace Tizen.Security
     /// <summary>
     /// This class is an event argument of the RequestResponse event.
     /// </summary>
+    /// <since_tizen> 4 </since_tizen>
 
     public class RequestResponseEventArgs : EventArgs
     {
         /// <summary>
         /// The cause of a triggered response.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         public CallCause cause { get; internal set; }
 
         /// <summary>
         /// The result of a permission request.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         public RequestResult result { get; internal set; }
 
         /// <summary>
         /// The privilege for which a permission was requested for.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         public string privilege { get; internal set; }
     }
 }

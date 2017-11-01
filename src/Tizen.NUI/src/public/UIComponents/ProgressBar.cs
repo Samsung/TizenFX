@@ -25,6 +25,7 @@ namespace Tizen.NUI.UIComponents
     /// <summary>
     /// The ProgressBar is a control to give the user an indication of the progress of an operation.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public class ProgressBar : View
     {
         private global::System.Runtime.InteropServices.HandleRef swigCPtr;
@@ -42,6 +43,7 @@ namespace Tizen.NUI.UIComponents
         /// <summary>
         /// To dispose the ProgressBar instance.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         protected override void Dispose(DisposeTypes type)
         {
             if (disposed)
@@ -83,6 +85,7 @@ namespace Tizen.NUI.UIComponents
         /// <summary>
         /// Event arguments that passed via the ValueChangedEventArgs.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public class ValueChangedEventArgs : EventArgs
         {
             private ProgressBar _progressBar;

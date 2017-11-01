@@ -21,6 +21,7 @@ namespace Tizen.Sensor
     /// <summary>
     /// The ProximitySensor changed event arguments class is used for storing the data returned by a proximity sensor.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public class ProximitySensorDataUpdatedEventArgs : EventArgs
     {
         internal ProximitySensorDataUpdatedEventArgs(float proximity)

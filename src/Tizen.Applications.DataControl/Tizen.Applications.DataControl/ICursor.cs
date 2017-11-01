@@ -20,62 +20,75 @@ namespace Tizen.Applications.DataControl
     /// <summary>
     /// This interface is for the DataControl cursor.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public interface ICursor
     {
         /// <summary>
         /// Gets a column count.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         int GetColumnCount();
         /// <summary>
         /// Gets a column type.
         /// </summary>
         /// <param name="index">The index of column.</param>
+        /// <since_tizen> 3 </since_tizen>
         ColumnType GetColumnType(int index);
         /// <summary>
         /// Gets a column name.
         /// </summary>
         /// <param name="index">The index of column.</param>
+        /// <since_tizen> 3 </since_tizen>
         string GetColumnName(int index);
         /// <summary>
         /// Gets the numbers of rows in the cursor.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         long GetRowCount();
         /// <summary>
         /// Gets a next row.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         bool Next();
         /// <summary>
         /// Gets a prev row.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         bool Prev();
         /// <summary>
         /// Gets a first row.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         bool Reset();
         /// <summary>
         /// Gets an integer value.
         /// </summary>
         /// <param name="index">The index of row.</param>
+        /// <since_tizen> 3 </since_tizen>
         int GetIntValue(int index);
         /// <summary>
         /// Gets an int64 value.
         /// </summary>
         /// <param name="index">The index of row.</param>
+        /// <since_tizen> 3 </since_tizen>
         Int64 GetInt64Value(int index);
         /// <summary>
         /// Gets a double value.
         /// </summary>
         /// <param name="index">The index of row.</param>
+        /// <since_tizen> 3 </since_tizen>
         double GetDoubleValue(int index);
         /// <summary>
         /// Gets a string value.
         /// </summary>
         /// <param name="index">The index of row.</param>
+        /// <since_tizen> 3 </since_tizen>
         string GetStringValue(int index);
         /// <summary>
         /// Gets a BLOB value.
         /// </summary>
         /// <param name="index">The index of row.</param>
+        /// <since_tizen> 3 </since_tizen>
         byte[] GetBlobValue(int index);
     }
 }

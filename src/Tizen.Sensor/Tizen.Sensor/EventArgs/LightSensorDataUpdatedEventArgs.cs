@@ -21,6 +21,7 @@ namespace Tizen.Sensor
     /// <summary>
     /// The LightSensor changed event arguments class is used for storing the data returned by a light sensor.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public class LightSensorDataUpdatedEventArgs : EventArgs
     {
         internal LightSensorDataUpdatedEventArgs(float level)

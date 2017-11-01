@@ -23,6 +23,7 @@ namespace Tizen.NUI
     /// You can get time(hour, minute, second, millisecond) and date(year, month, day)<br/>
     /// on receiving timeTick signal.
     /// </summary>
+    /// <since_tizen> 4 </since_tizen>
     public class WatchTime : global::System.IDisposable
     {
         private global::System.Runtime.InteropServices.HandleRef swigCPtr;
@@ -30,6 +31,7 @@ namespace Tizen.NUI
         /// <summary>
         /// swigCMemOwn.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         protected bool swigCMemOwn;
 
         internal WatchTime(global::System.IntPtr cPtr, bool cMemoryOwn)
@@ -49,6 +51,7 @@ namespace Tizen.NUI
         /// <summary>
         /// A Flat to check if it is already disposed.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         protected bool disposed = false;
 
         /// <summary>
@@ -66,6 +69,7 @@ namespace Tizen.NUI
         /// <summary>
         /// To make watch time instance be disposed.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         public void Dispose()
         {
             //Throw excpetion if Dispose() is called in separate thread.
@@ -89,7 +93,7 @@ namespace Tizen.NUI
         /// you can override it to clean-up your own resources.
         /// </summary>
         /// <param name="type">DisposeTypes</param>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 4 </since_tizen>
         protected virtual void Dispose(DisposeTypes type)
         {
             if (disposed)
@@ -132,6 +136,7 @@ namespace Tizen.NUI
         /// <summary>
         /// Constructor.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         public WatchTime() : this(NDalicManualPINVOKE.new_WatchTime(), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
@@ -141,6 +146,7 @@ namespace Tizen.NUI
         /// Get the current hour.
         /// </summary>
         /// <remarks>The return value is always positive.The WatchTime needs to be initialized.</remarks>
+        /// <since_tizen> 4 </since_tizen>
         public int Hour
         {
             get
@@ -160,6 +166,7 @@ namespace Tizen.NUI
         /// Get the current hour24.
         /// </summary>
         /// <remarks>The return value is always positive.The WatchTime needs to be initialized.</remarks>
+        /// <since_tizen> 4 </since_tizen>
         public int Hour24
         {
             get
@@ -179,6 +186,7 @@ namespace Tizen.NUI
         /// Get the current minute.
         /// </summary>
         /// <remarks>The return value is always positive.The WatchTime needs to be initialized.</remarks>
+        /// <since_tizen> 4 </since_tizen>
         public int Minute
         {
             get
@@ -198,6 +206,7 @@ namespace Tizen.NUI
         /// Get the current second.
         /// </summary>
         /// <remarks>The return value is always positive.The WatchTime needs to be initialized.</remarks>
+        /// <since_tizen> 4 </since_tizen>
         public int Second
         {
             get
@@ -217,6 +226,7 @@ namespace Tizen.NUI
         /// Get the current millisecond.
         /// </summary>
         /// <remarks>The return value is always positive.The WatchTime needs to be initialized.</remarks>
+        /// <since_tizen> 4 </since_tizen>
         public int Millisecond
         {
             get
@@ -236,6 +246,7 @@ namespace Tizen.NUI
         /// Get the current year.
         /// </summary>
         /// <remarks>The return value is always positive.The WatchTime needs to be initialized.</remarks>
+        /// <since_tizen> 4 </since_tizen>
         public int Year
         {
             get
@@ -255,6 +266,7 @@ namespace Tizen.NUI
         /// Get the current month.
         /// </summary>
         /// <remarks>The return value is always positive.The WatchTime needs to be initialized.</remarks>
+        /// <since_tizen> 4 </since_tizen>
         public int Month
         {
             get
@@ -274,6 +286,7 @@ namespace Tizen.NUI
         /// Get the current day.
         /// </summary>
         /// <remarks>The return value is always positive.The WatchTime needs to be initialized.</remarks>
+        /// <since_tizen> 4 </since_tizen>
         public int Day
         {
             get
@@ -293,6 +306,7 @@ namespace Tizen.NUI
         /// Get the current week.
         /// </summary>
         /// <remarks>The return value is always positive.The WatchTime needs to be initialized.</remarks>
+        /// <since_tizen> 4 </since_tizen>
         public int DayOfWeek
         {
             get
@@ -331,6 +345,7 @@ namespace Tizen.NUI
         /// If you want to see more information, please refer to the site :<br/>
         /// https://en.wikipedia.org/wiki/List_of_tz_database_time_zones/
         /// </remarks>
+        /// <since_tizen> 4 </since_tizen>
         public string TimeZone
         {
             get
@@ -350,6 +365,7 @@ namespace Tizen.NUI
         /// Get the daylight saving time status.
         /// </summary>
         /// <remarks>The WatchTime needs to be initialized.</remarks>
+        /// <since_tizen> 4 </since_tizen>
         public bool DaylightSavingTimeStatus
         {
             get

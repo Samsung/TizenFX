@@ -21,6 +21,7 @@ namespace Tizen.Applications
     /// <summary>
     /// Arguments for the event raised when the application is disabled.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public class ApplicationDisabledEventArgs : EventArgs
     {
         private readonly ApplicationEventState _eventState;
@@ -35,11 +36,13 @@ namespace Tizen.Applications
         /// <summary>
         /// The ID of the application.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public string ApplicationId { get { return _applicationId; } }
 
         /// <summary>
         /// The event state of the application.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public ApplicationEventState EventState { get { return _eventState; } }
     }
 }

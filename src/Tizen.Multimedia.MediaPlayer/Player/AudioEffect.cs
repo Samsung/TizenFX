@@ -22,6 +22,7 @@ namespace Tizen.Multimedia
     /// <summary>
     /// Provides the ability to control the audio effects for <see cref="Multimedia.Player"/>.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public class AudioEffect
     {
         private readonly EqualizerBand[] _bands;
@@ -67,6 +68,7 @@ namespace Tizen.Multimedia
         ///     -or-<br/>
         ///     <paramref name="index"/> is equal to or greater than <see cref="Count"/>.
         /// </exception>
+        /// <since_tizen> 3 </since_tizen>
         public EqualizerBand this[int index]
         {
             get
@@ -92,6 +94,7 @@ namespace Tizen.Multimedia
         /// Clears the equalizer effect.
         /// </summary>
         /// <exception cref="ObjectDisposedException">The <see cref="Player"/> has already been disposed of.</exception>
+        /// <since_tizen> 3 </since_tizen>
         public void Clear()
         {
             Player.ValidateNotDisposed();
@@ -103,21 +106,25 @@ namespace Tizen.Multimedia
         /// <summary>
         /// Gets the number of items.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public int Count { get; }
 
         /// <summary>
         /// Gets the band level range of the bands in the dB.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public Range BandLevelRange { get; }
 
         /// <summary>
         /// Gets the value whether the AudioEffect is available or not.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public bool IsAvailable { get; }
 
         /// <summary>
         /// Gets the player that this AudioEffect belongs to.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public Player Player { get; }
     }
 }

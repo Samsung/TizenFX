@@ -21,6 +21,7 @@ namespace Tizen.Sensor
     /// <summary>
     /// The StationaryActivityDetector changed event arguments class is used for storing the data returned by a stationary activity detector.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public class StationaryActivityDetectorDataUpdatedEventArgs : EventArgs
     {
         internal StationaryActivityDetectorDataUpdatedEventArgs(float state)

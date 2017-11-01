@@ -24,6 +24,7 @@ namespace Tizen.Multimedia.Remoting
     /// </summary>
     /// <seealso cref="MediaControllerManager"/>
     /// <seealso cref="MediaController"/>
+    /// <since_tizen> 4 </since_tizen>
     public static class MediaControlServer
     {
         private static IntPtr _handle = IntPtr.Zero;
@@ -35,6 +36,7 @@ namespace Tizen.Multimedia.Remoting
         /// <value>true if the server has started; otherwise, false.</value>
         /// <seealso cref="Start"/>
         /// <seealso cref="Stop"/>
+        /// <since_tizen> 4 </since_tizen>
         public static bool IsRunning
         {
             get
@@ -122,6 +124,7 @@ namespace Tizen.Multimedia.Remoting
         /// <exception cref="InvalidOperationException">An internal error occurs.</exception>
         /// <exception cref="UnauthorizedAccessException">Caller does not have required privilege.</exception>
         /// <seealso cref="MediaControllerManager.ServerStarted"/>
+        /// <since_tizen> 4 </since_tizen>
         public static void Start()
         {
             Initialize();
@@ -139,6 +142,7 @@ namespace Tizen.Multimedia.Remoting
         ///     An internal error occurs.
         /// </exception>
         /// <seealso cref="MediaControllerManager.ServerStopped"/>
+        /// <since_tizen> 4 </since_tizen>
         public static void Stop()
         {
             EnsureInitializedIfRunning();
@@ -161,6 +165,7 @@ namespace Tizen.Multimedia.Remoting
         ///     -or-<br/>
         ///     An internal error occurs.
         /// </exception>
+        /// <since_tizen> 4 </since_tizen>
         public static void SetPlaybackState(MediaControlPlaybackState state, long position)
         {
             ValidationUtil.ValidateEnum(typeof(MediaControlPlaybackState), state, nameof(state));
@@ -192,6 +197,7 @@ namespace Tizen.Multimedia.Remoting
         ///     -or-<br/>
         ///     An internal error occurs.
         /// </exception>
+        /// <since_tizen> 4 </since_tizen>
         public static void SetMetadata(MediaControlMetadata metadata)
         {
             if (metadata == null)
@@ -223,6 +229,7 @@ namespace Tizen.Multimedia.Remoting
         ///     -or-<br/>
         ///     An internal error occurs.
         /// </exception>
+        /// <since_tizen> 4 </since_tizen>
         public static void SetShuffleModeEnabled(bool enabled)
         {
             Native.UpdateShuffleMode(Handle, enabled ? MediaControllerShuffleMode.On : MediaControllerShuffleMode.Off).
@@ -239,6 +246,7 @@ namespace Tizen.Multimedia.Remoting
         ///     An internal error occurs.
         /// </exception>
         /// <exception cref="ArgumentException"><paramref name="mode"/> is invalid.</exception>
+        /// <since_tizen> 4 </since_tizen>
         public static void SetRepeatMode(MediaControlRepeatMode mode)
         {
             ValidationUtil.ValidateEnum(typeof(MediaControlRepeatMode), mode, nameof(mode));
@@ -249,6 +257,7 @@ namespace Tizen.Multimedia.Remoting
         /// <summary>
         /// Occurs when a client sends playback command.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         public static event EventHandler<PlaybackCommandReceivedEventArgs> PlaybackCommandReceived;
 
         private static Native.PlaybackStateCommandReceivedCallback _playbackCommandCallback;

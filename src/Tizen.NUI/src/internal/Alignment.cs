@@ -68,9 +68,11 @@ namespace Tizen.NUI
 
 
 
+        /// <since_tizen> 3 </since_tizen>
         public new class Padding : global::System.IDisposable
         {
             private global::System.Runtime.InteropServices.HandleRef swigCPtr;
+            /// <since_tizen> 3 </since_tizen>
             protected bool swigCMemOwn;
 
             internal Padding(global::System.IntPtr cPtr, bool cMemoryOwn)
@@ -87,6 +89,7 @@ namespace Tizen.NUI
             //A Flag to check who called Dispose(). (By User or DisposeQueue)
             private bool isDisposeQueued = false;
             //A Flat to check if it is already disposed.
+            /// <since_tizen> 3 </since_tizen>
             protected bool disposed = false;
 
             ~Padding()
@@ -98,6 +101,7 @@ namespace Tizen.NUI
                 }
             }
 
+            /// <since_tizen> 3 </since_tizen>
             public void Dispose()
             {
                 //Throw excpetion if Dispose() is called in separate thread.
@@ -117,6 +121,7 @@ namespace Tizen.NUI
                 }
             }
 
+            /// <since_tizen> 3 </since_tizen>
             protected virtual void Dispose(DisposeTypes type)
             {
                 if (disposed)
@@ -149,16 +154,19 @@ namespace Tizen.NUI
                 disposed = true;
             }
 
+            /// <since_tizen> 3 </since_tizen>
             public Padding() : this(NDalicPINVOKE.new_Alignment_Padding__SWIG_0(), true)
             {
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
 
+            /// <since_tizen> 3 </since_tizen>
             public Padding(float l, float r, float t, float b) : this(NDalicPINVOKE.new_Alignment_Padding__SWIG_1(l, r, t, b), true)
             {
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
 
+            /// <since_tizen> 3 </since_tizen>
             public float left
             {
                 set
@@ -174,6 +182,7 @@ namespace Tizen.NUI
                 }
             }
 
+            /// <since_tizen> 3 </since_tizen>
             public float right
             {
                 set
@@ -189,6 +198,7 @@ namespace Tizen.NUI
                 }
             }
 
+            /// <since_tizen> 3 </since_tizen>
             public float top
             {
                 set
@@ -204,6 +214,7 @@ namespace Tizen.NUI
                 }
             }
 
+            /// <since_tizen> 3 </since_tizen>
             public float bottom
             {
                 set
@@ -294,6 +305,7 @@ namespace Tizen.NUI
             return ret;
         }
 
+        /// <since_tizen> 3 </since_tizen>
         public enum Type
         {
             HorizontalLeft = 1,
@@ -304,6 +316,7 @@ namespace Tizen.NUI
             VerticalBottom = 32
         }
 
+        /// <since_tizen> 3 </since_tizen>
         public enum Scaling
         {
             ScaleNone,

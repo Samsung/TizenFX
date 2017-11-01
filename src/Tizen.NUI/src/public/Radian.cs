@@ -21,6 +21,7 @@ namespace Tizen.NUI
     /// <summary>
     /// An angle in radians.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public class Radian : global::System.IDisposable
     {
         private global::System.Runtime.InteropServices.HandleRef swigCPtr;

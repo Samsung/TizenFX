@@ -21,6 +21,7 @@ namespace Tizen.Content.MediaContent
     /// <summary>
     /// Represents the playlist that is a group of media (usually songs).
     /// </summary>
+    /// <since_tizen> 4 </since_tizen>
     public class Playlist
     {
         internal Playlist(IntPtr handle)
@@ -37,24 +38,28 @@ namespace Tizen.Content.MediaContent
         /// Gets the ID of the playlist.
         /// </summary>
         /// <value>The unique ID of the playlist.</value>
+        /// <since_tizen> 4 </since_tizen>
         public int Id { get; }
 
         /// <summary>
         /// Gets the name of the playlist.
         /// </summary>
         /// <value>The name of the playlist.</value>
+        /// <since_tizen> 4 </since_tizen>
         public string Name { get; }
 
         /// <summary>
         /// Gets the path to the thumbnail.
         /// </summary>
         /// <value>The path to the thumbnail.</value>
+        /// <since_tizen> 4 </since_tizen>
         public string ThumbnailPath { get; }
 
         /// <summary>
         /// Returns a string representation of the playlist.
         /// </summary>
         /// <returns>A string representation of the current playlist.</returns>
+        /// <since_tizen> 4 </since_tizen>
         public override string ToString() =>
             $"Id={Id}, Name={Name}, ThumbnailPath={ThumbnailPath}";
     }
@@ -66,6 +71,7 @@ namespace Tizen.Content.MediaContent
     /// The values only set in the object will be affected to the update command.
     /// </remarks>
     /// <seealso cref="PlaylistCommand.Update (int, PlaylistUpdateValues)"/>
+    /// <since_tizen> 4 </since_tizen>
     public class PlaylistUpdateValues
     {
         /// <summary>
@@ -73,6 +79,7 @@ namespace Tizen.Content.MediaContent
         /// </summary>
         /// <remarks>If the value is null, the update operation will have no effect on the field.</remarks>
         /// <value>A string for name; the field will not be updated if null.</value>
+        /// <since_tizen> 4 </since_tizen>
         public string Name { get; set; }
 
         /// <summary>
@@ -80,12 +87,14 @@ namespace Tizen.Content.MediaContent
         /// </summary>
         /// <remarks>If the value is null, the update operation will have no effect on the field.</remarks>
         /// <value>A string for the thumbnail path; the field will not be updated if null.</value>
+        /// <since_tizen> 4 </since_tizen>
         public string ThumbnailPath { get; set; }
     }
 
     /// <summary>
     /// Represents an order of a member of the playlist.
     /// </summary>
+    /// <since_tizen> 4 </since_tizen>
     public class PlayOrder
     {
         /// <summary>
@@ -98,6 +107,7 @@ namespace Tizen.Content.MediaContent
         ///     -or-<br/>
         ///     <paramref name="orderValue"/> is less than zero.
         /// </exception>
+        /// <since_tizen> 4 </since_tizen>
         public PlayOrder(int memberId, int orderValue)
         {
             MemberId = memberId;
@@ -113,6 +123,7 @@ namespace Tizen.Content.MediaContent
         /// <exception cref="ArgumentOutOfRangeException">
         /// <paramref name="value"/> is less than or equal to zero.
         /// </exception>
+        /// <since_tizen> 4 </since_tizen>
         public int MemberId
         {
             get => _memberId;
@@ -136,6 +147,7 @@ namespace Tizen.Content.MediaContent
         /// <exception cref="ArgumentOutOfRangeException">
         ///     <paramref name="value"/> is less than zero.
         /// </exception>
+        /// <since_tizen> 4 </since_tizen>
         public int Value
         {
             get => _value;

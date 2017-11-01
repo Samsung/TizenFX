@@ -21,6 +21,7 @@ namespace Tizen.Multimedia
     /// <summary>
     /// Provides data for the <see cref="Camera.ErrorOccurred"/> event.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public class CameraErrorOccurredEventArgs : EventArgs
     {
         internal CameraErrorOccurredEventArgs(CameraErrorCode error, CameraState state)

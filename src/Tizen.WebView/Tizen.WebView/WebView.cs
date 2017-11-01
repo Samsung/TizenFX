@@ -24,6 +24,7 @@ namespace Tizen.WebView
     /// <summary>
     /// A view used to render web contents.
     /// </summary>
+    /// <since_tizen> 4 </since_tizen>
     public class WebView: EvasObject
     {
         private static IDictionary<string, JavaScriptMessageHandler> _javaScriptMessageHandlerMap = new Dictionary<string, JavaScriptMessageHandler>();
@@ -49,31 +50,37 @@ namespace Tizen.WebView
         /// <summary>
         /// Event that occurs when load started.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         public event EventHandler LoadStarted;
 
         /// <summary>
         /// Event that occurs when load finished.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         public event EventHandler LoadFinished;
 
         /// <summary>
         /// Event that occurs when load error.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         public event EventHandler<SmartCallbackLoadErrorArgs> LoadError;
 
         /// <summary>
         /// Event that occurs when title of main frame was changed.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         public event EventHandler<SmartCallbackArgs> TitleChanged;
 
         /// <summary>
         /// Event that occurs when URL of main frame was changed.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         public event EventHandler<SmartCallbackArgs> UrlChanged;
 
         /// <summary>
         /// Current URL of the main frame.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         public string Url
         {
             get
@@ -85,6 +92,7 @@ namespace Tizen.WebView
         /// <summary>
         /// Current title of the main frame.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         public string Title
         {
             get
@@ -96,6 +104,7 @@ namespace Tizen.WebView
         /// <summary>
         /// Current user agent string of this view.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         public string UserAgent
         {
             get
@@ -112,6 +121,7 @@ namespace Tizen.WebView
         /// <summary>
         /// Whether a view has the focus.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         public bool HasFocus
         {
             get
@@ -124,6 +134,7 @@ namespace Tizen.WebView
         /// Create a WebView object.
         /// </summary>
         /// <param name="parent">Parent object of WebView</param>
+        /// <since_tizen> 4 </since_tizen>
         public WebView(EvasObject parent) : base(parent)
         {
             InitializeSmartEvent();
@@ -133,6 +144,7 @@ namespace Tizen.WebView
         /// Gets the Context object of this view.
         /// </summary>
         /// <returns>The Context object of this view</returns>
+        /// <since_tizen> 4 </since_tizen>
         public Context GetContext()
         {
             if (_context == null)
@@ -151,6 +163,7 @@ namespace Tizen.WebView
         /// Gets the Settings object of this view.
         /// </summary>
         /// <returns>The Settings object of this view</returns>
+        /// <since_tizen> 4 </since_tizen>
         public Settings GetSettings()
         {
             if (_settings == null)
@@ -172,6 +185,7 @@ namespace Tizen.WebView
         /// You can only be sure that url changed after UrlChanged event.
         /// </remarks>
         /// <param name="url">The uniform resource identifier to load</param>
+        /// <since_tizen> 4 </since_tizen>
         public void LoadUrl(string url)
         {
             Interop.ChromiumEwk.ewk_view_url_set(_realHandle, url);
@@ -182,6 +196,7 @@ namespace Tizen.WebView
         /// </summary>
         /// <param name="html">HTML data to load</param>
         /// <param name="baseUrl">Base URL used for relative paths to external objects</param>
+        /// <since_tizen> 4 </since_tizen>
         public void LoadHtml(string html, string baseUrl)
         {
             Interop.ChromiumEwk.ewk_view_html_string_load(_realHandle, html, baseUrl, null);
@@ -190,6 +205,7 @@ namespace Tizen.WebView
         /// <summary>
         /// Asks the main frame to stop loading.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         public void StopLoading()
         {
             Interop.ChromiumEwk.ewk_view_stop(_realHandle);
@@ -198,6 +214,7 @@ namespace Tizen.WebView
         /// <summary>
         /// Asks the main frame to reload the current document.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         public void Reload()
         {
             Interop.ChromiumEwk.ewk_view_reload(_realHandle);
@@ -206,6 +223,7 @@ namespace Tizen.WebView
         /// <summary>
         /// Asks the main frame to navigate back in history.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         public void GoBack()
         {
             Interop.ChromiumEwk.ewk_view_back(_realHandle);
@@ -214,6 +232,7 @@ namespace Tizen.WebView
         /// <summary>
         /// Asks the main frame to navigate forward in history.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         public void GoForward()
         {
             Interop.ChromiumEwk.ewk_view_forward(_realHandle);
@@ -223,6 +242,7 @@ namespace Tizen.WebView
         /// Checks whether it is possible to navigate backwards one item in history.
         /// </summary>
         /// <returns>Whether it is possible to navigate backwards one item in history</returns>
+        /// <since_tizen> 4 </since_tizen>
         public bool CanGoBack()
         {
             return Interop.ChromiumEwk.ewk_view_back_possible(_realHandle);
@@ -232,6 +252,7 @@ namespace Tizen.WebView
         /// Checks whether it is possible to navigate forwards one item in history.
         /// </summary>
         /// <returns>Whether it is possible to navigate forwards one item in history</returns>
+        /// <since_tizen> 4 </since_tizen>
         public bool CanGoForward()
         {
             return Interop.ChromiumEwk.ewk_view_forward_possible(_realHandle);
@@ -243,6 +264,7 @@ namespace Tizen.WebView
         /// <param name="name"> The message callback</param>
         /// <param name="handler">The name used to expose the object in JavaScript</param>
         /// <returns>'true' on success, otherwise 'false'</returns>
+        /// <since_tizen> 4 </since_tizen>
         public bool AddJavaScriptMessageHandler(string name, JavaScriptMessageHandler handler)
         {
             lock (_javaScriptMessageHandlerMap)
@@ -280,6 +302,7 @@ namespace Tizen.WebView
         /// </summary>
         /// <param name="name">The name used to expose the object in JavaScript</param>
         /// <param name="result">The result to the JavaScript runtime</param>
+        /// <since_tizen> 4 </since_tizen>
         public void EvalWithResult(string name, string result)
         {
             Interop.ChromiumEwk.ewk_view_evaluate_javascript(_realHandle, name, result);
@@ -289,6 +312,7 @@ namespace Tizen.WebView
         /// Requests the execution of the given script.
         /// </summary>
         /// <param name="script">The JavaScript code string to execute</param>
+        /// <since_tizen> 4 </since_tizen>
         public void Eval(string script)
         {
             Interop.ChromiumEwk.ewk_view_script_execute(_realHandle, script, null, IntPtr.Zero);
@@ -298,6 +322,7 @@ namespace Tizen.WebView
         /// Requests to set or unset a view as the currently focused one.
         /// </summary>
         /// <param name="focused">'true' to set the focus on the view, 'false' to remove the focus from the view</param>
+        /// <since_tizen> 4 </since_tizen>
         public void SetFocus(bool focused)
         {
             Interop.ChromiumEwk.ewk_view_focus_set(_realHandle, focused);
@@ -308,6 +333,7 @@ namespace Tizen.WebView
         /// </summary>
         /// <param name="parent">Parent EvasObject</param>
         /// <returns>IntPtr of the widget handle</returns>
+        /// <since_tizen> 4 </since_tizen>
         protected override IntPtr CreateHandle(EvasObject parent)
         {
             // focus dummy

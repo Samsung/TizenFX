@@ -19,18 +19,21 @@ namespace Tizen.Messaging.Messages
     /// <summary>
     /// This class is used to manage the information of the message address.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public class MessagesAddress
     {
         internal RecipientType Type;
         /// <summary>
         /// The address of the sender/recipient.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public string Number { get; }
 
         /// <summary>
         /// Creates a message address.
         /// </summary>
         /// <param name="number">The recipient's address to receive a message.</param>
+        /// <since_tizen> 3 </since_tizen>
         public MessagesAddress(string number)
         {
             Number = number;

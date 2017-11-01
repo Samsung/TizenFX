@@ -25,43 +25,53 @@ namespace ElmSharp
     /// The EcoreEventType is type of EcoreEvent.
     /// It includes some predefined instance.
     /// </summary>
+    /// <since_tizen> preview </since_tizen>
     public class EcoreEventType
     {
         /// <summary>
         /// Key down Ecore event type.
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         public static readonly EcoreEventType KeyDown = new EcoreEventType(Interop.Libraries.EcoreInput, "ECORE_EVENT_KEY_DOWN");
         /// <summary>
         /// Key Up Ecore event type.
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         public static readonly EcoreEventType KeyUp = new EcoreEventType(Interop.Libraries.EcoreInput, "ECORE_EVENT_KEY_UP");
         /// <summary>
         /// Mouse Button Down Ecore event type.
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         public static readonly EcoreEventType MouseButtonDown = new EcoreEventType(Interop.Libraries.EcoreInput, "ECORE_EVENT_MOUSE_BUTTON_DOWN");
         /// <summary>
         /// Mouse Button Up Ecore event type.
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         public static readonly EcoreEventType MouseButtonUp = new EcoreEventType(Interop.Libraries.EcoreInput, "ECORE_EVENT_MOUSE_BUTTON_UP");
         /// <summary>
         /// Mouse Button Cancel Ecore event type.
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         public static readonly EcoreEventType MouseButtonCancel = new EcoreEventType(Interop.Libraries.EcoreInput, "ECORE_EVENT_MOUSE_BUTTON_CANCEL");
         /// <summary>
         /// Mouse Move Ecore event type.
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         public static readonly EcoreEventType MouseMove = new EcoreEventType(Interop.Libraries.EcoreInput, "ECORE_EVENT_MOUSE_MOVE");
         /// <summary>
         /// Mouse Wheel Ecore event type.
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         public static readonly EcoreEventType MouseWheel = new EcoreEventType(Interop.Libraries.EcoreInput, "ECORE_EVENT_MOUSE_WHEEL");
         /// <summary>
         /// Mouse In Ecore event type.
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         public static readonly EcoreEventType MouseIn = new EcoreEventType(Interop.Libraries.EcoreInput, "ECORE_EVENT_MOUSE_IN");
         /// <summary>
         /// Mouse Out Ecore event type.
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         public static readonly EcoreEventType MouseOut = new EcoreEventType(Interop.Libraries.EcoreInput, "ECORE_EVENT_MOUSE_OUT");
 
         private string _lib;
@@ -79,6 +89,7 @@ namespace ElmSharp
         /// Gets the value associated with the specified type.
         /// </summary>
         /// <returns>The value of type.</returns>
+        /// <since_tizen> preview </since_tizen>
         public int GetValue()
         {
             if (_typeValue < 0)
@@ -102,6 +113,7 @@ namespace ElmSharp
     /// The EcoreEvent is a class to help to create events are being notified of events.
     /// </summary>
     /// <typeparam name="TEventArgs">Kinds of EventArgs</typeparam>
+    /// <since_tizen> preview </since_tizen>
     public class EcoreEvent<TEventArgs> : IDisposable where TEventArgs : EventArgs
     {
         /// <summary>
@@ -111,6 +123,7 @@ namespace ElmSharp
         /// <param name="type">EcoreEventType</param>
         /// <param name="info">IntPtr</param>
         /// <returns></returns>
+        /// <since_tizen> preview </since_tizen>
         public delegate TEventArgs EventInfoParser(IntPtr data, EcoreEventType type, IntPtr info);
 
         private bool _disposed = false;
@@ -122,6 +135,7 @@ namespace ElmSharp
         /// Creates and initializes a new instance of the EcoreEvent class.
         /// </summary>
         /// <param name="type">EcoreEventType</param>
+        /// <since_tizen> preview </since_tizen>
         public EcoreEvent(EcoreEventType type) : this(type, null)
         {
         }
@@ -131,6 +145,7 @@ namespace ElmSharp
         /// </summary>
         /// <param name="type">EcoreEventType</param>
         /// <param name="parser">EventInfoParser</param>
+        /// <since_tizen> preview </since_tizen>
         public EcoreEvent(EcoreEventType type, EventInfoParser parser)
         {
             _eventType = type;
@@ -155,6 +170,7 @@ namespace ElmSharp
         /// <summary>
         /// On Event Handler of EcoreEvent.
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         public event EventHandler<TEventArgs> On
         {
             add
@@ -186,6 +202,7 @@ namespace ElmSharp
         /// true if managed resources should be disposed
         /// otherwise, false.
         /// </param>
+        /// <since_tizen> preview </since_tizen>
         protected virtual void Dispose(bool disposing)
         {
             if (!_disposed)
@@ -206,6 +223,7 @@ namespace ElmSharp
         /// <summary>
         /// Destroy current object
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         public void Dispose()
         {
             Dispose(true);
@@ -216,12 +234,14 @@ namespace ElmSharp
     /// <summary>
     /// Event class for EcoreEvent
     /// </summary>
+    /// <since_tizen> preview </since_tizen>
     public class EcoreEvent : EcoreEvent<EventArgs>
     {
         /// <summary>
         /// Creates and initializes a new instance of the EcoreEvent class.
         /// </summary>
         /// <param name="type">EcoreEventType</param>
+        /// <since_tizen> preview </since_tizen>
         public EcoreEvent(EcoreEventType type) : base(type)
         {
         }

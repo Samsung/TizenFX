@@ -28,6 +28,7 @@ namespace Tizen.Network.Bluetooth
     /// The BluetoothDevice class is used to search for services available on remote devices.
     /// </summary>
     /// <privilege> http://tizen.org/privilege/bluetooth </privilege>
+    /// <since_tizen> 3 </since_tizen>
     public class BluetoothDevice
     {
         private event EventHandler<BondCreatedEventArgs> _bondCreated;
@@ -62,6 +63,7 @@ namespace Tizen.Network.Bluetooth
         /// <summary>
         /// The address of the device.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public string Address
         {
             get
@@ -72,6 +74,7 @@ namespace Tizen.Network.Bluetooth
         /// <summary>
         /// The name of the device.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public string Name
         {
             get
@@ -82,6 +85,7 @@ namespace Tizen.Network.Bluetooth
         /// <summary>
         /// The strength indicator of received signal of the device.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public int Rssi
         {
             get
@@ -92,6 +96,7 @@ namespace Tizen.Network.Bluetooth
         /// <summary>
         /// The class of the device.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public BluetoothClass Class
         {
             get
@@ -102,6 +107,7 @@ namespace Tizen.Network.Bluetooth
         /// <summary>
         /// The service UUID list of the device.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public IEnumerable<string> ServiceUuidList
         {
             get
@@ -112,6 +118,7 @@ namespace Tizen.Network.Bluetooth
         /// <summary>
         /// The number of services.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public int ServiceCount
         {
             get
@@ -122,6 +129,7 @@ namespace Tizen.Network.Bluetooth
         /// <summary>
         /// The paired state of the device.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public bool IsPaired
         {
             get
@@ -132,6 +140,7 @@ namespace Tizen.Network.Bluetooth
         /// <summary>
         /// The connection state of the device.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public bool IsConnected
         {
             get
@@ -142,6 +151,7 @@ namespace Tizen.Network.Bluetooth
         /// <summary>
         /// The authorization state of the device.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public bool IsAuthorized
         {
             get
@@ -152,6 +162,7 @@ namespace Tizen.Network.Bluetooth
         /// <summary>
         /// The Bluetooth appearance.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public BluetoothAppearanceType AppearanceType
         {
             get
@@ -163,6 +174,7 @@ namespace Tizen.Network.Bluetooth
         /// <summary>
         /// The length of the manufacturer data.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public int ManufacturerDataLength
         {
             get
@@ -173,6 +185,7 @@ namespace Tizen.Network.Bluetooth
         /// <summary>
         /// The manufacturer data.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public string ManufacturerData
         {
             get
@@ -184,6 +197,7 @@ namespace Tizen.Network.Bluetooth
         /// <summary>
         /// The BondCreated event is raised when the process of creating the bond is finished.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public event EventHandler<BondCreatedEventArgs> BondCreated
         {
             add
@@ -207,6 +221,7 @@ namespace Tizen.Network.Bluetooth
         /// <summary>
         /// The BondDestroyed event is raised when the bond is destroyed.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public event EventHandler<BondDestroyedEventArgs> BondDestroyed
         {
             add
@@ -230,6 +245,7 @@ namespace Tizen.Network.Bluetooth
         /// <summary>
         /// The AuthorizationChanged event is raised when the authorization of the device is changed.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public event EventHandler<AuthorizationChangedEventArgs> AuthorizationChanged
         {
             add
@@ -253,6 +269,7 @@ namespace Tizen.Network.Bluetooth
         /// <summary>
         /// The ServiceSearched event is raised when the process of service searched is finished.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public event EventHandler<ServiceSearchedEventArgs> ServiceSearched
         {
             add
@@ -276,6 +293,7 @@ namespace Tizen.Network.Bluetooth
         /// <summary>
         /// The ConnectionStateChanged event is raised when the connection state is changed.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public event EventHandler<DeviceConnectionStateChangedEventArgs> ConnectionStateChanged
         {
             add
@@ -438,6 +456,7 @@ namespace Tizen.Network.Bluetooth
         /// </remarks>
         /// <exception cref="InvalidOperationException">Thrown when the BT/BTLE is not enabled
         /// or when the create bonding process to the remote device fails.</exception>
+        /// <since_tizen> 3 </since_tizen>
         public void CreateBond()
         {
             if (BluetoothAdapter.IsBluetoothEnabled)
@@ -459,6 +478,7 @@ namespace Tizen.Network.Bluetooth
         /// </remarks>
         /// <exception cref="InvalidOperationException">Thrown when the BT/BTLE is not enabled
         /// or when the cancel bonding procedure to remote device fails.</exception>
+        /// <since_tizen> 3 </since_tizen>
         public void CancelBonding()
         {
             int ret = Interop.Bluetooth.CancelBonding();
@@ -478,6 +498,7 @@ namespace Tizen.Network.Bluetooth
         /// </remarks>
         /// <exception cref="InvalidOperationException">Thrown when the BT/BTLE is not enabled
         /// or when the destroy bonding procedure fails.</exception>
+        /// <since_tizen> 3 </since_tizen>
         public void DestroyBond()
         {
             if (BluetoothAdapter.IsBluetoothEnabled)
@@ -500,6 +521,7 @@ namespace Tizen.Network.Bluetooth
         /// <param name="aliasName">The alias name of the remote device.</param>
         /// <exception cref="InvalidOperationException">Thrown when the BT/BTLE is not enabled
         /// or when the set alias name to remote device fails.</exception>
+        /// <since_tizen> 3 </since_tizen>
         public void SetAlias(string aliasName)
         {
             if (BluetoothAdapter.IsBluetoothEnabled)
@@ -523,6 +545,7 @@ namespace Tizen.Network.Bluetooth
         /// <param name="authorizationState">The authorization state.</param>
         /// <exception cref="InvalidOperationException">Thrown when the BT/BTLE is not enabled
         /// or when the set authorization to remote device fails.</exception>
+        /// <since_tizen> 3 </since_tizen>
         public void SetAuthorization(BluetoothAuthorizationType authorizationState)
         {
             if (BluetoothAdapter.IsBluetoothEnabled)
@@ -543,6 +566,7 @@ namespace Tizen.Network.Bluetooth
         /// <param name="uuids">The UUID list of the device.</param>
         /// <exception cref="InvalidOperationException">Thrown when the BT/BTLE is not enabled
         /// or when the get Mask from UUID fails.</exception>
+        /// <since_tizen> 3 </since_tizen>
         public BluetoothServiceClassType GetMaskFromUuid(string[] uuids)
         {
             BluetoothServiceClassType serviceMask;
@@ -565,6 +589,7 @@ namespace Tizen.Network.Bluetooth
         /// </remarks>
         /// <exception cref="InvalidOperationException">Thrown when the BT/BTLE is not enabled
         /// or when the remote device service search fails.</exception>
+        /// <since_tizen> 3 </since_tizen>
         public void StartServiceSearch()
         {
             Log.Info(Globals.LogTag, "startservicesearch entry");
@@ -588,6 +613,7 @@ namespace Tizen.Network.Bluetooth
         /// <returns>The connected Bluetooth profiles.</returns>
         /// <exception cref="InvalidOperationException">Thrown when the BT/BTLE is not enabled
         /// or when there is no BT connection.</exception>
+        /// <since_tizen> 3 </since_tizen>
         public IEnumerable<BluetoothProfileType> GetConnectedProfiles()
         {
             if (BluetoothAdapter.IsBluetoothEnabled)
@@ -625,6 +651,7 @@ namespace Tizen.Network.Bluetooth
         /// <param name="profileType">The Bluetooth profile type.</param>
         /// <exception cref="InvalidOperationException">Thrown when the BT/BTLE is not enabled
         /// or when there is no BT connection.</exception>
+        /// <since_tizen> 3 </since_tizen>
         public bool IsProfileConnected(BluetoothProfileType profileType)
         {
             if (BluetoothAdapter.IsBluetoothEnabled)
@@ -649,6 +676,7 @@ namespace Tizen.Network.Bluetooth
         /// <remarks>
         /// The Bluetooth must be enabled.
         /// </remarks>
+        /// <since_tizen> 3 </since_tizen>
         public T GetProfile<T>() where T : BluetoothProfile
         {
             /*
@@ -690,6 +718,7 @@ namespace Tizen.Network.Bluetooth
         /// </summary>
         /// <returns>The IBluetoothClientSocket instance.</returns>
         /// <param name="serviceUuid">The UUID of the service.</param>
+        /// <since_tizen> 3 </since_tizen>
         public IBluetoothClientSocket CreateSocket(string serviceUuid)
         {
             BluetoothSocket clientSocket = new BluetoothSocket();

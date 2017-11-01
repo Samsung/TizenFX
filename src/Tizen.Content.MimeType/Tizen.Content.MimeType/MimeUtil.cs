@@ -28,6 +28,7 @@ namespace Tizen.Content.MimeType
     /// <remarks>
     /// Conversions are provided from the file extensions to MIME types and from the MIME types to file extensions.
     /// </remarks>
+    /// <since_tizen> 3 </since_tizen>
     public static class MimeUtil
     {
         /// <summary>
@@ -40,6 +41,7 @@ namespace Tizen.Content.MimeType
         ///     string mimeType = MimeUtil.GetMimeType("png");
         /// </code>
         /// </example>
+        /// <since_tizen> 3 </since_tizen>
         public static string GetMimeType(string fileExtension)
         {
             string mime;
@@ -68,6 +70,7 @@ namespace Tizen.Content.MimeType
         ///     }
         /// </code>
         /// </example>
+        /// <since_tizen> 3 </since_tizen>
         public static IEnumerable<string> GetFileExtension(string mime)
         {
             IntPtr extensionArray = IntPtr.Zero;

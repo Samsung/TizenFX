@@ -21,6 +21,7 @@ namespace Tizen.Multimedia.Remoting
     /// <summary>
     /// Provides data for the <see cref="MediaController.RepeatModeUpdated"/> event.
     /// </summary>
+    /// <since_tizen> 4 </since_tizen>
     public class RepeatModeUpdatedEventArgs : EventArgs
     {
         /// <summary>
@@ -28,6 +29,7 @@ namespace Tizen.Multimedia.Remoting
         /// </summary>
         /// <param name="mode">A value indicating the updated repeat mode.</param>
         /// <exception cref="ArgumentException"><paramref name="mode"/> is invalid.</exception>
+        /// <since_tizen> 4 </since_tizen>
         public RepeatModeUpdatedEventArgs(MediaControlRepeatMode mode)
         {
             ValidationUtil.ValidateEnum(typeof(MediaControlRepeatMode), mode, nameof(mode));
@@ -39,6 +41,7 @@ namespace Tizen.Multimedia.Remoting
         /// Gets the updated repeat mode.
         /// </summary>
         /// <value>The <see cref="MediaControlRepeatMode"/>.</value>
+        /// <since_tizen> 4 </since_tizen>
         public MediaControlRepeatMode RepeatMode { get; }
     }
 }

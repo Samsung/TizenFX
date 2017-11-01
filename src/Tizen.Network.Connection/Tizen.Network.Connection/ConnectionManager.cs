@@ -27,6 +27,7 @@ namespace Tizen.Network.Connection
     /// <summary>
     /// This class manages the connection handle resources.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     [EditorBrowsable(EditorBrowsableState.Never)]
     public sealed class SafeConnectionHandle : SafeHandle
     {
@@ -38,6 +39,7 @@ namespace Tizen.Network.Connection
         /// Checks whether the handle value is valid or not.
         /// </summary>
         /// <value>True if the handle is invalid, otherwise false.</value>
+        /// <since_tizen> 3 </since_tizen>
         public override bool IsInvalid
         {
             get

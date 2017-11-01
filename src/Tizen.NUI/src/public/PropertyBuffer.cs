@@ -21,6 +21,7 @@ namespace Tizen.NUI
     /// PropertyBuffer is a handle to an object that contains a buffer of structured properties.<br />
     /// PropertyBuffers can be used to provide data to Geometry objects.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public class PropertyBuffer : BaseHandle
     {
         private global::System.Runtime.InteropServices.HandleRef swigCPtr;

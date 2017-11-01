@@ -21,6 +21,7 @@ namespace Tizen.Multimedia
     /// <summary>
     /// Provides data for the <see cref="AudioVolume.Changed"/> event.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public class VolumeChangedEventArgs : EventArgs
     {
         internal VolumeChangedEventArgs(AudioVolumeType type, uint level)
@@ -33,12 +34,14 @@ namespace Tizen.Multimedia
         /// Gets the sound type that volume is changed.
         /// </summary>
         /// <value>The sound type that volume is changed.</value>
+        /// <since_tizen> 3 </since_tizen>
         public AudioVolumeType Type { get; }
 
         /// <summary>
         /// Gets the new volume level.
         /// </summary>
         /// <value>The new volume level.</value>
+        /// <since_tizen> 3 </since_tizen>
         public int Level { get; }
     }
 }

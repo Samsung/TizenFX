@@ -25,6 +25,7 @@ namespace Tizen.Content.MediaContent
     /// The <see cref="Folder"/> is used to organize media content files, i.e., image, audio, and video files,
     /// in the physical storage of the device.
     /// </remarks>
+    /// <since_tizen> 4 </since_tizen>
     public class Folder
     {
         internal Folder(IntPtr handle)
@@ -43,36 +44,42 @@ namespace Tizen.Content.MediaContent
         /// Gets the ID of the folder.
         /// </summary>
         /// <value>The unique ID of the folder.</value>
+        /// <since_tizen> 4 </since_tizen>
         public string Id { get; }
 
         /// <summary>
         /// Gets the path of the folder.
         /// </summary>
         /// <value>The path of the folder.</value>
+        /// <since_tizen> 4 </since_tizen>
         public string Path { get; }
 
         /// <summary>
         /// Gets the name of the folder.
         /// </summary>
         /// <value>The name of the folder.</value>
+        /// <since_tizen> 4 </since_tizen>
         public string Name { get; }
 
         /// <summary>
         /// Gets the <see cref="StorageType"/> of the storage that the folder exists.
         /// </summary>
         /// <value>The <see cref="StorageType"/> of the storage that the folder exists.</value>
+        /// <since_tizen> 4 </since_tizen>
         public StorageType StorageType { get; }
 
         /// <summary>
         /// Gets the storage ID of the storage that the folder exists.
         /// </summary>
         /// <value>The storage ID of the storage that the folder exists.</value>
+        /// <since_tizen> 4 </since_tizen>
         public string StorageId { get; }
 
         /// <summary>
         /// Returns a string representation of the folder.
         /// </summary>
         /// <returns>A string representation of the current folder.</returns>
+        /// <since_tizen> 4 </since_tizen>
         public override string ToString() =>
             $"Id={Id}, Name={Name}, Path={Path}, StorageType={StorageType}, StorageId={StorageType}";
     }

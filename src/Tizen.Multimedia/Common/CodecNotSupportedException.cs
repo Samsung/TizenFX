@@ -21,6 +21,7 @@ namespace Tizen.Multimedia
     /// <summary>
     /// Specifies whether a codec is an audio codec or a video codec.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public enum CodecKind
     {
         /// <summary>
@@ -38,12 +39,14 @@ namespace Tizen.Multimedia
     /// The exception that is thrown when the codec for an input file or a data stream is not supported
     /// or the input is malformed.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public class CodecNotSupportedException : InvalidOperationException
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="CodecNotSupportedException"/> class
         /// with <see cref="CodecKind"/> indicating which codec is not supported.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public CodecNotSupportedException(CodecKind kind)
         {
             CodecKind = kind;
@@ -53,6 +56,7 @@ namespace Tizen.Multimedia
         /// Initializes a new instance of the <see cref="CodecNotSupportedException"/> class with
         /// <see cref="CodecKind"/> indicating which codec is not supported and a specified error message.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public CodecNotSupportedException(CodecKind kind, string message) : base(message)
         {
             CodecKind = kind;
@@ -61,6 +65,7 @@ namespace Tizen.Multimedia
         /// <summary>
         /// Gets the <see cref="CodecKind"/> of the exception.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public CodecKind CodecKind { get; }
     }
 }

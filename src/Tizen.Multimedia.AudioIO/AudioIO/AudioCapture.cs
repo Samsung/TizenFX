@@ -24,18 +24,21 @@ namespace Tizen.Multimedia
     /// Provides the ability to directly manage the system audio input devices.
     /// </summary>
     /// <privilege>http://tizen.org/privilege/recorder</privilege>
+    /// <since_tizen> 3 </since_tizen>
     public abstract class AudioCaptureBase : IDisposable
     {
         /// <summary>
         /// Specifies the minimum value allowed for the audio capture, in Hertz (Hz).
         /// </summary>
         /// <seealso cref="SampleRate"/>
+        /// <since_tizen> 3 </since_tizen>
         public static readonly int MinSampleRate = 8000;
 
         /// <summary>
         /// Specifies the maximum value allowed for the audio capture, in Hertz (Hz).
         /// </summary>
         /// <seealso cref="SampleRate"/>
+        /// <since_tizen> 3 </since_tizen>
         public static readonly int MaxSampleRate = 48000;
 
         internal IntPtr _handle = IntPtr.Zero;
@@ -74,6 +77,7 @@ namespace Tizen.Multimedia
         /// <summary>
         /// Occurs when the state of the AudioCapture is changed.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public event EventHandler<AudioIOStateChangedEventArgs> StateChanged;
 
         private AudioStateChangedCallback _stateChangedCallback;
@@ -98,6 +102,7 @@ namespace Tizen.Multimedia
         /// <summary>
         /// Releases all resources used by the <see cref="AudioCaptureBase"/> object.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public void Dispose()
         {
             Dispose(true);
@@ -110,6 +115,7 @@ namespace Tizen.Multimedia
         /// <param name="disposing">
         /// true to release both managed and unmanaged resources; false to release only unmanaged resources.
         /// </param>
+        /// <since_tizen> 3 </since_tizen>
         protected virtual void Dispose(bool disposing)
         {
             if (_isDisposed)
@@ -155,22 +161,26 @@ namespace Tizen.Multimedia
         /// <summary>
         /// Gets the sample rate of the audio input data stream, in Hertz (Hz).
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public int SampleRate { get; }
 
         /// <summary>
         /// Gets the channel type of the audio input data stream.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public AudioChannel Channel { get; }
 
         /// <summary>
         /// Gets the sample type of the audio input data stream.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public AudioSampleType SampleType { get; }
 
         /// <summary>
         /// Gets the size allocated for the audio input buffer.
         /// </summary>
         /// <exception cref="ObjectDisposedException">The AudioCaptureBase has already been disposed of.</exception>
+        /// <since_tizen> 3 </since_tizen>
         public int GetBufferSize()
         {
             ValidateNotDisposed();
@@ -189,6 +199,7 @@ namespace Tizen.Multimedia
         /// </exception>
         /// <exception cref="ObjectDisposedException">The AudioCaptureBase has already been disposed of.</exception>
         /// <seealso cref="Unprepare"/>
+        /// <since_tizen> 3 </since_tizen>
         public void Prepare()
         {
             ValidateState(AudioIOState.Idle);
@@ -207,6 +218,7 @@ namespace Tizen.Multimedia
         /// </exception>
         /// <exception cref="ObjectDisposedException">The AudioCaptureBase has already been disposed of.</exception>
         /// <seealso cref="Prepare"/>
+        /// <since_tizen> 3 </since_tizen>
         public void Unprepare()
         {
             ValidateState(AudioIOState.Running, AudioIOState.Paused);
@@ -225,6 +237,7 @@ namespace Tizen.Multimedia
         /// </exception>
         /// <exception cref="ObjectDisposedException">The AudioCaptureBase has already been disposed of.</exception>
         /// <seealso cref="Resume"/>
+        /// <since_tizen> 3 </since_tizen>
         public void Pause()
         {
             if (_state == AudioIOState.Paused)
@@ -245,6 +258,7 @@ namespace Tizen.Multimedia
         /// </exception>
         /// <exception cref="ObjectDisposedException">The AudioCaptureBase has already been disposed of.</exception>
         /// <seealso cref="Pause"/>
+        /// <since_tizen> 3 </since_tizen>
         public void Resume()
         {
             if (_state == AudioIOState.Running)
@@ -261,6 +275,7 @@ namespace Tizen.Multimedia
         /// </summary>
         /// <exception cref="InvalidOperationException">The current state is <see cref="AudioIOState.Idle"/>.</exception>
         /// <exception cref="ObjectDisposedException">The AudioCaptureBase has already been disposed of.</exception>
+        /// <since_tizen> 3 </since_tizen>
         public void Flush()
         {
             ValidateState(AudioIOState.Running, AudioIOState.Paused);
@@ -282,6 +297,7 @@ namespace Tizen.Multimedia
         /// </exception>
         /// <exception cref="NotSupportedException"><paramref name="streamPolicy"/> is not supported.</exception>
         /// <exception cref="ArgumentException">Not able to retrieve information from <paramref name="streamPolicy"/>.</exception>
+        /// <since_tizen> 3 </since_tizen>
         public void ApplyStreamPolicy(AudioStreamPolicy streamPolicy)
         {
             if (streamPolicy == null)
@@ -299,6 +315,7 @@ namespace Tizen.Multimedia
     /// Provides the ability to record audio from system audio input devices in a synchronous way.
     /// </summary>
     /// <privilege>http://tizen.org/privilege/recorder</privilege>
+    /// <since_tizen> 3 </since_tizen>
     public class AudioCapture : AudioCaptureBase
     {
         /// <summary>
@@ -319,6 +336,7 @@ namespace Tizen.Multimedia
         /// </exception>
         /// <exception cref="UnauthorizedAccessException">The required privilege is not specified.</exception>
         /// <exception cref="NotSupportedException">The system does not support microphone.</exception>
+        /// <since_tizen> 3 </since_tizen>
         public AudioCapture(int sampleRate, AudioChannel channel, AudioSampleType sampleType)
             : base(sampleRate, channel, sampleType)
         {
@@ -332,6 +350,7 @@ namespace Tizen.Multimedia
         /// <exception cref="InvalidOperationException">The current state is not <see cref="AudioIOState.Running"/>.</exception>
         /// <exception cref="ArgumentOutOfRangeException"><paramref name="count"/> is equal to or less than zero.</exception>
         /// <exception cref="ObjectDisposedException">The AudioCapture has already been disposed of.</exception>
+        /// <since_tizen> 3 </since_tizen>
         public byte[] Read(int count)
         {
             if (count <= 0)
@@ -354,12 +373,14 @@ namespace Tizen.Multimedia
     /// Provides the ability to record audio from system audio input devices in an asynchronous way.
     /// </summary>
     /// <privilege>http://tizen.org/privilege/recorder</privilege>
+    /// <since_tizen> 3 </since_tizen>
     public class AsyncAudioCapture : AudioCaptureBase
     {
 
         /// <summary>
         /// Occurs when audio data is available.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public event EventHandler<AudioDataAvailableEventArgs> DataAvailable;
 
         /// <summary>
@@ -380,6 +401,7 @@ namespace Tizen.Multimedia
         /// </exception>
         /// <exception cref="UnauthorizedAccessException">The required privilege is not specified.</exception>
         /// <exception cref="NotSupportedException">The system does not support microphone.</exception>
+        /// <since_tizen> 3 </since_tizen>
         public AsyncAudioCapture(int sampleRate, AudioChannel channel, AudioSampleType sampleType)
             : base(sampleRate, channel, sampleType)
         {

@@ -22,11 +22,13 @@ namespace ElmSharp
     /// <summary>
     /// The ElmScrollConfig is a scrollable views's config
     /// </summary>
+    /// <since_tizen> preview </since_tizen>
     public static class ElmScrollConfig
     {
         /// <summary>
         /// Gets or sets the amount of inertia a scroller imposes during region bring animations.
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static double BringInScrollFriction
         {

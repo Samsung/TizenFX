@@ -21,6 +21,7 @@ namespace Tizen.Sensor
     /// <summary>
     /// The GyroscopeRotationVectorSensor changed event arguments class is used for storing the data returned by a gyroscope rotation vector sensor.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public class GyroscopeRotationVectorSensorDataUpdatedEventArgs : EventArgs
     {
         internal GyroscopeRotationVectorSensorDataUpdatedEventArgs(float[] values, SensorDataAccuracy accuracy)

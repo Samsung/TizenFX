@@ -72,10 +72,12 @@ namespace Tizen.NUI
             * @brief Event arguments that passed via StatusChanged signal
             *
         */
+        /// <since_tizen> 3 </since_tizen>
         public class StatusChangedEventArgs : EventArgs
         {
             private AccessibilityManager _accessibilityManager;
 
+            /// <since_tizen> 3 </since_tizen>
             public AccessibilityManager AccessibilityManager
             {
                 get
@@ -93,10 +95,12 @@ namespace Tizen.NUI
           * @brief Event arguments that passed via ActionNext signal
           *
           */
+        /// <since_tizen> 3 </since_tizen>
         public class ActionNextEventArgs : EventArgs
         {
             private AccessibilityManager _accessibilityManager;
 
+            /// <since_tizen> 3 </since_tizen>
             public AccessibilityManager AccessibilityManager
             {
                 get
@@ -114,10 +118,12 @@ namespace Tizen.NUI
           * @brief Event arguments that passed via ActionPrevious signal
           *
           */
+        /// <since_tizen> 3 </since_tizen>
         public class ActionPreviousEventArgs : EventArgs
         {
             private AccessibilityManager _accessibilityManager;
 
+            /// <since_tizen> 3 </since_tizen>
             public AccessibilityManager AccessibilityManager
             {
                 get
@@ -135,10 +141,12 @@ namespace Tizen.NUI
           * @brief Event arguments that passed via ActionActivate signal
           *
           */
+        /// <since_tizen> 3 </since_tizen>
         public class ActionActivateEventArgs : EventArgs
         {
             private AccessibilityManager _accessibilityManager;
 
+            /// <since_tizen> 3 </since_tizen>
             public AccessibilityManager AccessibilityManager
             {
                 get
@@ -156,10 +164,12 @@ namespace Tizen.NUI
           * @brief Event arguments that passed via ActionRead signal
           *
           */
+        /// <since_tizen> 3 </since_tizen>
         public class ActionReadEventArgs : EventArgs
         {
             private AccessibilityManager _accessibilityManager;
 
+            /// <since_tizen> 3 </since_tizen>
             public AccessibilityManager AccessibilityManager
             {
                 get
@@ -177,10 +187,12 @@ namespace Tizen.NUI
           * @brief Event arguments that passed via ActionOver signal
           *
           */
+        /// <since_tizen> 3 </since_tizen>
         public class ActionOverEventArgs : EventArgs
         {
             private AccessibilityManager _accessibilityManager;
 
+            /// <since_tizen> 3 </since_tizen>
             public AccessibilityManager AccessibilityManager
             {
                 get
@@ -198,10 +210,12 @@ namespace Tizen.NUI
           * @brief Event arguments that passed via ActionReadNext signal
           *
           */
+        /// <since_tizen> 3 </since_tizen>
         public class ActionReadNextEventArgs : EventArgs
         {
             private AccessibilityManager _accessibilityManager;
 
+            /// <since_tizen> 3 </since_tizen>
             public AccessibilityManager AccessibilityManager
             {
                 get
@@ -219,10 +233,12 @@ namespace Tizen.NUI
           * @brief Event arguments that passed via ActionReadPrevious signal
           *
           */
+        /// <since_tizen> 3 </since_tizen>
         public class ActionReadPreviousEventArgs : EventArgs
         {
             private AccessibilityManager _accessibilityManager;
 
+            /// <since_tizen> 3 </since_tizen>
             public AccessibilityManager AccessibilityManager
             {
                 get
@@ -240,10 +256,12 @@ namespace Tizen.NUI
           * @brief Event arguments that passed via ActionUp signal
           *
           */
+        /// <since_tizen> 3 </since_tizen>
         public class ActionUpEventArgs : EventArgs
         {
             private AccessibilityManager _accessibilityManager;
 
+            /// <since_tizen> 3 </since_tizen>
             public AccessibilityManager AccessibilityManager
             {
                 get
@@ -261,10 +279,12 @@ namespace Tizen.NUI
           * @brief Event arguments that passed via ActionDown signal
           *
           */
+        /// <since_tizen> 3 </since_tizen>
         public class ActionDownEventArgs : EventArgs
         {
             private AccessibilityManager _accessibilityManager;
 
+            /// <since_tizen> 3 </since_tizen>
             public AccessibilityManager AccessibilityManager
             {
                 get
@@ -282,10 +302,12 @@ namespace Tizen.NUI
           * @brief Event arguments that passed via ActionClearFocus signal
           *
           */
+        /// <since_tizen> 3 </since_tizen>
         public class ActionClearFocusEventArgs : EventArgs
         {
             private AccessibilityManager _accessibilityManager;
 
+            /// <since_tizen> 3 </since_tizen>
             public AccessibilityManager AccessibilityManager
             {
                 get
@@ -303,10 +325,12 @@ namespace Tizen.NUI
           * @brief Event arguments that passed via ActionBack signal
           *
           */
+        /// <since_tizen> 3 </since_tizen>
         public class ActionBackEventArgs : EventArgs
         {
             private AccessibilityManager _accessibilityManager;
 
+            /// <since_tizen> 3 </since_tizen>
             public AccessibilityManager AccessibilityManager
             {
                 get
@@ -324,10 +348,12 @@ namespace Tizen.NUI
           * @brief Event arguments that passed via ActionScrollUp signal
           *
           */
+        /// <since_tizen> 3 </since_tizen>
         public class ActionScrollUpEventArgs : EventArgs
         {
             private AccessibilityManager _accessibilityManager;
 
+            /// <since_tizen> 3 </since_tizen>
             public AccessibilityManager AccessibilityManager
             {
                 get
@@ -345,10 +371,12 @@ namespace Tizen.NUI
           * @brief Event arguments that passed via ActionScrollDown signal
           *
           */
+        /// <since_tizen> 3 </since_tizen>
         public class ActionScrollDownEventArgs : EventArgs
         {
             private AccessibilityManager _accessibilityManager;
 
+            /// <since_tizen> 3 </since_tizen>
             public AccessibilityManager AccessibilityManager
             {
                 get
@@ -366,10 +394,12 @@ namespace Tizen.NUI
           * @brief Event arguments that passed via ActionPageLeft signal
           *
           */
+        /// <since_tizen> 3 </since_tizen>
         public class ActionPageLeftEventArgs : EventArgs
         {
             private AccessibilityManager _accessibilityManager;
 
+            /// <since_tizen> 3 </since_tizen>
             public AccessibilityManager AccessibilityManager
             {
                 get
@@ -387,10 +417,12 @@ namespace Tizen.NUI
           * @brief Event arguments that passed via ActionPageRight signal
           *
           */
+        /// <since_tizen> 3 </since_tizen>
         public class ActionPageRightEventArgs : EventArgs
         {
             private AccessibilityManager _accessibilityManager;
 
+            /// <since_tizen> 3 </since_tizen>
             public AccessibilityManager AccessibilityManager
             {
                 get
@@ -408,10 +440,12 @@ namespace Tizen.NUI
           * @brief Event arguments that passed via ActionPageUp signal
           *
           */
+        /// <since_tizen> 3 </since_tizen>
         public class ActionPageUpEventArgs : EventArgs
         {
             private AccessibilityManager _accessibilityManager;
 
+            /// <since_tizen> 3 </since_tizen>
             public AccessibilityManager AccessibilityManager
             {
                 get
@@ -429,10 +463,12 @@ namespace Tizen.NUI
           * @brief Event arguments that passed via ActionPageDown signal
           *
           */
+        /// <since_tizen> 3 </since_tizen>
         public class ActionPageDownEventArgs : EventArgs
         {
             private AccessibilityManager _accessibilityManager;
 
+            /// <since_tizen> 3 </since_tizen>
             public AccessibilityManager AccessibilityManager
             {
                 get
@@ -450,10 +486,12 @@ namespace Tizen.NUI
           * @brief Event arguments that passed via ActionMoveToFirst signal
           *
           */
+        /// <since_tizen> 3 </since_tizen>
         public class ActionMoveToFirstEventArgs : EventArgs
         {
             private AccessibilityManager _accessibilityManager;
 
+            /// <since_tizen> 3 </since_tizen>
             public AccessibilityManager AccessibilityManager
             {
                 get
@@ -471,10 +509,12 @@ namespace Tizen.NUI
           * @brief Event arguments that passed via ActionMoveToLast signal
           *
           */
+        /// <since_tizen> 3 </since_tizen>
         public class ActionMoveToLastEventArgs : EventArgs
         {
             private AccessibilityManager _accessibilityManager;
 
+            /// <since_tizen> 3 </since_tizen>
             public AccessibilityManager AccessibilityManager
             {
                 get
@@ -492,10 +532,12 @@ namespace Tizen.NUI
           * @brief Event arguments that passed via ActionReadFromTop signal
           *
           */
+        /// <since_tizen> 3 </since_tizen>
         public class ActionReadFromTopEventArgs : EventArgs
         {
             private AccessibilityManager _accessibilityManager;
 
+            /// <since_tizen> 3 </since_tizen>
             public AccessibilityManager AccessibilityManager
             {
                 get
@@ -513,10 +555,12 @@ namespace Tizen.NUI
           * @brief Event arguments that passed via ActionReadFromNext signal
           *
           */
+        /// <since_tizen> 3 </since_tizen>
         public class ActionReadFromNextEventArgs : EventArgs
         {
             private AccessibilityManager _accessibilityManager;
 
+            /// <since_tizen> 3 </since_tizen>
             public AccessibilityManager AccessibilityManager
             {
                 get
@@ -534,10 +578,12 @@ namespace Tizen.NUI
           * @brief Event arguments that passed via ActionZoom signal
           *
           */
+        /// <since_tizen> 3 </since_tizen>
         public class ActionZoomEventArgs : EventArgs
         {
             private AccessibilityManager _accessibilityManager;
 
+            /// <since_tizen> 3 </since_tizen>
             public AccessibilityManager AccessibilityManager
             {
                 get
@@ -555,10 +601,12 @@ namespace Tizen.NUI
           * @brief Event arguments that passed via ActionReadIndicatorInformation signal
           *
           */
+        /// <since_tizen> 3 </since_tizen>
         public class ActionReadIndicatorInformationEventArgs : EventArgs
         {
             private AccessibilityManager _accessibilityManager;
 
+            /// <since_tizen> 3 </since_tizen>
             public AccessibilityManager AccessibilityManager
             {
                 get
@@ -576,10 +624,12 @@ namespace Tizen.NUI
           * @brief Event arguments that passed via ActionReadPauseResume signal
           *
           */
+        /// <since_tizen> 3 </since_tizen>
         public class ActionReadPauseResumeEventArgs : EventArgs
         {
             private AccessibilityManager _accessibilityManager;
 
+            /// <since_tizen> 3 </since_tizen>
             public AccessibilityManager AccessibilityManager
             {
                 get
@@ -597,10 +647,12 @@ namespace Tizen.NUI
           * @brief Event arguments that passed via ActionStartStop signal
           *
           */
+        /// <since_tizen> 3 </since_tizen>
         public class ActionStartStopEventArgs : EventArgs
         {
             private AccessibilityManager _accessibilityManager;
 
+            /// <since_tizen> 3 </since_tizen>
             public AccessibilityManager AccessibilityManager
             {
                 get
@@ -651,11 +703,13 @@ namespace Tizen.NUI
           * @brief Event arguments that passed via ActionPageUp signal
           *
           */
+        /// <since_tizen> 3 </since_tizen>
         public class FocusChangedEventArgs : EventArgs
         {
             private View _viewCurrent;
             private View _viewNext;
 
+            /// <since_tizen> 3 </since_tizen>
             public View ViewCurrent
             {
                 get
@@ -668,6 +722,7 @@ namespace Tizen.NUI
                 }
             }
 
+            /// <since_tizen> 3 </since_tizen>
             public View ViewNext
             {
                 get
@@ -685,11 +740,13 @@ namespace Tizen.NUI
           * @brief Event arguments that passed via FocusedViewActivated signal
           *
           */
+        /// <since_tizen> 3 </since_tizen>
         public class FocusedViewActivatedEventArgs : EventArgs
         {
             private View _view;
 
 
+            /// <since_tizen> 3 </since_tizen>
             public View View
             {
                 get
@@ -707,11 +764,13 @@ namespace Tizen.NUI
           * @brief Event arguments that passed via FocusOvershot signal
           *
           */
+        /// <since_tizen> 3 </since_tizen>
         public class FocusOvershotEventArgs : EventArgs
         {
             private View _currentFocusedView;
             private AccessibilityManager.FocusOvershotDirection _focusOvershotDirection;
 
+            /// <since_tizen> 3 </since_tizen>
             public View CurrentFocusedView
             {
                 get
@@ -724,6 +783,7 @@ namespace Tizen.NUI
                 }
             }
 
+            /// <since_tizen> 3 </since_tizen>
             public AccessibilityManager.FocusOvershotDirection FocusOvershotDirection
             {
                 get
@@ -2700,6 +2760,7 @@ namespace Tizen.NUI
             return ret;
         }
 
+        /// <since_tizen> 3 </since_tizen>
         public enum AccessibilityAttribute
         {
             ACCESSIBILITY_LABEL = 0,
@@ -2709,6 +2770,7 @@ namespace Tizen.NUI
             ACCESSIBILITY_ATTRIBUTE_NUM
         }
 
+        /// <since_tizen> 3 </since_tizen>
         public enum FocusOvershotDirection
         {
             OVERSHOT_PREVIOUS = -1,

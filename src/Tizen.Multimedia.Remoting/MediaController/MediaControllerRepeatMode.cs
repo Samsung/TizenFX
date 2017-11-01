@@ -19,6 +19,7 @@ namespace Tizen.Multimedia.Remoting
     /// <summary>
     /// Specifies the repeat mode.
     /// </summary>
+    /// <since_tizen> 4 </since_tizen>
     public enum MediaControlRepeatMode
     {
         /// <summary>

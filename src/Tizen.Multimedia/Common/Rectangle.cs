@@ -22,6 +22,7 @@ namespace Tizen.Multimedia
     /// Represents the location of the object bounded by a rectangle defined by
     /// coordinates of top left corner, width and height.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public struct Rectangle
     {
         private Point _location;
@@ -34,6 +35,7 @@ namespace Tizen.Multimedia
         /// <param name="y">The y-coordinate of the upper-left corner of the rectangle.</param>
         /// <param name="width">The Width of the rectangle.</param>
         /// <param name="height">The Height of the rectangle.</param>
+        /// <since_tizen> 3 </since_tizen>
         public Rectangle(int x, int y, int width, int height) : this(new Point(x, y),
             new Size(width, height))
         {
@@ -44,6 +46,7 @@ namespace Tizen.Multimedia
         /// </summary>
         /// <param name="location">A <see cref="Location"/> that represents the upper-left corner of the rectangular region.</param>
         /// <param name="size">A <see cref="Size"/> that represents the width and height of the rectangular region.</param>
+        /// <since_tizen> 3 </since_tizen>
         public Rectangle(Point location, Size size)
         {
             _location = location;
@@ -53,6 +56,7 @@ namespace Tizen.Multimedia
         /// <summary>
         /// Gets or sets the coordinates of the upper-left corner of the rectangle.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public Point Location
         {
             get { return _location; }
@@ -62,6 +66,7 @@ namespace Tizen.Multimedia
         /// <summary>
         /// Gets or sets the x-coordinate of the upper-left corner of the rectangle.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public int X
         {
             get { return _location.X; }
@@ -71,6 +76,7 @@ namespace Tizen.Multimedia
         /// <summary>
         /// Gets or sets the y-coordinate of the upper-left corner of the rectangle.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public int Y
         {
             get { return _location.Y; }
@@ -80,6 +86,7 @@ namespace Tizen.Multimedia
         /// <summary>
         /// Gets or sets the width of the rectangle.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public int Width
         {
             get { return _size.Width; }
@@ -89,6 +96,7 @@ namespace Tizen.Multimedia
         /// <summary>
         /// Gets or sets the height of the rectangle.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public int Height
         {
             get { return _size.Height; }
@@ -98,26 +106,31 @@ namespace Tizen.Multimedia
         /// <summary>
         /// Gets the x-coordinate of the left edge of the rectangle.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public int Left => X;
 
         /// <summary>
         /// Gets the y-coordinate of the top edge of the rectangle.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public int Top => Y;
 
         /// <summary>
         /// Gets the x-coordinate of the right edge of the rectangle.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public int Right => X + Width;
 
         /// <summary>
         /// Gets the y-coordinate of the bottom edge of the rectangle.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public int Bottom => Y + Height;
 
         /// <summary>
         /// Gets or sets the size of the rectangle.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public Size Size
         {
             get { return _size; }
@@ -128,12 +141,14 @@ namespace Tizen.Multimedia
         /// Returns a string that represents the current object.
         /// </summary>
         /// <returns>A string that represents the current object.</returns>
+        /// <since_tizen> 3 </since_tizen>
         public override string ToString() => $"{_location.ToString()}, {_size.ToString()}";
 
         /// <summary>
         /// Gets the hash code for this instance of <see cref="Rectangle"/>.
         /// </summary>
         /// <returns>The hash code for this instance of <see cref="Rectangle"/>.</returns>
+        /// <since_tizen> 3 </since_tizen>
         public override int GetHashCode()
         {
             return new { Location, Size }.GetHashCode();
@@ -144,6 +159,7 @@ namespace Tizen.Multimedia
         /// </summary>
         /// <param name="obj">A <see cref="Object"/> to compare.</param>
         /// <returns>true if the rectangles are equal; otherwise, false.</returns>
+        /// <since_tizen> 3 </since_tizen>
         public override bool Equals(object obj)
         {
             return obj is Rectangle && this == (Rectangle)obj;
@@ -155,6 +171,7 @@ namespace Tizen.Multimedia
         /// <param name="rect1">A <see cref="Rectangle"/> to compare.</param>
         /// <param name="rect2">A <see cref="Rectangle"/> to compare.</param>
         /// <returns>true if the two instances of <see cref="Rectangle"/> are equal; otherwise false.</returns>
+        /// <since_tizen> 3 </since_tizen>
         public static bool operator ==(Rectangle rect1, Rectangle rect2)
         {
             return rect1.Location == rect2.Location && rect1.Size == rect2.Size;
@@ -166,6 +183,7 @@ namespace Tizen.Multimedia
         /// <param name="rect1">A <see cref="Rectangle"/> to compare.</param>
         /// <param name="rect2">A <see cref="Rectangle"/> to compare.</param>
         /// <returns>true if the two instances of <see cref="Rectangle"/> are not equal; otherwise false.</returns>
+        /// <since_tizen> 3 </since_tizen>
         public static bool operator !=(Rectangle rect1, Rectangle rect2)
         {
             return !(rect1 == rect2);

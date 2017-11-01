@@ -35,6 +35,7 @@ namespace Tizen.NUI.UIComponents
     /// The text label is always placed on the top of all images.<br />
     /// When the button is disabled, the background button and the selected visuals are replaced by their disabled visuals.<br />
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public class Button : View
     {
         private global::System.Runtime.InteropServices.HandleRef swigCPtr;
@@ -52,6 +53,7 @@ namespace Tizen.NUI.UIComponents
         /// <summary>
         /// To dispose the button instance.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         protected override void Dispose(DisposeTypes type)
         {
             if (disposed)

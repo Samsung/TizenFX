@@ -19,6 +19,7 @@ namespace Tizen.Multimedia
     /// <summary>
     /// Specifies color spaces for Tizen.Multimedia.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public enum ColorSpace
     {
         /// <summary>

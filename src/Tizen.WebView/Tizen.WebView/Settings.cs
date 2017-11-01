@@ -21,6 +21,7 @@ namespace Tizen.WebView
     /// <summary>
     /// This class provides properties for setting the preference of a specific WebView.
     /// </summary>
+    /// <since_tizen> 4 </since_tizen>
     public class Settings
     {
         private IntPtr _handle;
@@ -33,6 +34,7 @@ namespace Tizen.WebView
         /// <summary>
         /// Whether JavaScript can be executable.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         public bool JavaScriptEnabled
         {
             get
@@ -49,6 +51,7 @@ namespace Tizen.WebView
         /// <summary>
         /// Whether images can be loaded automatically.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         public bool LoadImageAutomatically
         {
             get
@@ -65,6 +68,7 @@ namespace Tizen.WebView
         /// <summary>
         /// The default text encoding name.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         public string DefaultTextEncodingName
         {
             get
@@ -81,6 +85,7 @@ namespace Tizen.WebView
         /// <summary>
         /// The default font size of a pixel.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         public int DefaultFontSize
         {
             get

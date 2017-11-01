@@ -23,6 +23,7 @@ namespace Tizen.Applications
     /// <summary>
     /// This class represents an application controlled lifecycles by the backend system.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public class CoreApplication : Application
     {
         private readonly ICoreBackend _backend;
@@ -32,6 +33,7 @@ namespace Tizen.Applications
         /// Initializes the CoreApplication class.
         /// </summary>
         /// <param name="backend">The backend instance implementing ICoreBacked interface.</param>
+        /// <since_tizen> 3 </since_tizen>
         public CoreApplication(ICoreBackend backend)
         {
             _backend = backend;
@@ -40,52 +42,62 @@ namespace Tizen.Applications
         /// <summary>
         /// Occurs when the application is launched.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public event EventHandler Created;
 
         /// <summary>
         /// Occurs when the application is about to shutdown.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public event EventHandler Terminated;
 
         /// <summary>
         /// Occurs whenever the application receives the appcontrol message.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public event EventHandler<AppControlReceivedEventArgs> AppControlReceived;
 
         /// <summary>
         /// Occurs when the system memory is low.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public event EventHandler<LowMemoryEventArgs> LowMemory;
 
         /// <summary>
         /// Occurs when the system battery is low.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public event EventHandler<LowBatteryEventArgs> LowBattery;
 
         /// <summary>
         /// Occurs when the system language is chagned.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public event EventHandler<LocaleChangedEventArgs> LocaleChanged;
 
         /// <summary>
         /// Occurs when the region format is changed.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public event EventHandler<RegionFormatChangedEventArgs> RegionFormatChanged;
 
         /// <summary>
         /// Occurs when the device orientation is changed.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public event EventHandler<DeviceOrientationEventArgs> DeviceOrientationChanged;
 
         /// <summary>
         /// The backend instance.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         protected ICoreBackend Backend { get { return _backend; } }
 
         /// <summary>
         /// Runs the application's main loop.
         /// </summary>
         /// <param name="args">Arguments from commandline.</param>
+        /// <since_tizen> 3 </since_tizen>
         public override void Run(string[] args)
         {
             base.Run(args);
@@ -117,6 +129,7 @@ namespace Tizen.Applications
         /// <summary>
         /// Exits the main loop of the application.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public override void Exit()
         {
             _backend.Exit();
@@ -126,6 +139,7 @@ namespace Tizen.Applications
         /// Overrides this method if want to handle behavior when the application is launched.
         /// If base.OnCreated() is not called, the event 'Created' will not be emitted.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         protected virtual void OnCreate()
         {
             Created?.Invoke(this, EventArgs.Empty);
@@ -135,6 +149,7 @@ namespace Tizen.Applications
         /// Overrides this method if want to handle behavior when the application is terminated.
         /// If base.OnTerminate() is not called, the event 'Terminated' will not be emitted.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         protected virtual void OnTerminate()
         {
             Terminated?.Invoke(this, EventArgs.Empty);
@@ -145,6 +160,7 @@ namespace Tizen.Applications
         /// If base.OnAppControlReceived() is not called, the event 'AppControlReceived' will not be emitted.
         /// </summary>
         /// <param name="e"></param>
+        /// <since_tizen> 3 </since_tizen>
         protected virtual void OnAppControlReceived(AppControlReceivedEventArgs e)
         {
             AppControlReceived?.Invoke(this, e);
@@ -154,6 +170,7 @@ namespace Tizen.Applications
         /// Overrides this method if want to handle behavior when the system memory is low.
         /// If base.OnLowMemory() is not called, the event 'LowMemory' will not be emitted.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         protected virtual void OnLowMemory(LowMemoryEventArgs e)
         {
             LowMemory?.Invoke(this, e);
@@ -164,6 +181,7 @@ namespace Tizen.Applications
         /// Overrides this method if want to handle behavior when the system battery is low.
         /// If base.OnLowBattery() is not called, the event 'LowBattery' will not be emitted.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         protected virtual void OnLowBattery(LowBatteryEventArgs e)
         {
             LowBattery?.Invoke(this, e);
@@ -173,6 +191,7 @@ namespace Tizen.Applications
         /// Overrides this method if want to handle behavior when the system language is changed.
         /// If base.OnLocaleChanged() is not called, the event 'LocaleChanged' will not be emitted.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         protected virtual void OnLocaleChanged(LocaleChangedEventArgs e)
         {
             LocaleChanged?.Invoke(this, e);
@@ -182,6 +201,7 @@ namespace Tizen.Applications
         /// Overrides this method if want to handle behavior when the region format is changed.
         /// If base.OnRegionFormatChanged() is not called, the event 'RegionFormatChanged' will not be emitted.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         protected virtual void OnRegionFormatChanged(RegionFormatChangedEventArgs e)
         {
             RegionFormatChanged?.Invoke(this, e);
@@ -191,6 +211,7 @@ namespace Tizen.Applications
         /// Overrides this method if want to handle behavior when the device orientation is changed.
         /// If base.OnRegionFormatChanged() is not called, the event 'RegionFormatChanged' will not be emitted.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         protected virtual void OnDeviceOrientationChanged(DeviceOrientationEventArgs e)
         {
             DeviceOrientationChanged?.Invoke(this, e);
@@ -200,6 +221,7 @@ namespace Tizen.Applications
         /// Releases any unmanaged resources used by this object. Can also dispose any other disposable objects.
         /// </summary>
         /// <param name="disposing">If true, disposes any disposable objects. If false, does not dispose disposable objects.</param>
+        /// <since_tizen> 3 </since_tizen>
         protected override void Dispose(bool disposing)
         {
             if (!_disposedValue)

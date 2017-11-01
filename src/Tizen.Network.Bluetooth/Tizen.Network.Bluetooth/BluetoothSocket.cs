@@ -23,18 +23,21 @@ namespace Tizen.Network.Bluetooth
     /// <summary>
     /// The IBluetoothServerSocket interface handles the server socket operations.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public interface IBluetoothServerSocket
     {
         /// <summary>
         /// Event handler to receive data over bluetooth socket.
         /// This event occurs when the socket server receives data from the client.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         event EventHandler<SocketDataReceivedEventArgs> DataReceived;
 
         /// <summary>
         /// Event handler method to receive bluetooth socket connection state changed events.
         /// This event occurs when the connection state between two devices is changed.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         event EventHandler<SocketConnectionStateChangedEventArgs> ConnectionStateChanged;
 
         /// <summary>
@@ -46,22 +49,26 @@ namespace Tizen.Network.Bluetooth
         /// </remarks>
         /// <param name="data">The data to be sent.</param>
         /// <returns></returns>
+        /// <since_tizen> 3 </since_tizen>
         int SendData(string data);
     }
 
     /// <summary>
     /// The IBluetoothClientSocket interface handles the client socket operations.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public interface IBluetoothClientSocket : IBluetoothServerSocket
     {
         /// <summary>
         /// Connect client socket to server socket on remote device.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         void Connect();
 
         /// <summary>
         /// Disconnect client socket from server socket.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         void Disconnect();
     }
 

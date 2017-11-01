@@ -22,6 +22,7 @@ namespace Tizen.Telephony
     /// <summary>
     /// This class provides the APIs to get the information about calls.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public class CallHandle
     {
         private IntPtr _callHandle;
@@ -29,6 +30,7 @@ namespace Tizen.Telephony
         /// <summary>
         /// Enumeration for the call status.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public enum CallStatus
         {
             /// <summary>
@@ -64,6 +66,7 @@ namespace Tizen.Telephony
         /// <summary>
         /// Enumeration for the call type.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public enum CallType
         {
             /// <summary>
@@ -87,6 +90,7 @@ namespace Tizen.Telephony
         /// <summary>
         /// Enumeration for the call direction.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public enum CallDirection
         {
             /// <summary>

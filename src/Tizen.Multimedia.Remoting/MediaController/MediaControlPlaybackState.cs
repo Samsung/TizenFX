@@ -19,6 +19,7 @@ namespace Tizen.Multimedia.Remoting
     /// <summary>
     /// Specifies playback states.
     /// </summary>
+    /// <since_tizen> 4 </since_tizen>
     public enum MediaControlPlaybackState
     {
         /// <summary>

@@ -21,6 +21,7 @@ namespace Tizen.Multimedia
     /// <summary>
     /// Represents a range(min, max) value.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public struct Range
     {
         /// <summary>
@@ -29,6 +30,7 @@ namespace Tizen.Multimedia
         /// <param name="min">Minimum value of the range.</param>
         /// <param name="max">Maximum value of the range.</param>
         /// <exception cref="ArgumentException"><paramref name="max"/> is less than <paramref name="min"/>.</exception>
+        /// <since_tizen> 3 </since_tizen>
         public Range(int min, int max)
         {
             if (min > max)
@@ -42,6 +44,7 @@ namespace Tizen.Multimedia
         /// <summary>
         /// Gets or sets the minimum value of the range.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public int Min
         {
             get;
@@ -51,6 +54,7 @@ namespace Tizen.Multimedia
         /// <summary>
         /// Gets or sets the maximum value of the range.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public int Max
         {
             get;
@@ -60,6 +64,7 @@ namespace Tizen.Multimedia
         /// <summary>
         /// Gets the length of the range.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public int Length => Max - Min;
 
         /// <summary>
@@ -67,6 +72,7 @@ namespace Tizen.Multimedia
         /// </summary>
         /// <param name="value">The value to check.</param>
         /// <returns>true if the value is within the range; otherwise false.</returns>
+        /// <since_tizen> 3 </since_tizen>
         public bool IsInside(int value)
         {
             return Min <= value && value <= Max;
@@ -76,12 +82,14 @@ namespace Tizen.Multimedia
         /// Returns a string that represents the current object.
         /// </summary>
         /// <returns>A string that represents the current object.</returns>
+        /// <since_tizen> 3 </since_tizen>
         public override string ToString() => $"Min={Min.ToString()}, Max={Max.ToString()}";
 
         /// <summary>
         /// Gets the hash code for this instance of <see cref="Range"/>.
         /// </summary>
         /// <returns>The hash code for this instance of <see cref="Range"/>.</returns>
+        /// <since_tizen> 3 </since_tizen>
         public override int GetHashCode()
         {
             return new { Min, Max }.GetHashCode();
@@ -92,6 +100,7 @@ namespace Tizen.Multimedia
         /// </summary>
         /// <param name="obj">A <see cref="Object"/> to compare.</param>
         /// <returns>true if the two ranges are equal; otherwise, false.</returns>
+        /// <since_tizen> 3 </since_tizen>
         public override bool Equals(object obj)
         {
             return obj is Range && this == (Range)obj;
@@ -103,6 +112,7 @@ namespace Tizen.Multimedia
         /// <param name="range1">A <see cref="Range"/> to compare.</param>
         /// <param name="range2">A <see cref="Range"/> to compare.</param>
         /// <returns>true if the two instances of <see cref="Range"/> are equal; otherwise false.</returns>
+        /// <since_tizen> 3 </since_tizen>
         public static bool operator ==(Range range1, Range range2)
         {
             return range1.Min == range2.Min && range1.Max == range2.Max;
@@ -114,6 +124,7 @@ namespace Tizen.Multimedia
         /// <param name="range1">A <see cref="Range"/> to compare.</param>
         /// <param name="range2">A <see cref="Range"/> to compare.</param>
         /// <returns>true if the two instances of <see cref="Range"/> are not equal; otherwise false.</returns>
+        /// <since_tizen> 3 </since_tizen>
         public static bool operator !=(Range range1, Range range2)
         {
             return !(range1 == range2);

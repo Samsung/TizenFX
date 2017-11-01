@@ -21,6 +21,7 @@ namespace Tizen.Telephony
     /// <summary>
     /// This class provides APIs to obtain information from the modem.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public class Modem
     {
         internal IntPtr _handle;
@@ -50,6 +51,7 @@ namespace Tizen.Telephony
         /// <summary>
         /// Enumeration for the Modem Power Status.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public enum PowerStatus
         {
             /// <summary>

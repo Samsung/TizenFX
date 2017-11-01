@@ -30,6 +30,7 @@ namespace Tizen.Applications
     /// This class is accessed by using a constructor to create a new instance of this object.
     /// A bundle instance is not guaranteed to be thread safe if the instance is modified by multiple threads.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public class Bundle : IDisposable
     {
         private SafeBundleHandle _handle;
@@ -45,6 +46,7 @@ namespace Tizen.Applications
         /// Tizen.Applications.Bundle bundle = new Tizen.Applications.Bundle();
         /// </code>
         /// </example>
+        /// <since_tizen> 3 </since_tizen>
         public Bundle()
         {
             _handle = Interop.Bundle.Create();
@@ -57,6 +59,7 @@ namespace Tizen.Applications
         /// </summary>
         /// <param name="handle">The SafeBundleHandle instance.</param>
         /// <exception cref="System.ArgumentNullException">Thrown when the handle is null or invalid.</exception>
+        /// <since_tizen> 3 </since_tizen>
         public Bundle(SafeBundleHandle handle)
         {
             if (handle == null || handle.IsInvalid)
@@ -105,6 +108,7 @@ namespace Tizen.Applications
         /// Console.WriteLine("There are {0} items in the bundle", bundle.Count);
         /// </code>
         /// </example>
+        /// <since_tizen> 3 </since_tizen>
         public int Count
         {
             get
@@ -129,6 +133,7 @@ namespace Tizen.Applications
         /// }
         /// </code>
         /// </example>
+        /// <since_tizen> 3 </since_tizen>
         public IEnumerable<string> Keys
         {
             get
@@ -140,6 +145,7 @@ namespace Tizen.Applications
         /// <summary>
         /// Gets the SafeBundleHandle instance.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public SafeBundleHandle SafeBundleHandle
         {
             get { return _handle; }
@@ -148,6 +154,7 @@ namespace Tizen.Applications
         /// <summary>
         /// Releases any unmanaged resources used by this object.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public void Dispose()
         {
             Dispose(true);
@@ -170,6 +177,7 @@ namespace Tizen.Applications
         /// }
         /// </code>
         /// </example>
+        /// <since_tizen> 3 </since_tizen>
         public bool Contains(string key)
         {
             return _keys.Contains(key);
@@ -190,6 +198,7 @@ namespace Tizen.Applications
         /// bundle.AddItem("byte_array", byteArray);
         /// </code>
         /// </example>
+        /// <since_tizen> 3 </since_tizen>
         public void AddItem(string key, byte[] value)
         {
             if (value == null)
@@ -217,6 +226,7 @@ namespace Tizen.Applications
         /// bundle.AddItem("byte_array", byteArray, 2, 3);
         /// </code>
         /// </example>
+        /// <since_tizen> 3 </since_tizen>
         public void AddItem(string key, byte[] value, int offset, int count)
         {
             if (!_keys.Contains(key))
@@ -265,6 +275,7 @@ namespace Tizen.Applications
         /// bundle.AddItem("string", "a_string");
         /// </code>
         /// </example>
+        /// <since_tizen> 3 </since_tizen>
         public void AddItem(string key, string value)
         {
             if (!_keys.Contains(key))
@@ -293,6 +304,7 @@ namespace Tizen.Applications
         /// bundle.AddItem("string_array", stringArray);
         /// </code>
         /// </example>
+        /// <since_tizen> 3 </since_tizen>
         public void AddItem(string key, IEnumerable<string> value)
         {
             if (!_keys.Contains(key))
@@ -330,6 +342,7 @@ namespace Tizen.Applications
         /// }
         /// </code>
         /// </example>
+        /// <since_tizen> 3 </since_tizen>
         public object GetItem(string key)
         {
             if (_keys.Contains(key))
@@ -408,6 +421,7 @@ namespace Tizen.Applications
         /// }
         /// </code>
         /// </example>
+        /// <since_tizen> 3 </since_tizen>
         public T GetItem<T>(string key)
         {
             return (T)GetItem(key);
@@ -432,6 +446,7 @@ namespace Tizen.Applications
         /// }
         /// </code>
         /// </example>
+        /// <since_tizen> 3 </since_tizen>
         public bool TryGetItem(string key, out byte[] value)
         {
             if (_keys.Contains(key) && Interop.Bundle.GetType(_handle, key) == (int)BundleType.Byte)
@@ -468,6 +483,7 @@ namespace Tizen.Applications
         /// }
         /// </code>
         /// </example>
+        /// <since_tizen> 3 </since_tizen>
         public bool TryGetItem(string key, out string value)
         {
             if (_keys.Contains(key) && Interop.Bundle.GetType(_handle, key) == (int)BundleType.String)
@@ -508,6 +524,7 @@ namespace Tizen.Applications
         /// }
         /// </code>
         /// </example>
+        /// <since_tizen> 3 </since_tizen>
         public bool TryGetItem(string key, out IEnumerable<string> value)
         {
             if (_keys.Contains(key) && Interop.Bundle.GetType(_handle, key) == (int)BundleType.StringArray)
@@ -550,6 +567,7 @@ namespace Tizen.Applications
         /// }
         /// </code>
         /// </example>
+        /// <since_tizen> 3 </since_tizen>
         public bool Is<T>(string key)
         {
             if (_keys.Contains(key))
@@ -596,6 +614,7 @@ namespace Tizen.Applications
         /// }
         /// </code>
         /// </example>
+        /// <since_tizen> 3 </since_tizen>
         public bool RemoveItem(string key)
         {
             if (_keys.Contains(key))
@@ -628,6 +647,7 @@ namespace Tizen.Applications
         /// Bundle data = bundle.Decode(bundleRaw);
         /// </code>
         /// </example>
+        /// <since_tizen> 3 </since_tizen>
         public static Bundle Decode(string bundleRaw)
         {
             SafeBundleHandle handle;
@@ -652,6 +672,7 @@ namespace Tizen.Applications
         /// string bundleRaw = bundle.Encode();
         /// </code>
         /// </example>
+        /// <since_tizen> 3 </since_tizen>
         public string Encode()
         {
             string bundleRaw;
@@ -670,6 +691,7 @@ namespace Tizen.Applications
         /// Releases any unmanaged resources used by this object. Can also dispose any other disposable objects.
         /// </summary>
         /// <param name="disposing">If true, disposes any disposable objects. If false, does not dispose disposable objects.</param>
+        /// <since_tizen> 3 </since_tizen>
         protected virtual void Dispose(bool disposing)
         {
             if (!_disposed)

@@ -21,6 +21,7 @@ namespace Tizen.Sensor
     /// <summary>
     /// The UltravioletSensor class is used for registering callbacks for the ultraviolet sensor and getting the ultraviolet data.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public sealed class UltravioletSensor : Sensor
     {
         private static string UltravioletSensorKey = "http://tizen.org/feature/sensor.ultraviolet";

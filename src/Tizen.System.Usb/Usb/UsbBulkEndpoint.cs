@@ -21,6 +21,7 @@ namespace Tizen.System.Usb
     /// <summary>
     /// USB Bulk Endpoint class.
     /// </summary>
+    /// <since_tizen> 4 </since_tizen>
     public class UsbBulkEndpoint : UsbEndpoint
     {
         internal UsbBulkEndpoint(UsbInterface parent, Interop.UsbEndpointHandle handle) : base(parent, handle)
@@ -42,6 +43,7 @@ namespace Tizen.System.Usb
         /// <returns>Number of bytes actually transferred.</returns>
         /// <exception cref="InvalidOperationException">Throws exception if device is disconnected or not opened for operation.</exception>
         /// <exception cref="TimeoutException">Throws exception if transfer timed-out.</exception>
+        /// <since_tizen> 4 </since_tizen>
         public int Transfer(byte[] buffer, int length, uint timeout)
         {
             return TransferImpl(buffer, length, timeout);

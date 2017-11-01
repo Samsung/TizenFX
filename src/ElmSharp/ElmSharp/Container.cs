@@ -25,6 +25,7 @@ namespace ElmSharp
     /// Other class inherits it to Elementary is about displaying
     /// its widgets in a nice layout.
     /// </summary>
+    /// <since_tizen> preview </since_tizen>
     public abstract class Container : Widget
     {
         HashSet<EvasObject> _children = new HashSet<EvasObject>();
@@ -34,6 +35,7 @@ namespace ElmSharp
         /// </summary>
         /// <param name="parent">The parent is a given object which will be attached by Container
         /// as a child.It's <see cref="EvasObject"/> type.</param>
+        /// <since_tizen> preview </since_tizen>
         public Container(EvasObject parent) : base(parent)
         {
         }
@@ -41,6 +43,7 @@ namespace ElmSharp
         /// <summary>
         /// Creates and initializes a new instance of Container class.
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         protected Container() : base()
         {
         }
@@ -48,6 +51,7 @@ namespace ElmSharp
         /// <summary>
         /// Sets the background color of a given Container.
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         public override Color BackgroundColor
         {
             set
@@ -67,12 +71,14 @@ namespace ElmSharp
         /// <summary>
         /// Gets the collection of child EvasObject of the Container.
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         protected IEnumerable<EvasObject> Children => _children;
 
         /// <summary>
         /// Add an EvasObject object as a child of Container.
         /// </summary>
         /// <param name="obj">The EvasObject object to be added</param>
+        /// <since_tizen> preview </since_tizen>
         protected void AddChild(EvasObject obj)
         {
             _children.Add(obj);
@@ -83,6 +89,7 @@ namespace ElmSharp
         /// Remove an EvasObject object as a child of Container.
         /// </summary>
         /// <param name="obj">The EvasObject object to be removed</param>
+        /// <since_tizen> preview </since_tizen>
         protected void RemoveChild(EvasObject obj)
         {
             _children.Remove(obj);
@@ -91,6 +98,7 @@ namespace ElmSharp
         /// <summary>
         /// Clear all children of the Container.
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         protected void ClearChildren()
         {
             _children.Clear();

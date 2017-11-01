@@ -21,6 +21,7 @@ namespace ElmSharp
     /// <summary>
     /// The Button is a widget works as a clickable input element to trigger events.
     /// </summary>
+    /// <since_tizen> preview </since_tizen>
     public class Button : Layout
     {
         private SmartEvent _clicked;
@@ -34,6 +35,7 @@ namespace ElmSharp
         /// <param name="parent">
         /// The EvasObject to which the new Button will be attached as a child.
         /// </param>
+        /// <since_tizen> preview </since_tizen>
         public Button(EvasObject parent) : base(parent)
         {
             _clicked = new SmartEvent(this, this.RealHandle, "clicked");
@@ -65,21 +67,25 @@ namespace ElmSharp
         /// <summary>
         /// Clicked will be triggered when Button is clicked.
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         public event EventHandler Clicked;
 
         /// <summary>
         /// Repeated will be triggered when Button is pressed without releasing it.
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         public event EventHandler Repeated;
 
         /// <summary>
         /// Pressed will be triggered when the Button is pressed.
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         public event EventHandler Pressed;
 
         /// <summary>
         /// Released will be triggered when the Button is released after being pressed.
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         public event EventHandler Released;
 
         /// <summary>
@@ -92,6 +98,7 @@ namespace ElmSharp
         /// The time it takes until it starts triggering Repeated is given by AutoRepeatInitialTime,
         /// and the time between each new emission is given by AutoRepeatGapTimeout.
         /// </remarks>
+        /// <since_tizen> preview </since_tizen>
         public bool AutoRepeat
         {
             get
@@ -107,6 +114,7 @@ namespace ElmSharp
         /// <summary>
         /// Sets or gets the initial timeout before the Repeat event is generated.
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         public double AutoRepeatInitialTime
         {
             get
@@ -122,6 +130,7 @@ namespace ElmSharp
         /// <summary>
         /// Sets or gets the interval between each generated Repeat event.
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         public double AutoRepeatGapTimeout
         {
             get
@@ -138,6 +147,7 @@ namespace ElmSharp
         /// Delete the object color class.
         /// </summary>
         /// <param name="part">The color class to be deleted.</param>
+        /// <since_tizen> preview </since_tizen>
         [Obsolete("DeleteColorClass is obsolete, please use EdjeObject.DeleteColorClass(string)")]
         public void DeleteColorClass(string part)
         {
@@ -147,6 +157,7 @@ namespace ElmSharp
         /// <summary>
         /// Sets or gets the BackgroundColor of a given Button in normal and pressed status.
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         public override Color BackgroundColor
         {
             set
@@ -172,6 +183,7 @@ namespace ElmSharp
         /// </summary>
         /// <param name="parent">Parent EvasObject</param>
         /// <returns>Handle IntPtr</returns>
+        /// <since_tizen> preview </since_tizen>
         protected override IntPtr CreateHandle(EvasObject parent)
         {
             return Interop.Elementary.elm_button_add(parent.Handle);

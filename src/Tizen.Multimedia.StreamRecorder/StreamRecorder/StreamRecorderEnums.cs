@@ -23,6 +23,7 @@ namespace Tizen.Multimedia
     /// <summary>
     /// Specifies errors for <see cref="StreamRecorder"/>/
     /// </summary>
+    /// <since_tizen> 4 </since_tizen>
     public enum StreamRecorderError
     {
         /// <summary>
@@ -38,6 +39,7 @@ namespace Tizen.Multimedia
     /// <summary>
     /// Specifies the video source formats for <see cref="StreamRecorder"/>.
     /// </summary>
+    /// <since_tizen> 4 </since_tizen>
     public enum StreamRecorderVideoFormat
     {
         /// <summary>

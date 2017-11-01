@@ -40,15 +40,16 @@ namespace Tizen.System
     ///     Console.WriteLine("Led current Brightness is: {0}", Tizen.System.Led.Brightness);
     /// </code>
     /// </example>
+    /// <since_tizen> 3 </since_tizen>
     public static class Led
     {
         /// <summary>
         /// Gets the maximum brightness value of the LED that is located next to the camera.
+        /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <exception cref="ArgumentException">When an invalid parameter value is set.</exception>
         /// <exception cref="UnauthorizedAccessException">If the privilege is not set.</exception>
         /// <exception cref="NotSupportedException">In case the device does not support this behavior.</exception>
-        /// </summary>
         public static int MaxBrightness
         {
             get

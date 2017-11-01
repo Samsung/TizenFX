@@ -20,6 +20,7 @@ namespace Tizen.NUI
     /// <summary>
     /// Texture represents a texture object used as input or output by shaders.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public class Texture : BaseHandle
     {
         private global::System.Runtime.InteropServices.HandleRef swigCPtr;

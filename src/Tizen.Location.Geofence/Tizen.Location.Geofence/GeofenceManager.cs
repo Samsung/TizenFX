@@ -288,6 +288,7 @@ namespace Tizen.Location.Geofence
         /// <summary>
         /// Dispose.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         protected virtual void Dispose(bool disposing)
         {
             if (_disposed)

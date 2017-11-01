@@ -24,6 +24,7 @@ namespace ElmSharp
     /// A instance to the gengrid item added.
     /// It contains Update() method to update a gengrid item which is given.
     /// </summary>
+    /// <since_tizen> preview </since_tizen>
     public class GenGridItem : GenItem
     {
         internal GenGridItem(object data, GenItemClass itemClass) : base(data, itemClass)
@@ -38,6 +39,7 @@ namespace ElmSharp
         /// If true, it is selected.
         /// If false, it is unselected.
         /// </remarks>
+        /// <since_tizen> preview </since_tizen>
         public override bool IsSelected
         {
             get
@@ -53,6 +55,7 @@ namespace ElmSharp
         /// <summary>
         /// Sets or gets the cursor to be shown when mouse is over the gengrid item.
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public override string Cursor
         {
@@ -76,6 +79,7 @@ namespace ElmSharp
         /// <summary>
         /// Sets or gets the style for this item cursor.
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public override string CursorStyle
         {
@@ -92,6 +96,7 @@ namespace ElmSharp
         /// <summary>
         /// Sets or gets the cursor engine only usage for this item cursor.
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public override bool IsUseEngineCursor
         {
@@ -108,6 +113,7 @@ namespace ElmSharp
         /// <summary>
         /// Sets or gets or sets the style of given gengrid item's tooltip.
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         public override string TooltipStyle
         {
             get
@@ -123,6 +129,7 @@ namespace ElmSharp
         /// <summary>
         /// Get the gengrid item's select mode.
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         public override GenItemSelectionMode SelectionMode
         {
             get
@@ -138,6 +145,7 @@ namespace ElmSharp
         /// <summary>
         /// Gets or sets gengrid item's row position, relative to the whole gengrid's grid area.
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         public int Row
         {
             get
@@ -151,6 +159,7 @@ namespace ElmSharp
         /// <summary>
         /// Gets or sets gengrid item's column position, relative to the whole gengrid's grid area.
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         public int Column
         {
             get
@@ -165,6 +174,7 @@ namespace ElmSharp
         /// Set the text to be shown in the gengrid item.
         /// </summary>
         /// <param name="tooltip">The text to set.</param>
+        /// <since_tizen> preview </since_tizen>
         public override void SetTooltipText(string tooltip)
         {
             Interop.Elementary.elm_gengrid_item_tooltip_text_set(Handle, tooltip);
@@ -173,6 +183,7 @@ namespace ElmSharp
         /// <summary>
         /// Unset tooltip from item.
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         public override void UnsetTooltip()
         {
             Interop.Elementary.elm_gengrid_item_tooltip_unset(Handle);
@@ -186,6 +197,7 @@ namespace ElmSharp
         /// <remarks>
         /// <see cref="GenGrid.UpdateRealizedItems"/> to update the contents of all the realized items.
         /// </remarks>
+        /// <since_tizen> preview </since_tizen>
         public override void Update()
         {
             Interop.Elementary.elm_gengrid_item_update(Handle);
@@ -194,6 +206,7 @@ namespace ElmSharp
         /// <summary>
         /// Set the content to be shown in the tooltip item.
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
         protected override void UpdateTooltipDelegate()
         {
             Interop.Elementary.elm_gengrid_item_tooltip_content_cb_set(Handle,

@@ -67,17 +67,17 @@
     </ReadLinesFromFile>
 
     <ItemGroup>
-      <PlatformFiles Include="$(OutputPlatformDir)*" />
+      <PlatformFiles Include="$(OutputPlatformDir)**" />
       <_PublicFilesToMove Include="$(OutputPlatformDir)%(PublicProject.Identity).dll" />
       <_PublicFilesToMove Include="$(OutputPlatformDir)%(PublicProject.Identity).pdb" />
       <_PublicFilesToMove Include="$(OutputPlatformDir)%(PublicProject.Identity).xml" />
+      <_PublicFilesToMove Include="$(OutputPlatformDir)*\%(PublicProject.Identity).dll" />
       <PublicFilesToMove Include="@(_PublicFilesToMove)" Condition="'@(PlatformFiles)' == '@(_PublicFilesToMove)' and '%(Identity)' != '' " />
     </ItemGroup>
 
-    <MakeDir Directories="$(OutputPublicDir)" />
-    <Move SourceFiles="@(PublicFilesToMove)" DestinationFolder="$(OutputPublicDir)" />
+    <Move SourceFiles="@(PublicFilesToMove)" DestinationFiles="$(OutputPublicDir)%(RecursiveDir)%(Filename)%(Extension)" />
 
-    <Message Text="Moved %(PublicFilesToMove.Filename)%(PublicFilesToMove.Extension) -> $(OutputPublicDir)%(PublicFilesToMove.Filename)%(PublicFilesToMove.Extension)"  Importance="High" />
+    <Message Text="The assemblies written in pkg/PublicModuleList.txt were moved to $(OutputPublicDir)" Importance="High" />
 
   </Target>
 

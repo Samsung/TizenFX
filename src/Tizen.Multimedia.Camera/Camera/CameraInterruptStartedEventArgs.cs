@@ -21,6 +21,7 @@ namespace Tizen.Multimedia
     /// <summary>
     /// Provides data for the <see cref="Camera.InterruptStarted"/> event.
     /// </summary>
+    /// <since_tizen> 4 </since_tizen>
     public class CameraInterruptStartedEventArgs : EventArgs
     {
         internal CameraInterruptStartedEventArgs(CameraPolicy policy, CameraState state)
@@ -32,11 +33,13 @@ namespace Tizen.Multimedia
         /// <summary>
         /// Gets the current state of the camera.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         public CameraState State { get; }
 
         /// <summary>
         /// Gets the policy that interrupted the camera.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         public CameraPolicy Policy { get; }
     }
 }

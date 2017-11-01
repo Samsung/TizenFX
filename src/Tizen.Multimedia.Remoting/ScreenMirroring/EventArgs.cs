@@ -21,6 +21,7 @@ namespace Tizen.Multimedia.Remoting
     /// <summary>
     /// Provides data for the <see cref="ScreenMirroring.StateChanged"/> event.
     /// </summary>
+    /// <since_tizen> 4 </since_tizen>
     public class ScreenMirroringStateChangedEventArgs : EventArgs
     {
         internal ScreenMirroringStateChangedEventArgs(ScreenMirroringState state)
@@ -31,12 +32,14 @@ namespace Tizen.Multimedia.Remoting
         /// <summary>
         /// Gets the current state of the screen mirroring.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         public ScreenMirroringState State { get; }
     }
 
     /// <summary>
     /// Provides data for the <see cref="ScreenMirroring.ErrorOccurred"/> event.
     /// </summary>
+    /// <since_tizen> 4 </since_tizen>
     public class ScreenMirroringErrorOccurredEventArgs : EventArgs
     {
         internal ScreenMirroringErrorOccurredEventArgs(ScreenMirroringError error)
@@ -47,6 +50,7 @@ namespace Tizen.Multimedia.Remoting
         /// <summary>
         /// Gets the error that occurred.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         public ScreenMirroringError Error { get; }
     }
 }

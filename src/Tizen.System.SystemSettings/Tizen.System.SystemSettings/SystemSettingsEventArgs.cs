@@ -29,6 +29,7 @@ namespace Tizen.System
     /// <exception cref="NotSupportedException">Not Supported feature</exception>
     /// <exception cref="InvalidOperationException">Invalid operation</exception>
     /// <exception cref="UnauthorizedAccessException">Thrown when application does not have privilege to access this method.</exception>
+    /// <since_tizen> 3 </since_tizen>
     public class IncomingCallRingtoneChangedEventArgs : EventArgs
     {
         private readonly string _incomingCallRingtone = null;
@@ -40,6 +41,7 @@ namespace Tizen.System
         /// <summary>
         /// The file path of the current ringtone.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public string Value
         {
             get
@@ -60,6 +62,7 @@ namespace Tizen.System
     /// <exception cref="NotSupportedException">Not Supported feature</exception>
     /// <exception cref="InvalidOperationException">Invalid operation</exception>
     /// <exception cref="UnauthorizedAccessException">Thrown when application does not have privilege to access this method.</exception>
+    /// <since_tizen> 3 </since_tizen>
     public class WallpaperHomeScreenChangedEventArgs : EventArgs
     {
         private readonly string _wallpaperHomeScreen = null;
@@ -71,6 +74,7 @@ namespace Tizen.System
         /// <summary>
         /// The file path of the current home screen wallpaper.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public string Value
         {
             get
@@ -91,6 +95,7 @@ namespace Tizen.System
     /// <exception cref="NotSupportedException">Not Supported feature</exception>
     /// <exception cref="InvalidOperationException">Invalid operation</exception>
     /// <exception cref="UnauthorizedAccessException">Thrown when application does not have privilege to access this method.</exception>
+    /// <since_tizen> 3 </since_tizen>
     public class WallpaperLockScreenChangedEventArgs : EventArgs
     {
         private readonly string _wallpaperLockScreen = null;
@@ -102,6 +107,7 @@ namespace Tizen.System
         /// <summary>
         /// The file path of the current lock screen wallpaper.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public string Value
         {
             get
@@ -121,6 +127,7 @@ namespace Tizen.System
     /// <exception cref="NotSupportedException">Not Supported feature</exception>
     /// <exception cref="InvalidOperationException">Invalid operation</exception>
     /// <exception cref="UnauthorizedAccessException">Thrown when application does not have privilege to access this method.</exception>
+    /// <since_tizen> 3 </since_tizen>
     public class FontSizeChangedEventArgs : EventArgs
     {
         private readonly SystemSettingsFontSize _fontSize;
@@ -132,6 +139,7 @@ namespace Tizen.System
         /// <summary>
         /// The current system font size.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public SystemSettingsFontSize Value
         {
             get
@@ -151,6 +159,7 @@ namespace Tizen.System
     /// <exception cref="NotSupportedException">Not Supported feature</exception>
     /// <exception cref="InvalidOperationException">Invalid operation</exception>
     /// <exception cref="UnauthorizedAccessException">Thrown when application does not have privilege to access this method.</exception>
+    /// <since_tizen> 3 </since_tizen>
     public class FontTypeChangedEventArgs : EventArgs
     {
         private readonly string _fontType = null;
@@ -162,6 +171,7 @@ namespace Tizen.System
         /// <summary>
         /// The current system font type.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public string Value
         {
             get
@@ -181,6 +191,7 @@ namespace Tizen.System
     /// <exception cref="NotSupportedException">Not Supported feature</exception>
     /// <exception cref="InvalidOperationException">Invalid operation</exception>
     /// <exception cref="UnauthorizedAccessException">Thrown when application does not have privilege to access this method.</exception>
+    /// <since_tizen> 3 </since_tizen>
     public class MotionActivationSettingChangedEventArgs : EventArgs
     {
         private readonly bool _motionActivation;
@@ -192,6 +203,7 @@ namespace Tizen.System
         /// <summary>
         /// Indicates whether the motion service is activated.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public bool Value
         {
             get
@@ -212,6 +224,7 @@ namespace Tizen.System
     /// <exception cref="NotSupportedException">Not Supported feature</exception>
     /// <exception cref="InvalidOperationException">Invalid operation</exception>
     /// <exception cref="UnauthorizedAccessException">Thrown when application does not have privilege to access this method.</exception>
+    /// <since_tizen> 3 </since_tizen>
     public class EmailAlertRingtoneChangedEventArgs : EventArgs
     {
         private readonly string _emailAlertRingtone = null;
@@ -223,6 +236,7 @@ namespace Tizen.System
         /// <summary>
         /// The file path of the current email alert ringtone.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public string Value
         {
             get
@@ -242,6 +256,7 @@ namespace Tizen.System
     /// <exception cref="NotSupportedException">Not Supported feature</exception>
     /// <exception cref="InvalidOperationException">Invalid operation</exception>
     /// <exception cref="UnauthorizedAccessException">Thrown when application does not have privilege to access this method.</exception>
+    /// <since_tizen> 3 </since_tizen>
     public class UsbDebuggingSettingChangedEventArgs : EventArgs
     {
         private readonly bool _usbDebuggingEnabled;
@@ -253,6 +268,7 @@ namespace Tizen.System
         /// <summary>
         /// Indicates whether the USB debugging is enabled.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public bool Value
         {
             get
@@ -272,6 +288,7 @@ namespace Tizen.System
     /// <exception cref="NotSupportedException">Not Supported feature</exception>
     /// <exception cref="InvalidOperationException">Invalid operation</exception>
     /// <exception cref="UnauthorizedAccessException">Thrown when application does not have privilege to access this method.</exception>
+    /// <since_tizen> 3 </since_tizen>
     public class Data3GNetworkSettingChangedEventArgs : EventArgs
     {
         private readonly bool _data3GNetworkEnabled;
@@ -283,6 +300,7 @@ namespace Tizen.System
         /// <summary>
         /// Indicates whether the 3G data network is enabled.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public bool Value
         {
             get
@@ -303,6 +321,7 @@ namespace Tizen.System
     /// <exception cref="NotSupportedException">Not Supported feature</exception>
     /// <exception cref="InvalidOperationException">Invalid operation</exception>
     /// <exception cref="UnauthorizedAccessException">Thrown when application does not have privilege to access this method.</exception>
+    /// <since_tizen> 4 </since_tizen>
     public class LockScreenAppChangedEventArgs : EventArgs
     {
         private readonly string _lockscreenApp = null;
@@ -314,6 +333,7 @@ namespace Tizen.System
         /// <summary>
         /// Indicates the lock screen application package name.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         public string Value
         {
             get
@@ -333,6 +353,7 @@ namespace Tizen.System
     /// <exception cref="NotSupportedException">Not Supported feature</exception>
     /// <exception cref="InvalidOperationException">Invalid operation</exception>
     /// <exception cref="UnauthorizedAccessException">Thrown when application does not have privilege to access this method.</exception>
+    /// <since_tizen> 3 </since_tizen>
     public class LocaleCountryChangedEventArgs : EventArgs
     {
         private readonly string _localeCountry = null;
@@ -345,6 +366,7 @@ namespace Tizen.System
         /// Indicates the current country setting in the &lt;LANGUAGE&gt;_&lt;REGION&gt; syntax.
         /// The country setting is in the ISO 639-2 format, and the region setting is in the ISO 3166-1 alpha-2 format.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public string Value
         {
             get
@@ -364,6 +386,7 @@ namespace Tizen.System
     /// <exception cref="NotSupportedException">Not Supported feature</exception>
     /// <exception cref="InvalidOperationException">Invalid operation</exception>
     /// <exception cref="UnauthorizedAccessException">Thrown when application does not have privilege to access this method.</exception>
+    /// <since_tizen> 3 </since_tizen>
     public class LocaleLanguageChangedEventArgs : EventArgs
     {
         private readonly string _localeLanguage = null;
@@ -376,6 +399,7 @@ namespace Tizen.System
         /// Indicates the current language setting in the &lt;LANGUAGE&gt;_&lt;REGION&gt; syntax.
         /// The language setting is in the ISO 639-2 format and the region setting is in the ISO 3166-1 alpha-2 format.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public string Value
         {
             get
@@ -395,6 +419,7 @@ namespace Tizen.System
     /// <exception cref="NotSupportedException">Not Supported feature</exception>
     /// <exception cref="InvalidOperationException">Invalid operation</exception>
     /// <exception cref="UnauthorizedAccessException">Thrown when application does not have privilege to access this method.</exception>
+    /// <since_tizen> 3 </since_tizen>
     public class LocaleTimeFormat24HourSettingChangedEventArgs : EventArgs
     {
         private readonly bool _localeTimeFormat24Hour;
@@ -406,6 +431,7 @@ namespace Tizen.System
         /// <summary>
         /// Indicates whether the 24-hour clock is used. If the value is false, the 12-hour clock is used.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public bool Value
         {
             get
@@ -425,6 +451,7 @@ namespace Tizen.System
     /// <exception cref="NotSupportedException">Not Supported feature</exception>
     /// <exception cref="InvalidOperationException">Invalid operation</exception>
     /// <exception cref="UnauthorizedAccessException">Thrown when application does not have privilege to access this method.</exception>
+    /// <since_tizen> 3 </since_tizen>
     public class LocaleTimeZoneChangedEventArgs : EventArgs
     {
         private readonly string _localeTimeZone = null;
@@ -436,6 +463,7 @@ namespace Tizen.System
         /// <summary>
         /// Indicates the current time zone.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public string Value
         {
             get
@@ -455,6 +483,7 @@ namespace Tizen.System
     /// <exception cref="NotSupportedException">Not Supported feature</exception>
     /// <exception cref="InvalidOperationException">Invalid operation</exception>
     /// <exception cref="UnauthorizedAccessException">Thrown when application does not have privilege to access this method.</exception>
+    /// <since_tizen> 3 </since_tizen>
     public class TimeChangedEventArgs : EventArgs
     {
         private readonly int _time;
@@ -466,6 +495,7 @@ namespace Tizen.System
         /// <summary>
         /// Indicates the current time.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public int Value
         {
             get
@@ -485,6 +515,7 @@ namespace Tizen.System
     /// <exception cref="NotSupportedException">Not Supported feature</exception>
     /// <exception cref="InvalidOperationException">Invalid operation</exception>
     /// <exception cref="UnauthorizedAccessException">Thrown when application does not have privilege to access this method.</exception>
+    /// <since_tizen> 3 </since_tizen>
     public class SoundLockSettingChangedEventArgs : EventArgs
     {
         private readonly bool _soundLock;
@@ -496,6 +527,7 @@ namespace Tizen.System
         /// <summary>
         /// Indicates whether the screen lock sound is enabled on the device, for example, the LCD on or off sound.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public bool Value
         {
             get
@@ -515,6 +547,7 @@ namespace Tizen.System
     /// <exception cref="NotSupportedException">Not Supported feature</exception>
     /// <exception cref="InvalidOperationException">Invalid operation</exception>
     /// <exception cref="UnauthorizedAccessException">Thrown when application does not have privilege to access this method.</exception>
+    /// <since_tizen> 3 </since_tizen>
     public class SoundSilentModeSettingChangedEventArgs : EventArgs
     {
         private readonly bool _soundSilentMode;
@@ -526,6 +559,7 @@ namespace Tizen.System
         /// <summary>
         /// Indicates whether the device is in the silent mode.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public bool Value
         {
             get
@@ -545,6 +579,7 @@ namespace Tizen.System
     /// <exception cref="NotSupportedException">Not Supported feature</exception>
     /// <exception cref="InvalidOperationException">Invalid operation</exception>
     /// <exception cref="UnauthorizedAccessException">Thrown when application does not have privilege to access this method.</exception>
+    /// <since_tizen> 3 </since_tizen>
     public class SoundTouchSettingChangedEventArgs : EventArgs
     {
         private readonly bool _soundTouch;
@@ -556,6 +591,7 @@ namespace Tizen.System
         /// <summary>
         /// Indicates whether the screen touch sound is enabled on the device.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public bool Value
         {
             get
@@ -575,6 +611,7 @@ namespace Tizen.System
     /// <exception cref="NotSupportedException">Not Supported feature</exception>
     /// <exception cref="InvalidOperationException">Invalid operation</exception>
     /// <exception cref="UnauthorizedAccessException">Thrown when application does not have privilege to access this method.</exception>
+    /// <since_tizen> 3 </since_tizen>
     public class DisplayScreenRotationAutoSettingChangedEventArgs : EventArgs
     {
         private readonly bool _displayScreenRotationAuto;
@@ -586,6 +623,7 @@ namespace Tizen.System
         /// <summary>
         /// Indicates whether the rotation control is automatic.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public bool Value
         {
             get
@@ -605,6 +643,7 @@ namespace Tizen.System
     /// <exception cref="NotSupportedException">Not Supported feature</exception>
     /// <exception cref="InvalidOperationException">Invalid operation</exception>
     /// <exception cref="UnauthorizedAccessException">Thrown when application does not have privilege to access this method.</exception>
+    /// <since_tizen> 3 </since_tizen>
     public class DeviceNameChangedEventArgs : EventArgs
     {
         private readonly string _deviceName = null;
@@ -616,6 +655,7 @@ namespace Tizen.System
         /// <summary>
         /// Indicates the device name.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public string Value
         {
             get
@@ -635,6 +675,7 @@ namespace Tizen.System
     /// <exception cref="NotSupportedException">Not Supported feature</exception>
     /// <exception cref="InvalidOperationException">Invalid operation</exception>
     /// <exception cref="UnauthorizedAccessException">Thrown when application does not have privilege to access this method.</exception>
+    /// <since_tizen> 3 </since_tizen>
     public class MotionSettingChangedEventArgs : EventArgs
     {
         private readonly bool _motionEnabled;
@@ -646,6 +687,7 @@ namespace Tizen.System
         /// <summary>
         /// Indicates whether the device user has enabled the motion feature.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public bool Value
         {
             get
@@ -666,6 +708,7 @@ namespace Tizen.System
     /// <exception cref="NotSupportedException">Not Supported feature</exception>
     /// <exception cref="InvalidOperationException">Invalid operation</exception>
     /// <exception cref="UnauthorizedAccessException">Thrown when application does not have privilege to access this method.</exception>
+    /// <since_tizen> 3 </since_tizen>
     public class NetworkWifiNotificationSettingChangedEventArgs : EventArgs
     {
         private readonly bool _networkWifiNotification;
@@ -677,6 +720,7 @@ namespace Tizen.System
         /// <summary>
         /// Indicates whether Wi-Fi-related notifications are enabled on the device.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public bool Value
         {
             get
@@ -696,6 +740,7 @@ namespace Tizen.System
     /// <exception cref="NotSupportedException">Not Supported feature</exception>
     /// <exception cref="InvalidOperationException">Invalid operation</exception>
     /// <exception cref="UnauthorizedAccessException">Thrown when application does not have privilege to access this method.</exception>
+    /// <since_tizen> 3 </since_tizen>
     public class NetworkFlightModeSettingChangedEventArgs : EventArgs
     {
         private readonly bool _networkFlightMode;
@@ -707,6 +752,7 @@ namespace Tizen.System
         /// <summary>
         /// Indicates whether the device is in the flight mode.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public bool Value
         {
             get
@@ -726,6 +772,7 @@ namespace Tizen.System
     /// <exception cref="NotSupportedException">Not Supported feature</exception>
     /// <exception cref="InvalidOperationException">Invalid operation</exception>
     /// <exception cref="UnauthorizedAccessException">Thrown when application does not have privilege to access this method.</exception>
+    /// <since_tizen> 3 </since_tizen>
     public class ScreenBacklightTimeChangedEventArgs : EventArgs
     {
         private readonly int _screenBacklightTime;
@@ -737,6 +784,7 @@ namespace Tizen.System
         /// <summary>
         /// Indicates the backlight time (in seconds).
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public int Value
         {
             get
@@ -757,6 +805,7 @@ namespace Tizen.System
     /// <exception cref="NotSupportedException">Not Supported feature</exception>
     /// <exception cref="InvalidOperationException">Invalid operation</exception>
     /// <exception cref="UnauthorizedAccessException">Thrown when application does not have privilege to access this method.</exception>
+    /// <since_tizen> 3 </since_tizen>
     public class SoundNotificationChangedEventArgs : EventArgs
     {
         private readonly string _soundNotification = null;
@@ -768,6 +817,7 @@ namespace Tizen.System
         /// <summary>
         /// Indicates the file path of the current notification tone set by the user.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public string Value
         {
             get
@@ -787,6 +837,7 @@ namespace Tizen.System
     /// <exception cref="NotSupportedException">Not Supported feature</exception>
     /// <exception cref="InvalidOperationException">Invalid operation</exception>
     /// <exception cref="UnauthorizedAccessException">Thrown when application does not have privilege to access this method.</exception>
+    /// <since_tizen> 3 </since_tizen>
     public class SoundNotificationRepetitionPeriodChangedEventArgs : EventArgs
     {
         private readonly int _soundNotificationRepetitionPeriod;
@@ -798,6 +849,7 @@ namespace Tizen.System
         /// <summary>
         /// Indicates the time period for notification repetitions.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public int Value
         {
             get
@@ -818,6 +870,7 @@ namespace Tizen.System
     /// <exception cref="NotSupportedException">Not Supported feature</exception>
     /// <exception cref="InvalidOperationException">Invalid operation</exception>
     /// <exception cref="UnauthorizedAccessException">Thrown when application does not have privilege to access this method.</exception>
+    /// <since_tizen> 3 </since_tizen>
     public class LockStateChangedEventArgs : EventArgs
     {
         private readonly SystemSettingsIdleLockState _lockState;
@@ -829,6 +882,7 @@ namespace Tizen.System
         /// <summary>
         /// Indicates the current lock state.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public SystemSettingsIdleLockState Value
         {
             get
@@ -848,6 +902,7 @@ namespace Tizen.System
     /// <exception cref="NotSupportedException">Not Supported feature</exception>
     /// <exception cref="InvalidOperationException">Invalid operation</exception>
     /// <exception cref="UnauthorizedAccessException">Thrown when application does not have privilege to access this method.</exception>
+    /// <since_tizen> 3 </since_tizen>
     public class AdsIdChangedEventArgs : EventArgs
     {
         private readonly string _adsId = null;
@@ -859,6 +914,7 @@ namespace Tizen.System
         /// <summary>
         /// Indicates the current lock state.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public string Value
         {
             get
@@ -879,6 +935,7 @@ namespace Tizen.System
     /// <exception cref="NotSupportedException">Not Supported feature</exception>
     /// <exception cref="InvalidOperationException">Invalid operation</exception>
     /// <exception cref="UnauthorizedAccessException">Thrown when application does not have privilege to access this method.</exception>
+    /// <since_tizen> 3 </since_tizen>
     public class UltraDataSaveChangedEventArgs : EventArgs
     {
         private readonly SystemSettingsUdsState _ultraDataSave = SystemSettingsUdsState.UdsOff;
@@ -890,6 +947,7 @@ namespace Tizen.System
         /// <summary>
         /// Indicates the current lock state.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public SystemSettingsUdsState Value
         {
             get
@@ -910,6 +968,7 @@ namespace Tizen.System
     /// <exception cref="NotSupportedException">Not Supported feature</exception>
     /// <exception cref="InvalidOperationException">Invalid operation</exception>
     /// <exception cref="UnauthorizedAccessException">Thrown when application does not have privilege to access this method.</exception>
+    /// <since_tizen> 3 </since_tizen>
     public class UltraDataSavePackageListChangedEventArgs : EventArgs
     {
         private readonly string _ultraDataSavePackageList = null;
@@ -921,6 +980,7 @@ namespace Tizen.System
         /// <summary>
         /// Indicates the current lock state.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public string Value
         {
             get
@@ -939,6 +999,7 @@ namespace Tizen.System
     /// <exception cref="NotSupportedException">Not Supported feature</exception>
     /// <exception cref="InvalidOperationException">Invalid operation</exception>
     /// <exception cref="UnauthorizedAccessException">Thrown when application does not have privilege to access this method.</exception>
+    /// <since_tizen> 4 </since_tizen>
     public class AccessibilityTtsSettingChangedEventArgs : EventArgs
     {
         private readonly bool _AccessibilityTts;
@@ -950,6 +1011,7 @@ namespace Tizen.System
         /// <summary>
         /// Indicates whether the screen touch sound is enabled on the device.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         public bool Value
         {
             get

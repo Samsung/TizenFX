@@ -21,6 +21,7 @@ namespace Tizen.Network.WiFiDirect
     /// <summary>
     /// A class to handle persistent groups.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public class WiFiDirectPersistentGroup
     {
         private string _address;
@@ -35,6 +36,7 @@ namespace Tizen.Network.WiFiDirect
         /// <summary>
         /// The MAC address of the persistent group owner.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public string MacAddress
         {
             get
@@ -46,6 +48,7 @@ namespace Tizen.Network.WiFiDirect
         /// <summary>
         /// The SSID (Service Set Identifier) of the persistent group owner.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public string Ssid
         {
             get

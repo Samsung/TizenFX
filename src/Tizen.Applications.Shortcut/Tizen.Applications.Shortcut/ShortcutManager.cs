@@ -21,6 +21,7 @@ namespace Tizen.Applications.Shortcut
     /// <summary>
     /// This class provides the some functions to add, delete shortcut.
     /// </summary>
+    /// <since_tizen> 4 </since_tizen>
     public static class ShortcutManager
     {
         private const string LogTag = "Tizen.Applications.Shortcut";
@@ -34,7 +35,7 @@ namespace Tizen.Applications.Shortcut
         /// <summary>
         /// Adds a shortcut on home-screen.
         /// </summary>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 4 </since_tizen>
         /// <param name="shortcut">Object that contain shortcut info.</param>
         /// <feature>http://tizen.org/feature/shortcut</feature>
         /// <privilege>http://tizen.org/privilege/shortcut</privilege>
@@ -80,7 +81,7 @@ namespace Tizen.Applications.Shortcut
         /// <summary>
         /// Adds a shortcut on home-screen.
         /// </summary>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 4 </since_tizen>
         /// <param name="shortcut">Object that contain shortcut info.</param>
         /// <feature>http://tizen.org/feature/shortcut</feature>
         /// <privilege>http://tizen.org/privilege/shortcut</privilege>
@@ -120,7 +121,7 @@ namespace Tizen.Applications.Shortcut
         /// <summary>
         /// Removes a shortcut from home by ShortcutName.
         /// </summary>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 4 </since_tizen>
         /// <param name="shortcutName">Shortcut name string.</param>
         /// <feature>http://tizen.org/feature/shortcut</feature>
         /// <privilege>http://tizen.org/privilege/shortcut</privilege>
@@ -160,7 +161,7 @@ namespace Tizen.Applications.Shortcut
         /// <summary>
         /// Removes a shortcut from home by ShortcutInfo.
         /// </summary>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 4 </since_tizen>
         /// <param name="shortcut">Object that contain shortcut info.</param>
         /// <feature>http://tizen.org/feature/shortcut</feature>
         /// <privilege>http://tizen.org/privilege/shortcut</privilege>

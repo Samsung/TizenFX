@@ -25,6 +25,7 @@ namespace Tizen.NUI
     /// <summary>
     /// A class encapsulating the transform map of the visual.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public class VisualMap
     {
         private Vector2 _visualSize = null;
@@ -65,6 +66,7 @@ namespace Tizen.NUI
         /// <summary>
         /// Constructor.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public VisualMap()
         {
         }
@@ -610,6 +612,7 @@ namespace Tizen.NUI
     /// <summary>
     /// A class encapsulating the property map of the image visual.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public class ImageVisual : VisualMap
     {
         /// <summary>
@@ -924,6 +927,7 @@ namespace Tizen.NUI
     /// <summary>
     /// A class encapsulating the property map of the text visual.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public class TextVisual : VisualMap
     {
         /// <summary>
@@ -1203,6 +1207,7 @@ namespace Tizen.NUI
     /// <summary>
     /// A class encapsulating the property map of the border visual.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public class BorderVisual : VisualMap
     {
         /// <summary>
@@ -1296,6 +1301,7 @@ namespace Tizen.NUI
     /// <summary>
     /// A class encapsulating the property map of the color visual.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public class ColorVisual : VisualMap
     {
         /// <summary>
@@ -1347,6 +1353,7 @@ namespace Tizen.NUI
     /// <summary>
     /// A class encapsulating the property map of the gradient visual.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public class GradientVisual : VisualMap
     {
         /// <summary>
@@ -1545,6 +1552,7 @@ namespace Tizen.NUI
     /// <summary>
     /// A class encapsulating the property map of the mesh visual.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public class MeshVisual : VisualMap
     {
         /// <summary>
@@ -1724,6 +1732,7 @@ namespace Tizen.NUI
     /// <summary>
     /// A class encapsulating the property map of the primetive visual.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public class PrimitiveVisual : VisualMap
     {
         /// <summary>
@@ -2037,6 +2046,7 @@ namespace Tizen.NUI
     /// <summary>
     /// A class encapsulating the property map of the n-patch image visual.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public class NPatchVisual : VisualMap
     {
         /// <summary>
@@ -2132,6 +2142,7 @@ namespace Tizen.NUI
     /// <summary>
     /// A class encapsulating the property map of the SVG visual.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public class SVGVisual : VisualMap
     {
         /// <summary>
@@ -2183,6 +2194,7 @@ namespace Tizen.NUI
     /// <summary>
     /// A class encapsulating the property map of the animated image (AGIF) visual.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public class AnimatedImageVisual : VisualMap
     {
         /// <summary>
@@ -2201,7 +2213,7 @@ namespace Tizen.NUI
         /// <summary>
         /// Gets and Sets the url in the AnimatedImageVisual.
         /// </summary>
-        /// <since_tizen> 4 </since_tizen>
+        /// <since_tizen> 3 </since_tizen>
         public string URL
         {
             get
@@ -2337,6 +2349,7 @@ namespace Tizen.NUI
     /// <summary>
     /// A class encapsulating the property map of the transition data.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public class VisualAnimator : VisualMap
     {
         /// <summary>

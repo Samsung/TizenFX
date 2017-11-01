@@ -4,6 +4,8 @@
     <AllowUnsafeBlocks>True</AllowUnsafeBlocks>
     <GenerateDocumentationFile>True</GenerateDocumentationFile>
     <GenerateDependencyFile>False</GenerateDependencyFile>
+    <Deterministic>True</Deterministic>
+    <ProduceReferenceAssembly>True</ProduceReferenceAssembly>
     <NoWarn>$(NoWarn)</NoWarn>
   </PropertyGroup>
 

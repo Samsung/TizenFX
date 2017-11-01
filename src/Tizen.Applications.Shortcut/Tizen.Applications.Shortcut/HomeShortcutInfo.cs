@@ -19,11 +19,13 @@ namespace Tizen.Applications.Shortcut
     /// <summary>
     /// A class that contains shortcut information.
     /// </summary>
+    /// <since_tizen> 4 </since_tizen>
     public class HomeShortcutInfo : ShortcutInfo
     {
         /// <summary>
         /// Gets or sets the specific information for delivering to the viewer for creating a shortcut.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         public string Uri { get; set; } = string.Empty;
     }
 }
