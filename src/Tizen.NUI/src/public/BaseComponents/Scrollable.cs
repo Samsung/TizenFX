@@ -25,6 +25,7 @@ namespace Tizen.NUI.BaseComponents
     /// Base class for derived Scrollables that contains actors that can be scrolled manually
     /// (via touch) or automatically.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public class Scrollable : View
     {
         private global::System.Runtime.InteropServices.HandleRef swigCPtr;

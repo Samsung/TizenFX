@@ -25,6 +25,7 @@ namespace Tizen.NUI.UIComponents
     /// <summary>
     /// The slider is a control to enable sliding an indicator between two values.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public class Slider : View
     {
         private global::System.Runtime.InteropServices.HandleRef swigCPtr;
@@ -42,6 +43,7 @@ namespace Tizen.NUI.UIComponents
         /// <summary>
         /// Dispose.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         protected override void Dispose(DisposeTypes type)
         {
             if (disposed)
@@ -92,6 +94,7 @@ namespace Tizen.NUI.UIComponents
         /// <summary>
         /// The ValueChanged event arguments.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public class ValueChangedEventArgs : EventArgs
         {
             private Slider _slider;
@@ -133,6 +136,7 @@ namespace Tizen.NUI.UIComponents
         /// <summary>
         /// The SlidingFinished event arguments.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public class SlidingFinishedEventArgs : EventArgs
         {
             private Slider _slider;
@@ -174,6 +178,7 @@ namespace Tizen.NUI.UIComponents
         /// <summary>
         /// The MarkReached event arguments.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public class MarkReachedEventArgs : EventArgs
         {
             private Slider _slider;

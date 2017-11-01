@@ -36,11 +36,12 @@ namespace Tizen.NUI
     /// need to wait for an initialize signal as per the Tizen.NUI.Application class).
     ///
     /// </summary>
+    /// <since_tizen> 4 </since_tizen>
     public class Adaptor : global::System.IDisposable
     {
         private global::System.Runtime.InteropServices.HandleRef swigCPtr;
         /// <summary>swigCMemOwn.</summary>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 4 </since_tizen>
         protected bool swigCMemOwn;
 
         internal Adaptor(global::System.IntPtr cPtr, bool cMemoryOwn)
@@ -59,7 +60,7 @@ namespace Tizen.NUI
         /// <summary>
         /// A Flat to check if it is already disposed.
         /// </summary>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 4 </since_tizen>
         protected bool disposed = false;
 
         /// <summary>
@@ -98,7 +99,7 @@ namespace Tizen.NUI
         /// <summary>
         /// Dispose.
         /// </summary>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 4 </since_tizen>
         protected virtual void Dispose(DisposeTypes type)
         {
             if (disposed)

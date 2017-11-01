@@ -190,7 +190,7 @@ namespace Tizen.NUI
         /// </summary>
         /// <param name="connectionTracker">An object which must implement the ConnectionTrackerInterface</param>
         /// <param name="arg1">The member function to connect</param>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 4 </since_tizen>
         public void Connect(ConnectionTrackerInterface connectionTracker, SWIGTYPE_p_Dali__FunctorDelegate arg1)
         {
             NDalicManualPINVOKE.ImfVoidSignalType_Connect__SWIG_4(swigCPtr, ConnectionTrackerInterface.getCPtr(connectionTracker), SWIGTYPE_p_Dali__FunctorDelegate.getCPtr(arg1));

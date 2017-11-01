@@ -69,10 +69,12 @@ namespace Tizen.NUI
         }
 
 
+        /// <since_tizen> 3 </since_tizen>
         public class ObjectCreatedEventArgs : EventArgs
         {
             private BaseHandle _baseHandle;
 
+            /// <since_tizen> 3 </since_tizen>
             public BaseHandle BaseHandle
             {
                 get
@@ -86,10 +88,12 @@ namespace Tizen.NUI
             }
         }
 
+        /// <since_tizen> 3 </since_tizen>
         public class ObjectDestroyedEventArgs : EventArgs
         {
             private RefObject _refObject;
 
+            /// <since_tizen> 3 </since_tizen>
             public RefObject RefObject
             {
                 get

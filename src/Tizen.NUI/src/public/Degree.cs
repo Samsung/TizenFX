@@ -22,12 +22,14 @@ namespace Tizen.NUI
     /// An angle in degrees.<br />
     /// This reduces ambiguity when using methods which accept angles in degrees or radians.<br />
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public class Degree : global::System.IDisposable
     {
         private global::System.Runtime.InteropServices.HandleRef swigCPtr;
         /// <summary>
         /// swigCMemOwn.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         protected bool swigCMemOwn;
 
         internal Degree(global::System.IntPtr cPtr, bool cMemoryOwn)
@@ -46,6 +48,7 @@ namespace Tizen.NUI
         /// <summary>
         /// A Flat to check if it is already disposed.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         protected bool disposed = false;
 
         /// <summary>

@@ -25,6 +25,7 @@ namespace Tizen.NUI
     /// <summary>
     /// Represents an application that have a UI screen. The NUIApplication class has a default stage.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public class NUIApplication : CoreApplication
     {
         /// <summary>
@@ -74,6 +75,7 @@ namespace Tizen.NUI
         /// <summary>
         /// Overrides this method if you want to handle behavior.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         protected override void OnLocaleChanged(LocaleChangedEventArgs e)
         {
             base.OnLocaleChanged(e);
@@ -82,6 +84,7 @@ namespace Tizen.NUI
         /// <summary>
         /// Overrides this method if you want to handle behavior.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         protected override void OnLowBattery(LowBatteryEventArgs e)
         {
             base.OnLowBattery(e);
@@ -90,6 +93,7 @@ namespace Tizen.NUI
         /// <summary>
         /// Overrides this method if you want to handle behavior.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         protected override void OnLowMemory(LowMemoryEventArgs e)
         {
             base.OnLowMemory(e);
@@ -98,6 +102,7 @@ namespace Tizen.NUI
         /// <summary>
         /// Overrides this method if you want to handle behavior.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         protected override void OnRegionFormatChanged(RegionFormatChangedEventArgs e)
         {
             base.OnRegionFormatChanged(e);
@@ -106,6 +111,7 @@ namespace Tizen.NUI
         /// <summary>
         /// Overrides this method if you want to handle behavior.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         protected override void OnTerminate()
         {
             base.OnTerminate();
@@ -114,6 +120,7 @@ namespace Tizen.NUI
         /// <summary>
         /// Overrides this method if you want to handle behavior.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         protected virtual void OnPause()
         {
             Paused?.Invoke(this, EventArgs.Empty);
@@ -122,6 +129,7 @@ namespace Tizen.NUI
         /// <summary>
         /// Overrides this method if you want to handle behavior.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         protected virtual void OnResume()
         {
             Resumed?.Invoke(this, EventArgs.Empty);
@@ -130,6 +138,7 @@ namespace Tizen.NUI
         /// <summary>
         /// Overrides this method if you want to handle behavior.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         protected virtual void OnPreCreate()
         {
         }
@@ -137,6 +146,7 @@ namespace Tizen.NUI
         /// <summary>
         /// Overrides this method if you want to handle behavior.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         protected override void OnAppControlReceived(AppControlReceivedEventArgs e)
         {
             if (e != null)
@@ -150,6 +160,7 @@ namespace Tizen.NUI
         /// <summary>
         /// Overrides this method if you want to handle behavior.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         protected override void OnCreate()
         {
             // This is also required to create DisposeQueue on main thread.
@@ -237,6 +248,7 @@ namespace Tizen.NUI
         /// <summary>
         /// Gets the window instance.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         [Obsolete("Please do not use! this will be deprecated")]
         public Window Window
         {

@@ -23,6 +23,7 @@ namespace Tizen.NUI
     /// RelativeVector4 is a four-dimensional vector.
     /// All values (x, y, and z) should be between [0, 1].
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public class RelativeVector4 : global::System.IDisposable
     {
         private global::System.Runtime.InteropServices.HandleRef swigCPtr;

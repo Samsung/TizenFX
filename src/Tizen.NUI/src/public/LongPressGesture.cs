@@ -22,6 +22,7 @@ namespace Tizen.NUI
     /// A long press gesture is emitted when the user holds the screen with the stated number of fingers.<br />
     /// A long press gesture finishes when all touches have been released.<br />
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public class LongPressGesture : Gesture
     {
         private global::System.Runtime.InteropServices.HandleRef swigCPtr;

@@ -71,10 +71,12 @@ namespace Tizen.NUI
 
 
 
+        /// <since_tizen> 3 </since_tizen>
         public class PagePanStartedEventArgs : EventArgs
         {
             private PageTurnView _pageTurnView;
 
+            /// <since_tizen> 3 </since_tizen>
             public PageTurnView PageTurnView
             {
                 get
@@ -88,10 +90,12 @@ namespace Tizen.NUI
             }
         }
 
+        /// <since_tizen> 3 </since_tizen>
         public class PagePanFinishedEventArgs : EventArgs
         {
             private PageTurnView _pageTurnView;
 
+            /// <since_tizen> 3 </since_tizen>
             public PageTurnView PageTurnView
             {
                 get
@@ -105,12 +109,14 @@ namespace Tizen.NUI
             }
         }
 
+        /// <since_tizen> 3 </since_tizen>
         public class PageTurnStartedEventArgs : EventArgs
         {
             private PageTurnView _pageTurnView;
             private uint _pageIndex;
             private bool _isTurningForward;
 
+            /// <since_tizen> 3 </since_tizen>
             public PageTurnView PageTurnView
             {
                 get
@@ -123,6 +129,7 @@ namespace Tizen.NUI
                 }
             }
 
+            /// <since_tizen> 3 </since_tizen>
             public uint PageIndex
             {
                 get
@@ -135,6 +142,7 @@ namespace Tizen.NUI
                 }
             }
 
+            /// <since_tizen> 3 </since_tizen>
             public bool IsTurningForward
             {
                 get
@@ -149,12 +157,14 @@ namespace Tizen.NUI
 
         }
 
+        /// <since_tizen> 3 </since_tizen>
         public class PageTurnFinishedEventArgs : EventArgs
         {
             private PageTurnView _pageTurnView;
             private uint _pageIndex;
             private bool _isTurningForward;
 
+            /// <since_tizen> 3 </since_tizen>
             public PageTurnView PageTurnView
             {
                 get
@@ -167,6 +177,7 @@ namespace Tizen.NUI
                 }
             }
 
+            /// <since_tizen> 3 </since_tizen>
             public uint PageIndex
             {
                 get
@@ -179,6 +190,7 @@ namespace Tizen.NUI
                 }
             }
 
+            /// <since_tizen> 3 </since_tizen>
             public bool IsTurningForward
             {
                 get
@@ -413,9 +425,11 @@ namespace Tizen.NUI
         }
 
 
+        /// <since_tizen> 3 </since_tizen>
         public new class Property : global::System.IDisposable
         {
             private global::System.Runtime.InteropServices.HandleRef swigCPtr;
+            /// <since_tizen> 3 </since_tizen>
             protected bool swigCMemOwn;
 
             internal Property(global::System.IntPtr cPtr, bool cMemoryOwn)
@@ -432,6 +446,7 @@ namespace Tizen.NUI
             //A Flag to check who called Dispose(). (By User or DisposeQueue)
             private bool isDisposeQueued = false;
             //A Flat to check if it is already disposed.
+            /// <since_tizen> 3 </since_tizen>
             protected bool disposed = false;
 
 
@@ -444,6 +459,7 @@ namespace Tizen.NUI
                 }
             }
 
+            /// <since_tizen> 3 </since_tizen>
             public void Dispose()
             {
                 //Throw excpetion if Dispose() is called in separate thread.
@@ -463,6 +479,7 @@ namespace Tizen.NUI
                 }
             }
 
+            /// <since_tizen> 3 </since_tizen>
             protected virtual void Dispose(DisposeTypes type)
             {
                 if (disposed)
@@ -495,13 +512,17 @@ namespace Tizen.NUI
                 disposed = true;
             }
 
+            /// <since_tizen> 3 </since_tizen>
             public Property() : this(NDalicPINVOKE.new_PageTurnView_Property(), true)
             {
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
 
+            /// <since_tizen> 3 </since_tizen>
             public static readonly int PAGE_SIZE = NDalicPINVOKE.PageTurnView_Property_PAGE_SIZE_get();
+            /// <since_tizen> 3 </since_tizen>
             public static readonly int CURRENT_PAGE_ID = NDalicPINVOKE.PageTurnView_Property_CURRENT_PAGE_ID_get();
+            /// <since_tizen> 3 </since_tizen>
             public static readonly int SPINE_SHADOW = NDalicPINVOKE.PageTurnView_Property_SPINE_SHADOW_get();
 
         }

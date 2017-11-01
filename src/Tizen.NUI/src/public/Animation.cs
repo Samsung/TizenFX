@@ -29,6 +29,7 @@ namespace Tizen.NUI
     /// The overall animation time is superseded by the values given in the animation time used when calling the AnimateTo(), AnimateBy(), AnimateBetween() and AnimatePath() methods.<br />
     /// If any of the individual calls to those functions exceeds the overall animation time (Duration), then the overall animation time is automatically extended.<br />
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public class Animation : BaseHandle
     {
         private global::System.Runtime.InteropServices.HandleRef swigCPtr;
@@ -46,6 +47,7 @@ namespace Tizen.NUI
         /// <summary>
         /// To make animation instance be disposed.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         protected override void Dispose(DisposeTypes type)
         {
             if(disposed)
@@ -122,6 +124,7 @@ namespace Tizen.NUI
         * @brief Event for the finished signal which can be used to subscribe or unsubscribe the event handler.
         * The finished signal is emitted when an animation's animations have finished.
         */
+        /// <since_tizen> 3 </since_tizen>
         public event EventHandler Finished
         {
             add
@@ -164,6 +167,7 @@ namespace Tizen.NUI
         * @brief Event for the ProgressReached signal, which can be used to subscribe or unsubscribe the event handler.
         * The ProgressReached signal is emitted when the animation has reached a given progress percentage, this is set in the api SetProgressNotification.
         */
+        /// <since_tizen> 3 </since_tizen>
         public event EventHandler ProgressReached
         {
             add

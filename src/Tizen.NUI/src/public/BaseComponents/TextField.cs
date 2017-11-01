@@ -27,6 +27,7 @@ namespace Tizen.NUI.BaseComponents
     /// <summary>
     /// A control which provides a single line editable text field.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public class TextField : View
     {
         private global::System.Runtime.InteropServices.HandleRef swigCPtr;
@@ -47,6 +48,7 @@ namespace Tizen.NUI.BaseComponents
         /// <summary>
         /// Dispose.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         protected override void Dispose(DisposeTypes type)
         {
             if (disposed)
@@ -92,6 +94,7 @@ namespace Tizen.NUI.BaseComponents
         /// <summary>
         /// The TextChanged event arguments.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public class TextChangedEventArgs : EventArgs
         {
             private TextField _textField;
@@ -116,6 +119,7 @@ namespace Tizen.NUI.BaseComponents
         /// <summary>
         /// The MaxLengthReached event arguments.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public class MaxLengthReachedEventArgs : EventArgs
         {
             private TextField _textField;
@@ -1378,7 +1382,7 @@ namespace Tizen.NUI.BaseComponents
         /// <summary>
         /// The Enable selection property.
         /// </summary>
-        /// <since_tizen> 4 </since_tizen>
+        /// <since_tizen> 3 </since_tizen>
         public bool EnableSelection
         {
             get
@@ -1417,7 +1421,7 @@ namespace Tizen.NUI.BaseComponents
         /// field.Placeholder = propertyMap;
         /// </code>
         /// </example>
-        /// <since_tizen> 4 </since_tizen>
+        /// <since_tizen> 3 </since_tizen>
         public Tizen.NUI.PropertyMap Placeholder
         {
             get

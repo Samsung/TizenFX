@@ -19,6 +19,7 @@ namespace Tizen.NUI
     /// <summary>
     /// A class encapsulating the input method map.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public class InputMethod
     {
         private PanelLayoutType? _panelLayout = null;

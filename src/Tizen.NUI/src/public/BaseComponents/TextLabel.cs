@@ -27,6 +27,7 @@ namespace Tizen.NUI.BaseComponents
     /// A control which renders a short text string.<br />
     /// Text labels are lightweight, non-editable, and do not respond to the user input.<br />
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public class TextLabel : View
     {
         private global::System.Runtime.InteropServices.HandleRef swigCPtr;
@@ -45,6 +46,7 @@ namespace Tizen.NUI.BaseComponents
         /// <summary>
         /// Dispose.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         protected override void Dispose(DisposeTypes type)
         {
             if (disposed)
@@ -800,7 +802,7 @@ namespace Tizen.NUI.BaseComponents
         /// <summary>
         /// The line count of the text.
         /// </summary>
-        /// <since_tizen> 4 </since_tizen>
+        /// <since_tizen> 3 </since_tizen>
         public int LineCount
         {
             get

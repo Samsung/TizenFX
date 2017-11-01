@@ -25,6 +25,7 @@ namespace Tizen.NUI
     /// A 3D parametric curve.<br />
     /// Paths can be used to animate the position and orientation of actors.<br />
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public class Path : BaseHandle
     {
         private global::System.Runtime.InteropServices.HandleRef swigCPtr;

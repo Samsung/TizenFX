@@ -244,6 +244,7 @@ namespace Tizen.NUI
     /// <summary>
     /// An array of property values.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public class PropertyArray : global::System.IDisposable
     {
         private global::System.Runtime.InteropServices.HandleRef swigCPtr;
@@ -267,9 +268,9 @@ namespace Tizen.NUI
         //A Flag to check who called Dispose(). (By User or DisposeQueue)
         private bool isDisposeQueued = false;
         /// <summary>
-        /// <since_tizen> 3 </since_tizen>
         /// A Flat to check if it is already disposed.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         protected bool disposed = false;
 
         /// <summary>
@@ -502,6 +503,7 @@ namespace Tizen.NUI
     /// <summary>
     /// A key type which can be either a std::string or a Property::Index.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public class PropertyKey : global::System.IDisposable
     {
         private global::System.Runtime.InteropServices.HandleRef swigCPtr;
@@ -525,9 +527,9 @@ namespace Tizen.NUI
         //A Flag to check who called Dispose(). (By User or DisposeQueue)
         private bool isDisposeQueued = false;
         /// <summary>
-        /// <since_tizen> 3 </since_tizen>
         /// A Flat to check if it is already disposed.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         protected bool disposed = false;
 
         /// <summary>
@@ -778,6 +780,7 @@ namespace Tizen.NUI
     /// <summary>
     /// A map of property values, the key type could be string or Property::Index.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public class PropertyMap : global::System.IDisposable
     {
         private global::System.Runtime.InteropServices.HandleRef swigCPtr;
@@ -801,9 +804,9 @@ namespace Tizen.NUI
         //A Flag to check who called Dispose(). (By User or DisposeQueue)
         private bool isDisposeQueued = false;
         /// <summary>
-        /// <since_tizen> 3 </since_tizen>
         /// A Flat to check if it is already disposed.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         protected bool disposed = false;
 
         /// <summary>
@@ -1165,6 +1168,7 @@ namespace Tizen.NUI
     /// <summary>
     /// A value-type representing a property value.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public class PropertyValue : global::System.IDisposable
     {
         private global::System.Runtime.InteropServices.HandleRef swigCPtr;
@@ -1188,9 +1192,9 @@ namespace Tizen.NUI
         //A Flag to check who called Dispose(). (By User or DisposeQueue)
         private bool isDisposeQueued = false;
         /// <summary>
-        /// <since_tizen> 3 </since_tizen>
         /// A Flat to check if it is already disposed.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         protected bool disposed = false;
 
         /// <summary>

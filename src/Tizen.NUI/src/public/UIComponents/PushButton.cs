@@ -25,6 +25,7 @@ namespace Tizen.NUI.UIComponents
     /// <summary>
     /// The PushButton changes its appearance when it is pressed, and returns to its original when it is released.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public class PushButton : Button
     {
         private global::System.Runtime.InteropServices.HandleRef swigCPtr;
@@ -42,6 +43,7 @@ namespace Tizen.NUI.UIComponents
         /// <summary>
         /// To dispose the PushButton instance.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         protected override void Dispose(DisposeTypes type)
         {
             if (disposed)

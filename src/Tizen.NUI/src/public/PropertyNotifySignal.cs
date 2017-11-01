@@ -21,13 +21,14 @@ namespace Tizen.NUI
     ///<summary>
     /// Signal connection class for PropertyNotification
     ///</summary>
+    /// <since_tizen> 4 </since_tizen>
     public class PropertyNotifySignal : global::System.IDisposable
     {
         private global::System.Runtime.InteropServices.HandleRef swigCPtr;
         /// <summary>
         /// swigCMemOwn
         /// </summary>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 4 </since_tizen>
         protected bool swigCMemOwn;
 
         internal PropertyNotifySignal(global::System.IntPtr cPtr, bool cMemoryOwn)
@@ -46,7 +47,7 @@ namespace Tizen.NUI
         /// <summary>
         /// A Flat to check if it is already disposed.
         /// </summary>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 4 </since_tizen>
         protected bool disposed = false;
 
         /// <summary>
@@ -65,7 +66,7 @@ namespace Tizen.NUI
         /// <summary>
         /// Dispose
         /// </summary>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 4 </since_tizen>
         public void Dispose()
         {
             //Throw excpetion if Dispose() is called in separate thread.
@@ -89,7 +90,7 @@ namespace Tizen.NUI
         /// Dispose
         /// </summary>
         /// <param name="type">The dispose type.</param>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 4 </since_tizen>
         protected virtual void Dispose(DisposeTypes type)
         {
             if (disposed)
@@ -126,7 +127,7 @@ namespace Tizen.NUI
         /// Queries whether there are any connected slots.
         /// </summary>
         /// <returns>True if there are any slots connected to the signal.</returns>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 4 </since_tizen>
         public bool Empty()
         {
             bool ret = NDalicPINVOKE.PropertyNotifySignal_Empty(swigCPtr);
@@ -138,7 +139,7 @@ namespace Tizen.NUI
         /// Queries the number of slots.
         /// </summary>
         /// <returns>The number of slots connected to this signal</returns>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 4 </since_tizen>
         public uint GetConnectionCount()
         {
             uint ret = NDalicPINVOKE.PropertyNotifySignal_GetConnectionCount(swigCPtr);
@@ -150,7 +151,7 @@ namespace Tizen.NUI
         /// Connects a function.
         /// </summary>
         /// <param name="func">The function to connect</param>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 4 </since_tizen>
         public void Connect(System.Delegate func)
         {
             System.IntPtr ip = System.Runtime.InteropServices.Marshal.GetFunctionPointerForDelegate<System.Delegate>(func);
@@ -164,7 +165,7 @@ namespace Tizen.NUI
         /// Disconnects a function.
         /// </summary>
         /// <param name="func">The function to disconnect.</param>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 4 </since_tizen>
         public void Disconnect(System.Delegate func)
         {
             System.IntPtr ip = System.Runtime.InteropServices.Marshal.GetFunctionPointerForDelegate<System.Delegate>(func);
@@ -178,7 +179,7 @@ namespace Tizen.NUI
         /// Emits a signal with 1 parameter.
         /// </summary>
         /// <param name="arg">The first value to pass to callbacks.</param>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 4 </since_tizen>
         public void Emit(PropertyNotification arg)
         {
             NDalicPINVOKE.PropertyNotifySignal_Emit(swigCPtr, PropertyNotification.getCPtr(arg));
@@ -188,7 +189,7 @@ namespace Tizen.NUI
         /// <summary>
         /// The constructor.
         /// </summary>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 4 </since_tizen>
         public PropertyNotifySignal() : this(NDalicPINVOKE.new_PropertyNotifySignal(), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();

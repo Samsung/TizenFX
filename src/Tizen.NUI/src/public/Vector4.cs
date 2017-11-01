@@ -21,12 +21,14 @@ namespace Tizen.NUI
     /// <summary>
     /// A four-dimensional vector.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public class Vector4 : global::System.IDisposable
     {
         private global::System.Runtime.InteropServices.HandleRef swigCPtr;
         /// <summary>
         /// swigCMemOwn.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         protected bool swigCMemOwn;
 
         internal Vector4(global::System.IntPtr cPtr, bool cMemoryOwn)
@@ -46,6 +48,7 @@ namespace Tizen.NUI
         /// <summary>
         /// A Flat to check if it is already disposed.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         protected bool disposed = false;
 
         /// <summary>

@@ -38,6 +38,7 @@ namespace Tizen.NUI.BaseComponents
     /// _visualView.AddVisual("imageVisual1", imageVisualMap1);
     /// </code>
     /// </example>
+    /// <since_tizen> 3 </since_tizen>
     public class VisualView : CustomView
     {
         //private LinkedList<VisualBase> _visualList = null;

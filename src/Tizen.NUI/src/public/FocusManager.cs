@@ -27,6 +27,7 @@ namespace Tizen.NUI
     /// It provides functionality of setting the focus and moving the focus in four directions( i.e., left, right, up, and down).<br />
     /// It also draws a highlight for the focused view and sends an event when the focus is changed.<br />
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public class FocusManager : BaseHandle
     {
         private global::System.Runtime.InteropServices.HandleRef swigCPtr;
@@ -48,6 +49,7 @@ namespace Tizen.NUI
         /// Please DO NOT use! This will be deprecated!
         /// Dispose() method in Singletone classes (ex: FocusManager, StyleManager, VisualFactory, IMFManager, TtsPlayer, Window) is not required.
         /// Because it is Sigletone, so it is alive for one thread until the NUI is terminated, so it never be disposed.
+        /// <since_tizen> 3 </since_tizen>
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected override void Dispose(DisposeTypes type)
         {
@@ -109,6 +111,7 @@ namespace Tizen.NUI
         ///<summary>
         /// Event arguments that passed via the PreFocusChange signal.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public class PreFocusChangeEventArgs : EventArgs
         {
             private View _current;
@@ -249,6 +252,7 @@ namespace Tizen.NUI
         ///<summary>
         /// Event arguments that passed via the FocusChanged signal.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public class FocusChangedEventArgs : EventArgs
         {
             private View _current;
@@ -333,6 +337,7 @@ namespace Tizen.NUI
         ///<summary>
         /// Event arguments that passed via the FocusGroupChanged signal.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public class FocusGroupChangedEventArgs : EventArgs
         {
             private View _current;
@@ -420,6 +425,7 @@ namespace Tizen.NUI
         ///<summary>
         /// Event arguments that passed via the FocusedViewEnterKey signal.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         public class FocusedViewActivatedEventArgs : EventArgs
         {
             private View _view;
@@ -449,7 +455,7 @@ namespace Tizen.NUI
         /// <summary>
         /// The FocusedViewActivated will be triggered when the current focused view has the enter key pressed on it.
         /// </summary>
-        /// <since_tizen> 4 </since_tizen>
+        /// <since_tizen> 3 </since_tizen>
         public event EventHandler<FocusedViewActivatedEventArgs> FocusedViewActivated
         {
             add
@@ -557,7 +563,7 @@ namespace Tizen.NUI
         /// <summary>
         /// Move the focus to previous focused view.
         /// </summary>
-        /// <since_tizen> 4 </since_tizen>
+        /// <since_tizen> 3 </since_tizen>
         public void MoveFocusBackward()
         {
             NDalicManualPINVOKE.FocusManager_MoveFocusBackward(swigCPtr);
@@ -786,6 +792,7 @@ namespace Tizen.NUI
             /// <summary>
             /// View.
             /// </summary>
+            /// <since_tizen> 3 </since_tizen>
             public View View
             {
                 get

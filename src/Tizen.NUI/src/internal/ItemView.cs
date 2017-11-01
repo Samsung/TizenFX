@@ -84,19 +84,32 @@ namespace Tizen.NUI
             }
         }
 
+        /// <since_tizen> 3 </since_tizen>
         public new class Property
         {
+            /// <since_tizen> 3 </since_tizen>
             public static readonly int LAYOUT = NDalicManualPINVOKE.ItemView_Property_LAYOUT_get();
+            /// <since_tizen> 3 </since_tizen>
             public static readonly int MINIMUM_SWIPE_SPEED = NDalicPINVOKE.ItemView_Property_MINIMUM_SWIPE_SPEED_get();
+            /// <since_tizen> 3 </since_tizen>
             public static readonly int MINIMUM_SWIPE_DISTANCE = NDalicPINVOKE.ItemView_Property_MINIMUM_SWIPE_DISTANCE_get();
+            /// <since_tizen> 3 </since_tizen>
             public static readonly int WHEEL_SCROLL_DISTANCE_STEP = NDalicPINVOKE.ItemView_Property_WHEEL_SCROLL_DISTANCE_STEP_get();
+            /// <since_tizen> 3 </since_tizen>
             public static readonly int SNAP_TO_ITEM_ENABLED = NDalicPINVOKE.ItemView_Property_SNAP_TO_ITEM_ENABLED_get();
+            /// <since_tizen> 3 </since_tizen>
             public static readonly int REFRESH_INTERVAL = NDalicPINVOKE.ItemView_Property_REFRESH_INTERVAL_get();
+            /// <since_tizen> 3 </since_tizen>
             public static readonly int LAYOUT_POSITION = NDalicPINVOKE.ItemView_Property_LAYOUT_POSITION_get();
+            /// <since_tizen> 3 </since_tizen>
             public static readonly int SCROLL_SPEED = NDalicPINVOKE.ItemView_Property_SCROLL_SPEED_get();
+            /// <since_tizen> 3 </since_tizen>
             public static readonly int OVERSHOOT = NDalicPINVOKE.ItemView_Property_OVERSHOOT_get();
+            /// <since_tizen> 3 </since_tizen>
             public static readonly int SCROLL_DIRECTION = NDalicPINVOKE.ItemView_Property_SCROLL_DIRECTION_get();
+            /// <since_tizen> 3 </since_tizen>
             public static readonly int LAYOUT_ORIENTATION = NDalicPINVOKE.ItemView_Property_LAYOUT_ORIENTATION_get();
+            /// <since_tizen> 3 </since_tizen>
             public static readonly int SCROLL_CONTENT_SIZE = NDalicPINVOKE.ItemView_Property_SCROLL_CONTENT_SIZE_get();
         }
 

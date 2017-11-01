@@ -23,6 +23,7 @@ namespace Tizen.NUI
     /// Understanding an animation as a parametric function over time, the alpha function is applied to the parameter of
     /// the animation before computing the final animation value.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public class AlphaFunction : global::System.IDisposable
     {
         private global::System.Runtime.InteropServices.HandleRef swigCPtr;

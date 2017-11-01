@@ -137,9 +137,11 @@ namespace Tizen.NUI
             return ret;
         }
 
+        /// <since_tizen> 3 </since_tizen>
         public class AnyContainerBase : global::System.IDisposable
         {
             private global::System.Runtime.InteropServices.HandleRef swigCPtr;
+            /// <since_tizen> 3 </since_tizen>
             protected bool swigCMemOwn;
 
             internal AnyContainerBase(global::System.IntPtr cPtr, bool cMemoryOwn)
@@ -156,6 +158,7 @@ namespace Tizen.NUI
             //A Flag to check who called Dispose(). (By User or DisposeQueue)
             private bool isDisposeQueued = false;
             //A Flat to check if it is already disposed.
+            /// <since_tizen> 3 </since_tizen>
             protected bool disposed = false;
 
             ~AnyContainerBase()
@@ -167,6 +170,7 @@ namespace Tizen.NUI
                 }
             }
 
+            /// <since_tizen> 3 </since_tizen>
             public void Dispose()
             {
                 //Throw excpetion if Dispose() is called in separate thread.
@@ -186,6 +190,7 @@ namespace Tizen.NUI
                 }
             }
 
+            /// <since_tizen> 3 </since_tizen>
             protected virtual void Dispose(DisposeTypes type)
             {
                 if (disposed)
@@ -218,11 +223,13 @@ namespace Tizen.NUI
                 disposed = true;
             }
 
+            /// <since_tizen> 3 </since_tizen>
             public AnyContainerBase(SWIGTYPE_p_std__type_info type, SWIGTYPE_p_f_r_q_const__Dali__Any__AnyContainerBase__p_Dali__Any__AnyContainerBase cloneFunc, SWIGTYPE_p_f_p_q_const__Dali__Any__AnyContainerBase__void deleteFunc) : this(NDalicPINVOKE.new_Any_AnyContainerBase(SWIGTYPE_p_std__type_info.getCPtr(type), SWIGTYPE_p_f_r_q_const__Dali__Any__AnyContainerBase__p_Dali__Any__AnyContainerBase.getCPtr(cloneFunc), SWIGTYPE_p_f_p_q_const__Dali__Any__AnyContainerBase__void.getCPtr(deleteFunc)), true)
             {
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
 
+            /// <since_tizen> 3 </since_tizen>
             public new SWIGTYPE_p_std__type_info GetType()
             {
                 SWIGTYPE_p_std__type_info ret = new SWIGTYPE_p_std__type_info(NDalicPINVOKE.Any_AnyContainerBase_GetType(swigCPtr), false);
@@ -230,6 +237,7 @@ namespace Tizen.NUI
                 return ret;
             }
 
+            /// <since_tizen> 3 </since_tizen>
             public SWIGTYPE_p_std__type_info mType
             {
                 get
@@ -240,6 +248,7 @@ namespace Tizen.NUI
                 }
             }
 
+            /// <since_tizen> 3 </since_tizen>
             public SWIGTYPE_p_f_r_q_const__Dali__Any__AnyContainerBase__p_Dali__Any__AnyContainerBase mCloneFunc
             {
                 set
@@ -256,6 +265,7 @@ namespace Tizen.NUI
                 }
             }
 
+            /// <since_tizen> 3 </since_tizen>
             public SWIGTYPE_p_f_p_q_const__Dali__Any__AnyContainerBase__void mDeleteFunc
             {
                 set

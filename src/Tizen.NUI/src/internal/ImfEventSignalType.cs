@@ -183,7 +183,7 @@ namespace Tizen.NUI
         /// <param name="arg1">The first value to pass to callbacks</param>
         /// <param name="arg2">The second value to pass to callbacks</param>
         /// <returns>The value returned by the last callback, or a default constructed value if no callbacks are connected</returns>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 4 </since_tizen>
         public ImfManager.ImfCallbackData Emit(ImfManager arg1, ImfManager.ImfEventData arg2)
         {
             ImfManager.ImfCallbackData ret = new ImfManager.ImfCallbackData(NDalicManualPINVOKE.ImfEventSignalType_Emit(swigCPtr, ImfManager.getCPtr(arg1), ImfManager.ImfEventData.getCPtr(arg2)), true);

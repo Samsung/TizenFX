@@ -199,11 +199,13 @@ namespace Tizen.NUI
         /// <summary>
         /// Event arguments that passed via widget app event signal.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         public class WidgetApplicationEventArgs : EventArgs
         {
             /// <summary>
             /// Widget application.
             /// </summary>
+            /// <since_tizen> 4 </since_tizen>
             public WidgetApplication WidgetApplication
             {
                 get;

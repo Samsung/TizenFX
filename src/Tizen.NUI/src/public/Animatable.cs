@@ -21,6 +21,7 @@ namespace Tizen.NUI
     /// <summary>
     /// Animatable.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public class Animatable : BaseHandle
     {
         private global::System.Runtime.InteropServices.HandleRef swigCPtr;

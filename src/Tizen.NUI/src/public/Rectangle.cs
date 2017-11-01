@@ -21,6 +21,7 @@ namespace Tizen.NUI
     /// <summary>
     /// The Rectangle class.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public class Rectangle : global::System.IDisposable
     {
         private global::System.Runtime.InteropServices.HandleRef swigCPtr;

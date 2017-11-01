@@ -24,12 +24,14 @@ namespace Tizen.NUI
     /// We support a mouse device and there may be another custom device that support the wheel event. The device type is specified as \e type.<br />
     /// The mouse wheel event can be sent to the specific actor but the custom wheel event will be sent to the window.<br />
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public class Wheel : global::System.IDisposable
     {
         private global::System.Runtime.InteropServices.HandleRef swigCPtr;
         /// <summary>
         /// swigCMemOwn.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         protected bool swigCMemOwn;
 
         internal Wheel(global::System.IntPtr cPtr, bool cMemoryOwn)
@@ -49,6 +51,7 @@ namespace Tizen.NUI
         /// <summary>
         /// A Flat to check if it is already disposed.
         /// </summary>
+        /// <since_tizen> 3 </since_tizen>
         protected bool disposed = false;
 
         /// <summary>

@@ -21,6 +21,7 @@ namespace Tizen.NUI
     /// <summary>
     /// The key structure is used to store a key press.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public class Key : global::System.IDisposable
     {
         private global::System.Runtime.InteropServices.HandleRef swigCPtr;

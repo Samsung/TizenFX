@@ -22,6 +22,7 @@ namespace Tizen.NUI
     /// <summary>
     /// ViewWrapper.
     /// </summary>
+    /// <since_tizen> 3 </since_tizen>
     public class ViewWrapper : View
     {
         private global::System.Runtime.InteropServices.HandleRef swigCPtr;
