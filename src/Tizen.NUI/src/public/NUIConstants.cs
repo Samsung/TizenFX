@@ -1215,7 +1215,13 @@ namespace Tizen.NUI
         /// </summary>
         /// <since_tizen> 4 </since_tizen>
         public static readonly int FrameDelay = NDalic.IMAGE_VISUAL_FRAME_DELAY;
-
+        /// <summary>
+        /// Whether to corrcet orientation of image
+        /// </summary>
+        /// <since_tizen> 5 </since_tizen>
+        /// This will be released at Tizen.NET API Level 5, so currently this would be used as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static readonly int OrientationCorrection = CropToMask + 3;
     }
 
     /// <summary>
