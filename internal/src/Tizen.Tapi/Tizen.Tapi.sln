@@ -5,9 +5,9 @@ VisualStudioVersion = 15.0.26430.12
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tizen.Tapi", "Tizen.Tapi.csproj", "{77F9FF6F-DF82-4A48-AFF8-9031B5065AA5}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tizen", "..\Tizen\Tizen.csproj", "{79F086CB-DB6C-452F-A15C-274676452682}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tizen", "..\..\..\src\Tizen\Tizen.csproj", "{79F086CB-DB6C-452F-A15C-274676452682}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tizen.Log", "..\Tizen.Log\Tizen.Log.csproj", "{29669E98-429B-4FDD-8E21-85D78B07346F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tizen.Log", "..\..\..\src\Tizen.Log\Tizen.Log.csproj", "{29669E98-429B-4FDD-8E21-85D78B07346F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

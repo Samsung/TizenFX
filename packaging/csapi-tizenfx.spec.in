@@ -1,7 +1,3 @@
-# !! IMPORTANT !!
-# This packaging spec file is for developer testing only.
-# For Tizen release, the spec.in file should be used.
-
 %define DOTNET_ASSEMBLY_PATH /usr/share/dotnet.tizen/framework
 %define DOTNET_ASSEMBLY_DUMMY_PATH %{DOTNET_ASSEMBLY_PATH}/ref
 %define DOTNET_ASSEMBLY_RES_PATH %{DOTNET_ASSEMBLY_PATH}/res
@@ -9,13 +5,13 @@
 
 %define _tizenfx_bin_path Artifacts
 
-%define TIZEN_NET_API_VERSION 5
-%define TIZEN_NET_NUGET_VERSION 5.0.0-preview1
-%define TIZEN_NET_INTERNAL_NUGET_VERSION 5.0.0.999
+%define TIZEN_NET_API_VERSION 4
+%define TIZEN_NET_NUGET_VERSION @nuget_version@
+%define TIZEN_NET_INTERNAL_NUGET_VERSION @internal_nuget_version@
 
 Name:       csapi-tizenfx
 Summary:    Assemblies of Tizen .NET
-Version:    99.99.99
+Version:    @rpm_version@
 Release:    1
 Group:      Development/Libraries
 License:    Apache-2.0
