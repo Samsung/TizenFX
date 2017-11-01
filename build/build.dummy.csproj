@@ -26,7 +26,7 @@
   <!-- Source assemblies -->
   <ItemGroup>
     <TizenAssemblies Include="$(OutputPublicDir)\*.dll" />
-    <TizenAssemblies Include="$(OutputPlatformDir)\*.dll" />
+    <TizenAssemblies Include="$(OutputInternalDir)\*.dll" />
   </ItemGroup>
 
   <Import Project="Sdk.targets" Sdk="Microsoft.NET.Sdk" />

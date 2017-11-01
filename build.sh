@@ -10,7 +10,7 @@ RETRY_CMD="$SCRIPT_DIR/tools/retry.sh"
 TIMEOUT_CMD="$SCRIPT_DIR/tools/timeout.sh"
 DOTNET_CMD="$RETRY_CMD $TIMEOUT_CMD 600 dotnet"
 
-RUN_BUILD="$DOTNET_CMD msbuild $SCRIPT_DIR/build/build.proj"
+RUN_BUILD="$DOTNET_CMD msbuild $SCRIPT_DIR/build/build.proj /nologo"
 RUN_BUILD_DUMMY="$DOTNET_CMD build $SCRIPT_DIR/build/build.dummy.csproj"
 
 usage() {
@@ -31,14 +31,17 @@ cmd_build() {
   if [ -d /nuget ]; then
     NUGET_SOURCE_OPT="/p:RestoreSources=/nuget"
   fi
-  $RUN_BUILD /t:build /p:Project=$1 $NUGET_SOURCE_OPT
+  $RUN_BUILD /t:restore /p:Project=$1 $NUGET_SOURCE_OPT
+  $RUN_BUILD /t:build /p:Project=$1
 }
 
 cmd_full_build() {
   if [ -d /nuget ]; then
     NUGET_SOURCE_OPT="/p:RestoreSources=/nuget"
   fi
-  $RUN_BUILD /t:build $NUGET_SOURCE_OPT
+  $RUN_BUILD /t:clean
+  $RUN_BUILD /t:restore $NUGET_SOURCE_OPT
+  $RUN_BUILD /t:build
 }
 
 cmd_dummy_build() {
@@ -49,12 +52,18 @@ cmd_dummy_build() {
 }
 
 cmd_pack() {
-  if [ -n "$1" ]; then
-    NUGET_VERSION_OPT="-Version $1"
+  VERSION=$1
+  VERSION_INTERNAL=$2
+  if [ -z "$VERSION" ]; then
+    TIMESTAMP=$(date +"%s")
+    VERSION="4.0.0-local-$TIMESTAMP"
+  fi
+  if [ -z "$VERSION_INTERNAL" ]; then
+    VERSION_INTERNAL=$VERSION
   fi
 
-  $NUGET_CMD pack $SCRIPT_DIR/pkg/Tizen.NET.Private.nuspec -Symbols -NoPackageAnalysis $NUGET_VERSION_OPT -BasePath $SCRIPT_DIR -OutputDirectory $OUTDIR
-  $NUGET_CMD pack $SCRIPT_DIR/pkg/Tizen.NET.nuspec -Symbols -NoPackageAnalysis $NUGET_VERSION_OPT -BasePath $SCRIPT_DIR -OutputDirectory $OUTDIR
+  $NUGET_CMD pack $SCRIPT_DIR/pkg/Tizen.NET.nuspec -NoPackageAnalysis -Version $VERSION -BasePath $SCRIPT_DIR -OutputDirectory $OUTDIR
+  $NUGET_CMD pack $SCRIPT_DIR/pkg/Tizen.NET.Internals.nuspec -NoPackageAnalysis -Version $VERSION_INTERNAL -BasePath $SCRIPT_DIR -OutputDirectory $OUTDIR
 }
 
 cmd_clean() {
