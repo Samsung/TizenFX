@@ -271,7 +271,7 @@ namespace Tizen.Network.WiFi
                 }
                 else
                 {
-                    Log.Error(Globals.LogTag, "Failed to connect with AP, Error - " + (WiFiError)ret);
+                    Log.Error(Globals.LogTag, "Failed to get connected AP, Error - " + (WiFiError)ret);
                     WiFiErrorFactory.ThrowWiFiException(ret, GetSafeHandle().DangerousGetHandle(), "http://tizen.org/privilege/network.get");
                 }
             }

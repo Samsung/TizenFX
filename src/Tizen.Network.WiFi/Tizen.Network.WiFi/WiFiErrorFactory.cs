@@ -19,6 +19,11 @@ using Tizen.Internals.Errors;
 
 namespace Tizen.Network.WiFi
 {
+    static internal class WiFiErrorValue
+    {
+        internal const int Base = -0x01CE0000;
+    }
+
     internal enum WiFiError
     {
         None = ErrorCode.None,
@@ -26,15 +31,15 @@ namespace Tizen.Network.WiFi
         OutOfMemoryError = ErrorCode.OutOfMemory,
         InvalidOperationError = ErrorCode.InvalidOperation,
         AddressFamilyNotSupportedError = ErrorCode.AddressFamilyNotSupported,
-        OperationFailedError = -0x01C50000 | 0x0301,
-        NoConnectionError = -0x01C50000 | 0x0302,
+        OperationFailedError = WiFiErrorValue.Base | 0x01,
+        NoConnectionError = WiFiErrorValue.Base | 0x02,
         NowInProgressError = ErrorCode.NowInProgress,
-        AlreadyExistsError = -0x01C50000 | 0x0303,
-        OperationAbortedError = -0x01C50000 | 0x0304,
-        DhcpFailedError = -0x01C50000 | 0x0306,
-        InvalidKeyError = -0x01C50000 | 0x0307,
-        NoReplyError = -0x01C50000 | 0x0308,
-        SecurityRestrictedError = -0x01C50000 | 0x0309,
+        AlreadyExistsError = WiFiErrorValue.Base | 0x03,
+        OperationAbortedError = WiFiErrorValue.Base | 0x04,
+        DhcpFailedError = WiFiErrorValue.Base | 0x05,
+        InvalidKeyError = WiFiErrorValue.Base | 0x06,
+        NoReplyError = WiFiErrorValue.Base | 0x07,
+        SecurityRestrictedError = WiFiErrorValue.Base | 0x08,
         PermissionDeniedError = ErrorCode.PermissionDenied,
         NotSupportedError = ErrorCode.NotSupported
     }
