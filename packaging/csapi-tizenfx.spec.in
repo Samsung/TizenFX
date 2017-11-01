@@ -5,7 +5,7 @@
 
 %define _tizenfx_bin_path Artifacts
 
-%define TIZEN_NET_API_VERSION 4
+%define TIZEN_NET_API_VERSION 5
 %define TIZEN_NET_NUGET_VERSION @nuget_version@
 %define TIZEN_NET_INTERNAL_NUGET_VERSION @internal_nuget_version@
 
