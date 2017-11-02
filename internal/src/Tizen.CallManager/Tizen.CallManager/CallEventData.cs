@@ -21,6 +21,7 @@ namespace Tizen.CallManager
     /// <summary>
     /// A class which contains information about call event data.
     /// </summary>
+    /// <since_tizen> 4 </since_tizen>
     public class CallEventData
     {
         internal uint EventId;
@@ -36,6 +37,7 @@ namespace Tizen.CallManager
         /// <summary>
         /// Get the Call id of the number for which Call event has occurred.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         public uint Id
         {
             get
@@ -47,6 +49,7 @@ namespace Tizen.CallManager
         /// <summary>
         /// Get the Sim slot type.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         public MultiSimSlot SimSlot
         {
             get
@@ -58,6 +61,7 @@ namespace Tizen.CallManager
         /// <summary>
         /// Get call end cause type.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         public CallEndCause EndCause
         {
             get
@@ -69,6 +73,7 @@ namespace Tizen.CallManager
         /// <summary>
         /// Get incoming call data.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         public CallData IncomingData
         {
             get
@@ -80,6 +85,7 @@ namespace Tizen.CallManager
         /// <summary>
         /// Get active call data.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         public CallData ActiveData
         {
             get
@@ -91,6 +97,7 @@ namespace Tizen.CallManager
         /// <summary>
         /// Get the call data for held call.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         public CallData HeldData
         {
             get

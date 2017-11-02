@@ -21,11 +21,13 @@ namespace Tizen.CallManager
     /// <summary>
     /// A class which manages the use of Call Manager APIs.
     /// </summary>
+    /// <since_tizen> 4 </since_tizen>
     public static class CallManager
     {
         /// <summary>
         /// Initializes the call manager.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         /// <returns>An instance of CmClientHandle class to use call manager APIs.</returns>
         /// <feature>http://tizen.org/feature/network.telephony</feature>
         /// <exception cref="NotSupportedException">Thrown when telephony feature is not supported.</exception>
@@ -45,6 +47,7 @@ namespace Tizen.CallManager
         /// <summary>
         /// Deinitializes the Call Manager handle.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         /// <param name="handle">The Call Manager handle to be deinitialized.</param>
         /// <exception cref="ArgumentNullException">Thrown when CmClientHandle is passed as null.</exception>
         /// <exception cref="InvalidOperationException">Thrown when method failed due to invalid operation.</exception>
@@ -68,6 +71,7 @@ namespace Tizen.CallManager
         /// <summary>
         /// Sets LCD state for the device display.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         /// <param name="state">LCD state to be set.</param>
         /// <exception cref="InvalidOperationException">Thrown when method failed due to invalid operation.</exception>
         public static void SetLcdState(LcdControlState state)
