@@ -44,7 +44,7 @@ goto :EOF
 set VERSION=%2
 set VERSION_INTERNAL=%3
 call :GetUnixTime TIMESTAMP
-if /I [%VERSION%] == [] set VERSION=5.0.0-local-%TIMESTAMP%
+if /I [%VERSION%] == [] set VERSION=4.0.0-local-%TIMESTAMP%
 if /I [%VERSION_INTERNAL%] == [] set VERSION_INTERNAL=%VERSION%
 set OUTDIR=%~dp0Artifacts
 set NUGET_CMD=%~dp0tools\NuGet.exe
