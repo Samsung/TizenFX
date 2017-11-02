@@ -85,4 +85,5 @@ Tizen.Uix.SttEngine.dll                            #common #mobile #mobile-emul 
 Tizen.Uix.Tts.dll                                  #common #mobile #mobile-emul #tv #ivi #wearable
 Tizen.Uix.TtsEngine.dll                            #common #mobile #mobile-emul #tv #ivi #wearable
 Tizen.Uix.VoiceControl.dll                         #common #mobile #mobile-emul #tv #ivi #wearable
+Tizen.Uix.VoiceControlWidget.dll                   #common #mobile #mobile-emul #tv #ivi #wearable
 Tizen.WebView.dll                                  #common #mobile #mobile-emul #tv #ivi #wearable
