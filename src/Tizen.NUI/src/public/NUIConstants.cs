@@ -650,6 +650,45 @@ namespace Tizen.NUI
     }
 
     /// <summary>
+    /// Specifies the Release Policy types <br />
+    /// Decides if the image should be cached in different conditions
+    /// </summary>
+    /// <since_tizen> 5 </since_tizen>
+    public enum ReleasePolicyType
+    {
+      /// <summary>
+      /// Image is released when visual detached from scene
+      /// </summary>
+      Detached = 0,
+      /// <summary>
+      /// Image is only released when visual is destroyed
+      /// </summary>
+      Destroyed,
+      /// <summary>
+      /// Image is not released.
+      /// </summary>
+      Never
+    }
+
+    /// <summary>
+    /// Specifies the Load Policy types <br />
+    /// Decides when the image texture should be loaded
+    /// </summary>
+    /// <since_tizen> 5 </since_tizen>
+    public enum LoadPolicyType
+    {
+       /// <summary>
+       /// Load texture once the image source has been provided. Even if not being used yet.
+       /// </summary>
+       Immediate = 0,
+       /// <summary>
+       /// Only load texture once the visual is attached, when the image needs to be shown.
+       /// </summary>
+       Attached
+    }
+
+
+    /// <summary>
     /// The type of coordinate system for certain attributes of the points in a gradient.
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
@@ -1215,7 +1254,21 @@ namespace Tizen.NUI
         /// </summary>
         /// <since_tizen> 4 </since_tizen>
         public static readonly int FrameDelay = NDalic.IMAGE_VISUAL_FRAME_DELAY;
-
+        /// <summary>
+        /// The policy to determine when an image should no longer be cached
+        /// </summary>
+        /// <since_tizen> 5 </since_tizen>
+        public static readonly int ReleasePolicy = NDalic.IMAGE_VISUAL_RELEASE_POLICY;
+        /// <summary>
+        /// The policy to determine when an image should be loaded
+        /// </summary>
+        /// <since_tizen> 5 </since_tizen>
+        public static readonly int LoadPolicy = NDalic.IMAGE_VISUAL_LOAD_POLICY;
+        /// <summary>
+        /// Determines if image orientation should be corrected so the image displays as it was intended
+        /// </summary>
+        /// <since_tizen> 5 </since_tizen>
+        public static readonly int OrientationCorrection = NDalic.IMAGE_VISUAL_ORIENTATION_CORRECTION;
     }
 
     /// <summary>

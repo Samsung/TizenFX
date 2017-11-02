@@ -417,6 +417,25 @@ namespace Tizen.NUI.BaseComponents
             }
         }
 
+        /// <summary>
+        /// Gets or sets whether to correct orientation of image automatically.<br />
+        /// </summary>
+        /// <since_tizen> 5 </since_tizen>
+        public bool OrientationCorrection
+        {
+            get
+            {
+                return _orientationCorrection ?? false;
+            }
+            set
+            {
+                _orientationCorrection = value;
+                UpdateImage();
+            }
+        }
+
+
+
         private void UpdateImage()
         {
             if (_url != null)
@@ -428,15 +447,17 @@ namespace Tizen.NUI.BaseComponents
                     _nPatchMap.Add(NpatchImageVisualProperty.URL, new PropertyValue(_url));
                     _nPatchMap.Add(NpatchImageVisualProperty.Border, new PropertyValue(_border));
                     if (_borderOnly != null) { _nPatchMap.Add(NpatchImageVisualProperty.BorderOnly, new PropertyValue((bool)_borderOnly)); }
-                    if (_synchronousLoading != null) _nPatchMap.Add(NpatchImageVisualProperty.SynchronousLoading, new PropertyValue((bool)_synchronousLoading));
+                    if (_synchronousLoading != null) { _nPatchMap.Add(NpatchImageVisualProperty.SynchronousLoading, new PropertyValue((bool)_synchronousLoading)); }
+                    if (_orientationCorrection != null) { _nPatchMap.Add(ImageVisualProperty.OrientationCorrection, new PropertyValue((bool)_orientationCorrection)); }
                     SetProperty(ImageView.Property.IMAGE, new PropertyValue(_nPatchMap));
                 }
-                else if (_synchronousLoading != null)
+                else if (_synchronousLoading != null || _orientationCorrection != null)
                 { // for normal image, with synchronous loading property
                     PropertyMap imageMap = new PropertyMap();
                     imageMap.Add(Visual.Property.Type, new PropertyValue((int)Visual.Type.Image));
                     imageMap.Add(ImageVisualProperty.URL, new PropertyValue(_url));
-                    imageMap.Add(ImageVisualProperty.SynchronousLoading, new PropertyValue((bool)_synchronousLoading));
+                    if (_synchronousLoading != null) { imageMap.Add(ImageVisualProperty.SynchronousLoading, new PropertyValue((bool)_synchronousLoading)); }
+                    if (_orientationCorrection != null) { imageMap.Add(ImageVisualProperty.OrientationCorrection, new PropertyValue((bool)_orientationCorrection)); }
                     SetProperty(ImageView.Property.IMAGE, new PropertyValue(imageMap));
                 }
                 else
@@ -451,7 +472,7 @@ namespace Tizen.NUI.BaseComponents
         private bool? _synchronousLoading = null;
         private bool? _borderOnly = null;
         private string _url = null;
-
+        private bool? _orientationCorrection = null;
     }
 
 }

@@ -6631,6 +6631,15 @@ class NDalicPINVOKE {
   [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint="CSharp_Dali_IMAGE_VISUAL_CROP_TO_MASK_get")]
   public static extern int IMAGE_VISUAL_CROP_TO_MASK_get();
 
+  [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint="CSharp_Dali_IMAGE_VISUAL_RELEASE_POLICY_get")]
+  public static extern int IMAGE_VISUAL_RELEASE_POLICY_get();
+
+  [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint="CSharp_Dali_IMAGE_VISUAL_LOAD_POLICY_get")]
+  public static extern int IMAGE_VISUAL_LOAD_POLICY_get();
+
+  [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint ="CSharp_Dali_IMAGE_VISUAL_ORIENTATION_CORRECTION_get")]
+  public static extern int IMAGE_VISUAL_ORIENTATION_CORRECTION_get();
+
   [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint="CSharp_Dali_MESH_VISUAL_OBJECT_URL_get")]
   public static extern int MESH_VISUAL_OBJECT_URL_get();
 
