@@ -18,6 +18,7 @@ using System;
 using System.Runtime.InteropServices;
 using Tizen.NUI.BaseComponents;
 using System.ComponentModel;
+using System.Collections.Generic;
 
 namespace Tizen.NUI
 {
@@ -32,6 +33,15 @@ namespace Tizen.NUI
         private global::System.Runtime.InteropServices.HandleRef stageCPtr;
         private Layer _rootLayer;
         private string _windowTitle;
+
+        private List<Layer> _childLayers = new List<Layer>();
+        private List<Layer> LayersChildren
+        {
+            get
+            {
+                return _childLayers;
+            }
+        }
 
         internal Window(global::System.IntPtr cPtr, bool cMemoryOwn) : base(NDalicPINVOKE.Window_SWIGUpcast(cPtr), cMemoryOwn)
         {
@@ -652,12 +662,16 @@ namespace Tizen.NUI
         {
             NDalicPINVOKE.Stage_Add(stageCPtr, Layer.getCPtr(layer));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+
+            LayersChildren.Add(layer);
         }
 
         internal void Remove(Layer layer)
         {
             NDalicPINVOKE.Stage_Remove(stageCPtr, Layer.getCPtr(layer));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+
+            LayersChildren.Remove(layer);
         }
 
         /// <summary>
@@ -701,9 +715,10 @@ namespace Tizen.NUI
         /// <remarks>Note that a default layer is always provided (count >= 1).</remarks>
         internal uint GetLayerCount()
         {
-            uint ret = NDalicPINVOKE.Stage_GetLayerCount(stageCPtr);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
+            if (LayersChildren == null || LayersChildren.Count < 0)
+                return 0;
+
+            return (uint) LayersChildren.Count;
         }
 
         /// <summary>
@@ -729,6 +744,7 @@ namespace Tizen.NUI
             {
                 _rootLayer = new Layer(NDalicPINVOKE.Stage_GetRootLayer(stageCPtr), true);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                LayersChildren.Add(_rootLayer);
             }
             return _rootLayer;
         }
@@ -1523,6 +1539,8 @@ namespace Tizen.NUI
         {
             NDalicPINVOKE.Stage_Add(stageCPtr, Layer.getCPtr(layer));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+
+            LayersChildren.Add(layer);
         }
 
         /// <summary>
@@ -1534,6 +1552,8 @@ namespace Tizen.NUI
         {
             NDalicPINVOKE.Stage_Remove(stageCPtr, Layer.getCPtr(layer));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+
+            LayersChildren.Remove(layer);
         }
 
         /// <summary>
