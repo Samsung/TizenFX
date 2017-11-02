@@ -21,6 +21,7 @@ namespace Tizen.CallManager
     /// <summary>
     /// An extended EventArgs class which contains information about DTMF indication.
     /// </summary>
+    /// <since_tizen> 4 </since_tizen>
     public class DtmfIndicationEventArgs : EventArgs
     {
         private DtmfIndication _indication;
@@ -35,6 +36,7 @@ namespace Tizen.CallManager
         /// <summary>
         /// DTMF indication.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         public DtmfIndication Indication
         {
             get
@@ -46,6 +48,7 @@ namespace Tizen.CallManager
         /// <summary>
         /// DTMF number.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         public string DtmfNumber
         {
             get
@@ -58,6 +61,7 @@ namespace Tizen.CallManager
     /// <summary>
     /// An extended EventArgs class which contains changed audio status.
     /// </summary>
+    /// <since_tizen> 4 </since_tizen>
     public class AudioStatusChangedEventArgs : EventArgs
     {
         private AudioState _state;
@@ -70,6 +74,7 @@ namespace Tizen.CallManager
         /// <summary>
         /// Audio state.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         public AudioState State
         {
             get
@@ -82,6 +87,7 @@ namespace Tizen.CallManager
     /// <summary>
     /// An extended EventArgs class which contains changed voice record status.
     /// </summary>
+    /// <since_tizen> 4 </since_tizen>
     public class VoiceRecordStatusEventArgs : EventArgs
     {
         private VrStatus _status;
@@ -96,6 +102,7 @@ namespace Tizen.CallManager
         /// <summary>
         /// Voice record status.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         public VrStatus Status
         {
             get
@@ -107,6 +114,7 @@ namespace Tizen.CallManager
         /// <summary>
         /// Voice record status extra type.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         public VrStatusExtraType ExtraType
         {
             get
@@ -119,6 +127,7 @@ namespace Tizen.CallManager
     /// <summary>
     /// An extended EventArgs class which contains changed call mute status.
     /// </summary>
+    /// <since_tizen> 4 </since_tizen>
     public class CallMuteStatusChangedEventArgs : EventArgs
     {
         private CallMuteStatus _Status;
@@ -131,6 +140,7 @@ namespace Tizen.CallManager
         /// <summary>
         /// Call mute status.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         public CallMuteStatus Status
         {
             get
@@ -143,6 +153,7 @@ namespace Tizen.CallManager
     /// <summary>
     /// An extended EventArgs class which contains changed call status.
     /// </summary>
+    /// <since_tizen> 4 </since_tizen>
     public class CallStatusChangedEventArgs : EventArgs
     {
         private CallStatus _status;
@@ -157,6 +168,7 @@ namespace Tizen.CallManager
         /// <summary>
         /// Call status.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         public CallStatus Status
         {
             get
@@ -168,6 +180,7 @@ namespace Tizen.CallManager
         /// <summary>
         /// Call number.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         public string CallNumber
         {
             get
@@ -180,6 +193,7 @@ namespace Tizen.CallManager
     /// <summary>
     /// An extended EventArgs class which contains changed dial status.
     /// </summary>
+    /// <since_tizen> 4 </since_tizen>
     public class DialStatusEventArgs : EventArgs
     {
         private DialStatus _status;
@@ -192,6 +206,7 @@ namespace Tizen.CallManager
         /// <summary>
         /// Dial status.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         public DialStatus Status
         {
             get
@@ -204,6 +219,7 @@ namespace Tizen.CallManager
     /// <summary>
     /// An extended EventArgs class which contains changed call event.
     /// </summary>
+    /// <since_tizen> 4 </since_tizen>
     public class CallEventEventArgs : EventArgs
     {
         private CallEvent _event;
@@ -218,6 +234,7 @@ namespace Tizen.CallManager
         /// <summary>
         /// Call event.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         public CallEvent Event
         {
             get
@@ -229,6 +246,7 @@ namespace Tizen.CallManager
         /// <summary>
         /// Call event data.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         public CallEventData EventData
         {
             get

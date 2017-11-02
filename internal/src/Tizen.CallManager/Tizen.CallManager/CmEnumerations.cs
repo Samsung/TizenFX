@@ -19,6 +19,7 @@ namespace Tizen.CallManager
     /// <summary>
     /// Enumeration for Call status.
     /// </summary>
+    /// <since_tizen> 4 </since_tizen>
     public enum CallStatus
     {
         /// <summary>
@@ -42,6 +43,7 @@ namespace Tizen.CallManager
     /// <summary>
     /// Enumeration for Mute status.
     /// </summary>
+    /// <since_tizen> 4 </since_tizen>
     public enum CallMuteStatus
     {
         /// <summary>
@@ -61,6 +63,7 @@ namespace Tizen.CallManager
     /// <summary>
     /// Enumeration for call dial status.
     /// </summary>
+    /// <since_tizen> 4 </since_tizen>
     public enum DialStatus
     {
         /// <summary>
@@ -92,6 +95,7 @@ namespace Tizen.CallManager
     /// <summary>
     /// Enumeration for DTMF indication type.
     /// </summary>
+    /// <since_tizen> 4 </since_tizen>
     public enum DtmfIndication
     {
         /// <summary>
@@ -111,6 +115,7 @@ namespace Tizen.CallManager
     /// <summary>
     /// Enumeration for audio state type.
     /// </summary>
+    /// <since_tizen> 4 </since_tizen>
     public enum AudioState
     {
         /// <summary>
@@ -138,6 +143,7 @@ namespace Tizen.CallManager
     /// <summary>
     /// Enumeration for video record status.
     /// </summary>
+    /// <since_tizen> 4 </since_tizen>
     public enum VrStatus
     {
         /// <summary>
@@ -153,6 +159,7 @@ namespace Tizen.CallManager
     /// <summary>
     /// Enumeration for Video record status extra type.
     /// </summary>
+    /// <since_tizen> 4 </since_tizen>
     public enum VrStatusExtraType
     {
         /// <summary>
@@ -204,6 +211,7 @@ namespace Tizen.CallManager
     /// <summary>
     /// Enumeration for call type.
     /// </summary>
+    /// <since_tizen> 4 </since_tizen>
     public enum CallType
     {
         /// <summary>
@@ -223,6 +231,7 @@ namespace Tizen.CallManager
     /// <summary>
     /// Enumeration for sim slot type.
     /// </summary>
+    /// <since_tizen> 4 </since_tizen>
     public enum MultiSimSlot
     {
         /// <summary>
@@ -242,6 +251,7 @@ namespace Tizen.CallManager
     /// <summary>
     /// Enumeration for call answer types for accepting the incoming call.
     /// </summary>
+    /// <since_tizen> 4 </since_tizen>
     public enum CallAnswerType
     {
         /// <summary>
@@ -269,6 +279,7 @@ namespace Tizen.CallManager
     /// <summary>
     /// Enumeration for call upgrade response type while receiving upgrade request.
     /// </summary>
+    /// <since_tizen> 4 </since_tizen>
     public enum CallUpgradeResponseType
     {
         /// <summary>
@@ -284,6 +295,7 @@ namespace Tizen.CallManager
     /// <summary>
     /// Enumeration for feature(speaker/bluetooth) status.
     /// </summary>
+    /// <since_tizen> 4 </since_tizen>
     public enum FeatureStatus
     {
         /// <summary>
@@ -299,6 +311,7 @@ namespace Tizen.CallManager
     /// <summary>
     /// Enumeration for DTMF response type.
     /// </summary>
+    /// <since_tizen> 4 </since_tizen>
     public enum DtmfResponseType
     {
         /// <summary>
@@ -314,6 +327,7 @@ namespace Tizen.CallManager
     /// <summary>
     /// Enumeration for LCD time out.
     /// </summary>
+    /// <since_tizen> 4 </since_tizen>
     public enum LcdTimeOut
     {
         /// <summary>
@@ -341,6 +355,7 @@ namespace Tizen.CallManager
     /// <summary>
     /// Enumeration for contact name mode.
     /// </summary>
+    /// <since_tizen> 4 </since_tizen>
     public enum CallNameMode
     {
         /// <summary>
@@ -364,6 +379,7 @@ namespace Tizen.CallManager
     /// <summary>
     /// Enumeration for LCD control state.
     /// </summary>
+    /// <since_tizen> 4 </since_tizen>
     public enum LcdControlState
     {
         /// <summary>
@@ -395,6 +411,7 @@ namespace Tizen.CallManager
     /// <summary>
     /// Enumeration for call event type.
     /// </summary>
+    /// <since_tizen> 4 </since_tizen>
     public enum CallEvent
     {
         /// <summary>
@@ -486,6 +503,7 @@ namespace Tizen.CallManager
     /// <summary>
     /// Enumeration for call direction
     /// </summary>
+    /// <since_tizen> 4 </since_tizen>
     public enum CallDirection
     {
         /// <summary>
@@ -501,6 +519,7 @@ namespace Tizen.CallManager
     /// <summary>
     /// Enumeration for the call state.
     /// </summary>
+    /// <since_tizen> 4 </since_tizen>
     public enum CallState
     {
         /// <summary>
@@ -536,6 +555,7 @@ namespace Tizen.CallManager
     /// <summary>
     /// Enumeration for call domain.
     /// </summary>
+    /// <since_tizen> 4 </since_tizen>
     public enum CallDomain
     {
         /// <summary>
@@ -555,6 +575,7 @@ namespace Tizen.CallManager
     /// <summary>
     /// Enumeration for call end cause type.
     /// </summary>
+    /// <since_tizen> 4 </since_tizen>
     public enum CallEndCause
     {
         /// <summary>
@@ -670,6 +691,7 @@ namespace Tizen.CallManager
     /// <summary>
     /// Enumeration for call release type.
     /// </summary>
+    /// <since_tizen> 4 </since_tizen>
     public enum CallReleaseType
     {
         /// <summary>

@@ -24,6 +24,7 @@ namespace Tizen.CallManager
     /// <summary>
     /// A class which manages call manager events, properties and functions.
     /// </summary>
+    /// <since_tizen> 4 </since_tizen>
     public class CmClientHandle
     {
         internal IntPtr _handle = IntPtr.Zero;
@@ -53,6 +54,7 @@ namespace Tizen.CallManager
         /// <summary>
         /// This event is raised when call status changes.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         public event EventHandler<CallStatusChangedEventArgs> CallStatusChanged
         {
             add
@@ -78,6 +80,7 @@ namespace Tizen.CallManager
         /// <summary>
         /// This event is raised when the mute status changes.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         public event EventHandler<CallMuteStatusChangedEventArgs> CallMuteStatusChanged
         {
             add
@@ -103,6 +106,7 @@ namespace Tizen.CallManager
         /// <summary>
         /// This event is raised when call events change.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         public event EventHandler<CallEventEventArgs> CallEvent
         {
             add
@@ -128,6 +132,7 @@ namespace Tizen.CallManager
         /// <summary>
         /// This event is raised when dial status changes.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         public event EventHandler<DialStatusEventArgs> DialStatusChanged
         {
             add
@@ -153,6 +158,7 @@ namespace Tizen.CallManager
         /// <summary>
         /// This event is raised when audio status changes.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         public event EventHandler<AudioStatusChangedEventArgs> AudioStateChanged
         {
             add
@@ -178,6 +184,7 @@ namespace Tizen.CallManager
         /// <summary>
         /// This event is raised during DTMF indication.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         public event EventHandler<DtmfIndicationEventArgs> DtmfIndication
         {
             add
@@ -203,6 +210,7 @@ namespace Tizen.CallManager
         /// <summary>
         /// This event is raised when call comes to foreground.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         public event EventHandler<EventArgs> GoForeground
         {
             add
@@ -228,6 +236,7 @@ namespace Tizen.CallManager
         /// <summary>
         /// This event is raised when voice record status is changed.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         public event EventHandler<VoiceRecordStatusEventArgs> VoiceRecordStatusChanged
         {
             add
@@ -445,6 +454,7 @@ namespace Tizen.CallManager
         /// <summary>
         /// Gets the status of the current call.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         public CallStatus CallStatus
         {
             get
@@ -463,6 +473,7 @@ namespace Tizen.CallManager
         /// <summary>
         /// Gets the mute status.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         public CallMuteStatus CallMuteStatus
         {
             get
@@ -481,6 +492,7 @@ namespace Tizen.CallManager
         /// <summary>
         /// Gets the audio state.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         public AudioState AudioState
         {
             get
@@ -499,6 +511,7 @@ namespace Tizen.CallManager
         /// <summary>
         /// Gets the list of call data.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         public IEnumerable<CallData> AllCalls
         {
             get
@@ -535,6 +548,7 @@ namespace Tizen.CallManager
         /// <summary>
         /// Gets the list of conference call data.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         public IEnumerable<ConferenceCallData> AllConferenceCalls
         {
             get
@@ -570,6 +584,7 @@ namespace Tizen.CallManager
         /// <summary>
         /// Rejects the incoming call.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         /// <privlevel>partner</privlevel>
         /// <privilege>http://developer.samsung.com/tizen/privilege/call.reject</privilege>
         /// <exception cref="UnauthorizedAccessException">Thrown when privilege access is denied.</exception>
@@ -587,6 +602,7 @@ namespace Tizen.CallManager
         /// <summary>
         /// Starts incoming call alert ringtone.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         /// <exception cref="UnauthorizedAccessException">Thrown when privilege access is denied.</exception>
         /// <exception cref="InvalidOperationException">Thrown when method failed due to invalid operation.</exception>
         public void StartAlert()
@@ -602,6 +618,7 @@ namespace Tizen.CallManager
         /// <summary>
         /// Stops incoming call alert ringtone.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         /// <privlevel>partner</privlevel>
         /// <privilege>http://developer.samsung.com/tizen/privilege/call.reject</privilege>
         /// <exception cref="UnauthorizedAccessException">Thrown when privilege access is denied.</exception>
@@ -619,6 +636,7 @@ namespace Tizen.CallManager
         /// <summary>
         /// Enables call recovery.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         /// <param name="appId">App ID to be recovered.</param>
         /// <exception cref="ArgumentNullException">Thrown appId is passed as null.</exception>
         /// <exception cref="InvalidOperationException">Thrown when method failed due to invalid operation.</exception>
@@ -640,6 +658,7 @@ namespace Tizen.CallManager
         /// <summary>
         /// Dials a call.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         /// <param name="number">Calling number to be dialed.</param>
         /// <param name="type">Type of the call to be dialed.</param>
         /// <param name="slot">Multi sim slot type in which the call is dialed.</param>
@@ -664,6 +683,7 @@ namespace Tizen.CallManager
         /// <summary>
         /// Swaps the calls.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         /// <exception cref="InvalidOperationException">Thrown when method failed due to invalid operation.</exception>
         public void SwapCall()
         {
@@ -678,6 +698,7 @@ namespace Tizen.CallManager
         /// <summary>
         /// Joins a call with another.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         /// <exception cref="InvalidOperationException">Thrown when method failed due to invalid operation.</exception>
         public void JoinCall()
         {
@@ -692,6 +713,7 @@ namespace Tizen.CallManager
         /// <summary>
         /// Splits a call.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         /// <param name="id">Call id to be splitted.</param>
         /// <exception cref="InvalidOperationException">Thrown when method failed due to invalid operation.</exception>
         public void SplitCall(uint id)
@@ -707,6 +729,7 @@ namespace Tizen.CallManager
         /// <summary>
         /// Transfers a call.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         /// <exception cref="InvalidOperationException">Thrown when method failed due to invalid operation.</exception>
         public void TransferCall()
         {
@@ -721,6 +744,7 @@ namespace Tizen.CallManager
         /// <summary>
         /// Accepts MT ViLTE call as VoLTE.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         /// <param name="answerType">Call answer type.</param>
         /// <param name="type">Call type.</param>
         /// <exception cref="InvalidOperationException">Thrown when method failed due to invalid operation.</exception>
@@ -737,6 +761,7 @@ namespace Tizen.CallManager
         /// <summary>
         /// Answers an incoming call.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         /// <param name="answerType">Call answer type.</param>
         /// <exception cref="InvalidOperationException">Thrown when method failed due to invalid operation.</exception>
         public void AnswerCall(CallAnswerType answerType)
@@ -752,6 +777,7 @@ namespace Tizen.CallManager
         /// <summary>
         /// Upgrades a call.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         /// <exception cref="InvalidOperationException">Thrown when method failed due to invalid operation.</exception>
         public void UpgradeCall()
         {
@@ -766,6 +792,7 @@ namespace Tizen.CallManager
         /// <summary>
         /// Downgrades a call.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         /// <exception cref="InvalidOperationException">Thrown when method failed due to invalid operation.</exception>
         public void DowngradeCall()
         {
@@ -780,6 +807,7 @@ namespace Tizen.CallManager
         /// <summary>
         /// Confirms upgrade call request.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         /// <param name="response">Upgrade response type.</param>
         /// <exception cref="InvalidOperationException">Thrown when method failed due to invalid operation.</exception>
         public void ConfirmUpgradeCall(CallUpgradeResponseType response)
@@ -795,6 +823,7 @@ namespace Tizen.CallManager
         /// <summary>
         /// Sets the speaker on/off.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         /// <param name="status">Status of the speaker to be set.</param>
         /// <exception cref="InvalidOperationException">Thrown when method failed due to invalid operation.</exception>
         public void ManageSpeaker(FeatureStatus status)
@@ -820,6 +849,7 @@ namespace Tizen.CallManager
         /// <summary>
         /// Sets the bluetooth feature on/off.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         /// <param name="status">Status of the bluetooth to be set.</param>
         /// <exception cref="InvalidOperationException">Thrown when method failed due to invalid operation.</exception>
         public void ManageBluetooth(FeatureStatus status)
@@ -845,6 +875,7 @@ namespace Tizen.CallManager
         /// <summary>
         /// Sets extra volume if needed.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         /// <param name="isExtraVolume">Boolean value to indicate if the call is set to have extra volume.</param>
         /// <exception cref="InvalidOperationException">Thrown when method failed due to invalid operation.</exception>
         public void SetExtraVolume(bool isExtraVolume)
@@ -860,6 +891,7 @@ namespace Tizen.CallManager
         /// <summary>
         /// Sets the noise reduction feature during call.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         /// <param name="isNoiceReduction">Boolean value to indicate whether the call needs noise reduction.</param>
         /// <exception cref="InvalidOperationException">Thrown when method failed due to invalid operation.</exception>
         public void SetNoiseReduction(bool isNoiceReduction)
@@ -875,6 +907,7 @@ namespace Tizen.CallManager
         /// <summary>
         /// Sets the mute state of the call.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         /// <param name="isMuteState">Mute state to be set.</param>
         /// <exception cref="InvalidOperationException">Thrown when method failed due to invalid operation.</exception>
         public void SetMuteState(bool isMuteState)
@@ -890,6 +923,7 @@ namespace Tizen.CallManager
         /// <summary>
         /// Starts sending signal through DTMF digit.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         /// <param name="dtmfDigit">DTMF digit to be pressed on the phone.</param>
         /// <exception cref="ArgumentException">Thrown when method failed due to invalid parameter.</exception>
         /// <exception cref="InvalidOperationException">Thrown when method failed due to invalid operation.</exception>
@@ -906,6 +940,7 @@ namespace Tizen.CallManager
         /// <summary>
         /// Stops sending DTMF signal.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         /// <exception cref="InvalidOperationException">Thrown when method failed due to invalid operation.</exception>
         public void StopDtmf()
         {
@@ -920,6 +955,7 @@ namespace Tizen.CallManager
         /// <summary>
         /// Sends signal through DTMF digits.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         /// <param name="dtmfDigits">DTMF digits.</param>
         /// <exception cref="ArgumentNullException">Thrown when dtmfDigits is passed as null.</exception>
         /// <exception cref="InvalidOperationException">Thrown when method failed due to invalid operation.</exception>
@@ -941,6 +977,7 @@ namespace Tizen.CallManager
         /// <summary>
         /// Sends DTMF response.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         /// <param name="response">DTMF response type.</param>
         /// <exception cref="InvalidOperationException">Thrown when method failed due to invalid operation.</exception>
         public void SendDtmfResponse(DtmfResponseType response)
@@ -956,6 +993,7 @@ namespace Tizen.CallManager
         /// <summary>
         /// Activates call manager UI.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         /// <exception cref="InvalidOperationException">Thrown when method failed due to invalid operation.</exception>
         public void ActivateUi()
         {
@@ -970,6 +1008,7 @@ namespace Tizen.CallManager
         /// <summary>
         /// Sets device LCD time out.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         /// <param name="timeout">LCD timeout to be set.</param>
         /// <exception cref="InvalidOperationException">Thrown when method failed due to invalid operation.</exception>
         public void SetLcdTimeout(LcdTimeOut timeout)
@@ -985,6 +1024,7 @@ namespace Tizen.CallManager
         /// <summary>
         /// Starts voice recording.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         /// <param name="number">Call number.</param>
         /// <exception cref="ArgumentNullException">Thrown when number is passed as null.</exception>
         /// <exception cref="InvalidOperationException">Thrown when method failed due to invalid operation.</exception>
@@ -1006,6 +1046,7 @@ namespace Tizen.CallManager
         /// <summary>
         /// Stops voice record.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         /// <exception cref="InvalidOperationException">Thrown when method failed due to invalid operation.</exception>
         public void StopVoiceRecord()
         {
@@ -1020,6 +1061,7 @@ namespace Tizen.CallManager
         /// <summary>
         /// Gets all current call data.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         /// <param name="incoming">Incoming calldata instance to be filled.</param>
         /// <param name="active">Active calldata instance to be filled.</param>
         /// <param name="held">Held calldata instance to be filled.</param>
@@ -1041,6 +1083,7 @@ namespace Tizen.CallManager
         /// <summary>
         /// Holds the active call.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         /// <privlevel>platform</privlevel>
         /// <privilege>http://developer.samsung.com/tizen/privilege/call.admin</privilege>
         /// <exception cref="UnauthorizedAccessException">Thrown when privilege access is denied.</exception>
@@ -1058,6 +1101,7 @@ namespace Tizen.CallManager
         /// <summary>
         /// Unholds the active call.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         /// <privlevel>platform</privlevel>
         /// <privilege>http://developer.samsung.com/tizen/privilege/call.admin</privilege>
         /// <exception cref="UnauthorizedAccessException">Thrown when privilege access is denied.</exception>
@@ -1075,6 +1119,7 @@ namespace Tizen.CallManager
         /// <summary>
         /// Ends ongoing call.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         /// <param name="id">ID of the call which is to be ended.</param>
         /// <param name="type">Call release type.</param>
         /// <privlevel>platform</privlevel>
