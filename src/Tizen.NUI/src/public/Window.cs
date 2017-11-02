@@ -1458,6 +1458,16 @@ namespace Tizen.NUI
         }
 
         /// <summary>
+        /// Sets whether the window is transparent or not.
+        /// </summary>
+        /// <param name="transparent">Whether the window is transparent.</param>
+        /// <since_tizen> 5 </since_tizen>
+        public void SetTransparency(bool transparent) {
+            NDalicManualPINVOKE.SetTransparency(swigCPtr, transparent);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        /// <summary>
         /// The window size property (read-only).
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
