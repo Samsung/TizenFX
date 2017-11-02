@@ -39,7 +39,7 @@ namespace ElmSharp.Wearable
         /// <since_tizen> preview </since_tizen>
         public CircleSurface(Naviframe naviframe)
         {
-            _handle = Interop.Eext.eext_circle_surface_naviframe_add(naviframe);
+            _handle = Interop.Eext.eext_circle_surface_naviframe_add(naviframe.RealHandle);
         }
 
         /// <summary>
