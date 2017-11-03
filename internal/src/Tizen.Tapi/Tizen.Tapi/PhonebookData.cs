@@ -21,6 +21,7 @@ namespace Tizen.Tapi
     /// <summary>
     /// A class which defines the list of phone book availability of the current SIM.
     /// </summary>
+    /// <since_tizen> 4 </since_tizen>
     public class SimPhonebookList
     {
         internal int PbFdn;
@@ -37,6 +38,7 @@ namespace Tizen.Tapi
         /// <summary>
         /// Fixed Dialing Number.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         /// <value>Fdn represented in integer format.</value>
         public int Fdn
         {
@@ -49,6 +51,7 @@ namespace Tizen.Tapi
         /// <summary>
         /// SIM - ADN(2G phonebook, Under DF phonebook).
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         /// <value>Adn represented in integer format.</value>
         public int Adn
         {
@@ -61,6 +64,7 @@ namespace Tizen.Tapi
         /// <summary>
         /// Service Dialing Number.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         /// <value>Sdn represented in integer format.</value>
         public int Sdn
         {
@@ -73,6 +77,7 @@ namespace Tizen.Tapi
         /// <summary>
         /// USIM - 3G phonebook.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         /// <value>Usim represented in integer format.</value>
         public int Usim
         {
@@ -85,6 +90,7 @@ namespace Tizen.Tapi
         /// <summary>
         /// Additional number Alpha String phonebook.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         /// <value>Aas represented in integer format.</value>
         public int Aas
         {
@@ -97,6 +103,7 @@ namespace Tizen.Tapi
         /// <summary>
         /// Grouping information Alpha String phonebook.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         /// <value>Gas represented in integer format.</value>
         public int Gas
         {
@@ -110,6 +117,7 @@ namespace Tizen.Tapi
     /// <summary>
     /// A class which defines phone book status of the current SIM.
     /// </summary>
+    /// <since_tizen> 4 </since_tizen>
     public class SimPhonebookStatus
     {
         internal bool InitStatus;
@@ -122,6 +130,7 @@ namespace Tizen.Tapi
         /// <summary>
         /// Init completed or not.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         /// <value>Boolean value to check the status of Init.</value>
         public bool IsInitCompleted
         {
@@ -134,6 +143,7 @@ namespace Tizen.Tapi
         /// <summary>
         /// List of phonebook.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         /// <value>An instance of SimPhonebookList containing the list of available phone book.</value>
         public SimPhonebookList PbList
         {
@@ -147,6 +157,7 @@ namespace Tizen.Tapi
     /// <summary>
     /// A class which defines phonebook contact change information.
     /// </summary>
+    /// <since_tizen> 4 </since_tizen>
     public class PhonebookContactChangeInfo
     {
         internal PhonebookType PbType;
@@ -160,6 +171,7 @@ namespace Tizen.Tapi
         /// <summary>
         /// Storage file type.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         /// <value>Type of phonebook storage represented as PhonebookType enum.</value>
         public PhonebookType Type
         {
@@ -172,6 +184,7 @@ namespace Tizen.Tapi
         /// <summary>
         /// Changed index.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         /// <value>Index value represented in unsigned short.</value>
         public ushort Index
         {
@@ -184,6 +197,7 @@ namespace Tizen.Tapi
         /// <summary>
         /// Phonebook operation.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         /// <value>Operation indicating the action on phonebook contact.</value>
         public PhonebookOperationType Operation
         {
@@ -197,6 +211,7 @@ namespace Tizen.Tapi
     /// <summary>
     /// A class which defines phone book storage count information.
     /// </summary>
+    /// <since_tizen> 4 </since_tizen>
     public class PhonebookStorageInfo
     {
         internal PhonebookType PbType;
@@ -209,6 +224,7 @@ namespace Tizen.Tapi
         /// <summary>
         /// Storage file type.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         /// <value>Type of phone book storage file.</value>
         public PhonebookType Type
         {
@@ -221,6 +237,7 @@ namespace Tizen.Tapi
         /// <summary>
         /// Total record count.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         /// <value>Count of total phonebook record.</value>
         public ushort TotalRecord
         {
@@ -233,6 +250,7 @@ namespace Tizen.Tapi
         /// <summary>
         /// Used record count.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         /// <value>Number of used phonebook record.</value>
         public ushort UsedRecord
         {
@@ -246,6 +264,7 @@ namespace Tizen.Tapi
     /// <summary>
     /// A class which defines phone book entry information.
     /// </summary>
+    /// <since_tizen> 4 </since_tizen>
     public class PhonebookMetaInfo
     {
         internal PhonebookType MetaType;
@@ -261,6 +280,7 @@ namespace Tizen.Tapi
         /// <summary>
         /// Storage file type.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         /// <value>Type of phonebook storage.</value>
         public PhonebookType Type
         {
@@ -273,6 +293,7 @@ namespace Tizen.Tapi
         /// <summary>
         /// Phone book minimum index.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         /// <value>Minimum index value of the phone book record.</value>
         public ushort MinIndex
         {
@@ -285,6 +306,7 @@ namespace Tizen.Tapi
         /// <summary>
         /// Phone book maximum index.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         /// <value>Maximum index value of the phone book record.</value>
         public ushort MaxIndex
         {
@@ -297,6 +319,7 @@ namespace Tizen.Tapi
         /// <summary>
         /// Phone number's maximum length
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         /// <value>Maximum length of the phone number.</value>
         public ushort NumberMaxLength
         {
@@ -309,6 +332,7 @@ namespace Tizen.Tapi
         /// <summary>
         /// Text's maximum length.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         /// <value>Maximum length of the text.</value>
         public ushort TextMaxLength
         {
@@ -321,6 +345,7 @@ namespace Tizen.Tapi
         /// <summary>
         /// Phone book used record count.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         /// <value>Number of used phone book record.</value>
         public ushort UsedCount
         {
@@ -334,6 +359,7 @@ namespace Tizen.Tapi
     /// <summary>
     /// A class which defines 3G phone book capability information.
     /// </summary>
+    /// <since_tizen> 4 </since_tizen>
     public class FileTypeCapabilityInfo3G
     {
         internal PhonebookFileType3G Type;
@@ -347,6 +373,7 @@ namespace Tizen.Tapi
         /// <summary>
         /// 3G phonebook file type.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         /// <value>File type of the 3G phonebook.</value>
         public PhonebookFileType3G FileType
         {
@@ -359,6 +386,7 @@ namespace Tizen.Tapi
         /// <summary>
         /// Max index.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         /// <value>Maximum index value present in 3G phonebook.</value>
         public ushort MaxIndex
         {
@@ -371,6 +399,7 @@ namespace Tizen.Tapi
         /// <summary>
         /// Max text length.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         /// <value>Maximum text length in unsigned short.</value>
         public ushort TextMaxLength
         {
@@ -383,6 +412,7 @@ namespace Tizen.Tapi
         /// <summary>
         /// Used record count.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         /// <value>Number of used record in 3G phonebook.</value>
         public ushort UsedCount
         {
@@ -396,6 +426,7 @@ namespace Tizen.Tapi
     /// <summary>
     /// A class which manages Sim phonebook and its capabilities information.
     /// </summary>
+    /// <since_tizen> 4 </since_tizen>
     public class PhonebookMetaInfo3G
     {
         internal ushort FileCount;
@@ -407,6 +438,7 @@ namespace Tizen.Tapi
         /// <summary>
         /// Phonebook file type count.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         /// <value>Filetype count of the 3G phonebook.</value>
         public ushort FileTypeCount
         {
@@ -419,6 +451,7 @@ namespace Tizen.Tapi
         /// <summary>
         /// Phonebook file type information.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         /// <value>A list of FileTypeCapabilityInfo3G instances.</value>
         public IEnumerable<FileTypeCapabilityInfo3G> FileTypeInfo
         {
@@ -432,6 +465,7 @@ namespace Tizen.Tapi
     /// <summary>
     /// A class which contains information about phonebook record.
     /// </summary>
+    /// <since_tizen> 4 </since_tizen>
     public class PhonebookRecord
     {
         private PhonebookType _type;
@@ -459,6 +493,7 @@ namespace Tizen.Tapi
         /// <summary>
         /// Phonebook type.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         /// <value>Type of the phonebook used.</value>
         public PhonebookType Type
         {
@@ -476,6 +511,7 @@ namespace Tizen.Tapi
         /// <summary>
         /// Index.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         /// <value>Index value represented in unsigned short.</value>
         public ushort Index
         {
@@ -493,6 +529,7 @@ namespace Tizen.Tapi
         /// <summary>
         /// Next index (This field is not used in the add/update case).
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         /// <value>Next index represented in unsigned short.</value>
         public ushort NextIndex
         {
@@ -510,6 +547,7 @@ namespace Tizen.Tapi
         /// <summary>
         /// Name.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         /// <value>Name in phonebook record.</value>
         public string Name
         {
@@ -527,6 +565,7 @@ namespace Tizen.Tapi
         /// <summary>
         /// Dcs.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         /// <value>Sim encryption type.</value>
         public TextEncryptionType Dcs
         {
@@ -544,6 +583,7 @@ namespace Tizen.Tapi
         /// <summary>
         /// Number.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         /// <value>Number in phonebook record.</value>
         public string Number
         {
@@ -561,6 +601,7 @@ namespace Tizen.Tapi
         /// <summary>
         /// Ton.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         /// <value>Sim type of number.</value>
         public SimTypeOfNumber Ton
         {
@@ -578,6 +619,7 @@ namespace Tizen.Tapi
         /// <summary>
         /// SNE(Second Name Entry).
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         /// <value>Second name entry in byte array.</value>
         public string Sne
         {
@@ -595,6 +637,7 @@ namespace Tizen.Tapi
         /// <summary>
         /// SNE DCS.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         /// <value>SNE text encryption type.</value>
         public TextEncryptionType SneDcs
         {
@@ -612,6 +655,7 @@ namespace Tizen.Tapi
         /// <summary>
         /// Additional Number1.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         /// <value>Additional number1 represented in byte array.</value>
         public string Anr1
         {
@@ -629,6 +673,7 @@ namespace Tizen.Tapi
         /// <summary>
         /// ANR1 TON.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         /// <value>Additional number1 type of number.</value>
         public SimTypeOfNumber Anr1Ton
         {
@@ -646,6 +691,7 @@ namespace Tizen.Tapi
         /// <summary>
         /// Additional Number2.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         /// <value>Additional number2 represented in byte array.</value>
         public string Anr2
         {
@@ -663,6 +709,7 @@ namespace Tizen.Tapi
         /// <summary>
         /// ANR2 TON.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         /// <value>Additional number2 type of number.</value>
         public SimTypeOfNumber Anr2Ton
         {
@@ -680,6 +727,7 @@ namespace Tizen.Tapi
         /// <summary>
         /// Additional number3.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         /// <value>Additional number3 represented in byte array.</value>
         public string Anr3
         {
@@ -697,6 +745,7 @@ namespace Tizen.Tapi
         /// <summary>
         /// ANR3 TON.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         /// <value>Additional number3 type of number.</value>
         public SimTypeOfNumber Anr3Ton
         {
@@ -714,6 +763,7 @@ namespace Tizen.Tapi
         /// <summary>
         /// Email1.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         /// <value>Email1 represented in byte array.</value>
         public string Email1
         {
@@ -731,6 +781,7 @@ namespace Tizen.Tapi
         /// <summary>
         /// Email2.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         /// <value>Email2 represented in byte array.</value>
         public string Email2
         {
@@ -748,6 +799,7 @@ namespace Tizen.Tapi
         /// <summary>
         /// Email3.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         /// <value>Email3 represented in byte array.</value>
         public string Email3
         {
@@ -765,6 +817,7 @@ namespace Tizen.Tapi
         /// <summary>
         /// Email4.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         /// <value>Email4 reprensented in byte array.</value>
         public string Email4
         {
@@ -782,6 +835,7 @@ namespace Tizen.Tapi
         /// <summary>
         /// Group index.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         /// <value>Group index represented in unsigned short.</value>
         public ushort GroupIndex
         {
@@ -799,6 +853,7 @@ namespace Tizen.Tapi
         /// <summary>
         /// Phonebook control.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         /// <value>Phonebook control represented in unsigned short.</value>
         public ushort PbControl
         {

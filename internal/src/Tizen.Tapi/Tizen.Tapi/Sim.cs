@@ -25,6 +25,7 @@ namespace Tizen.Tapi
     /// <summary>
     /// A class which manages SIM card services.
     /// </summary>
+    /// <since_tizen> 4 </since_tizen>
     public class Sim
     {
         private IntPtr _handle = IntPtr.Zero;
@@ -37,6 +38,7 @@ namespace Tizen.Tapi
         /// <summary>
         /// A constructor to instantiate Sim class using the Tapi handle.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         /// <param name="handle">An instance of TapiHandle obtained from InitTapi in TapiManager API.</param>
         /// <exception cref="ArgumentNullException">Thrown when handle is passed as null.</exception>
         public Sim(TapiHandle handle)
@@ -52,6 +54,7 @@ namespace Tizen.Tapi
         /// <summary>
         /// Gets SIM card initialization status and SIM card identification.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         /// <value>An instance of SimInitInfo class in case of success. Null in case of failure.</value>
         public SimInitInfo InitInfo
         {
@@ -85,6 +88,7 @@ namespace Tizen.Tapi
         /// <summary>
         /// Gets the card type (SIM/USIM).
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         public SimCardType SimType
         {
             get
@@ -104,6 +108,7 @@ namespace Tizen.Tapi
         /// <summary>
         /// Gets SIM IMSI information.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         public SimImsiInfo Imsi
         {
             get
@@ -123,6 +128,7 @@ namespace Tizen.Tapi
         /// <summary>
         /// Gets ECC(SIM) or UECC(USIM) data.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         public SimEccInfoList Ecc
         {
             get
@@ -142,6 +148,7 @@ namespace Tizen.Tapi
         /// <summary>
         /// Gets the list of application on UICC.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         /// <returns>A byte containing the masking value for SimAppType.</returns>
         /// <feature>http://tizen.org/feature/network.telephony</feature>
         /// <privilege>http://tizen.org/privilege/telephony</privilege>
@@ -165,6 +172,7 @@ namespace Tizen.Tapi
         /// <summary>
         /// Gets the unique identification number of the (U)ICC.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         /// <returns>A task containing ICCID information.</returns>
         /// <feature>http://tizen.org/feature/network.telephony</feature>
         /// <privilege>http://tizen.org/privilege/telephony</privilege>
@@ -208,6 +216,7 @@ namespace Tizen.Tapi
         /// <summary>
         /// Gets language preference(indication) information.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         /// <returns>A task containing information about SIM language preference.</returns>
         /// <feature>http://tizen.org/feature/network.telephony</feature>
         /// <privilege>http://tizen.org/privilege/telephony</privilege>
@@ -250,6 +259,7 @@ namespace Tizen.Tapi
         /// <summary>
         /// Updates language preference information to the SIM card.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         /// <param name="language">The language preference information.</param>
         /// <returns>A task indicating whether setting of language preference is done or not.</returns>
         /// <feature>http://tizen.org/feature/network.telephony</feature>
@@ -294,6 +304,7 @@ namespace Tizen.Tapi
         /// <summary>
         /// Gets SIM call forwarding indication related data(EF-CFIS and CPHS case).
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         /// <returns>A task containing call forward response information.</returns>
         /// <feature>http://tizen.org/feature/network.telephony</feature>
         /// <privilege>http://tizen.org/privilege/telephony</privilege>
@@ -337,6 +348,7 @@ namespace Tizen.Tapi
         /// <summary>
         /// Sets SIM call forwarding indication related data(EF-CFIS and CPHS case).
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         /// <param name="request">The data requesting for call forwarding.</param>
         /// <returns>A task indicating whether setting call forward info is done or not.</returns>
         /// <feature>http://tizen.org/feature/network.telephony</feature>
@@ -388,6 +400,7 @@ namespace Tizen.Tapi
         /// <summary>
         /// Gets SIM message waiting indication related data(EF-MWIS and CPHS case).
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         /// <returns>A task containing message waiting response information.</returns>
         /// <feature>http://tizen.org/feature/network.telephony</feature>
         /// <privilege>http://tizen.org/privilege/telephony</privilege>
@@ -431,6 +444,7 @@ namespace Tizen.Tapi
         /// <summary>
         /// Sets SIM message waiting indication related data(EF-MWIS and CPHS case).
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         /// <param name="request">The data requesting for message waiting.</param>
         /// <returns>A task indicating whether setting message waiting info is done or not.</returns>
         /// <feature>http://tizen.org/feature/network.telephony</feature>
@@ -482,6 +496,7 @@ namespace Tizen.Tapi
         /// <summary>
         /// Gets SIM mailbox related data(EF-MBDN, MBDI, and CPHS case).
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         /// <returns>A task containing SimMailboxList information.</returns>
         /// <feature>http://tizen.org/feature/network.telephony</feature>
         /// <privilege>http://tizen.org/privilege/telephony</privilege>
@@ -525,6 +540,7 @@ namespace Tizen.Tapi
         /// <summary>
         /// Sets SIM mailbox related data(EF-MBDN, MBDI and CPHS case).
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         /// <param name="mailboxNumber">The data requesting for mailbox info.</param>
         /// <returns>A task indicating whether setting mailbox info is done or not.</returns>
         /// <feature>http://tizen.org/feature/network.telephony</feature>
@@ -577,6 +593,7 @@ namespace Tizen.Tapi
         /// <summary>
         /// Gets SIM CPHS specific data.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         /// <returns>A task containing SimCphs information.</returns>
         /// <feature>http://tizen.org/feature/network.telephony</feature>
         /// <privilege>http://tizen.org/privilege/telephony</privilege>
@@ -620,6 +637,7 @@ namespace Tizen.Tapi
         /// <summary>
         /// Gets the SIM Service Table.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         /// <returns>A task containing SIM service table information.</returns>
         /// <feature>http://tizen.org/feature/network.telephony</feature>
         /// <privilege>http://tizen.org/privilege/telephony</privilege>
@@ -663,6 +681,7 @@ namespace Tizen.Tapi
         /// <summary>
         /// Gets SIM MSISDN data.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         /// <returns>A task containing SimMsisdnList information.</returns>
         /// <feature>http://tizen.org/feature/network.telephony</feature>
         /// <privilege>http://tizen.org/privilege/telephony</privilege>
@@ -706,6 +725,7 @@ namespace Tizen.Tapi
         /// <summary>
         /// Gets SIM OPLMNWACT(Operator controlled PLMN Selector with Access Technology) data.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         /// <returns>A task containing SimOplmnwactList information.</returns>
         /// <feature>http://tizen.org/feature/network.telephony</feature>
         /// <privilege>http://tizen.org/privilege/telephony</privilege>
@@ -749,6 +769,7 @@ namespace Tizen.Tapi
         /// <summary>
         /// Gets SIM SPN data.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         /// <returns>A task containing SimSpn information.</returns>
         /// <feature>http://tizen.org/feature/network.telephony</feature>
         /// <privilege>http://tizen.org/privilege/telephony</privilege>
@@ -792,6 +813,7 @@ namespace Tizen.Tapi
         /// <summary>
         /// Gets SIM CPHS NETNAME data.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         /// <returns>A task containing SimCphsNetName information.</returns>
         /// <feature>http://tizen.org/feature/network.telephony</feature>
         /// <privilege>http://tizen.org/privilege/telephony</privilege>
@@ -835,6 +857,7 @@ namespace Tizen.Tapi
         /// <summary>
         /// Executes an authentication procedure by using SIM.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         /// <param name="authenticationData">The authentication code to be validated by the ISIM, 3G, and GSM application in the SIM card.</param>
         /// <returns>A task containing SimAuthenticationResponse information.</returns>
         /// <feature>http://tizen.org/feature/network.telephony</feature>
@@ -887,6 +910,7 @@ namespace Tizen.Tapi
         /// <summary>
         /// Performs PIN1/PIN2/SIM LOCK verification.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         /// <param name="pinData">The PIN code.</param>
         /// <returns>A task containing SimPinResult information.</returns>
         /// <feature>http://tizen.org/feature/network.telephony</feature>
@@ -940,6 +964,7 @@ namespace Tizen.Tapi
         /// <summary>
         /// Performs PIN1/PIN2 unblocking operation based on PUK information.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         /// <param name="pukData">The unblocking PIN password.</param>
         /// <param name="newPinData">The PIN password to use after the unblocking operation.</param>
         /// <returns>A task containing SimPinResult information.</returns>
@@ -995,6 +1020,7 @@ namespace Tizen.Tapi
         /// <summary>
         /// Changes the PIN1/PIN2 code based on the PIN type passed along with old PIN data and new PIN data.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         /// <param name="oldPin">The old PIN code entered by the user.</param>
         /// <param name="newPin">The new PIN code entered by the user.</param>
         /// <returns>A task containing SimPinResult information.</returns>
@@ -1050,6 +1076,7 @@ namespace Tizen.Tapi
         /// <summary>
         /// Disables the SIM facility.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         /// <param name="facility">An object which contains the facility type and password.</param>
         /// <returns>A task containing SIM facility result information.</returns>
         /// <feature>http://tizen.org/feature/network.telephony</feature>
@@ -1103,6 +1130,7 @@ namespace Tizen.Tapi
         /// <summary>
         /// Enables the SIM facility.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         /// <param name="facility">An object which contains the facility type and password.</param>
         /// <returns>A task containing SIM facility result information.</returns>
         /// <feature>http://tizen.org/feature/network.telephony</feature>
@@ -1156,6 +1184,7 @@ namespace Tizen.Tapi
         /// <summary>
         /// Gets the SIM facility.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         /// <param name="lockType">The type of security lock.</param>
         /// <returns>A task containing SIM facility information.</returns>
         /// <feature>http://tizen.org/feature/network.telephony</feature>
@@ -1200,6 +1229,7 @@ namespace Tizen.Tapi
         /// <summary>
         /// Gets SIM lock type info.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         /// <param name="lockType">The type of security lock.</param>
         /// <returns>A task containing SIM lock information.</returns>
         /// <feature>http://tizen.org/feature/network.telephony</feature>
@@ -1244,6 +1274,7 @@ namespace Tizen.Tapi
         /// <summary>
         /// Sets the SIM power state.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         /// <param name="state">The state of SIM to be set.</param>
         /// <returns>A task indicating whether setting SIM power state is done or not.</returns>
         /// <feature>http://tizen.org/feature/network.telephony</feature>
@@ -1288,6 +1319,7 @@ namespace Tizen.Tapi
         /// <summary>
         /// Provides a common interface for accessing SIM data.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         /// <param name="apdu">The APDU data.</param>
         /// <returns>A task containing SIM APDU response information.</returns>
         /// <feature>http://tizen.org/feature/network.telephony</feature>
@@ -1340,6 +1372,7 @@ namespace Tizen.Tapi
         /// <summary>
         /// Provides a common interface to get the SIM ATR(Answer To Reset) value.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         /// <returns>A task containing SIM ATR response information.</returns>
         /// <feature>http://tizen.org/feature/network.telephony</feature>
         /// <privilege>http://tizen.org/privilege/telephony</privilege>
@@ -1383,6 +1416,7 @@ namespace Tizen.Tapi
         /// <summary>
         /// Gets the IMPI(IMS private user identity). (ISIM only).
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         /// <returns>A task containing IMPI string.</returns>
         /// <feature>http://tizen.org/feature/network.telephony</feature>
         /// <privilege>http://tizen.org/privilege/telephony</privilege>
@@ -1425,6 +1459,7 @@ namespace Tizen.Tapi
         /// <summary>
         /// Gets the IMPU(IMS public user identity). (ISIM only).
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         /// <returns>A task containing SIM IMPU list information.</returns>
         /// <feature>http://tizen.org/feature/network.telephony</feature>
         /// <privilege>http://tizen.org/privilege/telephony</privilege>
@@ -1468,6 +1503,7 @@ namespace Tizen.Tapi
         /// <summary>
         /// Gets the Domain(Home Network Domain Name). (ISIM only)
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         /// <returns>A task containing domain string.</returns>
         /// <feature>http://tizen.org/feature/network.telephony</feature>
         /// <privilege>http://tizen.org/privilege/telephony</privilege>
@@ -1510,6 +1546,7 @@ namespace Tizen.Tapi
         /// <summary>
         /// Gets the P-CSCF(Proxy Call Session Control Function). (ISIM only)
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         /// <returns>A task containing SIM PCSCF list information.</returns>
         /// <feature>http://tizen.org/feature/network.telephony</feature>
         /// <privilege>http://tizen.org/privilege/telephony</privilege>
@@ -1553,6 +1590,7 @@ namespace Tizen.Tapi
         /// <summary>
         /// Gets the ISIM service table. (ISIM only).
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         /// <returns>A task containing a byte array in which mask value of SimIsimService enum will be stored.</returns>
         /// <feature>http://tizen.org/feature/network.telephony</feature>
         /// <privilege>http://tizen.org/privilege/telephony</privilege>

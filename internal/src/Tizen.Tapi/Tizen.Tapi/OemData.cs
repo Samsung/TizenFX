@@ -21,6 +21,7 @@ namespace Tizen.Tapi
     /// <summary>
     /// A class which defines OEM data base structure.
     /// </summary>
+    /// <since_tizen> 4 </since_tizen>
     public class OemData
     {
         internal uint OemId;
@@ -32,6 +33,7 @@ namespace Tizen.Tapi
         /// <summary>
         /// Oem ID.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         /// <value>Oem id represented in unsigned integer.</value>
         public uint Id
         {
@@ -44,6 +46,7 @@ namespace Tizen.Tapi
         /// <summary>
         /// Oem data.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         /// <value>Oem data represented in byte array.</value>
         public byte[] Data
         {

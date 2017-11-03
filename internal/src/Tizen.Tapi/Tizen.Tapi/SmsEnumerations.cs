@@ -19,6 +19,7 @@ namespace Tizen.Tapi
     /// <summary>
     /// Enumeration for the type of sms network.
     /// </summary>
+    /// <since_tizen> 4 </since_tizen>
     public enum SmsNetType
     {
         /// <summary>
@@ -34,6 +35,7 @@ namespace Tizen.Tapi
     /// <summary>
     /// Enumeration for different CB message types.
     /// </summary>
+    /// <since_tizen> 4 </since_tizen>
     public enum SmsCbMsgType
     {
         /// <summary>
@@ -53,6 +55,7 @@ namespace Tizen.Tapi
     /// <summary>
     /// Enumeration for different ETWS message types.
     /// </summary>
+    /// <since_tizen> 4 </since_tizen>
     public enum SmsEtwsMsgType
     {
         /// <summary>
@@ -76,6 +79,7 @@ namespace Tizen.Tapi
     /// <summary>
     /// Enumeration for memory status type.
     /// </summary>
+    /// <since_tizen> 4 </since_tizen>
     public enum SmsMemoryStatus
     {
         /// <summary>
@@ -99,6 +103,7 @@ namespace Tizen.Tapi
     /// <summary>
     /// Enumeration for the sms ready status type.
     /// </summary>
+    /// <since_tizen> 4 </since_tizen>
     public enum SmsReadyStatus
     {
         /// <summary>
@@ -122,6 +127,7 @@ namespace Tizen.Tapi
     /// <summary>
     /// Enumeration for sms status type.
     /// </summary>
+    /// <since_tizen> 4 </since_tizen>
     public enum SmsMessageStatus
     {
         /// <summary>
@@ -161,6 +167,7 @@ namespace Tizen.Tapi
     /// <summary>
     /// Enumeration for different response types that come in the sent status acknowledgement/notification after sending a message to the network.
     /// </summary>
+    /// <since_tizen> 4 </since_tizen>
     public enum SmsResponse
     {
         /// <summary>

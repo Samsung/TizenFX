@@ -24,6 +24,7 @@ namespace Tizen.Tapi
     /// <summary>
     /// This class provides functions for sending oem related data.
     /// </summary>
+    /// <since_tizen> 4 </since_tizen>
     public class Oem
     {
         private IntPtr _handle;
@@ -33,6 +34,7 @@ namespace Tizen.Tapi
         /// <summary>
         /// A public constructor for Oem class to create a Oem instance for the given tapi handle.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         /// <param name="handle">The tapi handle.</param>
         public Oem(TapiHandle handle)
         {
@@ -47,6 +49,7 @@ namespace Tizen.Tapi
         /// <summary>
         /// Sends oem data directly.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         /// <param name="oemId">Oem id for user specification.</param>
         /// <param name="data">Oem data for sending.</param>
         /// <privilege>http://tizen.org/privilege/telephony.admin</privilege>
@@ -71,6 +74,7 @@ namespace Tizen.Tapi
         /// <summary>
         /// Sends oem data directly.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         /// <param name="oemId">Oem id for user specification.</param>
         /// <param name="data">Oem data for sending.</param>
         /// <returns>The oem data which is sent.</returns>
@@ -100,6 +104,7 @@ namespace Tizen.Tapi
         /// <summary>
         /// Sends oem data directly.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         /// <param name="oemId">Oem id for user specification.</param>
         /// <param name="data">Oem data for sending.</param>
         /// <returns>The oem data which is sent.</returns>

@@ -19,6 +19,7 @@ namespace Tizen.Tapi
     /// <summary>
     /// Enumeration for the storage types to be selected in the SIM or USIM.
     /// </summary>
+    /// <since_tizen> 4 </since_tizen>
     public enum PhonebookType
     {
         /// <summary>
@@ -54,6 +55,7 @@ namespace Tizen.Tapi
     /// <summary>
     /// Enumeration for the phonebook operation types.
     /// </summary>
+    /// <since_tizen> 4 </since_tizen>
     public enum PhonebookOperationType
     {
         /// <summary>
@@ -73,6 +75,7 @@ namespace Tizen.Tapi
     /// <summary>
     /// Enumeration for the storage field types in the 3G Phone book.
     /// </summary>
+    /// <since_tizen> 4 </since_tizen>
     public enum PhonebookFileType3G
     {
         /// <summary>
@@ -128,6 +131,7 @@ namespace Tizen.Tapi
     /// <summary>
     /// Enumeration for the text encryption type.
     /// </summary>
+    /// <since_tizen> 4 </since_tizen>
     public enum TextEncryptionType
     {
         /// <summary>
@@ -151,6 +155,7 @@ namespace Tizen.Tapi
     /// <summary>
     /// Enumeration for the phonebook access result.
     /// </summary>
+    /// <since_tizen> 4 </since_tizen>
     public enum PhonebookAccessResult
     {
         /// <summary>

@@ -21,6 +21,7 @@ namespace Tizen.Tapi
     /// <summary>
     /// A class which defines values for USSD request type. Applicable to 3GPP(GSM/UMTS/LET) only.
     /// </summary>
+    /// <since_tizen> 4 </since_tizen>
     public class SsUssdMsgInfo
     {
         private SsUssdType _type;
@@ -31,6 +32,7 @@ namespace Tizen.Tapi
         /// <summary>
         /// USSD type.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         /// <value>Type of USSD represented in SsUssdType enum.</value>
         public SsUssdType Type
         {
@@ -48,6 +50,7 @@ namespace Tizen.Tapi
         /// <summary>
         /// DCS.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         /// <value>Dcs value represented in byte.</value>
         public byte Dcs
         {
@@ -65,6 +68,7 @@ namespace Tizen.Tapi
         /// <summary>
         /// USSD string length.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         /// <value>Length of USSD string in integer.</value>
         public int Length
         {
@@ -82,6 +86,7 @@ namespace Tizen.Tapi
         /// <summary>
         /// USSD string.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         /// <value>Ussd string represented in string.</value>
         public string UssdString
         {
@@ -100,6 +105,7 @@ namespace Tizen.Tapi
     /// <summary>
     /// A class which defines release complete message notification type.
     /// </summary>
+    /// <since_tizen> 4 </since_tizen>
     public class SsReleaseCompleteMsgInfo
     {
         internal byte Length;
@@ -112,6 +118,7 @@ namespace Tizen.Tapi
         /// <summary>
         /// Specifies the Release complete messageg length.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         /// <value>Length of release complete message in byte.</value>
         public byte MsgLength
         {
@@ -124,6 +131,7 @@ namespace Tizen.Tapi
         /// <summary>
         /// Specifies the release complete message.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         /// <value>Release complete message represented in byte array.</value>
         public byte[] Message
         {
@@ -137,6 +145,7 @@ namespace Tizen.Tapi
     /// <summary>
     /// A class which defines SS forward record information.
     /// </summary>
+    /// <since_tizen> 4 </since_tizen>
     public class SsForwardRecord
     {
         internal SsClass SsClass;
@@ -155,6 +164,7 @@ namespace Tizen.Tapi
         /// <summary>
         /// SS class
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         /// <value>SS class type.</value>
         public SsClass Class
         {
@@ -167,6 +177,7 @@ namespace Tizen.Tapi
         /// <summary>
         /// Call forwarding SS status.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         /// <value>Status of SS call forwarding.</value>
         public SsStatus Status
         {
@@ -179,6 +190,7 @@ namespace Tizen.Tapi
         /// <summary>
         /// Call forward types providing various conditions when a call can be forwarded.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         /// <value>Forwarding condition of SS call forward.</value>
         public SsForwardCondition ForwardCondition
         {
@@ -191,6 +203,7 @@ namespace Tizen.Tapi
         /// <summary>
         /// Flag that indicates whether call forwarding number is present.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         /// <value>Boolean value to check the presence of call forwarding number.</value>
         public bool IsForwardingNumberPresent
         {
@@ -203,6 +216,7 @@ namespace Tizen.Tapi
         /// <summary>
         /// No reply time.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         /// <value>Waiting time when there is no reply.</value>
         public SsNoReplyTime NoReplyTime
         {
@@ -215,6 +229,7 @@ namespace Tizen.Tapi
         /// <summary>
         /// Type of number.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         /// <value>SS call forward type of number.</value>
         public SsForwardTypeOfNumber Ton
         {
@@ -227,6 +242,7 @@ namespace Tizen.Tapi
         /// <summary>
         /// Numbering Plan Identity.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         /// <value>SS call forward numbering plan identity.</value>
         public SsForwardNumberingPlanIdentity Npi
         {
@@ -239,6 +255,7 @@ namespace Tizen.Tapi
         /// <summary>
         /// Forwarded number.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         /// <value>Call forwarding number.</value>
         public string ForwardingNumber
         {
@@ -252,6 +269,7 @@ namespace Tizen.Tapi
     /// <summary>
     /// A class which defines values for SS call forwarding record. Applicable to 3GPP(GSM/UMTS/LTE) only.
     /// </summary>
+    /// <since_tizen> 4 </since_tizen>
     public class SsForwardResponse
     {
         internal int RecordNum;
@@ -264,6 +282,7 @@ namespace Tizen.Tapi
         /// <summary>
         /// Record number.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         /// <value>Record value represented in integer.</value>
         public int RecordNumber
         {
@@ -276,6 +295,7 @@ namespace Tizen.Tapi
         /// <summary>
         /// Specifies the maximum of SS forward records.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         /// <value>A list of instances of SsForwardRecord.</value>
         public IEnumerable<SsForwardRecord> Record
         {
@@ -289,6 +309,7 @@ namespace Tizen.Tapi
     /// <summary>
     /// A class which defines SS call barring record information.
     /// </summary>
+    /// <since_tizen> 4 </since_tizen>
     public class SsBarringRecord
     {
         internal SsClass SsClass;
@@ -302,6 +323,7 @@ namespace Tizen.Tapi
         /// <summary>
         /// SS class
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         /// <value>SS class type.</value>
         public SsClass Class
         {
@@ -314,6 +336,7 @@ namespace Tizen.Tapi
         /// <summary>
         /// SS status.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         /// <value>Status of SS call barring.</value>
         public SsStatus Status
         {
@@ -326,6 +349,7 @@ namespace Tizen.Tapi
         /// <summary>
         /// Call barring types providing various barring conditions on which calls are barred.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         /// <value>Type of SS call barring.</value>
         public SsBarringType BarringType
         {
@@ -339,6 +363,7 @@ namespace Tizen.Tapi
     /// <summary>
     /// A class which defines values for SS call barring record. Applicable to 3GPP(GSM/UMTS/LTE) only.
     /// </summary>
+    /// <since_tizen> 4 </since_tizen>
     public class SsBarringResponse
     {
         internal int RecordNum;
@@ -351,6 +376,7 @@ namespace Tizen.Tapi
         /// <summary>
         /// Record number.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         /// <value>Record value represented in integer.</value>
         public int RecordNumber
         {
@@ -363,6 +389,7 @@ namespace Tizen.Tapi
         /// <summary>
         /// Specifies the maximum of SS barring records.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         /// <value>A list of instances of SsBarringRecord.</value>
         public IEnumerable<SsBarringRecord> Record
         {
@@ -376,6 +403,7 @@ namespace Tizen.Tapi
     /// <summary>
     /// A class which defines SS waiting record information.
     /// </summary>
+    /// <since_tizen> 4 </since_tizen>
     public class SsWaitingRecord
     {
         internal SsClass SsClass;
@@ -388,6 +416,7 @@ namespace Tizen.Tapi
         /// <summary>
         /// SS class
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         /// <value>SS class type.</value>
         public SsClass Class
         {
@@ -400,6 +429,7 @@ namespace Tizen.Tapi
         /// <summary>
         /// SS status.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         /// <value>Status of SS call waiting.</value>
         public SsStatus Status
         {
@@ -413,6 +443,7 @@ namespace Tizen.Tapi
     /// <summary>
     /// A class which defines values for SS call waiting record. Applicable to 3GPP(GSM/UMTS/LTE) only.
     /// </summary>
+    /// <since_tizen> 4 </since_tizen>
     public class SsWaitingResponse
     {
         internal int RecordNum;
@@ -425,6 +456,7 @@ namespace Tizen.Tapi
         /// <summary>
         /// Record number.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         /// <value>Record value represented in integer.</value>
         public int RecordNumber
         {
@@ -437,6 +469,7 @@ namespace Tizen.Tapi
         /// <summary>
         /// Specifies the maximum of SS waiting records.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         /// <value>A list of instances of SsWaitingRecord.</value>
         public IEnumerable<SsWaitingRecord> Record
         {
@@ -450,6 +483,7 @@ namespace Tizen.Tapi
     /// <summary>
     /// A class which defines SUPS information message notification type.
     /// </summary>
+    /// <since_tizen> 4 </since_tizen>
     public class SsInfo
     {
         internal SsCause Cse;
@@ -462,6 +496,7 @@ namespace Tizen.Tapi
         /// <summary>
         /// SS error cause.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         /// <value>Ss request result.</value>
         public SsCause Cause
         {
@@ -474,6 +509,7 @@ namespace Tizen.Tapi
         /// <summary>
         /// SUPS information.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         /// <value>Ss information type.</value>
         public SsInfoType SsType
         {
@@ -487,6 +523,7 @@ namespace Tizen.Tapi
     /// <summary>
     /// A class which defines parameters related to call barring.
     /// </summary>
+    /// <since_tizen> 4 </since_tizen>
     public class SsBarringInfo
     {
         private SsClass _class;
@@ -500,6 +537,7 @@ namespace Tizen.Tapi
         /// <summary>
         /// A constructor for instantiating SsBarringInfo class with the necessary parameters.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         /// <param name="classType">Call type.</param>
         /// <param name="mode">Barring mode.</param>
         /// <param name="type">Barring type.</param>
@@ -548,6 +586,7 @@ namespace Tizen.Tapi
     /// <summary>
     /// A class which defines the parameters related to forward info.
     /// </summary>
+    /// <since_tizen> 4 </since_tizen>
     public class SsForwardInfo
     {
         private SsClass _class;
@@ -564,6 +603,7 @@ namespace Tizen.Tapi
         /// <summary>
         /// A constructor for instantiating SsForwardInfo class with the necessary parameters.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         /// <param name="classType">SS Class.</param>
         /// <param name="mode">Forward Mode.</param>
         /// <param name="condition">Forward Condition.</param>
@@ -642,6 +682,7 @@ namespace Tizen.Tapi
     /// <summary>
     /// A class which defines parameters related to call waiting.
     /// </summary>
+    /// <since_tizen> 4 </since_tizen>
     public class SsWaitingInfo
     {
         private SsClass _class;
@@ -653,6 +694,7 @@ namespace Tizen.Tapi
         /// <summary>
         /// A constructor for instantiating SsWaitingInfo class with necessary parameters.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         /// <param name="ssClass">Call type.</param>
         /// <param name="mode">Call waiting mode.</param>
         public SsWaitingInfo(SsClass ssClass, SsCallWaitingMode mode)
@@ -681,6 +723,7 @@ namespace Tizen.Tapi
     /// <summary>
     /// A class which defines values for calling line identity service. Applicable to 3GPP(GSM/UMTS/LTE) only.
     /// </summary>
+    /// <since_tizen> 4 </since_tizen>
     public class SsCliResponse
     {
         internal SsLineIdentificationType LineType;
@@ -692,6 +735,7 @@ namespace Tizen.Tapi
         /// <summary>
         /// Various line identification types.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         public SsLineIdentificationType Type
         {
             get
@@ -703,6 +747,7 @@ namespace Tizen.Tapi
         /// <summary>
         /// Line identification status from the network.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         public SsCliStatus Status
         {
             get
@@ -715,6 +760,7 @@ namespace Tizen.Tapi
     /// <summary>
     /// A class which defines USSD response data. Applicable to 3GPP(GSM/UMTS/LTE) only.
     /// </summary>
+    /// <since_tizen> 4 </since_tizen>
     public class SsUssdResponse
     {
         internal SsUssdType UssdType;
@@ -729,6 +775,7 @@ namespace Tizen.Tapi
         /// <summary>
         /// USSD Type.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         public SsUssdType Type
         {
             get
@@ -740,6 +787,7 @@ namespace Tizen.Tapi
         /// <summary>
         /// USSD Status.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         public SsUssdStatus Status
         {
             get
@@ -751,6 +799,7 @@ namespace Tizen.Tapi
         /// <summary>
         /// DCS.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         public byte Dcs
         {
             get
@@ -762,6 +811,7 @@ namespace Tizen.Tapi
         /// <summary>
         /// USSD string length.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         public int Length
         {
             get
@@ -773,6 +823,7 @@ namespace Tizen.Tapi
         /// <summary>
         /// USSD String.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         public string UssdString
         {
             get
