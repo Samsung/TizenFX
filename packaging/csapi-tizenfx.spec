@@ -6,12 +6,12 @@
 %define _tizenfx_bin_path Artifacts
 
 %define TIZEN_NET_API_VERSION 5
-%define TIZEN_NET_NUGET_VERSION 5.0.0-preview1-00362
-%define TIZEN_NET_INTERNAL_NUGET_VERSION 5.0.0.362
+%define TIZEN_NET_NUGET_VERSION 5.0.0-preview1-00363
+%define TIZEN_NET_INTERNAL_NUGET_VERSION 5.0.0.363
 
 Name:       csapi-tizenfx
 Summary:    Assemblies of Tizen .NET
-Version:    5.0.0.b362+nui61
+Version:    5.0.0.363+nui61.1
 Release:    1
 Group:      Development/Libraries
 License:    Apache-2.0
