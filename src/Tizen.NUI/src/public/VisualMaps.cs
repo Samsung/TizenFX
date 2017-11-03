@@ -15,13 +15,13 @@
  *
  */
 
+using System.Text;
+using System.Collections.Generic;
+using Tizen.NUI.BaseComponents;
+using System.ComponentModel;
 
 namespace Tizen.NUI
 {
-    using System.Text;
-    using System.Collections.Generic;
-    using Tizen.NUI.BaseComponents;
-
     /// <summary>
     /// A class encapsulating the transform map of the visual.
     /// </summary>
@@ -636,6 +636,9 @@ namespace Tizen.NUI
         private WrapModeType? _wrapModeV = null;
         private float? _maskContentScale = null;
         private bool? _cropToMask = null;
+        private ReleasePolicyType? _releasePolicy = null;
+        private LoadPolicyType? _loadPolicy = null;
+        private bool? _orientationCorrection = true;
 
         /// <summary>
         /// Gets or sets the URL of the image.<br />
@@ -893,6 +896,71 @@ namespace Tizen.NUI
             }
         }
 
+
+        /// <summary>
+        /// Get or set the Image Visual release policy<br />
+        /// It decides if a texture should be released from the cache or kept to reduce loading time <br />
+        /// </summary>
+        /// <since_tizen> 5 </since_tizen>
+        /// This will be released at Tizen.NET API Level 5, so currently this would be used as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public ReleasePolicyType ReleasePolicy
+        {
+            get
+            {
+                return _releasePolicy ?? (ReleasePolicyType.Destroyed );
+            }
+            set
+            {
+                _releasePolicy = value;
+                UpdateVisual();
+            }
+        }
+
+
+        /// <summary>
+        /// Get or set the Image Visual image loading policy<br />
+        /// It decides if a texture should be loaded immediately after source set or only after visual is added to window <br />
+        /// </summary>
+        /// <since_tizen> 5 </since_tizen>
+        /// This will be released at Tizen.NET API Level 5, so currently this would be used as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public LoadPolicyType LoadPolicy
+        {
+            get
+            {
+                return _loadPolicy ?? (LoadPolicyType.Attached);
+            }
+            set
+            {
+                _loadPolicy = value;
+                UpdateVisual();
+            }
+        }
+
+        /// <summary>
+        /// Get or set whether to automatically correct the orientation based on exif data.<br />
+        /// If not specified, the default is true.<<br />
+        /// For JPEG images only.<br />
+        /// Optional.
+        /// </summary>
+        /// <since_tizen> 5 </since_tizen>
+        /// This will be released at Tizen.NET API Level 5, so currently this would be used as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public bool OrientationCorrection
+        {
+            get
+            {
+                return _orientationCorrection ?? (true);
+            }
+            set
+            {
+                _orientationCorrection = value;
+                UpdateVisual();
+            }
+        }
+
+
         /// <summary>
         /// Compose the out visual map.
         /// </summary>
@@ -920,6 +988,9 @@ namespace Tizen.NUI
                 if (_opacity != null) { _outputVisualMap.Add((int)Visual.Property.Opacity, new PropertyValue((float)_opacity)); }
                 if (_maskContentScale != null) { _outputVisualMap.Add((int)ImageVisualProperty.MaskContentScale, new PropertyValue((float)_maskContentScale)); }
                 if (_cropToMask != null) { _outputVisualMap.Add((int)ImageVisualProperty.CropToMask, new PropertyValue((bool)_cropToMask)); }
+                if (_releasePolicy != null) { _outputVisualMap.Add( ImageVisualProperty.ReleasePolicy , new PropertyValue((int)_releasePolicy)); }
+                if (_loadPolicy != null) { _outputVisualMap.Add( ImageVisualProperty.LoadPolicy, new PropertyValue((int)_loadPolicy)); }
+                if (_orientationCorrection != null) { _outputVisualMap.Add( ImageVisualProperty.OrientationCorrection, new PropertyValue((bool)_orientationCorrection)); }
             }
         }
     }
