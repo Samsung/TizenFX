@@ -25,6 +25,7 @@ namespace Tizen.Tapi
     /// <summary>
     /// This class is used for initializing/deinitializing Tapi and manages the state of it.
     /// </summary>
+    /// <since_tizen> 4 </since_tizen>
     public static class TapiManager
     {
         private static event EventHandler<StateChangedEventArgs> s_stateChanged;
@@ -33,6 +34,7 @@ namespace Tizen.Tapi
         /// <summary>
         /// Gets the state value if tapi is ready.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         /// <value>The State value in integer format - 0 is False and 1 is True. Returns -1 in case of error.</value>
         public static int State
         {
@@ -53,6 +55,7 @@ namespace Tizen.Tapi
         /// <summary>
         /// This event is raised when Tapi ready state changes.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         public static event EventHandler<StateChangedEventArgs> StateChanged
         {
             add
@@ -100,6 +103,7 @@ namespace Tizen.Tapi
         /// <summary>
         /// Fetches a list of available CPs.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         /// <returns>List of available CPs in case of success. Null in case of failure.</returns>
         /// <feature>http://tizen.org/feature/network.telephony</feature>
         public static IEnumerable<string> GetCpNames()
@@ -134,6 +138,7 @@ namespace Tizen.Tapi
         /// <summary>
         /// Acquires a TAPI Handle for the specified CP name.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         /// <param name="cpName">The CP Name against which a TAPI handle is required (A NULL CP Name will return a #TapiHandle bound to the first CP in the list of available CPs).</param>
         /// <returns>Instance of TapiHandle on success, null on failure.</returns>
         /// <feature>http://tizen.org/feature/network.telephony</feature>
@@ -151,6 +156,7 @@ namespace Tizen.Tapi
         /// <summary>
         /// Deinitializes the TAPI Handle.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         /// <feature>http://tizen.org/feature/network.telephony</feature>
         /// <exception cref="NotSupportedException">Thrown when telephony feature is not supported.</exception>
         /// <exception cref="ArgumentException">Thrown when it is failed due to invalid parameter.</exception>

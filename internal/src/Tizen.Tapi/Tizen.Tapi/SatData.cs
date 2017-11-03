@@ -21,6 +21,7 @@ namespace Tizen.Tapi
     /// <summary>
     /// A class which defines SAT main menu info.
     /// </summary>
+    /// <since_tizen> 4 </since_tizen>
     public class SatMainMenuInfo
     {
         internal int Id;
@@ -40,6 +41,7 @@ namespace Tizen.Tapi
         /// <summary>
         /// Proactive command number sent by USIM.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         /// <value>Command number represented in integer format.</value>
         public int CommandId
         {
@@ -52,6 +54,7 @@ namespace Tizen.Tapi
         /// <summary>
         /// Flag for checking whether main menu is present or not.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         /// <value>Boolean value checking the presence of main menu.</value>
         public bool IsMainMenuPresent
         {
@@ -64,6 +67,7 @@ namespace Tizen.Tapi
         /// <summary>
         /// Menu title text.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         /// <value>Title text of the menu item represented in string.</value>
         public string MenuTitle
         {
@@ -76,6 +80,7 @@ namespace Tizen.Tapi
         /// <summary>
         /// Menu items.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         /// <value>List of SatMenuInfo objects.</value>
         public IEnumerable<SatMenuInfo> MenuItems
         {
@@ -88,6 +93,7 @@ namespace Tizen.Tapi
         /// <summary>
         /// Number of menu itmes.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         /// <value>An unsigned value representing the number of menu items.</value>
         public ushort MainMenuCount
         {
@@ -100,6 +106,7 @@ namespace Tizen.Tapi
         /// <summary>
         /// Flag for a help information request.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         /// <value>Boolean value for checking the flag for help information request.</value>
         public bool IsMainMenuHelpInfo
         {
@@ -112,6 +119,7 @@ namespace Tizen.Tapi
         /// <summary>
         /// Updated Sat main menu or not.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         /// <value>Boolean value to check whether Sat main menu is updated or not.</value>
         public bool IsUpdatedMainMenu
         {
@@ -124,6 +132,7 @@ namespace Tizen.Tapi
         /// <summary>
         /// Icon Identifier.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         /// <value>An instance of SatIconIdInfo class representing the icon identifier.</value>
         public SatIconIdInfo IconId
         {
@@ -136,6 +145,7 @@ namespace Tizen.Tapi
         /// <summary>
         /// List of Icon Identifiers.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         /// <value>An instance of SatIconIdListInfo class representing the icon identifier list.</value>
         public SatIconIdListInfo IconIdList
         {
@@ -150,6 +160,7 @@ namespace Tizen.Tapi
     /// <summary>
     /// A class which contains menu item information for the setup menu.
     /// </summary>
+    /// <since_tizen> 4 </since_tizen>
     public class SatMenuInfo
     {
         internal string Item;
@@ -162,6 +173,7 @@ namespace Tizen.Tapi
         /// <summary>
         /// Menu item character data.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         /// <value>Menu item data represented in string.</value>
         public string MenuItem
         {
@@ -174,6 +186,7 @@ namespace Tizen.Tapi
         /// <summary>
         /// Identifies the item on the menu that the user selected.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         /// <value>Item identifier value represented as a character.</value>
         public char ItemId
         {
@@ -187,6 +200,7 @@ namespace Tizen.Tapi
     /// <summary>
     /// A class defining the icon data object.
     /// </summary>
+    /// <since_tizen> 4 </since_tizen>
     public class SatIconIdInfo
     {
         internal bool IsPresent;
@@ -201,6 +215,7 @@ namespace Tizen.Tapi
         /// <summary>
         /// Flag for checking whether the icon identifier exists.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         /// <value>Boolean value representing if the icon exists or not.</value>
         public bool IsIconPresent
         {
@@ -213,6 +228,7 @@ namespace Tizen.Tapi
         /// <summary>
         /// Icon qualifier type.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         /// <value>Icon qualifier type represented as SatIconQualifierType enum.</value>
         public SatIconQualifierType IconQualifier
         {
@@ -225,6 +241,7 @@ namespace Tizen.Tapi
         /// <summary>
         /// Icon identifier.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         /// <value>A byte value representing the icon identifier.</value>
         public byte IconId
         {
@@ -237,6 +254,7 @@ namespace Tizen.Tapi
         /// <summary>
         /// Icon info.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         /// <value>An instance of SatIconInfo class.</value>
         public SatIconInfo IconInfo
         {
@@ -250,6 +268,7 @@ namespace Tizen.Tapi
     /// <summary>
     /// A class containing the definition of icon info object.
     /// </summary>
+    /// <since_tizen> 4 </since_tizen>
     public class SatIconInfo
     {
         internal byte IconWidth;
@@ -267,6 +286,7 @@ namespace Tizen.Tapi
         /// <summary>
         /// Icon width.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         /// <value>Width of the icon represented in byte.</value>
         public byte Width
         {
@@ -279,6 +299,7 @@ namespace Tizen.Tapi
         /// <summary>
         /// Icon height.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         /// <value>Height of the icon represented in byte.</value>
         public byte Height
         {
@@ -291,6 +312,7 @@ namespace Tizen.Tapi
         /// <summary>
         /// Image coding scheme.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         /// <value>Image coding scheme represented as SatImageCodingScheme enum.</value>
         public SatImageCodingScheme Ics
         {
@@ -303,6 +325,7 @@ namespace Tizen.Tapi
         /// <summary>
         /// Icon data length.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         /// <value>Data length of the icon represented in ushort.</value>
         public ushort IconDataLength
         {
@@ -315,6 +338,7 @@ namespace Tizen.Tapi
         /// <summary>
         /// Clut data length.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         /// <value>Data length of the clut represented in ushort.</value>
         public ushort ClutDataLength
         {
@@ -327,6 +351,7 @@ namespace Tizen.Tapi
         /// <summary>
         /// Icon file.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         /// <value>Icon file string.</value>
         public string IconFile
         {
@@ -339,6 +364,7 @@ namespace Tizen.Tapi
         /// <summary>
         /// Clut file.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         /// <value>Clut file string.</value>
         public string ClutFile
         {
@@ -352,6 +378,7 @@ namespace Tizen.Tapi
     /// <summary>
     /// A class which defines the icon identifier data object.
     /// </summary>
+    /// <since_tizen> 4 </since_tizen>
     public class SatIconIdListInfo
     {
         internal bool IsPresent;
@@ -367,6 +394,7 @@ namespace Tizen.Tapi
         /// <summary>
         /// Flag for checking whether the icon identifier exists.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         /// <value>Boolean value indicating the presence of icon.</value>
         public bool IsIconPresent
         {
@@ -379,6 +407,7 @@ namespace Tizen.Tapi
         /// <summary>
         /// Icon list qualifier.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         /// <value>Icon list qualifier represented in SatIconQualifierType enum.</value>
         public SatIconQualifierType IconListQualifier
         {
@@ -391,6 +420,7 @@ namespace Tizen.Tapi
         /// <summary>
         /// Number of icons.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         /// <value>Byte value indicating the number of icons.</value>
         public byte IconCount
         {
@@ -403,6 +433,7 @@ namespace Tizen.Tapi
         /// <summary>
         /// Icon identifier list.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         /// <value>A byte array containing the list of Icon identifier.</value>
         public byte[] IconIdList
         {
@@ -415,6 +446,7 @@ namespace Tizen.Tapi
         /// <summary>
         /// Icon list info.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         /// <value>List of icon info.</value>
         public IEnumerable<SatIconInfo> IconInfo
         {
@@ -428,6 +460,7 @@ namespace Tizen.Tapi
     /// <summary>
     /// A class containing display text proactive command for SAT UI.
     /// </summary>
+    /// <since_tizen> 4 </since_tizen>
     public class SatDisplayTextData
     {
         internal int Id;
@@ -445,6 +478,7 @@ namespace Tizen.Tapi
         /// <summary>
         /// Proactive command number sent by USIM.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         /// <value>Command id in integer format.</value>
         public int CommandId
         {
@@ -457,6 +491,7 @@ namespace Tizen.Tapi
         /// <summary>
         /// Character data to display on screen.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         /// <value>An instance of SatTextInfo containing text information.</value>
         public SatTextInfo TextInfo
         {
@@ -469,6 +504,7 @@ namespace Tizen.Tapi
         /// <summary>
         /// Duration of the display.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         /// <value>Duration in integer format.</value>
         public uint Duration
         {
@@ -481,6 +517,7 @@ namespace Tizen.Tapi
         /// <summary>
         /// Flag that indicates whether text is to be displayed if some other app is using the screen.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         /// <value>Boolean value checking the priority of the display.</value>
         public bool IsPriorityHigh
         {
@@ -493,6 +530,7 @@ namespace Tizen.Tapi
         /// <summary>
         /// Flag that indicates whether user response is required.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         /// <value>Boolean value to check the need of user response.</value>
         public bool IsUserResponseRequired
         {
@@ -505,6 +543,7 @@ namespace Tizen.Tapi
         /// <summary>
         /// Flag for checking whether immediate response is required.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         /// <value>Boolean value to check the immediate response status.</value>
         public bool IsImmediateResponse
         {
@@ -517,6 +556,7 @@ namespace Tizen.Tapi
         /// <summary>
         /// Icon Identifier.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         /// <value>An instance of SatIconIdInfo class.</value>
         public SatIconIdInfo IconId
         {
@@ -530,6 +570,7 @@ namespace Tizen.Tapi
     /// <summary>
     /// A class defining character data for the SAT engine data structure.
     /// </summary>
+    /// <since_tizen> 4 </since_tizen>
     public class SatTextInfo
     {
         internal ushort Length;
@@ -542,6 +583,7 @@ namespace Tizen.Tapi
         /// <summary>
         /// Character data length.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         /// <value>An unsigned short value representing the string length.</value>
         public ushort StringLength
         {
@@ -554,6 +596,7 @@ namespace Tizen.Tapi
         /// <summary>
         /// Character data.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         /// <value>A byte array representing the string data.</value>
         public byte[] StringData
         {
@@ -567,6 +610,7 @@ namespace Tizen.Tapi
     /// <summary>
     /// A class which defines select item proactive command data for SAT UI.
     /// </summary>
+    /// <since_tizen> 4 </since_tizen>
     public class SatSelectItemData
     {
         internal int Id;
@@ -585,6 +629,7 @@ namespace Tizen.Tapi
         /// <summary>
         /// Proactive command number sent by USIM.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         /// <value>Command id represented in integer format.</value>
         public int CommandId
         {
@@ -597,6 +642,7 @@ namespace Tizen.Tapi
         /// <summary>
         /// Flag for a help information request.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         /// <value>Boolean value to check whether help information is availale or not.</value>
         public bool IsHelpInfoAvailable
         {
@@ -609,6 +655,7 @@ namespace Tizen.Tapi
         /// <summary>
         /// Menu title text.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         /// <value>An instance of SatTextInfo class containing the text information.</value>
         public SatTextInfo TextInfo
         {
@@ -621,6 +668,7 @@ namespace Tizen.Tapi
         /// <summary>
         /// Selected default item.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         /// <value>Default item index of the given items.</value>
         public char DefaultItemIndex
         {
@@ -633,6 +681,7 @@ namespace Tizen.Tapi
         /// <summary>
         /// Number of menu items.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         /// <value>Menu items count represented as a character.</value>
         public char MenuItemCount
         {
@@ -645,6 +694,7 @@ namespace Tizen.Tapi
         /// <summary>
         /// Menu items.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         /// <value>A list of SatMenuItemInfo objects.</value>
         public IEnumerable<SatMenuItemInfo> MenuItems
         {
@@ -657,6 +707,7 @@ namespace Tizen.Tapi
         /// <summary>
         /// Icon Identifier.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         /// <value>An instance of SatIconIdInfo class.</value>
         public SatIconIdInfo IconId
         {
@@ -669,6 +720,7 @@ namespace Tizen.Tapi
         /// <summary>
         /// List of Icon Identifiers.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         /// <value>An instance of SatIconIdListInfo class containing the list of icon identifiers.</value>
         public SatIconIdListInfo IconIdList
         {
@@ -682,6 +734,7 @@ namespace Tizen.Tapi
     /// <summary>
     /// A class which defines the menu item data object.
     /// </summary>
+    /// <since_tizen> 4 </since_tizen>
     public class SatMenuItemInfo
     {
         internal byte Id;
@@ -695,6 +748,7 @@ namespace Tizen.Tapi
         /// <summary>
         /// Item identifier.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         /// <value>Item Id represented in byte.</value>
         public byte ItemId
         {
@@ -707,6 +761,7 @@ namespace Tizen.Tapi
         /// <summary>
         /// Text length.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         /// <value>Length of the text represented in byte.</value>
         public byte TextLength
         {
@@ -719,6 +774,7 @@ namespace Tizen.Tapi
         /// <summary>
         /// Text information.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         /// <value>A byte array of length TextLength containing the text information.</value>
         public byte[] Text
         {
@@ -732,6 +788,7 @@ namespace Tizen.Tapi
     /// <summary>
     /// A class which defines get inkey proactive command data for SAT UI.
     /// </summary>
+    /// <since_tizen> 4 </since_tizen>
     public class SatGetInKeyData
     {
         internal int Id;
@@ -750,6 +807,7 @@ namespace Tizen.Tapi
         /// <summary>
         /// Proactive command number sent by USIM.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         /// <value>Command id represented in integer format.</value>
         public int CommandId
         {
@@ -762,6 +820,7 @@ namespace Tizen.Tapi
         /// <summary>
         /// Input Type.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         /// <value>Character Set or Yes/No.</value>
         public SatInKeyType KeyType
         {
@@ -786,6 +845,7 @@ namespace Tizen.Tapi
         /// <summary>
         /// Flag for checking whether input character is numeric.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         /// <value>Boolean value for checking whether input character is numeric or not.</value>
         public bool IsNumeric
         {
@@ -798,6 +858,7 @@ namespace Tizen.Tapi
         /// <summary>
         /// Help info request flag.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         /// <value>Boolean value for checking whether help info is available or not.</value>
         public bool IsHelpInfoAvailable
         {
@@ -810,6 +871,7 @@ namespace Tizen.Tapi
         /// <summary>
         /// Character data to display on the screen.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         /// <value>An instance of SatTextInfo class containing the text information.</value>
         public SatTextInfo TextInfo
         {
@@ -822,6 +884,7 @@ namespace Tizen.Tapi
         /// <summary>
         /// Duration of the display.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         /// <value>Display duration represented in unsigned integer.</value>
         public uint Duration
         {
@@ -834,6 +897,7 @@ namespace Tizen.Tapi
         /// <summary>
         /// Icon identifier.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         /// <value>An instance of SatIconIdInfo class containing the Icon identifier information.</value>
         public SatIconIdInfo IconId
         {
@@ -847,6 +911,7 @@ namespace Tizen.Tapi
     /// <summary>
     /// A class which defines get input proactive command data for SAT UI.
     /// </summary>
+    /// <since_tizen> 4 </since_tizen>
     public class SatGetInputData
     {
         internal int Id;
@@ -866,6 +931,7 @@ namespace Tizen.Tapi
         /// <summary>
         /// Proactive command number sent by USIM.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         /// <value>Command id represented in integer format.</value>
         public int CommandId
         {
@@ -878,6 +944,7 @@ namespace Tizen.Tapi
         /// <summary>
         /// Input character mode.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         /// <value>SMS default, UCS2.</value>
         public SatInputAlphabetType AlphabetType
         {
@@ -890,6 +957,7 @@ namespace Tizen.Tapi
         /// <summary>
         /// Flag to check whether input character is numeric.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         /// <value>Boolean value to check the nature of input character.</value>
         public bool IsNumeric
         {
@@ -902,6 +970,7 @@ namespace Tizen.Tapi
         /// <summary>
         /// Help info request flag.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         /// <value>Boolean value to check help information availability.</value>
         public bool IsHelpInfoAvailable
         {
@@ -914,6 +983,7 @@ namespace Tizen.Tapi
         /// <summary>
         /// Flag that indicates whether to show input data on the screen.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         /// <value>Boolean value to check the availability of input data on the screen.</value>
         public bool IsEchoInput
         {
@@ -926,6 +996,7 @@ namespace Tizen.Tapi
         /// <summary>
         /// Character data to display on the screen.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         /// <value>An instance of SatTextInfo.</value>
         public SatTextInfo TextInfo
         {
@@ -938,6 +1009,7 @@ namespace Tizen.Tapi
         /// <summary>
         /// Input data min, max length.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         /// <value>An instance of SatResponseLengthInfo.</value>
         public SatResponseLengthInfo ResponseLength
         {
@@ -950,6 +1022,7 @@ namespace Tizen.Tapi
         /// <summary>
         /// Default input character data.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         /// <value>An instance of SatTextInfo.</value>
         public SatTextInfo DefualtText
         {
@@ -962,6 +1035,7 @@ namespace Tizen.Tapi
         /// <summary>
         /// Icon identifier.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         /// <value>An instance of SatIconIdInfo.</value>
         public SatIconIdInfo IconId
         {
@@ -975,6 +1049,7 @@ namespace Tizen.Tapi
     /// <summary>
     /// A class which defines expected user response length.
     /// </summary>
+    /// <since_tizen> 4 </since_tizen>
     public class SatResponseLengthInfo
     {
         internal byte Min;
@@ -987,6 +1062,7 @@ namespace Tizen.Tapi
         /// <summary>
         /// User response length's minimum value.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         /// <value>Minimum value represented in byte.</value>
         public byte Minimum
         {
@@ -999,6 +1075,7 @@ namespace Tizen.Tapi
         /// <summary>
         /// User response length's maximum value.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         /// <value>Maximum value represented in byte.</value>
         public byte Maximum
         {
@@ -1012,6 +1089,7 @@ namespace Tizen.Tapi
     /// <summary>
     /// A class which defines refresh proactive command data for applications that are concerned with files residing on USIM.
     /// </summary>
+    /// <since_tizen> 4 </since_tizen>
     public class SatRefreshData
     {
         internal int Id;
@@ -1027,6 +1105,7 @@ namespace Tizen.Tapi
         /// <summary>
         /// Proactive command number sent by USIM.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         /// <value>Command id represented in integer format.</value>
         public int CommandId
         {
@@ -1039,6 +1118,7 @@ namespace Tizen.Tapi
         /// <summary>
         /// Concerned application type.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         /// <value>Refresh app type represented in SatRefreshAppType enum.</value>
         public SatRefreshAppType AppType
         {
@@ -1051,6 +1131,7 @@ namespace Tizen.Tapi
         /// <summary>
         /// Refresh mode.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         /// <value>Refresh mode represented in SatCmdQualiRefresh enum.</value>
         public SatCmdQualiRefresh RefreshMode
         {
@@ -1063,6 +1144,7 @@ namespace Tizen.Tapi
         /// <summary>
         /// Refresh file count.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         /// <value>File count represented in byte.</value>
         public byte FileCount
         {
@@ -1075,6 +1157,7 @@ namespace Tizen.Tapi
         /// <summary>
         /// Refresh file identifiers.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         /// <value>A list of SimFileId enums.</value>
         public IEnumerable<SimFileId> FileId
         {
@@ -1088,6 +1171,7 @@ namespace Tizen.Tapi
     /// <summary>
     /// A class which defines send SMS proactive command data for the SMS application.
     /// </summary>
+    /// <since_tizen> 4 </since_tizen>
     public class SatSendSmsData
     {
         internal int Id;
@@ -1102,6 +1186,7 @@ namespace Tizen.Tapi
         /// <summary>
         /// Proactive Command Number sent by USIM.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         /// <value>Command id represented in integer.</value>
         public int CommandId
         {
@@ -1114,6 +1199,7 @@ namespace Tizen.Tapi
         /// <summary>
         /// Flag to check if packing is required for SMS Tpdu.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         /// <value>Boolean value to check the need of packing in SMS Tpdu data.</value>
         public bool IsPackingRequired
         {
@@ -1126,6 +1212,7 @@ namespace Tizen.Tapi
         /// <summary>
         /// Destination address.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         /// <value>An instance of SatAddressData containing the address info.</value>
         public SatAddressData Address
         {
@@ -1138,6 +1225,7 @@ namespace Tizen.Tapi
         /// <summary>
         /// SMS Tpdu data.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         /// <value>An instance of SatSmsTpduInfo.</value>
         public SatSmsTpduInfo TpduInfo
         {
@@ -1151,6 +1239,7 @@ namespace Tizen.Tapi
     /// <summary>
     /// A class which defines SAT address data object.
     /// </summary>
+    /// <since_tizen> 4 </since_tizen>
     public class SatAddressData
     {
         internal SimTypeOfNumber Type;
@@ -1165,6 +1254,7 @@ namespace Tizen.Tapi
         /// <summary>
         /// Type of number.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         /// <value>Sim type of number represented in SimTypeOfNumber enum.</value>
         public SimTypeOfNumber Ton
         {
@@ -1177,6 +1267,7 @@ namespace Tizen.Tapi
         /// <summary>
         /// Number plan identity.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         /// <value>Sim number plan represented in SimNumberPlanIdentity enum.</value>
         public SimNumberPlanIdentity Npi
         {
@@ -1189,6 +1280,7 @@ namespace Tizen.Tapi
         /// <summary>
         /// Length of dialling number.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         /// <value>Dialling number length represented in byte.</value>
         public byte DiallingNumberLength
         {
@@ -1201,6 +1293,7 @@ namespace Tizen.Tapi
         /// <summary>
         /// Dialling number.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         /// <value>Dialling number represented in string.</value>
         public string DiallingNumber
         {
@@ -1214,6 +1307,7 @@ namespace Tizen.Tapi
     /// <summary>
     /// A class which defines the Result data object.
     /// </summary>
+    /// <since_tizen> 4 </since_tizen>
     public class SatSmsTpduInfo
     {
         internal SatSmsTpduType Type;
@@ -1227,6 +1321,7 @@ namespace Tizen.Tapi
         /// <summary>
         /// SMS TPDU type.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         /// <value>Tpdu type represented in SatSmsTpduType.</value>
         public SatSmsTpduType TpduType
         {
@@ -1239,6 +1334,7 @@ namespace Tizen.Tapi
         /// <summary>
         /// SMS TPDU data length.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         /// <value>Length of Tpdu data represented in byte.</value>
         public byte DataLength
         {
@@ -1251,6 +1347,7 @@ namespace Tizen.Tapi
         /// <summary>
         /// SMS TPDU data.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         /// <value>An array of bytes representing TPDU data.</value>
         public byte[] TpduData
         {
@@ -1264,6 +1361,7 @@ namespace Tizen.Tapi
     /// <summary>
     /// A class which defines Event list info.
     /// </summary>
+    /// <since_tizen> 4 </since_tizen>
     public class SatEventListData
     {
         internal bool IsDownloadActive;
@@ -1286,6 +1384,7 @@ namespace Tizen.Tapi
         /// <summary>
         /// Flag to check if the event download is acive.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         /// <value>Boolean value to check for active event download.</value>
         public bool IsEventDownloadActive
         {
@@ -1298,6 +1397,7 @@ namespace Tizen.Tapi
         /// <summary>
         /// Flag to check if the event is about Mt call event.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         /// <value>Boolean value to check the event for Mt call event.</value>
         public bool IsMtCallEvent
         {
@@ -1310,6 +1410,7 @@ namespace Tizen.Tapi
         /// <summary>
         /// Flag to check if the call is connected.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         /// <value>Boolean value to check the connection of call.</value>
         public bool IsCallConnected
         {
@@ -1322,6 +1423,7 @@ namespace Tizen.Tapi
         /// <summary>
         /// Flag to check if the call is disconnected.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         /// <value>Boolean value to check the call disconnection.</value>
         public bool IsCallDisconnected
         {
@@ -1334,6 +1436,7 @@ namespace Tizen.Tapi
         /// <summary>
         /// Flag to check if the event is aboout locaion status.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         /// <value>Boolean value to check the presence of location status in the event.</value>
         public bool IsLocationStatus
         {
@@ -1346,6 +1449,7 @@ namespace Tizen.Tapi
         /// <summary>
         /// Flag to check if the event is about user activity.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         /// <value>Boolean value to check the presence of user activity.</value>
         public bool IsUserActivity
         {
@@ -1358,6 +1462,7 @@ namespace Tizen.Tapi
         /// <summary>
         /// Flag to check if idle screen is available.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         /// <value>Boolean value to check the availability of idle screen.</value>
         public bool IsIdleScreenAvailable
         {
@@ -1370,6 +1475,7 @@ namespace Tizen.Tapi
         /// <summary>
         /// Flag to check if the event is about card reader status.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         /// <value>Boolean value to check the status of card reader.</value>
         public bool IsCardReaderStatus
         {
@@ -1382,6 +1488,7 @@ namespace Tizen.Tapi
         /// <summary>
         /// Flag to check if the event is about language selection.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         /// <value>Boolean value to check if the event is language selection.</value>
         public bool IsLanguageSelection
         {
@@ -1394,6 +1501,7 @@ namespace Tizen.Tapi
         /// <summary>
         /// Flag to check if the browser is terminated.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         /// <value>Boolean value to check the termination of browser.</value>
         public bool IsBrowserTermination
         {
@@ -1406,6 +1514,7 @@ namespace Tizen.Tapi
         /// <summary>
         /// Flag to check if the data is available.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         /// <value>Boolean value to check availablility of data.</value>
         public bool IsDataAvailable
         {
@@ -1418,6 +1527,7 @@ namespace Tizen.Tapi
         /// <summary>
         /// Flag to check if the event has channel status.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         /// <value>Boolean value to check if this field is a channel status.</value>
         public bool IsChannelStatus
         {
@@ -1431,6 +1541,7 @@ namespace Tizen.Tapi
     /// <summary>
     /// A class which defines send DTMF proactive command data for the DTMF application.
     /// </summary>
+    /// <since_tizen> 4 </since_tizen>
     public class SatSendDtmfData
     {
         internal int Id;
@@ -1444,6 +1555,7 @@ namespace Tizen.Tapi
         /// <summary>
         /// Proactive Command Number sent by USIM
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         /// <value>Command id represented in integer.</value>
         public int CommandId
         {
@@ -1456,6 +1568,7 @@ namespace Tizen.Tapi
         /// <summary>
         /// Hidden mode flag.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         /// <value>Flag to check if the data is in hidden mode.</value>
         public bool IsHiddenMode
         {
@@ -1468,6 +1581,7 @@ namespace Tizen.Tapi
         /// <summary>
         /// DTMF string data.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         /// <value>An instance of SatTextInfo containing DTMF string data.</value>
         public SatTextInfo DtmfString
         {
@@ -1481,6 +1595,7 @@ namespace Tizen.Tapi
     /// <summary>
     /// A class which defines call control confirm data for Call/Ss.
     /// </summary>
+    /// <since_tizen> 4 </since_tizen>
     public class SatCallCtrlData
     {
         internal SatTextInfo Addr;
@@ -1496,6 +1611,7 @@ namespace Tizen.Tapi
         /// <summary>
         /// Call destination address.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         /// <value>An instance of SatTextInfo class.</value>
         public SatTextInfo Address
         {
@@ -1508,6 +1624,7 @@ namespace Tizen.Tapi
         /// <summary>
         /// Call SUB address.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         /// <value>An instance of SatTextInfo class.</value>
         public SatTextInfo SubAddress
         {
@@ -1520,6 +1637,7 @@ namespace Tizen.Tapi
         /// <summary>
         /// BC repeat indicator.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         /// <value>SatBcRepeatIndicatorType enum representing Bc repeat indicator.</value>
         public SatBcRepeatIndicatorType BcRepeatIndicator
         {
@@ -1532,6 +1650,7 @@ namespace Tizen.Tapi
         /// <summary>
         /// Configuration Capability Parameter 1.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         /// <value>An instance of SatTextInfo class.</value>
         public SatTextInfo Ccp1
         {
@@ -1544,6 +1663,7 @@ namespace Tizen.Tapi
         /// <summary>
         /// Configuration Capability Parameter 2.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         /// <value>An instance of SatTextInfo class.</value>
         public SatTextInfo Ccp2
         {
@@ -1557,6 +1677,7 @@ namespace Tizen.Tapi
     /// <summary>
     /// A class which defines common call control confirm data.
     /// </summary>
+    /// <since_tizen> 4 </since_tizen>
     public class SatCallCtrlConfirmData
     {
         internal SatCallType Type;
@@ -1574,6 +1695,7 @@ namespace Tizen.Tapi
         /// <summary>
         /// Call control confirm type - call, SS or USSD.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         /// <value>Type of call represented in SatCallType enum.</value>
         public SatCallType CallType
         {
@@ -1586,6 +1708,7 @@ namespace Tizen.Tapi
         /// <summary>
         /// Call control result type.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         /// <value>Type of call control result represented in SatCallCtrlResultType enum.</value>
         public SatCallCtrlResultType CallCtrlResult
         {
@@ -1598,6 +1721,7 @@ namespace Tizen.Tapi
         /// <summary>
         /// Call control display data.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         /// <value>An instance of SatTextInfo class containing information about call control display data.</value>
         public SatTextInfo DisplayData
         {
@@ -1610,6 +1734,7 @@ namespace Tizen.Tapi
         /// <summary>
         /// Flag for checking existence of call control display.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         /// <value>Boolean value to check existence of user info display.</value>
         public bool IsUserInfoDisplayEnabled
         {
@@ -1622,6 +1747,7 @@ namespace Tizen.Tapi
         /// <summary>
         /// Call control call address.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         /// <remarks>
         /// This value will be filled only if CallType is MoVoice. Otherwise it will be null.
         /// </remarks>
@@ -1637,6 +1763,7 @@ namespace Tizen.Tapi
         /// <summary>
         /// Call control SS string.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         /// <remarks>
         /// This value will be filled only if CallType is Ss. Otherwise it will be null.
         /// </remarks>
@@ -1652,6 +1779,7 @@ namespace Tizen.Tapi
         /// <summary>
         /// Call control USSD string.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         /// <remarks>
         /// This value will be filled only if CallType is Ussd. Otherwise it will be null.
         /// </remarks>
@@ -1668,6 +1796,7 @@ namespace Tizen.Tapi
     /// <summary>
     /// A  class which defines the data coding scheme object.
     /// </summary>
+    /// <since_tizen> 4 </since_tizen>
     public class SatDataCodingScheme
     {
         internal bool IsCompressed;
@@ -1682,6 +1811,7 @@ namespace Tizen.Tapi
         /// <summary>
         /// Flag to verify the compressed format.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         /// <value>Boolean value to check the compressed value.</value>
         public bool IsCompressedFormat
         {
@@ -1694,6 +1824,7 @@ namespace Tizen.Tapi
         /// <summary>
         /// Alphabet format type.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         /// <value>Represented in SatAlphabetFormat enum.</value>
         public SatAlphabetFormat AlphabetFormat
         {
@@ -1706,6 +1837,7 @@ namespace Tizen.Tapi
         /// <summary>
         /// Type of message class.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         /// <value>Message class represented in SatMsgClassType enum.</value>
         public SatMsgClassType MsgClass
         {
@@ -1718,6 +1850,7 @@ namespace Tizen.Tapi
         /// <summary>
         /// Raw DCS info.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         /// <value>Dcs info stored in byte.</value>
         public byte RawDcs
         {
@@ -1731,6 +1864,7 @@ namespace Tizen.Tapi
     /// <summary>
     /// A class which defines text string data object.
     /// </summary>
+    /// <since_tizen> 4 </since_tizen>
     public class SatTextTypeInfo
     {
         internal bool IsDigit;
@@ -1745,6 +1879,7 @@ namespace Tizen.Tapi
         /// <summary>
         /// Flag for checking whether only digits are used.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         /// <value>Boolean value for checking the usage of only digits.</value>
         public bool IsDigitOnly
         {
@@ -1757,6 +1892,7 @@ namespace Tizen.Tapi
         /// <summary>
         /// Data coding scheme.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         /// <value>An instance of SatDataCodingScheme class.</value>
         public SatDataCodingScheme DCS
         {
@@ -1769,6 +1905,7 @@ namespace Tizen.Tapi
         /// <summary>
         /// Text length.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         /// <value>Length of the string in unsigned short format.</value>
         public ushort StringLength
         {
@@ -1781,6 +1918,7 @@ namespace Tizen.Tapi
         /// <summary>
         /// Text string.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         /// <value>Text represented in string.</value>
         public string TextString
         {
@@ -1794,6 +1932,7 @@ namespace Tizen.Tapi
     /// <summary>
     /// A class which defines MO SMS control confirm data.
     /// </summary>
+    /// <since_tizen> 4 </since_tizen>
     public class SatMoSmsCtrlData
     {
         internal SatCallCtrlResultType Result;
@@ -1809,6 +1948,7 @@ namespace Tizen.Tapi
         /// <summary>
         /// Envelope result.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         /// <value>Result of MO SMS control confirm data.</value>
         public SatCallCtrlResultType MoResult
         {
@@ -1821,6 +1961,7 @@ namespace Tizen.Tapi
         /// <summary>
         /// Display present flag.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         /// <value>Boolean value to check the presence of user information display.</value>
         public bool IsUserInfoDisplayEnabled
         {
@@ -1833,6 +1974,7 @@ namespace Tizen.Tapi
         /// <summary>
         /// Display data for sending SMS.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         /// <value>An instance of SatTextTypeInfo containing display data for sending SMS.</value>
         public SatTextTypeInfo DisplayData
         {
@@ -1845,6 +1987,7 @@ namespace Tizen.Tapi
         /// <summary>
         /// The RP destination address of the service center.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         /// <value>An instance of SatTextTypeInfo containing RP destination address.</value>
         public SatTextTypeInfo RpDestAddress
         {
@@ -1857,6 +2000,7 @@ namespace Tizen.Tapi
         /// <summary>
         /// The TP destinationn address.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         /// <value>An instance of SatTextTypeInfo containing TP destination address.</value>
         public SatTextTypeInfo TpDestAddress
         {
@@ -1870,6 +2014,7 @@ namespace Tizen.Tapi
     /// <summary>
     /// A class which defines setup call proactive command data for the call application.
     /// </summary>
+    /// <since_tizen> 4 </since_tizen>
     public class SatSetupCallData
     {
         internal int Id;
@@ -1886,6 +2031,7 @@ namespace Tizen.Tapi
         /// <summary>
         /// Proactive Command Number sent by USIM.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         /// <value>Command Id represented in integer format.</value>
         public int CommandId
         {
@@ -1898,6 +2044,7 @@ namespace Tizen.Tapi
         /// <summary>
         /// Call type
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         /// <value>Type of call represented in SatCmdQualiSetupCall enum.</value>
         public SatCmdQualiSetupCall CallType
         {
@@ -1910,6 +2057,7 @@ namespace Tizen.Tapi
         /// <summary>
         /// Display data for calling.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         /// <value>An instance of SatTextInfo containing display data for calling.</value>
         public SatTextInfo DisplayText
         {
@@ -1922,6 +2070,7 @@ namespace Tizen.Tapi
         /// <summary>
         /// Call number.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         /// <value>An instance of SatTextInfo containing call number information.</value>
         public SatTextInfo CallNumber
         {
@@ -1934,6 +2083,7 @@ namespace Tizen.Tapi
         /// <summary>
         /// Maximum repeat duration.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         /// <value>Max repeat duration represented in unsigned integer format.</value>
         public uint Duration
         {
@@ -1946,6 +2096,7 @@ namespace Tizen.Tapi
         /// <summary>
         /// Icon identifier for the call application.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         /// <value>An instance of SatIconIdInfo containing Icon id information.</value>
         public SatIconIdInfo IconId
         {
@@ -1959,6 +2110,7 @@ namespace Tizen.Tapi
     /// <summary>
     /// A class which defines Send SS notification proactive command data for the applicaiton.
     /// </summary>
+    /// <since_tizen> 4 </since_tizen>
     public class SatSendSsData
     {
         internal int Id;
@@ -1974,6 +2126,7 @@ namespace Tizen.Tapi
         /// <summary>
         /// Proactive Command Number sent by USIM.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         /// <value>Command id represented in integer format.</value>
         public int CommandId
         {
@@ -1986,6 +2139,7 @@ namespace Tizen.Tapi
         /// <summary>
         /// Type of Number.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         /// <value>TON represented in SimTypeOfNumber enum.</value>
         public SimTypeOfNumber Ton
         {
@@ -1998,6 +2152,7 @@ namespace Tizen.Tapi
         /// <summary>
         /// Numbering Plan Identity.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         /// <value>NPI reprensented in SimNumberPlanIdentity enum.</value>
         public SimNumberPlanIdentity Npi
         {
@@ -2010,6 +2165,7 @@ namespace Tizen.Tapi
         /// <summary>
         /// SS string length.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         /// <value>Length of SS string represented in byte.</value>
         public byte StringLength
         {
@@ -2022,6 +2178,7 @@ namespace Tizen.Tapi
         /// <summary>
         /// SS string.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         /// <value>Text string represented in string.</value>
         public string SsString
         {
@@ -2035,6 +2192,7 @@ namespace Tizen.Tapi
     /// <summary>
     /// A class which defines send USSD notification proactive command data for the application.
     /// </summary>
+    /// <since_tizen> 4 </since_tizen>
     public class SatSetupUssdData
     {
         internal int Id;
@@ -2049,6 +2207,7 @@ namespace Tizen.Tapi
         /// <summary>
         /// Proactive Command Number sent by USIM.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         /// <value>Command id represented in integer format.</value>
         public int CommandId
         {
@@ -2061,6 +2220,7 @@ namespace Tizen.Tapi
         /// <summary>
         /// Raw DCS info.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         /// <value>Raw DCS information represented in byte.</value>
         public byte RawDcs
         {
@@ -2073,6 +2233,7 @@ namespace Tizen.Tapi
         /// <summary>
         /// USSD string length.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         /// <value>Length of USSD string in byte.</value>
         public byte UssdStringLength
         {
@@ -2085,6 +2246,7 @@ namespace Tizen.Tapi
         /// <summary>
         /// USSD string.
         /// </summary>
+        /// <since_tizen> 4 </since_tizen>
         /// <value>Ussd text represented in string format.</value>
         public string UssdString
         {

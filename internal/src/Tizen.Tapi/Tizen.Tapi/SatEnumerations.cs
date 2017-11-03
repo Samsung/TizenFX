@@ -19,6 +19,7 @@ namespace Tizen.Tapi
     /// <summary>
     /// Enumeration for the UI display status.
     /// </summary>
+    /// <since_tizen> 4 </since_tizen>
     public enum SatUiDisplayStatus
     {
         /// <summary>
@@ -34,6 +35,7 @@ namespace Tizen.Tapi
     /// <summary>
     /// Enumeration for the command qualifier values of the refresh command.
     /// </summary>
+    /// <since_tizen> 4 </since_tizen>
     public enum SatCmdQualiRefresh
     {
         /// <summary>
@@ -73,6 +75,7 @@ namespace Tizen.Tapi
     /// <summary>
     /// Enumeration for the icon qualifier.
     /// </summary>
+    /// <since_tizen> 4 </since_tizen>
     public enum SatIconQualifierType
     {
         /// <summary>
@@ -92,6 +95,7 @@ namespace Tizen.Tapi
     /// <summary>
     /// Enumeration for the SIM image coding scheme type.
     /// </summary>
+    /// <since_tizen> 4 </since_tizen>
     public enum SatImageCodingScheme
     {
         /// <summary>
@@ -111,6 +115,7 @@ namespace Tizen.Tapi
     /// <summary>
     /// Enumeration for the inkey type.
     /// </summary>
+    /// <since_tizen> 4 </since_tizen>
     public enum SatInKeyType
     {
         /// <summary>
@@ -126,6 +131,7 @@ namespace Tizen.Tapi
     /// <summary>
     /// Enumeration for the user input type.
     /// </summary>
+    /// <since_tizen> 4 </since_tizen>
     public enum SatInputAlphabetType
     {
         /// <summary>
@@ -141,6 +147,7 @@ namespace Tizen.Tapi
     /// <summary>
     /// Enumeration for the refresh application type.
     /// </summary>
+    /// <since_tizen> 4 </since_tizen>
     public enum SatRefreshAppType
     {
         /// <summary>
@@ -164,6 +171,7 @@ namespace Tizen.Tapi
     /// <summary>
     /// Enumeration for the SMS TPDU type.
     /// </summary>
+    /// <since_tizen> 4 </since_tizen>
     public enum SatSmsTpduType
     {
         /// <summary>
@@ -195,6 +203,7 @@ namespace Tizen.Tapi
     /// <summary>
     /// Enumeration for the type of command and the next action indicator.
     /// </summary>
+    /// <since_tizen> 4 </since_tizen>
     public enum SatCommandType
     {
         /// <summary>
@@ -310,6 +319,7 @@ namespace Tizen.Tapi
     /// <summary>
     /// Enumeration for the SAT call type.
     /// </summary>
+    /// <since_tizen> 4 </since_tizen>
     public enum SatCallType
     {
         /// <summary>
@@ -341,6 +351,7 @@ namespace Tizen.Tapi
     /// <summary>
     /// Enumeration for the result of call control by SIM.
     /// </summary>
+    /// <since_tizen> 4 </since_tizen>
     public enum SatCallCtrlResultType
     {
         /// <summary>
@@ -364,6 +375,7 @@ namespace Tizen.Tapi
     /// <summary>
     /// Enumeration for the SIM ATK BC repeat indicator type.
     /// </summary>
+    /// <since_tizen> 4 </since_tizen>
     public enum SatBcRepeatIndicatorType
     {
         /// <summary>
@@ -383,6 +395,7 @@ namespace Tizen.Tapi
     /// <summary>
     /// Enumeration for alphabet format.
     /// </summary>
+    /// <since_tizen> 4 </since_tizen>
     public enum SatAlphabetFormat
     {
         /// <summary>
@@ -406,6 +419,7 @@ namespace Tizen.Tapi
     /// <summary>
     /// Enumeration for the message class.
     /// </summary>
+    /// <since_tizen> 4 </since_tizen>
     public enum SatMsgClassType
     {
         /// <summary>
@@ -437,6 +451,7 @@ namespace Tizen.Tapi
     /// <summary>
     /// Enumeration for the command qualifier values of the setup call command.
     /// </summary>
+    /// <since_tizen> 4 </since_tizen>
     public enum SatCmdQualiSetupCall
     {
         /// <summary>

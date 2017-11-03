@@ -19,6 +19,7 @@ namespace Tizen.Tapi
     /// <summary>
     /// Enumeration for the status of the network service.
     /// </summary>
+    /// <since_tizen> 4 </since_tizen>
     public enum NetworkServiceLevel
     {
         /// <summary>
@@ -42,6 +43,7 @@ namespace Tizen.Tapi
     /// <summary>
     /// Enumeration for the service types of TAPI.
     /// </summary>
+    /// <since_tizen> 4 </since_tizen>
     public enum NetworkServiceType
     {
         /// <summary>
@@ -89,6 +91,7 @@ namespace Tizen.Tapi
     /// <summary>
     /// Enumeration for the system types of network.
     /// </summary>
+    /// <since_tizen> 4 </since_tizen>
     public enum NetworkSystemType
     {
         /// <summary>
@@ -176,6 +179,7 @@ namespace Tizen.Tapi
     /// <summary>
     /// Enumeration for the network emergency callback mode states (3GPP2 specific enum).
     /// </summary>
+    /// <since_tizen> 4 </since_tizen>
     public enum NetworkEmergencyCallbackMode
     {
         /// <summary>
@@ -191,6 +195,7 @@ namespace Tizen.Tapi
     /// <summary>
     /// Enumeration for the possible default Data Subscriptions.
     /// </summary>
+    /// <since_tizen> 4 </since_tizen>
     public enum NetworkDefaultDataSubscription
     {
         /// <summary>
@@ -210,6 +215,7 @@ namespace Tizen.Tapi
     /// <summary>
     /// Enumeration for the possible default Subscriptions for CS (Voice).
     /// </summary>
+    /// <since_tizen> 4 </since_tizen>
     public enum NetworkDefaultSubscription
     {
         /// <summary>
@@ -229,6 +235,7 @@ namespace Tizen.Tapi
     /// <summary>
     /// Enumeration for type of network on which VoLTE is registered.
     /// </summary>
+    /// <since_tizen> 4 </since_tizen>
     public enum VolteNetworkType
     {
         /// <summary>
@@ -248,6 +255,7 @@ namespace Tizen.Tapi
     /// <summary>
     /// Enumeration for the packet service protocol type.
     /// </summary>
+    /// <since_tizen> 4 </since_tizen>
     public enum NetworkPsType
     {
         /// <summary>
@@ -275,6 +283,7 @@ namespace Tizen.Tapi
     /// <summary>
     /// Enumeration for the network name display condition type.
     /// </summary>
+    /// <since_tizen> 4 </since_tizen>
     public enum NetworkNameDisplayCondition
     {
         /// <summary>
@@ -298,6 +307,7 @@ namespace Tizen.Tapi
     /// <summary>
     /// Enumeration for the different serving network LTE  band type.
     /// </summary>
+    /// <since_tizen> 4 </since_tizen>
     public enum NetworkLteBandType
     {
         /// <summary>
@@ -317,6 +327,7 @@ namespace Tizen.Tapi
     /// <summary>
     /// Enumeration for the operation that can be done on a preferred PLMN.
     /// </summary>
+    /// <since_tizen> 4 </since_tizen>
     public enum NetworkPreferredPlmnOp
     {
         /// <summary>
@@ -336,6 +347,7 @@ namespace Tizen.Tapi
     /// <summary>
     /// Enumeration for the CDMA Preferred Network Type(CDMA only).
     /// </summary>
+    /// <since_tizen> 4 </since_tizen>
     public enum NetworkPreferred
     {
         /// <summary>
@@ -379,6 +391,7 @@ namespace Tizen.Tapi
     /// <summary>
     /// Enumeration for the different network operation causes.
     /// </summary>
+    /// <since_tizen> 4 </since_tizen>
     public enum NetworkOperationCause
     {
         /// <summary>
@@ -418,6 +431,7 @@ namespace Tizen.Tapi
     /// <summary>
     /// Enumeration for the network plmn type.
     /// </summary>
+    /// <since_tizen> 4 </since_tizen>
     public enum NetworkPlmnType
     {
         /// <summary>
@@ -441,6 +455,7 @@ namespace Tizen.Tapi
     /// <summary>
     /// Enumeration for the network selection mode.
     /// </summary>
+    /// <since_tizen> 4 </since_tizen>
     public enum NetworkSelectionMode
     {
         /// <summary>
@@ -456,6 +471,7 @@ namespace Tizen.Tapi
     /// <summary>
     /// Enumeration for the different network modes.
     /// </summary>
+    /// <since_tizen> 4 </since_tizen>
     public enum NetworkMode
     {
         /// <summary>

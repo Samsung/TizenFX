@@ -19,6 +19,7 @@ namespace Tizen.Tapi
     /// <summary>
     /// Enumerations for the types of Notification.
     /// </summary>
+    /// <since_tizen> 4 </since_tizen>
     public enum Notification
     {
         /// <summary>
@@ -500,6 +501,7 @@ namespace Tizen.Tapi
     /// <summary>
     /// Enumerations for the types of property definition.
     /// </summary>
+    /// <since_tizen> 4 </since_tizen>
     public enum Property
     {
         /// <summary>
