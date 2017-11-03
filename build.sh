@@ -56,7 +56,7 @@ cmd_pack() {
   VERSION_INTERNAL=$2
   if [ -z "$VERSION" ]; then
     TIMESTAMP=$(date +"%s")
-    VERSION="4.0.0-local-$TIMESTAMP"
+    VERSION="4.0.1-local-$TIMESTAMP"
   fi
   if [ -z "$VERSION_INTERNAL" ]; then
     VERSION_INTERNAL=$VERSION

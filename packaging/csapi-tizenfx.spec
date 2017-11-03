@@ -10,8 +10,8 @@
 %define _tizenfx_bin_path Artifacts
 
 %define TIZEN_NET_API_VERSION 4
-%define TIZEN_NET_NUGET_VERSION 4.0.0
-%define TIZEN_NET_INTERNAL_NUGET_VERSION 4.0.0.999
+%define TIZEN_NET_NUGET_VERSION 4.0.1-preview1-99999
+%define TIZEN_NET_INTERNAL_NUGET_VERSION 4.0.1.999
 
 Name:       csapi-tizenfx
 Summary:    Assemblies of Tizen .NET
