@@ -22,16 +22,24 @@ internal static partial class Interop
     internal static partial class Record
     {
         [StructLayout(LayoutKind.Sequential)]
+        internal unsafe struct LOCAL
+        {
+            internal int year;
+            internal int month;
+            internal int mday;
+            internal int hour;
+            internal int minute;
+            internal int second;
+        };
+        [StructLayout(LayoutKind.Explicit)]
             internal struct DateTime
             {
+                [FieldOffset(0)]
                 internal int type;
+                [FieldOffset(8)]
                 internal long utime;
-                internal int year;
-                internal int month;
-                internal int mday;
-                internal int hour;
-                internal int minute;
-                internal int second;
+                [FieldOffset(8)]
+                internal LOCAL local;
             };
 
         [DllImport(Libraries.Calendar, EntryPoint = "calendar_record_create")]
