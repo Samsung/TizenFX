@@ -15,6 +15,8 @@
  *
  */
 
+using System.ComponentModel;
+
 namespace Tizen.NUI
 {
 
@@ -294,6 +296,31 @@ namespace Tizen.NUI
                 return false;
             }
             return true;
+        }
+
+        /// <summary>
+        /// Equals
+        /// </summary>
+        /// <param name="o">The object should be compared.</param>
+        /// <returns>True if equal.</returns>
+        /// <since_tizen> 4 </since_tizen>
+        /// This will be released at Tizen.NET API Level 5, so currently this would be used as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public override bool Equals(object o)
+        {
+            return base.Equals(o);
+        }
+
+        /// <summary>
+        /// Gets the the hash code of this baseHandle.
+        /// </summary>
+        /// <returns>The Hash Code.</returns>
+        /// <since_tizen> 4 </since_tizen>
+        /// This will be released at Tizen.NET API Level 5, so currently this would be used as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public override int GetHashCode()
+        {
+            return base.GetHashCode();
         }
 
         /// <summary>
