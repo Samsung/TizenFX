@@ -18,6 +18,7 @@
 using System;
 using System.Collections.Generic;
 using System.Runtime.InteropServices;
+using System.ComponentModel;
 using static Interop.InputMethod;
 
 namespace Tizen.Uix.InputMethod
@@ -1999,6 +2000,7 @@ namespace Tizen.Uix.InputMethod
         /// 2) Operation Failed
         /// </exception>
         /// <since_tizen> 4 </since_tizen>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public static void Create()
         {
             ErrorCode error = ImeInitialize();
@@ -2030,6 +2032,7 @@ namespace Tizen.Uix.InputMethod
         /// 2) Operation Failed
         /// </exception>
         /// <since_tizen> 4 </since_tizen>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public static void Destroy()
         {
             ErrorCode error = ImeFinalize();
