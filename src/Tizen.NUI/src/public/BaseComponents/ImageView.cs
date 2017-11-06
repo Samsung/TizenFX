@@ -437,6 +437,51 @@ namespace Tizen.NUI.BaseComponents
         }
 
 
+        /// <summary>
+        /// Get the loading state of the visual resource.
+        /// </summary>
+        /// <since_tizen> 5 </since_tizen>
+        /// This will be released at Tizen.NET API Level 5, so currently this would be used as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public ImageView.LoadingStatusType LoadingStatus
+        {
+            get
+            {
+                return (ImageView.LoadingStatusType)NDalicManualPINVOKE.View_GetVisualResourceStatus(swigCPtr, (int)Property.IMAGE);
+            }
+        }
+
+        /// <summary>
+        /// Enumeration for LoadingStatus of image.
+        /// </summary>
+        /// <since_tizen> 5 </since_tizen>
+        /// This will be released at Tizen.NET API Level 5, so currently this would be used as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public enum LoadingStatusType
+        {
+            /// <summary>
+            /// Loading preparing status.
+            /// </summary>
+            /// <since_tizen> 5 </since_tizen>
+            /// This will be released at Tizen.NET API Level 5, so currently this would be used as inhouse API.
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            Preparing,
+            /// <summary>
+            /// Loading ready status.
+            /// </summary>
+            /// <since_tizen> 5 </since_tizen>
+            /// This will be released at Tizen.NET API Level 5, so currently this would be used as inhouse API.
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            Ready,
+            /// <summary>
+            /// Loading failed status.
+            /// </summary>
+            /// <since_tizen> 5 </since_tizen>
+            /// This will be released at Tizen.NET API Level 5, so currently this would be used as inhouse API.
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            Failed
+        }
+
 
         private void UpdateImage()
         {
