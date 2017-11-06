@@ -435,6 +435,41 @@ namespace Tizen.NUI.BaseComponents
         }
 
 
+        /// <summary>
+        /// Get the loading state of the visual resource.
+        /// </summary>
+        /// <since_tizen> 5 </since_tizen>
+        public ImageView.LoadingStatusType LoadingStatus
+        {
+            get
+            {
+                return (ImageView.LoadingStatusType)NDalicManualPINVOKE.View_GetVisualResourceStatus(swigCPtr, (int)Property.IMAGE);
+            }
+        }
+
+        /// <summary>
+        /// Enumeration for LoadingStatus of image.
+        /// </summary>
+        /// <since_tizen> 5 </since_tizen>
+        public enum LoadingStatusType
+        {
+            /// <summary>
+            /// Loading preparing status.
+            /// </summary>
+            /// <since_tizen> 5 </since_tizen>
+            Preparing,
+            /// <summary>
+            /// Loading ready status.
+            /// </summary>
+            /// <since_tizen> 5 </since_tizen>
+            Ready,
+            /// <summary>
+            /// Loading failed status.
+            /// </summary>
+            /// <since_tizen> 5 </since_tizen>
+            Failed
+        }
+
 
         private void UpdateImage()
         {
