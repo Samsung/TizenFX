@@ -271,6 +271,8 @@ namespace Tizen.Multimedia
 
             ValidatePlayerState(PlayerState.Idle);
 
+            SetDisplay(_display).ThrowIfFailed("Failed to configure display of the player");
+
             OnPreparing();
 
             var completionSource = new TaskCompletionSource<bool>();

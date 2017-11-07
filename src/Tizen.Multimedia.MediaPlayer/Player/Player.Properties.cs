@@ -265,7 +265,6 @@ namespace Tizen.Multimedia
 
                     throw new ArgumentException("The display has already been assigned to another.");
                 }
-                SetDisplay(value).ThrowIfFailed("Failed to set the display to the player");
 
                 ReplaceDisplay(value);
             }
