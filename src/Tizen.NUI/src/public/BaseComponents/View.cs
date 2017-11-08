@@ -4433,8 +4433,6 @@ namespace Tizen.NUI.BaseComponents
         /// "Please DO NOT use! This will be deprecated! Please use 'Container GetParent() for derived class' instead!"
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        //"Please DO NOT use! This will be deprecated! Please use 'Container GetParent() for derived class' instead!"
-        /// <since_tizen> 3 </since_tizen>
         [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Never)]
         public new View Parent
         {

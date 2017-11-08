@@ -301,7 +301,7 @@ namespace Tizen.NUI
             /// <summary>
             /// The name of the event from the IMF.
             /// </summary>
-            //Please do not use! this will be deprecated
+            /// Please do not use! this will be deprecated
             /// <since_tizen> 3 </since_tizen>
             [EditorBrowsable(EditorBrowsableState.Never)]
             public ImfManager.ImfEvent eventName
@@ -341,7 +341,7 @@ namespace Tizen.NUI
             /// <summary>
             /// The start position from the current cursor position to start deleting characters.
             /// </summary>
-            //Please do not use! this will be deprecated
+            /// Please do not use! this will be deprecated
             /// <since_tizen> 3 </since_tizen>
             [EditorBrowsable(EditorBrowsableState.Never)]
             public int cursorOffset
@@ -381,7 +381,7 @@ namespace Tizen.NUI
             /// <summary>
             /// The number of characters to delete from the cursorOffset.
             /// </summary>
-            //Please do not use! this will be deprecated
+            /// Please do not use! this will be deprecated
             /// <since_tizen> 3 </since_tizen>
             [EditorBrowsable(EditorBrowsableState.Never)]
             public int numberOfChars
@@ -562,7 +562,7 @@ namespace Tizen.NUI
             /// <summary>
             /// The current text string.
             /// </summary>
-            //Please do not use! this will be deprecated
+            /// Please do not use! this will be deprecated
             /// <since_tizen> 3 </since_tizen>
             [EditorBrowsable(EditorBrowsableState.Never)]
             public string currentText
@@ -602,7 +602,7 @@ namespace Tizen.NUI
             /// <summary>
             /// The current text string.
             /// </summary>
-            //Please do not use! this will be deprecated
+            /// Please do not use! this will be deprecated
             /// <since_tizen> 3 </since_tizen>
             [EditorBrowsable(EditorBrowsableState.Never)]
             public int cursorPosition
@@ -642,7 +642,7 @@ namespace Tizen.NUI
             /// <summary>
             /// If the cursor position needs to be updated.
             /// </summary>
-            //Please do not use! this will be deprecated
+            /// Please do not use! this will be deprecated
             /// <since_tizen> 3 </since_tizen>
             [EditorBrowsable(EditorBrowsableState.Never)]
             public bool update
@@ -682,7 +682,7 @@ namespace Tizen.NUI
             /// <summary>
             /// Flags if preedit reset is required.
             /// </summary>
-            //Please do not use! this will be deprecated
+            /// Please do not use! this will be deprecated
             /// <since_tizen> 3 </since_tizen>
             [EditorBrowsable(EditorBrowsableState.Never)]
             public bool preeditResetRequired
@@ -1026,7 +1026,7 @@ namespace Tizen.NUI
         /// <summary>
         /// ImfManager activated event arguments.
         /// </summary>
-        //Please do not use! this will be deprecated
+        /// Please do not use! this will be deprecated
         /// <since_tizen> 3 </since_tizen>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public class ImfManagerActivatedEventArgs : EventArgs
@@ -1050,7 +1050,7 @@ namespace Tizen.NUI
         /// <summary>
         /// ImfManager activated event.
         /// </summary>
-        //Please do not use! this will be deprecated
+        ///Please do not use! this will be deprecated
         /// <since_tizen> 3 </since_tizen>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public event EventHandler<ImfManagerActivatedEventArgs> ImfManagerActivated
@@ -1158,7 +1158,7 @@ namespace Tizen.NUI
         /// <summary>
         /// ImfManager activated signal.
         /// </summary>
-        //Please do not use! this will be internal
+        /// Please do not use! this will be internal
         /// <since_tizen> 3 </since_tizen>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public ActivatedSignalType ActivatedSignal()
@@ -1171,7 +1171,7 @@ namespace Tizen.NUI
         /// <summary>
         /// ImfManager event received event arguments.
         /// </summary>
-        //Please do not use! this will be deprecated
+        /// Please do not use! this will be deprecated
         /// <since_tizen> 3 </since_tizen>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public class ImfManagerEventReceivedEventArgs : EventArgs
@@ -1194,7 +1194,7 @@ namespace Tizen.NUI
         /// <summary>
         /// ImfManager event received.
         /// </summary>
-        //Please do not use! this will be deprecated
+        ///Please do not use! this will be deprecated
         /// <since_tizen> 3 </since_tizen>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public event EventHandler<ImfManagerEventReceivedEventArgs> ImfManagerEventReceived
@@ -1325,7 +1325,7 @@ namespace Tizen.NUI
         /// <summary>
         /// ImfManager event received signal.
         /// </summary>
-        //Please do not use! this will be internal
+        /// Please do not use! this will be internal
         /// <since_tizen> 3 </since_tizen>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public ImfEventSignalType EventReceivedSignal()
@@ -1338,7 +1338,7 @@ namespace Tizen.NUI
         /// <summary>
         /// ImfManager status changed event arguments.
         /// </summary>
-        //Please do not use! this will be deprecated
+        ///Please do not use! this will be deprecated
         /// <since_tizen> 3 </since_tizen>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public class ImfManagerStatusChangedEventArgs : EventArgs
@@ -1361,7 +1361,7 @@ namespace Tizen.NUI
         /// <summary>
         /// ImfManager status changed.
         /// </summary>
-        //Please do not use! this will be deprecated
+        /// Please do not use! this will be deprecated
         /// <since_tizen> 3 </since_tizen>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public event EventHandler<ImfManagerStatusChangedEventArgs> ImfManagerStatusChanged
@@ -1465,7 +1465,7 @@ namespace Tizen.NUI
         /// <summary>
         /// ImfManager status changed signal.
         /// </summary>
-        //Please do not use! this will be internal
+        ///Please do not use! this will be internal
         /// <since_tizen> 3 </since_tizen>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public StatusSignalType StatusChangedSignal()
@@ -1478,7 +1478,7 @@ namespace Tizen.NUI
         /// <summary>
         /// ImfManager resized event arguments.
         /// </summary>
-        //Please do not use! this will be deprecated
+        ///Please do not use! this will be deprecated
         /// <since_tizen> 3 </since_tizen>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public class ImfManagerResizedEventArgs : EventArgs
@@ -1501,7 +1501,7 @@ namespace Tizen.NUI
         /// <summary>
         /// ImfManager resized event.
         /// </summary>
-        //Please do not use! this will be deprecated
+        ///Please do not use! this will be deprecated
         /// <since_tizen> 3 </since_tizen>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public event EventHandler<ImfManagerResizedEventArgs> ImfManagerResized
@@ -1604,7 +1604,7 @@ namespace Tizen.NUI
         /// <summary>
         /// ImfManager resized signal.
         /// </summary>
-        //Please do not use! this will be internal
+        ///Please do not use! this will be internal
         /// <since_tizen> 3 </since_tizen>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public KeyboardResizedSignalType ResizedSignal()
@@ -1617,7 +1617,7 @@ namespace Tizen.NUI
         /// <summary>
         /// ImfManager language changed event arguments.
         /// </summary>
-        //Please do not use! this will be deprecated
+        ///Please do not use! this will be deprecated
         /// <since_tizen> 3 </since_tizen>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public class ImfManagerLanguageChangedEventArgs : EventArgs
@@ -1640,7 +1640,7 @@ namespace Tizen.NUI
         /// <summary>
         /// ImfManager language changed event.
         /// </summary>
-        //Please do not use! this will be deprecated
+        ///Please do not use! this will be deprecated
         /// <since_tizen> 3 </since_tizen>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public event EventHandler<ImfManagerLanguageChangedEventArgs> ImfManagerLanguageChanged
@@ -1743,7 +1743,7 @@ namespace Tizen.NUI
         /// <summary>
         /// ImfManager language changed signal.
         /// </summary>
-        //Please do not use! this will be internal
+        ///Please do not use! this will be internal
         /// <since_tizen> 3 </since_tizen>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public LanguageChangedSignalType LanguageChangedSignal()
