@@ -212,7 +212,7 @@ namespace Tizen.NUI
             set
             {
 
-                Tizen.Log.Debug("NUI", "Value set to " + value);
+                NUILog.Debug("Value set to " + value);
                 _currentValue = value;
 
                 // Make sure no invalid value is accepted
@@ -341,7 +341,7 @@ namespace Tizen.NUI
             }
             set
             {
-                Tizen.Log.Debug("NUI", "TextColor set to " + value.R + "," + value.G + "," + value.B);
+                NUILog.Debug("TextColor set to " + value.R + "," + value.G + "," + value.B);
 
                 _textColor = value;
                 _textField.TextColor = _textColor;
