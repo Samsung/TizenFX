@@ -50,6 +50,14 @@ namespace Tizen.Maps
         }
 
         /// <summary>
+        /// Destroy the Overlay object.
+        /// </summary>
+        ~Overlay()
+        {
+            Dispose(false);
+        }
+
+        /// <summary>
         /// Gets or sets the visibility of an overlay map object.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
@@ -137,7 +145,7 @@ namespace Tizen.Maps
         {
             if (!_disposedValue)
             {
-                handle.Dispose();
+                handle?.Dispose();
                 _disposedValue = true;
             }
         }

@@ -51,6 +51,14 @@ namespace Tizen.Maps
         }
 
         /// <summary>
+        /// Destroy the Polygon object.
+        /// </summary>
+        ~Polygon()
+        {
+            Dispose(false);
+        }
+
+        /// <summary>
         /// Adds or removes the clicked event handlers.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
@@ -138,9 +146,9 @@ namespace Tizen.Maps
             {
                 if (disposing)
                 {
-                    _coordinateList.Clear();
+                    _coordinateList?.Clear();
                 }
-                handle.Dispose();
+                handle?.Dispose();
                 _disposedValue = true;
             }
         }

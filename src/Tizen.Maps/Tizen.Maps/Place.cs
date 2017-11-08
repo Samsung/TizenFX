@@ -33,6 +33,14 @@ namespace Tizen.Maps
         }
 
         /// <summary>
+        /// Destroy the Place object.
+        /// </summary>
+        ~Place()
+        {
+            Dispose(false);
+        }
+
+        /// <summary>
         /// Gets an ID string for the place.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
@@ -245,12 +253,11 @@ namespace Tizen.Maps
         /// Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.
         /// </summary>
         /// <param name="disposing">If true, managed and unmanaged resources can be disposed, otherwise only unmanaged resources can be disposed.</param>
-        /// <since_tizen> 3 </since_tizen>
         protected virtual void Dispose(bool disposing)
         {
             if (!_disposedValue)
             {
-                handle.Dispose();
+                handle?.Dispose();
                 _disposedValue = true;
             }
         }

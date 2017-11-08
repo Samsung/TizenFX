@@ -43,6 +43,14 @@ namespace Tizen.Maps
         }
 
         /// <summary>
+        /// Destroy the PlaceAddress object.
+        /// </summary>
+        ~PlaceAddress()
+        {
+            Dispose(false);
+        }
+
+        /// <summary>
         /// Gets a building number for this address.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
@@ -224,7 +232,7 @@ namespace Tizen.Maps
         {
             if (!_disposedValue)
             {
-                handle.Dispose();
+                handle?.Dispose();
                 _disposedValue = true;
             }
         }

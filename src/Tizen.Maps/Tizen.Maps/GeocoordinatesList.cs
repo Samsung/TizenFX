@@ -36,6 +36,14 @@ namespace Tizen.Maps
         }
 
         /// <summary>
+        /// Destroy the GeocoordinatesList object.
+        /// </summary>
+        ~GeocoordinatesList()
+        {
+            Dispose(false);
+        }
+
+        /// <summary>
         /// The iterator for coordinates in this list.
         /// </summary>
         internal IEnumerable<Geocoordinates> Coordinates
@@ -59,7 +67,7 @@ namespace Tizen.Maps
         {
             if (!_disposedValue)
             {
-                handle.Dispose();
+                handle?.Dispose();
                 _disposedValue = true;
             }
         }

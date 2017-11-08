@@ -34,6 +34,14 @@ namespace Tizen.Maps
         }
 
         /// <summary>
+        /// Destroy the Route object.
+        /// </summary>
+        ~Route()
+        {
+            Dispose(false);
+        }
+
+        /// <summary>
         /// Gets an instance of <see cref="Geocoordinates"/> object representing destination coordinates for this route.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
@@ -168,7 +176,7 @@ namespace Tizen.Maps
         {
             if (!_disposedValue)
             {
-                handle.Dispose();
+                handle?.Dispose();
                 _disposedValue = true;
             }
         }
