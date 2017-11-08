@@ -186,16 +186,8 @@ namespace Tizen.NUI
             {
                 if (_preFocusChangeEventHandler == null)
                 {
-#if DEBUG_ON
-                    Tizen.Log.Debug("NUI", "con1) PreFocusChangeSignal().Empty = " + PreFocusChangeSignal().Empty());
-                    Tizen.Log.Debug("NUI", "con2) PreFocusChangeSignal().GetConnectionCount = " + PreFocusChangeSignal().GetConnectionCount());
-#endif
                     _preFocusChangeCallback = OnPreFocusChange;
                     PreFocusChangeSignal().Connect(_preFocusChangeCallback);
-#if DEBUG_ON
-                    Tizen.Log.Debug("NUI", "con3) PreFocusChangeSignal().Empty = " + PreFocusChangeSignal().Empty());
-                    Tizen.Log.Debug("NUI", "con4) PreFocusChangeSignal().GetConnectionCount = " + PreFocusChangeSignal().GetConnectionCount());
-#endif
                 }
                 _preFocusChangeEventHandler += value;
             }
@@ -204,15 +196,7 @@ namespace Tizen.NUI
                 _preFocusChangeEventHandler -= value;
                 if (_preFocusChangeEventHandler == null && PreFocusChangeSignal().Empty() == false)
                 {
-#if DEBUG_ON
-                    Tizen.Log.Debug("NUI", "discon1) PreFocusChangeSignal().Empty = " + PreFocusChangeSignal().Empty());
-                    Tizen.Log.Debug("NUI", "discon2) PreFocusChangeSignal().GetConnectionCount = " + PreFocusChangeSignal().GetConnectionCount());
-#endif
                     PreFocusChangeSignal().Disconnect(_preFocusChangeCallback);
-#if DEBUG_ON
-                    Tizen.Log.Debug("NUI", "discon3) PreFocusChangeSignal().Empty = " + PreFocusChangeSignal().Empty());
-                    Tizen.Log.Debug("NUI", "discon4) PreFocusChangeSignal().GetConnectionCount = " + PreFocusChangeSignal().GetConnectionCount());
-#endif
                 }
             }
         }

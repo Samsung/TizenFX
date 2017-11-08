@@ -212,7 +212,7 @@ namespace Tizen.NUI
             set
             {
 
-                Tizen.Log.Debug("NUI", "Value set to " + value);
+                NUILog.Debug("Value set to " + value);
                 _currentValue = value;
 
                 // Make sure no invalid value is accepted
@@ -234,8 +234,6 @@ namespace Tizen.NUI
         /// Minimum value of the spin value.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        // MinValue property of type int:
-        /// <since_tizen> 3 </since_tizen>
         [ScriptableProperty()]
         public int MinValue
         {
@@ -252,8 +250,6 @@ namespace Tizen.NUI
         /// <summary>
         /// Maximum value of the spin value.
         /// </summary>
-        /// <since_tizen> 3 </since_tizen>
-        // MaxValue property of type int:
         /// <since_tizen> 3 </since_tizen>
         [ScriptableProperty()]
         public int MaxValue
@@ -272,8 +268,6 @@ namespace Tizen.NUI
         /// Increasing, decreasing step of the spin value when up or down keys are pressed.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        // Step property of type int:
-        /// <since_tizen> 3 </since_tizen>
         [ScriptableProperty()]
         public int Step
         {
@@ -291,8 +285,6 @@ namespace Tizen.NUI
         /// Wrapping enabled status.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        // WrappingEnabled property of type bool:
-        /// <since_tizen> 3 </since_tizen>
         [ScriptableProperty()]
         public bool WrappingEnabled
         {
@@ -309,8 +301,6 @@ namespace Tizen.NUI
         /// <summary>
         /// Text point size of the spin value.
         /// </summary>
-        /// <since_tizen> 3 </since_tizen>
-        // TextPointSize property of type int:
         /// <since_tizen> 3 </since_tizen>
         [ScriptableProperty()]
         public int TextPointSize
@@ -330,8 +320,6 @@ namespace Tizen.NUI
         /// The color of the spin value.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        // TextColor property of type Color:
-        /// <since_tizen> 3 </since_tizen>
         [ScriptableProperty()]
         public Color TextColor
         {
@@ -341,7 +329,7 @@ namespace Tizen.NUI
             }
             set
             {
-                Tizen.Log.Debug("NUI", "TextColor set to " + value.R + "," + value.G + "," + value.B);
+                NUILog.Debug("TextColor set to " + value.R + "," + value.G + "," + value.B);
 
                 _textColor = value;
                 _textField.TextColor = _textColor;
@@ -351,8 +339,6 @@ namespace Tizen.NUI
         /// <summary>
         /// Maximum text lengh of the spin value.
         /// </summary>
-        /// <since_tizen> 3 </since_tizen>
-        // MaxTextLength property of type int:
         /// <since_tizen> 3 </since_tizen>
         [ScriptableProperty()]
         public int MaxTextLength

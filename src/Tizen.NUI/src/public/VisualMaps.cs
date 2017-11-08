@@ -936,7 +936,7 @@ namespace Tizen.NUI
 
         /// <summary>
         /// Get or set whether to automatically correct the orientation based on exif data.<br />
-        /// If not specified, the default is true.<<br />
+        /// If not specified, the default is true.<br />
         /// For JPEG images only.<br />
         /// Optional.
         /// </summary>

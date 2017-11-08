@@ -2,7 +2,6 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
-    <DefineConstants>$(DefineConstants);DEBUG_ON</DefineConstants>
   </PropertyGroup>
 
   <ItemGroup>

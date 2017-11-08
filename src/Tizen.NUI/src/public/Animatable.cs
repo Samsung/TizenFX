@@ -15,6 +15,8 @@
  *
  */
 
+using System.Text;
+
 namespace Tizen.NUI
 {
 
@@ -110,9 +112,12 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public int GetPropertyIndex(string name)
         {
-            string daliPropertyName = name.Substring(0, 1).ToLower() + name.Substring(1);
+            // Convert property string to be lowercase
+            StringBuilder sb = new StringBuilder(name);
+            sb[0] = (char)(sb[0] | 0x20);
+            string str = sb.ToString();
 
-            int ret = NDalicPINVOKE.Handle_GetPropertyIndex(swigCPtr, daliPropertyName);
+            int ret = NDalicPINVOKE.Handle_GetPropertyIndex(swigCPtr, str);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }

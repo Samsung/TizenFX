@@ -1164,6 +1164,7 @@ namespace Tizen.NUI.BaseComponents
         /// <returns>A handle to a view or an uninitialized handle.</returns>
         /// <since_tizen> 3 </since_tizen>
         [Obsolete("Please do not use! this will be deprecated, instead please use as keyword.")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public static View DownCast(BaseHandle handle)
         {
             View ret =  Registry.GetManagedBaseHandleFromNativePtr(handle) as View;
@@ -1176,6 +1177,7 @@ namespace Tizen.NUI.BaseComponents
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         [Obsolete("Please do not use! this will be deprecated, instead please use as keyword.")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public static T DownCast<T>(View view) where T : View
         {
             T ret = Registry.GetManagedBaseHandleFromNativePtr(view) as T;
@@ -2107,6 +2109,7 @@ namespace Tizen.NUI.BaseComponents
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         [Obsolete("Please do not use! this will be deprecated. Please use Visibility instead.")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public bool Visible
         {
             get
@@ -4312,6 +4315,7 @@ namespace Tizen.NUI.BaseComponents
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         [Obsolete("Please do not use! this will be deprecated, please use Size2D instead")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public Size Size
         {
             get
@@ -4426,8 +4430,6 @@ namespace Tizen.NUI.BaseComponents
         /// <summary>
         /// "Please DO NOT use! This will be deprecated! Please use 'Container GetParent() for derived class' instead!"
         /// </summary>
-        /// <since_tizen> 3 </since_tizen>
-        //"Please DO NOT use! This will be deprecated! Please use 'Container GetParent() for derived class' instead!"
         /// <since_tizen> 3 </since_tizen>
         [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Never)]
         public new View Parent
