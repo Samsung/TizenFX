@@ -208,7 +208,7 @@ internal class NUILog
         [CallerFilePath] string file = null
     )
     {
-        Tizen.Log.Fatal("NUI", $"{msg} (at {DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fffffff")} line {lineNum} of {caller} in {file})" );
+        Tizen.Log.Fatal("NUI", $"{msg} (at line {lineNum} of {caller} in {file})" );
     }
 
     public static void Error(string msg,
@@ -217,7 +217,7 @@ internal class NUILog
         [CallerFilePath] string file = null
     )
     {
-        Tizen.Log.Fatal("NUI", $"[ERROR] {msg} (at {DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fffffff")} line {lineNum} of {caller} in {file})" );
+        Tizen.Log.Fatal("NUI", $"[ERROR] {msg} (at line {lineNum} of {caller} in {file})" );
     }
 }
 
