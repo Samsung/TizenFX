@@ -43,24 +43,22 @@ namespace Tizen.NUI
                 {
                     if (ver1 != daliVer1 || ver2 != daliVer2 || ver3 != daliVer3)
                     {
-                        Tizen.Log.Fatal("NUI", $"Dali native version mismatch error! nui={ nuiVer1}.{ nuiVer2}.{ nuiVer3} but dali= { ver1 }.{ ver2}.{ ver3}");
+                        NUILog.Error($"Dali native version mismatch error! nui={ nuiVer1}.{ nuiVer2}.{ nuiVer3} but dali= { ver1 }.{ ver2}.{ ver3}");
                         throw new System.InvalidOperationException($"Dali native version mismatch error! nui={ nuiVer1}.{ nuiVer2}.{ nuiVer3} but dali={ ver1 }.{ ver2}.{ ver3}");
-                        return false;
                     }
                 }
                 else
                 {
-                    Tizen.Log.Fatal("NUI", $"Dali native version mismatch error! nui={ nuiVer1}.{ nuiVer2}.{ nuiVer3} but dali= { ver1 }.{ ver2}.{ ver3}");
+                    NUILog.Error($"Dali native version mismatch error! nui={ nuiVer1}.{ nuiVer2}.{ nuiVer3} but dali= { ver1 }.{ ver2}.{ ver3}");
                     throw new System.InvalidOperationException($"Dali native version mismatch error! nui={ nuiVer1}.{ nuiVer2}.{ nuiVer3} but dali={ ver1 }.{ ver2}.{ ver3}");
-                    return false;
                 }
             }
-            catch (Exception exc)
+            catch (Exception)
             {
-                Tizen.Log.Fatal("NUI", $"Dali native version mismatch error! nui={ nuiVer1}.{ nuiVer2}.{ nuiVer3} but dali= { ver1 }.{ ver2}.{ ver3}");
+                NUILog.Error($"Dali native version mismatch error! nui={ nuiVer1}.{ nuiVer2}.{ nuiVer3} but dali= { ver1 }.{ ver2}.{ ver3}");
                 throw new System.InvalidOperationException($"Dali native version mismatch error! nui={ nuiVer1}.{ nuiVer2}.{ nuiVer3} but dali={ ver1 }.{ ver2}.{ ver3}");
             }
-            Tizen.Log.Fatal("NUI", $"version info: nui={ nuiVer1}.{ nuiVer2}.{ nuiVer3}, dali= { ver1 }.{ ver2}.{ ver3}");
+            NUILog.Debug($"version info: nui={ nuiVer1}.{ nuiVer2}.{ nuiVer3}, dali= { ver1 }.{ ver2}.{ ver3}");
             return true;
         }
     }
