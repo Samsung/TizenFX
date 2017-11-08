@@ -33,6 +33,14 @@ namespace Tizen.Maps
         }
 
         /// <summary>
+        /// Destroy the PlaceList object.
+        /// </summary>
+        ~PlaceList()
+        {
+            Dispose(false);
+        }
+
+        /// <summary>
         /// Gets an iterator for the addresses in this list.
         /// </summary>
         public IEnumerable<Place> Places
@@ -59,7 +67,7 @@ namespace Tizen.Maps
         {
             if (!_disposedValue)
             {
-                handle.Dispose();
+                handle?.Dispose();
                 _disposedValue = true;
             }
         }

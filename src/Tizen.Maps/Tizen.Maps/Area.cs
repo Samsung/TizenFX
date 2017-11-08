@@ -59,6 +59,14 @@ namespace Tizen.Maps
             handle = nativeHandle;
         }
 
+        /// <summary>
+        /// Destroy the Area object.
+        /// </summary>
+        ~Area()
+        {
+            Dispose(false);
+        }
+
         #region IDisposable Support
         private bool _disposedValue = false;
 
@@ -71,7 +79,7 @@ namespace Tizen.Maps
         {
             if (!_disposedValue)
             {
-                handle.Dispose();
+                handle?.Dispose();
                 _disposedValue = true;
             }
         }

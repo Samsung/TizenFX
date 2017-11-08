@@ -71,6 +71,14 @@ namespace Tizen.Maps
         }
 
         /// <summary>
+        /// Destroy the MapView object.
+        /// </summary>
+        ~MapView()
+        {
+            Dispose(false);
+        }
+
+        /// <summary>
         /// Adds or removes event handlers to deliver a scrolled gesture event.
         /// </summary>
         /// <value>Event handlers to get a scrolled gesture event.</value>
@@ -764,9 +772,9 @@ namespace Tizen.Maps
             {
                 if (disposing)
                 {
-                    _service.Dispose();
+                    _handleToObjectTable?.Clear();
                 }
-                handle.Dispose();
+                handle?.Dispose();
                 _disposedValue = true;
             }
         }

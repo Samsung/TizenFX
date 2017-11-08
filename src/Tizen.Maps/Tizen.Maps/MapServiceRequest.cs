@@ -49,6 +49,14 @@ namespace Tizen.Maps
         }
 
         /// <summary>
+        /// Destroy the MapServiceRequest object.
+        /// </summary>
+        ~MapServiceRequest()
+        {
+            Dispose(false);
+        }
+
+        /// <summary>
         /// Sends a request to the map service provider.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
@@ -103,7 +111,6 @@ namespace Tizen.Maps
                 if (disposing)
                 {
                     Cancel();
-                    _service.Dispose();
                 }
                 _disposedValue = true;
             }
