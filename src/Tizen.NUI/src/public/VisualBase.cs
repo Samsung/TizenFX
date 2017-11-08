@@ -17,6 +17,7 @@
 
 using System;
 using System.Runtime.InteropServices;
+using System.ComponentModel;
 
 namespace Tizen.NUI
 {
@@ -204,6 +205,7 @@ namespace Tizen.NUI
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         [Obsolete("Please be caution! this will be readonly.")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public PropertyMap Creation
         {
             set
