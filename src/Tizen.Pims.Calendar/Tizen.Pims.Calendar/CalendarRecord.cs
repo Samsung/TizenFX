@@ -168,12 +168,12 @@ namespace Tizen.Pims.Calendar
             }
             else
             {
-                time.year = value.LocalTime.Year;
-                time.month = value.LocalTime.Month;
-                time.mday = value.LocalTime.Day;
-                time.hour = value.LocalTime.Hour;
-                time.minute = value.LocalTime.Minute;
-                time.second = value.LocalTime.Second;
+                time.local.year = value.LocalTime.Year;
+                time.local.month = value.LocalTime.Month;
+                time.local.mday = value.LocalTime.Day;
+                time.local.hour = value.LocalTime.Hour;
+                time.local.minute = value.LocalTime.Minute;
+                time.local.second = value.LocalTime.Second;
             }
             return time;
         }
@@ -188,7 +188,7 @@ namespace Tizen.Pims.Calendar
             }
             else
             {
-                value = new CalendarTime(time.year, time.month, time.mday, time.hour, time.minute, time.second);
+                value = new CalendarTime(time.local.year, time.local.month, time.local.mday, time.local.hour, time.local.minute, time.local.second);
             }
             value._type = time.type;
             return value;
