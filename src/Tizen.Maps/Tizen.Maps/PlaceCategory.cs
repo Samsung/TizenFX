@@ -41,6 +41,13 @@ namespace Tizen.Maps
             handle = nativeHandle;
         }
 
+        /// <summary>
+        /// Destroy the PlaceCategory object.
+        /// </summary>
+        ~PlaceCategory()
+        {
+            Dispose(false);
+        }
 
         /// <summary>
         /// Gets or sets an ID for this category.
@@ -94,7 +101,7 @@ namespace Tizen.Maps
         {
             if (!_disposedValue)
             {
-                handle.Dispose();
+                handle?.Dispose();
                 _disposedValue = true;
             }
         }

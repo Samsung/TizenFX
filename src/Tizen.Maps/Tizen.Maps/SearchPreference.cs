@@ -46,6 +46,14 @@ namespace Tizen.Maps
         }
 
         /// <summary>
+        /// Destroy the SearchPreference object.
+        /// </summary>
+        ~SearchPreference()
+        {
+            Dispose(false);
+        }
+
+        /// <summary>
         /// Gets or sets a preferred language.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
@@ -240,7 +248,7 @@ namespace Tizen.Maps
         {
             if (!_disposedValue)
             {
-                handle.Dispose();
+                handle?.Dispose();
                 _disposedValue = true;
             }
         }

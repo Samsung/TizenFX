@@ -57,6 +57,14 @@ namespace Tizen.Maps
         }
 
         /// <summary>
+        /// Destroy the MapService object.
+        /// </summary>
+        ~MapService()
+        {
+            Dispose(false);
+        }
+
+        /// <summary>
         /// Gets the list of available map service providers.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
@@ -369,10 +377,10 @@ namespace Tizen.Maps
             {
                 if (disposing)
                 {
-                    _filter.Dispose();
-                    _searchPreference.Dispose();
+                    _filter?.Dispose();
+                    _searchPreference?.Dispose();
                 }
-                handle.Dispose();
+                handle?.Dispose();
                 _disposedValue = true;
             }
         }

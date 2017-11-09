@@ -37,6 +37,14 @@ namespace Tizen.Maps
         }
 
         /// <summary>
+        /// Destroy the PlaceFilter object.
+        /// </summary>
+        ~PlaceFilter()
+        {
+            Dispose(false);
+        }
+
+        /// <summary>
         /// Gets or sets a free-formed address string for this place filter.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
@@ -121,7 +129,7 @@ namespace Tizen.Maps
         {
             if (!_disposedValue)
             {
-                handle.Dispose();
+                handle?.Dispose();
                 _disposedValue = true;
             }
         }

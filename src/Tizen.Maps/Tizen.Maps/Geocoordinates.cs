@@ -45,6 +45,14 @@ namespace Tizen.Maps
         }
 
         /// <summary>
+        /// Destroy the Geocoordinates object.
+        /// </summary>
+        ~Geocoordinates()
+        {
+            Dispose(false);
+        }
+
+        /// <summary>
         /// Gets the latitude coordinates.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
@@ -90,7 +98,7 @@ namespace Tizen.Maps
         {
             if (!_disposedValue)
             {
-                handle.Dispose();
+                handle?.Dispose();
                 _disposedValue = true;
             }
         }
