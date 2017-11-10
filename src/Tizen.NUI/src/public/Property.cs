@@ -1025,7 +1025,7 @@ namespace Tizen.NUI
         /// Please do not use! this will be deprecated.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        [Obsolete("Please do not use! this will be deprecated")]
+        [Obsolete("Please do not use! This will be deprecated!")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public string GetKey(uint position)
         {
@@ -1051,7 +1051,7 @@ namespace Tizen.NUI
         /// Please do not use! this will be deprecated
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        [Obsolete("Please do not use! this will be deprecated")]
+        [Obsolete("Please do not use! This will be deprecated!")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public PropertyValue Find(string key)
         {
@@ -1094,7 +1094,7 @@ namespace Tizen.NUI
         /// Please do not use! this will be deprecated.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        [Obsolete("Please do not use! this will be deprecated")]
+        [Obsolete("Please do not use! This will be deprecated!")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public PropertyValue Find(string key, PropertyType type)
         {
@@ -1108,7 +1108,7 @@ namespace Tizen.NUI
         /// Please do not use! this will be deprecated
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        [Obsolete("Please do not use! this will be deprecated")]
+        [Obsolete("Please do not use! This will be deprecated!")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public PropertyValue Find(int key, PropertyType type)
         {

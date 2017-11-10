@@ -26,6 +26,7 @@ namespace Tizen.NUI
     /// This is used by the slot if wants to disconnect or is deleted.<br />
     /// </summary>
     /// <since_tizen> 4 </since_tizen>
+    [Obsolete("Please do not use! This will be deprecated!")]
     [EditorBrowsable(EditorBrowsableState.Never)]
     public class SlotObserver : global::System.IDisposable
     {

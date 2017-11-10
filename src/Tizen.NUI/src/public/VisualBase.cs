@@ -204,7 +204,7 @@ namespace Tizen.NUI
         /// Creates the property map representing this visual.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        [Obsolete("Please be caution! this will be readonly.")]
+        [Obsolete("Please be caution! This will be readonly!")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public PropertyMap Creation
         {

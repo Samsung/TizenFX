@@ -1163,7 +1163,7 @@ namespace Tizen.NUI.BaseComponents
         /// <param name="handle">A handle to an object.</param>
         /// <returns>A handle to a view or an uninitialized handle.</returns>
         /// <since_tizen> 3 </since_tizen>
-        [Obsolete("Please do not use! this will be deprecated, instead please use as keyword.")]
+        [Obsolete("Please do not use! This will be deprecated! Please use as keyword instead!")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static View DownCast(BaseHandle handle)
         {
@@ -1176,7 +1176,7 @@ namespace Tizen.NUI.BaseComponents
         /// [Obsolete("Please do not use! this will be deprecated, instead please use as keyword.")]
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        [Obsolete("Please do not use! this will be deprecated, instead please use as keyword.")]
+        [Obsolete("Please do not use! This will be deprecated! Please use as keyword instead!")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static T DownCast<T>(View view) where T : View
         {
@@ -2108,7 +2108,7 @@ namespace Tizen.NUI.BaseComponents
         /// [Obsolete("Please do not use! this will be deprecated. Please use Visibility instead.")]
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        [Obsolete("Please do not use! this will be deprecated. Please use Visibility instead.")]
+        [Obsolete("Please do not use! This will be deprecated! Please use Visibility instead!")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public bool Visible
         {
@@ -2198,7 +2198,11 @@ namespace Tizen.NUI.BaseComponents
         /// Please do not use! this will be deprecated!
         /// Instead please use PositionUsesPivotPoint.
         /// <since_tizen> 3 </since_tizen>
-        [Obsolete("Please do not use! this will be deprecated, instead please use PositionUsesPivotPoint")]
+        [Obsolete("Please do not use! This will be deprecated! Please use PositionUsesPivotPoint instead! " +
+            "Like: " +
+            "View view = new View(); " +
+            "view.PivotPoint = PivotPoint.Center; " +
+            "view.PositionUsesPivotPoint = true;")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public bool PositionUsesAnchorPoint
         {
@@ -2283,7 +2287,10 @@ namespace Tizen.NUI.BaseComponents
         /// /// Please do not use! this will be deprecated!
         /// Instead please use NaturalSize2D.
         /// <since_tizen> 3 </since_tizen>
-        [Obsolete("Please do not use! this will be deprecated, please use NaturalSize2D instead")]
+        [Obsolete("Please do not use! This will be deprecated! Please use NaturalSize2D instead! " +
+            "Like: " +
+            "TextLabel label = new TextLabel(\"Hello World!\"); " +
+            "Size2D size = view.NaturalSize2D;")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public Vector3 NaturalSize
         {
@@ -4195,7 +4202,7 @@ namespace Tizen.NUI.BaseComponents
         /// <since_tizen> 3 </since_tizen>
         /// Please do not use! this will be deprecated!
         /// Instead please use TouchEvent.
-        [Obsolete("Please do not use! this will be deprecated, instead please use TouchEvent.")]
+        [Obsolete("Please do not use! This will be deprecated! Please use TouchEvent instead!")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public event EventHandlerWithReturnType<object, TouchEventArgs, bool> Touched
         {
@@ -4228,7 +4235,7 @@ namespace Tizen.NUI.BaseComponents
         /// <since_tizen> 3 </since_tizen>
         /// Please do not use! this will be deprecated!
         /// Instead please use HoverEvent.
-        [Obsolete("Please do not use! this will be deprecated, instead please use HoverEvent.")]
+        [Obsolete("Please do not use! This will be deprecated! Please use HoverEvent instead!")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public event EventHandlerWithReturnType<object, HoverEventArgs, bool> Hovered
         {
@@ -4261,7 +4268,7 @@ namespace Tizen.NUI.BaseComponents
         /// <since_tizen> 3 </since_tizen>
         /// Please do not use! this will be deprecated!
         /// Instead please use WheelEvent.
-        [Obsolete("Please do not use! this will be deprecated, instead please use WheelEvent.")]
+        [Obsolete("Please do not use! This will be deprecated! Please use WheelEvent instead!")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public event EventHandlerWithReturnType<object, WheelEventArgs, bool> WheelMoved
         {
@@ -4294,7 +4301,11 @@ namespace Tizen.NUI.BaseComponents
         /// <since_tizen> 3 </since_tizen>
         /// Please do not use! this will be deprecated!
         /// Instead please use PivotPoint.
-        [Obsolete("Please do not use! this will be deprecated, instead please use PivotPoint")]
+        [Obsolete("Please do not use! This will be deprecated! Please use PivotPoint instead! " +
+            "Like: " +
+            "View view = new View(); " +
+            "view.PivotPoint = PivotPoint.Center; " +
+            "view.PositionUsesPivotPoint = true;")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public Position AnchorPoint
         {
@@ -4314,7 +4325,10 @@ namespace Tizen.NUI.BaseComponents
         /// [Obsolete("Please do not use! this will be deprecated")]
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        [Obsolete("Please do not use! this will be deprecated, please use Size2D instead")]
+        [Obsolete("Please do not use! This will be deprecated! Please use Size2D instead! " +
+            "Like: " +
+            "View view = new View(); " +
+            "view.Size2D = new Size2D(100, 100);")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public Size Size
         {
@@ -4336,7 +4350,7 @@ namespace Tizen.NUI.BaseComponents
         /// <since_tizen> 3 </since_tizen>
         /// Please do not use! this will be deprecated!
         /// Instead please use AddedToWindow.
-        [Obsolete("Please do not use! this will be deprecated, instead please use AddedToWindow")]
+        [Obsolete("Please do not use! This will be deprecated! Please use AddedToWindow instead!")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public event EventHandler OnWindowEvent
         {
@@ -4368,7 +4382,7 @@ namespace Tizen.NUI.BaseComponents
         /// <since_tizen> 3 </since_tizen>
         /// Please do not use! this will be deprecated!
         /// Instead please use RemovedFromWindow.
-        [Obsolete("Please do not use! this will be deprecated, instead please use RemovedFromWindow")]
+        [Obsolete("Please do not use! This will be deprecated! Please use RemovedFromWindow instead!")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public event EventHandler OffWindowEvent
         {
@@ -4400,7 +4414,7 @@ namespace Tizen.NUI.BaseComponents
         /// <since_tizen> 3 </since_tizen>
         /// Please do not use! this will be deprecated!
         /// Instead please use Relayout.
-        [Obsolete("Please do not use! this will be deprecated, instead please use Relayout")]
+        [Obsolete("Please do not use! This will be deprecated! Please use Relayout instead!")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public event EventHandler OnRelayoutEvent
         {
@@ -4431,7 +4445,11 @@ namespace Tizen.NUI.BaseComponents
         /// "Please DO NOT use! This will be deprecated! Please use 'Container GetParent() for derived class' instead!"
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        [System.ComponentModel.EditorBrowsable(System.ComponentModel.EditorBrowsableState.Never)]
+        [Obsolete("Please do not use! This will be deprecated! Please use 'Container GetParent() for derived class' instead! " +
+            "Like: " +
+            "Container parent =  view.GetParent(); " +
+            "View view = parent as View;")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public new View Parent
         {
             get

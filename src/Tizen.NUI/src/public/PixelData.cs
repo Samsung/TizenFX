@@ -32,6 +32,7 @@ namespace Tizen.NUI
     /// So this is required to be removed.
     /// currently no use. will be added later
     /// <since_tizen> 3 </since_tizen>
+    [Obsolete("Please do not use! This will be deprecated!")]
     [EditorBrowsable(EditorBrowsableState.Never)]
     public class PixelData : BaseHandle
     {

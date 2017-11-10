@@ -101,7 +101,7 @@ namespace Tizen.NUI.UIComponents
         /// <since_tizen> 3 </since_tizen>
         /// Please do not use! this will be deprecated!
         /// Instead please use as keyword.
-        [Obsolete("Please DO NOT use! This will be deprecated, instead please USE as keyword.")]
+        [Obsolete("Please do not use! This will be deprecated! Please use as keyword instead!")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public new static PushButton DownCast(BaseHandle handle)
         {
@@ -116,7 +116,7 @@ namespace Tizen.NUI.UIComponents
         /// <since_tizen> 3 </since_tizen>
         /// Please do not use! this will be deprecated!
         /// Instead please use UnselectedVisual.
-        [Obsolete("Please DO NOT use! This will be Deprecated!. Please implement by using Visual instead!")]
+        [Obsolete("Please do not use! This will be deprecated! Please use UnselectedVisual instead!")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public string UnselectedIcon
         {
@@ -132,7 +132,7 @@ namespace Tizen.NUI.UIComponents
         /// <since_tizen> 3 </since_tizen>
         /// Please do not use! this will be deprecated!
         /// Instead please use SelectedVisual.
-        [Obsolete("Please do not use! this will be deprecated, instead please use SelectedVisual.")]
+        [Obsolete("Please do not use! This will be deprecated! Please use SelectedVisual instead!")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public string SelectedIcon
         {
@@ -141,11 +141,12 @@ namespace Tizen.NUI.UIComponents
                 SetProperty(PushButton.Property.SELECTED_ICON, new Tizen.NUI.PropertyValue(value));
             }
         }
+
         /// <summary>
         /// Please do not use! this will be deprecated
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        [Obsolete("Please DO NOT use! This will be deprecated, please implement by using Visual instead!")]
+        [Obsolete("Please do not use! This will be deprecated! Please use LabelRelativeAlignment instead!")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public IconAlignmentType IconAlignment
         {
@@ -204,12 +205,13 @@ namespace Tizen.NUI.UIComponents
                 SetProperty(PushButton.Property.ICON_ALIGNMENT, new Tizen.NUI.PropertyValue(valueToString));
             }
         }
+
         /// <summary>
         /// Please do not use! this will be deprecated
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// no use
-        [Obsolete("Please DO NOT use! This will be deprecated")]
+        [Obsolete("Please do not use! This will be deprecated! Please use Button.LabelPadding instead!")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public new Vector4 LabelPadding
         {
@@ -230,7 +232,7 @@ namespace Tizen.NUI.UIComponents
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// no use
-        [Obsolete("Please DO NOT use! This will be deprecated")]
+        [Obsolete("Please do not use! This will be deprecated! Please use ForegroundVisualPadding instead!")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public Vector4 IconPadding
         {
@@ -251,7 +253,7 @@ namespace Tizen.NUI.UIComponents
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// no use
-        [Obsolete("Please DO NOT use! This will be deprecated!")]
+        [Obsolete("Please do not use! This will be deprecated! Please use Button.Align instead!")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public enum IconAlignmentType
         {

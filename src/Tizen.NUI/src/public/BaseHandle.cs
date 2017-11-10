@@ -14,7 +14,6 @@
  * limitations under the License.
  *
  */
-
 namespace Tizen.NUI
 {
 
@@ -301,7 +300,7 @@ namespace Tizen.NUI
         /// </summary>
         /// <param name="o">The object should be compared.</param>
         /// <returns>True if equal.</returns>
-        /// <since_tizen> 4 </since_tizen>
+        /// <since_tizen> 5 </since_tizen>
         public override bool Equals(object o)
         {
             return base.Equals(o);
@@ -311,7 +310,7 @@ namespace Tizen.NUI
         /// Gets the the hash code of this baseHandle.
         /// </summary>
         /// <returns>The Hash Code.</returns>
-        /// <since_tizen> 4 </since_tizen>
+        /// <since_tizen> 5 </since_tizen>
         public override int GetHashCode()
         {
             return base.GetHashCode();
