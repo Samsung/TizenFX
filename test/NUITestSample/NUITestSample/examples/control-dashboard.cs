@@ -484,11 +484,6 @@ namespace ControlDashboard
             return;
         }
 
-
-        /// <summary>
-        /// The main entry point for the application.
-        /// </summary>
-
         [STAThread]
         static void _Main(string[] args)
         {
