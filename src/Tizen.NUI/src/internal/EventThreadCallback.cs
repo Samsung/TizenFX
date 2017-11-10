@@ -44,11 +44,11 @@ namespace Tizen.NUI
 
         ~EventThreadCallback()
         {
-            if (!isDisposeQueued)
-            {
-                isDisposeQueued = true;
-                DisposeQueue.Instance.Add(this);
-            }
+            //if (!isDisposeQueued)
+            //{
+                //isDisposeQueued = true;
+                //DisposeQueue.Instance.Add(this);
+            //}
         }
 
         public void Dispose()
@@ -94,7 +94,7 @@ namespace Tizen.NUI
                 if (swigCMemOwn)
                 {
                     swigCMemOwn = false;
-                    NDalicManualPINVOKE.delete_EventThreadCallback(swigCPtr);
+                    //NDalicManualPINVOKE.delete_EventThreadCallback(swigCPtr);
                 }
                 swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
             }
