@@ -14,7 +14,6 @@
  * limitations under the License.
  *
  */
-
 using System.Text;
 using System.Collections.Generic;
 using Tizen.NUI.BaseComponents;

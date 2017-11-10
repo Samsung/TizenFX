@@ -260,9 +260,10 @@ namespace Tizen.NUI
         /// </summary>
         DisableStyleChangeSignals = 1 << 6,
         /// <summary>
-        /// [EditorBrowsable(EditorBrowsableState.Never)]
+        /// Please do not use! This will be deprecated!
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        [Obsolete("Please do not use! This will be deprecated!")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         LastViewBehaviourFlag
     }
@@ -2172,7 +2173,7 @@ namespace Tizen.NUI
     /// [Obsolete("Please do not use! this will be deprecated")]
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
-    [Obsolete("Please do not use! this will be deprecated")]
+    [Obsolete("Please do not use! This will be deprecated! Please use PivotPoint instead!")]
     [EditorBrowsable(EditorBrowsableState.Never)]
     public struct AnchorPoint
     {

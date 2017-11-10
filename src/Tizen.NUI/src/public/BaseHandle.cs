@@ -14,7 +14,7 @@
  * limitations under the License.
  *
  */
-
+using System;
 using System.ComponentModel;
 
 namespace Tizen.NUI
@@ -305,6 +305,7 @@ namespace Tizen.NUI
         /// <returns>True if equal.</returns>
         /// <since_tizen> 4 </since_tizen>
         /// This will be released at Tizen.NET API Level 5, so currently this would be used as inhouse API.
+        [Obsolete("Please do not use! This will be deprecated!")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public override bool Equals(object o)
         {
@@ -317,6 +318,7 @@ namespace Tizen.NUI
         /// <returns>The Hash Code.</returns>
         /// <since_tizen> 4 </since_tizen>
         /// This will be released at Tizen.NET API Level 5, so currently this would be used as inhouse API.
+        [Obsolete("Please do not use! This will be deprecated!")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public override int GetHashCode()
         {

@@ -24,6 +24,7 @@ namespace Tizen.NUI
     /// Please do not use! this will be deprecated
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
+    [Obsolete("Please do not use! This will be deprecated!")]
     [EditorBrowsable(EditorBrowsableState.Never)]
     public class ImfEventSignalType : global::System.IDisposable
     {

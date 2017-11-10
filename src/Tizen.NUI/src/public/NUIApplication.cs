@@ -250,7 +250,7 @@ namespace Tizen.NUI
         /// Gets the window instance.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        [Obsolete("Please do not use! this will be deprecated")]
+        [Obsolete("Please do not use! This will be deprecated!")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public Window Window
         {

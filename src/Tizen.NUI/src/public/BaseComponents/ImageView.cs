@@ -198,7 +198,10 @@ namespace Tizen.NUI.BaseComponents
         /// Please do not use! this will be deprecated!
         /// Instead please use as keyword.
         /// <since_tizen> 3 </since_tizen>
-        [Obsolete("Please DO NOT use! This will be deprecated, instead please USE as keyword.")]
+        [Obsolete("Please do not use! This will be deprecated! Please use as keyword instead! " +
+            "Like: " +
+            "BaseHandle handle = new ImageView(imagePath); " +
+            "ImageView image = handle as ImageView")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public new static ImageView DownCast(BaseHandle handle)
         {
@@ -206,6 +209,7 @@ namespace Tizen.NUI.BaseComponents
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
+
         /// <summary>
         /// Sets this ImageView from the given URL.<br />
         /// If the URL is empty, ImageView will not display anything.<br />
@@ -269,6 +273,7 @@ namespace Tizen.NUI.BaseComponents
         /// ImageView ImageMap, type PropertyMap: string if it is a URL, map otherwise.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        [Obsolete("Please do not use! This will be deprecated! Please use Image property instead!")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public PropertyMap ImageMap
         {

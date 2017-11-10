@@ -64,6 +64,7 @@ namespace Tizen.NUI
         /// Dispose() method in Singletone classes (ex: FocusManager, StyleManager, VisualFactory, IMFManager, TtsPlayer, Window) is not required.
         /// Because it is Sigletone, so it is alive for one thread until the NUI is terminated, so it never be disposed.
         /// <since_tizen> 3 </since_tizen>
+        [Obsolete("Please do not use! This will be deprecated!")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected override void Dispose(DisposeTypes type)
         {
@@ -1572,6 +1573,10 @@ namespace Tizen.NUI
         /// Please do not use! this will be deprecated
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        [Obsolete("Please do not use! This will be deprecated! Please use FocusChangedEventArgs instead! " +
+            "Like: " +
+            "Window.Instance.FocusChanged = OnFocusChanged; " +
+            "private void OnFocusChanged(object source, Window.FocusChangedEventArgs args) {...}")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public class WindowFocusChangedEventArgs : EventArgs
         {
@@ -1597,7 +1602,10 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         /// Please do not use! this will be deprecated!
         /// Instead please use FocusChanged.
-        [Obsolete("Please do not use! this will be deprecated, instead please use FocusChanged")]
+        [Obsolete("Please do not use! This will be deprecated! Please use FocusChanged instead! " +
+            "Like: " +
+            "Window.Instance.FocusChanged = OnFocusChanged; " +
+            "private void OnFocusChanged(object source, Window.FocusChangedEventArgs args) {...}")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public event EventHandler<WindowFocusChangedEventArgs> WindowFocusChanged
         {
