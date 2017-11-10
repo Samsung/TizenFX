@@ -67,15 +67,15 @@ namespace Tizen.Applications.CoreBackend
         /// <summary>
         /// Tag string for this class.
         /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
         /// <since_tizen> 3 </since_tizen>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         protected static readonly string LogTag = typeof(DefaultCoreBackend).Namespace;
 
         /// <summary>
         /// Data structure for event handlers.
         /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
         /// <since_tizen> 3 </since_tizen>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         protected IDictionary<EventType, object> Handlers = new Dictionary<EventType, object>();
 
         /// <summary>
