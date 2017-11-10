@@ -15,7 +15,7 @@
  */
 
 using System;
-
+using System.Globalization;
 using Tizen.Applications.CoreBackend;
 
 namespace Tizen.Applications
@@ -194,6 +194,7 @@ namespace Tizen.Applications
         /// <since_tizen> 3 </since_tizen>
         protected virtual void OnLocaleChanged(LocaleChangedEventArgs e)
         {
+            ChangeCurrentCultureInfo(e.Locale);
             LocaleChanged?.Invoke(this, e);
         }
 
@@ -234,6 +235,73 @@ namespace Tizen.Applications
                 _disposedValue = true;
             }
             base.Dispose(disposing);
+        }
+
+        private void ChangeCurrentCultureInfo(string locale)
+        {
+            string languageCode = string.Empty;
+            string localeCode = string.Empty;
+            CultureInfo currentCultureInfo = null;
+
+            if (locale.Contains("."))
+            {
+                locale = locale.Substring(0, locale.IndexOf("."));
+            }
+
+            if (locale.Contains("_"))
+            {
+                locale = locale.Replace("_", "-");
+            }
+
+            var dashIndex = locale.IndexOf("-", StringComparison.Ordinal);
+            if (dashIndex > 0)
+            {
+                var parts = locale.Split('-');
+                languageCode = parts[0];
+                localeCode = parts[1];
+            }
+            else
+            {
+                languageCode = locale;
+                localeCode = "";
+            }
+
+            foreach (CultureInfo ci in CultureInfo.GetCultures(CultureTypes.AllCultures))
+            {
+                if (ci.TwoLetterISOLanguageName == languageCode)
+                {
+                    if (localeCode == "")
+                    {
+                        if (ci.Name == languageCode)
+                        {
+                            currentCultureInfo = new CultureInfo(ci.Name);
+                            break;
+                        }
+                    }
+                    else
+                    {
+                        if (ci.Name.Contains(localeCode.ToUpper()))
+                        {
+                            currentCultureInfo = new CultureInfo(ci.Name);
+                            break;
+                        }
+                    }
+                }
+            }
+
+            if (currentCultureInfo == null)
+            {
+                try
+                {
+                    currentCultureInfo = new CultureInfo(languageCode);
+                }
+                catch (CultureNotFoundException)
+                {
+                    currentCultureInfo = new CultureInfo("en");
+                }
+            }
+
+            CultureInfo.CurrentCulture = currentCultureInfo;
         }
     }
 }
