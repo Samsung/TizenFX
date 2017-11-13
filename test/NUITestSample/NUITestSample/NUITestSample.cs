@@ -10,7 +10,8 @@ namespace NUITestSample
         [STAThread]
         static void Main(string[] args)
         {
-            new ImageViewUserShaderTest2.Test().Run(args);
+            new WatchSample.Program().Run(args);
+            //new ImageViewUserShaderTest2.Test().Run(args);
             //new ImageViewUserShaderTest.Test().Run(args);
             //new ScreenPositionTest.Test().Run(args);
             //new ImageViewOrientationCorrectionTest.Test().Run(args);
