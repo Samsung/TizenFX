@@ -4,9 +4,18 @@ namespace NUITestSample
 {
     class Application
     {
+        /// <summary>
+        /// The main entry point for the application.
+        /// </summary>
         [STAThread]
         static void Main(string[] args)
         {
+            new ImageViewUserShaderTest2.Test().Run(args);
+            //new ImageViewUserShaderTest.Test().Run(args);
+            //new ScreenPositionTest.Test().Run(args);
+            //new ImageViewOrientationCorrectionTest.Test().Run(args);
+            //new VisaulAnimationExample.Example().Run(args);
+
             //new ControlDashboard.Example().Run(args);
             //new DatePickerTest.Example().Run(args);
             //new DatePickerUsingJson.Example().Run(args);
@@ -22,7 +31,6 @@ namespace NUITestSample
             //new FlexContainerTest.SampleMain().Run(args);
             //new DaliTest.Example().Run(args);
             //new RelativeVectorTest.Example().Run(args);
-            //new VisaulAnimationExample.Example().Run(args);
             //new VisaulAnimationExample.Example2().Run(args);
             //new VisaulAnimationExample.Example3().Run(args);
             //new VisualViewTest.Example().Run(args);
@@ -36,7 +44,6 @@ namespace NUITestSample
             //new WidgetViewTest.Example().Run(args);
             //new DisposeTest.Example().Run(args);
             //new SvgTest.Program().Run(args);
-            new ImageViewOrientationCorrectionTest.Program().Run(args);
         }
     }
 }
