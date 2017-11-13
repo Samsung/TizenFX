@@ -96,6 +96,7 @@ namespace Tizen.Network.Connection
         private Interop.Connection.ConnectionAddressChangedCallback _connectionAddressChangedCallback;
         private Interop.Connection.ConnectionTypeChangedCallback _connectionTypeChangedCallback;
         private Interop.Connection.ConnectionAddressChangedCallback _proxyAddressChangedCallback;
+        private Interop.Connection.EthernetCableStateChangedCallback _ethernetCableStateChangedCallback;
 
         internal static ConnectionInternalManager Instance
         {
@@ -224,10 +225,20 @@ namespace Tizen.Network.Connection
 
         private void EthernetCableStateChangedStart()
         {
-            int ret = Interop.Connection.SetEthernetCableStateChagedCallback(GetHandle(), EthernetCableStateChangedCallback, IntPtr.Zero);
+            _ethernetCableStateChangedCallback = (EthernetCableState state, IntPtr user_data) =>
+            {
+                if (_EthernetCableStateChanged != null)
+                {
+                    _EthernetCableStateChanged(null, new EthernetCableStateEventArgs(state));
+                }
+            };
+            int ret = Interop.Connection.SetEthernetCableStateChagedCallback(GetHandle(),
+                    _ethernetCableStateChangedCallback, IntPtr.Zero);
             if ((ConnectionError)ret != ConnectionError.None)
             {
-                Log.Error(Globals.LogTag, "It failed to register ethernet cable state changed callback, " + (ConnectionError)ret);
+                Log.Error(Globals.LogTag,
+                        "It failed to register ethernet cable state changed callback, " +
+                        (ConnectionError)ret);
                 ConnectionErrorFactory.ThrowConnectionException(ret);
             }
         }
@@ -237,16 +248,10 @@ namespace Tizen.Network.Connection
             int ret = Interop.Connection.UnsetEthernetCableStateChagedCallback(GetHandle());
             if ((ConnectionError)ret != ConnectionError.None)
             {
-                Log.Error(Globals.LogTag, "It failed to unregister ethernet cable state changed callback, " + (ConnectionError)ret);
+                Log.Error(Globals.LogTag,
+                        "It failed to unregister ethernet cable state changed callback, " + 
+                        (ConnectionError)ret);
                 ConnectionErrorFactory.ThrowConnectionException(ret);
-            }
-        }
-
-        private void EthernetCableStateChangedCallback(EthernetCableState state, IntPtr user_data)
-        {
-            if (_EthernetCableStateChanged != null)
-            {
-                _EthernetCableStateChanged(null, new EthernetCableStateEventArgs(state));
             }
         }
 
