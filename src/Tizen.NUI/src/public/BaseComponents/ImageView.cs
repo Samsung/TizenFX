@@ -294,6 +294,7 @@ namespace Tizen.NUI.BaseComponents
             {
                 if (_border == null)
                 {
+                    if (_url != null) { value.Add("url", new PropertyValue(_url)); }
                     SetProperty(ImageView.Property.IMAGE, new Tizen.NUI.PropertyValue(value));
                 }
             }
@@ -322,6 +323,7 @@ namespace Tizen.NUI.BaseComponents
             {
                 if (_border == null)
                 {
+                    if(_url != null) { value.Add("url", new PropertyValue(_url)); }
                     SetProperty(ImageView.Property.IMAGE, new Tizen.NUI.PropertyValue(value));
                 }
             }
