@@ -130,8 +130,14 @@ internal static partial class Interop
         [DllImport(Libraries.Elementary)]
         internal static extern void elm_entry_entry_insert(IntPtr obj, string value);
 
-        [DllImport(Libraries.Elementary)]
-        internal static extern void elm_entry_file_get(IntPtr obj, out string file, out TextFormat format);
+        [DllImport(Libraries.Elementary, EntryPoint = "elm_entry_file_get", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true, CharSet = CharSet.Ansi)]
+        internal static extern void _elm_entry_file_get(IntPtr obj, out IntPtr file, out TextFormat format);
+        internal static void elm_entry_file_get(IntPtr obj, out string file, out TextFormat format)
+        {
+            IntPtr _file;
+            _elm_entry_file_get(obj, out _file, out format);
+            file = Marshal.PtrToStringAnsi(_file);
+        }
 
         [DllImport(Libraries.Elementary)]
         internal static extern void elm_entry_file_set(IntPtr obj, string file, TextFormat format);
