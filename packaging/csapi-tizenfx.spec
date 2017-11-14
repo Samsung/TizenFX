@@ -1,21 +1,18 @@
-# !! IMPORTANT !!
-# This packaging spec file is for developer testing only.
-# For Tizen release, the spec.in file should be used.
+# Auto-generated from csapi-tizenfx.spec.in by makespec.sh
+
+%define TIZEN_NET_API_VERSION 4
+%define TIZEN_NET_RPM_VERSION 4.0.1.999+nui61.3
+%define TIZEN_NET_NUGET_VERSION 4.0.1-preview1-99999
+%define TIZEN_NET_INTERNAL_NUGET_VERSION 4.0.1.999
 
 %define DOTNET_ASSEMBLY_PATH /usr/share/dotnet.tizen/framework
 %define DOTNET_ASSEMBLY_DUMMY_PATH %{DOTNET_ASSEMBLY_PATH}/ref
 %define DOTNET_ASSEMBLY_RES_PATH %{DOTNET_ASSEMBLY_PATH}/res
 %define DOTNET_NUGET_SOURCE /nuget
 
-%define _tizenfx_bin_path Artifacts
-
-%define TIZEN_NET_API_VERSION 4
-%define TIZEN_NET_NUGET_VERSION 4.0.1-preview1-99999
-%define TIZEN_NET_INTERNAL_NUGET_VERSION 4.0.1.999
-
 Name:       csapi-tizenfx
 Summary:    Assemblies of Tizen .NET
-Version:    99.99.99
+Version:    %{TIZEN_NET_RPM_VERSION}
 Release:    1
 Group:      Development/Libraries
 License:    Apache-2.0
@@ -23,14 +20,12 @@ URL:        https://www.tizen.org
 Source0:    %{name}-%{version}.tar.gz
 Source1:    %{name}.manifest
 
-BuildRequires: dotnet-build-tools
-
-BuildArch: noarch
+BuildArch:   noarch
 ExcludeArch: aarch64
 AutoReqProv: no
 
+BuildRequires: dotnet-build-tools
 Requires(post): vconf
-
 
 %description
 %{summary}
@@ -133,6 +128,8 @@ Tizen .NET assemblies for Wearable profile
 cp %{SOURCE1} .
 
 %build
+
+%define _tizenfx_bin_path Artifacts
 
 GetFileList() {
   PROFILE=$1
