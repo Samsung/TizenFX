@@ -16,6 +16,7 @@
 
 using System;
 using System.Globalization;
+using System.Text;
 using Tizen.Applications.CoreBackend;
 
 namespace Tizen.Applications
@@ -239,69 +240,168 @@ namespace Tizen.Applications
 
         private void ChangeCurrentCultureInfo(string locale)
         {
-            string languageCode = string.Empty;
-            string localeCode = string.Empty;
+            ULocale pLocale = new ULocale(locale);
             CultureInfo currentCultureInfo = null;
 
-            if (locale.Contains("."))
+            try
             {
-                locale = locale.Substring(0, locale.IndexOf("."));
+                currentCultureInfo = new CultureInfo(pLocale.Locale.Replace("_", "-"));
             }
-
-            if (locale.Contains("_"))
+            catch (CultureNotFoundException)
             {
-                locale = locale.Replace("_", "-");
-            }
-
-            var dashIndex = locale.IndexOf("-", StringComparison.Ordinal);
-            if (dashIndex > 0)
-            {
-                var parts = locale.Split('-');
-                languageCode = parts[0];
-                localeCode = parts[1];
-            }
-            else
-            {
-                languageCode = locale;
-                localeCode = "";
-            }
-
-            foreach (CultureInfo ci in CultureInfo.GetCultures(CultureTypes.AllCultures))
-            {
-                if (ci.TwoLetterISOLanguageName == languageCode)
-                {
-                    if (localeCode == "")
-                    {
-                        if (ci.Name == languageCode)
-                        {
-                            currentCultureInfo = new CultureInfo(ci.Name);
-                            break;
-                        }
-                    }
-                    else
-                    {
-                        if (ci.Name.Contains(localeCode.ToUpper()))
-                        {
-                            currentCultureInfo = new CultureInfo(ci.Name);
-                            break;
-                        }
-                    }
-                }
-            }
-
-            if (currentCultureInfo == null)
-            {
-                try
-                {
-                    currentCultureInfo = new CultureInfo(languageCode);
-                }
-                catch (CultureNotFoundException)
-                {
-                    currentCultureInfo = new CultureInfo("en");
-                }
+                currentCultureInfo = GetFallbackCultureInfo(pLocale);
             }
 
             CultureInfo.CurrentCulture = currentCultureInfo;
+        }
+
+        private CultureInfo GetCultureInfo(string locale)
+        {
+            CultureInfo cultureInfo = null;
+
+            try
+            {
+                cultureInfo = new CultureInfo(locale);
+            }
+            catch (CultureNotFoundException)
+            {
+                return null;
+            }
+
+            return cultureInfo;
+        }
+
+        private CultureInfo GetFallbackCultureInfo(ULocale uLocale)
+        {
+            string locale = string.Empty;
+            CultureInfo fallbackCultureInfo = null;
+
+            if (uLocale.Script != null && uLocale.Country != null)
+            {
+                locale = uLocale.Language + "-" + uLocale.Script + "-" + uLocale.Country;
+                fallbackCultureInfo = GetCultureInfo(locale);
+            }
+
+            if (fallbackCultureInfo == null && uLocale.Script != null)
+            {
+                locale = uLocale.Language + "-" + uLocale.Script;
+                fallbackCultureInfo = GetCultureInfo(locale);
+            }
+
+            if (fallbackCultureInfo == null && uLocale.Country != null)
+            {
+                locale = uLocale.Language + "-" + uLocale.Country;
+                fallbackCultureInfo = GetCultureInfo(locale);
+            }
+
+            if (fallbackCultureInfo == null)
+            {
+                try
+                {
+                    fallbackCultureInfo = new CultureInfo(uLocale.Language);
+                }
+                catch (CultureNotFoundException)
+                {
+                    fallbackCultureInfo = new CultureInfo("en");
+                }
+            }
+
+            return fallbackCultureInfo;
+        }
+    }
+
+    internal class ULocale
+    {
+        private const int ICU_ULOC_FULLNAME_CAPACITY = 157;
+        private const int ICU_ULOC_LANG_CAPACITY = 12;
+        private const int ICU_ULOC_SCRIPT_CAPACITY = 6;
+        private const int ICU_ULOC_COUNTRY_CAPACITY = 4;
+        private const int ICU_ULOC_VARIANT_CAPACITY = ICU_ULOC_FULLNAME_CAPACITY;
+        private const int ICU_U_ZERO_ERROR = 0;
+
+        internal ULocale(string locale)
+        {
+            Locale = Canonicalize(locale);
+            Language = GetLanguage(Locale);
+            Script = GetScript(Locale);
+            Country = GetCountry(Locale);
+            Variant = GetVariant(Locale);
+        }
+
+        internal string Locale { get; private set; }
+        internal string Language { get; private set; }
+        internal string Script { get; private set; }
+        internal string Country { get; private set; }
+        internal string Variant { get; private set; }
+
+        private string Canonicalize(string localeName)
+        {
+            int err = ICU_U_ZERO_ERROR;
+
+            // Get the locale name from ICU
+            StringBuilder sb = new StringBuilder(ICU_ULOC_FULLNAME_CAPACITY);
+            if (Interop.Icu.Canonicalize(localeName, sb, sb.Capacity, out err) <= 0)
+            {
+                return null;
+            }
+
+            return sb.ToString();
+        }
+
+        private string GetLanguage(string locale)
+        {
+            int err = ICU_U_ZERO_ERROR;
+
+            // Get the language name from ICU
+            StringBuilder sb = new StringBuilder(ICU_ULOC_LANG_CAPACITY);
+            if (Interop.Icu.GetLanguage(locale, sb, sb.Capacity, out err) <= 0)
+            {
+                return null;
+            }
+
+            return sb.ToString();
+        }
+
+        private string GetScript(string locale)
+        {
+            int err = ICU_U_ZERO_ERROR;
+
+            // Get the script name from ICU
+            StringBuilder sb = new StringBuilder(ICU_ULOC_SCRIPT_CAPACITY);
+            if (Interop.Icu.GetScript(locale, sb, sb.Capacity, out err) <= 0)
+            {
+                return null;
+            }
+
+            return sb.ToString();
+        }
+
+        private string GetCountry(string locale)
+        {
+            int err = ICU_U_ZERO_ERROR;
+
+            // Get the country name from ICU
+            StringBuilder sb = new StringBuilder(ICU_ULOC_SCRIPT_CAPACITY);
+            if (Interop.Icu.GetCountry(locale, sb, sb.Capacity, out err) <= 0)
+            {
+                return null;
+            }
+
+            return sb.ToString();
+        }
+
+        private string GetVariant(string locale)
+        {
+            int err = ICU_U_ZERO_ERROR;
+
+            // Get the country name from ICU
+            StringBuilder sb = new StringBuilder(ICU_ULOC_VARIANT_CAPACITY);
+            if (Interop.Icu.GetVariant(locale, sb, sb.Capacity, out err) <= 0)
+            {
+                return null;
+            }
+
+            return sb.ToString();
         }
     }
 }
