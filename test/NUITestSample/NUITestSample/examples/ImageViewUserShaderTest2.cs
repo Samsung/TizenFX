@@ -38,6 +38,7 @@ namespace ImageViewUserShaderTest2
         private ImageView myImageView;
         private int count = 0;
         private bool changeImgResource = true;
+        static string res = Tizen.Applications.Application.Current.DirectoryInfo.Resource;
 
         protected override void OnCreate()
         {
@@ -52,11 +53,11 @@ namespace ImageViewUserShaderTest2
 
             Window.Instance.GetDefaultLayer().Add(myView);
 
-            myImageView = new ImageView();
+            myImageView = new ImageView(@res + @"/images/star-dim.png");
             myImageView.Size2D = new Size2D(96, 96);
             myImageView.Position2D = new Position2D(400, 400);
 
-            ChangePropertyMap(Color.Red, @"/home/owner/apps_rw/org.tizen.example.NUITestSample/res/images/mask.png");
+            ChangePropertyMap(Color.Red);
 
             Window.Instance.GetDefaultLayer().Add(myImageView);
 
@@ -74,16 +75,16 @@ namespace ImageViewUserShaderTest2
                         case 0:
                             if (changeImgResource)
                             {
-                                //myImageView.SetImage(@"/home/owner/apps_rw/org.tizen.example.NUITestSample/res/images/mask.png");
+                                myImageView.SetImage(@res + @"/images/mask.png");
                             }
-                            ChangePropertyMap(Color.Blue, @"/home/owner/apps_rw/org.tizen.example.NUITestSample/res/images/mask.png");
+                            ChangePropertyMap(Color.Blue);
                             break;
                         case 1:
                             if (changeImgResource)
                             {
-                                //myImageView.SetImage(@"/home/owner/apps_rw/org.tizen.example.NUITestSample/res/images/star-dim.png");
+                                myImageView.SetImage(@res + @"/images/star-dim.png");
                             }
-                            ChangePropertyMap(Color.Yellow, @"/home/owner/apps_rw/org.tizen.example.NUITestSample/res/images/star-dim.png");
+                            ChangePropertyMap(Color.Green);
                             break;
                     }
                 }
@@ -92,14 +93,13 @@ namespace ImageViewUserShaderTest2
             return false;
         }
 
-        private void ChangePropertyMap(Color color, string url)
+        private void ChangePropertyMap(Color color)
         {
             PropertyMap shaderMap = new PropertyMap();
             shaderMap.Add("vertexShader", new PropertyValue(vertexShader));
             shaderMap.Add("fragmentShader", new PropertyValue(fragmentShader));
 
             PropertyMap imageMap = new PropertyMap();
-            imageMap.Add("url", new PropertyValue(url));
             imageMap.Add("shader", new PropertyValue(shaderMap));
             myImageView.Image = imageMap;
 
