@@ -126,6 +126,21 @@ namespace ElmSharp.Test
             grid.ItemReleased += Grid_ItemReleased;
             grid.ItemLongPressed += Grid_ItemLongPressed;
             grid.ItemDoubleClicked += Grid_ItemDoubleClicked;
+            grid.ItemFocused += Grid_ItemFocused;
+            grid.ItemUnfocused += Grid_ItemUnfocused;
+        }
+
+        private void Grid_ItemUnfocused(object sender, GenGridItemEventArgs e)
+        {
+            Color color = (Color)e.Item.Data;
+            Console.WriteLine("#{0:X}{1:X}{2:X} has lost focus", color.R, color.G, color.B);
+        }
+
+        private void Grid_ItemFocused(object sender, GenGridItemEventArgs e)
+        {
+            e.Item.IsSelected = false;
+            Color color = (Color)e.Item.Data;
+            Console.WriteLine("#{0:X}{1:X}{2:X} has received focus", color.R, color.G, color.B);
         }
 
         private void Grid_ItemDoubleClicked(object sender, GenGridItemEventArgs e)
