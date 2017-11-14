@@ -584,14 +584,28 @@ internal static partial class Interop
         [DllImport(Libraries.Elementary)]
         internal static extern bool edje_object_text_class_set(IntPtr obj, string textClass, string font, int size);
 
-        [DllImport(Libraries.Elementary)]
-        internal static extern bool edje_object_text_class_get(IntPtr obj, string textClass, out string font, out int size);
+        [DllImport(Libraries.Elementary, EntryPoint = "edje_object_text_class_get", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true, CharSet = CharSet.Ansi)]
+        internal static extern bool _edje_object_text_class_get(IntPtr obj, string textClass, out IntPtr font, out int size);
+        internal static bool edje_object_text_class_get(IntPtr obj, string textClass, out string font, out int size)
+        {
+            IntPtr _font;
+            var ret = _edje_object_text_class_get(obj, textClass, out _font, out size);
+            font = Marshal.PtrToStringAnsi(_font);
+            return ret;
+        }
 
         [DllImport(Libraries.Elementary)]
         internal static extern bool edje_text_class_set(string textClass, string font, int size);
 
-        [DllImport(Libraries.Elementary)]
-        internal static extern bool edje_text_class_get(string textClass, out string font, out int size);
+        [DllImport(Libraries.Elementary, EntryPoint = "edje_text_class_get", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true, CharSet = CharSet.Ansi)]
+        internal static extern bool _edje_text_class_get(string textClass, out IntPtr font, out int size);
+        internal static bool edje_text_class_get(string textClass, out string font, out int size)
+        {
+            IntPtr _font;
+            var ret = _edje_text_class_get(textClass, out _font, out size);
+            font = Marshal.PtrToStringAnsi(_font);
+            return ret;
+        }
 
         [DllImport(Libraries.Elementary)]
         internal static extern void edje_text_class_del(string textClass);

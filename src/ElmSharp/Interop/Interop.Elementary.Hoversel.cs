@@ -60,8 +60,16 @@ internal static partial class Interop
         [DllImport(Libraries.Elementary)]
         internal static extern void elm_hoversel_item_icon_set(IntPtr obj, string icon_file, string icon_group, int icon_type);
 
-        [DllImport(Libraries.Elementary)]
-        internal static extern void elm_hoversel_item_icon_get(IntPtr obj, out string icon_file, out string icon_group, int icon_type);
+        [DllImport(Libraries.Elementary, EntryPoint = "elm_hoversel_item_icon_get", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true, CharSet = CharSet.Ansi)]
+        internal static extern void _elm_hoversel_item_icon_get(IntPtr obj, out IntPtr icon_file, out IntPtr icon_group, int icon_type);
+        internal static void elm_hoversel_item_icon_get(IntPtr obj, out string icon_file, out string icon_group, int icon_type)
+        {
+            IntPtr _icon_file;
+            IntPtr _icon_group;
+            _elm_hoversel_item_icon_get(obj, out _icon_file, out _icon_group, icon_type);
+            icon_file = Marshal.PtrToStringAnsi(_icon_file);
+            icon_group = Marshal.PtrToStringAnsi(_icon_group);
+        }
     }
 }
 
