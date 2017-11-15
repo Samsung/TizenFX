@@ -28,6 +28,7 @@ namespace Tizen.Applications
     public class WidgetControl : IDisposable
     {
         private const string LogTag = "Tizen.Applications.WidgetControl";
+        private static Interop.WidgetService.LifecycleCallback _onLifecycleCallback;
         /// <summary>
         /// Class for the widget instance.
         /// </summary>
@@ -616,8 +617,10 @@ namespace Tizen.Applications
 
             if (s_lifecycleEventRefCnt[Id] == 0)
             {
-                Interop.WidgetService.ErrorCode err = Interop.WidgetService.SetLifecycleEvent(Id, OnLifecycleEvent, IntPtr.Zero);
+                if (_onLifecycleCallback == null)
+                    _onLifecycleCallback = new Interop.WidgetService.LifecycleCallback(OnLifecycleEvent);
 
+                Interop.WidgetService.ErrorCode err = Interop.WidgetService.SetLifecycleEvent(Id, _onLifecycleCallback, IntPtr.Zero);
                 switch (err)
                 {
                     case Interop.WidgetService.ErrorCode.InvalidParameter:
@@ -630,6 +633,7 @@ namespace Tizen.Applications
 
             s_lifecycleEventRefCnt[Id]++;
             s_eventObjects.Add(this);
+            Log.Debug(LogTag, "register lifecycle cb " + Id + " [" + s_lifecycleEventRefCnt[Id] + "]");
         }
 
         private void UnregisterLifecycleEvent()
@@ -658,14 +662,17 @@ namespace Tizen.Applications
                     case Interop.WidgetService.ErrorCode.NotExist:
                         throw new InvalidOperationException("Event handler is not exist");
                 }
+                _onLifecycleCallback = null;
             }
 
             s_eventObjects.Remove(this);
             s_lifecycleEventRefCnt[Id]--;
+            Log.Debug(LogTag, "unregister lifecycle cb " + Id + " [" + s_lifecycleEventRefCnt[Id] + "]");
         }
 
-        private static void OnLifecycleEvent(string widgetId, Interop.WidgetService.LifecycleEvent e, string instanceId, IntPtr userData)
+        private static int OnLifecycleEvent(string widgetId, Interop.WidgetService.LifecycleEvent e, string instanceId, IntPtr userData)
         {
+            Log.Debug(LogTag, "Lifecycle event : " + instanceId + " [" + e + "]");
             switch (e)
             {
                 case Interop.WidgetService.LifecycleEvent.Created:
@@ -728,6 +735,7 @@ namespace Tizen.Applications
                     }
                     break;
             }
+            return 0;
 
         }
     }
