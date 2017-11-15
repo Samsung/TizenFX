@@ -60,6 +60,8 @@ namespace ElmSharp
         SmartEvent<GenGridItemEventArgs> _realized;
         SmartEvent<GenGridItemEventArgs> _unrealized;
         SmartEvent<GenGridItemEventArgs> _longpressed;
+        SmartEvent<GenGridItemEventArgs> _focused;
+        SmartEvent<GenGridItemEventArgs> _unfocused;
         SmartEvent _changed;
 
         /// <summary>
@@ -125,6 +127,18 @@ namespace ElmSharp
         /// </summary>
         /// <since_tizen> preview </since_tizen>
         public event EventHandler<GenGridItemEventArgs> ItemLongPressed;
+
+        /// <summary>
+        /// ItemFocussed is raised when a gengrid item has received focus.
+        /// </summary>
+        /// <since_tizen> preview </since_tizen>
+        public event EventHandler<GenGridItemEventArgs> ItemFocused;
+
+        /// <summary>
+        /// ItemUnfocussed is raised when a gengrid item has lost focus.
+        /// </summary>
+        /// <since_tizen> preview </since_tizen>
+        public event EventHandler<GenGridItemEventArgs> ItemUnfocused;
 
         /// <summary>
         ///  Changed is raised when an item is added, removed, resized or moved and when the gengrid is resized or gets "horizontal" property changes.
@@ -623,6 +637,8 @@ namespace ElmSharp
             _realized = new SmartEvent<GenGridItemEventArgs>(this, this.RealHandle, "realized", GenGridItemEventArgs.CreateFromSmartEvent);
             _unrealized = new SmartEvent<GenGridItemEventArgs>(this, this.RealHandle, "unrealized", GenGridItemEventArgs.CreateFromSmartEvent);
             _longpressed = new SmartEvent<GenGridItemEventArgs>(this, this.RealHandle, "longpressed", GenGridItemEventArgs.CreateFromSmartEvent);
+            _focused = new SmartEvent<GenGridItemEventArgs>(this, this.RealHandle, "item,focused", GenGridItemEventArgs.CreateFromSmartEvent);
+            _unfocused = new SmartEvent<GenGridItemEventArgs>(this, this.RealHandle, "item,unfocused", GenGridItemEventArgs.CreateFromSmartEvent);
             _changed = new SmartEvent(this, this.RealHandle, "changed");
 
             _selected.On += (s, e) => { if (e.Item != null) ItemSelected?.Invoke(this, e); };
@@ -634,6 +650,8 @@ namespace ElmSharp
             _realized.On += (s, e) => { if (e.Item != null) ItemRealized?.Invoke(this, e); };
             _unrealized.On += (s, e) => { if (e.Item != null) ItemUnrealized?.Invoke(this, e); };
             _longpressed.On += (s, e) => { if (e.Item != null) ItemLongPressed?.Invoke(this, e); };
+            _focused.On += (s, e) => { if (e.Item != null) ItemFocused?.Invoke(this, e); };
+            _unfocused.On += (s, e) => { if (e.Item != null) ItemUnfocused?.Invoke(this, e); };
             _changed.On += (s, e) => { Changed?.Invoke(this, e); };
         }
 
