@@ -394,7 +394,7 @@ namespace Tizen.Applications
         {
             int err = ICU_U_ZERO_ERROR;
 
-            // Get the country name from ICU
+            // Get the variant name from ICU
             StringBuilder sb = new StringBuilder(ICU_ULOC_VARIANT_CAPACITY);
             if (Interop.Icu.GetVariant(locale, sb, sb.Capacity, out err) <= 0)
             {
