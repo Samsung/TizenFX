@@ -213,13 +213,21 @@ namespace ElmSharp
         /// KeyUp will be triggered when key is loose
         /// </summary>
         /// <since_tizen> preview </since_tizen>
-        public event EventHandler<EvasKeyEventArgs> KeyUp;
+        public event EventHandler<EvasKeyEventArgs> KeyUp
+        {
+            add { _keyup.On += value; }
+            remove { _keyup.On -= value; }
+        }
 
         /// <summary>
         /// KeyDown will be triggered when key is preesd down
         /// </summary>
         /// <since_tizen> preview </since_tizen>
-        public event EventHandler<EvasKeyEventArgs> KeyDown;
+        public event EventHandler<EvasKeyEventArgs> KeyDown
+        {
+            add { _keydown.On += value; }
+            remove { _keydown.On -= value; }
+        }
 
         /// <summary>
         /// BackButtonPressed will be triggered when Back button is pressed
@@ -1065,8 +1073,6 @@ namespace ElmSharp
                 _resized = new EvasObjectEvent(this, EvasObjectCallbackType.Resize);
 
                 _deleted.On += (s, e) => MakeInvalidate();
-                _keydown.On += (s, e) => KeyDown?.Invoke(this, e);
-                _keyup.On += (s, e) => KeyUp?.Invoke(this, e);
             }
         }
 
