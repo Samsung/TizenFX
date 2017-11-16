@@ -97,7 +97,7 @@ namespace Tizen.Multimedia.Util
 
                 case ImageColorSpace.Yuyv: return ColorSpace.Yuyv;
 
-                case ImageColorSpace.Yuv422: return ColorSpace.Yuv422;
+                case ImageColorSpace.Yuv422: return ColorSpace.Yuv422P;
 
                 case ImageColorSpace.I420: return ColorSpace.I420;
 
@@ -141,7 +141,8 @@ namespace Tizen.Multimedia.Util
 
                 case ColorSpace.Yuyv: return ImageColorSpace.Yuyv;
 
-                case ColorSpace.Yuv422: return ImageColorSpace.Yuv422;
+                case ColorSpace.Yuv422:
+                case ColorSpace.Yuv422P: return ImageColorSpace.Yuv422;
 
                 case ColorSpace.I420: return ImageColorSpace.I420;
 
