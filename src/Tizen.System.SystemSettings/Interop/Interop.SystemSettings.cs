@@ -44,9 +44,9 @@ internal static partial class Interop
         // Callback
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         internal delegate void SystemSettingsChangedCallback(SystemSettingsKeys key, IntPtr data);
-        [DllImport("capi-system-system-settings.so.0", EntryPoint = "system_settings_set_changed_cb", CallingConvention = CallingConvention.Cdecl)]
+        [DllImport("capi-system-system-settings.so.0", EntryPoint = "system_settings_add_changed_cb", CallingConvention = CallingConvention.Cdecl)]
         internal static extern int SystemSettingsSetCallback(SystemSettingsKeys systemSettingsKey, SystemSettingsChangedCallback cb, IntPtr data);
-        [DllImport("capi-system-system-settings.so.0", EntryPoint = "system_settings_unset_changed_cb", CallingConvention = CallingConvention.Cdecl)]
-        internal static extern int SystemSettingsRemoveCallback(SystemSettingsKeys systemSettingsKey);
+        [DllImport("capi-system-system-settings.so.0", EntryPoint = "system_settings_remove_changed_cb", CallingConvention = CallingConvention.Cdecl)]
+        internal static extern int SystemSettingsRemoveCallback(SystemSettingsKeys systemSettingsKey, SystemSettingsChangedCallback cb);
     }
 }
