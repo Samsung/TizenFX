@@ -37,7 +37,8 @@ call dotnet msbuild %~dp0build\build.proj /nologo /t:build
 goto :EOF
 
 :DummyBuild
-call dotnet build %~dp0build\build.dummy.csproj
+call dotnet msbuild %~dp0build\build.proj /nologo /t:dummy
+call dotnet msbuild %~dp0build\build.proj /nologo /t:afterdummy
 goto :EOF
 
 :Pack

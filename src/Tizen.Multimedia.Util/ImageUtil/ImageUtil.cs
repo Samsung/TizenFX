@@ -122,9 +122,7 @@ namespace Tizen.Multimedia.Util
                     "height can't be less than or equal to zero.");
             }
 
-
-            byte r, g, b;
-            ExtractColorFromMemory(buffer, size.Width, size.Height, out r, out g, out b)
+            ExtractColorFromMemory(buffer, size.Width, size.Height, out var r, out var g, out var b)
                 .ThrowIfFailed("Failed to extract color from buffer");
 
             return Color.FromRgb(r, g, b);

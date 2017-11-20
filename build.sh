@@ -11,7 +11,6 @@ TIMEOUT_CMD="$SCRIPT_DIR/tools/timeout.sh"
 DOTNET_CMD="$RETRY_CMD $TIMEOUT_CMD 600 dotnet"
 
 RUN_BUILD="$DOTNET_CMD msbuild $SCRIPT_DIR/build/build.proj /nologo"
-RUN_BUILD_DUMMY="$DOTNET_CMD build $SCRIPT_DIR/build/build.dummy.csproj"
 
 usage() {
   echo "Usage: %0 [command] [args]"
@@ -48,7 +47,8 @@ cmd_dummy_build() {
   if [ -d /nuget ]; then
     NUGET_SOURCE_OPT="/p:RestoreSources=/nuget"
   fi
-  $RUN_BUILD_DUMMY $NUGET_SOURCE_OPT
+  $RUN_BUILD /t:dummy $NUGET_SOURCE_OPT
+  $RUN_BUILD /t:afterdummy
 }
 
 cmd_pack() {

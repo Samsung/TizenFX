@@ -44,8 +44,10 @@ namespace Tizen.Multimedia.Util
         ///     -or-<br/>
         ///     <paramref name="item"/> is null.
         /// </exception>
+        /// <exception cref="ArgumentException"><paramref name="source"/> is not video format.</exception>
         /// <exception cref="ObjectDisposedException">The <see cref="ImageTransformer"/> has already been disposed of.</exception>
         /// <exception cref="InvalidOperationException">Failed to apply <see cref="ImageTransform"/>.</exception>
+        /// <exception cref="NotSupportedException">Specified transformation is not supported.</exception>
         /// <since_tizen> 4 </since_tizen>
         public Task<MediaPacket> TransformAsync(MediaPacket source, ImageTransform item)
         {
@@ -62,6 +64,11 @@ namespace Tizen.Multimedia.Util
             if (item == null)
             {
                 throw new ArgumentNullException(nameof(item));
+            }
+
+            if (source.Format is VideoMediaFormat == false)
+            {
+                throw new ArgumentException("source is not video format.", nameof(source));
             }
 
             return item.ApplyAsync(source);
