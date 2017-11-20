@@ -228,9 +228,16 @@ namespace Tizen.NUI
 
         internal uint GetDepth()
         {
-            uint ret = NDalicPINVOKE.Layer_GetDepth(swigCPtr);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
+            var parentChildren = Window.Instance.LayersChildren;
+            if(parentChildren != null)
+            {
+                int idx = parentChildren.IndexOf(this);
+                if (idx >= 0)
+                {
+                    return Convert.ToUInt32(idx); ;
+                }
+            }
+            return 0u;
         }
 
         /// <summary>
@@ -239,8 +246,20 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public void Raise()
         {
-            NDalicPINVOKE.Layer_Raise(swigCPtr);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            var parentChildren = Window.Instance.LayersChildren;
+            if (parentChildren != null)
+            {
+                int currentIdx = parentChildren.IndexOf(this);
+
+                if (currentIdx != parentChildren.Count - 1)
+                {
+                    RaiseAbove(parentChildren[currentIdx + 1]);
+
+                    Layer temp = parentChildren[currentIdx + 1];
+                    parentChildren[currentIdx + 1] = this;
+                    parentChildren[currentIdx] = temp;
+                }
+            }
         }
 
         /// <summary>
@@ -249,8 +268,21 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public void Lower()
         {
-            NDalicPINVOKE.Layer_Lower(swigCPtr);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            var parentChildren = Window.Instance.LayersChildren;
+            if (parentChildren != null)
+            {
+                int currentIdx = parentChildren.IndexOf(this);
+
+                if (currentIdx > 0)
+                {
+                    LowerBelow(parentChildren[currentIdx - 1]);
+
+                    Layer temp = parentChildren[currentIdx - 1];
+                    parentChildren[currentIdx - 1] = this;
+                    parentChildren[currentIdx] = temp;
+
+                }
+            }
         }
 
         internal void RaiseAbove(Layer target)
@@ -271,6 +303,13 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public void RaiseToTop()
         {
+            var parentChildren = Window.Instance.LayersChildren;
+
+            if (parentChildren != null)
+            {
+                parentChildren.Remove(this);
+                parentChildren.Add(this);
+            }
             NDalicPINVOKE.Layer_RaiseToTop(swigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
@@ -281,6 +320,14 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public void LowerToBottom()
         {
+            var parentChildren = Window.Instance.LayersChildren;
+
+            if (parentChildren != null)
+            {
+                parentChildren.Remove(this);
+                parentChildren.Insert(0, this);
+            }
+
             NDalicPINVOKE.Layer_LowerToBottom(swigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
