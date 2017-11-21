@@ -35,7 +35,7 @@ namespace Tizen.NUI
         private string _windowTitle;
 
         private List<Layer> _childLayers = new List<Layer>();
-        private List<Layer> LayersChildren
+        internal List<Layer> LayersChildren
         {
             get
             {
@@ -729,11 +729,15 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public Layer GetLayer(uint depth)
         {
-            IntPtr cPtr = NDalicPINVOKE.Stage_GetLayer(stageCPtr, depth);
-            Layer ret = Registry.GetManagedBaseHandleFromNativePtr(cPtr) as Layer;
-
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
+            if (depth < LayersChildren.Count)
+            {
+                Layer ret = LayersChildren[Convert.ToInt32(depth)];
+                return ret;
+            }
+            else
+            {
+                return null;
+            }
         }
 
         internal Layer GetRootLayer()
