@@ -825,38 +825,16 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
-                string temp;
+                int temp;
                 if(GetProperty(TextLabel.Property.LINE_WRAP_MODE).Get(out temp) == false)
                 {
                     NUILog.Error("LineWrapMode get error!");
                 }
-                switch (temp)
-                {
-                    case "WRAP_MODE_WORD":
-                    return LineWrapMode.Word;
-                    case "WRAP_MODE_CHARACTER":
-                    return LineWrapMode.Character;
-                    default:
-                    return LineWrapMode.Word;
-                }
+                return (LineWrapMode)temp;
             }
             set
             {
-                string temp = "";
-                switch (value)
-                {
-                    case LineWrapMode.Word:
-                    {
-                        temp = "WRAP_MODE_WORD";
-                        break;
-                    }
-                    case LineWrapMode.Character:
-                    {
-                        temp = "WRAP_MODE_CHARACTER";
-                        break;
-                    }
-                }
-                SetProperty(TextLabel.Property.LINE_WRAP_MODE, new Tizen.NUI.PropertyValue(temp));
+                SetProperty(TextLabel.Property.LINE_WRAP_MODE, new Tizen.NUI.PropertyValue((int)value));
             }
         }
     }
