@@ -1092,7 +1092,6 @@ namespace Tizen.NUI.BaseComponents
             internal static readonly int SIZE_SCALE_POLICY = NDalicPINVOKE.Actor_Property_SIZE_SCALE_POLICY_get();
             internal static readonly int WIDTH_FOR_HEIGHT = NDalicPINVOKE.Actor_Property_WIDTH_FOR_HEIGHT_get();
             internal static readonly int HEIGHT_FOR_WIDTH = NDalicPINVOKE.Actor_Property_HEIGHT_FOR_WIDTH_get();
-            internal static readonly int PADDING = NDalicPINVOKE.Actor_Property_PADDING_get();
             internal static readonly int MINIMUM_SIZE = NDalicPINVOKE.Actor_Property_MINIMUM_SIZE_get();
             internal static readonly int MAXIMUM_SIZE = NDalicPINVOKE.Actor_Property_MAXIMUM_SIZE_get();
             internal static readonly int INHERIT_POSITION = NDalicPINVOKE.Actor_Property_INHERIT_POSITION_get();
@@ -1100,7 +1099,7 @@ namespace Tizen.NUI.BaseComponents
             internal static readonly int INHERIT_LAYOUT_DIRECTION = NDalicManualPINVOKE.Actor_Property_INHERIT_LAYOUT_DIRECTION_get();
             internal static readonly int LAYOUT_DIRECTION = NDalicManualPINVOKE.Actor_Property_LAYOUT_DIRECTION_get();
             internal static readonly int MARGIN = NDalicPINVOKE.View_Property_MARGIN_get();
-            internal static readonly int PADDINGEX = NDalicPINVOKE.View_Property_PADDING_get();
+            internal static readonly int PADDING = NDalicPINVOKE.View_Property_PADDING_get();
         }
 
         /// <summary>
@@ -4073,12 +4072,12 @@ namespace Tizen.NUI.BaseComponents
         /// <summary>
         /// Gets or sets the padding for use in layout.
         /// </summary>
-        /// <since_tizen> 3 </since_tizen>
-        public Vector4 Padding
+        /// <since_tizen> 5 </since_tizen>
+        public Extents Padding
         {
             get
             {
-                Vector4 temp = new Vector4(0.0f, 0.0f, 0.0f, 0.0f);
+                Extents temp = new Extents(0, 0, 0, 0);
                 GetProperty(View.Property.PADDING).Get(temp);
                 return temp;
             }
@@ -4514,20 +4513,24 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        /// Gets or sets the Padding for use in layout.
+        /// [Obsolete("Please do not use! this will be deprecated")]
         /// </summary>
+        /// Please do not use! this will be deprecated!
+        /// Instead please use Padding.
         /// <since_tizen> 4 </since_tizen>
+        [Obsolete("Please do not use! this will be deprecated, instead please use Padding.")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public Extents PaddingEX
         {
             get
             {
                 Extents temp = new Extents(0, 0, 0, 0);
-                GetProperty(View.Property.PADDINGEX).Get(temp);
+                GetProperty(View.Property.PADDING).Get(temp);
                 return temp;
             }
             set
             {
-                SetProperty(View.Property.PADDINGEX, new Tizen.NUI.PropertyValue(value));
+                SetProperty(View.Property.PADDING, new Tizen.NUI.PropertyValue(value));
             }
         }
     }
