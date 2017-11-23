@@ -26,7 +26,7 @@ namespace Tizen.Applications
     public class ApplicationInfoFilter
     {
         /// <summary>
-        ///
+        /// A constructor of ApplicationInfoFilter class.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public ApplicationInfoFilter()
@@ -41,34 +41,34 @@ namespace Tizen.Applications
         public static class Keys
         {
             /// <summary>
-            ///
+            /// A key to filter by application id.
             /// </summary>
             /// <since_tizen> 3 </since_tizen>
             public const string Id = "PACKAGE_INFO_PROP_APP_ID";
             /// <summary>
-            ///
+            /// A key to filter by application type.
             /// </summary>
             /// <since_tizen> 3 </since_tizen>
             public const string Type = "PACKAGE_INFO_PROP_APP_TYPE";
             /// <summary>
-            ///
+            /// A key to filter by application category.
             /// </summary>
             /// <since_tizen> 3 </since_tizen>
             public const string Category = "PACKAGE_INFO_PROP_APP_CATEGORY";
             /// <summary>
-            ///
+            /// A key to filter by nodisplay attribute.
             /// </summary>
             /// <since_tizen> 3 </since_tizen>
             public const string NoDisplay = "PACKAGE_INFO_PROP_APP_NODISPLAY";
             /// <summary>
-            ///
+            /// A key to filter by taskmanage attribute.
             /// </summary>
             /// <since_tizen> 3 </since_tizen>
             public const string TaskManage = "PACKAGE_INFO_PROP_APP_TASKMANAGE";
         }
 
         /// <summary>
-        ///
+        /// A dictionary to store keys and values of filter.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public IDictionary<string, string> Filter
