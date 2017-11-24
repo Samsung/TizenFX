@@ -235,7 +235,7 @@ namespace Tizen.Maps
         /// <exception cref="System.UnauthorizedAccessException">Thrown when application does not have some privilege to access this method.</exception>
         public bool IsSupported(ServiceRequestType type)
         {
-            bool result;
+            bool result = false;
             var err = handle.IsServiceSupported((Interop.ServiceType)type, out result);
             err.WarnIfFailed($"Failed to get if {type} is supported");
             return (err.IsSuccess()) ? result : false;
@@ -252,7 +252,7 @@ namespace Tizen.Maps
         /// <exception cref="System.UnauthorizedAccessException">Thrown when application does not have some privilege to access this method.</exception>
         public bool IsSupported(ServiceData data)
         {
-            bool result;
+            bool result = false;
             var err = handle.IsDataSupported((Interop.ServiceData)data, out result);
             err.WarnIfFailed($"Failed to get if {data} data is supported");
             return (err.IsSuccess()) ? result : false;

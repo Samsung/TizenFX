@@ -60,6 +60,7 @@ namespace Tizen.Maps
         public MapView(EvasObject parent, MapService service) : base(parent)
         {
             handle = new Interop.ViewHandle(service.handle, this);
+            service.handle.HasOwnership = false;
             Log.Info(string.Format("MapView is created"));
 
             _service = service;
@@ -775,6 +776,7 @@ namespace Tizen.Maps
                     _handleToObjectTable?.Clear();
                 }
                 handle?.Dispose();
+                _service.handle.HasOwnership = true;
                 _disposedValue = true;
             }
         }
