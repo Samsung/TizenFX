@@ -2290,7 +2290,7 @@ namespace Tizen.NUI.BaseComponents
         [Obsolete("Please do not use! This will be deprecated! Please use NaturalSize2D instead! " +
             "Like: " +
             "TextLabel label = new TextLabel(\"Hello World!\"); " +
-            "Size2D size = view.NaturalSize2D;")]
+            "Size2D size = label.NaturalSize2D;")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public Vector3 NaturalSize
         {
