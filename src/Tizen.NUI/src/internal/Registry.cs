@@ -103,7 +103,7 @@ namespace Tizen.NUI
 
             if (Instance._controlMap.TryGetValue(refObjectPtr, out weakReference))
             {
-                BaseHandle ret = weakReference.Target as BaseHandle;
+                BaseHandle ret = weakReference?.Target as BaseHandle;
                 return ret;
             }
             else
