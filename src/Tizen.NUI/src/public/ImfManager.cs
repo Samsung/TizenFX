@@ -61,6 +61,7 @@ namespace Tizen.NUI
         /// Please DO NOT use! This will be deprecated!
         /// Dispose() method in Singletone classes (ex: FocusManager, StyleManager, VisualFactory, IMFManager, TtsPlayer, Window) is not required.
         /// Because it is Sigletone, so it is alive for one thread until the NUI is terminated, so it never be disposed.
+        [Obsolete("Please do not use! This will be deprecated!")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected override void Dispose(DisposeTypes type)
         {
@@ -261,6 +262,7 @@ namespace Tizen.NUI
             /// The pre-edit or the commit string.
             /// </summary>
             /// /// <since_tizen> 3 </since_tizen>
+            [Obsolete("Please do not use! This will be deprecated! Please use PredictiveString instead!")]
             [EditorBrowsable(EditorBrowsableState.Never)]
             public string predictiveString
             {
@@ -301,6 +303,7 @@ namespace Tizen.NUI
             /// </summary>
             /// Please do not use! this will be deprecated
             /// <since_tizen> 3 </since_tizen>
+            [Obsolete("Please do not use! This will be deprecated! Please use EventName instead!")]
             [EditorBrowsable(EditorBrowsableState.Never)]
             public ImfManager.ImfEvent eventName
             {
@@ -341,6 +344,7 @@ namespace Tizen.NUI
             /// </summary>
             /// Please do not use! this will be deprecated
             /// <since_tizen> 3 </since_tizen>
+            [Obsolete("Please do not use! This will be deprecated! Please use CursorOffset instead!")]
             [EditorBrowsable(EditorBrowsableState.Never)]
             public int cursorOffset
             {
@@ -381,6 +385,7 @@ namespace Tizen.NUI
             /// </summary>
             /// Please do not use! this will be deprecated
             /// <since_tizen> 3 </since_tizen>
+            [Obsolete("Please do not use! This will be deprecated! Please use NumberOfChars instead!")]
             [EditorBrowsable(EditorBrowsableState.Never)]
             public int numberOfChars
             {
@@ -562,6 +567,7 @@ namespace Tizen.NUI
             /// </summary>
             /// Please do not use! this will be deprecated
             /// <since_tizen> 3 </since_tizen>
+            [Obsolete("Please do not use! This will be deprecated! Please use CurrentText instead!")]
             [EditorBrowsable(EditorBrowsableState.Never)]
             public string currentText
             {
@@ -602,6 +608,7 @@ namespace Tizen.NUI
             /// </summary>
             /// Please do not use! this will be deprecated
             /// <since_tizen> 3 </since_tizen>
+            [Obsolete("Please do not use! This will be deprecated! Please use CursorPosition instead!")]
             [EditorBrowsable(EditorBrowsableState.Never)]
             public int cursorPosition
             {
@@ -642,6 +649,7 @@ namespace Tizen.NUI
             /// </summary>
             /// Please do not use! this will be deprecated
             /// <since_tizen> 3 </since_tizen>
+            [Obsolete("Please do not use! This will be deprecated! Please use Update instead!")]
             [EditorBrowsable(EditorBrowsableState.Never)]
             public bool update
             {
@@ -682,6 +690,7 @@ namespace Tizen.NUI
             /// </summary>
             /// Please do not use! this will be deprecated
             /// <since_tizen> 3 </since_tizen>
+            [Obsolete("Please do not use! This will be deprecated! Please use PreeditResetRequired instead!")]
             [EditorBrowsable(EditorBrowsableState.Never)]
             public bool preeditResetRequired
             {
@@ -729,8 +738,12 @@ namespace Tizen.NUI
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
-        /// Please DO NOT use! This will be deprecated, instead please USE Tizen.NUI.ImfManager.Instance.DestroyContext()!
-        [Obsolete("Please DO NOT use! This will be deprecated, instead please USE Tizen.NUI.ImfManager.Instance.DestroyContext()!")]
+        /// <summary>
+        /// Destroy the context of the IMF.<br/>
+        /// </summary>
+        /// <since_tizen> 4 </since_tizen>
+        /// Please do not use! This will be deprecated, instead please USE Tizen.NUI.ImfManager.Instance.DestroyContext()!
+        [Obsolete("Please do not use! This will be deprecated! Please use ImfManager.Instance.DestroyContext() instead!")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void Finalize()
         {
@@ -1024,6 +1037,7 @@ namespace Tizen.NUI
         /// </summary>
         /// Please do not use! this will be deprecated
         /// <since_tizen> 3 </since_tizen>
+        [Obsolete("Please do not use! This will be deprecated! Please use ActivatedEventArgs instead!")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public class ImfManagerActivatedEventArgs : EventArgs
         {
@@ -1048,6 +1062,7 @@ namespace Tizen.NUI
         /// </summary>
         ///Please do not use! this will be deprecated
         /// <since_tizen> 3 </since_tizen>
+        [Obsolete("Please do not use! This will be deprecated! Please use Activated instead!")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public event EventHandler<ImfManagerActivatedEventArgs> ImfManagerActivated
         {
@@ -1156,6 +1171,7 @@ namespace Tizen.NUI
         /// </summary>
         /// Please do not use! this will be internal
         /// <since_tizen> 3 </since_tizen>
+        [Obsolete("Please do not use! This will be deprecated!")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public ActivatedSignalType ActivatedSignal()
         {
@@ -1169,6 +1185,7 @@ namespace Tizen.NUI
         /// </summary>
         /// Please do not use! this will be deprecated
         /// <since_tizen> 3 </since_tizen>
+        [Obsolete("Please do not use! This will be deprecated! Please use EventReceivedEventArgs instead!")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public class ImfManagerEventReceivedEventArgs : EventArgs
         {
@@ -1192,6 +1209,7 @@ namespace Tizen.NUI
         /// </summary>
         ///Please do not use! this will be deprecated
         /// <since_tizen> 3 </since_tizen>
+        [Obsolete("Please do not use! This will be deprecated! Please use EventReceived instead!")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public event EventHandler<ImfManagerEventReceivedEventArgs> ImfManagerEventReceived
         {
@@ -1323,6 +1341,7 @@ namespace Tizen.NUI
         /// </summary>
         /// Please do not use! this will be internal
         /// <since_tizen> 3 </since_tizen>
+        [Obsolete("Please do not use! This will be deprecated!")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public ImfEventSignalType EventReceivedSignal()
         {
@@ -1336,6 +1355,7 @@ namespace Tizen.NUI
         /// </summary>
         ///Please do not use! this will be deprecated
         /// <since_tizen> 3 </since_tizen>
+        [Obsolete("Please do not use! This will be deprecated! Please use StatusChangedEventArgs instead!")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public class ImfManagerStatusChangedEventArgs : EventArgs
         {
@@ -1359,6 +1379,7 @@ namespace Tizen.NUI
         /// </summary>
         /// Please do not use! this will be deprecated
         /// <since_tizen> 3 </since_tizen>
+        [Obsolete("Please do not use! This will be deprecated! Please use StatusChanged instead!")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public event EventHandler<ImfManagerStatusChangedEventArgs> ImfManagerStatusChanged
         {
@@ -1463,6 +1484,7 @@ namespace Tizen.NUI
         /// </summary>
         ///Please do not use! this will be internal
         /// <since_tizen> 3 </since_tizen>
+        [Obsolete("Please do not use! This will be deprecated!")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public StatusSignalType StatusChangedSignal()
         {
@@ -1476,6 +1498,7 @@ namespace Tizen.NUI
         /// </summary>
         ///Please do not use! this will be deprecated
         /// <since_tizen> 3 </since_tizen>
+        [Obsolete("Please do not use! This will be deprecated! Please use ResizedEventArgs instead!")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public class ImfManagerResizedEventArgs : EventArgs
         {
@@ -1499,6 +1522,7 @@ namespace Tizen.NUI
         /// </summary>
         ///Please do not use! this will be deprecated
         /// <since_tizen> 3 </since_tizen>
+        [Obsolete("Please do not use! This will be deprecated! Please use Resized instead!")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public event EventHandler<ImfManagerResizedEventArgs> ImfManagerResized
         {
@@ -1602,6 +1626,7 @@ namespace Tizen.NUI
         /// </summary>
         ///Please do not use! this will be internal
         /// <since_tizen> 3 </since_tizen>
+        [Obsolete("Please do not use! This will be deprecated!")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public KeyboardResizedSignalType ResizedSignal()
         {
@@ -1615,6 +1640,7 @@ namespace Tizen.NUI
         /// </summary>
         ///Please do not use! this will be deprecated
         /// <since_tizen> 3 </since_tizen>
+        [Obsolete("Please do not use! This will be deprecated! Please use LanguageChangedEventArgs instead!")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public class ImfManagerLanguageChangedEventArgs : EventArgs
         {
@@ -1638,6 +1664,7 @@ namespace Tizen.NUI
         /// </summary>
         ///Please do not use! this will be deprecated
         /// <since_tizen> 3 </since_tizen>
+        [Obsolete("Please do not use! This will be deprecated! Please use LanguageChanged instead!")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public event EventHandler<ImfManagerLanguageChangedEventArgs> ImfManagerLanguageChanged
         {
@@ -1741,6 +1768,7 @@ namespace Tizen.NUI
         /// </summary>
         ///Please do not use! this will be internal
         /// <since_tizen> 3 </since_tizen>
+        [Obsolete("Please do not use! This will be deprecated!")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public LanguageChangedSignalType LanguageChangedSignal()
         {

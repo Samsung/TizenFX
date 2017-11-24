@@ -47,6 +47,7 @@ namespace Tizen.NUI
         /// Please DO NOT use! This will be deprecated!
         /// Dispose() method in Singletone classes (ex: FocusManager, StyleManager, VisualFactory, IMFManager, TtsPlayer, Window) is not required.
         /// Because it is Sigletone, so it is alive for one thread until the NUI is terminated, so it never be disposed.
+        [Obsolete("Please do not use! This will be deprecated!")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected override void Dispose(DisposeTypes type)
         {
@@ -83,6 +84,10 @@ namespace Tizen.NUI
         /// Please do not use! this will be deprecated, please use VisualFactory.Instance instead.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        [Obsolete("Please do not use! This will be deprecated! Please use VisualFactory.Instance instead! " +
+            "Like: " +
+            "VisualFactory visualFactory = VisualFactory.Instance; " +
+            "visualFactory.CreateVisual(visualMap);")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static VisualFactory Get()
         {

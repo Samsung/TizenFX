@@ -50,6 +50,7 @@ namespace Tizen.NUI
         /// Dispose() method in Singletone classes (ex: FocusManager, StyleManager, VisualFactory, IMFManager, TtsPlayer, Window) is not required.
         /// Because it is Sigletone, so it is alive for one thread until the NUI is terminated, so it never be disposed.
         /// <since_tizen> 3 </since_tizen>
+        [Obsolete("Please do not use! This will be deprecated!")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected override void Dispose(DisposeTypes type)
         {
@@ -768,6 +769,11 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         /// Please do not use! this will be deprecated.
         /// Instead please use FocusedViewActivatedEventArgs.
+        [Obsolete("Please do not use! This will be deprecated! Please use FocusedViewActivatedEventArgs instead! " +
+            "Like: " +
+            "FocusManager.Instance.FocusedViewActivated = OnFocusedViewActivated; " +
+            "private void OnFocusedViewActivated(object source, FocusManager.FocusedViewActivatedEventArgs arg)" +
+            "{...}")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public class FocusedViewEnterKeyEventArgs : EventArgs
         {
@@ -801,7 +807,10 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         /// Please do not use! this will be deprecated!
         /// Instead please use FocusedViewActivated.
-        [Obsolete("Please DO NOT use! This will be deprecated, instead please USE Tizen.NUI.FocusManager.FocusedViewActivated!")]
+        [Obsolete("Please do not use! This will be deprecated! Please use FocusManager.FocusedViewActivated instead! " +
+            "Like: " +
+            "FocusManager.Instance.FocusedViewActivated = OnFocusedViewActivated; " +
+            "private void OnFocusedViewActivated(object source, FocusManager.FocusedViewActivatedEventArgs args) {...}")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public event EventHandler<FocusedViewEnterKeyEventArgs> FocusedViewEnterKeyPressed
         {
@@ -824,12 +833,13 @@ namespace Tizen.NUI
                 }
             }
         }
+
         /// <summary>
         /// Please do not use! this will be deprecated!
         /// </summary>
         /// Please do not use! this will be deprecated!
         /// Instead please use OnFocusedViewEnterKey.
-        [Obsolete("Please DO NOT use! This will be deprecated, instead please USE Tizen.NUI.FocusManager.OnFocusedViewEnterKey")]
+        [Obsolete("Please do not use! This will be deprecated! Please use FocusManager.OnFocusedViewEnterKey instead!")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         private void OnFocusedViewEnterKey2(IntPtr view)
         {

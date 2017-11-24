@@ -360,7 +360,7 @@ namespace Tizen.NUI.BaseComponents
         /// <since_tizen> 3 </since_tizen>
         /// Please do not use! this will be deprecated!
         /// Instead please use as keyword.
-        [Obsolete("Please DO NOT use! This will be deprecated, instead please USE as keyword.")]
+        [Obsolete("Please do not use! This will be deprecated! Please use as keyword instead!")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public new static TableView DownCast(BaseHandle handle)
         {

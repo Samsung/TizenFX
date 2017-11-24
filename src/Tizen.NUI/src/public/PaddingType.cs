@@ -206,7 +206,7 @@ namespace Tizen.NUI
         /// Please DO NOT use! This will be deprecated!
         /// instead please use Start property.
         /// <since_tizen> 3 </since_tizen>
-        [Obsolete("Please DO NOT use! This will be Deprecated!. Please USE Tizen.NUI.PaddingType.Start instead!")]
+        [Obsolete("Please do not use! This will be Deprecated! Please use PaddingType.Start instead!")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public float Left
         {
@@ -242,7 +242,7 @@ namespace Tizen.NUI
         /// Please DO NOT use! This will be deprecated!
         /// instead please use Start property.
         /// <since_tizen> 3 </since_tizen>
-        [Obsolete("Please DO NOT use! This will be Deprecated!. Please USE Tizen.NUI.PaddingType.End instead!")]
+        [Obsolete("Please do not use! This will be deprecated! Please use PaddingType.End instead!")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public float Right
         {
