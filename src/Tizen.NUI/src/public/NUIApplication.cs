@@ -17,6 +17,7 @@
 
 using System;
 using System.ComponentModel;
+using System.Threading;
 using Tizen.Applications;
 using Tizen.Applications.CoreBackend;
 
@@ -52,6 +53,7 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public NUIApplication() : base(new NUICoreBackend())
         {
+            Registry.Instance.SavedApplicationThread = Thread.CurrentThread;
         }
 
         /// <summary>
@@ -61,6 +63,7 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public NUIApplication(string styleSheet) : base(new NUICoreBackend(styleSheet))
         {
+            Registry.Instance.SavedApplicationThread = Thread.CurrentThread;
         }
 
         /// <summary>
@@ -71,6 +74,7 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public NUIApplication(string styleSheet, WindowMode windowMode) : base(new NUICoreBackend(styleSheet, windowMode))
         {
+            Registry.Instance.SavedApplicationThread = Thread.CurrentThread;
         }
 
         /// <summary>
