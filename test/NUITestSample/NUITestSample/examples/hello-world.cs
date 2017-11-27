@@ -61,16 +61,20 @@ namespace HelloWorldTest
             pointLabel.PointSize = 32.0f;
             window.Add(pointLabel);
 
+            Timer timer = new Timer(1000);
+
             Task.Factory.StartNew(() =>
             {
                 try
                 {
-            TextLabel ellipsis = new TextLabel("Ellipsis of TextLabel is enabled.");
-            ellipsis.Size2D = new Size2D(100, 100);
-            ellipsis.Position2D = new Position2D(10, 250);
-            ellipsis.PointSize = 20.0f;
-            ellipsis.Ellipsis = true;
-            window.Add(ellipsis);
+                    Timer timer_in_another_thread = new Timer(1000);
+
+                    TextLabel ellipsis = new TextLabel("Ellipsis of TextLabel is enabled.");
+                    ellipsis.Size2D = new Size2D(100, 100);
+                    ellipsis.Position2D = new Position2D(10, 250);
+                    ellipsis.PointSize = 20.0f;
+                    ellipsis.Ellipsis = true;
+                    window.Add(ellipsis);
                 }
                 catch (Exception e)
                 {
