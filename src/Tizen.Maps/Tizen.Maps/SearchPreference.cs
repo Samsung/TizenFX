@@ -248,6 +248,10 @@ namespace Tizen.Maps
         {
             if (!_disposedValue)
             {
+                if (disposing)
+                {
+                    _properties?.Clear();
+                }
                 handle?.Dispose();
                 _disposedValue = true;
             }
