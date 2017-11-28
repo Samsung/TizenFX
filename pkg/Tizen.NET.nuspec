@@ -12,13 +12,7 @@
     <description>A set of Tizen .NET APIs. This includes all of the APIs built on top of Tizen Platform.</description>
     <copyright>© Samsung Electronics Co., Ltd All Rights Reserved</copyright>
     <dependencies>
-      <group targetFramework="tizen40">
-        <dependency id="NETStandard.Library" version="2.0.0" />
-        <dependency id="Tizen.NET.API4" version="$version$" />
-      </group>
-      <group targetFramework="netstandard2.0">
-        <dependency id="Tizen.NET.API4" version="$version$" />
-      </group>
+      <dependency id="Tizen.NET.API4" version="$version$" />
     </dependencies>
   </metadata>
   <files>
