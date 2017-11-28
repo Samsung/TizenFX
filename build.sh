@@ -63,6 +63,7 @@ cmd_pack() {
   fi
 
   $NUGET_CMD pack $SCRIPT_DIR/pkg/Tizen.NET.nuspec -NoPackageAnalysis -Version $VERSION -BasePath $SCRIPT_DIR -OutputDirectory $OUTDIR
+  $NUGET_CMD pack $SCRIPT_DIR/pkg/Tizen.NET.API4.nuspec -NoPackageAnalysis -Version $VERSION -BasePath $SCRIPT_DIR -OutputDirectory $OUTDIR
   $NUGET_CMD pack $SCRIPT_DIR/pkg/Tizen.NET.Internals.nuspec -NoPackageAnalysis -Version $VERSION_INTERNAL -BasePath $SCRIPT_DIR -OutputDirectory $OUTDIR
 }
 
