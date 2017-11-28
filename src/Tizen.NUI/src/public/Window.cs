@@ -1682,8 +1682,7 @@ namespace Tizen.NUI
         /// Feed a key-event into the window.
         /// </summary>
         /// <since_tizen> 4 </since_tizen>
-        [Obsolete("Please do not use! This will be deprecated! Please use Window.Instance.FeedKeyEvent() instead!")]
-        public void FeedKeyEvent(Key keyEvent)
+        public static void FeedKeyEvent(Key keyEvent)
         {
             NDalicManualPINVOKE.Window_FeedKeyEvent(Key.getCPtr(keyEvent));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
