@@ -1681,7 +1681,21 @@ namespace Tizen.NUI
         /// <summary>
         /// Feed a key-event into the window.
         /// </summary>
+        /// <param name="keyEvent">The key event to feed.</param>
+        /// <since_tizen> 5 </since_tizen>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void FeedKey(Key keyEvent)
+        {
+            NDalicManualPINVOKE.Window_FeedKeyEvent(Key.getCPtr(keyEvent));
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        /// <summary>
+        /// Feed a key-event into the window.
+        /// </summary>
+        /// <param name="keyEvent">The key event to feed.</param>
         /// <since_tizen> 4 </since_tizen>
+        [Obsolete("Please do not use! This will be deprecated! Please use FeedKey(Key keyEvent) instead!")]
         public static void FeedKeyEvent(Key keyEvent)
         {
             NDalicManualPINVOKE.Window_FeedKeyEvent(Key.getCPtr(keyEvent));
