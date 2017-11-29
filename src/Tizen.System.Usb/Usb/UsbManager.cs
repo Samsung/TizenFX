@@ -26,30 +26,46 @@ namespace Tizen.System.Usb
     /// <since_tizen> 4 </since_tizen>
     public class UsbManager : IDisposable
     {
-        private readonly Interop.UsbContextHandle _context = null;
-        private readonly Interop.HostHotplugHandle _hotpluggedHandle = null;
-        private List<UsbDevice> _devices = new List<UsbDevice>();
+        // It needs to be static as its destroy function must be called after closing all devices and before application close.
+        // It has to be called to clean the memory used by library.
+        private static readonly Interop.UsbContextHandle _context = null;
+
+        private readonly Interop.HostHotplugHandle _hotpluggedAttachHandle = null;
+        private readonly Interop.HostHotplugHandle _hotpluggedDetachHandle = null;
+
+        static UsbManager()
+        {
+            bool isSupported;
+            Information.TryGetValue("http://tizen.org/feature/usb.host", out isSupported);
+            if (isSupported)
+            {
+                _context = Interop.UsbContextHandle.GetContextHandle();
+            }
+        }
 
         /// <summary>
         /// USB Manager Constructor.
         /// </summary>
+        /// <exception cref="NotSupportedException">Throws exception if USB host feature is not enabled.</exception>
         /// <since_tizen> 4 </since_tizen>
         public UsbManager()
         {
-            _context = Interop.UsbContextHandle.GetContextHandle();
-            _devices = _context.GetDeviceList().Select(devHandle => new UsbDevice(this, devHandle)).ToList();
+            if (_context == null) throw new NotSupportedException("USB host operations are not supported in this device");
 
-            IntPtr hotpluggedHandle;
-            _context.SetHotplugCb(HostHotplugCallback, Interop.HotplugEventType.Any,
-                IntPtr.Zero, out hotpluggedHandle).ThrowIfFailed("Failed to set hot plugged callback");
+            IntPtr hotpluggedAttachHandle, hotpluggedDetachHandle;
+            _context.SetHotplugCb(HostHotplugAttachCallback, Interop.HotplugEventType.Attach,
+                IntPtr.Zero, out hotpluggedAttachHandle).ThrowIfFailed("Failed to set hot plugged callback");
 
-            _hotpluggedHandle = new Interop.HostHotplugHandle(hotpluggedHandle);
+            _context.SetHotplugCb(HostHotplugDetachCallback, Interop.HotplugEventType.Detach,
+                IntPtr.Zero, out hotpluggedDetachHandle).ThrowIfFailed("Failed to set hot plugged callback");
+
+            _hotpluggedAttachHandle = new Interop.HostHotplugHandle(hotpluggedAttachHandle);
+            _hotpluggedDetachHandle = new Interop.HostHotplugHandle(hotpluggedDetachHandle);
         }
 
         /// <summary>
         /// This function returns list of USB devices attached to system.
         /// </summary>
-        /// <exception cref="NotSupportedException">Throws exception if USB host feature is not enabled.</exception>
         /// <exception cref="OutOfMemoryException">Throws exception in case of insufficient memory.</exception>
         /// <exception cref="UnauthorizedAccessException">Throws exception if user has insufficient permission on device.</exception>
         /// <since_tizen> 4 </since_tizen>
@@ -58,7 +74,7 @@ namespace Tizen.System.Usb
             get
             {
                 ThrowIfDisposed();
-                return _devices;
+                return _context.GetDeviceList().Select(devHandle => new UsbDevice(this, devHandle)).ToList();
             }
         }
 
@@ -68,30 +84,30 @@ namespace Tizen.System.Usb
         /// <since_tizen> 4 </since_tizen>
         public event EventHandler<HotPluggedEventArgs> DeviceHotPlugged;
 
-        internal void HostHotplugCallback(IntPtr devHandle, IntPtr userData)
+        internal void HostHotplugAttachCallback(IntPtr devHandle, IntPtr userData)
         {
             Interop.HostDeviceHandle handle = new Interop.HostDeviceHandle(devHandle);
-            UsbDevice device = _devices.Where(dev => dev._handle == handle).FirstOrDefault();
-            if (device == null)
+            UsbDevice device = new UsbDevice(this, handle);
+            if (DeviceHotPlugged != null)
             {
-                device = new UsbDevice(this, handle);
-                _devices.Add(device);
-
-                if (DeviceHotPlugged != null)
-                {
-                    DeviceHotPlugged.Invoke(this, new HotPluggedEventArgs(device, HotplugEventType.Attach));
-                }
+                DeviceHotPlugged.Invoke(this, new HotPluggedEventArgs(device, HotplugEventType.Attach));
             }
-            else
+
+            //AvailableDevices.Remove(device);
+            // do we need to dispose device here ?
+            }
+
+        internal void HostHotplugDetachCallback(IntPtr devHandle, IntPtr userData)
             {
-                if (DeviceHotPlugged != null)
-                {
-                    DeviceHotPlugged.Invoke(this, new HotPluggedEventArgs(device, HotplugEventType.Detach));
-                }
-
-                _devices.Remove(device);
-                // do we need to dispose device here ?
+            Interop.HostDeviceHandle handle = new Interop.HostDeviceHandle(devHandle);
+            UsbDevice device = new UsbDevice(this, handle);
+            if (DeviceHotPlugged != null)
+            {
+                DeviceHotPlugged.Invoke(this, new HotPluggedEventArgs(device, HotplugEventType.Detach));
             }
+
+            //AvailableDevices.Remove(device);
+            // do we need to dispose device here ?
         }
 
         internal void ThrowIfDisposed()
@@ -106,8 +122,8 @@ namespace Tizen.System.Usb
         {
             if (!disposedValue)
             {
-                if (_hotpluggedHandle != null) _hotpluggedHandle.Dispose();
-                if (_context != null) _context.Dispose();
+                if (_hotpluggedAttachHandle != null) _hotpluggedAttachHandle.Dispose();
+                if (_hotpluggedDetachHandle != null) _hotpluggedDetachHandle.Dispose();
                 disposedValue = true;
             }
         }

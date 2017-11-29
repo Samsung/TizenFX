@@ -103,12 +103,14 @@ namespace Tizen.System.Usb
         /// <summary>
         /// Configuration string.
         /// </summary>
+        /// <exception cref="InvalidOperationException"> Throws exception if device is disconnected or not opened for operation. </exception>
         /// <since_tizen> 4 </since_tizen>
         public string ConfigurationString
         {
             get
             {
                 ThrowIfDisposed();
+                _parent.ThrowIfDeviceNotOpened();
                 return Interop.DescriptorString(_handle.GetConfigStr);
             }
         }
@@ -116,20 +118,24 @@ namespace Tizen.System.Usb
         /// <summary>
         /// Set this configuration as active configuration for the device.
         /// </summary>
-        /// <exception cref="InvalidOperationException">
-        /// Throws exception if device is disconnected or not opened for operation or busy as its interfaces are currently claimed.
-        /// </exception>
+        /// <exception cref="InvalidOperationException"> Throws exception if device is disconnected or not opened for operation. </exception>
         /// <since_tizen> 4 </since_tizen>
         public void SetAsActive()
         {
             ThrowIfDisposed();
-            _handle.SetAsActive();
+            _parent.ThrowIfDeviceNotOpened();
+            _handle.SetAsActive().ThrowIfFailed("Failed to activate this configuration");
         }
 
         internal void ThrowIfDisposed()
         {
             if (disposedValue) throw new ObjectDisposedException("Configuration is already disposed");
             _parent.ThrowIfDisposed();
+        }
+
+        internal void ThrowIfDeviceNotOpened()
+        {
+            _parent.ThrowIfDeviceNotOpened();
         }
 
         #region IDisposable Support
