@@ -55,10 +55,6 @@ namespace Tizen.NUI
         /// <param name="baseHandle">The instance of BaseHandle (C# base class).</param>
         internal static void Register(BaseHandle baseHandle)
         {
-            if(savedApplicationThread?.ManagedThreadId != Thread.CurrentThread.ManagedThreadId)
-            {
-                throw new global::System.ApplicationException("NUI object is attempt to be created in another thread. It should be created in main thread only!");
-            }
 
             // We store a pointer to the RefObject for the control
             RefObject refObj = baseHandle.GetObjectPtr();

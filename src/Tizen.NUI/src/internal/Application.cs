@@ -1072,8 +1072,6 @@ namespace Tizen.NUI
 
         public static Application NewApplication(string[] args, string stylesheet, Application.WindowMode windowMode)
         {
-            NUILog.Debug(" NewApplication(string[] args, string stylesheet, Application.WindowMode windowMode) is called! ");
-
             Application ret = New(args, stylesheet, (Application.WindowMode)windowMode);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
 
@@ -1103,8 +1101,6 @@ namespace Tizen.NUI
         */
         public static Application New()
         {
-            NUILog.Debug("New() is called!");
-
             Application ret = new Application(NDalicPINVOKE.Application_New__SWIG_0(), true);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
@@ -1112,8 +1108,6 @@ namespace Tizen.NUI
 
         public static Application New(int argc)
         {
-            NUILog.Debug("New(int argc) is called!");
-
             Application ret = new Application(NDalicPINVOKE.Application_New__SWIG_1(argc), true);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
@@ -1121,8 +1115,6 @@ namespace Tizen.NUI
 
         public static Application New(int argc, string stylesheet)
         {
-            NUILog.Debug("New(int argc, string stylesheet) is called!");
-
             Application ret = new Application(NDalicPINVOKE.Application_New__SWIG_2(argc, stylesheet), true);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
@@ -1130,8 +1122,6 @@ namespace Tizen.NUI
 
         public static Application New(int argc, string stylesheet, Application.WindowMode windowMode)
         {
-            NUILog.Debug("New(int argc, string stylesheet, Application.WindowMode windowMode) is called!");
-
             Application ret = new Application(NDalicPINVOKE.Application_New__SWIG_3(argc, stylesheet, (int)windowMode), true);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
@@ -1139,7 +1129,6 @@ namespace Tizen.NUI
 
         public static Application New(string[] args, string stylesheet, Application.WindowMode windowMode)
         {
-            NUILog.Debug("New(string[] args) is called!");
             int argc = args.Length;
             string argvStr = string.Join(" ", args);
 
@@ -1157,8 +1146,6 @@ namespace Tizen.NUI
 
         public Application() : this(NDalicPINVOKE.new_Application__SWIG_0(), true)
         {
-            NUILog.Debug("Application() is called!");
-
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
