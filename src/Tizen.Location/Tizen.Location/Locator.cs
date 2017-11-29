@@ -43,7 +43,6 @@ namespace Tizen.Location
         private double _distance = 120.0;
         private bool _isEnableMock = false;
         private bool _disposed = false;
-        private bool _isStarted = false;
         private IntPtr _handle;
         private LocationType _locationType;
         private Location _location = null;
@@ -340,7 +339,6 @@ namespace Tizen.Location
                     throw LocationErrorFactory.ThrowLocationException(ret);
                 }
             }
-            _isStarted = true;
         }
 
         /// <summary>
@@ -360,7 +358,6 @@ namespace Tizen.Location
                 Log.Error(Globals.LogTag, "Error stopping Location Manager," + (LocationError)ret);
                 throw LocationErrorFactory.ThrowLocationException(ret);
             }
-            _isStarted = false;
        }
 
         /// <summary>
@@ -483,23 +480,31 @@ namespace Tizen.Location
             double vertical = 0;
             int timestamp = 0;
 
-            if (_isStarted)
+            Log.Info(Globals.LogTag, "Get current location information");
+            int ret = Interop.Locator.GetLocation(_handle, out altitude, out latitude, out longitude, out climb, out direction, out speed, out level, out accuracy, out vertical, out timestamp);
+            if (((LocationError)ret != LocationError.None))
             {
-                Log.Info(Globals.LogTag, "Get current location information");
-                int ret = Interop.Locator.GetLocation(_handle, out altitude, out latitude, out longitude, out climb, out direction, out speed, out level, out accuracy, out vertical, out timestamp);
-                if (((LocationError)ret != LocationError.None))
+                if ((LocationError)ret == LocationError.ServiceNotAvailable)
+                {
+                    Log.Info(Globals.LogTag, "Get last location information");
+                    ret = Interop.Locator.GetLastLocation(_handle, out altitude, out latitude, out longitude, out climb, out direction, out speed, out level, out accuracy, out vertical, out timestamp);
+                    if (((LocationError)ret != LocationError.None))
+                    {
+                        Log.Error(Globals.LogTag, "Error in get last location information," + (LocationError)ret);
+                        throw LocationErrorFactory.ThrowLocationException(ret);
+                    }
+                    else
+                    {
+                        if (latitude == 0.0 && longitude == 0.0)
+                        {
+                            Log.Error(Globals.LogTag, "Error fail to get last location information");
+                            throw LocationErrorFactory.ThrowLocationException((int)LocationError.ServiceNotAvailable);
+                        }
+                    }
+                }
+                else
                 {
                     Log.Error(Globals.LogTag, "Error in get current location information," + (LocationError)ret);
-                    throw LocationErrorFactory.ThrowLocationException(ret);
-                }
-            }
-            else
-            {
-                Log.Info(Globals.LogTag, "Get last location information");
-                int ret = Interop.Locator.GetLastLocation(_handle, out altitude, out latitude, out longitude, out climb, out direction, out speed, out level, out accuracy, out vertical, out timestamp);
-                if (((LocationError)ret != LocationError.None))
-                {
-                    Log.Error(Globals.LogTag, "Error in get last location information," + (LocationError)ret);
                     throw LocationErrorFactory.ThrowLocationException(ret);
                 }
             }
