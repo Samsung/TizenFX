@@ -35,7 +35,7 @@ namespace Tizen.Applications.NotificationEventListener
             NotificationLayout layout;
             NotificationType type;
             string text;
-            IntPtr extention = IntPtr.Zero;
+            IntPtr extension = IntPtr.Zero;
             IntPtr dummy = IntPtr.Zero;
             SafeAppControlHandle appcontrol = null;
 
@@ -158,15 +158,15 @@ namespace Tizen.Applications.NotificationEventListener
                 eventargs.IsVisible = false;
             }
 
-            err = Interop.NotificationEventListener.GetExtentionBundle(eventargs.Handle, out extention, out dummy);
+            err = Interop.NotificationEventListener.GetExtensionBundle(eventargs.Handle, out extension, out dummy);
             if (err != Interop.NotificationEventListener.ErrorCode.None)
             {
                 Log.Info(LogTag, "unable to get Extender");
             }
 
-            if (extention != IntPtr.Zero)
+            if (extension != IntPtr.Zero)
             {
-                Bundle bundle = new Bundle(new SafeBundleHandle(extention, false));
+                Bundle bundle = new Bundle(new SafeBundleHandle(extension, false));
                 foreach (string key in bundle.Keys)
                 {
                     if (key.StartsWith("_NOTIFICATION_EXTENSION_EVENT_"))

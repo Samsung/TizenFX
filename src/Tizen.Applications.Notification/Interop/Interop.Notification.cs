@@ -203,14 +203,14 @@ internal static partial class Interop
         [DllImport(Libraries.Notification, EntryPoint = "notification_set_delete_timeout")]
         internal static extern NotificationError SetDeleteTime(NotificationSafeHandle handle, int timeout);
 
-        [DllImport(Libraries.Notification, EntryPoint = "notification_set_extention_data")]
-        internal static extern NotificationError SetExtentionData(NotificationSafeHandle handle, string key, SafeBundleHandle bundleHandle);
+        [DllImport(Libraries.Notification, EntryPoint = "notification_set_extension_data")]
+        internal static extern NotificationError SetExtensionData(NotificationSafeHandle handle, string key, SafeBundleHandle bundleHandle);
 
-        [DllImport(Libraries.Notification, EntryPoint = "notification_get_extention_data")]
-        internal static extern NotificationError GetExtentionData(NotificationSafeHandle handle, string key, out SafeBundleHandle bundleHandle);
+        [DllImport(Libraries.Notification, EntryPoint = "notification_get_extension_data")]
+        internal static extern NotificationError GetExtensionData(NotificationSafeHandle handle, string key, out SafeBundleHandle bundleHandle);
 
         [DllImport(Libraries.Notification, EntryPoint = "notification_get_args")]
-        internal static extern NotificationError GetExtentionBundle(NotificationSafeHandle handle, out IntPtr args, out IntPtr group_args);
+        internal static extern NotificationError GetExtensionBundle(NotificationSafeHandle handle, out IntPtr args, out IntPtr group_args);
 
         [DllImport(Libraries.Notification, EntryPoint = "notification_get_default_button")]
         internal static extern NotificationError GetDefaultButton(NotificationSafeHandle handle, out int index);

@@ -138,7 +138,7 @@ internal static partial class Interop
         [DllImport(Libraries.NotificationEventListener, EntryPoint = "notification_get_property")]
         internal static extern ErrorCode GetProperties(NotificationSafeHandle handle, out int flags);
 
-        [DllImport(Libraries.NotificationEventListener, EntryPoint = "notification_get_extention_data")]
+        [DllImport(Libraries.NotificationEventListener, EntryPoint = "notification_get_extension_data")]
         internal static extern ErrorCode GetExtender(NotificationSafeHandle handle, string key, out SafeBundleHandle value);
 
         [DllImport(Libraries.NotificationEventListener, EntryPoint = "notification_clone")]
@@ -148,7 +148,7 @@ internal static partial class Interop
         internal static extern ErrorCode NotificationListFree(IntPtr list);
 
         [DllImport(Libraries.NotificationEventListener, EntryPoint = "notification_get_args")]
-        internal static extern ErrorCode GetExtentionBundle(NotificationSafeHandle handle, out IntPtr args, out IntPtr groupArgs);
+        internal static extern ErrorCode GetExtensionBundle(NotificationSafeHandle handle, out IntPtr args, out IntPtr groupArgs);
 
         [DllImport(Libraries.NotificationEventListener, EntryPoint = "notification_get_hide_timeout")]
         internal static extern ErrorCode GetHideTimeout(NotificationSafeHandle handle, out int timeout);
