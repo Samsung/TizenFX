@@ -25,7 +25,7 @@ ExcludeArch: aarch64
 AutoReqProv: no
 
 BuildRequires: dotnet-build-tools
-Requires(post): vconf
+Requires(post): /usr/bin/vconftool
 
 %description
 %{summary}
@@ -176,7 +176,7 @@ install -p -m 644 %{_tizenfx_bin_path}/bin/dummy/*.dll %{buildroot}%{DOTNET_ASSE
 install -p -m 644 %{_tizenfx_bin_path}/*.nupkg %{buildroot}%{DOTNET_NUGET_SOURCE}
 
 %post
-vconftool set -t int "db/dotnet/tizen_api_version" %{TIZEN_NET_API_VERSION} -f
+/usr/bin/vconftool set -t int db/dotnet/tizen_api_version %{TIZEN_NET_API_VERSION} -f
 
 
 %files
