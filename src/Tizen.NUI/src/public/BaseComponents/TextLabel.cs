@@ -110,7 +110,7 @@ namespace Tizen.NUI.BaseComponents
             internal static readonly int AUTO_SCROLL_LOOP_DELAY = NDalicManualPINVOKE.TextLabel_Property_AUTO_SCROLL_LOOP_DELAY_get();
             internal static readonly int LINE_COUNT = NDalicManualPINVOKE.TextLabel_Property_LINE_COUNT_get();
             internal static readonly int LINE_WRAP_MODE = NDalicManualPINVOKE.TextLabel_Property_LINE_WRAP_MODE_get();
-
+            internal static readonly int TEXT_DIRECTION = NDalicManualPINVOKE.TextLabel_Property_TEXT_DIRECTION_get();
         }
 
         /// <summary>
@@ -835,6 +835,22 @@ namespace Tizen.NUI.BaseComponents
             set
             {
                 SetProperty(TextLabel.Property.LINE_WRAP_MODE, new Tizen.NUI.PropertyValue((int)value));
+            }
+        }
+
+        /// <summary>
+        /// The text direction.
+        /// </summary>
+        /// <since_tizen> 5 </since_tizen>
+        /// This will be released at Tizen.NET API Level 5, so currently this would be used as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public TextDirection TextDirection
+        {
+            get
+            {
+                int temp = 0;
+                GetProperty(TextLabel.Property.TEXT_DIRECTION).Get(out temp);
+                return (TextDirection)temp;
             }
         }
     }

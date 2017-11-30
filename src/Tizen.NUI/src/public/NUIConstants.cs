@@ -2387,7 +2387,7 @@ namespace Tizen.NUI
         Finished
     }
 
-     /// <summary>
+    /// <summary>
     /// An enum of the line wrap mode of text controls.
     /// </summary>
     /// <since_tizen> 4 </since_tizen>
@@ -2404,6 +2404,27 @@ namespace Tizen.NUI
         /// </summary>
         /// <since_tizen> 4 </since_tizen>
         Character
+    }
+
+    /// <summary>
+    /// An enum of text direction.
+    /// </summary>
+    /// <since_tizen> 5 </since_tizen>
+    /// This will be released at Tizen.NET API Level 5, so currently this would be used as inhouse API.
+    [EditorBrowsable(EditorBrowsableState.Never)]
+    public enum TextDirection
+    {
+        /// <summary>
+        /// Text direction is from left to right.
+        /// </summary>
+        /// <since_tizen> 5 </since_tizen>
+        LeftToRight,
+
+        /// <summary>
+        /// Text direction is from right to left.
+        /// </summary>
+        /// <since_tizen> 5 </since_tizen>
+        RightToLeft
     }
 
 }
