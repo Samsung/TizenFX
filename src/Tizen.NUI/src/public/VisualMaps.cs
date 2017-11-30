@@ -624,6 +624,7 @@ namespace Tizen.NUI
 
         private string _url = null;
         private string _alphaMaskUrl = null;
+        private string _auxiliaryImageUrl = null;
         private FittingModeType? _fittingMode = null;
         private SamplingModeType? _samplingMode = null;
         private int? _desiredWidth = null;
@@ -633,6 +634,7 @@ namespace Tizen.NUI
         private Vector4 _pixelArea = null;
         private WrapModeType? _wrapModeU = null;
         private WrapModeType? _wrapModeV = null;
+        private float? _auxiliaryImageAlpha = null;
         private float? _maskContentScale = null;
         private bool? _cropToMask = null;
         private ReleasePolicyType? _releasePolicy = null;
@@ -672,6 +674,24 @@ namespace Tizen.NUI
             set
             {
                 _alphaMaskUrl = value;
+                UpdateVisual();
+            }
+        }
+
+        /// <summary>
+        /// Overlays the auxiliary iamge on top of an NPatch image.
+        /// The resulting visual image will be at least as large as the smallest possible n-patch or the auxiliary image, whichever is larger.
+        /// </summary>
+        /// <since_tizen> 5 </since_tizen>
+        public string AuxiliaryImageURL
+        {
+            get
+            {
+                return _auxiliaryImageUrl;
+            }
+            set
+            {
+                _auxiliaryImageUrl = value;
                 UpdateVisual();
             }
         }
@@ -895,6 +915,22 @@ namespace Tizen.NUI
             }
         }
 
+        /// <summary>
+        ///  An alpha value for mixing between the masked main NPatch image and the auxiliary image.
+        /// </summary>
+        /// <since_tizen> 5 </since_tizen>
+        public float AuxiliaryImageAlpha
+        {
+            get
+            {
+                return _auxiliaryImageAlpha ?? 1.0f;
+            }
+            set
+            {
+                _auxiliaryImageAlpha = value;
+                UpdateVisual();
+            }
+        }
 
         /// <summary>
         /// Get or set the Image Visual release policy<br />
@@ -966,6 +1002,7 @@ namespace Tizen.NUI
                 _outputVisualMap.Add(Visual.Property.Type, new PropertyValue((int)Visual.Type.Image));
                 _outputVisualMap.Add(ImageVisualProperty.URL, new PropertyValue(_url));
                 if (_alphaMaskUrl != null ) { _outputVisualMap.Add(ImageVisualProperty.AlphaMaskURL, new PropertyValue(_alphaMaskUrl)); }
+                if (_auxiliaryImageUrl != null ) { _outputVisualMap.Add(ImageVisualProperty.AuxiliaryImageURL, new PropertyValue(_auxiliaryImageUrl)); }
                 if (_fittingMode != null) { _outputVisualMap.Add(ImageVisualProperty.FittingMode, new PropertyValue((int)_fittingMode)); }
                 if (_samplingMode != null) { _outputVisualMap.Add(ImageVisualProperty.SamplingMode, new PropertyValue((int)_samplingMode)); }
                 if (_desiredWidth != null) { _outputVisualMap.Add(ImageVisualProperty.DesiredWidth, new PropertyValue((int)_desiredWidth)); }
@@ -981,6 +1018,7 @@ namespace Tizen.NUI
                 if (_opacity != null) { _outputVisualMap.Add((int)Visual.Property.Opacity, new PropertyValue((float)_opacity)); }
                 if (_maskContentScale != null) { _outputVisualMap.Add((int)ImageVisualProperty.MaskContentScale, new PropertyValue((float)_maskContentScale)); }
                 if (_cropToMask != null) { _outputVisualMap.Add((int)ImageVisualProperty.CropToMask, new PropertyValue((bool)_cropToMask)); }
+                if (_auxiliaryImageAlpha != null) { _outputVisualMap.Add((int)ImageVisualProperty.AuxiliaryImageAlpha, new PropertyValue((float)_auxiliaryImageAlpha)); }
                 if (_releasePolicy != null) { _outputVisualMap.Add( ImageVisualProperty.ReleasePolicy , new PropertyValue((int)_releasePolicy)); }
                 if (_loadPolicy != null) { _outputVisualMap.Add( ImageVisualProperty.LoadPolicy, new PropertyValue((int)_loadPolicy)); }
                 if (_orientationCorrection != null) { _outputVisualMap.Add( ImageVisualProperty.OrientationCorrection, new PropertyValue((bool)_orientationCorrection)); }
