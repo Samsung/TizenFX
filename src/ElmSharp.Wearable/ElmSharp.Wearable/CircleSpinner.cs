@@ -29,7 +29,7 @@ namespace ElmSharp.Wearable
     public class CircleSpinner : Spinner, IRotaryActionWidget
     {
         IntPtr _circleHandle;
-        double _angleRatio = 1.0;
+        double _angleRatio = -1.0;
         CircleSurface _surface;
 
         /// <summary>
@@ -73,16 +73,36 @@ namespace ElmSharp.Wearable
         /// Sets or gets the circle spinner angle per each spinner value.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("Use Step")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public double AngleRatio
         {
             get
             {
+                if(_angleRatio <= 0)
+                {
+                    if(Maximum == Minimum)
+                    {
+                        return 0.0;
+                    }
+                    else
+                    {
+                        return 360/(Maximum - Minimum);
+                    }
+                }
+
                 return _angleRatio;
             }
             set
             {
-                _angleRatio = value;
-                Interop.Eext.eext_circle_object_spinner_angle_set(CircleHandle, _angleRatio);
+                if(value > 0)
+                {
+                    if (_angleRatio == value) return;
+
+                    _angleRatio = value;
+
+                    Interop.Eext.eext_circle_object_spinner_angle_set(CircleHandle, _angleRatio);
+                }
             }
         }
 
