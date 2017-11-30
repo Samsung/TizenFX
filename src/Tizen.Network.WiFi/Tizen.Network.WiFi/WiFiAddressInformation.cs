@@ -57,6 +57,7 @@ namespace Tizen.Network.WiFi
                     Log.Error(Globals.LogTag, "Failed to set first dns address, Error - " + (WiFiError)ret);
                     WiFiErrorFactory.ThrowWiFiException(ret, _handle.DangerousGetHandle());
                 }
+                WiFiManagerImpl.Instance.UpdateAP(_handle);
             }
         }
 
@@ -85,6 +86,7 @@ namespace Tizen.Network.WiFi
                     Log.Error(Globals.LogTag, "Failed to set second dns address, Error - " + (WiFiError)ret);
                     WiFiErrorFactory.ThrowWiFiException(ret, _handle.DangerousGetHandle());
                 }
+                WiFiManagerImpl.Instance.UpdateAP(_handle);
             }
         }
 
@@ -113,6 +115,7 @@ namespace Tizen.Network.WiFi
                     Log.Error(Globals.LogTag, "Failed to set gateway address, Error - " + (WiFiError)ret);
                     WiFiErrorFactory.ThrowWiFiException(ret, _handle.DangerousGetHandle());
                 }
+                WiFiManagerImpl.Instance.UpdateAP(_handle);
             }
         }
 
@@ -141,6 +144,7 @@ namespace Tizen.Network.WiFi
                     Log.Error(Globals.LogTag, "Failed to set subnet mask, Error - " + (WiFiError)ret);
                     WiFiErrorFactory.ThrowWiFiException(ret, _handle.DangerousGetHandle());
                 }
+                WiFiManagerImpl.Instance.UpdateAP(_handle);
             }
         }
 
@@ -169,6 +173,7 @@ namespace Tizen.Network.WiFi
                     Log.Error(Globals.LogTag, "Failed to set ip address, Error - " + (WiFiError)ret);
                     WiFiErrorFactory.ThrowWiFiException(ret, _handle.DangerousGetHandle());
                 }
+                WiFiManagerImpl.Instance.UpdateAP(_handle);
             }
         }
 
@@ -192,6 +197,7 @@ namespace Tizen.Network.WiFi
                     Log.Error(Globals.LogTag, "Failed to set ip config type, Error - " + (WiFiError)ret);
                     WiFiErrorFactory.ThrowWiFiException(ret, _handle.DangerousGetHandle());
                 }
+                WiFiManagerImpl.Instance.UpdateAP(_handle);
             }
         }
 
@@ -217,6 +223,7 @@ namespace Tizen.Network.WiFi
                     Log.Error(Globals.LogTag, "It failed to set prefix length, " + (WiFiError)ret);
                     WiFiErrorFactory.ThrowWiFiException(ret, _handle.DangerousGetHandle());
                 }
+                WiFiManagerImpl.Instance.UpdateAP(_handle);
             }
         }
 
@@ -240,6 +247,7 @@ namespace Tizen.Network.WiFi
                     Log.Error(Globals.LogTag, "It failed to set DNS config type, " + (WiFiError)ret);
                     WiFiErrorFactory.ThrowWiFiException(ret, _handle.DangerousGetHandle());
                 }
+                WiFiManagerImpl.Instance.UpdateAP(_handle);
             }
         }
 

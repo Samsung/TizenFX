@@ -479,7 +479,7 @@ namespace Tizen.Applications.Notifications
             foreach (string key in GetextraDataDictionary().Keys)
             {
                 Log.Info(LogTag, "Start to bind Notification.ExtenderData to SafeHandle");
-                Interop.Notification.SetExtentionData(Handle, key, extraDataDictionary[key].SafeBundleHandle);
+                Interop.Notification.SetExtensionData(Handle, key, extraDataDictionary[key].SafeBundleHandle);
             }
 
             foreach (Notification.StyleBase style in styleDictionary.Values)
@@ -503,23 +503,23 @@ namespace Tizen.Applications.Notifications
 
         internal Notification Build()
         {
-            IntPtr extention = IntPtr.Zero;
-            IntPtr extentionBundlePtr = IntPtr.Zero;
+            IntPtr extension = IntPtr.Zero;
+            IntPtr extensionBundlePtr = IntPtr.Zero;
 
             NotificationBinder.BindSafeHandle(this);
 
-            Interop.Notification.GetExtentionBundle(Handle, out extention, out extentionBundlePtr);
+            Interop.Notification.GetExtensionBundle(Handle, out extension, out extensionBundlePtr);
 
-            if (extention != IntPtr.Zero)
+            if (extension != IntPtr.Zero)
             {
-                Bundle bundle = new Bundle(new SafeBundleHandle(extention, false));
+                Bundle bundle = new Bundle(new SafeBundleHandle(extension, false));
                 foreach (string key in bundle.Keys)
                 {
                     if (key.StartsWith("_NOTIFICATION_EXTENSION_EVENT_"))
                         continue;
 
                     SafeBundleHandle sbh;
-                    Interop.Notification.GetExtentionData(Handle, key, out sbh);
+                    Interop.Notification.GetExtensionData(Handle, key, out sbh);
                     extraDataDictionary.Add(key, new Bundle(sbh));
                 }
             }

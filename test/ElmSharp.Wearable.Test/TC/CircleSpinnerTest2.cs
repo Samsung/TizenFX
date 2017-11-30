@@ -21,7 +21,7 @@ namespace ElmSharp.Test.TC
     class CircleSpinnerTest2 : TestCaseBase
     {
         public override string TestName => "CircleSpinnerTest2";
-        public override string TestDescription => "To test basic operation of Circle Spinner";
+        public override string TestDescription => "To test basic operation of Circle Spinner with Marker";
 
         public override void Run(Window window)
         {

@@ -260,8 +260,8 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Set: Enables looping for 'count' repeats. A zero is the same as Looping = true; i.e., repeat forever.<br />
-        /// If Play() Stop() or 'count' loops is reached, the loop counter will reset.<br />
+        /// Set: Enables looping for a specified number of repeats. A zero is the same as Looping = true; i.e., repeat forever.<br />
+        /// This property resets the looping value and should not be used with the Looping property.<br />
         /// Setting this parameter does not cause the animation to Play().<br />
         /// Get: Gets the loop count. A zero is the same as Looping = true; i.e., repeat forever.<br />
         /// The loop count is initially 1 for play once.<br />

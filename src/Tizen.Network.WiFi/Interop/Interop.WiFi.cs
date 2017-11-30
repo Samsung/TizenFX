@@ -80,6 +80,8 @@ internal static partial class Interop
         internal static extern int ConnectByWpsPinWithoutSsid(SafeWiFiManagerHandle wifi, string pin, VoidCallback callback, IntPtr userData);
         [DllImport(Libraries.WiFi, EntryPoint = "wifi_manager_forget_ap")]
         internal static extern int RemoveAP(SafeWiFiManagerHandle wifi, IntPtr ap);
+        [DllImport(Libraries.WiFi, EntryPoint = "wifi_manager_update_ap")]
+        internal static extern int UpdateAP(SafeWiFiManagerHandle wifi, IntPtr ap);
 
         //Wi-Fi Monitor
         [DllImport(Libraries.WiFi, EntryPoint = "wifi_manager_get_connection_state")]

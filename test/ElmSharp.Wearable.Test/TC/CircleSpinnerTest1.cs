@@ -21,7 +21,7 @@ namespace ElmSharp.Test.TC
     class CircleSpinnerTest1 : TestCaseBase
     {
         public override string TestName => "CircleSpinnerTest1";
-        public override string TestDescription => "To test basic operation of Circle Spinner";
+        public override string TestDescription => "To test basic operation of Circle Spinner with no AngleRatio";
 
         public override void Run(Window window)
         {
@@ -39,9 +39,8 @@ namespace ElmSharp.Test.TC
                 Text = "Spinner Test",
                 LabelFormat = "%d Value",
                 Style = "circle",
-                AngleRatio = 3.0,
                 Minimum = 0,
-                Maximum = 360,
+                Maximum = 100,
                 Value = 0,
                 Step = 10,
                 Interval = 0.5,
