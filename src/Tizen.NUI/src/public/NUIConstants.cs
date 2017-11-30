@@ -1280,6 +1280,20 @@ namespace Tizen.NUI
         /// This will be released at Tizen.NET API Level 5, so currently this would be used as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly int OrientationCorrection = NDalic.IMAGE_VISUAL_ORIENTATION_CORRECTION;
+        /// <summary>
+        /// Overlays the auxiliary image on top of an NPatch image.
+        /// </summary>
+        /// <since_tizen> 5 </since_tizen>
+        /// This will be released at Tizen.NET API Level 5, so currently this would be used as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static readonly int AuxiliaryImageURL = NDalic.IMAGE_VISUAL_AUXILIARY_IMAGE_URL;
+        /// <summary>
+        /// Alpha value for the auxiliary image, without affecting the underlying NPatch image
+        /// </summary>
+        /// <since_tizen> 5 </since_tizen>
+        /// This will be released at Tizen.NET API Level 5, so currently this would be used as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static readonly int AuxiliaryImageAlpha = NDalic.IMAGE_VISUAL_AUXILIARY_IMAGE_ALPHA;
     }
 
     /// <summary>
