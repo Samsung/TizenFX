@@ -15,7 +15,7 @@
  */
 
 using System;
-using System.Collections.Generic;
+using System.Collections.Concurrent;
 
 namespace ElmSharp
 {
@@ -25,7 +25,8 @@ namespace ElmSharp
     /// <since_tizen> preview </since_tizen>
     public static class EcoreMainloop
     {
-        static readonly Dictionary<int, Func<bool>> _taskMap = new Dictionary<int, Func<bool>>();
+
+        static readonly ConcurrentDictionary<int, Func<bool>> _taskMap = new ConcurrentDictionary<int, Func<bool>>();
         static readonly Object _taskLock = new Object();
         static int _newTaskId = 0;
 
@@ -117,7 +118,8 @@ namespace ElmSharp
         public static void RemoveTimer(IntPtr id)
         {
             int taskId = (int)Interop.Ecore.ecore_timer_del(id);
-            _taskMap.Remove(taskId);
+            Func<bool> unused;
+            _taskMap.TryRemove(taskId, out unused);
         }
 
         static int RegistHandler(Func<bool> task)
@@ -140,11 +142,14 @@ namespace ElmSharp
                 bool result = false;
 
                 if (userAction != null)
+                {
                     result = userAction();
+                }
 
-                if (result == false)
-                    _taskMap.Remove(task_id);
-
+                if (!result)
+                {
+                    _taskMap.TryRemove(task_id, out userAction);
+                }
                 return result;
             }
             return false;
