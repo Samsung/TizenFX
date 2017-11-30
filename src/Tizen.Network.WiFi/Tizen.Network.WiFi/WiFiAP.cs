@@ -17,6 +17,7 @@
 using System;
 using System.Threading.Tasks;
 using System.Collections.Generic;
+using System.ComponentModel;
 
 namespace Tizen.Network.WiFi
 {
@@ -490,7 +491,7 @@ namespace Tizen.Network.WiFi
                 WiFiErrorFactory.ThrowWiFiException(ret, WiFiManagerImpl.Instance.GetSafeHandle().DangerousGetHandle(), _apHandle);
             }
         }
-    }
+   }
 
     /// <summary>
     /// An abstract class which is used to represent the WPS information of the access point.
