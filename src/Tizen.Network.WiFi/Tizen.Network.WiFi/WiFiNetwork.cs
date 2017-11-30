@@ -135,7 +135,6 @@ namespace Tizen.Network.WiFi
                     Log.Error(Globals.LogTag, "Failed to set proxy address, Error - " + (WiFiError)ret);
                     WiFiErrorFactory.ThrowWiFiException(ret, _apHandle.DangerousGetHandle());
                 }
-                WiFiManagerImpl.Instance.UpdateAP(_apHandle);
             }
         }
 
@@ -167,7 +166,6 @@ namespace Tizen.Network.WiFi
                     Log.Error(Globals.LogTag, "Failed to set proxy type, Error - " + (WiFiError)ret);
                     WiFiErrorFactory.ThrowWiFiException(ret, _apHandle.DangerousGetHandle());
                 }
-                WiFiManagerImpl.Instance.UpdateAP(_apHandle);
             }
         }
 
