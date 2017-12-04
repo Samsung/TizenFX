@@ -115,7 +115,8 @@ namespace Tizen.NUI
 
             if (Instance._controlMap.TryGetValue(refObjectPtr, out weakReference))
             {
-                BaseHandle ret = weakReference?.Target as BaseHandle;
+                if(weakReference == null) { throw new System.InvalidOperationException("Error! NUI Registry weakReference should not be NULL!"); }
+                BaseHandle ret = weakReference.Target as BaseHandle;
                 return ret;
             }
             else
