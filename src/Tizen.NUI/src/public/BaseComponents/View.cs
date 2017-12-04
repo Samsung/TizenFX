@@ -4557,6 +4557,23 @@ namespace Tizen.NUI.BaseComponents
                 SetProperty(View.Property.PADDING, new Tizen.NUI.PropertyValue(value));
             }
         }
+
+        /// <summary>
+        /// Perform an action on a visual registered to this view. <br />
+        /// Visuals will have actions, this API is used to perform one of these actions with the given attributes.
+        /// </summary>
+        /// <param name="propertyIndexOfVisual">The Property index of the visual.</param>
+        /// <param name="propertyIndexOfActionId">The action to perform.  See Visual to find supported actions.</param>
+        /// <param name="attributes">Optional attributes for the action.</param>
+        /// <since_tizen> 5 </since_tizen>
+        /// This will be released at Tizen.NET API Level 5, so currently this would be used as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void DoAction(int propertyIndexOfVisual, int propertyIndexOfActionId, PropertyValue attributes)
+        {
+            NDalicManualPINVOKE.View_DoAction(swigCPtr, propertyIndexOfVisual, propertyIndexOfActionId, PropertyValue.getCPtr(attributes));
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
     }
 
     /// <summary>
