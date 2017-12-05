@@ -31,9 +31,7 @@ namespace Tizen.NUI
     /// common architectures.<br />
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
-    [Obsolete("Please do not use! This will be deprecated!")]
-    [EditorBrowsable(EditorBrowsableState.Never)]
-    public class Uint16Pair : global::System.IDisposable
+    internal class Uint16Pair : global::System.IDisposable
     {
         private global::System.Runtime.InteropServices.HandleRef swigCPtr;
         /// <summary>swigCMemOwn.</summary>

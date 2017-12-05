@@ -201,26 +201,6 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// The Left value.
-        /// </summary>
-        /// Please DO NOT use! This will be deprecated!
-        /// instead please use Start property.
-        /// <since_tizen> 3 </since_tizen>
-        [Obsolete("Please do not use! This will be Deprecated! Please use PaddingType.Start instead!")]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public float Left
-        {
-            set
-            {
-                left = value;
-            }
-            get
-            {
-                return left;
-            }
-        }
-
-        /// <summary>
         /// The Start value.
         /// </summary>
         /// <since_tizen> 4 </since_tizen>
@@ -233,26 +213,6 @@ namespace Tizen.NUI
             get
             {
                 return start;
-            }
-        }
-
-        /// <summary>
-        /// The Right value.
-        /// </summary>
-        /// Please DO NOT use! This will be deprecated!
-        /// instead please use Start property.
-        /// <since_tizen> 3 </since_tizen>
-        [Obsolete("Please do not use! This will be deprecated! Please use PaddingType.End instead!")]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public float Right
-        {
-            set
-            {
-                right = value;
-            }
-            get
-            {
-                return right;
             }
         }
 

@@ -335,23 +335,6 @@ namespace Tizen.NUI.BaseComponents
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
-        /// <summary>
-        /// Downcasts a handle to textEditor handle.
-        /// </summary>
-        /// <param name="handle"></param>
-        /// <returns></returns>
-        /// <since_tizen> 3 </since_tizen>
-        /// Please do not use! this will be deprecated!
-        /// Instead please use as keyword.
-        [Obsolete("Please do not use! This will be deprecated! Please use as keyword instead!")]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public new static TextEditor DownCast(BaseHandle handle)
-        {
-            TextEditor ret =  Registry.GetManagedBaseHandleFromNativePtr(handle) as TextEditor;
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
-        }
-
         internal TextEditorSignal TextChangedSignal()
         {
             TextEditorSignal ret = new TextEditorSignal(NDalicPINVOKE.TextEditor_TextChangedSignal(swigCPtr), false);

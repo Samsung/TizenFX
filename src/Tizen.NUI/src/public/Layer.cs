@@ -179,6 +179,7 @@ namespace Tizen.NUI
             if (NDalicPINVOKE.SWIGPendingException.Pending)
                 throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
+
         internal void SetParentOrigin(Vector3 origin)
         {
             NDalicPINVOKE.Actor_SetParentOrigin(swigCPtr, Vector3.getCPtr(origin));

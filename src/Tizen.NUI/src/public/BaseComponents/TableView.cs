@@ -354,20 +354,6 @@ namespace Tizen.NUI.BaseComponents
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
-        /// <summary>
-        /// Downcasts a handle to TabelView handle.
-        /// </summary>
-        /// <since_tizen> 3 </since_tizen>
-        /// Please do not use! this will be deprecated!
-        /// Instead please use as keyword.
-        [Obsolete("Please do not use! This will be deprecated! Please use as keyword instead!")]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public new static TableView DownCast(BaseHandle handle)
-        {
-            TableView ret =  Registry.GetManagedBaseHandleFromNativePtr(handle) as TableView;
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
-        }
 
         /// <summary>
         /// Adds a child to the table.<br />

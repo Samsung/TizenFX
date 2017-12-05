@@ -2104,20 +2104,6 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        /// [Obsolete("Please do not use! this will be deprecated. Please use Visibility instead.")]
-        /// </summary>
-        /// <since_tizen> 3 </since_tizen>
-        [Obsolete("Please do not use! This will be deprecated! Please use Visibility instead!")]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public bool Visible
-        {
-            get
-            {
-                return IsVisible();
-            }
-        }
-
-        /// <summary>
         /// Retrieves and sets the view's opacity.<br />
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
@@ -4199,107 +4185,6 @@ namespace Tizen.NUI.BaseComponents
             }
         }
 
-
-
-        /// <summary>
-        /// [Obsolete("Please do not use! this will be deprecated")]
-        /// </summary>
-        /// <since_tizen> 3 </since_tizen>
-        /// Please do not use! this will be deprecated!
-        /// Instead please use TouchEvent.
-        [Obsolete("Please do not use! This will be deprecated! Please use TouchEvent instead!")]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public event EventHandlerWithReturnType<object, TouchEventArgs, bool> Touched
-        {
-            add
-            {
-                if (_touchDataEventHandler == null)
-                {
-                    _touchDataCallback = OnTouch;
-                    this.TouchSignal().Connect(_touchDataCallback);
-                }
-
-                _touchDataEventHandler += value;
-            }
-
-            remove
-            {
-                _touchDataEventHandler -= value;
-
-                if (_touchDataEventHandler == null && TouchSignal().Empty() == false)
-                {
-                    this.TouchSignal().Disconnect(_touchDataCallback);
-                }
-
-            }
-        }
-
-        /// <summary>
-        /// [Obsolete("Please do not use! this will be deprecated")]
-        /// </summary>
-        /// <since_tizen> 3 </since_tizen>
-        /// Please do not use! this will be deprecated!
-        /// Instead please use HoverEvent.
-        [Obsolete("Please do not use! This will be deprecated! Please use HoverEvent instead!")]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public event EventHandlerWithReturnType<object, HoverEventArgs, bool> Hovered
-        {
-            add
-            {
-                if (_hoverEventHandler == null)
-                {
-                    _hoverEventCallback = OnHoverEvent;
-                    this.HoveredSignal().Connect(_hoverEventCallback);
-                }
-
-                _hoverEventHandler += value;
-            }
-
-            remove
-            {
-                _hoverEventHandler -= value;
-
-                if (_hoverEventHandler == null && HoveredSignal().Empty() == false)
-                {
-                    this.HoveredSignal().Disconnect(_hoverEventCallback);
-                }
-
-            }
-        }
-
-        /// <summary>
-        /// Please do not use! this will be deprecated.
-        /// </summary>
-        /// <since_tizen> 3 </since_tizen>
-        /// Please do not use! this will be deprecated!
-        /// Instead please use WheelEvent.
-        [Obsolete("Please do not use! This will be deprecated! Please use WheelEvent instead!")]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public event EventHandlerWithReturnType<object, WheelEventArgs, bool> WheelMoved
-        {
-            add
-            {
-                if (_wheelEventHandler == null)
-                {
-                    _wheelEventCallback = OnWheelEvent;
-                    this.WheelEventSignal().Connect(_wheelEventCallback);
-                }
-
-                _wheelEventHandler += value;
-            }
-
-            remove
-            {
-                _wheelEventHandler -= value;
-
-                if (_wheelEventHandler == null && WheelEventSignal().Empty() == false)
-                {
-                    this.WheelEventSignal().Disconnect(_wheelEventCallback);
-                }
-
-            }
-        }
-
         /// <summary>
         /// [Obsolete("Please do not use! this will be deprecated")]
         /// </summary>
@@ -4377,38 +4262,6 @@ namespace Tizen.NUI.BaseComponents
                 if (_onWindowEventHandler == null && OnWindowSignal().Empty() == false)
                 {
                     this.OnWindowSignal().Disconnect(_onWindowEventCallback);
-                }
-            }
-        }
-
-        /// <summary>
-        /// [Obsolete("Please do not use! this will be deprecated")]
-        /// </summary>
-        /// <since_tizen> 3 </since_tizen>
-        /// Please do not use! this will be deprecated!
-        /// Instead please use RemovedFromWindow.
-        [Obsolete("Please do not use! This will be deprecated! Please use RemovedFromWindow instead!")]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public event EventHandler OffWindowEvent
-        {
-            add
-            {
-                if (_offWindowEventHandler == null)
-                {
-                    _offWindowEventCallback = OffWindow;
-                    this.OffWindowSignal().Connect(_offWindowEventCallback);
-                }
-
-                _offWindowEventHandler += value;
-            }
-
-            remove
-            {
-                _offWindowEventHandler -= value;
-
-                if (_offWindowEventHandler == null && OffWindowSignal().Empty() == false)
-                {
-                    this.OffWindowSignal().Disconnect(_offWindowEventCallback);
                 }
             }
         }
