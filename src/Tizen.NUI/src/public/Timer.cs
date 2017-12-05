@@ -164,21 +164,6 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Downcasts a handle to Timer handle.
-        /// </summary>
-        /// <since_tizen> 3 </since_tizen>
-        /// Please do not use! this will be deprecated!
-        /// Instead please use as keyword.
-        [Obsolete("Please do not use! This will be deprecated! Please use as keyword instead!")]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public static Timer DownCast(BaseHandle handle)
-        {
-            Timer ret = Registry.GetManagedBaseHandleFromNativePtr(handle) as Timer;
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
-        }
-
-        /// <summary>
         /// Starts the timer.<br />
         /// In case a timer is already running, its time is reset and the timer is restarted.<br />
         /// </summary>

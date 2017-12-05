@@ -153,11 +153,12 @@ namespace Tizen.NUI.BaseComponents
         [EditorBrowsable(EditorBrowsableState.Never)]
         public new static TextLabel DownCast(BaseHandle handle)
         {
-            TextLabel ret =  Registry.GetManagedBaseHandleFromNativePtr(handle) as TextLabel;
+            TextLabel ret = Registry.GetManagedBaseHandleFromNativePtr(handle) as TextLabel;
 
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
+
         /// <summary>
         /// The TranslatableText property.<br />
         /// The text can set the SID value.<br />

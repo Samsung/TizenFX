@@ -113,21 +113,6 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Downcasts a handle to keyFrame handle.
-        /// </summary>
-        /// <since_tizen> 3 </since_tizen>
-        /// Please do not use! this will be deprecated!
-        /// Instead please use as keyword.
-        [Obsolete("Please do not use! This will be deprecated! Please use as keyword instead!")]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public static KeyFrames DownCast(BaseHandle handle)
-        {
-            KeyFrames ret =  Registry.GetManagedBaseHandleFromNativePtr(handle) as KeyFrames;
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
-        }
-
-        /// <summary>
         /// Gets the type of the key frame.
         /// </summary>
         /// <returns>The key frame property type</returns>

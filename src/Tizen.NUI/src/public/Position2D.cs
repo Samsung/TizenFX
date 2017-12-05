@@ -399,28 +399,6 @@ namespace Tizen.NUI
             return new Position2D((int)vec.X, (int)vec.Y);
         }
 
-        /// <summary>
-        /// Converts a Position2D instance to a Uint16Pair instance.
-        /// </summary>
-        /// <param name="position2d">An object of the Position2D type.</param>
-        /// <returns>return an object of the Uint16Pair type</returns>
-        /// <since_tizen> 4 </since_tizen>
-        public static implicit operator Uint16Pair(Position2D position2d)
-        {
-            return new Uint16Pair((uint)position2d.X, (uint)position2d.Y);
-        }
-
-        /// <summary>
-        /// Converts a Uint16Pair instance to a Position2D instance.
-        /// </summary>
-        /// <param name="pair">An object of the Uint16Pair type.</param>
-        /// <returns>return an object of the Position2D type</returns>
-        /// <since_tizen> 4 </since_tizen>
-        public static implicit operator Position2D(Uint16Pair pair)
-        {
-            return new Position2D((int)pair.GetX(), (int)pair.GetY());
-        }
-
     }
 
 }

@@ -94,21 +94,6 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Downcasts a handle to Path handle.
-        /// </summary>
-        /// <since_tizen> 3 </since_tizen>
-        /// Please do not use! this will be deprecated!
-        /// Instead please use as keyword.
-        [Obsolete("Please do not use! This will be deprecated! Please use as keyword instead!")]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public static Path DownCast(BaseHandle handle)
-        {
-            Path ret =  Registry.GetManagedBaseHandleFromNativePtr(handle) as Path;
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
-        }
-
-        /// <summary>
         /// Adds an interpolation point.
         /// </summary>
         /// <param name="point">The new interpolation point to be added.</param>
