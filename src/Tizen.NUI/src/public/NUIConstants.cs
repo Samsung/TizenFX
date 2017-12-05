@@ -1270,6 +1270,16 @@ namespace Tizen.NUI
         /// </summary>
         /// <since_tizen> 5 </since_tizen>
         public static readonly int OrientationCorrection = NDalic.IMAGE_VISUAL_ORIENTATION_CORRECTION;
+        /// <summary>
+        /// Overlays the auxiliary image on top of an NPatch image.
+        /// </summary>
+        /// <since_tizen> 5 </since_tizen>
+        public static readonly int AuxiliaryImageURL = NDalic.IMAGE_VISUAL_AUXILIARY_IMAGE_URL;
+        /// <summary>
+        /// Alpha value for the auxiliary image, without affecting the underlying NPatch image
+        /// </summary>
+        /// <since_tizen> 5 </since_tizen>
+        public static readonly int AuxiliaryImageAlpha = NDalic.IMAGE_VISUAL_AUXILIARY_IMAGE_ALPHA;
     }
 
     /// <summary>
@@ -2414,6 +2424,218 @@ namespace Tizen.NUI
         /// </summary>
         /// <since_tizen> 5 </since_tizen>
         RightToLeft
+    }
+
+    /// <summary>
+    /// Enumeration type for the font's slant.
+    /// </summary>
+    /// <since_tizen> 5 </since_tizen>
+    public enum FontSlantType
+    {
+        /// <summary>
+        /// None.
+        /// </summary>
+        /// <since_tizen> 5 </since_tizen>
+        None,
+        /// <summary>
+        /// Normal.
+        /// </summary>
+        /// <since_tizen> 5 </since_tizen>
+        Normal,
+        /// <summary>
+        /// Roman.
+        /// </summary>
+        /// <since_tizen> 5 </since_tizen>
+        Roman = Normal,
+        /// <summary>
+        /// Italic.
+        /// </summary>
+        /// <since_tizen> 5 </since_tizen>
+        Italic,
+        /// <summary>
+        /// Oblique.
+        /// </summary>
+        /// <since_tizen> 5 </since_tizen>
+        Oblique
+    }
+
+    /// <summary>
+    /// Enumeration type for the font's weight.
+    /// </summary>
+    /// <since_tizen> 5 </since_tizen>
+    public enum FontWeightType
+    {
+        /// <summary>
+        /// None.
+        /// </summary>
+        /// <since_tizen> 5 </since_tizen>
+        None,
+        /// <summary>
+        /// Thin.
+        /// </summary>
+        /// <since_tizen> 5 </since_tizen>
+        Thin,
+        /// <summary>
+        /// UltraLight.
+        /// </summary>
+        /// <since_tizen> 5 </since_tizen>
+        UltraLight,
+        /// <summary>
+        /// ExtraLight.
+        /// </summary>
+        /// <since_tizen> 5 </since_tizen>
+        ExtraLight = UltraLight,
+        /// <summary>
+        /// Light.
+        /// </summary>
+        /// <since_tizen> 5 </since_tizen>
+        Light,
+        /// <summary>
+        /// DemiLight.
+        /// </summary>
+        /// <since_tizen> 5 </since_tizen>
+        DemiLight,
+        /// <summary>
+        /// SemiLight.
+        /// </summary>
+        /// <since_tizen> 5 </since_tizen>
+        SemiLight = DemiLight,
+        /// <summary>
+        /// Book.
+        /// </summary>
+        /// <since_tizen> 5 </since_tizen>
+        Book,
+        /// <summary>
+        /// Normal.
+        /// </summary>
+        /// <since_tizen> 5 </since_tizen>
+        Normal,
+        /// <summary>
+        /// Regular.
+        /// </summary>
+        /// <since_tizen> 5 </since_tizen>
+        Regular = Normal,
+        /// <summary>
+        /// Medium.
+        /// </summary>
+        /// <since_tizen> 5 </since_tizen>
+        Medium,
+        /// <summary>
+        /// DemiBold.
+        /// </summary>
+        /// <since_tizen> 5 </since_tizen>
+        DemiBold,
+        /// <summary>
+        /// SemiBold.
+        /// </summary>
+        /// <since_tizen> 5 </since_tizen>
+        SemiBold = DemiBold,
+        /// <summary>
+        /// Bold.
+        /// </summary>
+        /// <since_tizen> 5 </since_tizen>
+        Bold,
+        /// <summary>
+        /// UltraBold.
+        /// </summary>
+        /// <since_tizen> 5 </since_tizen>
+        UltraBold,
+        /// <summary>
+        /// ExtraBold.
+        /// </summary>
+        /// <since_tizen> 5 </since_tizen>
+        ExtraBold = UltraBold,
+        /// <summary>
+        /// Black.
+        /// </summary>
+        /// <since_tizen> 5 </since_tizen>
+        Black,
+        /// <summary>
+        /// Heavy.
+        /// </summary>
+        /// <since_tizen> 5 </since_tizen>
+        Heavy = Black,
+        /// <summary>
+        /// ExtraBlack.
+        /// </summary>
+        /// <since_tizen> 5 </since_tizen>
+        ExtraBlack = Black
+    }
+
+    /// <summary>
+    /// Enumeration type for the font's width.
+    /// </summary>
+    /// <since_tizen> 5 </since_tizen>
+    public enum FontWidthType
+    {
+        /// <summary>
+        /// None.
+        /// </summary>
+        /// <since_tizen> 5 </since_tizen>
+        None,
+        /// <summary>
+        /// UltraCondensed.
+        /// </summary>
+        /// <since_tizen> 5 </since_tizen>
+        UltraCondensed,
+        /// <summary>
+        /// ExtraCondensed.
+        /// </summary>
+        /// <since_tizen> 5 </since_tizen>
+        ExtraCondensed,
+        /// <summary>
+        /// Condensed.
+        /// </summary>
+        /// <since_tizen> 5 </since_tizen>
+        Condensed,
+        /// <summary>
+        /// SemiCondensed.
+        /// </summary>
+        /// <since_tizen> 5 </since_tizen>
+        SemiCondensed,
+        /// <summary>
+        /// Normal.
+        /// </summary>
+        /// <since_tizen> 5 </since_tizen>
+        Normal,
+        /// <summary>
+        /// SemiExpanded.
+        /// </summary>
+        /// <since_tizen> 5 </since_tizen>
+        SemiExpanded,
+        /// <summary>
+        /// Expanded.
+        /// </summary>
+        /// <since_tizen> 5 </since_tizen>
+        Expanded,
+        /// <summary>
+        /// ExtraExpanded.
+        /// </summary>
+        /// <since_tizen> 5 </since_tizen>
+        ExtraExpanded,
+        /// <summary>
+        /// UltraExpanded.
+        /// </summary>
+        /// <since_tizen> 5 </since_tizen>
+        UltraExpanded
+    }
+
+    /// <summary>
+    /// Enumeration type for the glyph type
+    /// </summary>
+    /// <since_tizen> 5 </since_tizen>
+    public enum GlyphType
+    {
+        /// <summary>
+        /// Glyph stored as pixels.
+        /// </summary>
+        /// <since_tizen> 5 </since_tizen>
+        BitmapGlyph,
+        /// <summary>
+        /// Glyph stored as vectors (scalable). This feature requires highp shader support and is not available on all platforms.
+        /// </summary>
+        /// <since_tizen> 5 </since_tizen>
+        VectorGlyph
     }
 
 }

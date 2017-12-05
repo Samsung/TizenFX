@@ -2165,6 +2165,10 @@ namespace Tizen.NUI.BaseComponents
             {
                 Vector2 temp = new Vector2(0.0f, 0.0f);
                 GetProperty(View.Property.SCREEN_POSITION).Get(temp);
+                // Dali's default layer is default center origin. need to change as top left.
+                // NUI's Layer is like a transparent film which covers entire window. (Layer is not an actor of Dali)
+                // otherwise, this makes ScreenPosition as wrong value.
+                temp -= (Window.Instance.GetSize() * 0.5f);
                 return temp;
             }
         }
@@ -4551,6 +4555,21 @@ namespace Tizen.NUI.BaseComponents
                 SetProperty(View.Property.PADDING, new Tizen.NUI.PropertyValue(value));
             }
         }
+
+        /// <summary>
+        /// Perform an action on a visual registered to this view. <br />
+        /// Visuals will have actions, this API is used to perform one of these actions with the given attributes.
+        /// </summary>
+        /// <param name="propertyIndexOfVisual">The Property index of the visual.</param>
+        /// <param name="propertyIndexOfActionId">The action to perform.  See Visual to find supported actions.</param>
+        /// <param name="attributes">Optional attributes for the action.</param>
+        /// <since_tizen> 5 </since_tizen>
+        public void DoAction(int propertyIndexOfVisual, int propertyIndexOfActionId, PropertyValue attributes)
+        {
+            NDalicManualPINVOKE.View_DoAction(swigCPtr, propertyIndexOfVisual, propertyIndexOfActionId, PropertyValue.getCPtr(attributes));
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
     }
 
     /// <summary>
