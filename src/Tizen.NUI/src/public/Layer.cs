@@ -162,6 +162,7 @@ namespace Tizen.NUI
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             if(Window.Instance != null)
             {
+                this.SetParentOrigin(Tizen.NUI.ParentOrigin.TopLeft);
                 this.SetAnchorPoint(Tizen.NUI.PivotPoint.TopLeft);
                 this.SetResizePolicy(ResizePolicyType.FillToParent, DimensionType.AllDimensions);
             }
@@ -178,7 +179,12 @@ namespace Tizen.NUI
             if (NDalicPINVOKE.SWIGPendingException.Pending)
                 throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
-
+        internal void SetParentOrigin(Vector3 origin)
+        {
+            NDalicPINVOKE.Actor_SetParentOrigin(swigCPtr, Vector3.getCPtr(origin));
+            if (NDalicPINVOKE.SWIGPendingException.Pending)
+                throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
 
         /// <summary>
         /// Downcasts a handle to layer handle.
