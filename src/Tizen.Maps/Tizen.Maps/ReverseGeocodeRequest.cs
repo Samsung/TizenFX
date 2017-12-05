@@ -54,7 +54,7 @@ namespace Tizen.Maps
             startExecutionAction = new Action(() =>
             {
                 int requestID;
-                errMessage = $"Failed to get coordinates for given coordinates: {latitude}:{longitute}";
+                errMessage = $"Failed to get address for given coordinates: {latitude}:{longitute}";
                 errorCode = _service.handle.ReverseGeocode(latitude, longitute, _service.Preferences.handle, _geocodeCallback, IntPtr.Zero, out requestID);
                 if (errorCode.IsFailed() && errorCode != Interop.ErrorCode.Canceled)
                 {
