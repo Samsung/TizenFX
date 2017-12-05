@@ -1006,7 +1006,7 @@ namespace Tizen.System
                 s_incomingCallRingtoneChanged -= value;
                 if (s_incomingCallRingtoneChanged == null)
                 {
-                    SystemSettingsError ret = (SystemSettingsError)Interop.Settings.SystemSettingsRemoveCallback(SystemSettingsKeys.IncomingCallRingtone);
+                    SystemSettingsError ret = (SystemSettingsError)Interop.Settings.SystemSettingsRemoveCallback(SystemSettingsKeys.IncomingCallRingtone, s_incomingCallRingtoneChangedCallback);
                     if (ret != SystemSettingsError.None)
                     {
                         throw SystemSettingsExceptionFactory.CreateException(ret, "Error in callback handling");
@@ -1054,7 +1054,7 @@ namespace Tizen.System
                 s_wallpaperHomeScreenChanged -= value;
                 if (s_wallpaperHomeScreenChanged == null)
                 {
-                    SystemSettingsError ret = (SystemSettingsError)Interop.Settings.SystemSettingsRemoveCallback(SystemSettingsKeys.WallpaperHomeScreen);
+                    SystemSettingsError ret = (SystemSettingsError)Interop.Settings.SystemSettingsRemoveCallback(SystemSettingsKeys.WallpaperHomeScreen, s_wallpaperHomeScreenChangedCallback);
                     if (ret != SystemSettingsError.None)
                     {
                         throw SystemSettingsExceptionFactory.CreateException(ret, "Error in callback handling");
@@ -1102,7 +1102,7 @@ namespace Tizen.System
                 s_wallpaperLockScreenChanged -= value;
                 if (s_wallpaperLockScreenChanged == null)
                 {
-                    SystemSettingsError ret = (SystemSettingsError)Interop.Settings.SystemSettingsRemoveCallback(SystemSettingsKeys.WallpaperLockScreen);
+                    SystemSettingsError ret = (SystemSettingsError)Interop.Settings.SystemSettingsRemoveCallback(SystemSettingsKeys.WallpaperLockScreen, s_wallpaperLockScreenChangedCallback);
                     if (ret != SystemSettingsError.None)
                     {
                         throw SystemSettingsExceptionFactory.CreateException(ret, "Error in callback handling");
@@ -1149,7 +1149,7 @@ namespace Tizen.System
                 s_fontSizeChanged -= value;
                 if (s_fontSizeChanged == null)
                 {
-                    SystemSettingsError ret = (SystemSettingsError)Interop.Settings.SystemSettingsRemoveCallback(SystemSettingsKeys.FontSize);
+                    SystemSettingsError ret = (SystemSettingsError)Interop.Settings.SystemSettingsRemoveCallback(SystemSettingsKeys.FontSize, s_fontSizeChangedCallback);
                     if (ret != SystemSettingsError.None)
                     {
                         throw SystemSettingsExceptionFactory.CreateException(ret, "Error in callback handling");
@@ -1196,7 +1196,7 @@ namespace Tizen.System
                 s_fontTypeChanged -= value;
                 if (s_fontTypeChanged == null)
                 {
-                    SystemSettingsError ret = (SystemSettingsError)Interop.Settings.SystemSettingsRemoveCallback(SystemSettingsKeys.FontType);
+                    SystemSettingsError ret = (SystemSettingsError)Interop.Settings.SystemSettingsRemoveCallback(SystemSettingsKeys.FontType, s_fontTypeChangedCallback);
                     if (ret != SystemSettingsError.None)
                     {
                         throw SystemSettingsExceptionFactory.CreateException(ret, "Error in callback handling");
@@ -1243,7 +1243,7 @@ namespace Tizen.System
                 s_motionActivationChanged -= value;
                 if (s_motionActivationChanged == null)
                 {
-                    SystemSettingsError ret = (SystemSettingsError)Interop.Settings.SystemSettingsRemoveCallback(SystemSettingsKeys.MotionActivationEnabled);
+                    SystemSettingsError ret = (SystemSettingsError)Interop.Settings.SystemSettingsRemoveCallback(SystemSettingsKeys.MotionActivationEnabled, s_motionActivationChangedCallback);
                     if (ret != SystemSettingsError.None)
                     {
                         throw SystemSettingsExceptionFactory.CreateException(ret, "Error in callback handling");
@@ -1291,7 +1291,7 @@ namespace Tizen.System
                 s_emailAlertRingtoneChanged -= value;
                 if (s_emailAlertRingtoneChanged == null)
                 {
-                    SystemSettingsError ret = (SystemSettingsError)Interop.Settings.SystemSettingsRemoveCallback(SystemSettingsKeys.EmailAlertRingtone);
+                    SystemSettingsError ret = (SystemSettingsError)Interop.Settings.SystemSettingsRemoveCallback(SystemSettingsKeys.EmailAlertRingtone, s_emailAlertRingtoneChangedCallback);
                     if (ret != SystemSettingsError.None)
                     {
                         throw SystemSettingsExceptionFactory.CreateException(ret, "Error in callback handling");
@@ -1338,7 +1338,7 @@ namespace Tizen.System
                 s_usbDebuggingSettingChanged -= value;
                 if (s_usbDebuggingSettingChanged == null)
                 {
-                    SystemSettingsError ret = (SystemSettingsError)Interop.Settings.SystemSettingsRemoveCallback(SystemSettingsKeys.UsbDebuggingEnabled);
+                    SystemSettingsError ret = (SystemSettingsError)Interop.Settings.SystemSettingsRemoveCallback(SystemSettingsKeys.UsbDebuggingEnabled, s_usbDebuggingSettingChangedCallback);
                     if (ret != SystemSettingsError.None)
                     {
                         throw SystemSettingsExceptionFactory.CreateException(ret, "Error in callback handling");
@@ -1385,7 +1385,7 @@ namespace Tizen.System
                 s_data3GNetworkSettingChanged -= value;
                 if (s_data3GNetworkSettingChanged == null)
                 {
-                    SystemSettingsError ret = (SystemSettingsError)Interop.Settings.SystemSettingsRemoveCallback(SystemSettingsKeys.Data3GNetworkEnabled);
+                    SystemSettingsError ret = (SystemSettingsError)Interop.Settings.SystemSettingsRemoveCallback(SystemSettingsKeys.Data3GNetworkEnabled, s_data3GNetworkSettingChangedCallback);
                     if (ret != SystemSettingsError.None)
                     {
                         throw SystemSettingsExceptionFactory.CreateException(ret, "Error in callback handling");
@@ -1433,7 +1433,7 @@ namespace Tizen.System
                 s_lockscreenAppChanged -= value;
                 if (s_lockscreenAppChanged == null)
                 {
-                    SystemSettingsError ret = (SystemSettingsError)Interop.Settings.SystemSettingsRemoveCallback(SystemSettingsKeys.LockScreenApp);
+                    SystemSettingsError ret = (SystemSettingsError)Interop.Settings.SystemSettingsRemoveCallback(SystemSettingsKeys.LockScreenApp, s_lockscreenAppChangedCallback);
                     if (ret != SystemSettingsError.None)
                     {
                         throw SystemSettingsExceptionFactory.CreateException(ret, "Error in callback handling");
@@ -1480,7 +1480,7 @@ namespace Tizen.System
                 s_localeCountryChanged -= value;
                 if (s_localeCountryChanged == null)
                 {
-                    SystemSettingsError ret = (SystemSettingsError)Interop.Settings.SystemSettingsRemoveCallback(SystemSettingsKeys.LocaleCountry);
+                    SystemSettingsError ret = (SystemSettingsError)Interop.Settings.SystemSettingsRemoveCallback(SystemSettingsKeys.LocaleCountry, s_localeCountryChangedCallback);
                     if (ret != SystemSettingsError.None)
                     {
                         throw SystemSettingsExceptionFactory.CreateException(ret, "Error in callback handling");
@@ -1527,7 +1527,7 @@ namespace Tizen.System
                 s_localeLanguageChanged -= value;
                 if (s_localeLanguageChanged == null)
                 {
-                    SystemSettingsError ret = (SystemSettingsError)Interop.Settings.SystemSettingsRemoveCallback(SystemSettingsKeys.LocaleLanguage);
+                    SystemSettingsError ret = (SystemSettingsError)Interop.Settings.SystemSettingsRemoveCallback(SystemSettingsKeys.LocaleLanguage, s_localeLanguageChangedCallback);
                     if (ret != SystemSettingsError.None)
                     {
                         throw SystemSettingsExceptionFactory.CreateException(ret, "Error in callback handling");
@@ -1574,7 +1574,7 @@ namespace Tizen.System
                 s_localeTimeFormat24HourChanged -= value;
                 if (s_localeTimeFormat24HourChanged == null)
                 {
-                    SystemSettingsError ret = (SystemSettingsError)Interop.Settings.SystemSettingsRemoveCallback(SystemSettingsKeys.LocaleTimeFormat24HourEnabled);
+                    SystemSettingsError ret = (SystemSettingsError)Interop.Settings.SystemSettingsRemoveCallback(SystemSettingsKeys.LocaleTimeFormat24HourEnabled, s_localeTimeFormat24HourChangedCallback);
                     if (ret != SystemSettingsError.None)
                     {
                         throw SystemSettingsExceptionFactory.CreateException(ret, "Error in callback handling");
@@ -1621,7 +1621,7 @@ namespace Tizen.System
                 s_localeTimeZoneChanged -= value;
                 if (s_localeTimeZoneChanged == null)
                 {
-                    SystemSettingsError ret = (SystemSettingsError)Interop.Settings.SystemSettingsRemoveCallback(SystemSettingsKeys.LocaleTimeZone);
+                    SystemSettingsError ret = (SystemSettingsError)Interop.Settings.SystemSettingsRemoveCallback(SystemSettingsKeys.LocaleTimeZone, s_localeTimeZoneChangedCallback);
                     if (ret != SystemSettingsError.None)
                     {
                         throw SystemSettingsExceptionFactory.CreateException(ret, "Error in callback handling");
@@ -1669,7 +1669,7 @@ namespace Tizen.System
                 s_timeChanged -= value;
                 if (s_timeChanged == null)
                 {
-                    SystemSettingsError ret = (SystemSettingsError)Interop.Settings.SystemSettingsRemoveCallback(SystemSettingsKeys.Time);
+                    SystemSettingsError ret = (SystemSettingsError)Interop.Settings.SystemSettingsRemoveCallback(SystemSettingsKeys.Time, s_timeChangedCallback);
                     if (ret != SystemSettingsError.None)
                     {
                         throw SystemSettingsExceptionFactory.CreateException(ret, "Error in callback handling");
@@ -1716,7 +1716,7 @@ namespace Tizen.System
                 s_soundLockChanged -= value;
                 if (s_soundLockChanged == null)
                 {
-                    SystemSettingsError ret = (SystemSettingsError)Interop.Settings.SystemSettingsRemoveCallback(SystemSettingsKeys.SoundLockEnabled);
+                    SystemSettingsError ret = (SystemSettingsError)Interop.Settings.SystemSettingsRemoveCallback(SystemSettingsKeys.SoundLockEnabled, s_soundLockChangedCallback);
                     if (ret != SystemSettingsError.None)
                     {
                         throw SystemSettingsExceptionFactory.CreateException(ret, "Error in callback handling");
@@ -1763,7 +1763,7 @@ namespace Tizen.System
                 s_soundSilentModeChanged -= value;
                 if (s_soundSilentModeChanged == null)
                 {
-                    SystemSettingsError ret = (SystemSettingsError)Interop.Settings.SystemSettingsRemoveCallback(SystemSettingsKeys.SoundSilentModeEnabled);
+                    SystemSettingsError ret = (SystemSettingsError)Interop.Settings.SystemSettingsRemoveCallback(SystemSettingsKeys.SoundSilentModeEnabled, s_soundSilentModeChangedCallback);
                     if (ret != SystemSettingsError.None)
                     {
                         throw SystemSettingsExceptionFactory.CreateException(ret, "Error in callback handling");
@@ -1811,7 +1811,7 @@ namespace Tizen.System
                 if (s_soundTouchChanged == null)
 
                 {
-                    SystemSettingsError ret = (SystemSettingsError)Interop.Settings.SystemSettingsRemoveCallback(SystemSettingsKeys.SoundTouchEnabled);
+                    SystemSettingsError ret = (SystemSettingsError)Interop.Settings.SystemSettingsRemoveCallback(SystemSettingsKeys.SoundTouchEnabled, s_soundTouchChangedCallback);
                     if (ret != SystemSettingsError.None)
                     {
                         throw SystemSettingsExceptionFactory.CreateException(ret, "Error in callback handling");
@@ -1858,7 +1858,7 @@ namespace Tizen.System
                 s_displayScreenRotationAutoChanged -= value;
                 if (s_displayScreenRotationAutoChanged == null)
                 {
-                    SystemSettingsError ret = (SystemSettingsError)Interop.Settings.SystemSettingsRemoveCallback(SystemSettingsKeys.DisplayScreenRotationAutoEnabled);
+                    SystemSettingsError ret = (SystemSettingsError)Interop.Settings.SystemSettingsRemoveCallback(SystemSettingsKeys.DisplayScreenRotationAutoEnabled, s_displayScreenRotationAutoChangedCallback);
                     if (ret != SystemSettingsError.None)
                     {
                         throw SystemSettingsExceptionFactory.CreateException(ret, "Error in callback handling");
@@ -1905,7 +1905,7 @@ namespace Tizen.System
                 s_deviceNameChanged -= value;
                 if (s_deviceNameChanged == null)
                 {
-                    SystemSettingsError ret = (SystemSettingsError)Interop.Settings.SystemSettingsRemoveCallback(SystemSettingsKeys.DeviceName);
+                    SystemSettingsError ret = (SystemSettingsError)Interop.Settings.SystemSettingsRemoveCallback(SystemSettingsKeys.DeviceName, s_deviceNameChangedCallback);
                     if (ret != SystemSettingsError.None)
                     {
                         throw SystemSettingsExceptionFactory.CreateException(ret, "Error in callback handling");
@@ -1952,7 +1952,7 @@ namespace Tizen.System
                 s_motionSettingChanged -= value;
                 if (s_motionSettingChanged == null)
                 {
-                    SystemSettingsError ret = (SystemSettingsError)Interop.Settings.SystemSettingsRemoveCallback(SystemSettingsKeys.MotionEnabled);
+                    SystemSettingsError ret = (SystemSettingsError)Interop.Settings.SystemSettingsRemoveCallback(SystemSettingsKeys.MotionEnabled, s_motionSettingChangedCallback);
                     if (ret != SystemSettingsError.None)
                     {
                         throw SystemSettingsExceptionFactory.CreateException(ret, "Error in callback handling");
@@ -2000,7 +2000,7 @@ namespace Tizen.System
                 s_networkWifiNotificationChanged -= value;
                 if (s_networkWifiNotificationChanged == null)
                 {
-                    SystemSettingsError ret = (SystemSettingsError)Interop.Settings.SystemSettingsRemoveCallback(SystemSettingsKeys.NetworkWifiNotificationEnabled);
+                    SystemSettingsError ret = (SystemSettingsError)Interop.Settings.SystemSettingsRemoveCallback(SystemSettingsKeys.NetworkWifiNotificationEnabled, s_networkWifiNotificationChangedCallback);
                     if (ret != SystemSettingsError.None)
                     {
                         throw SystemSettingsExceptionFactory.CreateException(ret, "Error in callback handling");
@@ -2047,7 +2047,7 @@ namespace Tizen.System
                 s_networkFlightModeChanged -= value;
                 if (s_networkFlightModeChanged == null)
                 {
-                    SystemSettingsError ret = (SystemSettingsError)Interop.Settings.SystemSettingsRemoveCallback(SystemSettingsKeys.NetworkFlightModeEnabled);
+                    SystemSettingsError ret = (SystemSettingsError)Interop.Settings.SystemSettingsRemoveCallback(SystemSettingsKeys.NetworkFlightModeEnabled, s_networkFlightModeChangedCallback);
                     if (ret != SystemSettingsError.None)
                     {
                         throw SystemSettingsExceptionFactory.CreateException(ret, "Error in callback handling");
@@ -2094,7 +2094,7 @@ namespace Tizen.System
                 s_screenBacklightTimeChanged -= value;
                 if (s_screenBacklightTimeChanged == null)
                 {
-                    SystemSettingsError ret = (SystemSettingsError)Interop.Settings.SystemSettingsRemoveCallback(SystemSettingsKeys.ScreenBacklightTime);
+                    SystemSettingsError ret = (SystemSettingsError)Interop.Settings.SystemSettingsRemoveCallback(SystemSettingsKeys.ScreenBacklightTime, s_screenBacklightTimeChangedCallback);
                     if (ret != SystemSettingsError.None)
                     {
                         throw SystemSettingsExceptionFactory.CreateException(ret, "Error in callback handling");
@@ -2142,7 +2142,7 @@ namespace Tizen.System
                 s_soundNotificationChanged -= value;
                 if (s_soundNotificationChanged == null)
                 {
-                    SystemSettingsError ret = (SystemSettingsError)Interop.Settings.SystemSettingsRemoveCallback(SystemSettingsKeys.SoundNotification);
+                    SystemSettingsError ret = (SystemSettingsError)Interop.Settings.SystemSettingsRemoveCallback(SystemSettingsKeys.SoundNotification, s_soundNotificationChangedCallback);
                     if (ret != SystemSettingsError.None)
                     {
                         throw SystemSettingsExceptionFactory.CreateException(ret, "Error in callback handling");
@@ -2189,7 +2189,7 @@ namespace Tizen.System
                 s_soundNotificationRepetitionPeriodChanged -= value;
                 if (s_soundNotificationRepetitionPeriodChanged == null)
                 {
-                    SystemSettingsError ret = (SystemSettingsError)Interop.Settings.SystemSettingsRemoveCallback(SystemSettingsKeys.SoundNotificationRepetitionPeriod);
+                    SystemSettingsError ret = (SystemSettingsError)Interop.Settings.SystemSettingsRemoveCallback(SystemSettingsKeys.SoundNotificationRepetitionPeriod, s_soundNotificationRepetitionPeriodChangedCallback);
                     if (ret != SystemSettingsError.None)
                     {
                         throw SystemSettingsExceptionFactory.CreateException(ret, "Error in callback handling");
@@ -2236,7 +2236,7 @@ namespace Tizen.System
                 s_lockStateChanged -= value;
                 if (s_lockStateChanged == null)
                 {
-                    SystemSettingsError ret = (SystemSettingsError)Interop.Settings.SystemSettingsRemoveCallback(SystemSettingsKeys.LockState);
+                    SystemSettingsError ret = (SystemSettingsError)Interop.Settings.SystemSettingsRemoveCallback(SystemSettingsKeys.LockState, s_lockStateChangedCallback);
                     if (ret != SystemSettingsError.None)
                     {
                         throw SystemSettingsExceptionFactory.CreateException(ret, "Error in callback handling");
@@ -2283,7 +2283,7 @@ namespace Tizen.System
                 s_adsIdChanged -= value;
                 if (s_adsIdChanged == null)
                 {
-                    SystemSettingsError ret = (SystemSettingsError)Interop.Settings.SystemSettingsRemoveCallback(SystemSettingsKeys.AdsId);
+                    SystemSettingsError ret = (SystemSettingsError)Interop.Settings.SystemSettingsRemoveCallback(SystemSettingsKeys.AdsId, s_adsIdChangedCallback);
                     if (ret != SystemSettingsError.None)
                     {
                         throw SystemSettingsExceptionFactory.CreateException(ret, "Error in callback handling");
@@ -2331,7 +2331,7 @@ namespace Tizen.System
                 s_ultraDataSaveChanged -= value;
                 if (s_ultraDataSaveChanged == null)
                 {
-                    SystemSettingsError ret = (SystemSettingsError)Interop.Settings.SystemSettingsRemoveCallback(SystemSettingsKeys.UltraDataSave);
+                    SystemSettingsError ret = (SystemSettingsError)Interop.Settings.SystemSettingsRemoveCallback(SystemSettingsKeys.UltraDataSave, s_ultraDataSaveChangedCallback);
                     if (ret != SystemSettingsError.None)
                     {
                         throw SystemSettingsExceptionFactory.CreateException(ret, "Error in callback handling");
@@ -2379,7 +2379,7 @@ namespace Tizen.System
                 s_ultraDataSavePackageListChanged -= value;
                 if (s_ultraDataSavePackageListChanged == null)
                 {
-                    SystemSettingsError ret = (SystemSettingsError)Interop.Settings.SystemSettingsRemoveCallback(SystemSettingsKeys.UltraDataSavePackageList);
+                    SystemSettingsError ret = (SystemSettingsError)Interop.Settings.SystemSettingsRemoveCallback(SystemSettingsKeys.UltraDataSavePackageList, s_ultraDataSavePackageListChangedCallback);
                     if (ret != SystemSettingsError.None)
                     {
                         throw SystemSettingsExceptionFactory.CreateException(ret, "Error in callback handling");
@@ -2427,7 +2427,7 @@ namespace Tizen.System
                 if (s_accessibilityTtsChanged == null)
 
                 {
-                    SystemSettingsError ret = (SystemSettingsError)Interop.Settings.SystemSettingsRemoveCallback(SystemSettingsKeys.AccessibilityTtsEnabled);
+                    SystemSettingsError ret = (SystemSettingsError)Interop.Settings.SystemSettingsRemoveCallback(SystemSettingsKeys.AccessibilityTtsEnabled, s_accessibilityTtsChangedCallback);
                     if (ret != SystemSettingsError.None)
                     {
                         throw SystemSettingsExceptionFactory.CreateException(ret, "Error in callback handling");
