@@ -26,3 +26,4 @@ sed -i -e "s/@api_version@/$API_VERSION/g" $RPMSPEC
 sed -i -e "s/@rpm_version@/$RPM_VERSION/g" $RPMSPEC
 sed -i -e "s/@nuget_version@/$NUGET_VERSION/g" $RPMSPEC
 sed -i -e "s/@internal_nuget_version@/$INTERNAL_NUGET_VERSION/g" $RPMSPEC
+sed -i -e "s/@dali_version@/$DALI_VERSION/g" $RPMSPEC
