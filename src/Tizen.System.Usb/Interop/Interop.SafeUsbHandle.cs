@@ -26,6 +26,12 @@ internal static partial class Interop
     public delegate ErrorCode GetDescriptorString(ref int length, byte[] data);
     public delegate ErrorCode SetterMethod<T>(T value);
 
+    internal static void Log(string msg, [CallerFilePath] string file = "", [CallerMemberName] string func = "", [CallerLineNumber] int line = 0)
+    {
+        Tizen.Log.Error("USB_HOST_CSHARP", $"{msg}", file, func, line);
+        Console.WriteLine($"USB_HOST_CSHARP: {System.IO.Path.GetFileName(file)}: {func}({line}) > {msg}");
+    }
+
     internal static T NativeGet<T>(GetterMethod<T> getter, [CallerMemberName] string propertyName = "")
     {
         T value;
@@ -43,7 +49,14 @@ internal static partial class Interop
     {
         int len = MaxStringDescriptorSize;
         byte[] data = new byte[len];
-        getter(ref len, data).ThrowIfFailed($"Native setter for {propertyName} failed");
+        var err = getter(ref len, data);
+        if (err.IsFailed() && err == ErrorCode.InvalidParameter)
+        {
+            // this happens if descriptor string is empty
+            err.WarnIfFailed($"Failed to get DescriptorString");
+            return "";
+        }
+        var descriptor = Encoding.GetEncoding(language).GetString(data, 0, len);
         return Encoding.GetEncoding(language).GetString(data, 0, len);
     }
 

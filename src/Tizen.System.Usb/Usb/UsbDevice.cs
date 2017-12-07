@@ -28,20 +28,11 @@ namespace Tizen.System.Usb
     {
         internal readonly Interop.HostDeviceHandle _handle;
         private readonly UsbManager _parent;
-        private Dictionary<int, UsbConfiguration> _configurations = new Dictionary<int, UsbConfiguration>();
 
         internal UsbDevice(UsbManager parent, Interop.HostDeviceHandle handle)
         {
             _parent = parent;
             _handle = handle;
-
-            int count = Interop.NativeGet<int>(_handle.GetNumConfigurations);
-            for (int i = 0; i < count; ++i)
-            {
-                IntPtr configHandle;
-                _handle.GetConfig(i, out configHandle);
-                _configurations.Add(i, new UsbConfiguration(this, new Interop.UsbConfigHandle(configHandle)));
-            }
         }
 
         /// <summary>
@@ -112,16 +103,17 @@ namespace Tizen.System.Usb
         /// <summary>
         /// Active configuration for the device.
         /// </summary>
-        /// <exception cref="InvalidOperationException">Throws exception if device is disconnected.</exception>
+        /// <exception cref="InvalidOperationException">Throws exception if device is disconnected or not opened for operation. </exception>
         /// <since_tizen> 4 </since_tizen>
         public UsbConfiguration ActiveConfiguration
         {
             get
             {
                 ThrowIfDisposed();
+                ThrowIfDeviceNotOpened();
                 IntPtr handle = Interop.NativeGet<IntPtr>(_handle.GetActiveConfig);
                 Interop.UsbConfigHandle configHandle = new Interop.UsbConfigHandle(handle);
-                return _configurations.Values.Where(config => config._handle == configHandle).First();
+                return new UsbConfiguration(this, configHandle);
             }
         }
 
@@ -134,7 +126,15 @@ namespace Tizen.System.Usb
             get
             {
                 ThrowIfDisposed();
-                return _configurations;
+                var configurations = new Dictionary<int, UsbConfiguration>();
+                int count = Interop.NativeGet<int>(_handle.GetNumConfigurations);
+                for (int i = 0; i < count; ++i)
+                {
+                    IntPtr configHandle;
+                    _handle.GetConfig(i, out configHandle);
+                    configurations.Add(i, new UsbConfiguration(this, new Interop.UsbConfigHandle(configHandle)));
+                }
+                return configurations;
             }
         }
 
@@ -154,12 +154,14 @@ namespace Tizen.System.Usb
         /// <summary>
         /// String associated with device.
         /// </summary>
+        /// <exception cref="InvalidOperationException"> Throws exception if device is disconnected or not opened for operation. </exception>
         /// <since_tizen> 4 </since_tizen>
         public UsbDeviceStrings Strings
         {
             get
             {
                 ThrowIfDisposed();
+                ThrowIfDeviceNotOpened();
                 return new UsbDeviceStrings(this, "us-ascii");
             }
         }
@@ -180,12 +182,11 @@ namespace Tizen.System.Usb
         /// <summary>
         /// Closes device for operations.
         /// </summary>
-        /// <exception cref="InvalidOperationException">Throws exception if device is not opened for operation.</exception>
         /// <since_tizen> 4 </since_tizen>
         public void Close()
         {
             ThrowIfDisposed();
-            if (IsOpened == false) throw new InvalidOperationException("Device must be opened for operation first");
+            if (IsOpened == false) return;
 
             _handle.CloseHandle().ThrowIfFailed("Failed to close device for use");
         }
@@ -194,6 +195,11 @@ namespace Tizen.System.Usb
         {
             if (disposedValue) throw new ObjectDisposedException("USB Device is already disposed");
             _parent.ThrowIfDisposed();
+        }
+
+        internal void ThrowIfDeviceNotOpened()
+        {
+            if (IsOpened == false) throw new InvalidOperationException("USB Device is should be in open state for this operation");
         }
 
         #region IDisposable Support
@@ -207,14 +213,6 @@ namespace Tizen.System.Usb
         {
             if (!disposedValue)
             {
-                if (IsOpened)
-                {
-                    Close();
-                }
-                foreach(var config in _configurations.Values) {
-                    config.Dispose();
-                }
-                _configurations.Clear();
                 _handle.Dispose();
                 disposedValue = true;
             }

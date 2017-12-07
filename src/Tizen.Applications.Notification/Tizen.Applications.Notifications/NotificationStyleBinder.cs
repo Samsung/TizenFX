@@ -142,7 +142,6 @@ namespace Tizen.Applications.Notifications
             if ((appList & (int)NotificationDisplayApplist.Active) != 0)
             {
                 Notification.ActiveStyle active = new Notification.ActiveStyle();
-                bool isExisted = false;
                 bool autoRemove;
                 string path, text;
                 SafeAppControlHandle appcontrol = null;
@@ -169,7 +168,6 @@ namespace Tizen.Applications.Notifications
                         button.Text = text;
                         button.Index = (ButtonIndex)i;
                         active.AddButtonAction(button);
-                        isExisted = true;
                     }
                 }
 
@@ -216,7 +214,6 @@ namespace Tizen.Applications.Notifications
                 Interop.Notification.GetImage(notification.Handle, NotificationImage.Background, out path);
                 if (string.IsNullOrEmpty(path) == false)
                 {
-                    isExisted = true;
                     active.BackgroundImage = path;
                 }
 
@@ -250,8 +247,6 @@ namespace Tizen.Applications.Notifications
                     Interop.Notification.GetPlaceHolderLength(notification.Handle, out holderLength);
                     reply.ReplyMax = holderLength;
 
-                    isExisted = true;
-
                     try
                     {
                         SafeBundleHandle bundleHandle;
@@ -267,10 +262,7 @@ namespace Tizen.Applications.Notifications
                     active.ReplyAction = reply;
                 }
 
-                if (isExisted)
-                {
-                    notification.AddStyle(active);
-                }
+                notification.AddStyle(active);
             }
         }
     }

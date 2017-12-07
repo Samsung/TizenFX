@@ -91,12 +91,16 @@ namespace Tizen.System.Usb
         /// <summary>
         /// Gets string describing an interface.
         /// </summary>
-        /// <returns></returns>
+        /// <exception cref="InvalidOperationException"> Throws exception if device is disconnected or not opened for operation. </exception>
         /// <since_tizen> 4 </since_tizen>
-        public string InterfaceString()
+        public string InterfaceString
+        {
+            get
         {
             ThrowIfDisposed();
+                _parent.ThrowIfDeviceNotOpened();
             return Interop.DescriptorString(_handle.GetStr);
+        }
         }
 
         /// <summary>
@@ -110,8 +114,14 @@ namespace Tizen.System.Usb
         public void Claim(bool force)
         {
             ThrowIfDisposed();
+            _parent.ThrowIfDeviceNotOpened();
+
             if (_isClaimed == true) return;
-            _handle.ClaimInterface(force).ThrowIfFailed("Failed to claim interface");
+            var err = _handle.ClaimInterface(force);
+            if (err.IsFailed() && err != Interop.ErrorCode.ResourceBusy)
+            {
+                err.ThrowIfFailed("Failed to claim interface");
+            }
             _isClaimed = true;
         }
 
@@ -125,6 +135,8 @@ namespace Tizen.System.Usb
         public void Release()
         {
             ThrowIfDisposed();
+            _parent.ThrowIfDeviceNotOpened();
+
             if (_isClaimed == false) return;
             _handle.ReleaseInterface().ThrowIfFailed("Failed to release interface");
             _isClaimed = false;

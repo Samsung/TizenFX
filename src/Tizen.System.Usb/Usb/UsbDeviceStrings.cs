@@ -14,8 +14,6 @@
  * limitations under the License.
  */
 
-using System;
-
 namespace Tizen.System.Usb
 {
     /// <summary>
@@ -24,58 +22,29 @@ namespace Tizen.System.Usb
     /// <since_tizen> 4 </since_tizen>
     public class UsbDeviceStrings
     {
-        private readonly UsbDevice _device;
-        private string _language;
-
         internal UsbDeviceStrings(UsbDevice device, string language)
         {
-            _device = device;
-            _language = language;
+            Manufacturer = Interop.DescriptorString(device._handle.GetManufacturerStr, language);
+            Product = Interop.DescriptorString(device._handle.GetProductStr, language);
+            Serial = Interop.DescriptorString(device._handle.GetSerialNumberStr, language);
         }
 
         /// <summary>
         /// Gets string describing device manufacturer.
         /// </summary>
-        /// <exception cref="InvalidOperationException">Throws exception if device is disconnected or not opened for operation.</exception>
-        /// <exception cref="UnauthorizedAccessException">Throws exception if user has insufficient permission on device.</exception>
         /// <since_tizen> 4 </since_tizen>
-        public string Manufacturer
-        {
-            get
-            {
-                _device.ThrowIfDisposed();
-                return Interop.DescriptorString(_device._handle.GetManufacturerStr, _language);
-            }
-        }
+        public string Manufacturer;
 
         /// <summary>
         /// Gets product string of device
         /// </summary>
-        /// <exception cref="InvalidOperationException">Throws exception if device is not opened for operation.</exception>
-        /// <exception cref="UnauthorizedAccessException">Throws exception if user has insufficient permission on device.</exception>
         /// <since_tizen> 4 </since_tizen>
-        public string Product
-        {
-            get
-            {
-                _device.ThrowIfDisposed();
-                return Interop.DescriptorString(_device._handle.GetProductStr, _language);
-            }
-        }
+        public string Product;
 
         /// <summary>
         /// Gets serial number of a device.
         /// </summary>
-        /// <exception cref="InvalidOperationException">Throws exception if device is not opened for operation.</exception>
-        /// <exception cref="UnauthorizedAccessException">Throws exception if user has insufficient permission on device.</exception>
         /// <since_tizen> 4 </since_tizen>
-        public string Serial
-        {
-            get
-            {
-                _device.ThrowIfDisposed();
-                return Interop.DescriptorString(_device._handle.GetSerialNumberStr, _language);
-            }
-        }
+        public string Serial;
     }
 }
