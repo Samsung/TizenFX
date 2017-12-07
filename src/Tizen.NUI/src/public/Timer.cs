@@ -37,14 +37,10 @@ namespace Tizen.NUI
         private global::System.Runtime.InteropServices.HandleRef swigCPtr;
 
         private bool played = false;
-        private string stackTrace;
 
         internal Timer(global::System.IntPtr cPtr, bool cMemoryOwn) : base(NDalicPINVOKE.Timer_SWIGUpcast(cPtr), cMemoryOwn)
         {
             swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
-
-            Tizen.Log.Fatal("NUI", $"Timer() internal constructor! swigCPtr={swigCPtr.Handle}, current thread id={Thread.CurrentThread.ManagedThreadId}, main thread id={Registry.Instance.SavedApplicationThread?.ManagedThreadId}");
-
         }
 
         internal static global::System.Runtime.InteropServices.HandleRef getCPtr(Timer obj)
@@ -58,12 +54,12 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         protected override void Dispose(DisposeTypes type)
         {
-            if(disposed)
+            if (disposed)
             {
                 return;
             }
 
-            if(type == DisposeTypes.Explicit)
+            if (type == DisposeTypes.Explicit)
             {
                 //Called by User
                 //Release your own managed resources here.
@@ -77,7 +73,6 @@ namespace Tizen.NUI
             if (_timerTickCallbackDelegate != null)
             {
                 TickSignal().Disconnect(_timerTickCallbackDelegate);
-                Tizen.Log.Fatal("NUI", $"Timer callback is not null! delete tick callback! swigCPtr={swigCPtr.Handle}, current thread id={Thread.CurrentThread.ManagedThreadId}, main thread id={Registry.Instance.SavedApplicationThread.ManagedThreadId}");
             }
 
             if (swigCPtr.Handle != global::System.IntPtr.Zero)
@@ -88,8 +83,6 @@ namespace Tizen.NUI
                     NDalicPINVOKE.delete_Timer(swigCPtr);
                 }
                 swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
-
-                Tizen.Log.Fatal("NUI", $"Timer() disposed with dali timer! swigCPtr={swigCPtr.Handle}, current thread id={Thread.CurrentThread.ManagedThreadId}, main thread id={Registry.Instance.SavedApplicationThread.ManagedThreadId}");
             }
 
             played = false;
@@ -142,9 +135,7 @@ namespace Tizen.NUI
 
             if (played == false)
             {
-                Tizen.Log.Fatal("NUI", $"should not be here! OnTick()!swigCPtr={swigCPtr.Handle}");
-                Tizen.Log.Fatal("NUI", "should not be here! #################### TID = " + global::System.Threading.Thread.CurrentThread.ManagedThreadId);
-                Tizen.Log.Fatal("NUI", stackTrace);
+                Tizen.Log.Fatal("NUI", $"({swigCPtr.Handle}) OnTick() is called even played is false!");
             }
 
             if (_timerTickEventHandler != null && played == true)
@@ -163,9 +154,9 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public Timer(uint milliSec) : this(NDalicPINVOKE.Timer_New(milliSec), true)
         {
-            stackTrace = Environment.StackTrace;
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
 
+            Tizen.Log.Error("NUI", $"({swigCPtr.Handle}) Timer({milliSec}) Constructor!");
         }
         internal Timer(Timer timer) : this(NDalicPINVOKE.new_Timer__SWIG_1(Timer.getCPtr(timer)), true)
         {
@@ -182,7 +173,7 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static Timer DownCast(BaseHandle handle)
         {
-            Timer ret =  Registry.GetManagedBaseHandleFromNativePtr(handle) as Timer;
+            Timer ret = Registry.GetManagedBaseHandleFromNativePtr(handle) as Timer;
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -235,6 +226,10 @@ namespace Tizen.NUI
         /// <param name="milliSec">MilliSec interval in milliseconds.</param>
         internal void SetInterval(uint milliSec)
         {
+
+            Tizen.Log.Error("NUI", $"({swigCPtr.Handle}) SetInterval({milliSec})");
+            played = true;
+
             NDalicPINVOKE.Timer_SetInterval(swigCPtr, milliSec);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
@@ -243,6 +238,7 @@ namespace Tizen.NUI
         {
             uint ret = NDalicPINVOKE.Timer_GetInterval(swigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            Tizen.Log.Error("NUI", $"({swigCPtr.Handle})GetInterval({ret})");
             return ret;
         }
 
