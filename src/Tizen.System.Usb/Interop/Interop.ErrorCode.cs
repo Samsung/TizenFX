@@ -43,7 +43,7 @@ internal static partial class Interop
 
 internal static class ErrorCodeExtensions
 {
-    private const string LogTag = "Tizen.System.Usb";
+    private const string LogTag = "USB_HOST_CSHARP";
 
     internal static bool IsSuccess(this Interop.ErrorCode err)
     {
@@ -63,7 +63,8 @@ internal static class ErrorCodeExtensions
     {
         if (err.IsFailed())
         {
-            Log.Debug(LogTag, $"{msg}, err: {err.ToString()}", file, func, line);
+            Log.Info(LogTag, $"{msg}, err: {err.ToString()}", file, func, line);
+            Console.WriteLine($"I/{LogTag}: {msg}, err: {err.ToString()}");
             return false;
         }
         return true;
@@ -78,6 +79,7 @@ internal static class ErrorCodeExtensions
         if (err.IsFailed())
         {
             Log.Error(LogTag, $"{msg}, err: {err.ToString()}", file, func, line);
+            Console.WriteLine($"E/{LogTag}: {msg}, err: {err.ToString()}");
             throw err.GetException(msg);
         }
         return true;
