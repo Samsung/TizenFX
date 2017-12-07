@@ -99,7 +99,7 @@ namespace Tizen.NUI
         }
 
         [UnmanagedFunctionPointer(CallingConvention.StdCall)]
-        private delegate bool TickCallbackDelegate(IntPtr data);
+        private delegate bool TickCallbackDelegate();
         private EventHandlerWithReturnType<object, TickEventArgs, bool> _timerTickEventHandler;
         private TickCallbackDelegate _timerTickCallbackDelegate;
 
@@ -114,7 +114,7 @@ namespace Tizen.NUI
             {
                 if (_timerTickEventHandler == null)
                 {
-                    _timerTickCallbackDelegate = new TickCallbackDelegate(OnTick);
+                    _timerTickCallbackDelegate = (OnTick);
                     TickSignal().Connect(_timerTickCallbackDelegate);
                 }
                 _timerTickEventHandler += value;
@@ -129,7 +129,7 @@ namespace Tizen.NUI
             }
         }
 
-        private bool OnTick(IntPtr data)
+        private bool OnTick()
         {
             TickEventArgs e = new TickEventArgs();
 
@@ -206,6 +206,9 @@ namespace Tizen.NUI
         /// <summary>
         /// Gets/Sets the interval of the timer.
         /// </summary>
+        /// <remarks>For setter, this sets a new interval on the timer and starts the timer. <br />
+        /// Cancels the previous timer.
+        /// </remarks>
         /// <since_tizen> 4 </since_tizen>
         public uint Interval
         {

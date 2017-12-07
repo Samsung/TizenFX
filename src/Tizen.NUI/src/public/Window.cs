@@ -366,9 +366,14 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Sets a transparent window's visual state to opaque.
+        /// Sets a transparent window's visual state to opaque. <br />
+        /// If a visual state of a transparent window is opaque, <br />
+        /// then the window manager could handle it as an opaque window when calculating visibility.
         /// </summary>
         /// <param name="opaque">Whether the window's visual state is opaque.</param>
+        /// <remarks>This will have no effect on an opaque window. <br />
+        /// It doesn't change transparent window to opaque window but lets the window manager know the visual state of the window.
+        /// </remarks>
         /// <since_tizen> 3 </since_tizen>
         public void SetOpaqueState(bool opaque)
         {
@@ -380,6 +385,7 @@ namespace Tizen.NUI
         /// Returns whether a transparent window's visual state is opaque or not.
         /// </summary>
         /// <returns>True if the window's visual state is opaque, false otherwise.</returns>
+        /// <remarks> The return value has no meaning on an opaque window. </remarks>
         /// <since_tizen> 3 </since_tizen>
         public bool IsOpaqueState()
         {
@@ -1485,7 +1491,8 @@ namespace Tizen.NUI
         /// <since_tizen> 5 </since_tizen>
         /// This will be released at Tizen.NET API Level 5, so currently this would be used as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public void SetTransparency(bool transparent) {
+        public void SetTransparency(bool transparent)
+        {
             NDalicManualPINVOKE.SetTransparency(swigCPtr, transparent);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
