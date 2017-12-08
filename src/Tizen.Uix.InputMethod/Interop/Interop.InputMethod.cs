@@ -197,6 +197,9 @@ internal static partial class Interop
         [DllImport(Libraries.InputMethod, EntryPoint = "ime_finalize")]
         internal static extern ErrorCode ImeFinalize();
 
+        [DllImport(Libraries.InputMethod, EntryPoint = "ime_set_dotnet_flag")]
+        internal static extern ErrorCode ImeSetDotnetFlag(bool set);
+
         [DllImport(Libraries.InputMethod, EntryPoint = "ime_set_size")]
         internal static extern ErrorCode ImeSetSize(int portraitWidth, int portraitHeight, int landscapeWidth, int landscapeHeight);
 
