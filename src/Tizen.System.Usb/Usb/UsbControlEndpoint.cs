@@ -34,6 +34,8 @@ namespace Tizen.System.Usb
         /// <summary>
         /// Gets number of this endpoint.
         /// </summary>
+        /// <feature>http://tizen.org/feature/usb.host</feature>
+        /// <exception cref="NotSupportedException">The required feature is not supported.</exception>
         /// <since_tizen> 4 </since_tizen>
         public new int Id
         {
@@ -46,6 +48,8 @@ namespace Tizen.System.Usb
         /// <summary>
         /// Gets direction of this endpoint.
         /// </summary>
+        /// <feature>http://tizen.org/feature/usb.host</feature>
+        /// <exception cref="NotSupportedException">The required feature is not supported.</exception>
         /// <since_tizen> 4 </since_tizen>
         public new EndpointDirection Direction
         {
@@ -58,6 +62,8 @@ namespace Tizen.System.Usb
         /// <summary>
         /// Gets max packet size of given endpoint.
         /// </summary>
+        /// <feature>http://tizen.org/feature/usb.host</feature>
+        /// <exception cref="NotSupportedException">The required feature is not supported.</exception>
         /// <since_tizen> 4 </since_tizen>
         public new int MaxPacketSize
         {
@@ -82,6 +88,8 @@ namespace Tizen.System.Usb
         /// (for an unlimited timeout 0 value should be used).
         /// </param>
         /// <returns>Transferred Number of transferred bytes.</returns>
+        /// <feature>http://tizen.org/feature/usb.host</feature>
+        /// <exception cref="NotSupportedException">The required feature is not supported.</exception>
         /// <exception cref="InvalidOperationException">Throws exception if device is disconnected or not opened for operation.</exception>
         /// <exception cref="TimeoutException">Throws exception if transfer timed-out.</exception>
         /// <since_tizen> 4 </since_tizen>

@@ -39,6 +39,8 @@ namespace Tizen.System.Usb
         /// <summary>
         /// Checks if device is self-powered in given configuration.
         /// </summary>
+        /// <feature>http://tizen.org/feature/usb.host</feature>
+        /// <exception cref="NotSupportedException">The required feature is not supported.</exception>
         /// <since_tizen> 4 </since_tizen>
         public bool IsSelfPowered
         {
@@ -52,6 +54,8 @@ namespace Tizen.System.Usb
         /// <summary>
         /// Checks if device in given configuration supports remote wakeup.
         /// </summary>
+        /// <feature>http://tizen.org/feature/usb.host</feature>
+        /// <exception cref="NotSupportedException">The required feature is not supported.</exception>
         /// <since_tizen> 4 </since_tizen>
         public bool SupportRemoteWakeup
         {
@@ -65,6 +69,8 @@ namespace Tizen.System.Usb
         /// <summary>
         /// Gets maximum power required in given configuration, in mA.
         /// </summary>
+        /// <feature>http://tizen.org/feature/usb.host</feature>
+        /// <exception cref="NotSupportedException">The required feature is not supported.</exception>
         /// <since_tizen> 4 </since_tizen>
         public int MaximumPowerRequired
         {
@@ -78,6 +84,8 @@ namespace Tizen.System.Usb
         /// <summary>
         /// Dictionary mapping interfaces Ids to interface instances for given configuration.
         /// </summary>
+        /// <feature>http://tizen.org/feature/usb.host</feature>
+        /// <exception cref="NotSupportedException">The required feature is not supported.</exception>
         /// <since_tizen> 4 </since_tizen>
         public IReadOnlyDictionary<int, UsbInterface> Interfaces
         {
@@ -103,7 +111,11 @@ namespace Tizen.System.Usb
         /// <summary>
         /// Configuration string.
         /// </summary>
-        /// <exception cref="InvalidOperationException"> Throws exception if device is disconnected or not opened for operation. </exception>
+        /// <feature>http://tizen.org/feature/usb.host</feature>
+        /// <exception cref="NotSupportedException">The required feature is not supported.</exception>
+        /// <exception cref="InvalidOperationException">
+        /// Throws exception if device is disconnected or not opened for operation or busy as its interfaces are currently claimed.
+        /// </exception>
         /// <since_tizen> 4 </since_tizen>
         public string ConfigurationString
         {
@@ -118,6 +130,8 @@ namespace Tizen.System.Usb
         /// <summary>
         /// Set this configuration as active configuration for the device.
         /// </summary>
+        /// <feature>http://tizen.org/feature/usb.host</feature>
+        /// <exception cref="NotSupportedException">The required feature is not supported.</exception>
         /// <exception cref="InvalidOperationException"> Throws exception if device is disconnected or not opened for operation. </exception>
         /// <since_tizen> 4 </since_tizen>
         public void SetAsActive()

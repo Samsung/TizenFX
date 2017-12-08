@@ -46,7 +46,8 @@ namespace Tizen.System.Usb
         /// <summary>
         /// USB Manager Constructor.
         /// </summary>
-        /// <exception cref="NotSupportedException">Throws exception if USB host feature is not enabled.</exception>
+        /// <feature>http://tizen.org/feature/usb.host</feature>
+        /// <exception cref="NotSupportedException">The required feature is not supported.</exception>
         /// <since_tizen> 4 </since_tizen>
         public UsbManager()
         {
@@ -66,6 +67,8 @@ namespace Tizen.System.Usb
         /// <summary>
         /// This function returns list of USB devices attached to system.
         /// </summary>
+        /// <feature>http://tizen.org/feature/usb.host</feature>
+        /// <exception cref="NotSupportedException">The required feature is not supported.</exception>
         /// <exception cref="OutOfMemoryException">Throws exception in case of insufficient memory.</exception>
         /// <exception cref="UnauthorizedAccessException">Throws exception if user has insufficient permission on device.</exception>
         /// <since_tizen> 4 </since_tizen>
@@ -81,6 +84,8 @@ namespace Tizen.System.Usb
         /// <summary>
         /// Event handler for events when a USB device is attached or detached.
         /// </summary>
+        /// <feature>http://tizen.org/feature/usb.host</feature>
+        /// <exception cref="NotSupportedException">The required feature is not supported.</exception>
         /// <since_tizen> 4 </since_tizen>
         public event EventHandler<HotPluggedEventArgs> DeviceHotPlugged;
 

@@ -31,6 +31,8 @@ namespace Tizen.System.Usb
         /// <summary>
         /// Gets interval for polling endpoint for data transfers, in frame counts (refer to USB protocol specification).
         /// </summary>
+        /// <feature>http://tizen.org/feature/usb.host</feature>
+        /// <exception cref="NotSupportedException">The required feature is not supported.</exception>
         /// <since_tizen> 4 </since_tizen>
         public int PollingInterval
         {
@@ -54,6 +56,8 @@ namespace Tizen.System.Usb
         /// received(for an unlimited timeout 0 value should be used).
         /// </param>
         /// <returns>Number of bytes actually transferred.</returns>
+        /// <feature>http://tizen.org/feature/usb.host</feature>
+        /// <exception cref="NotSupportedException">The required feature is not supported.</exception>
         /// <exception cref="InvalidOperationException">Throws exception if device is disconnected or not opened for operation.</exception>
         /// <exception cref="TimeoutException">Throws exception if transfer timed-out.</exception>
         /// <since_tizen> 4 </since_tizen>

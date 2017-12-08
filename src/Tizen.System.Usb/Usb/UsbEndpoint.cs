@@ -36,6 +36,8 @@ namespace Tizen.System.Usb
         /// <summary>
         /// Gets number of this endpoint.
         /// </summary>
+        /// <feature>http://tizen.org/feature/usb.host</feature>
+        /// <exception cref="NotSupportedException">The required feature is not supported.</exception>
         /// <since_tizen> 4 </since_tizen>
         public int Id
         {
@@ -49,6 +51,8 @@ namespace Tizen.System.Usb
         /// <summary>
         /// Gets direction of this endpoint.
         /// </summary>
+        /// <feature>http://tizen.org/feature/usb.host</feature>
+        /// <exception cref="NotSupportedException">The required feature is not supported.</exception>
         /// <since_tizen> 4 </since_tizen>
         public EndpointDirection Direction
         {
@@ -62,6 +66,8 @@ namespace Tizen.System.Usb
         /// <summary>
         /// Gets max packet size of given endpoint.
         /// </summary>
+        /// <feature>http://tizen.org/feature/usb.host</feature>
+        /// <exception cref="NotSupportedException">The required feature is not supported.</exception>
         /// <since_tizen> 4 </since_tizen>
         public int MaxPacketSize
         {

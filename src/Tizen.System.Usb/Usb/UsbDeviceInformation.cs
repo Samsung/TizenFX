@@ -34,6 +34,8 @@ namespace Tizen.System.Usb
         /// <summary>
         /// USB specification release number as binary-coded decimal.
         /// </summary>
+        /// <feature>http://tizen.org/feature/usb.host</feature>
+        /// <exception cref="NotSupportedException">The required feature is not supported.</exception>
         /// <exception cref="UnauthorizedAccessException">Throws exception if user has insufficient permission on device.</exception>
         /// <since_tizen> 4 </since_tizen>
         public int UsbVersion
@@ -48,6 +50,8 @@ namespace Tizen.System.Usb
         /// <summary>
         /// Gets device class.
         /// </summary>
+        /// <feature>http://tizen.org/feature/usb.host</feature>
+        /// <exception cref="NotSupportedException">The required feature is not supported.</exception>
         /// <since_tizen> 4 </since_tizen>
         public int Class
         {
@@ -61,6 +65,8 @@ namespace Tizen.System.Usb
         /// <summary>
         /// Gets device sub class.
         /// </summary>
+        /// <feature>http://tizen.org/feature/usb.host</feature>
+        /// <exception cref="NotSupportedException">The required feature is not supported.</exception>
         /// <since_tizen> 4 </since_tizen>
         public int Subclass
         {
@@ -74,6 +80,8 @@ namespace Tizen.System.Usb
         /// <summary>
         /// Gets device protocol.
         /// </summary>
+        /// <feature>http://tizen.org/feature/usb.host</feature>
+        /// <exception cref="NotSupportedException">The required feature is not supported.</exception>
         /// <since_tizen> 4 </since_tizen>
         public int Protocol
         {
@@ -87,6 +95,8 @@ namespace Tizen.System.Usb
         /// <summary>
         /// Gets vendor id.
         /// </summary>
+        /// <feature>http://tizen.org/feature/usb.host</feature>
+        /// <exception cref="NotSupportedException">The required feature is not supported.</exception>
         /// <since_tizen> 4 </since_tizen>
         public int VendorId
         {
@@ -100,6 +110,8 @@ namespace Tizen.System.Usb
         /// <summary>
         /// Gets product id.
         /// </summary>
+        /// <feature>http://tizen.org/feature/usb.host</feature>
+        /// <exception cref="NotSupportedException">The required feature is not supported.</exception>
         /// <since_tizen> 4 </since_tizen>
         public int ProductId
         {
@@ -113,6 +125,8 @@ namespace Tizen.System.Usb
         /// <summary>
         /// Gets device release number in binary-coded decimal.
         /// </summary>
+        /// <feature>http://tizen.org/feature/usb.host</feature>
+        /// <exception cref="NotSupportedException">The required feature is not supported.</exception>
         /// <since_tizen> 4 </since_tizen>
         public int DeviceVersion
         {
