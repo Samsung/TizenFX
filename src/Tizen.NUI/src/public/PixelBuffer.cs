@@ -301,6 +301,21 @@ namespace Tizen.NUI
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
+        /// <summary>
+        /// Get Meta data.
+        /// </summary>
+        /// <returns>PropertyMap of Metadata.</returns>
+        /// <since_tizen> 5 </since_tizen>
+        /// This will be released at Tizen.NET API Level 5, so currently this would be used as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public PropertyMap GetMetadata()
+        {
+            var retval = new PropertyMap();
+            NDalicPINVOKE.PixelBuffer_GetMetadata(swigCPtr, PropertyMap.getCPtr(retval));
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return retval;
+        }
+
         internal PixelBuffer(SWIGTYPE_p_unsigned_char pointer) : this(NDalicPINVOKE.new_PixelBuffer__SWIG_2(SWIGTYPE_p_unsigned_char.getCPtr(pointer)), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
