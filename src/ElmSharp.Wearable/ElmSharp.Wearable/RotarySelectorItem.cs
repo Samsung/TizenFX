@@ -21,7 +21,7 @@ using System.Text;
 namespace ElmSharp.Wearable
 {
     /// <summary>
-    /// A instance to the Rotary Selector Item added. And an item can be selected by rotary event or user item click.
+    /// An instance to the Rotary Selector item is added. An item can be selected by the Rotary event or user item click.
     /// </summary>
     /// <since_tizen> preview </since_tizen>
     public class RotarySelectorItem
@@ -159,19 +159,19 @@ namespace ElmSharp.Wearable
         public string MainText { set => setPart(ref _mainText, MainTextPartName, value); get => _mainText; }
 
         /// <summary>
-        /// Sets or gets the sub text of a rotary selector item object.
+        /// Sets or gets the subtext of a rotary selector item object.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
         public string SubText { set => setPart(ref _subText, SubTextPartName, value); get => _subText; }
 
         /// <summary>
-        /// Sets or gets the sub text color of a rotary selector item object.
+        /// Sets or gets the subtext color of a rotary selector item object.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
         public Color MainTextColor { set => setPart(ref _mainTextColor, MainTextPartName, ItemState.Normal, value); get => _mainTextColor; }
 
         /// <summary>
-        /// Sets or gets the sub text color of a rotary selector item object.
+        /// Sets or gets the subtext color of a rotary selector item object.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
         public Color SubTextColor { set => setPart(ref _subTextColor, SubTextPartName, ItemState.Normal, value); get => _subTextColor; }
@@ -183,13 +183,13 @@ namespace ElmSharp.Wearable
         public Image NormalIconImage { set => setPart(ref _normalIconImage, IconPartName, ItemState.Normal, value); get => _normalIconImage; }
 
         /// <summary>
-        /// Sets or gets the press icon image of a rotary selector item object.
+        /// Sets or gets the pressed icon image of a rotary selector item object.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
         public Image PressedIconImage { set => setPart(ref _pressedIconImage, IconPartName, ItemState.Pressed, value); get => _pressedIconImage; }
 
         /// <summary>
-        /// Sets or gets the disable icon image of a rotary selector item object.
+        /// Sets or gets the disabled icon image of a rotary selector item object.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
         public Image DisabledIconImage { set => setPart(ref _disabledIconImage, IconPartName, ItemState.Disabled, value); get => _disabledIconImage; }

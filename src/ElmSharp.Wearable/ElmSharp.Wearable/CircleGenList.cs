@@ -21,8 +21,8 @@ using System.Diagnostics;
 namespace ElmSharp.Wearable
 {
     /// <summary>
-    /// The Circle GenList Selector is a widget to display and handle genlist items by rotary event
-    /// Inherits <see cref="GenList"/>
+    /// The Circle GenList Selector is a widget to display and handle the genlist items by the Rotary event.
+    /// Inherits <see cref="GenList"/>.
     /// </summary>
     /// <since_tizen> preview </since_tizen>
     public class CircleGenList : GenList, IRotaryActionWidget
@@ -31,10 +31,10 @@ namespace ElmSharp.Wearable
         CircleSurface _surface;
 
         /// <summary>
-        /// Creates and initializes a new instance of the Circle GenList class
+        /// Creates and initializes a new instance of the Circle GenList class.
         /// </summary>
-        /// <param name="parent">The parent of new Circle GenList instance</param>
-        /// <param name="surface">The surface for drawing circle features for this widget.</param>
+        /// <param name="parent">The parent of the new Circle GenList instance.</param>
+        /// <param name="surface">The surface for drawing the circle features for this widget.</param>
         /// <since_tizen> preview </since_tizen>
         public CircleGenList(EvasObject parent, CircleSurface surface) : base()
         {
@@ -46,7 +46,7 @@ namespace ElmSharp.Wearable
         /// <summary>
         /// Creates and initializes a new instance of the Circle GenList class.
         /// </summary>
-        /// <param name="parent">The parent of new Circle CircleGenList instance</param>
+        /// <param name="parent">The parent of the new Circle CircleGenList instance.</param>
         /// <since_tizen> preview </since_tizen>
         [Obsolete("It is not safe for guess circle surface from parent and create new surface by every new widget")]
         [EditorBrowsable(EditorBrowsableState.Never)]
@@ -56,19 +56,19 @@ namespace ElmSharp.Wearable
         }
 
         /// <summary>
-        /// Gets the handle for Circle Widget.
+        /// Gets the handle for the Circle widget.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
         public virtual IntPtr CircleHandle => _circleHandle;
 
         /// <summary>
-        /// Gets the handle for Circle Surface used in this widget
+        /// Gets the handle for the circle surface used in this widget.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
         public virtual CircleSurface CircleSurface => _surface;
 
         /// <summary>
-        /// Sets or gets disabled state of this widget.
+        /// Sets or gets the disabled state of this widget.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
         [Obsolete("Use IsEnabled")]
@@ -96,7 +96,7 @@ namespace ElmSharp.Wearable
         }
 
         /// <summary>
-        /// Sets or gets the color of the scroll background
+        /// Sets or gets the color of the scroll background.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
         public Color VerticalScrollBackgroundColor
@@ -114,7 +114,7 @@ namespace ElmSharp.Wearable
         }
 
         /// <summary>
-        /// Sets or gets the line width of the scroll background
+        /// Sets or gets the line width of the scroll background.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
         public int VerticalScrollBackgroundLineWidth
@@ -130,7 +130,7 @@ namespace ElmSharp.Wearable
         }
 
         /// <summary>
-        /// Sets or gets the redius of the scroll background
+        /// Sets or gets the radius of the scroll background.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
         public double VerticalScrollBackgroundRadius
@@ -146,7 +146,7 @@ namespace ElmSharp.Wearable
         }
 
         /// <summary>
-        /// Sets or gets the color of the scroll bar
+        /// Sets or gets the color of the scrollbar.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
         public Color VerticalScrollBarColor
@@ -164,7 +164,7 @@ namespace ElmSharp.Wearable
         }
 
         /// <summary>
-        /// Sets or gets the line width of the scroll bar
+        /// Sets or gets the line width of the scrollbar.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
         public int VerticalScrollBarLineWidth
@@ -180,7 +180,7 @@ namespace ElmSharp.Wearable
         }
 
         /// <summary>
-        /// Sets or gets the redius of the scroll bar
+        /// Sets or gets the radius of the scrollbar.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
         public double VerticalScrollBarRadius
@@ -196,10 +196,10 @@ namespace ElmSharp.Wearable
         }
 
         /// <summary>
-        /// Sets or gets the policy if the scroll bar is visible
+        /// Sets or gets the policy if the scrollbar is visible.
         /// </summary>
         /// <remarks>
-        /// ScrollBarVisiblePolicy.Auto means the vertical scrollbar is made visible if it is needed, and otherwise kept hidden.
+        /// ScrollBarVisiblePolicy.Auto means the vertical scrollbar is made visible if it is needed, or otherwise kept hidden.
         /// ScrollBarVisiblePolicy.Visible turns it on all the time, and ScrollBarVisiblePolicy.Invisible always keeps it off.
         /// </remarks>
         /// <since_tizen> preview </since_tizen>
@@ -222,8 +222,8 @@ namespace ElmSharp.Wearable
         /// <summary>
         /// Creates a widget handle.
         /// </summary>
-        /// <param name="parent">Parent EvasObject</param>
-        /// <returns>Handle IntPtr</returns>
+        /// <param name="parent">Parent EvasObject.</param>
+        /// <returns>Handle IntPtr.</returns>
         /// <since_tizen> preview </since_tizen>
         protected override IntPtr CreateHandle(EvasObject parent)
         {
