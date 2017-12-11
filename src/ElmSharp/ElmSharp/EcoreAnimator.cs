@@ -20,7 +20,7 @@ using System.Collections.Generic;
 namespace ElmSharp
 {
     /// <summary>
-    /// EcoreAnimator is a helper class, it provides functions to manager animations.
+    /// EcoreAnimator is a helper class. It provides the functions to manage animations.
     /// </summary>
     /// <since_tizen> preview </since_tizen>
     public static class EcoreAnimator
@@ -37,7 +37,7 @@ namespace ElmSharp
         }
 
         /// <summary>
-        /// Gets current system time as a floating point value in seconds.
+        /// Gets the current system time as a floating point value in seconds.
         /// </summary>
         /// <returns>Current system time</returns>
         /// <since_tizen> preview </since_tizen>
@@ -47,10 +47,10 @@ namespace ElmSharp
         }
 
         /// <summary>
-        /// Adds an animator to call <paramref name="handler"/> at every animation tick during main loop execution.
+        /// Adds an animator to call <paramref name="handler"/> at every animation tick during the main loop execution.
         /// </summary>
-        /// <param name="handler">The function to call when it ticks off</param>
-        /// <returns>A handle to the new animator</returns>
+        /// <param name="handler">The function to call when it ticks off.</param>
+        /// <returns>A handle to the new animator.</returns>
         /// <since_tizen> preview </since_tizen>
         public static IntPtr AddAnimator(Func<bool> handler)
         {
@@ -61,7 +61,7 @@ namespace ElmSharp
         /// <summary>
         /// Removes the specified animator from the animator list.
         /// </summary>
-        /// <param name="anim">The specified animator handle</param>
+        /// <param name="anim">The specified animator handle.</param>
         /// <since_tizen> preview </since_tizen>
         public static void RemoveAnimator(IntPtr anim)
         {

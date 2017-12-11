@@ -18,7 +18,7 @@
 namespace ElmSharp.Accessible
 {
     /// <summary>
-    /// IAccessibleRelation is a interface which defines the relationship between two accessible objects.
+    /// IAccessibleRelation is an interface, which defines the relationship between two accessible objects.
     /// </summary>
     /// <since_tizen> preview </since_tizen>
     public interface IAccessibleRelation
@@ -38,13 +38,13 @@ namespace ElmSharp.Accessible
     }
 
     /// <summary>
-    /// To define label info for accessible object.
+    /// To define the label info for an accessible object.
     /// </summary>
     /// <since_tizen> preview </since_tizen>
     public class LabelledBy : IAccessibleRelation
     {
         /// <summary>
-        /// Gets or sets the target object which is LabelledBy.
+        /// Gets or sets the target object, which is LabelledBy.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
         public AccessibleObject Target { get; set; }
@@ -60,7 +60,7 @@ namespace ElmSharp.Accessible
     }
 
     /// <summary>
-    /// To define label info for accessible object.
+    /// To define the label info for an accessible object.
     /// </summary>
     /// <since_tizen> preview </since_tizen>
     public class LabelFor : IAccessibleRelation
@@ -82,13 +82,13 @@ namespace ElmSharp.Accessible
     }
 
     /// <summary>
-    /// To define control relationship for accessible object.
+    /// To define the control relationship for an accessible object.
     /// </summary>
     /// <since_tizen> preview </since_tizen>
     public class ControllerFor : IAccessibleRelation
     {
         /// <summary>
-        /// Gets or sets the target object which is ControllerFor.
+        /// Gets or sets the target object, which is ControllerFor.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
         public AccessibleObject Target { get; set; }
@@ -104,13 +104,13 @@ namespace ElmSharp.Accessible
     }
 
     /// <summary>
-    /// To define control relationship for accessible object.
+    /// To define the control relationship for an accessible object.
     /// </summary>
     /// <since_tizen> preview </since_tizen>
     public class ControlledBy : IAccessibleRelation
     {
         /// <summary>
-        /// Gets or sets the target object which is ControlledBy.
+        /// Gets or sets the target object, which is ControlledBy.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
         public AccessibleObject Target { get; set; }
@@ -126,13 +126,13 @@ namespace ElmSharp.Accessible
     }
 
     /// <summary>
-    /// To define member relationship for accessible object.
+    /// To define the member relationship for an accessible object.
     /// </summary>
     /// <since_tizen> preview </since_tizen>
     public class MemberOf : IAccessibleRelation
     {
         /// <summary>
-        /// Gets or sets the target object which is MemberOf.
+        /// Gets or sets the target object, which is MemberOf.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
         public AccessibleObject Target { get; set; }
@@ -148,13 +148,13 @@ namespace ElmSharp.Accessible
     }
 
     /// <summary>
-    /// To define tooltip for accessible object.
+    /// To define the tooltip for an accessible object.
     /// </summary>
     /// <since_tizen> preview </since_tizen>
     public class TooltipFor : IAccessibleRelation
     {
         /// <summary>
-        /// Gets or sets the target object which is TooltipFor.
+        /// Gets or sets the target object, which is TooltipFor.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
         public AccessibleObject Target { get; set; }
@@ -170,13 +170,13 @@ namespace ElmSharp.Accessible
     }
 
     /// <summary>
-    /// To define child for accessible object.
+    /// To define the child for an accessible object.
     /// </summary>
     /// <since_tizen> preview </since_tizen>
     public class ChildOf : IAccessibleRelation
     {
         /// <summary>
-        /// Gets or sets the target object which is ChildOf.
+        /// Gets or sets the target object, which is ChildOf.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
         public AccessibleObject Target { get; set; }
@@ -192,13 +192,13 @@ namespace ElmSharp.Accessible
     }
 
     /// <summary>
-    /// To define parent for accessible object.
+    /// To define the parent for an accessible object.
     /// </summary>
     /// <since_tizen> preview </since_tizen>
     public class ParentOf : IAccessibleRelation
     {
         /// <summary>
-        /// Gets or sets the target object which is ParentOf.
+        /// Gets or sets the target object, which is ParentOf.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
         public AccessibleObject Target { get; set; }
@@ -214,19 +214,19 @@ namespace ElmSharp.Accessible
     }
 
     /// <summary>
-    /// To define extend for accessible object.
+    /// To define the extend for an accessible object.
     /// </summary>
     /// <since_tizen> preview </since_tizen>
     public class Extended : IAccessibleRelation
     {
         /// <summary>
-        /// Gets or sets the target object which is Extended.
+        /// Gets or sets the target object, which is Extended.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
         public AccessibleObject Target { get; set; }
 
         /// <summary>
-        /// Gets the Extended type.
+        /// Gets the extended type.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
         public int Type
@@ -242,7 +242,7 @@ namespace ElmSharp.Accessible
     public class FlowsTo : IAccessibleRelation
     {
         /// <summary>
-        /// Gets or sets the target object which is FlowsTo.
+        /// Gets or sets the target object, which is FlowsTo.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
         public AccessibleObject Target { get; set; }
@@ -264,7 +264,7 @@ namespace ElmSharp.Accessible
     public class FlowsFrom : IAccessibleRelation
     {
         /// <summary>
-        /// Gets or sets the target object which is FlowsFrom.
+        /// Gets or sets the target object, which is FlowsFrom.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
         public AccessibleObject Target { get; set; }
@@ -280,13 +280,13 @@ namespace ElmSharp.Accessible
     }
 
     /// <summary>
-    /// To define subwindow for accessible object.
+    /// To define the subwindow for an accessible object.
     /// </summary>
     /// <since_tizen> preview </since_tizen>
     public class SubwindowOf : IAccessibleRelation
     {
         /// <summary>
-        /// Gets or sets the target object which is SubwindowOf.
+        /// Gets or sets the target object, which is SubwindowOf.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
         public AccessibleObject Target { get; set; }
@@ -302,13 +302,13 @@ namespace ElmSharp.Accessible
     }
 
     /// <summary>
-    /// To define embed for accessible object.
+    /// To define the embed for an accessible object.
     /// </summary>
     /// <since_tizen> preview </since_tizen>
     public class Embeds : IAccessibleRelation
     {
         /// <summary>
-        /// Gets or sets the target object which is Embeds.
+        /// Gets or sets the target object ,which is Embeds.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
         public AccessibleObject Target { get; set; }
@@ -324,13 +324,13 @@ namespace ElmSharp.Accessible
     }
 
     /// <summary>
-    /// To define embed for accessible object.
+    /// To define the embed for an accessible object.
     /// </summary>
     /// <since_tizen> preview </since_tizen>
     public class EmbeddedBy : IAccessibleRelation
     {
         /// <summary>
-        /// Gets or sets the target object which is EmbeddedBy.
+        /// Gets or sets the target object, which is EmbeddedBy.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
         public AccessibleObject Target { get; set; }
@@ -346,13 +346,13 @@ namespace ElmSharp.Accessible
     }
 
     /// <summary>
-    /// To define popup for accessible object.
+    /// To define the popup for an accessible object.
     /// </summary>
     /// <since_tizen> preview </since_tizen>
     public class PopupFor : IAccessibleRelation
     {
         /// <summary>
-        /// Gets or sets the target object which is PopupFor.
+        /// Gets or sets the target object, which is PopupFor.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
         public AccessibleObject Target { get; set; }
@@ -368,13 +368,13 @@ namespace ElmSharp.Accessible
     }
 
     /// <summary>
-    /// To define parent window for accessible object.
+    /// To define the parent window for an accessible object.
     /// </summary>
     /// <since_tizen> preview </since_tizen>
     public class ParentWindowOf : IAccessibleRelation
     {
         /// <summary>
-        /// Gets or sets the target object which is ParentWindowOf.
+        /// Gets or sets the target object, which is ParentWindowOf.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
         public AccessibleObject Target { get; set; }
@@ -390,13 +390,13 @@ namespace ElmSharp.Accessible
     }
 
     /// <summary>
-    /// To define description for accessible object.
+    /// To define the description for an accessible object.
     /// </summary>
     /// <since_tizen> preview </since_tizen>
     public class DescriptionFor : IAccessibleRelation
     {
         /// <summary>
-        /// Gets or sets the target object which is DescriptionFor.
+        /// Gets or sets the target object, which is DescriptionFor.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
         public AccessibleObject Target { get; set; }
@@ -412,13 +412,13 @@ namespace ElmSharp.Accessible
     }
 
     /// <summary>
-    /// To define description for accessible object.
+    /// To define the description for an accessible object.
     /// </summary>
     /// <since_tizen> preview </since_tizen>
     public class DescribedBy : IAccessibleRelation
     {
         /// <summary>
-        /// Gets or sets the target object which is DescribedBy.
+        /// Gets or sets the target object, which is DescribedBy.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
         public AccessibleObject Target { get; set; }

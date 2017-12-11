@@ -19,7 +19,7 @@ using System;
 namespace ElmSharp
 {
     /// <summary>
-    /// The ProgressBar is a widget for visually representing the progress status of a given job/task.
+    /// The ProgressBar is a widget for visually representing the progress status of a given job or task.
     /// </summary>
     /// <since_tizen> preview </since_tizen>
     public class ProgressBar : Layout
@@ -41,20 +41,20 @@ namespace ElmSharp
         }
 
         /// <summary>
-        /// ValueChanged will be triggered when value of ProgressBar change.
+        /// ValueChanged will be triggered when the value of the ProgressBar changes.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
         public event EventHandler ValueChanged;
 
         /// <summary>
-        /// Sets or gets the value wheather a given ProgressBar widget is at the "pulsing mode".
+        /// Sets or gets the value whether a given ProgressBar widget is at the "pulsing mode".
         /// </summary>
         /// <remarks>
         /// By default, progress bars display values from low to high value boundaries.
         /// There are, though, contexts in which the progress of a given task is unknown.
-        /// For such cases, one can set a progress bar widget to a "pulsing state",
+        /// For such cases, one can set the progress bar widget to a "pulsing state",
         /// to give the user an idea that some computation is being held,
-        /// but without exact progress values. In the default theme,
+        /// but without the exact progress values. In the default theme,
         /// it animates its bar with the contents filling in constantly and back to non-filled, in a loop.
         /// </remarks>
         /// <since_tizen> preview </since_tizen>
@@ -71,11 +71,11 @@ namespace ElmSharp
         }
 
         /// <summary>
-        /// Sets or gets the value of ProgressBar.
+        /// Sets or gets the value of the ProgressBar.
         /// </summary>
         /// <remarks>
         /// Use this property to set the progress bar levels.
-        /// If you pass a value out of the specified range(0.0~1.0),
+        /// If you pass a value out of the specified range (0.0~1.0),
         /// it is interpreted as the closest of the boundary values in the range.
         /// </remarks>
         /// <since_tizen> preview </since_tizen>
@@ -92,7 +92,7 @@ namespace ElmSharp
         }
 
         /// <summary>
-        /// Sets or gets the span value of ProgressBar.
+        /// Sets or gets the span value of the ProgressBar.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
         public int SpanSize
@@ -108,7 +108,7 @@ namespace ElmSharp
         }
 
         /// <summary>
-        /// Sets or gets the value wheather a given ProgressBar widget is horizontal.
+        /// Sets or gets the value whether a given ProgressBar widget is horizontal.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
         public bool IsHorizontal
@@ -140,12 +140,12 @@ namespace ElmSharp
         }
 
         /// <summary>
-        /// Sets or gets format string for a given progress bar widget's units label.
+        /// Sets or gets the format string for a given progress bar widget's units label.
         /// </summary>
         /// <remarks>
-        /// If NULL is passed on format, it makes obj units area to be hidden completely.
+        /// If null is passed on format, it makes the object units area to be hidden completely.
         /// If not, it sets the format string for the units label's text.
-        /// The units label is provided with a floating point value, so the units text displays at most one floating point value.
+        /// The units label are provided with a floating point value, so the units text displays at the most one floating point value.
         /// Note that the units label is optional. Use a format string such as "%1.2f meters" for example.
         /// </remarks>
         /// <since_tizen> preview </since_tizen>
@@ -190,10 +190,10 @@ namespace ElmSharp
         }
 
         /// <summary>
-        /// Gets the part value of the given part of the Progressbar.
+        /// Gets the part value of a given part of the Progressbar.
         /// </summary>
         /// <param name="part">Part of the Progressbar.</param>
-        /// <returns>Returns value range is from 0.0 to 1.0.</returns>
+        /// <returns>Value range is from 0.0 to 1.0.</returns>
         /// <since_tizen> preview </since_tizen>
         public double GetPartValue(string part)
         {
@@ -217,7 +217,7 @@ namespace ElmSharp
         }
 
         /// <summary>
-        /// Sets the part value of the give part of the Progressbar.
+        /// Sets the part value of a given part of the Progressbar.
         /// </summary>
         /// <param name="part">Part of the Progressbar.</param>
         /// <param name="value">Value range is from 0.0 to 1.0.</param>
@@ -230,8 +230,8 @@ namespace ElmSharp
         /// <summary>
         /// Creates a widget handle.
         /// </summary>
-        /// <param name="parent">Parent EvasObject</param>
-        /// <returns>Handle IntPtr</returns>
+        /// <param name="parent">Parent EvasObject.</param>
+        /// <returns>Handle IntPtr.</returns>
         /// <since_tizen> preview </since_tizen>
         protected override IntPtr CreateHandle(EvasObject parent)
         {

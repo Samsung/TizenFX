@@ -19,7 +19,7 @@ using System;
 namespace ElmSharp
 {
     /// <summary>
-    /// The Size is a struct that defining height and width as a pair of generic type.
+    /// The Size is a struct defining the height and width as a pair of generic type.
     /// </summary>
     /// <since_tizen> preview </since_tizen>
     public struct Size : IEquatable<Size>
@@ -37,10 +37,10 @@ namespace ElmSharp
         public int Height;
 
         /// <summary>
-        /// Initializes a new instance of the Size structure from the specified dimensions.
+        /// Initializes a new instance of the size structure from specified dimensions.
         /// </summary>
-        /// <param name="width">The width to set</param>
-        /// <param name="height">The height to set</param>
+        /// <param name="width">The width to set.</param>
+        /// <param name="height">The height to set.</param>
         /// <since_tizen> preview </since_tizen>
         public Size(int width, int height)
         {
@@ -49,7 +49,7 @@ namespace ElmSharp
         }
 
         /// <summary>
-        /// A human-readable representation of the <see cref="T:Tizen.UI.Size" />.
+        /// A human-readable representation of <see cref="T:Tizen.UI.Size"/>.
         /// </summary>
         /// <returns>The string is formatted as "{{Width={0} Height={1}}}".</returns>
         /// <since_tizen> preview </since_tizen>
@@ -59,7 +59,7 @@ namespace ElmSharp
         }
 
         /// <summary>
-        /// Gets hash code.
+        /// Gets the hash code.
         /// </summary>
         /// <returns>The hash code.</returns>
         /// <since_tizen> preview </since_tizen>
@@ -76,8 +76,8 @@ namespace ElmSharp
         /// </summary>
         /// <param name="obj">The object to compare with the current instance.</param>
         /// <returns>
-        /// true if obj and this instance are the same type and represent the same value.
-        /// otherwise, false.
+        /// true if the object and this instance are of the same type and represent the same value,
+        /// otherwise false.
         /// </returns>
         /// <since_tizen> preview </since_tizen>
         public override bool Equals(object obj)
@@ -93,8 +93,8 @@ namespace ElmSharp
         /// </summary>
         /// <param name="other">The <see cref="Size"/> to compare with the current instance.</param>
         /// <returns>
-        /// true if obj and this instance are the same type and represent the same value.
-        /// otherwise, false.
+        /// true if the object and this instance are of the same type and represent the same value,
+        /// otherwise false.
         /// </returns>
         /// <since_tizen> preview </since_tizen>
         public bool Equals(Size other)
@@ -103,11 +103,11 @@ namespace ElmSharp
         }
 
         /// <summary>
-        /// Whether the two <see cref="T:Tizen.UI.Size" />s are equal.
+        /// Whether both <see cref="T:Tizen.UI.Size"/>s are equal.
         /// </summary>
-        /// <param name="s1">A <see cref="T:Tizen.UI.Size" /> on the left hand side.</param>
-        /// <param name="s2">A <see cref="T:Tizen.UI.Size" /> on the right hand side.</param>
-        /// <returns>True if the two <see cref="T:Tizen.UI.Size" />s have equal values.</returns>
+        /// <param name="s1">A <see cref="T:Tizen.UI.Size"/> on the left hand side.</param>
+        /// <param name="s2">A <see cref="T:Tizen.UI.Size"/> on the right hand side.</param>
+        /// <returns>True if both <see cref="T:Tizen.UI.Size"/>s have equal values.</returns>
         /// <since_tizen> preview </since_tizen>
         public static bool operator ==(Size s1, Size s2)
         {
@@ -115,11 +115,11 @@ namespace ElmSharp
         }
 
         /// <summary>
-        /// Whether two <see cref="T:Tizen.UI.Size" />s are not equal.
+        /// Whether both <see cref="T:Tizen.UI.Size"/>s are not equal.
         /// </summary>
-        /// <param name="s1">A <see cref="T:Tizen.UI.Size" /> on the left hand side.</param>
-        /// <param name="s2">A <see cref="T:Tizen.UI.Size" /> on the right hand side.</param>
-        /// <returns>True if the two <see cref="T:Tizen.UI.Size" />s do not have equal values.</returns>
+        /// <param name="s1">A <see cref="T:Tizen.UI.Size"/> on the left hand side.</param>
+        /// <param name="s2">A <see cref="T:Tizen.UI.Size"/> on the right hand side.</param>
+        /// <returns>True if both <see cref="T:Tizen.UI.Size"/>s do not have equal values.</returns>
         /// <since_tizen> preview </since_tizen>
         public static bool operator !=(Size s1, Size s2)
         {

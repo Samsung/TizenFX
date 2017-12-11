@@ -20,7 +20,7 @@ using System.ComponentModel;
 namespace ElmSharp
 {
     /// <summary>
-    /// Enumeration for the selection mode of Toolbar.
+    /// Enumeration for the selection mode of the toolbar.
     /// </summary>
     /// <since_tizen> preview </since_tizen>
     public enum ToolbarSelectionMode
@@ -47,13 +47,13 @@ namespace ElmSharp
     }
 
     /// <summary>
-    /// Enumeration that sets the toolbar items display behavior, it can be scrollable, can show a menu with exceeding items, or simply hide them.
+    /// Enumeration for setting the toolbar items display behavior, it can be scrollable, can show a menu with exceeding items, or simply hide them.
     /// </summary>
     /// <since_tizen> preview </since_tizen>
     public enum ToolbarShrinkMode
     {
         /// <summary>
-        /// Sets minimum toolbar size to fit all the items.
+        /// Sets the minimum toolbar size to fit all the items.
         /// </summary>
         None = 0,
 
@@ -68,7 +68,7 @@ namespace ElmSharp
         Scroll,
 
         /// <summary>
-        /// Inserts a button to pop up a menu with exceeding items.
+        /// Inserts a button to popup a menu with exceeding items.
         /// </summary>
         Menu,
 
@@ -79,28 +79,28 @@ namespace ElmSharp
     }
 
     /// <summary>
-    /// Enumeration for the icon lookup order of Toolbar.
+    /// Enumeration for the icon lookup order of the toolbar.
     /// </summary>
     /// <since_tizen> preview </since_tizen>
     public enum ToolbarIconLookupOrder
     {
         /// <summary>
-        /// Icon look up order: freedesktop, theme.
+        /// Icon lookup order: freedesktop, theme.
         /// </summary>
         FreedesktopTheme,
 
         /// <summary>
-        /// Icon look up order: theme, freedesktop.
+        /// Icon lookup order: theme, freedesktop.
         /// </summary>
         ThemeFreedesktop,
 
         /// <summary>
-        /// Icon look up order: freedesktop.
+        /// Icon lookup order: freedesktop.
         /// </summary>
         Freedesktop,
 
         /// <summary>
-        /// Icon look up order: theme.
+        /// Icon lookup order: theme.
         /// </summary>
         Theme,
     }
@@ -168,7 +168,7 @@ namespace ElmSharp
         }
 
         /// <summary>
-        /// Selected will be triggered when toolbar have been selected.
+        /// Selected will be triggered when toolbar has been selected.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
         public event EventHandler<ToolbarItemEventArgs> Selected;
@@ -176,7 +176,7 @@ namespace ElmSharp
         /// <summary>
         /// Sets or gets whether the layout of this toolbar is homogeneous.
         /// </summary>
-        /// <remarks>True for homogeneous, False for no homogeneous</remarks>
+        /// <remarks>True for homogeneous, False for no homogeneous.</remarks>
         /// <since_tizen> preview </since_tizen>
         public bool Homogeneous
         {
@@ -223,7 +223,7 @@ namespace ElmSharp
         }
 
         /// <summary>
-        /// Sets or gets toolbar's current orientation.
+        /// Sets or gets the toolbar's current orientation.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
         [EditorBrowsable(EditorBrowsableState.Never)]
@@ -275,7 +275,7 @@ namespace ElmSharp
         }
 
         /// <summary>
-        /// Gets the number of items in a toolbar widget.
+        /// Gets the number of items in a Toolbar widget.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
         public int ItemsCount
@@ -289,7 +289,7 @@ namespace ElmSharp
         /// <summary>
         /// Sets or gets the alignment of the items.
         /// </summary>
-        /// <remarks>The toolbar items alignment, a float between 0.0 and 1.0</remarks>
+        /// <remarks>The toolbar items alignment, a float between 0.0 and 1.0.</remarks>
         /// <since_tizen> preview </since_tizen>
         public double ItemAlignment
         {
@@ -304,7 +304,7 @@ namespace ElmSharp
         }
 
         /// <summary>
-        /// Sets or gets the item's transverse expansion of a given toolbar widget.
+        /// Sets or gets the item's transverse expansion of a given Toolbar widget.
         /// </summary>
         /// <remarks>
         /// The transverse expansion of the item, true for on and false for off.
@@ -324,10 +324,10 @@ namespace ElmSharp
         }
 
         /// <summary>
-        /// Appends ToolbarItem which just contains label to the toolbar.
+        /// Appends the ToolbarItem, which just contains label to the toolbar.
         /// </summary>
-        /// <param name="label">The label of the item</param>
-        /// <returns>The new ToolbarItem which appended to the toolbar</returns>
+        /// <param name="label">The label of the item.</param>
+        /// <returns>The new ToolbarItem which is appended to the toolbar.</returns>
         /// <seealso cref="Append(string, string)"/>
         /// <seealso cref="Prepend(string)"/>
         /// <since_tizen> preview </since_tizen>
@@ -337,11 +337,11 @@ namespace ElmSharp
         }
 
         /// <summary>
-        /// Appends ToolbarItem which contains label and icon to the toolbar.
+        /// Appends the ToolbarItem, which contains label and icon to the toolbar.
         /// </summary>
-        /// <param name="label">The label of the item</param>
-        /// <param name="icon">A string with the icon name or the absolute path of an image file</param>
-        /// <returns>The new ToolbarItem which appended to the toolbar</returns>
+        /// <param name="label">The label of the item.</param>
+        /// <param name="icon">A string with the icon name or the absolute path of an image file.</param>
+        /// <returns>The new ToolbarItem which is appended to the toolbar.</returns>
         /// <seealso cref="Append(string)"/>
         /// <seealso cref="Prepend(string)"/>
         /// <seealso cref="Prepend(string, string)"/>
@@ -354,10 +354,10 @@ namespace ElmSharp
         }
 
         /// <summary>
-        /// Prepends ToolbarItem which just contains label to the toolbar.
+        /// Prepends the ToolbarItem, which just contains label to the toolbar.
         /// </summary>
-        /// <param name="label">The label of the item</param>
-        /// <returns>The new ToolbarItem which prepended to the toolbar</returns>
+        /// <param name="label">The label of the item.</param>
+        /// <returns>The new ToolbarItem which is prepended to the toolbar.</returns>
         /// <seealso cref="Append(string)"/>
         /// <seealso cref="Append(string, string)"/>
         /// <seealso cref="Prepend(string, string)"/>
@@ -368,11 +368,11 @@ namespace ElmSharp
         }
 
         /// <summary>
-        /// Prepends ToolbarItem which contains label and icon to the toolbar.
+        /// Prepends the ToolbarItem, which contains label and icon to the toolbar.
         /// </summary>
-        /// <param name="label">The label of the item</param>
-        /// <param name="icon">A string with the icon name or the absolute path of an image file</param>
-        /// <returns>The new <see cref="ToolbarItem"/> which prepended to the toolbar</returns>
+        /// <param name="label">The label of the item.</param>
+        /// <param name="icon">A string with the icon name or the absolute path of an image file.</param>
+        /// <returns>The new <see cref="ToolbarItem"/> which is prepended to the toolbar.</returns>
         /// <seealso cref="Append(string)"/>
         /// <seealso cref="Append(string, string)"/>
         /// <seealso cref="Prepend(string)"/>
@@ -387,9 +387,9 @@ namespace ElmSharp
         /// <summary>
         /// Inserts a new item which just contains label into the toolbar object before item <paramref name="before"/>.
         /// </summary>
-        /// <param name="before">The toolbar item to insert before</param>
-        /// <param name="label">The label of the item</param>
-        /// <returns>The new <see cref="ToolbarItem"/> which insert into the toolbar</returns>
+        /// <param name="before">The toolbar item to insert before.</param>
+        /// <param name="label">The label of the item.</param>
+        /// <returns>The new <see cref="ToolbarItem"/> which is inserted into the toolbar.</returns>
         /// <seealso cref="InsertBefore(ToolbarItem, string, string)"/>
         /// <since_tizen> preview </since_tizen>
         public ToolbarItem InsertBefore(ToolbarItem before, string label)
@@ -400,10 +400,10 @@ namespace ElmSharp
         /// <summary>
         /// Inserts a new item which contains label and icon into the toolbar object before item <paramref name="before"/>.
         /// </summary>
-        /// <param name="before">The toolbar item to insert before</param>
-        /// <param name="label">The label of the item</param>
-        /// <param name="icon">A string with the icon name or the absolute path of an image file</param>
-        /// <returns>The new <see cref="ToolbarItem"/> which insert into the toolbar</returns>
+        /// <param name="before">The toolbar item to insert before.</param>
+        /// <param name="label">The label of the item.</param>
+        /// <param name="icon">A string with the icon name or the absolute path of an image file.</param>
+        /// <returns>The new <see cref="ToolbarItem"/> which is inserted into the toolbar.</returns>
         /// <seealso cref="InsertBefore(ToolbarItem, string)"/>
         /// <since_tizen> preview </since_tizen>
         public ToolbarItem InsertBefore(ToolbarItem before, string label, string icon)
@@ -416,10 +416,10 @@ namespace ElmSharp
         /// <summary>
         /// Inserts a new item which contains label and icon into the toolbar object after item <paramref name="after"/>.
         /// </summary>
-        /// <param name="after">The toolbar item to insert after</param>
-        /// <param name="label">The label of the item</param>
-        /// <param name="icon">A string with the icon name or the absolute path of an image file</param>
-        /// <returns>The new <see cref="ToolbarItem"/> which insert into the toolbar</returns>
+        /// <param name="after">The toolbar item to insert after.</param>
+        /// <param name="label">The label of the item.</param>
+        /// <param name="icon">A string with the icon name or the absolute path of an image file.</param>
+        /// <returns>The new <see cref="ToolbarItem"/> which is inserted into the toolbar.</returns>
         /// <since_tizen> preview </since_tizen>
         public ToolbarItem InsertAfter(ToolbarItem after, string label, string icon)
         {
@@ -429,10 +429,10 @@ namespace ElmSharp
         }
 
         /// <summary>
-        /// Find the item with that label in the toolbar.
+        /// Finds the item with that label in the toolbar.
         /// </summary>
-        /// <param name="label">The label of the item</param>
-        /// <returns>The <see cref="ToolbarItem"/> into the toolbar</returns>
+        /// <param name="label">The label of the item.</param>
+        /// <returns>The <see cref="ToolbarItem"/> into the toolbar.</returns>
         /// <since_tizen> preview </since_tizen>
         public ToolbarItem FindItemByLabel(string label)
         {
@@ -482,8 +482,8 @@ namespace ElmSharp
         /// <summary>
         /// Creates a widget handle.
         /// </summary>
-        /// <param name="parent">Parent EvasObject</param>
-        /// <returns>Handle IntPtr</returns>
+        /// <param name="parent">Parent EvasObject.</param>
+        /// <returns>Handle IntPtr.</returns>
         /// <since_tizen> preview </since_tizen>
         protected override IntPtr CreateHandle(EvasObject parent)
         {

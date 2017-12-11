@@ -28,7 +28,7 @@ namespace ElmSharp
         /// <summary>
         /// Creates and initializes a new instance of the Background class.
         /// </summary>
-        /// <param name="parent">The EvasObject to which the new Background will be attached as a child.</param>
+        /// <param name="parent">The EvasObject to which the new background will be attached as a child.</param>
         /// <since_tizen> preview </since_tizen>
         public Background(EvasObject parent) : base(parent)
         {
@@ -36,7 +36,7 @@ namespace ElmSharp
         }
 
         /// <summary>
-        /// Sets or gets color to Background.
+        /// Sets or gets the color to the background.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
         public override Color Color
@@ -67,7 +67,7 @@ namespace ElmSharp
         }
 
         /// <summary>
-        /// Sets or gets image to Background.
+        /// Sets or gets the image to the background.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
         public string File
@@ -87,8 +87,8 @@ namespace ElmSharp
         /// </summary>
         /// <remarks>
         /// This sets how the background widget will display its image.
-        /// This will only work if the File was previously set with an image file on obj.
-        /// The image can be display tiled, scaled, centered or stretched. scaled by default.
+        /// This will only work if the file was previously set with an image file on object.
+        /// The image can be display tiled, scaled, centered, or stretched. Scaled by default.
         /// </remarks>
         /// <since_tizen> preview </since_tizen>
         public BackgroundOptions BackgroundOption
@@ -104,7 +104,7 @@ namespace ElmSharp
         }
 
         /// <summary>
-        /// Set the size of the pixmap representation of the image set on a given background widget.
+        /// Sets the size of the pixmap representation of the image set on a given background widget.
         /// This method just makes sense if an image file was set.
         /// This is just a hint for the underlying system.
         /// The real size of the pixmap may differ depending on the type of image being loaded, being bigger than requested.
@@ -127,8 +127,8 @@ namespace ElmSharp
         /// <summary>
         /// Creates a widget handle.
         /// </summary>
-        /// <param name="parent">Parent EvasObject</param>
-        /// <returns>Handle IntPtr</returns>
+        /// <param name="parent">Parent EvasObject.</param>
+        /// <returns>Handle IntPtr.</returns>
         /// <since_tizen> preview </since_tizen>
         protected override IntPtr CreateHandle(EvasObject parent)
         {
@@ -143,18 +143,18 @@ namespace ElmSharp
     }
 
     /// <summary>
-    /// Enumeration for the background type.
+    /// Enumeration for the background types.
     /// </summary>
     /// <since_tizen> preview </since_tizen>
     public enum BackgroundOptions
     {
         /// <summary>
-        /// Centers the background image
+        /// Centers the background image.
         /// </summary>
         Center,
 
         /// <summary>
-        /// Scales the background image, retaining the aspect ratio
+        /// Scales the background image, retaining the aspect ratio.
         /// </summary>
         Scale,
 
@@ -164,7 +164,7 @@ namespace ElmSharp
         Stretch,
 
         /// <summary>
-        /// Tiles the background image at its original size
+        /// Tiles the background image at its original size.
         /// </summary>
         Tile
     }

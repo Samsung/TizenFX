@@ -21,8 +21,8 @@ namespace ElmSharp
 {
     /// <summary>
     /// It inherits <see cref="GenItem"/>.
-    /// A instance to the gengrid item added.
-    /// It contains Update() method to update a gengrid item which is given.
+    /// An instance to the gengrid item is added.
+    /// It contains the Update() method to update a gengrid item which is given.
     /// </summary>
     /// <since_tizen> preview </since_tizen>
     public class GenGridItem : GenItem
@@ -53,7 +53,7 @@ namespace ElmSharp
         }
 
         /// <summary>
-        /// Sets or gets the cursor to be shown when mouse is over the gengrid item.
+        /// Sets or gets the cursor to be shown when the mouse is over the gengrid item.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
         [EditorBrowsable(EditorBrowsableState.Never)]
@@ -111,7 +111,7 @@ namespace ElmSharp
         }
 
         /// <summary>
-        /// Sets or gets or sets the style of given gengrid item's tooltip.
+        /// Sets or gets, or sets the style of the given gengrid item's tooltip.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
         public override string TooltipStyle
@@ -127,7 +127,7 @@ namespace ElmSharp
         }
 
         /// <summary>
-        /// Get the gengrid item's select mode.
+        /// Gets the gengrid item's select mode.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
         public override GenItemSelectionMode SelectionMode
@@ -143,7 +143,7 @@ namespace ElmSharp
         }
 
         /// <summary>
-        /// Gets or sets gengrid item's row position, relative to the whole gengrid's grid area.
+        /// Gets or sets the gengrid item's row position, relative to the whole gengrid's grid area.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
         public int Row
@@ -157,7 +157,7 @@ namespace ElmSharp
         }
 
         /// <summary>
-        /// Gets or sets gengrid item's column position, relative to the whole gengrid's grid area.
+        /// Gets or sets the gengrid item's column position, relative to the whole gengrid's grid area.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
         public int Column
@@ -171,7 +171,7 @@ namespace ElmSharp
         }
 
         /// <summary>
-        /// Set the text to be shown in the gengrid item.
+        /// Sets the text to be shown in the gengrid item.
         /// </summary>
         /// <param name="tooltip">The text to set.</param>
         /// <since_tizen> preview </since_tizen>
@@ -181,7 +181,7 @@ namespace ElmSharp
         }
 
         /// <summary>
-        /// Unset tooltip from item.
+        /// Unsets the tooltip from item.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
         public override void UnsetTooltip()
@@ -191,7 +191,7 @@ namespace ElmSharp
 
         /// <summary>
         /// Updates the content of a given gengrid item.
-        /// This updates an item by calling all the genitem class functions again to get the content, text, and states.
+        /// This updates an item by calling all the GenItem class functions again to get the content, text, and states.
         /// Use this when the original item data has changed and you want the changes to reflect.
         /// </summary>
         /// <remarks>
@@ -204,7 +204,7 @@ namespace ElmSharp
         }
 
         /// <summary>
-        /// Set the content to be shown in the tooltip item.
+        /// Sets the content to be shown in the tooltip item.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
         protected override void UpdateTooltipDelegate()

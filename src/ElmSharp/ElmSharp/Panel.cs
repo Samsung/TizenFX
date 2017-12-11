@@ -19,25 +19,25 @@ using System;
 namespace ElmSharp
 {
     /// <summary>
-    /// Enumeration for paneldirection type.
+    /// Enumeration for the PanelDirection types.
     /// </summary>
     /// <since_tizen> preview </since_tizen>
     public enum PanelDirection
     {
         /// <summary>
-        /// Top to bottom
+        /// Top to bottom.
         /// </summary>
         Top = 0,
         /// <summary>
-        /// Bottom to top
+        /// Bottom to top.
         /// </summary>
         Bottom,
         /// <summary>
-        /// Left to right
+        /// Left to right.
         /// </summary>
         Left,
         /// <summary>
-        /// Right to left
+        /// Right to left.
         /// </summary>
         Right,
     }
@@ -51,9 +51,9 @@ namespace ElmSharp
         SmartEvent _toggled;
 
         /// <summary>
-        /// Creates and initializes a new instance of Panel class.
+        /// Creates and initializes a new instance of the Panel class.
         /// </summary>
-        /// <param name="parent">The EvasObject to which the new Panel will be attached as a child.</param>
+        /// <param name="parent">The EvasObject to which the new panel will be attached as a child.</param>
         /// <since_tizen> preview </since_tizen>
         public Panel(EvasObject parent) : base(parent)
         {
@@ -94,13 +94,13 @@ namespace ElmSharp
         }
 
         /// <summary>
-        /// Toggled will be triggered when toggles Panel.
+        /// Toggled will be triggered when the panel is toggled.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
         public event EventHandler Toggled;
 
         /// <summary>
-        /// Enable or disable scrolling in the Panel.
+        /// Enable or disable scrolling in the panel.
         /// </summary>
         /// <param name="enable">
         /// Bool value can be false or true.
@@ -112,10 +112,10 @@ namespace ElmSharp
         }
 
         /// <summary>
-        /// Sets the scroll size of Panel.
+        /// Sets the scroll size of the panel.
         /// </summary>
         /// <param name="ratio">
-        /// The size of scroll area.
+        /// The size of the scroll area.
         /// </param>
         /// <since_tizen> preview </since_tizen>
         public void SetScrollableArea(double ratio)
@@ -124,7 +124,7 @@ namespace ElmSharp
         }
 
         /// <summary>
-        /// Toggles the hidden state of the Panel.
+        /// Toggles the hidden state of the panel.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
         public void Toggle()
@@ -135,8 +135,8 @@ namespace ElmSharp
         /// <summary>
         /// Creates a widget handle.
         /// </summary>
-        /// <param name="parent">Parent EvasObject</param>
-        /// <returns>Handle IntPtr</returns>
+        /// <param name="parent">Parent EvasObject.</param>
+        /// <returns>Handle IntPtr.</returns>
         /// <since_tizen> preview </since_tizen>
         protected override IntPtr CreateHandle(EvasObject parent)
         {

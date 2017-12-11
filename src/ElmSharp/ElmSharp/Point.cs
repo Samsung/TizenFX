@@ -19,7 +19,7 @@ using System;
 namespace ElmSharp
 {
     /// <summary>
-    /// The Point is a struct that defines a 2-D point as a pair of generic type.
+    /// The Point is a struct that defines the 2D point as a pair of generic type.
     /// </summary>
     /// <since_tizen> preview </since_tizen>
     public struct Point : IEquatable<Point>
@@ -37,7 +37,7 @@ namespace ElmSharp
         public int Y;
 
         /// <summary>
-        /// A human-readable representation of the <see cref="T:Tizen.UI.Point" />.
+        /// A human readable representation of <see cref="T:Tizen.UI.Point"/>.
         /// </summary>
         /// <returns>The string is formatted as "{{X={0} Y={1}}}".</returns>
         /// <since_tizen> preview </since_tizen>
@@ -47,7 +47,7 @@ namespace ElmSharp
         }
 
         /// <summary>
-        /// Gets hash code.
+        /// Gets the hash code.
         /// </summary>
         /// <returns>The hash code.</returns>
         /// <since_tizen> preview </since_tizen>
@@ -64,8 +64,8 @@ namespace ElmSharp
         /// </summary>
         /// <param name="obj">The object to compare with the current instance.</param>
         /// <returns>
-        /// true if obj and this instance are the same type and represent the same value.
-        /// otherwise, false.
+        /// true if the object and this instance are of the same type and represent the same value,
+        /// otherwise false.
         /// </returns>
         /// <since_tizen> preview </since_tizen>
         public override bool Equals(object obj)
@@ -81,8 +81,8 @@ namespace ElmSharp
         /// </summary>
         /// <param name="other">The <see cref="Point"/> to compare with the current instance.</param>
         /// <returns>
-        /// true if obj and this instance are the same type and represent the same value.
-        /// otherwise, false.
+        /// true if the object and this instance are the same type and represent the same value,
+        /// otherwise false.
         /// </returns>
         /// <since_tizen> preview </since_tizen>
         public bool Equals(Point other)
@@ -91,11 +91,11 @@ namespace ElmSharp
         }
 
         /// <summary>
-        /// Whether the two <see cref="T:Tizen.UI.Point" />s are equal.
+        /// Whether both <see cref="T:Tizen.UI.Point"/>s are equal.
         /// </summary>
-        /// <param name="p1">A <see cref="T:Tizen.UI.Point" /> on the left hand side.</param>
-        /// <param name="p2">A <see cref="T:Tizen.UI.Point" /> on the right hand side.</param>
-        /// <returns>True if the two <see cref="T:Tizen.UI.Point" />s have equal values.</returns>
+        /// <param name="p1">A <see cref="T:Tizen.UI.Point"/> on the left hand side.</param>
+        /// <param name="p2">A <see cref="T:Tizen.UI.Point"/> on the right hand side.</param>
+        /// <returns>True if both <see cref="T:Tizen.UI.Point"/>s have equal values.</returns>
         /// <since_tizen> preview </since_tizen>
         public static bool operator ==(Point p1, Point p2)
         {
@@ -103,11 +103,11 @@ namespace ElmSharp
         }
 
         /// <summary>
-        /// Whether two <see cref="T:Tizen.UI.Point" />s are not equal.
+        /// Whether both <see cref="T:Tizen.UI.Point"/>s are not equal.
         /// </summary>
-        /// <param name="p1">A <see cref="T:Tizen.UI.Point" /> on the left hand side.</param>
-        /// <param name="p2">A <see cref="T:Tizen.UI.Point" /> on the right hand side.</param>
-        /// <returns>True if the two <see cref="T:Tizen.UI.Point" />s do not have equal values.</returns>
+        /// <param name="p1">A <see cref="T:Tizen.UI.Point"/> on the left hand side.</param>
+        /// <param name="p2">A <see cref="T:Tizen.UI.Point"/> on the right hand side.</param>
+        /// <returns>True if both <see cref="T:Tizen.UI.Point"/>s do not have equal values.</returns>
         /// <since_tizen> preview </since_tizen>
         public static bool operator !=(Point p1, Point p2)
         {
