@@ -40,7 +40,7 @@ Tizen.Messaging.Push.dll                           #common #mobile #mobile-emul 
 Tizen.Multimedia.AudioIO.dll                       #common #mobile #mobile-emul #tv #ivi #wearable
 Tizen.Multimedia.Camera.dll                        #common #mobile #mobile-emul #tv #ivi #wearable
 Tizen.Multimedia.dll                               #common #mobile #mobile-emul #tv #ivi #wearable
-Tizen.Multimedia.MediaCodec.dll                    #common #mobile #mobile-emul #tv #ivi #wearable
+Tizen.Multimedia.MediaCodec.dll                    #common #mobile #mobile-emul #ivi #wearable
 Tizen.Multimedia.MediaPlayer.dll                   #common #mobile #mobile-emul #tv #ivi #wearable
 Tizen.Multimedia.Metadata.dll                      #common #mobile #mobile-emul #tv #ivi #wearable
 Tizen.Multimedia.Radio.dll                         #common #mobile #mobile-emul #ivi #wearable
