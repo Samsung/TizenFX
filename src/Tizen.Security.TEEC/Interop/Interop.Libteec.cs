@@ -93,6 +93,9 @@ internal static partial class Interop
         [DllImport(Libraries.Libteec, EntryPoint = "TEEC_OpenSession", CallingConvention = CallingConvention.Cdecl)]
         static public extern int OpenSession(ref TEEC_Context context, ref TEEC_Session session, ref TEEC_UUID destination, uint connectionMethod, byte[] connectionData, ref TEEC_Operation operation, out uint returnOrigin);
 
+        [DllImport(Libraries.Libteec, EntryPoint = "TEEC_OpenSession", CallingConvention = CallingConvention.Cdecl)]
+        static public extern int OpenSession(ref TEEC_Context context, ref TEEC_Session session, ref TEEC_UUID destination, uint connectionMethod, byte[] connectionData, IntPtr operation, out uint returnOrigin);
+
         /// <summary>
         /// This function closes a session which has been opened with a trusted application.
         /// All commands within the session must have completed before this function can be called.
@@ -114,6 +117,9 @@ internal static partial class Interop
         //TEEC_Result TEEC_InvokeCommand(TEEC_Session *session, uint commandID, TEEC_Operation *operation, uint *returnOrigin);
         [DllImport(Libraries.Libteec, EntryPoint = "TEEC_InvokeCommand", CallingConvention = CallingConvention.Cdecl)]
         static public extern int InvokeCommand(ref TEEC_Session session, uint commandID, ref TEEC_Operation operation, out uint returnOrigin);
+
+        [DllImport(Libraries.Libteec, EntryPoint = "TEEC_InvokeCommand", CallingConvention = CallingConvention.Cdecl)]
+        static public extern int InvokeCommand(ref TEEC_Session session, uint commandID, IntPtr operation, out uint returnOrigin);
 
         /// <summary>
         /// This function requests the cancelation of a pending open session operation or a command invocation
