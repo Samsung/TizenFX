@@ -26,6 +26,7 @@ internal static partial class Interop
     {
         None = ErrorCode.None,
         InvalidParameter = ErrorCode.InvalidParameter,
+        InvalidFormat = TizenErrorKeyManager | 0x0E, // CKMC_ERROR_INVALID_FORMAT
         VerificationFailed = TizenErrorKeyManager | 0x0D // CKMC_ERROR_VERIFICATION_FAILED
     };
 
@@ -36,6 +37,7 @@ internal static partial class Interop
             case (int)KeyManagerError.None:
                 return;
             case (int)KeyManagerError.InvalidParameter:
+            case (int)KeyManagerError.InvalidFormat:
                 throw new ArgumentException(string.Format("[{0}] {1}, error={2}",
                     LogTag, msg, ErrorFacts.GetErrorMessage(err)));
             default:
