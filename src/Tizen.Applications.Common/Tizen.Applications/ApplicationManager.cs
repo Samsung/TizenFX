@@ -546,7 +546,8 @@ namespace Tizen.Applications
             {
                 if ((item.Key == ApplicationInfoFilter.Keys.Id) ||
                     (item.Key == ApplicationInfoFilter.Keys.Type) ||
-                    (item.Key == ApplicationInfoFilter.Keys.Category))
+                    (item.Key == ApplicationInfoFilter.Keys.Category) ||
+                    (item.Key == ApplicationInfoFilter.Keys.InstalledStorage))
                 {
                     err = Interop.ApplicationManager.AppInfoFilterAddString(infoHandle, item.Key, item.Value);
                 }

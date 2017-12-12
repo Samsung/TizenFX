@@ -26,12 +26,37 @@ namespace Tizen.Applications
     public class ApplicationInfoFilter
     {
         /// <summary>
-        ///
+        /// A constructor of ApplicationInfoFilter class.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public ApplicationInfoFilter()
         {
             Filter = new Dictionary<string, string>();
+        }
+
+        /// <summary>
+        /// This class is a possible value to use in the InstalledApplicationFilter.
+        /// </summary>
+        /// <since_tizen> 5 </since_tizen>
+        public static class Values
+        {
+            /// <summary>
+            /// A pre-defined value string for InstalledStorage key. This value means that the application is installed at internal storage.
+            /// </summary>
+            /// <since_tizen> 5 </since_tizen>
+            public const string InstalledInternal = "installed_internal";
+
+            /// <summary>
+            /// A pre-defined value string for InstalledStorage key. This value means that the application is installed at external storage.
+            /// </summary>
+            /// <since_tizen> 5 </since_tizen>
+            public const string InstalledExternal = "installed_external";
+
+            /// <summary>
+            /// A pre-defined value string for InstalledStorage key. This value means that the application is installed at extended storage.
+            /// </summary>
+            /// <since_tizen> 5 </since_tizen>
+            public const string InstalledExtended = "installed_extended";
         }
 
         /// <summary>
@@ -41,34 +66,39 @@ namespace Tizen.Applications
         public static class Keys
         {
             /// <summary>
-            ///
+            /// A key to filter by application id.
             /// </summary>
             /// <since_tizen> 3 </since_tizen>
             public const string Id = "PACKAGE_INFO_PROP_APP_ID";
             /// <summary>
-            ///
+            /// A key to filter by application type.
             /// </summary>
             /// <since_tizen> 3 </since_tizen>
             public const string Type = "PACKAGE_INFO_PROP_APP_TYPE";
             /// <summary>
-            ///
+            /// A key to filter by application category.
             /// </summary>
             /// <since_tizen> 3 </since_tizen>
             public const string Category = "PACKAGE_INFO_PROP_APP_CATEGORY";
             /// <summary>
-            ///
+            /// A key to filter by installed storage.
+            /// </summary>
+            /// <since_tizen> 5 </since_tizen>
+            public const string InstalledStorage = "PACKAGE_INFO_PROP_APP_INSTALLED_STORAGE";
+            /// <summary>
+            /// A key to filter by nodisplay attribute.
             /// </summary>
             /// <since_tizen> 3 </since_tizen>
             public const string NoDisplay = "PACKAGE_INFO_PROP_APP_NODISPLAY";
             /// <summary>
-            ///
+            /// A key to filter by taskmanage attribute.
             /// </summary>
             /// <since_tizen> 3 </since_tizen>
             public const string TaskManage = "PACKAGE_INFO_PROP_APP_TASKMANAGE";
         }
 
         /// <summary>
-        ///
+        /// A dictionary to store keys and values of filter.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public IDictionary<string, string> Filter

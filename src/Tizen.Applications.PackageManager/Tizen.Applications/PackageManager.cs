@@ -1101,7 +1101,7 @@ namespace Tizen.Applications
 
         private static void RegisterPackageManagerEventIfNeeded()
         {
-            if (s_packageManagerEventCallback != null)
+            if (s_installEventHandler != null && s_uninstallEventHandler != null && s_updateEventHandler != null && s_moveEventHandler != null && s_clearDataEventHandler != null)
                 return;
 
             var err = Interop.PackageManager.ErrorCode.None;
@@ -1157,7 +1157,7 @@ namespace Tizen.Applications
 
         private static void UnregisterPackageManagerEventIfNeeded()
         {
-            if (Handle.IsInvalid || s_packageManagerEventCallback == null || s_installEventHandler != null || s_uninstallEventHandler != null || s_updateEventHandler != null || s_moveEventHandler != null || s_clearDataEventHandler != null)
+            if (s_packageManagerEventCallback == null || s_installEventHandler != null || s_uninstallEventHandler != null || s_updateEventHandler != null || s_moveEventHandler != null || s_clearDataEventHandler != null)
             {
                 return;
             }
