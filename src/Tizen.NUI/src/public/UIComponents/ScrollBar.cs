@@ -241,21 +241,6 @@ namespace Tizen.NUI.UIComponents
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
-        /// <summary>
-        /// Downcasts a handle to scrollBar handle.
-        /// </summary>
-        /// <since_tizen> 3 </since_tizen>
-        /// Please do not use! this will be deprecated!
-        /// Instead please use as keyword.
-        [Obsolete("Please do not use! This will be deprecated! Please use as keyword instead!")]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public new static ScrollBar DownCast(BaseHandle handle)
-        {
-            ScrollBar ret =  Registry.GetManagedBaseHandleFromNativePtr(handle) as ScrollBar;
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
-        }
-
         internal void SetScrollPropertySource(Animatable handle, int propertyScrollPosition, int propertyMinScrollPosition, int propertyMaxScrollPosition, int propertyScrollContentSize)
         {
             NDalicPINVOKE.ScrollBar_SetScrollPropertySource(swigCPtr, Animatable.getCPtr(handle), propertyScrollPosition, propertyMinScrollPosition, propertyMaxScrollPosition, propertyScrollContentSize);

@@ -39,6 +39,8 @@ namespace Tizen.System.Usb
         /// <summary>
         /// Gets number of given interface.
         /// </summary>
+        /// <feature>http://tizen.org/feature/usb.host</feature>
+        /// <exception cref="NotSupportedException">The required feature is not supported.</exception>
         /// <since_tizen> 4 </since_tizen>
         public int Id
         {
@@ -52,6 +54,8 @@ namespace Tizen.System.Usb
         /// <summary>
         /// Sets alternative setting. Use index of new alternative setting for given interface.
         /// </summary>
+        /// <feature>http://tizen.org/feature/usb.host</feature>
+        /// <exception cref="NotSupportedException">The required feature is not supported.</exception>
         /// <since_tizen> 4 </since_tizen>
         public int AlternateSetting
         {
@@ -65,6 +69,8 @@ namespace Tizen.System.Usb
         /// <summary>
         /// Dictionary mapping endpoint Ids to endpoint instances for given interface.
         /// </summary>
+        /// <feature>http://tizen.org/feature/usb.host</feature>
+        /// <exception cref="NotSupportedException">The required feature is not supported.</exception>
         /// <since_tizen> 4 </since_tizen>
         public IReadOnlyDictionary<int, UsbEndpoint> Endpoints
         {
@@ -91,7 +97,11 @@ namespace Tizen.System.Usb
         /// <summary>
         /// Gets string describing an interface.
         /// </summary>
-        /// <exception cref="InvalidOperationException"> Throws exception if device is disconnected or not opened for operation. </exception>
+        /// <feature>http://tizen.org/feature/usb.host</feature>
+        /// <exception cref="NotSupportedException">The required feature is not supported.</exception>
+        /// <exception cref="InvalidOperationException">
+        /// Throws exception if device is disconnected or not opened for operation.
+        /// </exception>
         /// <since_tizen> 4 </since_tizen>
         public string InterfaceString
         {
@@ -107,6 +117,8 @@ namespace Tizen.System.Usb
         /// Claims interface on a device. Interface must be claimed first to perform I/O operations.
         /// </summary>
         /// <param name="force">Set to true to auto detach kernel driver, false otherwise.</param>
+        /// <feature>http://tizen.org/feature/usb.host</feature>
+        /// <exception cref="NotSupportedException">The required feature is not supported.</exception>
         /// <exception cref="InvalidOperationException">
         /// Throws exception if device is disconnected or not opened for operation or another program or driver has claimed the interface.
         /// </exception>
@@ -129,6 +141,8 @@ namespace Tizen.System.Usb
         /// <summary>
         /// Releases previously claimed interface.
         /// </summary>
+        /// <feature>http://tizen.org/feature/usb.host</feature>
+        /// <exception cref="NotSupportedException">The required feature is not supported.</exception>
         /// <exception cref="InvalidOperationException">Throws exception if device is disconnected or not opened for operation.</exception>
         /// <exception cref="UnauthorizedAccessException">Throws exception if user has insufficient permission on device.</exception>
         /// <since_tizen> 4 </since_tizen>

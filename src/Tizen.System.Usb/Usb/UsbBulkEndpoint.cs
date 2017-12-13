@@ -41,6 +41,8 @@ namespace Tizen.System.Usb
         /// received(for an unlimited timeout 0 value should be used).
         /// </param>
         /// <returns>Number of bytes actually transferred.</returns>
+        /// <feature>http://tizen.org/feature/usb.host</feature>
+        /// <exception cref="NotSupportedException">The required feature is not supported.</exception>
         /// <exception cref="InvalidOperationException">Throws exception if device is disconnected or not opened for operation.</exception>
         /// <exception cref="TimeoutException">Throws exception if transfer timed-out.</exception>
         /// <since_tizen> 4 </since_tizen>

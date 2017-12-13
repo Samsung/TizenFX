@@ -29,6 +29,8 @@ namespace Tizen.System.Usb
         /// <summary>
         /// Gets synchronization type of this endpoint.
         /// </summary>
+        /// <feature>http://tizen.org/feature/usb.host</feature>
+        /// <exception cref="NotSupportedException">The required feature is not supported.</exception>
         /// <since_tizen> 4 </since_tizen>
         public SynchronizationType SynchronizationType
         {
@@ -42,6 +44,8 @@ namespace Tizen.System.Usb
         /// <summary>
         /// Gets usage type of this endpoint.
         /// </summary>
+        /// <feature>http://tizen.org/feature/usb.host</feature>
+        /// <exception cref="NotSupportedException">The required feature is not supported.</exception>
         /// <since_tizen> 4 </since_tizen>
         public UsageType UsageType
         {

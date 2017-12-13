@@ -38,6 +38,8 @@ namespace Tizen.System.Usb
         /// <summary>
         /// Number of the bus, this device is connected to.
         /// </summary>
+        /// <feature>http://tizen.org/feature/usb.host</feature>
+        /// <exception cref="NotSupportedException">The required feature is not supported.</exception>
         /// <exception cref="UnauthorizedAccessException">Throws exception if user has insufficient permission on device.</exception>
         /// <since_tizen> 4 </since_tizen>
         public int BusId {
@@ -51,6 +53,8 @@ namespace Tizen.System.Usb
         /// <summary>
         /// Address of device on the bus.
         /// </summary>
+        /// <feature>http://tizen.org/feature/usb.host</feature>
+        /// <exception cref="NotSupportedException">The required feature is not supported.</exception>
         /// <since_tizen> 4 </since_tizen>
         public int Address
         {
@@ -64,6 +68,8 @@ namespace Tizen.System.Usb
         /// <summary>
         /// List of available port numbers from a device.
         /// </summary>
+        /// <feature>http://tizen.org/feature/usb.host</feature>
+        /// <exception cref="NotSupportedException">The required feature is not supported.</exception>
         /// <since_tizen> 4 </since_tizen>
         public IEnumerable<int> Ports
         {
@@ -77,6 +83,8 @@ namespace Tizen.System.Usb
         /// <summary>
         /// Checks if device is opened.
         /// </summary>
+        /// <feature>http://tizen.org/feature/usb.host</feature>
+        /// <exception cref="NotSupportedException">The required feature is not supported.</exception>
         /// <since_tizen> 4 </since_tizen>
         public bool IsOpened
         {
@@ -90,6 +98,8 @@ namespace Tizen.System.Usb
         /// <summary>
         /// Control endpoint (endpoint 0).
         /// </summary>
+        /// <feature>http://tizen.org/feature/usb.host</feature>
+        /// <exception cref="NotSupportedException">The required feature is not supported.</exception>
         /// <since_tizen> 4 </since_tizen>
         public UsbControlEndpoint ControlEndpoint
         {
@@ -103,6 +113,8 @@ namespace Tizen.System.Usb
         /// <summary>
         /// Active configuration for the device.
         /// </summary>
+        /// <feature>http://tizen.org/feature/usb.host</feature>
+        /// <exception cref="NotSupportedException">The required feature is not supported.</exception>
         /// <exception cref="InvalidOperationException">Throws exception if device is disconnected or not opened for operation. </exception>
         /// <since_tizen> 4 </since_tizen>
         public UsbConfiguration ActiveConfiguration
@@ -120,6 +132,8 @@ namespace Tizen.System.Usb
         /// <summary>
         /// Dictionary mapping configuration Ids to configuration instances for this device.
         /// </summary>
+        /// <feature>http://tizen.org/feature/usb.host</feature>
+        /// <exception cref="NotSupportedException">The required feature is not supported.</exception>
         /// <since_tizen> 4 </since_tizen>
         public IReadOnlyDictionary<int, UsbConfiguration> Configurations
         {
@@ -141,6 +155,8 @@ namespace Tizen.System.Usb
         /// <summary>
         /// Device information such as version, class, subclass etc.
         /// </summary>
+        /// <feature>http://tizen.org/feature/usb.host</feature>
+        /// <exception cref="NotSupportedException">The required feature is not supported.</exception>
         /// <since_tizen> 4 </since_tizen>
         public UsbDeviceInformation DeviceInformation
         {
@@ -154,6 +170,8 @@ namespace Tizen.System.Usb
         /// <summary>
         /// String associated with device.
         /// </summary>
+        /// <feature>http://tizen.org/feature/usb.host</feature>
+        /// <exception cref="NotSupportedException">The required feature is not supported.</exception>
         /// <exception cref="InvalidOperationException"> Throws exception if device is disconnected or not opened for operation. </exception>
         /// <since_tizen> 4 </since_tizen>
         public UsbDeviceStrings Strings
@@ -169,6 +187,8 @@ namespace Tizen.System.Usb
         /// <summary>
         /// Opens device, which allows performing operations on it.
         /// </summary>
+        /// <feature>http://tizen.org/feature/usb.host</feature>
+        /// <exception cref="NotSupportedException">The required feature is not supported.</exception>
         /// <exception cref="OutOfMemoryException">Throws exception in case of insufficient memory.</exception>
         /// <exception cref="InvalidOperationException">Throws exception if device is disconnected.</exception>
         /// <exception cref="UnauthorizedAccessException">Throws exception if user has insufficient permission on device.</exception>
@@ -182,6 +202,8 @@ namespace Tizen.System.Usb
         /// <summary>
         /// Closes device for operations.
         /// </summary>
+        /// <feature>http://tizen.org/feature/usb.host</feature>
+        /// <exception cref="NotSupportedException">The required feature is not supported.</exception>
         /// <since_tizen> 4 </since_tizen>
         public void Close()
         {

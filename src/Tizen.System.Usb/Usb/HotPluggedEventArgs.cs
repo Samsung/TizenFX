@@ -33,12 +33,16 @@ namespace Tizen.System.Usb
         /// <summary>
         /// USB Device
         /// </summary>
+        /// <feature>http://tizen.org/feature/usb.host</feature>
+        /// <exception cref="NotSupportedException">The required feature is not supported.</exception>
         /// <since_tizen> 4 </since_tizen>
         public UsbDevice Device { get; }
 
         /// <summary>
         /// Event Type
         /// </summary>
+        /// <feature>http://tizen.org/feature/usb.host</feature>
+        /// <exception cref="NotSupportedException">The required feature is not supported.</exception>
         /// <since_tizen> 4 </since_tizen>
         public HotplugEventType EventType { get; }
     }
