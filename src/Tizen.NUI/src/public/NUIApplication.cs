@@ -168,9 +168,6 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         protected override void OnCreate()
         {
-            // This is also required to create DisposeQueue on main thread.
-            DisposeQueue disposeQ = DisposeQueue.Instance;
-            disposeQ.Initialize();
             base.OnCreate();
 
             // Dali's default layer is default center origin. need to change as top left.

@@ -64,7 +64,7 @@ namespace Tizen.NUI
             RefObject refObj = baseHandle.GetObjectPtr();
             IntPtr refCptr = (IntPtr)RefObject.getCPtr(refObj);
 
-            NUILog.Debug("Storing ref object cptr in control map Hex: {0:X}" + refCptr);
+            //NUILog.Debug("Storing ref object cptr in control map Hex: {0:X}" + refCptr);
 
             if (!Instance._controlMap.ContainsKey(refCptr))
             {
