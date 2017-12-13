@@ -19,7 +19,7 @@ namespace Tizen.NUI
         private List<IDisposable> _disposables = new List<IDisposable>();
         private System.Object _listLock = new object();
         private EventThreadCallback _eventThreadCallback;
-        private EventThreadCallback.CallbackDelegate _disposeQueueProcessDisposablesDelegate;
+        private static EventThreadCallback.CallbackDelegate _disposeQueueProcessDisposablesDelegate;
 
         private DisposeQueue()
         {
@@ -34,10 +34,15 @@ namespace Tizen.NUI
             get { return _disposableQueue; }
         }
 
+        private bool _isCalled = false;
         public void Initialize()
         {
+            if(_isCalled == false)
+            {
             _disposeQueueProcessDisposablesDelegate = new EventThreadCallback.CallbackDelegate(ProcessDisposables);
             _eventThreadCallback = new EventThreadCallback(_disposeQueueProcessDisposablesDelegate);
+                _isCalled = true;
+            }
         }
 
         public void Add(IDisposable disposable)
@@ -64,5 +69,14 @@ namespace Tizen.NUI
                 _disposables.Clear();
             }
         }
+
+        internal int CurruntAccumulatedDisposableObjects
+        {
+            get
+            {
+                return _disposables.Count;
+            }
+        }
+
     }
 }

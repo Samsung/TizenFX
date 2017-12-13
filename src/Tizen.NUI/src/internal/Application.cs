@@ -520,8 +520,6 @@ namespace Tizen.NUI
                 Tizen.Log.Fatal("NUI", "Dali and NUI are version mismatched!");
             }
 
-            // Initialize DisposeQueue Singleton class. This is also required to create DisposeQueue on main thread.
-            DisposeQueue.Instance.Initialize();
             NUIApplicationInitEventArgs e = new NUIApplicationInitEventArgs();
 
             // Populate all members of "e" (NUIApplicationInitEventArgs) with real data
@@ -532,6 +530,9 @@ namespace Tizen.NUI
                 //here we send all data to user event handlers
                 _applicationInitEventHandler(this, e);
             }
+
+            // Initialize DisposeQueue Singleton class. This is also required to create DisposeQueue on main thread.
+            DisposeQueue.Instance.Initialize();
         }
 
         /**
