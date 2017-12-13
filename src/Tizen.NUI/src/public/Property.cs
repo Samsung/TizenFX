@@ -1022,19 +1022,6 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Please do not use! this will be deprecated.
-        /// </summary>
-        /// <since_tizen> 3 </since_tizen>
-        [Obsolete("Please do not use! This will be deprecated!")]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public string GetKey(uint position)
-        {
-            string ret = NDalicPINVOKE.Property_Map_GetKey(swigCPtr, position);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
-        }
-
-        /// <summary>
         /// Retrieves the key at the specified position.
         /// </summary>
         /// <param name="position">The specified position.</param>
@@ -1043,20 +1030,6 @@ namespace Tizen.NUI
         public PropertyKey GetKeyAt(uint position)
         {
             PropertyKey ret = new PropertyKey(NDalicPINVOKE.Property_Map_GetKeyAt(swigCPtr, position), true);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
-        }
-
-        /// <summary>
-        /// Please do not use! this will be deprecated
-        /// </summary>
-        /// <since_tizen> 3 </since_tizen>
-        [Obsolete("Please do not use! This will be deprecated!")]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public PropertyValue Find(string key)
-        {
-            global::System.IntPtr cPtr = NDalicPINVOKE.Property_Map_Find__SWIG_0(swigCPtr, key);
-            PropertyValue ret = (cPtr == global::System.IntPtr.Zero) ? null : new PropertyValue(cPtr, false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -1085,34 +1058,6 @@ namespace Tizen.NUI
         public PropertyValue Find(int indexKey, string stringKey)
         {
             global::System.IntPtr cPtr = NDalicPINVOKE.Property_Map_Find__SWIG_3(swigCPtr, indexKey, stringKey);
-            PropertyValue ret = (cPtr == global::System.IntPtr.Zero) ? null : new PropertyValue(cPtr, false);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
-        }
-
-        /// <summary>
-        /// Please do not use! this will be deprecated.
-        /// </summary>
-        /// <since_tizen> 3 </since_tizen>
-        [Obsolete("Please do not use! This will be deprecated!")]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public PropertyValue Find(string key, PropertyType type)
-        {
-            global::System.IntPtr cPtr = NDalicPINVOKE.Property_Map_Find__SWIG_4(swigCPtr, key, (int)type);
-            PropertyValue ret = (cPtr == global::System.IntPtr.Zero) ? null : new PropertyValue(cPtr, false);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
-        }
-
-        /// <summary>
-        /// Please do not use! this will be deprecated
-        /// </summary>
-        /// <since_tizen> 3 </since_tizen>
-        [Obsolete("Please do not use! This will be deprecated!")]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public PropertyValue Find(int key, PropertyType type)
-        {
-            global::System.IntPtr cPtr = NDalicPINVOKE.Property_Map_Find__SWIG_5(swigCPtr, key, (int)type);
             PropertyValue ret = (cPtr == global::System.IntPtr.Zero) ? null : new PropertyValue(cPtr, false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;

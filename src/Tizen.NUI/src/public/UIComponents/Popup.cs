@@ -391,21 +391,6 @@ namespace Tizen.NUI.UIComponents
         }
 
         /// <summary>
-        /// Downcasts a handle to popup handle.
-        /// </summary>
-        /// <since_tizen> 3 </since_tizen>
-        /// Please do not use! this will be deprecated!
-        /// Instead please use as keyword.
-        [Obsolete("Please do not use! This will be deprecated! Please use as keyword instead!")]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public new static Popup DownCast(BaseHandle handle)
-        {
-            Popup ret =  Registry.GetManagedBaseHandleFromNativePtr(handle) as Popup;
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
-        }
-
-        /// <summary>
         /// Sets the title for this popup.
         /// </summary>
         /// <param name="titleView">The actor to set the title.</param>

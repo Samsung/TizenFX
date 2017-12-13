@@ -188,23 +188,6 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        /// Downcasts a handle to videoView handle.
-        /// </summary>
-        /// <param name="handle"></param>
-        /// <returns></returns>
-        /// Please do not use! this will be deprecated!
-        /// Instead please use as keyword.
-        /// <since_tizen> 3 </since_tizen>
-        [Obsolete("Please do not use! This will be deprecated! Please use as keyword instead!")]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public new static VideoView DownCast(BaseHandle handle)
-        {
-            VideoView ret =  Registry.GetManagedBaseHandleFromNativePtr(handle) as VideoView;
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
-        }
-
-        /// <summary>
         /// Starts the video playback.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
