@@ -133,6 +133,19 @@ namespace Tizen.NUI
             }
         }
 
+        public void Connect(System.IntPtr callback)
+        {
+            NDalicPINVOKE.TimerSignalType_Connect(swigCPtr, new System.Runtime.InteropServices.HandleRef(this, callback));
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        public void Disconnect(System.IntPtr callback)
+        {
+            NDalicPINVOKE.TimerSignalType_Disconnect(swigCPtr, new System.Runtime.InteropServices.HandleRef(this, callback));
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+
         public bool Emit()
         {
             bool ret = NDalicPINVOKE.TimerSignalType_Emit(swigCPtr);
