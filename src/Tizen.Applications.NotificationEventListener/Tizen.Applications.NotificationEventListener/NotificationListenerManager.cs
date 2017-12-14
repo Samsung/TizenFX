@@ -353,34 +353,7 @@ namespace Tizen.Applications.NotificationEventListener
             IntPtr currentList = IntPtr.Zero;
             IList<NotificationEventArgs> list = new List<NotificationEventArgs>();
 
-            err = Interop.NotificationEventListener.GetList(NotificationType.Notification, -1, out notificationList);
-            if (err != Interop.NotificationEventListener.ErrorCode.None)
-            {
-                throw NotificationEventListenerErrorFactory.GetException(err, "unable to get notification list");
-            }
-
-            if (notificationList != IntPtr.Zero)
-            {
-                currentList = notificationList;
-                while (currentList != IntPtr.Zero)
-                {
-                    IntPtr notification;
-                    NotificationEventArgs eventargs = new NotificationEventArgs();
-
-                    notification = Interop.NotificationEventListener.GetData(currentList);
-
-                    eventargs = NotificationEventArgsBinder.BindObject(notification, false);
-
-                    list.Add(eventargs);
-
-                    currentList = Interop.NotificationEventListener.GetNext(currentList);
-                }
-
-                Interop.NotificationEventListener.NotificationListFree(notificationList);
-                notificationList = IntPtr.Zero;
-            }
-
-            err = Interop.NotificationEventListener.GetList(NotificationType.Ongoing, -1, out notificationList);
+            err = Interop.NotificationEventListener.GetList(NotificationType.None, -1, out notificationList);
             if (err != Interop.NotificationEventListener.ErrorCode.None)
             {
                 throw NotificationEventListenerErrorFactory.GetException(err, "unable to get notification list");
