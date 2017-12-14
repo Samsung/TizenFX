@@ -182,6 +182,11 @@ namespace Tizen.Applications.NotificationEventListener
     internal enum NotificationType
     {
         /// <summary>
+        /// Type none.
+        /// </summary>
+        None = -1,
+
+        /// <summary>
         /// Notification type.
         /// </summary>
         Notification = 0,
