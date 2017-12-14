@@ -440,5 +440,35 @@ namespace Tizen.Applications.NotificationEventListener
 
             return eventArgs;
         }
+
+        /// <summary>
+        /// Gets the number of all notifications
+        /// </summary>
+        /// <returns>The number of all notifications</returns>
+        /// <exception cref="UnauthorizedAccessException"> Thrown in case of a permission is denied.</exception>
+        /// <exception cref="InvalidOperationException">Thrown in case of any internal error.</exception>
+        /// <privilege>http://tizen.org/privilege/notification</privilege>
+        /// <since_tizen> 4 </since_tizen>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static int GetAllCount()
+        {
+            int count;
+            Interop.NotificationEventListener.ErrorCode error;
+
+            error = Interop.NotificationEventListener.GetAllCount(NotificationType.None, out count);
+            if (error != Interop.NotificationEventListener.ErrorCode.None)
+            {
+                if (error == Interop.NotificationEventListener.ErrorCode.PermissionDenied)
+                {
+                    throw NotificationEventListenerErrorFactory.GetException(Interop.NotificationEventListener.ErrorCode.PermissionDenied, "failed to get all count");
+                }
+                else
+                {
+                    throw NotificationEventListenerErrorFactory.GetException(Interop.NotificationEventListener.ErrorCode.InvalidOperation, "failed to get all count");
+                }
+            }
+
+            return count;
+        }
     }
 }

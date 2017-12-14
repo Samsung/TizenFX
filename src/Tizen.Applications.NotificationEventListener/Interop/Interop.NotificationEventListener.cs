@@ -168,6 +168,9 @@ internal static partial class Interop
         [DllImport(Libraries.NotificationEventListener, EntryPoint = "notification_load")]
         internal static extern IntPtr LoadNotification(string appID, int uniqueID);
 
+        [DllImport(Libraries.NotificationEventListener, EntryPoint = "notification_get_all_count")]
+        internal static extern ErrorCode GetAllCount(NotificationType type, out int count);
+
         internal static ErrorCode GetAppId(NotificationSafeHandle handle, out string appid)
         {
             ErrorCode err;
