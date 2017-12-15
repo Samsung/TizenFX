@@ -4,7 +4,7 @@ using System.Collections.Generic;
 namespace Tizen.Applications.AttachPanel
 {
     /// <summary>
-    /// Attach panel internal implementation
+    /// Attach panel internal implementation.
     /// </summary>
     /// <since_tizen> 4 </since_tizen>
     public partial class AttachPanel

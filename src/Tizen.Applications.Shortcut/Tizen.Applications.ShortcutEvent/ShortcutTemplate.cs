@@ -17,13 +17,13 @@
 namespace Tizen.Applications.Shortcut
 {
     /// <summary>
-    /// A class that contains the preset list of shortcut template from the installed package.
+    /// A class that contains the preset list of the shortcut template from the installed package.
     /// </summary>
     /// <since_tizen> 4 </since_tizen>
     public class ShortcutTemplate
     {
         /// <summary>
-        /// Gets the Application ID.
+        /// Gets the application ID.
         /// </summary>
         /// <since_tizen> 4 </since_tizen>
         public string AppId { get; internal set; }
@@ -41,13 +41,13 @@ namespace Tizen.Applications.Shortcut
         public string IconPath { get; internal set; }
 
         /// <summary>
-        /// Gets the user data. A property of shortcut element in manifest file.
+        /// Gets the user data. A property of the shortcut element in the manifest file.
         /// </summary>
         /// <since_tizen> 4 </since_tizen>
         public string ExtraKey { get; internal set; }
 
         /// <summary>
-        /// Gets the user data. A property of shortcut element in manifest file.
+        /// Gets the user data. A property of the shortcut element in the manifest file.
         /// </summary>
         /// <since_tizen> 4 </since_tizen>
         public string ExtraData { get; internal set; }

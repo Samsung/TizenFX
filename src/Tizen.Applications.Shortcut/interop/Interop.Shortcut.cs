@@ -32,67 +32,67 @@ internal static partial class Interop
         internal delegate int ListCallback(string package_name, string icon, string name, string extra_key, string extra_data, IntPtr user_data);
 
         /// <summary>
-        /// Enumeration for values of shortcut response types.
+        /// Enumeration for the values of the shortcut response types.
         /// </summary>
         internal enum ErrorCode : int
         {
             /// <summary>
-            /// Successful
+            /// Successful.
             /// </summary>
             None = Tizen.Internals.Errors.ErrorCode.None,
 
             /// <summary>
-            /// Invalid function parameter
+            /// Invalid function parameter.
             /// </summary>
             InvalidParameter = Tizen.Internals.Errors.ErrorCode.InvalidParameter,
 
             /// <summary>
-            /// Out of memory
+            /// Out of memory.
             /// </summary>
             OutOfMemory = Tizen.Internals.Errors.ErrorCode.OutOfMemory,
 
             /// <summary>
-            /// Permission denied
+            /// Permission denied.
             /// </summary>
             PermissionDenied = Tizen.Internals.Errors.ErrorCode.PermissionDenied,
 
             /// <summary>
-            /// I/O Error
+            /// I/O Error.
             /// </summary>
             IoError = Tizen.Internals.Errors.ErrorCode.IoError,
 
             /// <summary>
-            /// Not supported
+            /// Not supported.
             /// </summary>
             NotSupported = Tizen.Internals.Errors.ErrorCode.NotSupported,
 
             /// <summary>
-            /// Device or resource busy
+            /// Device or resource busy.
             /// </summary>
             ResourceBusy = Tizen.Internals.Errors.ErrorCode.ResourceBusy,
 
             /// <summary>
-            /// There is no space to add a new shortcut
+            /// There is no space to add a new shortcut.
             /// </summary>
             NoSpace = -0x01160000 | 0x01,
 
             /// <summary>
-            /// Shortcut is already added
+            /// Shortcut is already added.
             /// </summary>
             Exist = -0x01160000 | 0x02,
 
             /// <summary>
-            /// Unrecoverable error
+            /// Unrecoverable error.
             /// </summary>
             Fault = -0x01160000 | 0x04,
 
             /// <summary>
-            /// Not exist shortcut
+            /// Shortcut does not exist.
             /// </summary>
             NotExist = -0x01160000 | 0x08,
 
             /// <summary>
-            /// Connection not established or communication problem
+            /// Connection not established or communication problem.
             /// </summary>
             COMM = -0x01160000 | 0x40
         }

@@ -17,7 +17,7 @@
 namespace Tizen.Applications.Shortcut
 {
     /// <summary>
-    /// A class to get information of the Shortcut.
+    /// A class to get the information of the shortcut.
     /// </summary>
     /// <since_tizen> 4 </since_tizen>
     public class ShortcutInfo
@@ -35,7 +35,7 @@ namespace Tizen.Applications.Shortcut
         public string IconPath { get; set; } = string.Empty;
 
         /// <summary>
-        /// Gets or sets a value indicating whether to allow or not to allow duplication.
+        /// Gets or sets a value indicating whether to allow or not allow duplication.
         /// </summary>
         /// <since_tizen> 4 </since_tizen>
         public bool IsAllowDuplicate { get; set; }
