@@ -19,7 +19,7 @@ namespace Tizen.NUI
         private List<IDisposable> _disposables = new List<IDisposable>();
         private System.Object _listLock = new object();
         private EventThreadCallback _eventThreadCallback;
-        private static EventThreadCallback.CallbackDelegate _disposeQueueProcessDisposablesDelegate;
+        private EventThreadCallback.CallbackDelegate _disposeQueueProcessDisposablesDelegate;
 
         private DisposeQueue()
         {
@@ -69,14 +69,5 @@ namespace Tizen.NUI
                 _disposables.Clear();
             }
         }
-
-        internal int CurruntAccumulatedDisposableObjects
-        {
-            get
-            {
-                return _disposables.Count;
-            }
-        }
-
     }
 }

@@ -24,7 +24,6 @@ namespace Tizen.NUI
         protected bool swigCMemOwn;
         /// <since_tizen> 3 </since_tizen>
         public delegate void CallbackDelegate();
-        private const int THREASHOLD = 100;
 
         internal EventThreadCallback(global::System.IntPtr cPtr, bool cMemoryOwn)
         {
@@ -113,10 +112,7 @@ namespace Tizen.NUI
         {
             if ((System.IntPtr)swigCPtr != global::System.IntPtr.Zero)
             {
-                if(DisposeQueue.Instance.CurruntAccumulatedDisposableObjects > THREASHOLD)
-                {
-                    NDalicManualPINVOKE.EventThreadCallback_Trigger(swigCPtr);
-                }
+                NDalicManualPINVOKE.EventThreadCallback_Trigger(swigCPtr);
             }
 
             if (NDalicPINVOKE.SWIGPendingException.Pending)
