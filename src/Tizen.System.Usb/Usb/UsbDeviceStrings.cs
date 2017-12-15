@@ -14,19 +14,25 @@
  * limitations under the License.
  */
 
+using System;
+
 namespace Tizen.System.Usb
 {
     /// <summary>
     /// String information for USB device.
     /// </summary>
-    /// <since_tizen> 4 </since_tizen>
+    /// <since_tizen> 5 </since_tizen>
     public class UsbDeviceStrings
     {
+        private readonly UsbDevice _device;
+        private string _language;
+        private string _Serial;
+
         internal UsbDeviceStrings(UsbDevice device, string language)
         {
-            Manufacturer = Interop.DescriptorString(device._handle.GetManufacturerStr, language);
-            Product = Interop.DescriptorString(device._handle.GetProductStr, language);
-            Serial = Interop.DescriptorString(device._handle.GetSerialNumberStr, language);
+            _device = device;
+            _language = language;
+            _Serial = Serial;
         }
 
         /// <summary>
@@ -34,23 +40,44 @@ namespace Tizen.System.Usb
         /// </summary>
         /// <feature>http://tizen.org/feature/usb.host</feature>
         /// <exception cref="NotSupportedException">The required feature is not supported.</exception>
-        /// <since_tizen> 4 </since_tizen>
-        public string Manufacturer;
+        /// <since_tizen> 5 </since_tizen>
+        public string Manufacturer
+        {
+            get
+            {
+                _device.ThrowIfDisposed();
+                return Interop.DescriptorString(_device._handle.GetManufacturerStr, _language);
+            }
+        }
 
         /// <summary>
         /// Gets product string of device
         /// </summary>
         /// <feature>http://tizen.org/feature/usb.host</feature>
         /// <exception cref="NotSupportedException">The required feature is not supported.</exception>
-        /// <since_tizen> 4 </since_tizen>
-        public string Product;
+        /// <since_tizen> 5 </since_tizen>
+        public string Product
+        {
+            get
+            {
+                _device.ThrowIfDisposed();
+                return Interop.DescriptorString(_device._handle.GetProductStr, _language);
+            }
+        }
 
         /// <summary>
         /// Gets serial number of a device.
         /// </summary>
         /// <feature>http://tizen.org/feature/usb.host</feature>
         /// <exception cref="NotSupportedException">The required feature is not supported.</exception>
-        /// <since_tizen> 4 </since_tizen>
-        public string Serial;
+        /// <since_tizen> 5 </since_tizen>
+        public string Serial
+        {
+            get
+            {
+                _device.ThrowIfDisposed();
+                return Interop.DescriptorString(_device._handle.GetSerialNumberStr, _language);
+            }
+        }
     }
 }

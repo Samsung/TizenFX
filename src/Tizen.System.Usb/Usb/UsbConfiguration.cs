@@ -23,7 +23,7 @@ namespace Tizen.System.Usb
     /// <summary>
     /// Class to manage USB Configuration.
     /// </summary>
-    /// <since_tizen> 4 </since_tizen>
+    /// <since_tizen> 5 </since_tizen>
     public class UsbConfiguration : IDisposable
     {
         internal readonly Interop.UsbConfigHandle _handle;
@@ -41,7 +41,7 @@ namespace Tizen.System.Usb
         /// </summary>
         /// <feature>http://tizen.org/feature/usb.host</feature>
         /// <exception cref="NotSupportedException">The required feature is not supported.</exception>
-        /// <since_tizen> 4 </since_tizen>
+        /// <since_tizen> 5 </since_tizen>
         public bool IsSelfPowered
         {
             get
@@ -56,7 +56,7 @@ namespace Tizen.System.Usb
         /// </summary>
         /// <feature>http://tizen.org/feature/usb.host</feature>
         /// <exception cref="NotSupportedException">The required feature is not supported.</exception>
-        /// <since_tizen> 4 </since_tizen>
+        /// <since_tizen> 5 </since_tizen>
         public bool SupportRemoteWakeup
         {
             get
@@ -71,7 +71,7 @@ namespace Tizen.System.Usb
         /// </summary>
         /// <feature>http://tizen.org/feature/usb.host</feature>
         /// <exception cref="NotSupportedException">The required feature is not supported.</exception>
-        /// <since_tizen> 4 </since_tizen>
+        /// <since_tizen> 5 </since_tizen>
         public int MaximumPowerRequired
         {
             get
@@ -86,7 +86,7 @@ namespace Tizen.System.Usb
         /// </summary>
         /// <feature>http://tizen.org/feature/usb.host</feature>
         /// <exception cref="NotSupportedException">The required feature is not supported.</exception>
-        /// <since_tizen> 4 </since_tizen>
+        /// <since_tizen> 5 </since_tizen>
         public IReadOnlyDictionary<int, UsbInterface> Interfaces
         {
             get
@@ -116,7 +116,7 @@ namespace Tizen.System.Usb
         /// <exception cref="InvalidOperationException">
         /// Throws exception if device is disconnected or not opened for operation or busy as its interfaces are currently claimed.
         /// </exception>
-        /// <since_tizen> 4 </since_tizen>
+        /// <since_tizen> 5 </since_tizen>
         public string ConfigurationString
         {
             get
@@ -133,7 +133,7 @@ namespace Tizen.System.Usb
         /// <feature>http://tizen.org/feature/usb.host</feature>
         /// <exception cref="NotSupportedException">The required feature is not supported.</exception>
         /// <exception cref="InvalidOperationException"> Throws exception if device is disconnected or not opened for operation. </exception>
-        /// <since_tizen> 4 </since_tizen>
+        /// <since_tizen> 5 </since_tizen>
         public void SetAsActive()
         {
             ThrowIfDisposed();
@@ -158,7 +158,7 @@ namespace Tizen.System.Usb
         /// <summary>
         /// Releases all resources used by the ConnectionProfile.
         /// It should be called after finished using of the object.</summary>
-        /// <since_tizen> 4 </since_tizen>
+        /// <since_tizen> 5 </since_tizen>
         protected virtual void Dispose(bool disposing)
         {
             if (!disposedValue)
@@ -179,7 +179,7 @@ namespace Tizen.System.Usb
         /// <summary>
         /// Releases all resources used by the ConnectionProfile.
         /// It should be called after finished using of the object.</summary>
-        /// <since_tizen> 4 </since_tizen>
+        /// <since_tizen> 5 </since_tizen>
         public void Dispose()
         {
             Dispose(true);
