@@ -23,6 +23,7 @@ namespace ElmSharp.Test
     {
         public override string TestName => "ScrollerTest3";
         public override string TestDescription => "To test ScrollTo operation of Scroller";
+        Scroller _scroller;
 
         public override void Run(Window window)
         {
@@ -30,6 +31,7 @@ namespace ElmSharp.Test
             conformant.Show();
             Box outterBox = new Box(window)
             {
+                BackgroundColor = Color.Gray,
                 AlignmentX = -1,
                 AlignmentY = -1,
                 WeightX = 1,
@@ -37,17 +39,16 @@ namespace ElmSharp.Test
                 IsHorizontal = false,
             };
             outterBox.Show();
-            Scroller scroller = new Scroller(window)
+            _scroller = new Scroller(window)
             {
                 AlignmentX = -1,
                 AlignmentY = -1,
                 WeightX = 1,
                 WeightY = 1,
-                ScrollBlock = ScrollBlock.Vertical,
                 HorizontalPageScrollLimit = 1,
             };
-            scroller.SetPageSize(1.0, 1.0);
-            scroller.Show();
+            _scroller.SetPageSize(1.0, 1.0);
+            _scroller.Show();
 
             Box box = new Box(window)
             {
@@ -57,9 +58,9 @@ namespace ElmSharp.Test
                 WeightY = 1
             };
             box.Show();
-            scroller.SetContent(box);
+            _scroller.SetContent(box);
 
-            for (int i = 0; i < 30; i++)
+            for (int i = 0; i < 150; i++)
             {
                 Label addlabel = new Label(window)
                 {
@@ -74,7 +75,7 @@ namespace ElmSharp.Test
             }
 
             conformant.SetContent(outterBox);
-            outterBox.PackEnd(scroller);
+            outterBox.PackEnd(_scroller);
 
             Button prev = new Button(window)
             {
@@ -88,25 +89,79 @@ namespace ElmSharp.Test
                 WeightX = 1,
                 Text = "next"
             };
+
+            int index = 0;
+
             prev.Clicked += (s, e) =>
             {
-                Rect region = new Rect(0, 0, scroller.Geometry.Width, scroller.Geometry.Width);
-                Console.WriteLine("{0} {1}\n", scroller.Geometry.Width, scroller.Geometry.Width);
-                scroller.ScrollTo(region, true);
+                Rect region = new Rect(0, _scroller.Geometry.Height * --index, _scroller.Geometry.Width * index, _scroller.Geometry.Height);
+                Console.WriteLine("index : {0} [{1}, {2}]\n", index, _scroller.Geometry.Width, _scroller.Geometry.Height);
+                _scroller.ScrollTo(region, false);
             };
+
             next.Clicked += (s, e) =>
             {
-                Rect region = new Rect(0, scroller.Geometry.Height, scroller.Geometry.Width, scroller.Geometry.Height);
-                Console.WriteLine("{0} {1}\n", scroller.Geometry.Width, scroller.Geometry.Width);
-                scroller.ScrollTo(region, true);
+                Rect region = new Rect(0, _scroller.Geometry.Height * ++index, _scroller.Geometry.Width, _scroller.Geometry.Height);
+                Console.WriteLine("index : {0} [{1}, {2}]\n", index, _scroller.Geometry.Width, _scroller.Geometry.Height);
+                _scroller.ScrollTo(region, false);
             };
             prev.Show();
             next.Show();
+
+            Button prev2 = new Button(window)
+            {
+                AlignmentX = -1,
+                WeightX = 1,
+                Text = "animation Prev"
+            };
+            Button next2 = new Button(window)
+            {
+                AlignmentX = -1,
+                WeightX = 1,
+                Text = "animation next"
+            };
+
+            prev2.Clicked += (s, e) =>
+            {
+                Rect region = new Rect(0, _scroller.Geometry.Height * --index, _scroller.Geometry.Width * index, _scroller.Geometry.Height);
+                Console.WriteLine("animation index : {0} [{1}, {2}]\n", index, _scroller.Geometry.Width, _scroller.Geometry.Height);
+                _scroller.ScrollTo(region, true);
+            };
+
+            next2.Clicked += (s, e) =>
+            {
+                Rect region = new Rect(0, _scroller.Geometry.Height * ++index, _scroller.Geometry.Width, _scroller.Geometry.Height);
+                Console.WriteLine("animation index : {0} [{1}, {2}]\n", index, _scroller.Geometry.Width, _scroller.Geometry.Height);
+                _scroller.ScrollTo(region, true);
+            };
+            prev2.Show();
+            next2.Show();
+
             outterBox.PackEnd(prev);
             outterBox.PackEnd(next);
+            outterBox.PackEnd(prev2);
+            outterBox.PackEnd(next2);
 
-            scroller.DragStart += Scroller_DragStart;
-            scroller.DragStop += Scroller_DragStop;
+            _scroller.DragStart += Scroller_DragStart;
+            _scroller.DragStop += Scroller_DragStop;
+            _scroller.ScrollAnimationStarted += Scroller_ScrollStart;
+            _scroller.ScrollAnimationStopped += Scroller_ScrollStop;
+            _scroller.Scrolled += Scroller_Scrolled;
+        }
+
+        private void Scroller_Scrolled(object sender, EventArgs e)
+        {
+            Console.WriteLine($"scrolled : {_scroller.CurrentRegion}");
+        }
+
+        private void Scroller_ScrollStop(object sender, EventArgs e)
+        {
+            Console.WriteLine("scroll animation stop");
+        }
+
+        private void Scroller_ScrollStart(object sender, EventArgs e)
+        {
+             Console.WriteLine("scroll animation start");
         }
 
         private void Scroller_DragStop(object sender, EventArgs e)

@@ -91,6 +91,8 @@ namespace ElmSharp
     public class Scroller : Layout
     {
         SmartEvent _scroll;
+        SmartEvent _scrollAnimationStart;
+        SmartEvent _scrollAnimationStop;
         SmartEvent _dragStart;
         SmartEvent _dragStop;
         SmartEvent _scrollpage;
@@ -125,6 +127,38 @@ namespace ElmSharp
             remove
             {
                 _scroll.On -= value;
+            }
+        }
+
+        /// <summary>
+        /// ScrollAnimationStarted will be triggered when the content animation has been started.
+        /// </summary>
+        /// <since_tizen> preview </since_tizen>
+        public event EventHandler ScrollAnimationStarted
+        {
+            add
+            {
+                _scrollAnimationStart.On += value;
+            }
+            remove
+            {
+                _scrollAnimationStart.On -= value;
+            }
+        }
+
+        /// <summary>
+        /// ScrollAnimationStopped will be triggered when the content animation has been stopped.
+        /// </summary>
+        /// <since_tizen> preview </since_tizen>
+        public event EventHandler ScrollAnimationStopped
+        {
+            add
+            {
+                _scrollAnimationStop.On += value;
+            }
+            remove
+            {
+                _scrollAnimationStop.On -= value;
             }
         }
 
@@ -835,6 +869,8 @@ namespace ElmSharp
         {
             base.OnRealized();
             _scroll = new SmartEvent(this, this.RealHandle, "scroll");
+            _scrollAnimationStart = new SmartEvent(this, this.RealHandle, "scroll,anim,start");
+            _scrollAnimationStop = new SmartEvent(this, this.RealHandle, "scroll,anim,stop");
             _dragStart = new SmartEvent(this, this.RealHandle, "scroll,drag,start");
             _dragStop = new SmartEvent(this, this.RealHandle, "scroll,drag,stop");
             _scrollpage = new SmartEvent(this, this.RealHandle, "scroll,page,changed");
