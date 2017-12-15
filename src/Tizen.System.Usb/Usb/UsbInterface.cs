@@ -22,7 +22,7 @@ namespace Tizen.System.Usb
     /// <summary>
     /// Class to manage USB Interfaces.
     /// </summary>
-    /// <since_tizen> 4 </since_tizen>
+    /// <since_tizen> 5 </since_tizen>
     public class UsbInterface
     {
         internal readonly Interop.UsbInterfaceHandle _handle;
@@ -41,7 +41,7 @@ namespace Tizen.System.Usb
         /// </summary>
         /// <feature>http://tizen.org/feature/usb.host</feature>
         /// <exception cref="NotSupportedException">The required feature is not supported.</exception>
-        /// <since_tizen> 4 </since_tizen>
+        /// <since_tizen> 5 </since_tizen>
         public int Id
         {
             get
@@ -56,7 +56,7 @@ namespace Tizen.System.Usb
         /// </summary>
         /// <feature>http://tizen.org/feature/usb.host</feature>
         /// <exception cref="NotSupportedException">The required feature is not supported.</exception>
-        /// <since_tizen> 4 </since_tizen>
+        /// <since_tizen> 5 </since_tizen>
         public int AlternateSetting
         {
             set
@@ -71,7 +71,7 @@ namespace Tizen.System.Usb
         /// </summary>
         /// <feature>http://tizen.org/feature/usb.host</feature>
         /// <exception cref="NotSupportedException">The required feature is not supported.</exception>
-        /// <since_tizen> 4 </since_tizen>
+        /// <since_tizen> 5 </since_tizen>
         public IReadOnlyDictionary<int, UsbEndpoint> Endpoints
         {
             get
@@ -102,7 +102,7 @@ namespace Tizen.System.Usb
         /// <exception cref="InvalidOperationException">
         /// Throws exception if device is disconnected or not opened for operation.
         /// </exception>
-        /// <since_tizen> 4 </since_tizen>
+        /// <since_tizen> 5 </since_tizen>
         public string InterfaceString
         {
             get
@@ -122,7 +122,7 @@ namespace Tizen.System.Usb
         /// <exception cref="InvalidOperationException">
         /// Throws exception if device is disconnected or not opened for operation or another program or driver has claimed the interface.
         /// </exception>
-        /// <since_tizen> 4 </since_tizen>
+        /// <since_tizen> 5 </since_tizen>
         public void Claim(bool force)
         {
             ThrowIfDisposed();
@@ -145,7 +145,7 @@ namespace Tizen.System.Usb
         /// <exception cref="NotSupportedException">The required feature is not supported.</exception>
         /// <exception cref="InvalidOperationException">Throws exception if device is disconnected or not opened for operation.</exception>
         /// <exception cref="UnauthorizedAccessException">Throws exception if user has insufficient permission on device.</exception>
-        /// <since_tizen> 4 </since_tizen>
+        /// <since_tizen> 5 </since_tizen>
         public void Release()
         {
             ThrowIfDisposed();

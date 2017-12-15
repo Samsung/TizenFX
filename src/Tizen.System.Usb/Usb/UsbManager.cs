@@ -23,7 +23,7 @@ namespace Tizen.System.Usb
     /// <summary>
     /// USB Manager class.
     /// </summary>
-    /// <since_tizen> 4 </since_tizen>
+    /// <since_tizen> 5 </since_tizen>
     public class UsbManager : IDisposable
     {
         // It needs to be static as its destroy function must be called after closing all devices and before application close.
@@ -48,7 +48,7 @@ namespace Tizen.System.Usb
         /// </summary>
         /// <feature>http://tizen.org/feature/usb.host</feature>
         /// <exception cref="NotSupportedException">The required feature is not supported.</exception>
-        /// <since_tizen> 4 </since_tizen>
+        /// <since_tizen> 5 </since_tizen>
         public UsbManager()
         {
             if (_context == null) throw new NotSupportedException("USB host operations are not supported in this device");
@@ -71,7 +71,7 @@ namespace Tizen.System.Usb
         /// <exception cref="NotSupportedException">The required feature is not supported.</exception>
         /// <exception cref="OutOfMemoryException">Throws exception in case of insufficient memory.</exception>
         /// <exception cref="UnauthorizedAccessException">Throws exception if user has insufficient permission on device.</exception>
-        /// <since_tizen> 4 </since_tizen>
+        /// <since_tizen> 5 </since_tizen>
         public IEnumerable<UsbDevice> AvailableDevices
         {
             get
@@ -86,7 +86,7 @@ namespace Tizen.System.Usb
         /// </summary>
         /// <feature>http://tizen.org/feature/usb.host</feature>
         /// <exception cref="NotSupportedException">The required feature is not supported.</exception>
-        /// <since_tizen> 4 </since_tizen>
+        /// <since_tizen> 5 </since_tizen>
         public event EventHandler<HotPluggedEventArgs> DeviceHotPlugged;
 
         internal void HostHotplugAttachCallback(IntPtr devHandle, IntPtr userData)
@@ -141,7 +141,7 @@ namespace Tizen.System.Usb
             Dispose(false);
         }
 
-        /// <since_tizen> 4 </since_tizen>
+        /// <since_tizen> 5 </since_tizen>
         public void Dispose()
         {
             Dispose(true);

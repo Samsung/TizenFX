@@ -19,7 +19,7 @@ namespace Tizen.System.Usb
     /// <summary>
     /// Enumeration of hot plugged event type for USB devices.
     /// </summary>
-    /// <since_tizen> 4 </since_tizen>
+    /// <since_tizen> 5 </since_tizen>
     public enum HotplugEventType
     {
         /// <summary>

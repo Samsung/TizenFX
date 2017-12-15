@@ -21,7 +21,7 @@ namespace Tizen.System.Usb
     /// <summary>
     /// USB Interrupt Endpoint class.
     /// </summary>
-    /// <since_tizen> 4 </since_tizen>
+    /// <since_tizen> 5 </since_tizen>
     public class UsbInterruptEndpoint : UsbEndpoint
     {
         internal UsbInterruptEndpoint(UsbInterface parent, Interop.UsbEndpointHandle handle) : base(parent, handle)
@@ -33,7 +33,7 @@ namespace Tizen.System.Usb
         /// </summary>
         /// <feature>http://tizen.org/feature/usb.host</feature>
         /// <exception cref="NotSupportedException">The required feature is not supported.</exception>
-        /// <since_tizen> 4 </since_tizen>
+        /// <since_tizen> 5 </since_tizen>
         public int PollingInterval
         {
             get
@@ -60,7 +60,7 @@ namespace Tizen.System.Usb
         /// <exception cref="NotSupportedException">The required feature is not supported.</exception>
         /// <exception cref="InvalidOperationException">Throws exception if device is disconnected or not opened for operation.</exception>
         /// <exception cref="TimeoutException">Throws exception if transfer timed-out.</exception>
-        /// <since_tizen> 4 </since_tizen>
+        /// <since_tizen> 5 </since_tizen>
         public int Transfer(byte[] buffer, int length, uint timeout)
         {
             return TransferImpl(buffer, length, timeout);

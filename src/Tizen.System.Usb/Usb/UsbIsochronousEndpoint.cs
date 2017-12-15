@@ -21,7 +21,7 @@ namespace Tizen.System.Usb
     /// <summary>
     /// USB Isochronous Endpoint class.
     /// </summary>
-    /// <since_tizen> 4 </since_tizen>
+    /// <since_tizen> 5 </since_tizen>
     public class UsbIsochronousEndpoint : UsbEndpoint
     {
         internal UsbIsochronousEndpoint(UsbInterface parent, Interop.UsbEndpointHandle handle) : base(parent, handle)
@@ -33,7 +33,7 @@ namespace Tizen.System.Usb
         /// </summary>
         /// <feature>http://tizen.org/feature/usb.host</feature>
         /// <exception cref="NotSupportedException">The required feature is not supported.</exception>
-        /// <since_tizen> 4 </since_tizen>
+        /// <since_tizen> 5 </since_tizen>
         public SynchronizationType SynchronizationType
         {
             get
@@ -48,7 +48,7 @@ namespace Tizen.System.Usb
         /// </summary>
         /// <feature>http://tizen.org/feature/usb.host</feature>
         /// <exception cref="NotSupportedException">The required feature is not supported.</exception>
-        /// <since_tizen> 4 </since_tizen>
+        /// <since_tizen> 5 </since_tizen>
         public UsageType UsageType
         {
             get
