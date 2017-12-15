@@ -133,6 +133,9 @@ namespace Tizen.System.Usb
             }
         }
 
+        /// <summary>
+        /// Finalizes an instance of the USB Manager Class.
+        /// </summary>
         ~UsbManager()
         {
             Dispose(false);
