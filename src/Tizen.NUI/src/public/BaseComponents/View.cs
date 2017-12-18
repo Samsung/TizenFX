@@ -1154,39 +1154,6 @@ namespace Tizen.NUI.BaseComponents
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
-        /// <summary>
-        /// Downcasts a handle to view handle.<br />
-        /// If handle points to a view, the downcast produces a valid handle.<br />
-        /// If not, the returned handle is left uninitialized.<br />
-        /// </summary>
-        /// <param name="handle">A handle to an object.</param>
-        /// <returns>A handle to a view or an uninitialized handle.</returns>
-        /// <since_tizen> 3 </since_tizen>
-        [Obsolete("Please do not use! This will be deprecated! Please use as keyword instead!")]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public static View DownCast(BaseHandle handle)
-        {
-            View ret =  Registry.GetManagedBaseHandleFromNativePtr(handle) as View;
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
-        }
-
-        /// <summary>
-        /// [Obsolete("Please do not use! this will be deprecated, instead please use as keyword.")]
-        /// </summary>
-        /// <since_tizen> 3 </since_tizen>
-        [Obsolete("Please do not use! This will be deprecated! Please use as keyword instead!")]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public static T DownCast<T>(View view) where T : View
-        {
-            T ret = Registry.GetManagedBaseHandleFromNativePtr(view) as T;
-            if (ret != null)
-            {
-                return ret;
-            }
-            return null;
-        }
-
         private View ConvertIdToView(uint id)
         {
             View view = null;
@@ -4227,71 +4194,6 @@ namespace Tizen.NUI.BaseComponents
             set
             {
                 SetProperty(View.Property.SIZE, new Tizen.NUI.PropertyValue(value));
-            }
-        }
-
-        /// <summary>
-        /// [Obsolete("Please do not use! this will be deprecated")]
-        /// </summary>
-        /// <since_tizen> 3 </since_tizen>
-        /// Please do not use! this will be deprecated!
-        /// Instead please use AddedToWindow.
-        [Obsolete("Please do not use! This will be deprecated! Please use AddedToWindow instead!")]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public event EventHandler OnWindowEvent
-        {
-            add
-            {
-                if (_onWindowEventHandler == null)
-                {
-                    _onWindowEventCallback = OnWindow;
-                    this.OnWindowSignal().Connect(_onWindowEventCallback);
-                }
-
-                _onWindowEventHandler += value;
-            }
-
-            remove
-            {
-                _onWindowEventHandler -= value;
-
-                if (_onWindowEventHandler == null && OnWindowSignal().Empty() == false)
-                {
-                    this.OnWindowSignal().Disconnect(_onWindowEventCallback);
-                }
-            }
-        }
-
-        /// <summary>
-        /// [Obsolete("Please do not use! this will be deprecated")]
-        /// </summary>
-        /// <since_tizen> 3 </since_tizen>
-        /// Please do not use! this will be deprecated!
-        /// Instead please use Relayout.
-        [Obsolete("Please do not use! This will be deprecated! Please use Relayout instead!")]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public event EventHandler OnRelayoutEvent
-        {
-            add
-            {
-                if (_onRelayoutEventHandler == null)
-                {
-                    _onRelayoutEventCallback = OnRelayout;
-                    this.OnRelayoutSignal().Connect(_onRelayoutEventCallback);
-                }
-
-                _onRelayoutEventHandler += value;
-            }
-
-            remove
-            {
-                _onRelayoutEventHandler -= value;
-
-                if (_onRelayoutEventHandler == null && OnRelayoutSignal().Empty() == false)
-                {
-                    this.OnRelayoutSignal().Disconnect(_onRelayoutEventCallback);
-                }
-
             }
         }
 
