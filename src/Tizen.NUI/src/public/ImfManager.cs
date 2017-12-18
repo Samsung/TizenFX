@@ -56,53 +56,6 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Dispose
-        /// </summary>
-        /// <param name="type">Dispose Type</param>
-        /// <since_tizen> 3 </since_tizen>
-        /// Please DO NOT use! This will be deprecated!
-        /// Dispose() method in Singletone classes (ex: FocusManager, StyleManager, VisualFactory, IMFManager, TtsPlayer, Window) is not required.
-        /// Because it is Sigletone, so it is alive for one thread until the NUI is terminated, so it never be disposed.
-        [Obsolete("Please do not use! This will be deprecated!")]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        protected override void Dispose(DisposeTypes type)
-        {
-            if (disposed)
-            {
-                return;
-            }
-
-            if (type == DisposeTypes.Explicit)
-            {
-                //Called by User
-                //Release your own managed resources here.
-                //You should release all of your own disposable objects here.
-
-            }
-
-            //Release your own unmanaged resources here.
-            //You should not access any managed member here except static instance.
-            //because the execution order of Finalizes is non-deterministic.
-
-            if (_keyboardTypeChangedEventCallback != null)
-            {
-                KeyboardTypeChangedSignal().Disconnect(_keyboardTypeChangedEventCallback);
-            }
-
-            if (swigCPtr.Handle != global::System.IntPtr.Zero)
-            {
-                if (swigCMemOwn)
-                {
-                    swigCMemOwn = false;
-                    NDalicManualPINVOKE.delete_ImfManager(swigCPtr);
-                }
-                swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, IntPtr.Zero);
-            }
-
-            base.Dispose(type);
-        }
-
-        /// <summary>
         /// This structure is used to pass on data from the IMF regarding predictive text.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
@@ -540,18 +493,6 @@ namespace Tizen.NUI
         {
             NDalicManualPINVOKE.ImfManager_Finalize(swigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-        }
-
-        /// <summary>
-        /// Destroy the context of the IMF.<br/>
-        /// </summary>
-        /// <since_tizen> 4 </since_tizen>
-        /// Please do not use! This will be deprecated, instead please USE Tizen.NUI.ImfManager.Instance.DestroyContext()!
-        [Obsolete("Please do not use! This will be deprecated! Please use ImfManager.Instance.DestroyContext() instead!")]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public void Finalize()
-        {
-            DestroyContext();
         }
 
         /// <summary>

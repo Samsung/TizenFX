@@ -61,51 +61,6 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Dispose.
-        /// </summary>
-        /// Please DO NOT use! This will be deprecated!
-        /// Dispose() method in Singletone classes (ex: FocusManager, StyleManager, VisualFactory, IMFManager, TtsPlayer, Window) is not required.
-        /// Because it is Sigletone, so it is alive for one thread until the NUI is terminated, so it never be disposed.
-        /// <since_tizen> 3 </since_tizen>
-        [Obsolete("Please do not use! This will be deprecated!")]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        protected override void Dispose(DisposeTypes type)
-        {
-            if (disposed)
-            {
-                return;
-            }
-
-            if (type == DisposeTypes.Explicit)
-            {
-                //Called by User
-                //Release your own managed resources here.
-                //You should release all of your own disposable objects here.
-            }
-
-            //Release your own unmanaged resources here.
-            //You should not access any managed member here except static instance.
-            //because the execution order of Finalizes is non-deterministic.
-
-            if (_styleManagerStyleChangedCallbackDelegate != null)
-            {
-                StyleChangedSignal().Disconnect(_styleManagerStyleChangedCallbackDelegate);
-            }
-
-            if (swigCPtr.Handle != global::System.IntPtr.Zero)
-            {
-                if (swigCMemOwn)
-                {
-                    swigCMemOwn = false;
-                    NDalicPINVOKE.delete_StyleManager(swigCPtr);
-                }
-                swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
-            }
-
-            base.Dispose(type);
-        }
-
-        /// <summary>
         /// Style changed event arguments.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
