@@ -35,6 +35,7 @@ internal static partial class Interop
         {
             Internal = 0,
             External = 1,
+            ExtendedInternal = 2,
         }
 
         // Any change here might require changes in Tizen.System.StorageState enum
@@ -59,6 +60,17 @@ internal static partial class Interop
             Others = 7,
             Ringtones = 8,
         }
+
+        // Any change here might require changes in Tizen.System.StorageDevice enum
+        internal enum StorageDevice
+        {
+            ExternalSDCard = 1001,
+            ExternalUSBMassStorage = 1002,
+            ExtendedInternalStorage = 1003,
+        }
+
+        [UnmanagedFunctionPointerAttribute(CallingConvention.Cdecl)]
+        internal delegate void StorageChangedCallback(int id, StorageDevice devicetype, StorageState state, string fstype, string fsuuid, string mountpath, bool primary, int flags, IntPtr userData);
 
         [UnmanagedFunctionPointerAttribute(CallingConvention.Cdecl)]
         internal delegate void StorageStateChangedCallback(int id, StorageState state, IntPtr userData);
@@ -92,5 +104,11 @@ internal static partial class Interop
 
         [DllImport(Libraries.Storage, EntryPoint = "storage_foreach_device_supported")]
         public static extern ErrorCode StorageManagerGetForeachDeviceSupported(StorageDeviceSupportedCallback callback, IntPtr userData);
+
+        [DllImport(Libraries.Storage, EntryPoint = "storage_set_changed_cb")]
+        internal static extern ErrorCode StorageSetChanged(int id, StorageChangedCallback callback, IntPtr userData);
+
+        [DllImport(Libraries.Storage, EntryPoint = "storage_unset_changed_cb")]
+        internal static extern ErrorCode StorageUnsetChanged(int id, StorageChangedCallback callback);
     }
 }

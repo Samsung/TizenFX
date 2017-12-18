@@ -50,5 +50,83 @@ namespace Tizen.System
                 return storageList;
             }
         }
+        
+        private static EventHandler s_ExternalStorageChangedEventHandler;
+        private static EventHandler s_ExtendedInternalStorageChangedEventHandler;
+        private static Interop.Storage.StorageChangedCallback s_ChangedEventCallback = (int id, Interop.Storage.StorageDevice devicetype, Interop.Storage.StorageState state, string fstype, string fsuuid, string rootDirectory, bool primary, int flags, IntPtr userData) =>
+        {
+            Storage storage = new Storage(id, Interop.Storage.StorageArea.External, state, rootDirectory, devicetype, fstype, fsuuid, primary, flags);
+
+            if (devicetype == Interop.Storage.StorageDevice.ExtendedInternalStorage)
+                s_ExtendedInternalStorageChangedEventHandler?.Invoke(storage, EventArgs.Empty);
+            else
+                s_ExternalStorageChangedEventHandler?.Invoke(storage, EventArgs.Empty);
+        };
+
+        private static void RegisterChangedEvent(StorageArea type)
+        {
+            Interop.Storage.ErrorCode err = Interop.Storage.StorageSetChanged((int)type, s_ChangedEventCallback, IntPtr.Zero);
+            if (err != Interop.Storage.ErrorCode.None)
+            {
+                Log.Warn(LogTag, string.Format("Failed to Register changed event callback for external storage. err = {0}", err));
+            }
+        }
+
+        private static void UnregisterChangedEvent(StorageArea type)
+        {
+            Interop.Storage.ErrorCode err = Interop.Storage.StorageUnsetChanged((int)type, s_ChangedEventCallback);
+            if (err != Interop.Storage.ErrorCode.None)
+            {
+                Log.Warn(LogTag, string.Format("Failed to Unreegister changed event callback for external storage. err = {0}", err));
+            }
+        }
+
+        /// <summary>
+        /// Registers an eventhandler for state chages of specific storage type
+        /// </summary>
+        /// <param name="type">Storage type</param>
+        /// <param name="handler">An eventhandler to register</param>
+        public static void SetChangedEvent(StorageArea type, EventHandler handler)
+        {
+            if (type == StorageArea.Internal)
+            {
+                Log.Warn(LogTag, "Internal storage state is not changed");
+            }
+            if (s_ExternalStorageChangedEventHandler == null && s_ExtendedInternalStorageChangedEventHandler == null)
+            {
+                RegisterChangedEvent(type);
+            }
+            if ((type == StorageArea.External && s_ExternalStorageChangedEventHandler == null) || 
+                (type == StorageArea.ExtendedInternal && s_ExtendedInternalStorageChangedEventHandler == null))
+            {
+                RegisterChangedEvent(type);
+            }
+            if (type == StorageArea.External)
+                s_ExternalStorageChangedEventHandler += handler;
+            else if (type == StorageArea.ExtendedInternal)
+                s_ExtendedInternalStorageChangedEventHandler += handler;
+        }
+
+        /// <summary>
+        /// Unregisters an eventhandler for state chages of specific storage type
+        /// </summary>
+        /// <param name="type">Storage type</param>
+        /// <param name="handler">An eventhandler to unregister</param>
+        public static void UnsetChangedEvent(StorageArea type, EventHandler handler)
+        {
+            if (type == StorageArea.Internal)
+            {
+                Log.Warn(LogTag, "Internal storage state is not changed");
+            }
+            if (type == StorageArea.External)
+                s_ExternalStorageChangedEventHandler -= handler;
+            else if (type == StorageArea.ExtendedInternal)
+                s_ExtendedInternalStorageChangedEventHandler -= handler;
+            if ((type == StorageArea.External && s_ExternalStorageChangedEventHandler == null) ||
+                (type == StorageArea.ExtendedInternal && s_ExtendedInternalStorageChangedEventHandler == null))
+            {
+                UnregisterChangedEvent(type);
+            }
+        }
     }
 }
