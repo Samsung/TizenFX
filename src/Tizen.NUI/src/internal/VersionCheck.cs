@@ -24,10 +24,10 @@ namespace Tizen.NUI
     {
         public const int daliVer1 = 1;
         public const int daliVer2 = 2;
-        public const int daliVer3 = 73;
+        public const int daliVer3 = 74;
         public const int nuiVer1 = 0;
         public const int nuiVer2 = 2;
-        public const int nuiVer3 = 73;
+        public const int nuiVer3 = 74;
         public const string nuiRelease = "";
 
 
