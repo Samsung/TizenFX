@@ -2151,10 +2151,6 @@ namespace Tizen.NUI.BaseComponents
             {
                 Vector2 temp = new Vector2(0.0f, 0.0f);
                 GetProperty(View.Property.SCREEN_POSITION).Get(temp);
-                // Dali's default layer is default center origin. need to change as top left.
-                // NUI's Layer is like a transparent film which covers entire window. (Layer is not an actor of Dali)
-                // otherwise, this makes ScreenPosition as wrong value.
-                temp -= (Window.Instance.GetSize() * 0.5f);
                 return temp;
             }
         }
