@@ -1720,5 +1720,11 @@ namespace Tizen.NUI
 
         [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint="CSharp_Dali_FontClient_AddCustomFontDirectory")]
         public static extern bool FontClient_AddCustomFontDirectory(global::System.Runtime.InteropServices.HandleRef jarg1, string jarg2);
+
+        [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint = "CSharp_TextField_Property_ENABLE_SHIFT_SELECTION_get")]
+        public static extern int TextField_Property_ENABLE_SHIFT_SELECTION_get();
+
+        [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint = "CSharp_TextEditor_Property_ENABLE_SHIFT_SELECTION_get")]
+        public static extern int TextEditor_Property_ENABLE_SHIFT_SELECTION_get();
     }
 }
