@@ -181,13 +181,13 @@ namespace Tizen.Multimedia
         {
             add
             {
-                ValidationUtil.ValidateFeatureSupported(Features.RawVideo);
+                ValidationUtil.ValidateFeatureSupported(PlayerFeatures.RawVideo);
 
                 _videoFrameDecoded += value;
             }
             remove
             {
-                ValidationUtil.ValidateFeatureSupported(Features.RawVideo);
+                ValidationUtil.ValidateFeatureSupported(PlayerFeatures.RawVideo);
 
                 _videoFrameDecoded -= value;
             }
