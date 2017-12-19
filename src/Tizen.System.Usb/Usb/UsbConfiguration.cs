@@ -171,6 +171,7 @@ namespace Tizen.System.Usb
         /// <summary>
         /// Finalizes an instance of the UsbConfiguration class.
         /// </summary>
+        /// <since_tizen> 5 </since_tizen>
         ~UsbConfiguration()
         {
             Dispose(false);

@@ -241,10 +241,15 @@ namespace Tizen.Multimedia
         /// Gets or sets the display.
         /// </summary>
         /// <value>A <see cref="Multimedia.Display"/> that specifies the display.</value>
-        /// <remarks>The player must be in the <see cref="PlayerState.Idle"/> state.</remarks>
+        /// <remarks>
+        ///     The player must be in the <see cref="PlayerState.Idle"/> state.<br/>
+        ///     The raw video feature(http://tizen.org/feature/multimedia.raw_video) is required if
+        ///     the display is created with <see cref="MediaView"/>.
+        /// </remarks>
         /// <exception cref="ObjectDisposedException">The player has already been disposed of.</exception>
         /// <exception cref="ArgumentException">The value has already been assigned to another player.</exception>
         /// <exception cref="InvalidOperationException">The player is not in the valid state.</exception>
+        /// <exception cref="NotSupportedException">The required feature is not supported.</exception>
         /// <since_tizen> 3 </since_tizen>
         public Display Display
         {
@@ -255,6 +260,11 @@ namespace Tizen.Multimedia
             set
             {
                 ValidatePlayerState(PlayerState.Idle);
+
+                if (value != null && value.HasMediaView)
+                {
+                    ValidationUtil.ValidateFeatureSupported(PlayerFeatures.RawVideo);
+                }
 
                 if (value?.Owner != null)
                 {
@@ -360,7 +370,7 @@ namespace Tizen.Multimedia
             {
                 if (_audioEffect == null)
                 {
-                    throw new NotSupportedException($"The feature({Features.AudioEffect}) is not supported.");
+                    throw new NotSupportedException($"The feature({PlayerFeatures.AudioEffect}) is not supported.");
                 }
 
                 return _audioEffect;
