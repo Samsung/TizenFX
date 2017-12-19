@@ -19,6 +19,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.InteropServices;
 
+
 namespace ElmSharp
 {
     /// <summary>
@@ -191,7 +192,7 @@ namespace ElmSharp
                 _cacheDisplayedMonth = currentDisplayedMonth;
             };
 
-            _calendarFormat = (t) => { return _dateFormatDelegate(t); };
+            _calendarFormat = (ref Interop.Libc.SystemTime t) => { return _dateFormatDelegate(t); };
         }
 
         /// <summary>
