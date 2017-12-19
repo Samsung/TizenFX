@@ -4,6 +4,7 @@
 %define TIZEN_NET_NUGET_VERSION @nuget_version@
 %define TIZEN_NET_INTERNAL_NUGET_VERSION @internal_nuget_version@
 %define NATIVE_DALI_VERSION @dali_version@
+%define CHECK_NATIVE_DEPS @check_native_deps@
 
 %define DOTNET_ASSEMBLY_PATH /usr/share/dotnet.tizen/framework
 %define DOTNET_ASSEMBLY_DUMMY_PATH %{DOTNET_ASSEMBLY_PATH}/ref
@@ -27,7 +28,9 @@ AutoReqProv: no
 BuildRequires: dotnet-build-tools
 Requires(post): /usr/bin/vconftool
 
+%if 0%{CHECK_NATIVE_DEPS}
 BuildRequires: dali = %{NATIVE_DALI_VERSION}
+%endif
 
 %description
 %{summary}
