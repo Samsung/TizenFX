@@ -14,16 +14,11 @@
  * limitations under the License.
  */
 
-using Tizen.System;
-
 namespace Tizen.Multimedia
 {
-    internal static class Features
+    internal static class PlayerFeatures
     {
-        internal static bool IsSupported(string featureKey)
-        {
-            return Information.TryGetValue(featureKey, out bool supported) && supported;
-        }
-
+        internal const string AudioEffect = "http://tizen.org/feature/multimedia.custom_audio_effect";
+        internal const string RawVideo = "http://tizen.org/feature/multimedia.raw_video";
     }
 }

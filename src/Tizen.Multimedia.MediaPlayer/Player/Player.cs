@@ -53,12 +53,12 @@ namespace Tizen.Multimedia
 
             RetrieveProperties();
 
-            if (Features.IsSupported(Features.AudioEffect))
+            if (Features.IsSupported(PlayerFeatures.AudioEffect))
             {
                 _audioEffect = new AudioEffect(this);
             }
 
-            if (Features.IsSupported(Features.RawVideo))
+            if (Features.IsSupported(PlayerFeatures.RawVideo))
             {
                 RegisterVideoFrameDecodedCallback();
             }
@@ -457,7 +457,7 @@ namespace Tizen.Multimedia
         /// <since_tizen> 3 </since_tizen>
         public async Task<CapturedFrame> CaptureVideoAsync()
         {
-            ValidationUtil.ValidateFeatureSupported(Features.RawVideo);
+            ValidationUtil.ValidateFeatureSupported(PlayerFeatures.RawVideo);
 
             ValidatePlayerState(PlayerState.Playing, PlayerState.Paused);
 
