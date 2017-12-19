@@ -100,7 +100,7 @@ internal static partial class Interop
         internal static extern void elm_calendar_marks_clear(IntPtr obj);
 
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-        internal delegate string Elm_Calendar_Format_Cb(Libc.SystemTime date);
+        internal delegate string Elm_Calendar_Format_Cb(ref Libc.SystemTime date);
 
         [DllImport(Libraries.Elementary)]
         internal static extern void elm_calendar_format_function_set(IntPtr obj, Elm_Calendar_Format_Cb format_function);
