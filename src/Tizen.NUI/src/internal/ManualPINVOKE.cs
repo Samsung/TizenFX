@@ -1726,5 +1726,9 @@ namespace Tizen.NUI
 
         [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint = "CSharp_TextEditor_Property_ENABLE_SHIFT_SELECTION_get")]
         public static extern int TextEditor_Property_ENABLE_SHIFT_SELECTION_get();
+
+        [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint = "CSharp_ImageView_IMAGE_VISUAL_ACTION_RELOAD_get")]
+        public static extern int ImageView_IMAGE_VISUAL_ACTION_RELOAD_get();
+
     }
 }

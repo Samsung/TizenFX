@@ -232,6 +232,19 @@ namespace Tizen.NUI.BaseComponents
             return ret;
         }
 
+
+        private static readonly int _actionReload = NDalicManualPINVOKE.ImageView_IMAGE_VISUAL_ACTION_RELOAD_get();
+        /// <summary>
+        /// Force reloading of the image, all visuals using this image will get the latest one.
+        /// </summary>
+        /// <since_tizen> 5 </since_tizen>
+        /// This will be released at Tizen.NET API Level 5, so currently this would be used as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void Reload()
+        {
+            this.DoAction(ImageView.Property.IMAGE, _actionReload, new PropertyValue(0));
+        }
+
         /// <summary>
         /// ImageView ResourceUrl, type string.
         /// </summary>
