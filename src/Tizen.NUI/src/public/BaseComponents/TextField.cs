@@ -286,6 +286,7 @@ namespace Tizen.NUI.BaseComponents
             internal static readonly int ENABLE_SELECTION = NDalicManualPINVOKE.TextField_Property_ENABLE_SELECTION_get();
             internal static readonly int PLACEHOLDER = NDalicManualPINVOKE.TextField_Property_PLACEHOLDER_get();
             internal static readonly int ELLIPSIS = NDalicManualPINVOKE.TextField_Property_ELLIPSIS_get();
+            internal static readonly int ENABLE_SHIFT_SELECTION = NDalicManualPINVOKE.TextField_Property_ENABLE_SHIFT_SELECTION_get();
         }
 
         internal class InputStyle
@@ -1441,7 +1442,26 @@ namespace Tizen.NUI.BaseComponents
             }
         }
 
+        /// <summary>
+        /// Enables Text selection using Shift key.
+        /// </summary>
+        /// <since_tizen> 5 </since_tizen>
+        public bool EnableShiftSelection
+        {
+            get
+            {
+                // mShiftSelectionFlag( true )
+                bool temp = true;
+                GetProperty(TextField.Property.ENABLE_SHIFT_SELECTION).Get(out temp);
+                return temp;
+            }
+            set
+            {
+                SetProperty(TextField.Property.ENABLE_SHIFT_SELECTION, new Tizen.NUI.PropertyValue(value));
+            }
+        }
+
+
 
     }
-
 }

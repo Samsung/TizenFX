@@ -822,7 +822,6 @@ namespace Tizen.NUI.BaseComponents
         /// The text direction.
         /// </summary>
         /// <since_tizen> 5 </since_tizen>
-        [EditorBrowsable(EditorBrowsableState.Never)]
         public TextDirection TextDirection
         {
             get

@@ -121,6 +121,7 @@ namespace TextTest
             hiddenMap.Add(HiddenInputProperty.SubstituteCharacter, new PropertyValue(0x23));
             field.HiddenInputSettings = hiddenMap;
             field.EnableSelection = true;
+            field.EnableShiftSelection = false;
             window.Add(field);
 
             InputMethod inputMethod = new InputMethod();
@@ -165,6 +166,9 @@ namespace TextTest
             FocusManager.Instance.SetCurrentFocusView(editor);
             editor.UpFocusableView = field;
             field.DownFocusableView = editor;
+
+            NUILog.Debug($"### field.EnableShiftSelection={field.EnableShiftSelection}, editor.EnableShiftSelection={editor.EnableShiftSelection}");
+
         }
 
         [STAThread]
