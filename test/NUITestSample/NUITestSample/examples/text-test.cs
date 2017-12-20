@@ -167,7 +167,7 @@ namespace TextTest
             editor.UpFocusableView = field;
             field.DownFocusableView = editor;
 
-            NUILog.Debug($"### field.EnableShiftSelection={field.EnableShiftSelection}, editor.EnableShiftSelection={editor.EnableShiftSelection}");
+            Tizen.Log.Debug("NUI", $"### field.EnableShiftSelection={field.EnableShiftSelection}, editor.EnableShiftSelection={editor.EnableShiftSelection}");
 
         }
 

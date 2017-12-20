@@ -203,9 +203,9 @@ namespace Test1
                 textMap1.Insert(TextVisualProperty.Text, new PropertyValue("Hello"));
                 textMap1.Insert(TextVisualProperty.PointSize, new PropertyValue(10.0f));
 
-                PropertyMap textMap2 = new PropertyMap();
-                VisualBase textVisual1 = visualfactory.CreateVisual(textMap1);
-                textVisual1.Creation = textMap2;
+                //PropertyMap textMap2 = new PropertyMap();
+                //VisualBase textVisual1 = visualfactory.CreateVisual(textMap1);
+                //textVisual1.Creation = textMap2;
             }
             catch (Exception e)
             {

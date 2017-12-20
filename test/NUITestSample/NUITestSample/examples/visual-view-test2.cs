@@ -127,7 +127,7 @@ namespace VisualViewTest2
             guide = new TextLabel();
             guide.PivotPoint = PivotPoint.TopLeft;
             guide.Size2D = new Size2D(800, 200);
-            guide.Padding = new Vector4(50, 50, 50, 50);
+            guide.Padding = new Extents(50, 50, 50, 50);
             guide.MultiLine = true;
             guide.BackgroundColor = Color.Magenta;
             guide.PointSize = 10;
