@@ -14,8 +14,6 @@
  * limitations under the License.
  *
  */
-
-using System;
 using System.ComponentModel;
 
 namespace Tizen.NUI
@@ -31,9 +29,7 @@ namespace Tizen.NUI
     /// And this would make some problem, because dotnet runtime would change the address of memory allocated.
     /// So this is required to be removed.
     /// currently no use. will be added later
-    /// <since_tizen> 3 </since_tizen>
-    [Obsolete("Please do not use! This will be deprecated!")]
-    [EditorBrowsable(EditorBrowsableState.Never)]
+    /// <since_tizen> 5 </since_tizen>
     public class PixelData : BaseHandle
     {
         private global::System.Runtime.InteropServices.HandleRef swigCPtr;
@@ -51,7 +47,7 @@ namespace Tizen.NUI
         /// <summary>
         /// Dispose.
         /// </summary>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 5 </since_tizen>
         protected override void Dispose(DisposeTypes type)
         {
             if (disposed)
@@ -94,7 +90,7 @@ namespace Tizen.NUI
         /// <param name="height">Buffer height in pixels.</param>
         /// <param name="pixelFormat">The pixel format.</param>
         /// <param name="releaseFunction">The function used to release the memory.</param>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 5 </since_tizen>
         public PixelData(byte[] buffer, uint bufferSize, uint width, uint height, PixelFormat pixelFormat, PixelData.ReleaseFunction releaseFunction) : this(NDalicPINVOKE.PixelData_New(buffer, bufferSize, width, height, (int)pixelFormat, (int)releaseFunction), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
@@ -105,7 +101,7 @@ namespace Tizen.NUI
         /// Gets the width of the buffer in pixels.
         /// </summary>
         /// <returns>The width of the buffer in pixels.</returns>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 5 </since_tizen>
         public uint GetWidth()
         {
             uint ret = NDalicPINVOKE.PixelData_GetWidth(swigCPtr);
@@ -117,7 +113,7 @@ namespace Tizen.NUI
         /// Gets the height of the buffer in pixels.
         /// </summary>
         /// <returns>The height of the buffer in pixels.</returns>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 5 </since_tizen>
         public uint GetHeight()
         {
             uint ret = NDalicPINVOKE.PixelData_GetHeight(swigCPtr);
@@ -129,7 +125,7 @@ namespace Tizen.NUI
         /// Gets the pixel format.
         /// </summary>
         /// <returns>The pixel format.</returns>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 5 </since_tizen>
         public PixelFormat GetPixelFormat()
         {
             PixelFormat ret = (PixelFormat)NDalicPINVOKE.PixelData_GetPixelFormat(swigCPtr);
@@ -140,20 +136,18 @@ namespace Tizen.NUI
         /// <summary>
         /// Enumeration for Function to release the pixel buffer.
         /// </summary>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 5 </since_tizen>
         public enum ReleaseFunction
         {
             /// <summary>
             /// Use free function to release the pixel buffer.
             /// </summary>
-            FREE,
+            Free,
 
             /// <summary>
             /// Use delete[] operator to release the pixel buffer.
             /// </summary>
-            DELETE_ARRAY
+            DeleteArray
         }
-
     }
-
 }
