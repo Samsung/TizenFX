@@ -563,7 +563,7 @@ namespace DaliTest
             Window.Instance.Add(button);
             button.Clicked += (sender, e) =>
             {
-                if (label.Visible)
+                if (label.Visibility)
                 {
                     label.Hide();
                 }

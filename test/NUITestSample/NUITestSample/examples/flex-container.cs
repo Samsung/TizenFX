@@ -36,7 +36,7 @@ namespace FlexContainerTest
             container = new FlexContainer();
             container.Size2D = new Size2D(Window.Instance.Size.Width, Window.Instance.Size.Height);
             container.PivotPoint = PivotPoint.TopLeft;
-            container.Padding = new Vector4(100, 100, 100, 100);
+            container.Padding = new Extents(100, 100, 100, 100);
 
             container.FlexWrap = FlexContainer.WrapType.Wrap;
             container.FlexDirection = FlexContainer.FlexDirectionType.Column;
@@ -157,7 +157,7 @@ namespace FlexContainerTest
                     break;
                 case View.FocusDirection.Down:
                     index = (index + 2) % numOfSamples; //changed
-                    Tizen.Log.Debug("NUI", "pushbutton1 Visible=" + pushButton1.Visible + "  pushbutton2 Visible=" + pushButton2.Visible); //added
+                    Tizen.Log.Debug("NUI", "pushbutton1 Visible=" + pushButton1.Visibility + "  pushbutton2 Visible=" + pushButton2.Visibility); //added
                     break;
                 case View.FocusDirection.Left:
                     //added

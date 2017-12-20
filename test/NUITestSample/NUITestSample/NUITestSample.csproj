@@ -13,15 +13,16 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="lib\"/>
-    <Folder Include="res\"/>
+    <Folder Include="lib\" />
+    <Folder Include="res\" />
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Tizen.NET" Version="4.0.0" >
-      <ExcludeAssets>Runtime</ExcludeAssets>
-    </PackageReference>
     <PackageReference Include="Tizen.NET.Sdk" Version="1.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\src\Tizen.NUI\Tizen.NUI.csproj" />
   </ItemGroup>
 
 </Project>
