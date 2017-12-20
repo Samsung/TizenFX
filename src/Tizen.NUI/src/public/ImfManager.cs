@@ -87,31 +87,6 @@ namespace Tizen.NUI
                 KeyboardTypeChangedSignal().Disconnect(_keyboardTypeChangedEventCallback);
             }
 
-            if (_imfManagerLanguageChangedEventCallback != null)
-            {
-                LanguageChangedSignal().Disconnect(_imfManagerLanguageChangedEventCallback);
-            }
-
-            if (_imfManagerResizedEventCallback != null)
-            {
-                ResizedSignal().Disconnect(_imfManagerResizedEventCallback);
-            }
-
-            if (_imfManagerStatusChangedEventCallback != null)
-            {
-                StatusChangedSignal().Disconnect(_imfManagerStatusChangedEventCallback);
-            }
-
-            if (_imfManagerEventReceivedEventCallback != null)
-            {
-                EventReceivedSignal().Disconnect(_imfManagerEventReceivedEventCallback);
-            }
-
-            if (_imfManagerActivatedEventCallback != null)
-            {
-                ActivatedSignal().Disconnect(_imfManagerActivatedEventCallback);
-            }
-
             if (swigCPtr.Handle != global::System.IntPtr.Zero)
             {
                 if (swigCMemOwn)
@@ -261,27 +236,6 @@ namespace Tizen.NUI
             /// <summary>
             /// The pre-edit or the commit string.
             /// </summary>
-            /// /// <since_tizen> 3 </since_tizen>
-            [Obsolete("Please do not use! This will be deprecated! Please use PredictiveString instead!")]
-            [EditorBrowsable(EditorBrowsableState.Never)]
-            public string predictiveString
-            {
-                set
-                {
-                    NDalicManualPINVOKE.ImfManager_ImfEventData_predictiveString_set(swigCPtr, value);
-                    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-                }
-                get
-                {
-                    string ret = NDalicManualPINVOKE.ImfManager_ImfEventData_predictiveString_get(swigCPtr);
-                    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-                    return ret;
-                }
-            }
-
-            /// <summary>
-            /// The pre-edit or the commit string.
-            /// </summary>
             /// <since_tizen> 4 </since_tizen>
             public string PredictiveString
             {
@@ -293,28 +247,6 @@ namespace Tizen.NUI
                 get
                 {
                     string ret = NDalicManualPINVOKE.ImfManager_ImfEventData_predictiveString_get(swigCPtr);
-                    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-                    return ret;
-                }
-            }
-
-            /// <summary>
-            /// The name of the event from the IMF.
-            /// </summary>
-            /// Please do not use! this will be deprecated
-            /// <since_tizen> 3 </since_tizen>
-            [Obsolete("Please do not use! This will be deprecated! Please use EventName instead!")]
-            [EditorBrowsable(EditorBrowsableState.Never)]
-            public ImfManager.ImfEvent eventName
-            {
-                set
-                {
-                    NDalicManualPINVOKE.ImfManager_ImfEventData_eventName_set(swigCPtr, (int)value);
-                    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-                }
-                get
-                {
-                    ImfManager.ImfEvent ret = (ImfManager.ImfEvent)NDalicManualPINVOKE.ImfManager_ImfEventData_eventName_get(swigCPtr);
                     if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
                     return ret;
                 }
@@ -342,28 +274,6 @@ namespace Tizen.NUI
             /// <summary>
             /// The start position from the current cursor position to start deleting characters.
             /// </summary>
-            /// Please do not use! this will be deprecated
-            /// <since_tizen> 3 </since_tizen>
-            [Obsolete("Please do not use! This will be deprecated! Please use CursorOffset instead!")]
-            [EditorBrowsable(EditorBrowsableState.Never)]
-            public int cursorOffset
-            {
-                set
-                {
-                    NDalicManualPINVOKE.ImfManager_ImfEventData_cursorOffset_set(swigCPtr, value);
-                    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-                }
-                get
-                {
-                    int ret = NDalicManualPINVOKE.ImfManager_ImfEventData_cursorOffset_get(swigCPtr);
-                    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-                    return ret;
-                }
-            }
-
-            /// <summary>
-            /// The start position from the current cursor position to start deleting characters.
-            /// </summary>
             /// <since_tizen> 4 </since_tizen>
             public int CursorOffset
             {
@@ -375,28 +285,6 @@ namespace Tizen.NUI
                 get
                 {
                     int ret = NDalicManualPINVOKE.ImfManager_ImfEventData_cursorOffset_get(swigCPtr);
-                    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-                    return ret;
-                }
-            }
-
-            /// <summary>
-            /// The number of characters to delete from the cursorOffset.
-            /// </summary>
-            /// Please do not use! this will be deprecated
-            /// <since_tizen> 3 </since_tizen>
-            [Obsolete("Please do not use! This will be deprecated! Please use NumberOfChars instead!")]
-            [EditorBrowsable(EditorBrowsableState.Never)]
-            public int numberOfChars
-            {
-                set
-                {
-                    NDalicManualPINVOKE.ImfManager_ImfEventData_numberOfChars_set(swigCPtr, value);
-                    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-                }
-                get
-                {
-                    int ret = NDalicManualPINVOKE.ImfManager_ImfEventData_numberOfChars_get(swigCPtr);
                     if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
                     return ret;
                 }
@@ -565,28 +453,6 @@ namespace Tizen.NUI
             /// <summary>
             /// The current text string.
             /// </summary>
-            /// Please do not use! this will be deprecated
-            /// <since_tizen> 3 </since_tizen>
-            [Obsolete("Please do not use! This will be deprecated! Please use CurrentText instead!")]
-            [EditorBrowsable(EditorBrowsableState.Never)]
-            public string currentText
-            {
-                set
-                {
-                    NDalicManualPINVOKE.ImfManager_ImfCallbackData_currentText_set(swigCPtr, value);
-                    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-                }
-                get
-                {
-                    string ret = NDalicManualPINVOKE.ImfManager_ImfCallbackData_currentText_get(swigCPtr);
-                    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-                    return ret;
-                }
-            }
-
-            /// <summary>
-            /// The current text string.
-            /// </summary>
             /// <since_tizen> 4 </since_tizen>
             public string CurrentText
             {
@@ -598,28 +464,6 @@ namespace Tizen.NUI
                 get
                 {
                     string ret = NDalicManualPINVOKE.ImfManager_ImfCallbackData_currentText_get(swigCPtr);
-                    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-                    return ret;
-                }
-            }
-
-            /// <summary>
-            /// The current text string.
-            /// </summary>
-            /// Please do not use! this will be deprecated
-            /// <since_tizen> 3 </since_tizen>
-            [Obsolete("Please do not use! This will be deprecated! Please use CursorPosition instead!")]
-            [EditorBrowsable(EditorBrowsableState.Never)]
-            public int cursorPosition
-            {
-                set
-                {
-                    NDalicManualPINVOKE.ImfManager_ImfCallbackData_cursorPosition_set(swigCPtr, value);
-                    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-                }
-                get
-                {
-                    int ret = NDalicManualPINVOKE.ImfManager_ImfCallbackData_cursorPosition_get(swigCPtr);
                     if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
                     return ret;
                 }
@@ -647,28 +491,6 @@ namespace Tizen.NUI
             /// <summary>
             /// If the cursor position needs to be updated.
             /// </summary>
-            /// Please do not use! this will be deprecated
-            /// <since_tizen> 3 </since_tizen>
-            [Obsolete("Please do not use! This will be deprecated! Please use Update instead!")]
-            [EditorBrowsable(EditorBrowsableState.Never)]
-            public bool update
-            {
-                set
-                {
-                    NDalicManualPINVOKE.ImfManager_ImfCallbackData_update_set(swigCPtr, value);
-                    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-                }
-                get
-                {
-                    bool ret = NDalicManualPINVOKE.ImfManager_ImfCallbackData_update_get(swigCPtr);
-                    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-                    return ret;
-                }
-            }
-
-            /// <summary>
-            /// If the cursor position needs to be updated.
-            /// </summary>
             /// <since_tizen> 4 </since_tizen>
             public bool Update
             {
@@ -680,28 +502,6 @@ namespace Tizen.NUI
                 get
                 {
                     bool ret = NDalicManualPINVOKE.ImfManager_ImfCallbackData_update_get(swigCPtr);
-                    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-                    return ret;
-                }
-            }
-
-            /// <summary>
-            /// Flags if preedit reset is required.
-            /// </summary>
-            /// Please do not use! this will be deprecated
-            /// <since_tizen> 3 </since_tizen>
-            [Obsolete("Please do not use! This will be deprecated! Please use PreeditResetRequired instead!")]
-            [EditorBrowsable(EditorBrowsableState.Never)]
-            public bool preeditResetRequired
-            {
-                set
-                {
-                    NDalicManualPINVOKE.ImfManager_ImfCallbackData_preeditResetRequired_set(swigCPtr, value);
-                    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-                }
-                get
-                {
-                    bool ret = NDalicManualPINVOKE.ImfManager_ImfCallbackData_preeditResetRequired_get(swigCPtr);
                     if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
                     return ret;
                 }
@@ -1035,76 +835,6 @@ namespace Tizen.NUI
         /// <summary>
         /// ImfManager activated event arguments.
         /// </summary>
-        /// Please do not use! this will be deprecated
-        /// <since_tizen> 3 </since_tizen>
-        [Obsolete("Please do not use! This will be deprecated! Please use ActivatedEventArgs instead!")]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public class ImfManagerActivatedEventArgs : EventArgs
-        {
-            /// <summary>
-            /// ImfManager
-            /// </summary>
-            /// <since_tizen> 3 </since_tizen>
-            public ImfManager ImfManager
-            {
-                get;
-                set;
-            }
-        }
-
-        [UnmanagedFunctionPointer(CallingConvention.StdCall)]
-        private delegate void ImfManagerActivatedEventCallbackType(global::System.IntPtr data);
-        private ImfManagerActivatedEventCallbackType _imfManagerActivatedEventCallback;
-        private event EventHandler<ImfManagerActivatedEventArgs> _imfManagerActivatedEventHandler;
-
-        /// <summary>
-        /// ImfManager activated event.
-        /// </summary>
-        ///Please do not use! this will be deprecated
-        /// <since_tizen> 3 </since_tizen>
-        [Obsolete("Please do not use! This will be deprecated! Please use Activated instead!")]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public event EventHandler<ImfManagerActivatedEventArgs> ImfManagerActivated
-        {
-            add
-            {
-                if (_imfManagerActivatedEventHandler == null)
-                {
-                    _imfManagerActivatedEventCallback = OnImfManagerActivated;
-                    ActivatedSignal().Connect(_imfManagerActivatedEventCallback);
-                }
-
-                _imfManagerActivatedEventHandler += value;
-            }
-            remove
-            {
-                _imfManagerActivatedEventHandler -= value;
-
-                if (_imfManagerActivatedEventHandler == null && _imfManagerActivatedEventCallback != null)
-                {
-                    ActivatedSignal().Disconnect(_imfManagerActivatedEventCallback);
-                }
-            }
-        }
-
-        private void OnImfManagerActivated(global::System.IntPtr data)
-        {
-            ImfManagerActivatedEventArgs e = new ImfManagerActivatedEventArgs();
-
-            if (data != null)
-            {
-                e.ImfManager = Registry.GetManagedBaseHandleFromNativePtr(data) as ImfManager;
-            }
-
-            if (_imfManagerActivatedEventHandler != null)
-            {
-                _imfManagerActivatedEventHandler(this, e);
-            }
-        }
-
-        /// <summary>
-        /// ImfManager activated event arguments.
-        /// </summary>
         /// <since_tizen> 4 </since_tizen>
         public class ActivatedEventArgs : EventArgs
         {
@@ -1166,87 +896,11 @@ namespace Tizen.NUI
             }
         }
 
-        /// <summary>
-        /// ImfManager activated signal.
-        /// </summary>
-        /// Please do not use! this will be internal
-        /// <since_tizen> 3 </since_tizen>
-        [Obsolete("Please do not use! This will be deprecated!")]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public ActivatedSignalType ActivatedSignal()
+        internal ActivatedSignalType ActivatedSignal()
         {
             ActivatedSignalType ret = new ActivatedSignalType(NDalicManualPINVOKE.ImfManager_ActivatedSignal(swigCPtr), false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
-        }
-
-        /// <summary>
-        /// ImfManager event received event arguments.
-        /// </summary>
-        /// Please do not use! this will be deprecated
-        /// <since_tizen> 3 </since_tizen>
-        [Obsolete("Please do not use! This will be deprecated! Please use EventReceivedEventArgs instead!")]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public class ImfManagerEventReceivedEventArgs : EventArgs
-        {
-            /// <summary>
-            /// ImfManager
-            /// </summary>
-            /// <since_tizen> 3 </since_tizen>
-            public ImfManager ImfManager
-            {
-                get;
-                set;
-            }
-        }
-
-        private delegate void ImfManagerEventReceivedEventCallbackType(global::System.IntPtr data);
-        private ImfManagerEventReceivedEventCallbackType _imfManagerEventReceivedEventCallback;
-        private event EventHandler<ImfManagerEventReceivedEventArgs> _imfManagerEventReceivedEventHandler;
-
-        /// <summary>
-        /// ImfManager event received.
-        /// </summary>
-        ///Please do not use! this will be deprecated
-        /// <since_tizen> 3 </since_tizen>
-        [Obsolete("Please do not use! This will be deprecated! Please use EventReceived instead!")]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public event EventHandler<ImfManagerEventReceivedEventArgs> ImfManagerEventReceived
-        {
-            add
-            {
-                if (_imfManagerEventReceivedEventHandler == null)
-                {
-                    _imfManagerEventReceivedEventCallback = OnImfManagerEventReceived;
-                    EventReceivedSignal().Connect(_imfManagerEventReceivedEventCallback);
-                }
-
-                _imfManagerEventReceivedEventHandler += value;
-            }
-            remove
-            {
-                _imfManagerEventReceivedEventHandler -= value;
-
-                if (_imfManagerEventReceivedEventHandler == null && _imfManagerEventReceivedEventCallback != null)
-                {
-                    EventReceivedSignal().Disconnect(_imfManagerEventReceivedEventCallback);
-                }
-            }
-        }
-
-        private void OnImfManagerEventReceived(global::System.IntPtr data)
-        {
-            ImfManagerEventReceivedEventArgs e = new ImfManagerEventReceivedEventArgs();
-
-            if (data != null)
-            {
-                e.ImfManager = Registry.GetManagedBaseHandleFromNativePtr(data) as ImfManager;
-            }
-
-            if (_imfManagerEventReceivedEventHandler != null)
-            {
-                _imfManagerEventReceivedEventHandler(this, e);
-            }
         }
 
         /// <summary>
@@ -1336,87 +990,11 @@ namespace Tizen.NUI
             }
         }
 
-        /// <summary>
-        /// ImfManager event received signal.
-        /// </summary>
-        /// Please do not use! this will be internal
-        /// <since_tizen> 3 </since_tizen>
-        [Obsolete("Please do not use! This will be deprecated!")]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public ImfEventSignalType EventReceivedSignal()
+        internal ImfEventSignalType EventReceivedSignal()
         {
             ImfEventSignalType ret = new ImfEventSignalType(NDalicManualPINVOKE.ImfManager_EventReceivedSignal(swigCPtr), false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
-        }
-
-        /// <summary>
-        /// ImfManager status changed event arguments.
-        /// </summary>
-        ///Please do not use! this will be deprecated
-        /// <since_tizen> 3 </since_tizen>
-        [Obsolete("Please do not use! This will be deprecated! Please use StatusChangedEventArgs instead!")]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public class ImfManagerStatusChangedEventArgs : EventArgs
-        {
-            /// <summary>
-            /// ImfManager
-            /// </summary>
-            /// <since_tizen> 3 </since_tizen>
-            public ImfManager ImfManager
-            {
-                get;
-                set;
-            }
-        }
-
-        private delegate void ImfManagerStatusChangedEventCallbackType(global::System.IntPtr data);
-        private ImfManagerStatusChangedEventCallbackType _imfManagerStatusChangedEventCallback;
-        private event EventHandler<ImfManagerStatusChangedEventArgs> _imfManagerStatusChangedEventHandler;
-
-        /// <summary>
-        /// ImfManager status changed.
-        /// </summary>
-        /// Please do not use! this will be deprecated
-        /// <since_tizen> 3 </since_tizen>
-        [Obsolete("Please do not use! This will be deprecated! Please use StatusChanged instead!")]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public event EventHandler<ImfManagerStatusChangedEventArgs> ImfManagerStatusChanged
-        {
-            add
-            {
-                if (_imfManagerStatusChangedEventHandler == null)
-                {
-                    _imfManagerStatusChangedEventCallback = OnImfManagerStatusChanged;
-                    StatusChangedSignal().Connect(_imfManagerStatusChangedEventCallback);
-                }
-
-                _imfManagerStatusChangedEventHandler += value;
-            }
-            remove
-            {
-                _imfManagerStatusChangedEventHandler -= value;
-
-                if (_imfManagerStatusChangedEventHandler == null && _imfManagerStatusChangedEventCallback != null)
-                {
-                    StatusChangedSignal().Disconnect(_imfManagerStatusChangedEventCallback);
-                }
-            }
-        }
-
-        private void OnImfManagerStatusChanged(global::System.IntPtr data)
-        {
-            ImfManagerStatusChangedEventArgs e = new ImfManagerStatusChangedEventArgs();
-
-            if (data != null)
-            {
-                e.ImfManager = Registry.GetManagedBaseHandleFromNativePtr(data) as ImfManager;
-            }
-
-            if (_imfManagerStatusChangedEventHandler != null)
-            {
-                _imfManagerStatusChangedEventHandler(this, e);
-            }
         }
 
         /// <summary>
@@ -1479,87 +1057,11 @@ namespace Tizen.NUI
             }
         }
 
-        /// <summary>
-        /// ImfManager status changed signal.
-        /// </summary>
-        ///Please do not use! this will be internal
-        /// <since_tizen> 3 </since_tizen>
-        [Obsolete("Please do not use! This will be deprecated!")]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public StatusSignalType StatusChangedSignal()
+        internal StatusSignalType StatusChangedSignal()
         {
             StatusSignalType ret = new StatusSignalType(NDalicManualPINVOKE.ImfManager_StatusChangedSignal(swigCPtr), false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
-        }
-
-        /// <summary>
-        /// ImfManager resized event arguments.
-        /// </summary>
-        ///Please do not use! this will be deprecated
-        /// <since_tizen> 3 </since_tizen>
-        [Obsolete("Please do not use! This will be deprecated! Please use ResizedEventArgs instead!")]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public class ImfManagerResizedEventArgs : EventArgs
-        {
-            /// <summary>
-            /// ImfManager
-            /// </summary>
-            /// <since_tizen> 3 </since_tizen>
-            public ImfManager ImfManager
-            {
-                get;
-                set;
-            }
-        }
-
-        private delegate void ImfManagerResizedEventCallbackType(IntPtr data);
-        private ImfManagerResizedEventCallbackType _imfManagerResizedEventCallback;
-        private event EventHandler<ImfManagerResizedEventArgs> _imfManagerResizedEventHandler;
-
-        /// <summary>
-        /// ImfManager resized event.
-        /// </summary>
-        ///Please do not use! this will be deprecated
-        /// <since_tizen> 3 </since_tizen>
-        [Obsolete("Please do not use! This will be deprecated! Please use Resized instead!")]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public event EventHandler<ImfManagerResizedEventArgs> ImfManagerResized
-        {
-            add
-            {
-                if (_imfManagerResizedEventHandler == null)
-                {
-                    _imfManagerResizedEventCallback = OnImfManagerResized;
-                    ResizedSignal().Connect(_imfManagerResizedEventCallback);
-                }
-
-                _imfManagerResizedEventHandler += value;
-            }
-            remove
-            {
-                _imfManagerResizedEventHandler -= value;
-
-                if (_imfManagerResizedEventHandler == null && _imfManagerResizedEventCallback != null)
-                {
-                    ResizedSignal().Disconnect(_imfManagerResizedEventCallback);
-                }
-            }
-        }
-
-        private void OnImfManagerResized(IntPtr data)
-        {
-            ImfManagerResizedEventArgs e = new ImfManagerResizedEventArgs();
-
-            if (data != null)
-            {
-                e.ImfManager = Registry.GetManagedBaseHandleFromNativePtr(data) as ImfManager;
-            }
-
-            if (_imfManagerResizedEventHandler != null)
-            {
-                _imfManagerResizedEventHandler(this, e);
-            }
         }
 
         /// <summary>
@@ -1621,87 +1123,11 @@ namespace Tizen.NUI
             }
         }
 
-        /// <summary>
-        /// ImfManager resized signal.
-        /// </summary>
-        ///Please do not use! this will be internal
-        /// <since_tizen> 3 </since_tizen>
-        [Obsolete("Please do not use! This will be deprecated!")]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public KeyboardResizedSignalType ResizedSignal()
+        internal KeyboardResizedSignalType ResizedSignal()
         {
             KeyboardResizedSignalType ret = new KeyboardResizedSignalType(NDalicManualPINVOKE.ImfManager_ResizedSignal(swigCPtr), false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
-        }
-
-        /// <summary>
-        /// ImfManager language changed event arguments.
-        /// </summary>
-        ///Please do not use! this will be deprecated
-        /// <since_tizen> 3 </since_tizen>
-        [Obsolete("Please do not use! This will be deprecated! Please use LanguageChangedEventArgs instead!")]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public class ImfManagerLanguageChangedEventArgs : EventArgs
-        {
-            /// <summary>
-            /// ImfManager
-            /// </summary>
-            /// <since_tizen> 3 </since_tizen>
-            public ImfManager ImfManager
-            {
-                get;
-                set;
-            }
-        }
-
-        private delegate void ImfManagerLanguageChangedEventCallbackType(IntPtr data);
-        private ImfManagerLanguageChangedEventCallbackType _imfManagerLanguageChangedEventCallback;
-        private event EventHandler<ImfManagerLanguageChangedEventArgs> _imfManagerLanguageChangedEventHandler;
-
-        /// <summary>
-        /// ImfManager language changed event.
-        /// </summary>
-        ///Please do not use! this will be deprecated
-        /// <since_tizen> 3 </since_tizen>
-        [Obsolete("Please do not use! This will be deprecated! Please use LanguageChanged instead!")]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public event EventHandler<ImfManagerLanguageChangedEventArgs> ImfManagerLanguageChanged
-        {
-            add
-            {
-                if (_imfManagerLanguageChangedEventHandler == null)
-                {
-                    _imfManagerLanguageChangedEventCallback = OnImfManagerLanguageChanged;
-                    LanguageChangedSignal().Connect(_imfManagerLanguageChangedEventCallback);
-                }
-
-                _imfManagerLanguageChangedEventHandler += value;
-            }
-            remove
-            {
-                _imfManagerLanguageChangedEventHandler -= value;
-
-                if (_imfManagerLanguageChangedEventHandler == null && _imfManagerLanguageChangedEventCallback != null)
-                {
-                    LanguageChangedSignal().Disconnect(_imfManagerLanguageChangedEventCallback);
-                }
-            }
-        }
-
-        private void OnImfManagerLanguageChanged(IntPtr data)
-        {
-            ImfManagerLanguageChangedEventArgs e = new ImfManagerLanguageChangedEventArgs();
-
-            if (data != null)
-            {
-                e.ImfManager = Registry.GetManagedBaseHandleFromNativePtr(data) as ImfManager;
-            }
-
-            if (_imfManagerLanguageChangedEventHandler != null)
-            {
-                _imfManagerLanguageChangedEventHandler(this, e);
-            }
         }
 
         /// <summary>
@@ -1763,14 +1189,7 @@ namespace Tizen.NUI
             }
         }
 
-        /// <summary>
-        /// ImfManager language changed signal.
-        /// </summary>
-        ///Please do not use! this will be internal
-        /// <since_tizen> 3 </since_tizen>
-        [Obsolete("Please do not use! This will be deprecated!")]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public LanguageChangedSignalType LanguageChangedSignal()
+        internal LanguageChangedSignalType LanguageChangedSignal()
         {
             LanguageChangedSignalType ret = new LanguageChangedSignalType(NDalicManualPINVOKE.ImfManager_LanguageChangedSignal(swigCPtr), false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
