@@ -159,7 +159,7 @@ namespace Tizen.System.Usb
         /// Releases all resources used by the ConnectionProfile.
         /// It should be called after finished using of the object.</summary>
         /// <since_tizen> 5 </since_tizen>
-        protected virtual void Dispose(bool disposing)
+        internal virtual void Dispose(bool disposing)
         {
             if (!disposedValue)
             {
