@@ -20,7 +20,7 @@ using static Tizen.Pims.Contacts.ContactsDatabase;
 namespace Tizen.Pims.Contacts
 {
     /// <summary>
-    /// Event arguments passed when contacts database status is changed
+    /// Event arguments passed when the contacts database status is changed.
     /// </summary>
     /// <since_tizen> 4 </since_tizen>
     public class DBStatusChangedEventArgs : EventArgs
