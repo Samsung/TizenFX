@@ -19,12 +19,12 @@ using System.Runtime.InteropServices;
 using Tizen.Network.Nsd;
 
 /// <summary>
-/// Interop class for Nsd
+/// Interop class for NSD.
 /// </summary>
 internal static partial class Interop
 {
     /// <summary>
-    /// Nsd Native Apis
+    /// NSD native APIs.
     /// </summary>
     internal static partial class Nsd
     {
