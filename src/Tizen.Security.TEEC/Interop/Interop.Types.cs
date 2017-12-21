@@ -62,7 +62,8 @@ internal static partial class Interop
         public IntPtr buffer;
         public UIntPtr size;
         public UInt32 flags;
-        public IntPtr imp;
+        [MarshalAs(UnmanagedType.ByValArray, SizeConst = 128)]
+		public byte[] padding;
     }
 
     [StructLayout(LayoutKind.Sequential,Pack=8)]
@@ -72,39 +73,75 @@ internal static partial class Interop
         public UInt32 b;
     }
 
-    [StructLayout(LayoutKind.Sequential, Pack=8)]
-    internal struct TEEC_TempMemoryReference
+    [StructLayout(LayoutKind.Sequential)]
+    internal struct TEEC_TempMemoryReference32
     {
-        public IntPtr buffer;
-        public UIntPtr size;
+        public Int32 buffer;
+        public UInt32 size;
     }
 
-    [StructLayout(LayoutKind.Sequential, Pack=8)]
-    internal struct TEEC_RegisteredMemoryReference
+    [StructLayout(LayoutKind.Sequential)]
+    internal struct TEEC_RegisteredMemoryReference32
     {
-        public IntPtr parent;
-        public UIntPtr size;
-        public UIntPtr offset;
+        public Int32 parent;
+        public UInt32 size;
+        public UInt32 offset;
     }
 
-    [StructLayout(LayoutKind.Explicit, Pack=8)]
-    internal struct TEEC_Parameter
+    [StructLayout(LayoutKind.Explicit)]
+    internal struct TEEC_Parameter32
     {
         [FieldOffset(0)]
-        public TEEC_TempMemoryReference tmpref;
+        public TEEC_TempMemoryReference32 tmpref;
         [FieldOffset(0)]
-        public TEEC_RegisteredMemoryReference memref;
+        public TEEC_RegisteredMemoryReference32 memref;
         [FieldOffset(0)]
         public TEEC_Value value;
     }
 
-    [StructLayout(LayoutKind.Sequential, Pack=8)]
-    internal struct TEEC_Operation
+    [StructLayout(LayoutKind.Sequential)]
+    internal struct TEEC_Operation32
     {
         public UInt32 started;
         public UInt32 paramTypes;
         [MarshalAs(UnmanagedType.ByValArray, SizeConst = 4)]
-        public TEEC_Parameter[] paramlist;
+        public TEEC_Parameter32[] paramlist;
+        public IntPtr imp;
+    }
+
+    [StructLayout(LayoutKind.Sequential)]
+    internal struct TEEC_TempMemoryReference64
+    {
+        public Int64 buffer;
+        public UInt64 size;
+    }
+
+    [StructLayout(LayoutKind.Sequential)]
+    internal struct TEEC_RegisteredMemoryReference64
+    {
+        public Int64 parent;
+        public UInt64 size;
+        public UInt64 offset;
+    }
+
+    [StructLayout(LayoutKind.Explicit)]
+    internal struct TEEC_Parameter64
+    {
+        [FieldOffset(0)]
+        public TEEC_TempMemoryReference64 tmpref;
+        [FieldOffset(0)]
+        public TEEC_RegisteredMemoryReference64 memref;
+        [FieldOffset(0)]
+        public TEEC_Value value;
+    }
+
+    [StructLayout(LayoutKind.Sequential)]
+    internal struct TEEC_Operation64
+    {
+        public UInt32 started;
+        public UInt32 paramTypes;
+        [MarshalAs(UnmanagedType.ByValArray, SizeConst = 4)]
+        public TEEC_Parameter64[] paramlist;
         public IntPtr imp;
     }
 }
