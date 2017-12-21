@@ -110,9 +110,16 @@ namespace Tizen.Security.TEEC
     public sealed class SharedMemory
     {
         internal Interop.TEEC_SharedMemory shm;
-        internal SharedMemory(Interop.TEEC_SharedMemory shm)
+        internal IntPtr shmptr;
+        internal SharedMemory(ref Interop.TEEC_SharedMemory shm)
         {
             this.shm=shm;
+            shmptr = Marshal.AllocHGlobal(Marshal.SizeOf(shm));
+            Marshal.StructureToPtr(shm, shmptr, false);
+        }
+        ~SharedMemory()
+        {
+            Marshal.FreeHGlobal(shmptr);
         }
         /// <summary>
         /// This property represents the shared memory size in bytes.
@@ -122,7 +129,7 @@ namespace Tizen.Security.TEEC
         /// <privlevel>partner</privlevel>
         public UInt32 Size
         {
-            get { return shm.size; }
+            get { return shm.size.ToUInt32(); }
         }
         /// <summary>
         /// This property represents the start address of the shared memory block.
@@ -251,9 +258,16 @@ namespace Tizen.Security.TEEC
                 base(type)
         {
             this.Parent = parent;
-            this.Size = size;
-            this.Offset = offset;
+            if (type == TEFRegisteredMemoryType.Whole) {
+                this.Size = parent.Size;
+                this.Offset = 0;
+            }
+            else {
+                this.Size = size;
+                this.Offset = offset;
+            }
         }
+
         /// <summary>
         /// This property represents the shared memory that is referred to.
         /// </summary>
@@ -332,82 +346,95 @@ namespace Tizen.Security.TEEC
             Close();
         }
 
-        internal UInt32 InitParam(ref Interop.TEEC_Parameter dst, Parameter src)
+        static internal UInt32 InitParam(ref Interop.TEEC_Parameter[] dst, int i, Parameter src)
         {
             switch (src.NativeType) {
-               case (int)TEFValueType.Input:
-               case (int)TEFValueType.Output:
-               case (int)TEFValueType.InOut:
-                   dst.value.a = ((Value)src).A;
-                   dst.value.b = ((Value)src).B;
-                   break;
+                case (int)TEFValueType.Input:
+                case (int)TEFValueType.Output:
+                case (int)TEFValueType.InOut:
+                    dst[i].value.a = ((Value)src).A;
+                    dst[i].value.b = ((Value)src).B;
+                    break;
 
-               case (int)TEFTempMemoryType.Input:
-               case (int)TEFTempMemoryType.Output:
-               case (int)TEFTempMemoryType.InOut:
-                   dst.tmpref.buffer = ((TempMemoryReference)src).Buffer;
-                   dst.tmpref.size = ((TempMemoryReference)src).Size;
-                   break;
+                case (int)TEFTempMemoryType.Input:
+                case (int)TEFTempMemoryType.Output:
+                case (int)TEFTempMemoryType.InOut:
+                    dst[i].tmpref.buffer = ((TempMemoryReference)src).Buffer;
+                    dst[i].tmpref.size = new UIntPtr(((TempMemoryReference)src).Size);
+                    break;
 
-               case (int)TEFRegisteredMemoryType.Whole:
-               case (int)TEFRegisteredMemoryType.PartialInput:
-               case (int)TEFRegisteredMemoryType.PartialOutput:
-               case (int)TEFRegisteredMemoryType.PartialInOut:
-                   dst.memref.parent = ((RegisteredMemoryReference)src).Parent.shm;
-                   dst.memref.size = ((RegisteredMemoryReference)src).Size;
-                   dst.memref.offset = ((RegisteredMemoryReference)src).Offset;
-                   break;
+                case (int)TEFRegisteredMemoryType.Whole:
+                case (int)TEFRegisteredMemoryType.PartialInput:
+                case (int)TEFRegisteredMemoryType.PartialOutput:
+                case (int)TEFRegisteredMemoryType.PartialInOut:
+                    RegisteredMemoryReference rmr = (RegisteredMemoryReference)src;
+                    dst[i].memref.parent = rmr.Parent.shmptr;
+                    dst[i].memref.size = new UIntPtr(rmr.Size);
+                    dst[i].memref.offset = new UIntPtr(rmr.Offset);
+                    break;
 
-               default: return 0;
+                default: return 0;
             }
             return src.NativeType;
         }
 
-        internal void UpdateParam(Interop.TEEC_Parameter src, ref Parameter dst)
+        static internal void UpdateParam(Interop.TEEC_Parameter src, ref Parameter[] dst, int i)
         {
-            switch (dst.NativeType) {
+            switch (dst[i].NativeType) {
                case (int)TEFValueType.Input:
                case (int)TEFValueType.Output:
                case (int)TEFValueType.InOut:
-                   ((Value)dst).A = src.value.a;
-                   ((Value)dst).B = src.value.b;
+                   ((Value)dst[i]).A = src.value.a;
+                   ((Value)dst[i]).B = src.value.b;
                    break;
 
                case (int)TEFTempMemoryType.Input:
                case (int)TEFTempMemoryType.Output:
                case (int)TEFTempMemoryType.InOut:
-                   ((TempMemoryReference)dst).Size = src.tmpref.size;
+                   ((TempMemoryReference)dst[i]).Size = src.tmpref.size.ToUInt32();
                    break;
 
                case (int)TEFRegisteredMemoryType.Whole:
                case (int)TEFRegisteredMemoryType.PartialInput:
                case (int)TEFRegisteredMemoryType.PartialOutput:
                case (int)TEFRegisteredMemoryType.PartialInOut:
-                   ((RegisteredMemoryReference)dst).Size = src.memref.size;
+                   ((RegisteredMemoryReference)dst[i]).Size = src.memref.size.ToUInt32();
                    break;
 
                default: break;
             }
         }
 
+        static internal Interop.TEEC_Operation Create_TEEC_Operation() {
+            Interop.TEEC_Operation op = new Interop.TEEC_Operation();
+            op.started=0;
+            op.paramTypes=0;
+            op.paramlist = new Interop.TEEC_Parameter[4];
+            return op;
+        }
+
         internal void Open(Guid destination, uint loginMethod, byte[] connectionData, Parameter[] paramlist)
         {
             Interop.TEEC_UUID uuid = Interop.TEEC_UUID.ToTeecUuid(destination);
-            Interop.TEEC_Operation op = new Interop.TEEC_Operation();
 
-            op.started=0;
-            op.paramTypes=0;
-            for (int i=0; i < 4 && i < paramlist.Length; ++i) {
-                op.paramTypes |= InitParam(ref op.paramlist[i], paramlist[i]) << (4*i);
+            int ret;
+            uint ro;
+            if (paramlist != null) {
+                Interop.TEEC_Operation op = Create_TEEC_Operation();
+                for (int i=0; i < 4 && i < paramlist.Length; ++i) {
+                    op.paramTypes |= InitParam(ref op.paramlist, i, paramlist[i]) << (4*i);
+                }
+                ret = Interop.Libteec.OpenSession(ref context, ref session, ref uuid, loginMethod, connectionData, ref op, out ro);
+                for (int i=0; i < 4 && i < paramlist.Length; ++i) {
+                    UpdateParam(op.paramlist[i], ref paramlist, i);
+                }
+            }
+            else {
+                ret = Interop.Libteec.OpenSession(ref context, ref session, ref uuid, loginMethod, connectionData, IntPtr.Zero, out ro);
             }
 
-            uint ro;
-            int ret = Interop.Libteec.OpenSession(ref context, ref session, ref uuid, loginMethod, connectionData, ref op, out ro);
             //MAYBE map origin of return code to specyfic Exception
             Interop.CheckNThrowException(ret, string.Format("OpenSession('{0}')", destination));
-            for (int i=0; i < 4 && i < paramlist.Length; ++i) {
-                UpdateParam(op.paramlist[i], ref paramlist[i]);
-            }
         }
 
         /// <summary>
@@ -423,7 +450,6 @@ namespace Tizen.Security.TEEC
         /// <exception cref="InvalidOperationException">The operation is invalid.</exception>
         public void Close() {
             Interop.Libteec.CloseSession(ref session);
-            //session = null;
         }
 
         /// <summary>
@@ -445,20 +471,24 @@ namespace Tizen.Security.TEEC
         /// <exception cref="ArgumentException">The argument <paramref name="paramlist"/> is wrong.</exception>
         public void InvokeCommand(uint commandID, Parameter[] paramlist)
         {
-            Interop.TEEC_Operation op = new Interop.TEEC_Operation();
-            op.started=0;
-            op.paramTypes=0;
-            for (int i=0; i < 4 && i < paramlist.Length; ++i) {
-                op.paramTypes |= InitParam(ref op.paramlist[i], paramlist[i]) << (4*i);
+            int ret;
+            uint ro;
+            if (paramlist != null) {
+                Interop.TEEC_Operation op = Create_TEEC_Operation();
+                for (int i=0; i < 4 && i < paramlist.Length; ++i) {
+                    op.paramTypes |= InitParam(ref op.paramlist, i, paramlist[i]) << (4*i);
+                }
+                ret = Interop.Libteec.InvokeCommand(ref session, commandID, ref op, out ro);
+                for (int i=0; i < 4 && i < paramlist.Length; ++i) {
+                    UpdateParam(op.paramlist[i], ref paramlist, i);
+                }
+            }
+            else {
+                ret = Interop.Libteec.InvokeCommand(ref session, commandID, IntPtr.Zero, out ro);
             }
 
-            uint ro;
-            int ret = Interop.Libteec.InvokeCommand(ref session, commandID, ref op, out ro);
             //MAYBE map origin of return code to specific Exception
             Interop.CheckNThrowException(ret, string.Format("InvokeCommand({0})", commandID));
-            for (int i=0; i < 4 && i < paramlist.Length; ++i) {
-                UpdateParam(op.paramlist[i], ref paramlist[i]);
-            }
         }
 
         /// <summary>
@@ -655,11 +685,11 @@ namespace Tizen.Security.TEEC
         {
             Interop.TEEC_SharedMemory shm = new Interop.TEEC_SharedMemory();
             shm.buffer = memaddr;
-            shm.size = size;
+            shm.size = new UIntPtr(size);
             shm.flags = (UInt32)flags;
             int ret = Interop.Libteec.RegisterSharedMemory(ref context, ref shm);
             Interop.CheckNThrowException(ret, "RegisterSharedMemory");
-            return new SharedMemory(shm);
+            return new SharedMemory(ref shm);
         }
 
         /// <summary>
@@ -679,11 +709,11 @@ namespace Tizen.Security.TEEC
         public SharedMemory AllocateSharedMemory(UInt32 size, SharedMemoryFlags flags)
         {
             Interop.TEEC_SharedMemory shm = new Interop.TEEC_SharedMemory();
-            shm.size = size;
+            shm.size = new UIntPtr(size);
             shm.flags = (UInt32)flags;
             int ret = Interop.Libteec.AllocateSharedMemory(ref context, ref shm);
             Interop.CheckNThrowException(ret, "AllocateSharedMemory");
-            return new SharedMemory(shm);
+            return new SharedMemory(ref shm);
         }
 
         /// <summary>

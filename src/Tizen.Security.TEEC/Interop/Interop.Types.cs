@@ -56,38 +56,38 @@ internal static partial class Interop
         }
     }
 
-    [StructLayout(LayoutKind.Sequential)]
-    internal class TEEC_SharedMemory
+    [StructLayout(LayoutKind.Sequential,Pack=8)]
+    internal struct TEEC_SharedMemory
     {
         public IntPtr buffer;
-        public UInt32 size;
+        public UIntPtr size;
         public UInt32 flags;
         public IntPtr imp;
     }
 
-    [StructLayout(LayoutKind.Sequential)]
+    [StructLayout(LayoutKind.Sequential,Pack=8)]
     internal struct TEEC_Value
     {
         public UInt32 a;
         public UInt32 b;
     }
 
-    [StructLayout(LayoutKind.Sequential)]
+    [StructLayout(LayoutKind.Sequential, Pack=8)]
     internal struct TEEC_TempMemoryReference
     {
         public IntPtr buffer;
-        public UInt32 size;
+        public UIntPtr size;
     }
 
-    [StructLayout(LayoutKind.Sequential)]
+    [StructLayout(LayoutKind.Sequential, Pack=8)]
     internal struct TEEC_RegisteredMemoryReference
     {
-        public TEEC_SharedMemory parent;
-        public UInt32 size;
-        public UInt32 offset;
+        public IntPtr parent;
+        public UIntPtr size;
+        public UIntPtr offset;
     }
 
-    [StructLayout(LayoutKind.Explicit)]
+    [StructLayout(LayoutKind.Explicit, Pack=8)]
     internal struct TEEC_Parameter
     {
         [FieldOffset(0)]
@@ -98,7 +98,7 @@ internal static partial class Interop
         public TEEC_Value value;
     }
 
-    [StructLayout(LayoutKind.Sequential)]
+    [StructLayout(LayoutKind.Sequential, Pack=8)]
     internal struct TEEC_Operation
     {
         public UInt32 started;
