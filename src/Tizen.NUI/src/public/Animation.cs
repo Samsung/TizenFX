@@ -47,6 +47,14 @@ namespace Tizen.NUI
             return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
         }
 
+        ~Animation()
+        {
+            if (_animationFinishedEventCallback != null)
+            {
+                _finishedSignal?.Disconnect(_finishedCallbackOfNative);
+            }
+        }
+
         /// <summary>
         /// To make animation instance be disposed.
         /// </summary>
@@ -55,12 +63,11 @@ namespace Tizen.NUI
         {
             if (_animationFinishedEventCallback != null)
             {
-                FinishedSignal().Disconnect(_finishedCallbackOfNative);
+                _finishedSignal?.Disconnect(_finishedCallbackOfNative);
             }
 
             if (_animationProgressReachedEventCallback != null)
             {
-
                 ProgressReachedSignal().Disconnect(_animationProgressReachedEventCallback);
             }
 
@@ -68,6 +75,7 @@ namespace Tizen.NUI
             {
                 return;
             }
+
             if(type == DisposeTypes.Explicit)
             {
                 //Called by User
@@ -84,7 +92,7 @@ namespace Tizen.NUI
             {
                 this.Clear();
                 this.Reset();
-                NUILog.Error("Now Animation is playing! Clear and Reset here!");
+                NUILog.Error("Animation().Clear & Reset here!");
                 //throw new System.InvalidOperationException("Animation Instance should not be disposed until getting Finished event. Should be a global variable");
             }
 
@@ -125,6 +133,7 @@ namespace Tizen.NUI
         private event EventHandler _animationFinishedEventHandler;
 
         private System.IntPtr _finishedCallbackOfNative;
+        private AnimationSignal _finishedSignal;
 
         /**
         * @brief Event for the finished signal which can be used to subscribe or unsubscribe the event handler.
@@ -137,7 +146,8 @@ namespace Tizen.NUI
             {
                 if (_animationFinishedEventHandler == null && disposed == false)
                 {
-                    FinishedSignal().Connect(_finishedCallbackOfNative);
+                    _finishedSignal = FinishedSignal();
+                    _finishedSignal?.Connect(_finishedCallbackOfNative);
                 }
                 _animationFinishedEventHandler += value;
             }
@@ -145,9 +155,9 @@ namespace Tizen.NUI
             {
                 _animationFinishedEventHandler -= value;
 
-                if (_animationFinishedEventHandler == null && FinishedSignal().Empty() == false)
+                if (_animationFinishedEventHandler == null && _finishedSignal?.Empty() == false)
                 {
-                    FinishedSignal().Disconnect(_finishedCallbackOfNative);
+                    _finishedSignal?.Disconnect(_finishedCallbackOfNative);
                 }
             }
         }

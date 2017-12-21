@@ -44,13 +44,14 @@ namespace Tizen.NUI
 
             _timerTickCallbackDelegate = OnTick;
             _timerTickCallbackOfNative = System.Runtime.InteropServices.Marshal.GetFunctionPointerForDelegate<System.Delegate>(_timerTickCallbackDelegate);
-
-            NUILog.Debug($"(0x{swigCPtr.Handle:X})Timer() contructor!");
         }
 
         ~Timer()
         {
-            NUILog.Debug($"(0x{swigCPtr.Handle:X})Timer() distructor!, disposed={disposed}");
+            if (_timerTickCallbackDelegate != null)
+            {
+                _timerSignal?.Disconnect(_timerTickCallbackOfNative);
+            }
         }
 
         internal static global::System.Runtime.InteropServices.HandleRef getCPtr(Timer obj)
@@ -64,11 +65,9 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         protected override void Dispose(DisposeTypes type)
         {
-            NUILog.Debug($"(0x{swigCPtr.Handle:X}) Timer.Dispose(type={type}, disposed={disposed})");
-
             if (_timerTickCallbackDelegate != null)
             {
-                TickSignal().Disconnect(_timerTickCallbackOfNative);
+                _timerSignal?.Disconnect(_timerTickCallbackOfNative);
             }
 
             if (disposed)
@@ -116,6 +115,7 @@ namespace Tizen.NUI
         private TickCallbackDelegate _timerTickCallbackDelegate;
 
         private System.IntPtr _timerTickCallbackOfNative;
+        private TimerSignalType _timerSignal;
 
         /// <summary>
         /// @brief Event for the ticked signal, which can be used to subscribe or unsubscribe the event handler
@@ -128,16 +128,17 @@ namespace Tizen.NUI
             {
                 if (_timerTickEventHandler == null && disposed == false)
                 {
-                    TickSignal().Connect(_timerTickCallbackOfNative);
+                    _timerSignal = TickSignal();
+                    _timerSignal?.Connect(_timerTickCallbackOfNative);
                 }
                 _timerTickEventHandler += value;
             }
             remove
             {
                 _timerTickEventHandler -= value;
-                if (_timerTickEventHandler == null && TickSignal().Empty() == false)
+                if (_timerTickEventHandler == null && _timerSignal?.Empty() == false)
                 {
-                    TickSignal().Disconnect(_timerTickCallbackOfNative);
+                    _timerSignal?.Disconnect(_timerTickCallbackOfNative);
                 }
             }
         }
@@ -148,7 +149,7 @@ namespace Tizen.NUI
 
             if (played == false)
             {
-                Tizen.Log.Fatal("NUI", $"(0x{swigCPtr.Handle:X}) OnTick() is called even played is false!");
+                Tizen.Log.Fatal("NUI", $"OnTick() is called even played is false!");
                 //throw new System.InvalidOperationException($"OnTick() excpetion!");
             }
 
@@ -169,8 +170,6 @@ namespace Tizen.NUI
         public Timer(uint milliSec) : this(NDalicPINVOKE.Timer_New(milliSec), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-
-            NUILog.Debug($"(0x{swigCPtr.Handle:X})  Timer({milliSec}) Constructor!");
         }
         internal Timer(Timer timer) : this(NDalicPINVOKE.new_Timer__SWIG_1(Timer.getCPtr(timer)), true)
         {
@@ -228,8 +227,6 @@ namespace Tizen.NUI
         /// <param name="milliSec">MilliSec interval in milliseconds.</param>
         internal void SetInterval(uint milliSec)
         {
-            NUILog.Debug($"(0x{swigCPtr.Handle:X})SetInterval({milliSec})");
-
             played = true;
 
             NDalicPINVOKE.Timer_SetInterval(swigCPtr, milliSec);
