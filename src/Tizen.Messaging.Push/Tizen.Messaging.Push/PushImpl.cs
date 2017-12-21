@@ -26,8 +26,8 @@ namespace Tizen.Messaging.Push
     {
         private static readonly object _lock = new object();
         private static PushImpl _instance;
-        private Interop.PushClient.VoidResultCallback registerResult;
-        private Interop.PushClient.VoidResultCallback unregisterResult;
+        private static Interop.PushClient.VoidResultCallback registerResult = null;
+        private static Interop.PushClient.VoidResultCallback unregisterResult = null;
 
         internal static PushImpl Instance
         {
@@ -157,6 +157,12 @@ namespace Tizen.Messaging.Push
         {
             Log.Info(Interop.PushClient.LogTag, "Register Called");
             var task = new TaskCompletionSource<ServerResponse>();
+            if (registerResult != null)
+            {
+                Log.Error(Interop.PushClient.LogTag, "Register callback was already registered with same callback");
+                return await task.Task;
+            }
+
             registerResult = (Interop.PushClient.Result regResult, IntPtr msgPtr, IntPtr userData) =>
             {
                 Log.Info(Interop.PushClient.LogTag, "Register Callback Called with " + regResult);
@@ -172,6 +178,11 @@ namespace Tizen.Messaging.Push
                 {
                     Log.Error(Interop.PushClient.LogTag, "Unable to set the Result for register");
                 }
+                lock (_lock)
+                {
+                    Log.Error(Interop.PushClient.LogTag, "resigterResult is unset");
+                    registerResult = null;
+                }
             };
             Interop.PushClient.ServiceError result = Interop.PushClient.ServiceRegister(_connection, registerResult, IntPtr.Zero);
             Log.Info(Interop.PushClient.LogTag, "Interop.PushClient.ServiceRegister Completed");
@@ -179,6 +190,11 @@ namespace Tizen.Messaging.Push
             {
                 Log.Error(Interop.PushClient.LogTag, "Register failed with " + result);
                 task.SetException(PushExceptionFactory.CreateResponseException(result));
+                lock (_lock)
+                {
+                    Log.Error(Interop.PushClient.LogTag, "resigterResult is unset (failed)");
+                    registerResult = null;
+                }
             }
             return await task.Task;
         }
