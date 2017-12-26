@@ -25,7 +25,7 @@ cd TizenFX
 ### master
 The __master__ branch is the main development branch for the Tizen .NET __API Level 5__.
 
-The following NuGet packages will be published to [MyGet](https://tizen.myget.org/gallery/dotnet) every day if there are any changes. (Nightly Build) 
+The following NuGet packages will be published to [Tizen MyGet Gallery](https://tizen.myget.org/gallery/dotnet) every day if there are any changes. (Nightly Build) 
 * Tizen.NET-5.0.0-preview1-xxxxx
 * Tizen.NET.API5-5.0.0.xxxxx
 * Tizen.NET.Internals-5.0.0.xxxxx
@@ -37,9 +37,12 @@ The __API4__ branch is the release branch for Tizen .NET __API Level 4__.
 
 The API Level 4 was __FROZEN__. No new public APIs can be added to this branch, only bug fixes and internal APIs can be added.
 
-The following NuGet packages are published to [MyGet](https://tizen.myget.org/gallery/dotnet) on demand.
+The following NuGet packages are published to [Tizen MyGet Gallery](https://tizen.myget.org/gallery/dotnet) on demand.
 * Tizen.NET-4.0.1-preview1-xxxxx
 * Tizen.NET.API4-4.0.1.xxxxx
 * Tizen.NET.Internals-4.0.1.xxxxx
 
 And, This branch is pushed to the [tizen_4.0 branch](https://git.tizen.org/cgit/platform/core/csapi/tizenfx/?h=tizen_4.0) in the tizen gerrit and submmited for the Tizen 4.0 platform.
+
+
+
