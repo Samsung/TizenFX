@@ -5,21 +5,8 @@
 TizenFX API, which allows you to access platform-specific features not covered by the generic .NET and Xamarin.Forms features, such as system information and status, battery status, sensor date, and account and connectivity services.
 
 ## Contents
-> [Quick Start](#quick-start)  
 > [Branches of TizenFX](#branches)  
-
-
-## Quick Start
-### Getting the sources
-```bash
-git clone https://github.com/Samsung/TizenFX.git
-cd TizenFX
-```
-### How to build
-```bash
-./build.sh full
-./build.sh pack 
-```
+> [Quick Start](#quick-start)  
 
 ## Branches
 
@@ -53,4 +40,14 @@ The following NuGet packages are published to [Tizen MyGet Gallery](https://tize
 And, This branch is pushed to the [tizen_4.0 branch](https://git.tizen.org/cgit/platform/core/csapi/tizenfx/?h=tizen_4.0) in the tizen gerrit and submmited for the Tizen 4.0 platform.
 
 
-
+## Quick Start
+### Getting the sources
+```bash
+git clone https://github.com/Samsung/TizenFX.git
+cd TizenFX
+```
+### How to build
+```bash
+./build.sh full
+./build.sh pack 
+```
