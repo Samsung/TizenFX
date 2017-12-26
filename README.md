@@ -56,6 +56,7 @@ cd TizenFX
 ## Tizen Project
 TizenFX is a part of the [Tizen project](https://www.tizen.org) and has been officially included since [4.0 M2 release](https://www.tizen.org/blogs/tsg/2017/tizen-4.0-m2-source-code-release).  
 You can download the latest binaries with TizenFX from the link below :  
+
 | Tizen Version | Link |
 |---------------|------|
 | Tizen 4.0     | http://download.tizen.org/snapshots/tizen/4.0-unified/latest/ |
