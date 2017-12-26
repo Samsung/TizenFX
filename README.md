@@ -7,6 +7,7 @@ TizenFX API, which allows you to access platform-specific features not covered b
 ## Contents
 > [Branches of TizenFX](#branches)  
 > [Quick Start](#quick-start)  
+> [Tizen Project](#tizen-project)
 
 ## Branches
 
@@ -14,8 +15,6 @@ TizenFX API, which allows you to access platform-specific features not covered b
 |--------|:---------:|-------------|--------|
 |master  | 5         | [![api5_myget](https://img.shields.io/tizen.myget/dotnet/vpre/Tizen.NET.API5.svg)](https://tizen.myget.org/feed/dotnet/package/nuget/Tizen.NET) | |
 |API4    | 4         | [![api4_myget](https://img.shields.io/tizen.myget/dotnet/vpre/Tizen.NET.API4.svg)](https://tizen.myget.org/feed/dotnet/package/nuget/Tizen.NET) | [![api4_nuget](https://img.shields.io/nuget/v/Tizen.NET.svg)](https://www.nuget.org/packages/Tizen.NET/) |
-
-
 
 ### master
 The __master__ branch is the main development branch for the Tizen .NET __API Level 5__.
@@ -40,6 +39,7 @@ The following NuGet packages are published to [Tizen MyGet Gallery](https://tize
 And, This branch is pushed to the [tizen_4.0 branch](https://git.tizen.org/cgit/platform/core/csapi/tizenfx/?h=tizen_4.0) in the tizen gerrit and submmited for the Tizen 4.0 platform.
 
 
+
 ## Quick Start
 ### Getting the sources
 ```bash
@@ -51,3 +51,30 @@ cd TizenFX
 ./build.sh full
 ./build.sh pack 
 ```
+
+
+## Tizen Project
+TizenFX is a part of the [Tizen project](https://www.tizen.org) and has been officially included since [4.0 M2 release](https://www.tizen.org/blogs/tsg/2017/tizen-4.0-m2-source-code-release).  
+You can download the latest binaries with TizenFX from the link below :  
+| Tizen Version | Link |
+|---------------|------|
+| Tizen 4.0     | http://download.tizen.org/snapshots/tizen/4.0-unified/latest/ |
+| Tizen vNext   | http://download.tizen.org/snapshots/tizen/unified/latest/ |
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
