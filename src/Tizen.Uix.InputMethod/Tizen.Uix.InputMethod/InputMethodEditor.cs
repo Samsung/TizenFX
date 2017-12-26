@@ -1704,6 +1704,7 @@ namespace Tizen.Uix.InputMethod
             _imeCallbackStructGCHandle._imeCallbackStruct.hide = _hide;
             _imeCallbackStructGCHandle._imeCallbackStruct.show = _show;
 
+            ImeSetDotnetFlag(true);
             ErrorCode error = ImeRun(ref _imeCallbackStructGCHandle._imeCallbackStruct, IntPtr.Zero);
             if (error != ErrorCode.None)
             {
