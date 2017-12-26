@@ -1,0 +1,45 @@
+# TizenFX
+
+[![License](https://img.shields.io/badge/licence-Apache%202.0-brightgreen.svg?style=flat)](LICENSE)
+
+TizenFX API, which allows you to access platform-specific features not covered by the generic .NET and Xamarin.Forms features, such as system information and status, battery status, sensor date, and account and connectivity services.
+
+## Contents
+> [Quick Start](#quick-start)  
+> [Branches of TizenFX](#branches)  
+
+
+## Quick Start
+### Getting the sources
+```bash
+git clone https://github.com/Samsung/TizenFX.git
+cd TizenFX
+```
+### How to build
+```bash
+./build.sh full
+./build.sh pack 
+```
+
+## Branches
+### master
+The __master__ branch is the main development branch for the Tizen .NET __API Level 5__.
+
+The following NuGet packages will be published to [MyGet](https://tizen.myget.org/gallery/dotnet) every day if there are any changes. (Nightly Build) 
+* Tizen.NET-5.0.0-preview1-xxxxx
+* Tizen.NET.API5-5.0.0.xxxxx
+* Tizen.NET.Internals-5.0.0.xxxxx
+
+And, This branch is pushed to the [tizen branch](https://git.tizen.org/cgit/platform/core/csapi/tizenfx/?h=tizen) in the tizen gerrit and submmited for the Tizen 5.0 platform.
+
+### API4
+The __API4__ branch is the release branch for Tizen .NET __API Level 4__. 
+
+The API Level 4 was __FROZEN__. No new public APIs can be added to this branch, only bug fixes and internal APIs can be added.
+
+The following NuGet packages are published to [MyGet](https://tizen.myget.org/gallery/dotnet) on demand.
+* Tizen.NET-4.0.1-preview1-xxxxx
+* Tizen.NET.API4-4.0.1.xxxxx
+* Tizen.NET.Internals-4.0.1.xxxxx
+
+And, This branch is pushed to the [tizen_4.0 branch](https://git.tizen.org/cgit/platform/core/csapi/tizenfx/?h=tizen_4.0) in the tizen gerrit and submmited for the Tizen 4.0 platform.
