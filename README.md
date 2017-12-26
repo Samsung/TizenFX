@@ -23,7 +23,7 @@ cd TizenFX
 
 ## Branches
 
-| branch | API level | pre-releaes | stable |
+| branch | API level | pre-release | stable |
 |--------|:---------:|-------------|--------|
 |master  | 5         | [![api5_myget](https://img.shields.io/tizen.myget/dotnet/vpre/Tizen.NET.API5.svg)](https://tizen.myget.org/feed/dotnet/package/nuget/Tizen.NET) | |
 |API4    | 4         | [![api4_myget](https://img.shields.io/tizen.myget/dotnet/vpre/Tizen.NET.API4.svg)](https://tizen.myget.org/feed/dotnet/package/nuget/Tizen.NET) | [![api4_nuget](https://img.shields.io/nuget/v/Tizen.NET.svg)](https://www.nuget.org/packages/Tizen.NET/) |
