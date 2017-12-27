@@ -17,6 +17,7 @@ using System;
 using System.Collections.Generic;
 using Tizen.Applications.DataControl.Core;
 using System.Threading;
+using System.Runtime.InteropServices;
 
 namespace Tizen.Applications.DataControl
 {
@@ -166,7 +167,18 @@ namespace Tizen.Applications.DataControl
                 _reqConsumerDictionary.Remove(reqId);
             }
 
-            private static void MapGetResponse(int reqId, IntPtr provider, string[] valueList, int valueCount, bool providerResult, string error, IntPtr userData)
+            static void IntPtrToStringArray(IntPtr unmanagedArray, int size, out string[] managedArray)
+            {
+                managedArray = new string[size];
+                IntPtr[] IntPtrArray = new IntPtr[size];
+                Marshal.Copy(unmanagedArray, IntPtrArray, 0, size);
+                for (int iterator = 0; iterator < size; iterator++)
+                {
+                    managedArray[iterator] = Marshal.PtrToStringAnsi(IntPtrArray[iterator]);
+                }
+            }
+
+            private static void MapGetResponse(int reqId, IntPtr provider, IntPtr valueList, int valueCount, bool providerResult, string error, IntPtr userData)
             {
                 MapGetResult mgr;
                 Log.Debug(LogTag, $"MapGetResponse {reqId.ToString()}");
@@ -183,7 +195,9 @@ namespace Tizen.Applications.DataControl
 
                 if (valueList !=null)
                 {
-                    mgr = new MapGetResult(valueList, providerResult);
+                    string[] stringArray;
+                    IntPtrToStringArray(valueList, valueCount, out stringArray);
+                    mgr = new MapGetResult(stringArray, providerResult);
                 }
                 else
                 {
