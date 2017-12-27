@@ -9,3 +9,4 @@ branches:
   
 script:
   - ./build.sh full
+
