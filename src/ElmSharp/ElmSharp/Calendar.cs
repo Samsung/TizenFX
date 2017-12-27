@@ -191,7 +191,7 @@ namespace ElmSharp
                 _cacheDisplayedMonth = currentDisplayedMonth;
             };
 
-            _calendarFormat = (t) => { return _dateFormatDelegate(t); };
+            _calendarFormat = (ref Interop.Libc.SystemTime t) => { return _dateFormatDelegate(t); };
         }
 
         /// <summary>
