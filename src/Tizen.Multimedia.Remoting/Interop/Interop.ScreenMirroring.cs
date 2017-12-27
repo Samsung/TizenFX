@@ -49,13 +49,13 @@ internal static partial class Interop
         internal static extern ScreenMirroringErrorCode Connect(IntPtr handle);
 
         [DllImport(Libraries.ScreenMirroring, EntryPoint = "scmirroring_sink_start")]
-        internal static extern ScreenMirroringErrorCode StartAsync(IntPtr handle);
+        internal static extern ScreenMirroringErrorCode Start(IntPtr handle);
 
         [DllImport(Libraries.ScreenMirroring, EntryPoint = "scmirroring_sink_pause")]
-        internal static extern ScreenMirroringErrorCode PauseAsync(IntPtr handle);
+        internal static extern ScreenMirroringErrorCode Pause(IntPtr handle);
 
         [DllImport(Libraries.ScreenMirroring, EntryPoint = "scmirroring_sink_resume")]
-        internal static extern ScreenMirroringErrorCode ResumeAsync(IntPtr handle);
+        internal static extern ScreenMirroringErrorCode Resume(IntPtr handle);
 
         [DllImport(Libraries.ScreenMirroring, EntryPoint = "scmirroring_sink_disconnect")]
         internal static extern ScreenMirroringErrorCode Disconnect(IntPtr handle);

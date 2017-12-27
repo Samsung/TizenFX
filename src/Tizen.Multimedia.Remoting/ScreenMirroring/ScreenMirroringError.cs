@@ -15,6 +15,7 @@
  */
 
 using System;
+using System.Diagnostics;
 using Tizen.Internals.Errors;
 
 namespace Tizen.Multimedia.Remoting
@@ -40,28 +41,35 @@ namespace Tizen.Multimedia.Remoting
                 return;
             }
 
+            throw err.AsException(message);
+        }
+
+        internal static Exception AsException(this ScreenMirroringErrorCode err, string message)
+        {
+            Debug.Assert(err != ScreenMirroringErrorCode.None);
+
             switch (err)
             {
                 case ScreenMirroringErrorCode.InvalidParameter:
-                    throw new ArgumentException(message);
+                    return new ArgumentException(message);
 
                 case ScreenMirroringErrorCode.OutOfMemory:
-                    throw new OutOfMemoryException(message);
+                    return new OutOfMemoryException(message);
 
                 case ScreenMirroringErrorCode.PermissionDenied:
-                    throw new UnauthorizedAccessException(message);
+                    return new UnauthorizedAccessException(message);
 
                 case ScreenMirroringErrorCode.NotSupported:
-                    throw new NotSupportedException(message);
+                    return new NotSupportedException(message);
 
                 case ScreenMirroringErrorCode.InvalidOperation:
-                    throw new InvalidOperationException(message);
+                    return new InvalidOperationException(message);
 
                 case ScreenMirroringErrorCode.ConnectionTimeOut:
-                    throw new TimeoutException(message);
+                    return new TimeoutException(message);
 
                 default:
-                    throw new InvalidOperationException($"Unknown error : {err.ToString()}.");
+                    return new InvalidOperationException($"Unknown error : {err.ToString()}.");
             }
         }
     }

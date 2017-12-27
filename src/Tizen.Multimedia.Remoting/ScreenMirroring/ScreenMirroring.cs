@@ -64,7 +64,8 @@ namespace Tizen.Multimedia.Remoting
         {
             if (IsSupported() == false)
             {
-                throw new PlatformNotSupportedException($"The feature({Feature}) is not supported on the current device");
+                throw new PlatformNotSupportedException(
+                    $"The feature({Feature}) is not supported on the current device.");
             }
 
             Native.Create(out _handle).ThrowIfError("Failed to create ScreenMirroring.");
@@ -240,6 +241,27 @@ namespace Tizen.Multimedia.Remoting
             }
         }
 
+        private Task RunAsync(Func<IntPtr, ScreenMirroringErrorCode> func, string failMessage)
+        {
+            var tcs = new TaskCompletionSource<bool>();
+
+            Task.Run(() =>
+            {
+                var ret = func(Handle);
+
+                if (ret == ScreenMirroringErrorCode.None)
+                {
+                    tcs.SetResult(true);
+                }
+                else
+                {
+                    tcs.SetException(ret.AsException(failMessage));
+                }
+            });
+
+            return tcs.Task;
+        }
+
         /// <summary>
         /// Creates the connection and ready for receiving data from a mirroring source.
         /// </summary>
@@ -276,15 +298,7 @@ namespace Tizen.Multimedia.Remoting
 
             Native.SetIpAndPort(Handle, sourceIp, Port.ToString()).ThrowIfError("Failed to set ip.");
 
-            var tcs = new TaskCompletionSource<bool>();
-
-            Task.Factory.StartNew(() =>
-            {
-                Native.Connect(Handle).ThrowIfError("Failed to connect");
-                tcs.SetResult(true);
-            });
-
-            return tcs.Task;
+            return RunAsync(Native.Connect, "Failed to connect.");
         }
 
         /// <summary>
@@ -308,15 +322,7 @@ namespace Tizen.Multimedia.Remoting
         {
             ValidateState(ScreenMirroringState.Connected);
 
-            var tcs = new TaskCompletionSource<bool>();
-
-            Task.Factory.StartNew(() =>
-            {
-                Native.StartAsync(Handle).ThrowIfError("Failed to start.");
-                tcs.TrySetResult(true);
-            });
-
-            return tcs.Task;
+            return RunAsync(Native.Start, "Failed to start.");
         }
 
         /// <summary>
@@ -340,15 +346,7 @@ namespace Tizen.Multimedia.Remoting
         {
             ValidateState(ScreenMirroringState.Playing);
 
-            var tcs = new TaskCompletionSource<bool>();
-
-            Task.Factory.StartNew(() =>
-            {
-                Native.PauseAsync(Handle).ThrowIfError("Failed to prepare.");
-                tcs.TrySetResult(true);
-            });
-
-            return tcs.Task;
+            return RunAsync(Native.Pause, "Failed to pause.");
         }
 
         /// <summary>
@@ -372,15 +370,7 @@ namespace Tizen.Multimedia.Remoting
         {
             ValidateState(ScreenMirroringState.Paused);
 
-            var tcs = new TaskCompletionSource<bool>();
-
-            Task.Factory.StartNew(() =>
-            {
-                Native.ResumeAsync(Handle).ThrowIfError("Failed to resume.");
-                tcs.TrySetResult(true);
-            });
-
-            return tcs.Task;
+            return RunAsync(Native.Resume, "Failed to resume.");
         }
 
         /// <summary>
