@@ -154,7 +154,7 @@ internal static partial class Interop
         internal static extern ResultType DataControlGetDataId(SafeDataControlHandle handle, out string dataId);
 
         internal delegate void MapGetResponseCallback(int requestID,
-            IntPtr provider, string[] resultValueList, int resultValueCount, bool providerResult, string error, IntPtr userData);
+            IntPtr provider, IntPtr resultValueList, int resultValueCount, bool providerResult, string error, IntPtr userData);
         internal delegate void MapSetResponseCallback(int requestID,
             IntPtr provider, bool providerResult, string error, IntPtr userData);
         internal delegate void MapAddResponseCallback(int requestID,
