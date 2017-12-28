@@ -21,12 +21,12 @@ using Tizen.Uix.SttEngine;
 using static Tizen.Uix.SttEngine.Engine;
 
 /// <summary>
-/// Partial Interop Class
+/// The Partial Interop class.
 /// </summary>
 internal static partial class Interop
 {
     /// <summary>
-    /// SttEngine Interop Class
+    /// The SttEngine Interop class.
     /// </summary>
     internal static class SttEngine
     {
