@@ -18,7 +18,7 @@ using System;
 namespace Tizen.WebView
 {
     /// <summary>
-    /// Enumeration that contains accept policies for the cookies.
+    /// Enumeration for the cookies accept policies.
     /// </summary>
     /// <since_tizen> 4 </since_tizen>
     public enum CookieAcceptPolicy
@@ -28,17 +28,17 @@ namespace Tizen.WebView
         /// </summary>
         Always,
         /// <summary>
-        /// Rejects all cookies.
+        /// Rejects all the cookies.
         /// </summary>
         Never,
         /// <summary>
-        /// Accepts only cookies set by the main document loaded.
+        /// Accepts only cookies set by the main document that is loaded.
         /// </summary>
         NoThirdParty
     }
 
     /// <summary>
-    /// Enumeration that creates a type name for the storage of persistent cookies.
+    /// Enumeration for creating a type name for the storage of persistent cookies.
     /// </summary>
     /// <since_tizen> 4 </since_tizen>
     public enum CookiePersistentStorage
@@ -70,9 +70,9 @@ namespace Tizen.WebView
         /// Sets the cookie acceptance policy.
         /// </summary>
         /// <remarks>
-        /// By default, only cookies set by the main document loaded are accepted.
+        /// By default, only cookies set by the main document that is loaded, are accepted.
         /// </remarks>
-        /// <param name="policy">The cookie acceptance policy</param>
+        /// <param name="policy">The cookie acceptance policy.</param>
         /// <since_tizen> 4 </since_tizen>
         public void SetCookieAcceptPolicy(CookieAcceptPolicy policy)
         {
@@ -89,12 +89,12 @@ namespace Tizen.WebView
         }
 
         /// <summary>
-        /// Sets the storage where non-session cookies are stored persistently to read/write the cookies.
+        /// Sets the storage where the non-session cookies are stored persistently, to read/write the cookies.
         /// </summary>
         /// <privilege>http://tizen.org/privilege/mediastorage</privilege>
         /// <privilege>http://tizen.org/privilege/externalstorage</privilege>
-        /// <param name="path">The path where to read/write Cookies</param>
-        /// <param name="storage">The type of storage</param>
+        /// <param name="path">The path where to read/write cookies.</param>
+        /// <param name="storage">The type of storage.</param>
         /// <since_tizen> 4 </since_tizen>
         public void SetPersistentStorage(string path, CookiePersistentStorage storage)
         {

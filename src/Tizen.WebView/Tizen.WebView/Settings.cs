@@ -19,7 +19,7 @@ using System;
 namespace Tizen.WebView
 {
     /// <summary>
-    /// This class provides properties for setting the preference of a specific WebView.
+    /// This class provides the properties for setting the preference of a specific WebView.
     /// </summary>
     /// <since_tizen> 4 </since_tizen>
     public class Settings
@@ -32,7 +32,7 @@ namespace Tizen.WebView
         }
 
         /// <summary>
-        /// Whether JavaScript can be executable.
+        /// Whether the JavaScript can be executed.
         /// </summary>
         /// <since_tizen> 4 </since_tizen>
         public bool JavaScriptEnabled
@@ -49,7 +49,7 @@ namespace Tizen.WebView
         }
 
         /// <summary>
-        /// Whether images can be loaded automatically.
+        /// Whether the images can be loaded automatically.
         /// </summary>
         /// <since_tizen> 4 </since_tizen>
         public bool LoadImageAutomatically
