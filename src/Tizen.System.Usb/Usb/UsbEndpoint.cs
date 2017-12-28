@@ -19,7 +19,7 @@ using System;
 namespace Tizen.System.Usb
 {
     /// <summary>
-    /// USB Endpoint class.
+    /// The USB Endpoint class.
     /// </summary>
     /// <since_tizen> 4 </since_tizen>
     public class UsbEndpoint
@@ -35,7 +35,7 @@ namespace Tizen.System.Usb
         }
 
         /// <summary>
-        /// Gets number of this endpoint.
+        /// Gets the number of this endpoint.
         /// </summary>
         /// <since_tizen> 4 </since_tizen>
         public int Id
@@ -48,7 +48,7 @@ namespace Tizen.System.Usb
         }
 
         /// <summary>
-        /// Gets direction of this endpoint.
+        /// Gets the direction of this endpoint.
         /// </summary>
         /// <since_tizen> 4 </since_tizen>
         public EndpointDirection Direction
@@ -61,7 +61,7 @@ namespace Tizen.System.Usb
         }
 
         /// <summary>
-        /// Gets max packet size of given endpoint.
+        /// Gets the maximum packet size of a given endpoint.
         /// </summary>
         /// <since_tizen> 4 </since_tizen>
         public int MaxPacketSize

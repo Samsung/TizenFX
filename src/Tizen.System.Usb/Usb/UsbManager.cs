@@ -21,7 +21,7 @@ using System.Linq;
 namespace Tizen.System.Usb
 {
     /// <summary>
-    /// USB Manager class.
+    /// The USB Manager class.
     /// </summary>
     /// <since_tizen> 4 </since_tizen>
     public class UsbManager : IDisposable
@@ -31,7 +31,7 @@ namespace Tizen.System.Usb
         private List<UsbDevice> _devices = new List<UsbDevice>();
 
         /// <summary>
-        /// USB Manager Constructor.
+        /// The USB Manager constructor.
         /// </summary>
         /// <since_tizen> 4 </since_tizen>
         public UsbManager()
@@ -43,11 +43,11 @@ namespace Tizen.System.Usb
         }
 
         /// <summary>
-        /// This function returns list of USB devices attached to system.
+        /// This function returns a list of USB devices attached to the system.
         /// </summary>
-        /// <exception cref="NotSupportedException">Throws exception if USB host feature is not enabled.</exception>
-        /// <exception cref="OutOfMemoryException">Throws exception in case of insufficient memory.</exception>
-        /// <exception cref="UnauthorizedAccessException">Throws exception if user has insufficient permission on device.</exception>
+        /// <exception cref="NotSupportedException">Throws an exception if the USB host feature is not enabled.</exception>
+        /// <exception cref="OutOfMemoryException">Throws an exception in case of insufficient memory.</exception>
+        /// <exception cref="UnauthorizedAccessException">Throws an exception if the user has insufficient permission on the device.</exception>
         /// <since_tizen> 4 </since_tizen>
         public IEnumerable<UsbDevice> AvailableDevices
         {
@@ -59,7 +59,7 @@ namespace Tizen.System.Usb
         }
 
         /// <summary>
-        /// Event handler for events when a USB device is attached or detached.
+        /// An event handler for events when the USB device is attached or detached.
         /// </summary>
         /// <since_tizen> 4 </since_tizen>
         public event EventHandler<HotPluggedEventArgs> DeviceHotPlugged;

@@ -19,7 +19,7 @@ using System;
 namespace Tizen.System.Usb
 {
     /// <summary>
-    /// String information for USB device.
+    /// String information for the USB device.
     /// </summary>
     /// <since_tizen> 4 </since_tizen>
     public class UsbDeviceStrings
@@ -34,10 +34,10 @@ namespace Tizen.System.Usb
         }
 
         /// <summary>
-        /// Gets string describing device manufacturer.
+        /// Gets the string describing the device manufacturer.
         /// </summary>
-        /// <exception cref="InvalidOperationException">Throws exception if device is disconnected or not opened for operation.</exception>
-        /// <exception cref="UnauthorizedAccessException">Throws exception if user has insufficient permission on device.</exception>
+        /// <exception cref="InvalidOperationException">Throws an exception if the device is disconnected or not opened for an operation.</exception>
+        /// <exception cref="UnauthorizedAccessException">Throws an exception if the user has insufficient permission on the device.</exception>
         /// <since_tizen> 4 </since_tizen>
         public string Manufacturer
         {
@@ -49,10 +49,10 @@ namespace Tizen.System.Usb
         }
 
         /// <summary>
-        /// Gets product string of device
+        /// Gets the product string of a device.
         /// </summary>
-        /// <exception cref="InvalidOperationException">Throws exception if device is not opened for operation.</exception>
-        /// <exception cref="UnauthorizedAccessException">Throws exception if user has insufficient permission on device.</exception>
+        /// <exception cref="InvalidOperationException">Throws an exception if the device is not opened for an operation.</exception>
+        /// <exception cref="UnauthorizedAccessException">Throws an exception if the user has insufficient permission on the device.</exception>
         /// <since_tizen> 4 </since_tizen>
         public string Product
         {
@@ -64,10 +64,10 @@ namespace Tizen.System.Usb
         }
 
         /// <summary>
-        /// Gets serial number of a device.
+        /// Gets the serial number of a device.
         /// </summary>
-        /// <exception cref="InvalidOperationException">Throws exception if device is not opened for operation.</exception>
-        /// <exception cref="UnauthorizedAccessException">Throws exception if user has insufficient permission on device.</exception>
+        /// <exception cref="InvalidOperationException">Throws an exception if the device is not opened for an operation.</exception>
+        /// <exception cref="UnauthorizedAccessException">Throws an exception if the user has insufficient permission on the device.</exception>
         /// <since_tizen> 4 </since_tizen>
         public string Serial
         {

@@ -17,7 +17,7 @@
 namespace Tizen.System.Usb
 {
     /// <summary>
-    /// USB Isochronous Endpoint class.
+    /// The USB Isochronous Endpoint class.
     /// </summary>
     /// <since_tizen> 4 </since_tizen>
     public class UsbIsochronousEndpoint : UsbEndpoint
@@ -27,7 +27,7 @@ namespace Tizen.System.Usb
         }
 
         /// <summary>
-        /// Gets synchronization type of this endpoint.
+        /// Gets the synchronization type of this endpoint.
         /// </summary>
         /// <since_tizen> 4 </since_tizen>
         public SynchronizationType SynchronizationType
@@ -40,7 +40,7 @@ namespace Tizen.System.Usb
         }
 
         /// <summary>
-        /// Gets usage type of this endpoint.
+        /// Gets the usage type of this endpoint.
         /// </summary>
         /// <since_tizen> 4 </since_tizen>
         public UsageType UsageType
