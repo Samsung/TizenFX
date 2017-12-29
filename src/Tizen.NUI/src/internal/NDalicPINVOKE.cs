@@ -11456,9 +11456,6 @@ class NDalicPINVOKE {
   [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint="CSharp_Dali_PixelBuffer_Resize")]
   public static extern void PixelBuffer_Resize(global::System.Runtime.InteropServices.HandleRef jarg1, ushort jarg2, ushort jarg3);
 
-  [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint="CSharp_Dali_PixelBuffer_GetMetadata")]
-  public static extern void PixelBuffer_GetMetadata(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
-
   [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint="CSharp_Dali_new_PixelBuffer__SWIG_2")]
   public static extern global::System.IntPtr new_PixelBuffer__SWIG_2(global::System.Runtime.InteropServices.HandleRef jarg1);
 
