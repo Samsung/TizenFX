@@ -217,8 +217,6 @@ namespace Tizen.Multimedia
 
         private void RegisterVideoStreamChangedCallback()
         {
-            ValidatePlayerState(PlayerState.Idle);
-
             _videoStreamChangedCallback = (width, height, fps, bitrate, _) =>
             {
                 Log.Debug(PlayerLog.Tag, "height : " + height + ", width : " + width
