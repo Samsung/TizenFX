@@ -11399,6 +11399,8 @@ class NDalicPINVOKE {
 
   [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint = "CSharp_Dali_delete_Extents")]
   public static extern void delete_Extents(global::System.Runtime.InteropServices.HandleRef jarg1);
-    }
+
+  }
 
 }
+
