@@ -67,15 +67,17 @@ namespace Tizen.NUI.BaseComponents
             //Release your own unmanaged resources here.
             //You should not access any managed member here except static instance.
             //because the execution order of Finalizes is non-deterministic.
-
-            if (_textFieldMaxLengthReachedCallbackDelegate != null)
+            if (this != null)
             {
-                this.MaxLengthReachedSignal().Disconnect(_textFieldMaxLengthReachedCallbackDelegate);
-            }
+                if (_textFieldMaxLengthReachedCallbackDelegate != null)
+                {
+                    this.MaxLengthReachedSignal().Disconnect(_textFieldMaxLengthReachedCallbackDelegate);
+                }
 
-            if (_textFieldTextChangedCallbackDelegate != null)
-            {
-                TextChangedSignal().Disconnect(_textFieldTextChangedCallbackDelegate);
+                if (_textFieldTextChangedCallbackDelegate != null)
+                {
+                    TextChangedSignal().Disconnect(_textFieldTextChangedCallbackDelegate);
+                }
             }
 
             if (swigCPtr.Handle != global::System.IntPtr.Zero)

@@ -66,7 +66,7 @@ namespace Tizen.NUI
         {
             NUILog.Debug($"(0x{swigCPtr.Handle:X}) Timer.Dispose(type={type}, disposed={disposed})");
 
-            if (_timerTickCallbackDelegate != null)
+            if (this != null && _timerTickCallbackDelegate != null)
             {
                 TickSignal().Disconnect(_timerTickCallbackOfNative);
             }

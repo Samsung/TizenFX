@@ -53,15 +53,18 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         protected override void Dispose(DisposeTypes type)
         {
-            if (_animationFinishedEventCallback != null)
+            if (this != null)
             {
-                FinishedSignal().Disconnect(_finishedCallbackOfNative);
-            }
+                if (_animationFinishedEventCallback != null)
+                {
+                    FinishedSignal().Disconnect(_finishedCallbackOfNative);
+                }
 
-            if (_animationProgressReachedEventCallback != null)
-            {
+                if (_animationProgressReachedEventCallback != null)
+                {
 
-                ProgressReachedSignal().Disconnect(_animationProgressReachedEventCallback);
+                    ProgressReachedSignal().Disconnect(_animationProgressReachedEventCallback);
+                }
             }
 
             if(disposed)
