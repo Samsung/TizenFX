@@ -62,15 +62,17 @@ namespace Tizen.NUI.UIComponents
             //Release your own unmanaged resources here.
             //You should not access any managed member here except static instance.
             //because the execution order of Finalizes is non-deterministic.
-
-            if (_popUpHiddenEventCallbackDelegate != null)
+            if (this != null)
             {
-                HiddenSignal().Disconnect(_popUpHiddenEventCallbackDelegate);
-            }
+                if (_popUpHiddenEventCallbackDelegate != null)
+                {
+                    HiddenSignal().Disconnect(_popUpHiddenEventCallbackDelegate);
+                }
 
-            if (_popUpHidingEventCallbackDelegate != null)
-            {
-                HidingSignal().Disconnect(_popUpHidingEventCallbackDelegate);
+                if (_popUpHidingEventCallbackDelegate != null)
+                {
+                    HidingSignal().Disconnect(_popUpHidingEventCallbackDelegate);
+                }
             }
 
             if (_popUpShownEventCallbackDelegate != null)

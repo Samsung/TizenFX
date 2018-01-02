@@ -68,7 +68,7 @@ namespace Tizen.NUI.BaseComponents
             //You should not access any managed member here except static instance.
             //because the execution order of Finalizes is non-deterministic.
 
-            if (_textEditorTextChangedCallbackDelegate != null)
+            if (this != null && _textEditorTextChangedCallbackDelegate != null)
             {
                 TextChangedSignal().Disconnect(_textEditorTextChangedCallbackDelegate);
             }
