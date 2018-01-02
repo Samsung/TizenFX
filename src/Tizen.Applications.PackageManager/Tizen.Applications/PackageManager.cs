@@ -205,7 +205,9 @@ namespace Tizen.Applications
         /// Gets the package ID for the given application ID.
         /// </summary>
         /// <param name="applicationId">The ID of the application.</param>
-        /// <returns>Returns the ID of the package. Empty string if the application ID does not exist.</returns>
+        /// <returns>Returns the ID of the package.</returns>
+        /// <remarks>It returns null if the input is null.</remarks>
+        /// <exception cref="ArgumentException">Thrown when input application ID does not exist.</exception>
         /// <exception cref="OutOfMemoryException">Thrown when there is not enough memory to continue the execution of the method.</exception>
         /// <exception cref="UnauthorizedAccessException">Thrown when an application does not have the privilege to access this method.</exception>
         /// <privilege>http://tizen.org/privilege/packagemanager.info</privilege>
