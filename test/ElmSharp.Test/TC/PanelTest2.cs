@@ -32,14 +32,14 @@ namespace ElmSharp.Test
             conformant.SetContent(box);
             box.Show();
 
-            Label label = new Label(window)
-            {
-                Text = "<span color=#ffffff font_size=50>Panel as Scrollable</span>",
-                AlignmentX = -1,
-                WeightX = 1,
-            };
-            label.Show();
-            box.PackEnd(label);
+            //Label label = new Label(window)
+            //{
+            //    Text = "<span color=#ffffff font_size=50>Panel as Scrollable</span>",
+            //    AlignmentX = -1,
+            //    WeightX = 1,
+            //};
+            //label.Show();
+            //box.PackEnd(label);
 
             Panel panel = new Panel(window)
             {
@@ -49,6 +49,9 @@ namespace ElmSharp.Test
                 WeightX = 1,
                 WeightY = 1,
             };
+
+
+            panel.SetScrollable(false);
             panel.SetScrollable(true);
             panel.SetScrollableArea(1.0);
 
