@@ -213,7 +213,7 @@ namespace Tizen.Applications
         public static string GetPackageIdByApplicationId(string applicationId)
         {
             string packageId;
-            var err = Interop.PackageManager.PackageManageGetPackageIdByAppId(applicationId, out packageId);
+            var err = Interop.PackageManager.PackageManagerGetPackageIdByAppId(applicationId, out packageId);
             if (err != Interop.PackageManager.ErrorCode.None)
             {
                 Log.Warn(LogTag, string.Format("Failed to get package Id of {0}. err = {1}", applicationId, err));

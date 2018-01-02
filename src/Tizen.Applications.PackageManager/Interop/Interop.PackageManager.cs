@@ -127,7 +127,7 @@ internal static partial class Interop
         internal static extern ErrorCode PackageManagerGetTotalSizeInfo(PackageManagerTotalSizeInfoCallback callback, IntPtr userData);
 
         [DllImport(Libraries.PackageManager, EntryPoint = "package_manager_get_package_id_by_app_id")]
-        internal static extern ErrorCode PackageManageGetPackageIdByAppId(string app_id, out string package_id);
+        internal static extern ErrorCode PackageManagerGetPackageIdByAppId(string app_id, out string package_id);
 
         [DllImport(Libraries.PackageManager, EntryPoint = "package_manager_get_package_info")]
         internal static extern ErrorCode PackageManagerGetPackageInfo(string packageId, out IntPtr packageInfoHandle);
