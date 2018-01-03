@@ -453,15 +453,5 @@ namespace Tizen.Network.WiFi
             }
             return task.Task;
         }
-
-        internal void UpdateAP(Interop.WiFi.SafeWiFiAPHandle apHandle)
-        {
-            int ret = Interop.WiFi.UpdateAP(GetSafeHandle(), apHandle.DangerousGetHandle());
-            if (ret != (int)WiFiError.None)
-            {
-                Log.Error(Globals.LogTag, "Failed to update AP, Error - " + (WiFiError)ret);
-                WiFiErrorFactory.ThrowWiFiException(ret, GetSafeHandle().DangerousGetHandle(), apHandle.DangerousGetHandle());
-            }
-        }
     }
 }
