@@ -21,7 +21,7 @@ using System.Linq;
 namespace Tizen.System.Usb
 {
     /// <summary>
-    /// Class to manage USB host devices. This class contains operations for enumerating, opening and closing devices.
+    /// A class to manage the USB host devices. This class contains the operations for enumerating, opening, and closing devices.
     /// </summary>
     /// <since_tizen> 4 </since_tizen>
     public class UsbDevice : IDisposable
@@ -47,7 +47,7 @@ namespace Tizen.System.Usb
         /// <summary>
         /// Number of the bus, this device is connected to.
         /// </summary>
-        /// <exception cref="UnauthorizedAccessException">Throws exception if user has insufficient permission on device.</exception>
+        /// <exception cref="UnauthorizedAccessException">Throws an exception if the user has insufficient permission on the device.</exception>
         /// <since_tizen> 4 </since_tizen>
         public int BusId {
             get
@@ -58,7 +58,7 @@ namespace Tizen.System.Usb
         }
 
         /// <summary>
-        /// Address of device on the bus.
+        /// Address of the device on the bus.
         /// </summary>
         /// <since_tizen> 4 </since_tizen>
         public int Address
@@ -71,7 +71,7 @@ namespace Tizen.System.Usb
         }
 
         /// <summary>
-        /// List of available port numbers from a device.
+        /// List of the available port numbers from the device.
         /// </summary>
         /// <since_tizen> 4 </since_tizen>
         public IEnumerable<int> Ports
@@ -84,7 +84,7 @@ namespace Tizen.System.Usb
         }
 
         /// <summary>
-        /// Checks if device is opened.
+        /// Checks if the device is opened.
         /// </summary>
         /// <since_tizen> 4 </since_tizen>
         public bool IsOpened
@@ -97,7 +97,7 @@ namespace Tizen.System.Usb
         }
 
         /// <summary>
-        /// Control endpoint (endpoint 0).
+        /// Controls an endpoint (endpoint 0).
         /// </summary>
         /// <since_tizen> 4 </since_tizen>
         public UsbControlEndpoint ControlEndpoint
@@ -112,7 +112,7 @@ namespace Tizen.System.Usb
         /// <summary>
         /// Active configuration for the device.
         /// </summary>
-        /// <exception cref="InvalidOperationException">Throws exception if device is disconnected.</exception>
+        /// <exception cref="InvalidOperationException">Throws an exception if the device is disconnected.</exception>
         /// <since_tizen> 4 </since_tizen>
         public UsbConfiguration ActiveConfiguration
         {
@@ -125,7 +125,7 @@ namespace Tizen.System.Usb
         }
 
         /// <summary>
-        /// Dictionary mapping configuration Ids to configuration instances for this device.
+        /// A dictionary for mapping the configuration IDs to configuration instances for this device.
         /// </summary>
         /// <since_tizen> 4 </since_tizen>
         public IReadOnlyDictionary<int, UsbConfiguration> Configurations
@@ -138,7 +138,7 @@ namespace Tizen.System.Usb
         }
 
         /// <summary>
-        /// Device information such as version, class, subclass etc.
+        /// Device information such as version, class, subclass, etc.
         /// </summary>
         /// <since_tizen> 4 </since_tizen>
         public UsbDeviceInformation DeviceInformation
@@ -151,7 +151,7 @@ namespace Tizen.System.Usb
         }
 
         /// <summary>
-        /// String associated with device.
+        /// String associated with the device.
         /// </summary>
         /// <since_tizen> 4 </since_tizen>
         public UsbDeviceStrings Strings
@@ -164,11 +164,11 @@ namespace Tizen.System.Usb
         }
 
         /// <summary>
-        /// Opens device, which allows performing operations on it.
+        /// Opens the device, which allows performing operations on it.
         /// </summary>
-        /// <exception cref="OutOfMemoryException">Throws exception in case of insufficient memory.</exception>
-        /// <exception cref="InvalidOperationException">Throws exception if device is disconnected.</exception>
-        /// <exception cref="UnauthorizedAccessException">Throws exception if user has insufficient permission on device.</exception>
+        /// <exception cref="OutOfMemoryException">Throws an exception in case of insufficient memory.</exception>
+        /// <exception cref="InvalidOperationException">Throws an exception if the device is disconnected.</exception>
+        /// <exception cref="UnauthorizedAccessException">Throws an exception if the user has insufficient permission on the device.</exception>
         /// <since_tizen> 4 </since_tizen>
         public void Open()
         {
@@ -177,9 +177,9 @@ namespace Tizen.System.Usb
         }
 
         /// <summary>
-        /// Closes device for operations.
+        /// Closes the device for operations.
         /// </summary>
-        /// <exception cref="InvalidOperationException">Throws exception if device is not opened for operation.</exception>
+        /// <exception cref="InvalidOperationException">Throws an exception if the device is not opened for an operation.</exception>
         /// <since_tizen> 4 </since_tizen>
         public void Close()
         {
@@ -199,8 +199,8 @@ namespace Tizen.System.Usb
         private bool disposedValue = false;
 
         /// <summary>
-        /// Releases all resources used by the ConnectionProfile.
-        /// It should be called after finished using of the object.</summary>
+        /// Releases all the resources used by the ConnectionProfile.
+        /// It should be called after it has finished using the object.</summary>
         /// <since_tizen> 4 </since_tizen>
         protected virtual void Dispose(bool disposing)
         {
@@ -228,8 +228,8 @@ namespace Tizen.System.Usb
         }
 
         /// <summary>
-        /// Releases all resources used by the ConnectionProfile.
-        /// It should be called after finished using of the object.</summary>
+        /// Releases all the resources used by the ConnectionProfile.
+        /// It should be called after it has finished using the object.</summary>
         /// <since_tizen> 4 </since_tizen>
         public void Dispose()
         {

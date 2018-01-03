@@ -21,7 +21,7 @@ using System.Collections.Generic;
 namespace Tizen.System.Usb
 {
     /// <summary>
-    /// Class to manage USB Configuration.
+    /// A class to manage the USB configuration.
     /// </summary>
     /// <since_tizen> 4 </since_tizen>
     public class UsbConfiguration : IDisposable
@@ -37,7 +37,7 @@ namespace Tizen.System.Usb
         }
 
         /// <summary>
-        /// Checks if device is self-powered in given configuration.
+        /// Checks if the device is self-powered in a given configuration.
         /// </summary>
         /// <since_tizen> 4 </since_tizen>
         public bool IsSelfPowered
@@ -50,7 +50,7 @@ namespace Tizen.System.Usb
         }
 
         /// <summary>
-        /// Checks if device in given configuration supports remote wakeup.
+        /// Checks if the device in a given configuration supports remote wakeup.
         /// </summary>
         /// <since_tizen> 4 </since_tizen>
         public bool SupportRemoteWakeup
@@ -63,7 +63,7 @@ namespace Tizen.System.Usb
         }
 
         /// <summary>
-        /// Gets maximum power required in given configuration, in mA.
+        /// Gets the maximum power required in a given configuration, in mA.
         /// </summary>
         /// <since_tizen> 4 </since_tizen>
         public int MaximumPowerRequired
@@ -76,7 +76,7 @@ namespace Tizen.System.Usb
         }
 
         /// <summary>
-        /// Dictionary mapping interfaces Ids to interface instances for given configuration.
+        /// A dictionary for mapping the interface IDs to interface instances for a given configuration.
         /// </summary>
         /// <since_tizen> 4 </since_tizen>
         public IReadOnlyDictionary<int, UsbInterface> Interfaces
@@ -101,7 +101,7 @@ namespace Tizen.System.Usb
         }
 
         /// <summary>
-        /// Configuration string.
+        /// The configuration string.
         /// </summary>
         /// <since_tizen> 4 </since_tizen>
         public string ConfigurationString
@@ -114,10 +114,10 @@ namespace Tizen.System.Usb
         }
 
         /// <summary>
-        /// Set this configuration as active configuration for the device.
+        /// Sets this configuration as an active configuration for the device.
         /// </summary>
         /// <exception cref="InvalidOperationException">
-        /// Throws exception if device is disconnected or not opened for operation or busy as its interfaces are currently claimed.
+        /// Throws an exception if the device is disconnected, or not opened for an operation, or busy as its interfaces are currently claimed.
         /// </exception>
         /// <since_tizen> 4 </since_tizen>
         public void SetAsActive()
@@ -136,8 +136,8 @@ namespace Tizen.System.Usb
         private bool disposedValue = false;
 
         /// <summary>
-        /// Releases all resources used by the ConnectionProfile.
-        /// It should be called after finished using of the object.</summary>
+        /// Releases all the resources used by the ConnectionProfile.
+        /// It should be called after it has finished using the object.</summary>
         /// <since_tizen> 4 </since_tizen>
         protected virtual void Dispose(bool disposing)
         {
@@ -157,8 +157,8 @@ namespace Tizen.System.Usb
         }
 
         /// <summary>
-        /// Releases all resources used by the ConnectionProfile.
-        /// It should be called after finished using of the object.</summary>
+        /// Releases all the resources used by the ConnectionProfile.
+        /// It should be called after it has finished using the object.</summary>
         /// <since_tizen> 4 </since_tizen>
         public void Dispose()
         {

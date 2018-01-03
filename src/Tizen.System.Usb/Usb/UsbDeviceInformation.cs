@@ -19,7 +19,7 @@ using System;
 namespace Tizen.System.Usb
 {
     /// <summary>
-    /// Device information for USB device.
+    /// Device information for the USB device.
     /// </summary>
     /// <since_tizen> 4 </since_tizen>
     public class UsbDeviceInformation
@@ -34,7 +34,7 @@ namespace Tizen.System.Usb
         /// <summary>
         /// USB specification release number as binary-coded decimal.
         /// </summary>
-        /// <exception cref="UnauthorizedAccessException">Throws exception if user has insufficient permission on device.</exception>
+        /// <exception cref="UnauthorizedAccessException">Throws an exception if the user has insufficient permission on the device.</exception>
         /// <since_tizen> 4 </since_tizen>
         public int UsbVersion
         {
@@ -46,7 +46,7 @@ namespace Tizen.System.Usb
         }
 
         /// <summary>
-        /// Gets device class.
+        /// Gets the device class.
         /// </summary>
         /// <since_tizen> 4 </since_tizen>
         public int Class
@@ -59,7 +59,7 @@ namespace Tizen.System.Usb
         }
 
         /// <summary>
-        /// Gets device sub class.
+        /// Gets the device subclass.
         /// </summary>
         /// <since_tizen> 4 </since_tizen>
         public int Subclass
@@ -72,7 +72,7 @@ namespace Tizen.System.Usb
         }
 
         /// <summary>
-        /// Gets device protocol.
+        /// Gets the device protocol.
         /// </summary>
         /// <since_tizen> 4 </since_tizen>
         public int Protocol
@@ -85,7 +85,7 @@ namespace Tizen.System.Usb
         }
 
         /// <summary>
-        /// Gets vendor id.
+        /// Gets the vendor ID.
         /// </summary>
         /// <since_tizen> 4 </since_tizen>
         public int VendorId
@@ -98,7 +98,7 @@ namespace Tizen.System.Usb
         }
 
         /// <summary>
-        /// Gets product id.
+        /// Gets the product ID.
         /// </summary>
         /// <since_tizen> 4 </since_tizen>
         public int ProductId
@@ -111,7 +111,7 @@ namespace Tizen.System.Usb
         }
 
         /// <summary>
-        /// Gets device release number in binary-coded decimal.
+        /// Gets the device release number in binary-coded decimal.
         /// </summary>
         /// <since_tizen> 4 </since_tizen>
         public int DeviceVersion
