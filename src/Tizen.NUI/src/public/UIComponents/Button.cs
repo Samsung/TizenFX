@@ -72,8 +72,10 @@ namespace Tizen.NUI.UIComponents
             //Release your own unmanaged resources here.
             //You should not access any managed member here except static instance.
             //because the execution order of Finalizes is non-deterministic.
-
-            DisConnectFromSignals();
+            if (this != null)
+            {
+                DisConnectFromSignals();
+            }
 
             if (swigCPtr.Handle != global::System.IntPtr.Zero)
             {
