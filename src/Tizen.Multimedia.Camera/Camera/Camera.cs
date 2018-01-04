@@ -48,10 +48,16 @@ namespace Tizen.Multimedia
         /// <summary>
         /// Initializes a new instance of the <see cref="Camera"/> class.
         /// </summary>
+        /// <feature>http://tizen.org/feature/camera</feature>
         /// <since_tizen> 3 </since_tizen>
         /// <param name="device">The camera device to access.</param>
         public Camera(CameraDevice device)
         {
+            if (!Features.IsSupported(CameraFeatures.Camera))
+            {
+                throw new NotSupportedException("Camera feature is not supported.");
+            }
+
             CameraErrorFactory.ThrowIfError(Native.Create(device, out _handle),
                 "Failed to create camera instance");
 
