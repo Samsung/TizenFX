@@ -64,20 +64,19 @@ namespace Tizen.Multimedia
         Yuyv,
 
         /// <summary>
-        /// YUV422.
+        /// YUV422, alias for <see cref="Yuv422P"/>.
         /// </summary>
         Yuv422,
+
+        /// <summary>
+        /// YUV422P.
+        /// </summary>
+        Yuv422P = Yuv422,
 
         /// <summary>
         /// UYVY.
         /// </summary>
         Uyvy,
-
-        /// <summary>
-        /// YUV422P.
-        /// </summary>
-        ///
-        Yuv422P,
 
         /// <summary>
         /// RGB565.

@@ -17,7 +17,6 @@
 using System;
 using System.Threading.Tasks;
 using System.Collections.Generic;
-using System.ComponentModel;
 
 namespace Tizen.Network.WiFi
 {
@@ -488,6 +487,34 @@ namespace Tizen.Network.WiFi
             if (ret != (int)WiFiError.None)
             {
                 Log.Error(Globals.LogTag, "Failed to forget AP, Error - " + (WiFiError)ret);
+                WiFiErrorFactory.ThrowWiFiException(ret, WiFiManagerImpl.Instance.GetSafeHandle().DangerousGetHandle(), _apHandle);
+            }
+        }
+
+        /// <summary>
+        /// Update the information of a stored access point.
+        /// When a AP information is changed, the change will not be applied until this method is called.
+        /// </summary>
+        /// <since_tizen> 5 </since_tizen>
+        /// <feature>http://tizen.org/feature/network.wifi</feature>
+        /// <privilege>http://tizen.org/privilege/network.profile</privilege>
+        /// <privilege>http://tizen.org/privilege/network.get</privilege>
+        /// <exception cref="NotSupportedException">Thrown when the Wi-Fi is not supported.</exception>
+        /// <exception cref="UnauthorizedAccessException">Thrown when permission is denied.</exception>
+        /// <exception cref="ObjectDisposedException">Thrown when the object instance is disposed or released.</exception>
+        /// <exception cref="OutOfMemoryException">Thrown when the system is out of memory.</exception>
+        /// <exception cref="InvalidOperationException">Thrown when the method failed due to an invalid operation.</exception>
+        public void Update()
+        {
+            Log.Debug(Globals.LogTag, "Update");
+            if (_disposed)
+            {
+                throw new ObjectDisposedException("Invalid AP instance (Object may have been disposed or released)");
+            }
+            int ret = Interop.WiFi.UpdateAP(WiFiManagerImpl.Instance.GetSafeHandle(), _apHandle);
+            if (ret != (int)WiFiError.None)
+            {
+                Log.Error(Globals.LogTag, "Failed to update AP, Error - " + (WiFiError)ret);
                 WiFiErrorFactory.ThrowWiFiException(ret, WiFiManagerImpl.Instance.GetSafeHandle().DangerousGetHandle(), _apHandle);
             }
         }

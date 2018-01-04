@@ -20,6 +20,7 @@ using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices;
+using System.Threading;
 using System.Threading.Tasks;
 using static Interop.ImageUtil;
 using Unmanaged = Interop.ImageUtil.Encode;
@@ -114,38 +115,31 @@ namespace Tizen.Multimedia.Util
                 ThrowIfFailed("Failed to set the color space");
         }
 
+        private void RunEncoding(object outStream)
+        {
+            IntPtr outBuffer = IntPtr.Zero;
+
+            try
+            {
+                Unmanaged.SetOutputBuffer(Handle, out outBuffer).ThrowIfFailed("Failed to initialize encoder");
+
+                Unmanaged.Run(Handle, out var size).ThrowIfFailed("Failed to encode given image");
+
+                byte[] buf = new byte[size];
+                Marshal.Copy(outBuffer, buf, 0, (int)size);
+                (outStream as Stream).Write(buf, 0, (int)size);
+            }
+            finally
+            {
+                Interop.Libc.Free(outBuffer);
+            }
+        }
+
         private Task Run(Stream outStream)
         {
-            var tcs = new TaskCompletionSource<bool>();
-
-            Task.Run(() =>
-            {
-                IntPtr outBuffer = IntPtr.Zero;
-
-                try
-                {
-                    Unmanaged.SetOutputBuffer(Handle, out outBuffer).ThrowIfFailed("Failed to initialize encoder");
-
-                    ulong size = 0;
-                    Unmanaged.Run(Handle, out size).ThrowIfFailed("Failed to encode given image");
-
-                    byte[] buf = new byte[size];
-                    Marshal.Copy(outBuffer, buf, 0, (int)size);
-                    outStream.Write(buf, 0, (int)size);
-
-                    tcs.TrySetResult(true);
-                }
-                catch (Exception e)
-                {
-                    tcs.TrySetException(e);
-                }
-                finally
-                {
-                    Interop.Libc.Free(outBuffer);
-                }
-            });
-
-            return tcs.Task;
+            return Task.Factory.StartNew(RunEncoding, outStream, CancellationToken.None,
+                TaskCreationOptions.DenyChildAttach | TaskCreationOptions.LongRunning,
+                TaskScheduler.Default);
         }
 
         internal Task EncodeAsync(Action<ImageEncoderHandle> settingInputAction, Stream outStream)
