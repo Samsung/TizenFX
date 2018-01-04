@@ -273,28 +273,23 @@ namespace Tizen.Multimedia
 
             SetDisplay(_display).ThrowIfFailed("Failed to configure display of the player");
 
-            OnPreparing();
-
-            var completionSource = new TaskCompletionSource<bool>();
-
             SetPreparing();
 
-            Task.Run(() =>
+            OnPreparing();
+
+            return Task.Factory.StartNew(() =>
             {
                 try
                 {
                     Prepare();
-                    ClearPreparing();
-                    completionSource.SetResult(true);
                 }
-                catch (Exception e)
+                finally
                 {
                     ClearPreparing();
-                    completionSource.TrySetException(e);
                 }
-            });
-
-            return completionSource.Task;
+            }, CancellationToken.None,
+                TaskCreationOptions.DenyChildAttach | TaskCreationOptions.LongRunning,
+                TaskScheduler.Default);
         }
 
         /// <summary>
