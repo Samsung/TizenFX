@@ -31,7 +31,7 @@ internal static partial class Interop
         /// </summary>
         //TEEC_Result TEEC_InitializeContext(const char *name, TEEC_Context *context);
         [DllImport(Libraries.Libteec, EntryPoint = "TEEC_InitializeContext", CallingConvention = CallingConvention.Cdecl)]
-        static public extern int InitializeContext(string name, ref TEEC_Context context);
+        static public extern int InitializeContext(string name, IntPtr context);
 
         /// <summary>
         /// This function destroys an initialized TEE Context, closing the connection between the client application
@@ -43,7 +43,7 @@ internal static partial class Interop
         /// </summary>
         //void TEEC_FinalizeContext(TEEC_Context *context);
         [DllImport(Libraries.Libteec, EntryPoint = "TEEC_FinalizeContext", CallingConvention = CallingConvention.Cdecl)]
-        static public extern void FinalizeContext(ref TEEC_Context context);
+        static public extern void FinalizeContext(IntPtr context);
 
         /// <summary>
         /// This function registers a block of existing client application memory as a block of shared memory within
@@ -54,7 +54,7 @@ internal static partial class Interop
         /// </summary>
         //EEC_Result TEEC_RegisterSharedMemory(TEEC_Context *context, TEEC_SharedMemory *sharedMem);
         [DllImport(Libraries.Libteec, EntryPoint = "TEEC_RegisterSharedMemory", CallingConvention = CallingConvention.Cdecl)]
-        static public extern int RegisterSharedMemory(ref TEEC_Context context, ref TEEC_SharedMemory sharedMem);
+        static public extern int RegisterSharedMemory(IntPtr context, ref TEEC_SharedMemory sharedMem);
 
         /// <summary>
         /// This function allocates a new block of memory as a block of shared memory within the scope of the
@@ -65,7 +65,7 @@ internal static partial class Interop
         /// </summary>
         //TEEC_Result TEEC_AllocateSharedMemory(TEEC_Context *context, TEEC_SharedMemory *sharedMem);
         [DllImport(Libraries.Libteec, EntryPoint = "TEEC_AllocateSharedMemory", CallingConvention = CallingConvention.Cdecl)]
-        static public extern int AllocateSharedMemory(ref TEEC_Context context, ref TEEC_SharedMemory sharedMem);
+        static public extern int AllocateSharedMemory(IntPtr context, ref TEEC_SharedMemory sharedMem);
 
         /// <summary>
         /// This function deregisters or deallocates a previously initialized block of the shared memory.
@@ -91,10 +91,7 @@ internal static partial class Interop
         /// </summary>
         //TEEC_Result TEEC_OpenSession(TEEC_Context *context, TEEC_Session *session, const TEEC_UUID *destination, uint connectionMethod, const void *connectionData, TEEC_Operation *operation, uint *returnOrigin);
         [DllImport(Libraries.Libteec, EntryPoint = "TEEC_OpenSession", CallingConvention = CallingConvention.Cdecl)]
-        static public extern int OpenSession(ref TEEC_Context context, ref TEEC_Session session, ref TEEC_UUID destination, uint connectionMethod, byte[] connectionData, ref TEEC_Operation operation, out uint returnOrigin);
-
-        [DllImport(Libraries.Libteec, EntryPoint = "TEEC_OpenSession", CallingConvention = CallingConvention.Cdecl)]
-        static public extern int OpenSession(ref TEEC_Context context, ref TEEC_Session session, ref TEEC_UUID destination, uint connectionMethod, byte[] connectionData, IntPtr operation, out uint returnOrigin);
+        static public extern int OpenSession(IntPtr context, IntPtr session, ref TEEC_UUID destination, uint connectionMethod, byte[] connectionData, IntPtr operation, out uint returnOrigin);
 
         /// <summary>
         /// This function closes a session which has been opened with a trusted application.
@@ -105,7 +102,7 @@ internal static partial class Interop
         /// </summary>
         //void TEEC_CloseSession(TEEC_Session *session);
         [DllImport(Libraries.Libteec, EntryPoint = "TEEC_CloseSession", CallingConvention = CallingConvention.Cdecl)]
-        static public extern void CloseSession(ref TEEC_Session session);
+        static public extern void CloseSession(IntPtr session);
 
         /// <summary>
         /// This function invokes a command within the specified session.
@@ -116,10 +113,7 @@ internal static partial class Interop
         /// </summary>
         //TEEC_Result TEEC_InvokeCommand(TEEC_Session *session, uint commandID, TEEC_Operation *operation, uint *returnOrigin);
         [DllImport(Libraries.Libteec, EntryPoint = "TEEC_InvokeCommand", CallingConvention = CallingConvention.Cdecl)]
-        static public extern int InvokeCommand(ref TEEC_Session session, uint commandID, ref TEEC_Operation operation, out uint returnOrigin);
-
-        [DllImport(Libraries.Libteec, EntryPoint = "TEEC_InvokeCommand", CallingConvention = CallingConvention.Cdecl)]
-        static public extern int InvokeCommand(ref TEEC_Session session, uint commandID, IntPtr operation, out uint returnOrigin);
+        static public extern int InvokeCommand(IntPtr session, uint commandID, IntPtr operation, out uint returnOrigin);
 
         /// <summary>
         /// This function requests the cancelation of a pending open session operation or a command invocation
@@ -131,6 +125,6 @@ internal static partial class Interop
         /// </summary>
         //void TEEC_RequestCancellation(TEEC_Operation *operation);
         [DllImport(Libraries.Libteec, EntryPoint = "TEEC_RequestCancellation", CallingConvention = CallingConvention.Cdecl)]
-        static public extern void RequestCancellation(ref TEEC_Operation operation);
+        static public extern void RequestCancellation(IntPtr operation);
     }
 }
