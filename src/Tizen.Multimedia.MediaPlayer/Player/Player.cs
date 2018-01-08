@@ -92,7 +92,14 @@ namespace Tizen.Multimedia
             Dispose(true);
         }
 
-        private void Dispose(bool disposing)
+        /// <summary>
+        /// Releases the resources used by the <see cref="Player"/> object.
+        /// </summary>
+        /// <param name="disposing">
+        /// true to release both managed and unmanaged resources; false to release only unmanaged resources.
+        /// </param>
+        /// <since_tizen> 4 </since_tizen>
+        protected void Dispose(bool disposing)
         {
             if (!_disposed)
             {

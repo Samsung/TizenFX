@@ -117,8 +117,6 @@ namespace Tizen.Multimedia
         {
             get
             {
-                ValidateNotDisposed();
-
                 if (IsPreparing())
                 {
                     return PlayerState.Preparing;
@@ -156,8 +154,6 @@ namespace Tizen.Multimedia
             }
             set
             {
-                ValidateNotDisposed();
-
                 ValidationUtil.ValidateEnum(typeof(AudioLatencyMode), value);
 
                 NativePlayer.SetAudioLatencyMode(Handle, value).
@@ -182,8 +178,6 @@ namespace Tizen.Multimedia
             }
             set
             {
-                ValidateNotDisposed();
-
                 NativePlayer.SetLooping(Handle, value).
                     ThrowIfFailed(this, "Failed to set the looping state of the player");
             }
@@ -287,7 +281,7 @@ namespace Tizen.Multimedia
         /// </summary>
         /// <value>A <see cref="PlayerTrackInfo"/> for audio.</value>
         /// <since_tizen> 3 </since_tizen>
-        public PlayerTrackInfo AudioTrackInfo
+        public virtual PlayerTrackInfo AudioTrackInfo
         {
             get
             {
@@ -306,7 +300,7 @@ namespace Tizen.Multimedia
         /// </summary>
         /// <value>A <see cref="PlayerTrackInfo"/> for the subtitle.</value>
         /// <since_tizen> 3 </since_tizen>
-        public PlayerTrackInfo SubtitleTrackInfo
+        public virtual PlayerTrackInfo SubtitleTrackInfo
         {
             get
             {
@@ -325,7 +319,7 @@ namespace Tizen.Multimedia
         /// </summary>
         /// <value>A <see cref="StreamInfo"/> for this player.</value>
         /// <since_tizen> 3 </since_tizen>
-        public StreamInfo StreamInfo
+        public virtual StreamInfo StreamInfo
         {
             get
             {
@@ -345,7 +339,7 @@ namespace Tizen.Multimedia
         /// <feature>http://tizen.org/feature/multimedia.custom_audio_effect</feature>
         /// <exception cref="NotSupportedException">The required feature is not supported.</exception>
         /// <since_tizen> 3 </since_tizen>
-        public AudioEffect AudioEffect
+        public virtual AudioEffect AudioEffect
         {
             get
             {
