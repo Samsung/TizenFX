@@ -509,10 +509,7 @@ namespace Tizen.Multimedia
                 throw new ArgumentOutOfRangeException(nameof(milliseconds), milliseconds,
                     "The position is not valid.");
             }
-            if (ret != PlayerErrorCode.None)
-            {
-                Log.Error(PlayerLog.Tag, "Failed to set play position, " + (PlayerError)ret);
-            }
+
             ret.ThrowIfFailed(this, "Failed to set play position");
         }
 

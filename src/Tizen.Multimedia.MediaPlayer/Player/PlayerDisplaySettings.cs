@@ -52,15 +52,16 @@ namespace Tizen.Multimedia
         protected Player Player { get; }
 
         /// <summary>
-        /// Gets or sets the <see cref="PlayerDisplayMode"/>.
+        /// Gets or sets the display mode.
         /// </summary>
         /// <exception cref="InvalidOperationException">
         ///     Operation failed; internal error.
         /// </exception>
         /// <exception cref="ObjectDisposedException">The player has already been disposed of.</exception>
         /// <exception cref="ArgumentException">The specified value to set is invalid.</exception>
-        /// <since_tizen> 3 </since_tizen>
-        public PlayerDisplayMode Mode
+        /// <since_tizen> 4 </since_tizen>
+        /// <seealso cref="PlayerDisplayModes"/>
+        public virtual int Mode
         {
             get
             {
@@ -71,8 +72,6 @@ namespace Tizen.Multimedia
             }
             set
             {
-                ValidationUtil.ValidateEnum(typeof(PlayerDisplayMode), value);
-
                 Native.SetMode(Player.Handle, value).
                     ThrowIfFailed(Player, "Failed to set display mode");
             }
@@ -137,17 +136,17 @@ namespace Tizen.Multimedia
         /// </summary>
         /// <param name="roi">The region.</param>
         /// <remarks>
-        /// To set roi, <see cref="Mode"/> must be set to <see cref="PlayerDisplayMode.Roi"/> first.
+        /// To set roi, <see cref="Mode"/> must be set to <see cref="PlayerDisplayModes.Roi"/> first.
         /// </remarks>
         /// <exception cref="InvalidOperationException">
         ///     Operation failed; internal error.<br/>
         ///     -or-<br/>
-        ///     <see cref="Mode"/> is not set to <see cref="PlayerDisplayMode.Roi"/>.
+        ///     <see cref="Mode"/> is not set to <see cref="PlayerDisplayModes.Roi"/>.
         /// </exception>
         /// <exception cref="ObjectDisposedException">The player has already been disposed of.</exception>
         /// <exception cref="ArgumentOutOfRangeException">The width or the height is less than or equal to zero.</exception>
         /// <since_tizen> 3 </since_tizen>
-        public void SetRoi(Rectangle roi)
+        public virtual void SetRoi(Rectangle roi)
         {
             if (roi.Width <= 0)
             {
@@ -160,7 +159,7 @@ namespace Tizen.Multimedia
                     $"The height of the roi can't be less than or equal to zero.");
             }
 
-            if (Mode != PlayerDisplayMode.Roi)
+            if (Mode != PlayerDisplayModes.Roi)
             {
                 throw new InvalidOperationException("Mode is not set to Roi");
             }
