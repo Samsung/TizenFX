@@ -8,7 +8,10 @@ Describe your changes here.
 
 ### API Changes ###
 
-List all API changes here (or just put None), example:
+If you have the ACR for changing APIs, put the link of the ACR:
+ - ACR: 
+
+If you don't have the ACR, List all API changes here (or just put None), example:
 
 Added:
  - SafeBundleHandle Bundle.SafeBundleHandle { get; } // Property
