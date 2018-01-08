@@ -65,7 +65,7 @@ namespace Tizen.Multimedia
             get
             {
                 Native.GetMode(Player.Handle, out var value).
-                    ThrowIfFailed("Failed to get display mode");
+                    ThrowIfFailed(Player, "Failed to get display mode");
 
                 return value;
             }
@@ -74,7 +74,7 @@ namespace Tizen.Multimedia
                 ValidationUtil.ValidateEnum(typeof(PlayerDisplayMode), value);
 
                 Native.SetMode(Player.Handle, value).
-                    ThrowIfFailed("Failed to set display mode");
+                    ThrowIfFailed(Player, "Failed to set display mode");
             }
         }
 
@@ -92,13 +92,14 @@ namespace Tizen.Multimedia
             get
             {
                 Native.IsVisible(Player.Handle, out var value).
-                    ThrowIfFailed("Failed to get the visible state of the display");
+                    ThrowIfFailed(Player, "Failed to get the visible state of the display");
 
                 return value;
             }
             set
             {
-                Native.SetVisible(Player.Handle, value).ThrowIfFailed("Failed to set the visible state of the display");
+                Native.SetVisible(Player.Handle, value).ThrowIfFailed(
+                    Player, "Failed to set the visible state of the display");
             }
         }
 
@@ -118,7 +119,7 @@ namespace Tizen.Multimedia
             get
             {
                 Native.GetRotation(Player.Handle, out var value).
-                    ThrowIfFailed("Failed to get the rotation state of the display");
+                    ThrowIfFailed(Player, "Failed to get the rotation state of the display");
 
                 return value;
             }
@@ -127,7 +128,7 @@ namespace Tizen.Multimedia
                 ValidationUtil.ValidateEnum(typeof(Rotation), value);
 
                 Native.SetRotation(Player.Handle, value).
-                    ThrowIfFailed("Failed to set the rotation state of the display");
+                    ThrowIfFailed(Player, "Failed to set the rotation state of the display");
             }
         }
 
@@ -165,7 +166,7 @@ namespace Tizen.Multimedia
             }
 
             Native.SetRoi(Player.Handle, roi.X, roi.Y, roi.Width, roi.Height).
-                ThrowIfFailed("Failed to set the roi");
+                ThrowIfFailed(Player, "Failed to set the roi");
         }
     }
 }

@@ -52,7 +52,8 @@ namespace Tizen.Multimedia
 
         internal override void OnAttached(Player player)
         {
-            NativePlayer.SetUri(player.Handle, Uri).ThrowIfFailed("Failed to set the source with specified uri");
+            NativePlayer.SetUri(player.Handle, Uri).
+                ThrowIfFailed(player, "Failed to set the source with specified uri");
         }
     }
 }

@@ -27,14 +27,6 @@ namespace Tizen.Multimedia
     /// <since_tizen> 3 </since_tizen>
     public partial class Player
     {
-        private void RetrieveProperties()
-        {
-            NativePlayer.GetAudioLatencyMode(Handle, out _audioLatencyMode).
-                ThrowIfFailed("Failed to initialize the player");
-
-            NativePlayer.IsLooping(Handle, out _isLooping).ThrowIfFailed("Failed to initialize the player");
-        }
-
         /// <summary>
         /// Gets the native handle of the player.
         /// </summary>
@@ -66,7 +58,6 @@ namespace Tizen.Multimedia
         {
             get
             {
-                Log.Info(PlayerLog.Tag, "get cookie : " + _cookie);
                 return _cookie;
             }
             set
@@ -79,7 +70,7 @@ namespace Tizen.Multimedia
                 }
 
                 NativePlayer.SetStreamingCookie(Handle, value, value.Length).
-                    ThrowIfFailed("Failed to set the cookie to the player");
+                    ThrowIfFailed(this, "Failed to set the cookie to the player");
 
                 _cookie = value;
             }
@@ -97,7 +88,6 @@ namespace Tizen.Multimedia
         {
             get
             {
-                Log.Info(PlayerLog.Tag, "get useragent : " + _userAgent);
                 return _userAgent;
             }
             set
@@ -110,7 +100,7 @@ namespace Tizen.Multimedia
                 }
 
                 NativePlayer.SetStreamingUserAgent(Handle, value, value.Length).
-                    ThrowIfFailed("Failed to set the user agent to the player");
+                    ThrowIfFailed(this, "Failed to set the user agent to the player");
 
                 _userAgent = value;
             }
@@ -134,15 +124,14 @@ namespace Tizen.Multimedia
                     return PlayerState.Preparing;
                 }
 
-                NativePlayer.GetState(Handle, out var state).ThrowIfFailed("Failed to retrieve the state of the player");
+                NativePlayer.GetState(Handle, out var state).
+                    ThrowIfFailed(this, "Failed to retrieve the state of the player");
 
                 Debug.Assert(Enum.IsDefined(typeof(PlayerState), state));
 
                 return (PlayerState)state;
             }
         }
-
-        private AudioLatencyMode _audioLatencyMode;
 
         /// <summary>
         /// Gets or sets the audio latency mode.
@@ -160,27 +149,21 @@ namespace Tizen.Multimedia
         {
             get
             {
-                Log.Info(PlayerLog.Tag, "get audio latency mode : " + _audioLatencyMode);
-                return _audioLatencyMode;
+                NativePlayer.GetAudioLatencyMode(Handle, out var value).
+                    ThrowIfFailed(this, "Failed to get the audio latency mode of the player");
+
+                return value;
             }
             set
             {
                 ValidateNotDisposed();
 
-                if (_audioLatencyMode == value)
-                {
-                    return;
-                }
                 ValidationUtil.ValidateEnum(typeof(AudioLatencyMode), value);
 
                 NativePlayer.SetAudioLatencyMode(Handle, value).
-                    ThrowIfFailed("Failed to set the audio latency mode of the player");
-
-                _audioLatencyMode = value;
+                    ThrowIfFailed(this, "Failed to set the audio latency mode of the player");
             }
         }
-
-        private bool _isLooping;
 
         /// <summary>
         /// Gets or sets the looping state.
@@ -192,31 +175,29 @@ namespace Tizen.Multimedia
         {
             get
             {
-                Log.Info(PlayerLog.Tag, "get looping : " + _isLooping);
-                return _isLooping;
+                NativePlayer.IsLooping(Handle, out var value).
+                    ThrowIfFailed(this, "Failed to get the looping state of the player");
+
+                return value;
             }
             set
             {
                 ValidateNotDisposed();
 
-                if (_isLooping == value)
-                {
-                    return;
-                }
-
-                NativePlayer.SetLooping(Handle, value).ThrowIfFailed("Failed to set the looping state of the player");
-
-                _isLooping = value;
+                NativePlayer.SetLooping(Handle, value).
+                    ThrowIfFailed(this, "Failed to set the looping state of the player");
             }
         }
 
         #region Display methods
+        private Lazy<PlayerDisplaySettings> _displaySettings;
+
         /// <summary>
         /// Gets the display settings.
         /// </summary>
         /// <value>A <see cref="PlayerDisplaySettings"/> that specifies the display settings.</value>
         /// <since_tizen> 3 </since_tizen>
-        public PlayerDisplaySettings DisplaySettings { get; }
+        public virtual PlayerDisplaySettings DisplaySettings => _displaySettings.Value;
 
         private Display _display;
 
@@ -387,8 +368,8 @@ namespace Tizen.Multimedia
         {
             get
             {
-                bool value = false;
-                NativePlayer.IsMuted(Handle, out value).ThrowIfFailed("Failed to get the mute state of the player");
+                NativePlayer.IsMuted(Handle, out var value).
+                    ThrowIfFailed(this, "Failed to get the mute state of the player");
 
                 Log.Info(PlayerLog.Tag, "get mute : " + value);
 
@@ -396,7 +377,7 @@ namespace Tizen.Multimedia
             }
             set
             {
-                NativePlayer.SetMute(Handle, value).ThrowIfFailed("Failed to set the mute state of the player");
+                NativePlayer.SetMute(Handle, value).ThrowIfFailed(this, "Failed to set the mute state of the player");
             }
         }
 
@@ -417,7 +398,8 @@ namespace Tizen.Multimedia
             {
                 float value = 0.0F;
                 NativePlayer.GetVolume(Handle, out value, out value).
-                    ThrowIfFailed("Failed to get the volume of the player");
+                    ThrowIfFailed(this, "Failed to get the volume of the player");
+
                 return value;
             }
             set
@@ -429,7 +411,7 @@ namespace Tizen.Multimedia
                 }
 
                 NativePlayer.SetVolume(Handle, value, value).
-                    ThrowIfFailed("Failed to set the volume of the player");
+                    ThrowIfFailed(this, "Failed to set the volume of the player");
             }
         }
     }

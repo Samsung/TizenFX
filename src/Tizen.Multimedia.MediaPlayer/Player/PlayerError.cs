@@ -14,6 +14,7 @@
  * limitations under the License.
  */
 using System;
+using System.Diagnostics;
 using System.IO;
 using Tizen.Internals.Errors;
 
@@ -52,12 +53,16 @@ namespace Tizen.Multimedia
 
     internal static class PlayerErrorCodeExtensions
     {
-        internal static void ThrowIfFailed(this PlayerErrorCode err, string message)
+        internal static void ThrowIfFailed(this PlayerErrorCode err, Player player, string message)
         {
+            Debug.Assert(player != null);
+
             if (err == PlayerErrorCode.None)
             {
                 return;
             }
+
+            Player.NotifyError(player, (int)err, message);
 
             throw err.GetException(message);
         }
