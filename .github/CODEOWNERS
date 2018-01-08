@@ -1,0 +1,27 @@
+# Common files should be reviewed by @Samsung/TizenFX_admin
+/build/      @Samsung/TizenFX_admin
+/packaging/  @Samsung/TizenFX_admin
+/pkg/        @Samsung/TizenFX_admin
+/tools/      @Samsung/TizenFX_admin
+
+# Assign reviewers of each module
+/src/ElmSharp*/                   @rookiejava @myroot @arosis78 @jkpu @hj-na-park @idkiller
+/src/Tizen.Account.*/             @titicoco @seogii @IckheeWoo
+/src/Tizen.Applications.*/        @semun-lee @linuxias @pjh9216 @sukhyungkang
+/src/Tizen.Content.Download/      @taesubkim @chleun-moon @jeik01
+/src/Tizen.Network.Connection/    @taesubkim @chleun-moon @jeik01
+/src/Tizen.Network.Nsd/           @taesubkim @chleun-moon @jeik01
+/src/Tizen.Network.WiFi/          @taesubkim @chleun-moon @jeik01
+/src/Tizen.Network.WiFiDirect/    @taesubkim @chleun-moon @jeik01
+/src/Tizen.Network.Smartcard/     @saerome
+/src/Tizen.Network.Nfc/           @saerome
+/src/Tizen.Location*/             @chanywa @jomui
+/src/Tizen.Maps/                  @chanywa @jomui
+/src/Tizen.Multimedia*/           @coderhyme @hsgwon
+/src/Tizen.Security*/             @terry2000s
+/src/Tizen.Uix.Stt*/              @stomHwang @urmain @syeonholic @seongraejoo
+/src/Tizen.Uix.Tts*/              @stomHwang @urmain @syeonholic @seongraejoo
+/src/Tizen.Uix.VoiceControl/      @stomHwang @urmain @syeonholic @seongraejoo
+/src/Tizen.WebView/               @younghajung @djmixkim
+/src/Tizen.System*/               @prjung @hyotaekshim
+/src/Tizen.NUI*/                  @hyunjushin @dongsug-song
