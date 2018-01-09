@@ -207,7 +207,10 @@ namespace Tizen.Content.MediaContent
         /// the record of the media file will be deleted from the database.<br/>
         /// <br/>
         /// If you want to access internal storage, you should add privilege http://tizen.org/privilege/mediastorage.<br/>
-        /// If you want to access external storage, you should add privilege http://tizen.org/privilege/externalstorage.
+        /// If you want to access external storage, you should add privilege http://tizen.org/privilege/externalstorage.<br/>
+        /// <br/>
+        /// If http://tizen.org/feature/content.scanning.others feature is not supported and the specified file is other-type,
+        /// <see cref="NotSupportedException"/> will be thrown.
         /// </remarks>
         /// <privilege>http://tizen.org/privilege/content.write</privilege>
         /// <privilege>http://tizen.org/privilege/mediastorage</privilege>
@@ -223,6 +226,7 @@ namespace Tizen.Content.MediaContent
         ///     <paramref name="path"/> contains a directory containing the ".scan_ignore" file.
         /// </exception>
         /// <exception cref="UnauthorizedAccessException">The caller has no required privilege.</exception>
+        /// <exception cref="NotSupportedException">The required feature is not supported.</exception>
         /// <since_tizen> 4 </since_tizen>
         public void ScanFile(string path)
         {
