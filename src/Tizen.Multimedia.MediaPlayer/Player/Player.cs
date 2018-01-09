@@ -617,12 +617,17 @@ namespace Tizen.Multimedia
         /// <exception cref="InvalidOperationException">The player is not in the valid state.</exception>
         /// <exception cref="ArgumentNullException"><paramref name="policy"/> is null.</exception>
         /// <exception cref="NotSupportedException">
-        ///     <see cref="AudioStreamType"/> of <paramref name="policy"/> is not supported by <see cref="Player"/>.
+        ///     The required feature is not supported.<br/>
+        ///     -or-<br/>
+        ///     <see cref="AudioStreamType"/> of <paramref name="policy"/> is not supported on the current platform.
         /// </exception>
         /// <seealso cref="AudioStreamPolicy"/>
+        /// <feature>http://tizen.org/feature/multimedia.player.stream_info</feature>
         /// <since_tizen> 3 </since_tizen>
         public void ApplyAudioStreamPolicy(AudioStreamPolicy policy)
         {
+            ValidationUtil.ValidateFeatureSupported("http://tizen.org/feature/multimedia.player.stream_info");
+
             if (policy == null)
             {
                 throw new ArgumentNullException(nameof(policy));
@@ -630,8 +635,14 @@ namespace Tizen.Multimedia
 
             ValidatePlayerState(PlayerState.Idle);
 
-            NativePlayer.SetAudioPolicyInfo(Handle, policy.Handle).
-                ThrowIfFailed("Failed to set the audio stream policy to the player");
+            var ret = NativePlayer.SetAudioPolicyInfo(Handle, policy.Handle);
+
+            if (ret == PlayerErrorCode.InvalidArgument)
+            {
+                throw new NotSupportedException("The specified policy is not supported on the current system.");
+            }
+
+            ret.ThrowIfFailed("Failed to set the audio stream policy to the player");
         }
         #endregion
 
