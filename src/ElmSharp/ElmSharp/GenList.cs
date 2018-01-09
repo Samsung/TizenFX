@@ -20,37 +20,37 @@ using System.Collections.Generic;
 namespace ElmSharp
 {
     /// <summary>
-    /// Enumeration for setting genlist item type.
+    /// Enumeration for setting the genlist item types.
     /// </summary>
     /// <since_tizen> preview </since_tizen>
     public enum GenListItemType
     {
         /// <summary>
-        /// if Normal is set then this item is normal item.
+        /// If Normal is set, then this item is a normal item.
         /// </summary>
         Normal = 0,
 
         /// <summary>
-        /// If tree is set then this item is displayed as an item that is able to expand and have child items.
+        /// If Tree is set, then this item is displayed as an item that is able to expand and have child items.
         /// </summary>
         Tree = (1 << 0),
 
         /// <summary>
-        /// if Group is set then this item is group index item that is displayed at the top until the next group comes.
+        /// If Group is set, then this item is a group index item that is displayed at the top until the next group comes.
         /// </summary>
         Group = (1 << 1),
     }
 
     /// <summary>
-    /// Enumeration for setting genlist's resizing behavior, transverse axis scrolling and items cropping.
+    /// Enumeration for setting the genlist's resizing behavior, transverse axis scrolling, and items cropping.
     /// </summary>
     /// <since_tizen> preview </since_tizen>
     public enum GenListMode
     {
         /// <summary>
         /// The genlist won't set any of its size hints to inform how a possible container should resize it.
-        /// Then, if it's not created as a "resize object", it might end with zeroed dimensions.
-        /// The genlist will respect the container's geometry and, if any of its items won't fit into its transverse axis, one won't be able to scroll it in that direction.
+        /// Then, if it's not created as a "resize object", it might end up with zeroed dimensions.
+        /// The genlist will respect the container's geometry,and if any of its items won't fit into its transverse axis, one won't be able to scroll it in that direction.
         /// </summary>
         Compress = 0,
 
@@ -67,7 +67,7 @@ namespace ElmSharp
         Limit,
 
         /// <summary>
-        /// Besides setting a minimum size on the transverse axis, just like on Limit, the genlist will set a minimum size on th longitudinal axis, trying to reserve space to all its children to be visible at a time.
+        /// Besides setting a minimum size on the transverse axis, just like on Limit, the genlist will set a minimum size on the longitudinal axis, trying to reserve space to all its children to be visible at a time.
         /// This is naturally bound by the genlist object's maximum size hints, set externally.
         /// </summary>
         Expand
@@ -75,14 +75,14 @@ namespace ElmSharp
 
     /// <summary>
     /// It inherits System.EventArgs.
-    /// It contains Item which is <see cref="GenListItem"/> type.
-    /// All events of GenList contain GenListItemEventArgs as a parameter.
+    /// It contains an item which is <see cref="GenListItem"/> type.
+    /// All events of the GenList contain GenListItemEventArgs as a parameter.
     /// </summary>
     /// <since_tizen> preview </since_tizen>
     public class GenListItemEventArgs : EventArgs
     {
         /// <summary>
-        /// Gets or sets GenList item. The return type is <see cref="GenListItem"/>.
+        /// Gets or sets the genlist item. The return type is <see cref="GenListItem"/>.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
         public GenListItem Item { get; set; }
@@ -95,7 +95,7 @@ namespace ElmSharp
     }
 
     /// <summary>
-    /// Enumeration that defines where to position the item in the genlist.
+    /// Enumeration for defining where to position the item in the genlist.
     /// </summary>
     /// <since_tizen> preview </since_tizen>
     public enum ScrollToPosition
@@ -128,10 +128,10 @@ namespace ElmSharp
 
     /// <summary>
     /// It inherits <see cref="Layout"/>.
-    /// The GenList is a widget that aims to have more expansive list than the simple <see cref="List"/> in ElmSharp that could have more flexible items and allow many more entries while still being fast and low on memory usage.
+    /// The GenList is a widget that aims to have a more expansive list than the simple <see cref="List"/> in ElmSharp that could have more flexible items and allow many more entries while still being fast and low on memory usage.
     /// At the same time it was also made to be able to do tree structures.
-    /// But the price to pay is more complexity when it comes to usage.
-    /// If all you want is a simple list with icons and a single text, use the <see cref="List"/> widget.
+    /// But the price to pay is more complex when it comes to usage.
+    /// If all you want is a simple list with icons and a single text, use <see cref="List"/> widget.
     /// </summary>
     /// <since_tizen> preview </since_tizen>
     public class GenList : Layout
@@ -158,14 +158,14 @@ namespace ElmSharp
         /// <summary>
         /// Creates and initializes a new instance of the GenList class.
         /// </summary>
-        /// <param name="parent">The parent is a given container which will be attached by GenList as a child. It's <see cref="EvasObject"/> type.</param>
+        /// <param name="parent">The parent is a given container, which will be attached by GenList as a child. It's <see cref="EvasObject"/> type.</param>
         /// <since_tizen> preview </since_tizen>
         public GenList(EvasObject parent) : base(parent)
         {
         }
 
         /// <summary>
-        /// Creates and initializes a new instance of GenList class.
+        /// Creates and initializes a new instance of the GenList class.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
         protected GenList() : base()
@@ -176,7 +176,7 @@ namespace ElmSharp
         /// Gets or sets whether the homogeneous mode is enabled.
         /// </summary>
         /// <remarks>
-        /// If true, the genlist items have same height and width.
+        /// If true, the genlist items will have the same height and width.
         /// </remarks>
         /// <since_tizen> preview </since_tizen>
         public bool Homogeneous
@@ -193,15 +193,15 @@ namespace ElmSharp
 
         /// <summary>
         /// Gets or sets the horizontal stretching mode. This mode used for sizing items horizontally.
-        /// The default value is <see cref="GenListMode.Scroll"/> which means that if items are too wide to fit, the scroller scrolls horizontally.
-        /// If set <see cref="GenListMode.Compress"/> which means that the item width is fixed (restricted to a minimum of) to the list width when calculating its size in order to allow the height to be calculated based on it.
-        /// If set <see cref="GenListMode.Limit"/> which means that items are expanded to the viewport width and limited to that size.
-        /// if set <see cref="GenListMode.Expand"/> which means that genlist try to reserve space to all its items to be visible at a time.
+        /// The default value is <see cref="GenListMode.Scroll"/>, which means that if the items are too wide to fit, the scroller scrolls horizontally.
+        /// If set to <see cref="GenListMode.Compress"/>, means that the item width is fixed (restricted to a minimum) to the list width when calculating its size in order to allow the height to be calculated based on it.
+        /// If set to <see cref="GenListMode.Limit"/>, means that items are expanded to the viewport width and limited to that size.
+        /// If set to <see cref="GenListMode.Expand"/>, means that genlist try to reserve space to all its items to be visible at a time.
         /// </summary>
         /// <remarks>
-        /// Compress makes genlist resize slower as it recalculates every item height again whenever the list width changes.
-        /// The homogeneous mode is so that all items in the genlist are of the same width/height. With Compress, genlist items are initialized fast.
-        /// However, there are no sub-objects in the genlist which can be on the flying resizable (such as TEXTBLOCK).
+        /// Compress makes the genlist resize slower, as it recalculates every item height again whenever the list width changes.
+        /// The homogeneous mode is so that all items in the genlist are of the same width/height. With Compress, the genlist items are initialized fast.
+        /// However, there are no subobjects in the genlist, which can be on the flying resizable (such as TEXTBLOCK).
         /// If so, then some dynamic resizable objects in the genlist would not be diplayed properly.
         /// </remarks>
         /// <since_tizen> preview </since_tizen>
@@ -262,7 +262,7 @@ namespace ElmSharp
         }
 
         /// <summary>
-        /// Gets or set the maximum number of items within an item block.
+        /// Gets or sets the maximum number of items within an item block.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
         public int BlockCount
@@ -310,11 +310,11 @@ namespace ElmSharp
         }
 
         /// <summary>
-        /// Gets or Sets focus upon items selection mode.
+        /// Gets or sets the focus upon the items selection mode.
         /// </summary>
         /// <remarks>
-        /// When enabled, every selection of an item inside the <see cref="GenList"/> will automatically set focus to its first focusable widget from the left.
-        /// This is true of course if the selection was made by clicking an unfocusable area in an item or selecting it with a key movement.
+        /// When enabled, every selection of an item inside <see cref="GenList"/> will automatically set focus to its first focusable widget from the left.
+        /// This is true of course, if the selection was made by clicking an unfocusable area in an item or selecting it with a key movement.
         /// Clicking on a focusable widget inside an item will couse this particular item to get focus as usual.
         /// </remarks>
         /// <since_tizen> preview </since_tizen>
@@ -331,7 +331,7 @@ namespace ElmSharp
         }
 
         /// <summary>
-        /// Gets or sets whether enable multi-selection in the genlist.
+        /// Gets or sets whether to enable multi-selection in the genlist.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
         public bool IsMultiSelection
@@ -347,7 +347,7 @@ namespace ElmSharp
         }
 
         /// <summary>
-        /// Gets the selected item in a given genlist widget.
+        /// Gets the selected item in a given GenList widget.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
         public GenListItem SelectedItem
@@ -376,7 +376,7 @@ namespace ElmSharp
         }
 
         /// <summary>
-        /// Gets count of items in a this genlist widget
+        /// Gets the count of items in a this genlist widget.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
         public int Count
@@ -394,7 +394,7 @@ namespace ElmSharp
         public event EventHandler<GenListItemEventArgs> ItemSelected;
 
         /// <summary>
-        /// ItemUnselected is raised when the genlist item is Unselected.
+        /// ItemUnselected is raised when the genlist item is unselected.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
         public event EventHandler<GenListItemEventArgs> ItemUnselected;
@@ -412,13 +412,13 @@ namespace ElmSharp
         public event EventHandler<GenListItemEventArgs> ItemReleased;
 
         /// <summary>
-        /// ItemActivated is raised when a new genlist item is double clicked or pressed (enter|return|spacebar).
+        /// ItemActivated is raised when a new genlist item is double-clicked or pressed (enter|return|spacebar).
         /// </summary>
         /// <since_tizen> preview </since_tizen>
         public event EventHandler<GenListItemEventArgs> ItemActivated;
 
         /// <summary>
-        /// ItemDoubleClicked is raised when a new genlist item is double clicked.
+        /// ItemDoubleClicked is raised when a new genlist item is double-clicked.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
         public event EventHandler<GenListItemEventArgs> ItemDoubleClicked;
@@ -437,13 +437,13 @@ namespace ElmSharp
 
         /// <summary>
         /// ItemUnrealized is raised when a new genlist item is unrealized.
-        /// After calling unrealize, the item's content objects are deleted and the item object itself is deleted or is put into a floating cache.
+        /// After calling unrealize, the item's content objects are deleted, and the item object itself is deleted or is put into a floating cache.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
         public event EventHandler<GenListItemEventArgs> ItemUnrealized;
 
         /// <summary>
-        /// ItemLongPressed is raised when a genlist item is pressed for a certain amount of time. By default it's 1 second.
+        /// ItemLongPressed is raised when a genlist item is pressed for a certain amount of time. By default, it's 1 second.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
         public event EventHandler<GenListItemEventArgs> ItemLongPressed;
@@ -469,7 +469,7 @@ namespace ElmSharp
         public event EventHandler<GenListItemEventArgs> ItemMovedBefore;
 
         /// <summary>
-        /// Changed is raised when genlist is changed.
+        /// Changed is raised when the genlist has changed.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
         public event EventHandler Changed
@@ -479,7 +479,7 @@ namespace ElmSharp
         }
 
         /// <summary>
-        /// ScrollAnimationStarted is raised when scrolling animation has started.
+        /// ScrollAnimationStarted is raised when the scrolling animation has started.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
         public event EventHandler ScrollAnimationStarted
@@ -489,7 +489,7 @@ namespace ElmSharp
         }
 
         /// <summary>
-        /// ScrollAnimationStopped is raised when scrolling animation has stopped.
+        /// ScrollAnimationStopped is raised when the scrolling animation has stopped.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
         public event EventHandler ScrollAnimationStopped
@@ -499,11 +499,11 @@ namespace ElmSharp
         }
 
         /// <summary>
-        /// Appends a new item to the end of a given genlist widget.
+        /// Appends a new item to the end of a given GenList widget.
         /// </summary>
         /// <param name="itemClass">The itemClass defines how to display the data.</param>
         /// <param name="data">The item data.</param>
-        /// <returns>Return a new added genlist item that contains data and itemClass.</returns>
+        /// <returns>Return a newly added genlist item that contains the data and itemClass.</returns>
         /// <seealso cref="GenItemClass"/>
         /// <seealso cref="GenListItem"/>
         /// <since_tizen> preview </since_tizen>
@@ -513,12 +513,12 @@ namespace ElmSharp
         }
 
         /// <summary>
-        /// Appends a new item with <see cref="GenListItemType"/> to the end of a given genlist widget.
+        /// Appends a new item with <see cref="GenListItemType"/> to the end of a given GenList widget.
         /// </summary>
         /// <param name="itemClass">The itemClass defines how to display the data.</param>
         /// <param name="data">The item data.</param>
         /// <param name="type">The genlist item type.</param>
-        /// <returns>Return a new added genlist item that contains data and itemClass.</returns>
+        /// <returns>Return a newly added genlist item that contains the data and itemClass.</returns>
         /// <since_tizen> preview </since_tizen>
         public GenListItem Append(GenItemClass itemClass, object data, GenListItemType type)
         {
@@ -526,13 +526,13 @@ namespace ElmSharp
         }
 
         /// <summary>
-        /// Appends a new item with <see cref="GenListItemType"/> to the end of a given genlist widget or the end of the children list if the parent is given.
+        /// Appends a new item with <see cref="GenListItemType"/> to the end of a given GenList widget or the end of the children list, if the parent is given.
         /// </summary>
         /// <param name="itemClass">The itemClass defines how to display the data.</param>
         /// <param name="data">The item data.</param>
         /// <param name="type">The genlist item type.</param>
         /// <param name="parent">The parent item, otherwise null if there is no parent item.</param>
-        /// <returns>Return a new added genlist item that contains data and itemClass.</returns>
+        /// <returns>Return a newly added genlist item that contains the data and itemClass.</returns>
         /// <since_tizen> preview </since_tizen>
         public GenListItem Append(GenItemClass itemClass, object data, GenListItemType type, GenListItem parent)
         {
@@ -544,11 +544,11 @@ namespace ElmSharp
         }
 
         /// <summary>
-        /// Prepends a new item to the beginning of a given genlist widget.
+        /// Prepends a new item to the beginning of a given GenList widget.
         /// </summary>
         /// <param name="itemClass">The itemClass defines how to display the data.</param>
         /// <param name="data">The item data.</param>
-        /// <returns>Return a new added genlist item that contains data and itemClass.</returns>
+        /// <returns>Return a newly added genlist item that contains data and itemClass.</returns>
         /// <since_tizen> preview </since_tizen>
         public GenListItem Prepend(GenItemClass itemClass, object data)
         {
@@ -561,7 +561,7 @@ namespace ElmSharp
         /// <param name="itemClass">The itemClass defines how to display the data.</param>
         /// <param name="data">The item data.</param>
         /// <param name="type">The genlist item type.</param>
-        /// <returns>Return a new added genlist item that contains data and itemClass.</returns>
+        /// <returns>Return a newly added genlist item that contains data and itemClass.</returns>
         /// <since_tizen> preview </since_tizen>
         public GenListItem Prepend(GenItemClass itemClass, object data, GenListItemType type)
         {
@@ -569,13 +569,13 @@ namespace ElmSharp
         }
 
         /// <summary>
-        /// Prepends a new item with <see cref="GenListItemType"/> to the beginning of a given genlist widget or the beginning of the children list if the parent is given.
+        /// Prepends a new item with <see cref="GenListItemType"/> to the beginning of a given GenList widget or the beginning of the children list, if the parent is given.
         /// </summary>
         /// <param name="itemClass">The itemClass defines how to display the data.</param>
         /// <param name="data">The item data.</param>
         /// <param name="type">The genlist item type.</param>
         /// <param name="parent">The parent item, otherwise null if there is no parent item.</param>
-        /// <returns>Return a new added genlist item that contains data and itemClass.</returns>
+        /// <returns>Return a newly added genlist item that contains the data and itemClass.</returns>
         /// <since_tizen> preview </since_tizen>
         public GenListItem Prepend(GenItemClass itemClass, object data, GenListItemType type, GenListItem parent)
         {
@@ -593,7 +593,7 @@ namespace ElmSharp
         /// <param name="itemClass">The itemClass defines how to display the data.</param>
         /// <param name="data">The item data.</param>
         /// <param name="before">The item before which to place this new one.</param>
-        /// <returns>Return a new added genlist item that contains data and itemClass.</returns>
+        /// <returns>Return a newly added genlist item that contains data and itemClass.</returns>
         /// <since_tizen> preview </since_tizen>
         public GenListItem InsertBefore(GenItemClass itemClass, object data, GenListItem before)
         {
@@ -601,14 +601,14 @@ namespace ElmSharp
         }
 
         /// <summary>
-        /// Inserts an item with <see cref="GenListItemType"/> before another item in a genlist widget.
-        /// It is the same tree level or group as the item before which it is inserted.????
+        /// Inserts an item with <see cref="GenListItemType"/> before another item in a GenList widget.
+        /// It is the same tree level or group as the item before which it is inserted.
         /// </summary>
         /// <param name="itemClass">The itemClass defines how to display the data.</param>
         /// <param name="data">The item data.</param>
         /// <param name="before">The item before which to place this new one.</param>
         /// <param name="type">The genlist item type.</param>
-        /// <returns>Return a new added genlist item that contains data and itemClass.</returns>
+        /// <returns>Return a newly added genlist item that contains data and itemClass.</returns>
         /// <since_tizen> preview </since_tizen>
         public GenListItem InsertBefore(GenItemClass itemClass, object data, GenListItem before, GenListItemType type)
         {
@@ -616,14 +616,14 @@ namespace ElmSharp
         }
 
         /// <summary>
-        /// Inserts an item with <see cref="GenListItemType"/> before another item under a parent in a genlist widget.
+        /// Inserts an item with <see cref="GenListItemType"/> before another item under a parent in a GenList widget.
         /// </summary>
         /// <param name="itemClass">The itemClass defines how to display the data.</param>
         /// <param name="data">The item data.</param>
         /// <param name="before">The item before which to place this new one.</param>
         /// <param name="type">The genlist item type.</param>
         /// <param name="parent">The parent item, otherwise null if there is no parent item.</param>
-        /// <returns>Return a new added genlist item that contains data and itemClass.</returns>
+        /// <returns>Return a newly added genlist item that contains data and itemClass.</returns>
         /// <since_tizen> preview </since_tizen>
         public GenListItem InsertBefore(GenItemClass itemClass, object data, GenListItem before, GenListItemType type, GenListItem parent)
         {
@@ -644,14 +644,14 @@ namespace ElmSharp
         }
 
         /// <summary>
-        /// Inserts an item with <see cref="GenListItemType"/> after another item under a parent in a genlist widget.
+        /// Inserts an item with <see cref="GenListItemType"/> after another item under a parent in a GenList widget.
         /// </summary>
         /// <param name="itemClass">The itemClass defines how to display the data.</param>
         /// <param name="data">The item data.</param>
         /// <param name="after">The item after which to place this new one.</param>
         /// <param name="type">The genlist item type.</param>
         /// <param name="parent">The parent item, otherwise null if there is no parent item.</param>
-        /// <returns>Return a new added genlist item that contains data and itemClass.</returns>
+        /// <returns>Return a newly added genlist item that contains data and itemClass.</returns>
         /// <since_tizen> preview </since_tizen>
         public GenListItem InsertAfter(GenItemClass itemClass, object data, GenListItem after, GenListItemType type, GenListItem parent)
         {
@@ -672,14 +672,14 @@ namespace ElmSharp
         }
 
         /// <summary>
-        /// Insert an item in a genlist widget using a user-defined sort function.
+        /// Inserts an item in a GenList widget using a user-defined sort function.
         /// </summary>
         /// <param name="itemClass">The itemClass defines how to display the data.</param>
         /// <param name="data">The item data.</param>
-        /// <param name="comparison">User defined comparison function that defines the sort order based on genlist item and its data.</param>
+        /// <param name="comparison">User-defined comparison function that defines the sort order based on the genlist item and its data.</param>
         /// <param name="type">The genlist item type.</param>
         /// <param name="parent">The parent item, otherwise null if there is no parent item.</param>
-        /// <returns>Return a genlist item that contains data and itemClass.</returns>
+        /// <returns>Return a genlist item that contains the data and itemClass.</returns>
         /// <since_tizen> preview </since_tizen>
         public GenListItem InsertSorted(GenItemClass itemClass, object data, Comparison<object> comparison, GenListItemType type, GenListItem parent)
         {
@@ -707,9 +707,9 @@ namespace ElmSharp
         }
 
         /// <summary>
-        /// Shows the given item with position type in a genlist.
-        /// When animated is true, genlist will jump to the given item and display it (by animatedly scrolling), if it is not fully visible. This may use animation and may take some time.
-        /// When animated is false, genlist will jump to the given item and display it (by jumping to that position), if it is not fully visible.
+        /// Shows the given item with the position type in a genlist.
+        /// When animated is true, the genlist will jump to the given item and display it (by animatedly scrolling), if it is not fully visible. This may use animation and take sometime.
+        /// When animated is false, the genlist will jump to the given item and display it (by jumping to that position), if it is not fully visible.
         /// </summary>
         /// <param name="item">The item to display.</param>
         /// <param name="position">The position to show the given item to <see cref="ScrollToPosition"/>.</param>
@@ -729,7 +729,7 @@ namespace ElmSharp
 
         /// <summary>
         /// Updates the content of all the realized items.
-        /// This updates all the realized items by calling all the <see cref="GenItemClass"/> again to get the content, text and states.
+        /// This updates all the realized items by calling all <see cref="GenItemClass"/> again to get the content, text, and states.
         /// Use this when the original item data has changed and the changes are desired to reflect.
         /// To update just one item, use <see cref="GenListItem.Update"/>.
         /// </summary>
@@ -741,8 +741,8 @@ namespace ElmSharp
         }
 
         /// <summary>
-        /// Removes all items from a given genlist widget.
-        /// This removes (and deletes) all items in obj, making it empty.
+        /// Removes all the items from a given genlist widget.
+        /// This removes (and deletes) all items in the object, making it empty.
         /// To delete just one item, use <see cref="ItemObject.Delete"/>.
         /// </summary>
         /// <seealso cref="ItemObject.Delete"/>
@@ -753,14 +753,14 @@ namespace ElmSharp
         }
 
         /// <summary>
-        /// Get the item that is at the x, y canvas coords.
+        /// Gets the item that is at the X, Y canvas coordinates.
         /// </summary>
-        /// <param name="x">The input x coordinate</param>
-        /// <param name="y">The input y coordinate</param>
-        /// <param name="pos">The position relative to the item returned here
-        ///  -1, 0, or 1, depending on whether the coordinate is on the upper portion of that item (-1), in the middle section (0), or on the lower part (1).
+        /// <param name="x">The input X-coordinate.</param>
+        /// <param name="y">The input Y-coordinate.</param>
+        /// <param name="pos">The position relative to the item returned here.
+        ///  -1, 0, or 1 depending on whether the coordinate is on the upper portion of that item (-1), in the middle section (0), or on the lower part (1).
         /// </param>
-        /// <returns></returns>
+        /// <returns>The item at the given coordinates.</returns>
         /// <since_tizen> preview </since_tizen>
         public GenListItem GetItemByPosition(int x, int y, out int pos)
         {
@@ -771,7 +771,7 @@ namespace ElmSharp
         /// <summary>
         /// Gets the nth item in a given genlist widget, placed at position nth, in its internal items list.
         /// </summary>
-        /// <param name="index">The number of the item to grab (0 being the first)</param>
+        /// <param name="index">The number of the item to grab (0 being the first).</param>
         /// <returns></returns>
         /// <since_tizen> preview </since_tizen>
         public GenListItem GetItemByIndex(int index)
@@ -781,7 +781,7 @@ namespace ElmSharp
         }
 
         /// <summary>
-        /// The callback of Unrealize Event
+        /// The callback of the Unrealized event.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
         protected override void OnRealized()
@@ -794,8 +794,8 @@ namespace ElmSharp
         /// <summary>
         /// Creates a widget handle.
         /// </summary>
-        /// <param name="parent">Parent EvasObject</param>
-        /// <returns>Handle IntPtr</returns>
+        /// <param name="parent">Parent EvasObject.</param>
+        /// <returns>Handle IntPtr.</returns>
         /// <since_tizen> preview </since_tizen>
         protected override IntPtr CreateHandle(EvasObject parent)
         {

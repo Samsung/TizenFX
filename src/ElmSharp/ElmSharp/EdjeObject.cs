@@ -21,7 +21,7 @@ using System.Collections.Generic;
 namespace ElmSharp
 {
     /// <summary>
-    /// The EdjeObject is a class that evas object exist in
+    /// The EdjeObject is a class that the evas object exists in.
     /// </summary>
     /// <since_tizen> preview </since_tizen>
     public class EdjeObject
@@ -38,9 +38,9 @@ namespace ElmSharp
         /// Checks whether an edje part exists in a given edje object's group definition.
         /// This function returns if a given part exists in the edje group bound to object obj
         /// </summary>
-        /// <remarks>This call is useful, for example, when one could expect a given GUI element, depending on the theme applied to obj.</remarks>
-        /// <param name="part">The part's name to check for existence in obj's group</param>
-        /// <returns>TRUE, if the edje part exists in obj's group, otherwise FALSE</returns>
+        /// <remarks>This call is useful, for example, when one could expect a given GUI element, depending on the theme applied to object.</remarks>
+        /// <param name="part">The part's name to check for existence in object's group.</param>
+        /// <returns>TRUE, if the edje part exists in the object's group, otherwise FALSE.</returns>
         /// <since_tizen> preview </since_tizen>
         public EdjeTextPartObject this[string part]
         {
@@ -55,7 +55,7 @@ namespace ElmSharp
         }
 
         /// <summary>
-        /// Sends/emits an edje signal to a given edje object.
+        /// Sends or emits an edje signal to a given edje object.
         /// </summary>
         /// <param name="emission">The signal's "emission" string</param>
         /// <param name="source">The signal's "source" string</param>
@@ -66,11 +66,11 @@ namespace ElmSharp
         }
 
         /// <summary>
-        /// Deletes the object color class.
-        /// This function deletes any values at the object level for the specified object and color class.
+        /// Deletes the object Color class.
+        /// This function deletes any values at the object level for the specified object and Color class.
         /// </summary>
-        /// <remarks>Deleting the color class defined in the theme file.</remarks>
-        /// <param name="part">The color class to be deleted</param>
+        /// <remarks>Deleting the Color class defined in the theme file.</remarks>
+        /// <param name="part">The Color class to be deleted.</param>
         /// <since_tizen> preview </since_tizen>
         public void DeleteColorClass(string part)
         {
@@ -78,22 +78,22 @@ namespace ElmSharp
         }
 
         /// <summary>
-        /// Sets the object color class.
+        /// Sets the object Color class.
         /// </summary>
-        /// <param name="colorClass">The color class name.</param>
-        /// <param name="red">The object Red value.</param>
-        /// <param name="green">The object Green value.</param>
-        /// <param name="blue">The object Blue value.</param>
-        /// <param name="alpha">The object Alpha value.</param>
-        /// <param name="outlineRed">The outline Red value.</param>
-        /// <param name="outlineGreen">The outline Green value.</param>
-        /// <param name="outlineBlue">The outline Blue value.</param>
-        /// <param name="outlineAlpha">The outline Alpha value.</param>
-        /// <param name="shadowRed">The shadow Red value.</param>
-        /// <param name="shadowGreen">The shadow Green value.</param>
-        /// <param name="shadowBlue">The shadow Blue value.</param>
-        /// <param name="shadowAlpha">The shadow Alpha value.</param>
-        /// <returns>True if succeed, otherwise False</returns>
+        /// <param name="colorClass">The Color class name.</param>
+        /// <param name="red">The object red value.</param>
+        /// <param name="green">The object green value.</param>
+        /// <param name="blue">The object blue value.</param>
+        /// <param name="alpha">The object alpha value.</param>
+        /// <param name="outlineRed">The outline red value.</param>
+        /// <param name="outlineGreen">The outline green value.</param>
+        /// <param name="outlineBlue">The outline blue value.</param>
+        /// <param name="outlineAlpha">The outline alpha value.</param>
+        /// <param name="shadowRed">The shadow red value.</param>
+        /// <param name="shadowGreen">The shadow green value.</param>
+        /// <param name="shadowBlue">The shadow blue value.</param>
+        /// <param name="shadowAlpha">The shadow alpha value.</param>
+        /// <returns>True if succeeds, otherwise False.</returns>
         /// <since_tizen> preview </since_tizen>
         public bool SetColorClass(string colorClass, int red, int green, int blue, int alpha, int outlineRed, int outlineGreen, int outlineBlue, int outlineAlpha,
             int shadowRed, int shadowGreen, int shadowBlue, int shadowAlpha)
@@ -103,22 +103,22 @@ namespace ElmSharp
         }
 
         /// <summary>
-        /// Gets the object color class.
+        /// Gets the object Color class.
         /// </summary>
-        /// <param name="colorClass">The color class name.</param>
-        /// <param name="red">The object Red value.</param>
-        /// <param name="green">The object Green value.</param>
-        /// <param name="blue">The object Blue value.</param>
-        /// <param name="alpha">The object Alpha value.</param>
-        /// <param name="outlineRed">The outline Red value.</param>
-        /// <param name="outlineGreen">The outline Green value.</param>
-        /// <param name="outlineBlue">The outline Blue value.</param>
-        /// <param name="outlineAlpha">The outline Alpha value.</param>
-        /// <param name="shadowRed">The shadow Red value.</param>
-        /// <param name="shadowGreen">The shadow Green value.</param>
-        /// <param name="shadowBlue">The shadow Blue value.</param>
-        /// <param name="shadowAlpha">The shadow Alpha value.</param>
-        /// <returns>True if succeed, otherwise False</returns>
+        /// <param name="colorClass">The Color class name.</param>
+        /// <param name="red">The object red value.</param>
+        /// <param name="green">The object green value.</param>
+        /// <param name="blue">The object blue value.</param>
+        /// <param name="alpha">The object alpha value.</param>
+        /// <param name="outlineRed">The outline red value.</param>
+        /// <param name="outlineGreen">The outline green value.</param>
+        /// <param name="outlineBlue">The outline blue value.</param>
+        /// <param name="outlineAlpha">The outline alpha value.</param>
+        /// <param name="shadowRed">The shadow red value.</param>
+        /// <param name="shadowGreen">The shadow green value.</param>
+        /// <param name="shadowBlue">The shadow blue value.</param>
+        /// <param name="shadowAlpha">The shadow alpha value.</param>
+        /// <returns>True if succeeds, otherwise False.</returns>
         /// <since_tizen> preview </since_tizen>
         public bool GetColorClass(string colorClass, out int red, out int green, out int blue, out int alpha, out int outlineRed, out int outlineGreen, out int outlineBlue, out int outlineAlpha,
             out int shadowRed, out int shadowGreen, out int shadowBlue, out int shadowAlpha)
@@ -128,12 +128,12 @@ namespace ElmSharp
         }
 
         /// <summary>
-        /// Sets Edje text class.
+        /// Sets the Edje text class.
         /// </summary>
         /// <param name="textClass">The text class name.</param>
-        /// <param name="font">	Font name.</param>
+        /// <param name="font">Font name.</param>
         /// <param name="fontSize">Font size.</param>
-        /// <returns>True if succeed, otherwise False</returns>
+        /// <returns>True if succeeds, otherwise False.</returns>
         /// <since_tizen> preview </since_tizen>
         public bool SetTextClass(string textClass, string font, int fontSize)
         {
@@ -141,12 +141,12 @@ namespace ElmSharp
         }
 
         /// <summary>
-        /// Gets Edje text class.
+        /// Gets the Edje text class.
         /// </summary>
         /// <param name="textClass">The text class name.</param>
         /// <param name="font">Font name.</param>
         /// <param name="fontSize">Font size.</param>
-        /// <returns>True if succeed, otherwise False</returns>
+        /// <returns>True if succeeds, otherwise False.</returns>
         /// <since_tizen> preview </since_tizen>
         public bool GetTextClass(string textClass, out string font, out int fontSize)
         {
@@ -156,9 +156,9 @@ namespace ElmSharp
         /// <summary>
         /// Adds Action for an arriving edje signal, emitted by a given Ejde object.
         /// </summary>
-        /// <param name="emission">The signal's "emission" string</param>
-        /// <param name="source">The signal's "source" string</param>
-        /// <param name="action">The action to be executed when the signal is emitted</param>
+        /// <param name="emission">The signal's "emission" string.</param>
+        /// <param name="source">The signal's "source" string.</param>
+        /// <param name="action">The action to be executed when the signal is emitted.</param>
         /// <since_tizen> preview </since_tizen>
         public void AddSignalAction(string emission, string source, Action<string, string> action)
         {
@@ -181,9 +181,9 @@ namespace ElmSharp
         /// <summary>
         /// Deletes a signal-triggered action from an object.
         /// </summary>
-        /// <param name="emission">The signal's "emission" string</param>
-        /// <param name="source">The signal's "source" string</param>
-        /// <param name="action">The action to be executed when the signal is emitted</param>
+        /// <param name="emission">The signal's "emission" string.</param>
+        /// <param name="source">The signal's "source" string.</param>
+        /// <param name="action">The action to be executed when the signal is emitted.</param>
         /// <since_tizen> preview </since_tizen>
         public void DeleteSignalAction(string emission, string source, Action<string, string> action)
         {
@@ -221,7 +221,7 @@ namespace ElmSharp
             /// </summary>
             /// <param name="obj">The object to compare with the current instance.</param>
             /// <returns>
-            /// true if obj and this instance are the same type and represent the same value.
+            /// true if the object and this instance are of the same type and represent the same value.
             /// otherwise, false.
             /// </returns>
             public override bool Equals(object obj)
@@ -245,7 +245,7 @@ namespace ElmSharp
     }
 
     /// <summary>
-    /// An EdjeTextPartObject is a class dealing with parts of type text.
+    /// The EdjeTextPartObject is a class dealing with parts of type text.
     /// </summary>
     /// <since_tizen> preview </since_tizen>
     public class EdjeTextPartObject
@@ -260,7 +260,7 @@ namespace ElmSharp
         }
 
         /// <summary>
-        /// Gets the name of the EdjeTextPartObject
+        /// Gets the name of the EdjeTextPartObject.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
         public string Name { get { return _part; } }

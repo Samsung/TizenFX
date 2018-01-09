@@ -19,7 +19,7 @@ using System;
 namespace ElmSharp
 {
     /// <summary>
-    /// The Radio is a widget that allows for 1 or more options to be displayed and have the user choose only 1 of them.
+    /// The Radio is a widget that allows for 1 or more options to be displayed, and have the user choose only 1 of them.
     /// </summary>
     /// <since_tizen> preview </since_tizen>
     public class Radio : Layout
@@ -38,13 +38,13 @@ namespace ElmSharp
         }
 
         /// <summary>
-        /// ValueChanged will be triggered when value of Radio change.
+        /// ValueChanged will be triggered when value of the radio changes.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
         public event EventHandler ValueChanged;
 
         /// <summary>
-        /// Sets or gets a unique value to each Radio button.
+        /// Sets or gets a unique value to each radio button.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
         public int StateValue
@@ -92,8 +92,8 @@ namespace ElmSharp
         /// <summary>
         /// Creates a widget handle.
         /// </summary>
-        /// <param name="parent">Parent EvasObject</param>
-        /// <returns>Handle IntPtr</returns>
+        /// <param name="parent">Parent EvasObject.</param>
+        /// <returns>Handle IntPtr.</returns>
         /// <since_tizen> preview </since_tizen>
         protected override IntPtr CreateHandle(EvasObject parent)
         {

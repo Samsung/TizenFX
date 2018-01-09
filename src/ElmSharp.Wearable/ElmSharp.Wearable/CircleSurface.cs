@@ -5,7 +5,7 @@ using System.Text;
 namespace ElmSharp.Wearable
 {
     /// <summary>
-    /// The CircleSurface presents a surface for drawing circular feature of circle widgets
+    /// The CircleSurface presents a surface for drawing the circular feature of circle widgets.
     /// </summary>
     /// <since_tizen> preview </since_tizen>
     public class CircleSurface
@@ -13,9 +13,9 @@ namespace ElmSharp.Wearable
         IntPtr _handle;
 
         /// <summary>
-        /// Creates and initializes a new instance of the CircleSurface class with surface on the Conformant widget.
+        /// Creates and initializes a new instance of the CircleSurface class with a surface on the Conformant widget.
         /// </summary>
-        /// <param name="conformant">Conformant widget to create a surface.</param>
+        /// <param name="conformant">The Conformant widget to create a surface.</param>
         /// <since_tizen> preview </since_tizen>
         public CircleSurface(Conformant conformant)
         {
@@ -23,9 +23,9 @@ namespace ElmSharp.Wearable
         }
 
         /// <summary>
-        /// Creates and initializes a new instance of the CircleSurface class with surface on the Layout widget.
+        /// Creates and initializes a new instance of the CircleSurface class with a surface on the Layout widget.
         /// </summary>
-        /// <param name="layout">Layout widget to create a surface.</param>
+        /// <param name="layout">The Layout widget to create a surface.</param>
         /// <since_tizen> preview </since_tizen>
         public CircleSurface(Layout layout)
         {
@@ -33,9 +33,9 @@ namespace ElmSharp.Wearable
         }
 
         /// <summary>
-        /// Creates and initializes a new instance of the CircleSurface class with surface on the Naviframe widget.
+        /// Creates and initializes a new instance of the CircleSurface class with a surface on the Naviframe widget.
         /// </summary>
-        /// <param name="naviframe">Naviframe widget to create a surface.</param>
+        /// <param name="naviframe">The Naviframe widget to create a surface.</param>
         /// <since_tizen> preview </since_tizen>
         public CircleSurface(Naviframe naviframe)
         {
@@ -43,7 +43,7 @@ namespace ElmSharp.Wearable
         }
 
         /// <summary>
-        /// Creates and initializes a new instance of the CircleSurface class with no surface
+        /// Creates and initializes a new instance of the CircleSurface class with no surface.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
         public CircleSurface()
@@ -52,13 +52,13 @@ namespace ElmSharp.Wearable
         }
 
         /// <summary>
-        /// Gets the handle for CircleSurface
+        /// Gets the handle for CircleSurface.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
         public IntPtr Handle => _handle;
 
         /// <summary>
-        /// Delete the given CirclrSurface
+        /// Deletes the given CircleSurface.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
         public void Delete()

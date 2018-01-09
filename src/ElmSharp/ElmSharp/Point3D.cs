@@ -19,31 +19,31 @@ using System;
 namespace ElmSharp
 {
     /// <summary>
-    /// The Point3D is a Struct that defining a 3-D point.
+    /// The Point3D is a struct that defines a 3D point.
     /// </summary>
     /// <since_tizen> preview </since_tizen>
     public struct Point3D : IEquatable<Point3D>
     {
         /// <summary>
-        /// The X coordinate of a 3D point.
+        /// The X-coordinate of a 3D point.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
         public int X;
 
         /// <summary>
-        /// The Y coordinate of a 3D point.
+        /// The Y-coordinate of a 3D point.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
         public int Y;
 
         /// <summary>
-        /// The Z coordinate of a 3D point.
+        /// The Z-coordinate of a 3D point.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
         public int Z;
 
         /// <summary>
-        /// A human-readable representation of the <see cref="T:Tizen.UI.Point3D" />.
+        /// A human-readable representation of <see cref="T:Tizen.UI.Point3D"/>.
         /// </summary>
         /// <returns>The string is formatted as "{{X={0} Y={1} Z={2}}}".</returns>
         /// <since_tizen> preview </since_tizen>
@@ -70,8 +70,8 @@ namespace ElmSharp
         /// </summary>
         /// <param name="obj">The object to compare with the current instance.</param>
         /// <returns>
-        /// true if obj and this instance are the same type and represent the same value.
-        /// otherwise, false.
+        /// true if the object and this instance are of the same type and represent the same value,
+        /// otherwise false.
         /// </returns>
         /// <since_tizen> preview </since_tizen>
         public override bool Equals(object obj)
@@ -87,7 +87,7 @@ namespace ElmSharp
         /// </summary>
         /// <param name="other">The <see cref="Point3D"/> to compare with the current instance.</param>
         /// <returns>
-        /// true if obj and this instance are the same type and represent the same value.
+        /// true if the object and this instance are of the same type and represent the same value.
         /// otherwise, false.
         /// </returns>
         /// <since_tizen> preview </since_tizen>
@@ -97,11 +97,11 @@ namespace ElmSharp
         }
 
         /// <summary>
-        /// Whether the two <see cref="T:Tizen.UI.Point3D" />s are equal.
+        /// Whether both <see cref="T:Tizen.UI.Point3D"/>s are equal.
         /// </summary>
-        /// <param name="p1">A <see cref="T:Tizen.UI.Point3D" /> on the left hand side.</param>
-        /// <param name="p2">A <see cref="T:Tizen.UI.Point3D" /> on the right hand side.</param>
-        /// <returns>True if the two <see cref="T:Tizen.UI.Point3D" />s have equal values.</returns>
+        /// <param name="p1">A <see cref="T:Tizen.UI.Point3D"/> on the left hand side.</param>
+        /// <param name="p2">A <see cref="T:Tizen.UI.Point3D"/> on the right hand side.</param>
+        /// <returns>True if both <see cref="T:Tizen.UI.Point3D"/>s have equal values.</returns>
         /// <since_tizen> preview </since_tizen>
         public static bool operator ==(Point3D p1, Point3D p2)
         {
@@ -109,11 +109,11 @@ namespace ElmSharp
         }
 
         /// <summary>
-        /// Whether two <see cref="T:Tizen.UI.Point3D" />s are not equal.
+        /// Whether both <see cref="T:Tizen.UI.Point3D"/>s are not equal.
         /// </summary>
-        /// <param name="p1">A <see cref="T:Tizen.UI.Point3D" /> on the left hand side.</param>
-        /// <param name="p2">A <see cref="T:Tizen.UI.Point3D" /> on the right hand side.</param>
-        /// <returns>True if the two <see cref="T:Tizen.UI.Point3D" />s do not have equal values.</returns>
+        /// <param name="p1">A <see cref="T:Tizen.UI.Point3D"/> on the left hand side.</param>
+        /// <param name="p2">A <see cref="T:Tizen.UI.Point3D"/> on the right hand side.</param>
+        /// <returns>True if both <see cref="T:Tizen.UI.Point3D"/>s do not have equal values.</returns>
         /// <since_tizen> preview </since_tizen>
         public static bool operator !=(Point3D p1, Point3D p2)
         {

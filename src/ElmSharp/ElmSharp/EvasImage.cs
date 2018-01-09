@@ -23,7 +23,7 @@ using System.Text;
 namespace ElmSharp
 {
     /// <summary>
-    /// This group provides functions for image objects.
+    /// This group provides the functions for image objects.
     /// </summary>
     /// <since_tizen> preview </since_tizen>
     public class EvasImage : EvasObject
@@ -32,9 +32,9 @@ namespace ElmSharp
         IntPtr _handle = IntPtr.Zero;
 
         /// <summary>
-        /// Creates and initializes a new instance of EvasImage class.
+        /// Creates and initializes a new instance of the EvasImage class.
         /// </summary>
-        /// <param name="parent">The parent is a given container which will be attached by EvasImage as a child. It's <see cref="EvasObject"/> type.</param>
+        /// <param name="parent">The parent is a given container, which will be attached by EvasImage as a child. It's <see cref="EvasObject"/> type.</param>
         /// <since_tizen> preview </since_tizen>
         public EvasImage(EvasObject parent) : base(parent)
         {
@@ -47,7 +47,7 @@ namespace ElmSharp
         }
 
         /// <summary>
-        /// Sets or gets the source file from where an image object must fetch the real image data
+        /// Sets or gets the source file from where an image object must fetch the real image data.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
         public string File
@@ -81,7 +81,7 @@ namespace ElmSharp
         }
 
         /// <summary>
-        /// Sets or gets whether an object is clipped by source object's clipper.
+        /// Sets or gets whether an object is clipped by the source object's clipper.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
         public bool IsSourceClipped
@@ -134,7 +134,7 @@ namespace ElmSharp
         }
 
         /// <summary>
-        /// Sets or gets the scaling factor (multiplier) for the borders of an image object.
+        /// Sets or gets the scaling factor (multiplier) for the borders of the image object.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
         public double BorderScale
@@ -180,7 +180,7 @@ namespace ElmSharp
         }
 
         /// <summary>
-        /// Sets or gets whether alpha channel data is being used on the given image object.
+        /// Sets or gets whether the alpha channel data is being used on the given image object.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
         public bool IsOpaque
@@ -196,7 +196,7 @@ namespace ElmSharp
         }
 
         /// <summary>
-        /// Sets or gets whether to use high-quality image scaling algorithm on the given image object.
+        /// Sets or gets whether to use a high-quality image scaling algorithm on the given image object.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
         public bool IsSmoothScaled
@@ -214,7 +214,7 @@ namespace ElmSharp
         /// <summary>
         /// Sets how to fill an image object's drawing rectangle given the (real) image bound to it.
         /// </summary>
-        /// <param name="geometry"></param>
+        /// <param name="geometry">The rectangle of the given image object that the image will be drawn to.</param>
         /// <since_tizen> preview </since_tizen>
         public void SetFill(Rect geometry)
         {
@@ -224,8 +224,8 @@ namespace ElmSharp
         /// <summary>
         /// Sets the source file from where an image object must fetch the real image data (it may be an Eet file, besides pure image ones).
         /// </summary>
-        /// <param name="file">The image file path</param>
-        /// <param name="key">The image key in file (if its an Eet one), otherwise set null</param>
+        /// <param name="file">The image file path.</param>
+        /// <param name="key">The image key in file (if its an Eet one), otherwise set null.</param>
         /// <since_tizen> preview </since_tizen>
         public void SetFile(string file, string key)
         {
@@ -233,7 +233,7 @@ namespace ElmSharp
         }
 
         /// <summary>
-        /// Sets the data for an image from memory to be loaded.
+        /// Sets the data for an image from the memory to be loaded.
         /// </summary>
         /// <param name="stream">memory stream</param>
         /// <since_tizen> preview </since_tizen>
@@ -256,10 +256,10 @@ namespace ElmSharp
         }
 
         /// <summary>
-        /// Sets the source object on an image object to used as a proxy.
+        /// Sets the source object on an image object to be used as a proxy.
         /// </summary>
-        /// <param name="source">The proxy (image) object</param>
-        /// <returns>true if the source object is set successfully, ortherwise false on error</returns>
+        /// <param name="source">The proxy (image) object.</param>
+        /// <returns>true if the source object is set successfully, otherwise false on error.</returns>
         /// <since_tizen> preview </since_tizen>
         public bool SetSource(EvasObject source)
         {
@@ -272,7 +272,7 @@ namespace ElmSharp
         }
 
         /// <summary>
-        /// Set the native surface of a given image of the canvas
+        /// Set the native surface of a given image of the canvas.
         /// </summary>
         /// <param name="surface">The surface.</param>
         /// <since_tizen> preview </since_tizen>
@@ -285,10 +285,10 @@ namespace ElmSharp
         /// <summary>
         /// Sets the dimensions for an image object's border, a region which is not scaled together with its center ever.
         /// </summary>
-        /// <param name="left">The border's left width</param>
-        /// <param name="right">The border's right width</param>
-        /// <param name="top">The border's top width</param>
-        /// <param name="bottom">The border's bottom width</param>
+        /// <param name="left">The border's left width.</param>
+        /// <param name="right">The border's right width.</param>
+        /// <param name="top">The border's top width.</param>
+        /// <param name="bottom">The border's bottom width.</param>
         /// <since_tizen> preview </since_tizen>
         public void SetBorder(int left, int right, int top, int bottom)
         {
@@ -298,8 +298,8 @@ namespace ElmSharp
         /// <summary>
         /// Sets the content at a part of a given container widget.
         /// </summary>
-        /// <param name="parent">The parent is a given container which will be attached by Image as a child. It's <see cref="EvasObject"/> type.</param>
-        /// <returns>The new object, otherwise null if it cannot be created</returns>
+        /// <param name="parent">The parent is a given container, which will be attached by the image as a child. It's <see cref="EvasObject"/> type.</param>
+        /// <returns>The new object, otherwise null if it cannot be created.</returns>
         /// <since_tizen> preview </since_tizen>
         protected override IntPtr CreateHandle(EvasObject parent)
         {

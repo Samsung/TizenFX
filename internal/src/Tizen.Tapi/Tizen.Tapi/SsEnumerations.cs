@@ -19,7 +19,6 @@ namespace Tizen.Tapi
     /// <summary>
     /// Enumeration for the SS class type.
     /// </summary>
-    /// <since_tizen> 4 </since_tizen>
     public enum SsClass
     {
         /// <summary>
@@ -231,7 +230,6 @@ namespace Tizen.Tapi
     /// <summary>
     /// Enumeration for various types of call barring.
     /// </summary>
-    /// <since_tizen> 4 </since_tizen>
     public enum SsBarringType
     {
         /// <summary>
@@ -279,7 +277,6 @@ namespace Tizen.Tapi
     /// <summary>
     /// Enumeration for the CLI service type.
     /// </summary>
-    /// <since_tizen> 4 </since_tizen>
     public enum SsCliType
     {
         /// <summary>
@@ -311,7 +308,6 @@ namespace Tizen.Tapi
     /// <summary>
     /// Enumeration for the CLI service status.
     /// </summary>
-    /// <since_tizen> 4 </since_tizen>
     public enum SsCliStatus
     {
         /// <summary>
@@ -343,7 +339,6 @@ namespace Tizen.Tapi
     /// <summary>
     /// Enumeration for the call forwarding condition.
     /// </summary>
-    /// <since_tizen> 4 </since_tizen>
     public enum SsForwardCondition
     {
         /// <summary>
@@ -379,7 +374,6 @@ namespace Tizen.Tapi
     /// <summary>
     /// Enumeration for the USSD type. Applicable to 3GPP(GSM/UMTS/LTE) only.
     /// </summary>
-    /// <since_tizen> 4 </since_tizen>
     public enum SsUssdType
     {
         /// <summary>
@@ -399,7 +393,6 @@ namespace Tizen.Tapi
     /// <summary>
     /// Enumeration for the status of a supplementary service feature (e.g. call forwarding or call barring).
     /// </summary>
-    /// <since_tizen> 4 </since_tizen>
     /// <remarks>
     /// These enumerated values should be used as masks.
     /// </remarks>
@@ -430,7 +423,6 @@ namespace Tizen.Tapi
     /// <summary>
     /// Enumeration for no-reply time. Applicable to 3GPP(GSM/UMTS/LTE) only.
     /// </summary>
-    /// <since_tizen> 4 </since_tizen>
     public enum SsNoReplyTime
     {
         /// <summary>
@@ -462,7 +454,6 @@ namespace Tizen.Tapi
     /// <summary>
     /// Enumeration for the call forwarding type of number.
     /// </summary>
-    /// <since_tizen> 4 </since_tizen>
     public enum SsForwardTypeOfNumber
     {
         /// <summary>
@@ -502,7 +493,6 @@ namespace Tizen.Tapi
     /// <summary>
     /// Enumeration for the call forward numbering plan identity.
     /// </summary>
-    /// <since_tizen> 4 </since_tizen>
     public enum SsForwardNumberingPlanIdentity
     {
         /// <summary>
@@ -550,7 +540,6 @@ namespace Tizen.Tapi
     /// <summary>
     /// Enumeration for the supplementary service request results.
     /// </summary>
-    /// <since_tizen> 4 </since_tizen>
     public enum SsCause
     {
         /// <summary>
@@ -698,7 +687,6 @@ namespace Tizen.Tapi
     /// <summary>
     /// Enumeration for SS info type.
     /// </summary>
-    /// <since_tizen> 4 </since_tizen>
     public enum SsInfoType
     {
         /// <summary>
@@ -730,7 +718,6 @@ namespace Tizen.Tapi
     /// <summary>
     /// Enumeration for the call barring operation mode.
     /// </summary>
-    /// <since_tizen> 4 </since_tizen>
     public enum SsBarringMode
     {
         /// <summary>
@@ -746,7 +733,6 @@ namespace Tizen.Tapi
     /// <summary>
     /// Enumeration for the forward mode.
     /// </summary>
-    /// <since_tizen> 4 </since_tizen>
     public enum SsForwardMode
     {
         /// <summary>
@@ -770,7 +756,6 @@ namespace Tizen.Tapi
     /// <summary>
     /// Enumeration for the call waiting mode.
     /// </summary>
-    /// <since_tizen> 4 </since_tizen>
     public enum SsCallWaitingMode
     {
         /// <summary>
@@ -786,7 +771,6 @@ namespace Tizen.Tapi
     /// <summary>
     /// Enumeration for the types of identity presentation / restriction services.
     /// </summary>
-    /// <since_tizen> 4 </since_tizen>
     public enum SsLineIdentificationType
     {
         /// <summary>
@@ -818,7 +802,6 @@ namespace Tizen.Tapi
     /// <summary>
     /// Enumeration for the USSD indication type. Applicable to 3GPP(GSM/UMTS/LTE) only.
     /// </summary>
-    /// <since_tizen> 4 </since_tizen>
     public enum SsUssdStatus
     {
         /// <summary>

@@ -20,7 +20,7 @@ using System.Collections.Generic;
 namespace ElmSharp
 {
     /// <summary>
-    /// Enumeration for setting list's resizing behavior, transverse axis scrolling and items cropping.
+    /// Enumeration for setting the list's resizing behavior, transverse axis scrolling, and items cropping.
     /// </summary>
     /// <since_tizen> preview </since_tizen>
     public enum ListMode
@@ -28,7 +28,7 @@ namespace ElmSharp
         /// <summary>
         /// The list won't set any of its size hints to inform how a possible container should resize it.
         /// Then, if it's not created as a "resize object", it might end with zeroed dimensions.
-        /// The list will respect the container's geometry and, if any of its items won't fit into its transverse axis, one won't be able to scroll it in that direction.
+        /// The list will respect the container's geometry, and if any of its items won't fit into its transverse axis, one won't be able to scroll it in that direction.
         /// </summary>
         Compress = 0,
         /// <summary>
@@ -36,13 +36,13 @@ namespace ElmSharp
         /// </summary>
         Scroll,
         /// <summary>
-        /// Sets a minimum size hint on the genlist object, so that containers may respect it (and resize itself to fit the child properly).
+        /// Sets a minimum size hint on the genlist object, so that the containers may respect it (and resize itself to fit the child properly).
         /// More specifically, a minimum size hint will be set for its transverse axis, so that the largest item in that direction fits well.
         /// This is naturally bound by the list object's maximum size hints, set externally.
         /// </summary>
         Limit,
         /// <summary>
-        /// Besides setting a minimum size on the transverse axis, just like on Limit, the list will set a minimum size on th longitudinal axis, trying to reserve space to all its children to be visible at a time.
+        /// Besides setting a minimum size on the transverse axis, just like on limit, the list will set a minimum size on the longitudinal axis, trying to reserve space to all its children to be visible at a time.
         /// This is naturally bound by the list object's maximum size hints, set externally.
         /// </summary>
         Expand
@@ -50,14 +50,14 @@ namespace ElmSharp
 
     /// <summary>
     /// It inherits System.EventArgs.
-    /// It contains Item which is <see cref="ListItem"/> type.
-    /// All events of List contain ListItemEventArgs as a parameter.
+    /// It contains an item which is <see cref="ListItem"/> type.
+    /// All the events of a list contain ListItemEventArgs as a parameter.
     /// </summary>
     /// <since_tizen> preview </since_tizen>
     public class ListItemEventArgs : EventArgs
     {
         /// <summary>
-        /// Gets or sets List item. The return type is <see cref="ListItem"/>.
+        /// Gets or sets the list item. The return type is <see cref="ListItem"/>.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
         public ListItem Item { get; set; }
@@ -71,7 +71,7 @@ namespace ElmSharp
 
     /// <summary>
     /// It inherits <see cref="Layout"/>.
-    /// The List is a widget that aims to display simple list item which has 2 icons and 1 text, and can be selected.
+    /// The List is a widget that aims to display a simple list item which has 2 icons, 1 text, and can be selected.
     /// For more robust lists, <see cref="GenList"/> should probably be used.
     /// </summary>
     /// <seealso cref="GenList"/>
@@ -89,7 +89,7 @@ namespace ElmSharp
         /// <summary>
         /// Creates and initializes a new instance of the List class.
         /// </summary>
-        /// <param name="parent">The parent is a given container which will be attached by List as a child. It's <see cref="EvasObject"/> type.</param>
+        /// <param name="parent">The parent is a given container, which will be attached by the list as a child. It's <see cref="EvasObject"/> type.</param>
         /// <since_tizen> preview </since_tizen>
         public List(EvasObject parent) : base(parent)
         {
@@ -106,7 +106,7 @@ namespace ElmSharp
         }
 
         /// <summary>
-        /// Gets or sets which mode to use for the list.
+        /// Gets or sets which mode to be used for the list.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
         public ListMode Mode
@@ -141,32 +141,32 @@ namespace ElmSharp
         public event EventHandler<ListItemEventArgs> ItemSelected;
 
         /// <summary>
-        /// ItemUnselected is raised when the list item is Unselected.
+        /// ItemUnselected is raised when a list item is Unselected.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
         public event EventHandler<ListItemEventArgs> ItemUnselected;
 
         /// <summary>
-        /// ItemDoubleClicked is raised when a new list item is double clicked.
+        /// ItemDoubleClicked is raised when a new list item is double-clicked.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
         public event EventHandler<ListItemEventArgs> ItemDoubleClicked;
 
         /// <summary>
-        /// ItemLongPressed is raised when a list item is pressed for a certain amount of time. By default it's 1 second.
+        /// ItemLongPressed is raised when a list item is pressed for a certain amount of time. By default, it's 1 second.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
         public event EventHandler<ListItemEventArgs> ItemLongPressed;
 
         /// <summary>
-        /// ItemActivated is raised when a new list item is double clicked or pressed (enter|return|spacebar).
+        /// ItemActivated is raised when a new list item is double-clicked or pressed (enter|return|spacebar).
         /// </summary>
         /// <since_tizen> preview </since_tizen>
         public event EventHandler<ListItemEventArgs> ItemActivated;
 
         /// <summary>
         /// Starts the list.
-        /// Call before running <see cref="EvasObject.Show"/> on the list object.
+        /// Called before running <see cref="EvasObject.Show"/> on the list object.
         /// If not called, it won't display the list properly.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
@@ -232,7 +232,7 @@ namespace ElmSharp
         }
 
         /// <summary>
-        /// Removes all items from a given list widget.
+        /// Removes all the items from a given list widget.
         /// To delete just one item, use <see cref="ItemObject.Delete"/>.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
@@ -249,8 +249,8 @@ namespace ElmSharp
         /// <summary>
         /// Creates a widget handle.
         /// </summary>
-        /// <param name="parent">Parent EvasObject</param>
-        /// <returns>Handle IntPtr</returns>
+        /// <param name="parent">Parent EvasObject.</param>
+        /// <returns>Handle IntPtr.</returns>
         /// <since_tizen> preview </since_tizen>
         protected override IntPtr CreateHandle(EvasObject parent)
         {

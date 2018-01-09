@@ -17,7 +17,7 @@
 namespace ElmSharp
 {
     /// <summary>
-    /// This class is a static class for a utility methods.
+    /// This class is a static class for utility methods.
     /// </summary>
     /// <since_tizen> preview </since_tizen>
     public static class Utility
@@ -43,7 +43,7 @@ namespace ElmSharp
         }
 
         /// <summary>
-        /// Removes all font paths loaded into memory by evas_font_path_app_* APIs for the application.
+        /// Removes all font paths loaded into the memory by evas_font_path_app_* APIs for the application.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
         public static void ClearEvasGlobalFontPath()
@@ -52,21 +52,21 @@ namespace ElmSharp
         }
 
         /// <summary>
-        /// Sets Edje color class.
+        /// Sets the Edje color class.
         /// </summary>
-        /// <param name="colorClass">Color class</param>
-        /// <param name="red">Object Red value</param>
-        /// <param name="green">Object Red value</param>
-        /// <param name="blue">Object Red value</param>
-        /// <param name="alpha">Object Red value</param>
-        /// <param name="outlineRed">Outline Red value</param>
-        /// <param name="outlineGreen">Outline Green value</param>
-        /// <param name="outlineBlue">Outline Blue value</param>
-        /// <param name="outlineAlpha">Outline Alpha value</param>
-        /// <param name="shadowRed">Shadow Red value</param>
-        /// <param name="shadowGreen">Shadow Green value</param>
-        /// <param name="shadowBlue">Shadow Bluevalue</param>
-        /// <param name="shadowAlpha">Shadow Alpha value</param>
+        /// <param name="colorClass">Color class.</param>
+        /// <param name="red">Object red value.</param>
+        /// <param name="green">Object green value.</param>
+        /// <param name="blue">Object blue value.</param>
+        /// <param name="alpha">Object alpha value.</param>
+        /// <param name="outlineRed">Outline red value.</param>
+        /// <param name="outlineGreen">Outline green value.</param>
+        /// <param name="outlineBlue">Outline blue value.</param>
+        /// <param name="outlineAlpha">Outline alpha value.</param>
+        /// <param name="shadowRed">Shadow red value.</param>
+        /// <param name="shadowGreen">Shadow green value.</param>
+        /// <param name="shadowBlue">Shadow blue value.</param>
+        /// <param name="shadowAlpha">Shadow alpha value.</param>
         /// <returns></returns>
         /// <since_tizen> preview </since_tizen>
         public static bool SetEdjeColorClass(string colorClass, int red, int green, int blue, int alpha, int outlineRed, int outlineGreen, int outlineBlue, int outlineAlpha,
@@ -76,21 +76,21 @@ namespace ElmSharp
         }
 
         /// <summary>
-        /// Gets Edje color class.
+        /// Gets the Edje color class.
         /// </summary>
-        /// <param name="colorClass">Color class</param>
-        /// <param name="red">Object Red value</param>
-        /// <param name="green">Object Red value</param>
-        /// <param name="blue">Object Red value</param>
-        /// <param name="alpha">Object Red value</param>
-        /// <param name="outlineRed">Outline Red value</param>
-        /// <param name="outlineGreen">Outline Green value</param>
-        /// <param name="outlineBlue">Outline Blue value</param>
-        /// <param name="outlineAlpha">Outline Alpha value</param>
-        /// <param name="shadowRed">Shadow Red value</param>
-        /// <param name="shadowGreen">Shadow Green value</param>
-        /// <param name="shadowBlue">Shadow Bluevalue</param>
-        /// <param name="shadowAlpha">Shadow Alpha value</param>
+        /// <param name="colorClass">Color class.</param>
+        /// <param name="red">Object red value.</param>
+        /// <param name="green">Object green value.</param>
+        /// <param name="blue">Object blue value.</param>
+        /// <param name="alpha">Object alpha value.</param>
+        /// <param name="outlineRed">Outline red value.</param>
+        /// <param name="outlineGreen">Outline green value.</param>
+        /// <param name="outlineBlue">Outline blue value.</param>
+        /// <param name="outlineAlpha">Outline alpha value.</param>
+        /// <param name="shadowRed">Shadow red value.</param>
+        /// <param name="shadowGreen">Shadow green value.</param>
+        /// <param name="shadowBlue">Shadow blue value.</param>
+        /// <param name="shadowAlpha">Shadow alpha value.</param>
         /// <returns></returns>
         /// <since_tizen> preview </since_tizen>
         public static bool GetEdjeColorClass(string colorClass, out int red, out int green, out int blue, out int alpha, out int outlineRed, out int outlineGreen, out int outlineBlue,
@@ -101,7 +101,7 @@ namespace ElmSharp
         }
 
         /// <summary>
-        /// Processes all queued up edje messages.
+        /// Processes all the queued up edje messages.
         /// This function triggers the processing of messages addressed to any (alive) edje objects.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
@@ -113,10 +113,10 @@ namespace ElmSharp
         /// <summary>
         /// Sets the Edje text class.
         /// </summary>
-        /// <param name="textClass">The text class name</param>
-        /// <param name="font">The font name</param>
-        /// <param name="size">The font size</param>
-        /// <returns>True, on success or false, on error</returns>
+        /// <param name="textClass">The text class name.</param>
+        /// <param name="font">The font name.</param>
+        /// <param name="size">The font size.</param>
+        /// <returns>True on success, or False on error.</returns>
         /// <since_tizen> preview </since_tizen>
         public static bool SetEdjeTextClass(string textClass, string font, int size)
         {
@@ -126,10 +126,10 @@ namespace ElmSharp
         /// <summary>
         /// Gets the Edje text class.
         /// </summary>
-        /// <param name="textClass">The text class name</param>
-        /// <param name="font">The font name</param>
-        /// <param name="size">The font size</param>
-        /// <returns>True, on success or false, on error</returns>
+        /// <param name="textClass">The text class name.</param>
+        /// <param name="font">The font name.</param>
+        /// <param name="size">The font size.</param>
+        /// <returns>True on success, or False on error.</returns>
         /// <since_tizen> preview </since_tizen>
         public static bool GetEdjeTextClass(string textClass, out string font, out int size)
         {
@@ -139,7 +139,7 @@ namespace ElmSharp
         /// <summary>
         /// Delete the text class.
         /// </summary>
-        /// <param name="textClass"></param>
+        /// <param name="textClass">The text class name.</param>
         /// <since_tizen> preview </since_tizen>
         public static void DeleteEdjeTextClass(string textClass)
         {
@@ -147,12 +147,12 @@ namespace ElmSharp
         }
 
         /// <summary>
-        /// Pre-multiplies a rgb triplet by an alpha factor.
+        /// Pre-multiplies the RGB triplet by an alpha factor.
         /// </summary>
-        /// <param name="alpha">The alpha factor</param>
-        /// <param name="red">The Red component of the color</param>
-        /// <param name="green">The Green component of the color</param>
-        /// <param name="blue">The Blue component of the color</param>
+        /// <param name="alpha">The alpha factor.</param>
+        /// <param name="red">The red component of the color.</param>
+        /// <param name="green">The green component of the color.</param>
+        /// <param name="blue">The blue component of the color.</param>
         /// <since_tizen> preview </since_tizen>
         public static void PremulityplyEvasColorByAlpha(int alpha, ref int red, ref int green, ref int blue)
         {
@@ -160,12 +160,12 @@ namespace ElmSharp
         }
 
         /// <summary>
-        /// Undoes pre-multiplies a rgb triplet by an alpha factor.
+        /// Undoes pre-multiplication of the RGB triplet by an alpha factor.
         /// </summary>
-        /// <param name="alpha">The alpha factor</param>
-        /// <param name="red">The Red component of the color</param>
-        /// <param name="green">The Green component of the color</param>
-        /// <param name="blue">The Blue component of the color</param>
+        /// <param name="alpha">The alpha factor.</param>
+        /// <param name="red">The red component of the color.</param>
+        /// <param name="green">The green component of the color.</param>
+        /// <param name="blue">The blue component of the color.</param>
         /// <since_tizen> preview </since_tizen>
         public static void UnPremulityplyEvasColorByAlpha(int alpha, ref int red, ref int green, ref int blue)
         {

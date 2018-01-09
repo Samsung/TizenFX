@@ -19,13 +19,13 @@ using System;
 namespace Tizen.Applications
 {
     /// <summary>
-    /// Enumeration for Ambient tick type.
+    /// Enumeration for the ambient tick types.
     /// </summary>
     /// <since_tizen> 4 </since_tizen>
     public enum AmbientTickType
     {
         /// <summary>
-        /// No peridoic ambient tick.
+        /// No periodic ambient tick.
         /// </summary>
         NoTick,
         /// <summary>

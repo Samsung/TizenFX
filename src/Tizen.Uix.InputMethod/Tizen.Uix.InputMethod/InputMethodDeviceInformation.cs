@@ -22,107 +22,107 @@ using static Interop.InputMethod;
 namespace Tizen.Uix.InputMethod
 {
     /// <summary>
-    /// Enumeration for Device Class
+    /// Enumeration for the device class.
     /// </summary>
     /// <since_tizen> 4 </since_tizen>
     public enum DeviceClass
     {
         /// <summary>
-        /// None
+        /// None.
         /// </summary>
         None,
         /// <summary>
-        /// Seat
+        /// Seat.
         /// </summary>
         Seat,
         /// <summary>
-        /// Keyboard
+        /// Keyboard.
         /// </summary>
         Keyboard,
         /// <summary>
-        /// Mouse
+        /// Mouse.
         /// </summary>
         Mouse,
         /// <summary>
-        /// Touch
+        /// Touch.
         /// </summary>
         Touch,
         /// <summary>
-        /// Pen
+        /// Pen.
         /// </summary>
         Pen,
         /// <summary>
-        /// Pointer
+        /// Pointer.
         /// </summary>
         Pointer,
         /// <summary>
-        /// Gamepad
+        /// Gamepad.
         /// </summary>
         Gamepad,
         /// <summary>
-        /// Undefined
+        /// Undefined.
         /// </summary>
         Undefined
     };
 
     /// <summary>
-    /// Enumeration for Device SubClass
+    /// Enumeration for the device subclass.
     /// </summary>
     /// <since_tizen> 4 </since_tizen>
     public enum DeviceSubclass
     {
         /// <summary>
-        /// None
+        /// None.
         /// </summary>
         None,
         /// <summary>
-        /// Finger
+        /// Finger.
         /// </summary>
         Finger,
         /// <summary>
-        /// FingerNail
+        /// FingerNail.
         /// </summary>
         FingerNail,
         /// <summary>
-        /// Knuckle
+        /// Knuckle.
         /// </summary>
         Knuckle,
         /// <summary>
-        /// Palm
+        /// Palm.
         /// </summary>
         Palm,
         /// <summary>
-        /// HandSize
+        /// HandSize.
         /// </summary>
         HandSize,
         /// <summary>
-        /// HandFlat
+        /// HandFlat.
         /// </summary>
         HandFlat,
         /// <summary>
-        /// PenTip
+        /// PenTip.
         /// </summary>
         PenTip,
         /// <summary>
-        /// Trackpad
+        /// Trackpad.
         /// </summary>
         Trackpad,
         /// <summary>
-        /// Trackpoint
+        /// Trackpoint.
         /// </summary>
         Trackpoint,
         /// <summary>
-        /// Trackball
+        /// Trackball.
         /// </summary>
         Trackball,
         /// <summary>
-        /// Undefined
+        /// Undefined.
         /// </summary>
         Undefined
     };
 
     /// <summary>
-    /// this class gives the device information, like the name, class and subclass
+    /// This class gives the device information, like the name, class, and subclass.
     /// </summary>
     /// <since_tizen> 4 </since_tizen>
     public class InputMethodDeviceInformation

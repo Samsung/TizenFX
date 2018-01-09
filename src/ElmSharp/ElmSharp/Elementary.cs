@@ -21,29 +21,29 @@ using System.IO;
 namespace ElmSharp
 {
     /// <summary>
-    /// Focus Autoscroll Mode
+    /// Focus Autoscroll mode.
     /// </summary>
     /// <since_tizen> preview </since_tizen>
     public enum FocusAutoScrollMode
     {
         /// <summary>
-        /// Directly show the focused region or item automatically
+        /// Directly show the focused region or item automatically.
         /// </summary>
         Show,
 
         /// <summary>
-        /// Do not show the focused region or item automatically
+        /// Do not show the focused region or item automatically.
         /// </summary>
         None,
 
         /// <summary>
-        /// Bring in the focused region or item automatically which might invole the scrolling
+        /// Bring in the focused region or item automatically, which might involve the scrolling.
         /// </summary>
         BringIn
     }
 
     /// <summary>
-    /// The Elementary is a General Elementary,a VERY SIMPLE toolkit.
+    /// The Elementary is a general elementary, a VERY SIMPLE toolkit.
     /// </summary>
     /// <since_tizen> preview </since_tizen>
     public static class Elementary
@@ -67,7 +67,7 @@ namespace ElmSharp
         }
 
         /// <summary>
-        /// Gets or sets the enable status of the focus highlight animation
+        /// Gets or sets the enable status of the focus highlight animation.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
         public static bool IsFocusHighlightAnimation
@@ -148,7 +148,7 @@ namespace ElmSharp
         }
 
         /// <summary>
-        /// Gets or sets the amount of inertia a scroller imposes during region bring animations.
+        /// Gets or sets the amount of inertia, a scroller imposes during a region to bring animations.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
         public static double BringInScrollFriction
@@ -164,7 +164,7 @@ namespace ElmSharp
         }
 
         /// <summary>
-        /// Gets of sets focus auto scroll mode.
+        /// Gets or sets the focus on autoscroll mode.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
         public static FocusAutoScrollMode FocusAutoScrollMode
@@ -198,7 +198,7 @@ namespace ElmSharp
         }
 
         /// <summary>
-        /// Runs Elementary's main loop.
+        /// Runs the elementary's main loop.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
         public static void Run()
@@ -207,7 +207,7 @@ namespace ElmSharp
         }
 
         /// <summary>
-        /// Prepends a theme overlay to the list of overlays
+        /// Prepends a theme overlay to the list of overlays.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
         [EditorBrowsable(EditorBrowsableState.Never)]
@@ -220,9 +220,9 @@ namespace ElmSharp
         }
 
         /// <summary>
-        /// Prepends a theme overlay to the list of overlays
+        /// Prepends a theme overlay to the list of overlays.
         /// </summary>
-        /// <param name="filePath">The Edje file path to be used.</param>
+        /// <param name="filePath">The edje file path to be used.</param>
         /// <since_tizen> preview </since_tizen>
         public static void AddThemeOverlay(string filePath)
         {
@@ -230,7 +230,7 @@ namespace ElmSharp
         }
 
         /// <summary>
-        /// Delete a theme overlay from the list of overlays
+        /// Deletes a theme overlay from the list of overlays.
         /// </summary>
         /// <param name="filePath">The name of the theme overlay.</param>
         /// <since_tizen> preview </since_tizen>
@@ -240,7 +240,7 @@ namespace ElmSharp
         }
 
         /// <summary>
-        /// Free a theme
+        /// Frees a theme.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
         public static void FreeTheme()
@@ -249,10 +249,10 @@ namespace ElmSharp
         }
 
         /// <summary>
-        /// Set the theme search order for the given theme
+        /// Sets the theme search order for the given theme.
         /// </summary>
-        /// <param name="theme">Theme search string</param>
-        /// <remarks>This sets the search string for the theme in path-notation from first theme to search, to last, delimited by the : character. Example:"shiny:/path/to/file.edj:default"</remarks>
+        /// <param name="theme">Theme search string.</param>
+        /// <remarks>This sets the search string for the theme in path-notation from the first theme to search, to last, delimited by the : character. For example, "shiny:/path/to/file.edj:default".</remarks>
         /// <since_tizen> preview </since_tizen>
         public static void SetTheme(string theme)
         {
@@ -260,7 +260,7 @@ namespace ElmSharp
         }
 
         /// <summary>
-        /// Flush the current theme.
+        /// Flushes the current theme.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
         public static void FlushTheme()
@@ -269,7 +269,7 @@ namespace ElmSharp
         }
 
         /// <summary>
-        /// This flushes all themes (default and specific ones).
+        /// This flushes all the themes (default and specific ones).
         /// </summary>
         /// <since_tizen> preview </since_tizen>
         public static void FlushAllThemes()
@@ -288,7 +288,7 @@ namespace ElmSharp
         }
 
         /// <summary>
-        /// Gets the amount of inertia a scroller imposes during region bring animations.
+        /// Gets the amount of inertia that a scroller imposes during region to bring animations.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
         [EditorBrowsable(EditorBrowsableState.Never)]
@@ -298,7 +298,7 @@ namespace ElmSharp
         }
 
         /// <summary>
-        /// Sets the amount of inertia a scroller imposes during region bring animations.
+        /// Sets the amount of inertia that a scroller imposes during the region bring animations.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
         [EditorBrowsable(EditorBrowsableState.Never)]
@@ -309,7 +309,7 @@ namespace ElmSharp
         }
 
         /// <summary>
-        /// Get Elementary's profile in use
+        /// Gets the elementary's profile in use.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
         [EditorBrowsable(EditorBrowsableState.Never)]
@@ -319,7 +319,7 @@ namespace ElmSharp
         }
 
         /// <summary>
-        /// Set the global scaling factor
+        /// Sets the global scaling factor.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
         [EditorBrowsable(EditorBrowsableState.Never)]
@@ -329,7 +329,7 @@ namespace ElmSharp
         }
 
         /// <summary>
-        /// Get the global scaling factor
+        /// Gets the global scaling factor.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
         [EditorBrowsable(EditorBrowsableState.Never)]
@@ -349,8 +349,8 @@ namespace ElmSharp
         }
 
         /// <summary>
-        /// Flush all caches.
-        /// Frees all data that was in cache and is not currently being used to reduce memory usage. This frees Edje's, Evas' and Eet's cache.
+        /// Flushes all the cache.
+        /// Frees all data that was in cache and is not currently being used, to reduce memory usage. This frees Edje's, Evas', and Eet's cache.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
         public static void FlushAllCache()
@@ -361,7 +361,7 @@ namespace ElmSharp
         /// <summary>
         /// Changes the language of the current application.
         /// </summary>
-        /// <param name="language">The language to set, must be the full name of the locale.</param>
+        /// <param name="language">The language to set must be the full name of the locale.</param>
         /// <since_tizen> preview </since_tizen>
         public static void SetLanguage(string language)
         {
@@ -371,8 +371,8 @@ namespace ElmSharp
         /// <summary>
         /// Sets a new policy's value (for a given policy group/identifier).
         /// </summary>
-        /// <param name="policy">The policy identifier</param>
-        /// <param name="value">The policy value, which depends on the identifier</param>
+        /// <param name="policy">The policy identifier.</param>
+        /// <param name="value">The policy value, which depends on the identifier.</param>
         /// <returns></returns>
         /// <since_tizen> preview </since_tizen>
         public static bool SetPolicy(uint policy, int value)
@@ -381,7 +381,7 @@ namespace ElmSharp
         }
 
         /// <summary>
-        /// Reload Elementary's configuration, bounded to current selected profile.
+        /// Reloads the elementary's configuration, bounded to the current selected profile.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
         [EditorBrowsable(EditorBrowsableState.Never)]
@@ -391,7 +391,7 @@ namespace ElmSharp
         }
 
         /// <summary>
-        /// Flushes all config settings and then applies those settings to all applications using elementary on the current display.
+        /// Flushes all the configuration settings, and then applies those settings to all applications using elementary on the current display.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
         public static void FlushAllConfig()

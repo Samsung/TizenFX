@@ -22,11 +22,11 @@ using System.Diagnostics.CodeAnalysis;
 namespace Tizen.Pims.Calendar
 {
     /// <summary>
-    /// CalendarDatabase provides methods to manage calendar information from/to the database.
+    /// The CalendarDatabase provides methods to manage calendar information from/to the database.
     /// </summary>
     /// <remarks>
-    /// This class allows user to access/create/update/delete db operations for calendar information.
-    /// CalendarDatabase is created by CalendarManager.
+    /// This class allows user to access/create/update/delete database operations for the calendar information.
+    /// The CalendarDatabase is created by the CalendarManager.
     /// </remarks>
     /// <since_tizen> 4 </since_tizen>
     public class CalendarDatabase
@@ -61,14 +61,14 @@ namespace Tizen.Pims.Calendar
         }
 
         /// <summary>
-        /// Gets last successful changed calendar database version on the current connection.
+        /// Gets the last successful changed calendar database version on the current connection.
         /// </summary>
         /// <since_tizen> 4 </since_tizen>
-        /// <returns>The last successful changed calendar database version on the current connection</returns>
+        /// <returns>The last successful changed calendar database version on the current connection.</returns>
         /// <privilege>http://tizen.org/privilege/calendar.read</privilege>
-        /// <exception cref="InvalidOperationException">Thrown when method failed due to invalid operation</exception>
-        /// <exception cref="OutOfMemoryException">Thrown when failed due to out of memory</exception>
-        /// <exception cref="UnauthorizedAccessException">Thrown when application does not have proper privileges</exception>
+        /// <exception cref="InvalidOperationException">Thrown when the method failed due to an invalid operation.</exception>
+        /// <exception cref="OutOfMemoryException">Thrown when failed due to out of memory.</exception>
+        /// <exception cref="UnauthorizedAccessException">Thrown when the application does not have proper privileges.</exception>
         /// <value>The last successful changed calendar database version on the current connection.</value>
         [SuppressMessage("Microsoft.Performance", "CA1822:MarkMembersAsStatic")]
         public int LastChangeVersion
@@ -89,15 +89,15 @@ namespace Tizen.Pims.Calendar
         /// Inserts a record into the calendar database.
         /// </summary>
         /// <since_tizen> 4 </since_tizen>
-        /// <param name="record">The record to be inserted</param>
-        /// <returns>The ID of inserted record</returns>
+        /// <param name="record">The record to be inserted.</param>
+        /// <returns>The ID of inserted record.</returns>
         /// <privilege>http://tizen.org/privilege/calendar.write</privilege>
         /// <feature>http://tizen.org/feature/calendar</feature>
-        /// <exception cref="NotSupportedException">Thrown when feature is not supported</exception>
-        /// <exception cref="InvalidOperationException">Thrown when method failed due to invalid operation</exception>
-        /// <exception cref="ArgumentException">Thrown when one of the arguments provided to a method is not valid</exception>
-        /// <exception cref="OutOfMemoryException">Thrown when failed due to out of memory</exception>
-        /// <exception cref="UnauthorizedAccessException">Thrown when application does not have proper privileges</exception>
+        /// <exception cref="NotSupportedException">Thrown when the feature is not supported.</exception>
+        /// <exception cref="InvalidOperationException">Thrown when the method failed due to an invalid operation.</exception>
+        /// <exception cref="ArgumentException">Thrown when one of the arguments provided to a method is not valid.</exception>
+        /// <exception cref="OutOfMemoryException">Thrown when failed due to out of memory.</exception>
+        /// <exception cref="UnauthorizedAccessException">Thrown when the application does not have proper privileges.</exception>
         [SuppressMessage("Microsoft.Performance", "CA1822:MarkMembersAsStatic")]
         public int Insert(CalendarRecord record)
         {
@@ -115,18 +115,18 @@ namespace Tizen.Pims.Calendar
         /// Gets a record from the calendar database.
         /// </summary>
         /// <since_tizen> 4 </since_tizen>
-        /// <param name="viewUri">The view URI of a record</param>
-        /// <param name="recordId">The record ID</param>
+        /// <param name="viewUri">The view URI of a record.</param>
+        /// <param name="recordId">The record ID.</param>
         /// <returns>
-        /// The record associated with the record ID
+        /// The record associated with the record ID.
         /// </returns>
         /// <privilege>http://tizen.org/privilege/calendar.read</privilege>
         /// <feature>http://tizen.org/feature/calendar</feature>
-        /// <exception cref="NotSupportedException">Thrown when feature is not supported</exception>
-        /// <exception cref="InvalidOperationException">Thrown when method failed due to invalid operation</exception>
-        /// <exception cref="ArgumentException">Thrown when one of the arguments provided to a method is not valid</exception>
-        /// <exception cref="OutOfMemoryException">Thrown when failed due to out of memory</exception>
-        /// <exception cref="UnauthorizedAccessException">Thrown when application does not have proper privileges</exception>
+        /// <exception cref="NotSupportedException">Thrown when feature is not supported.</exception>
+        /// <exception cref="InvalidOperationException">Thrown when the method failed due to an invalid operation.</exception>
+        /// <exception cref="ArgumentException">Thrown when one of the arguments provided to a method is not valid.</exception>
+        /// <exception cref="OutOfMemoryException">Thrown when failed due to out of memory.</exception>
+        /// <exception cref="UnauthorizedAccessException">Thrown when the application does not have proper privileges.</exception>
         [SuppressMessage("Microsoft.Performance", "CA1822:MarkMembersAsStatic")]
         [SuppressMessage("Microsoft.Design", "CA1054:UriParametersShouldNotBeStrings")]
         public CalendarRecord Get(string viewUri, int recordId)
@@ -150,14 +150,14 @@ namespace Tizen.Pims.Calendar
         /// Updates a record in the calendar database.
         /// </summary>
         /// <since_tizen> 4 </since_tizen>
-        /// <param name="record">The record to be updated</param>
+        /// <param name="record">The record to be updated.</param>
         /// <privilege>http://tizen.org/privilege/calendar.write</privilege>
         /// <feature>http://tizen.org/feature/calendar</feature>
-        /// <exception cref="NotSupportedException">Thrown when feature is not supported</exception>
-        /// <exception cref="InvalidOperationException">Thrown when method failed due to invalid operation</exception>
-        /// <exception cref="ArgumentException">Thrown when one of the arguments provided to a method is not valid</exception>
-        /// <exception cref="OutOfMemoryException">Thrown when failed due to out of memory</exception>
-        /// <exception cref="UnauthorizedAccessException">Thrown when application does not have proper privileges</exception>
+        /// <exception cref="NotSupportedException">Thrown when the feature is not supported.</exception>
+        /// <exception cref="InvalidOperationException">Thrown when the method failed due to an invalid operation.</exception>
+        /// <exception cref="ArgumentException">Thrown when one of the arguments provided to a method is not valid.</exception>
+        /// <exception cref="OutOfMemoryException">Thrown when failed due to out of memory.</exception>
+        /// <exception cref="UnauthorizedAccessException">Thrown when the application does not have proper privileges.</exception>
         [SuppressMessage("Microsoft.Performance", "CA1822:MarkMembersAsStatic")]
         public void Update(CalendarRecord record)
         {
@@ -173,15 +173,15 @@ namespace Tizen.Pims.Calendar
         /// Deletes a record from the calendar database with related child records.
         /// </summary>
         /// <since_tizen> 4 </since_tizen>
-        /// <param name="viewUri">The view URI of a record</param>
-        /// <param name="recordId">The record ID to be deleted</param>
+        /// <param name="viewUri">The view URI of a record.</param>
+        /// <param name="recordId">The record ID to be deleted.</param>
         /// <privilege>http://tizen.org/privilege/calendar.write</privilege>
         /// <feature>http://tizen.org/feature/calendar</feature>
-        /// <exception cref="NotSupportedException">Thrown when feature is not supported</exception>
-        /// <exception cref="InvalidOperationException">Thrown when method failed due to invalid operation</exception>
-        /// <exception cref="ArgumentException">Thrown when one of the arguments provided to a method is not valid</exception>
-        /// <exception cref="OutOfMemoryException">Thrown when failed due to out of memory</exception>
-        /// <exception cref="UnauthorizedAccessException">Thrown when application does not have proper privileges</exception>
+        /// <exception cref="NotSupportedException">Thrown when the feature is not supported.</exception>
+        /// <exception cref="InvalidOperationException">Thrown when the method failed due to an invalid operation.</exception>
+        /// <exception cref="ArgumentException">Thrown when one of the arguments provided to a method is not valid.</exception>
+        /// <exception cref="OutOfMemoryException">Thrown when failed due to out of memory.</exception>
+        /// <exception cref="UnauthorizedAccessException">Thrown when the application does not have proper privileges.</exception>
         [SuppressMessage("Microsoft.Performance", "CA1822:MarkMembersAsStatic")]
         [SuppressMessage("Microsoft.Design", "CA1054:UriParametersShouldNotBeStrings")]
         public void Delete(string viewUri, int recordId)
@@ -198,15 +198,15 @@ namespace Tizen.Pims.Calendar
         /// Replaces a record in the calendar database.
         /// </summary>
         /// <since_tizen> 4 </since_tizen>
-        /// <param name="record">The record to be replaced</param>
-        /// <param name="id">the record id</param>
+        /// <param name="record">The record to be replaced.</param>
+        /// <param name="id">The record ID.</param>
         /// <privilege>http://tizen.org/privilege/calendar.write</privilege>
         /// <feature>http://tizen.org/feature/calendar</feature>
-        /// <exception cref="NotSupportedException">Thrown when feature is not supported</exception>
-        /// <exception cref="InvalidOperationException">Thrown when method failed due to invalid operation</exception>
-        /// <exception cref="ArgumentException">Thrown when one of the arguments provided to a method is not valid</exception>
-        /// <exception cref="OutOfMemoryException">Thrown when failed due to out of memory</exception>
-        /// <exception cref="UnauthorizedAccessException">Thrown when application does not have proper privileges</exception>
+        /// <exception cref="NotSupportedException">Thrown when the feature is not supported.</exception>
+        /// <exception cref="InvalidOperationException">Thrown when the method failed due to an invalid operation.</exception>
+        /// <exception cref="ArgumentException">Thrown when one of the arguments provided to a method is not valid.</exception>
+        /// <exception cref="OutOfMemoryException">Thrown when failed due to out of memory.</exception>
+        /// <exception cref="UnauthorizedAccessException">Thrown when the application does not have proper privileges.</exception>
         [SuppressMessage("Microsoft.Performance", "CA1822:MarkMembersAsStatic")]
         public void Replace(CalendarRecord record, int id)
         {
@@ -219,22 +219,22 @@ namespace Tizen.Pims.Calendar
         }
 
         /// <summary>
-        /// Retrieves all records as a list.
+        /// Retrieves all the records as a list.
         /// </summary>
         /// <since_tizen> 4 </since_tizen>
-        /// <param name="viewUri">The view URI to get records from</param>
-        /// <param name="offset">The index from which results are received</param>
-        /// <param name="limit">The maximum number of results(value 0 is used for all records)</param>
+        /// <param name="viewUri">The view URI to get records from.</param>
+        /// <param name="offset">The index from which results are received.</param>
+        /// <param name="limit">The maximum number of results (value 0 is used for all the records).</param>
         /// <returns>
-        /// The record list
+        /// The record list.
         /// </returns>
         /// <privilege>http://tizen.org/privilege/calendar.read</privilege>
         /// <feature>http://tizen.org/feature/calendar</feature>
-        /// <exception cref="NotSupportedException">Thrown when feature is not supported</exception>
-        /// <exception cref="InvalidOperationException">Thrown when method failed due to invalid operation</exception>
-        /// <exception cref="ArgumentException">Thrown when one of the arguments provided to a method is not valid</exception>
-        /// <exception cref="OutOfMemoryException">Thrown when failed due to out of memory</exception>
-        /// <exception cref="UnauthorizedAccessException">Thrown when application does not have proper privileges</exception>
+        /// <exception cref="NotSupportedException">Thrown when the feature is not supported.</exception>
+        /// <exception cref="InvalidOperationException">Thrown when the method failed due to an invalid operation.</exception>
+        /// <exception cref="ArgumentException">Thrown when one of the arguments provided to a method is not valid.</exception>
+        /// <exception cref="OutOfMemoryException">Thrown when failed due to out of memory.</exception>
+        /// <exception cref="UnauthorizedAccessException">Thrown when the application does not have proper privileges.</exception>
         [SuppressMessage("Microsoft.Performance", "CA1822:MarkMembersAsStatic")]
         [SuppressMessage("Microsoft.Design", "CA1054:UriParametersShouldNotBeStrings")]
         public CalendarList GetAll(string viewUri, int offset, int limit)
@@ -250,21 +250,21 @@ namespace Tizen.Pims.Calendar
         }
 
         /// <summary>
-        /// Retrieves records using a query.
+        /// Retrieves the records using a query.
         /// </summary>
         /// <since_tizen> 4 </since_tizen>
-        /// <param name="query">The query used to filter results</param>
-        /// <param name="offset">The index from which results are received</param>
-        /// <param name="limit">The maximum number of results(value 0 is used for all records)</param>
+        /// <param name="query">The query used to filter results.</param>
+        /// <param name="offset">The index from which results are received.</param>
+        /// <param name="limit">The maximum number of results (value 0 is used for all the records).</param>
         /// <returns>
-        /// CalendarList
+        /// CalendarList.
         /// </returns>
         /// <privilege>http://tizen.org/privilege/calendar.read</privilege>
         /// <feature>http://tizen.org/feature/calendar</feature>
-        /// <exception cref="NotSupportedException">Thrown when feature is not supported</exception>
-        /// <exception cref="InvalidOperationException">Thrown when method failed due to invalid operation</exception>
-        /// <exception cref="OutOfMemoryException">Thrown when failed due to out of memory</exception>
-        /// <exception cref="UnauthorizedAccessException">Thrown when application does not have proper privileges</exception>
+        /// <exception cref="NotSupportedException">Thrown when the feature is not supported.</exception>
+        /// <exception cref="InvalidOperationException">Thrown when the method failed due to an invalid operation.</exception>
+        /// <exception cref="OutOfMemoryException">Thrown when failed due to out of memory.</exception>
+        /// <exception cref="UnauthorizedAccessException">Thrown when the application does not have proper privileges.</exception>
         [SuppressMessage("Microsoft.Performance", "CA1822:MarkMembersAsStatic")]
         public CalendarList GetRecordsWithQuery(CalendarQuery query, int offset, int limit)
         {
@@ -282,17 +282,17 @@ namespace Tizen.Pims.Calendar
         /// Inserts multiple records into the calendar database as a batch operation.
         /// </summary>
         /// <since_tizen> 4 </since_tizen>
-        /// <param name="list">The record list</param>
+        /// <param name="list">The record list.</param>
         /// <returns>
-        /// The inserted record id array
+        /// The inserted record ID array.
         /// </returns>
         /// <privilege>http://tizen.org/privilege/calendar.write</privilege>
         /// <feature>http://tizen.org/feature/calendar</feature>
-        /// <exception cref="NotSupportedException">Thrown when feature is not supported</exception>
-        /// <exception cref="InvalidOperationException">Thrown when method failed due to invalid operation</exception>
-        /// <exception cref="ArgumentException">Thrown when one of the arguments provided to a method is not valid</exception>
-        /// <exception cref="OutOfMemoryException">Thrown when failed due to out of memory</exception>
-        /// <exception cref="UnauthorizedAccessException">Thrown when application does not have proper privileges</exception>
+        /// <exception cref="NotSupportedException">Thrown when the feature is not supported.</exception>
+        /// <exception cref="InvalidOperationException">Thrown when the method failed due to an invalid operation.</exception>
+        /// <exception cref="ArgumentException">Thrown when one of the arguments provided to a method is not valid.</exception>
+        /// <exception cref="OutOfMemoryException">Thrown when failed due to out of memory.</exception>
+        /// <exception cref="UnauthorizedAccessException">Thrown when the application does not have proper privileges.</exception>
         [SuppressMessage("Microsoft.Performance", "CA1822:MarkMembersAsStatic")]
         public int[] Insert(CalendarList list)
         {
@@ -314,14 +314,14 @@ namespace Tizen.Pims.Calendar
         /// Updates multiple records into the calendar database as a batch operation.
         /// </summary>
         /// <since_tizen> 4 </since_tizen>
-        /// <param name="list">The record list</param>
+        /// <param name="list">The record list.</param>
         /// <privilege>http://tizen.org/privilege/calendar.write</privilege>
         /// <feature>http://tizen.org/feature/calendar</feature>
-        /// <exception cref="NotSupportedException">Thrown when feature is not supported</exception>
-        /// <exception cref="InvalidOperationException">Thrown when method failed due to invalid operation</exception>
-        /// <exception cref="ArgumentException">Thrown when one of the arguments provided to a method is not valid</exception>
-        /// <exception cref="OutOfMemoryException">Thrown when failed due to out of memory</exception>
-        /// <exception cref="UnauthorizedAccessException">Thrown when application does not have proper privileges</exception>
+        /// <exception cref="NotSupportedException">Thrown when the feature is not supported.</exception>
+        /// <exception cref="InvalidOperationException">Thrown when the method failed due to an invalid operation.</exception>
+        /// <exception cref="ArgumentException">Thrown when one of the arguments provided to a method is not valid.</exception>
+        /// <exception cref="OutOfMemoryException">Thrown when failed due to out of memory.</exception>
+        /// <exception cref="UnauthorizedAccessException">Thrown when the application does not have proper privileges.</exception>
         [SuppressMessage("Microsoft.Performance", "CA1822:MarkMembersAsStatic")]
         public void Update(CalendarList list)
         {
@@ -334,18 +334,18 @@ namespace Tizen.Pims.Calendar
         }
 
         /// <summary>
-        /// Deletes multiple records with related child records from the calendar database as a batch operation.
+        /// Deletes multiple records with the related child records from the calendar database as a batch operation.
         /// </summary>
         /// <since_tizen> 4 </since_tizen>
-        /// <param name="viewUri">The view URI of the records to delete</param>
-        /// <param name="idArray">The record IDs to delete</param>
+        /// <param name="viewUri">The view URI of the records to delete.</param>
+        /// <param name="idArray">The record IDs to delete.</param>
         /// <privilege>http://tizen.org/privilege/calendar.write</privilege>
         /// <feature>http://tizen.org/feature/calendar</feature>
-        /// <exception cref="NotSupportedException">Thrown when feature is not supported</exception>
-        /// <exception cref="InvalidOperationException">Thrown when method failed due to invalid operation</exception>
-        /// <exception cref="ArgumentException">Thrown when one of the arguments provided to a method is not valid</exception>
-        /// <exception cref="OutOfMemoryException">Thrown when failed due to out of memory</exception>
-        /// <exception cref="UnauthorizedAccessException">Thrown when application does not have proper privileges</exception>
+        /// <exception cref="NotSupportedException">Thrown when the feature is not supported.</exception>
+        /// <exception cref="InvalidOperationException">Thrown when the method failed due to an invalid operation.</exception>
+        /// <exception cref="ArgumentException">Thrown when one of the arguments provided to a method is not valid.</exception>
+        /// <exception cref="OutOfMemoryException">Thrown when failed due to out of memory.</exception>
+        /// <exception cref="UnauthorizedAccessException">Thrown when the application does not have proper privileges.</exception>
         [SuppressMessage("Microsoft.Performance", "CA1822:MarkMembersAsStatic")]
         [SuppressMessage("Microsoft.Design", "CA1054:UriParametersShouldNotBeStrings")]
         public void Delete(string viewUri, int[] idArray)
@@ -359,16 +359,16 @@ namespace Tizen.Pims.Calendar
         }
 
         /// <summary>
-        /// Deletes multiple records with related child records from the calendar database as a batch operation.
+        /// Deletes multiple records with the related child records from the calendar database as a batch operation.
         /// </summary>
         /// <since_tizen> 4 </since_tizen>
-        /// <param name="list">The record list</param>
+        /// <param name="list">The record list.</param>
         /// <privilege>http://tizen.org/privilege/calendar.write</privilege>
         /// <feature>http://tizen.org/feature/calendar</feature>
-        /// <exception cref="NotSupportedException">Thrown when feature is not supported</exception>
-        /// <exception cref="InvalidOperationException">Thrown when method failed due to invalid operation</exception>
-        /// <exception cref="OutOfMemoryException">Thrown when failed due to out of memory</exception>
-        /// <exception cref="UnauthorizedAccessException">Thrown when application does not have proper privileges</exception>
+        /// <exception cref="NotSupportedException">Thrown when the feature is not supported.</exception>
+        /// <exception cref="InvalidOperationException">Thrown when the method failed due to an invalid operation.</exception>
+        /// <exception cref="OutOfMemoryException">Thrown when failed due to out of memory.</exception>
+        /// <exception cref="UnauthorizedAccessException">Thrown when the application does not have proper privileges.</exception>
         public void Delete(CalendarList list)
         {
             CalendarRecord record = null;
@@ -410,15 +410,15 @@ namespace Tizen.Pims.Calendar
         /// Replaces multiple records in the calendar database as a batch operation.
         /// </summary>
         /// <since_tizen> 4 </since_tizen>
-        /// <param name="list">The record list</param>
-        /// <param name="idArray">The record IDs</param>
+        /// <param name="list">The record list.</param>
+        /// <param name="idArray">The record IDs.</param>
         /// <privilege>http://tizen.org/privilege/calendar.write</privilege>
         /// <feature>http://tizen.org/feature/calendar</feature>
-        /// <exception cref="NotSupportedException">Thrown when feature is not supported</exception>
-        /// <exception cref="InvalidOperationException">Thrown when method failed due to invalid operation</exception>
-        /// <exception cref="ArgumentException">Thrown when one of the arguments provided to a method is not valid</exception>
-        /// <exception cref="OutOfMemoryException">Thrown when failed due to out of memory</exception>
-        /// <exception cref="UnauthorizedAccessException">Thrown when application does not have proper privileges</exception>
+        /// <exception cref="NotSupportedException">Thrown when the feature is not supported.</exception>
+        /// <exception cref="InvalidOperationException">Thrown when the method failed due to an invalid operation.</exception>
+        /// <exception cref="ArgumentException">Thrown when one of the arguments provided to a method is not valid.</exception>
+        /// <exception cref="OutOfMemoryException">Thrown when failed due to out of memory.</exception>
+        /// <exception cref="UnauthorizedAccessException">Thrown when the application does not have proper privileges.</exception>
         [SuppressMessage("Microsoft.Performance", "CA1822:MarkMembersAsStatic")]
         public void Replace(CalendarList list, int[] idArray)
         {
@@ -431,23 +431,23 @@ namespace Tizen.Pims.Calendar
         }
 
         /// <summary>
-        /// Retrieves records with the given calendar database version.
+        /// Retrieves the records with the given calendar database version.
         /// </summary>
         /// <since_tizen> 4 </since_tizen>
-        /// <param name="viewUri">The view URI to get records from</param>
-        /// <param name="BookId">The calendar book ID to filter</param>
-        /// <param name="calendarDBVersion">The calendar database version</param>
-        /// <param name="currentDBVersion">The current calendar database version</param>
+        /// <param name="viewUri">The view URI to get records from.</param>
+        /// <param name="BookId">The calendar book ID to filter.</param>
+        /// <param name="calendarDBVersion">The calendar database version.</param>
+        /// <param name="currentDBVersion">The current calendar database version.</param>
         /// <returns>
-        /// The record list
+        /// The record list.
         /// </returns>
         /// <privilege>http://tizen.org/privilege/calendar.read</privilege>
         /// <feature>http://tizen.org/feature/calendar</feature>
-        /// <exception cref="NotSupportedException">Thrown when feature is not supported</exception>
-        /// <exception cref="InvalidOperationException">Thrown when method failed due to invalid operation</exception>
-        /// <exception cref="ArgumentException">Thrown when one of the arguments provided to a method is not valid</exception>
-        /// <exception cref="OutOfMemoryException">Thrown when failed due to out of memory</exception>
-        /// <exception cref="UnauthorizedAccessException">Thrown when application does not have proper privileges</exception>
+        /// <exception cref="NotSupportedException">Thrown when the feature is not supported.</exception>
+        /// <exception cref="InvalidOperationException">Thrown when the method failed due to an invalid operation.</exception>
+        /// <exception cref="ArgumentException">Thrown when one of the arguments provided to a method is not valid.</exception>
+        /// <exception cref="OutOfMemoryException">Thrown when failed due to out of memory.</exception>
+        /// <exception cref="UnauthorizedAccessException">Thrown when the application does not have proper privileges.</exception>
         [SuppressMessage("Microsoft.Performance", "CA1822:MarkMembersAsStatic")]
         [SuppressMessage("Microsoft.Design", "CA1054:UriParametersShouldNotBeStrings")]
         public CalendarList GetChangesByVersion(string viewUri, int BookId, int calendarDBVersion, out int currentDBVersion)
@@ -466,9 +466,9 @@ namespace Tizen.Pims.Calendar
         /// Gets the record count of a specific view.
         /// </summary>
         /// <since_tizen> 4 </since_tizen>
-        /// <param name="viewUri">The view URI to get records from</param>
+        /// <param name="viewUri">The view URI to get records from.</param>
         /// <returns>
-        /// The count of records
+        /// The count of records.
         /// </returns>
         /// <privilege>http://tizen.org/privilege/calendar.read</privilege>
         [SuppressMessage("Microsoft.Design", "CA1822:MarkMembersAsStatic")]
@@ -489,9 +489,9 @@ namespace Tizen.Pims.Calendar
         /// Gets the record count with a query.
         /// </summary>
         /// <since_tizen> 4 </since_tizen>
-        /// <param name="query">The query used for filtering the results</param>
+        /// <param name="query">The query used for filtering the results.</param>
         /// <returns>
-        /// The count of records
+        /// The count of records.
         /// </returns>
         /// <privilege>http://tizen.org/privilege/calendar.read</privilege>
         [SuppressMessage("Microsoft.Design", "CA1822:MarkMembersAsStatic")]
@@ -511,15 +511,15 @@ namespace Tizen.Pims.Calendar
         /// Registers a callback function to be invoked when a record changes.
         /// </summary>
         /// <since_tizen> 4 </since_tizen>
-        /// <param name="viewUri">The view URI of the record to subscribe for change notifications</param>
-        /// <param name="DBChanged">The EventHandler to register</param>
+        /// <param name="viewUri">The view URI of the record to subscribe for change notifications.</param>
+        /// <param name="DBChanged">The EventHandler to register.</param>
         /// <privilege>http://tizen.org/privilege/calendar.read</privilege>
         /// <feature>http://tizen.org/feature/calendar</feature>
-        /// <exception cref="NotSupportedException">Thrown when feature is not supported</exception>
-        /// <exception cref="InvalidOperationException">Thrown when method failed due to invalid operation</exception>
-        /// <exception cref="ArgumentException">Thrown when one of the arguments provided to a method is not valid</exception>
-        /// <exception cref="OutOfMemoryException">Thrown when failed due to out of memory</exception>
-        /// <exception cref="UnauthorizedAccessException">Thrown when application does not have proper privileges</exception>
+        /// <exception cref="NotSupportedException">Thrown when the feature is not supported.</exception>
+        /// <exception cref="InvalidOperationException">Thrown when the method failed due to an invalid operation.</exception>
+        /// <exception cref="ArgumentException">Thrown when one of the arguments provided to a method is not valid.</exception>
+        /// <exception cref="OutOfMemoryException">Thrown when failed due to out of memory.</exception>
+        /// <exception cref="UnauthorizedAccessException">Thrown when the application does not have proper privileges.</exception>
         [SuppressMessage("Microsoft.Design", "CA1054:UriParametersShouldNotBeStrings")]
         public void AddDBChangedDelegate(string viewUri, EventHandler<DBChangedEventArgs> DBChanged)
         {
@@ -552,14 +552,14 @@ namespace Tizen.Pims.Calendar
         /// Deregisters a callback function.
         /// </summary>
         /// <since_tizen> 4 </since_tizen>
-        /// <param name="viewUri">The view URI of the record to subscribe for change notifications</param>
-        /// <param name="DBChanged">The EventHandler to deregister</param>
+        /// <param name="viewUri">The view URI of the record to subscribe for change notifications.</param>
+        /// <param name="DBChanged">The EventHandler to deregister.</param>
         /// <privilege>http://tizen.org/privilege/calendar.read</privilege>
         /// <feature>http://tizen.org/feature/calendar</feature>
-        /// <exception cref="NotSupportedException">Thrown when feature is not supported</exception>
-        /// <exception cref="InvalidOperationException">Thrown when method failed due to invalid operation</exception>
-        /// <exception cref="OutOfMemoryException">Thrown when failed due to out of memory</exception>
-        /// <exception cref="UnauthorizedAccessException">Thrown when application does not have proper privileges</exception>
+        /// <exception cref="NotSupportedException">Thrown when the feature is not supported.</exception>
+        /// <exception cref="InvalidOperationException">Thrown when the method failed due to an invalid operation.</exception>
+        /// <exception cref="OutOfMemoryException">Thrown when failed due to out of memory.</exception>
+        /// <exception cref="UnauthorizedAccessException">Thrown when the application does not have proper privileges.</exception>
         [SuppressMessage("Microsoft.Design", "CA1054:UriParametersShouldNotBeStrings")]
         public void RemoveDBChangedDelegate(string viewUri, EventHandler<DBChangedEventArgs> DBChanged)
         {
@@ -584,18 +584,18 @@ namespace Tizen.Pims.Calendar
         }
 
         /// <summary>
-        /// Link a record to another record.
+        /// Links a record to another record.
         /// </summary>
         /// <since_tizen> 4 </since_tizen>
-        /// <param name="baseId">The base record ID</param>
-        /// <param name="recordId">The record ID to link to</param>
+        /// <param name="baseId">The base record ID.</param>
+        /// <param name="recordId">The record ID to link to.</param>
         /// <privilege>http://tizen.org/privilege/calendar.write</privilege>
         /// <feature>http://tizen.org/feature/calendar</feature>
-        /// <exception cref="NotSupportedException">Thrown when feature is not supported</exception>
-        /// <exception cref="InvalidOperationException">Thrown when method failed due to invalid operation</exception>
-        /// <exception cref="ArgumentException">Thrown when one of the arguments provided to a method is not valid</exception>
-        /// <exception cref="OutOfMemoryException">Thrown when failed due to out of memory</exception>
-        /// <exception cref="UnauthorizedAccessException">Thrown when application does not have proper privileges</exception>
+        /// <exception cref="NotSupportedException">Thrown when the feature is not supported.</exception>
+        /// <exception cref="InvalidOperationException">Thrown when the method failed due to an invalid operation.</exception>
+        /// <exception cref="ArgumentException">Thrown when one of the arguments provided to a method is not valid.</exception>
+        /// <exception cref="OutOfMemoryException">Thrown when failed due to out of memory.</exception>
+        /// <exception cref="UnauthorizedAccessException">Thrown when the application does not have proper privileges.</exception>
         [SuppressMessage("Microsoft.Design", "CA1822:MarkMembersAsStatic")]
         public void LinkRecord(int baseId, int recordId)
         {
@@ -609,17 +609,17 @@ namespace Tizen.Pims.Calendar
         }
 
         /// <summary>
-        /// Unlink a record from base record.
+        /// Unlinks a record from the base record.
         /// </summary>
         /// <since_tizen> 4 </since_tizen>
-        /// <param name="recordId">The record ID to unlink</param>
+        /// <param name="recordId">The record ID to unlink.</param>
         /// <privilege>http://tizen.org/privilege/calendar.write</privilege>
         /// <feature>http://tizen.org/feature/calendar</feature>
-        /// <exception cref="NotSupportedException">Thrown when feature is not supported</exception>
-        /// <exception cref="InvalidOperationException">Thrown when method failed due to invalid operation</exception>
-        /// <exception cref="ArgumentException">Thrown when one of the arguments provided to a method is not valid</exception>
-        /// <exception cref="OutOfMemoryException">Thrown when failed due to out of memory</exception>
-        /// <exception cref="UnauthorizedAccessException">Thrown when application does not have proper privileges</exception>
+        /// <exception cref="NotSupportedException">Thrown when the feature is not supported.</exception>
+        /// <exception cref="InvalidOperationException">Thrown when the method failed due to an invalid operation.</exception>
+        /// <exception cref="ArgumentException">Thrown when one of the arguments provided to a method is not valid.</exception>
+        /// <exception cref="OutOfMemoryException">Thrown when failed due to out of memory.</exception>
+        /// <exception cref="UnauthorizedAccessException">Thrown when the application does not have proper privileges.</exception>
         [SuppressMessage("Microsoft.Performance", "CA1822:MarkMembersAsStatic")]
         public void UnlinkRecord(int recordId)
         {

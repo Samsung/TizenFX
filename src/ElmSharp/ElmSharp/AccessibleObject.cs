@@ -19,17 +19,17 @@ using System;
 namespace ElmSharp.Accessible
 {
     /// <summary>
-    /// The delegate to define how to provide informations for <see cref="IAccessibleObject.Name"/> or <see cref="IAccessibleObject.Description"/>.
+    /// The delegate to define how to provide information for <see cref="IAccessibleObject.Name"/> or <see cref="IAccessibleObject.Description"/>.
     /// </summary>
     /// <param name="obj">The sender obj.</param>
-    /// <returns>Return information for Name or Description.</returns>
+    /// <returns>Return information for name or description.</returns>
     /// <since_tizen> preview </since_tizen>
     public delegate string AccessibleInfoProvider (AccessibleObject obj);
 
     /// <summary>
     /// It's a base abstract class for <see cref="Widget"/>.
-    /// It provides available definitions for the screen reader, such as <see cref="IAccessibleObject.Name"/>, <see cref="IAccessibleObject.Description"/>, <see cref="IAccessibleObject.ReadingInfoType"/>, etc.
-    /// There's many the relationship between two accessible objects, like <see cref="ChildOf"/>, <see cref="ParentOf"/>, <see cref="FlowsTo"/>, <see cref="FlowsFrom"/>, etc.
+    /// It provides the available definitions for the screen reader, such as <see cref="IAccessibleObject.Name"/>, <see cref="IAccessibleObject.Description"/>, <see cref="IAccessibleObject.ReadingInfoType"/>, etc.
+    /// There are many relationships between two accessible objects, like <see cref="ChildOf"/>, <see cref="ParentOf"/>, <see cref="FlowsTo"/>, <see cref="FlowsFrom"/>, etc.
     /// </summary>
     /// <since_tizen> preview </since_tizen>
     public abstract class AccessibleObject : EvasObject, IAccessibleObject
@@ -58,7 +58,7 @@ namespace ElmSharp.Accessible
         }
 
         /// <summary>
-        /// Gets or sets the role of the object in accessibility domain.
+        /// Gets or sets the role of the object in an accessibility domain.
         /// </summary>
         AccessRole IAccessibleObject.Role
         {
@@ -74,7 +74,7 @@ namespace ElmSharp.Accessible
         }
 
         /// <summary>
-        /// Gets or sets highlightable of given widget.
+        /// Gets or sets the highlightable of a given widget.
         /// </summary>
         bool IAccessibleObject.CanHighlight
         {
@@ -89,10 +89,10 @@ namespace ElmSharp.Accessible
         }
 
         /// <summary>
-        /// Gets or sets the translation domain of "name" and "description" properties.
-        /// Translation domain should be set if application wants to support i18n for accessibily "name" and "description" properties.
-        /// When translation domain is set values of "name" and "description" properties will be translated with dgettext function using current translation domain as "domainname" parameter.
-        /// It is application developer responsibility to ensure that translation files are loaded and binded to translation domain when accessibility is enabled.
+        /// Gets or sets the translation domain of the "name" and "description" properties.
+        /// The translation domain should be set if the application wants to support i18n for accessing the "name" and "description" properties.
+        /// When the translation domain is set, values of the "name" and "description" properties will be translated with dgettext function using the current translation domain as "domainname" parameter.
+        /// It is the application developers responsibility to ensure that translation files are loaded and binded to the translation domain when accessibility is enabled.
         /// </summary>
         string IAccessibleObject.TranslationDomain
         {
@@ -122,7 +122,7 @@ namespace ElmSharp.Accessible
         }
 
         /// <summary>
-        /// Gets or sets contextual information about object.
+        /// Gets or sets the contextual information about an object.
         /// </summary>
         string IAccessibleObject.Description
         {
@@ -166,7 +166,7 @@ namespace ElmSharp.Accessible
         }
 
         /// <summary>
-        /// Gets or sets the delegate for <see cref = "IAccessibleObject.Description" />.
+        /// Gets or sets the delegate for <see cref = "IAccessibleObject.Description"/>.
         /// </summary>
         AccessibleInfoProvider IAccessibleObject.DescriptionProvider
         {
@@ -195,9 +195,9 @@ namespace ElmSharp.Accessible
         }
 
         /// <summary>
-        /// Creates and initializes a new instance of the AccessibleObject class with parent EvasObject class parameter.
+        /// Creates and initializes a new instance of the AccessibleObject class with the parent EvasObject class parameter.
         /// </summary>
-        /// <param name="parent">Parent EvasObject class </param>
+        /// <param name="parent">Parent EvasObject class.</param>
         /// <since_tizen> preview </since_tizen>
         public AccessibleObject(EvasObject parent) : base(parent)
         {
@@ -213,10 +213,10 @@ namespace ElmSharp.Accessible
 
         /// <summary>
         /// Defines the relationship between two accessible objects.
-        /// Relationships can be queried by Assistive Technology clients to provide customized feedback, improving overall user experience.
-        /// AppendRelation API is asymmetric, which means that appending, for example, relation <see cref="FlowsTo"/> from object A to B, do not append relation <see cref="FlowsFrom"/> from object B to object A.
+        /// Relationships can be queried by the Assistive Technology clients to provide customized feedback, and improving overall user experience.
+        /// AppendRelation API is asymmetric, which means that appending, for example, relation <see cref="FlowsTo"/> from object A to B, does not append the relation <see cref="FlowsFrom"/> from object B to object A.
         /// </summary>
-        /// <param name="relation">The relationship between source object and target object of a given type.</param>
+        /// <param name="relation">The relationship between the source object and target object of a given type.</param>
         void IAccessibleObject.AppendRelation(IAccessibleRelation relation)
         {
             if (relation.Target == null) throw new ArgumentException("Target of Accessibility relation can not be null");
@@ -226,7 +226,7 @@ namespace ElmSharp.Accessible
         /// <summary>
         /// Removes the relationship between two accessible objects.
         /// </summary>
-        /// <param name="relation">The relationship between source object and target object of a given type.</param>
+        /// <param name="relation">The relationship between the source object and target object of a given type.</param>
         void IAccessibleObject.RemoveRelation(IAccessibleRelation relation)
         {
             if (relation.Target == null) throw new ArgumentException("Target of Accessibility relation can not be null");
@@ -234,7 +234,7 @@ namespace ElmSharp.Accessible
         }
 
         /// <summary>
-        /// Highlights accessible widget.
+        /// Highlights the accessible widget.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
         public void Highlight()
@@ -243,7 +243,7 @@ namespace ElmSharp.Accessible
         }
 
         /// <summary>
-        /// Clears highlight of accessible widget.
+        /// Clears the highlight of the accessible widget.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
         public void Unhighlight()

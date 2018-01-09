@@ -17,13 +17,13 @@
 namespace Tizen.Applications.Shortcut
 {
     /// <summary>
-    /// A class that contains shortcut information.
+    /// A class that contains the shortcut information.
     /// </summary>
     /// <since_tizen> 4 </since_tizen>
     public class HomeShortcutAddedInfo : ShortcutAddedInfo
     {
         /// <summary>
-        /// Gets the name of application.
+        /// Gets the name of the application.
         /// </summary>
         /// <since_tizen> 4 </since_tizen>
         public string AppId { get; internal set; }

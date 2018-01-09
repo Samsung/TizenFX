@@ -19,19 +19,19 @@ using System;
 namespace ElmSharp
 {
     /// <summary>
-    /// Iterm class of FlipSelector
+    /// The item class of FlipSelector.
     /// </summary>
     /// <since_tizen> preview </since_tizen>
     public class FlipSelectorItem : ItemObject
     {
         /// <summary>
-        /// Sets or gets the Text of FlipSelectorItem
+        /// Sets or gets the text of the FlipSelectorItem.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
         public string Text { get; private set; }
 
         /// <summary>
-        /// Selected will be triggered when Selected
+        /// Selected will be triggered when selected.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
         public event EventHandler Selected;

@@ -24,7 +24,6 @@ namespace Tizen.Tapi
     /// <summary>
     /// A class which manages Supplementary Services of the SIM.
     /// </summary>
-    /// <since_tizen> 4 </since_tizen>
     public class Ss
     {
         private IntPtr _handle = IntPtr.Zero;
@@ -37,7 +36,6 @@ namespace Tizen.Tapi
         /// <summary>
         /// A constructor to instantiate Ss class using the Tapi handle.
         /// </summary>
-        /// <since_tizen> 4 </since_tizen>
         /// <param name="handle">An instance of TapiHandle obtained from InitTapi in TapiManager API.</param>
         /// <exception cref="ArgumentNullException">Thrown when handle is passed as null.</exception>
         public Ss(TapiHandle handle)
@@ -53,7 +51,6 @@ namespace Tizen.Tapi
         /// <summary>
         /// Sends a request to activate/deactivate call barring.
         /// </summary>
-        /// <since_tizen> 4 </since_tizen>
         /// <param name="info">The information about call barring.</param>
         /// <returns>A task containing an instance of SsBarringResponse which contains information about barring response.</returns>
         /// <feature>http://tizen.org/feature/network.telephony</feature>
@@ -106,7 +103,6 @@ namespace Tizen.Tapi
         /// <summary>
         /// Gets call barring status.
         /// </summary>
-        /// <since_tizen> 4 </since_tizen>
         /// <param name="ssClass">The type of call.</param>
         /// <param name="type">The barring type.</param>
         /// <returns>A task containing information about barring response.</returns>
@@ -152,7 +148,6 @@ namespace Tizen.Tapi
         /// <summary>
         /// Allows changing of the barring password in the network.
         /// </summary>
-        /// <since_tizen> 4 </since_tizen>
         /// <param name="oldPassword">The old password set for Barring in the Network.</param>
         /// <param name="newPassword">The new password set for Barring in the Network.</param>
         /// <param name="newPasswordAgain">The new password again.</param>
@@ -205,7 +200,6 @@ namespace Tizen.Tapi
         /// <summary>
         /// Allows to set the (register/erase/activate/deactivate) call forwarding option at the network.
         /// </summary>
-        /// <since_tizen> 4 </since_tizen>
         /// <param name="info">The Call forward information such as a forward mode, a forward type, and so on.</param>
         /// <returns>A task containing information about SS forward response.</returns>
         /// <feature>http://tizen.org/feature/network.telephony</feature>
@@ -258,7 +252,6 @@ namespace Tizen.Tapi
         /// <summary>
         /// Provides an option to get the call forwarding status of different calls from the Network.
         /// </summary>
-        /// <since_tizen> 4 </since_tizen>
         /// <param name="ssClass">The Forward call type.</param>
         /// <param name="condition">The forward condition.</param>
         /// <returns>A task containing SS forward response information.</returns>
@@ -304,7 +297,6 @@ namespace Tizen.Tapi
         /// <summary>
         /// Activates/deactivates the call waiting service.
         /// </summary>
-        /// <since_tizen> 4 </since_tizen>
         /// <param name="info">The status of call-waiting service.</param>
         /// <returns>A task containing SS waiting response information.</returns>
         /// <feature>http://tizen.org/feature/network.telephony</feature>
@@ -357,7 +349,6 @@ namespace Tizen.Tapi
         /// <summary>
         /// Gets the status of the call waiting service.
         /// </summary>
-        /// <since_tizen> 4 </since_tizen>
         /// <param name="ssClass">The call types.</param>
         /// <returns>A task containing information about SS waiting response.</returns>
         /// <feature>http://tizen.org/feature/network.telephony</feature>
@@ -402,7 +393,6 @@ namespace Tizen.Tapi
         /// <summary>
         /// Activates/deactivates the status of the calling line identity service.
         /// </summary>
-        /// <since_tizen> 4 </since_tizen>
         /// <param name="type">The Cli service type.</param>
         /// <param name="status">The Cli Status.</param>
         /// <returns>A task indicating whether setting of CLI status is done or not.</returns>
@@ -448,7 +438,6 @@ namespace Tizen.Tapi
         /// <summary>
         /// Gets the status of the calling line identity service.
         /// </summary>
-        /// <since_tizen> 4 </since_tizen>
         /// <param name="type">The Cli service type.</param>
         /// <returns>A task containing SS CLI response information.</returns>
         /// <feature>http://tizen.org/feature/network.telephony</feature>
@@ -493,7 +482,6 @@ namespace Tizen.Tapi
         /// <summary>
         /// Sends a USSD string or User response to the Network.
         /// </summary>
-        /// <since_tizen> 4 </since_tizen>
         /// <param name="info">The data coding scheme used</param>
         /// <returns>A task containing SS USSD response information.</returns>
         /// <feature>http://tizen.org/feature/network.telephony</feature>

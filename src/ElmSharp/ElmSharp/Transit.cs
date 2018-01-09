@@ -24,8 +24,8 @@ using static Interop.Elementary;
 namespace ElmSharp
 {
     /// <summary>
-    /// Transit is designed to apply various animated transition effects, such like translation, rotation, etc.
-    /// For using these effects, create an Transit and add the desired transition effects.
+    /// Transit is designed to apply various animated transition effects, such as translation, rotation, etc.
+    /// For using these effects, create a transit and add the desired transition effects.
     /// </summary>
     /// <remarks>Transit is not reusable. If the effect ends, the transit is destroyed automatically.</remarks>
     /// <since_tizen> preview </since_tizen>
@@ -41,13 +41,13 @@ namespace ElmSharp
         Elm_Transit_Effect_Transition_Cb EffectTransitionCallback;
 
         /// <summary>
-        /// A callback called when the transit is deleted.
+        /// A callback is called when the transit is deleted.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
         public event EventHandler Deleted;
 
         /// <summary>
-        /// Creates and initializes a new instance of Transit class.
+        /// Creates and initializes a new instance of the Transit class.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
         public Transit()
@@ -64,7 +64,7 @@ namespace ElmSharp
         }
 
         /// <summary>
-        /// Destroy the Transit object.
+        /// Destroys the transit object.
         /// </summary>
         ~Transit()
         {
@@ -72,7 +72,7 @@ namespace ElmSharp
         }
 
         /// <summary>
-        /// Gets or sets the transit animation time
+        /// Gets or sets the transit animation time.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
         public double Duration
@@ -88,8 +88,8 @@ namespace ElmSharp
         }
 
         /// <summary>
-        /// Gets or sets a value whether the objects states will be keep or not.
-        /// If it is not kept, the objects states will be reset when transition ends.
+        /// Gets or sets a value whether the objects states will be kept or not.
+        /// If it is not kept, the objects states will be reset when the transition ends.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
         public bool ObjectStateKeep
@@ -138,7 +138,7 @@ namespace ElmSharp
         }
 
         /// <summary>
-        /// Gets or sets if the auto reverse is on.
+        /// Gets or sets if auto reverse is on.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
         public bool AutoReverse
@@ -170,8 +170,8 @@ namespace ElmSharp
         }
 
         /// <summary>
-        /// Gets or sets the smooth scaling for transit map rendering
-        /// This gets smooth scaling for transit map rendering.
+        /// Gets or sets the smooth scaling for transit map rendering.
+        /// This gets the smooth scaling for transit map rendering.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
         public bool Smooth
@@ -187,8 +187,8 @@ namespace ElmSharp
         }
 
         /// <summary>
-        /// Get the time progression of the animation (a double value between 0.0 and 1.0).
-        /// The value returned is a fraction(current time / total time).
+        /// Gets the time progression of the animation (a double value between 0.0 and 1.0).
+        /// The value returned is a fraction (current time/total time).
         /// It represents the progression position relative to the total.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
@@ -242,7 +242,7 @@ namespace ElmSharp
         /// Starts the transition in given seconds.
         /// Once this API is called, the transit begins to measure the time.
         /// </summary>
-        /// <param name="interval">The interval value in seconds</param>
+        /// <param name="interval">The interval value in seconds.</param>
         /// <since_tizen> preview </since_tizen>
         public void Go(double interval = 0)
         {
@@ -250,7 +250,7 @@ namespace ElmSharp
         }
 
         /// <summary>
-        /// Pause the transition.
+        /// Pauses the transition.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
         public void Pause()
@@ -260,7 +260,7 @@ namespace ElmSharp
         }
 
         /// <summary>
-        /// Resume the transition.
+        /// Resumes the transition.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
         public void Resume()
@@ -270,7 +270,7 @@ namespace ElmSharp
         }
 
         /// <summary>
-        /// Get the current chained transit list.
+        /// Gets the current chained transit list.
         /// </summary>
         /// <remarks>Cannot add the duplicate transit.</remarks>
         /// <since_tizen> preview </since_tizen>
@@ -280,7 +280,7 @@ namespace ElmSharp
         }
 
         /// <summary>
-        /// Get the objects list of the transit.
+        /// Gets the objects list of the transit.
         /// </summary>
         /// <remarks>Cannot add the duplicate object.</remarks>
         /// <since_tizen> preview </since_tizen>
@@ -290,7 +290,7 @@ namespace ElmSharp
         }
 
         /// <summary>
-        /// Add the effect.
+        /// Adds the effect.
         /// </summary>
         /// <param name="effect">EffectBase object.</param>
         /// <since_tizen> preview </since_tizen>
@@ -303,7 +303,7 @@ namespace ElmSharp
         }
 
         /// <summary>
-        /// Destroy current object
+        /// Destroys the current object.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
         public void Dispose()
@@ -313,11 +313,11 @@ namespace ElmSharp
         }
 
         /// <summary>
-        /// Releases all resources currently used by this instance.
+        /// Releases all the resources currently used by this instance.
         /// </summary>
         /// <param name="disposing">
-        /// true if managed resources should be disposed
-        /// otherwise, false.
+        /// true if the managed resources should be disposed,
+        /// otherwise false.
         /// </param>
         /// <since_tizen> preview </since_tizen>
         protected virtual void Dispose(bool disposing)
@@ -366,11 +366,11 @@ namespace ElmSharp
         }
 
         /// <summary>
-        /// Add new object to apply the effects.
-        /// After the first addition of an object to transit, if its object list become empty again, the transit will be killed.
-        /// If the obj belongs to another transit, the obj will be removed from it and it will only belong to the other transit.
+        /// Adds a new object to apply the effects.
+        /// After the first addition of an object to transit, if its object list becomes empty again, the transit will be killed.
+        /// If the object belongs to another transit, the object will be removed from it and it will only belong to the other transit.
         /// </summary>
-        /// <remarks>It is not allowed to add a new object after transit begins.</remarks>
+        /// <remarks>It is not allowed to add a new object after the transit begins.</remarks>
         /// <param name="obj">Object to be animated.</param>
         void AddObject(EvasObject obj)
         {
@@ -396,7 +396,7 @@ namespace ElmSharp
         /// <summary>
         /// Makes the chain relationship between two transits.
         /// </summary>
-        /// <param name="transit">The chain transit object. This transit will be operated after transit is done.</param>
+        /// <param name="transit">The chain transit object. This transit will be operated after the transit is done.</param>
         void AddChainedTransit(Transit transit)
         {
             if (_checker.Contains(transit))
@@ -407,7 +407,7 @@ namespace ElmSharp
         }
 
         /// <summary>
-        /// Cut off the chain relationship between two transits.
+        /// Cuts off the chain relationship between two transits.
         /// </summary>
         /// <param name="transit">The chain transit object.</param>
         void DeleteChainedTransit(Transit transit)

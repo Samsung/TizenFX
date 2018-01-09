@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 namespace ElmSharp
 {
     /// <summary>
-    /// The Rect is a struct that represent rectangluar space.
+    /// The Rect is a struct that represents the rectangular space.
     /// </summary>
     /// <since_tizen> preview </since_tizen>
     [StructLayout(LayoutKind.Sequential)]
@@ -29,8 +29,8 @@ namespace ElmSharp
         /// <summary>
         /// Creates and initializes a new instance of the Rect class.
         /// </summary>
-        /// <param name="x">X axis value.</param>
-        /// <param name="y">Y axis value.</param>
+        /// <param name="x">X-axis value.</param>
+        /// <param name="y">Y-axis value.</param>
         /// <param name="w">Width value.</param>
         /// <param name="h">Height value.</param>
         /// <since_tizen> preview </since_tizen>
@@ -43,67 +43,67 @@ namespace ElmSharp
         }
 
         /// <summary>
-        /// Gets or sets the position of this Rectangle on the X axis.
+        /// Gets or sets the position of this rectangle on the X-axis.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
         public int X { get; set; }
 
         /// <summary>
-        /// Gets or sets the position of this Rectangle on the Y axis.
+        /// Gets or sets the position of this rectangle on the Y-axis.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
         public int Y { get; set; }
 
         /// <summary>
-        /// Gets or sets the width of this Rectangle.
+        /// Gets or sets the width of this rectangle.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
         public int Width { get; set; }
 
         /// <summary>
-        /// Gets or sets the height of this Rectangle.
+        /// Gets or sets the height of this rectangle.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
         public int Height { get; set; }
 
         /// <summary>
-        /// Gets the position of this Rectangle on the X axis.
+        /// Gets the position of this rectangle on the X-axis.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
         public int Left { get { return X; } }
 
         /// <summary>
-        /// Gets the extent along the X axis.
+        /// Gets the extent along the X-axis.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
         public int Right { get { return X + Width; } }
 
         /// <summary>
-        /// Gets the position of this Rectangle on the Y axis.
+        /// Gets the position of this rectangle on the Y-axis.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
         public int Top { get { return Y; } }
 
         /// <summary>
-        /// Gets the extent along the Y axis.
+        /// Gets the extent along the Y-axis.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
         public int Bottom { get { return Y + Height; } }
 
         /// <summary>
-        /// Gets the Point defined by Rectangle.Left and Rectangle.Top.
+        /// Gets the point defined by Rectangle.Left and Rectangle.Top.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
         public Point Location { get { return new Point { X = X, Y = Y }; } }
 
         /// <summary>
-        /// Gets the extent of the Rectangle along its X and Y axis.
+        /// Gets the extent of the rectangle along its X-axis and Y-axis.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
         public Size Size { get { return new Size { Width = Width, Height = Height }; } }
 
         /// <summary>
-        /// A human-readable representation of the <see cref="T:Tizen.UI.Rect" />.
+        /// A human-readable representation of <see cref="T:Tizen.UI.Rect"/>.
         /// </summary>
         /// <returns>The string is formatted as "{{X={0} Y={1} Width={2} Height={3}}}".</returns>
         /// <since_tizen> preview </since_tizen>
@@ -134,8 +134,8 @@ namespace ElmSharp
         /// </summary>
         /// <param name="obj">The object to compare with the current instance.</param>
         /// <returns>
-        /// true if obj and this instance are the same type and represent the same value.
-        /// otherwise, false.
+        /// true if the object and this instance are of the same type and represent the same value,
+        /// otherwise false.
         /// </returns>
         /// <since_tizen> preview </since_tizen>
         public override bool Equals(object obj)
@@ -151,8 +151,8 @@ namespace ElmSharp
         /// </summary>
         /// <param name="other">The <see cref="Rect"/> to compare with the current instance.</param>
         /// <returns>
-        /// true if obj and this instance are the same type and represent the same value.
-        /// otherwise, false.
+        /// true if the object and this instance are of the same type and represent the same value,
+        /// otherwise, false
         /// </returns>
         /// <since_tizen> preview </since_tizen>
         public bool Equals(Rect other)
@@ -161,11 +161,11 @@ namespace ElmSharp
         }
 
         /// <summary>
-        /// Whether the two <see cref="T:Tizen.UI.Rectangle" />s are equal.
+        /// Whether both <see cref="T:Tizen.UI.Rectangle"/>'s are equal.
         /// </summary>
-        /// <param name="r1">A <see cref="T:Tizen.UI.Rectangle" /> on the left hand side.</param>
-        /// <param name="r2">A <see cref="T:Tizen.UI.Rectangle" /> on the right hand side.</param>
-        /// <returns>True if the two <see cref="T:Tizen.UI.Rectangle" />s have equal values.</returns>
+        /// <param name="r1">A <see cref="T:Tizen.UI.Rectangle"/> on the left hand side.</param>
+        /// <param name="r2">A <see cref="T:Tizen.UI.Rectangle"/> on the right hand side.</param>
+        /// <returns>True if both <see cref="T:Tizen.UI.Rectangle"/>'s have equal values.</returns>
         /// <since_tizen> preview </since_tizen>
         public static bool operator ==(Rect r1, Rect r2)
         {
@@ -173,11 +173,11 @@ namespace ElmSharp
         }
 
         /// <summary>
-        /// Whether two <see cref="T:Tizen.UI.Rectangle" />s are not equal.
+        /// Whether both <see cref="T:Tizen.UI.Rectangle"/>'s are not equal.
         /// </summary>
-        /// <param name="r1">A <see cref="T:Tizen.UI.Rectangle" /> on the left hand side.</param>
-        /// <param name="r2">A <see cref="T:Tizen.UI.Rectangle" /> on the right hand side.</param>
-        /// <returns>True if the two <see cref="T:Tizen.UI.Rectangle" />s do not have equal values.</returns>
+        /// <param name="r1">A <see cref="T:Tizen.UI.Rectangle"/> on the left hand side.</param>
+        /// <param name="r2">A <see cref="T:Tizen.UI.Rectangle"/> on the right hand side.</param>
+        /// <returns>True if both <see cref="T:Tizen.UI.Rectangle"/>'s do not have equal values.</returns>
         /// <since_tizen> preview </since_tizen>
         public static bool operator !=(Rect r1, Rect r2)
         {

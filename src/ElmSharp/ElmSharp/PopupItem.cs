@@ -19,7 +19,7 @@ using System;
 namespace ElmSharp
 {
     /// <summary>
-    /// The PopupItem is a class that including icon and text.
+    /// The PopupItem is a class that includes the icon and text.
     /// </summary>
     /// <since_tizen> preview </since_tizen>
     public class PopupItem : ItemObject
@@ -31,13 +31,13 @@ namespace ElmSharp
         }
 
         /// <summary>
-        /// Gets the text label of popupitem.Return value is string.
+        /// Gets the text label of the popupitem. Return value is string.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
         public string Text { get; internal set; }
 
         /// <summary>
-        /// Gets the icon EvasObject of popupitem.
+        /// Gets the EvasObject icon of the popupitem.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
         public EvasObject Icon { get; internal set; }

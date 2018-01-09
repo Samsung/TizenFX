@@ -24,7 +24,7 @@ namespace ElmSharp
     /// <summary>
     /// The Image is a widget that allows one to load and display an image file on it,
     /// be it from a disk file or from a memory region.
-    /// Inherits Widget
+    /// Inherits Widget.
     /// </summary>
     /// <since_tizen> preview </since_tizen>
     public class Image : Widget
@@ -37,9 +37,9 @@ namespace ElmSharp
         EvasImage _imageObject = null;
 
         /// <summary>
-        /// Creates and initializes a new instance of Image class.
+        /// Creates and initializes a new instance of the Image class.
         /// </summary>
-        /// <param name="parent">The parent is a given container which will be attached by Image as a child. It's <see cref="EvasObject"/> type.</param>
+        /// <param name="parent">The parent is a given container, which will be attached by the image as a child. It's <see cref="EvasObject"/> type.</param>
         /// <since_tizen> preview </since_tizen>
         public Image(EvasObject parent) : base(parent)
         {
@@ -60,7 +60,7 @@ namespace ElmSharp
         public event EventHandler LoadingCompleted;
 
         /// <summary>
-        /// Clicked will be triggered when the image is fail to load.
+        /// Clicked will be triggered when the image fails to load.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
         public event EventHandler LoadingFailed;
@@ -110,7 +110,7 @@ namespace ElmSharp
         }
 
         /// <summary>
-        /// Sets or gets whether the object is down resizeable.
+        /// Sets or gets whether the object is down resizable.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
         public bool CanScaleDown
@@ -127,7 +127,7 @@ namespace ElmSharp
         }
 
         /// <summary>
-        /// Sets or gets whether the object is up resizeable.
+        /// Sets or gets whether the object is up resizable.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
         public bool CanScaleUp
@@ -269,7 +269,7 @@ namespace ElmSharp
         }
 
         /// <summary>
-        /// Sets or gets whether alpha channel data is being used on the given image object.
+        /// Sets or gets whether the alpha channel data is being used on the given image object.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
         public bool IsOpaque
@@ -308,7 +308,7 @@ namespace ElmSharp
         }
 
         /// <summary>
-        /// Sets or gets the image color
+        /// Sets or gets the image color.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
         public override Color Color
@@ -335,7 +335,7 @@ namespace ElmSharp
         }
 
         /// <summary>
-        /// Sets the background color
+        /// Sets the background color.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
         public override Color BackgroundColor
@@ -358,7 +358,7 @@ namespace ElmSharp
         /// Gets the inlined image object of the image widget.
         /// This property allows one to get the underlying EvasObject of type Image from this elementary widget. It can be useful to do things like save the image to a file, etc.
         /// </summary>
-        /// <remarks>Be careful to not manipulate it, as it is under the control of widget.</remarks>
+        /// <remarks>Be careful not to manipulate it, as it is under the control of the widget.</remarks>
         /// <since_tizen> preview </since_tizen>
         public EvasImage ImageObject
         {
@@ -380,10 +380,10 @@ namespace ElmSharp
         /// <summary>
         /// Sets the dimensions for an image object's border, a region which is not scaled together with its center ever.
         /// </summary>
-        /// <param name="left">The border's left width</param>
-        /// <param name="right">The border's right width</param>
-        /// <param name="top">The border's top width</param>
-        /// <param name="bottom">The border's bottom width</param>
+        /// <param name="left">The border's left width.</param>
+        /// <param name="right">The border's right width.</param>
+        /// <param name="top">The border's top width.</param>
+        /// <param name="bottom">The border's bottom width.</param>
         /// <since_tizen> preview </since_tizen>
         public void SetBorder(int left, int right, int top, int bottom)
         {
@@ -425,7 +425,7 @@ namespace ElmSharp
         /// <summary>
         /// Sets the file that is used as the image's source.
         /// </summary>
-        /// <param name="file">The path to the file that is used as an image source</param>
+        /// <param name="file">The path to the file that is used as an image source.</param>
         /// <returns>(true = success, false = error)</returns>
         /// <since_tizen> preview </since_tizen>
         public bool Load(string file)
@@ -439,9 +439,9 @@ namespace ElmSharp
         }
 
         /// <summary>
-        /// Sets the uri that is used as the image's source.
+        /// Sets the URI that is used as the image's source.
         /// </summary>
-        /// <param name="uri">The uri to the file that is used as an image source</param>
+        /// <param name="uri">The URI to the file that is used as an image source.</param>
         /// <returns>(true = success, false = error)</returns>
         /// <since_tizen> preview </since_tizen>
         public bool Load(Uri uri)
@@ -456,12 +456,12 @@ namespace ElmSharp
         /// Sets a location in the memory to be used as an image object's source bitmap.
         /// </summary>
         /// <remarks>
-        /// This function is handy when the contents of an image file are mapped into the memory, for example.
-        /// The format string should be something like "png", "jpg", "tga", "tiff", "bmp" etc, when provided (null, on the contrary).
+        /// This function is handy when the contents of an image file are mapped into the memory, for example,
+        /// the format string should be something like "png", "jpg", "tga", "tiff", "bmp" etc, when provided (null, on the contrary).
         /// This improves the loader performance as it tries the "correct" loader first, before trying a range of other possible loaders until one succeeds.
         /// </remarks>
-        /// <param name="img">The binary data that is used as an image source</param>
-        /// <param name="size">The size of the binary data blob img</param>
+        /// <param name="img">The binary data that is used as an image source.</param>
+        /// <param name="size">The size of the binary data blob img.</param>
         /// <returns>(true = success, false = error)</returns>
         /// <since_tizen> preview </since_tizen>
         [Obsolete("This method will be removed. Use Load(Stream stream) instead.")]
@@ -478,7 +478,7 @@ namespace ElmSharp
         /// <summary>
         /// Sets the stream that is used as the image's source.
         /// </summary>
-        /// <param name="stream">The stream that is used as an image source</param>
+        /// <param name="stream">The stream that is used as an image source.</param>
         /// <returns>(true = success, false = error)</returns>
         /// <since_tizen> preview </since_tizen>
         public bool Load(Stream stream)
@@ -503,8 +503,8 @@ namespace ElmSharp
         /// <summary>
         /// Sets the file that is used as the image's source with async.
         /// </summary>
-        /// <param name="file">The path to the file that is used as an image source</param>
-        /// <param name="cancellationToken">cancellation token</param>
+        /// <param name="file">The path to the file that is used as an image source.</param>
+        /// <param name="cancellationToken">The cancellation token.</param>
         /// <returns>(true = success, false = error)</returns>
         /// <since_tizen> preview </since_tizen>
         public Task<bool> LoadAsync(string file, CancellationToken cancellationToken = default(CancellationToken))
@@ -557,10 +557,10 @@ namespace ElmSharp
         }
 
         /// <summary>
-        /// Sets the uri that is used as the image's source with async.
+        /// Sets the URI that is used as the image's source with async.
         /// </summary>
-        /// <param name="uri">The uri to the file that is used as an image source</param>
-        /// <param name="cancellationToken">cancellation token</param>
+        /// <param name="uri">The URI to the file that is used as an image source.</param>
+        /// <param name="cancellationToken">The cancellation token.</param>
         /// <returns>(true = success, false = error)</returns>
         /// <since_tizen> preview </since_tizen>
         public Task<bool> LoadAsync(Uri uri, CancellationToken cancellationToken = default(CancellationToken))
@@ -574,8 +574,8 @@ namespace ElmSharp
         /// <summary>
         /// Sets the stream that is used as the image's source with async.
         /// </summary>
-        /// <param name="stream">The stream that is used as an image source</param>
-        /// <param name="cancellationToken">cancellation token</param>
+        /// <param name="stream">The stream that is used as an image source.</param>
+        /// <param name="cancellationToken">The cancellation token.</param>
         /// <returns>(true = success, false = error)</returns>
         /// <since_tizen> preview </since_tizen>
         public async Task<bool> LoadAsync(Stream stream, CancellationToken cancellationToken = default(CancellationToken))
@@ -640,10 +640,10 @@ namespace ElmSharp
         }
 
         /// <summary>
-        /// Sets the color of color class for a given widget.
+        /// Sets the color of the Color class for a given widget.
         /// </summary>
-        /// <param name="part">The name of color class.</param>
-        /// <param name="color">The struct of color</param>
+        /// <param name="part">The name of the Color class.</param>
+        /// <param name="color">The struct of the Color class.</param>
         /// <since_tizen> preview </since_tizen>
         public override void SetPartColor(string part, Color color)
         {
@@ -654,10 +654,10 @@ namespace ElmSharp
         }
 
         /// <summary>
-        /// Gets the color of color class for a given widget.
+        /// Gets the color of the Color class for a given widget.
         /// </summary>
-        /// <param name="part">The name of color class.</param>
-        /// <returns>color object</returns>
+        /// <param name="part">The name of the Color class.</param>
+        /// <returns>The color object.</returns>
         /// <since_tizen> preview </since_tizen>
         public override Color GetPartColor(string part)
         {
@@ -668,8 +668,8 @@ namespace ElmSharp
         /// <summary>
         /// Sets the content at a part of a given container widget.
         /// </summary>
-        /// <param name="parent">The parent is a given container which will be attached by Image as a child. It's <see cref="EvasObject"/> type.</param>
-        /// <returns>The new object, otherwise null if it cannot be created</returns>
+        /// <param name="parent">The parent is a given container, which will be attached by the image as a child. It's <see cref="EvasObject"/> type.</param>
+        /// <returns>The new object, otherwise null if it cannot be created.</returns>
         /// <since_tizen> preview </since_tizen>
         protected override IntPtr CreateHandle(EvasObject parent)
         {
@@ -684,70 +684,70 @@ namespace ElmSharp
     }
 
     /// <summary>
-    /// Enumeration for the fill mode of image border
+    /// Enumeration for the fill mode of the image border.
     /// </summary>
     /// <since_tizen> preview </since_tizen>
     public enum ImageBorderFillMode
     {
         /// <summary>
-        /// None mode of image border
+        /// None mode of the image border.
         /// </summary>
         None,
 
         /// <summary>
-        /// Default mode of image border
+        /// Default mode of the image border.
         /// </summary>
         Default,
 
         /// <summary>
-        /// Solid mode of image border
+        /// Solid mode of the image border.
         /// </summary>
         Solid,
     }
 
     /// <summary>
-    /// Enumeration for the possible orientation options
+    /// Enumeration for the possible orientation options.
     /// </summary>
     /// <since_tizen> preview </since_tizen>
     public enum ImageOrientation : int
     {
         /// <summary>
-        /// No orientation change
+        /// No orientation change.
         /// </summary>
         None = 0,
 
         /// <summary>
-        /// Rotate 90 degrees clockwise
+        /// Rotate 90 degrees clockwise.
         /// </summary>
         Rotate90,
 
         /// <summary>
-        /// Rotate 180 degrees clockwise
+        /// Rotate 180 degrees clockwise.
         /// </summary>
         Rotate180,
 
         /// <summary>
-        /// Rotate 90 degrees counter-clockwise (i.e. 270 degrees clockwise)
+        /// Rotate 90 degrees counter-clockwise (i.e., 270 degrees clockwise).
         /// </summary>
         Rotate270,
 
         /// <summary>
-        /// Flip image horizontally
+        /// Flip the image horizontally.
         /// </summary>
         FlipHorizontal,
 
         /// <summary>
-        /// Flip image vertically
+        /// Flip the image vertically.
         /// </summary>
         FlipVertical,
 
         /// <summary>
-        /// Flip the image along the y = (width - x) line (bottom-left to top-right)
+        /// Flip the image along the Y = (width - X) line (bottom-left to top-right).
         /// </summary>
         FlipTranspose,
 
         /// <summary>
-        /// Flip the image along the y = x line (top-left to bottom-right)
+        /// Flip the image along the Y = X line (top-left to bottom-right).
         /// </summary>
         FlipTransverse
     }

@@ -25,7 +25,7 @@ namespace ElmSharp
     public enum SliderIndicatorVisibleMode
     {
         /// <summary>
-        /// Show indicator on mouse down or change in slider value.
+        /// Shows the indicator on mouse down or change in the slider value.
         /// </summary>
         Default,
 
@@ -62,7 +62,7 @@ namespace ElmSharp
         /// <summary>
         /// Creates and initializes a new instance of the Slider class.
         /// </summary>
-        /// <param name="parent">The <see cref="EvasObject"/> to which the new Slider will be attached as a child.</param>
+        /// <param name="parent">The <see cref="EvasObject"/> to which the new slider will be attached as a child.</param>
         /// <since_tizen> preview </since_tizen>
         public Slider(EvasObject parent) : base(parent)
         {
@@ -110,7 +110,7 @@ namespace ElmSharp
         /// </summary>
         /// <remarks>
         /// This sets the minimum width (when in the horizontal mode) or height (when in the vertical mode)
-        /// of the actual bar area of the slider obj. This in turn affects the object's minimum size.
+        /// of the actual bar area of the slider object. This in turn affects the object's minimum size.
         /// Use this when you're not setting other size hints expanding on the given direction
         /// (like weight and alignment hints), and you would like it to have a specific size.
         /// </remarks>
@@ -133,11 +133,11 @@ namespace ElmSharp
         /// <remarks>
         /// The slider may display its value somewhere other than the unit label,
         /// for example, above the slider knob that is dragged around. This function sets the format string
-        /// used for this.If NULL, the indicator label won't be visible. If not, it sets the format string
+        /// used for this. If null, the indicator label won't be visible. If not, it sets the format string
         /// for the label text. For the label text floating point value is provided, so the label text can
-        /// display up to 1 floating point value. Note that this is optional.Use a format string
+        /// display up to 1 floating point value. Note that this is optional. Use a format string
         /// such as "%1.2f meters" for example, and it displays values like: "3.14 meters" for a value
-        /// equal to 3.14159.By default, the indicator label is disabled.
+        /// equal to 3.14159. By default, the indicator label is disabled.
         /// </remarks>
         /// <since_tizen> preview </since_tizen>
         public string IndicatorFormat
@@ -156,7 +156,7 @@ namespace ElmSharp
         /// Sets or gets the orientation of a given slider widget.
         /// </summary>
         /// <remarks>
-        /// The orientation may be vertically or horizontally.By default, it's displayed horizontally.
+        /// The orientation may be vertical or horizontal. By default, it's displayed horizontally.
         /// </remarks>
         /// <since_tizen> preview </since_tizen>
         public bool IsHorizontal
@@ -177,7 +177,7 @@ namespace ElmSharp
         /// <remarks>
         /// This defines the allowed minimum values to be selected by the user.
         /// If the actual value is less than min, it is updated to min.
-        /// Actual value can be obtained with Value.By default, min is equal to 0.0.
+        /// Actual value can be obtained with value. By default, the minimum is equal to 0.0.
         /// </remarks>
         /// <since_tizen> preview </since_tizen>
         public double Minimum
@@ -199,7 +199,7 @@ namespace ElmSharp
         /// <remarks>
         /// This defines the allowed maximum values to be selected by the user.
         /// If the actual value is bigger then max, it is updated to max.
-        /// Actual value can be obtained with Value.By default, min is equal to 0.0, and max is equal to 1.0.
+        /// Actual value can be obtained with value. By default, minimum is equal to 0.0 and maximum is equal to 1.0.
         /// Maximum must be greater than minimum, otherwise the behavior is undefined.
         /// </remarks>
         /// <since_tizen> preview </since_tizen>
@@ -221,7 +221,7 @@ namespace ElmSharp
         /// </summary>
         /// <remarks>
         /// Value will be presented on the unit label following format specified with UnitFormat and
-        /// on indicator with IndicatorFormat.The value must to be between Minimum and Maximum values.
+        /// on indicator with IndicatorFormat. The value must be between minimum and maximum values.
         /// </remarks>
         /// <since_tizen> preview </since_tizen>
         public double Value
@@ -242,7 +242,7 @@ namespace ElmSharp
         /// <remarks>
         /// This value is used when the draggable object is moved automatically i.e.,
         /// in case of a key event when up/down/left/right key is pressed or in case accessibility
-        /// is set and the flick event is used to inc/dec slider values.
+        /// is set and the flick event is used to increase or decrease the slider values.
         /// By default, the step value is equal to 0.05.
         /// </remarks>
         /// <since_tizen> preview </since_tizen>
@@ -263,7 +263,7 @@ namespace ElmSharp
         /// </summary>
         /// <remarks>
         /// A slider may be inverted, in which case it gets its values inverted,
-        /// with high values being on the left or top and low values on the right or bottom,
+        /// with high values being on the left or top, and low values on the right or bottom,
         /// as opposed to normally have the low values on the former and high values on the latter,
         /// respectively, for the horizontal and vertical modes.
         /// </remarks>
@@ -285,7 +285,7 @@ namespace ElmSharp
         /// </summary>
         /// <remarks>
         /// By default, the indicator is bigger when dragged by the user.
-        /// It won't display values set with IndicatorFormat if you disable the indicator.
+        /// It won't display the values set with IndicatorFormat if you disable the indicator.
         /// </remarks>
         /// <since_tizen> preview </since_tizen>
         public bool IsIndicatorVisible
@@ -301,7 +301,7 @@ namespace ElmSharp
         }
 
         /// <summary>
-        /// Sets or gets the visible mode of slider indicator.
+        /// Sets or gets the visible mode of the slider indicator.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
         public SliderIndicatorVisibleMode IndicatorVisibleMode
@@ -317,7 +317,7 @@ namespace ElmSharp
         }
 
         /// <summary>
-        /// Sets or gets whether to Show the indicator of slider on focus.
+        /// Sets or gets whether to show the indicator of a slider on focus.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
         public bool IsIndicatorFocusable
@@ -335,8 +335,8 @@ namespace ElmSharp
         /// <summary>
         /// Creates a widget handle.
         /// </summary>
-        /// <param name="parent">Parent EvasObject</param>
-        /// <returns>Handle IntPtr</returns>
+        /// <param name="parent">Parent EvasObject.</param>
+        /// <returns>Handle IntPtr.</returns>
         /// <since_tizen> preview </since_tizen>
         protected override IntPtr CreateHandle(EvasObject parent)
         {

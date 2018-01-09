@@ -21,7 +21,6 @@ namespace Tizen.Tapi
     /// <summary>
     /// A class which defines SIM card initialization information.
     /// </summary>
-    /// <since_tizen> 4 </since_tizen>
     public class SimInitInfo
     {
         internal SimCardStatus SimStatus;
@@ -33,7 +32,6 @@ namespace Tizen.Tapi
         /// <summary>
         /// The SIM initialization status from the Telephony server boot up time.
         /// </summary>
-        /// <since_tizen> 4 </since_tizen>
         public SimCardStatus Status
         {
             get
@@ -45,7 +43,6 @@ namespace Tizen.Tapi
         /// <summary>
         /// The SIM card identification value. It will be true when the current inserted SIM card differs from the previous SIM. False otherwise.
         /// </summary>
-        /// <since_tizen> 4 </since_tizen>
         public bool IsCardChanged
         {
             get
@@ -58,7 +55,6 @@ namespace Tizen.Tapi
     /// <summary>
     /// A class which defines data for IMSI information.
     /// </summary>
-    /// <since_tizen> 4 </since_tizen>
     public class SimImsiInfo
     {
         internal string CountryCode;
@@ -71,7 +67,6 @@ namespace Tizen.Tapi
         /// <summary>
         /// Mobile Country Code.
         /// </summary>
-        /// <since_tizen> 4 </since_tizen>
         public string Mcc
         {
             get
@@ -83,7 +78,6 @@ namespace Tizen.Tapi
         /// <summary>
         /// Mobile Network Code.
         /// </summary>
-        /// <since_tizen> 4 </since_tizen>
         public string Mnc
         {
             get
@@ -95,7 +89,6 @@ namespace Tizen.Tapi
         /// <summary>
         /// Mobile Station Identification Number.
         /// </summary>
-        /// <since_tizen> 4 </since_tizen>
         public string Msin
         {
             get
@@ -108,7 +101,6 @@ namespace Tizen.Tapi
     /// <summary>
     /// A class which defines data for ECC information of GSM/USIM/CDMA SIM.
     /// </summary>
-    /// <since_tizen> 4 </since_tizen>
     public class SimEccInfo
     {
         internal string NameInfo;
@@ -121,7 +113,6 @@ namespace Tizen.Tapi
         /// <summary>
         /// Name. Applicable only for USIM(3G) SIM.
         /// </summary>
-        /// <since_tizen> 4 </since_tizen>
         public string Name
         {
             get
@@ -133,7 +124,6 @@ namespace Tizen.Tapi
         /// <summary>
         /// Number.
         /// </summary>
-        /// <since_tizen> 4 </since_tizen>
         public string Number
         {
             get
@@ -145,7 +135,6 @@ namespace Tizen.Tapi
         /// <summary>
         /// Emergency service type. Applicable only for USIM(3G) SIM.
         /// </summary>
-        /// <since_tizen> 4 </since_tizen>
         public SimEccEmergencyServiceType Category
         {
             get
@@ -158,7 +147,6 @@ namespace Tizen.Tapi
     /// <summary>
     /// A class which defines ECC information list.
     /// </summary>
-    /// <since_tizen> 4 </since_tizen>
     public class SimEccInfoList
     {
         internal int EccCount;
@@ -170,7 +158,6 @@ namespace Tizen.Tapi
         /// <summary>
         /// ECC count.
         /// </summary>
-        /// <since_tizen> 4 </since_tizen>
         public int Count
         {
             get
@@ -182,7 +169,6 @@ namespace Tizen.Tapi
         /// <summary>
         /// List of ECC.
         /// </summary>
-        /// <since_tizen> 4 </since_tizen>
         public IEnumerable<SimEccInfo> EccList
         {
             get
@@ -195,7 +181,6 @@ namespace Tizen.Tapi
     /// <summary>
     /// A class which defines ICCID(Integrated Circuit Card Identifier).
     /// </summary>
-    /// <since_tizen> 4 </since_tizen>
     public class SimIccIdInfo
     {
         internal int Length;
@@ -207,7 +192,6 @@ namespace Tizen.Tapi
         /// <summary>
         /// Integrated Circuit Card number length.
         /// </summary>
-        /// <since_tizen> 4 </since_tizen>
         public int IccLength
         {
             get
@@ -219,7 +203,6 @@ namespace Tizen.Tapi
         /// <summary>
         /// Integrated Circuit Card number.
         /// </summary>
-        /// <since_tizen> 4 </since_tizen>
         public string IccNumber
         {
             get
@@ -232,7 +215,6 @@ namespace Tizen.Tapi
     /// <summary>
     /// A class which defines call forwarding indication status data.
     /// </summary>
-    /// <since_tizen> 4 </since_tizen>
     public class SimCfis
     {
         private int _recIndex;
@@ -247,7 +229,6 @@ namespace Tizen.Tapi
         /// <summary>
         /// Record index.
         /// </summary>
-        /// <since_tizen> 4 </since_tizen>
         public int RecIndex
         {
             get
@@ -264,7 +245,6 @@ namespace Tizen.Tapi
         /// <summary>
         /// MSP number.
         /// </summary>
-        /// <since_tizen> 4 </since_tizen>
         public byte MspNum
         {
             get
@@ -281,7 +261,6 @@ namespace Tizen.Tapi
         /// <summary>
         /// Call forwarding unconditional indication status.
         /// </summary>
-        /// <since_tizen> 4 </since_tizen>
         public byte CfuStatus
         {
             get
@@ -298,7 +277,6 @@ namespace Tizen.Tapi
         /// <summary>
         /// SIM Type of number.
         /// </summary>
-        /// <since_tizen> 4 </since_tizen>
         public SimTypeOfNumber Ton
         {
             get
@@ -315,7 +293,6 @@ namespace Tizen.Tapi
         /// <summary>
         /// SIM numbering plan identity.
         /// </summary>
-        /// <since_tizen> 4 </since_tizen>
         public SimNumberPlanIdentity Npi
         {
             get
@@ -332,7 +309,6 @@ namespace Tizen.Tapi
         /// <summary>
         /// Dialing Number/SSC String.
         /// </summary>
-        /// <since_tizen> 4 </since_tizen>
         public string CfuNum
         {
             get
@@ -349,7 +325,6 @@ namespace Tizen.Tapi
         /// <summary>
         /// Capability/Configuration 2 Record Identifier.
         /// </summary>
-        /// <since_tizen> 4 </since_tizen>
         public byte Cc2Id
         {
             get
@@ -366,7 +341,6 @@ namespace Tizen.Tapi
         /// <summary>
         /// Extension 7 Record Identifier.
         /// </summary>
-        /// <since_tizen> 4 </since_tizen>
         public byte Ext7Id
         {
             get
@@ -384,7 +358,6 @@ namespace Tizen.Tapi
     /// <summary>
     /// A class which defines call forwarding indication status list.
     /// </summary>
-    /// <since_tizen> 4 </since_tizen>
     public class SimCfisList
     {
         internal int Count;
@@ -396,7 +369,6 @@ namespace Tizen.Tapi
         /// <summary>
         /// Profile count.
         /// </summary>
-        /// <since_tizen> 4 </since_tizen>
         public int ProfileCount
         {
             get
@@ -408,7 +380,6 @@ namespace Tizen.Tapi
         /// <summary>
         /// List of CFIS.
         /// </summary>
-        /// <since_tizen> 4 </since_tizen>
         public IEnumerable<SimCfis> CfisList
         {
             get
@@ -421,7 +392,6 @@ namespace Tizen.Tapi
     /// <summary>
     /// A class which defines CPHS call forwarding status data.
     /// </summary>
-    /// <since_tizen> 4 </since_tizen>
     public class SimCphsCf
     {
         private int _line1;
@@ -432,7 +402,6 @@ namespace Tizen.Tapi
         /// <summary>
         /// CallForwardUnconditionalLine 1.
         /// </summary>
-        /// <since_tizen> 4 </since_tizen>
         public int Line1
         {
             get
@@ -449,7 +418,6 @@ namespace Tizen.Tapi
         /// <summary>
         /// CallForwardUnconditionalLine 2.
         /// </summary>
-        /// <since_tizen> 4 </since_tizen>
         public int Line2
         {
             get
@@ -466,7 +434,6 @@ namespace Tizen.Tapi
         /// <summary>
         /// CallForwardUnconditional Fax.
         /// </summary>
-        /// <since_tizen> 4 </since_tizen>
         public int Fax
         {
             get
@@ -483,7 +450,6 @@ namespace Tizen.Tapi
         /// <summary>
         /// CallForwardUnconditional data.
         /// </summary>
-        /// <since_tizen> 4 </since_tizen>
         public int Data
         {
             get
@@ -501,7 +467,6 @@ namespace Tizen.Tapi
     /// <summary>
     /// A class which defines call forwarding response.
     /// </summary>
-    /// <since_tizen> 4 </since_tizen>
     public class SimCallForwardResponse
     {
         internal bool IsCphsCf;
@@ -514,7 +479,6 @@ namespace Tizen.Tapi
         /// <summary>
         /// CPHS or not.
         /// </summary>
-        /// <since_tizen> 4 </since_tizen>
         public bool IsCphs
         {
             get
@@ -526,7 +490,6 @@ namespace Tizen.Tapi
         /// <summary>
         /// List of CFIS.
         /// </summary>
-        /// <since_tizen> 4 </since_tizen>
         public SimCfisList CfList
         {
             get
@@ -538,7 +501,6 @@ namespace Tizen.Tapi
         /// <summary>
         /// CPHS CF.
         /// </summary>
-        /// <since_tizen> 4 </since_tizen>
         public SimCphsCf CphsCf
         {
             get
@@ -551,7 +513,6 @@ namespace Tizen.Tapi
     /// <summary>
     /// A class which defines call forwarding request.
     /// </summary>
-    /// <since_tizen> 4 </since_tizen>
     public class SimCallForwardRequest
     {
         private bool _isCphs;
@@ -561,7 +522,6 @@ namespace Tizen.Tapi
         /// <summary>
         /// CPHS or not.
         /// </summary>
-        /// <since_tizen> 4 </since_tizen>
         public bool IsCphs
         {
             get
@@ -578,7 +538,6 @@ namespace Tizen.Tapi
         /// <summary>
         /// CFIS.
         /// </summary>
-        /// <since_tizen> 4 </since_tizen>
         /// <remarks>
         /// This should be filled only if IsCphs is false.
         /// </remarks>
@@ -598,7 +557,6 @@ namespace Tizen.Tapi
         /// <summary>
         /// CPHS CF.
         /// </summary>
-        /// <since_tizen> 4 </since_tizen>
         /// <remarks>
         /// This should be filled only if IsCphs is true.
         /// </remarks>
@@ -619,7 +577,6 @@ namespace Tizen.Tapi
     /// <summary>
     /// A class which defines message waiting indication status data.
     /// </summary>
-    /// <since_tizen> 4 </since_tizen>
     public class SimMwis
     {
         private int _recIndex;
@@ -633,7 +590,6 @@ namespace Tizen.Tapi
         /// <summary>
         /// Record index.
         /// </summary>
-        /// <since_tizen> 4 </since_tizen>
         public int RecIndex
         {
             get
@@ -650,7 +606,6 @@ namespace Tizen.Tapi
         /// <summary>
         /// Indicator type.
         /// </summary>
-        /// <since_tizen> 4 </since_tizen>
         public byte IndicatorStatus
         {
             get
@@ -667,7 +622,6 @@ namespace Tizen.Tapi
         /// <summary>
         /// VoiceMail count.
         /// </summary>
-        /// <since_tizen> 4 </since_tizen>
         public int VoiceCount
         {
             get
@@ -684,7 +638,6 @@ namespace Tizen.Tapi
         /// <summary>
         /// Fax count.
         /// </summary>
-        /// <since_tizen> 4 </since_tizen>
         public int FaxCount
         {
             get
@@ -701,7 +654,6 @@ namespace Tizen.Tapi
         /// <summary>
         /// Email count.
         /// </summary>
-        /// <since_tizen> 4 </since_tizen>
         public int EmailCount
         {
             get
@@ -718,7 +670,6 @@ namespace Tizen.Tapi
         /// <summary>
         /// Other count.
         /// </summary>
-        /// <since_tizen> 4 </since_tizen>
         public int OtherCount
         {
             get
@@ -735,7 +686,6 @@ namespace Tizen.Tapi
         /// <summary>
         /// VideoMail count.
         /// </summary>
-        /// <since_tizen> 4 </since_tizen>
         public int VideoCount
         {
             get
@@ -753,7 +703,6 @@ namespace Tizen.Tapi
     /// <summary>
     /// A class which defines message waiting indication status list.
     /// </summary>
-    /// <since_tizen> 4 </since_tizen>
     public class SimMwisList
     {
         internal int Count;
@@ -765,7 +714,6 @@ namespace Tizen.Tapi
         /// <summary>
         /// Profile count.
         /// </summary>
-        /// <since_tizen> 4 </since_tizen>
         public int ProfileCount
         {
             get
@@ -777,7 +725,6 @@ namespace Tizen.Tapi
         /// <summary>
         /// List of MWIS.
         /// </summary>
-        /// <since_tizen> 4 </since_tizen>
         public IEnumerable<SimMwis> MwList
         {
             get
@@ -790,7 +737,6 @@ namespace Tizen.Tapi
     /// <summary>
     /// A class which defines CPHS message waiting status data.
     /// </summary>
-    /// <since_tizen> 4 </since_tizen>
     public class SimCphsMw
     {
         private bool _isVoice1;
@@ -801,7 +747,6 @@ namespace Tizen.Tapi
         /// <summary>
         /// VoiceMsgLine1 message waiting flag.
         /// </summary>
-        /// <since_tizen> 4 </since_tizen>
         public bool IsVoice1
         {
             get
@@ -818,7 +763,6 @@ namespace Tizen.Tapi
         /// <summary>
         /// VoiceMsgLine2 message waiting flag.
         /// </summary>
-        /// <since_tizen> 4 </since_tizen>
         public bool IsVoice2
         {
             get
@@ -835,7 +779,6 @@ namespace Tizen.Tapi
         /// <summary>
         /// FAX message waiting flag.
         /// </summary>
-        /// <since_tizen> 4 </since_tizen>
         public bool IsFax
         {
             get
@@ -852,7 +795,6 @@ namespace Tizen.Tapi
         /// <summary>
         /// Data message waiting flag.
         /// </summary>
-        /// <since_tizen> 4 </since_tizen>
         public bool IsData
         {
             get
@@ -870,7 +812,6 @@ namespace Tizen.Tapi
     /// <summary>
     /// A class which defines message waiting reponse.
     /// </summary>
-    /// <since_tizen> 4 </since_tizen>
     public class SimMessageWaitingResponse
     {
         internal bool IsCphsMw;
@@ -883,7 +824,6 @@ namespace Tizen.Tapi
         /// <summary>
         /// CPHS or not.
         /// </summary>
-        /// <since_tizen> 4 </since_tizen>
         public bool IsCphs
         {
             get
@@ -895,7 +835,6 @@ namespace Tizen.Tapi
         /// <summary>
         /// List of MWIS.
         /// </summary>
-        /// <since_tizen> 4 </since_tizen>
         public SimMwisList MwList
         {
             get
@@ -907,7 +846,6 @@ namespace Tizen.Tapi
         /// <summary>
         /// CPHS MW.
         /// </summary>
-        /// <since_tizen> 4 </since_tizen>
         public SimCphsMw CphsMw
         {
             get
@@ -920,7 +858,6 @@ namespace Tizen.Tapi
     /// <summary>
     /// A class which defines message waiting request.
     /// </summary>
-    /// <since_tizen> 4 </since_tizen>
     public class SimMessageWaitingRequest
     {
         private bool _isCphs;
@@ -930,7 +867,6 @@ namespace Tizen.Tapi
         /// <summary>
         /// CPHS or not.
         /// </summary>
-        /// <since_tizen> 4 </since_tizen>
         public bool IsCphs
         {
             get
@@ -947,7 +883,6 @@ namespace Tizen.Tapi
         /// <summary>
         /// MWIS.
         /// </summary>
-        /// <since_tizen> 4 </since_tizen>
         /// <remarks>
         /// This should be filled only if IsCphs is false.
         /// </remarks>
@@ -967,7 +902,6 @@ namespace Tizen.Tapi
         /// <summary>
         /// CPHS MW.
         /// </summary>
-        /// <since_tizen> 4 </since_tizen>
         /// <remarks>
         /// This should be filled only if IsCphs is true.
         /// </remarks>
@@ -988,7 +922,6 @@ namespace Tizen.Tapi
     /// <summary>
     /// A class which defines mailbox dialing number data.
     /// </summary>
-    /// <since_tizen> 4 </since_tizen>
     public class SimMailboxNumber
     {
         private bool _isCphs;
@@ -1006,7 +939,6 @@ namespace Tizen.Tapi
         /// <summary>
         /// CPHS or not.
         /// </summary>
-        /// <since_tizen> 4 </since_tizen>
         public bool IsCphs
         {
             get
@@ -1023,7 +955,6 @@ namespace Tizen.Tapi
         /// <summary>
         /// Index which stands for the location where the record is saved in SIM.
         /// </summary>
-        /// <since_tizen> 4 </since_tizen>
         public int RecIndex
         {
             get
@@ -1040,7 +971,6 @@ namespace Tizen.Tapi
         /// <summary>
         /// SIM profile index.
         /// </summary>
-        /// <since_tizen> 4 </since_tizen>
         public int ProfileNumber
         {
             get
@@ -1057,7 +987,6 @@ namespace Tizen.Tapi
         /// <summary>
         /// Mailbox type.
         /// </summary>
-        /// <since_tizen> 4 </since_tizen>
         public SimMailboxType MbType
         {
             get
@@ -1074,7 +1003,6 @@ namespace Tizen.Tapi
         /// <summary>
         /// Alpha max length in SIM.
         /// </summary>
-        /// <since_tizen> 4 </since_tizen>
         public int AlphaMaxLength
         {
             get
@@ -1091,7 +1019,6 @@ namespace Tizen.Tapi
         /// <summary>
         /// Alpha Identifier.
         /// </summary>
-        /// <since_tizen> 4 </since_tizen>
         public string AlphaId
         {
             get
@@ -1108,7 +1035,6 @@ namespace Tizen.Tapi
         /// <summary>
         /// Type Of Number.
         /// </summary>
-        /// <since_tizen> 4 </since_tizen>
         public SimTypeOfNumber Ton
         {
             get
@@ -1125,7 +1051,6 @@ namespace Tizen.Tapi
         /// <summary>
         /// Number Plan Identity.
         /// </summary>
-        /// <since_tizen> 4 </since_tizen>
         public SimNumberPlanIdentity Npi
         {
             get
@@ -1142,7 +1067,6 @@ namespace Tizen.Tapi
         /// <summary>
         /// Dialing Number/SSC String.
         /// </summary>
-        /// <since_tizen> 4 </since_tizen>
         public string Number
         {
             get
@@ -1159,7 +1083,6 @@ namespace Tizen.Tapi
         /// <summary>
         /// Capability/Configuration Identifier.
         /// </summary>
-        /// <since_tizen> 4 </since_tizen>
         public byte CcId
         {
             get
@@ -1176,7 +1099,6 @@ namespace Tizen.Tapi
         /// <summary>
         /// Extension 1 Record Identifier.
         /// </summary>
-        /// <since_tizen> 4 </since_tizen>
         public byte Ext1Id
         {
             get
@@ -1194,7 +1116,6 @@ namespace Tizen.Tapi
     /// <summary>
     /// A class which defines mailbox dialing number list.
     /// </summary>
-    /// <since_tizen> 4 </since_tizen>
     public class SimMailboxList
     {
         internal int MbCount;
@@ -1206,7 +1127,6 @@ namespace Tizen.Tapi
         /// <summary>
         /// Mailbox count.
         /// </summary>
-        /// <since_tizen> 4 </since_tizen>
         public int Count
         {
             get
@@ -1218,7 +1138,6 @@ namespace Tizen.Tapi
         /// <summary>
         /// List of mailbox.
         /// </summary>
-        /// <since_tizen> 4 </since_tizen>
         public IEnumerable<SimMailboxNumber> List
         {
             get
@@ -1231,7 +1150,6 @@ namespace Tizen.Tapi
     /// <summary>
     /// A class which defines available optional CPHS SIM files.
     /// </summary>
-    /// <since_tizen> 4 </since_tizen>
     public class SimCphsServiceTable
     {
         internal int CustomerSvcProfile;
@@ -1246,7 +1164,6 @@ namespace Tizen.Tapi
         /// <summary>
         /// Customer Service Profile (CSP).
         /// </summary>
-        /// <since_tizen> 4 </since_tizen>
         public int CustomerServiceProfile
         {
             get
@@ -1258,7 +1175,6 @@ namespace Tizen.Tapi
         /// <summary>
         /// Service String Table (SST).
         /// </summary>
-        /// <since_tizen> 4 </since_tizen>
         public int ServiceStringTable
         {
             get
@@ -1270,7 +1186,6 @@ namespace Tizen.Tapi
         /// <summary>
         /// MailBoxNumbers.
         /// </summary>
-        /// <since_tizen> 4 </since_tizen>
         public int MailboxNumbers
         {
             get
@@ -1282,7 +1197,6 @@ namespace Tizen.Tapi
         /// <summary>
         /// Short form of operator name.
         /// </summary>
-        /// <since_tizen> 4 </since_tizen>
         public int OperatorNameShortForm
         {
             get
@@ -1294,7 +1208,6 @@ namespace Tizen.Tapi
         /// <summary>
         /// Information numbers.
         /// </summary>
-        /// <since_tizen> 4 </since_tizen>
         public int InformationNumbers
         {
             get
@@ -1307,7 +1220,6 @@ namespace Tizen.Tapi
     /// <summary>
     /// A class which defines CPHS information data.
     /// </summary>
-    /// <since_tizen> 4 </since_tizen>
     public class SimCphsInfo
     {
         internal SimCphsPhaseType Phase;
@@ -1319,7 +1231,6 @@ namespace Tizen.Tapi
         /// <summary>
         /// CPHS phase type.
         /// </summary>
-        /// <since_tizen> 4 </since_tizen>
         public SimCphsPhaseType CphsPhase
         {
             get
@@ -1331,7 +1242,6 @@ namespace Tizen.Tapi
         /// <summary>
         /// CPHS service table.
         /// </summary>
-        /// <since_tizen> 4 </since_tizen>
         public SimCphsServiceTable CphsServiceTable
         {
             get
@@ -1344,7 +1254,6 @@ namespace Tizen.Tapi
     /// <summary>
     /// A class which defines CSIM service table.
     /// </summary>
-    /// <since_tizen> 4 </since_tizen>
     public class SimCst
     {
         internal SimCdmaServiceTable CdmaSvc;
@@ -1357,7 +1266,6 @@ namespace Tizen.Tapi
         /// <summary>
         /// Cdma service table;
         /// </summary>
-        /// <since_tizen> 4 </since_tizen>
         public SimCdmaServiceTable CdmaSvcTable
         {
             get
@@ -1369,7 +1277,6 @@ namespace Tizen.Tapi
         /// <summary>
         /// Cdma service. Gives mask value of SimCdmaService enum.
         /// </summary>
-        /// <since_tizen> 4 </since_tizen>
         /// <remarks>
         /// This will be filled only if CdmaSvcTable is Cdma.
         /// </remarks>
@@ -1384,7 +1291,6 @@ namespace Tizen.Tapi
         /// <summary>
         /// Csim service. Gives mask value of SimCsimService enum.
         /// </summary>
-        /// <since_tizen> 4 </since_tizen>
         /// <remarks>
         /// This will be filled only if CdmaSvcTable is Csim.
         /// </remarks>
@@ -1400,7 +1306,6 @@ namespace Tizen.Tapi
     /// <summary>
     /// A class which defines SIM service table.
     /// </summary>
-    /// <since_tizen> 4 </since_tizen>
     public class SimServiceTable
     {
         internal SimCardType Type;
@@ -1414,7 +1319,6 @@ namespace Tizen.Tapi
         /// <summary>
         /// SIM card type.
         /// </summary>
-        /// <since_tizen> 4 </since_tizen>
         public SimCardType SimType
         {
             get
@@ -1426,7 +1330,6 @@ namespace Tizen.Tapi
         /// <summary>
         /// SIM service table. Gives mask value of SimSstService enum.
         /// </summary>
-        /// <since_tizen> 4 </since_tizen>
         /// <remarks>
         /// This will be filled only if SimType is Gsm.
         /// </remarks>
@@ -1441,7 +1344,6 @@ namespace Tizen.Tapi
         /// <summary>
         /// USIM service table. Gives mask value of SimUstService enum.
         /// </summary>
-        /// <since_tizen> 4 </since_tizen>
         /// <remarks>
         /// This will be filled only if SimType is Usim.
         /// </remarks>
@@ -1456,7 +1358,6 @@ namespace Tizen.Tapi
         /// <summary>
         /// CSIM service table.
         /// </summary>
-        /// <since_tizen> 4 </since_tizen>
         /// <remarks>
         /// This will be filled only if SimType is Ruim.
         /// </remarks>
@@ -1472,7 +1373,6 @@ namespace Tizen.Tapi
     /// <summary>
     /// A class which defines MSISDN information of the GSM/CDMA SIM.
     /// </summary>
-    /// <since_tizen> 4 </since_tizen>
     public class SimSubscriberInfo
     {
         internal string MsisdnNum;
@@ -1484,7 +1384,6 @@ namespace Tizen.Tapi
         /// <summary>
         /// MSISDN number. If it does not exist, a null string will be returned
         /// </summary>
-        /// <since_tizen> 4 </since_tizen>
         public string Number
         {
             get
@@ -1496,7 +1395,6 @@ namespace Tizen.Tapi
         /// <summary>
         /// MSISDN name. If it does not exist, a null string will be returned. Not applicable for CDMA.
         /// </summary>
-        /// <since_tizen> 4 </since_tizen>
         public string Name
         {
             get
@@ -1509,7 +1407,6 @@ namespace Tizen.Tapi
     /// <summary>
     /// A class which defines MSISDN list.
     /// </summary>
-    /// <since_tizen> 4 </since_tizen>
     public class SimMsisdnList
     {
         internal int MsisdnCount;
@@ -1521,7 +1418,6 @@ namespace Tizen.Tapi
         /// <summary>
         /// Count.
         /// </summary>
-        /// <since_tizen> 4 </since_tizen>
         public int Count
         {
             get
@@ -1533,7 +1429,6 @@ namespace Tizen.Tapi
         /// <summary>
         /// List of subscriber info.
         /// </summary>
-        /// <since_tizen> 4 </since_tizen>
         public IEnumerable<SimSubscriberInfo> List
         {
             get
@@ -1546,7 +1441,6 @@ namespace Tizen.Tapi
     /// <summary>
     /// A class which defines OPLMNwACT data.
     /// </summary>
-    /// <since_tizen> 4 </since_tizen>
     public class SimOplmnwact
     {
         internal string PlmnString;
@@ -1559,7 +1453,6 @@ namespace Tizen.Tapi
         /// <summary>
         /// PLMN.
         /// </summary>
-        /// <since_tizen> 4 </since_tizen>
         public string Plmn
         {
             get
@@ -1571,7 +1464,6 @@ namespace Tizen.Tapi
         /// <summary>
         /// UMTS or not.
         /// </summary>
-        /// <since_tizen> 4 </since_tizen>
         public bool IsUmts
         {
             get
@@ -1583,7 +1475,6 @@ namespace Tizen.Tapi
         /// <summary>
         /// GSM or not.
         /// </summary>
-        /// <since_tizen> 4 </since_tizen>
         public bool IsGsm
         {
             get
@@ -1596,7 +1487,6 @@ namespace Tizen.Tapi
     /// <summary>
     /// A class which defines OPLMNwACT list.
     /// </summary>
-    /// <since_tizen> 4 </since_tizen>
     public class SimOplmnwactList
     {
         internal int OplmnCount;
@@ -1608,7 +1498,6 @@ namespace Tizen.Tapi
         /// <summary>
         /// Count.
         /// </summary>
-        /// <since_tizen> 4 </since_tizen>
         public int Count
         {
             get
@@ -1620,7 +1509,6 @@ namespace Tizen.Tapi
         /// <summary>
         /// List of OPLMNWACT.
         /// </summary>
-        /// <since_tizen> 4 </since_tizen>
         public IEnumerable<SimOplmnwact> List
         {
             get
@@ -1633,7 +1521,6 @@ namespace Tizen.Tapi
     /// <summary>
     /// A class which defines SPN(Service Provider Name).
     /// </summary>
-    /// <since_tizen> 4 </since_tizen>
     public class SimSpn
     {
         internal byte Condition;
@@ -1645,7 +1532,6 @@ namespace Tizen.Tapi
         /// <summary>
         /// Display condition.
         /// </summary>
-        /// <since_tizen> 4 </since_tizen>
         public byte DisplayCondition
         {
             get
@@ -1657,7 +1543,6 @@ namespace Tizen.Tapi
         /// <summary>
         /// Service Provider Name.
         /// </summary>
-        /// <since_tizen> 4 </since_tizen>
         public string Spn
         {
             get
@@ -1670,7 +1555,6 @@ namespace Tizen.Tapi
     /// <summary>
     /// A class which defines CPHS network name.
     /// </summary>
-    /// <since_tizen> 4 </since_tizen>
     public class SimCphsNetName
     {
         internal string Full;
@@ -1682,7 +1566,6 @@ namespace Tizen.Tapi
         /// <summary>
         /// Full name.
         /// </summary>
-        /// <since_tizen> 4 </since_tizen>
         public string FullName
         {
             get
@@ -1694,7 +1577,6 @@ namespace Tizen.Tapi
         /// <summary>
         /// Short name.
         /// </summary>
-        /// <since_tizen> 4 </since_tizen>
         public string ShortName
         {
             get
@@ -1707,7 +1589,6 @@ namespace Tizen.Tapi
     /// <summary>
     /// A class which defines authentication request data.
     /// </summary>
-    /// <since_tizen> 4 </since_tizen>
     public class SimAuthenticationData
     {
         private SimAuthenticationType _authType;
@@ -1722,7 +1603,6 @@ namespace Tizen.Tapi
         /// <summary>
         /// A constructor to instantiate SimAuthenticationData class with necessary parameters.
         /// </summary>
-        /// <since_tizen> 4 </since_tizen>
         /// <param name="authType">Authentication type.</param>
         /// <param name="randLength">The length of RAND.</param>
         /// <param name="autnLength">The length of AUTN. It is not used in case of GSM AUTH.</param>
@@ -1781,7 +1661,6 @@ namespace Tizen.Tapi
     /// <summary>
     /// A class which defines authentication result data.
     /// </summary>
-    /// <since_tizen> 4 </since_tizen>
     public class SimAuthenticationResponse
     {
         internal SimAuthenticationType Type;
@@ -1801,7 +1680,6 @@ namespace Tizen.Tapi
         /// <summary>
         /// Authentication type.
         /// </summary>
-        /// <since_tizen> 4 </since_tizen>
         public SimAuthenticationType AuthType
         {
             get
@@ -1813,7 +1691,6 @@ namespace Tizen.Tapi
         /// <summary>
         /// Authentication result.
         /// </summary>
-        /// <since_tizen> 4 </since_tizen>
         public SimAuthenticationResult AuthResult
         {
             get
@@ -1825,7 +1702,6 @@ namespace Tizen.Tapi
         /// <summary>
         /// Response length.
         /// </summary>
-        /// <since_tizen> 4 </since_tizen>
         public int ResponseLength
         {
             get
@@ -1837,7 +1713,6 @@ namespace Tizen.Tapi
         /// <summary>
         /// Response data.
         /// </summary>
-        /// <since_tizen> 4 </since_tizen>
         public string ResponseData
         {
             get
@@ -1849,7 +1724,6 @@ namespace Tizen.Tapi
         /// <summary>
         /// The length of the authentication key.
         /// </summary>
-        /// <since_tizen> 4 </since_tizen>
         public int AuthKeyLength
         {
             get
@@ -1861,7 +1735,6 @@ namespace Tizen.Tapi
         /// <summary>
         /// The data of the authentication key.
         /// </summary>
-        /// <since_tizen> 4 </since_tizen>
         public string AuthKey
         {
             get
@@ -1873,7 +1746,6 @@ namespace Tizen.Tapi
         /// <summary>
         /// The length of the cipher key.
         /// </summary>
-        /// <since_tizen> 4 </since_tizen>
         public int CipherLength
         {
             get
@@ -1885,7 +1757,6 @@ namespace Tizen.Tapi
         /// <summary>
         /// Cipher key.
         /// </summary>
-        /// <since_tizen> 4 </since_tizen>
         public string CipherData
         {
             get
@@ -1897,7 +1768,6 @@ namespace Tizen.Tapi
         /// <summary>
         /// The length of the integrity key.
         /// </summary>
-        /// <since_tizen> 4 </since_tizen>
         public int IntegrityLength
         {
             get
@@ -1909,7 +1779,6 @@ namespace Tizen.Tapi
         /// <summary>
         /// Integrity key.
         /// </summary>
-        /// <since_tizen> 4 </since_tizen>
         public string IntegrityData
         {
             get
@@ -1922,7 +1791,6 @@ namespace Tizen.Tapi
     /// <summary>
     /// A class which defines information about SIM PIN data.
     /// </summary>
-    /// <since_tizen> 4 </since_tizen>
     public class SimPinData
     {
         private SimPinType _type;
@@ -1935,7 +1803,6 @@ namespace Tizen.Tapi
         /// <summary>
         /// A constructor to instantiate SimPinData class which necessary parameters.
         /// </summary>
-        /// <since_tizen> 4 </since_tizen>
         /// <param name="type">PIN type.</param>
         /// <param name="pin">PIN code.</param>
         /// <param name="pinLength">PIN code length.</param>
@@ -1974,7 +1841,6 @@ namespace Tizen.Tapi
     /// <summary>
     /// A class which defines PIN information.
     /// </summary>
-    /// <since_tizen> 4 </since_tizen>
     public class SimPinResult
     {
         internal SimPinType PinType;
@@ -1986,7 +1852,6 @@ namespace Tizen.Tapi
         /// <summary>
         /// Specifies the PIN or PUK type.
         /// </summary>
-        /// <since_tizen> 4 </since_tizen>
         public SimPinType Type
         {
             get
@@ -1998,7 +1863,6 @@ namespace Tizen.Tapi
         /// <summary>
         /// Number of attempts remaining for PIN/PUK verification.
         /// </summary>
-        /// <since_tizen> 4 </since_tizen>
         public int RetryCount
         {
             get
@@ -2011,7 +1875,6 @@ namespace Tizen.Tapi
     /// <summary>
     /// A class which is used to used to enable/disable facility.
     /// </summary>
-    /// <since_tizen> 4 </since_tizen>
     public class SimFacility
     {
         private SimLockType _lockType;
@@ -2024,7 +1887,6 @@ namespace Tizen.Tapi
         /// <summary>
         /// A constructor to instantiate SimFacility class with necessary parameters.
         /// </summary>
-        /// <since_tizen> 4 </since_tizen>
         /// <param name="lockType">Facility type.</param>
         /// <param name="password">Password.</param>
         /// <param name="passwordLength">Password length.</param>
@@ -2063,7 +1925,6 @@ namespace Tizen.Tapi
     /// <summary>
     /// A class which defines facility result data.
     /// </summary>
-    /// <since_tizen> 4 </since_tizen>
     public class SimFacilityResult
     {
         internal SimLockType LockType;
@@ -2075,7 +1936,6 @@ namespace Tizen.Tapi
         /// <summary>
         /// Specifies the PIN or PUK type.
         /// </summary>
-        /// <since_tizen> 4 </since_tizen>
         public SimLockType Type
         {
             get
@@ -2087,7 +1947,6 @@ namespace Tizen.Tapi
         /// <summary>
         /// Number of attempts remaining for PIN/PUK verification.
         /// </summary>
-        /// <since_tizen> 4 </since_tizen>
         public int RetryCount
         {
             get
@@ -2100,7 +1959,6 @@ namespace Tizen.Tapi
     /// <summary>
     /// A class which defines facility info data.
     /// </summary>
-    /// <since_tizen> 4 </since_tizen>
     public class SimFacilityInfo
     {
         internal SimLockType LockType;
@@ -2112,7 +1970,6 @@ namespace Tizen.Tapi
         /// <summary>
         /// Lock type.
         /// </summary>
-        /// <since_tizen> 4 </since_tizen>
         public SimLockType Type
         {
             get
@@ -2124,7 +1981,6 @@ namespace Tizen.Tapi
         /// <summary>
         /// Facility status.
         /// </summary>
-        /// <since_tizen> 4 </since_tizen>
         public SimFacilityStatus Status
         {
             get
@@ -2137,7 +1993,6 @@ namespace Tizen.Tapi
     /// <summary>
     /// A class which defines information about lock type.
     /// </summary>
-    /// <since_tizen> 4 </since_tizen>
     public class SimLockInfo
     {
         internal SimLockType LockType;
@@ -2150,7 +2005,6 @@ namespace Tizen.Tapi
         /// <summary>
         /// Lock type.
         /// </summary>
-        /// <since_tizen> 4 </since_tizen>
         public SimLockType Type
         {
             get
@@ -2162,7 +2016,6 @@ namespace Tizen.Tapi
         /// <summary>
         /// Lock status.
         /// </summary>
-        /// <since_tizen> 4 </since_tizen>
         public SimLockStatus Status
         {
             get
@@ -2174,7 +2027,6 @@ namespace Tizen.Tapi
         /// <summary>
         /// Retry counts.
         /// </summary>
-        /// <since_tizen> 4 </since_tizen>
         public int RetryCount
         {
             get
@@ -2187,7 +2039,6 @@ namespace Tizen.Tapi
     /// <summary>
     /// A class which defines APDU information.
     /// </summary>
-    /// <since_tizen> 4 </since_tizen>
     public class SimApdu
     {
         private byte[] _apdu;
@@ -2198,7 +2049,6 @@ namespace Tizen.Tapi
         /// <summary>
         /// A constructor to instantiate SimApdu class with necessary parameters.
         /// </summary>
-        /// <since_tizen> 4 </since_tizen>
         /// <param name="apdu">APDU.</param>
         public SimApdu(byte[] apdu)
         {
@@ -2217,7 +2067,6 @@ namespace Tizen.Tapi
     /// <summary>
     /// A class which defines the response of sending APDU.
     /// </summary>
-    /// <since_tizen> 4 </since_tizen>
     public class SimApduResponse
     {
         internal ushort ApduLen;
@@ -2229,7 +2078,6 @@ namespace Tizen.Tapi
         /// <summary>
         /// Length of response APDU.
         /// </summary>
-        /// <since_tizen> 4 </since_tizen>
         public ushort ApduLength
         {
             get
@@ -2241,7 +2089,6 @@ namespace Tizen.Tapi
         /// <summary>
         /// Response APDU.
         /// </summary>
-        /// <since_tizen> 4 </since_tizen>
         public byte[] ApduResponse
         {
             get
@@ -2254,7 +2101,6 @@ namespace Tizen.Tapi
     /// <summary>
     /// A class which defines the response of sending ATR.
     /// </summary>
-    /// <since_tizen> 4 </since_tizen>
     public class SimAtrResponse
     {
         internal ushort AtrRespLen;
@@ -2266,7 +2112,6 @@ namespace Tizen.Tapi
         /// <summary>
         /// Length of response ATR.
         /// </summary>
-        /// <since_tizen> 4 </since_tizen>
         public ushort AtrRespLength
         {
             get
@@ -2278,7 +2123,6 @@ namespace Tizen.Tapi
         /// <summary>
         /// Response ATR.
         /// </summary>
-        /// <since_tizen> 4 </since_tizen>
         public byte[] AtrResponse
         {
             get
@@ -2291,7 +2135,6 @@ namespace Tizen.Tapi
     /// <summary>
     /// A class which defines ISIM IMPU list data.
     /// </summary>
-    /// <since_tizen> 4 </since_tizen>
     public class SimImpuList
     {
         internal uint DataCount;
@@ -2303,7 +2146,6 @@ namespace Tizen.Tapi
         /// <summary>
         /// ISIM IMPU data count.
         /// </summary>
-        /// <since_tizen> 4 </since_tizen>
         public uint Count
         {
             get
@@ -2315,7 +2157,6 @@ namespace Tizen.Tapi
         /// <summary>
         /// ISIM IMPU list.
         /// </summary>
-        /// <since_tizen> 4 </since_tizen>
         public IEnumerable<string> List
         {
             get
@@ -2328,7 +2169,6 @@ namespace Tizen.Tapi
     /// <summary>
     /// A class which defines ISIM P-CSCF data.
     /// </summary>
-    /// <since_tizen> 4 </since_tizen>
     public class SimPcscf
     {
         internal SimPcscfType PcscfType;
@@ -2340,7 +2180,6 @@ namespace Tizen.Tapi
         /// <summary>
         /// ISIM P-CSCF type.
         /// </summary>
-        /// <since_tizen> 4 </since_tizen>
         public SimPcscfType Type
         {
             get
@@ -2352,7 +2191,6 @@ namespace Tizen.Tapi
         /// <summary>
         /// ISIM P-CSCF data.
         /// </summary>
-        /// <since_tizen> 4 </since_tizen>
         public string Pcscf
         {
             get
@@ -2365,7 +2203,6 @@ namespace Tizen.Tapi
     /// <summary>
     /// A class which defines ISIM P-CSCF list data.
     /// </summary>
-    /// <since_tizen> 4 </since_tizen>
     public class SimPcscfList
     {
         internal uint DataCount;
@@ -2377,7 +2214,6 @@ namespace Tizen.Tapi
         /// <summary>
         /// ISIM P-CSCF data count.
         /// </summary>
-        /// <since_tizen> 4 </since_tizen>
         public uint Count
         {
             get
@@ -2389,7 +2225,6 @@ namespace Tizen.Tapi
         /// <summary>
         /// ISIM P-CSCF list.
         /// </summary>
-        /// <since_tizen> 4 </since_tizen>
         public IEnumerable<SimPcscf> List
         {
             get

@@ -3,12 +3,12 @@ using System.Runtime.InteropServices;
 using Tizen.Applications;
 
 /// <summary>
-/// Interoperability support class for Tizen APIs
+/// The Interoperability support class for the Tizen APIs.
 /// </summary>
 internal static partial class Interop
 {
     /// <summary>
-    /// Interoperability support class for the attach panel APIs
+    /// The Interoperability support class for the attach panel APIs.
     /// </summary>
     internal static partial class AttachPanel
     {

@@ -26,23 +26,23 @@ namespace ElmSharp.Accessible
     public enum ReadingInfoType
     {
         /// <summary>
-        /// None
+        /// None.
         /// </summary>
         None = 0,
         /// <summary>
-        /// Name for reading info type
+        /// Name for reading info type.
         /// </summary>
         Name = 0x1,
         /// <summary>
-        /// Role for reading info type
+        /// Role for reading info type.
         /// </summary>
         Role = 0x2,
         /// <summary>
-        /// Description for reading info type
+        /// Description for reading info type.
         /// </summary>
         Description = 0x4,
         /// <summary>
-        /// State for reading info type
+        /// State for reading info type.
         /// </summary>
         State = 0x8
     }
