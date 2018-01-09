@@ -61,7 +61,7 @@ namespace Tizen.Multimedia
         /// <summary>
         /// Gets the video resolutions that the current device supports.
         /// </summary>
-        /// <feature>http://tizen.org/feature/camera</feature>
+        /// <feature>http://tizen.org/feature/media.video_recording</feature>
         /// <param name="device">The camera device to retrieve the supported resolutions.</param>
         /// <exception cref="NotSupportedException">A required feature is not supported.</exception>
         /// <exception cref="ArgumentException"><paramref name="device"/> is invalid.</exception>
@@ -88,7 +88,7 @@ namespace Tizen.Multimedia
         /// <summary>
         /// Gets the video encoders that the current device supports.
         /// </summary>
-        /// <feature>http://tizen.org/feature/camera</feature>
+        /// <feature>http://tizen.org/feature/media.video_recording</feature>
         /// <exception cref="NotSupportedException">A required feature is not supported.</exception>
         /// <since_tizen> 4 </since_tizen>
         public static IEnumerable<RecorderVideoCodec> GetSupportedVideoCodecs()

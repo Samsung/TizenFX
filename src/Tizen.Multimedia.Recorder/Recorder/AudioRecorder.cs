@@ -28,6 +28,11 @@ namespace Tizen.Multimedia
     {
         private static NativeHandle CreateHandle()
         {
+            if (!Features.IsSupported(RecorderFeatures.AudioRecorder))
+            {
+                throw new NotSupportedException("Audio Recorder is not supported.");
+            }
+
             Native.Create(out var handle).ThrowIfError("Failed to create Audio recorder");
 
             return handle;
@@ -49,7 +54,7 @@ namespace Tizen.Multimedia
         /// </summary>
         /// <param name="audioCodec">The codec for audio encoding.</param>
         /// <param name="fileFormat">The format of result file.</param>
-        /// <feature>http://tizen.org/feature/microphone</feature>
+        /// <feature>http://tizen.org/feature/media.audio_recording</feature>
         /// <exception cref="InvalidOperationException">An internal error occurred.</exception>
         /// <exception cref="NotSupportedException">
         ///     A required feature is not supported.<br/>

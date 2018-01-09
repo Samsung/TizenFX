@@ -33,6 +33,11 @@ namespace Tizen.Multimedia
                 throw new ArgumentNullException(nameof(camera));
             }
 
+            if (!Features.IsSupported(RecorderFeatures.VideoRecorder))
+            {
+                throw new NotSupportedException("Video Recorder is not supported.");
+            }
+
             Native.CreateVideo(camera.Handle, out var handle).
                 ThrowIfError("Failed to create video recorder.");
 
@@ -64,7 +69,7 @@ namespace Tizen.Multimedia
         /// <param name="camera">The camera object.</param>
         /// <param name="videoCodec">The codec for video encoding.</param>
         /// <param name="fileFormat">The format of result file.</param>
-        /// <feature>http://tizen.org/feature/camera</feature>
+        /// <feature>http://tizen.org/feature/media.video_recording</feature>
         /// <exception cref="InvalidOperationException">An internal error occurred.</exception>
         /// <exception cref="NotSupportedException">
         ///     A required feature is not supported.<br/>
@@ -108,7 +113,7 @@ namespace Tizen.Multimedia
         /// <param name="videoCodec">The codec for video encoding.</param>
         /// <param name="audioCodec">The codec for audio encoding.</param>
         /// <param name="fileFormat">The format of result file.</param>
-        /// <feature>http://tizen.org/feature/camera</feature>
+        /// <feature>http://tizen.org/feature/media.video_recording</feature>
         /// <exception cref="InvalidOperationException">An internal error occurred.</exception>
         /// <exception cref="NotSupportedException">
         ///     A required feature is not supported.<br/>
