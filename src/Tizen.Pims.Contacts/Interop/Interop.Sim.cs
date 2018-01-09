@@ -18,7 +18,7 @@ using System;
 using System.Runtime.InteropServices;
 
 /// <summary>
-/// Partial Interop Class
+/// The Partial Interop class.
 /// </summary>
 internal static partial class Interop
 {

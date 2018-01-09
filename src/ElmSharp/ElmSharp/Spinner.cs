@@ -19,7 +19,7 @@ using System;
 namespace ElmSharp
 {
     /// <summary>
-    /// The Spinner is a widget that increase or decrease numeric values using arrow buttons, or edit values directly.
+    /// The Spinner is a widget that increases or decreases the numeric values using arrow buttons, or edit values directly.
     /// Inherits <see cref="Layout"/>.
     /// </summary>
     /// <since_tizen> preview </since_tizen>
@@ -41,7 +41,7 @@ namespace ElmSharp
         }
 
         /// <summary>
-        /// Creates and initializes a new instance of Layout class.
+        /// Creates and initializes a new instance of the Layout class.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
         protected Spinner() : base()
@@ -55,7 +55,7 @@ namespace ElmSharp
         public event EventHandler ValueChanged;
 
         /// <summary>
-        ///  DelayedValueChanged will be triggered after a short time when the value is changed.
+        /// DelayedValueChanged will be triggered after a short time when the value is changed.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
         public event EventHandler DelayedValueChanged;
@@ -111,7 +111,7 @@ namespace ElmSharp
         }
 
         /// <summary>
-        /// Sets or gets the step that used to increment or decrement the spinner value.
+        /// Sets or gets the step that is used to increment or decrement the spinner value.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
         public double Step
@@ -143,7 +143,7 @@ namespace ElmSharp
         }
 
         /// <summary>
-        /// Sets or gets the interval on time updates for an user mouse button hold on spinner widgets' arrows.
+        /// Sets or gets the interval on time updates for a user mouse button to hold on the spinner widgets' arrows.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
         public double Interval
@@ -194,9 +194,9 @@ namespace ElmSharp
         /// Sets or gets the wrap of a given spinner widget.
         /// </summary>
         /// <remarks>
-        /// If wrap is disabled, when the user tries to increment the value, but displayed value plus step value is bigger than maximum value, the new value will be the maximum value.
-        /// If wrap is enabled, when the user tries to increment the value, but displayed value plus step value is bigger than maximum value, the new value will be the minimum value.
-        /// By default it's disabled.
+        /// If wrap is disabled when the user tries to increment the value, but the displayed value plus step value is bigger than the maximum value, then the new value will be the maximum value.
+        /// If wrap is enabled when the user tries to increment the value, but the displayed value plus step value is bigger than the maximum value, then the new value will be the minimum value.
+        /// By default, it's disabled.
         /// </remarks>
         /// <since_tizen> preview </since_tizen>
         public bool IsWrapEnabled
@@ -214,7 +214,7 @@ namespace ElmSharp
         /// <summary>
         /// Sets or gets whether the spinner can be directly edited by the user or not.
         /// </summary>
-        /// <remarks>By default it is enabled</remarks>
+        /// <remarks>By default, it is enabled.</remarks>
         /// <since_tizen> preview </since_tizen>
         public bool IsEditable
         {
@@ -229,7 +229,7 @@ namespace ElmSharp
         }
 
         /// <summary>
-        /// Set a special string to display in the place of the numerical value.
+        /// Sets a special string to display in the place of the numerical value.
         /// </summary>
         /// <param name="value">The numerical value to be replaced</param>
         /// <param name="label">The label to be used</param>
@@ -240,9 +240,9 @@ namespace ElmSharp
         }
 
         /// <summary>
-        /// Remove a previously added special value, After this, the spinner will display the value itself instead of a label.
+        /// Removes a previously added special value. After this, the spinner will display the value itself instead of a label.
         /// </summary>
-        /// <param name="value">The replaced numerical value</param>
+        /// <param name="value">The replaced numerical value.</param>
         /// <since_tizen> preview </since_tizen>
         public void RemoveSpecialValue(double value)
         {
@@ -250,10 +250,10 @@ namespace ElmSharp
         }
 
         /// <summary>
-        /// Get the special string display in the place of the numerical value.
+        /// Gets the special string display in the place of the numerical value.
         /// </summary>
         /// <param name="value">The replaced numerical value.</param>
-        /// <returns>The value of the spinner which replaced numerical value with special string</returns>
+        /// <returns>The value of the spinner, which replaced the numerical value with a special string.</returns>
         /// <since_tizen> preview </since_tizen>
         public string GetSpecialValue(double value)
         {
@@ -261,7 +261,7 @@ namespace ElmSharp
         }
 
         /// <summary>
-        /// The callback of Realized Event
+        /// The callback of the Realized event.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
         protected override void OnRealized()
@@ -277,8 +277,8 @@ namespace ElmSharp
         /// <summary>
         /// Creates a widget handle.
         /// </summary>
-        /// <param name="parent">Parent EvasObject</param>
-        /// <returns>Handle IntPtr</returns>
+        /// <param name="parent">Parent EvasObject.</param>
+        /// <returns>Handle IntPtr.</returns>
         /// <since_tizen> preview </since_tizen>
         protected override IntPtr CreateHandle(EvasObject parent)
         {

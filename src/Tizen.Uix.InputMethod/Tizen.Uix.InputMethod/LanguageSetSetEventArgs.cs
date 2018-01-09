@@ -17,7 +17,7 @@
 namespace Tizen.Uix.InputMethod
 {
     /// <summary>
-    /// This Class contains data related to LanguageSet Event
+    /// This class contains the data related to the LanguageSet event.
     /// </summary>
     /// <since_tizen> 4 </since_tizen>
     public class LanguageSetEventArgs
@@ -28,7 +28,7 @@ namespace Tizen.Uix.InputMethod
         }
 
         /// <summary>
-        /// The preferred language that the client application wants
+        /// The preferred language that the client application wants.
         /// </summary>
         /// <since_tizen> 4 </since_tizen>
         public InputPanelLanguage Language

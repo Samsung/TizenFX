@@ -19,7 +19,7 @@ using System;
 namespace ElmSharp
 {
     /// <summary>
-    /// The Polygon is a widget that used to draw a polygon (filled).
+    /// The Polygon is a widget that is used to draw a polygon (filled).
     /// </summary>
     /// <since_tizen> preview </since_tizen>
     public class Polygon : EvasObject
@@ -34,9 +34,9 @@ namespace ElmSharp
         }
 
         /// <summary>
-        /// Adds a new vertex to the Polygon.
-        /// <param name="x">The X coordinate of the new vertex.</param>
-        /// <param name="y">The Y coordinate of the new vertex.</param>
+        /// Adds a new vertex to the polygon.
+        /// <param name="x">The X-coordinate of the new vertex.</param>
+        /// <param name="y">The Y-coordinate of the new vertex.</param>
         /// </summary>
         /// <since_tizen> preview </since_tizen>
         public void AddPoint(int x, int y)
@@ -45,7 +45,7 @@ namespace ElmSharp
         }
 
         /// <summary>
-        /// Adds a new vertex to the Polygon.
+        /// Adds a new vertex to the polygon.
         /// <param name="p">The coordinates of the new vertex.</param>
         /// </summary>
         /// <since_tizen> preview </since_tizen>
@@ -55,7 +55,7 @@ namespace ElmSharp
         }
 
         /// <summary>
-        /// Removes all the vertices of the Polygon, making it empty.
+        /// Removes all the vertices of the polygon, making it empty.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
         public void ClearPoints()
@@ -66,8 +66,8 @@ namespace ElmSharp
         /// <summary>
         /// Creates a widget handle.
         /// </summary>
-        /// <param name="parent">Parent EvasObject</param>
-        /// <returns>Handle IntPtr</returns>
+        /// <param name="parent">Parent EvasObject.</param>
+        /// <returns>Handle IntPtr.</returns>
         /// <since_tizen> preview </since_tizen>
         protected override IntPtr CreateHandle(EvasObject parent)
         {

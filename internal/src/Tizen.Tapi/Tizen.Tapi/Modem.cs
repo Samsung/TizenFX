@@ -9,7 +9,6 @@ namespace Tizen.Tapi
     /// <summary>
     /// This class provides functions for modem services.
     /// </summary>
-    /// <since_tizen> 4 </since_tizen>
     public class Modem
     {
         private IntPtr _handle;
@@ -19,7 +18,6 @@ namespace Tizen.Tapi
         /// <summary>
         /// A public constructor for Modem class to create a Modem instance for the given tapi handle.
         /// </summary>
-        /// <since_tizen> 4 </since_tizen>
         /// <param name="handle">The tapi handle.</param>
         public Modem(TapiHandle handle)
         {
@@ -34,7 +32,6 @@ namespace Tizen.Tapi
         /// <summary>
         /// Turn the modem on/off asynchronously.
         /// </summary>
-        /// <since_tizen> 4 </since_tizen>
         /// <param name="cmd">Power command value.</param>
         /// <returns>A task indicating whether the ProcessPowerCommand method is done or not.</returns>
         /// <privilege>http://tizen.org/privilege/telephony.admin</privilege>
@@ -80,7 +77,6 @@ namespace Tizen.Tapi
         /// <summary>
         /// Switch the flight mode on/off asynchronously.
         /// </summary>
-        /// <since_tizen> 4 </since_tizen>
         /// <param name="mode">Flight mode request value.</param>
         /// <returns>A task indicating whether the SetFlightMode method is done or not.</returns>
         /// <privilege>http://tizen.org/privilege/telephony.admin</privilege>
@@ -127,7 +123,6 @@ namespace Tizen.Tapi
         /// <summary>
         /// Get the flight mode asynchronously.
         /// </summary>
-        /// <since_tizen> 4 </since_tizen>
         /// <returns>If flight mode is On, it returns true else it returns false.</returns>
         /// <privilege>http://tizen.org/privilege/telephony</privilege>
         /// <feature>http://tizen.org/feature/network.telephony</feature>
@@ -180,7 +175,6 @@ namespace Tizen.Tapi
         /// <summary>
         /// Get Me version information asynchronously.
         /// </summary>
-        /// <since_tizen> 4 </since_tizen>
         /// <returns>Instance of MiscVersionInformation.</returns>
         /// <privilege>http://tizen.org/privilege/telephony</privilege>
         /// <feature>http://tizen.org/feature/network.telephony</feature>
@@ -226,7 +220,6 @@ namespace Tizen.Tapi
         /// <summary>
         /// Misc me version information.
         /// </summary>
-        /// <since_tizen> 4 </since_tizen>
         /// <privilege>http://tizen.org/privilege/telephony</privilege>
         /// <feature>http://tizen.org/feature/network.telephony</feature>
         /// <remarks>Returns null in case of failure.</remarks>
@@ -249,7 +242,6 @@ namespace Tizen.Tapi
         /// <summary>
         /// Get the Me Esn/Meid for each phone type asynchronously.
         /// </summary>
-        /// <since_tizen> 4 </since_tizen>
         /// <returns>Instance of MiscSerialNumberInformation.</returns>
         /// <privilege>http://tizen.org/privilege/telephony</privilege>
         /// <feature>http://tizen.org/feature/network.telephony</feature>
@@ -295,7 +287,6 @@ namespace Tizen.Tapi
         /// <summary>
         /// Misc me serial number information.
         /// </summary>
-        /// <since_tizen> 4 </since_tizen>
         /// <privilege>http://tizen.org/privilege/telephony</privilege>
         /// <feature>http://tizen.org/feature/network.telephony</feature>
         /// <remarks>Returns null in case of failure.</remarks>
@@ -318,7 +309,6 @@ namespace Tizen.Tapi
         /// <summary>
         /// Get the Misc Me Imei asynchronously.
         /// </summary>
-        /// <since_tizen> 4 </since_tizen>
         /// <returns>The imei string.</returns>
         /// <privilege>http://tizen.org/privilege/telephony</privilege>
         /// <feature>http://tizen.org/feature/network.telephony</feature>
@@ -362,7 +352,6 @@ namespace Tizen.Tapi
         /// <summary>
         /// Misc me Imei information.
         /// </summary>
-        /// <since_tizen> 4 </since_tizen>
         /// <privilege>http://tizen.org/privilege/telephony</privilege>
         /// <feature>http://tizen.org/feature/network.telephony</feature>
         /// <remarks>Returns null in case of failure.</remarks>
@@ -383,7 +372,6 @@ namespace Tizen.Tapi
         /// <summary>
         /// Check the modem power status.
         /// </summary>
-        /// <since_tizen> 4 </since_tizen>
         /// <returns>Phone power status value.</returns>
         /// <privilege>http://tizen.org/privilege/telephony</privilege>
         /// <feature>http://tizen.org/feature/network.telephony</feature>
@@ -406,7 +394,6 @@ namespace Tizen.Tapi
         /// <summary>
         /// Get device vendor name and device name of cellular dongle.
         /// </summary>
-        /// <since_tizen> 4 </since_tizen>
         /// <returns>Instance of MiscDeviceInfo.</returns>
         /// <privilege>http://tizen.org/privilege/telephony</privilege>
         /// <feature>http://tizen.org/feature/network.telephony</feature>

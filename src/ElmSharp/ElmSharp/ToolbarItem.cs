@@ -19,7 +19,7 @@ using System;
 namespace ElmSharp
 {
     /// <summary>
-    /// The ToolbarItem is a item of Toolbar.
+    /// The ToolbarItem is an item of the toolbar.
     /// </summary>
     /// <since_tizen> preview </since_tizen>
     public class ToolbarItem : ItemObject
@@ -86,7 +86,7 @@ namespace ElmSharp
         /// <summary>
         /// Sets or gets whether displaying the item as a separator.
         /// </summary>
-        /// <remarks>Items aren't set as a separator by default. If set as a separator it displays a separator theme, so it won't display icons or labels.</remarks>
+        /// <remarks>Items aren't set as a separator by default. If set as a separator, it displays a separator theme, so it won't display the icons or labels.</remarks>
         /// <since_tizen> preview </since_tizen>
         public bool IsSeparator
         {
@@ -123,7 +123,7 @@ namespace ElmSharp
         public event EventHandler Selected;
 
         /// <summary>
-        /// LongPressed will be triggered when the item is pressed long time.
+        /// LongPressed will be triggered when the item is pressed for a long time.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
         public event EventHandler LongPressed;

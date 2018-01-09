@@ -19,7 +19,7 @@ using Tizen.Internals.Errors;
 namespace Tizen.Network.Nsd
 {
     /// <summary>
-    /// Enumeration for DNS-SD service state.
+    /// Enumeration for the DNS-SD service states.
     /// </summary>
     /// <since_tizen> 4 </since_tizen>
     public enum DnssdServiceState
@@ -35,24 +35,24 @@ namespace Tizen.Network.Nsd
         /// <since_tizen> 4 </since_tizen>
         Unavailable,
         /// <summary>
-        /// Lookup failure for service name.
+        /// Lookup failure for the service name.
         /// </summary>
         /// <since_tizen> 4 </since_tizen>
         ServiceNameLookupFailed,
         /// <summary>
-        /// Lookup failure for host name and port number.
+        /// Lookup failure for the host name and port number.
         /// </summary>
         /// <since_tizen> 4 </since_tizen>
         HostNameLookupFailed,
         /// <summary>
-        /// Lookup failure for IP address.
+        /// Lookup failure for the IP address.
         /// </summary>
         /// <since_tizen> 4 </since_tizen>
         AddressLookupFailed
     }
 
     /// <summary>
-    /// Enumeration for SSDP service state.
+    /// Enumeration for the SSDP service states.
     /// </summary>
     /// <since_tizen> 4 </since_tizen>
     public enum SsdpServiceState

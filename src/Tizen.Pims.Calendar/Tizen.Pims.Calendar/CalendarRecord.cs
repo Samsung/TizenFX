@@ -21,17 +21,17 @@ using System.Diagnostics.CodeAnalysis;
 namespace Tizen.Pims.Calendar
 {
     /// <summary>
-    /// A record represents an actual record in the database
+    /// A record represents an actual record in the database.
     /// </summary>
     /// <since_tizen> 4 </since_tizen>
     /// <remarks>
     /// A record represents an actual record in the database,
-    /// but you can also consider it a piece of information, such as an alarm, attendee and extended.
+    /// but you can also consider it a piece of information, such as an alarm, attendee, and extended.
     /// A record can be a complex set of data, containing other data.
     /// For example, a calendar record contains the alarm property, which is a reference to an alarm record.
     /// An alarm record could belong to a event record,
-    /// and its alarm id property is set to the identifier of the corresponding event.
-    /// In this case, the alarm is the child record of the event and the event is the parent record.
+    /// and its alarm ID property is set to the identifier of the corresponding event.
+    /// In this case, the alarm is the child record of the event, and the event is the parent record.
     /// </remarks>
     public class CalendarRecord : IDisposable
     {
@@ -93,10 +93,10 @@ namespace Tizen.Pims.Calendar
         /// </summary>
         /// <since_tizen> 4 </since_tizen>
         /// <feature>http://tizen.org/feature/calendar</feature>
-        /// <param name="viewUri">The view URI</param>
-        /// <exception cref="NotSupportedException">Thrown when feature is not supported</exception>
-        /// <exception cref="ArgumentException">Thrown when one of the arguments provided to a method is not valid</exception>
-        /// <exception cref="OutOfMemoryException">Thrown when failed due to out of memory</exception>
+        /// <param name="viewUri">The view URI.</param>
+        /// <exception cref="NotSupportedException">Thrown when the feature is not supported.</exception>
+        /// <exception cref="ArgumentException">Thrown when one of the arguments provided to a method is not valid.</exception>
+        /// <exception cref="OutOfMemoryException">Thrown when failed due to out of memory.</exception>
         [SuppressMessage("Microsoft.Design", "CA1054:UriParametersShouldNotBeStrings")]
         public CalendarRecord(string viewUri)
         {
@@ -112,7 +112,7 @@ namespace Tizen.Pims.Calendar
         }
 
         /// <summary>
-        /// Destructor
+        /// Destructor.
         /// </summary>
         ~CalendarRecord()
         {
@@ -120,13 +120,13 @@ namespace Tizen.Pims.Calendar
         }
 
 #region IDisposable Support
-        /// To detect redundant calls
+        /// To detect redundant calls.
         internal bool _disposedValue = false;
 
         /// <summary>
         /// Disposes of the resources (other than memory) used by the CalendarRecord.
         /// </summary>
-        /// <param name="disposing">true to release both managed and unmanaged resources; false to release only unmanaged resources.</param>
+        /// <param name="disposing">true to release both managed and unmanaged resources, false to release only unmanaged resources.</param>
         /// <since_tizen> 4 </since_tizen>
         protected virtual void Dispose(bool disposing)
         {
@@ -145,8 +145,8 @@ namespace Tizen.Pims.Calendar
         }
 
         /// <summary>
-        /// Releases all resources used by the CalendarRecord.
-        /// It should be called after having finished using of the object.
+        /// Releases all the resources used by the CalendarRecord.
+        /// It should be called after it has finished using the object.
         /// </summary>
         /// <since_tizen> 4 </since_tizen>
         public void Dispose()
@@ -199,11 +199,11 @@ namespace Tizen.Pims.Calendar
         /// </summary>
         /// <since_tizen> 4 </since_tizen>
         /// <returns>
-        /// A cloned record
+        /// A cloned record.
         /// </returns>
         /// <feature>http://tizen.org/feature/calendar</feature>
-        /// <exception cref="NotSupportedException">Thrown when feature is not supported</exception>
-        /// <exception cref="OutOfMemoryException">Thrown when failed due to out of memory</exception>
+        /// <exception cref="NotSupportedException">Thrown when the feature is not supported.</exception>
+        /// <exception cref="OutOfMemoryException">Thrown when failed due to out of memory.</exception>
         public CalendarRecord Clone()
         {
             IntPtr _clonedRecordHandle;
@@ -381,11 +381,11 @@ namespace Tizen.Pims.Calendar
         /// Adds a child record to the parent record.
         /// </summary>
         /// <since_tizen> 4 </since_tizen>
-        /// <param name="propertyId">The property ID</param>
-        /// <param name="childRecord">The child record</param>
+        /// <param name="propertyId">The property ID.</param>
+        /// <param name="childRecord">The child record.</param>
         /// <feature>http://tizen.org/feature/calendar</feature>
-        /// <exception cref="NotSupportedException">Thrown when feature is not supported</exception>
-        /// <exception cref="ArgumentException">Thrown when one of the arguments provided to a method is not valid</exception>
+        /// <exception cref="NotSupportedException">Thrown when the feature is not supported.</exception>
+        /// <exception cref="ArgumentException">Thrown when one of the arguments provided to a method is not valid.</exception>
         public void AddChildRecord(uint propertyId, CalendarRecord childRecord)
         {
             int error = Interop.Record.AddChildRecord(_recordHandle, propertyId, childRecord._recordHandle);
@@ -401,11 +401,11 @@ namespace Tizen.Pims.Calendar
         /// Removes a child record from the parent record.
         /// </summary>
         /// <since_tizen> 4 </since_tizen>
-        /// <param name="propertyId">The property ID</param>
-        /// <param name="childRecord">The child record</param>
+        /// <param name="propertyId">The property ID.</param>
+        /// <param name="childRecord">The child record.</param>
         /// <feature>http://tizen.org/feature/calendar</feature>
-        /// <exception cref="NotSupportedException">Thrown when feature is not supported</exception>
-        /// <exception cref="ArgumentException">Thrown when one of the arguments provided to a method is not valid</exception>
+        /// <exception cref="NotSupportedException">Thrown when the feature is not supported.</exception>
+        /// <exception cref="ArgumentException">Thrown when one of the arguments provided to a method is not valid.</exception>
         public void RemoveChildRecord(uint propertyId, CalendarRecord childRecord)
         {
             int error = Interop.Record.RemoveChildRecord(_recordHandle, propertyId, childRecord._recordHandle);
@@ -418,16 +418,16 @@ namespace Tizen.Pims.Calendar
         }
 
         /// <summary>
-        /// Gets a child record from the parent record
+        /// Gets a child record from the parent record.
         /// </summary>
         /// <since_tizen> 4 </since_tizen>
-        /// <param name="propertyId">The property ID</param>
+        /// <param name="propertyId">The property ID.</param>
         /// <returns>
-        /// The number of child records corresponding to property ID
+        /// The number of child records corresponding to property ID.
         /// </returns>
         /// <feature>http://tizen.org/feature/calendar</feature>
-        /// <exception cref="NotSupportedException">Thrown when feature is not supported</exception>
-        /// <exception cref="ArgumentException">Thrown when one of the arguments provided to a method is not valid</exception>
+        /// <exception cref="NotSupportedException">Thrown when the feature is not supported.</exception>
+        /// <exception cref="ArgumentException">Thrown when one of the arguments provided to a method is not valid.</exception>
         public int GetChildRecordCount(uint propertyId)
         {
             int count = 0;
@@ -441,17 +441,17 @@ namespace Tizen.Pims.Calendar
         }
 
         /// <summary>
-        /// Gets a child record from the parent record
+        /// Gets a child record from the parent record.
         /// </summary>
         /// <since_tizen> 4 </since_tizen>
-        /// <param name="propertyId">The property ID</param>
-        /// <param name="index">The child record index</param>
+        /// <param name="propertyId">The property ID.</param>
+        /// <param name="index">The child record index.</param>
         /// <returns>
-        /// The record
+        /// The record.
         /// </returns>
         /// <feature>http://tizen.org/feature/calendar</feature>
-        /// <exception cref="NotSupportedException">Thrown when feature is not supported</exception>
-        /// <exception cref="ArgumentException">Thrown when one of the arguments provided to a method is not valid</exception>
+        /// <exception cref="NotSupportedException">Thrown when the feature is not supported.</exception>
+        /// <exception cref="ArgumentException">Thrown when one of the arguments provided to a method is not valid.</exception>
         public CalendarRecord GetChildRecord(uint propertyId, int index)
         {
             IntPtr handle;
@@ -466,16 +466,16 @@ namespace Tizen.Pims.Calendar
         }
 
         /// <summary>
-        /// Clones a child record list corresponding to property ID
+        /// Clones a child record list corresponding to property ID.
         /// </summary>
         /// <since_tizen> 4 </since_tizen>
-        /// <param name="propertyId">The property ID</param>
+        /// <param name="propertyId">The property ID.</param>
         /// <returns>
-        /// the record list
+        /// The record list.
         /// </returns>
         /// <feature>http://tizen.org/feature/calendar</feature>
-        /// <exception cref="NotSupportedException">Thrown when feature is not supported</exception>
-        /// <exception cref="ArgumentException">Thrown when one of the arguments provided to a method is not valid</exception>
+        /// <exception cref="NotSupportedException">Thrown when the feature is not supported.</exception>
+        /// <exception cref="ArgumentException">Thrown when one of the arguments provided to a method is not valid.</exception>
         public CalendarList CloneChildRecordList(uint propertyId)
         {
             IntPtr listHandle;

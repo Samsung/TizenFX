@@ -17,12 +17,12 @@
 using System.Runtime.InteropServices;
 
 /// <summary>
-/// Partial Interop Class
+/// The Partial Interop class.
 /// </summary>
 internal static partial class Interop
 {
     /// <summary>
-    /// Contacts Interop Class
+    /// The Contacts Interop class.
     /// </summary>
     internal static class Service
     {

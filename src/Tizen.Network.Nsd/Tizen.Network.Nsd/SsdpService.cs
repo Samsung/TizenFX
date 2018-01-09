@@ -37,7 +37,7 @@ namespace Tizen.Network.Nsd
     }
 
     /// <summary>
-    /// This class is used for managing local service registration and its properties using SSDP.
+    /// This class is used for managing the local service registration and its properties using SSDP.
     /// </summary>
     /// <since_tizen> 4 </since_tizen>
     public class SsdpService : INsdService
@@ -47,13 +47,13 @@ namespace Tizen.Network.Nsd
         private Interop.Nsd.Ssdp.ServiceRegisteredCallback _serviceRegisteredCallback;
 
         /// <summary>
-        /// Constructor to create SsdpService instance that sets the target to a given value.
+        /// The constructor to create the SsdpService instance that sets the target to a given value.
         /// </summary>
         /// <since_tizen> 4 </since_tizen>
         /// <param name="target">The SSDP local service's target. It may be a device type or a service type.</param>
         /// <feature>http://tizen.org/feature/network.service_discovery.ssdp</feature>
         /// <exception cref="NotSupportedException">Thrown while setting this property when SSDP is not supported.</exception>
-        /// <exception cref="ArgumentException">Thrown when target is set to null.</exception>
+        /// <exception cref="ArgumentException">Thrown when the target is set to null.</exception>
         public SsdpService(string target)
         {
             _target = target;
@@ -78,16 +78,16 @@ namespace Tizen.Network.Nsd
         }
 
         /// <summary>
-        /// Unique Service Name of SSDP service.
+        /// Unique Service Name of the SSDP service.
         /// </summary>
         /// <remarks>
-        /// Set Usn for only unregistered service created locally. If service is already registered, Usn will not be set.
-        /// In case of error, null will be returned during get and exception will be thrown during set.
+        /// Set the USN for only an unregistered service created locally. If the service is already registered, the USN will not be set.
+        /// In case of an error, null will be returned during get and exception will be thrown during set.
         /// </remarks>
         /// <since_tizen> 4 </since_tizen>
         /// <feature>http://tizen.org/feature/network.service_discovery.ssdp</feature>
         /// <exception cref="NotSupportedException">Thrown while setting this property when SSDP is not supported.</exception>
-        /// <exception cref="ArgumentException">Thrown when Usn value is set to null.</exception>
+        /// <exception cref="ArgumentException">Thrown when USN value is set to null.</exception>
         /// <exception cref="InvalidOperationException">Thrown while setting this property when any other error occurred.</exception>
         public string Usn
         {
@@ -121,11 +121,11 @@ namespace Tizen.Network.Nsd
         }
 
         /// <summary>
-        /// Target of SSDP service.
+        /// Target of the SSDP service.
         /// </summary>
         /// <remarks>
-        /// It may be a device type or a service type specified in UPnP forum (http://upnp.org).
-        /// In case of error, null will be returned.
+        /// It may be a device type or a service type specified in the UPnP forum (http://upnp.org).
+        /// In case of an error, null will be returned.
         /// </remarks>
         /// <since_tizen> 4 </since_tizen>
         public string Target
@@ -145,16 +145,16 @@ namespace Tizen.Network.Nsd
         }
 
         /// <summary>
-        /// URL of SSDP service.
+        /// URL of the SSDP service.
         /// </summary>
         /// <remarks>
-        /// Set Url for only unregistered service created locally. If service is already registered, Url will not be set.
-        /// In case of error, null will be returned during get and exception will be thrown during set.
+        /// Set the URL for only an unregistered service created locally. If the service is already registered, the URL will not be set.
+        /// In case of an error, null will be returned during get and exception will be thrown during set.
         /// </remarks>
         /// <since_tizen> 4 </since_tizen>
         /// <feature>http://tizen.org/feature/network.service_discovery.ssdp</feature>
         /// <exception cref="NotSupportedException">Thrown while setting this property when SSDP is not supported.</exception>
-        /// <exception cref="ArgumentException">Thrown when Url value is set to null.</exception>
+        /// <exception cref="ArgumentException">Thrown when the URL value is set to null.</exception>
         /// <exception cref="InvalidOperationException">Thrown while setting this property when any other error occurred.</exception>
         public string Url
         {
@@ -192,14 +192,14 @@ namespace Tizen.Network.Nsd
         /// </summary>
         /// <remarks>
         /// A service created locally must be passed.
-        /// Url and Usn of the service must be set before RegisterService is called.
+        /// URL and USN of the service must be set before the RegisterService is called.
         /// </remarks>
         /// <since_tizen> 4 </since_tizen>
         /// <privilege>http://tizen.org/privilege/internet</privilege>
         /// <feature>http://tizen.org/feature/network.service_discovery.ssdp</feature>
         /// <exception cref="InvalidOperationException">Thrown when any other error occurred.</exception>
-        /// <exception cref="NotSupportedException">Thrown when SSDP is not supported.</exception>
-        /// <exception cref="UnauthorizedAccessException">Thrown when permission is denied.</exception>
+        /// <exception cref="NotSupportedException">Thrown when the SSDP is not supported.</exception>
+        /// <exception cref="UnauthorizedAccessException">Thrown when the permission is denied.</exception>
         public void RegisterService()
         {
             if (!Globals.s_threadSsd.IsValueCreated)
@@ -228,7 +228,7 @@ namespace Tizen.Network.Nsd
         /// <since_tizen> 4 </since_tizen>
         /// <feature>http://tizen.org/feature/network.service_discovery.ssdp</feature>
         /// <exception cref="InvalidOperationException">Thrown when any other error occurred.</exception>
-        /// <exception cref="NotSupportedException">Thrown when SSDP is not supported.</exception>
+        /// <exception cref="NotSupportedException">Thrown when the SSDP is not supported.</exception>
         public void DeregisterService()
         {
             int ret = Interop.Nsd.Ssdp.DeregisterService(_serviceHandle);
@@ -263,7 +263,7 @@ namespace Tizen.Network.Nsd
         }
 
         /// <summary>
-        /// Destroy the SsdpService object
+        /// Destroys the SsdpService object.
         /// </summary>
         ~SsdpService()
         {

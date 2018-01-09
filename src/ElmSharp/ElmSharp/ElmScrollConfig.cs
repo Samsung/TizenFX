@@ -20,13 +20,13 @@ using System.ComponentModel;
 namespace ElmSharp
 {
     /// <summary>
-    /// The ElmScrollConfig is a scrollable views's config
+    /// The ElmScrollConfig is a scrollable views's configuration.
     /// </summary>
     /// <since_tizen> preview </since_tizen>
     public static class ElmScrollConfig
     {
         /// <summary>
-        /// Gets or sets the amount of inertia a scroller imposes during region bring animations.
+        /// Gets or sets the amount of inertia that a scroller imposes during the region to bring animations.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
         [EditorBrowsable(EditorBrowsableState.Never)]

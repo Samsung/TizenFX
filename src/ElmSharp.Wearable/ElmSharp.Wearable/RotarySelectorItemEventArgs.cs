@@ -21,7 +21,7 @@ using System.Text;
 namespace ElmSharp.Wearable
 {
     /// <summary>
-    /// <see cref="RotarySelector.Selected"/> and <see cref="RotarySelector.Clicked"/> events of RotarySelector contain RotarySelectorItemEventArgs as a parameter.
+    /// <see cref="RotarySelector.Selected"/> and <see cref="RotarySelector.Clicked"/> events of the RotarySelector contain the RotarySelectorItemEventArgs as a parameter.
     /// Inherits <see cref="EventArgs"/>.
     /// </summary>
     /// <since_tizen> preview </since_tizen>

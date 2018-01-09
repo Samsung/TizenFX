@@ -21,18 +21,18 @@ namespace ElmSharp
 {
     /// <summary>
     /// It inherits System.EventArgs.
-    /// The EcoreKeyEventArgs is a EventArgs to record Ecore event's key name and key code.
+    /// The EcoreKeyEventArgs is an EventArgs to record the Ecore event's key name and key code.
     /// </summary>
     /// <since_tizen> preview </since_tizen>
     public class EcoreKeyEventArgs : EventArgs
     {
         /// <summary>
-        /// Gets the KeyName property.The return type is string.
+        /// Gets the KeyName property. The return type is string.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
         public string KeyName { get; private set; }
         /// <summary>
-        /// Gets the KeyCode property.The return type is int.
+        /// Gets the KeyCode property. The return type is int.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
         public int KeyCode { get; private set; }
@@ -42,8 +42,8 @@ namespace ElmSharp
         /// </summary>
         /// <param name="data">data</param>
         /// <param name="type">type</param>
-        /// <param name="info">information </param>
-        /// <returns>new instance of the EcoreKeyEventArgs class</returns>
+        /// <param name="info">information</param>
+        /// <returns>New instance of the EcoreKeyEventArgs class.</returns>
         /// <since_tizen> preview </since_tizen>
         public static EcoreKeyEventArgs Create(IntPtr data, EcoreEventType type, IntPtr info)
         {

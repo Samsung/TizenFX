@@ -19,7 +19,6 @@ namespace Tizen.Tapi
     /// <summary>
     /// Enumeration for call end cause.
     /// </summary>
-    /// <since_tizen> 4 </since_tizen>
     public enum CallEndCause
     {
         /// <summary>
@@ -511,7 +510,6 @@ namespace Tizen.Tapi
     /// <summary>
     /// Enumeration for call type to be used by applications.
     /// </summary>
-    /// <since_tizen> 4 </since_tizen>
     public enum CallType
     {
         /// <summary>
@@ -531,7 +529,6 @@ namespace Tizen.Tapi
     /// <summary>
     /// Enumeration for the call name mode.
     /// </summary>
-    /// <since_tizen> 4 </since_tizen>
     public enum CallNameMode
     {
         /// <summary>
@@ -555,7 +552,6 @@ namespace Tizen.Tapi
     /// <summary>
     /// Enumeration for the "Cli mode" value.
     /// </summary>
-    /// <since_tizen> 4 </since_tizen>
     public enum CallCliMode
     {
         /// <summary>
@@ -579,7 +575,6 @@ namespace Tizen.Tapi
     /// <summary>
     /// Enumeration for "No Cli cause" value.
     /// </summary>
-    /// <since_tizen> 4 </since_tizen>
     public enum CallNoCliCause
     {
         /// <summary>
@@ -607,7 +602,6 @@ namespace Tizen.Tapi
     /// <summary>
     /// Enumeration for call active line(IN GSM ONLY: call identification number).
     /// </summary>
-    /// <since_tizen> 4 </since_tizen>
     public enum CallActiveLine
     {
         /// <summary>
@@ -623,7 +617,6 @@ namespace Tizen.Tapi
     /// <summary>
     /// Enumeration for the call record info type.
     /// </summary>
-    /// <since_tizen> 4 </since_tizen>
     public enum CallRecordType
     {
         /// <summary>
@@ -643,7 +636,6 @@ namespace Tizen.Tapi
     /// <summary>
     /// Enumeration for the voice privacy option mode. (CDMA only).
     /// </summary>
-    /// <since_tizen> 4 </since_tizen>
     public enum CallPrivacyMode
     {
         /// <summary>
@@ -659,7 +651,6 @@ namespace Tizen.Tapi
     /// <summary>
     /// Enumeration for the OTASP Status. (CDMA only)
     /// </summary>
-    /// <since_tizen> 4 </since_tizen>
     public enum CallOtaspStatus
     {
         /// <summary>
@@ -727,7 +718,6 @@ namespace Tizen.Tapi
     /// <summary>
     /// Enumeration for the OTAPA status. (CDMA only)
     /// </summary>
-    /// <since_tizen> 4 </since_tizen>
     public enum CallOtapaStatus
     {
         /// <summary>
@@ -743,7 +733,6 @@ namespace Tizen.Tapi
     /// <summary>
     /// Enumeration for call sound path.
     /// </summary>
-    /// <since_tizen> 4 </since_tizen>
     public enum SoundPath
     {
         /// <summary>
@@ -871,7 +860,6 @@ namespace Tizen.Tapi
     /// <summary>
     /// Enumeration for the Alert Signal Type. (CDMA only)
     /// </summary>
-    /// <since_tizen> 4 </since_tizen>
     public enum CallAlertSignal
     {
         /// <summary>
@@ -895,7 +883,6 @@ namespace Tizen.Tapi
     /// <summary>
     /// Enumeration for the Alert Pitch Type. (CDMA only)
     /// </summary>
-    /// <since_tizen> 4 </since_tizen>
     public enum CallAlertPitch
     {
         /// <summary>
@@ -919,7 +906,6 @@ namespace Tizen.Tapi
     /// <summary>
     /// Enumeration for the signals specific to the alert signal type. (CDMA only)
     /// </summary>
-    /// <since_tizen> 4 </since_tizen>
     public enum CallToneSignal
     {
         /// <summary>
@@ -975,7 +961,6 @@ namespace Tizen.Tapi
     /// <summary>
     /// Enumeration for the call ISDN Alert signal. (CDMA only)
     /// </summary>
-    /// <since_tizen> 4 </since_tizen>
     public enum CallIsdnAlertSignal
     {
         /// <summary>
@@ -1019,7 +1004,6 @@ namespace Tizen.Tapi
     /// <summary>
     /// Enumeration for the call IS54B Alert signal types.
     /// </summary>
-    /// <since_tizen> 4 </since_tizen>
     public enum CallIs54bAlertSignal
     {
         /// <summary>
@@ -1079,7 +1063,6 @@ namespace Tizen.Tapi
     /// <summary>
     /// Enumeration for call sound ringback tone notification data.
     /// </summary>
-    /// <since_tizen> 4 </since_tizen>
     public enum CallSoundRingbackNoti
     {
         /// <summary>
@@ -1095,7 +1078,6 @@ namespace Tizen.Tapi
     /// <summary>
     /// Enumeration for call sound WBAMR notification data.
     /// </summary>
-    /// <since_tizen> 4 </since_tizen>
     public enum CallSoundWbamrNoti
     {
         /// <summary>
@@ -1119,7 +1101,6 @@ namespace Tizen.Tapi
     /// <summary>
     /// Enumeration for call sound noise reduction.
     /// </summary>
-    /// <since_tizen> 4 </since_tizen>
     public enum CallSoundNoiseReduction
     {
         /// <summary>
@@ -1135,7 +1116,6 @@ namespace Tizen.Tapi
     /// <summary>
     /// Enumeration for call preferred voice subscription.
     /// </summary>
-    /// <since_tizen> 4 </since_tizen>
     public enum CallPreferredVoiceSubscription
     {
         /// <summary>
@@ -1163,7 +1143,6 @@ namespace Tizen.Tapi
     /// <summary>
     /// Enumeration for specifying type for call upgrade/downgrade.
     /// </summary>
-    /// <since_tizen> 4 </since_tizen>
     public enum CallConfigType
     {
         /// <summary>
@@ -1275,7 +1254,6 @@ namespace Tizen.Tapi
     /// <summary>
     /// Enumeration for the emergency call category type.
     /// </summary>
-    /// <since_tizen> 4 </since_tizen>
     public enum EmergencyType
     {
         /// <summary>
@@ -1319,7 +1297,6 @@ namespace Tizen.Tapi
     /// <summary>
     /// Enumeration for the call answer type.
     /// </summary>
-    /// <since_tizen> 4 </since_tizen>
     public enum CallAnswerType
     {
         /// <summary>
@@ -1343,7 +1320,6 @@ namespace Tizen.Tapi
     /// <summary>
     /// Enumeration for the call end type.
     /// </summary>
-    /// <since_tizen> 4 </since_tizen>
     public enum CallEndType
     {
         /// <summary>
@@ -1367,7 +1343,6 @@ namespace Tizen.Tapi
     /// <summary>
     /// Enumeration for the onlength to send DTMF.
     /// </summary>
-    /// <since_tizen> 4 </since_tizen>
     public enum CallDtmfPulseWidth
     {
         /// <summary>
@@ -1403,7 +1378,6 @@ namespace Tizen.Tapi
     /// <summary>
     /// Enumeration for the offlength to send DTMF.
     /// </summary>
-    /// <since_tizen> 4 </since_tizen>
     public enum CallDtmfDigitInterval
     {
         /// <summary>
@@ -1427,7 +1401,6 @@ namespace Tizen.Tapi
     /// <summary>
     /// Enumeration for call states.
     /// </summary>
-    /// <since_tizen> 4 </since_tizen>
     public enum CallState
     {
         /// <summary>
@@ -1467,7 +1440,6 @@ namespace Tizen.Tapi
     /// <summary>
     /// Enumeration for call sound device type.
     /// </summary>
-    /// <since_tizen> 4 </since_tizen>
     public enum SoundDevice
     {
         /// <summary>
@@ -1499,7 +1471,6 @@ namespace Tizen.Tapi
     /// <summary>
     /// Enumeration for call sound type.
     /// </summary>
-    /// <since_tizen> 4 </since_tizen>
     public enum SoundType
     {
         /// <summary>
@@ -1531,7 +1502,6 @@ namespace Tizen.Tapi
     /// <summary>
     /// Enumeration for call sound volume level.
     /// </summary>
-    /// <since_tizen> 4 </since_tizen>
     public enum SoundVolume
     {
         /// <summary>
@@ -1579,7 +1549,6 @@ namespace Tizen.Tapi
     /// <summary>
     /// Enumeration for call extra volume.
     /// </summary>
-    /// <since_tizen> 4 </since_tizen>
     public enum ExtraVolume
     {
         /// <summary>
@@ -1595,7 +1564,6 @@ namespace Tizen.Tapi
     /// <summary>
     /// Enumeration for call sound mute status.
     /// </summary>
-    /// <since_tizen> 4 </since_tizen>
     public enum SoundMuteStatus
     {
         /// <summary>
@@ -1611,7 +1579,6 @@ namespace Tizen.Tapi
     /// <summary>
     /// Enumeration for call sound mute path.
     /// </summary>
-    /// <since_tizen> 4 </since_tizen>
     public enum SoundMutePath
     {
         /// <summary>

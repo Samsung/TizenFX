@@ -19,7 +19,7 @@ using System;
 namespace ElmSharp
 {
     /// <summary>
-    /// The HoverselItem is the Item of Hoversel
+    /// The HoverselItem is the item of Hoversel.
     /// </summary>
     /// <since_tizen> preview </since_tizen>
     public class HoverselItem : ItemObject
@@ -29,13 +29,13 @@ namespace ElmSharp
         }
 
         /// <summary>
-        /// HoverselItem's label
+        /// The HoverselItem's label.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
         public string Label { get; internal set; }
 
         /// <summary>
-        /// ItemSelected will be triggered when HoverselItem Selected
+        /// ItemSelected will be triggered when the HoverselItem is selected.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
         public event EventHandler ItemSelected;

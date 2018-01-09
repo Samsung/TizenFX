@@ -20,7 +20,7 @@ using System.Collections.Generic;
 namespace ElmSharp
 {
     /// <summary>
-    /// A flip selector is a widget to show a set of text items,one at a time.with the same sheet switching style as the clock widget, when one changes the current displaying sheet.
+    /// The FlipSelector is a widget to show a set of text items, one at a time, with the same sheet switching style as the clock widget when one changes the current displaying sheet.
     /// </summary>
     /// <since_tizen> preview </since_tizen>
     public class FlipSelector : Layout
@@ -32,7 +32,7 @@ namespace ElmSharp
         /// <summary>
         /// Creates and initializes a new instance of the FlipSelector.
         /// </summary>
-        /// <param name="parent">Parent EvasObject </param>
+        /// <param name="parent">Parent EvasObject.</param>
         /// <since_tizen> preview </since_tizen>
         public FlipSelector(EvasObject parent) : base(parent)
         {
@@ -46,23 +46,23 @@ namespace ElmSharp
         }
 
         /// <summary>
-        /// Selected will be triggered when be Selected
+        /// Selected will be triggered when selected.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
         public event EventHandler Selected;
         /// <summary>
-        /// Overflowed will be triggered when Overflowed
+        /// Overflowed will be triggered when overflowed.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
         public event EventHandler Overflowed;
         /// <summary>
-        /// Underflowed will be triggered when be Underflowed
+        /// Underflowed will be triggered when underflowed.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
         public event EventHandler Underflowed;
 
         /// <summary>
-        ///  Sets or gets the interval on time updates for an user mouse button hold on a flip selector widget.
+        /// Sets or gets the interval on time updates for a user mouse button to hold on the flip selector widget.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
         public double Interval
@@ -79,7 +79,7 @@ namespace ElmSharp
 
 
         /// <summary>
-        /// Gets the currently selected item in a flip selector widget.
+        /// Gets the currently selected item in the flip selector widget.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
         public FlipSelectorItem SelectedItem
@@ -118,14 +118,14 @@ namespace ElmSharp
         }
 
         /// <summary>
-        /// Appends a (text) item to a flip selector widget.
+        /// Appends the (text) item to the flip selector widget.
         /// </summary>
         /// <param name="text">text value</param>
         /// <returns>
-        /// A handle to the item added or NULL, on errors
+        /// A handle to the item added, or null on errors.
         /// </returns>
         /// <remarks>
-        /// The widget's list of labels to show will be appended with the given value. If the user wishes so, a callback function pointer can be passed, which will get called when this same item is selected.
+        /// The widget's list of labels to show will be appended with the given value. If the user wishes so, a callback function pointer can be passed, which will get called when the same item is selected.
         /// </remarks>
         /// <since_tizen> preview </since_tizen>
         public FlipSelectorItem Append(string text)
@@ -136,12 +136,12 @@ namespace ElmSharp
         }
 
         /// <summary>
-        /// Prepend a (text) item to a flip selector widget.
+        /// Prepends the (text) item to a flip selector widget.
         /// </summary>
         /// <param name="text">Prepend text</param>
-        /// <returns>A handle to the item added or NULL, on errors</returns>
+        /// <returns>A handle to the item added, or null on errors.</returns>
         /// <remarks>
-        /// The widget's list of labels to show will be prepended with the given value. If the user wishes so, a callback function pointer can be passed, which will get called when this same item is selected.
+        /// The widget's list of labels to show will be prepended with the given value. If the user wishes so, a callback function pointer can be passed, which will get called when the same item is selected.
         /// </remarks>
         /// <since_tizen> preview </since_tizen>
         public FlipSelectorItem Prepend(string text)
@@ -154,7 +154,7 @@ namespace ElmSharp
         /// <summary>
         /// To remove the given item.
         /// </summary>
-        /// <param name="item">FlipSelector's item</param>
+        /// <param name="item">FlipSelector's item.</param>
         /// <since_tizen> preview </since_tizen>
         public void Remove(FlipSelectorItem item)
         {
@@ -163,7 +163,7 @@ namespace ElmSharp
         }
 
         /// <summary>
-        /// Programmatically select the next item of a flip selector widget.
+        /// Programmatically select the next item of the flip selector widget.
         /// </summary>
         /// <remarks>
         /// The selection will be animated. Also, if it reaches the beginning of its list of member items, it will continue with the last one backwards.
@@ -175,7 +175,7 @@ namespace ElmSharp
         }
 
         /// <summary>
-        /// Programmatically select the previous item of a flip selector widget.
+        /// Programmatically select the previous item of the flip selector widget.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
         public void Prev()
@@ -186,8 +186,8 @@ namespace ElmSharp
         /// <summary>
         /// Creates a widget handle.
         /// </summary>
-        /// <param name="parent">Parent EvasObject</param>
-        /// <returns>Handle IntPtr</returns>
+        /// <param name="parent">Parent EvasObject.</param>
+        /// <returns>Handle IntPtr.</returns>
         /// <since_tizen> preview </since_tizen>
         protected override IntPtr CreateHandle(EvasObject parent)
         {

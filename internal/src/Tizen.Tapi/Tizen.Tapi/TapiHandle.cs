@@ -23,7 +23,6 @@ namespace Tizen.Tapi
     /// <summary>
     /// This class is used for managing event callbacks for notifications and properties.
     /// </summary>
-    /// <since_tizen> 4 </since_tizen>
     public class TapiHandle
     {
         internal IntPtr _handle = IntPtr.Zero;
@@ -36,7 +35,6 @@ namespace Tizen.Tapi
         /// <summary>
         /// This event is called for the TAPI notification change.
         /// </summary>
-        /// <since_tizen> 4 </since_tizen>
         public event EventHandler<NotificationChangedEventArgs> NotificationChanged
         {
             add
@@ -53,7 +51,6 @@ namespace Tizen.Tapi
         /// <summary>
         /// This event is called for the TAPI property change.
         /// </summary>
-        /// <since_tizen> 4 </since_tizen>
         public event EventHandler<PropertyChangedEventArgs> PropertyChanged
         {
             add
@@ -75,7 +72,6 @@ namespace Tizen.Tapi
         /// <summary>
         /// Registers a notification callback for notification change events on DBus interface.
         /// </summary>
-        /// <since_tizen> 4 </since_tizen>
         /// <param name="id">Notification id for which a callback has to be registered.</param>
         /// <feature>http://tizen.org/feature/network.telephony</feature>
         /// <exception cref="NotSupportedException">Thrown when telephony feature is not supported.</exception>
@@ -439,7 +435,6 @@ namespace Tizen.Tapi
         /// <summary>
         /// Registers a notification callback for property change events on DBus interface.
         /// </summary>
-        /// <since_tizen> 4 </since_tizen>
         /// <param name="property">Property definition for which a callback has to be registered.</param>
         /// <feature>http://tizen.org/feature/network.telephony</feature>
         /// <exception cref="NotSupportedException">Thrown when telephony feature is not supported.</exception>
@@ -606,7 +601,6 @@ namespace Tizen.Tapi
         /// <summary>
         /// Deregisters notification callback for notification change events on DBus interface.
         /// </summary>
-        /// <since_tizen> 4 </since_tizen>
         /// <param name="id">Notification id for which the callback has to be de-registered.</param>
         /// <feature>http://tizen.org/feature/network.telephony</feature>
         /// <exception cref="NotSupportedException">Thrown when telephony feature is not supported.</exception>
@@ -625,7 +619,6 @@ namespace Tizen.Tapi
         /// <summary>
         /// Deregisters notification callback for property change events on DBus interface.
         /// </summary>
-        /// <since_tizen> 4 </since_tizen>
         /// <param name="property">Property definition for which the callback has to be de-registered.</param>
         /// <feature>http://tizen.org/feature/network.telephony</feature>
         /// <exception cref="NotSupportedException">Thrown when telephony feature is not supported.</exception>
@@ -644,7 +637,6 @@ namespace Tizen.Tapi
         /// <summary>
         /// Gets the property value in an integer format for the given property.
         /// </summary>
-        /// <since_tizen> 4 </since_tizen>
         /// <param name="property">The property to be retrieved from Dbus.</param>
         /// <returns>The property value in integer format.</returns>
         /// <feature>http://tizen.org/feature/network.telephony</feature>
@@ -669,7 +661,6 @@ namespace Tizen.Tapi
         /// <summary>
         /// Gets the property value in a string format for the given property.
         /// </summary>
-        /// <since_tizen> 4 </since_tizen>
         /// <param name="property">The property to be retrieved from Dbus.</param>
         /// <returns>The property value in string format.</returns>
         /// <feature>http://tizen.org/feature/network.telephony</feature>

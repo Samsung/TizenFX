@@ -3,7 +3,7 @@ using System;
 namespace Tizen.Applications.AttachPanel
 {
     /// <summary>
-    /// Class for event arguments of the state event
+    /// A class for the event arguments of the state event.
     /// </summary>
     /// <since_tizen> 4 </since_tizen>
     public class StateEventArgs : EventArgs
@@ -16,7 +16,7 @@ namespace Tizen.Applications.AttachPanel
         }
 
         /// <summary>
-        /// Property for event type.
+        /// Property for the event type.
         /// </summary>
         /// <since_tizen> 4 </since_tizen>
         public EventType EventType

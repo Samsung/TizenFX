@@ -28,39 +28,39 @@ namespace ElmSharp
     public enum DisplayRotation
     {
         /// <summary>
-        /// Rotation value of window is 0 degree
+        /// Rotation value of the window is 0 degree.
         /// </summary>
         Degree_0 = 1,
 
         /// <summary>
-        /// Rotation value of window is 90 degree
+        /// Rotation value of the window is 90 degrees.
         /// </summary>
         Degree_90 = 2,
 
         /// <summary>
-        /// Rotation value of window is 180 degree
+        /// Rotation value of the window is 180 degrees.
         /// </summary>
         Degree_180 = 4,
 
         /// <summary>
-        /// Rotation value of window is 270 degree
+        /// Rotation value of the window is 270 degrees.
         /// </summary>
         Degree_270 = 8
     };
 
     /// <summary>
-    /// Enumeration for the indicator opacity
+    /// Enumeration for the indicator opacity.
     /// </summary>
     /// <since_tizen> preview </since_tizen>
     public enum StatusBarMode
     {
         /// <summary>
-        /// Opacifies the status bar
+        /// Opacifies the status bar.
         /// </summary>
         Opaque = 1,
 
         /// <summary>
-        /// Be translucent the status bar
+        /// Be translucent the status bar.
         /// </summary>
         /// <remarks>
         /// Not supported.
@@ -68,20 +68,20 @@ namespace ElmSharp
         Translucent = 2,
 
         /// <summary>
-        /// Transparentizes the status bar
+        /// Transparentizes the status bar.
         /// </summary>
         Transparent = 3,
     }
 
     /// <summary>
-    /// Enumeration for the keygrab modes of window.
+    /// Enumeration for the keygrab modes of the window.
     /// </summary>
     /// <since_tizen> preview </since_tizen>
     [EditorBrowsable(EditorBrowsableState.Never)]
     public enum KeyGrabMode
     {
         /// <summary>
-        /// Unknown keygrab mode
+        /// Unknown keygrab mode.
         /// </summary>
         Shared = 256,
 
@@ -91,12 +91,12 @@ namespace ElmSharp
         Topmost = 512,
 
         /// <summary>
-        /// Getting the grabbed-key only when window is top of the stack.
+        /// Getting the grabbed-key only when the window is top of the stack.
         /// </summary>
         Exclusive = 1024,
 
         /// <summary>
-        /// Getting the grabbed-key exclusively regardless of window's position.
+        /// Getting the grabbed-key exclusively regardless of the window's position.
         /// </summary>
         OverrideExclusive = 2048,
     }
@@ -124,100 +124,100 @@ namespace ElmSharp
     };
 
     /// <summary>
-    /// Enumeration for the keyboard mode
+    /// Enumeration for the keyboard mode.
     /// </summary>
     /// <since_tizen> preview </since_tizen>
     public enum KeyboardMode
     {
         /// <summary>
-        /// Unknown keyboard state
+        /// Unknown keyboard state.
         /// </summary>
         Unknown,
 
         /// <summary>
-        /// Request to deactivate the keyboard
+        /// Request to deactivate the keyboard.
         /// </summary>
         Off,
 
         /// <summary>
-        /// Enable keyboard with default layout
+        /// Enable keyboard with default layout.
         /// </summary>
         On,
 
         /// <summary>
-        /// Alpha (a-z) keyboard layout
+        /// Alpha (a-z) keyboard layout.
         /// </summary>
         Alpha,
 
         /// <summary>
-        /// Numeric keyboard layout
+        /// Numeric keyboard layout.
         /// </summary>
         Numeric,
 
         /// <summary>
-        /// PIN keyboard layout
+        /// Pin keyboard layout.
         /// </summary>
         Pin,
 
         /// <summary>
-        /// Phone keyboard layout
+        /// Phone keyboard layout.
         /// </summary>
         PhoneNumber,
 
         /// <summary>
-        /// Hexadecimal numeric keyboard layout
+        /// Hexadecimal numeric keyboard layout.
         /// </summary>
         Hex,
 
         /// <summary>
-        /// Full (QWERTY) keyboard layout
+        /// Full (QWERTY) keyboard layout.
         /// </summary>
         QWERTY,
 
         /// <summary>
-        /// Password keyboard layout
+        /// Password keyboard layout.
         /// </summary>
         Password,
 
         /// <summary>
-        /// IP keyboard layout
+        /// IP keyboard layout.
         /// </summary>
         IP,
 
         /// <summary>
-        /// Host keyboard layout
+        /// Host keyboard layout.
         /// </summary>
         Host,
 
         /// <summary>
-        /// File keyboard layout
+        /// File keyboard layout.
         /// </summary>
         File,
 
         /// <summary>
-        /// URL keyboard layout
+        /// URL keyboard layout.
         /// </summary>
         URL,
 
         /// <summary>
-        /// Keypad layout
+        /// Keypad layout.
         /// </summary>
         Keypad,
 
         /// <summary>
-        /// J2ME keyboard layout
+        /// J2ME keyboard layout.
         /// </summary>
         J2ME,
     };
 
     /// <summary>
-    /// Enumeration for the window type
+    /// Enumeration for the window type.
     /// </summary>
     /// <since_tizen> preview </since_tizen>
     public enum WindowType
     {
         /// <summary>
-        /// Unknown
+        /// Unknown.
         /// </summary>
         Unknown,
 
@@ -272,12 +272,12 @@ namespace ElmSharp
         PopupMenu,
 
         /// <summary>
-        /// The window is a tooltip. A short piece of explanatory text that typically appear after the mouse cursor hovers over an object for a while.
+        /// The window is a tooltip. A short piece of explanatory text that typically appears after the mouse cursor hovers over an object for a while.
         /// </summary>
         Tooltip,
 
         /// <summary>
-        /// A notification window, like a warning about battery life or a new E-Mail received.
+        /// A notification window, like a warning about battery life or a new e-mail received.
         /// </summary>
         Notification,
 
@@ -287,13 +287,13 @@ namespace ElmSharp
         Combo,
 
         /// <summary>
-        /// Used to indicate the window is a representation of an object being dragged across different windows, or even applications.
+        /// Used to indicate the window as a representation of an object being dragged across different windows, or even applications.
         /// </summary>
         DragAndDrop,
 
         /// <summary>
         /// The window is rendered onto an image buffer. No actual window is created for this type, instead the window and all of its contents will be rendered to an image buffer.
-        /// This allows to have children window inside a parent one just like any other object would be, and do other things like applying Evas_Map effects to it.
+        /// This allows to have children windows inside a parent one just like any other object would be, and do other things like applying Evas_Map effects to it.
         /// </summary>
         InlinedImage,
 
@@ -310,7 +310,7 @@ namespace ElmSharp
     };
 
     /// <summary>
-    /// The Window is container that contain the graphical user interface of a program.
+    /// The Window is a container that contains the graphical user interface of a program.
     /// </summary>
     /// <since_tizen> preview </since_tizen>
     public class Window : Widget
@@ -332,15 +332,15 @@ namespace ElmSharp
         /// Creates and initializes a new instance of the Window class.
         /// </summary>
         /// <param name="parent">
-        /// Parent widget which this widow created on.
+        /// Parent widget which this window is created on.
         /// </param>
         /// <param name="name">
         /// Window name.
         /// </param>
         /// <remarks>
-        /// Window constructor.show window indicator,set callback
-        /// When closing the window in any way outside the program control,
-        /// and set callback when window rotation changed.
+        /// Window constructor.show window indicator, set callback
+        /// when closing the window in any way outside the program control,
+        /// and set callback when window rotation is changed.
         /// </remarks>
         /// <since_tizen> preview </since_tizen>
         public Window(Window parent, string name) : this(parent, name, WindowType.Basic)
@@ -351,18 +351,18 @@ namespace ElmSharp
         /// Creates and initializes a new instance of the Window class.
         /// </summary>
         /// <param name="parent">
-        /// Parent widget which this widow created on.
+        /// Parent widget which this window is created on.
         /// </param>
         /// <param name="name">
         /// Window name.
         /// </param>
         /// <param name="type">
-        /// Window type
+        /// Window type.
         /// </param>
         /// <remarks>
-        /// Window constructor.show window indicator,set callback
-        /// When closing the window in any way outside the program control,
-        /// and set callback when window rotation changed.
+        /// Window constructor.show window indicator, set callback
+        /// when closing the window in any way outside the program control,
+        /// and set callback when window rotation is changed.
         /// </remarks>
         /// <since_tizen> preview </since_tizen>
         public Window(Window parent, string name, WindowType type)
@@ -387,31 +387,31 @@ namespace ElmSharp
         }
 
         /// <summary>
-        /// CloseRequested will be triggered when Window close.
+        /// CloseRequested will be triggered when window is closed.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
         public event EventHandler CloseRequested;
 
         /// <summary>
-        /// RotationChanged will be triggered when Window do rotation.
+        /// RotationChanged will be triggered when window is rotated.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
         public event EventHandler RotationChanged;
 
         /// <summary>
-        /// Sets or gets Window name.
+        /// Sets or gets the window name.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
         public string Name { get; set; }
 
         /// <summary>
-        /// Gets the Window type.
+        /// Gets the window type.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
         public WindowType Type { get; } = WindowType.Basic;
 
         /// <summary>
-        /// Gets Window size with Size value(w,h)
+        /// Gets the window size with Size value(w,h)
         /// </summary>
         /// <since_tizen> preview </since_tizen>
         public Size ScreenSize
@@ -425,7 +425,7 @@ namespace ElmSharp
         }
 
         /// <summary>
-        /// Gets the screen dpi for the screen that a Window is on.
+        /// Gets the screen dpi for the screen that the window is on.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
         public Point ScreenDpi
@@ -439,7 +439,7 @@ namespace ElmSharp
         }
 
         /// <summary>
-        /// Gets the rotation of the Window.The rotation of the window in degrees (0-360).
+        /// Gets the rotation of the window. The rotation of the window in degrees (0-360).
         /// </summary>
         /// <since_tizen> preview </since_tizen>
         public int Rotation
@@ -451,7 +451,7 @@ namespace ElmSharp
         }
 
         /// <summary>
-        /// Gets whether window manager supports window rotation or not.
+        /// Gets whether the window manager supports window rotation or not.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
         public bool IsRotationSupported
@@ -463,14 +463,14 @@ namespace ElmSharp
         }
 
         /// <summary>
-        /// Sets or gets available rotation degree.
+        /// Sets or gets the available rotation degree.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
         [Obsolete("Sorry, it's error typo of AvailableRotations, please use AvailableRotations")]
         public DisplayRotation AavailableRotations { get; set; }
 
         /// <summary>
-        /// Sets or gets available rotation degree.
+        /// Sets or gets the available rotation degree.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
         public DisplayRotation AvailableRotations
@@ -492,7 +492,7 @@ namespace ElmSharp
         }
 
         /// <summary>
-        /// Sets or gets whether auto deletion function is enable.
+        /// Sets or gets whether the auto deletion function is enabled.
         /// </summary>
         /// <remarks>
         /// If you enable auto deletion, the window is automatically destroyed after the signal is emitted.
@@ -512,10 +512,10 @@ namespace ElmSharp
         }
 
         /// <summary>
-        /// Sets or gets the alpha channel state of a window.
+        /// Sets or gets the alpha channel state of the window.
         /// </summary>
         /// <remarks>
-        /// True if the window alpha channel is enabled, false otherwise.
+        /// true if the window alpha channel is enabled, false otherwise.
         /// If alpha is true, the alpha channel of the canvas will be enabled possibly making parts of the window completely or partially transparent.
         /// </remarks>
         /// <since_tizen> preview </since_tizen>
@@ -551,7 +551,7 @@ namespace ElmSharp
         }
 
         /// <summary>
-        /// Sets or gets the mode of status bar.
+        /// Sets or gets the mode of the status bar.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
         public StatusBarMode StatusBarMode
@@ -567,7 +567,7 @@ namespace ElmSharp
         }
 
         /// <summary>
-        /// Sets or gets the iconified state of a window.
+        /// Sets or gets the iconified state of the window.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
         [EditorBrowsable(EditorBrowsableState.Never)]
@@ -601,7 +601,7 @@ namespace ElmSharp
         }
 
         /// <summary>
-        /// Gets or sets the aspect ratio of a window.
+        /// Gets or sets the aspect ratio of the window.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
         public double Aspect
@@ -633,7 +633,7 @@ namespace ElmSharp
         }
 
         /// <summary>
-        /// Get the borderless state of a window.
+        /// Gets the borderless state of the window.
         /// This function requests the Window Manager to not draw any decoration around the window.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
@@ -650,7 +650,7 @@ namespace ElmSharp
         }
 
         /// <summary>
-        /// Gets or sets the demand attention state of a window.
+        /// Gets or sets the demand attention state of the window.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
         public bool DemandAttention
@@ -666,7 +666,7 @@ namespace ElmSharp
         }
 
         /// <summary>
-        /// Gets or sets the floating mode of a window.
+        /// Gets or sets the floating mode of the window.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
         public bool FloatingMode
@@ -699,7 +699,7 @@ namespace ElmSharp
         }
 
         /// <summary>
-        /// Gets or sets the enabled status for the focus highlight in a window.
+        /// Gets or sets the enabled status for the focus highlight in the window.
         /// This function will enable or disable the focus highlight only for the given window, regardless of the global setting for it.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
@@ -717,7 +717,7 @@ namespace ElmSharp
 
         /// <summary>
         /// Gets or sets the style for the focus highlight on this window.
-        /// Sets the style to use for theming the highlight of focused objects on the given window.If style is NULL, the default will be used.
+        /// Sets the style to use for theming the highlight of focused objects on the given window. If style is NULL, the default will be used.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
         public string FocusHighlightStyle
@@ -733,7 +733,7 @@ namespace ElmSharp
         }
 
         /// <summary>
-        /// Get the keyboard mode of the window.
+        /// Gets the keyboard mode of the window.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
         public KeyboardMode KeyboardMode
@@ -751,7 +751,7 @@ namespace ElmSharp
         /// <summary>
         /// Gets or sets the layer of the window.
         /// What this means exactly will depend on the underlying engine used.
-        /// In the case of X11 backed engines, the value in layer has the following meanings
+        /// In the case of X11 backed engines, the value in layer has the following meanings:
         /// less than 3 means that the window will be placed below all others,
         /// more than 5 means that the window will be placed above all others,
         /// and anything else means that the window will be placed in the default layer.
@@ -770,7 +770,7 @@ namespace ElmSharp
         }
 
         /// <summary>
-        /// Gets or sets the modal state of a window.
+        /// Gets or sets the modal state of the window.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
         public bool Modal
@@ -786,8 +786,8 @@ namespace ElmSharp
         }
 
         /// <summary>
-        /// Gets or sets the noblank property of a window.
-        /// This is a way to request the display on which the windowis shown does not blank, screensave or otherwise hide or obscure the window.It is intended for uses such as media playback on a television where a user may not want to be interrupted by an idle screen.
+        /// Gets or sets the noblank property of the window.
+        /// This is a way to request the display on which the window is shown is not blank, screensave, or otherwise hidden or obscure. It is intended for use such as media playback on a television where a user may not want to be interrupted by an idle screen.
         /// The noblank property may have no effect if the window is iconified/minimized or hidden.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
@@ -804,7 +804,7 @@ namespace ElmSharp
         }
 
         /// <summary>
-        /// Get the profile of a window.
+        /// Gets the profile of the window.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
         public string Profile
@@ -820,8 +820,8 @@ namespace ElmSharp
         }
 
         /// <summary>
-        /// Get the constraints on the maximum width and height of a window relative to the width and height of its screen.
-        /// When this function returns true, obj will never resize larger than the screen.
+        /// Gets the constraints on the maximum width and height of the window relative to the width and height of its screen.
+        /// When this function returns true, object will never resize larger than the screen.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
         public bool ScreenConstrain
@@ -837,7 +837,7 @@ namespace ElmSharp
         }
 
         /// <summary>
-        /// Gets or sets the base size of a window.
+        /// Gets or sets the base size of the window.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
         public Size BaseSize
@@ -855,7 +855,7 @@ namespace ElmSharp
         }
 
         /// <summary>
-        /// Gets or sets the step size of a window.
+        /// Gets or sets the step size of the window.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
         public Size StepSize
@@ -873,7 +873,7 @@ namespace ElmSharp
         }
 
         /// <summary>
-        /// Get the screen position X of a window.
+        /// Gets the screen position X of a window.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
         public int ScreenPositionX
@@ -887,7 +887,7 @@ namespace ElmSharp
         }
 
         /// <summary>
-        /// Get the screen position Y of a window.
+        /// Gets the screen position Y of a window.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
         public int ScreenPositionY
@@ -917,7 +917,7 @@ namespace ElmSharp
         }
 
         /// <summary>
-        /// Gets or sets the urgent state of a window.
+        /// Gets or sets the urgent state of the window.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
         public bool Urgent
@@ -933,7 +933,7 @@ namespace ElmSharp
         }
 
         /// <summary>
-        /// Gets or sets the withdrawn state of a window.
+        /// Gets or sets the withdrawn state of the window.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
         public bool Withdrawn
@@ -949,12 +949,12 @@ namespace ElmSharp
         }
 
         /// <summary>
-        /// Create a socket to provide the service for Plug widget.
+        /// Creates a socket to provide the service for the Plug widget.
         /// </summary>
-        /// <param name="name">A service name</param>
+        /// <param name="name">A service name.</param>
         /// <param name="number">A number (any value, 0 being the common default) to differentiate multiple instances of services with the same name.</param>
-        /// <param name="systemWide">A boolean that if true, specifies to create a system-wide service all users can connect to, otherwise the service is private to the user id that created the service.</param>
-        /// <returns>If true, create successfull, otherwise false</returns>
+        /// <param name="systemWide">A boolean that if true, specifies to create a system-wide service all users can connect to, otherwise the service is private to the user ID that created the service.</param>
+        /// <returns>If true creates successful, otherwise false.</returns>
         /// <since_tizen> preview </since_tizen>
         public bool CreateServiceSocket(string name, int number, bool systemWide)
         {
@@ -962,7 +962,7 @@ namespace ElmSharp
         }
 
         /// <summary>
-        /// Set the rotation of the window.
+        /// Sets the rotation of the window.
         /// </summary>
         /// <param name="degree">The rotation of the window, in degrees (0-360), counter-clockwise.</param>
         /// <param name="resize">Resizes the window's contents so that they fit inside the current window geometry.</param>
@@ -976,10 +976,10 @@ namespace ElmSharp
         }
 
         /// <summary>
-        /// Set the window to be skipped by focus.
+        /// Sets the window to be skipped by focus.
         /// This sets the window to be skipped by normal input.
-        /// This means a window manager will be asked to not focus this window as well as omit it from things like the taskbar, pager etc.
-        /// Call this and enable it on a window BEFORE you show it for the first time, otherwise it may have no effect.
+        /// This means the Windows Manager will be asked to not focus this window as well as omit it from things like the taskbar, pager etc.
+        /// Call this and enable it on the window BEFORE you show it for the first time, otherwise it may have no effect.
         /// Use this for windows that have only output information or might only be interacted with by the mouse or fingers, and never for typing input.
         /// Be careful that this may have side-effects like making the window non-accessible in some cases unless the window is specially handled. Use this with care.
         /// </summary>
@@ -990,8 +990,8 @@ namespace ElmSharp
         }
 
         /// <summary>
-        /// Pull up the window object.
-        /// Places the window pointed by obj at the top of the stack, so that it's not covered by any other window.
+        /// Pulls up the window object.
+        /// Places the window pointed by object at the top of the stack, so that it's not covered by any other window.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
         public void PullUp()
@@ -1000,8 +1000,8 @@ namespace ElmSharp
         }
 
         /// <summary>
-        /// Bring down the window object.
-        /// Places the window pointed by obj at the bottom of the stack, so that no other window is covered by it.
+        /// Brings down the window object.
+        /// Places the window pointed by object at the bottom of the stack, so that no other window is covered by it.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
         public void BringDown()
@@ -1010,11 +1010,11 @@ namespace ElmSharp
         }
 
         /// <summary>
-        /// This function sends a request to the Windows Manager to activate the Window.
-        /// If honored by the WM, the window receives the keyboard focus.
+        /// This function sends a request to the Windows Manager to activate the window.
+        /// If honored by the Windows Manager, the window receives the keyboard focus.
         /// </summary>
         /// <remarks>
-        /// This is just a request that a Window Manager may ignore, so calling this function does not ensure
+        /// This is just a request that the Windows Manager may ignore, so calling this function does not ensure
         /// in any way that the window is going to be the active one after it.
         /// </remarks>
         /// <since_tizen> preview </since_tizen>
@@ -1024,9 +1024,9 @@ namespace ElmSharp
         }
 
         /// <summary>
-        /// Delete subobj as a resize object of window obj.
-        /// This function removes the object subobj from the resize objects of the window obj.
-        /// It will not delete the object itself, which will be left unmanaged and should be deleted by the developer, manually handled or set as child of some other container.
+        /// Deletes the subobj as a resize object of the window object.
+        /// This function removes the object subobj from the resize objects of the window object.
+        /// It will not delete the object itself, which will be left unmanaged and should be deleted by the developer, manually handled, or set as child of some other container.
         /// </summary>
         /// <param name="obj">Resize object.</param>
         /// <since_tizen> preview </since_tizen>
@@ -1036,12 +1036,12 @@ namespace ElmSharp
         }
 
         /// <summary>
-        /// Adds obj as a resize object of the Window.
+        /// Adds an object as a resize object of the window.
         /// </summary>
         /// <remarks>
-        /// Setting an object as a resize object of the window means that the obj child's size and
-        /// position is controlled by the window directly. That is, the obj is resized to match the window size
-        /// and should never be moved or resized manually by the developer.In addition,
+        /// Setting an object as a resize object of the window means that the object child's size and
+        /// position is controlled by the window directly. That is, the object is resized to match the window size
+        /// and should never be moved or resized manually by the developer. In addition,
         /// resize objects of the window control the minimum size of it as well as whether it can or cannot be resized by the user.
         /// </remarks>
         /// <param name="obj">
@@ -1054,11 +1054,11 @@ namespace ElmSharp
         }
 
         /// <summary>
-        /// Set keygrab value of the window.
-        /// This function grabs the key of window using grab_mode.
+        /// Sets the keygrab value of the window.
+        /// This function grabs the key of the window using grab_mode.
         /// </summary>
         /// <param name="keyname">The keyname to grab.</param>
-        /// <param name="mode">According to the grabmode, it can grab key differently</param>
+        /// <param name="mode">According to the grabmode, it can grab key differently.</param>
         /// <since_tizen> preview </since_tizen>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void WinKeyGrab(string keyname, KeyGrabMode mode)
@@ -1067,8 +1067,8 @@ namespace ElmSharp
         }
 
         /// <summary>
-        /// Unset keygrab value of the window.
-        /// This function unset keygrab value.Ungrab key of window.
+        /// Unsets the keygrab value of the window.
+        /// This function unsets keygrab value. Ungrab key of the window.
         /// </summary>
         /// <param name="keyname">The keyname to grab.</param>
         /// <since_tizen> preview </since_tizen>
@@ -1079,9 +1079,9 @@ namespace ElmSharp
         }
 
         /// <summary>
-        /// Set the keygrab of the window.
+        /// Sets the keygrab of the window.
         /// </summary>
-        /// <param name="keyname">keyname string to set keygrab</param>
+        /// <param name="keyname">The keyname string to set keygrab.</param>
         /// <since_tizen> preview </since_tizen>
         public void KeyGrabEx(string keyname)
         {
@@ -1089,9 +1089,9 @@ namespace ElmSharp
         }
 
         /// <summary>
-        /// Unset the keygrab of the window.
+        /// Unsets the keygrab of the window.
         /// </summary>
-        /// <param name="keyname">keyname string to unset keygrab</param>
+        /// <param name="keyname">The keyname string to unset keygrab.</param>
         /// <since_tizen> preview </since_tizen>
         public void KeyUngrabEx(string keyname)
         {
@@ -1101,8 +1101,8 @@ namespace ElmSharp
         /// <summary>
         /// Creates a widget handle.
         /// </summary>
-        /// <param name="parent">Parent EvasObject</param>
-        /// <returns>Handle IntPtr</returns>
+        /// <param name="parent">Parent EvasObject.</param>
+        /// <returns>Handle IntPtr.</returns>
         /// <since_tizen> preview </since_tizen>
         protected override IntPtr CreateHandle(EvasObject parent)
         {

@@ -20,10 +20,10 @@ using System.Diagnostics.CodeAnalysis;
 namespace Tizen.Pims.Contacts
 {
     /// <summary>
-    /// A query is used to retrieve data which satisfies given criteria
+    /// A query is used to retrieve the data, which satisfies a given criteria.
     /// </summary>
     /// <remarks>
-    /// A query is used to retrieve person, group, speed dial, and log data which satisfies a given criteria, such as an integer property being greater than a given value, or a string property containing a given substring. 
+    /// A query is used to retrieve a person, group, speed dial, and log data, which satisfies a given criteria, such as an integer property being greater than a given value or a string property containing a given substring. 
     /// A query needs a filter which can set the conditions for the search.
     /// </remarks>
     /// <since_tizen> 4 </since_tizen>
@@ -34,11 +34,11 @@ namespace Tizen.Pims.Contacts
         /// <summary>
         /// Creates a query.
         /// </summary>
-        /// <param name="viewUri">The view URI of a query</param>
+        /// <param name="viewUri">The view URI of a query.</param>
         /// <feature>http://tizen.org/feature/contact</feature>
-        /// <exception cref="NotSupportedException">Thrown when feature is not supported</exception>
-        /// <exception cref="ArgumentException">Thrown when one of the arguments provided to a method is not valid</exception>
-        /// <exception cref="OutOfMemoryException">Thrown when failed due to out of memory</exception>
+        /// <exception cref="NotSupportedException">Thrown when the feature is not supported.</exception>
+        /// <exception cref="ArgumentException">Thrown when one of the arguments provided to a method is not valid.</exception>
+        /// <exception cref="OutOfMemoryException">Thrown when failed due to out of memory.</exception>
         /// <since_tizen> 4 </since_tizen>
         [SuppressMessage("Microsoft.Design", "CA1054:UriParametersShouldNotBeStrings")] 
         public ContactsQuery(string viewUri)
@@ -57,7 +57,7 @@ namespace Tizen.Pims.Contacts
         }
 
         /// <summary>
-        /// Destructor
+        /// The destructor.
         /// </summary>
         /// <since_tizen> 4 </since_tizen>
         ~ContactsQuery()
@@ -68,9 +68,9 @@ namespace Tizen.Pims.Contacts
         private bool disposedValue = false;
 
         /// <summary>
-        /// Releases all resources used by the ContactsQuery.
+        /// Releases all the resources used by the ContactsQuery.
         /// </summary>
-        /// <param name="disposing">Disposing by User</param>
+        /// <param name="disposing">Disposing by the user.</param>
         /// <since_tizen> 4 </since_tizen>
         protected virtual void Dispose(bool disposing)
         {
@@ -94,8 +94,8 @@ namespace Tizen.Pims.Contacts
         }
 
         /// <summary>
-        /// Releases all resources used by the ContactsQuery.
-        /// It should be called after finished using of the object.
+        /// Releases all the resources used by the ContactsQuery.
+        /// It should be called after it has finished using the object.
         /// </summary>
         /// <since_tizen> 4 </since_tizen>
         public void Dispose()
@@ -106,12 +106,12 @@ namespace Tizen.Pims.Contacts
         #endregion
 
         /// <summary>
-        /// Adds property IDs for projection.
+        /// Adds the property IDs for projection.
         /// </summary>
-        /// <param name="propertyIdArray">The property ID array </param>
+        /// <param name="propertyIdArray">The property ID array.</param>
         /// <feature>http://tizen.org/feature/contact</feature>
-        /// <exception cref="NotSupportedException">Thrown when feature is not supported</exception>
-        /// <exception cref="ArgumentException">Thrown when one of the arguments provided to a method is not valid</exception>
+        /// <exception cref="NotSupportedException">Thrown when the feature is not supported.</exception>
+        /// <exception cref="ArgumentException">Thrown when one of the arguments provided to a method is not valid.</exception>
         /// <since_tizen> 4 </since_tizen>
         public void SetProjection(uint[] propertyIdArray)
         {
@@ -131,9 +131,9 @@ namespace Tizen.Pims.Contacts
         /// <summary>
         /// Sets the "distinct" option for projection.
         /// </summary>
-        /// <param name="set">If true it is set, otherwise if false it is unset</param>
+        /// <param name="set">If true it is set, otherwise if false it is unset.</param>
         /// <feature>http://tizen.org/feature/contact</feature>
-        /// <exception cref="NotSupportedException">Thrown when feature is not supported</exception>
+        /// <exception cref="NotSupportedException">Thrown when the feature is not supported.</exception>
         /// <since_tizen> 4 </since_tizen>
         public void SetDistinct(bool set)
         {
@@ -148,10 +148,10 @@ namespace Tizen.Pims.Contacts
         /// <summary>
         /// Sets the filter for a query.
         /// </summary>
-        /// <param name="filter">The filter</param>
+        /// <param name="filter">The filter.</param>
         /// <feature>http://tizen.org/feature/contact</feature>
-        /// <exception cref="NotSupportedException">Thrown when feature is not supported</exception>
-        /// <exception cref="ArgumentException">Thrown when one of the arguments provided to a method is not valid</exception>
+        /// <exception cref="NotSupportedException">Thrown when the feature is not supported.</exception>
+        /// <exception cref="ArgumentException">Thrown when one of the arguments provided to a method is not valid.</exception>
         /// <since_tizen> 4 </since_tizen>
         public void SetFilter(ContactsFilter filter)
         {
@@ -166,11 +166,11 @@ namespace Tizen.Pims.Contacts
         /// <summary>
         /// Sets the sort mode for a query.
         /// </summary>
-        /// <param name="propertyId">The property ID to sort</param>
-        /// <param name="isAscending">If true it sorts in the ascending order, otherwise if false it sorts in the descending order</param>
+        /// <param name="propertyId">The property ID to sort.</param>
+        /// <param name="isAscending">If true it sorts in ascending order, otherwise if false it sorts in descending order.</param>
         /// <feature>http://tizen.org/feature/contact</feature>
-        /// <exception cref="NotSupportedException">Thrown when feature is not supported</exception>
-        /// <exception cref="ArgumentException">Thrown when one of the arguments provided to a method is not valid</exception>
+        /// <exception cref="NotSupportedException">Thrown when the feature is not supported.</exception>
+        /// <exception cref="ArgumentException">Thrown when one of the arguments provided to a method is not valid.</exception>
         /// <since_tizen> 4 </since_tizen>
         public void SetSort(uint propertyId, bool isAscending)
         {

@@ -24,7 +24,6 @@ namespace Tizen.Tapi
     /// <summary>
     /// This class provides functions to manage call related setup and methods.
     /// </summary>
-    /// <since_tizen> 4 </since_tizen>
     public class Call
     {
         private IntPtr _handle;
@@ -35,7 +34,6 @@ namespace Tizen.Tapi
         /// <summary>
         /// A public constructor for Call class to create a Call instance for the given tapi handle.
         /// </summary>
-        /// <since_tizen> 4 </since_tizen>
         /// <param name="handle">The tapi handle.</param>
         public Call(TapiHandle handle)
         {
@@ -50,7 +48,6 @@ namespace Tizen.Tapi
         /// <summary>
         /// Setup the call to be dialled asynchronously.
         /// </summary>
-        /// <since_tizen> 4 </since_tizen>
         /// <param name="info">Information of call type and number.</param>
         /// <returns>A task indicating whether the DialCall method is done or not.</returns>
         /// <privilege>http://tizen.org/privilege/telephony.admin</privilege>
@@ -109,7 +106,6 @@ namespace Tizen.Tapi
         /// <summary>
         /// Supports answering the incoming call by accepting or rejecting the call asynchronously.
         /// </summary>
-        /// <since_tizen> 4 </since_tizen>
         /// <param name="callHandle">Unique handle that refer to the call.</param>
         /// <param name="type">The answer type.</param>
         /// <returns>The call id of answer call. This call handle is available to the application through an incoming call(IncomingVoiceCall) event.</returns>
@@ -161,7 +157,6 @@ namespace Tizen.Tapi
         /// <summary>
         /// Releases the call asynchronously irrespective of whether the call is in the hold or active state.
         /// </summary>
-        /// <since_tizen> 4 </since_tizen>
         /// <param name="callHandle">Unique handle that refer to the call.</param>
         /// <param name="type">The end call type.</param>
         /// <returns>Instance of CallEndData.</returns>
@@ -214,7 +209,6 @@ namespace Tizen.Tapi
         /// <summary>
         /// Puts the given call on hold asynchoronously.
         /// </summary>
-        /// <since_tizen> 4 </since_tizen>
         /// <param name="callHandle">Unique handle for referring the call.</param>
         /// <returns>The call id of hold call.</returns>
         /// <privilege>http://tizen.org/privilege/telephony.admin</privilege>
@@ -265,7 +259,6 @@ namespace Tizen.Tapi
         /// <summary>
         /// Retrieves the call being held asynchoronously.
         /// </summary>
-        /// <since_tizen> 4 </since_tizen>
         /// <param name="callHandle">Unique handle for referring the call.</param>
         /// <returns>The call id of active call.</returns>
         /// <privilege>http://tizen.org/privilege/telephony.admin</privilege>
@@ -316,7 +309,6 @@ namespace Tizen.Tapi
         /// <summary>
         /// Swaps calls asynchoronously. This is only for calls dialed or answered with Telephony.
         /// </summary>
-        /// <since_tizen> 4 </since_tizen>
         /// <param name="activeCallHandle">Active call.</param>
         /// <param name="heldCallHandle">Held call.</param>
         /// <returns>The call id of swap call.</returns>
@@ -367,7 +359,6 @@ namespace Tizen.Tapi
         /// <summary>
         /// Starts continuous dtmf by sending a single digit during the call asynchronously.
         /// </summary>
-        /// <since_tizen> 4 </since_tizen>
         /// <param name="digit">The dtmf digit to be sent.</param>
         /// <returns>A task indicating whether the StartContDtmfCall method is done or not.</returns>
         /// <privilege>http://tizen.org/privilege/telephony.admin</privilege>
@@ -418,7 +409,6 @@ namespace Tizen.Tapi
         /// <summary>
         /// Stops continuous dtmf during the call asynchronously.
         /// </summary>
-        /// <since_tizen> 4 </since_tizen>
         /// <returns>A task indicating whether the StopContDtmfCall method is done or not.</returns>
         /// <privilege>http://tizen.org/privilege/telephony.admin</privilege>
         /// <privlevel>platform</privlevel>
@@ -468,7 +458,6 @@ namespace Tizen.Tapi
         /// <summary>
         /// Send one or more dtmf digits during the call asynchronously.
         /// </summary>
-        /// <since_tizen> 4 </since_tizen>
         /// <param name="dtmfData">A burst dtmf info containing dtmf string, pulse width, and inter digit interval.</param>
         /// <returns>A task indicating whether the SendBurstDtmfCall method is done or not.</returns>
         /// <privilege>http://tizen.org/privilege/telephony.admin</privilege>
@@ -528,7 +517,6 @@ namespace Tizen.Tapi
         /// <summary>
         /// Joins the given two calls (one call in the active conversation state and the other call in the held state) into conference asynchronously.
         /// </summary>
-        /// <since_tizen> 4 </since_tizen>
         /// <param name="activeCallhandle">Unique handle which is either an active call or a held call.</param>
         /// <param name="callHandle">Unique call handle.</param>
         /// <returns>The call id of join call.</returns>
@@ -580,7 +568,6 @@ namespace Tizen.Tapi
         /// <summary>
         /// Triggers splitting a private call from a multiparty call asynchronously.
         /// </summary>
-        /// <since_tizen> 4 </since_tizen>
         /// <param name="callHandle">The handle of the call to be made private. The call handle referring to the call that is to be split from the conference.</param>
         /// <returns>The call id of split call.</returns>
         /// <privilege>http://tizen.org/privilege/telephony.admin</privilege>
@@ -631,7 +618,6 @@ namespace Tizen.Tapi
         /// <summary>
         /// Triggers making an explicit call transfer by connecting the two parties where one party is being active(active state) and another party is being held(held state) asynchronously.
         /// </summary>
-        /// <since_tizen> 4 </since_tizen>
         /// <param name="activeCallHandle">The call handle of an active call.</param>
         /// <returns>The call id of transferred call.</returns>
         /// <privilege>http://tizen.org/privilege/telephony.admin</privilege>
@@ -682,7 +668,6 @@ namespace Tizen.Tapi
         /// <summary>
         /// Redirects the incoming call to another subscriber asynchronously.
         /// </summary>
-        /// <since_tizen> 4 </since_tizen>
         /// <param name="incomingCallHandle">Incoming call handle.</param>
         /// <param name="destinationNumber">The destination number.</param>
         /// <returns>A task indicating whether the DeflectCall method is done or not.</returns>
@@ -733,7 +718,6 @@ namespace Tizen.Tapi
         /// <summary>
         /// Gets the status of the current call.
         /// </summary>
-        /// <since_tizen> 4 </since_tizen>
         /// <param name="callId">A unique handle for referring the call.</param>
         /// <returns>The call status information like destination number, call direction, call type, whether call is in the conference state or not.</returns>
         /// <privilege>http://tizen.org/privilege/telephony</privilege>
@@ -758,7 +742,6 @@ namespace Tizen.Tapi
         /// <summary>
         /// Get the list of status of the current call.
         /// </summary>
-        /// <since_tizen> 4 </since_tizen>
         /// <returns>List of CallStatus.</returns>
         /// <privilege>http://tizen.org/privilege/telephony</privilege>
         /// <feature>http://tizen.org/feature/network.telephony</feature>
@@ -789,7 +772,6 @@ namespace Tizen.Tapi
         /// <summary>
         /// Get the call volume asynchronously.
         /// </summary>
-        /// <since_tizen> 4 </since_tizen>
         /// <param name="device">The sound device.</param>
         /// <param name="type">The sound type.</param>
         /// <returns>Instance of CallVolumeInfo.</returns>
@@ -837,7 +819,6 @@ namespace Tizen.Tapi
         /// <summary>
         /// Set the call volume asynchronously.
         /// </summary>
-        /// <since_tizen> 4 </since_tizen>
         /// <param name="record">The call volume information.</param>
         /// <returns>A task indicating whether the SetCallVolumeInfo method is done or not.</returns>
         /// <privilege>http://tizen.org/privilege/telephony.admin</privilege>
@@ -893,7 +874,6 @@ namespace Tizen.Tapi
         /// <summary>
         /// Set the call sound path asynchronously.
         /// </summary>
-        /// <since_tizen> 4 </since_tizen>
         /// <param name="path">The call sound path information.</param>
         /// <returns>A task indicating whether the SetCallSoundPath method is done or not.</returns>
         /// <privilege>http://tizen.org/privilege/telephony.admin</privilege>
@@ -949,7 +929,6 @@ namespace Tizen.Tapi
         /// <summary>
         /// Set the call mute state asynchronously.
         /// </summary>
-        /// <since_tizen> 4 </since_tizen>
         /// <param name="record">The call mute status information.</param>
         /// <returns>A task indicating whether the SetCallMuteStatus method is done or not.</returns>
         /// <privilege>http://tizen.org/privilege/telephony.admin</privilege>
@@ -1004,7 +983,6 @@ namespace Tizen.Tapi
         /// <summary>
         /// Get the call mute state asynchronously.
         /// </summary>
-        /// <since_tizen> 4 </since_tizen>
         /// <returns>Instance of CallMuteStatusRecord.</returns>
         /// <privilege>http://tizen.org/privilege/telephony</privilege>
         /// <feature>http://tizen.org/feature/network.telephony</feature>
@@ -1050,7 +1028,6 @@ namespace Tizen.Tapi
         /// <summary>
         /// Get the voice privacy mode in the phone asynchronously.
         /// </summary>
-        /// <since_tizen> 4 </since_tizen>
         /// <returns>CallPrivacyMode value.</returns>
         /// <privilege>http://tizen.org/privilege/telephony</privilege>
         /// <feature>http://tizen.org/feature/network.telephony</feature>
@@ -1097,7 +1074,6 @@ namespace Tizen.Tapi
         /// <summary>
         /// Set the voice privacy mode in the phone asynchronously. It is available only where a call exists.
         /// </summary>
-        /// <since_tizen> 4 </since_tizen>
         /// <param name="mode">Voice privacy option mode value.</param>
         /// <returns>A task indicating whether the SetCallPrivacyMode method is done or not.</returns>
         /// <privilege>http://tizen.org/privilege/telephony.admin</privilege>
@@ -1144,7 +1120,6 @@ namespace Tizen.Tapi
         /// <summary>
         /// Set the preferred voice subscription asynchronously.
         /// </summary>
-        /// <since_tizen> 4 </since_tizen>
         /// <param name="subscription">Preferred voice subscription value.</param>
         /// <returns>A task indicating whether the SetCallPreferredVoiceSubscription method is done or not.</returns>
         /// <privilege>http://tizen.org/privilege/telephony.admin</privilege>
@@ -1190,7 +1165,6 @@ namespace Tizen.Tapi
         /// <summary>
         /// Get the preferred voice subscription.
         /// </summary>
-        /// <since_tizen> 4 </since_tizen>
         /// <returns>CallPreferredVoiceSubscription value.</returns>
         /// <privilege>http://tizen.org/privilege/telephony</privilege>
         /// <feature>http://tizen.org/feature/network.telephony</feature>

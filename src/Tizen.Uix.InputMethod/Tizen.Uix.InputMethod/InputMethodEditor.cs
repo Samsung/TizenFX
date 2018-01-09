@@ -24,938 +24,938 @@ using static Interop.InputMethod;
 namespace Tizen.Uix.InputMethod
 {
     /// <summary>
-    /// Enumeration of the key codes.
-    /// If keycode &amp; 0xff000000 == 0x01000000 then this key code is directly encoded 24-bit UCS character.The UCS value is keycode &amp; 0x00ffffff.
-    /// Defines the list of keys supported by the system.Note that certain keys may not be available on all devices.
+    /// Enumeration for the key codes.
+    /// If keycode &amp; 0xff000000 == 0x01000000 then this key code is directly encoded to 24-bit UCS character. The UCS value is keycode &amp; 0x00ffffff.
+    /// Defines the list of keys supported by the system. Note that certain keys may not be available on all the devices.
     /// </summary>
     /// <since_tizen> 4 </since_tizen>
     public enum KeyCode
     {
         /// <summary>
-        /// The backspace key
+        /// The Backspace key.
         /// </summary>
         BackSpace = 0xFF08,
         /// <summary>
-        /// The tab key
+        /// The Tab key.
         /// </summary>
         Tab = 0xFF09,
         /// <summary>
-        /// The linefeed key
+        /// The Linefeed key.
         /// </summary>
         Linefeed = 0xFF0A,
         /// <summary>
-        /// The clear key
+        /// The Clear key.
         /// </summary>
         Clear = 0xFF0B,
         /// <summary>
-        /// The return key
+        /// The Return key.
         /// </summary>
         Return = 0xFF0D,
         /// <summary>
-        /// The pause key
+        /// The Pause key.
         /// </summary>
         Pause = 0xFF13,
         /// <summary>
-        /// The scroll lock key
+        /// The Scroll lock key.
         /// </summary>
         ScrollLock = 0xFF14,
         /// <summary>
-        /// The sys req key
+        /// The System Request key.
         /// </summary>
         SysReq = 0xFF15,
         /// <summary>
-        /// The escape key
+        /// The Escape key.
         /// </summary>
         Escape = 0xFF1B,
         /// <summary>
-        /// The delete key
+        /// The Delete key.
         /// </summary>
         Delete = 0xFFFF,
 
         /* Cursor control & motion */
         /// <summary>
-        /// The home key
+        /// The Home key.
         /// </summary>
         Home = 0xFF50,
         /// <summary>
-        /// The left directional key
+        /// The Left directional key.
         /// </summary>
         Left = 0xFF51,
         /// <summary>
-        /// The up directional key
+        /// The Up directional key.
         /// </summary>
         Up = 0xFF52,
         /// <summary>
-        /// The right directional key
+        /// The Right directional key.
         /// </summary>
         Right = 0xFF53,
         /// <summary>
-        /// The down directional key
+        /// The Down directional key.
         /// </summary>
         Down = 0xFF54,
         /// <summary>
-        /// The prior, previous key
+        /// The Prior, Previous key.
         /// </summary>
         Prior = 0xFF55,
         /// <summary>
-        /// The page up key
+        /// The Page Up key.
         /// </summary>
         Page_Up = 0xFF55,
         /// <summary>
-        /// The next key
+        /// The Next key.
         /// </summary>
         Next = 0xFF56,
         /// <summary>
-        /// The page down key
+        /// The Page Down key.
         /// </summary>
         Page_Down = 0xFF56,
         /// <summary>
-        /// The end key
+        /// The End key.
         /// </summary>
         End = 0xFF57,
         /// <summary>
-        /// The begin key
+        /// The Begin key.
         /// </summary>
         Begin = 0xFF58,
 
         /* Misc Functions */
         /// <summary>
-        /// The select key
+        /// The Select key.
         /// </summary>
         Select = 0xFF60,
         /// <summary>
-        /// The print key
+        /// The Print key.
         /// </summary>
         Print = 0xFF61,
         /// <summary>
-        /// The execute, run, do key
+        /// The Execute, Run, Do key.
         /// </summary>
         Execute = 0xFF62,
         /// <summary>
-        /// The insert key
+        /// The Insert key.
         /// </summary>
         Insert = 0xFF63,
         /// <summary>
-        /// The undo key
+        /// The Undo key.
         /// </summary>
         Undo = 0xFF65,
         /// <summary>
-        /// The redo key
+        /// The Redo key.
         /// </summary>
         Redo = 0xFF66,
         /// <summary>
-        /// The menu key
+        /// The Menu key.
         /// </summary>
         Menu = 0xFF67,
         /// <summary>
-        /// The find key
+        /// The Find key.
         /// </summary>
         Find = 0xFF68,
         /// <summary>
-        /// The cancel, stop, abort, exit key
+        /// The Cancel, Stop, Abort, Exit key.
         /// </summary>
         Cancel = 0xFF69,
         /// <summary>
-        /// The help key
+        /// The Help key.
         /// </summary>
         Help = 0xFF6A,
         /// <summary>
-        /// The break key
+        /// The Break key.
         /// </summary>
         Break = 0xFF6B,
         /// <summary>
-        /// The character set switch key
+        /// The character set switch key.
         /// </summary>
         Mode_switch = 0xFF7E,
         /// <summary>
-        /// The num lock key
+        /// The Number Lock key.
         /// </summary>
         Num_Lock = 0xFF7F,
 
         /* Keypad */
         /// <summary>
-        /// The Numpad space key
+        /// The Numpad Space key.
         /// </summary>
         KPSpace = 0xFF80,
         /// <summary>
-        /// The Numpad tab key
+        /// The Numpad Tab key.
         /// </summary>
         KPTab = 0xFF89,
         /// <summary>
-        /// The Numpad enter key
+        /// The Numpad Enter key.
         /// </summary>
         KPEnter = 0xFF8D,
         /// <summary>
-        /// The Numpad function 1 key
+        /// The Numpad Function 1 key.
         /// </summary>
         KPF1 = 0xFF91,
         /// <summary>
-        /// The Numpad function 2 key
+        /// The Numpad Function 2 key.
         /// </summary>
         KPF2 = 0xFF92,
         /// <summary>
-        /// The Numpad function 3 key
+        /// The Numpad Function 3 key.
         /// </summary>
         KPF3 = 0xFF93,
         /// <summary>
-        /// The Numpad function 4 key
+        /// The Numpad Function 4 key.
         /// </summary>
         KPF4 = 0xFF94,
         /// <summary>
-        /// The Numpad home key
+        /// The Numpad Home key.
         /// </summary>
         KPHome = 0xFF95,
         /// <summary>
-        /// The Numpad left key
+        /// The Numpad Left key.
         /// </summary>
         KPLeft = 0xFF96,
         /// <summary>
-        /// The Numpad up key
+        /// The Numpad Up key.
         /// </summary>
         KPUp = 0xFF97,
         /// <summary>
-        /// The Numpad right key
+        /// The Numpad Right key.
         /// </summary>
         KPRight = 0xFF98,
         /// <summary>
-        /// The Numpad down key
+        /// The Numpad Down key.
         /// </summary>
         KPDown = 0xFF99,
         /// <summary>
-        /// The Numpad prior, previous key
+        /// The Numpad Prior, Previous key.
         /// </summary>
         KPPrior = 0xFF9A,
         /// <summary>
-        /// The Numpad page up key
+        /// The Numpad Page Up key.
         /// </summary>
         KPPage_Up = 0xFF9A,
         /// <summary>
-        /// The Numpad next key
+        /// The Numpad Next key.
         /// </summary>
         KPNext = 0xFF9B,
         /// <summary>
-        /// The Numpad page down key
+        /// The Numpad Page Down key.
         /// </summary>
         KPPage_Down = 0xFF9B,
         /// <summary>
-        /// The Numpad end key
+        /// The Numpad End key.
         /// </summary>
         KPEnd = 0xFF9C,
         /// <summary>
-        /// The Numpad begin key
+        /// The Numpad Begin key.
         /// </summary>
         KPBegin = 0xFF9D,
         /// <summary>
-        /// The Numpad insert key
+        /// The Numpad Insert key.
         /// </summary>
         KPInsert = 0xFF9E,
         /// <summary>
-        /// The Numpad delete key
+        /// The Numpad Delete key.
         /// </summary>
         KPDelete = 0xFF9F,
         /// <summary>
-        /// The Numpad equal key
+        /// The Numpad Equal key.
         /// </summary>
         KPEqual = 0xFFBD,
         /// <summary>
-        /// The Numpad multiply key
+        /// The Numpad Multiply key.
         /// </summary>
         KPMultiply = 0xFFAA,
         /// <summary>
-        /// The Numpad add key
+        /// The Numpad Add key.
         /// </summary>
         KPAdd = 0xFFAB,
         /// <summary>
-        /// The Numpad separator key
+        /// The Numpad Separator key.
         /// </summary>
         KPSeparator = 0xFFAC,
         /// <summary>
-        /// The Numpad subtract key
+        /// The Numpad Subtract key.
         /// </summary>
         KPSubtract = 0xFFAD,
         /// <summary>
-        /// The Numpad decimal key
+        /// The Numpad Decimal key.
         /// </summary>
         KPDecimal = 0xFFAE,
         /// <summary>
-        /// The Numpad divide key
+        /// The Numpad Divide key.
         /// </summary>
         KPDivide = 0xFFAF,
         /// <summary>
-        /// The Numpad 0 key
+        /// The Numpad 0 key.
         /// </summary>
         KP0 = 0xFFB0,
         /// <summary>
-        /// The Numpad 1 key
+        /// The Numpad 1 key.
         /// </summary>
         KP1 = 0xFFB1,
         /// <summary>
-        /// The Numpad 2 key
+        /// The Numpad 2 key.
         /// </summary>
         KP2 = 0xFFB2,
         /// <summary>
-        /// The Numpad 3 key
+        /// The Numpad 3 key.
         /// </summary>
         KP3 = 0xFFB3,
         /// <summary>
-        /// The Numpad 4 key
+        /// The Numpad 4 key.
         /// </summary>
         KP4 = 0xFFB4,
         /// <summary>
-        /// The Numpad 5 key
+        /// The Numpad 5 key.
         /// </summary>
         KP5 = 0xFFB5,
         /// <summary>
-        /// The Numpad 6 key
+        /// The Numpad 6 key.
         /// </summary>
         KP6 = 0xFFB6,
         /// <summary>
-        /// The Numpad 7 key
+        /// The Numpad 7 key.
         /// </summary>
         KP7 = 0xFFB7,
         /// <summary>
-        /// The Numpad 8 key
+        /// The Numpad 8 key.
         /// </summary>
         KP8 = 0xFFB8,
         /// <summary>
-        /// The Numpad 9 key
+        /// The Numpad 9 key.
         /// </summary>
         KP9 = 0xFFB9,
 
         /* Auxiliary Functions */
         /// <summary>
-        /// The function 1 key
+        /// The Function 1 key.
         /// </summary>
         F1 = 0xFFBE,
         /// <summary>
-        /// The function 2 key
+        /// The Function 2 key.
         /// </summary>
         F2 = 0xFFBF,
         /// <summary>
-        /// The function 3 key
+        /// The Function 3 key.
         /// </summary>
         F3 = 0xFFC0,
         /// <summary>
-        /// The function 4 key
+        /// The Function 4 key.
         /// </summary>
         F4 = 0xFFC1,
         /// <summary>
-        /// The function 5 key
+        /// The Function 5 key.
         /// </summary>
         F5 = 0xFFC2,
         /// <summary>
-        /// The function 6 key
+        /// The Function 6 key.
         /// </summary>
         F6 = 0xFFC3,
         /// <summary>
-        /// The function 7 key
+        /// The Function 7 key.
         /// </summary>
         F7 = 0xFFC4,
         /// <summary>
-        /// The function 8 key
+        /// The Function 8 key.
         /// </summary>
         F8 = 0xFFC5,
         /// <summary>
-        /// The function 9 key
+        /// The Function 9 key.
         /// </summary>
         F9 = 0xFFC6,
         /// <summary>
-        /// The function 10 key
+        /// The Function 10 key.
         /// </summary>
         F10 = 0xFFC7,
         /// <summary>
-        /// The function 11 key
+        /// The Function 11 key.
         /// </summary>
         F11 = 0xFFC8,
         /// <summary>
-        /// The function 12 key
+        /// The Function 12 key.
         /// </summary>
         F12 = 0xFFC9,
         /// <summary>
-        /// The function 13 key
+        /// The Function 13 key.
         /// </summary>
         F13 = 0xFFCA,
         /// <summary>
-        /// The function 14 key
+        /// The Function 14 key.
         /// </summary>
         F14 = 0xFFCB,
         /// <summary>
-        /// The function 15 key
+        /// The Function 15 key.
         /// </summary>
         F15 = 0xFFCC,
         /// <summary>
-        /// The function 16 key
+        /// The Function 16 key.
         /// </summary>
         F16 = 0xFFCD,
         /// <summary>
-        /// The function 17 key
+        /// The Function 17 key.
         /// </summary>
         F17 = 0xFFCE,
         /// <summary>
-        /// The function 18 key
+        /// The Function 18 key.
         /// </summary>
         F18 = 0xFFCF,
         /// <summary>
-        /// The function 19 key
+        /// The Function 19 key.
         /// </summary>
         F19 = 0xFFD0,
         /// <summary>
-        /// The function 20 key
+        /// The Function 20 key.
         /// </summary>
         F20 = 0xFFD1,
         /// <summary>
-        /// The function 21 key
+        /// The Function 21 key.
         /// </summary>
         F21 = 0xFFD2,
         /// <summary>
-        /// The function 22 key
+        /// The Function 22 key.
         /// </summary>
         F22 = 0xFFD3,
         /// <summary>
-        /// The function 23 key
+        /// The Function 23 key.
         /// </summary>
         F23 = 0xFFD4,
         /// <summary>
-        /// The function 24 key
+        /// The Function 24 key.
         /// </summary>
         F24 = 0xFFD5,
         /// <summary>
-        /// The function 25 key
+        /// The Function 25 key.
         /// </summary>
         F25 = 0xFFD6,
         /// <summary>
-        /// The function 26 key
+        /// The Function 26 key.
         /// </summary>
         F26 = 0xFFD7,
         /// <summary>
-        /// The function 27 key
+        /// The Function 27 key.
         /// </summary>
         F27 = 0xFFD8,
         /// <summary>
-        /// The function 28 key
+        /// The Function 28 key.
         /// </summary>
         F28 = 0xFFD9,
         /// <summary>
-        /// The function 29 key
+        /// The Function 29 key.
         /// </summary>
         F29 = 0xFFDA,
         /// <summary>
-        /// The function 30 key
+        /// The Function 30 key.
         /// </summary>
         F30 = 0xFFDB,
         /// <summary>
-        /// The function 31 key
+        /// The Function 31 key.
         /// </summary>
         F31 = 0xFFDC,
         /// <summary>
-        /// The function 32 key
+        /// The Function 32 key.
         /// </summary>
         F32 = 0xFFDD,
         /// <summary>
-        /// The function 33 key
+        /// The Function 33 key.
         /// </summary>
         F33 = 0xFFDE,
         /// <summary>
-        /// The function 34 key
+        /// The Function 34 key.
         /// </summary>
         F34 = 0xFFDF,
         /// <summary>
-        /// The function 35 key
+        /// The Function 35 key.
         /// </summary>
         F35 = 0xFFE0,
 
         /* Modifier keys */
         /// <summary>
-        /// The left shift key
+        /// The Left Shift key.
         /// </summary>
         ShiftL = 0xFFE1,
         /// <summary>
-        /// The right shift key
+        /// The Right Shift key.
         /// </summary>
         ShiftR = 0xFFE2,
         /// <summary>
-        /// The left control key
+        /// The Left Control key.
         /// </summary>
         ControlL = 0xFFE3,
         /// <summary>
-        /// The right control key
+        /// The Right Control key.
         /// </summary>
         ControlR = 0xFFE4,
         /// <summary>
-        /// The caps lock key
+        /// The Caps Lock key.
         /// </summary>
         CapsLock = 0xFFE5,
         /// <summary>
-        /// The shift lock key
+        /// The Shift Lock key.
         /// </summary>
         ShiftLock = 0xFFE6,
         /// <summary>
-        /// The left meta key
+        /// The Left Meta key.
         /// </summary>
         MetaL = 0xFFE7,
         /// <summary>
-        /// The right meta key
+        /// The Right Meta key.
         /// </summary>
         MetaR = 0xFFE8,
         /// <summary>
-        /// The left alt key
+        /// The Left Alt key.
         /// </summary>
         AltL = 0xFFE9,
         /// <summary>
-        /// The right alt key
+        /// The Right Alt key.
         /// </summary>
         AltR = 0xFFEA,
         /// <summary>
-        /// The left super key
+        /// The Left Super key.
         /// </summary>
         SuperL = 0xFFEB,
         /// <summary>
-        /// The right super key
+        /// The Right Super key.
         /// </summary>
         SuperR = 0xFFEC,
         /// <summary>
-        /// The left hyper key
+        /// The Left Hyper key.
         /// </summary>
         HyperL = 0xFFED,
         /// <summary>
-        /// The right hyper key
+        /// The Right Hyper key.
         /// </summary>
         HyperR = 0xFFEE,
 
         /* Latin 1 */
         /// <summary>
-        /// The space key
+        /// The Space key.
         /// </summary>
         Space = 0x020,
         /// <summary>
-        /// The exclamation key
+        /// The Exclamation key.
         /// </summary>
         Exclam = 0x021,
         /// <summary>
-        /// The quotedbl key
+        /// The Quotedbl key.
         /// </summary>
         Quotedbl = 0x022,
         /// <summary>
-        /// The number sign key
+        /// The Number Sign key.
         /// </summary>
         NumberSign = 0x023,
         /// <summary>
-        /// The dollar key
+        /// The Dollar key.
         /// </summary>
         Dollar = 0x024,
         /// <summary>
-        /// The percent key
+        /// The Percent key.
         /// </summary>
         Percent = 0x025,
         /// <summary>
-        /// The ampersand key
+        /// The Ampersand key.
         /// </summary>
         Ampersand = 0x026,
         /// <summary>
-        /// The apostrophe key
+        /// The Apostrophe key.
         /// </summary>
         Apostrophe = 0x027,
         /// <summary>
-        /// The parenleft key
+        /// The Parenleft key.
         /// </summary>
         Parenleft = 0x028,
         /// <summary>
-        /// The parenright key
+        /// The Parenright key.
         /// </summary>
         Parenright = 0x029,
         /// <summary>
-        /// The asterisk key
+        /// The Asterisk key.
         /// </summary>
         Asterisk = 0x02a,
         /// <summary>
-        /// The plus key
+        /// The Plus key.
         /// </summary>
         Plus = 0x02b,
         /// <summary>
-        /// The comma key
+        /// The Comma key.
         /// </summary>
         Comma = 0x02c,
         /// <summary>
-        /// The minus key
+        /// The Minus key.
         /// </summary>
         Minus = 0x02d,
         /// <summary>
-        /// The period key
+        /// The Period key.
         /// </summary>
         Period = 0x02e,
         /// <summary>
-        /// The slash key
+        /// The Slash key.
         /// </summary>
         Slash = 0x02f,
         /// <summary>
-        /// The 0 key
+        /// The 0 key.
         /// </summary>
         Keypad0 = 0x030,
         /// <summary>
-        /// The 1 key
+        /// The 1 key.
         /// </summary>
         Keypad1 = 0x031,
         /// <summary>
-        /// The 2 key
+        /// The 2 key.
         /// </summary>
         Keypad2 = 0x032,
         /// <summary>
-        /// The 3 key
+        /// The 3 key.
         /// </summary>
         Keypad3 = 0x033,
         /// <summary>
-        /// The 4 key
+        /// The 4 key.
         /// </summary>
         Keypad4 = 0x034,
         /// <summary>
-        /// The 5 key
+        /// The 5 key.
         /// </summary>
         Keypad5 = 0x035,
         /// <summary>
-        /// The 6 key
+        /// The 6 key.
         /// </summary>
         Keypad6 = 0x036,
         /// <summary>
-        /// The 7 key
+        /// The 7 key.
         /// </summary>
         Keypad7 = 0x037,
         /// <summary>
-        /// The 8 key
+        /// The 8 key.
         /// </summary>
         Keypad8 = 0x038,
         /// <summary>
-        /// The 9 key
+        /// The 9 key.
         /// </summary>
         Keypad9 = 0x039,
         /// <summary>
-        /// The colon key
+        /// The Colon key.
         /// </summary>
         Colon = 0x03a,
         /// <summary>
-        /// The semicolon key
+        /// The Semicolon key.
         /// </summary>
         Semicolon = 0x03b,
         /// <summary>
-        /// The less key
+        /// The Less key.
         /// </summary>
         Less = 0x03c,
         /// <summary>
-        /// The equal key
+        /// The Equal key.
         /// </summary>
         Equal = 0x03d,
         /// <summary>
-        /// The greater key
+        /// The Greater key.
         /// </summary>
         Greater = 0x03e,
         /// <summary>
-        /// The question key
+        /// The Question key.
         /// </summary>
         Question = 0x03f,
         /// <summary>
-        /// The at key
+        /// The At key.
         /// </summary>
         At = 0x040,
         /// <summary>
-        /// The A key
+        /// The A key.
         /// </summary>
         KeypadA = 0x041,
         /// <summary>
-        /// The B key
+        /// The B key.
         /// </summary>
         KeypadB = 0x042,
         /// <summary>
-        /// The C key
+        /// The C key.
         /// </summary>
         KeypadC = 0x043,
         /// <summary>
-        /// The D key
+        /// The D key.
         /// </summary>
         KeypadD = 0x044,
         /// <summary>
-        /// The E key
+        /// The E key.
         /// </summary>
         KeypadE = 0x045,
         /// <summary>
-        /// The F key
+        /// The F key.
         /// </summary>
         KeypadF = 0x046,
         /// <summary>
-        /// The G key
+        /// The G key.
         /// </summary>
         KeypadG = 0x047,
         /// <summary>
-        /// The H key
+        /// The H key.
         /// </summary>
         KeypadH = 0x048,
         /// <summary>
-        /// The I key
+        /// The I key.
         /// </summary>
         KeypadI = 0x049,
         /// <summary>
-        /// The J key
+        /// The J key.
         /// </summary>
         KeypadJ = 0x04a,
         /// <summary>
-        /// The K key
+        /// The K key.
         /// </summary>
         KeypadK = 0x04b,
         /// <summary>
-        /// The L key
+        /// The L key.
         /// </summary>
         KeypadL = 0x04c,
         /// <summary>
-        /// The M key
+        /// The M key.
         /// </summary>
         KeypadM = 0x04d,
         /// <summary>
-        /// The N key
+        /// The N key.
         /// </summary>
         KeypadN = 0x04e,
         /// <summary>
-        /// The O key
+        /// The O key.
         /// </summary>
         KeypadO = 0x04f,
         /// <summary>
-        /// The P key
+        /// The P key.
         /// </summary>
         KeypadP = 0x050,
         /// <summary>
-        /// The Q key
+        /// The Q key.
         /// </summary>
         KeypadQ = 0x051,
         /// <summary>
-        /// The R key
+        /// The R key.
         /// </summary>
         KeypadR = 0x052,
         /// <summary>
-        /// The S key
+        /// The S key.
         /// </summary>
         KeypadS = 0x053,
         /// <summary>
-        /// The T key
+        /// The T key.
         /// </summary>
         KeypadT = 0x054,
         /// <summary>
-        /// The U key
+        /// The U key.
         /// </summary>
         KeypadU = 0x055,
         /// <summary>
-        /// The V key
+        /// The V key.
         /// </summary>
         KeypadV = 0x056,
         /// <summary>
-        /// The W key
+        /// The W key.
         /// </summary>
         KeypadW = 0x057,
         /// <summary>
-        /// The X key
+        /// The X key.
         /// </summary>
         KeypadX = 0x058,
         /// <summary>
-        /// The Y key
+        /// The Y key.
         /// </summary>
         KeypadY = 0x059,
         /// <summary>
-        /// The Z key
+        /// The Z key.
         /// </summary>
         KeypadZ = 0x05a,
         /// <summary>
-        /// The left bracket key
+        /// The Left Bracket key.
         /// </summary>
         BracketLeft = 0x05b,
         /// <summary>
-        /// The backslash key
+        /// The Backslash key.
         /// </summary>
         Backslash = 0x05c,
         /// <summary>
-        /// The right bracket key
+        /// The Right Bracket key.
         /// </summary>
         BracketRight = 0x05d,
         /// <summary>
-        /// The circumflex key
+        /// The Circumflex key.
         /// </summary>
         AsciiCircum = 0x05e,
         /// <summary>
-        /// The underscore key
+        /// The Underscore key.
         /// </summary>
         Underscore = 0x05f,
         /// <summary>
-        /// The grave key
+        /// The Grave key.
         /// </summary>
         Grave = 0x060,
         /// <summary>
-        /// The a key
+        /// The a key.
         /// </summary>
         Keypada = 0x061,
         /// <summary>
-        /// The b key
+        /// The b key.
         /// </summary>
         Keypadb = 0x062,
         /// <summary>
-        /// The c key
+        /// The c key.
         /// </summary>
         Keypadc = 0x063,
         /// <summary>
-        /// The d key
+        /// The d key.
         /// </summary>
         Keypadd = 0x064,
         /// <summary>
-        /// The e key
+        /// The e key.
         /// </summary>
         Keypade = 0x065,
         /// <summary>
-        /// The f key
+        /// The f key.
         /// </summary>
         Keypadf = 0x066,
         /// <summary>
-        /// The g key
+        /// The g key.
         /// </summary>
         Keypadg = 0x067,
         /// <summary>
-        /// The h key
+        /// The h key.
         /// </summary>
         Keypadh = 0x068,
         /// <summary>
-        /// The i key
+        /// The i key.
         /// </summary>
         Keypadi = 0x069,
         /// <summary>
-        /// The j key
+        /// The j key.
         /// </summary>
         Keypadj = 0x06a,
         /// <summary>
-        /// The k key
+        /// The k key.
         /// </summary>
         Keypadk = 0x06b,
         /// <summary>
-        /// The l key
+        /// The l key.
         /// </summary>
         Keypadl = 0x06c,
         /// <summary>
-        /// The m key
+        /// The m key.
         /// </summary>
         Keypadm = 0x06d,
         /// <summary>
-        /// The n key
+        /// The n key.
         /// </summary>
         Keypadn = 0x06e,
         /// <summary>
-        /// The o key
+        /// The o key.
         /// </summary>
         Keypado = 0x06f,
         /// <summary>
-        /// The p key
+        /// The p key.
         /// </summary>
         Keypadp = 0x070,
         /// <summary>
-        /// The q key
+        /// The q key.
         /// </summary>
         Keypadq = 0x071,
         /// <summary>
-        /// The r key
+        /// The r key.
         /// </summary>
         Keypadr = 0x072,
         /// <summary>
-        /// The s key
+        /// The s key.
         /// </summary>
         Keypads = 0x073,
         /// <summary>
-        /// The t key
+        /// The t key.
         /// </summary>
         Keypadt = 0x074,
         /// <summary>
-        /// The u key
+        /// The u key.
         /// </summary>
         Keypadu = 0x075,
         /// <summary>
-        /// The v key
+        /// The v key.
         /// </summary>
         Keypadv = 0x076,
         /// <summary>
-        /// The w key
+        /// The w key.
         /// </summary>
         Keypadw = 0x077,
         /// <summary>
-        /// The x key
+        /// The x key.
         /// </summary>
         Keypadx = 0x078,
         /// <summary>
-        /// The y key
+        /// The y key.
         /// </summary>
         Keypady = 0x079,
         /// <summary>
-        /// The z key
+        /// The z key.
         /// </summary>
         Keypadz = 0x07a,
         /// <summary>
-        /// The left brace key
+        /// The Left Brace key.
         /// </summary>
         BraceLeft = 0x07b,
         /// <summary>
-        /// The bar key
+        /// The Bar key.
         /// </summary>
         Bar = 0x07c,
         /// <summary>
-        /// The right brace key
+        /// The Right Brace key.
         /// </summary>
         BraceRight = 0x07d,
         /// <summary>
-        /// The tilde key
+        /// The Tilde key.
         /// </summary>
         AsciiTilde = 0x07e,
     };
 
     /// <summary>
-    /// Enumeration of the key masks.
-    /// The key masks indicate which modifier keys is pressed down during the keyboard hit.The special MASK_RELEASED indicates the key release event.
+    /// Enumeration for the key masks.
+    /// The key masks indicate which modifier keys are pressed down during the keyboard hit. The special MASK_RELEASED indicates the key release event.
     /// </summary>
     /// <since_tizen> 4 </since_tizen>
     public enum KeyMask
     {
         /// <summary>
-        /// Key press event without modifier key
+        /// Key press event without the modifier key.
         /// </summary>
         Pressed = 0,
         /// <summary>
-        /// The Shift key is pressed down
+        /// The Shift key is pressed down.
         /// </summary>
         Shift = (1 << 0),
         /// <summary>
-        /// The CapsLock key is pressed down
+        /// The CapsLock key is pressed down.
         /// </summary>
         CapsLock = (1 << 1),
         /// <summary>
-        /// The Control key is pressed down
+        /// The Control key is pressed down.
         /// </summary>
         Control = (1 << 2),
         /// <summary>
-        /// The Alt key is pressed down
+        /// The Alt key is pressed down.
         /// </summary>
         Alt = (1 << 3),
         /// <summary>
-        /// The Meta key is pressed down
+        /// The Meta key is pressed down.
         /// </summary>
         Meta = (1 << 4),
         /// <summary>
-        /// The Win (between Control and Alt) is pressed down
+        /// The Win key (between Control and Alt) is pressed down.
         /// </summary>
         Win = (1 << 5),
         /// <summary>
-        /// The Hyper key is pressed down
+        /// The Hyper key is pressed down.
         /// </summary>
         Hyper = (1 << 6),
         /// <summary>
-        /// The NumLock key is pressed down
+        /// The NumLock key is pressed down.
         /// </summary>
         NumLock = (1 << 7),
         /// <summary>
-        /// Key release event
+        /// Key release event.
         /// </summary>
         Released = (1 << 15),
     }
 
     /// <summary>
-    /// This class contains api's related to IME(Input method editor)
+    /// This class contains the API's related to the IME (Input method editor).
     /// </summary>
     /// <since_tizen> 4 </since_tizen>
     public static class InputMethodEditor
@@ -1023,7 +1023,7 @@ namespace Tizen.Uix.InputMethod
         };
 
         /// <summary>
-        /// Structure representing ContextId
+        /// Structure representing the ContextId.
         /// </summary>
         /// <since_tizen> 4 </since_tizen>
         public struct ContextId : IEquatable<ContextId>
@@ -1040,7 +1040,7 @@ namespace Tizen.Uix.InputMethod
             }
 
             /// <summary>
-            /// compare whether ContextId are equal
+            /// Compares whether the ContextIds are equal.
             /// </summary>
             /// <since_tizen> 4 </since_tizen>
             public bool Equals(ContextId other)
@@ -1050,61 +1050,61 @@ namespace Tizen.Uix.InputMethod
         }
 
         /// <summary>
-        /// rectangle representing the position and size of UI Control
+        /// Rectangle representing the position and size of the UI control.
         /// </summary>
         /// <since_tizen> 4 </since_tizen>
         public struct Rect
         {
             /// <summary>
-            /// The x position in screen
+            /// The X position in the screen.
             /// </summary>
             /// <since_tizen> 4 </since_tizen>
             public int x;
 
             /// <summary>
-            /// The y position in screen
+            /// The Y position in the screen.
             /// </summary>
             /// <since_tizen> 4 </since_tizen>
             public int y;
 
             /// <summary>
-            /// The window width
+            /// The window width.
             /// </summary>
             /// <since_tizen> 4 </since_tizen>
             public int w;
 
             /// <summary>
-            /// The window height
+            /// The window height.
             /// </summary>
             /// <since_tizen> 4 </since_tizen>
             public int h;
         }
 
         /// <summary>
-        /// An Action with 1 out parameter
+        /// An action with 1 out parameter.
         /// </summary>
-        /// <typeparam name="T">Generic Type</typeparam>
-        /// <param name="a">The out parameter</param>
+        /// <typeparam name="T">Generic Type.</typeparam>
+        /// <param name="a">The out parameter.</param>
         /// <since_tizen> 4 </since_tizen>
         public delegate void OutAction<T>(out T a);
 
         /// <summary>
-        /// An Action with an array out parameter
+        /// An action with an array out parameter.
         /// </summary>
-        /// <typeparam name="T">Generic Type</typeparam>
-        /// <param name="a">The out parameter 1</param>
+        /// <typeparam name="T">Generic Type.</typeparam>
+        /// <param name="a">The out parameter 1.</param>
         /// <since_tizen> 4 </since_tizen>
         public delegate void OutArrayAction<T>(out T[] a);
 
         /// <summary>
-        /// An Action with 3 Input Parameter returning a bool
+        /// An action with 3 input parameters returning a bool.
         /// </summary>
-        /// <typeparam name="T">Generic Type for Parameter 1</typeparam>
-        /// <typeparam name="T1">Generic Type for Parameter 2</typeparam>
-        /// <typeparam name="T2">Generic Type for Parameter 3</typeparam>
-        /// <param name="a">The Input Parameter 1</param>
-        /// <param name="b">The Input Parameter 2</param>
-        /// <param name="c">The Input Parameter 3</param>
+        /// <typeparam name="T">Generic type for parameter 1.</typeparam>
+        /// <typeparam name="T1">Generic type for parameter 2.</typeparam>
+        /// <typeparam name="T2">Generic type for parameter 3.</typeparam>
+        /// <param name="a">The input parameter 1.</param>
+        /// <param name="b">The input parameter 2.</param>
+        /// <param name="c">The input parameter 3.</param>
         /// <returns></returns>
         /// <since_tizen> 4 </since_tizen>
         public delegate bool BoolAction<T, T1, T2>(T a, T1 b, T2 c);
@@ -1285,7 +1285,7 @@ namespace Tizen.Uix.InputMethod
 
         /// <summary>
         /// Called to set the preferred language to the input panel.
-        /// It will be only called when the client application changes the edit field's language attribute after the input panel is shown.
+        /// It will only be called when the client application changes the edit field's language attribute after the input panel is shown.
         /// </summary>
         /// <since_tizen> 4 </since_tizen>
         public static event EventHandler<LanguageSetEventArgs> LanguageSet
@@ -1358,7 +1358,7 @@ namespace Tizen.Uix.InputMethod
 
         /// <summary>
         /// Called when an associated text input UI control requests the input panel to set its layout.
-        /// It will be only called when the client application changes the edit field's layout attribute after the input panel is shown.
+        /// It will only be called when the client application changes the edit field's layout attribute after the input panel is shown.
         /// </summary>
         /// <since_tizen> 4 </since_tizen>
         public static event EventHandler<LayoutSetEventArgs> LayoutSet
@@ -1394,7 +1394,7 @@ namespace Tizen.Uix.InputMethod
 
         /// <summary>
         /// Called when an associated text input UI control requests the input panel to set the Return key label.
-        /// The input panel can show text or image on the Return button according to the Return key action.
+        /// The input panel can show the text or an image on the Return button, according to the Return key action.
         /// </summary>
         /// <since_tizen> 4 </since_tizen>
         public static event EventHandler<ReturnKeySetEventArgs> ReturnKeySet
@@ -1464,7 +1464,7 @@ namespace Tizen.Uix.InputMethod
         }
 
         /// <summary>
-        /// Called when the system display Language is changed.
+        /// Called when the system display language is changed.
         /// </summary>
         /// <since_tizen> 4 </since_tizen>
         public static event EventHandler<DisplayLanguageChangedEventArgs> DisplayLanguageChanged
@@ -1534,7 +1534,7 @@ namespace Tizen.Uix.InputMethod
         }
 
         /// <summary>
-        /// Called when Accessibility in Settings application is on or off.
+        /// Called when Accessibility in settings application is on or off.
         /// </summary>
         /// <since_tizen> 4 </since_tizen>
         public static event EventHandler<AccessibilityStateChangedEventArgs> AccessibilityStateChanged
@@ -1569,7 +1569,7 @@ namespace Tizen.Uix.InputMethod
         }
 
         /// <summary>
-        /// Sets the languageRequested Action
+        /// Sets the languageRequested action.
         /// </summary>
         /// <param name="languageRequested">
         /// Called when an associated text input UI control requests the language from the input panel, requesting for language code.
@@ -1594,11 +1594,11 @@ namespace Tizen.Uix.InputMethod
         }
 
         /// <summary>
-        /// Sets the processKey Action
-        /// If the key event is from the external device, DeviceInfo will have its name, class and subclass information.
+        /// Sets the processKey action.
+        /// If the key event is from the external device, DeviceInfo will have its name, class, and subclass information.
         /// </summary>
         /// <param name="processKey">
-        /// The Action is alled when the key event is received from the external devices or SendKey function.
+        /// The action is called when the key event is received from the external devices or the SendKey function.
         /// This Event processes the key event before an associated text input UI control does.
         /// </param>
         /// <since_tizen> 4 </since_tizen>
@@ -1617,7 +1617,7 @@ namespace Tizen.Uix.InputMethod
         }
 
         /// <summary>
-        /// Sets the imDataRequested Action
+        /// Sets the imDataRequested action.
         /// </summary>
         /// <param name="imDataRequested">
         /// Called when an associated text input UI control requests the application specific data from the input panel, requesting for data array and it's length.
@@ -1642,10 +1642,10 @@ namespace Tizen.Uix.InputMethod
         }
 
         /// <summary>
-        /// Sets the GeometryRequested Action
+        /// Sets the GeometryRequested action.
         /// </summary>
         /// <param name="geometryRequested">
-        /// Called when an associated text input UI control requests the position and size from the input panel, requesting for x,y,w,h values.
+        /// Called when an associated text input UI control requests the position and size from the input panel, requesting for x, y, w, h values.
         /// </param>
         /// <since_tizen> 4 </since_tizen>
         public static void SetGeometryRequestedCallback(OutAction<Rect> geometryRequested)
@@ -1668,8 +1668,8 @@ namespace Tizen.Uix.InputMethod
         }
 
         /// <summary>
-        /// Runs the main loop of IME application.
-        /// This function starts to run IME application's main loop.
+        /// Runs the main loop of the IME application.
+        /// This function starts to run the IME application's main loop.
         /// </summary>
         /// <privilege>
         /// http://tizen.org/privilege/ime
@@ -1677,20 +1677,20 @@ namespace Tizen.Uix.InputMethod
         /// <remarks>
         /// This API is a blocking call, as it starts the main loop of the application.
         /// </remarks>
-        /// <param name="create">This is called to initialize IME application before the main loop starts up</param>
-        /// <param name="terminate">This is called when IME application is terminated</param>
+        /// <param name="create">This is called to initialize the IME application before the main loop starts up.</param>
+        /// <param name="terminate">This is called when the IME application is terminated.</param>
         /// <param name="show">
-        /// This is called when IME application is shown
-        /// It provides the Context Information and the Context Id
+        /// This is called when the IME application is shown.
+        /// It provides the context information and the context ID.
         /// </param>
         /// <param name="hide">
-        /// This is called when IME application is hidden
-        /// It provides the Context Id
+        /// This is called when the IME application is hidden.
+        /// It provides the context ID.
         /// </param>
         /// <exception cref="InvalidOperationException">
         /// This can occur due to the following reasons:
-        /// 1) The application does not have the privilege to call this function
-        /// 2) Operation failed
+        /// 1) The application does not have the privilege to call this function.
+        /// 2) Operation failed.
         /// </exception>
         /// <since_tizen> 4 </since_tizen>
         public static void Run(Action create, Action terminate, Action<ContextId, InputMethodContext> show, Action<ContextId> hide)
@@ -1718,19 +1718,19 @@ namespace Tizen.Uix.InputMethod
         /// Sends a key event to the associated text input UI control.
         /// </summary>
         /// <remarks>
-        /// This function sends key down or up event with key mask to the client application. If forwardKey is true, this key event goes to the edit filed directly.
+        /// This function sends a key down or up event with the key mask to the client application. If forwardKey is true, this key event goes to the edit filed directly.
         /// And if forwardKey is false, the ProcessKey event receives the key event before the edit field.
         /// </remarks>
         /// <privilege>
         /// http://tizen.org/privilege/ime
         /// </privilege>
-        /// <param name="keyCode">The key code to be sent</param>
-        /// <param name="keyMask">The modifier key mask</param>
-        /// <param name="forwardKey">The flag to send the key event directly to the edit field</param>
+        /// <param name="keyCode">The key code to be sent.</param>
+        /// <param name="keyMask">The modifier key mask.</param>
+        /// <param name="forwardKey">The flag to send the key event directly to the edit field.</param>
         /// <exception cref="InvalidOperationException">
         /// This can occur due to the following reasons:
-        /// 1) The application does not have the privilege to call this function
-        /// 2) IME main loop isn't started yet
+        /// 1) The application does not have the privilege to call this function.
+        /// 2) The IME main loop isn't started yet.
         /// </exception>
         /// <since_tizen> 4 </since_tizen>
         public static void SendKeyEvent(KeyCode keyCode, KeyMask keyMask, bool forwardKey = false)
@@ -1749,11 +1749,11 @@ namespace Tizen.Uix.InputMethod
         /// <privilege>
         /// http://tizen.org/privilege/ime
         /// </privilege>
-        /// <param name="str">The string to be committed</param>
+        /// <param name="str">The string to be committed.</param>
         /// <exception cref="InvalidOperationException">
         /// This can occur due to the following reasons:
-        /// 1) The application does not have the privilege to call this function
-        /// 2) IME main loop isn't started yet
+        /// 1) The application does not have the privilege to call this function.
+        /// 2) The IME main loop isn't started yet.
         /// </exception>
         /// <since_tizen> 4 </since_tizen>
         public static void CommitString(string str)
@@ -1767,15 +1767,15 @@ namespace Tizen.Uix.InputMethod
         }
 
         /// <summary>
-        /// Requests to show preedit string.
+        /// Requests to show the pre-edit string.
         /// </summary>
         /// <privilege>
         /// http://tizen.org/privilege/ime
         /// </privilege>
         /// <exception cref="InvalidOperationException">
         /// This can occur due to the following reasons:
-        /// 1) The application does not have the privilege to call this function
-        /// 2) IME main loop isn't started yet
+        /// 1) The application does not have the privilege to call this function.
+        /// 2) The IME main loop isn't started yet.
         /// </exception>
         /// <since_tizen> 4 </since_tizen>
         public static void ShowPreEditString()
@@ -1789,15 +1789,15 @@ namespace Tizen.Uix.InputMethod
         }
 
         /// <summary>
-        /// Requests to hide preedit string.
+        /// Requests to hide the pre-edit string.
         /// </summary>
         /// <privilege>
         /// http://tizen.org/privilege/ime
         /// </privilege>
         /// <exception cref="InvalidOperationException">
         /// This can occur due to the following reasons:
-        /// 1) The application does not have the privilege to call this function
-        /// 2) IME main loop isn't started yet
+        /// 1) The application does not have the privilege to call this function.
+        /// 2) The IME main loop isn't started yet.
         /// </exception>
         /// <since_tizen> 4 </since_tizen>
         public static void HidePreEditString()
@@ -1811,21 +1811,21 @@ namespace Tizen.Uix.InputMethod
         }
 
         /// <summary>
-        /// Updates a new preedit string.
+        /// Updates a new pre-edit string.
         /// </summary>
         /// <privilege>
         /// http://tizen.org/privilege/ime
         /// </privilege>
-        /// <param name="str">The string to be updated in preedit</param>
+        /// <param name="str">The string to be updated in pre-edit.</param>
         /// <param name="attrs">
-        /// The list which has ime_preedit_attribute lists, strings can be composed of multiple string attributes: underline, highlight color and reversal color.
-        /// The attrs list can be empty if no attributes to set
+        /// The list which has ime_preedit_attribute lists, strings can be composed of multiple string attributes: underline, highlight color, and reversal color.
+        /// The attrs list can be empty if no attributes to set.
         /// </param>
         /// <exception cref="InvalidOperationException">
         /// This can occur due to the following reasons:
-        /// 1) The application does not have the privilege to call this function
-        /// 2) IME main loop isn't started yet
-        /// 3) Invalid Parameter
+        /// 1) The application does not have the privilege to call this function.
+        /// 2) The IME main loop isn't started yet.
+        /// 3) Invalid parameter.
         /// </exception>
         /// <since_tizen> 4 </since_tizen>
         public static void UpdatePreEditString(string str, IEnumerable<PreEditAttribute> attrs)
@@ -1861,15 +1861,15 @@ namespace Tizen.Uix.InputMethod
         /// <privilege>
         /// http://tizen.org/privilege/ime
         /// </privilege>
-        /// <param name="maxLenBefore">The maximum length of string to be retrieved before the cursor, -1 means unlimited</param>
-        /// <param name="maxLenAfter">The maximum length of string to be retrieved after the cursor, -1 means unlimited</param>
+        /// <param name="maxLenBefore">The maximum length of the string to be retrieved before the cursor, -1 means unlimited.</param>
+        /// <param name="maxLenAfter">The maximum length of the string to be retrieved after the cursor, -1 means unlimited.</param>
         /// <exception cref="InvalidOperationException">
         /// This can occur due to the following reasons:
-        /// 1) The application does not have the privilege to call this function
-        /// 2) IME main loop isn't started yet
+        /// 1) The application does not have the privilege to call this function.
+        /// 2) The IME main loop isn't started yet.
         /// </exception>
         /// <postcondition>
-        /// The requested surrounding text can be received using the SurroundingTextUpdated Event, only if it is set.
+        /// The requested surrounding text can be received using the SurroundingTextUpdated event, only if it is set.
         /// </postcondition>
         /// <since_tizen> 4 </since_tizen>
         public static void RequestSurroundingText(int maxLenBefore, int maxLenAfter)
@@ -1883,18 +1883,18 @@ namespace Tizen.Uix.InputMethod
         }
 
         /// <summary>
-        /// Requests to delete surrounding text.
+        /// Requests to delete the surrounding text.
         /// </summary>
         /// <privilege>
         /// http://tizen.org/privilege/ime
         /// </privilege>
-        /// <param name="offset">The offset value from the cursor position</param>
-        /// <param name="len">The length of the text to delete</param>
+        /// <param name="offset">The offset value from the cursor position.</param>
+        /// <param name="len">The length of the text to delete.</param>
         /// <exception cref="InvalidOperationException">
         /// This can occur due to the following reasons:
-        /// 1) The application does not have the privilege to call this function
-        /// 2) IME main loop isn't started yet
-        /// 3) Invalid Parameter
+        /// 1) The application does not have the privilege to call this function.
+        /// 2) The IME main loop isn't started yet.
+        /// 3) Invalid parameter.
         /// </exception>
         /// <since_tizen> 4 </since_tizen>
         public static void DeleteSurroundingText(int offset, int len)
@@ -1913,16 +1913,16 @@ namespace Tizen.Uix.InputMethod
         /// <privilege>
         /// http://tizen.org/privilege/ime
         /// </privilege>
-        /// <param name="maxLenBefore">The maximum length of string to be retrieved before the cursor, -1 means unlimited</param>
-        /// <param name="maxLenAfter">The maximum length of string to be retrieved after the cursor, -1 means unlimited</param>
-        /// <param name="text">The surrounding text</param>
-        /// <param name="cursorPosition">The cursor position</param>
+        /// <param name="maxLenBefore">The maximum length of the string to be retrieved before the cursor, -1 means unlimited.</param>
+        /// <param name="maxLenAfter">The maximum length of the string to be retrieved after the cursor, -1 means unlimited.</param>
+        /// <param name="text">The surrounding text.</param>
+        /// <param name="cursorPosition">The cursor position.</param>
         /// <exception cref="InvalidOperationException">
         /// This can occur due to the following reasons:
-        /// 1) The application does not have the privilege to call this function
-        /// 2) IME main loop isn't started yet
-        /// 3) Invalid Parameter
-        /// 4) Failed to obtain text due to out of memory
+        /// 1) The application does not have the privilege to call this function.
+        /// 2) The IME main loop isn't started yet.
+        /// 3) Invalid parameter.
+        /// 4) Failed to obtain text due to out of memory.
         /// </exception>
         /// <since_tizen> 4 </since_tizen>
         public static void GetSurroundingText(int maxLenBefore, int maxLenAfter, out string text, out int cursorPosition)
@@ -1938,18 +1938,18 @@ namespace Tizen.Uix.InputMethod
         }
 
         /// <summary>
-        /// Requests to set selection.
+        /// Requests to set the selection.
         /// </summary>
         /// <privilege>
         /// http://tizen.org/privilege/ime
         /// </privilege>
-        /// <param name="start">The start cursor position in text (in characters not bytes)</param>
-        /// <param name="end">The end cursor position in text (in characters not bytes)</param>
+        /// <param name="start">The start cursor position in text (in characters not bytes).</param>
+        /// <param name="end">The end cursor position in text (in characters not bytes).</param>
         /// <exception cref="InvalidOperationException">
         /// This can occur due to the following reasons:
-        /// 1) The application does not have the privilege to call this function
-        /// 2) IME main loop isn't started yet
-        /// 3) Invalid Parameter
+        /// 1) The application does not have the privilege to call this function.
+        /// 2) The IME main loop isn't started yet.
+        /// 3) Invalid parameter.
         /// </exception>
         /// <since_tizen> 4 </since_tizen>
         public static void SetSelection(int start, int end)
@@ -1968,12 +1968,12 @@ namespace Tizen.Uix.InputMethod
         /// <privilege>
         /// http://tizen.org/privilege/ime
         /// </privilege>
-        /// <returns>The input panel main window object on success, otherwise null</returns>
+        /// <returns>The input panel main window object on success, otherwise null.</returns>
         /// <exception cref="InvalidOperationException">
         /// This can occur due to the following reasons:
-        /// 1) The application does not have the privilege to call this function
-        /// 2) IME main loop isn't started yet
-        /// 3) Operation Failed
+        /// 1) The application does not have the privilege to call this function.
+        /// 2) The IME main loop isn't started yet.
+        /// 3) Operation failed.
         /// </exception>
         /// <since_tizen> 4 </since_tizen>
         public static EditorWindow GetMainWindow()
@@ -1990,15 +1990,15 @@ namespace Tizen.Uix.InputMethod
         }
 
         /// <summary>
-        /// This API requests the InputMethodEditor to initialize
+        /// This API requests the InputMethodEditor to initialize.
         /// </summary>
         /// <privilege>
         /// http://tizen.org/privilege/ime
         /// </privilege>
         /// <exception cref="InvalidOperationException">
         /// This can occur due to the following reasons:
-        /// 1) The application does not have the privilege to call this function
-        /// 2) Operation Failed
+        /// 1) The application does not have the privilege to call this function.
+        /// 2) Operation failed.
         /// </exception>
         /// <since_tizen> 4 </since_tizen>
         [EditorBrowsable(EditorBrowsableState.Never)]
@@ -2022,15 +2022,15 @@ namespace Tizen.Uix.InputMethod
         }
 
         /// <summary>
-        /// This API requests the InputMethodEditor to finalize
+        /// This API requests the InputMethodEditor to finalize.
         /// </summary>
         /// <privilege>
         /// http://tizen.org/privilege/ime
         /// </privilege>
         /// <exception cref="InvalidOperationException">
         /// This can occur due to the following reasons:
-        /// 1) The application does not have the privilege to call this function
-        /// 2) Operation Failed
+        /// 1) The application does not have the privilege to call this function.
+        /// 2) Operation failed.
         /// </exception>
         /// <since_tizen> 4 </since_tizen>
         [EditorBrowsable(EditorBrowsableState.Never)]

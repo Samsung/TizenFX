@@ -22,7 +22,7 @@ namespace ElmSharp.Wearable
 {
 
     /// <summary>
-    /// The Circle Spinner is a widget to display and handle spinner value by rotary event
+    /// The Circle Spinner is a widget to display and handle the spinner value by the Rotary event.
     /// Inherits <see cref="Spinner"/>.
     /// </summary>
     /// <since_tizen> preview </since_tizen>
@@ -35,7 +35,7 @@ namespace ElmSharp.Wearable
         /// <summary>
         /// Creates and initializes a new instance of the Circle Spinner class.
         /// </summary>
-        /// <param name="parent">The parent of new Circle Spinner instance</param>
+        /// <param name="parent">The parent of the new Circle Spinner instance.</param>
         /// <param name="surface">The surface for drawing circle features for this widget.</param>
         /// <since_tizen> preview </since_tizen>
         public CircleSpinner(EvasObject parent, CircleSurface surface) : base()
@@ -48,7 +48,7 @@ namespace ElmSharp.Wearable
         /// <summary>
         /// Creates and initializes a new instance of the Circle Spinner class.
         /// </summary>
-        /// <param name="parent">The parent of new Circle CircleSpinner instance</param>
+        /// <param name="parent">The parent of the new Circle Spinner instance.</param>
         /// <since_tizen> preview </since_tizen>
         [Obsolete("It is not safe for guess circle surface from parent and create new surface by every new widget")]
         [EditorBrowsable(EditorBrowsableState.Never)]
@@ -58,13 +58,13 @@ namespace ElmSharp.Wearable
         }
 
         /// <summary>
-        /// Gets the handle for Circle Widget.
+        /// Gets the handle for Circle widget.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
         public virtual IntPtr CircleHandle => _circleHandle;
 
         /// <summary>
-        /// Gets the handle for Circle Surface used in this widget
+        /// Gets the handle for the circle surface used in this widget.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
         public virtual CircleSurface CircleSurface => _surface;
@@ -107,7 +107,7 @@ namespace ElmSharp.Wearable
         }
 
         /// <summary>
-        /// Sets or gets disabled state of this widget.
+        /// Sets or gets the disabled state of this widget.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
         [Obsolete("Use IsEnabled")]
@@ -135,7 +135,7 @@ namespace ElmSharp.Wearable
         }
 
         /// <summary>
-        /// Sets or gets the line width of the marker
+        /// Sets or gets the line width of the marker.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
         public int MarkerLineWidth
@@ -151,7 +151,7 @@ namespace ElmSharp.Wearable
         }
 
         /// <summary>
-        /// Sets or gets the color of the marker
+        /// Sets or gets the color of the marker.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
         public Color MarkerColor
@@ -169,7 +169,7 @@ namespace ElmSharp.Wearable
         }
 
         /// <summary>
-        /// Sets or gets the radius at which the center of the marker lies
+        /// Sets or gets the radius at which the center of the marker lies.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
         public double MarkerRadius
@@ -187,8 +187,8 @@ namespace ElmSharp.Wearable
         /// <summary>
         /// Creates a widget handle.
         /// </summary>
-        /// <param name="parent">Parent EvasObject</param>
-        /// <returns>Handle IntPtr</returns>
+        /// <param name="parent">Parent EvasObject.</param>
+        /// <returns>Handle IntPtr.</returns>
         /// <since_tizen> preview </since_tizen>
         protected override IntPtr CreateHandle(EvasObject parent)
         {
