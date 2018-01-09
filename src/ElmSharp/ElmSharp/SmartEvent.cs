@@ -24,7 +24,7 @@ namespace ElmSharp
     /// <summary>
     /// It inherits <see cref="IInvalidatable"/>.
     /// The event with TEventArgs for <see cref="EvasObject"/>.
-    /// EvasObject can elect SmartEvent occurring inside of them to be reported back to their users via delegates.
+    /// EvasObject can elect the SmartEvent occurring inside them, to be reported back to their users via delegates.
     /// This way, you can extend EvasObject's own <see cref="EvasObjectEvent"/>.
     /// They are defined by an event string, which identifies them uniquely.
     /// </summary>
@@ -33,11 +33,11 @@ namespace ElmSharp
     public class SmartEvent<TEventArgs> : IInvalidatable where TEventArgs : EventArgs
     {
         /// <summary>
-        /// The delegate for creating smart event item args.
+        /// The delegate for creating smart event item arguments.
         /// </summary>
         /// <param name="data">The item data.</param>
-        /// <param name="obj">The sender obj.</param>
-        /// <param name="info">The item sender obj.</param>
+        /// <param name="obj">The sender object.</param>
+        /// <param name="info">The item sender object.</param>
         /// <returns>Return smart event item args.</returns>
         /// <since_tizen> preview </since_tizen>
         public delegate TEventArgs SmartEventInfoParser(IntPtr data, IntPtr obj, IntPtr info);
@@ -60,7 +60,7 @@ namespace ElmSharp
         }
 
         /// <summary>
-        /// reates and initializes a new instance of the SmartEvent class.
+        /// Creates and initializes a new instance of the SmartEvent class.
         /// </summary>
         /// <param name="sender">The source of the event.</param>
         /// <param name="handle">Teh event handler.</param>
@@ -88,7 +88,7 @@ namespace ElmSharp
         }
 
         /// <summary>
-        /// Destroy the SmartEvent object.
+        /// Destroys the SmartEvent object.
         /// </summary>
         ~SmartEvent()
         {
@@ -102,7 +102,7 @@ namespace ElmSharp
         }
 
         /// <summary>
-        /// Adds or removes delegate for event.
+        /// Adds or removes a delegate for the event.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
         public event EventHandler<TEventArgs> On
@@ -140,7 +140,7 @@ namespace ElmSharp
         }
 
         /// <summary>
-        /// Destroy current object
+        /// Destroys the current object.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
         public void Dispose()
@@ -150,7 +150,7 @@ namespace ElmSharp
         }
 
         /// <summary>
-        /// Make current instance invalidate.
+        /// Makes the current instance invalidate.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
         public void MakeInvalidate()
@@ -160,11 +160,11 @@ namespace ElmSharp
         }
 
         /// <summary>
-        /// Releases all resources currently used by this instance.
+        /// Releases all the resources currently used by this instance.
         /// </summary>
         /// <param name="disposing">
-        /// true if managed resources should be disposed
-        /// otherwise, false.
+        /// true if the managed resources should be disposed,
+        /// otherwise false.
         /// </param>
         /// <since_tizen> preview </since_tizen>
         protected virtual void Dispose(bool disposing)
@@ -186,7 +186,7 @@ namespace ElmSharp
 
     /// <summary>
     /// It inherits <see cref="IInvalidatable"/>.
-    /// EvasObject can elect SmartEvent occurring inside of them to be reported back to their users via delegates.
+    /// EvasObject can elect the SmartEvent occurring inside them, to be reported back to their users via delegates.
     /// This way, you can extend EvasObject's own <see cref="EvasObjectEvent"/>.
     /// They are defined by an event string, which identifies them uniquely.
     /// </summary>
@@ -221,7 +221,7 @@ namespace ElmSharp
         }
 
         /// <summary>
-        /// Destroy the SmartEvent object.
+        /// Destroys the SmartEvent object.
         /// </summary>
         ~SmartEvent()
         {
@@ -229,7 +229,7 @@ namespace ElmSharp
         }
 
         /// <summary>
-        /// Adds or removes delegate for event.
+        /// Adds or removes a delegate for the event.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
         public event EventHandler On
@@ -259,7 +259,7 @@ namespace ElmSharp
         }
 
         /// <summary>
-        /// Destroy current object
+        /// Destroys the current object.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
         public void Dispose()
@@ -269,7 +269,7 @@ namespace ElmSharp
         }
 
         /// <summary>
-        /// Make current instance invalidate.
+        /// Makes the current instance invalidate.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
         public void MakeInvalidate()
@@ -278,11 +278,11 @@ namespace ElmSharp
         }
 
         /// <summary>
-        /// Releases all resources currently used by this instance.
+        /// Releases all the resources currently used by this instance.
         /// </summary>
         /// <param name="disposing">
-        /// true if managed resources should be disposed
-        /// otherwise, false.
+        /// true if the managed resources should be disposed,
+        /// otherwise false.
         /// </param>
         /// <since_tizen> preview </since_tizen>
         protected virtual void Dispose(bool disposing)

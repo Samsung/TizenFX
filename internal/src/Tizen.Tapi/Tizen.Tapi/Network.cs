@@ -24,7 +24,6 @@ namespace Tizen.Tapi
     /// <summary>
     /// This class provides functions for managing telephony service network.
     /// </summary>
-    /// <since_tizen> 4 </since_tizen>
     public class Network
     {
         private IntPtr _handle;
@@ -34,7 +33,6 @@ namespace Tizen.Tapi
         /// <summary>
         /// A public constructor for Network class to create a Network instance for the given tapi handle.
         /// </summary>
-        /// <since_tizen> 4 </since_tizen>
         /// <param name="handle">The tapi handle.</param>
         public Network(TapiHandle handle)
         {
@@ -49,7 +47,6 @@ namespace Tizen.Tapi
         /// <summary>
         /// Request the lower layers to select the network automatically asynchronously.
         /// </summary>
-        /// <since_tizen> 4 </since_tizen>
         /// <privilege>http://tizen.org/privilege/telephony.admin</privilege>
         /// <privlevel>platform</privlevel>
         /// <feature>http://tizen.org/feature/network.telephony</feature>
@@ -93,7 +90,6 @@ namespace Tizen.Tapi
         /// <summary>
         /// Request the lower layers to select the network which is selected by the user from the network list asynchronously.
         /// </summary>
-        /// <since_tizen> 4 </since_tizen>
         /// <param name="plmn">The user selected plmn.</param>
         /// <param name="act">The user selected access technology.</param>
         /// <privilege>http://tizen.org/privilege/telephony.admin</privilege>
@@ -139,7 +135,6 @@ namespace Tizen.Tapi
         /// <summary>
         /// Sends a request to do manual search for the available networks and provides the Network List to the user asynchronously.
         /// </summary>
-        /// <since_tizen> 4 </since_tizen>
         /// <returns>Instance of NetworkPlmnList.</returns>
         /// <privilege>http://tizen.org/privilege/telephony.admin</privilege>
         /// <privlevel>platform</privlevel>
@@ -186,7 +181,6 @@ namespace Tizen.Tapi
         /// <summary>
         /// Get the present network selection mode i.e. automatic or manual asynchronously.
         /// </summary>
-        /// <since_tizen> 4 </since_tizen>
         /// <returns>Value of NetworkSelectionMode.</returns>
         /// <privilege>http://tizen.org/privilege/telephony</privilege>
         /// <feature>http://tizen.org/feature/network.telephony</feature>
@@ -230,7 +224,6 @@ namespace Tizen.Tapi
         /// <summary>
         /// Set the network preferred plmn asynchronously.
         /// </summary>
-        /// <since_tizen> 4 </since_tizen>
         /// <param name="operation">The operation to be done on the preferred plmn.</param>
         /// <param name="info">The preferred plmn info.</param>
         /// <returns>A task indicating whether the SetNetworkPreferredPlmn method is done or not.</returns>
@@ -287,7 +280,6 @@ namespace Tizen.Tapi
         /// <summary>
         /// Get the preferred plmn list asynchronously.
         /// </summary>
-        /// <since_tizen> 4 </since_tizen>
         /// <returns>List of NetworkPreferredPlmnInfo.</returns>
         /// <privilege>http://tizen.org/privilege/telephony</privilege>
         /// <feature>http://tizen.org/feature/network.telephony</feature>
@@ -333,7 +325,6 @@ namespace Tizen.Tapi
         /// <summary>
         /// Cancel the triggered manual network search asynchronously.
         /// </summary>
-        /// <since_tizen> 4 </since_tizen>
         /// <returns>A task indicating whether the CancelNetworkManualSearch method is done or not.</returns>
         /// <privilege>http://tizen.org/privilege/telephony.admin</privilege>
         /// <privlevel>platform</privlevel>
@@ -378,7 +369,6 @@ namespace Tizen.Tapi
         /// <summary>
         /// Get the network serving information asynchronously.
         /// </summary>
-        /// <since_tizen> 4 </since_tizen>
         /// <returns>Instance of NetworkServing.</returns>
         /// <privilege>http://tizen.org/privilege/telephony</privilege>
         /// <feature>http://tizen.org/feature/network.telephony</feature>
@@ -424,7 +414,6 @@ namespace Tizen.Tapi
         /// <summary>
         /// Set the network mode asynchronously.
         /// </summary>
-        /// <since_tizen> 4 </since_tizen>
         /// <param name="mode">The network mode.</param>
         /// <returns>A task indicating whether the SetNetworkMode method is done or not.</returns>
         /// <privilege>http://tizen.org/privilege/telephony.admin</privilege>
@@ -470,7 +459,6 @@ namespace Tizen.Tapi
         /// <summary>
         /// Get the network mode asynchronously.
         /// </summary>
-        /// <since_tizen> 4 </since_tizen>
         /// <returns>Value of NetworkMode.</returns>
         /// <privilege>http://tizen.org/privilege/telephony</privilege>
         /// <feature>http://tizen.org/feature/network.telephony</feature>
@@ -514,7 +502,6 @@ namespace Tizen.Tapi
         /// <summary>
         /// Get the neighboring cell info asynchronously.
         /// </summary>
-        /// <since_tizen> 4 </since_tizen>
         /// <returns>Instance of NetworkNeighboringCell.</returns>
         /// <privilege>http://tizen.org/privilege/telephony</privilege>
         /// <feature>http://tizen.org/feature/network.telephony</feature>
@@ -560,7 +547,6 @@ namespace Tizen.Tapi
         /// <summary>
         /// Enters or exits the emergency callback mode asynchronously.
         /// </summary>
-        /// <since_tizen> 4 </since_tizen>
         /// <param name="mode">The emergency callback mode.</param>
         /// <returns>A task indicating whether the SetEmergencyCallbackMode method is done or not.</returns>
         /// <privilege>http://tizen.org/privilege/telephony.admin</privilege>
@@ -606,7 +592,6 @@ namespace Tizen.Tapi
         /// <summary>
         /// Set the network roaming preference asynchronously.
         /// </summary>
-        /// <since_tizen> 4 </since_tizen>
         /// <param name="roamPref">The network roaming preference.</param>
         /// <returns>A task indicating whether the SetRoamingPreference method is done or not.</returns>
         /// <privilege>http://tizen.org/privilege/telephony.admin</privilege>
@@ -652,7 +637,6 @@ namespace Tizen.Tapi
         /// <summary>
         /// Get the network roaming preference asynchronously.
         /// </summary>
-        /// <since_tizen> 4 </since_tizen>
         /// <returns>Value of NetworkPreferred.</returns>
         /// <privilege>http://tizen.org/privilege/telephony</privilege>
         /// <feature>http://tizen.org/feature/network.telephony</feature>
@@ -696,7 +680,6 @@ namespace Tizen.Tapi
         /// <summary>
         /// Set the default data subscription asynchronously.
         /// </summary>
-        /// <since_tizen> 4 </since_tizen>
         /// <returns>A task indicating whether the SetDefaultDataSubscription method is done or not.</returns>
         /// <privilege>http://tizen.org/privilege/telephony.admin</privilege>
         /// <privlevel>platform</privlevel>
@@ -741,7 +724,6 @@ namespace Tizen.Tapi
         /// <summary>
         /// Get the default data subscription.
         /// </summary>
-        /// <since_tizen> 4 </since_tizen>
         /// <returns>Value of NetworkDefaultDataSubscription.</returns>
         /// <privilege>http://tizen.org/privilege/telephony</privilege>
         /// <feature>http://tizen.org/feature/network.telephony</feature>
@@ -764,7 +746,6 @@ namespace Tizen.Tapi
         /// <summary>
         /// Set the default subscription for voice asynchronously.
         /// </summary>
-        /// <since_tizen> 4 </since_tizen>
         /// <returns>A task indicating whether the SetNetworkDefaultSubscription method is done or not.</returns>
         /// <privilege>http://tizen.org/privilege/telephony.admin</privilege>
         /// <privlevel>platform</privlevel>
@@ -809,7 +790,6 @@ namespace Tizen.Tapi
         /// <summary>
         /// Get the default subscription for voice.
         /// </summary>
-        /// <since_tizen> 4 </since_tizen>
         /// <returns>Value of NetworkDefaultSubscription.</returns>
         /// <privilege>http://tizen.org/privilege/telephony</privilege>
         /// <feature>http://tizen.org/feature/network.telephony</feature>

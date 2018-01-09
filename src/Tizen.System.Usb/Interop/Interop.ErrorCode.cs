@@ -56,9 +56,9 @@ internal static class ErrorCodeExtensions
     }
 
     /// <summary>
-    /// Utility method to check for error, returns false if failed and print warning messages
+    /// The Utility method to check for an error, returns false if failed and prints warning messages.
     /// </summary>
-    /// <returns>true in case of no error, false otherwise</returns>
+    /// <returns>true in case of no error, false otherwise.</returns>
     internal static bool WarnIfFailed(this Interop.ErrorCode err, string msg, [CallerFilePath] string file = "", [CallerMemberName] string func = "", [CallerLineNumber] int line = 0)
     {
         if (err.IsFailed())
@@ -71,9 +71,9 @@ internal static class ErrorCodeExtensions
     }
 
     /// <summary>
-    /// Utility method to check for error, returns false if failed and throw exception
+    /// The Utility method checks for an error, returns false if failed and throws an exception.
     /// </summary>
-    /// <returns>true in case of no error</returns>
+    /// <returns>true in case of no error.</returns>
     internal static bool ThrowIfFailed(this Interop.ErrorCode err, string msg, [CallerFilePath] string file = "", [CallerMemberName] string func = "", [CallerLineNumber] int line = 0)
     {
         if (err.IsFailed())

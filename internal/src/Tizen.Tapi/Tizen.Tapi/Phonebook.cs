@@ -24,7 +24,6 @@ namespace Tizen.Tapi
     /// <summary>
     /// A class which manages sim phonebook record information.
     /// </summary>
-    /// <since_tizen> 4 </since_tizen>
     public class Phonebook
     {
         private IntPtr _handle = IntPtr.Zero;
@@ -38,7 +37,6 @@ namespace Tizen.Tapi
         /// <summary>
         /// Gets the instance of Phonebook class.
         /// </summary>
-        /// <since_tizen> 4 </since_tizen>
         /// <param name="handle">An instance of TapiHandle obtained from InitTapi in TapiManager API.</param>
         /// <exception cref="ArgumentNullException">Thrown when handle is passed as null.</exception>
         public Phonebook(TapiHandle handle)
@@ -54,7 +52,6 @@ namespace Tizen.Tapi
         /// <summary>
         /// Gets the current inserted SIM phonebook init status, available phonebook list, and first valid index in case of FDN, ADN, and 3G phonebook.
         /// </summary>
-        /// <since_tizen> 4 </since_tizen>
         /// <returns>An instance of SimPhonebookStatus containing init status and phonebook list information.</returns>
         /// <feature>http://tizen.org/feature/network.telephony</feature>
         /// <privilege>http://tizen.org/privilege/telephony</privilege>
@@ -80,7 +77,6 @@ namespace Tizen.Tapi
         /// <summary>
         /// Gets the number of used records and total records of a specific SIM phonebook type.
         /// </summary>
-        /// <since_tizen> 4 </since_tizen>
         /// <param name="type">The different storage types to be selected in the SIM.</param>
         /// <returns>A task containing an instance of PhonebookStorageInfo.</returns>
         /// <feature>http://tizen.org/feature/network.telephony</feature>
@@ -125,7 +121,6 @@ namespace Tizen.Tapi
         /// <summary>
         /// Gets the max text length and max number length supported by the SIM phone book elementary file.
         /// </summary>
-        /// <since_tizen> 4 </since_tizen>
         /// <param name="type">The different storage types to be selected in the SIM.</param>
         /// <returns>A task containing an instance of PhonebookMetaInfo.</returns>
         /// <feature>http://tizen.org/feature/network.telephony</feature>
@@ -170,7 +165,6 @@ namespace Tizen.Tapi
         /// <summary>
         /// Gets SIM 3G phonebook supported EFs like ANR, SNE, GRP, EMAIL and the corresponding EFs max text length, number length, and size.
         /// </summary>
-        /// <since_tizen> 4 </since_tizen>
         /// <returns>A task containing an instance of PhonebookMetaInfo3G.</returns>
         /// <feature>http://tizen.org/feature/network.telephony</feature>
         /// <privilege>http://tizen.org/privilege/telephony</privilege>
@@ -214,7 +208,6 @@ namespace Tizen.Tapi
         /// <summary>
         /// Reads SIM phone book entry information from the given storage type and index.
         /// </summary>
-        /// <since_tizen> 4 </since_tizen>
         /// <param name="type">The different storage types to be selected in the SIM.</param>
         /// <param name="index">The index for accessing the SIM data.</param>
         /// <returns>A task containing an instance of PhonebookRecord.</returns>
@@ -265,7 +258,6 @@ namespace Tizen.Tapi
         /// <summary>
         /// Adds or edits SIM phone book record entry information.
         /// </summary>
-        /// <since_tizen> 4 </since_tizen>
         /// <param name="record">The phonebook data to be updated or added.</param>
         /// <returns>A task indicating whether the updation is done or not.</returns>
         /// <feature>http://tizen.org/feature/network.telephony</feature>
@@ -322,7 +314,6 @@ namespace Tizen.Tapi
         /// <summary>
         /// Deletes a SIM phonebook record.
         /// </summary>
-        /// <since_tizen> 4 </since_tizen>
         /// <param name="type">The different storage types to be selected in the SIM.</param>
         /// <param name="index">The index of the record to be deleted.</param>
         /// <returns>A task indicating whether deletion is done or not.</returns>

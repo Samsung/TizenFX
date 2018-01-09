@@ -21,14 +21,14 @@ using System.Linq;
 namespace ElmSharp.Wearable
 {
     /// <summary>
-    /// The MoreOption is a widget composed of the toggle(cue button) and more option view, and MoreOption can change a visibility through the toggle.
+    /// The MoreOption is a widget composed of the toggle (cue button) and more option view that can change a visibility through the toggle.
     /// Inherits Layout
     /// </summary>
     /// <since_tizen> preview </since_tizen>
     public class MoreOption : Layout
     {
         /// <summary>
-        /// Sets or gets the list of more option item
+        /// Sets or gets the list of the more option item.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
         public IList<MoreOptionItem> Items { get; private set; }
@@ -44,12 +44,12 @@ namespace ElmSharp.Wearable
         /// <since_tizen> preview </since_tizen>
         public event EventHandler<MoreOptionItemEventArgs> Clicked;
         /// <summary>
-        /// Opened will be triggered when more option view is shown.
+        /// Opened will be triggered when the more option view is shown.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
         public event EventHandler Opened;
         /// <summary>
-        /// Closed will be triggered when more option view is hidden.
+        /// Closed will be triggered when the more option view is hidden.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
         public event EventHandler Closed;
@@ -60,9 +60,9 @@ namespace ElmSharp.Wearable
         SmartEvent _closedEvent;
 
         /// <summary>
-        /// Creates and initializes a new instance of MoreOption class.
+        /// Creates and initializes a new instance of the MoreOption class.
         /// </summary>
-        /// <param name="parent">The parent is a given container which will be attached by MoreOption as a child. It's <see cref="EvasObject"/> type.</param>
+        /// <param name="parent">The parent is a given container, which will be attached by the MoreOption as a child. It's <see cref="EvasObject"/> type.</param>
         /// <since_tizen> preview </since_tizen>
         public MoreOption(EvasObject parent) : base(parent)
         {
@@ -93,8 +93,8 @@ namespace ElmSharp.Wearable
         /// <summary>
         /// Creates a widget handle.
         /// </summary>
-        /// <param name="parent">Parent EvasObject</param>
-        /// <returns>Handle IntPtr</returns>
+        /// <param name="parent">Parent EvasObject.</param>
+        /// <returns>Handle IntPtr.</returns>
         /// <since_tizen> preview </since_tizen>
         protected override IntPtr CreateHandle(EvasObject parent)
         {
@@ -120,7 +120,7 @@ namespace ElmSharp.Wearable
         }
 
         /// <summary>
-        /// Sets or gets the visibility of more option view.
+        /// Sets or gets the visibility of the more option view.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
         public bool IsOpened
@@ -138,25 +138,25 @@ namespace ElmSharp.Wearable
     }
 
     /// <summary>
-    /// Enumeration for More Option Direction type.
+    /// Enumeration for the more option direction types.
     /// </summary>
     /// <since_tizen> preview </since_tizen>
     public enum MoreOptionDirection
     {
         /// <summary>
-        /// Top direction
+        /// Top direction.
         /// </summary>
         Top,
         /// <summary>
-        /// Bottom direction
+        /// Bottom direction.
         /// </summary>
         Bottom,
         /// <summary>
-        /// Left direction
+        /// Left direction.
         /// </summary>
         Left,
         /// <summary>
-        /// Right direction
+        /// Right direction.
         /// </summary>
         Right
     }

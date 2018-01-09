@@ -18,16 +18,16 @@ using System;
 namespace ElmSharp
 {
     /// <summary>
-    /// The IndexItem is used to manage index item
-    /// Inherits ItemObject
+    /// The IndexItem is used to manage the index item.
+    /// Inherits ItemObject.
     /// </summary>
     /// <since_tizen> preview </since_tizen>
     public class IndexItem : ItemObject
     {
         /// <summary>
-        /// Creates and initializes a new instance of IndexItem class.
+        /// Creates and initializes a new instance of the IndexItem class.
         /// </summary>
-        /// <param name="text">the text is set to the Text. It's 'string' type.</param>
+        /// <param name="text">The text is set to the Text. It's the 'string' type.</param>
         /// <since_tizen> preview </since_tizen>
         public IndexItem(string text) : base(IntPtr.Zero)
         {
@@ -35,13 +35,13 @@ namespace ElmSharp
         }
 
         /// <summary>
-        /// Selected will be triggered when the index item is selected
+        /// Selected will be triggered when the index item is selected.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
         public event EventHandler Selected;
 
         /// <summary>
-        /// Gets the text
+        /// Gets the text.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
         public string Text { get; private set; }
@@ -49,7 +49,7 @@ namespace ElmSharp
         /// <summary>
         /// Sets the selected state of an item.
         /// </summary>
-        /// <param name="selected">The selected state</param>
+        /// <param name="selected">The selected state.</param>
         /// <since_tizen> preview </since_tizen>
         public void Select(bool selected)
         {

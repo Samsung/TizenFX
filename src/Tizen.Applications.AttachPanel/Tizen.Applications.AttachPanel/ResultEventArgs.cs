@@ -3,7 +3,7 @@ using System;
 namespace Tizen.Applications.AttachPanel
 {
     /// <summary>
-    /// Class for event arguments of the result event
+    /// A class for the event arguments of the result event.
     /// </summary>
     /// <since_tizen> 4 </since_tizen>
     public class ResultEventArgs : EventArgs
@@ -32,8 +32,8 @@ namespace Tizen.Applications.AttachPanel
         }
 
         /// <summary>
-        /// Property for result
-        /// The caller app has to use ExtraData property to get received data.
+        /// Property for the result.
+        /// The caller application has to use the ExtraData property to get received data.
         /// </summary>
         /// <since_tizen> 4 </since_tizen>
         public AppControl Result
@@ -45,7 +45,7 @@ namespace Tizen.Applications.AttachPanel
         }
 
         /// <summary>
-        /// Property for result of AppControl
+        /// Property for the result of the AppControl.
         /// </summary>
         /// <since_tizen> 4 </since_tizen>
         public AppControlReplyResult ResultCode

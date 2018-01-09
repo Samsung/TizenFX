@@ -19,7 +19,7 @@ using System;
 namespace Tizen.WebView
 {
     /// <summary>
-    /// Enumeration that contains option for cache model.
+    /// Enumeration for cache model options.
     /// </summary>
     /// <since_tizen> 4 </since_tizen>
     public enum CacheModel
@@ -29,7 +29,7 @@ namespace Tizen.WebView
         /// </summary>
         DocumentViewer,
         /// <summary>
-        /// Use bigger cache capacity than DocumentBrowser.
+        /// Use the bigger cache capacity than DocumentBrowser.
         /// </summary>
         DocumentBrowser,
         /// <summary>
@@ -39,7 +39,7 @@ namespace Tizen.WebView
     }
 
     /// <summary>
-    /// This class encapsulates all pages related to the specific use of Chromium-efl.
+    /// This class encapsulates all the pages related to the specific use of the Chromium-efl.
     /// </summary>
     /// <remarks>
     /// Applications have the option of creating a context different from the default one and using it for a group of pages.
@@ -79,7 +79,7 @@ namespace Tizen.WebView
         /// <summary>
         /// Gets the CookieManager object for this context.
         /// </summary>
-        /// <returns>The CookieManager object</returns>
+        /// <returns>The CookieManager object.</returns>
         /// <since_tizen> 4 </since_tizen>
         public CookieManager GetCookieManager()
         {

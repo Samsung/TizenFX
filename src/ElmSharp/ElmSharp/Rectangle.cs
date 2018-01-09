@@ -19,7 +19,7 @@ using System;
 namespace ElmSharp
 {
     /// <summary>
-    /// The Rectangle is a class that used to draw a solid colored rectangle.
+    /// The Rectangle is a class that is used to draw a solid colored rectangle.
     /// </summary>
     /// <since_tizen> preview </since_tizen>
     public class Rectangle : EvasObject
@@ -27,7 +27,7 @@ namespace ElmSharp
         /// <summary>
         /// Creates and initializes a new instance of the Rectangle class.
         /// </summary>
-        /// <param name="parent">The <see cref="EvasObject"/> to which the new Slider will be attached as a child.</param>
+        /// <param name="parent">The <see cref="EvasObject"/> to which the new slider will be attached as a child.</param>
         /// <since_tizen> preview </since_tizen>
         public Rectangle(EvasObject parent) : base(parent)
         {
@@ -37,8 +37,8 @@ namespace ElmSharp
         /// <summary>
         /// Creates a widget handle.
         /// </summary>
-        /// <param name="parent">Parent EvasObject</param>
-        /// <returns>Handle IntPtr</returns>
+        /// <param name="parent">Parent EvasObject.</param>
+        /// <returns>Handle IntPtr.</returns>
         /// <since_tizen> preview </since_tizen>
         protected override IntPtr CreateHandle(EvasObject parent)
         {

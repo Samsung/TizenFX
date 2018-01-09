@@ -22,7 +22,7 @@ using System.Runtime.InteropServices;
 namespace ElmSharp
 {
     /// <summary>
-    /// The EcoreEventType is type of EcoreEvent.
+    /// The EcoreEventType is a type of EcoreEvent.
     /// It includes some predefined instance.
     /// </summary>
     /// <since_tizen> preview </since_tizen>
@@ -110,14 +110,14 @@ namespace ElmSharp
     }
 
     /// <summary>
-    /// The EcoreEvent is a class to help to create events are being notified of events.
+    /// The EcoreEvent is a class to help create events that are being notified of events.
     /// </summary>
-    /// <typeparam name="TEventArgs">Kinds of EventArgs</typeparam>
+    /// <typeparam name="TEventArgs">Kinds of EventArgs.</typeparam>
     /// <since_tizen> preview </since_tizen>
     public class EcoreEvent<TEventArgs> : IDisposable where TEventArgs : EventArgs
     {
         /// <summary>
-        /// EventInfoParser delegate of EcoreEvent class
+        /// EventInfoParser delegate of the EcoreEvent class.
         /// </summary>
         /// <param name="data">IntPtr</param>
         /// <param name="type">EcoreEventType</param>
@@ -153,7 +153,7 @@ namespace ElmSharp
         }
 
         /// <summary>
-        /// Destructor for EcoreEvent class.
+        /// Destructor for the EcoreEvent class.
         /// </summary>
         ~EcoreEvent()
         {
@@ -168,7 +168,7 @@ namespace ElmSharp
         }
 
         /// <summary>
-        /// On Event Handler of EcoreEvent.
+        /// On Event Handler of the EcoreEvent.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
         public event EventHandler<TEventArgs> On
@@ -196,11 +196,11 @@ namespace ElmSharp
         }
 
         /// <summary>
-        /// Releases all resources currently used by this instance.
+        /// Releases all the resources currently used by this instance.
         /// </summary>
         /// <param name="disposing">
-        /// true if managed resources should be disposed
-        /// otherwise, false.
+        /// true if the managed resources should be disposed,
+        /// otherwise false.
         /// </param>
         /// <since_tizen> preview </since_tizen>
         protected virtual void Dispose(bool disposing)
@@ -221,7 +221,7 @@ namespace ElmSharp
         }
 
         /// <summary>
-        /// Destroy current object
+        /// Destroys the current object.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
         public void Dispose()
@@ -232,7 +232,7 @@ namespace ElmSharp
     }
 
     /// <summary>
-    /// Event class for EcoreEvent
+    /// The event class for EcoreEvent.
     /// </summary>
     /// <since_tizen> preview </since_tizen>
     public class EcoreEvent : EcoreEvent<EventArgs>

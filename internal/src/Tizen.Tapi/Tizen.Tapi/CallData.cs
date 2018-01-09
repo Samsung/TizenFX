@@ -21,7 +21,6 @@ namespace Tizen.Tapi
     /// <summary>
     /// A class containing information about call idle status notification data.
     /// </summary>
-    /// <since_tizen> 4 </since_tizen>
     public class CallIdleStatusNotificationData
     {
         internal uint Id;
@@ -34,7 +33,6 @@ namespace Tizen.Tapi
         /// <summary>
         /// Notification id.
         /// </summary>
-        /// <since_tizen> 4 </since_tizen>
         /// <value>Notificatio id in unsigned integer format.</value>
         public uint NotiId
         {
@@ -47,7 +45,6 @@ namespace Tizen.Tapi
         /// <summary>
         /// End cause for the call indicates whether the call is released normally or due to some other cause.
         /// </summary>
-        /// <since_tizen> 4 </since_tizen>
         /// <value>En cause enum value.</value>
         public CallEndCause EndCause
         {
@@ -61,7 +58,6 @@ namespace Tizen.Tapi
     /// <summary>
     /// A class which contains calling name information.
     /// </summary>
-    /// <since_tizen> 4 </since_tizen>
     public class CallerNameInfo
     {
         internal CallNameMode Mode;
@@ -74,7 +70,6 @@ namespace Tizen.Tapi
         /// <summary>
         /// Display mode of the name.
         /// </summary>
-        /// <since_tizen> 4 </since_tizen>
         /// <value>Enum value for call name mode</value>
         public CallNameMode NameMode
         {
@@ -87,7 +82,6 @@ namespace Tizen.Tapi
         /// <summary>
         /// Calling party name string.
         /// </summary>
-        /// <since_tizen> 4 </since_tizen>
         /// <value>String value representing calling party name.</value>
         public string Name
         {
@@ -101,7 +95,6 @@ namespace Tizen.Tapi
     /// <summary>
     /// A class which contains details about call information.
     /// </summary>
-    /// <since_tizen> 4 </since_tizen>
     public class CallIncomingInfo
     {
         internal uint Handle;
@@ -120,7 +113,6 @@ namespace Tizen.Tapi
         /// <summary>
         /// Call handle indicates the handle of the call for the application.
         /// </summary>
-        /// <since_tizen> 4 </since_tizen>
         /// <value>Call handle represented in unsigned integer format.</value>
         public uint CallHandle
         {
@@ -133,7 +125,6 @@ namespace Tizen.Tapi
         /// <summary>
         /// Call type.
         /// </summary>
-        /// <since_tizen> 4 </since_tizen>
         /// <value>Call type indicating whether the requested call is a voice or video call.</value>
         public CallType CallType
         {
@@ -146,7 +137,6 @@ namespace Tizen.Tapi
         /// <summary>
         /// Caller number, null terminated ASCII.
         /// </summary>
-        /// <since_tizen> 4 </since_tizen>
         /// <value>A string representing calling party number.</value>
         public string CallerNumber
         {
@@ -159,7 +149,6 @@ namespace Tizen.Tapi
         /// <summary>
         /// Call name info. If there is no information from the network, this information will be null.
         /// </summary>
-        /// <since_tizen> 4 </since_tizen>
         /// <value>A CallerNameInfo which contains information about the calling party name.</value>
         public CallerNameInfo NameInfo
         {
@@ -172,7 +161,6 @@ namespace Tizen.Tapi
         /// <summary>
         /// CLI mode.
         /// </summary>
-        /// <since_tizen> 4 </since_tizen>
         /// <value>Enum value representing CLI mode.</value>
         public CallCliMode CliMode
         {
@@ -185,7 +173,6 @@ namespace Tizen.Tapi
         /// <summary>
         /// No CLI cause.
         /// </summary>
-        /// <since_tizen> 4 </since_tizen>
         /// <value>Enum value representing the cause for no CLI.</value>
         public CallNoCliCause CliCause
         {
@@ -198,7 +185,6 @@ namespace Tizen.Tapi
         /// <summary>
         /// Checks whether the incoming call is a forwarded call or not.
         /// </summary>
-        /// <since_tizen> 4 </since_tizen>
         /// <value>True or false. If the incoming call is a forwarded call, then true else false.</value>
         public bool IsForwarded
         {
@@ -211,7 +197,6 @@ namespace Tizen.Tapi
         /// <summary>
         /// Current Active Line.
         /// </summary>
-        /// <since_tizen> 4 </since_tizen>
         /// <value>Enum value representing call active line.</value>
         public CallActiveLine ActiveLine
         {
@@ -225,7 +210,6 @@ namespace Tizen.Tapi
     /// <summary>
     /// A class which contains information about call line control.
     /// </summary>
-    /// <since_tizen> 4 </since_tizen>
     public class CallRecordLineControl
     {
         internal byte PolarityInc;
@@ -240,7 +224,6 @@ namespace Tizen.Tapi
         /// <summary>
         /// Polarity included.
         /// </summary>
-        /// <since_tizen> 4 </since_tizen>
         /// <value>Polarity value represented in byte format.</value>
         public byte PolarityIncluded
         {
@@ -253,7 +236,6 @@ namespace Tizen.Tapi
         /// <summary>
         /// Toggle mode.
         /// </summary>
-        /// <since_tizen> 4 </since_tizen>
         /// <value>Toggle mode represented in byte format.</value>
         public byte ToggleMode
         {
@@ -266,7 +248,6 @@ namespace Tizen.Tapi
         /// <summary>
         /// Reverse polarity.
         /// </summary>
-        /// <since_tizen> 4 </since_tizen>
         /// <value>Reverse polarity value represented in byte format.</value>
         public byte ReversePolarity
         {
@@ -279,7 +260,6 @@ namespace Tizen.Tapi
         /// <summary>
         /// Power denial time.
         /// </summary>
-        /// <since_tizen> 4 </since_tizen>
         /// <value>Time value in byte which represents power denial time.</value>
         public byte PowerDenialTime
         {
@@ -293,7 +273,6 @@ namespace Tizen.Tapi
     /// <summary>
     /// A class which contains information about call record.
     /// </summary>
-    /// <since_tizen> 4 </since_tizen>
     public class CallRecord
     {
         internal uint Id;
@@ -309,7 +288,6 @@ namespace Tizen.Tapi
         /// <summary>
         /// Call id
         /// </summary>
-        /// <since_tizen> 4 </since_tizen>
         /// <value>Call id which is represented in unsigned integer format.</value>
         public uint CallId
         {
@@ -322,7 +300,6 @@ namespace Tizen.Tapi
         /// <summary>
         /// Call record type.
         /// </summary>
-        /// <since_tizen> 4 </since_tizen>
         /// <value>An enum value representing the call record type.</value>
         public CallRecordType CallRecordType
         {
@@ -335,7 +312,6 @@ namespace Tizen.Tapi
         /// <summary>
         /// Name record.
         /// </summary>
-        /// <since_tizen> 4 </since_tizen>
         /// <remarks>
         /// This value will be filled only if CallRecordType is Name, otherwise it is null.
         /// </remarks>
@@ -351,7 +327,6 @@ namespace Tizen.Tapi
         /// <summary>
         /// Number record.
         /// </summary>
-        /// <since_tizen> 4 </since_tizen>
         /// <remarks>
         /// This value will be filled only if CallRecordType is Record, otherwise it is null.
         /// </remarks>
@@ -367,7 +342,6 @@ namespace Tizen.Tapi
         /// <summary>
         /// Gets the line control info.
         /// </summary>
-        /// <since_tizen> 4 </since_tizen>
         /// <remarks>
         /// This value will be filled only if CallRecordType is LineControl, otherwise it is null.
         /// </remarks>
@@ -384,7 +358,6 @@ namespace Tizen.Tapi
     /// <summary>
     /// A class which contains information about call signal notification.
     /// </summary>
-    /// <since_tizen> 4 </since_tizen>
     public class CallSignalNotification
     {
         internal CallAlertSignal Signal;
@@ -400,7 +373,6 @@ namespace Tizen.Tapi
         /// <summary>
         /// Gets the call signal type.
         /// </summary>
-        /// <since_tizen> 4 </since_tizen>
         /// <value>Signal type of the call represented as CallAlertSignal enum.</value>
         public CallAlertSignal SignalType
         {
@@ -413,7 +385,6 @@ namespace Tizen.Tapi
         /// <summary>
         /// Gets the call pitch type.
         /// </summary>
-        /// <since_tizen> 4 </since_tizen>
         /// <value>Pitch type of the call represented as CallAlertPitch enum.</value>
         public CallAlertPitch PitchType
         {
@@ -426,7 +397,6 @@ namespace Tizen.Tapi
         /// <summary>
         /// Gets the call signal tone type.
         /// </summary>
-        /// <since_tizen> 4 </since_tizen>
         /// <remarks>
         /// This value will be filled only if SignalType is Tone.
         /// </remarks>
@@ -442,7 +412,6 @@ namespace Tizen.Tapi
         /// <summary>
         /// Gets the signal ISDN Alert type.
         /// </summary>
-        /// <since_tizen> 4 </since_tizen>
         /// <remarks>
         /// This value will be filled only if SignalType is IsdnAlert.
         /// </remarks>
@@ -458,7 +427,6 @@ namespace Tizen.Tapi
         /// <summary>
         /// Gets the signal IS54B alert type.
         /// </summary>
-        /// <since_tizen> 4 </since_tizen>
         /// <remarks>
         /// This value will be filled only if SignalType is Is54bAlert.
         /// </remarks>
@@ -475,7 +443,6 @@ namespace Tizen.Tapi
     /// <summary>
     /// A class which contains information about call upgrade/downgrade request of VoLTE call.
     /// </summary>
-    /// <since_tizen> 4 </since_tizen>
     public class CallUpgradeDowngradeRequestNoti
     {
         internal int Handle;
@@ -488,7 +455,6 @@ namespace Tizen.Tapi
         /// <summary>
         /// Gets the call handle.
         /// </summary>
-        /// <since_tizen> 4 </since_tizen>
         /// <value>Call handle value represented in integer format.</value>
         public int CallHandle
         {
@@ -501,7 +467,6 @@ namespace Tizen.Tapi
         /// <summary>
         /// Gets the call upgrade/downgrade config type.
         /// </summary>
-        /// <since_tizen> 4 </since_tizen>
         /// <value>Call upgrade/downgrade type represented in CallConfigType enum.</value>
         public CallConfigType UpgradeType
         {
@@ -515,7 +480,6 @@ namespace Tizen.Tapi
     /// <summary>
     /// A class which contains information about an outgoing call.
     /// </summary>
-    /// <since_tizen> 4 </since_tizen>
     public class CallInformation
     {
         private CallType _type;
@@ -528,7 +492,6 @@ namespace Tizen.Tapi
         /// <summary>
         /// A parameterized constructor of CallInformation.
         /// </summary>
-        /// <since_tizen> 4 </since_tizen>
         /// <param name="type">Type of call(voice, data, video, emergency).</param>
         /// <param name="etype">Emergency category.</param>
         /// <param name="phoneNumber">Destination phone number.</param>
@@ -567,7 +530,6 @@ namespace Tizen.Tapi
     /// <summary>
     /// A class which contains information about call end response data.
     /// </summary>
-    /// <since_tizen> 4 </since_tizen>
     public class CallEndData
     {
         private CallEndType _type;
@@ -586,7 +548,6 @@ namespace Tizen.Tapi
         /// <summary>
         /// End type.
         /// </summary>
-        /// <since_tizen> 4 </since_tizen>
         public CallEndType Type
         {
             get
@@ -598,7 +559,6 @@ namespace Tizen.Tapi
         /// <summary>
         /// Id.
         /// </summary>
-        /// <since_tizen> 4 </since_tizen>
         public uint Id
         {
             get
@@ -611,7 +571,6 @@ namespace Tizen.Tapi
     /// <summary>
     /// A class which contains information about burst DTMF in CDMA.
     /// </summary>
-    /// <since_tizen> 4 </since_tizen>
     public class CallBurstDtmfData
     {
         private string _dtmf;
@@ -625,7 +584,6 @@ namespace Tizen.Tapi
         /// <summary>
         /// A parameterized constructor of CallBurstDtmfData.
         /// </summary>
-        /// <since_tizen> 4 </since_tizen>
         /// <param name="dtmf">Burst DTMF string.</param>
         /// <param name="width">DTMF Pulse Width.</param>
         /// <param name="interval">DTMF Inter Digit Interval.</param>
@@ -664,7 +622,6 @@ namespace Tizen.Tapi
     /// <summary>
     /// A class which contains information about call status.
     /// </summary>
-    /// <since_tizen> 4 </since_tizen>
     public class CallStatus
     {
         private int _handle;
@@ -681,7 +638,6 @@ namespace Tizen.Tapi
         /// <summary>
         /// Call handle.
         /// </summary>
-        /// <since_tizen> 4 </since_tizen>
         public int CallHandle
         {
             get
@@ -698,7 +654,6 @@ namespace Tizen.Tapi
         /// <summary>
         /// Status will be true for MO calls. If MT call, then its false.
         /// </summary>
-        /// <since_tizen> 4 </since_tizen>
         public bool IsMoCall
         {
             get
@@ -715,7 +670,6 @@ namespace Tizen.Tapi
         /// <summary>
         /// Mobile number.
         /// </summary>
-        /// <since_tizen> 4 </since_tizen>
         public string PhoneNumber
         {
             get
@@ -732,7 +686,6 @@ namespace Tizen.Tapi
         /// <summary>
         /// Type of call(voice, data, emergency).
         /// </summary>
-        /// <since_tizen> 4 </since_tizen>
         public CallType Type
         {
             get
@@ -749,7 +702,6 @@ namespace Tizen.Tapi
         /// <summary>
         /// Current call state.
         /// </summary>
-        /// <since_tizen> 4 </since_tizen>
         public CallState State
         {
             get
@@ -766,7 +718,6 @@ namespace Tizen.Tapi
         /// <summary>
         /// Whether call is in conference state.
         /// </summary>
-        /// <since_tizen> 4 </since_tizen>
         public bool IsConferenceState
         {
             get
@@ -783,7 +734,6 @@ namespace Tizen.Tapi
         /// <summary>
         /// Whether call is volte call.
         /// </summary>
-        /// <since_tizen> 4 </since_tizen>
         public bool IsVolteCall
         {
             get
@@ -801,7 +751,6 @@ namespace Tizen.Tapi
     /// <summary>
     /// A class that contains call volume info.
     /// </summary>
-    /// <since_tizen> 4 </since_tizen>
     public class CallVolumeRecord
     {
         private SoundDevice _device;
@@ -814,7 +763,6 @@ namespace Tizen.Tapi
         /// <summary>
         /// A parameterized constructor of CallVolumeRecord.
         /// </summary>
-        /// <since_tizen> 4 </since_tizen>
         /// <param name="device">Call sound device.</param>
         /// <param name="type">Call sound type.</param>
         /// <param name="volume">Call sound volume.</param>
@@ -828,7 +776,6 @@ namespace Tizen.Tapi
         /// <summary>
         /// Call sound device info.
         /// </summary>
-        /// <since_tizen> 4 </since_tizen>
         public SoundDevice Device
         {
             get
@@ -840,7 +787,6 @@ namespace Tizen.Tapi
         /// <summary>
         /// Call sound type info.
         /// </summary>
-        /// <since_tizen> 4 </since_tizen>
         public SoundType Type
         {
             get
@@ -852,7 +798,6 @@ namespace Tizen.Tapi
         /// <summary>
         /// Call sound volume info.
         /// </summary>
-        /// <since_tizen> 4 </since_tizen>
         public SoundVolume Volume
         {
             get
@@ -865,7 +810,6 @@ namespace Tizen.Tapi
     /// <summary>
     /// A class which contains call volume info reponse data.
     /// </summary>
-    /// <since_tizen> 4 </since_tizen>
     public class CallVolumeInfo
     {
         private uint _id;
@@ -884,7 +828,6 @@ namespace Tizen.Tapi
         /// <summary>
         /// Record number.
         /// </summary>
-        /// <since_tizen> 4 </since_tizen>
         public uint RecordId
         {
             get
@@ -896,7 +839,6 @@ namespace Tizen.Tapi
         /// <summary>
         /// Volume info record.
         /// </summary>
-        /// <since_tizen> 4 </since_tizen>
         public IEnumerable<CallVolumeRecord> Records
         {
             get
@@ -909,7 +851,6 @@ namespace Tizen.Tapi
     /// <summary>
     /// A class which contains call sound path and volume information.
     /// </summary>
-    /// <since_tizen> 4 </since_tizen>
     public class CallSoundPathInfo
     {
         private SoundPath _path;
@@ -921,7 +862,6 @@ namespace Tizen.Tapi
         /// <summary>
         /// A parameterized constructor of CallSoundPathInfo.
         /// </summary>
-        /// <since_tizen> 4 </since_tizen>
         /// <param name="path">Sound path.</param>
         /// <param name="exVolume">Extra volume status.</param>
         public CallSoundPathInfo(SoundPath path, ExtraVolume exVolume)
@@ -950,7 +890,6 @@ namespace Tizen.Tapi
     /// <summary>
     /// A class which contains call mute status reponse data.
     /// </summary>
-    /// <since_tizen> 4 </since_tizen>
     public class CallMuteStatusRecord
     {
         private SoundMutePath _path;
@@ -962,7 +901,6 @@ namespace Tizen.Tapi
         /// <summary>
         /// A parameterized constructor of CallMuteStatusRecord.
         /// </summary>
-        /// <since_tizen> 4 </since_tizen>
         /// <param name="path">Mute path.</param>
         /// <param name="status">Mute status.</param>
         public CallMuteStatusRecord(SoundMutePath path, SoundMuteStatus status)
@@ -974,7 +912,6 @@ namespace Tizen.Tapi
         /// <summary>
         /// Gets the sound mute path.
         /// </summary>
-        /// <since_tizen> 4 </since_tizen>
         public SoundMutePath Path
         {
             get
@@ -986,7 +923,6 @@ namespace Tizen.Tapi
         /// <summary>
         /// Gets the sound mute status.
         /// </summary>
-        /// <since_tizen> 4 </since_tizen>
         public SoundMuteStatus Status
         {
             get

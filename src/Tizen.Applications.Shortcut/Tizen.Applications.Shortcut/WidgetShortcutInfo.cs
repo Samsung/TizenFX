@@ -17,25 +17,25 @@
 namespace Tizen.Applications.Shortcut
 {
     /// <summary>
-    /// A class that contains information about the widget.
+    /// A class that contains the information about the widget.
     /// </summary>
     /// <since_tizen> 4 </since_tizen>
     public class WidgetShortcutInfo : ShortcutInfo
     {
         /// <summary>
-        /// Gets or sets the Widget ID.
+        /// Gets or sets the widget ID.
         /// </summary>
         /// <since_tizen> 4 </since_tizen>
         public string WidgetId { get; set; } = string.Empty;
 
         /// <summary>
-        /// Gets or sets the size of widget.
+        /// Gets or sets the size of the widget.
         /// </summary>
         /// <since_tizen> 4 </since_tizen>
         public ShortcutWidgetSize WidgetSize { get; set; }
 
         /// <summary>
-        /// Gets or sets the Update period in seconds.
+        /// Gets or sets the update period in seconds.
         /// </summary>
         /// <since_tizen> 4 </since_tizen>
         public double Period { get; set; }

@@ -21,7 +21,7 @@ using System.Runtime.InteropServices;
 namespace Tizen.Pims.Contacts
 {
     /// <summary>
-    /// A record represents an actual record in the database
+    /// A record represents an actual record in the database.
     /// </summary>
     /// <remarks>
     /// A record represents an actual record in the database, but you can also consider it a piece of information, such as an address, a phone number, or a group of contacts. 
@@ -85,11 +85,11 @@ namespace Tizen.Pims.Contacts
         /// <summary>
         /// Creates a record.
         /// </summary>
-        /// <param name="viewUri">The view URI</param>
+        /// <param name="viewUri">The view URI.</param>
         /// <feature>http://tizen.org/feature/contact</feature>
-        /// <exception cref="NotSupportedException">Thrown when feature is not supported</exception>
-        /// <exception cref="ArgumentException">Thrown when one of the arguments provided to a method is not valid</exception>
-        /// <exception cref="OutOfMemoryException">Thrown when failed due to out of memory</exception>
+        /// <exception cref="NotSupportedException">Thrown when the feature is not supported.</exception>
+        /// <exception cref="ArgumentException">Thrown when one of the arguments provided to a method is not valid.</exception>
+        /// <exception cref="OutOfMemoryException">Thrown when failed due to out of memory.</exception>
         /// <since_tizen> 4 </since_tizen>
         [SuppressMessage("Microsoft.Design", "CA1054:UriParametersShouldNotBeStrings")]
         public ContactsRecord(string viewUri)
@@ -105,7 +105,7 @@ namespace Tizen.Pims.Contacts
         }
 
         /// <summary>
-        /// Destructor
+        /// The destructor.
         /// </summary>
         /// <since_tizen> 4 </since_tizen>
         ~ContactsRecord()
@@ -114,9 +114,9 @@ namespace Tizen.Pims.Contacts
         }
 
         /// <summary>
-        /// The URI of the record
+        /// The URI of the record.
         /// </summary>
-        /// <value>The URI of the record</value>
+        /// <value>The URI of the record.</value>
         /// <since_tizen> 4 </since_tizen>
         [SuppressMessage("Microsoft.Design", "CA1056:UriPropertiesShouldNotBeStrings")]
         public string Uri
@@ -131,9 +131,9 @@ namespace Tizen.Pims.Contacts
         internal bool _disposedValue = false; // To detect redundant calls
 
         /// <summary>
-        /// Releases all resources used by the ContactsRecord.
+        /// Releases all the resources used by the ContactsRecord.
         /// </summary>
-        /// <param name="disposing">Disposing by User</param>
+        /// <param name="disposing">Disposing by the user.</param>
         /// <since_tizen> 4 </since_tizen>
         protected virtual void Dispose(bool disposing)
         {
@@ -157,8 +157,8 @@ namespace Tizen.Pims.Contacts
         }
 
         /// <summary>
-        /// Releases all resources used by the ContactsRecord.
-        /// It should be called after finished using of the object.
+        /// Releases all the resources used by the ContactsRecord.
+        /// It should be called after it has finished using the object.
         /// </summary>
         /// <since_tizen> 4 </since_tizen>
         public void Dispose()
@@ -171,10 +171,10 @@ namespace Tizen.Pims.Contacts
         /// <summary>
         /// Makes a clone of a record.
         /// </summary>
-        /// <returns>A cloned record</returns>
+        /// <returns>A cloned record.</returns>
         /// <feature>http://tizen.org/feature/contact</feature>
-        /// <exception cref="NotSupportedException">Thrown when feature is not supported</exception>
-        /// <exception cref="OutOfMemoryException">Thrown when failed due to out of memory</exception>
+        /// <exception cref="NotSupportedException">Thrown when the feature is not supported.</exception>
+        /// <exception cref="OutOfMemoryException">Thrown when failed due to out of memory.</exception>
         /// <since_tizen> 4 </since_tizen>
         public ContactsRecord Clone()
         {
@@ -191,13 +191,13 @@ namespace Tizen.Pims.Contacts
         /// <summary>
         /// Gets a value of the property from a record.
         /// </summary>
-        /// <param name="propertyId">The property ID</param>
+        /// <param name="propertyId">The property ID.</param>
         /// <returns>
-        /// The value of the property corresponding to property id.
+        /// The value of the property corresponding to a property ID.
         /// </returns>
         /// <feature>http://tizen.org/feature/contact</feature>
-        /// <exception cref="NotSupportedException">Thrown when feature is not supported</exception>
-        /// <exception cref="ArgumentException">Thrown when one of the arguments provided to a method is not valid</exception>
+        /// <exception cref="NotSupportedException">Thrown when the feature is not supported.</exception>
+        /// <exception cref="ArgumentException">Thrown when one of the arguments provided to a method is not valid.</exception>
         /// <since_tizen> 4 </since_tizen>
         public T Get<T>(uint propertyId)
         {
@@ -269,10 +269,10 @@ namespace Tizen.Pims.Contacts
         /// Sets a value of the property to a record.
         /// </summary>
         /// <feature>http://tizen.org/feature/contact</feature>
-        /// <exception cref="NotSupportedException">Thrown when feature is not supported</exception>
-        /// <param name="propertyId">The property ID</param>
-        /// <param name="value">The value to set</param>
-        /// <exception cref="ArgumentException">Thrown when one of the arguments provided to a method is not valid</exception>
+        /// <exception cref="NotSupportedException">Thrown when the feature is not supported.</exception>
+        /// <param name="propertyId">The property ID.</param>
+        /// <param name="value">The value to set.</param>
+        /// <exception cref="ArgumentException">Thrown when one of the arguments provided to a method is not valid.</exception>
         /// <since_tizen> 4 </since_tizen>
         public void Set<T>(uint propertyId, T value)
         {
@@ -336,11 +336,11 @@ namespace Tizen.Pims.Contacts
         /// <summary>
         /// Adds a child record to the parent record.
         /// </summary>
-        /// <param name="propertyId">The property ID</param>
-        /// <param name="childRecord">The child record to add to parent record</param>
+        /// <param name="propertyId">The property ID.</param>
+        /// <param name="childRecord">The child record to add to the parent record<./param>
         /// <feature>http://tizen.org/feature/contact</feature>
-        /// <exception cref="NotSupportedException">Thrown when feature is not supported</exception>
-        /// <exception cref="ArgumentException">Thrown when one of the arguments provided to a method is not valid</exception>
+        /// <exception cref="NotSupportedException">Thrown when the feature is not supported.</exception>
+        /// <exception cref="ArgumentException">Thrown when one of the arguments provided to a method is not valid.</exception>
         /// <since_tizen> 4 </since_tizen>
         public void AddChildRecord(uint propertyId, ContactsRecord childRecord)
         {
@@ -356,11 +356,11 @@ namespace Tizen.Pims.Contacts
         /// <summary>
         /// Removes a child record from the parent record.
         /// </summary>
-        /// <param name="propertyId">The property ID</param>
-        /// <param name="childRecord">The child record to remove from parent record</param>
+        /// <param name="propertyId">The property ID.</param>
+        /// <param name="childRecord">The child record to remove from the parent record.</param>
         /// <feature>http://tizen.org/feature/contact</feature>
-        /// <exception cref="NotSupportedException">Thrown when feature is not supported</exception>
-        /// <exception cref="ArgumentException">Thrown when one of the arguments provided to a method is not valid</exception>
+        /// <exception cref="NotSupportedException">Thrown when feature is not supported.</exception>
+        /// <exception cref="ArgumentException">Thrown when one of the arguments provided to a method is not valid.</exception>
         /// <since_tizen> 4 </since_tizen>
         public void RemoveChildRecord(uint propertyId, ContactsRecord childRecord)
         {
@@ -376,11 +376,11 @@ namespace Tizen.Pims.Contacts
         /// <summary>
         /// Gets the number of child records of a parent record.
         /// </summary>
-        /// <param name="propertyId">The property ID</param>
-        /// <returns>The number of child records corresponding to property ID</returns>
+        /// <param name="propertyId">The property ID.</param>
+        /// <returns>The number of child records corresponding to the property ID.</returns>
         /// <feature>http://tizen.org/feature/contact</feature>
-        /// <exception cref="NotSupportedException">Thrown when feature is not supported</exception>
-        /// <exception cref="ArgumentException">Thrown when one of the arguments provided to a method is not valid</exception>
+        /// <exception cref="NotSupportedException">Thrown when the feature is not supported.</exception>
+        /// <exception cref="ArgumentException">Thrown when one of the arguments provided to a method is not valid.</exception>
         /// <since_tizen> 4 </since_tizen>
         public int GetChildRecordCount(uint propertyId)
         {
@@ -395,14 +395,14 @@ namespace Tizen.Pims.Contacts
         }
 
         /// <summary>
-        /// Gets a child record from the parent record
+        /// Gets a child record from the parent record.
         /// </summary>
-        /// <param name="propertyId">The property ID</param>
-        /// <param name="index">The index of child record</param>
+        /// <param name="propertyId">The property ID.</param>
+        /// <param name="index">The index of the child record.</param>
         /// <returns>The record </returns>
         /// <feature>http://tizen.org/feature/contact</feature>
-        /// <exception cref="NotSupportedException">Thrown when feature is not supported</exception>
-        /// <exception cref="ArgumentException">Thrown when one of the arguments provided to a method is not valid</exception>
+        /// <exception cref="NotSupportedException">Thrown when the feature is not supported.</exception>
+        /// <exception cref="ArgumentException">Thrown when one of the arguments provided to a method is not valid.</exception>
         /// <since_tizen> 4 </since_tizen>
         public ContactsRecord GetChildRecord(uint propertyId, int index)
         {
@@ -418,15 +418,15 @@ namespace Tizen.Pims.Contacts
         }
 
         /// <summary>
-        /// Clones a child record list corresponding to property ID
+        /// Clones a child record list corresponding to the property ID.
         /// </summary>
-        /// <param name="propertyId">The property ID</param>
+        /// <param name="propertyId">The property ID.</param>
         /// <returns>
-        /// The record list
+        /// The record list.
         /// </returns>
         /// <feature>http://tizen.org/feature/contact</feature>
-        /// <exception cref="NotSupportedException">Thrown when feature is not supported</exception>
-        /// <exception cref="ArgumentException">Thrown when one of the arguments provided to a method is not valid</exception>
+        /// <exception cref="NotSupportedException">Thrown when the feature is not supported.</exception>
+        /// <exception cref="ArgumentException">Thrown when one of the arguments provided to a method is not valid.</exception>
         /// <since_tizen> 4 </since_tizen>
         public ContactsList CloneChildRecordList(uint propertyId)
         {

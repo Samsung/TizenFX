@@ -21,9 +21,9 @@ using System.Linq;
 namespace Tizen.System.Usb
 {
     /// <summary>
-    /// USB Manager class.
+    /// The USB Manager class.
     /// </summary>
-    /// <since_tizen> 5 </since_tizen>
+    /// <since_tizen> 4 </since_tizen>
     public class UsbManager : IDisposable
     {
         // It needs to be static as its destroy function must be called after closing all devices and before application close.
@@ -44,11 +44,11 @@ namespace Tizen.System.Usb
         }
 
         /// <summary>
-        /// USB Manager Constructor.
+        /// The USB Manager constructor.
         /// </summary>
         /// <feature>http://tizen.org/feature/usb.host</feature>
         /// <exception cref="NotSupportedException">The required feature is not supported.</exception>
-        /// <since_tizen> 5 </since_tizen>
+        /// <since_tizen> 4 </since_tizen>
         public UsbManager()
         {
             if (_context == null) throw new NotSupportedException("USB host operations are not supported in this device");
@@ -65,13 +65,13 @@ namespace Tizen.System.Usb
         }
 
         /// <summary>
-        /// This function returns list of USB devices attached to system.
+        /// This function returns a list of USB devices attached to the system.
         /// </summary>
         /// <feature>http://tizen.org/feature/usb.host</feature>
         /// <exception cref="NotSupportedException">The required feature is not supported.</exception>
         /// <exception cref="OutOfMemoryException">Throws exception in case of insufficient memory.</exception>
         /// <exception cref="UnauthorizedAccessException">Throws exception if user has insufficient permission on device.</exception>
-        /// <since_tizen> 5 </since_tizen>
+        /// <since_tizen> 4 </since_tizen>
         public IEnumerable<UsbDevice> AvailableDevices
         {
             get
@@ -82,11 +82,11 @@ namespace Tizen.System.Usb
         }
 
         /// <summary>
-        /// Event handler for events when a USB device is attached or detached.
+        /// An event handler for events when the USB device is attached or detached.
         /// </summary>
         /// <feature>http://tizen.org/feature/usb.host</feature>
         /// <exception cref="NotSupportedException">The required feature is not supported.</exception>
-        /// <since_tizen> 5 </since_tizen>
+        /// <since_tizen> 4 </since_tizen>
         public event EventHandler<HotPluggedEventArgs> DeviceHotPlugged;
 
         internal void HostHotplugAttachCallback(IntPtr devHandle, IntPtr userData)
@@ -136,13 +136,13 @@ namespace Tizen.System.Usb
         /// <summary>
         /// Finalizes an instance of the USB Manager Class.
         /// </summary>
-        /// <since_tizen> 5 </since_tizen>
+        /// <since_tizen> 4 </since_tizen>
         ~UsbManager()
         {
             Dispose(false);
         }
 
-        /// <since_tizen> 5 </since_tizen>
+        /// <since_tizen> 4 </since_tizen>
         public void Dispose()
         {
             Dispose(true);

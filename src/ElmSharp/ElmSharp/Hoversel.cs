@@ -19,13 +19,13 @@ using System;
 namespace ElmSharp
 {
     /// <summary>
-    /// The HoverselItemEventArgs is an HoverselItem's EventArgs
+    /// The HoverselItemEventArgs is a HoverselItem's EventArgs.
     /// </summary>
     /// <since_tizen> preview </since_tizen>
     public class HoverselItemEventArgs : EventArgs
     {
         /// <summary>
-        /// Hoversel's Item
+        /// The hoversel's item.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
         public HoverselItem Item { get; set; }
@@ -52,7 +52,7 @@ namespace ElmSharp
         /// <summary>
         /// Creates and initializes a new instance of the Hoversel class.
         /// </summary>
-        /// <param name="parent">The parent is a given container which will be attached by Hoversel as a child. It's <see cref="EvasObject"/> type.</param>
+        /// <param name="parent">The parent is a given container, which will be attached by Hoversel as a child. It's <see cref="EvasObject"/> type.</param>
         /// <since_tizen> preview </since_tizen>
         public Hoversel(EvasObject parent) : base(parent)
         {
@@ -84,25 +84,25 @@ namespace ElmSharp
         }
 
         /// <summary>
-        /// Clicked will be triggered when Hoversel is clicked
+        /// Clicked will be triggered when the hoversel is clicked.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
         public event EventHandler Clicked;
 
         /// <summary>
-        /// Expanded will be triggered when Hoversel is activated by clicking the hoversel or by a function
+        /// Expanded will be triggered when the hoversel is activated by clicking the hoversel, or by a function.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
         public event EventHandler Expanded;
 
         /// <summary>
-        /// Dismissed will be triggered when Hoversel Dismissed
+        /// Dismissed will be triggered when the hoversel is dismissed.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
         public event EventHandler Dismissed;
 
         /// <summary>
-        /// ItemSelected will be triggered when Hoversel's Item Selected
+        /// ItemSelected will be triggered when the hoversel's item is selected.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
         public event EventHandler<HoverselItemEventArgs> ItemSelected;
@@ -152,7 +152,7 @@ namespace ElmSharp
         }
 
         /// <summary>
-        /// Gets or sets the status of whether update icon and text of hoversel same to those of selected item automatically.
+        /// Gets or sets the status of whether to update the icon and text of hoversel same to those of the selected item automatically.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
         public bool AutoUpdate
@@ -168,7 +168,7 @@ namespace ElmSharp
         }
 
         /// <summary>
-        /// This triggers the hoversel popup from code, the same as if the user had clicked the button.
+        /// This triggers the hoversel popup from the code, the same as if the user had clicked the button.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
         public void HoverBegin()
@@ -195,10 +195,10 @@ namespace ElmSharp
         }
 
         /// <summary>
-        /// Add an item to the hoversel button.
+        /// Adds an item to the hoversel button.
         /// This adds an item to the hoversel to show when it is clicked.
         /// </summary>
-        /// <param name="label">Item's label</param>
+        /// <param name="label">Item's label.</param>
         /// <returns>A handle to the added item.</returns>
         /// <since_tizen> preview </since_tizen>
         public HoverselItem AddItem(string label)
@@ -212,8 +212,8 @@ namespace ElmSharp
         /// <summary>
         /// Creates a widget handle.
         /// </summary>
-        /// <param name="parent">Parent EvasObject</param>
-        /// <returns>Handle IntPtr</returns>
+        /// <param name="parent">Parent EvasObject.</param>
+        /// <returns>Handle IntPtr.</returns>
         /// <since_tizen> preview </since_tizen>
         protected override IntPtr CreateHandle(EvasObject parent)
         {

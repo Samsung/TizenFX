@@ -19,7 +19,7 @@ using System;
 namespace ElmSharp
 {
     /// <summary>
-    /// The Box is a container used to arranges UI components in a linear order.
+    /// The Box is a container that is used to arrange UI components in a linear order.
     /// </summary>
     /// <since_tizen> preview </since_tizen>
     public class Box : Container
@@ -36,7 +36,7 @@ namespace ElmSharp
         }
 
         /// <summary>
-        /// Sets or gets IsHorizontal value which describe pack direction, vertical is default.
+        /// Sets or gets the IsHorizontal value, which describe the pack direction. Vertical is default.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
         public bool IsHorizontal
@@ -52,7 +52,7 @@ namespace ElmSharp
         }
 
         /// <summary>
-        /// Sets or gets whether the box to arrange its children homogeneously.
+        /// Sets or gets whether the box has to arrange its children homogeneously.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
         public bool IsHomogeneous
@@ -71,12 +71,12 @@ namespace ElmSharp
         /// Adds an object at the end of the pack list.
         /// </summary>
         /// <remarks>
-        /// Packs "content" object into the Box, placing it last in the list of children objects.
-        /// The actual position the object will get on screen depends on the layout used.
+        /// Packs the "content" object into the Box, placing it last in the list of children objects.
+        /// The actual position of the object will get on the screen depending on the layout used.
         /// If no custom layout is set, it will be at the bottom or right,
         /// depending if the Box is vertical or horizontal, respectively.
         /// </remarks>
-        /// <param name="content">The oject be packed</param>
+        /// <param name="content">The oject to be packed.</param>
         /// <since_tizen> preview </since_tizen>
         public void PackEnd(EvasObject content)
         {
@@ -85,11 +85,11 @@ namespace ElmSharp
         }
 
         /// <summary>
-        /// Adds an "content" object to the beginning of the pack list.
+        /// Adds a "content" object to the beginning of the pack list.
         /// </summary>
         /// <remarks>
-        /// Pack "content" object into the Box obj, placing it first in the list of children objects.
-        /// The actual position the object will get on screen depends on the layout used.
+        /// Packs the "content" object into the box object, placing it first in the list of children objects.
+        /// The actual position of the object will get on the screen depending on the layout used.
         /// If no custom layout is set, it will be at the top or left,
         /// depending if the Box is vertical or horizontal, respectively.
         /// </remarks>
@@ -102,15 +102,15 @@ namespace ElmSharp
         }
 
         /// <summary>
-        /// Adds an "content "object to the Box after the "after" object.
+        /// Adds a "content" object to the box after the "after" object.
         /// </summary>
         /// <remarks>
-        /// This will add the "content" to the Box indicated after the object indicated with "after".
-        /// If "after" is not already in the Box, results are undefined.
-        /// After means either to the right of the "after" object or below it depending on orientation.
+        /// This will add the "content" to the box indicated after the object indicated with "after".
+        /// If "after" is not already in the box, the results are undefined.
+        /// After means either to the right of the "after" object or below it, depending on orientation.
         /// </remarks>
-        /// <param name="content">The object will be added in Box</param>
-        /// <param name="after">The object has been added in Box</param>
+        /// <param name="content">The object will be added in the box.</param>
+        /// <param name="after">The object has been added in the box.</param>
         /// <since_tizen> preview </since_tizen>
         public void PackAfter(EvasObject content, EvasObject after)
         {
@@ -119,15 +119,15 @@ namespace ElmSharp
         }
 
         /// <summary>
-        /// Adds an "content "object to the Box before the "before" object.
+        /// Adds a "content" object to the box before the "before" object.
         /// </summary>
         /// <remarks>
-        /// This will add the "content" to the Box indicated before the object indicated with "before".
-        /// If "before" is not already in the Box, results are undefined.
-        /// before means either to the left of the "before" object or below it depending on orientation.
+        /// This will add the "content" to the box indicated before the object indicated with "before".
+        /// If "before" is not already in the box, the results are undefined.
+        /// Before means either to the left of the "before" object or below it, depending on orientation.
         /// </remarks>
-        /// <param name="content">The object will be added in Box</param>
-        /// <param name="before">The object has been added in Box</param>
+        /// <param name="content">The object will be added in the box.</param>
+        /// <param name="before">The object has been added in the box.</param>
         /// <since_tizen> preview </since_tizen>
         public void PackBefore(EvasObject content, EvasObject before)
         {
@@ -136,9 +136,9 @@ namespace ElmSharp
         }
 
         /// <summary>
-        /// Remove the "content" oject from Box without deleting it.
+        /// Removes the "content" object from the box without deleting it.
         /// </summary>
-        /// <param name="content">The object to unpack</param>
+        /// <param name="content">The object to unpack.</param>
         /// <since_tizen> preview </since_tizen>
         public void UnPack(EvasObject content)
         {
@@ -147,7 +147,7 @@ namespace ElmSharp
         }
 
         /// <summary>
-        /// Removes all objects from Box container.
+        /// Removes all the objects from the Box container.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
         public void UnPackAll()
@@ -157,10 +157,10 @@ namespace ElmSharp
         }
 
         /// <summary>
-        /// Whenever anything changes that requires the Box in obj to recalculate the size and position of its elements,
+        /// Whenever any changes that requires the box in object to recalculate the size and position of its elements,
         /// the function cb will be called to determine what the layout of the children will be.
         /// </summary>
-        /// <param name="action">The callback function used for layout </param>
+        /// <param name="action">The callback function used for layout.</param>
         /// <since_tizen> preview </since_tizen>
         public void SetLayoutCallback(Action action)
         {
@@ -172,7 +172,7 @@ namespace ElmSharp
         }
 
         /// <summary>
-        /// Sets the color of exact part to Box's layout parent.
+        /// Sets the color of the exact part to the box's layout parent.
         /// </summary>
         /// <param name="part">The name of part class, it could be 'bg', 'elm.swllow.content'.</param>
         /// <param name="color">The color value.</param>
@@ -186,7 +186,7 @@ namespace ElmSharp
         }
 
         /// <summary>
-        /// Gets the color of exact part of Box's layout parent.
+        /// Gets the color of the exact part of the box's layout parent.
         /// </summary>
         /// <param name="part">The name of part class, it could be 'bg', 'elm.swllow.content'.</param>
         /// <returns></returns>
@@ -199,9 +199,9 @@ namespace ElmSharp
         }
 
         /// <summary>
-        /// Force the box to recalculate its children packing.
-        /// If any children was added or removed, box will not calculate the values immediately rather leaving it to the next main loop iteration.
-        /// While this is great as it would save lots of recalculation, whenever you need to get the position of a just added item you must force recalculate before doing so.
+        /// Forces the box to recalculate its children packing.
+        /// If any children were added or removed, the box will not calculate the values immediately, rather leaving it to the next main loop iteration.
+        /// While this is great as it would save lots of recalculation, whenever you need to get the position of a just added item, you must force recalculate before doing so.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
         public void Recalculate()
@@ -210,7 +210,7 @@ namespace ElmSharp
         }
 
         /// <summary>
-        /// Clear the box of all children.
+        /// Clears the box's of all the children.
         /// Remove all the elements contained by the box, deleting the respective objects.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
@@ -223,8 +223,8 @@ namespace ElmSharp
         /// <summary>
         /// Sets or gets the alignment of the whole bounding box of contents.
         /// </summary>
-        /// <param name="horizontal">Horizontal alignment</param>
-        /// <param name="vertical">Vertical alignment</param>
+        /// <param name="horizontal">Horizontal alignment.</param>
+        /// <param name="vertical">Vertical alignment.</param>
         /// <since_tizen> preview </since_tizen>
         public void SetBoxAlignment(double horizontal, double vertical)
         {
@@ -232,10 +232,10 @@ namespace ElmSharp
         }
 
         /// <summary>
-        /// Sets or gets the space(padding) between the box's elements.
+        /// Sets or gets the space (padding) between the box's elements.
         /// </summary>
-        /// <param name="horizontal">Horizontal padding</param>
-        /// <param name="vertical">vertical padding</param>
+        /// <param name="horizontal">Horizontal padding.</param>
+        /// <param name="vertical">Vertical padding.</param>
         /// <since_tizen> preview </since_tizen>
         public void SetPadding(int horizontal, int vertical)
         {
@@ -245,8 +245,8 @@ namespace ElmSharp
         /// <summary>
         /// Creates a widget handle.
         /// </summary>
-        /// <param name="parent">Parent EvasObject</param>
-        /// <returns>Handle IntPtr</returns>
+        /// <param name="parent">Parent EvasObject.</param>
+        /// <returns>Handle IntPtr.</returns>
         /// <since_tizen> preview </since_tizen>
         protected override IntPtr CreateHandle(EvasObject parent)
         {

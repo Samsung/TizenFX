@@ -19,7 +19,7 @@ using System;
 namespace Tizen.Applications
 {
     /// <summary>
-    /// The information of Watch Time
+    /// The information of the Watch Time.
     /// </summary>
     /// <since_tizen> 4 </since_tizen>
     public class WatchTime
@@ -33,7 +33,7 @@ namespace Tizen.Applications
         }
 
         /// <summary>
-        /// The information of year
+        /// The information of a year.
         /// </summary>
         /// <feature>http://tizen.org/feature/watch_app</feature>
         /// <exception cref="NotSupportedException">Thrown when the property is not supported.</exception>
@@ -57,7 +57,7 @@ namespace Tizen.Applications
         }
 
         /// <summary>
-        /// The information fo month
+        /// The information of a month.
         /// </summary>
         /// <feature>http://tizen.org/feature/watch_app</feature>
         /// <exception cref="NotSupportedException">Thrown when the property is not supported.</exception>
@@ -81,7 +81,7 @@ namespace Tizen.Applications
         }
 
         /// <summary>
-        /// The information of day
+        /// The information of a day.
         /// </summary>
         /// <feature>http://tizen.org/feature/watch_app</feature>
         /// <exception cref="NotSupportedException">Thrown when the property is not supported.</exception>
@@ -105,7 +105,7 @@ namespace Tizen.Applications
         }
 
         /// <summary>
-        /// The information of day of week
+        /// The information of a day of the week.
         /// </summary>
         /// <feature>http://tizen.org/feature/watch_app</feature>
         /// <exception cref="NotSupportedException">Thrown when the property is not supported.</exception>
@@ -129,7 +129,7 @@ namespace Tizen.Applications
         }
 
         /// <summary>
-        /// The information of hour
+        /// The information of an hour.
         /// </summary>
         /// <feature>http://tizen.org/feature/watch_app</feature>
         /// <exception cref="NotSupportedException">Thrown when the property is not supported.</exception>
@@ -153,7 +153,7 @@ namespace Tizen.Applications
         }
 
         /// <summary>
-        /// The information of hour for 24 hour form
+        /// The information of an hour for the 24 hour format.
         /// </summary>
         /// <feature>http://tizen.org/feature/watch_app</feature>
         /// <exception cref="NotSupportedException">Thrown when the property is not supported.</exception>
@@ -177,7 +177,7 @@ namespace Tizen.Applications
         }
 
         /// <summary>
-        /// The information of Minute
+        /// The information of a minute.
         /// </summary>
         /// <feature>http://tizen.org/feature/watch_app</feature>
         /// <exception cref="NotSupportedException">Thrown when the property is not supported.</exception>
@@ -201,7 +201,7 @@ namespace Tizen.Applications
         }
 
         /// <summary>
-        /// The information of second
+        /// The information of a second.
         /// </summary>
         /// <feature>http://tizen.org/feature/watch_app</feature>
         /// <exception cref="NotSupportedException">Thrown when the property is not supported.</exception>
@@ -225,7 +225,7 @@ namespace Tizen.Applications
         }
 
         /// <summary>
-        /// The information of millisecond
+        /// The information of a millisecond.
         /// </summary>
         /// <feature>http://tizen.org/feature/watch_app</feature>
         /// <exception cref="NotSupportedException">Thrown when the property is not supported.</exception>
@@ -249,7 +249,7 @@ namespace Tizen.Applications
         }
 
         /// <summary>
-        /// The information of timezone
+        /// The information of the timezone.
         /// </summary>
         /// <feature>http://tizen.org/feature/watch_app</feature>
         /// <exception cref="NotSupportedException">Thrown when the property is not supported.</exception>
@@ -273,7 +273,7 @@ namespace Tizen.Applications
         }
 
         /// <summary>
-        /// The information of UTC time stamp
+        /// The information of the UTC time stamp.
         /// </summary>
         /// <feature>http://tizen.org/feature/watch_app</feature>
         /// <exception cref="NotSupportedException">Thrown when the property is not supported.</exception>

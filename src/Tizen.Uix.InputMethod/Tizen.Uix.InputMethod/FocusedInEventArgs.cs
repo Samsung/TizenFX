@@ -17,7 +17,7 @@
 namespace Tizen.Uix.InputMethod
 {
     /// <summary>
-    /// This Class contains data related to FocusedIn Event
+    /// This class contains the data related to the FocusedIn event.
     /// </summary>
     /// <since_tizen> 4 </since_tizen>
     public class FocusedInEventArgs
@@ -28,7 +28,7 @@ namespace Tizen.Uix.InputMethod
         }
 
         /// <summary>
-        /// The input context identification value of an associated text input UI control
+        /// The input context identification value of an associated text input UI control.
         /// </summary>
         /// <since_tizen> 4 </since_tizen>
         public int ContextId

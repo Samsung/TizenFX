@@ -20,12 +20,12 @@ using System.Runtime.InteropServices;
 using Tizen.Uix.InputMethod;
 
 /// <summary>
-/// Partial Interop Class
+/// The Partial Interop class.
 /// </summary>
 internal static partial class Interop
 {
     /// <summary>
-    /// InputMethod Interop Class
+    /// The InputMethod Interop class.
     /// </summary>
     internal static class InputMethod
     {

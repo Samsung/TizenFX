@@ -21,7 +21,6 @@ namespace Tizen.CallManager
     /// <summary>
     /// A class which defines the properties of conference call.
     /// </summary>
-    /// <since_tizen> 4 </since_tizen>
     public class ConferenceCallData
     {
         internal uint CallId;
@@ -35,7 +34,6 @@ namespace Tizen.CallManager
         /// <summary>
         /// Conference call ID.
         /// </summary>
-        /// <since_tizen> 4 </since_tizen>
         public uint Id
         {
             get
@@ -47,7 +45,6 @@ namespace Tizen.CallManager
         /// <summary>
         /// Call number.
         /// </summary>
-        /// <since_tizen> 4 </since_tizen>
         public string CallNumber
         {
             get
@@ -59,7 +56,6 @@ namespace Tizen.CallManager
         /// <summary>
         /// Person ID.
         /// </summary>
-        /// <since_tizen> 4 </since_tizen>
         public int PersonId
         {
             get
@@ -71,7 +67,6 @@ namespace Tizen.CallManager
         /// <summary>
         /// Call name mode.
         /// </summary>
-        /// <since_tizen> 4 </since_tizen>
         public CallNameMode Mode
         {
             get

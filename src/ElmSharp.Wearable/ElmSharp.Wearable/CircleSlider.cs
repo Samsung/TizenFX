@@ -21,7 +21,7 @@ using System.Diagnostics;
 namespace ElmSharp.Wearable
 {
     /// <summary>
-    /// Circle slider is circular designed widget to select a value in a range by rotary event.
+    /// Circle slider is a circular designed widget used to select a value in a range by the Rotary event.
     /// </summary>
     /// <since_tizen> preview </since_tizen>
     public class CircleSlider : Widget, IRotaryActionWidget
@@ -33,7 +33,7 @@ namespace ElmSharp.Wearable
         /// Creates and initializes a new instance of the CircleSlider class.
         /// </summary>
         /// <param name="parent">The EvasObject to which the new CircleSlider will be attached as a child.</param>
-        /// <param name="surface">The surface for drawing circle features for this widget.</param>
+        /// <param name="surface">The surface for drawing the circle features for this widget.</param>
         /// <since_tizen> preview </since_tizen>
         public CircleSlider(EvasObject parent, CircleSurface surface) : base()
         {
@@ -45,7 +45,7 @@ namespace ElmSharp.Wearable
         /// <summary>
         /// Creates and initializes a new instance of the Circle Slider class.
         /// </summary>
-        /// <param name="parent">The parent of new Circle CircleSlider instance</param>
+        /// <param name="parent">The parent of the new Circle CircleSlider instance.</param>
         /// <since_tizen> preview </since_tizen>
         [Obsolete("It is not safe for guess circle surface from parent and create new surface by every new widget")]
         [EditorBrowsable(EditorBrowsableState.Never)]
@@ -61,13 +61,13 @@ namespace ElmSharp.Wearable
         public event EventHandler ValueChanged;
 
         /// <summary>
-        /// Gets the handle for Circle Widget.
+        /// Gets the handle for the Circle widget.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
         public virtual IntPtr CircleHandle => RealHandle;
 
         /// <summary>
-        /// Gets the handle for Circle Surface used in this widget
+        /// Gets the handle for the circle surface used in this widget.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
         public virtual CircleSurface CircleSurface => _surface;
@@ -76,7 +76,7 @@ namespace ElmSharp.Wearable
         /// Sets or gets the step by which the circle slider bar moves.
         /// </summary>
         /// <remarks>
-        /// This value is used when circle slider value is changed by an drag or rotary event
+        /// This value is used when the circle slider value is changed by a drag or the Rotary event.
         /// The value of the slider is increased/decreased by the step value.
         /// </remarks>
         /// <since_tizen> preview </since_tizen>
@@ -93,7 +93,7 @@ namespace ElmSharp.Wearable
         }
 
         /// <summary>
-        /// Sets or gets disabled state of this widget.
+        /// Sets or gets the disabled state of this widget.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
         [Obsolete("Use IsEnabled")]
@@ -121,7 +121,7 @@ namespace ElmSharp.Wearable
         }
 
         /// <summary>
-        /// Sets or gets color of the circle slider bar.
+        /// Sets or gets the color of the circle slider bar.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
         public Color BarColor
@@ -142,7 +142,7 @@ namespace ElmSharp.Wearable
         }
 
         /// <summary>
-        /// Sets or gets color of the circle slider background.
+        /// Sets or gets the color of the circle slider background.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
         public override Color BackgroundColor
@@ -163,7 +163,7 @@ namespace ElmSharp.Wearable
         }
 
         /// <summary>
-        /// Sets or gets the line with of the circle slider bar.
+        /// Sets or gets the line width of the circle slider bar.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
         public int BarLineWidth
@@ -179,7 +179,7 @@ namespace ElmSharp.Wearable
         }
 
         /// <summary>
-        /// Sets or gets the line with of the circle slider background.
+        /// Sets or gets the line width of the circle slider background.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
         public int BackgroundLineWidth
@@ -228,7 +228,7 @@ namespace ElmSharp.Wearable
 
         /// <summary>
         /// Sets or gets the angle offset for the slider bar.
-        /// offset value means start position of the slider bar.
+        /// Offset value means start position of the slider bar.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
         public double BarAngleOffset
@@ -245,7 +245,7 @@ namespace ElmSharp.Wearable
 
         /// <summary>
         /// Sets or gets the angle offset for the circle slider background.
-        /// offset value means start position of the slider background.
+        /// Offset value means start position of the slider background.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
         public double BackgroundAngleOffset
@@ -305,8 +305,8 @@ namespace ElmSharp.Wearable
         /// </summary>
         /// <remarks>
         /// This defines the allowed minimum values to be selected by the user.
-        /// If the actual value is less than min, it is updated to min.
-        /// Actual value can be obtained with Value.By default, min is equal to 0.0.
+        /// If the actual value is less than the minimum value, it is updated to the minimum value.
+        /// Actual value can be obtained with Value. By default, minimum value is equal to 0.0.
         /// </remarks>
         /// <since_tizen> preview </since_tizen>
         public double Minimum
@@ -330,8 +330,8 @@ namespace ElmSharp.Wearable
         /// </summary>
         /// <remarks>
         /// This defines the allowed maximum values to be selected by the user.
-        /// If the actual value is bigger then max, it is updated to max.
-        /// Actual value can be obtained with Value.By default, min is equal to 0.0, and max is equal to 1.0.
+        /// If the actual value is bigger than the maximum value, it is updated to the maximum value.
+        /// Actual value can be obtained with Value. By default, the minimum value is equal to 0.0, and the maximum value is equal to 1.0.
         /// Maximum must be greater than minimum, otherwise the behavior is undefined.
         /// </remarks>
         /// <since_tizen> preview </since_tizen>
@@ -355,7 +355,7 @@ namespace ElmSharp.Wearable
         /// Gets or sets the value displayed by the circle slider.
         /// </summary>
         /// <remarks>
-        /// The value must to be between Minimum and Maximum values.
+        /// The value must be between minimum and maximum.
         /// </remarks>
         /// <since_tizen> preview </since_tizen>
         public double Value
@@ -403,7 +403,7 @@ namespace ElmSharp.Wearable
         }
 
         /// <summary>
-        /// The callback of Realized Event
+        /// The callback of the Realized event.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
         protected override void OnRealized()
@@ -416,8 +416,8 @@ namespace ElmSharp.Wearable
         /// <summary>
         /// Creates a widget handle.
         /// </summary>
-        /// <param name="parent">Parent EvasObject</param>
-        /// <returns>Handle IntPtr</returns>
+        /// <param name="parent">Parent EvasObject.param>
+        /// <returns>Handle IntPtr.</returns>
         /// <since_tizen> preview </since_tizen>
         protected override IntPtr CreateHandle(EvasObject parent)
         {

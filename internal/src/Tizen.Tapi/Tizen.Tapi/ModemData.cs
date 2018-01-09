@@ -7,7 +7,6 @@ namespace Tizen.Tapi
     /// <summary>
     /// A class containing information about mobile equipment version.
     /// </summary>
-    /// <since_tizen> 4 </since_tizen>
     public class MiscVersionInformation
     {
         internal byte Version;
@@ -27,7 +26,6 @@ namespace Tizen.Tapi
         /// <summary>
         /// Version mask.
         /// </summary>
-        /// <since_tizen> 4 </since_tizen>
         public byte VersionMask
         {
             get
@@ -39,7 +37,6 @@ namespace Tizen.Tapi
         /// <summary>
         /// Software version.
         /// </summary>
-        /// <since_tizen> 4 </since_tizen>
         public string SwVersion
         {
             get
@@ -51,7 +48,6 @@ namespace Tizen.Tapi
         /// <summary>
         /// Hardware version.
         /// </summary>
-        /// <since_tizen> 4 </since_tizen>
         public string HwVersion
         {
             get
@@ -63,7 +59,6 @@ namespace Tizen.Tapi
         /// <summary>
         /// Calculation date.
         /// </summary>
-        /// <since_tizen> 4 </since_tizen>
         public string CalculationDate
         {
             get
@@ -75,7 +70,6 @@ namespace Tizen.Tapi
         /// <summary>
         /// Product code.
         /// </summary>
-        /// <since_tizen> 4 </since_tizen>
         public string ProductCode
         {
             get
@@ -87,7 +81,6 @@ namespace Tizen.Tapi
         /// <summary>
         /// Model id.
         /// </summary>
-        /// <since_tizen> 4 </since_tizen>
         public string ModelId
         {
             get
@@ -99,7 +92,6 @@ namespace Tizen.Tapi
         /// <summary>
         /// Number of prl nam fields.
         /// </summary>
-        /// <since_tizen> 4 </since_tizen>
         public byte PrlNam
         {
             get
@@ -111,7 +103,6 @@ namespace Tizen.Tapi
         /// <summary>
         /// Prl version (only for CDMA).
         /// </summary>
-        /// <since_tizen> 4 </since_tizen>
         public string PrlVersion
         {
             get
@@ -123,7 +114,6 @@ namespace Tizen.Tapi
         /// <summary>
         /// Number of Eri nam fields.
         /// </summary>
-        /// <since_tizen> 4 </since_tizen>
         public byte EriNam
         {
             get
@@ -135,7 +125,6 @@ namespace Tizen.Tapi
         /// <summary>
         /// Eri version.
         /// </summary>
-        /// <since_tizen> 4 </since_tizen>
         public string EriVersion
         {
             get
@@ -148,7 +137,6 @@ namespace Tizen.Tapi
     /// <summary>
     /// A class containing information about mobile serial number.
     /// </summary>
-    /// <since_tizen> 4 </since_tizen>
     public class MiscSerialNumberInformation
     {
         internal string SzEsn;
@@ -162,7 +150,6 @@ namespace Tizen.Tapi
         /// <summary>
         /// Esn number.
         /// </summary>
-        /// <since_tizen> 4 </since_tizen>
         public string Esn
         {
             get
@@ -174,7 +161,6 @@ namespace Tizen.Tapi
         /// <summary>
         /// Meid number.
         /// </summary>
-        /// <since_tizen> 4 </since_tizen>
         public string MeId
         {
             get
@@ -186,7 +172,6 @@ namespace Tizen.Tapi
         /// <summary>
         /// Imei number.
         /// </summary>
-        /// <since_tizen> 4 </since_tizen>
         public string Imei
         {
             get
@@ -198,7 +183,6 @@ namespace Tizen.Tapi
         /// <summary>
         /// Imeisv number.
         /// </summary>
-        /// <since_tizen> 4 </since_tizen>
         public string ImeiSv
         {
             get
@@ -211,7 +195,6 @@ namespace Tizen.Tapi
     /// <summary>
     /// A class containing device information of cellular dongle.
     /// </summary>
-    /// <since_tizen> 4 </since_tizen>
     public class MiscDeviceInfo
     {
         internal string Vendor;
@@ -223,7 +206,6 @@ namespace Tizen.Tapi
         /// <summary>
         /// Vendor name.
         /// </summary>
-        /// <since_tizen> 4 </since_tizen>
         public string VendorName
         {
             get
@@ -235,7 +217,6 @@ namespace Tizen.Tapi
         /// <summary>
         /// Device name.
         /// </summary>
-        /// <since_tizen> 4 </since_tizen>
         public string DeviceName
         {
             get

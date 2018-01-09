@@ -1,10 +1,10 @@
 /// <summary>
-/// Interoperability support class for the attach panel APIs
+/// The Interoperability support class for the attach panel APIs.
 /// </summary>
 internal static partial class Interop
 {
     /// <summary>
-    /// Interoperability support class for the API library
+    /// The Interoperability support class for the API library.
     /// </summary>
     internal static partial class Libraries
     {

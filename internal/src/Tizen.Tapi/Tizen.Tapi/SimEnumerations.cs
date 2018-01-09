@@ -19,7 +19,6 @@ namespace Tizen.Tapi
     /// <summary>
     /// Enumeration for the SIM card status.
     /// </summary>
-    /// <since_tizen> 4 </since_tizen>
     public enum SimCardStatus
     {
         /// <summary>
@@ -91,7 +90,6 @@ namespace Tizen.Tapi
     /// <summary>
     /// Enumeration for the SIM card type.
     /// </summary>
-    /// <since_tizen> 4 </since_tizen>
     public enum SimCardType
     {
         /// <summary>
@@ -123,7 +121,6 @@ namespace Tizen.Tapi
     /// <summary>
     /// Enumeration for the language preference code.
     /// </summary>
-    /// <since_tizen> 4 </since_tizen>
     public enum SimLanguagePreference
     {
         /// <summary>
@@ -211,7 +208,6 @@ namespace Tizen.Tapi
     /// <summary>
     /// Enumeration for the security lock type.
     /// </summary>
-    /// <since_tizen> 4 </since_tizen>
     public enum SimLockType
     {
         /// <summary>
@@ -251,7 +247,6 @@ namespace Tizen.Tapi
     /// <summary>
     /// Enumeration for the power state of the SIM.
     /// </summary>
-    /// <since_tizen> 4 </since_tizen>
     public enum SimPowerState
     {
         /// <summary>
@@ -270,7 +265,6 @@ namespace Tizen.Tapi
     /// <summary>
     /// Enumeration for the file ID.
     /// </summary>
-    /// <since_tizen> 4 </since_tizen>
     public enum SimFileId
     {
         /// <summary>
@@ -430,7 +424,6 @@ namespace Tizen.Tapi
     /// <summary>
     /// Enumeration for the SIM number type.
     /// </summary>
-    /// <since_tizen> 4 </since_tizen>
     public enum SimTypeOfNumber
     {
         /// <summary>
@@ -470,7 +463,6 @@ namespace Tizen.Tapi
     /// <summary>
     /// Enumeration for the numbering plan identifier.
     /// </summary>
-    /// <since_tizen> 4 </since_tizen>
     public enum SimNumberPlanIdentity
     {
         /// <summary>
@@ -518,7 +510,6 @@ namespace Tizen.Tapi
     /// <summary>
     /// Enumeration for the emergency service type.
     /// </summary>
-    /// <since_tizen> 4 </since_tizen>
     public enum SimEccEmergencyServiceType
     {
         /// <summary>
@@ -550,7 +541,6 @@ namespace Tizen.Tapi
     /// <summary>
     /// Enumeration for the SIM app type.
     /// </summary>
-    /// <since_tizen> 4 </since_tizen>
     public enum SimAppType
     {
         /// <summary>
@@ -574,7 +564,6 @@ namespace Tizen.Tapi
     /// <summary>
     /// Enumeration for the SIM access result from the lower layers.
     /// </summary>
-    /// <since_tizen> 4 </since_tizen>
     public enum SimAccessResult
     {
         /// <summary>
@@ -602,7 +591,6 @@ namespace Tizen.Tapi
     /// <summary>
     /// Enumeration for the mailbox type.
     /// </summary>
-    /// <since_tizen> 4 </since_tizen>
     public enum SimMailboxType
     {
         /// <summary>
@@ -634,7 +622,6 @@ namespace Tizen.Tapi
     /// <summary>
     /// Enumeration for the current CPHS phase of the SIM card.
     /// </summary>
-    /// <since_tizen> 4 </since_tizen>
     public enum SimCphsPhaseType
     {
         /// <summary>
@@ -654,7 +641,6 @@ namespace Tizen.Tapi
     /// <summary>
     /// Enumeration for CDMA service table.
     /// </summary>
-    /// <since_tizen> 4 </since_tizen>
     public enum SimCdmaServiceTable
     {
         /// <summary>
@@ -674,7 +660,6 @@ namespace Tizen.Tapi
     /// <summary>
     /// Enumeration for the SIM Authentication type.
     /// </summary>
-    /// <since_tizen> 4 </since_tizen>
     public enum SimAuthenticationType
     {
         /// <summary>
@@ -722,7 +707,6 @@ namespace Tizen.Tapi
     /// <summary>
     /// Enumeration for the SIM Authentication result.
     /// </summary>
-    /// <since_tizen> 4 </since_tizen>
     public enum SimAuthenticationResult
     {
         /// <summary>
@@ -766,7 +750,6 @@ namespace Tizen.Tapi
     /// <summary>
     /// Enumeration for the PIN type.
     /// </summary>
-    /// <since_tizen> 4 </since_tizen>
     public enum SimPinType
     {
         /// <summary>
@@ -802,7 +785,6 @@ namespace Tizen.Tapi
     /// <summary>
     /// Enumeration for the PIN status.
     /// </summary>
-    /// <since_tizen> 4 </since_tizen>
     public enum SimFacilityStatus
     {
         /// <summary>
@@ -822,7 +804,6 @@ namespace Tizen.Tapi
     /// <summary>
     /// Enumeration for the security lock key information.
     /// </summary>
-    /// <since_tizen> 4 </since_tizen>
     public enum SimLockStatus
     {
         /// <summary>
@@ -854,7 +835,6 @@ namespace Tizen.Tapi
     /// <summary>
     /// Enumeration for P-CSCF type.
     /// </summary>
-    /// <since_tizen> 4 </since_tizen>
     public enum SimPcscfType
     {
         /// <summary>
@@ -874,7 +854,6 @@ namespace Tizen.Tapi
     /// <summary>
     /// Enumeration for the SIM power set result from the lower layers.
     /// </summary>
-    /// <since_tizen> 4 </since_tizen>
     public enum SimPowerSetResult
     {
         /// <summary>
@@ -890,7 +869,6 @@ namespace Tizen.Tapi
     /// <summary>
     /// Enumeration for the list of IST services in the ISIM Service Table (ISIM).
     /// </summary>
-    /// <since_tizen> 4 </since_tizen>
     public enum SimIsimService
     {
         /// <summary>
@@ -942,7 +920,6 @@ namespace Tizen.Tapi
     /// <summary>
     /// Enumeration for the list of SST services in the SIM Service Table (GSM).
     /// </summary>
-    /// <since_tizen> 4 </since_tizen>
     public enum SimSstService
     {
         /// <summary>
@@ -1174,7 +1151,6 @@ namespace Tizen.Tapi
     /// <summary>
     /// Enumeration for the list of UST services in the SIM Service Table (USIM).
     /// </summary>
-    /// <since_tizen> 4 </since_tizen>
     public enum SimUstService
     {
         /// <summary>
@@ -1438,7 +1414,6 @@ namespace Tizen.Tapi
     /// <summary>
     /// Enumeration for the list of CST services in the CDMA Service Table.
     /// </summary>
-    /// <since_tizen> 4 </since_tizen>
     public enum SimCdmaService
     {
         /// <summary>
@@ -1634,7 +1609,6 @@ namespace Tizen.Tapi
     /// <summary>
     /// Enumeration for the list of CST services in the CSIM Service Table (CSIM).
     /// </summary>
-    /// <since_tizen> 4 </since_tizen>
     public enum SimCsimService
     {
         /// <summary>

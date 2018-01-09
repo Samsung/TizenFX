@@ -17,21 +17,21 @@
 namespace Tizen.System.Usb
 {
     /// <summary>
-    /// Enumeration of transfer direction for Endpoints.
+    /// Enumeration for the transfer directions for endpoints.
     /// </summary>
-    /// <since_tizen> 5 </since_tizen>
+    /// <since_tizen> 4 </since_tizen>
     public enum EndpointDirection
     {
         /// <summary>
-        /// IN direction
+        /// In direction.
         /// </summary>
         In = Interop.EndpointDirection.In,
         /// <summary>
-        /// OUT direction
+        /// Out direction.
         /// </summary>
         Out = Interop.EndpointDirection.Out,
         /// <summary>
-        /// Bi-directional
+        /// Bidirectional.
         /// </summary>
         InOut = Interop.EndpointDirection.InOut,
     }

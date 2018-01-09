@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 namespace Tizen.Internals.Errors
 {
     /// <summary>
-    /// Provides functions that return additional information about the <see cref="ErrorCode"/>
+    /// Provides functions that return the additional information about <see cref="ErrorCode"/>.
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
     public static class ErrorFacts
@@ -28,7 +28,7 @@ namespace Tizen.Internals.Errors
         /// <summary>
         /// Gets the last error code in the thread.
         /// </summary>
-        /// <returns>One of <see cref="ErrorCode"/></returns>
+        /// <returns>One of <see cref="ErrorCode"/>.</returns>
         /// <since_tizen> 3 </since_tizen>
         public static int GetLastResult()
         {
@@ -36,9 +36,9 @@ namespace Tizen.Internals.Errors
         }
 
         /// <summary>
-        /// Gets the message for given the error code.
+        /// Gets the message for the given error code.
         /// </summary>
-        /// <param name="errorCode">One of <see cref="ErrorCode"/></param>
+        /// <param name="errorCode">One of <see cref="ErrorCode"/>.</param>
         /// <returns></returns>
         /// <since_tizen> 3 </since_tizen>
         public static string GetErrorMessage(int errorCode)

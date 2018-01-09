@@ -17,19 +17,19 @@
 namespace ElmSharp
 {
     /// <summary>
-    /// Predefined values for Hints properties in EvasObject
+    /// Predefined values for the hint properties in EvasObject.
     /// </summary>
     /// <since_tizen> preview </since_tizen>
     public static class NamedHint
     {
         /// <summary>
-        /// This value can be used to <see cref="EvasObject.WeightX"/> and <see cref="EvasObject.WeightY"/>
+        /// This value can be used for <see cref="EvasObject.WeightX"/> and <see cref="EvasObject.WeightY"/>.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
         public static double Expand = 1.0;
 
         /// <summary>
-        /// This value can be used to <see cref="EvasObject.AlignmentX"/> and <see cref="EvasObject.AlignmentY"/>
+        /// This value can be used for <see cref="EvasObject.AlignmentX"/> and <see cref="EvasObject.AlignmentY"/>.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
         public static double Fill = -1.0;

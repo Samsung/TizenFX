@@ -22,7 +22,6 @@ namespace Tizen.Tapi
     /// <summary>
     /// A class which defines network registration status.
     /// </summary>
-    /// <since_tizen> 4 </since_tizen>
     public class NetworkRegistrationStatus
     {
         internal NetworkServiceLevel Cs;
@@ -37,7 +36,6 @@ namespace Tizen.Tapi
         /// <summary>
         /// Circuit Switched status.
         /// </summary>
-        /// <since_tizen> 4 </since_tizen>
         /// <value>Status of circuit switched data.</value>
         public NetworkServiceLevel CircuitStatus
         {
@@ -50,7 +48,6 @@ namespace Tizen.Tapi
         /// <summary>
         /// Packet Switched status.
         /// </summary>
-        /// <since_tizen> 4 </since_tizen>
         /// <value>Status of packet switched data.</value>
         public NetworkServiceLevel PacketStatus
         {
@@ -63,7 +60,6 @@ namespace Tizen.Tapi
         /// <summary>
         /// Registration service type.
         /// </summary>
-        /// <since_tizen> 4 </since_tizen>
         /// <value>Service type represented in NetworkServiceType enum.</value>
         public NetworkServiceType Type
         {
@@ -76,7 +72,6 @@ namespace Tizen.Tapi
         /// <summary>
         /// Roaming status
         /// </summary>
-        /// <since_tizen> 4 </since_tizen>
         /// <value>Boolean value to check the roaming status.</value>
         public bool IsRoaming
         {
@@ -90,7 +85,6 @@ namespace Tizen.Tapi
     /// <summary>
     /// A class which defines network cell info notification.
     /// </summary>
-    /// <since_tizen> 4 </since_tizen>
     public class NetworkCellNoti
     {
         internal int Location;
@@ -103,7 +97,6 @@ namespace Tizen.Tapi
         /// <summary>
         /// Location Area Code (In case of LTE network, it represents Tracking Area Code).
         /// </summary>
-        /// <since_tizen> 4 </since_tizen>
         /// <value>Location area code represented in integer.</value>
         public int Lac
         {
@@ -116,7 +109,6 @@ namespace Tizen.Tapi
         /// <summary>
         /// Cell ID.
         /// </summary>
-        /// <since_tizen> 4 </since_tizen>
         /// <value>Cell id represented in integer.</value>
         public int CellId
         {
@@ -130,7 +122,6 @@ namespace Tizen.Tapi
     /// <summary>
     /// A class which defines network change notification.
     /// </summary>
-    /// <since_tizen> 4 </since_tizen>
     public class NetworkChangeNoti
     {
         internal NetworkSystemType Type;
@@ -143,7 +134,6 @@ namespace Tizen.Tapi
         /// <summary>
         /// Access technology.
         /// </summary>
-        /// <since_tizen> 4 </since_tizen>
         /// <value>Access technology represented in NetworkSystemType enum.</value>
         public NetworkSystemType Act
         {
@@ -156,7 +146,6 @@ namespace Tizen.Tapi
         /// <summary>
         /// Network PLMN.
         /// </summary>
-        /// <since_tizen> 4 </since_tizen>
         /// <value>Plmn value represented as string.</value>
         public string Plmn
         {
@@ -170,7 +159,6 @@ namespace Tizen.Tapi
     /// <summary>
     /// A class which defines network time notification.
     /// </summary>
-    /// <since_tizen> 4 </since_tizen>
     public class NetworkTimeNoti
     {
         internal DateTime TimeInfo;
@@ -187,7 +175,6 @@ namespace Tizen.Tapi
         /// <summary>
         /// Date time information.
         /// </summary>
-        /// <since_tizen> 4 </since_tizen>
         /// <value>An instance of DateTime representing date time information.</value>
         public DateTime Time
         {
@@ -200,7 +187,6 @@ namespace Tizen.Tapi
         /// <summary>
         /// Wday information.
         /// </summary>
-        /// <since_tizen> 4 </since_tizen>
         /// <value>Wday info represented in integer.</value>
         public int WDay
         {
@@ -213,7 +199,6 @@ namespace Tizen.Tapi
         /// <summary>
         /// GMT Off.
         /// </summary>
-        /// <since_tizen> 4 </since_tizen>
         /// <value>GMT off info represented in integer.</value>
         public int GmtOff
         {
@@ -226,7 +211,6 @@ namespace Tizen.Tapi
         /// <summary>
         /// DST Off.
         /// </summary>
-        /// <since_tizen> 4 </since_tizen>
         /// <value>DST off info represented in integer.</value>
         public int DstOff
         {
@@ -239,7 +223,6 @@ namespace Tizen.Tapi
         /// <summary>
         /// Flag for checking if it is DST.
         /// </summary>
-        /// <since_tizen> 4 </since_tizen>
         /// <value>Boolean value to check if the time is DST or not.</value>
         public bool IsDst
         {
@@ -252,7 +235,6 @@ namespace Tizen.Tapi
         /// <summary>
         /// Network PLMN.
         /// </summary>
-        /// <since_tizen> 4 </since_tizen>
         /// <value>PLMN value represented in string.</value>
         public string Plmn
         {
@@ -266,7 +248,6 @@ namespace Tizen.Tapi
     /// <summary>
     /// A class which defines network identity notification.
     /// </summary>
-    /// <since_tizen> 4 </since_tizen>
     public class NetworkIdentityNoti
     {
         internal string NwPlmn;
@@ -280,7 +261,6 @@ namespace Tizen.Tapi
         /// <summary>
         /// Network PLMN.
         /// </summary>
-        /// <since_tizen> 4 </since_tizen>
         /// <value>Plmn value represented in string.</value>
         public string Plmn
         {
@@ -293,7 +273,6 @@ namespace Tizen.Tapi
         /// <summary>
         /// Short network name.
         /// </summary>
-        /// <since_tizen> 4 </since_tizen>
         /// <value>Short name of the network in string.</value>
         public string ShortName
         {
@@ -306,7 +285,6 @@ namespace Tizen.Tapi
         /// <summary>
         /// Full network name.
         /// </summary>
-        /// <since_tizen> 4 </since_tizen>
         /// <value>Full name of the network in string.</value>
         public string FullName
         {
@@ -320,7 +298,6 @@ namespace Tizen.Tapi
     /// <summary>
     /// A class which defines network VoLTE status notification.
     /// </summary>
-    /// <since_tizen> 4 </since_tizen>
     public class NetworkVolteStatus
     {
         internal bool NwIsRegistered;
@@ -334,7 +311,6 @@ namespace Tizen.Tapi
         /// <summary>
         /// VoLTE status.
         /// </summary>
-        /// <since_tizen> 4 </since_tizen>
         /// <value>Boolean value to check if it is registered.</value>
         public bool IsRegistered
         {
@@ -347,7 +323,6 @@ namespace Tizen.Tapi
         /// <summary>
         /// Services registered for.
         /// </summary>
-        /// <since_tizen> 4 </since_tizen>
         /// <value>Service mask represented in integer.</value>
         public int FeatureMask
         {
@@ -360,7 +335,6 @@ namespace Tizen.Tapi
         /// <summary>
         /// Network on which VoLTE is registered.
         /// </summary>
-        /// <since_tizen> 4 </since_tizen>
         /// <value>Type of VoLTE network represented in VolteNetworkType enum.</value>
         public VolteNetworkType Type
         {
@@ -374,7 +348,6 @@ namespace Tizen.Tapi
     /// <summary>
     /// A class which defines network identity.
     /// </summary>
-    /// <since_tizen> 4 </since_tizen>
     public class NetworkIdentity
     {
         internal string IdName;
@@ -390,7 +363,6 @@ namespace Tizen.Tapi
         /// <summary>
         /// Network name.
         /// </summary>
-        /// <since_tizen> 4 </since_tizen>
         public string Name
         {
             get
@@ -402,7 +374,6 @@ namespace Tizen.Tapi
         /// <summary>
         /// Service provider name.
         /// </summary>
-        /// <since_tizen> 4 </since_tizen>
         public string ServiceProviderName
         {
             get
@@ -414,7 +385,6 @@ namespace Tizen.Tapi
         /// <summary>
         /// Network plmn.
         /// </summary>
-        /// <since_tizen> 4 </since_tizen>
         public string Plmn
         {
             get
@@ -426,7 +396,6 @@ namespace Tizen.Tapi
         /// <summary>
         /// Plmn Id.
         /// </summary>
-        /// <since_tizen> 4 </since_tizen>
         public uint PlmnId
         {
             get
@@ -438,7 +407,6 @@ namespace Tizen.Tapi
         /// <summary>
         /// Plmn type.
         /// </summary>
-        /// <since_tizen> 4 </since_tizen>
         public NetworkPlmnType PlmnType
         {
             get
@@ -450,7 +418,6 @@ namespace Tizen.Tapi
         /// <summary>
         /// Access technology.
         /// </summary>
-        /// <since_tizen> 4 </since_tizen>
         public NetworkSystemType SystemType
         {
             get
@@ -463,7 +430,6 @@ namespace Tizen.Tapi
     /// <summary>
     /// A class for the network plmn list.
     /// </summary>
-    /// <since_tizen> 4 </since_tizen>
     public class NetworkPlmnList
     {
         internal byte NwCount;
@@ -476,7 +442,6 @@ namespace Tizen.Tapi
         /// <summary>
         /// Network plmn count.
         /// </summary>
-        /// <since_tizen> 4 </since_tizen>
         /// <value>Count of the network plmn.</value>
         public byte NetworkCount
         {
@@ -489,7 +454,6 @@ namespace Tizen.Tapi
         /// <summary>
         /// Network list.
         /// </summary>
-        /// <since_tizen> 4 </since_tizen>
         /// <value>List of NetworkIdentity.</value>
         public IEnumerable<NetworkIdentity> NetworkList
         {
@@ -503,7 +467,6 @@ namespace Tizen.Tapi
     /// <summary>
     /// A class which defines the preferred plmn information.
     /// </summary>
-    /// <since_tizen> 4 </since_tizen>
     public class NetworkPreferredPlmnInfo
     {
         internal byte idex;
@@ -515,7 +478,6 @@ namespace Tizen.Tapi
         /// <summary>
         /// Preferred plmn list index.
         /// </summary>
-        /// <since_tizen> 4 </since_tizen>
         ///<value>Index of preferred plmn list.</value>
         public byte Index
         {
@@ -533,7 +495,6 @@ namespace Tizen.Tapi
         /// <summary>
         /// Preferred plmn.
         /// </summary>
-        /// <since_tizen> 4 </since_tizen>
         /// <value>Plmn string.</value>
         public string Plmn
         {
@@ -551,7 +512,6 @@ namespace Tizen.Tapi
         /// <summary>
         /// Network name.
         /// </summary>
-        /// <since_tizen> 4 </since_tizen>
         /// <value>Name of network.</value>
         public string NetworkName
         {
@@ -569,7 +529,6 @@ namespace Tizen.Tapi
         /// <summary>
         /// Service provider name.
         /// </summary>
-        /// <since_tizen> 4 </since_tizen>
         /// <value>Name of service provider.</value>
         public string ServiceProviderName
         {
@@ -587,7 +546,6 @@ namespace Tizen.Tapi
         /// <summary>
         /// System type of network.
         /// </summary>
-        /// <since_tizen> 4 </since_tizen>
         /// <value>System type of network.</value>
         public NetworkSystemType SystemType
         {
@@ -606,7 +564,6 @@ namespace Tizen.Tapi
     /// <summary>
     /// A class containing information related to a cdma system.
     /// </summary>
-    /// <since_tizen> 4 </since_tizen>
     public class NetworkCdmaSysInfo
     {
         internal int Car;
@@ -624,7 +581,6 @@ namespace Tizen.Tapi
         /// <summary>
         /// Cdma carrier.
         /// </summary>
-        /// <since_tizen> 4 </since_tizen>
         /// <value>Cdma carrier.</value>
         public int Carrier
         {
@@ -637,7 +593,6 @@ namespace Tizen.Tapi
         /// <summary>
         /// System Id.
         /// </summary>
-        /// <since_tizen> 4 </since_tizen>
         /// <value>System Id.</value>
         public uint SystemId
         {
@@ -650,7 +605,6 @@ namespace Tizen.Tapi
         /// <summary>
         /// Network Id.
         /// </summary>
-        /// <since_tizen> 4 </since_tizen>
         /// <value>Id of network.</value>
         public uint NetworkId
         {
@@ -663,7 +617,6 @@ namespace Tizen.Tapi
         /// <summary>
         /// Base station Id.
         /// </summary>
-        /// <since_tizen> 4 </since_tizen>
         /// <value>Id of base station.</value>
         public uint BaseStationId
         {
@@ -676,7 +629,6 @@ namespace Tizen.Tapi
         /// <summary>
         /// Latitude of the current base station.
         /// </summary>
-        /// <since_tizen> 4 </since_tizen>
         /// <value>Latitude of the current base station.</value>
         public int BaseStationLatitude
         {
@@ -689,7 +641,6 @@ namespace Tizen.Tapi
         /// <summary>
         /// Longitude of the current base station.
         /// </summary>
-        /// <since_tizen> 4 </since_tizen>
         /// <value>Longitude of the current base station.</value>
         public int BaseStationLongitude
         {
@@ -702,7 +653,6 @@ namespace Tizen.Tapi
         /// <summary>
         /// Registration zone.
         /// </summary>
-        /// <since_tizen> 4 </since_tizen>
         /// <value>Registration zone.</value>
         public uint RegistrationZone
         {
@@ -715,7 +665,6 @@ namespace Tizen.Tapi
         /// <summary>
         /// Pilot offset.
         /// </summary>
-        /// <since_tizen> 4 </since_tizen>
         /// <value>Offset of pilot.</value>
         public uint PilotOffset
         {
@@ -729,7 +678,6 @@ namespace Tizen.Tapi
     /// <summary>
     /// A class containing information about network area.
     /// </summary>
-    /// <since_tizen> 4 </since_tizen>
     public class NetworkAreaInfo
     {
         internal int Code;
@@ -741,7 +689,6 @@ namespace Tizen.Tapi
         /// <summary>
         /// Location area code.
         /// </summary>
-        /// <since_tizen> 4 </since_tizen>
         /// <value>Area code of location.</value>
         public int Lac
         {
@@ -754,7 +701,6 @@ namespace Tizen.Tapi
         /// <summary>
         /// Instance of NetworkCdmaSysInfo.
         /// </summary>
-        /// <since_tizen> 4 </since_tizen>
         /// <value>Instance of NetworkCdmaSysInfo.</value>
         public NetworkCdmaSysInfo CdmaInfo
         {
@@ -768,7 +714,6 @@ namespace Tizen.Tapi
     /// <summary>
     /// A class containing information of serving network.
     /// </summary>
-    /// <since_tizen> 4 </since_tizen>
     public class NetworkServing
     {
         internal NetworkSystemType Type;
@@ -781,7 +726,6 @@ namespace Tizen.Tapi
         /// <summary>
         /// Access technology.
         /// </summary>
-        /// <since_tizen> 4 </since_tizen>
         /// <value>System type of network.</value>
         public NetworkSystemType SystemType
         {
@@ -794,7 +738,6 @@ namespace Tizen.Tapi
         /// <summary>
         /// Network plmn.
         /// </summary>
-        /// <since_tizen> 4 </since_tizen>
         /// <value>Plmn of network.</value>
         public string Plmn
         {
@@ -807,7 +750,6 @@ namespace Tizen.Tapi
         /// <summary>
         /// Area information of network.
         /// </summary>
-        /// <since_tizen> 4 </since_tizen>
         /// <value>Instance of NetworkAreaInfo.</value>
         public NetworkAreaInfo AreaInfo
         {
@@ -821,7 +763,6 @@ namespace Tizen.Tapi
     /// <summary>
     /// A class containing information of cdma cell.
     /// </summary>
-    /// <since_tizen> 4 </since_tizen>
     public class NetworkCdmaCell
     {
         internal uint SysId;
@@ -837,7 +778,6 @@ namespace Tizen.Tapi
         /// <summary>
         /// System Id info.
         /// </summary>
-        /// <since_tizen> 4 </since_tizen>
         /// <value>System Id.</value>
         public uint SystemId
         {
@@ -850,7 +790,6 @@ namespace Tizen.Tapi
         /// <summary>
         /// Network Id.
         /// </summary>
-        /// <since_tizen> 4 </since_tizen>
         /// <value>Network Id.</value>
         public uint NetworkId
         {
@@ -863,7 +802,6 @@ namespace Tizen.Tapi
         /// <summary>
         /// Base station Id.
         /// </summary>
-        /// <since_tizen> 4 </since_tizen>
         /// <value>Base station id.</value>
         public uint BaseStationId
         {
@@ -876,7 +814,6 @@ namespace Tizen.Tapi
         /// <summary>
         /// Reference pn.
         /// </summary>
-        /// <since_tizen> 4 </since_tizen>
         /// <value>Reference pn.</value>
         public uint ReferencePn
         {
@@ -889,7 +826,6 @@ namespace Tizen.Tapi
         /// <summary>
         /// Latitude of the current base station.
         /// </summary>
-        /// <since_tizen> 4 </since_tizen>
         /// <value>Latitude of the current base station.</value>
         public int BaseStationLatitude
         {
@@ -902,7 +838,6 @@ namespace Tizen.Tapi
         /// <summary>
         /// Longitude of the current base station.
         /// </summary>
-        /// <since_tizen> 4 </since_tizen>
         /// <value>Longitude of the current base station.</value>
         public int BaseStationLongitude
         {
@@ -916,7 +851,6 @@ namespace Tizen.Tapi
     /// <summary>
     /// A class containing information of lte cell.
     /// </summary>
-    /// <since_tizen> 4 </since_tizen>
     public class NetworkLteCell
     {
         internal int Id;
@@ -932,7 +866,6 @@ namespace Tizen.Tapi
         /// <summary>
         /// Value of cell Id. -1 indicates that cell Id information is not present.
         /// </summary>
-        /// <since_tizen> 4 </since_tizen>
         /// <value>Cell Id.</value>
         public int CellId
         {
@@ -945,7 +878,6 @@ namespace Tizen.Tapi
         /// <summary>
         /// Location area code. This field is ignored when CellId is not present.
         /// </summary>
-        /// <since_tizen> 4 </since_tizen>
         /// <value>Code of area.</value>
         public int Lac
         {
@@ -958,7 +890,6 @@ namespace Tizen.Tapi
         /// <summary>
         /// Physical cell id info.
         /// </summary>
-        /// <since_tizen> 4 </since_tizen>
         /// <value>Physical cell id.</value>
         public int PhysicalId
         {
@@ -971,7 +902,6 @@ namespace Tizen.Tapi
         /// <summary>
         /// E-Utra absolute rf channel number.
         /// </summary>
-        /// <since_tizen> 4 </since_tizen>
         /// <value>E-Utra absolute rf channel number.</value>
         public int Earfcn
         {
@@ -984,7 +914,6 @@ namespace Tizen.Tapi
         /// <summary>
         /// Tracking area code.
         /// </summary>
-        /// <since_tizen> 4 </since_tizen>
         /// <value>Area code for tracking.</value>
         public int Tac
         {
@@ -997,7 +926,6 @@ namespace Tizen.Tapi
         /// <summary>
         /// Rssi in dBm(signed)
         /// </summary>
-        /// <since_tizen> 4 </since_tizen>
         /// <value>Rssi in dBm.</value>
         public int Rssi
         {
@@ -1011,7 +939,6 @@ namespace Tizen.Tapi
     /// <summary>
     /// A class containing information of umts cell.
     /// </summary>
-    /// <since_tizen> 4 </since_tizen>
     public class NetworkUmtsCell
     {
         internal int Id;
@@ -1026,7 +953,6 @@ namespace Tizen.Tapi
         /// <summary>
         /// Ucid. -1 indicates that cell Id information is not present.
         /// </summary>
-        /// <since_tizen> 4 </since_tizen>
         /// <value>RNCID + Cell ID(16 bit).</value>
         public int CellId
         {
@@ -1039,7 +965,6 @@ namespace Tizen.Tapi
         /// <summary>
         /// Location area code. This field is ignored when CellId is not present.
         /// </summary>
-        /// <since_tizen> 4 </since_tizen>
         /// <value>Code of area.</value>
         public int Lac
         {
@@ -1052,7 +977,6 @@ namespace Tizen.Tapi
         /// <summary>
         /// Utra absolute rf channel number.
         /// </summary>
-        /// <since_tizen> 4 </since_tizen>
         /// <value>Utra absolute rf channel number.</value>
         public int Arfcn
         {
@@ -1065,7 +989,6 @@ namespace Tizen.Tapi
         /// <summary>
         /// Primary scrambling code.
         /// </summary>
-        /// <since_tizen> 4 </since_tizen>
         /// <value>Primary scrambling code.</value>
         public int Psc
         {
@@ -1078,7 +1001,6 @@ namespace Tizen.Tapi
         /// <summary>
         /// Received signal code power. Valid values are (0-96, 255).
         /// </summary>
-        /// <since_tizen> 4 </since_tizen>
         /// <value>Power of received signal code.</value>
         public int Rscp
         {
@@ -1093,7 +1015,6 @@ namespace Tizen.Tapi
     /// <summary>
     /// A class containing information of geran cell.
     /// </summary>
-    /// <since_tizen> 4 </since_tizen>
     public class NetworkGeranCell
     {
         internal int Id;
@@ -1108,7 +1029,6 @@ namespace Tizen.Tapi
         /// <summary>
         /// Value of cell Id. -1 indicates that cell Id information is not present.
         /// </summary>
-        /// <since_tizen> 4 </since_tizen>
         /// <value>Cell Id.</value>
         public int CellId
         {
@@ -1121,7 +1041,6 @@ namespace Tizen.Tapi
         /// <summary>
         /// Location area code. This field is ignored when CellId is not present.
         /// </summary>
-        /// <since_tizen> 4 </since_tizen>
         /// <value>Code of area.</value>
         public int Lac
         {
@@ -1134,7 +1053,6 @@ namespace Tizen.Tapi
         /// <summary>
         /// Broadcast control channel frequency number.
         /// </summary>
-        /// <since_tizen> 4 </since_tizen>
         /// <value>Broadcast control channel frequency number.</value>
         public int Bcch
         {
@@ -1147,7 +1065,6 @@ namespace Tizen.Tapi
         /// <summary>
         /// Base station identification code.
         /// </summary>
-        /// <since_tizen> 4 </since_tizen>
         /// <value>Id code of base station.</value>
         public int Bsic
         {
@@ -1160,7 +1077,6 @@ namespace Tizen.Tapi
         /// <summary>
         /// Received signal strength level. Valid values are (0-63, 99).
         /// </summary>
-        /// <since_tizen> 4 </since_tizen>
         /// <value>Strength of received signal.</value>
         public int Rxlev
         {
@@ -1174,7 +1090,6 @@ namespace Tizen.Tapi
     /// <summary>
     /// A class which contains geran, umts, cdma and lte cell information.
     /// </summary>
-    /// <since_tizen> 4 </since_tizen>
     public class Cell
     {
         internal NetworkGeranCell Geran;
@@ -1188,7 +1103,6 @@ namespace Tizen.Tapi
         /// <summary>
         /// Geran cell information.
         /// </summary>
-        /// <since_tizen> 4 </since_tizen>
         /// <value>Instance of NetworkGeranCell.</value>
         public NetworkGeranCell GeranCell
         {
@@ -1201,7 +1115,6 @@ namespace Tizen.Tapi
         /// <summary>
         /// Cdma cell information.
         /// </summary>
-        /// <since_tizen> 4 </since_tizen>
         /// <value>Instance of NetworkCdmaCell.</value>
         public NetworkCdmaCell CdmaCell
         {
@@ -1214,7 +1127,6 @@ namespace Tizen.Tapi
         /// <summary>
         /// Umts cell information.
         /// </summary>
-        /// <since_tizen> 4 </since_tizen>
         /// <value>Instance of NetworkUmtsCell.</value>
         public NetworkUmtsCell UmtsCell
         {
@@ -1227,7 +1139,6 @@ namespace Tizen.Tapi
         /// <summary>
         /// Lte cell information.
         /// </summary>
-        /// <since_tizen> 4 </since_tizen>
         /// <value>Instance of NetworkLteCell.</value>
         public NetworkLteCell LteCell
         {
@@ -1241,7 +1152,6 @@ namespace Tizen.Tapi
     /// <summary>
     /// A class which contains serving cell information.
     /// </summary>
-    /// <since_tizen> 4 </since_tizen>
     public class NetworkServingCell
     {
         internal NetworkSystemType SysType;
@@ -1255,7 +1165,6 @@ namespace Tizen.Tapi
         /// <summary>
         /// Access technology.
         /// </summary>
-        /// <since_tizen> 4 </since_tizen>
         /// <value>Network system type.</value>
         public NetworkSystemType SystemType
         {
@@ -1268,7 +1177,6 @@ namespace Tizen.Tapi
         /// <summary>
         /// Mobile country code.
         /// </summary>
-        /// <since_tizen> 4 </since_tizen>
         /// <value>Country code of the mobile.</value>
         public int MobileCountryCode
         {
@@ -1281,7 +1189,6 @@ namespace Tizen.Tapi
         /// <summary>
         /// Mobile network code.
         /// </summary>
-        /// <since_tizen> 4 </since_tizen>
         /// <value>Network code of the mobile.</value>
         public int MobileNetworkCode
         {
@@ -1294,7 +1201,6 @@ namespace Tizen.Tapi
         /// <summary>
         /// Information of cell.
         /// </summary>
-        /// <since_tizen> 4 </since_tizen>
         ///<value>Instance of Cell.</value>
         public Cell CellInfo
         {
@@ -1308,7 +1214,6 @@ namespace Tizen.Tapi
     /// <summary>
     /// A class which contains neighboring cell information.
     /// </summary>
-    /// <since_tizen> 4 </since_tizen>
     public class NetworkNeighboringCell
     {
         internal NetworkServingCell ServCell;
@@ -1322,7 +1227,6 @@ namespace Tizen.Tapi
         /// <summary>
         /// Serving cell information.
         /// </summary>
-        /// <since_tizen> 4 </since_tizen>
         /// <value>Instance of NetworkServingCell.</value>
         public NetworkServingCell ServingCell
         {
@@ -1335,7 +1239,6 @@ namespace Tizen.Tapi
         /// <summary>
         /// Geran cell info list.
         /// </summary>
-        /// <since_tizen> 4 </since_tizen>
         /// <value>List of NetworkGeranCell.</value>
         public IEnumerable<NetworkGeranCell> GeranList
         {
@@ -1348,7 +1251,6 @@ namespace Tizen.Tapi
         /// <summary>
         /// Umts cell info list.
         /// </summary>
-        /// <since_tizen> 4 </since_tizen>
         /// <value>List of NetworkUmtsCell.</value>
         public IEnumerable<NetworkUmtsCell> UmtsList
         {
@@ -1361,7 +1263,6 @@ namespace Tizen.Tapi
         /// <summary>
         /// Lte cell info list.
         /// </summary>
-        /// <since_tizen> 4 </since_tizen>
         /// <value>List of NetworkLteCell.</value>
         public IEnumerable<NetworkLteCell> LteList
         {

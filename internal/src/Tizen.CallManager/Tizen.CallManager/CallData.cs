@@ -21,7 +21,6 @@ namespace Tizen.CallManager
     /// <summary>
     /// A class which defines the properties of call.
     /// </summary>
-    /// <since_tizen> 4 </since_tizen>
     public class CallData
     {
         internal uint CallId;
@@ -52,7 +51,6 @@ namespace Tizen.CallManager
         /// <summary>
         /// Gets call id.
         /// </summary>
-        /// <since_tizen> 4 </since_tizen>
         public uint Id
         {
             get
@@ -64,7 +62,6 @@ namespace Tizen.CallManager
         /// <summary>
         /// Gets call direction(MO or MT).
         /// </summary>
-        /// <since_tizen> 4 </since_tizen>
         public CallDirection Direction
         {
             get
@@ -76,7 +73,6 @@ namespace Tizen.CallManager
         /// <summary>
         /// Get the call number.
         /// </summary>
-        /// <since_tizen> 4 </since_tizen>
         public string CallNumber
         {
             get
@@ -88,7 +84,6 @@ namespace Tizen.CallManager
         /// <summary>
         /// Get the contact name of calling number.
         /// </summary>
-        /// <since_tizen> 4 </since_tizen>
         public string CallingName
         {
             get
@@ -100,7 +95,6 @@ namespace Tizen.CallManager
         /// <summary>
         /// Get the call type(Voice call or Video call).
         /// </summary>
-        /// <since_tizen> 4 </since_tizen>
         public CallType Type
         {
             get
@@ -112,7 +106,6 @@ namespace Tizen.CallManager
         /// <summary>
         /// Get the call state(Incoming, Active, etc).
         /// </summary>
-        /// <since_tizen> 4 </since_tizen>
         public CallState State
         {
             get
@@ -124,7 +117,6 @@ namespace Tizen.CallManager
         /// <summary>
         /// Get the member count.
         /// </summary>
-        /// <since_tizen> 4 </since_tizen>
         public int MemberCount
         {
             get
@@ -136,7 +128,6 @@ namespace Tizen.CallManager
         /// <summary>
         /// Checks if the call is emergency call.
         /// </summary>
-        /// <since_tizen> 4 </since_tizen>
         public bool IsEmergency
         {
             get
@@ -148,7 +139,6 @@ namespace Tizen.CallManager
         /// <summary>
         /// Checks if the number is voice mail number.
         /// </summary>
-        /// <since_tizen> 4 </since_tizen>
         public bool IsVoiceMailNumber
         {
             get
@@ -160,7 +150,6 @@ namespace Tizen.CallManager
         /// <summary>
         /// Get the call domain(PS call, CS call, etc).
         /// </summary>
-        /// <since_tizen> 4 </since_tizen>
         public CallDomain Domain
         {
             get
@@ -172,7 +161,6 @@ namespace Tizen.CallManager
         /// <summary>
         /// Get the person ID.
         /// </summary>
-        /// <since_tizen> 4 </since_tizen>
         public int PersonId
         {
             get
@@ -184,7 +172,6 @@ namespace Tizen.CallManager
         /// <summary>
         /// Get the start time of the call.
         /// </summary>
-        /// <since_tizen> 4 </since_tizen>
         public long StartTime
         {
             get
@@ -196,7 +183,6 @@ namespace Tizen.CallManager
         /// <summary>
         /// Get the contact name mode.
         /// </summary>
-        /// <since_tizen> 4 </since_tizen>
         public CallNameMode Mode
         {
             get
@@ -208,7 +194,6 @@ namespace Tizen.CallManager
         /// <summary>
         /// Get the session ID of the call.
         /// </summary>
-        /// <since_tizen> 4 </since_tizen>
         public int SessionId
         {
             get
@@ -220,7 +205,6 @@ namespace Tizen.CallManager
         /// <summary>
         /// Checks if HD is enabled for calling.
         /// </summary>
-        /// <since_tizen> 4 </since_tizen>
         public bool IsHdEnable
         {
             get
@@ -232,7 +216,6 @@ namespace Tizen.CallManager
         /// <summary>
         /// Checks if the call is a WiFi call.
         /// </summary>
-        /// <since_tizen> 4 </since_tizen>
         public bool IsWiFiCalling
         {
             get
@@ -244,7 +227,6 @@ namespace Tizen.CallManager
         /// <summary>
         /// Checks if upgrade/downgrade is enabled.
         /// </summary>
-        /// <since_tizen> 4 </since_tizen>
         public bool IsUpgradeDowngradeEnable
         {
             get
@@ -256,7 +238,6 @@ namespace Tizen.CallManager
         /// <summary>
         /// Checks if the remote call is on hold.
         /// </summary>
-        /// <since_tizen> 4 </since_tizen>
         public bool IsRemoteOnHold
         {
             get
@@ -268,7 +249,6 @@ namespace Tizen.CallManager
         /// <summary>
         /// Checks if the call is added to conference.
         /// </summary>
-        /// <since_tizen> 4 </since_tizen>
         public bool IsAddedToConference
         {
             get
@@ -280,7 +260,6 @@ namespace Tizen.CallManager
         /// <summary>
         /// Checks if the incoming call is a forwarded call.
         /// </summary>
-        /// <since_tizen> 4 </since_tizen>
         public bool IsMtForwarded
         {
             get

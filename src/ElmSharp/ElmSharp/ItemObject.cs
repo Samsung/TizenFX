@@ -20,7 +20,7 @@ using System.Collections.Generic;
 namespace ElmSharp
 {
     /// <summary>
-    /// The ItemObject is used to manage item object
+    /// The ItemObject is used to manage the item object.
     /// </summary>
     /// <since_tizen> preview </since_tizen>
     public class ItemObject
@@ -36,7 +36,7 @@ namespace ElmSharp
         EvasObject _trackObject = null;
 
         /// <summary>
-        /// Creates and initializes a new instance of ItemObject class.
+        /// Creates and initializes a new instance of the ItemObject class.
         /// </summary>
         /// <param name="handle">IntPtr</param>
         /// <since_tizen> preview </since_tizen>
@@ -58,13 +58,13 @@ namespace ElmSharp
         //}
 
         /// <summary>
-        /// Gets the id of item object
+        /// Gets the ID of the item object.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
         public int Id { get; private set; }
 
         /// <summary>
-        /// Sets or gets whether the item object is enabled
+        /// Sets or gets whether the item object is enabled.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
         public bool IsEnabled
@@ -74,7 +74,7 @@ namespace ElmSharp
         }
 
         /// <summary>
-        /// Gets track object of the item.
+        /// Gets the track object of the item.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
         public EvasObject TrackObject
@@ -88,7 +88,7 @@ namespace ElmSharp
         }
 
         /// <summary>
-        /// Sets or gets the style of the Item.
+        /// Sets or gets the style of the item.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
         public virtual string Style
@@ -125,13 +125,13 @@ namespace ElmSharp
         }
 
         /// <summary>
-        /// Deleted will be triggered when the item object is deleted
+        /// Deleted will be triggered when the item object is deleted.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
         public event EventHandler Deleted;
 
         /// <summary>
-        /// Delete the item object
+        /// Deletes the item object.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
         public void Delete()
@@ -141,22 +141,22 @@ namespace ElmSharp
         }
 
         /// <summary>
-        /// Set a content of an object item and delete old content
+        /// Sets a content of an object item and deletes the old content.
         /// </summary>
-        /// <param name="part">The content part name (null for the default content)</param>
-        /// <param name="content">The content of the object item</param>
+        /// <param name="part">The content part name (null for the default content).</param>
+        /// <param name="content">The content of the object item.</param>
         /// <since_tizen> preview </since_tizen>
         public void SetPartContent(string part, EvasObject content)
         {
             SetPartContent(part, content, false);
         }
 
-        /// <summary>
-        /// Set a content of an object item
+        /// <summary>.
+        /// Sets a content of the object item.
         /// </summary>
         /// <param name="part">The content part name (null for the default content)</param>
-        /// <param name="content">The content of the object item</param>
-        /// <param name="preserveOldContent">judge whether delete old content</param>
+        /// <param name="content">The content of the object item.</param>
+        /// <param name="preserveOldContent">Judge whether to delete the old content.</param>
         /// <since_tizen> preview </since_tizen>
         public void SetPartContent(string part, EvasObject content, bool preserveOldContent)
         {
@@ -170,10 +170,10 @@ namespace ElmSharp
         }
 
         /// <summary>
-        /// Set a label of an object item
+        /// Sets the label of the object item.
         /// </summary>
-        /// <param name="part">The text part name (null for the default label)</param>
-        /// <param name="text">Text of the label</param>
+        /// <param name="part">The text part name (null for the default label).</param>
+        /// <param name="text">Text of the label.</param>
         /// <since_tizen> preview </since_tizen>
         public void SetPartText(string part, string text)
         {
@@ -181,9 +181,9 @@ namespace ElmSharp
         }
 
         /// <summary>
-        /// Gets a label of an object item
+        /// Gets the label of the object item.
         /// </summary>
-        /// <param name="part">The text part name (null for the default label)</param>
+        /// <param name="part">The text part name (null for the default label).</param>
         /// <returns></returns>
         /// <since_tizen> preview </since_tizen>
         public string GetPartText(string part)
@@ -192,10 +192,10 @@ namespace ElmSharp
         }
 
         /// <summary>
-        /// Sets color of an object item
+        /// Sets the color of the object item.
         /// </summary>
-        /// <param name="part">The text part name (null for the default label)</param>
-        /// <param name="color">the color</param>
+        /// <param name="part">The text part name (null for the default label).</param>
+        /// <param name="color">The color.</param>
         /// <since_tizen> preview </since_tizen>
         public void SetPartColor(string part, Color color)
         {
@@ -206,10 +206,10 @@ namespace ElmSharp
         }
 
         /// <summary>
-        /// Gets color of an object item
+        /// Gets the color of the object item.
         /// </summary>
-        /// <param name="part">The text part name (null for the default label)</param>
-        /// <returns>the color of object item</returns>
+        /// <param name="part">The text part name (null for the default label).</param>
+        /// <returns>The color of an object item.</returns>
         /// <since_tizen> preview </since_tizen>
         public Color GetPartColor(string part)
         {
@@ -219,9 +219,9 @@ namespace ElmSharp
         }
 
         /// <summary>
-        /// Deletes color of an object item
+        /// Deletes the color of the object item.
         /// </summary>
-        /// <param name="part">The text part name</param>
+        /// <param name="part">The text part name.</param>
         /// <since_tizen> preview </since_tizen>
         public void DeletePartColor(string part)
         {
@@ -229,7 +229,7 @@ namespace ElmSharp
         }
 
         /// <summary>
-        /// Add a function for a signal emitted by object item edje.
+        /// Adds a function for a signal emitted by the object item edje.
         /// </summary>
         /// <param name="emission">The signal's name.</param>
         /// <param name="source">The signal's source.</param>
@@ -252,7 +252,7 @@ namespace ElmSharp
         }
 
         /// <summary>
-        /// Remove a signal-triggered function from a object item edje object.
+        /// Removes a signal-triggered function from the object item edje object.
         /// </summary>
         /// <param name="emission">The signal's name.</param>
         /// <param name="source">The signal's source.</param>
@@ -287,7 +287,7 @@ namespace ElmSharp
         }
 
         /// <summary>
-        /// Gets the handle of object item
+        /// Gets the handle of the object item.
         /// </summary>
         /// <param name="obj">ItemObject</param>
         /// <since_tizen> preview </since_tizen>
@@ -299,7 +299,7 @@ namespace ElmSharp
         }
 
         /// <summary>
-        /// OnInvalidate of object item
+        /// OnInvalidate of the object item.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
         protected virtual void OnInvalidate() { }
@@ -368,8 +368,8 @@ namespace ElmSharp
             /// </summary>
             /// <param name="obj">The object to compare with the current instance.</param>
             /// <returns>
-            /// true if obj and this instance are the same type and represent the same value.
-            /// otherwise, false.
+            /// true if the object and this instance are of the same type and represent the same value,
+            /// otherwise false.
             /// </returns>
             public override bool Equals(object obj)
             {
@@ -395,7 +395,7 @@ namespace ElmSharp
             IntPtr _parent = IntPtr.Zero;
 
             /// <summary>
-            /// Creates and initializes a new instance of ItemEvasObject class.
+            /// Creates and initializes a new instance of the ItemEvasObject class.
             /// </summary>
             /// <param name="parent">IntPtr</param>
             public ItemEvasObject(IntPtr parent) : base()
@@ -407,8 +407,8 @@ namespace ElmSharp
             /// <summary>
             /// Creates a widget handle.
             /// </summary>
-            /// <param name="parent">Parent EvasObject</param>
-            /// <returns>Handle IntPtr</returns>
+            /// <param name="parent">Parent EvasObject.</param>
+            /// <returns>Handle IntPtr.</returns>
             protected override IntPtr CreateHandle(EvasObject parent)
             {
                 return Interop.Elementary.elm_object_item_track(_parent);

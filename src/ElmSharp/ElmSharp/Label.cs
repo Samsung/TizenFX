@@ -18,8 +18,8 @@ using System;
 namespace ElmSharp
 {
     /// <summary>
-    /// Label is a widget to display text, with simple html-like markup.
-    /// Inherits Layout
+    /// The Label is a widget to display text, with a simple HTML-like markup.
+    /// Inherits Layout.
     /// </summary>
     /// <since_tizen> preview </since_tizen>
     public class Label : Layout
@@ -27,9 +27,9 @@ namespace ElmSharp
         SmartEvent _slideCompleted;
 
         /// <summary>
-        /// Creates and initializes a new instance of Label class.
+        /// Creates and initializes a new instance of the Label class.
         /// </summary>
-        /// <param name="parent">The parent is a given container which will be attached by Label as a child. It's <see cref="EvasObject"/> type.</param>
+        /// <param name="parent">The parent is a given container, which will be attached by the Label as a child. It's <see cref="EvasObject"/> type.</param>
         /// <since_tizen> preview </since_tizen>
         public Label(EvasObject parent) : base(parent)
         {
@@ -47,7 +47,7 @@ namespace ElmSharp
         public event EventHandler SlideCompleted;
 
         /// <summary>
-        /// Sets or gets wrap width of the label.
+        /// Sets or gets the wrap width of the label.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
         public int LineWrapWidth
@@ -84,7 +84,7 @@ namespace ElmSharp
         }
 
         /// <summary>
-        /// Sets or gets the slide mode of the label widget.
+        /// Sets or gets the slide mode of the Label widget.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
         public LabelSlideMode SlideMode
@@ -116,11 +116,11 @@ namespace ElmSharp
         }
 
         /// <summary>
-        /// Sets or gets the slide Speed of the label.
+        /// Sets or gets the slide speed of the label.
         /// </summary>
         /// <remarks>
         /// The speed of the slide animation in px per seconds.
-        /// If you set the duration of the slide using elm_label_slide_duration_set() you cannot get the correct speed using this function until the label is actually rendered and resized.
+        /// If you set the duration of the slide using elm_label_slide_duration_set(), you cannot get the correct speed using this function until the label is actually rendered and resized.
         /// </remarks>
         /// <seealso cref="SlideDuration"/>
         /// <since_tizen> preview </since_tizen>
@@ -156,7 +156,7 @@ namespace ElmSharp
         /// Sets or gets the style of the label text.
         /// </summary>
         /// <remarks>
-        /// APIs, elm_label_text_style_user_peek/pop/push, are internal APIs only in Tizen. Avalilable since Tizen_4.0.
+        /// APIs, elm_label_text_style_user_peek/pop/push, are internal APIs only in Tizen. Available since Tizen_4.0.
         /// </remarks>
         /// 
         /// <since_tizen> preview </since_tizen>
@@ -180,7 +180,7 @@ namespace ElmSharp
         }
 
         /// <summary>
-        /// Start slide effect.
+        /// Starts the slide effect.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
         public void PlaySlide()
@@ -192,7 +192,7 @@ namespace ElmSharp
         /// Sets the content at a part of a given container widget.
         /// </summary>
         /// <param name="parent">EvasObject</param>
-        /// <returns>The new object, otherwise null if it cannot be created</returns>
+        /// <returns>The new object, otherwise null if it cannot be created.</returns>
         /// <since_tizen> preview </since_tizen>
         protected override IntPtr CreateHandle(EvasObject parent)
         {            
@@ -201,21 +201,21 @@ namespace ElmSharp
     }
 
     /// <summary>
-    /// Enumeration for slide mode of a label widget
+    /// Enumeration for the slide modes of a label widget.
     /// </summary>
     /// <since_tizen> preview </since_tizen>
     public enum LabelSlideMode
     {
         /// <summary>
-        /// no slide effect
+        /// No slide effect.
         /// </summary>
         None = 0,
         /// <summary>
-        /// slide only if the label area is bigger than the text width length
+        /// Slide only if the label area is bigger than the text width length.
         /// </summary>
         Auto,
         /// <summary>
-        /// slide always
+        /// Slide always.
         /// </summary>
         Always
     }

@@ -27,7 +27,7 @@ namespace Tizen.Common
         /// <summary>
         /// Gets the version of Tizen .NET API.
         /// </summary>
-        /// <returns>The Tizen .NET API version</returns>
+        /// <returns>The Tizen .NET API version.</returns>
         /// <since_tizen> 4 </since_tizen>
         public static int TizenAPIVersion
         {

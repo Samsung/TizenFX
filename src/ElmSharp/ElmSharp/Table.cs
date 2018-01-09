@@ -19,7 +19,7 @@ using System;
 namespace ElmSharp
 {
     /// <summary>
-    /// The Table is a container widget to arrange other widgets in a table where items can span multiple columns or rows .
+    /// The Table is a container widget to arrange other widgets in a table where items can span multiple columns or rows.
     /// Inherits <see cref="Container"/>.
     /// </summary>
     /// <since_tizen> preview </since_tizen>
@@ -42,7 +42,7 @@ namespace ElmSharp
         /// <summary>
         /// Sets or gets whether the layout of this table is homogeneous.
         /// </summary>
-        /// <remarks>True for homogeneous, False for no homogeneous</remarks>
+        /// <remarks>True for homogeneous, False for no homogeneous.</remarks>
         /// <since_tizen> preview </since_tizen>
         public bool Homogeneous
         {
@@ -92,11 +92,11 @@ namespace ElmSharp
         /// <summary>
         /// Adds a subobject on the table with the coordinates passed.
         /// </summary>
-        /// <param name="obj">The subobject to be added to the table</param>
-        /// <param name="col">The column number</param>
-        /// <param name="row">The row number</param>
-        /// <param name="colspan">The column span</param>
-        /// <param name="rowspan">The row span</param>
+        /// <param name="obj">The subobject to be added to the table.</param>
+        /// <param name="col">The column number.</param>
+        /// <param name="row">The row number.</param>
+        /// <param name="colspan">The column span.</param>
+        /// <param name="rowspan">The row span.</param>
         /// <since_tizen> preview </since_tizen>
         public void Pack(EvasObject obj, int col, int row, int colspan, int rowspan)
         {
@@ -109,7 +109,7 @@ namespace ElmSharp
         /// <summary>
         /// Removes the child from the table.
         /// </summary>
-        /// <param name="obj">The subobject</param>
+        /// <param name="obj">The subobject.</param>
         /// <since_tizen> preview </since_tizen>
         public void Unpack(EvasObject obj)
         {
@@ -120,7 +120,7 @@ namespace ElmSharp
         }
 
         /// <summary>
-        /// Removes all child objects from a table object.
+        /// Removes all the child objects from a table object.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
         public void Clear()
@@ -130,10 +130,10 @@ namespace ElmSharp
         }
 
         /// <summary>
-        /// Sets the color for particular part of the table.
+        /// Sets the color for a particular part of the table.
         /// </summary>
-        /// <param name="part">The name of part class</param>
-        /// <param name="color">The color</param>
+        /// <param name="part">The name of part class.</param>
+        /// <param name="color">The color.</param>
         /// <since_tizen> preview </since_tizen>
         public override void SetPartColor(string part, Color color)
         {
@@ -144,10 +144,10 @@ namespace ElmSharp
         }
 
         /// <summary>
-        /// Gets the color of particular part of the table.
+        /// Gets the color of a particular part of the table.
         /// </summary>
-        /// <param name="part">The name of part class, it could be 'bg', 'elm.swllow.content'</param>
-        /// <returns>The color of the particular part</returns>
+        /// <param name="part">The name of part class, it could be 'bg', 'elm.swllow.content'.</param>
+        /// <returns>The color of a particular part.</returns>
         /// <since_tizen> preview </since_tizen>
         public override Color GetPartColor(string part)
         {
@@ -159,8 +159,8 @@ namespace ElmSharp
         /// <summary>
         /// Creates a widget handle.
         /// </summary>
-        /// <param name="parent">Parent EvasObject</param>
-        /// <returns>Handle IntPtr</returns>
+        /// <param name="parent">Parent EvasObject.</param>
+        /// <returns>Handle IntPtr.</returns>
         /// <since_tizen> preview </since_tizen>
         protected override IntPtr CreateHandle(EvasObject parent)
         {

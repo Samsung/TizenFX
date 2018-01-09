@@ -20,36 +20,36 @@ using System.Collections.Generic;
 namespace ElmSharp
 {
     /// <summary>
-    /// Enumeration of ContextPopup direction type.
+    /// Enumeration for the ContextPopup direction types.
     /// </summary>
     /// <since_tizen> preview </since_tizen>
     public enum ContextPopupDirection
     {
         /// <summary>
-        /// ContextPopup show appear below clicked area
+        /// The ContextPopup appears below the clicked area.
         /// /// </summary>
         Down,
         /// <summary>
-        /// ContextPopup show appear to the right of the clicked area
+        /// The ContextPopup appears to the right of the clicked area.
         /// </summary>
         Right,
         /// <summary>
-        /// ContextPopup show appear to the left of the clicked area
+        /// The ContextPopup appears to the left of the clicked area.
         /// </summary>
         Left,
         /// <summary>
-        /// ContextPopup show appear above the clicked area
+        /// The ContextPopup appears above the clicked area.
         /// </summary>
         Up,
         /// <summary>
-        /// ContextPopup does not determine it's direction yet
+        /// The ContextPopup does not determine it's direction yet.
         /// </summary>
         Unknown
     }
 
     /// <summary>
     /// It inherits <see cref="Layout"/>.
-    /// The ContextPopup is a widget that when it shown, pops up a list of items.
+    /// The ContextPopup is a widget that when shown, pops up a list of items.
     /// </summary>
     /// <since_tizen> preview </since_tizen>
     public class ContextPopup : Layout
@@ -61,8 +61,8 @@ namespace ElmSharp
         /// <summary>
         /// Creates and initializes a new instance of the ContextPopup class.
         /// </summary>
-        /// <param name="parent">The parent is a given container which will be attached by ContextPopup
-        /// as a child.It's <see cref="EvasObject"/> type.</param>
+        /// <param name="parent">The parent is a given container, which will be attached by ContextPopup
+        /// as a child. It's <see cref="EvasObject"/> type.</param>
         /// <since_tizen> preview </since_tizen>
         public ContextPopup(EvasObject parent) : base(parent)
         {
@@ -82,7 +82,7 @@ namespace ElmSharp
         /// Dismissed is raised when the ContextPopup item is dismissed.
         /// </summary>
         /// <remarks>
-        /// Outside of ContextPopup was clicked or it's parent area is changed or the language is changed. and then ContextPopup is dismissed.
+        /// Outside of ContextPopup is clicked or it's parent area is changed or the language is changed, and then ContextPopup is dismissed.
         /// </remarks>
         /// <since_tizen> preview </since_tizen>
         public event EventHandler Dismissed;
@@ -91,7 +91,7 @@ namespace ElmSharp
         /// Gets the current direction of a ContextPopup.
         /// </summary>
         /// <remarks>
-        /// Once the ContextPopup showed up, the direction would be determined.
+        /// Once the ContextPopup shows up, the direction would be determined.
         /// </remarks>
         /// <since_tizen> preview </since_tizen>
         public ContextPopupDirection Direction
@@ -103,8 +103,8 @@ namespace ElmSharp
         }
 
         /// <summary>
-        /// Gets or sets the value of current ContextPopup object's orientation.
-        /// True for horizontal mode, False for vertical mode (or errors)
+        /// Gets or sets the value of the current ContextPopup object's orientation.
+        /// True for horizontal mode, False for vertical mode (or errors).
         /// </summary>
         /// <since_tizen> preview </since_tizen>
         public bool IsHorizontal
@@ -120,8 +120,8 @@ namespace ElmSharp
         }
 
         /// <summary>
-        /// Gets or sets whether ContextPopup hide automatically
-        /// or not when parent of ContextPopup is resized.
+        /// Gets or sets whether the ContextPopup hides automatically
+        /// or not when the parent of the ContextPopup is resized.
         /// </summary>
         /// <remarks>
         /// Default value of AutoHide is False.
@@ -140,7 +140,7 @@ namespace ElmSharp
         }
 
         /// <summary>
-        /// Clears all items in the given ContextPopup object.
+        /// Clears all the items in a given ContextPopup object.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
         public void Clear()
@@ -151,10 +151,10 @@ namespace ElmSharp
         /// <summary>
         /// Sets the direction priority of a ContextPopup.
         /// </summary>
-        /// <param name="first">1st priority of direction </param>
-        /// <param name="second">2nd priority of direction </param>
-        /// <param name="third">3th priority of direction </param>
-        /// <param name="fourth">4th priority of direction</param>
+        /// <param name="first">1st priority of the direction.</param>
+        /// <param name="second">2nd priority of the direction.</param>
+        /// <param name="third">3th priority of the direction.</param>
+        /// <param name="fourth">4th priority of the direction.</param>
         /// <since_tizen> preview </since_tizen>
         public void SetDirectionPriorty(ContextPopupDirection first, ContextPopupDirection second, ContextPopupDirection third, ContextPopupDirection fourth)
         {
@@ -164,10 +164,10 @@ namespace ElmSharp
         /// <summary>
         /// Gets the direction priority of a ContextPopup.
         /// </summary>
-        /// <param name="first">1st priority of direction to be returned</param>
-        /// <param name="second">2nd priority of direction to be returned</param>
-        /// <param name="third">2nd priority of direction to be returned </param>
-        /// <param name="fourth">4th priority of direction to be returned</param>
+        /// <param name="first">1st priority of the direction to be returned.</param>
+        /// <param name="second">2nd priority of the direction to be returned.</param>
+        /// <param name="third">2nd priority of the direction to be returned.</param>
+        /// <param name="fourth">4th priority of the direction to be returned.</param>
         /// <since_tizen> preview </since_tizen>
         public void GetDirectionPriority(out ContextPopupDirection first, out ContextPopupDirection second, out ContextPopupDirection third, out ContextPopupDirection fourth)
         {
@@ -180,11 +180,11 @@ namespace ElmSharp
         }
 
         /// <summary>
-        /// Adds a new item to a ContextPopup object with label.
+        /// Adds a new item to a ContextPopup object with the label.
         /// </summary>
-        /// <param name="label">The Label of the new item</param>
+        /// <param name="label">Label of the new item.</param>
         /// <returns>
-        /// A ContextPopupItem added or NULL, on errors
+        /// A ContextPopupItem added, or null on errors.
         /// </returns>
         /// <since_tizen> preview </since_tizen>
         public ContextPopupItem Append(string label)
@@ -193,11 +193,11 @@ namespace ElmSharp
         }
 
         /// <summary>
-        /// Adds a new item to a ContextPopup object with label and icon.
+        /// Adds a new item to a ContextPopup object with the label and icon.
         /// </summary>
-        /// <param name="label">The Label of the new item</param>
-        /// <param name="icon">Icon to be set on new item</param>
-        /// <returns>A ContextPopupItem added or NULL, on errors</returns>
+        /// <param name="label">Label of the new item.</param>
+        /// <param name="icon">Icon to be set on the new item.</param>
+        /// <returns>A ContextPopupItem added, or null on errors.</returns>
         /// <since_tizen> preview </since_tizen>
         public ContextPopupItem Append(string label, EvasObject icon)
         {
@@ -208,7 +208,7 @@ namespace ElmSharp
         }
 
         /// <summary>
-        /// Dismiss a ContextPopup object. The ContextPopup will be hidden and the "clicked" signal will be emitted.
+        /// Dismisses a ContextPopup object. The ContextPopup will be hidden and the "clicked" signal will be emitted.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
         public void Dismiss()
@@ -217,11 +217,11 @@ namespace ElmSharp
         }
 
         /// <summary>
-        /// Gets the possibility that the direction would be available
+        /// Gets the possibility that the direction would be available.
         /// </summary>
-        /// <param name="direction">A direction user wants to check</param>
+        /// <param name="direction">A direction that the user wants to check.</param>
         /// <returns>
-        /// Get false if you cannot put it in the direction. Gets true if it's possible.
+        /// Get false if you cannot put it in the direction. Get true if it's possible.
         /// </returns>
         /// <since_tizen> preview </since_tizen>
         public bool IsAvailableDirection(ContextPopupDirection direction)
@@ -230,7 +230,7 @@ namespace ElmSharp
         }
 
         /// <summary>
-        /// Gets Alpha of a default Color Class.
+        /// Gets the Alpha of a default Color class.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
         public override int Opacity
@@ -249,8 +249,8 @@ namespace ElmSharp
         /// <summary>
         /// Creates a widget handle.
         /// </summary>
-        /// <param name="parent">Parent EvasObject</param>
-        /// <returns>Handle IntPtr</returns>
+        /// <param name="parent">Parent EvasObject.</param>
+        /// <returns>Handle IntPtr.</returns>
         /// <since_tizen> preview </since_tizen>
         protected override IntPtr CreateHandle(EvasObject parent)
         {

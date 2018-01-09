@@ -20,21 +20,21 @@ using System.Collections.Generic;
 namespace ElmSharp
 {
     /// <summary>
-    /// The NaviframeEventArgs is a event args class for navi frame.
-    /// Inherits EventArgs
+    /// The NaviframeEventArgs is an event arguments class for naviframe.
+    /// Inherits EventArgs.
     /// </summary>
     /// <since_tizen> preview </since_tizen>
     public class NaviframeEventArgs : EventArgs
     {
         /// <summary>
-        /// Sets or gets the content object. The name of content part is "elm.swallow.content".
+        /// Sets or gets the content object. The name of the content part is "elm.swallow.content".
         /// </summary>
         /// <since_tizen> preview </since_tizen>
         public EvasObject Content { get; set; }
     }
     /// <summary>
-    /// Naviframe is a widget to stands for navigation frame. It's a views manager for applications.
-    /// Inherits Widget
+    /// The Naviframe is a widget to stand for the navigation frame. It's a views manager for applications.
+    /// Inherits Widget.
     /// </summary>
     /// <since_tizen> preview </since_tizen>
     public class Naviframe : Widget
@@ -43,7 +43,7 @@ namespace ElmSharp
         readonly List<NaviItem> _itemStack = new List<NaviItem>();
 
         /// <summary>
-        /// Creates and initializes a new instance of Naviframe class.
+        /// Creates and initializes a new instance of the Naviframe class.
         /// </summary>
         /// <param name="parent">The parent is a given container which will be attached by Naviframe as a child. It's <see cref="EvasObject"/> type.</param>
         /// <since_tizen> preview </since_tizen>
@@ -54,25 +54,25 @@ namespace ElmSharp
         }
 
         /// <summary>
-        /// Popped will be triggered when NaviItem is removed.
+        /// Popped will be triggered when the NaviItem is removed.
         /// </summary>
         /// <remarks>
-        /// It is always called when NaviItem was removed.
+        /// It is always called when the NaviItem is removed.
         /// (even if removed by NaviItem.Delete())
-        /// This event will be invoked in progress of Pop/Delete operation.
-        /// After called Popped event, Pop/Delete method will be returned
+        /// This event will be invoked in progress of the Pop/Delete operation.
+        /// After calling the Popped event, the Pop/Delete method will be returned.
         /// </remarks>
         /// <since_tizen> preview </since_tizen>
         public event EventHandler<NaviframeEventArgs> Popped;
 
         /// <summary>
-        /// AnimationFinished will be triggered when animation is finished.
+        /// AnimationFinished will be triggered when the animation is finished.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
         public event EventHandler AnimationFinished;
 
         /// <summary>
-        /// Gets the list of navi item
+        /// Gets the list of the navi item.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
         public IReadOnlyList<NaviItem> NavigationStack
@@ -81,7 +81,7 @@ namespace ElmSharp
         }
 
         /// <summary>
-        /// Sets or gets the the preserve content objects when items are popped.
+        /// Sets or gets the preserve content objects when items are popped.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
         public bool PreserveContentOnPop
@@ -97,7 +97,7 @@ namespace ElmSharp
         }
 
         /// <summary>
-        /// Sets or gets whether the default back button is enabled
+        /// Sets or gets whether the default back button is enabled.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
         public bool DefaultBackButtonEnabled
@@ -113,11 +113,11 @@ namespace ElmSharp
         }
 
         /// <summary>
-        /// Push a new item to the top of the naviframe stack and show it.
+        /// Pushes a new item to the top of the naviframe stack and shows it.
         /// The title and style are null.
         /// </summary>
-        /// <param name="content">The main content object. The name of content part is "elm.swallow.content".</param>
-        /// <returns>The created item or null upon failure.</returns>
+        /// <param name="content">The main content object. The name of the content part is "elm.swallow.content".</param>
+        /// <returns>The created item, or null upon failure.</returns>
         /// <since_tizen> preview </since_tizen>
         public NaviItem Push(EvasObject content)
         {
@@ -125,11 +125,11 @@ namespace ElmSharp
         }
 
         /// <summary>
-        /// Push a new item to the top of the naviframe stack and show it.
-        /// The style are null.
+        /// Pushes a new item to the top of the naviframe stack and shows it.
+        /// The style is null.
         /// </summary>
-        /// <param name="content">The main content object. The name of content part is "elm.swallow.content".</param>
-        /// <param name="title">The current item title. null would be default.</param>
+        /// <param name="content">The main content object. The name of the content part is "elm.swallow.content".</param>
+        /// <param name="title">The current item title. Null would be default.</param>
         /// <returns></returns>
         /// <since_tizen> preview </since_tizen>
         public NaviItem Push(EvasObject content, string title)
@@ -138,12 +138,12 @@ namespace ElmSharp
         }
 
         /// <summary>
-        /// Push a new item to the top of the naviframe stack and show it.
+        /// Pushes a new item to the top of the naviframe stack and shows it.
         /// </summary>
-        /// <param name="content">The main content object. The name of content part is "elm.swallow.content".</param>
-        /// <param name="title">The current item title. null would be default.</param>
-        /// <param name="style">The current item style name. null would be default.</param>
-        /// <returns>The created item or null upon failure.</returns>
+        /// <param name="content">The main content object. The name of the content part is "elm.swallow.content".</param>
+        /// <param name="title">The current item title. Null would be default.</param>
+        /// <param name="style">The current item style name. Null would be default.</param>
+        /// <returns>The created item, or null upon failure.</returns>
         /// <since_tizen> preview </since_tizen>
         public NaviItem Push(EvasObject content, string title, string style)
         {
@@ -155,12 +155,12 @@ namespace ElmSharp
         }
 
         /// <summary>
-        /// Insert a new item into the naviframe before item.
+        /// Inserts a new item into the naviframe before the item.
         /// The title is "" and the style is null.
         /// </summary>
-        /// <param name="before">The item which the new item is inserted before.</param>
-        /// <param name="content">The main content object. The name of content part is "elm.swallow.content".</param>
-        /// <returns>The created item or null upon failure.</returns>
+        /// <param name="before">The item for which a new item is inserted before.</param>
+        /// <param name="content">The main content object. The name of the content part is "elm.swallow.content".</param>
+        /// <returns>The created item, or null upon failure.</returns>
         /// <since_tizen> preview </since_tizen>
         public NaviItem InsertBefore(NaviItem before, EvasObject content)
         {
@@ -168,13 +168,13 @@ namespace ElmSharp
         }
 
         /// <summary>
-        /// Insert a new item into the naviframe before item.
+        /// Inserts a new item into the naviframe before the item.
         /// The style is null.
         /// </summary>
-        /// <param name="before">The item which the new item is inserted before.</param>
-        /// <param name="content">The main content object. The name of content part is "elm.swallow.content".</param>
-        /// <param name="title">The current item title. null would be default.</param>
-        /// <returns>The created item or null upon failure.</returns>
+        /// <param name="before">The item for which a new item is inserted before.</param>
+        /// <param name="content">The main content object. The name of the content part is "elm.swallow.content".</param>
+        /// <param name="title">The current item title. Null would be default.</param>
+        /// <returns>The created item, or null upon failure.</returns>
         /// <since_tizen> preview </since_tizen>
         public NaviItem InsertBefore(NaviItem before, EvasObject content, string title)
         {
@@ -182,13 +182,13 @@ namespace ElmSharp
         }
 
         /// <summary>
-        /// Insert a new item into the naviframe before item.
+        /// Inserts a new item into the naviframe before the item.
         /// </summary>
-        /// <param name="before">The item which the new item is inserted before.</param>
-        /// <param name="content">The main content object. The name of content part is "elm.swallow.content".</param>
-        /// <param name="title">The current item title. null would be default.</param>
-        /// <param name="style">The current item style name. null would be default.</param>
-        /// <returns>The created item or null upon failure.</returns>
+        /// <param name="before">The item for which a new item is inserted before.</param>
+        /// <param name="content">The main content object. The name of the content part is "elm.swallow.content".</param>
+        /// <param name="title">The current item title. Null would be default.</param>
+        /// <param name="style">The current item style name. Null would be default.</param>
+        /// <returns>The created item, or null upon failure.</returns>
         /// <since_tizen> preview </since_tizen>
         public NaviItem InsertBefore(NaviItem before, EvasObject content, string title, string style)
         {
@@ -201,12 +201,12 @@ namespace ElmSharp
         }
 
         /// <summary>
-        /// Insert a new item into the naviframe after item.
+        /// Inserts a new item into the naviframe after the item.
         /// The title is "" and the style is null.
         /// </summary>
-        /// <param name="after">The item which the new item is inserted after.</param>
-        /// <param name="content">The main content object. The name of content part is "elm.swallow.content".</param>
-        /// <returns>The created item or null upon failure.</returns>
+        /// <param name="after">The item for which a new item is inserted after.</param>
+        /// <param name="content">The main content object. The name of the content part is "elm.swallow.content".</param>
+        /// <returns>The created item, or null upon failure.</returns>
         /// <since_tizen> preview </since_tizen>
         public NaviItem InsertAfter(NaviItem after, EvasObject content)
         {
@@ -214,13 +214,13 @@ namespace ElmSharp
         }
 
         /// <summary>
-        /// Insert a new item into the naviframe after item.
+        /// Inserts a new item into the naviframe after the item.
         /// The style is null.
         /// </summary>
-        /// <param name="after">The item which the new item is inserted after.</param>
-        /// <param name="content">The main content object. The name of content part is "elm.swallow.content".</param>
-        /// <param name="title">The current item title. null would be default.</param>
-        /// <returns>The created item or null upon failure.</returns>
+        /// <param name="after">The item which a new item is inserted after.</param>
+        /// <param name="content">The main content object. The name of the content part is "elm.swallow.content".</param>
+        /// <param name="title">The current item title. Null would be default.</param>
+        /// <returns>The created item, or null upon failure.</returns>
         /// <since_tizen> preview </since_tizen>
         public NaviItem InsertAfter(NaviItem after, EvasObject content, string title)
         {
@@ -228,13 +228,13 @@ namespace ElmSharp
         }
 
         /// <summary>
-        /// Insert a new item into the naviframe after item.
+        /// Inserts a new item into the naviframe after the item.
         /// </summary>
-        /// <param name="after">The item which the new item is inserted after.</param>
-        /// <param name="content">The main content object. The name of content part is "elm.swallow.content".</param>
-        /// <param name="title">The current item title. null would be default.</param>
-        /// <param name="style">The current item style name. null would be default.</param>
-        /// <returns>The created item or null upon failure.</returns>
+        /// <param name="after">The item for which a new item is inserted after.</param>
+        /// <param name="content">The main content object. The name of the content part is "elm.swallow.content".</param>
+        /// <param name="title">The current item title. Null would be default.</param>
+        /// <param name="style">The current item style name. Null would be default.</param>
+        /// <returns>The created item, or null upon failure.</returns>
         /// <since_tizen> preview </since_tizen>
         public NaviItem InsertAfter(NaviItem after, EvasObject content, string title, string style)
         {
@@ -247,7 +247,7 @@ namespace ElmSharp
         }
 
         /// <summary>
-        /// Pop an item that is on top of the stack.
+        /// Pops an item that is on top of the stack.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
         public void Pop()
@@ -258,8 +258,8 @@ namespace ElmSharp
         /// <summary>
         /// Creates a widget handle.
         /// </summary>
-        /// <param name="parent">Parent EvasObject</param>
-        /// <returns>Handle IntPtr</returns>
+        /// <param name="parent">Parent EvasObject.</param>
+        /// <returns>Handle IntPtr.</returns>
         /// <since_tizen> preview </since_tizen>
         protected override IntPtr CreateHandle(EvasObject parent)
         {

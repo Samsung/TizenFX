@@ -20,13 +20,13 @@ using System.Collections.Generic;
 namespace ElmSharp
 {
     /// <summary>
-    /// Enumeration for the popup orientation type.
+    /// Enumeration for the popup orientation types.
     /// </summary>
     /// <since_tizen> preview </since_tizen>
     public enum PopupOrientation
     {
         /// <summary>
-        /// Appears in the top of parent, default.
+        /// Appears in the top of parent, by default.
         /// </summary>
         Top,
         /// <summary>
@@ -64,7 +64,7 @@ namespace ElmSharp
     }
 
     /// <summary>
-    /// The Popup is a widget that is an enhancement of Notify.
+    /// The Popup is a widget that is an enhancement of notify.
     /// In addition to content area, there are two optional sections, namely title area and action area.
     /// </summary>
     /// <since_tizen> preview </since_tizen>
@@ -79,7 +79,7 @@ namespace ElmSharp
         /// <summary>
         /// Creates and initializes a new instance of the Popup class.
         /// </summary>
-        /// <param name="parent">The EvasObject to which the new Popup will be attached as a child.</param>
+        /// <param name="parent">The EvasObject to which the new popup will be attached as a child.</param>
         /// <since_tizen> preview </since_tizen>
         public Popup(EvasObject parent) : base(parent)
         {
@@ -109,7 +109,7 @@ namespace ElmSharp
         }
 
         /// <summary>
-        /// Dismissed will be triggered when Popup have been dismissed.
+        /// Dismissed will be triggered when the popup has been dismissed.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
         public event EventHandler Dismissed;
@@ -121,19 +121,19 @@ namespace ElmSharp
         public event EventHandler OutsideClicked;
 
         /// <summary>
-        /// OutsideClicked will be triggered when Popup is closed as a result of timeout.
+        /// OutsideClicked will be triggered when the popup is closed as a result of timeout.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
         public event EventHandler TimedOut;
 
         /// <summary>
-        /// OutsideClicked will be triggered when the Popup transition is finished in showing.
+        /// OutsideClicked will be triggered when the popup transition has finished in showing.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
         public event EventHandler ShowAnimationFinished;
 
         /// <summary>
-        /// Sets or gets the position in which Popup will appear in its parent.
+        /// Sets or gets the position in which the popup will appear in its parent.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
         public PopupOrientation Orientation
@@ -149,7 +149,7 @@ namespace ElmSharp
         }
 
         /// <summary>
-        /// Sets or gets the wrapping type of content text packed in content area of Popup widget.
+        /// Sets or gets the wrapping type of content text packed in the content area of Popup widget.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
         public WrapType ContentTextWrapType
@@ -165,13 +165,13 @@ namespace ElmSharp
         }
 
         /// <summary>
-        /// Sets or gets the timeout value set to the Popup(in seconds).
+        /// Sets or gets the timeout value set to the popup (in seconds).
         /// </summary>
         /// <remarks>
         /// Since calling Show() on a popup restarts the timer controlling when it is hidden,
-        /// setting this before the popup is shown will in effect mean starting the timer when the popup is shown.
-        /// TimedOut is called afterwards which can be handled if needed.
-        /// <![CDATA[Set a value <= 0.0 to disable a running timer.If the value > 0.0 and the popup is previously visible,]]>
+        /// setting this before the popup is shown, will in effect mean starting the timer when the popup is shown.
+        /// TimedOut is called afterwards, which can be handled, if needed.
+        /// <![CDATA[Set a value <= 0.0 to disable a running timer. If the value is > 0.0 and the popup is previously visible,]]>
         /// the timer will be started with this value, canceling any running timer.
         /// </remarks>
         /// <since_tizen> preview </since_tizen>
@@ -188,10 +188,10 @@ namespace ElmSharp
         }
 
         /// <summary>
-        /// Sets or gets whether events should be passed to event blocked area by a click outside.
+        /// Sets or gets whether events should be passed to the event blocked area by a click outside.
         /// </summary>
         /// <remarks>
-        /// The visible region of popup is surrounded by a translucent region called Blocked Event area.
+        /// The visible region of the popup is surrounded by a translucent region called the Blocked event area.
         /// </remarks>
         /// <since_tizen> preview </since_tizen>
         public bool AllowEvents
@@ -239,7 +239,7 @@ namespace ElmSharp
         }
 
         /// <summary>
-        /// Gets the Opacity value of the Popup.
+        /// Gets the opacity value of the popup.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
         public override int Opacity
@@ -256,10 +256,10 @@ namespace ElmSharp
         }
 
         /// <summary>
-        /// Adds label to a Popup widget.
+        /// Adds the label to a Popup widget.
         /// </summary>
         /// <param name="label"></param>
-        /// <returns>The new PopupItem which contains label .</returns>
+        /// <returns>The new PopupItem which contains a label.</returns>
         /// <since_tizen> preview </since_tizen>
         public PopupItem Append(string label)
         {
@@ -267,11 +267,11 @@ namespace ElmSharp
         }
 
         /// <summary>
-        /// Adds Label and icon to a Popup widget.
+        /// Adds the Label and icon to a Popup widget.
         /// </summary>
-        /// <param name="label">The Label which will be added into a new PopupItem. </param>
-        /// <param name="icon">The icon which will be added into a new PopupItem. </param>
-        /// <returns>The new PopupItem which contains label and icon.</returns>
+        /// <param name="label">The Label, which will be added into a new PopupItem.</param>
+        /// <param name="icon">The icon, which will be added into a new PopupItem. </param>
+        /// <returns>The new PopupItem, which contains the label and icon.</returns>
         /// <since_tizen> preview </since_tizen>
         public PopupItem Append(string label, EvasObject icon)
         {
@@ -283,7 +283,7 @@ namespace ElmSharp
 
         /// <summary>
         /// Uses this function to dismiss the popup in hide effect.
-        /// when the Popup is dismissed, the "dismissed" signal will be emitted.
+        /// When the Popup is dismissed, the "dismissed" signal will be emitted.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
         public void Dismiss()
@@ -294,8 +294,8 @@ namespace ElmSharp
         /// <summary>
         /// Creates a widget handle.
         /// </summary>
-        /// <param name="parent">Parent EvasObject</param>
-        /// <returns>Handle IntPtr</returns>
+        /// <param name="parent">Parent EvasObject.</param>
+        /// <returns>Handle IntPtr.</returns>
         /// <since_tizen> preview </since_tizen>
         protected override IntPtr CreateHandle(EvasObject parent)
         {
