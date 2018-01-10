@@ -49,11 +49,18 @@ namespace Tizen.NUI
         /// <since_tizen> 4 </since_tizen>
         public override void Add(View child)
         {
-            NDalicPINVOKE.Actor_Add(swigCPtr, View.getCPtr(child));
-            if (NDalicPINVOKE.SWIGPendingException.Pending)
-                throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-
-            Children.Add(child);
+            Container oldParent = child.GetParent();
+            if (oldParent != this)
+            {
+                if (oldParent != null)
+                {
+                    oldParent.Remove(child);
+                }
+                NDalicPINVOKE.Actor_Add(swigCPtr, View.getCPtr(child));
+                if (NDalicPINVOKE.SWIGPendingException.Pending)
+                    throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                Children.Add(child);
+            }
         }
 
         /// <summary>
