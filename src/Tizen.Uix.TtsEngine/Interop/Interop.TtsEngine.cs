@@ -59,7 +59,7 @@ internal static partial class Interop
         internal delegate Error ForEachSupportedVoicesCb(SupportedVoice cb, IntPtr userData);
 
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-        internal delegate Error IsValidVoiceCb(string language, int type, out bool isValid);
+        internal delegate Error IsValidVoiceCb(string language, int type, out byte isValid);
 
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         internal delegate Error SetPitchCb(int pitch);
@@ -71,7 +71,7 @@ internal static partial class Interop
         internal delegate Error UnloadVoiceCb(string language, int type);
 
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-        internal delegate Error CheckAppAgreedCb(string appid, out bool isAgreed);
+        internal delegate Error CheckAppAgreedCb(string appid, out byte isAgreed);
 
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         internal delegate bool NeedAppCredentialCb();
@@ -83,7 +83,7 @@ internal static partial class Interop
         internal delegate Error CancelSynthesisCb();
 
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-        internal delegate Error GetInfoCb(out IntPtr engineUuid, out IntPtr engineName, out IntPtr engineSetting, out int useNetwork);
+        internal delegate Error GetInfoCb(out IntPtr engineUuid, out IntPtr engineName, out IntPtr engineSetting, out byte useNetwork);
 
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         internal delegate Error PrivateDataSetCb(string key, string data);
