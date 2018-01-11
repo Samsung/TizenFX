@@ -77,13 +77,13 @@ internal static partial class Interop
         internal delegate bool NeedAppCredentialCb();
 
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-        internal delegate Error StartSynthesisCb(IntPtr language, int type, IntPtr text, int speed, IntPtr appid, IntPtr credential, IntPtr userData);
+        internal delegate Error StartSynthesisCb(string language, int type, string text, int speed, string appid, string credential, IntPtr userData);
 
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         internal delegate Error CancelSynthesisCb();
 
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-        internal delegate Error GetInfoCb(out IntPtr engineUuid, out IntPtr engineName, out IntPtr engineSetting, out byte useNetwork);
+        internal delegate Error GetInfoCb(out string engineUuid, out string engineName, out string engineSetting, out byte useNetwork);
 
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         internal delegate Error PrivateDataSetCb(string key, string data);
