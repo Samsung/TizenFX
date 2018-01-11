@@ -421,13 +421,13 @@ namespace Tizen.Uix.TtsEngine
             _callbackStructGCHandle.CallbackStruct.initialize = Initialize;
             _callbackStructGCHandle.CallbackStruct.deinitialize = _deinitializeCb;
             _callbackStructGCHandle.CallbackStruct.supportedVoice = ForEachSupportedVoices;
-            _callbackStructGCHandle.CallbackStruct.validVoice = IsValidVoice;
+            _callbackStructGCHandle.CallbackStruct.validVoice = _validVoiceCb;
             _callbackStructGCHandle.CallbackStruct.pitch = SetPitch;
             _callbackStructGCHandle.CallbackStruct.loadVoice = LoadVoice;
             _callbackStructGCHandle.CallbackStruct.unloadVoice = UnloadVoice;
             _callbackStructGCHandle.CallbackStruct.startSynthesis = _startSynthesisCb;
             _callbackStructGCHandle.CallbackStruct.cancelSynthesis = CancelSynthesis;
-            _callbackStructGCHandle.CallbackStruct.checkAppAgreed = CheckAppAgreed;
+            _callbackStructGCHandle.CallbackStruct.checkAppAgreed = _checkAppAgreedCb;
             _callbackStructGCHandle.CallbackStruct.needAppCredential = NeedAppCredential;
             _structIntPtrHandle = Marshal.AllocHGlobal(Marshal.SizeOf(_callbackStructGCHandle.CallbackStruct));
             Marshal.StructureToPtr<RequestCallbackStruct>(_callbackStructGCHandle.CallbackStruct, _structIntPtrHandle, false);
@@ -642,6 +642,43 @@ namespace Tizen.Uix.TtsEngine
             }
 
         }
+
+        private IsValidVoiceCb _validVoiceCb = (string language, int type, out byte isValid) =>
+        {
+            Log.Error(LogTag, "_isValidVoiceCb called");
+            bool valid;
+            Error err = _engine.IsValidVoice(language, type, out valid);
+
+            Log.Error(LogTag, "check valid and insert value" + valid);
+            if (true == valid)
+            {
+                isValid = 1;
+            }
+            else
+            {
+                isValid = 0;
+            }
+
+            return err;
+        };
+
+        private CheckAppAgreedCb _checkAppAgreedCb = (string appid, out byte isAgreed) =>
+        {
+            bool agreed;
+            Error err = _engine.CheckAppAgreed(appid, out agreed);
+
+            if (true == agreed)
+            {
+                isAgreed = 1;
+            }
+            else
+            {
+                isAgreed = 0;
+            }
+
+            return err;
+        };
+
         private StartSynthesisCb _startSynthesisCb = (IntPtr language, int type, IntPtr text, int speed, IntPtr appid, IntPtr credential, IntPtr userData) =>
         {
             string lan = null;
@@ -659,14 +696,14 @@ namespace Tizen.Uix.TtsEngine
             return _engine.StartSynthesis(lan, type, txt, speed, apid, cre, IntPtr.Zero);
         };
 
-        private GetInfoCb _getInfoCb = (out IntPtr engineUuid, out IntPtr engineName, out IntPtr engineSetting, out int useNetwork) =>
+        private GetInfoCb _getInfoCb = (out IntPtr engineUuid, out IntPtr engineName, out IntPtr engineSetting, out byte useNetwork) =>
         {
             string uuid;
             string name;
             string setting;
             bool network;
             Error err = _engine.GetInformation(out uuid, out name, out setting, out network);
-            if (network == true)
+            if (true == network)
             {
                 useNetwork = 1;
             }
