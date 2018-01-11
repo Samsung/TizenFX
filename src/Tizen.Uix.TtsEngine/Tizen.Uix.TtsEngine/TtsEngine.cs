@@ -421,13 +421,13 @@ namespace Tizen.Uix.TtsEngine
             _callbackStructGCHandle.CallbackStruct.initialize = Initialize;
             _callbackStructGCHandle.CallbackStruct.deinitialize = _deinitializeCb;
             _callbackStructGCHandle.CallbackStruct.supportedVoice = ForEachSupportedVoices;
-            _callbackStructGCHandle.CallbackStruct.validVoice = IsValidVoice;
+            _callbackStructGCHandle.CallbackStruct.validVoice = _validVoiceCb;
             _callbackStructGCHandle.CallbackStruct.pitch = SetPitch;
             _callbackStructGCHandle.CallbackStruct.loadVoice = LoadVoice;
             _callbackStructGCHandle.CallbackStruct.unloadVoice = UnloadVoice;
-            _callbackStructGCHandle.CallbackStruct.startSynthesis = _startSynthesisCb;
+            _callbackStructGCHandle.CallbackStruct.startSynthesis = StartSynthesis;
             _callbackStructGCHandle.CallbackStruct.cancelSynthesis = CancelSynthesis;
-            _callbackStructGCHandle.CallbackStruct.checkAppAgreed = CheckAppAgreed;
+            _callbackStructGCHandle.CallbackStruct.checkAppAgreed = _checkAppAgreedCb;
             _callbackStructGCHandle.CallbackStruct.needAppCredential = NeedAppCredential;
             _structIntPtrHandle = Marshal.AllocHGlobal(Marshal.SizeOf(_callbackStructGCHandle.CallbackStruct));
             Marshal.StructureToPtr<RequestCallbackStruct>(_callbackStructGCHandle.CallbackStruct, _structIntPtrHandle, false);
@@ -642,31 +642,47 @@ namespace Tizen.Uix.TtsEngine
             }
 
         }
-        private StartSynthesisCb _startSynthesisCb = (IntPtr language, int type, IntPtr text, int speed, IntPtr appid, IntPtr credential, IntPtr userData) =>
+
+        private IsValidVoiceCb _validVoiceCb = (string language, int type, out byte isValid) =>
         {
-            string lan = null;
-            string txt = null;
-            string apid = null;
-            string cre = null;
-            if (language != null)
-                lan = Marshal.PtrToStringAnsi(language);
-            if (text != null)
-                txt = Marshal.PtrToStringAnsi(text);
-            if (appid != null)
-                apid = Marshal.PtrToStringAnsi(appid);
-            if (credential != null)
-                cre = Marshal.PtrToStringAnsi(credential);
-            return _engine.StartSynthesis(lan, type, txt, speed, apid, cre, IntPtr.Zero);
+            bool valid;
+            Error err = _engine.IsValidVoice(language, type, out valid);
+
+            if (true == valid)
+            {
+                isValid = 1;
+            }
+            else
+            {
+                isValid = 0;
+            }
+
+            return err;
         };
 
-        private GetInfoCb _getInfoCb = (out IntPtr engineUuid, out IntPtr engineName, out IntPtr engineSetting, out int useNetwork) =>
+        private CheckAppAgreedCb _checkAppAgreedCb = (string appid, out byte isAgreed) =>
         {
-            string uuid;
-            string name;
-            string setting;
+            bool agreed;
+            Error err = _engine.CheckAppAgreed(appid, out agreed);
+
+            if (true == agreed)
+            {
+                isAgreed = 1;
+            }
+            else
+            {
+                isAgreed = 0;
+            }
+
+            return err;
+        };
+
+        private GetInfoCb _getInfoCb = (out string engineUuid, out string engineName, out string engineSetting, out byte useNetwork) =>
+        {
             bool network;
-            Error err = _engine.GetInformation(out uuid, out name, out setting, out network);
-            if (network == true)
+
+            Error err = _engine.GetInformation(out engineUuid, out engineName, out engineSetting, out network);
+            if (true == network)
             {
                 useNetwork = 1;
             }
@@ -674,9 +690,7 @@ namespace Tizen.Uix.TtsEngine
             {
                 useNetwork = 0;
             }
-            engineUuid = Marshal.StringToHGlobalAnsi(uuid);
-            engineName = Marshal.StringToHGlobalAnsi(name);
-            engineSetting = Marshal.StringToHGlobalAnsi(setting);
+
             return err;
         };
 
