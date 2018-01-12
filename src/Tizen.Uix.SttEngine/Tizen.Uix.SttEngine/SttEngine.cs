@@ -545,15 +545,15 @@ namespace Tizen.Uix.SttEngine
             _callbackStructGCHandle.CallbackStruct.supportedLanaguge = ForEachSupportedLanguages;
             _callbackStructGCHandle.CallbackStruct.validLanaguage = _isValidLanguageCb;
             _callbackStructGCHandle.CallbackStruct.silence = SupportSilenceDetection;
-            _callbackStructGCHandle.CallbackStruct.recognitionType = SupportRecognitionType;
+            _callbackStructGCHandle.CallbackStruct.recognitionType = _supportRecognitionTypeCb;
             _callbackStructGCHandle.CallbackStruct.recordingFormat = GetRecordingFormat;
             _callbackStructGCHandle.CallbackStruct.resultTime = ForEachResultTime;
             _callbackStructGCHandle.CallbackStruct.silenceDetection = SetSilenceDetection;
-            _callbackStructGCHandle.CallbackStruct.start = _startCb;
+            _callbackStructGCHandle.CallbackStruct.start = Start;
             _callbackStructGCHandle.CallbackStruct.recordingData = SetRecordingData;
             _callbackStructGCHandle.CallbackStruct.stop = Stop;
             _callbackStructGCHandle.CallbackStruct.cancel = Cancel;
-            _callbackStructGCHandle.CallbackStruct.checkAppAgreed = CheckAppAgreed;
+            _callbackStructGCHandle.CallbackStruct.checkAppAgreed = _checkAppAgreedCb;
             _callbackStructGCHandle.CallbackStruct.needAppCredential = NeedAppCredential;
             _structIntPtrHandle = Marshal.AllocHGlobal(Marshal.SizeOf(_callbackStructGCHandle.CallbackStruct));
             Marshal.StructureToPtr<RequestCallbackStruct>(_callbackStructGCHandle.CallbackStruct, _structIntPtrHandle, false);
@@ -804,60 +804,68 @@ namespace Tizen.Uix.SttEngine
 
         }
 
-        private StartCb _startCb = (IntPtr language, IntPtr type, IntPtr appid, IntPtr credential, IntPtr userData) =>
+        private IsValidLanguageCb _isValidLanguageCb = (string langauge, out byte isValid) =>
         {
-            string lan = null;
-            string typ = null;
-            string apid = null;
-            string cre = null;
-            if (language != null)
-                lan = Marshal.PtrToStringAnsi(language);
-            if (type != null)
-                typ = Marshal.PtrToStringAnsi(type);
-            if (appid != null)
-                apid = Marshal.PtrToStringAnsi(appid);
-            if (credential != null)
-                cre = Marshal.PtrToStringAnsi(credential);
-            return _engine.Start(lan, typ, apid, cre, IntPtr.Zero);
-        };
-
-        private IsValidLanguageCb _isValidLanguageCb = (IntPtr langauge, IntPtr isValid) =>
-        {
-            string langaugeStr = Marshal.PtrToStringAnsi(langauge);
             bool valid;
-            Error err = _engine.IsValidLanguage(langaugeStr, out valid);
-            if (valid == true)
+            Error err = _engine.IsValidLanguage(langauge, out valid);
+            if (true == valid)
             {
-                Marshal.WriteByte(isValid, 0, 1);
+                isValid = 1;
             }
             else
             {
-                Marshal.WriteByte(isValid, 0, 0);
+                isValid = 0;
             }
+
+            return err;
+        };
+        
+        private CheckAppAgreedCb _checkAppAgreedCb = (string appid, out byte isAgreed) =>
+        {
+            bool agreed;
+            Error err = _engine.CheckAppAgreed(appid, out agreed);
+            if (true == agreed)
+            {
+                isAgreed = 1;
+            }
+            else
+            {
+                isAgreed = 0;
+            }
+
             return err;
         };
 
-        private GetInfoCb _getInfoCb = (out IntPtr engineUuid, out IntPtr engineName, out IntPtr engineSetting, out IntPtr useNetwork) =>
+        private SupportRecognitionTypeCb _supportRecognitionTypeCb = (string type, out byte isSupported) =>
         {
-            string uuid;
-            string name;
-            string setting;
-            bool network;
-            Error err = _engine.GetInformation(out uuid, out name, out setting, out network);
-            int size = Marshal.SizeOf<int>();
-            IntPtr pBool = Marshal.AllocHGlobal(size);
-            if (network == true)
+            bool supported;
+            Error err = _engine.SupportRecognitionType(type, out supported);
+            if (true == supported)
             {
-                Marshal.WriteInt32(pBool, 0, 1);
+                isSupported = 1;
             }
             else
             {
-                Marshal.WriteInt32(pBool, 0, 0);
+                isSupported = 0;
             }
-            engineUuid = Marshal.StringToHGlobalAnsi(uuid);
-            engineName = Marshal.StringToHGlobalAnsi(name);
-            engineSetting = Marshal.StringToHGlobalAnsi(setting);
-            useNetwork = pBool;
+
+            return err;
+        };
+
+        private GetInfoCb _getInfoCb = (out string engineUuid, out string engineName, out string engineSetting, out byte useNetwork) =>
+        {
+            bool network;
+
+            Error err = _engine.GetInformation(out engineUuid, out engineName, out engineSetting, out network);
+            if (true == network)
+            {
+                useNetwork = 1;
+            }
+            else
+            {
+                useNetwork = 0;
+            }
+
             return err;
         };
 
