@@ -62,7 +62,7 @@ namespace Tizen.NUI
                 if (swigCMemOwn)
                 {
                     swigCMemOwn = false;
-                    throw new global::System.MethodAccessException("C++ destructor does not have public access");
+                    //throw new global::System.MethodAccessException("C++ destructor does not have public access");
                 }
                 swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
             }
