@@ -88,7 +88,7 @@ namespace Tizen.Multimedia
                 }
 
                 NativePlayer.SetMediaStreamBufferMaxSize(_owner.Player.Handle, _streamType, value).
-                    ThrowIfFailed("Failed to set the buffer max size");
+                    ThrowIfFailed(_owner.Player, "Failed to set the buffer max size");
 
                 _bufferMaxSize = value;
             }
@@ -125,7 +125,7 @@ namespace Tizen.Multimedia
                 }
 
                 NativePlayer.SetMediaStreamBufferMinThreshold(_owner.Player.Handle, _streamType, value).
-                    ThrowIfFailed("Failed to set the buffer minimum threshold");
+                    ThrowIfFailed(_owner.Player, "Failed to set the buffer minimum threshold");
 
                 _threshold = value;
             }
@@ -145,10 +145,10 @@ namespace Tizen.Multimedia
             }
 
             NativePlayer.SetMediaStreamBufferMaxSize(player.Handle, _streamType, _bufferMaxSize).
-                ThrowIfFailed("Failed to initialize the media stream configuration");
+                ThrowIfFailed(player, "Failed to initialize the media stream configuration");
 
             NativePlayer.SetMediaStreamBufferMinThreshold(player.Handle, _streamType, _threshold).
-                ThrowIfFailed("Failed to initialize the media stream configuration");
+                ThrowIfFailed(player, "Failed to initialize the media stream configuration");
         }
 
         internal void OnPlayerUnset(Player player)

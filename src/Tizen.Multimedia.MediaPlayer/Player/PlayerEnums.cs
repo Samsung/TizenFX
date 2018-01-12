@@ -167,46 +167,6 @@ namespace Tizen.Multimedia
         High,
     }
 
-    /// <summary>
-    /// Specifies display modes for <see cref="Player"/>.
-    /// </summary>
-    /// <seealso cref="PlayerDisplaySettings.Mode"/>
-    /// <since_tizen> 3 </since_tizen>
-    public enum PlayerDisplayMode
-    {
-        /// <summary>
-        /// Letter box.
-        /// </summary>
-        LetterBox,
-
-        /// <summary>
-        /// Original size.
-        /// </summary>
-        OriginalSize,
-
-        /// <summary>
-        /// Full-screen.
-        /// </summary>
-        FullScreen,
-
-        /// <summary>
-        /// Cropped full-screen.
-        /// </summary>
-        CroppedFull,
-
-        /// <summary>
-        /// Original size (if surface size is larger than video size(width/height)) or
-        /// letter box (if video size(width/height) is larger than surface size).
-        /// </summary>
-        OriginalOrFull,
-
-        /// <summary>
-        /// Region of interest.
-        /// </summary>
-        /// <seealso cref="PlayerDisplaySettings.SetRoi(Rectangle)"/>
-        Roi
-    }
-
     internal enum StreamType
     {
         /// <summary>
