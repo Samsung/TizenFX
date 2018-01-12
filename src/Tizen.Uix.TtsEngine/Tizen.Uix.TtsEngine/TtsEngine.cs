@@ -172,7 +172,7 @@ namespace Tizen.Uix.TtsEngine
 
         /// <summary>
         /// Called when the TTS engine informs the engine service user about whole supported language and voice type list.
-        /// This callback function is implemented by the engine service user, therefore, the engine developer does NOT have to implement this callback function. 
+        /// This callback function is implemented by the engine service user, therefore, the engine developer does NOT have to implement this callback function.
         /// </summary>
         /// <remarks>
         /// This callback function is called by ForEachSupportedVoices() to inform the whole supported voice list. userData must be transferred from ForEachSupportedVoices().
@@ -425,7 +425,7 @@ namespace Tizen.Uix.TtsEngine
             _callbackStructGCHandle.CallbackStruct.pitch = SetPitch;
             _callbackStructGCHandle.CallbackStruct.loadVoice = LoadVoice;
             _callbackStructGCHandle.CallbackStruct.unloadVoice = UnloadVoice;
-            _callbackStructGCHandle.CallbackStruct.startSynthesis = _startSynthesisCb;
+            _callbackStructGCHandle.CallbackStruct.startSynthesis = StartSynthesis;
             _callbackStructGCHandle.CallbackStruct.cancelSynthesis = CancelSynthesis;
             _callbackStructGCHandle.CallbackStruct.checkAppAgreed = _checkAppAgreedCb;
             _callbackStructGCHandle.CallbackStruct.needAppCredential = NeedAppCredential;
@@ -645,11 +645,9 @@ namespace Tizen.Uix.TtsEngine
 
         private IsValidVoiceCb _validVoiceCb = (string language, int type, out byte isValid) =>
         {
-            Log.Error(LogTag, "_isValidVoiceCb called");
             bool valid;
             Error err = _engine.IsValidVoice(language, type, out valid);
 
-            Log.Error(LogTag, "check valid and insert value" + valid);
             if (true == valid)
             {
                 isValid = 1;
@@ -679,30 +677,11 @@ namespace Tizen.Uix.TtsEngine
             return err;
         };
 
-        private StartSynthesisCb _startSynthesisCb = (IntPtr language, int type, IntPtr text, int speed, IntPtr appid, IntPtr credential, IntPtr userData) =>
+        private GetInfoCb _getInfoCb = (out string engineUuid, out string engineName, out string engineSetting, out byte useNetwork) =>
         {
-            string lan = null;
-            string txt = null;
-            string apid = null;
-            string cre = null;
-            if (language != null)
-                lan = Marshal.PtrToStringAnsi(language);
-            if (text != null)
-                txt = Marshal.PtrToStringAnsi(text);
-            if (appid != null)
-                apid = Marshal.PtrToStringAnsi(appid);
-            if (credential != null)
-                cre = Marshal.PtrToStringAnsi(credential);
-            return _engine.StartSynthesis(lan, type, txt, speed, apid, cre, IntPtr.Zero);
-        };
-
-        private GetInfoCb _getInfoCb = (out IntPtr engineUuid, out IntPtr engineName, out IntPtr engineSetting, out byte useNetwork) =>
-        {
-            string uuid;
-            string name;
-            string setting;
             bool network;
-            Error err = _engine.GetInformation(out uuid, out name, out setting, out network);
+
+            Error err = _engine.GetInformation(out engineUuid, out engineName, out engineSetting, out network);
             if (true == network)
             {
                 useNetwork = 1;
@@ -711,9 +690,7 @@ namespace Tizen.Uix.TtsEngine
             {
                 useNetwork = 0;
             }
-            engineUuid = Marshal.StringToHGlobalAnsi(uuid);
-            engineName = Marshal.StringToHGlobalAnsi(name);
-            engineSetting = Marshal.StringToHGlobalAnsi(setting);
+
             return err;
         };
 
