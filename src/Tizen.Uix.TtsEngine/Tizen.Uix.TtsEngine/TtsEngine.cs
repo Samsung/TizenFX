@@ -172,7 +172,7 @@ namespace Tizen.Uix.TtsEngine
 
         /// <summary>
         /// Called when the TTS engine informs the engine service user about whole supported language and voice type list.
-        /// This callback function is implemented by the engine service user, therefore, the engine developer does NOT have to implement this callback function. 
+        /// This callback function is implemented by the engine service user, therefore, the engine developer does NOT have to implement this callback function.
         /// </summary>
         /// <remarks>
         /// This callback function is called by ForEachSupportedVoices() to inform the whole supported voice list. userData must be transferred from ForEachSupportedVoices().
