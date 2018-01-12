@@ -294,6 +294,13 @@ namespace ElmSharp
         public void SetFocus(bool isFocus)
         {
             Interop.Elementary.elm_object_focus_set(RealHandle, isFocus);
+
+            // Temporary code due to focus issue (will be removed at Tizen 5.0)
+            if (this is Window)
+            {
+                if (isFocus && !Interop.Evas.evas_object_focus_get(RealHandle))
+                    Interop.Evas.evas_object_focus_set(RealHandle, true);
+            }
         }
 
         /// <summary>
@@ -463,7 +470,7 @@ namespace ElmSharp
             return a;
         }
 
-	/// <summary>
+        /// <summary>
         /// Sends a signal to the edje object of the widget.
         /// </summary>
         /// <param name="emission">The signal's name.</param>
