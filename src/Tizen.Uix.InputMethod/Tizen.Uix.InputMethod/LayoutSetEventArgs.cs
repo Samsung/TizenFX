@@ -17,7 +17,7 @@
 namespace Tizen.Uix.InputMethod
 {
     /// <summary>
-    /// This Class contains data related to LayoutSet Event
+    /// This class contains the data related to the LayoutSet event.
     /// </summary>
     /// <since_tizen> 4 </since_tizen>
     public class LayoutSetEventArgs
@@ -28,7 +28,7 @@ namespace Tizen.Uix.InputMethod
         }
 
         /// <summary>
-        /// The input panel layout
+        /// The input panel layout.
         /// </summary>
         /// <since_tizen> 4 </since_tizen>
         public InputPanelLayout Layout

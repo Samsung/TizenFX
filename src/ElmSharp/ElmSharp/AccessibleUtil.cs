@@ -21,25 +21,25 @@ using System.Threading.Tasks;
 namespace ElmSharp.Accessible
 {
     /// <summary>
-    /// Enumeration for ReadingStatus.
+    /// Enumeration for the ReadingStatus.
     /// </summary>
     /// <since_tizen> preview </since_tizen>
     public enum ReadingStatus
     {
         /// <summary>
-        /// Unknown status
+        /// Unknown status.
         /// </summary>
         Unknown,
         /// <summary>
-        /// Cancelled status
+        /// Cancelled status.
         /// </summary>
         Cancelled,
         /// <summary>
-        /// Stopped status
+        /// Stopped status.
         /// </summary>
         Stoppped,
         /// <summary>
-        /// Skipped status
+        /// Skipped status.
         /// </summary>
         Skipped
     }
@@ -76,11 +76,11 @@ namespace ElmSharp.Accessible
         }
 
         /// <summary>
-        /// Reads given text by screen reader.
+        /// Reads the given text by a screen reader.
         /// </summary>
         /// <param name="text">The reading text.</param>
-        /// <param name="discardable">If true, reading can be discarded by subsequent reading requests, if false the reading must finish before next reading request can be started.</param>
-        /// <returns>Return a task with reading status.</returns>
+        /// <param name="discardable">If true, reading can be discarded by subsequent reading requests. If false, reading must be finished before the next reading request can be started.</param>
+        /// <returns>Return a task with the reading status.</returns>
         /// <since_tizen> preview </since_tizen>
         public static Task<ReadingStatus> Say(string text, bool discardable)
         {

@@ -32,13 +32,13 @@ namespace Tizen.Pims.Calendar
         /// </summary>
         /// <since_tizen> 4 </since_tizen>
         /// <feature>http://tizen.org/feature/calendar</feature>
-        /// <param name="viewUri">The view URI of a filter</param>
-        /// <param name="propertyId">The property ID to add a condition</param>
-        /// <param name="matchType">The match flag</param>
-        /// <param name="matchValue">The match value</param>
-        /// <exception cref="NotSupportedException">Thrown when feature is not supported</exception>
-        /// <exception cref="ArgumentException">Thrown when one of the arguments provided to a method is not valid</exception>
-        /// <exception cref="OutOfMemoryException">Thrown when failed due to out of memory</exception>
+        /// <param name="viewUri">The view URI of a filter.</param>
+        /// <param name="propertyId">The property ID to add a condition.</param>
+        /// <param name="matchType">The match flag.</param>
+        /// <param name="matchValue">The match value.</param>
+        /// <exception cref="NotSupportedException">Thrown when the feature is not supported.</exception>
+        /// <exception cref="ArgumentException">Thrown when one of the arguments provided to a method is not valid.</exception>
+        /// <exception cref="OutOfMemoryException">Thrown when failed due to out of memory.</exception>
         [SuppressMessage("Microsoft.Design", "CA1054:UriParametersShouldNotBeStrings")]
         public CalendarFilter(string viewUri, uint propertyId, StringMatchType matchType, string matchValue)
         {
@@ -64,13 +64,13 @@ namespace Tizen.Pims.Calendar
         /// </summary>
         /// <since_tizen> 4 </since_tizen>
         /// <feature>http://tizen.org/feature/calendar</feature>
-        /// <param name="viewUri">The view URI of a filter</param>
-        /// <param name="propertyId">The property ID to add a condition</param>
-        /// <param name="matchType">The match flag</param>
-        /// <param name="matchValue">The match value</param>
-        /// <exception cref="NotSupportedException">Thrown when feature is not supported</exception>
-        /// <exception cref="ArgumentException">Thrown when one of the arguments provided to a method is not valid</exception>
-        /// <exception cref="OutOfMemoryException">Thrown when failed due to out of memory</exception>
+        /// <param name="viewUri">The view URI of a filter.</param>
+        /// <param name="propertyId">The property ID to add a condition.</param>
+        /// <param name="matchType">The match flag.</param>
+        /// <param name="matchValue">The match value.</param>
+        /// <exception cref="NotSupportedException">Thrown when the feature is not supported.</exception>
+        /// <exception cref="ArgumentException">Thrown when one of the arguments provided to a method is not valid.</exception>
+        /// <exception cref="OutOfMemoryException">Thrown when failed due to out of memory.</exception>
         [SuppressMessage("Microsoft.Design", "CA1054:UriParametersShouldNotBeStrings")]
         public CalendarFilter(string viewUri, uint propertyId, IntegerMatchType matchType, int matchValue)
         {
@@ -92,17 +92,17 @@ namespace Tizen.Pims.Calendar
         }
 
         /// <summary>
-        /// Creates a filter with a condition for long type.
+        /// Creates a filter with a condition for a long type.
         /// </summary>
         /// <since_tizen> 4 </since_tizen>
         /// <feature>http://tizen.org/feature/calendar</feature>
-        /// <param name="viewUri">The view URI of a filter</param>
-        /// <param name="propertyId">The property ID to add a condition</param>
-        /// <param name="matchType">The match flag</param>
-        /// <param name="matchValue">The match value</param>
-        /// <exception cref="NotSupportedException">Thrown when feature is not supported</exception>
-        /// <exception cref="ArgumentException">Thrown when one of the arguments provided to a method is not valid</exception>
-        /// <exception cref="OutOfMemoryException">Thrown when failed due to out of memory</exception>
+        /// <param name="viewUri">The view URI of a filter.</param>
+        /// <param name="propertyId">The property ID to add a condition.</param>
+        /// <param name="matchType">The match flag.</param>
+        /// <param name="matchValue">The match value.</param>
+        /// <exception cref="NotSupportedException">Thrown when the feature is not supported.</exception>
+        /// <exception cref="ArgumentException">Thrown when one of the arguments provided to a method is not valid.</exception>
+        /// <exception cref="OutOfMemoryException">Thrown when failed due to out of memory.</exception>
         [SuppressMessage("Microsoft.Design", "CA1054:UriParametersShouldNotBeStrings")]
         public CalendarFilter(string viewUri, uint propertyId, IntegerMatchType matchType, long matchValue)
         {
@@ -124,17 +124,17 @@ namespace Tizen.Pims.Calendar
         }
 
         /// <summary>
-        /// Creates a filter with a condition for double type.
+        /// Creates a filter with a condition for a double type.
         /// </summary>
         /// <since_tizen> 4 </since_tizen>
         /// <feature>http://tizen.org/feature/calendar</feature>
-        /// <param name="viewUri">The view URI of a filter</param>
-        /// <param name="propertyId">The property ID to add a condition</param>
-        /// <param name="matchType">The match flag</param>
-        /// <param name="matchValue">The match value</param>
-        /// <exception cref="NotSupportedException">Thrown when feature is not supported</exception>
-        /// <exception cref="ArgumentException">Thrown when one of the arguments provided to a method is not valid</exception>
-        /// <exception cref="OutOfMemoryException">Thrown when failed due to out of memory</exception>
+        /// <param name="viewUri">The view URI of a filter.</param>
+        /// <param name="propertyId">The property ID to add a condition.</param>
+        /// <param name="matchType">The match flag.</param>
+        /// <param name="matchValue">The match value.</param>
+        /// <exception cref="NotSupportedException">Thrown when the feature is not supported.</exception>
+        /// <exception cref="ArgumentException">Thrown when one of the arguments provided to a method is not valid.</exception>
+        /// <exception cref="OutOfMemoryException">Thrown when failed due to out of memory.</exception>
         [SuppressMessage("Microsoft.Design", "CA1054:UriParametersShouldNotBeStrings")]
         public CalendarFilter(string viewUri, uint propertyId, IntegerMatchType matchType, double matchValue)
         {
@@ -156,17 +156,17 @@ namespace Tizen.Pims.Calendar
         }
 
         /// <summary>
-        /// Creates a filter with a condition for CalendarTime type.
+        /// Creates a filter with a condition for the CalendarTime type.
         /// </summary>
         /// <since_tizen> 4 </since_tizen>
         /// <feature>http://tizen.org/feature/calendar</feature>
-        /// <param name="viewUri">The view URI of a filter</param>
-        /// <param name="propertyId">The property ID to add a condition</param>
-        /// <param name="matchType">The match flag</param>
-        /// <param name="matchValue">The match value</param>
-        /// <exception cref="NotSupportedException">Thrown when feature is not supported</exception>
-        /// <exception cref="ArgumentException">Thrown when one of the arguments provided to a method is not valid</exception>
-        /// <exception cref="OutOfMemoryException">Thrown when failed due to out of memory</exception>
+        /// <param name="viewUri">The view URI of a filter.</param>
+        /// <param name="propertyId">The property ID to add a condition.</param>
+        /// <param name="matchType">The match flag.</param>
+        /// <param name="matchValue">The match value.</param>
+        /// <exception cref="NotSupportedException">Thrown when the feature is not supported.</exception>
+        /// <exception cref="ArgumentException">Thrown when one of the arguments provided to a method is not valid.</exception>
+        /// <exception cref="OutOfMemoryException">Thrown when failed due to out of memory.</exception>
         [SuppressMessage("Microsoft.Design", "CA1054:UriParametersShouldNotBeStrings")]
         public CalendarFilter(string viewUri, uint propertyId, IntegerMatchType matchType, CalendarTime matchValue)
         {
@@ -189,7 +189,7 @@ namespace Tizen.Pims.Calendar
         }
 
         /// <summary>
-        /// Destroy filter.
+        /// Destroys the filter.
         /// </summary>
         ~CalendarFilter()
         {
@@ -203,27 +203,27 @@ namespace Tizen.Pims.Calendar
         public enum StringMatchType
         {
             /// <summary>
-            /// Full string, case-sensitive
+            /// Full string, case-sensitive.
             /// </summary>
             Exactly,
             /// <summary>
-            /// Full string, case-insensitive
+            /// Full string, case-insensitive.
             /// </summary>
             FullString,
             /// <summary>
-            /// Sub string, case-insensitive
+            /// Sub-string, case-insensitive.
             /// </summary>
             Contains,
             /// <summary>
-            /// Start with, case-insensitive
+            /// Starts with, case-insensitive.
             /// </summary>
             StartsWith,
             /// <summary>
-            /// End with, case-insensitive
+            /// Ends with, case-insensitive.
             /// </summary>
             EndsWith,
             /// <summary>
-            /// IS NOT NUL
+            /// IS NOT NULL.
             /// </summary>
             Exists,
         }
@@ -255,11 +255,11 @@ namespace Tizen.Pims.Calendar
             /// </summary>
             LessThanOrEqual,
             /// <summary>
-            /// &lt;>, this flag can yield poor performance
+            /// &lt;>, this flag can yield poor performance.
             /// </summary>
             NotEqual,
             /// <summary>
-            /// IS NULL
+            /// IS NULL.
             /// </summary>
             None,
         }
@@ -271,11 +271,11 @@ namespace Tizen.Pims.Calendar
         public enum LogicalOperator
         {
             /// <summary>
-            /// AND
+            /// And.
             /// </summary>
             And,
             /// <summary>
-            /// OR
+            /// Or.
             /// </summary>
             Or,
         }
@@ -284,9 +284,9 @@ namespace Tizen.Pims.Calendar
         private bool disposedValue = false; // To detect redundant calls
 
         /// <summary>
-        /// Dispose
+        /// Dispose.
         /// </summary>
-        /// <param name="disposing">true to release both managed and unmanaged resources; false to release only unmanaged resources.</param>
+        /// <param name="disposing">true to release both managed and unmanaged resources, false to release only unmanaged resources.</param>
         /// <since_tizen> 4 </since_tizen>
         protected virtual void Dispose(bool disposing)
         {
@@ -304,8 +304,8 @@ namespace Tizen.Pims.Calendar
         }
 
         /// <summary>
-        /// Releases all resources used by the CalendarFilter.
-        /// It should be called after having finished using of the object.
+        /// Releases all the resources used by the CalendarFilter.
+        /// It should be called after having finished using the object.
         /// </summary>
         /// <since_tizen> 4 </since_tizen>
         public void Dispose()
@@ -320,12 +320,12 @@ namespace Tizen.Pims.Calendar
         /// </summary>
         /// <since_tizen> 4 </since_tizen>
         /// <feature>http://tizen.org/feature/calendar</feature>
-        /// <param name="logicalOperator">The operator type</param>
-        /// <param name="propertyId">The property ID to add a condition</param>
-        /// <param name="matchType">The match flag</param>
-        /// <param name="matchValue">The match value</param>
-        /// <exception cref="NotSupportedException">Thrown when feature is not supported</exception>
-        /// <exception cref="ArgumentException">Thrown when one of the arguments provided to a method is not valid</exception>
+        /// <param name="logicalOperator">The operator type.</param>
+        /// <param name="propertyId">The property ID to add a condition.</param>
+        /// <param name="matchType">The match flag.</param>
+        /// <param name="matchValue">The match value.</param>
+        /// <exception cref="NotSupportedException">Thrown when the feature is not supported.</exception>
+        /// <exception cref="ArgumentException">Thrown when one of the arguments provided to a method is not valid.</exception>
         public void AddCondition(LogicalOperator logicalOperator, uint propertyId, StringMatchType matchType, string matchValue)
         {
             int error = Interop.Filter.AddOperator(_filterHandle, logicalOperator);
@@ -348,12 +348,12 @@ namespace Tizen.Pims.Calendar
         /// </summary>
         /// <since_tizen> 4 </since_tizen>
         /// <feature>http://tizen.org/feature/calendar</feature>
-        /// <param name="logicalOperator">The operator type</param>
-        /// <param name="propertyId">The property ID to add a condition</param>
-        /// <param name="matchType">The match flag</param>
-        /// <param name="matchValue">The match value</param>
-        /// <exception cref="NotSupportedException">Thrown when feature is not supported</exception>
-        /// <exception cref="ArgumentException">Thrown when one of the arguments provided to a method is not valid</exception>
+        /// <param name="logicalOperator">The operator type.</param>
+        /// <param name="propertyId">The property ID to add a condition.</param>
+        /// <param name="matchType">The match flag.</param>
+        /// <param name="matchValue">The match value.</param>
+        /// <exception cref="NotSupportedException">Thrown when the feature is not supported.</exception>
+        /// <exception cref="ArgumentException">Thrown when one of the arguments provided to a method is not valid.</exception>
         public void AddCondition(LogicalOperator logicalOperator, uint propertyId, IntegerMatchType matchType, int matchValue)
         {
             int error = Interop.Filter.AddOperator(_filterHandle, logicalOperator);
@@ -376,12 +376,12 @@ namespace Tizen.Pims.Calendar
         /// </summary>
         /// <since_tizen> 4 </since_tizen>
         /// <feature>http://tizen.org/feature/calendar</feature>
-        /// <param name="logicalOperator">The operator type</param>
-        /// <param name="propertyId">The property ID to add a condition</param>
-        /// <param name="matchType">The match flag</param>
-        /// <param name="matchValue">The match value</param>
-        /// <exception cref="NotSupportedException">Thrown when feature is not supported</exception>
-        /// <exception cref="ArgumentException">Thrown when one of the arguments provided to a method is not valid</exception>
+        /// <param name="logicalOperator">The operator type.</param>
+        /// <param name="propertyId">The property ID to add a condition.</param>
+        /// <param name="matchType">The match flag.</param>
+        /// <param name="matchValue">The match value.</param>
+        /// <exception cref="NotSupportedException">Thrown when the feature is not supported.</exception>
+        /// <exception cref="ArgumentException">Thrown when one of the arguments provided to a method is not valid.</exception>
         public void AddCondition(LogicalOperator logicalOperator, uint propertyId, IntegerMatchType matchType, long matchValue)
         {
             int error = Interop.Filter.AddOperator(_filterHandle, logicalOperator);
@@ -404,12 +404,12 @@ namespace Tizen.Pims.Calendar
         /// </summary>
         /// <since_tizen> 4 </since_tizen>
         /// <feature>http://tizen.org/feature/calendar</feature>
-        /// <param name="logicalOperator">The operator type</param>
-        /// <param name="propertyId">The property ID to add a condition</param>
-        /// <param name="matchType">The match flag</param>
-        /// <param name="matchValue">The match value</param>
-        /// <exception cref="NotSupportedException">Thrown when feature is not supported</exception>
-        /// <exception cref="ArgumentException">Thrown when one of the arguments provided to a method is not valid</exception>
+        /// <param name="logicalOperator">The operator type.</param>
+        /// <param name="propertyId">The property ID to add a condition.</param>
+        /// <param name="matchType">The match flag.</param>
+        /// <param name="matchValue">The match value.</param>
+        /// <exception cref="NotSupportedException">Thrown when the feature is not supported.</exception>
+        /// <exception cref="ArgumentException">Thrown when one of the arguments provided to a method is not valid.</exception>
         public void AddCondition(LogicalOperator logicalOperator, uint propertyId, IntegerMatchType matchType, double matchValue)
         {
             int error = Interop.Filter.AddOperator(_filterHandle, logicalOperator);
@@ -432,12 +432,12 @@ namespace Tizen.Pims.Calendar
         /// </summary>
         /// <since_tizen> 4 </since_tizen>
         /// <feature>http://tizen.org/feature/calendar</feature>
-        /// <param name="logicalOperator">The operator type</param>
-        /// <param name="propertyId">The property ID to add a condition</param>
-        /// <param name="matchType">The match flag</param>
-        /// <param name="matchValue">The match value</param>
-        /// <exception cref="NotSupportedException">Thrown when feature is not supported</exception>
-        /// <exception cref="ArgumentException">Thrown when one of the arguments provided to a method is not valid</exception>
+        /// <param name="logicalOperator">The operator type.</param>
+        /// <param name="propertyId">The property ID to add a condition.</param>
+        /// <param name="matchType">The match flag.</param>
+        /// <param name="matchValue">The match value.</param>
+        /// <exception cref="NotSupportedException">Thrown when the feature is not supported.</exception>
+        /// <exception cref="ArgumentException">Thrown when one of the arguments provided to a method is not valid.</exception>
         public void AddCondition(LogicalOperator logicalOperator, uint propertyId, IntegerMatchType matchType, CalendarTime matchValue)
         {
             int error = Interop.Filter.AddOperator(_filterHandle, logicalOperator);
@@ -461,10 +461,10 @@ namespace Tizen.Pims.Calendar
         /// </summary>
         /// <since_tizen> 4 </since_tizen>
         /// <feature>http://tizen.org/feature/calendar</feature>
-        /// <param name="logicalOperator">The operator type</param>
-        /// <param name="filter">The child filter</param>
-        /// <exception cref="NotSupportedException">Thrown when feature is not supported</exception>
-        /// <exception cref="ArgumentException">Thrown when one of the arguments provided to a method is not valid</exception>
+        /// <param name="logicalOperator">The operator type.</param>
+        /// <param name="filter">The child filter.</param>
+        /// <exception cref="NotSupportedException">Thrown when the feature is not supported.</exception>
+        /// <exception cref="ArgumentException">Thrown when one of the arguments provided to a method is not valid.</exception>
         public void AddFilter(LogicalOperator logicalOperator, CalendarFilter filter)
         {
             int error = Interop.Filter.AddOperator(_filterHandle, logicalOperator);

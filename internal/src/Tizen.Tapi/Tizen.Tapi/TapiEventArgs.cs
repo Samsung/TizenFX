@@ -21,7 +21,6 @@ namespace Tizen.Tapi
     /// <summary>
     /// An extended EventArgs class which contains changed tapi state.
     /// </summary>
-    /// <since_tizen> 4 </since_tizen>
     public class StateChangedEventArgs : EventArgs
     {
         private int _state;
@@ -34,7 +33,6 @@ namespace Tizen.Tapi
         /// <summary>
         /// Tapi ready state.
         /// </summary>
-        /// <since_tizen> 4 </since_tizen>
         public int State
         {
             get
@@ -47,7 +45,6 @@ namespace Tizen.Tapi
     /// <summary>
     /// An extended EventArgs class which contains changed TAPI notification.
     /// </summary>
-    /// <since_tizen> 4 </since_tizen>
     public class NotificationChangedEventArgs : EventArgs
     {
         private Notification _id;
@@ -62,7 +59,6 @@ namespace Tizen.Tapi
         /// <summary>
         /// Notification Id.
         /// </summary>
-        /// <since_tizen> 4 </since_tizen>
         public Notification Id
         {
             get
@@ -74,7 +70,6 @@ namespace Tizen.Tapi
         /// <summary>
         /// Notification data.
         /// </summary>
-        /// <since_tizen> 4 </since_tizen>
         public object Data
         {
             get
@@ -87,7 +82,6 @@ namespace Tizen.Tapi
     /// <summary>
     /// An extended EventArgs class which contains changed TAPI property.
     /// </summary>
-    /// <since_tizen> 4 </since_tizen>
     public class PropertyChangedEventArgs : EventArgs
     {
         private Property _property;
@@ -102,7 +96,6 @@ namespace Tizen.Tapi
         /// <summary>
         /// Property definition type.
         /// </summary>
-        /// <since_tizen> 4 </since_tizen>
         public Property Property
         {
             get
@@ -114,7 +107,6 @@ namespace Tizen.Tapi
         /// <summary>
         /// Property data.
         /// </summary>
-        /// <since_tizen> 4 </since_tizen>
         public object Data
         {
             get

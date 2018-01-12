@@ -20,7 +20,7 @@ using System.Collections.Concurrent;
 namespace ElmSharp
 {
     /// <summary>
-    /// EcoreMainloop is a helper class, it provide functions relative Ecore's main loop.
+    /// EcoreMainloop is a helper class, which provides the functions relative to Ecore's main loop.
     /// </summary>
     /// <since_tizen> preview </since_tizen>
     public static class EcoreMainloop
@@ -42,7 +42,7 @@ namespace ElmSharp
         /// <summary>
         /// Checks if you are calling this function from the main thread.
         /// </summary>
-        /// <remarks>True is the calling function is the same thread, false otherwise.</remarks>
+        /// <remarks>True if the calling function is the same thread, false otherwise.</remarks>
         /// <since_tizen> preview </since_tizen>
         public static bool IsMainThread => Interop.Eina.eina_main_loop_is();
 
@@ -56,7 +56,7 @@ namespace ElmSharp
         }
 
         /// <summary>
-        /// Quits the main loop once all the events currently on the queue have been processed.
+        /// Quits the main loop, once all the events currently on the queue have been processed.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
         public static void Quit()
@@ -67,7 +67,7 @@ namespace ElmSharp
         /// <summary>
         /// Adds an idler handler.
         /// </summary>
-        /// <param name="task">The action to call when idling</param>
+        /// <param name="task">The action to call when idle.</param>
         /// <since_tizen> preview </since_tizen>
         public static void Post(Action task)
         {
@@ -76,9 +76,9 @@ namespace ElmSharp
         }
 
         /// <summary>
-        /// Calls callback asynchronously in the main loop.
+        /// Calls the callback asynchronously in the main loop.
         /// </summary>
-        /// <param name="task">The action wanted to be called</param>
+        /// <param name="task">The action wanted to be called.</param>
         /// <since_tizen> preview </since_tizen>
         public static void PostAndWakeUp(Action task)
         {
@@ -87,9 +87,9 @@ namespace ElmSharp
         }
 
         /// <summary>
-        /// Calls callback synchronously in the main loop.
+        /// Calls the callback synchronously in the main loop.
         /// </summary>
-        /// <param name="task">The action wanted to be called</param>
+        /// <param name="task">The action wanted to be called.</param>
         /// <since_tizen> preview </since_tizen>
         public static void Send(Action task)
         {
@@ -102,7 +102,7 @@ namespace ElmSharp
         /// </summary>
         /// <param name="interval">The interval in seconds.</param>
         /// <param name="handler">The given function.</param>
-        /// <returns>A timer object handler on success, NULL on failure.</returns>
+        /// <returns>A timer object handler on success, or null on failure.</returns>
         /// <since_tizen> preview </since_tizen>
         public static IntPtr AddTimer(double interval, Func<bool> handler)
         {

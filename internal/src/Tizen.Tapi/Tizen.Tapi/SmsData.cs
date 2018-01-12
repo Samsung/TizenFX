@@ -22,7 +22,6 @@ namespace Tizen.Tapi
     /// <summary>
     /// A class which defines incoming SMS message notification data.
     /// </summary>
-    /// <since_tizen> 4 </since_tizen>
     public class SmsIncomingMessageNoti
     {
         internal string ScaVal;
@@ -37,7 +36,6 @@ namespace Tizen.Tapi
         /// <summary>
         /// SCA.
         /// </summary>
-        /// <since_tizen> 4 </since_tizen>
         /// <value>Sca value represented in string.</value>
         public string Sca
         {
@@ -50,7 +48,6 @@ namespace Tizen.Tapi
         /// <summary>
         /// Message length.
         /// </summary>
-        /// <since_tizen> 4 </since_tizen>
         /// <value>Length of incoming message.</value>
         public int MessageLength
         {
@@ -63,7 +60,6 @@ namespace Tizen.Tapi
         /// <summary>
         /// Data.
         /// </summary>
-        /// <since_tizen> 4 </since_tizen>
         /// <value>Data representing incoming message information.</value>
         public string SzData
         {
@@ -76,7 +72,6 @@ namespace Tizen.Tapi
         /// <summary>
         /// SMS format.
         /// </summary>
-        /// <since_tizen> 4 </since_tizen>
         /// <value>Format of the incoming SMS.</value>
         public SmsNetType Format
         {
@@ -90,7 +85,6 @@ namespace Tizen.Tapi
     /// <summary>
     /// A class which defines incoming CB message notification data.
     /// </summary>
-    /// <since_tizen> 4 </since_tizen>
     public class SmsIncomingCbMessageNoti
     {
         internal SmsCbMsgType CbType;
@@ -104,7 +98,6 @@ namespace Tizen.Tapi
         /// <summary>
         /// Cell Broadcast message type.
         /// </summary>
-        /// <since_tizen> 4 </since_tizen>
         /// <value>Type of cell broadcast message.</value>
         public SmsCbMsgType Type
         {
@@ -117,7 +110,6 @@ namespace Tizen.Tapi
         /// <summary>
         /// Size of MsgData (which is the actual TPDU message).
         /// </summary>
-        /// <since_tizen> 4 </since_tizen>
         /// <value>Length of message data.</value>
         public short Length
         {
@@ -130,7 +122,6 @@ namespace Tizen.Tapi
         /// <summary>
         /// Cell broadcast message data.
         /// </summary>
-        /// <since_tizen> 4 </since_tizen>
         /// <value>Message data representing cell broadcast message.</value>
         public string SzMsgData
         {
@@ -144,7 +135,6 @@ namespace Tizen.Tapi
     /// <summary>
     /// A class which defines incoming ETWS message notification data.
     /// </summary>
-    /// <since_tizen> 4 </since_tizen>
     public class SmsIncomingEtwsMessageNoti
     {
         internal SmsEtwsMsgType EtwsType;
@@ -158,7 +148,6 @@ namespace Tizen.Tapi
         /// <summary>
         /// ETWS message type.
         /// </summary>
-        /// <since_tizen> 4 </since_tizen>
         /// <value>Type of ETWS message.</value>
         public SmsEtwsMsgType Type
         {
@@ -171,7 +160,6 @@ namespace Tizen.Tapi
         /// <summary>
         /// Size of MsgData (which is the actual TPDU message).
         /// </summary>
-        /// <since_tizen> 4 </since_tizen>
         /// <value>Length of message data.</value>
         public short Length
         {
@@ -184,7 +172,6 @@ namespace Tizen.Tapi
         /// <summary>
         /// ETWS message data.
         /// </summary>
-        /// <since_tizen> 4 </since_tizen>
         /// <value>Message data representing ETWS message.</value>
         public string SzMsgData
         {

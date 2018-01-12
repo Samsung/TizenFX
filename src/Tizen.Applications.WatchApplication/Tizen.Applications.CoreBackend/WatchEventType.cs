@@ -21,25 +21,25 @@ using Tizen.Applications.CoreBackend;
 namespace Tizen.Applications.CoreBackend
 {
     /// <summary>
-    /// Class that represents the type of event for backends. This class can be converted from string type.
+    /// A class that represents the type of event for backends. This class can be converted from the string type.
     /// </summary>
     /// <since_tizen> 4 </since_tizen>
     public class WatchEventType : EventType
     {
         /// <summary>
-        /// Pre-defined event type. "Created"
+        /// Pre-defined event type, "Created".
         /// </summary>
         /// <since_tizen> 4 </since_tizen>
         public static readonly WatchEventType TimeTick = "TimeTick";
 
         /// <summary>
-        /// Pre-defined event type. "AmbientTick"
+        /// Pre-defined event type, "AmbientTick".
         /// </summary>
         /// <since_tizen> 4 </since_tizen>
         public static readonly WatchEventType AmbientTick = "AmbientTick";
 
         /// <summary>
-        /// Pre-defined event type. "AmbientChanged"
+        /// Pre-defined event type, "AmbientChanged".
         /// </summary>
         /// <since_tizen> 4 </since_tizen>
         public static readonly WatchEventType AmbientChanged = "AmbientChanged";
@@ -54,7 +54,7 @@ namespace Tizen.Applications.CoreBackend
         }
 
         /// <summary>
-        /// Converts a string to WatchEventType instance.
+        /// Converts a string to the WatchEventType instance.
         /// </summary>
         /// <since_tizen> 4 </since_tizen>
         public static implicit operator WatchEventType(string value)

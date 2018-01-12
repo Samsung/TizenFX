@@ -20,9 +20,9 @@ using System.Collections.Generic;
 namespace Tizen.System.Usb
 {
     /// <summary>
-    /// Class to manage USB Interfaces.
+    /// A class to manage the USB interfaces.
     /// </summary>
-    /// <since_tizen> 5 </since_tizen>
+    /// <since_tizen> 4 </since_tizen>
     public class UsbInterface
     {
         internal readonly Interop.UsbInterfaceHandle _handle;
@@ -37,11 +37,11 @@ namespace Tizen.System.Usb
         }
 
         /// <summary>
-        /// Gets number of given interface.
+        /// Gets the number of a given interface.
         /// </summary>
         /// <feature>http://tizen.org/feature/usb.host</feature>
         /// <exception cref="NotSupportedException">The required feature is not supported.</exception>
-        /// <since_tizen> 5 </since_tizen>
+        /// <since_tizen> 4 </since_tizen>
         public int Id
         {
             get
@@ -52,11 +52,11 @@ namespace Tizen.System.Usb
         }
 
         /// <summary>
-        /// Sets alternative setting. Use index of new alternative setting for given interface.
+        /// Sets an alternative setting. Use the index of a new alternative setting for a given interface.
         /// </summary>
         /// <feature>http://tizen.org/feature/usb.host</feature>
         /// <exception cref="NotSupportedException">The required feature is not supported.</exception>
-        /// <since_tizen> 5 </since_tizen>
+        /// <since_tizen> 4 </since_tizen>
         public int AlternateSetting
         {
             set
@@ -67,11 +67,11 @@ namespace Tizen.System.Usb
         }
 
         /// <summary>
-        /// Dictionary mapping endpoint Ids to endpoint instances for given interface.
+        /// A dictionary for mapping the endpoint IDs to endpoint instances for a given interface.
         /// </summary>
         /// <feature>http://tizen.org/feature/usb.host</feature>
         /// <exception cref="NotSupportedException">The required feature is not supported.</exception>
-        /// <since_tizen> 5 </since_tizen>
+        /// <since_tizen> 4 </since_tizen>
         public IReadOnlyDictionary<int, UsbEndpoint> Endpoints
         {
             get
@@ -95,7 +95,7 @@ namespace Tizen.System.Usb
 
 
         /// <summary>
-        /// Gets string describing an interface.
+        /// Gets the string describing an interface.
         /// </summary>
         /// <feature>http://tizen.org/feature/usb.host</feature>
         /// <exception cref="NotSupportedException">The required feature is not supported.</exception>
@@ -114,15 +114,15 @@ namespace Tizen.System.Usb
         }
 
         /// <summary>
-        /// Claims interface on a device. Interface must be claimed first to perform I/O operations.
+        /// Claims the interface on a device. The interface must be claimed first to perform I/O operations.
         /// </summary>
-        /// <param name="force">Set to true to auto detach kernel driver, false otherwise.</param>
+        /// <param name="force">Set to true to auto detach the kernel driver, false otherwise.</param>
         /// <feature>http://tizen.org/feature/usb.host</feature>
         /// <exception cref="NotSupportedException">The required feature is not supported.</exception>
         /// <exception cref="InvalidOperationException">
-        /// Throws exception if device is disconnected or not opened for operation or another program or driver has claimed the interface.
+        /// Throws an exception if device is disconnected or not opened for operation or another program or driver has claimed the interface.
         /// </exception>
-        /// <since_tizen> 5 </since_tizen>
+        /// <since_tizen> 4 </since_tizen>
         public void Claim(bool force)
         {
             ThrowIfDisposed();
@@ -139,13 +139,13 @@ namespace Tizen.System.Usb
 
 
         /// <summary>
-        /// Releases previously claimed interface.
+        /// Releases the previously claimed interface.
         /// </summary>
         /// <feature>http://tizen.org/feature/usb.host</feature>
         /// <exception cref="NotSupportedException">The required feature is not supported.</exception>
         /// <exception cref="InvalidOperationException">Throws exception if device is disconnected or not opened for operation.</exception>
         /// <exception cref="UnauthorizedAccessException">Throws exception if user has insufficient permission on device.</exception>
-        /// <since_tizen> 5 </since_tizen>
+        /// <since_tizen> 4 </since_tizen>
         public void Release()
         {
             ThrowIfDisposed();

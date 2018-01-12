@@ -19,9 +19,9 @@ using System;
 namespace Tizen.System.Usb
 {
     /// <summary>
-    /// USB Endpoint class.
+    /// The USB Endpoint class.
     /// </summary>
-    /// <since_tizen> 5 </since_tizen>
+    /// <since_tizen> 4 </since_tizen>
     public class UsbEndpoint
     {
         internal readonly Interop.UsbEndpointHandle _handle;
@@ -34,11 +34,11 @@ namespace Tizen.System.Usb
         }
 
         /// <summary>
-        /// Gets number of this endpoint.
+        /// Gets the number of this endpoint.
         /// </summary>
         /// <feature>http://tizen.org/feature/usb.host</feature>
         /// <exception cref="NotSupportedException">The required feature is not supported.</exception>
-        /// <since_tizen> 5 </since_tizen>
+        /// <since_tizen> 4 </since_tizen>
         public int Id
         {
             get
@@ -49,11 +49,11 @@ namespace Tizen.System.Usb
         }
 
         /// <summary>
-        /// Gets direction of this endpoint.
+        /// Gets the direction of this endpoint.
         /// </summary>
         /// <feature>http://tizen.org/feature/usb.host</feature>
         /// <exception cref="NotSupportedException">The required feature is not supported.</exception>
-        /// <since_tizen> 5 </since_tizen>
+        /// <since_tizen> 4 </since_tizen>
         public EndpointDirection Direction
         {
             get
@@ -64,11 +64,11 @@ namespace Tizen.System.Usb
         }
 
         /// <summary>
-        /// Gets max packet size of given endpoint.
+        /// Gets the maximum packet size of a given endpoint.
         /// </summary>
         /// <feature>http://tizen.org/feature/usb.host</feature>
         /// <exception cref="NotSupportedException">The required feature is not supported.</exception>
-        /// <since_tizen> 5 </since_tizen>
+        /// <since_tizen> 4 </since_tizen>
         public int MaxPacketSize
         {
             get

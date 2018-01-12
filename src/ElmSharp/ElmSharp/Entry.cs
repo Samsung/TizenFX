@@ -21,196 +21,196 @@ using System.Runtime.InteropServices;
 namespace ElmSharp
 {
     /// <summary>
-    /// Enumeration for describing InputPanel layout type.
+    /// Enumeration for describing the InputPanel layout types.
     /// </summary>
     /// <since_tizen> preview </since_tizen>
     public enum InputPanelLayout
     {
         /// <summary>
-        /// InputPanel layout type default.
+        /// The InputPanel layout type default.
         /// </summary>
         Normal,
 
         /// <summary>
-        /// InputPanel layout type number.
+        /// The InputPanel layout type number.
         /// </summary>
         Number,
 
         /// <summary>
-        /// InputPanel layout type email.
+        /// The InputPanel layout type email.
         /// </summary>
         Email,
 
         /// <summary>
-        /// InputPanel layout type url.
+        /// The InputPanel layout type URL.
         /// </summary>
         Url,
 
         /// <summary>
-        /// InputPanel layout type phone.
+        /// The InputPanel layout type phone.
         /// </summary>
         PhoneNumber,
 
         /// <summary>
-        /// InputPanel layout type ip.
+        /// The InputPanel layout type IP.
         /// </summary>
         Ip,
 
         /// <summary>
-        /// InputPanel layout type month.
+        /// The InputPanel layout type month.
         /// </summary>
         Month,
 
         /// <summary>
-        /// InputPanel layout type number.
+        /// The InputPanel layout type number.
         /// </summary>
         NumberOnly,
 
         /// <summary>
-        /// InputPanel layout type error type. Do not use it directly!
+        /// The InputPanel layout type error type. Do not use it directly!
         /// </summary>
         Invalid,
 
         /// <summary>
-        /// InputPanel layout type hexadecimal.
+        /// The InputPanel layout type hexadecimal.
         /// </summary>
         Hex,
 
         /// <summary>
-        /// InputPanel layout type terminal type, esc, alt, ctrl, etc.
+        /// The InputPanel layout type terminal type: Esc, Alt, Ctrl, etc.
         /// </summary>
         Terminal,
 
         /// <summary>
-        /// InputPanel layout type password.
+        /// The InputPanel layout type password.
         /// </summary>
         Password,
 
         /// <summary>
-        /// Keyboard layout type date and time.
+        /// The keyboard layout type date and time.
         /// </summary>
         DateTime,
 
         /// <summary>
-        /// InputPanel layout type emoticons.
+        /// The InputPanel layout type emoticons.
         /// </summary>
         Emoticon
     }
 
     /// <summary>
-    /// Enumeration that defines the "Return" key types on the input panel (virtual keyboard).
+    /// Enumeration for defining the "Return" key types on the input panel (virtual keyboard).
     /// </summary>
     /// <since_tizen> preview </since_tizen>
     public enum InputPanelReturnKeyType
     {
         /// <summary>
-        /// Default key type
+        /// The Default key type.
         /// </summary>
         Default,
 
         /// <summary>
-        /// Done key type
+        /// The Done key type.
         /// </summary>
         Done,
 
         /// <summary>
-        /// Go key type
+        /// The Go key type.
         /// </summary>
         Go,
 
         /// <summary>
-        /// Join key type
+        /// The Join key type.
         /// </summary>
         Join,
 
         /// <summary>
-        /// Login key type
+        /// The Login key type.
         /// </summary>
         Login,
 
         /// <summary>
-        /// Next key type
+        /// The Next key type.
         /// </summary>
         Next,
 
         /// <summary>
-        /// Search string or magnifier icon key type
+        /// The Search string or magnifier icon key type.
         /// </summary>
         Search,
 
         /// <summary>
-        /// Send key type
+        /// The Send key type.
         /// </summary>
         Send,
 
         /// <summary>
-        /// Sign-in key type
+        /// The Sign-in key type.
         /// </summary>
         Signin
     }
 
     /// <summary>
-    /// Enumeration that defines the autocapitalization types.
+    /// Enumeration for defining the autocapitalization types.
     /// </summary>
     /// <since_tizen> preview </since_tizen>
     public enum AutoCapital
     {
         /// <summary>
-        /// No autocapitalization when typing
+        /// No autocapitalization when typing.
         /// </summary>
         None,
 
         /// <summary>
-        /// Autocapitalize each typed word
+        /// Autocapitalize each of the typed word.
         /// </summary>
         Word,
 
         /// <summary>
-        /// Autocapitalize the start of each sentence
+        /// Autocapitalize the start of each sentence.
         /// </summary>
         Sentence,
 
         /// <summary>
-        /// Autocapitalize all letters
+        /// Autocapitalize all the letters.
         /// </summary>
         All
     }
 
     /// <summary>
-    /// Enumeration that defines the entry's copy and paste policy.
+    /// Enumeration for defining the entry's copy and paste policy.
     /// </summary>
     /// <since_tizen> preview </since_tizen>
     public enum CopyAndPasteMode
     {
         /// <summary>
-        /// Copy and paste text with markup tag
+        /// Copy and paste text with a markup tag.
         /// </summary>
         Markup,
 
         /// <summary>
-        /// Copy and paste text without item(image) tag
+        /// Copy and paste text without an item (image) tag.
         /// </summary>
         NoImage,
 
         /// <summary>
-        /// Copy and paste text without markup tag
+        /// Copy and paste text without a markup tag.
         /// </summary>
         PlainText
     }
 
     /// <summary>
-    /// Enumeration that defines the text format types.
+    /// Enumeration for the text format types.
     /// </summary>
     /// <since_tizen> preview </since_tizen>
     public enum TextFormat
     {
         /// <summary>
-        /// Plain type
+        /// Plain type.
         /// </summary>
         Plain,
 
         /// <summary>
-        /// Markup type
+        /// Markup type.
         /// </summary>
         Markup
     }
@@ -222,40 +222,40 @@ namespace ElmSharp
     public enum InputHints
     {
         /// <summary>
-        /// No active hints
+        /// No active hints.
         /// </summary>
         None,
 
         /// <summary>
-        /// suggest word auto completion
+        /// Suggest word auto-completion.
         /// </summary>
         AutoComplete,
 
         /// <summary>
-        /// typed text should not be stored.
+        /// The typed text should not be stored.
         /// </summary>
         SensitiveData,
     }
 
     /// <summary>
-    /// Enumeration that defines the input panel (virtual keyboard) language modes.
+    /// Enumeration for defining the input panel (virtual keyboard) language modes.
     /// </summary>
     /// <since_tizen> preview </since_tizen>
     public enum InputPanelLanguage
     {
         /// <summary>
-        /// Automatic language mode
+        /// Automatic language mode.
         /// </summary>
         Automatic,
 
         /// <summary>
-        /// Alphabet language mode
+        /// Alphabet language mode.
         /// </summary>
         Alphabet,
     }
 
     /// <summary>
-    /// The entry is a convenience widget that shows a box in which the user can enter text.
+    /// The Entry is a convenience widget that shows a box in which the user can enter text.
     /// </summary>
     /// <since_tizen> preview </since_tizen>
     public class Entry : Layout
@@ -289,7 +289,7 @@ namespace ElmSharp
         }
 
         /// <summary>
-        /// Activated will be triggered when the entry in Activated stated.
+        /// Activated will be triggered when the entry is activated.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
         public event EventHandler Activated;
@@ -301,13 +301,13 @@ namespace ElmSharp
         public event EventHandler Clicked;
 
         /// <summary>
-        /// ChangedByUser will be triggered when the entry changed by user.
+        /// ChangedByUser will be triggered when the entry is changed by user.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
         public event EventHandler ChangedByUser;
 
         /// <summary>
-        /// CursorChanged will be triggered when the Cursor in the entry is changed.
+        /// CursorChanged will be triggered when the cursor in the entry is changed.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
         public event EventHandler CursorChanged;
@@ -373,7 +373,7 @@ namespace ElmSharp
         }
 
         /// <summary>
-        /// Sets or gets text currently shown in the object entry.
+        /// Sets or gets the text currently shown in the object entry.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
         public override string Text
@@ -389,9 +389,9 @@ namespace ElmSharp
         }
 
         /// <summary>
-        /// Sets or gets the style on the top of the user style stack.
+        /// Sets or gets the style on top of the user style stack.
         /// </summary>
-        /// <remarks>If there is styles in the user style stack, the properties in the top style of user style stack will replace the properties in current theme. The input style is specified in format tag='property=value' (i.e. DEFAULT='font=Sans font_size=60'hilight=' + font_weight=Bold').</remarks>
+        /// <remarks>If there are styles in the user style stack, the properties in the top style of the user style stack will replace the properties in current theme. The input style is specified in the format, tag='property=value' (i.e., DEFAULT='font=Sans font_size=60'hilight=' + font_weight=Bold').</remarks>
         /// <since_tizen> preview </since_tizen>
         public string TextStyle
         {
@@ -445,7 +445,7 @@ namespace ElmSharp
         }
 
         /// <summary>
-        /// Sets or Gets the autocapitalization type on the immodule.
+        /// Sets or gets the autocapitalization type on the immodule.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
         public AutoCapital AutoCapital
@@ -461,7 +461,7 @@ namespace ElmSharp
         }
 
         /// <summary>
-        /// Sets or Gets the entry object's 'autosave' status.
+        /// Sets or gets the entry object's 'autosave' status.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
         public bool IsAutoSave
@@ -477,7 +477,7 @@ namespace ElmSharp
         }
 
         /// <summary>
-        /// Sets or Gets entry text paste/drop mode.
+        /// Sets or gets the entry text paste/drop mode.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
         public CopyAndPasteMode CopyAndPasteMode
@@ -531,7 +531,7 @@ namespace ElmSharp
         }
 
         /// <summary>
-        /// Sets or Gets the value of input hint.
+        /// Sets or gets the value of the input hint.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
         public InputHints InputHint
@@ -579,7 +579,7 @@ namespace ElmSharp
         }
 
         /// <summary>
-        /// Sets or gets the line wrap type to use on multi-line entries.
+        /// Sets or gets the line wrap type to use on multiline entries.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
         public WrapType LineWrapType
@@ -627,9 +627,9 @@ namespace ElmSharp
         }
 
         /// <summary>
-        /// Sets or gets the attribute to show the input panel in case of only an user's explicit Mouse Up event.
+        /// Sets or gets the attribute to show the input panel, in case of only an user's explicit Mouse Up event.
         /// It doesn't request to show the input panel even though it has focus.
-        /// If true, the input panel will be shown in case of only Mouse up event. (Focus event will be ignored.)
+        /// If true, the input panel will be shown only in case of the Mouse up event (Focus event will be ignored).
         /// </summary>
         /// <since_tizen> preview </since_tizen>
         public bool InputPanelShowByOnDemand
@@ -647,8 +647,8 @@ namespace ElmSharp
         /// <summary>
         /// Sets the file (and implicitly loads it) for the text to display and then edit.
         /// </summary>
-        /// <param name="file">The path to the file to load and save</param>
-        /// <param name="textFormat">The file format</param>
+        /// <param name="file">The path to the file to load and save.</param>
+        /// <param name="textFormat">The file format.</param>
         /// <since_tizen> preview </since_tizen>
         public void SetFile(string file, TextFormat textFormat)
         {
@@ -658,8 +658,8 @@ namespace ElmSharp
         /// <summary>
         /// Converts a markup (HTML-like) string into UTF-8.
         /// </summary>
-        /// <param name="markup">The string (in markup) to be converted</param>
-        /// <returns>The converted string (in UTF-8) </returns>
+        /// <param name="markup">The string (in markup) to be converted.</param>
+        /// <returns>The converted string (in UTF-8).</returns>
         /// <since_tizen> preview </since_tizen>
         public static string ConvertMarkupToUtf8(string markup)
         {
@@ -679,7 +679,7 @@ namespace ElmSharp
         /// <summary>
         /// Moves the cursor one place to the left within the entry.
         /// </summary>
-        /// <returns>TRUE on success, otherwise FALSE on failure</returns>
+        /// <returns>TRUE on success, otherwise FALSE on failure.</returns>
         /// <since_tizen> preview </since_tizen>
         public bool MoveCursorPrev()
         {
@@ -689,7 +689,7 @@ namespace ElmSharp
         /// <summary>
         /// Moves the cursor one line up within the entry.
         /// </summary>
-        /// <returns>TRUE on success, otherwise FALSE on failure</returns>
+        /// <returns>TRUE on success, otherwise FALSE on failure.</returns>
         /// <since_tizen> preview </since_tizen>
         public bool MoveCursorUp()
         {
@@ -699,7 +699,7 @@ namespace ElmSharp
         /// <summary>
         /// Moves the cursor one line down within the entry.
         /// </summary>
-        /// <returns>TRUE on success, otherwise FALSE on failure</returns>
+        /// <returns>TRUE on success, otherwise FALSE on failure.</returns>
         /// <since_tizen> preview </since_tizen>
         public bool MoveCursorDown()
         {
@@ -745,7 +745,7 @@ namespace ElmSharp
         /// <summary>
         /// Sets the input panel layout of the entry.
         /// </summary>
-        /// <param name="layout">The layout type</param>
+        /// <param name="layout">The layout type.</param>
         /// <since_tizen> preview </since_tizen>
         public void SetInputPanelLayout(InputPanelLayout layout)
         {
@@ -755,7 +755,7 @@ namespace ElmSharp
         /// <summary>
         /// Sets the attribute to show the input panel automatically.
         /// </summary>
-        /// <param name="enabled">If true the input panel appears when the entry is clicked or has focus, otherwise false</param>
+        /// <param name="enabled">If true, the input panel appears when the entry is clicked or has focus, otherwise false.</param>
         /// <since_tizen> preview </since_tizen>
         public void SetInputPanelEnabled(bool enabled)
         {
@@ -765,7 +765,7 @@ namespace ElmSharp
         /// <summary>
         /// Sets the "return" key type. This type is used to set the string or icon on the "return" key of the input panel.
         /// </summary>
-        /// <param name="keyType">The type of "return" key on the input panel</param>
+        /// <param name="keyType">The type of "return" key on the input panel.</param>
         /// <since_tizen> preview </since_tizen>
         public void SetInputPanelReturnKeyType(InputPanelReturnKeyType keyType)
         {
@@ -804,7 +804,7 @@ namespace ElmSharp
         }
 
         /// <summary>
-        /// Forces calculation of the entry size and text layouting.
+        /// Forces calculation of the entry size and text layout.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
         public void ForceCalculation()
@@ -823,7 +823,7 @@ namespace ElmSharp
         }
 
         /// <summary>
-        /// Begins a selection within the entry as though the user were holding down the mouse button to make a selection.
+        /// Begins a selection within the entry, as though the user was holding down the mouse button to make a selection.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
         public void BeginCursorSelection()
@@ -834,7 +834,7 @@ namespace ElmSharp
         /// <summary>
         /// Appends the text of the entry.
         /// </summary>
-        /// <param name="text">The text to be displayed</param>
+        /// <param name="text">The text to be displayed.</param>
         /// <since_tizen> preview </since_tizen>
         public void AppendText(string text)
         {
@@ -842,10 +842,10 @@ namespace ElmSharp
         }
 
         /// <summary>
-        /// Sets or gets the value of HorizontalScrollBarVisiblePolicy
+        /// Sets or gets the value of the HorizontalScrollBarVisiblePolicy.
         /// </summary>
         /// <remarks>
-        /// ScrollBarVisiblePolicy.Auto means the horizontal scrollbar is made visible if it is needed, and otherwise kept hidden.
+        /// ScrollBarVisiblePolicy.Auto means that the horizontal scrollbar is made visible if it is needed, or otherwise kept hidden.
         /// ScrollBarVisiblePolicy.Visible turns it on all the time, and ScrollBarVisiblePolicy.Invisible always keeps it off.
         /// </remarks>
         /// <since_tizen> preview </since_tizen>
@@ -865,10 +865,10 @@ namespace ElmSharp
         }
 
         /// <summary>
-        /// Sets or gets the value of VerticalScrollBarVisiblePolicy
+        /// Sets or gets the value of VerticalScrollBarVisiblePolicy.
         /// </summary>
         /// <remarks>
-        /// ScrollBarVisiblePolicy.Auto means the vertical scrollbar is made visible if it is needed, and otherwise kept hidden.
+        /// ScrollBarVisiblePolicy.Auto means that the vertical scrollbar is made visible if it is needed, or otherwise kept hidden.
         /// ScrollBarVisiblePolicy.Visible turns it on all the time, and ScrollBarVisiblePolicy.Invisible always keeps it off.
         /// </remarks>
         /// <since_tizen> preview </since_tizen>
@@ -888,11 +888,11 @@ namespace ElmSharp
         }
 
         /// <summary>
-        /// Sets or gets the vertical bounce behaviour.
+        /// Sets or gets the vertical bounce behavior.
         /// When scrolling, the scroller may "bounce" when reaching an edge of the content object.
-        /// This is a visual way to indicate the end has been reached.
-        /// This is enabled by default for both axis.
-        /// This API will set if it is enabled for the given axis with the boolean parameters for each axis.
+        /// This is a visual way to indicate that the end has reached.
+        /// This is enabled by default for both the axis.
+        /// This API will be set if it is enabled for the given axis with boolean parameters for each axis.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
         public bool VerticalBounce
@@ -911,11 +911,11 @@ namespace ElmSharp
         }
 
         /// <summary>
-        /// Sets or gets the horizontal bounce behaviour.
+        /// Sets or gets the horizontal bounce behavior.
         /// When scrolling, the scroller may "bounce" when reaching an edge of the content object.
-        /// This is a visual way to indicate the end has been reached.
-        /// This is enabled by default for both axis.
-        /// This API will set if it is enabled for the given axis with the boolean parameters for each axis.
+        /// This is a visual way to indicate that the end has reached.
+        /// This is enabled by default for both the axis.
+        /// This API will be set if it is enabled for the given axis with boolean parameters for each axis.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
         public bool HorizontalBounce
@@ -936,7 +936,7 @@ namespace ElmSharp
         /// <summary>
         /// Inserts the given text into the entry at the current cursor position.
         /// </summary>
-        /// <param name="text"></param>
+        /// <param name="text">The text to be inserted.</param>
         /// <since_tizen> preview </since_tizen>
         public void InsertTextToCursor(string text)
         {
@@ -953,7 +953,7 @@ namespace ElmSharp
         }
 
         /// <summary>
-        /// Writes any changes made to the file that is set by File.
+        /// Writes any changes made to the file that is set by a file.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
         public void SaveFile()
@@ -962,11 +962,11 @@ namespace ElmSharp
         }
 
         /// <summary>
-        /// Show the input panel (virtual keyboard) based on the input panel property of entry such as layout, autocapital types, and so on.
+        /// Show the input panel (virtual keyboard) based on the input panel property of the entry such as layout, autocapital types, and so on.
         /// </summary>
         /// <remarks>
-        /// Note that input panel is shown or hidden automatically according to the focus state of entry widget.
-        /// This API can be used in the case of manually controlling by using SetInputPanelEnabled(false).
+        /// Note that the input panel is shown or hidden automatically according to the focus state of the entry widget.
+        /// This API can be used in the case of manual control by using the SetInputPanelEnabled(false).
         /// </remarks>
         /// <since_tizen> preview </since_tizen>
         public void ShowInputPanel()
@@ -1035,7 +1035,7 @@ namespace ElmSharp
         }
 
         /// <summary>
-        /// Append a markup filter function for text inserted in the entry.
+        /// Appends a markup filter function for text inserted in the entry.
         /// </summary>
         /// <param name="filter">This function type is used by entry filters to modify text.</param>
         /// <since_tizen> preview </since_tizen>
@@ -1061,7 +1061,7 @@ namespace ElmSharp
         }
 
         /// <summary>
-        /// Prepend a markup filter function for text inserted in the entry.
+        /// Prepends a markup filter function for text inserted in the entry.
         /// </summary>
         /// <param name="filter">This function type is used by entry filters to modify text.</param>
         /// <since_tizen> preview </since_tizen>
@@ -1087,7 +1087,7 @@ namespace ElmSharp
         }
 
         /// <summary>
-        /// Remove a markup filter
+        /// Removes a markup filter.
         /// </summary>
         /// <param name="filter">This function type is used by entry filters to modify text.</param>
         /// <since_tizen> preview </since_tizen>
@@ -1131,9 +1131,9 @@ namespace ElmSharp
         }
 
         /// <summary>
-        /// This disabled the entry's selection.
+        /// This disables the entry's selection.
         /// </summary>
-        /// <param name="disable">If true, the selection are disabled.</param>
+        /// <param name="disable">If true, the selection is disabled.</param>
         /// <since_tizen> preview </since_tizen>
         public void DisableSelection(bool disable)
         {
@@ -1141,9 +1141,9 @@ namespace ElmSharp
         }
 
         /// <summary>
-        /// Get any selected text within the entry.
+        /// Gets any selected text within the entry.
         /// </summary>
-        /// <returns>Selection's value</returns>
+        /// <returns>Selection's value.</returns>
         /// <since_tizen> preview </since_tizen>
         public string GetSelection()
         {
@@ -1153,7 +1153,7 @@ namespace ElmSharp
         /// <summary>
         /// This selects a region of text within the entry.
         /// </summary>
-        /// <param name="start">The starting position.</param>
+        /// <param name="start">The start position.</param>
         /// <param name="end">The end position.</param>
         /// <since_tizen> preview </since_tizen>
         public void SetSelectionRegion(int start, int end)
@@ -1162,9 +1162,9 @@ namespace ElmSharp
         }
 
         /// <summary>
-        /// Sets the visibility of the left-side widget of the entry
+        /// Sets the visibility of the left-side widget of the entry.
         /// </summary>
-        /// <param name="isDisplay">true if the object should be displayed, false if not.</param>
+        /// <param name="isDisplay">true if the object should be displayed, otherwise false.</param>
         /// <since_tizen> preview </since_tizen>
         public void SetIconVisible(bool isDisplay)
         {
@@ -1172,7 +1172,7 @@ namespace ElmSharp
         }
 
         /// <summary>
-        /// Set whether the return key on the input panel is disabled automatically when entry has no text.
+        /// Sets whether the return key on the input panel is disabled automatically, when the entry has no text.
         /// </summary>
         /// <param name="enable">If enabled is true, the return key is automatically disabled when the entry has no text.</param>
         /// <since_tizen> preview </since_tizen>
@@ -1184,8 +1184,8 @@ namespace ElmSharp
         /// <summary>
         /// Creates a widget handle.
         /// </summary>
-        /// <param name="parent">Parent EvasObject</param>
-        /// <returns>Handle IntPtr</returns>
+        /// <param name="parent">Parent EvasObject.</param>
+        /// <returns>Handle IntPtr.</returns>
         /// <since_tizen> preview </since_tizen>
         protected override IntPtr CreateHandle(EvasObject parent)
         {

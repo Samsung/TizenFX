@@ -20,33 +20,33 @@ using System.Runtime.InteropServices;
 namespace Tizen.WebView
 {
     /// <summary>
-    /// Enumeration that provides an option to error codes.
+    /// Enumeration for providing an option to the error codes.
     /// </summary>
     /// <since_tizen> 4 </since_tizen>
     public enum LoadErrorCode
     {
         /// <summary>
-        /// Unknown
+        /// Unknown.
         /// </summary>
         Unknown = 0,
         /// <summary>
-        /// User canceled
+        /// User canceled.
         /// </summary>
         Canceled,
         /// <summary>
-        /// Can't show page for this MIME Type.
+        /// Can't show the page for this MIME type.
         /// </summary>
         CantSupportMimetype,
         /// <summary>
-        /// File IO error
+        /// File IO error.
         /// </summary>
         FailedFileIo,
         /// <summary>
-        /// Cannot connect to network.
+        /// Cannot connect to the network.
         /// </summary>
         CantConnect,
         /// <summary>
-        /// Fail to look up host from DNS.
+        /// Fail to look up host from the DNS.
         /// </summary>
         CantLookupHost,
         /// <summary>
@@ -58,37 +58,37 @@ namespace Tizen.WebView
         /// </summary>
         InvalidCertificate,
         /// <summary>
-        /// Connection timeout
+        /// Connection timeout.
         /// </summary>
         RequestTimeout,
         /// <summary>
-        /// Too many redirects
+        /// Too many redirects.
         /// </summary>
         TooManyRedirects,
         /// <summary>
-        /// Too many requests during this load
+        /// Too many requests during this load.
         /// </summary>
         TooManyRequests,
         /// <summary>
-        /// Malformed url
+        /// Malformed URL.
         /// </summary>
         BadUrl,
         /// <summary>
-        /// Unsupported scheme
+        /// Unsupported scheme.
         /// </summary>
         UnsupportedScheme,
         /// <summary>
-        /// User authentication failed on server
+        /// User authentication failed on the server.
         /// </summary>
         Authentication,
         /// <summary>
-        /// Web server has internal server error.
+        /// Web server has an internal server error.
         /// </summary>
         InternalServer,
     }
 
     /// <summary>
-    /// Argument from the LoadError SmartCallback.
+    /// Arguments from the LoadError SmartCallback.
     /// </summary>
     /// <since_tizen> 4 </since_tizen>
     public class SmartCallbackLoadErrorArgs : EventArgs

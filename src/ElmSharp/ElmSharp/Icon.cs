@@ -25,35 +25,35 @@ namespace ElmSharp
     public enum IconLookupOrder
     {
         /// <summary>
-        /// Icon look up order: freedesktop, theme
+        /// Icon look up order: freedesktop, theme.
         /// </summary>
         FreeDesktopFirst = 0,
         /// <summary>
-        /// Icon look up order: theme, freedesktop
+        /// Icon look up order: theme, freedesktop.
         /// </summary>
         ThemeFirst,
         /// <summary>
-        /// Icon look up order: freedesktop
+        /// Icon look up order: freedesktop.
         /// </summary>
         FreeDesktopOnly,
         /// <summary>
-        /// Icon look up order: theme
+        /// Icon look up order: theme.
         /// </summary>
         ThemeOnly
     }
 
     /// <summary>
-    /// The Icon is a widget that displays standard icon images ("delete", "edit", "arrows", etc.)
-    /// or images coming from a custom file (PNG, JPG, EDJE, etc.), on icon context.
-    /// Inherits Image
+    /// The Icon is a widget that displays the standard icon images ("delete", "edit", "arrows", etc.)
+    /// or images coming from a custom file (PNG, JPG, EDJE, etc.), on the icon context.
+    /// Inherits Image.
     /// </summary>
     /// <since_tizen> preview </since_tizen>
     public class Icon : Image
     {
         /// <summary>
-        /// Creates and initializes a new instance of Icon class.
+        /// Creates and initializes a new instance of the Icon class.
         /// </summary>
-        /// <param name="parent">The parent is a given container which will be attached by Icon as a child. It's <see cref="EvasObject"/> type.</param>
+        /// <param name="parent">The parent is a given container, which will be attached by Icon as a child. It's <see cref="EvasObject"/> type.</param>
         /// <since_tizen> preview </since_tizen>
         public Icon(EvasObject parent) : base(parent)
         {
@@ -94,8 +94,8 @@ namespace ElmSharp
         /// <summary>
         /// Sets the file that is used, but uses a generated thumbnail.
         /// </summary>
-        /// <param name="file">The path to the file that is used as an icon image</param>
-        /// <param name="group">The group that the icon belongs to</param>
+        /// <param name="file">The path to the file that is used as an icon image.</param>
+        /// <param name="group">The group that the icon belongs to.</param>
         /// <since_tizen> preview </since_tizen>
         public void SetThumb(string file, string group)
         {
@@ -106,7 +106,7 @@ namespace ElmSharp
         /// Adds a new icon object to the parent.
         /// </summary>
         /// <param name="parent">EvasObject</param>
-        /// <returns>The new object, otherwise NULL if it cannot be created</returns>
+        /// <returns>The new object, otherwise null if it cannot be created.</returns>
         /// <since_tizen> preview </since_tizen>
         protected override IntPtr CreateHandle(EvasObject parent)
         {

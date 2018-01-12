@@ -20,7 +20,7 @@ using System.ComponentModel;
 namespace ElmSharp
 {
     /// <summary>
-    /// The type of item's part type.
+    /// The type of the item's part types.
     /// </summary>
     /// <since_tizen> preview </since_tizen>
     [Flags]
@@ -32,7 +32,7 @@ namespace ElmSharp
         All = 0,
 
         /// <summary>
-        /// The text part type.
+        /// The Text part type.
         /// </summary>
         Text = (1 << 0),
 
@@ -42,7 +42,7 @@ namespace ElmSharp
         Content = (1 << 1),
 
         /// <summary>
-        /// The state of part.
+        /// The State part type.
         /// </summary>
         State = (1 << 2),
 
@@ -54,8 +54,8 @@ namespace ElmSharp
 
     /// <summary>
     /// It inherits <see cref="GenItem"/>.
-    /// A instance to the genlist item added.
-    /// It contains Update() method to update a genlist item which is given.
+    /// A instance to the genlist item is added.
+    /// It contains the Update() method to update a genlist item which is given.
     /// </summary>
     /// <since_tizen> preview </since_tizen>
     public class GenListItem : GenItem
@@ -98,9 +98,9 @@ namespace ElmSharp
 
         /// <summary>
         /// Updates the content of an item.
-        /// This updates an item by calling all the <see cref="GenItemClass"/> again to get the content, text, and states.
+        /// This updates an item by calling all <see cref="GenItemClass"/> again to get the content, text, and states.
         /// Use this when the original item data has changed and the changes are desired to reflect.
-        /// To update already realized items, use <see cref="GenList.UpdateRealizedItems"/>.
+        /// To update the already realized items, use <see cref="GenList.UpdateRealizedItems"/>.
         /// </summary>
         /// <seealso cref="GenList.UpdateRealizedItems"/>
         /// <since_tizen> preview </since_tizen>
@@ -111,12 +111,12 @@ namespace ElmSharp
 
         /// <summary>
         /// Updates the part of an item.
-        /// This updates an item's part by calling item's fetching functions again to get the contents, texts and states.
+        /// This updates an item's part by calling the item's fetching functions again to get the contents, texts, and states.
         /// Use this when the original item data has changed and the changes are desired to be reflected.
         /// To update an item's all property, use <see cref="GenList.UpdateRealizedItems"/>.
         /// </summary>
-        /// <param name="part">The part could be "elm.text", "elm.swalllow.icon", "elm.swallow.end", "elm.swallow.content" and so on. It is also used for globbing to match '*', '?', and '.'. It can be used at updating multi fields.</param>
-        /// <param name="type">The type of item's part type.</param>
+        /// <param name="part">The part could be "elm.text", "elm.swalllow.icon", "elm.swallow.end", "elm.swallow.content", and so on. It is also used for globbing to match '*', '?', and '.'. It can be used for updating multi-fields.</param>
+        /// <param name="type">The type of the item's part type.</param>
         /// <seealso cref="GenList.UpdateRealizedItems"/>
         /// <since_tizen> preview </since_tizen>
         public void UpdateField(string part, GenListItemFieldType type)
@@ -125,7 +125,7 @@ namespace ElmSharp
         }
 
         /// <summary>
-        /// Demote an item to the end of the list.
+        /// Demotes an item to the end of the list.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
         public void DemoteItem()
@@ -167,7 +167,7 @@ namespace ElmSharp
         }
 
         /// <summary>
-        /// Get the previous item in a genlist widget's internal list of items.
+        /// Gets the previous item in a genlist widget's internal list of items.
         /// </summary>
         /// <seealso cref="Next"/>
         /// <since_tizen> preview </since_tizen>
@@ -184,7 +184,7 @@ namespace ElmSharp
         }
 
         /// <summary>
-        /// Sets or gets the content to be shown in the tooltip item
+        /// Sets or gets the content to be shown in the tooltip item.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
         [EditorBrowsable(EditorBrowsableState.Never)]
@@ -242,7 +242,7 @@ namespace ElmSharp
         }
 
         /// <summary>
-        /// Set the text to be shown in the genlist item.
+        /// Sets the text to be shown in the genlist item.
         /// </summary>
         /// <param name="tooltip">The text to set in the content.</param>
         /// <since_tizen> preview </since_tizen>
@@ -252,7 +252,7 @@ namespace ElmSharp
         }
 
         /// <summary>
-        /// Unset tooltip from item.
+        /// Unsets the tooltip from the item.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
         public override void UnsetTooltip()
@@ -261,7 +261,7 @@ namespace ElmSharp
         }
 
         /// <summary>
-        /// Gets or sets the style of given genlist item's tooltip.
+        /// Gets or sets the style of the given genlist item's tooltip.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
         public override string TooltipStyle
@@ -277,7 +277,7 @@ namespace ElmSharp
         }
 
         /// <summary>
-        /// Gets or sets whether disable size restrictions on an object's tooltip.
+        /// Gets or sets the disable size restrictions on an object's tooltip.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
         public bool IsTooltipWindowMode
@@ -293,7 +293,7 @@ namespace ElmSharp
         }
 
         /// <summary>
-        /// Gets the index of the item. It is only valid once displayed.
+        /// Gets the index of the item. It is only valid, once displayed.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
         public int Index
@@ -305,7 +305,7 @@ namespace ElmSharp
         }
 
         /// <summary>
-        /// Gets the depth of expanded item.
+        /// Gets the depth of the expanded item.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
         public int ExpandedItemDepth
@@ -317,10 +317,10 @@ namespace ElmSharp
         }
 
         /// <summary>
-        /// Remove all sub-items (children) of the given item.
+        /// Remove all the subitems (children) of the given item.
         /// </summary>
         /// <remarks>
-        /// This removes all items that are children (and their descendants) of the given item it.
+        /// This removes the items that are the children (and their descendants) of the given item.
         /// </remarks>
         /// <since_tizen> preview </since_tizen>
         public void ClearSubitems()
@@ -329,7 +329,7 @@ namespace ElmSharp
         }
 
         /// <summary>
-        /// Update the item class of an item.
+        /// Updates the item class of the item.
         /// This sets another class of the item, changing the way that it is displayed. After changing the item class, <see cref="Update"/> is called on the item.
         /// </summary>
         /// <param name="itemClass">The item class for the item.</param>
@@ -343,7 +343,7 @@ namespace ElmSharp
         }
 
         /// <summary>
-        /// Set the content to be shown in the tooltip item.
+        /// Sets the content to be shown in the tooltip item.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
         protected override void UpdateTooltipDelegate()

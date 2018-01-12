@@ -19,7 +19,7 @@ using System;
 namespace Tizen.Applications
 {
     /// <summary>
-    /// Arguments for the event that reaised when the time tick comes.
+    /// Arguments for the event that are raised when the time tick comes.
     /// </summary>
     /// <since_tizen> 4 </since_tizen>
     public class TimeEventArgs : EventArgs

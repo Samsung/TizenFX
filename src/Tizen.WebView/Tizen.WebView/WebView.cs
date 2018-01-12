@@ -22,7 +22,7 @@ using System.Runtime.InteropServices;
 namespace Tizen.WebView
 {
     /// <summary>
-    /// A view used to render web contents.
+    /// A view used to render the web contents.
     /// </summary>
     /// <since_tizen> 4 </since_tizen>
     public class WebView: EvasObject
@@ -48,31 +48,31 @@ namespace Tizen.WebView
 
 
         /// <summary>
-        /// Event that occurs when load started.
+        /// Event that occurs when the load is started.
         /// </summary>
         /// <since_tizen> 4 </since_tizen>
         public event EventHandler LoadStarted;
 
         /// <summary>
-        /// Event that occurs when load finished.
+        /// Event that occurs when the load is finished.
         /// </summary>
         /// <since_tizen> 4 </since_tizen>
         public event EventHandler LoadFinished;
 
         /// <summary>
-        /// Event that occurs when load error.
+        /// Event that occurs when the load throws an error.
         /// </summary>
         /// <since_tizen> 4 </since_tizen>
         public event EventHandler<SmartCallbackLoadErrorArgs> LoadError;
 
         /// <summary>
-        /// Event that occurs when title of main frame was changed.
+        /// Event that occurs when the title of the main frame is changed.
         /// </summary>
         /// <since_tizen> 4 </since_tizen>
         public event EventHandler<SmartCallbackArgs> TitleChanged;
 
         /// <summary>
-        /// Event that occurs when URL of main frame was changed.
+        /// Event that occurs when the URL of the main frame is changed.
         /// </summary>
         /// <since_tizen> 4 </since_tizen>
         public event EventHandler<SmartCallbackArgs> UrlChanged;
@@ -131,9 +131,9 @@ namespace Tizen.WebView
         }
 
         /// <summary>
-        /// Create a WebView object.
+        /// Creates a WebView object.
         /// </summary>
-        /// <param name="parent">Parent object of WebView</param>
+        /// <param name="parent">Parent object of the WebView.</param>
         /// <since_tizen> 4 </since_tizen>
         public WebView(EvasObject parent) : base(parent)
         {
@@ -141,9 +141,9 @@ namespace Tizen.WebView
         }
 
         /// <summary>
-        /// Gets the Context object of this view.
+        /// Gets the context object of this view.
         /// </summary>
-        /// <returns>The Context object of this view</returns>
+        /// <returns>The context object of this view.</returns>
         /// <since_tizen> 4 </since_tizen>
         public Context GetContext()
         {
@@ -160,9 +160,9 @@ namespace Tizen.WebView
         }
 
         /// <summary>
-        /// Gets the Settings object of this view.
+        /// Gets the settings object of this view.
         /// </summary>
-        /// <returns>The Settings object of this view</returns>
+        /// <returns>The settings object of this view.</returns>
         /// <since_tizen> 4 </since_tizen>
         public Settings GetSettings()
         {
@@ -182,9 +182,9 @@ namespace Tizen.WebView
         /// Asks the object to load the given URL.
         /// </summary>
         /// <remarks>
-        /// You can only be sure that url changed after UrlChanged event.
+        /// You can only be sure that the URL changes after UrlChanged event.
         /// </remarks>
-        /// <param name="url">The uniform resource identifier to load</param>
+        /// <param name="url">The uniform resource identifier to load.</param>
         /// <since_tizen> 4 </since_tizen>
         public void LoadUrl(string url)
         {
@@ -192,10 +192,10 @@ namespace Tizen.WebView
         }
 
         /// <summary>
-        /// Loads the specified html string as the content of the view.
+        /// Loads the specified HTML string as the content of the view.
         /// </summary>
-        /// <param name="html">HTML data to load</param>
-        /// <param name="baseUrl">Base URL used for relative paths to external objects</param>
+        /// <param name="html">HTML data to load.</param>
+        /// <param name="baseUrl">Base URL used for relative paths to external objects.</param>
         /// <since_tizen> 4 </since_tizen>
         public void LoadHtml(string html, string baseUrl)
         {
@@ -239,9 +239,9 @@ namespace Tizen.WebView
         }
 
         /// <summary>
-        /// Checks whether it is possible to navigate backwards one item in history.
+        /// Checks whether it is possible to navigate backward one item in history.
         /// </summary>
-        /// <returns>Whether it is possible to navigate backwards one item in history</returns>
+        /// <returns>Whether it is possible to navigate backward one item in history.</returns>
         /// <since_tizen> 4 </since_tizen>
         public bool CanGoBack()
         {
@@ -249,9 +249,9 @@ namespace Tizen.WebView
         }
 
         /// <summary>
-        /// Checks whether it is possible to navigate forwards one item in history.
+        /// Checks whether it is possible to navigate forward one item in history.
         /// </summary>
-        /// <returns>Whether it is possible to navigate forwards one item in history</returns>
+        /// <returns>Whether it is possible to navigate forward one item in history.</returns>
         /// <since_tizen> 4 </since_tizen>
         public bool CanGoForward()
         {
@@ -261,9 +261,9 @@ namespace Tizen.WebView
         /// <summary>
         /// Injects the supplied javascript message handler into the view.
         /// </summary>
-        /// <param name="name"> The message callback</param>
-        /// <param name="handler">The name used to expose the object in JavaScript</param>
-        /// <returns>'true' on success, otherwise 'false'</returns>
+        /// <param name="name"> The message callback.</param>
+        /// <param name="handler">The name used to expose the object in JavaScript.</param>
+        /// <returns>'true' on success, otherwise 'false'.</returns>
         /// <since_tizen> 4 </since_tizen>
         public bool AddJavaScriptMessageHandler(string name, JavaScriptMessageHandler handler)
         {
@@ -298,10 +298,10 @@ namespace Tizen.WebView
         }
 
         /// <summary>
-        /// Requests the execution of given name and result to the JavaScript runtime.
+        /// Requests the execution of a given name and the result to the JavaScript runtime.
         /// </summary>
-        /// <param name="name">The name used to expose the object in JavaScript</param>
-        /// <param name="result">The result to the JavaScript runtime</param>
+        /// <param name="name">The name used to expose the object in JavaScript.</param>
+        /// <param name="result">The result to the JavaScript runtime.</param>
         /// <since_tizen> 4 </since_tizen>
         public void EvalWithResult(string name, string result)
         {
@@ -311,7 +311,7 @@ namespace Tizen.WebView
         /// <summary>
         /// Requests the execution of the given script.
         /// </summary>
-        /// <param name="script">The JavaScript code string to execute</param>
+        /// <param name="script">The JavaScript code string to execute.</param>
         /// <since_tizen> 4 </since_tizen>
         public void Eval(string script)
         {
@@ -321,7 +321,7 @@ namespace Tizen.WebView
         /// <summary>
         /// Requests to set or unset a view as the currently focused one.
         /// </summary>
-        /// <param name="focused">'true' to set the focus on the view, 'false' to remove the focus from the view</param>
+        /// <param name="focused">'true' to set the focus on the view, 'false' to remove the focus from the view.</param>
         /// <since_tizen> 4 </since_tizen>
         public void SetFocus(bool focused)
         {
@@ -331,8 +331,8 @@ namespace Tizen.WebView
         /// <summary>
         /// Creates a widget handle.
         /// </summary>
-        /// <param name="parent">Parent EvasObject</param>
-        /// <returns>IntPtr of the widget handle</returns>
+        /// <param name="parent">Parent EvasObject.</param>
+        /// <returns>IntPtr of the widget handle.</returns>
         /// <since_tizen> 4 </since_tizen>
         protected override IntPtr CreateHandle(EvasObject parent)
         {

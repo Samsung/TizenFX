@@ -19,13 +19,13 @@ using System;
 namespace ElmSharp
 {
     /// <summary>
-    /// EffectBase class for the TransitEffect
+    /// The EffectBase class for TransitEffect.
     /// </summary>
     /// <since_tizen> preview </since_tizen>
     public abstract class EffectBase
     {
         /// <summary>
-        /// EffectEneded event will be triggered when be effect ended.
+        /// EffectEnded event will be triggered when the effect has ended.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
         public event EventHandler EffectEnded;

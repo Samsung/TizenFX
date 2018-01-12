@@ -21,14 +21,14 @@ namespace ElmSharp
 {
     /// <summary>
     /// It inherits System.EventArgs.
-    /// It contains Item which is <see cref="GenGridItem"/> type.
-    /// All events of GenGrid contain GenGridItemEventArgs as a parameter.
+    /// It contains the item which is the <see cref="GenGridItem"/> type.
+    /// All events of the GenGrid contain GenGridItemEventArgs as a parameter.
     /// </summary>
     /// <since_tizen> preview </since_tizen>
     public class GenGridItemEventArgs : EventArgs
     {
         /// <summary>
-        /// Gets or sets GenGrid item.The return type is <see cref="GenGridItem"/>.
+        /// Gets or sets the gengrid item. The return type is <see cref="GenGridItem"/>.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
         public GenGridItem Item { get; set; }
@@ -42,9 +42,9 @@ namespace ElmSharp
 
     /// <summary>
     /// It inherits <see cref="Layout"/>.
-    /// The GenGrid is a widget that aims to position objects in a grid layout while actually creating and rendering only the visible ones.
-    /// It has two direction in which a given GenGrid widget expands while placing its items, horizontal and vertical.
-    /// The GenGrid items are represented through <see cref="GenItemClass"/> definition field details.
+    /// The GenGrid is a widget that aims to position objects in a grid layout, while actually creating and rendering only the visible ones.
+    /// It has two directions in which a given GenGrid widget expands while placing its items, horizontal and vertical.
+    /// The gengrid items are represented through the <see cref="GenItemClass"/> definition field details.
     /// </summary>
     /// <since_tizen> preview </since_tizen>
     public class GenGrid : Layout
@@ -67,7 +67,7 @@ namespace ElmSharp
         /// <summary>
         /// Creates and initializes a new instance of the GenGrid class.
         /// </summary>
-        /// <param name="parent">The parent is a given container which will be attached by GenGrid as a child. It's <see cref="EvasObject"/> type.</param>
+        /// <param name="parent">The parent is a given container which will be attached by GenGrid as a child. It's the <see cref="EvasObject"/> type.</param>
         /// <since_tizen> preview </since_tizen>
         public GenGrid(EvasObject parent) : base(parent)
         {
@@ -75,13 +75,13 @@ namespace ElmSharp
         }
 
         /// <summary>
-        /// ItemSelected is raised when a new gengrid item is selected.
+        /// ItemSelected is raised when a new GenGrid item is selected.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
         public event EventHandler<GenGridItemEventArgs> ItemSelected;
 
         /// <summary>
-        /// ItemUnselected is raised when the gengrid item is Unselected.
+        /// ItemUnselected is raised when the gengrid item is unselected.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
         public event EventHandler<GenGridItemEventArgs> ItemUnselected;
@@ -99,19 +99,19 @@ namespace ElmSharp
         public event EventHandler<GenGridItemEventArgs> ItemReleased;
 
         /// <summary>
-        /// ItemActivated is raised when a new gengrid item is double clicked or pressed (enter|return|spacebar).
+        /// ItemActivated is raised when a new gengrid item is double-clicked or pressed (enter|return|spacebar).
         /// </summary>
         /// <since_tizen> preview </since_tizen>
         public event EventHandler<GenGridItemEventArgs> ItemActivated;
 
         /// <summary>
-        /// ItemDoubleClicked is raised when a new gengrid item is double clicked.
+        /// ItemDoubleClicked is raised when a new gengrid item is double-clicked.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
         public event EventHandler<GenGridItemEventArgs> ItemDoubleClicked;
 
         /// <summary>
-        /// ItemRealized is raised when a gengrid item is implementing through <see cref="GenItemClass"/>.
+        /// ItemRealized is raised when a gengrid item is implemented through <see cref="GenItemClass"/>.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
         public event EventHandler<GenGridItemEventArgs> ItemRealized;
@@ -147,9 +147,9 @@ namespace ElmSharp
         public event EventHandler Changed;
 
         /// <summary>
-        /// Gets or sets the item's grid alignment along x-axis within a given gengrid widget.
+        /// Gets or sets the item's grid alignment along X-axis within a given GenGrid widget.
         /// Accepted values are in the 0.0 to 1.0 range, with the special value -1.0 used to specify "justify" or "fill" by some users.
-        /// By default, value is 0.0, meaning that the gengrid has its items grid placed exactly in the left along x-axis.
+        /// By default, value is 0.0, meaning that the gengrid has its items grid placed exactly in the left along X-axis.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
         public double ItemAlignmentX
@@ -168,9 +168,9 @@ namespace ElmSharp
         }
 
         /// <summary>
-        /// Gets or sets the item's grid alignment on y-axis within a given gengrid widget.
+        /// Gets or sets the item's grid alignment on Y-axis within a given GenGrid widget.
         /// Accepted values are in the 0.0 to 1.0 range, with the special value -1.0 used to specify "justify" or "fill" by some users.
-        /// By default, value is 0.0, meaning that the gengrid has its items grid placed exactly in the top along y-axis.
+        /// By default, value is 0.0, meaning that the gengrid has its items grid placed exactly in the top along Y-axis.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
         public double ItemAlignmentY
@@ -189,8 +189,8 @@ namespace ElmSharp
         }
 
         /// <summary>
-        /// Gets or sets the manner in which the items grid is filled within a given gengrid widget.
-        /// It is filled if true, otherwise false.
+        /// Gets or sets the manner in which the items grid is filled within a given GenGrid widget.
+        /// It is filled if true, otherwise not filled if false.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
         public bool FillItems
@@ -206,7 +206,7 @@ namespace ElmSharp
         }
 
         /// <summary>
-        /// Gets or sets whether multi-selection is enabled or disabled for a given gengrid widget.
+        /// Gets or sets whether multi-selection is enabled or disabled for a given GenGrid widget.
         /// </summary>
         /// <remarks>
         /// Multi-selection is the ability to have more than one item selected, on a given gengrid, simultaneously.
@@ -228,11 +228,11 @@ namespace ElmSharp
         }
 
         /// <summary>
-        /// Gets or sets the width for the items of a given gengrid widget.
+        /// Gets or sets the width for the items of a given GenGrid widget.
         /// </summary>
         /// <remarks>
         /// A gengrid, after creation, still has no information on the size to give to each of its cells.
-        /// The default width and height just have one finger wide.
+        /// The default width and height just are one finger wide.
         /// Use this property to force a custom width for your items, making them as big as you wish.
         /// </remarks>
         /// <since_tizen> preview </since_tizen>
@@ -252,11 +252,11 @@ namespace ElmSharp
         }
 
         /// <summary>
-        /// Gets or sets the height for the items of a given gengrid widget.
+        /// Gets or sets the height for the items of a given GenGrid widget.
         /// </summary>
         /// <remarks>
         /// A gengrid, after creation, still has no information on the size to give to each of its cells.
-        /// The default width and height just have one finger wide.
+        /// The default width and height just are one finger wide.
         /// Use this property to force a custom height for your items, making them as big as you wish.
         /// </remarks>
         /// <since_tizen> preview </since_tizen>
@@ -292,7 +292,7 @@ namespace ElmSharp
         }
 
         /// <summary>
-        /// Gets or sets the direction for which a given gengrid widget expands while placing its items.
+        /// Gets or sets the direction for which a given GenGrid widget expands while placing its items.
         /// </summary>
         /// <remarks>
         /// If true, items are placed in columns from top to bottom and when the space for a column is filled, another one is started on the right, thus expanding the grid horizontally.
@@ -328,7 +328,7 @@ namespace ElmSharp
         }
 
         /// <summary>
-        /// Sets or gets the value of HorizontalScrollBarVisiblePolicy
+        /// Sets or gets the value of HorizontalScrollBarVisiblePolicy.
         /// </summary>
         /// <remarks>
         /// ScrollBarVisiblePolicy.Auto means the horizontal scrollbar is made visible if it is needed, and otherwise kept hidden.
@@ -351,7 +351,7 @@ namespace ElmSharp
         }
 
         /// <summary>
-        /// Sets or gets the value of VerticalScrollBarVisiblePolicy
+        /// Sets or gets the value of VerticalScrollBarVisiblePolicy.
         /// </summary>
         /// <remarks>
         /// ScrollBarVisiblePolicy.Auto means the vertical scrollbar is made visible if it is needed, and otherwise kept hidden.
@@ -374,7 +374,7 @@ namespace ElmSharp
         }
 
         /// <summary>
-        /// Gets the first item in a given gengrid widget.
+        /// Gets the first item in a given GenGrid widget.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
         public GenGridItem FirstItem
@@ -387,7 +387,7 @@ namespace ElmSharp
         }
 
         /// <summary>
-        /// Gets the last item in a given gengrid widget.
+        /// Gets the last item in a given GenGrid widget.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
         public GenGridItem LastItem
@@ -400,7 +400,7 @@ namespace ElmSharp
         }
 
         /// <summary>
-        /// Gets the items count in a given gengrid widget.
+        /// Gets the items count in a given GenGrid widget.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
         public uint ItemCount
@@ -412,7 +412,7 @@ namespace ElmSharp
         }
 
         /// <summary>
-        /// Gets the selected item in a given gengrid widget.
+        /// Gets the selected item in a given GenGrid widget.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
         public GenGridItem SelectedItem
@@ -425,7 +425,7 @@ namespace ElmSharp
         }
 
         /// <summary>
-        /// Gets or sets whether a given gengrid widget is or not able have items reordered.
+        /// Gets or sets whether a given GenGrid widget is able to or not able to have items reordered.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
         public bool ReorderMode
@@ -441,11 +441,11 @@ namespace ElmSharp
         }
 
         /// <summary>
-        /// Appends a new item to a given gengrid widget. This adds an item to the end of the gengrid.
+        /// Appends a new item to a given GenGrid widget. This adds an item to the end of the gengrid.
         /// </summary>
         /// <param name="itemClass">The itemClass defines how to display the data.</param>
         /// <param name="data">The item data.</param>
-        /// <returns>Return a gengrid item that contains data and itemClass.</returns>
+        /// <returns>Return a gengrid item that contains the data and itemClass.</returns>
         /// <seealso cref="GenItemClass"/>
         /// <seealso cref="GenGridItem"/>
         /// <since_tizen> preview </since_tizen>
@@ -459,11 +459,11 @@ namespace ElmSharp
         }
 
         /// <summary>
-        /// Prepends a new item to a given gengrid widget. This adds an item to the beginning of the gengrid.
+        /// Prepends a new item to a given GenGrid widget. This adds an item to the beginning of the gengrid.
         /// </summary>
         /// <param name="itemClass">The itemClass defines how to display the data.</param>
         /// <param name="data">The item data.</param>
-        /// <returns>Return a gengrid item that contains data and itemClass.</returns>
+        /// <returns>Return a gengrid item that contains the data and itemClass.</returns>
         /// <seealso cref="GenItemClass"/>
         /// <seealso cref="GenGridItem"/>
         /// <since_tizen> preview </since_tizen>
@@ -477,12 +477,12 @@ namespace ElmSharp
         }
 
         /// <summary>
-        /// Inserts an item before another in a gengrid widget. This inserts an item before another in the gengrid.
+        /// Inserts an item before another in a GenGrid widget. This inserts an item before another in the gengrid.
         /// </summary>
         /// <param name="itemClass">The itemClass defines how to display the data.</param>
         /// <param name="data">The item data.</param>
         /// <param name="before">The item before which to place this new one.</param>
-        /// <returns>Return a gengrid item that contains data and itemClass./></returns>
+        /// <returns>Return a gengrid item that contains the data and itemClass.</returns>
         /// <seealso cref="GenItemClass"/>
         /// <seealso cref="GenGridItem"/>
         /// <since_tizen> preview </since_tizen>
@@ -496,12 +496,12 @@ namespace ElmSharp
         }
 
         /// <summary>
-        /// Inserts an item before another in a gengrid widget. This inserts an item after another in the gengrid.
+        /// Inserts an item after another in a GenGrid widget. This inserts an item after another in the gengrid.
         /// </summary>
         /// <param name="itemClass">The itemClass defines how to display the data.</param>
         /// <param name="data">The item data.</param>
         /// <param name="after">The item after which to place this new one.</param>
-        /// <returns>Return a gengrid item that contains data and itemClass.</returns>
+        /// <returns>Return a gengrid item that contains the data and itemClass.</returns>
         /// <seealso cref="GenItemClass"/>
         /// <seealso cref="GenGridItem"/>
         /// <since_tizen> preview </since_tizen>
@@ -515,12 +515,12 @@ namespace ElmSharp
         }
 
         /// <summary>
-        /// Insert an item in a gengrid widget using a user-defined sort function.
+        /// Inserts an item in a GenGrid widget using a user-defined sort function.
         /// </summary>
         /// <param name="itemClass">The itemClass defines how to display the data.</param>
         /// <param name="data">The item data.</param>
-        /// <param name="comparison">User defined comparison function that defines the sort order based on gengrid item and its data.</param>
-        /// <returns>Return a gengrid item that contains data and itemClass.</returns>
+        /// <param name="comparison">User defined comparison function that defines the sort order based on the gengrid item and its data.</param>
+        /// <returns>Return a gengrid item that contains the data and itemClass.</returns>
         /// <since_tizen> preview </since_tizen>
         public GenGridItem InsertSorted(GenItemClass itemClass, object data, Comparison<object> comparison)
         {
@@ -546,8 +546,8 @@ namespace ElmSharp
         /// <param name="position">The position of the item in the viewport.</param>
         /// <param name="animated">The type of how to show the item.</param>
         /// <remarks>
-        /// If animated is true, the gengrid shows item by scrolling if it's not fully visible.
-        /// If animated is false, the gengrid shows item by jumping if it's not fully visible.
+        /// If animated is true, the gengrid shows the item by scrolling if it's not fully visible.
+        /// If animated is false, the gengrid shows the item by jumping if it's not fully visible.
         /// </remarks>
         /// <seealso cref="ScrollToPosition"/>
         /// <since_tizen> preview </since_tizen>
@@ -578,8 +578,8 @@ namespace ElmSharp
         }
 
         /// <summary>
-        /// Removes all items from a given gengrid widget.
-        /// This removes(and deletes) all items in obj, making it empty.
+        /// Removes all the items from a given GenGrid widget.
+        /// This removes (and deletes) all the items in the object, making it empty.
         /// </summary>
         /// <remarks>
         /// <see cref="ItemObject.Delete()"/> to delete just one item.
@@ -591,15 +591,15 @@ namespace ElmSharp
         }
 
         /// <summary>
-        /// Get the item that is at the x, y canvas coords.
+        /// Gets the item that is at the X, Y canvas coordinates.
         /// </summary>
-        /// <param name="x">The input x coordinate</param>
-        /// <param name="y">The input y coordinate</param>
+        /// <param name="x">The input X coordinate.</param>
+        /// <param name="y">The input Y coordinate.</param>
         /// <param name="portionX">The position relative to the item returned here.
-        /// -1, 0 or 1, depending if the coordinate is on the left portion of that item(-1), on the middle section(0) or on the right part(1).
+        /// -1, 0, or 1, depending if the coordinate is on the left portion of that item(-1), on the middle section(0), or on the right part(1).
         /// </param>
-        /// <param name="portionY">The position relative to the item returned here
-        /// -1, 0 or 1, depending if the coordinate is on the upper portion of that item (-1), on the middle section (0) or on the lower part (1).
+        /// <param name="portionY">The position relative to the item returned here.
+        /// -1, 0, or 1, depending if the coordinate is on the upper portion of that item (-1), on the middle section (0), or on the lower part (1).
         /// </param>
         /// <returns></returns>
         /// <since_tizen> preview </since_tizen>
@@ -612,8 +612,8 @@ namespace ElmSharp
         /// <summary>
         /// Creates a widget handle.
         /// </summary>
-        /// <param name="parent">Parent EvasObject</param>
-        /// <returns>Handle IntPtr</returns>
+        /// <param name="parent">Parent EvasObject.</param>
+        /// <returns>Handle IntPtr.</returns>
         /// <since_tizen> preview </since_tizen>
         protected override IntPtr CreateHandle(EvasObject parent)
         {

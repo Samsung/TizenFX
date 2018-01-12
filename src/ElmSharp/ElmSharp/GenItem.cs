@@ -19,7 +19,7 @@ using System;
 namespace ElmSharp
 {
     /// <summary>
-    /// Enumeration for select mode of GenItem.
+    /// Enumeration for the selection modes of GenItem.
     /// </summary>
     /// <since_tizen> preview </since_tizen>
     public enum GenItemSelectionMode
@@ -48,7 +48,7 @@ namespace ElmSharp
     /// <summary>
     /// It inherits <see cref="ItemObject"/>.
     /// A base class for <see cref="GenGridItem"/> and <see cref="GenListItem"/>.
-    /// It contains genitem class and data to display data.
+    /// It contains the GenItem class and data to display the data.
     /// </summary>
     /// <since_tizen> preview </since_tizen>
     public abstract class GenItem : ItemObject
@@ -76,7 +76,7 @@ namespace ElmSharp
         public GenItemClass ItemClass { get; protected set; }
 
         /// <summary>
-        /// Sets or gets tooltip content delegate.
+        /// Sets or gets the tooltip content delegate.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
         public GetTooltipContentDelegate TooltipContentDelegate
@@ -93,13 +93,13 @@ namespace ElmSharp
         }
 
         /// <summary>
-        /// It's a abstract property.
+        /// It's an abstract property.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
         public abstract GenItemSelectionMode SelectionMode { get; set; }
 
         /// <summary>
-        /// Sets or gets the cursor to be shown when mouse is over the gengrid item
+        /// Sets or gets the cursor to be shown when the mouse is over the gengrid item.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
         public abstract string Cursor { get; set; }
@@ -117,44 +117,44 @@ namespace ElmSharp
         public abstract bool IsUseEngineCursor { get; set; }
 
         /// <summary>
-        /// Gets item data that is added through calling <see cref="GenGrid.Append(GenItemClass, object)"/>, <see cref="GenGrid.Prepend(GenItemClass, object)"/> or <see cref="GenGrid.InsertBefore(GenItemClass, object, GenGridItem)"/> methods.
+        /// Gets the item data that is added through calling <see cref="GenGrid.Append(GenItemClass, object)"/>, <see cref="GenGrid.Prepend(GenItemClass, object)"/>, or <see cref="GenGrid.InsertBefore(GenItemClass, object, GenGridItem)"/> methods.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
         public object Data { get; protected set; }
 
         /// <summary>
-        /// It's a abstract property. It's implemented by <see cref="GenGridItem.IsSelected"/> and <see cref="GenListItem.IsSelected"/>.
+        /// It's an abstract property. It's implemented by <see cref="GenGridItem.IsSelected"/> and <see cref="GenListItem.IsSelected"/>.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
         public abstract bool IsSelected { get; set; }
 
         /// <summary>
-        /// It's a abstract property. It's implemented by <see cref="GenGridItem.TooltipStyle"/> and <see cref="GenListItem.TooltipStyle"/>.
+        /// It's an abstract property. It's implemented by <see cref="GenGridItem.TooltipStyle"/> and <see cref="GenListItem.TooltipStyle"/>.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
         public abstract string TooltipStyle { get; set; }
 
         /// <summary>
-        /// Set tooltip text.
+        /// Sets the tooltip text.
         /// </summary>
         /// <param name="tooltip">The text to set.</param>
         /// <since_tizen> preview </since_tizen>
         public abstract void SetTooltipText(string tooltip);
 
         /// <summary>
-        /// Unset tooltip.
+        /// Unsets the tooltip.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
         public abstract void UnsetTooltip();
 
         /// <summary>
-        /// It's a abstract method. It's implemented by <see cref="GenGridItem.Update"/> and <see cref="GenListItem.Update"/>.
+        /// It's an abstract method. It's implemented by <see cref="GenGridItem.Update"/> and <see cref="GenListItem.Update"/>.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
         public abstract void Update();
 
         /// <summary>
-        /// The override method for delete item class and item data. It's called when the item is deleting.
+        /// The override method for deleting the item class and item data. It's called when the item is deleted.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
         protected override void OnInvalidate()
@@ -165,7 +165,7 @@ namespace ElmSharp
         }
 
         /// <summary>
-        /// Abstract method for updating tooltip content.
+        /// Abstract method for updating the tooltip content.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
         protected abstract void UpdateTooltipDelegate();

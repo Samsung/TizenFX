@@ -4,17 +4,17 @@ using System;
 namespace Tizen.Applications.AttachPanel
 {
     /// <summary>
-    /// Represents immutable class for attach panel.
+    /// Represents the immutable class for the attach panel.
     /// </summary>
     public partial class AttachPanel
     {
         /// <summary>
-        /// Represents immutable class for attach panel.
+        /// Represents the immutable class for the attach panel.
         /// </summary>
         /// <since_tizen> 4 </since_tizen>
-        /// <param name="conformant">The caller's conformant</param>
-        /// <exception cref="OutOfMemoryException">Thrown when an attempt to allocate memory fails.</exception>
-        /// <exception cref="InvalidOperationException">Thrown when the AttachPanel is already exist or the <paramref name="conformant"/> is not a conformant object</exception>
+        /// <param name="conformant">The caller's conformant.</param>
+        /// <exception cref="OutOfMemoryException">Thrown when an attempt to allocate the memory fails.</exception>
+        /// <exception cref="InvalidOperationException">Thrown when the AttachPanel already exists or the <paramref name="conformant"/> is not a conformant object.</exception>
         public AttachPanel(EvasObject conformant)
         {
             if (conformant == IntPtr.Zero)
@@ -42,12 +42,12 @@ namespace Tizen.Applications.AttachPanel
         }
 
         /// <summary>
-        /// Represents immutable class for attach panel.
+        /// Represents the immutable class for the attach panel.
         /// </summary>
         /// <since_tizen> 4 </since_tizen>
-        /// <param name="conformant">The caller's conformant</param>
-        /// <exception cref="OutOfMemoryException">Thrown when an attempt to allocate memory fails.</exception>
-        /// <exception cref="InvalidOperationException">Thrown when the AttachPanel is already exist or the <paramref name="conformant"/> is not a conformant object</exception>
+        /// <param name="conformant">The caller's conformant.</param>
+        /// <exception cref="OutOfMemoryException">Thrown when an attempt to allocate the memory fails.</exception>
+        /// <exception cref="InvalidOperationException">Thrown when the AttachPanel already exists or the <paramref name="conformant"/> is not a conformant object.</exception>
         public AttachPanel(Conformant conformant)
         {
             if (conformant == IntPtr.Zero)
@@ -75,7 +75,7 @@ namespace Tizen.Applications.AttachPanel
         }
 
         /// <summary>
-        /// A destructor which deallocates attach panel resources.
+        /// A destructor which deallocates the attach panel resources.
         /// </summary>
         ~AttachPanel()
         {
@@ -91,7 +91,7 @@ namespace Tizen.Applications.AttachPanel
         /// <summary>
         /// Gets the state of the AttachPanel.
         /// </summary>
-        /// <value>The AttachPanel window state</value>
+        /// <value>The AttachPanel window state.</value>
         /// <since_tizen> 4 </since_tizen>
         public StateType State
         {
@@ -108,7 +108,7 @@ namespace Tizen.Applications.AttachPanel
         /// <summary>
         /// Gets the value that indicates whether the AttachPanel is visible.
         /// </summary>
-        /// <value>visible value of AttachPanel state</value>
+        /// <value>Visible value of the AttachPanel state.</value>
         /// <since_tizen> 4 </since_tizen>
         public bool Visible
         {
@@ -122,10 +122,10 @@ namespace Tizen.Applications.AttachPanel
         }
 
         /// <summary>
-        /// Add a content category in the AttachPanel.
+        /// Adds a content category in the AttachPanel.
         /// </summary>
-        /// <param name="category">The ContentCategory to be added in the AttachPanel</param>
-        /// <param name="extraData">The AttachPanel send some information using Bundle</param>
+        /// <param name="category">The ContentCategory to be added in the AttachPanel.</param>
+        /// <param name="extraData">The AttachPanel sends some information using the Bundle.</param>
         /// <privilege>http://tizen.org/privilege/mediastorage</privilege>
         /// <privilege>http://tizen.org/privilege/camera</privilege>
         /// <privilege>http://tizen.org/privilege/recorder</privilege>
@@ -133,25 +133,25 @@ namespace Tizen.Applications.AttachPanel
         /// <feature>http://tizen.org/feature/camera</feature>
         /// <feature>http://tizen.org/feature/microphone</feature>
         /// <remarks>
-        /// The caller app has to check the return value of this function.
-        /// Content categories will be shown as the sequence of using AddCategory
+        /// The caller application has to check the return value of this function.
+        /// Content categories will be shown as the sequence of using AddCategory.
         /// Some contents need time to load it all.
-        /// So, it is needed to use this before the mainloop of Show
+        /// So, it is needed to use this before the mainloop of the Show.
         /// Privileges,
-        /// http://tizen.org/privilege/mediastorage, for using Image or Camera
-        /// http://tizen.org/privilege/camera, for using Camera or TakePicture
-        /// http://tizen.org/privilege/recorder, for using Voice
-        /// http://tizen.org/privilege/appmanager.launch, for adding content categories on the More tab
-        /// http://tizen.org/feature/camera, for using Camera or TakePicture
-        /// http://tizen.org/feature/microphone, for using Voice
+        /// http://tizen.org/privilege/mediastorage, for using Image or Camera.
+        /// http://tizen.org/privilege/camera, for using Camera or TakePicture.
+        /// http://tizen.org/privilege/recorder, for using Voice.
+        /// http://tizen.org/privilege/appmanager.launch, for adding content categories on the More tab.
+        /// http://tizen.org/feature/camera, for using Camera or TakePicture.
+        /// http://tizen.org/feature/microphone, for using Voice.
         /// Deliver more information to the callee with a bundle if you need.
         /// http://tizen.org/appcontrol/data/total_count
         /// http://tizen.org/appcontrol/data/total_size
         /// </remarks>
-        /// <exception cref="ArgumentOutOfRangeException">Thrown when the <paramref name="category"/> is not a valid category</exception>
-        /// <exception cref="UnauthorizedAccessException">Thrown when application does not have privilege to access this method</exception>
-        /// <exception cref="NotSupportedException">Thrown when the device does not supported the <paramref name="category"/> feature </exception>
-        /// <exception cref="InvalidOperationException">Thrown when the AttachPanel is not created yet or already destroyed</exception>
+        /// <exception cref="ArgumentOutOfRangeException">Thrown when the <paramref name="category"/> is not a valid category.</exception>
+        /// <exception cref="UnauthorizedAccessException">Thrown when the application does not have the privilege to access this method.</exception>
+        /// <exception cref="NotSupportedException">Thrown when the device does not support the <paramref name="category"/> feature.</exception>
+        /// <exception cref="InvalidOperationException">Thrown when the AttachPanel is not created yet or is already destroyed.</exception>
         /// <since_tizen> 4 </since_tizen>
         public void AddCategory(ContentCategory category, Bundle extraData)
         {
@@ -166,11 +166,11 @@ namespace Tizen.Applications.AttachPanel
         }
 
         /// <summary>
-        /// Removes the ContentCategory from the AttachPanel
+        /// Removes the ContentCategory from the AttachPanel.
         /// </summary>
-        /// <param name="category">The ContentCategory adding in the AttachPanel</param>
-        ///  <exception cref="ArgumentOutOfRangeException">Thrown when the <paramref name="category"/> is not a valid category</exception>
-        /// <exception cref="InvalidOperationException">Thrown when the AttachPanel is not created yet or already destroyed</exception>
+        /// <param name="category">The ContentCategory to be added in the AttachPanel.</param>
+        ///  <exception cref="ArgumentOutOfRangeException">Thrown when the <paramref name="category"/> is not a valid category.</exception>
+        /// <exception cref="InvalidOperationException">Thrown when the AttachPanel is not created yet or is already destroyed.</exception>
         /// <since_tizen> 4 </since_tizen>
         public void RemoveCategory(ContentCategory category)
         {
@@ -179,13 +179,13 @@ namespace Tizen.Applications.AttachPanel
         }
 
         /// <summary>
-        /// Sets extraData to send to the ContentCategory using a Bundle
+        /// Sets the extraData to be sent to the ContentCategory using a Bundle.
         /// </summary>
-        /// <param name="category">The ContentCategory that some information to be set in the AttachPanel.</param>
-        /// <param name="extraData">The AttachPanel send some information using Bundle</param>
-        /// <exception cref="ArgumentOutOfRangeException">Thrown when the <paramref name="category"/> is not a valid category</exception>
-        /// <exception cref="InvalidOperationException">Thrown when the AttachPanel is destroyed</exception>
-        /// <exception cref="OutOfMemoryException">Thrown when an attempt to allocate memory fails.</exception>
+        /// <param name="category">The ContentCategory that some information is to be set, in the AttachPanel.</param>
+        /// <param name="extraData">The AttachPanel sends some information using a Bundle.</param>
+        /// <exception cref="ArgumentOutOfRangeException">Thrown when the <paramref name="category"/> is not a valid category.</exception>
+        /// <exception cref="InvalidOperationException">Thrown when the AttachPanel is destroyed.</exception>
+        /// <exception cref="OutOfMemoryException">Thrown when an attempt to allocate the memory fails.</exception>
         /// <since_tizen> 4 </since_tizen>
         public void SetExtraData(ContentCategory category, Bundle extraData)
         {
@@ -205,9 +205,9 @@ namespace Tizen.Applications.AttachPanel
         }
 
         /// <summary>
-        /// Shows the attach panel with animations
+        /// Shows the attach panel with the animations.
         /// </summary>
-        /// <exception cref="InvalidOperationException">Thrown when the AttachPanel is destroyed</exception>
+        /// <exception cref="InvalidOperationException">Thrown when the AttachPanel is destroyed.</exception>
         /// <since_tizen> 4 </since_tizen>
         public void Show()
         {
@@ -216,10 +216,10 @@ namespace Tizen.Applications.AttachPanel
         }
 
         /// <summary>
-        /// Shows the attach panel and selects whether or not to animate
+        /// Shows the attach panel and selects whether or not to animate.
         /// </summary>
-        /// <param name="animation">A flag which turn on or turn off the animation while attach panel showing.</param>
-        /// <exception cref="InvalidOperationException">Thrown when the AttachPanel is destroyed</exception>
+        /// <param name="animation">A flag which turns on or turns off the animation while the attach panel is showing.</param>
+        /// <exception cref="InvalidOperationException">Thrown when the AttachPanel is destroyed.</exception>
         /// <since_tizen> 4 </since_tizen>
         public void Show(bool animation)
         {
@@ -236,9 +236,9 @@ namespace Tizen.Applications.AttachPanel
         }
 
         /// <summary>
-        /// Hides the attach panel with animations
+        /// Hides the attach panel with the animations.
         /// </summary>
-        /// <exception cref="InvalidOperationException">Thrown when the AttachPanel is destroyed</exception>
+        /// <exception cref="InvalidOperationException">Thrown when the AttachPanel is destroyed.</exception>
         /// <since_tizen> 4 </since_tizen>
         public void Hide()
         {
@@ -247,10 +247,10 @@ namespace Tizen.Applications.AttachPanel
         }
 
         /// <summary>
-        /// Hides the attach panel and selects whether or not to animate
+        /// Hides the attach panel and selects whether or not to animate.
         /// </summary>
-        /// <param name="animation">A flag which turn on or turn off the animation while attach panel hiding.</param>
-        /// <exception cref="InvalidOperationException">Thrown when the AttachPanel is destroyed</exception>
+        /// <param name="animation">A flag which turns on or turns off the animation while the attach panel is hiding.</param>
+        /// <exception cref="InvalidOperationException">Thrown when the AttachPanel is destroyed.</exception>
         /// <since_tizen> 4 </since_tizen>
         public void Hide(bool animation)
         {
@@ -267,7 +267,7 @@ namespace Tizen.Applications.AttachPanel
         }
 
         /// <summary>
-        /// Occurs when reserved events are published from the panel-side.
+        /// Occurs when the reserved events are published from the panel-side.
         /// </summary>
         /// <since_tizen> 4 </since_tizen>
         public event EventHandler<StateEventArgs> EventChanged
@@ -293,7 +293,7 @@ namespace Tizen.Applications.AttachPanel
         }
 
         /// <summary>
-        /// Occurs when an user selects and confirms something to attach in the AttachPanel
+        /// Occurs when a user selects and confirms something to attach in the AttachPanel.
         /// </summary>
         /// <since_tizen> 4 </since_tizen>
         public event EventHandler<ResultEventArgs> ResultCallback

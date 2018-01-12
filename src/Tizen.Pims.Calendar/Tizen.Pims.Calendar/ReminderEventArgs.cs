@@ -19,7 +19,7 @@ using System;
 namespace Tizen.Pims.Calendar
 {
     /// <summary>
-    /// Event arguments passed when alarm is alerted.
+    /// The event arguments passed when the alarm is alerted.
     /// </summary>
     /// <since_tizen> 4 </since_tizen>
     public class ReminderAlertedEventArgs : EventArgs
@@ -31,11 +31,11 @@ namespace Tizen.Pims.Calendar
         }
 
         /// <summary>
-        /// The parameter which data is combined.
+        /// The parameter which the data is combined.
         /// </summary>
         /// <since_tizen> 4 </since_tizen>
         /// <value>
-        /// The combination of reminder data(Value string like id=value&amp;time=value&amp;tick=value&amp;unit=value&amp;type=value)
+        /// The combination of the reminder data (Value string like id=value&amp;time=value&amp;tick=value&amp;unit=value&amp;type=value).
         /// </value>
         public string Param
         {

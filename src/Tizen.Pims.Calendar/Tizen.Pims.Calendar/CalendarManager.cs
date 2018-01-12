@@ -19,7 +19,7 @@ using System;
 namespace Tizen.Pims.Calendar
 {
     /// <summary>
-    /// A class for managing calendar information. It allows applications to use calendar service.
+    /// A class for managing the calendar information. It allows the applications to use the calendar service.
     /// </summary>
     /// <since_tizen> 4 </since_tizen>
     public class CalendarManager : IDisposable
@@ -27,12 +27,12 @@ namespace Tizen.Pims.Calendar
         private CalendarDatabase _db = null;
 
         /// <summary>
-        /// Create a manager.
+        /// Creates a manager.
         /// </summary>
         /// <since_tizen> 4 </since_tizen>
         /// <feature>http://tizen.org/feature/calendar</feature>
-        /// <exception cref="NotSupportedException">Thrown when feature is not supported</exception>
-        /// <exception cref="InvalidOperationException">Thrown when method failed due to invalid operation</exception>
+        /// <exception cref="NotSupportedException">Thrown when the feature is not supported.</exception>
+        /// <exception cref="InvalidOperationException">Thrown when the method failed due to an invalid operation.</exception>
         public CalendarManager()
         {
             int error = Interop.Service.Connect();
@@ -45,7 +45,7 @@ namespace Tizen.Pims.Calendar
         }
 
         /// <summary>
-        /// Destroy CalendarManager resource.
+        /// Destroys the CalendarManager resource.
         /// </summary>
         ~CalendarManager()
         {
@@ -53,13 +53,13 @@ namespace Tizen.Pims.Calendar
         }
 
 #region IDisposable Support
-        /// To detect redundant calls
+        /// To detect redundant calls.
         private bool disposedValue = false;
 
         /// <summary>
         /// Disposes of the resources (other than memory) used by the CalendarManager.
         /// </summary>
-        /// <param name="disposing">true to release both managed and unmanaged resources; false to release only unmanaged resources.</param>
+        /// <param name="disposing">true to release both managed and unmanaged resources, false to release only unmanaged resources.</param>
         /// <since_tizen> 4 </since_tizen>
         protected virtual void Dispose(bool disposing)
         {
@@ -77,8 +77,8 @@ namespace Tizen.Pims.Calendar
         }
 
         /// <summary>
-        /// Releases all resources used by the CalendarManager.
-        /// It should be called after having finished using of the object.
+        /// Releases all the resources used by the CalendarManager.
+        /// It should be called after it has finished using the object.
         /// </summary>
         /// <since_tizen> 4 </since_tizen>
         public void Dispose()
@@ -89,10 +89,10 @@ namespace Tizen.Pims.Calendar
 #endregion
 
         /// <summary>
-        /// Get database.
+        /// Gets the database.
         /// </summary>
         /// <since_tizen> 4 </since_tizen>
-        /// <value>The database instance</value>
+        /// <value>The database instance.</value>
         public CalendarDatabase Database
         {
             get

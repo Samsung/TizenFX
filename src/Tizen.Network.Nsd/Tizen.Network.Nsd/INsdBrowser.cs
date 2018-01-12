@@ -19,35 +19,35 @@ using System;
 namespace Tizen.Network.Nsd
 {
     /// <summary>
-    /// This interface is used for managing network service discovery using DNSSD/SSDP.
+    /// This interface is used for managing the network service discovery using DNS-SD/SSDP.
     /// </summary>
     /// <since_tizen> 4 </since_tizen>
     public interface INsdBrowser
     {
         /// <summary>
-        /// Starts browsing the DNSSD/SSDP remote service.
+        /// Starts browsing the DNS-SD/SSDP remote service.
         /// </summary>
         /// <remarks>
-        /// If there are any services available, ServiceFound event will be invoked.
-        /// Application will keep browsing for available/unavailable services until it calls StopDiscovery().
+        /// If there are any services available, the ServiceFound event will be invoked.
+        /// The application will keep browsing for the available or unavailable services until it calls StopDiscovery().
         /// </remarks>
         /// <since_tizen> 4 </since_tizen>
         /// <privilege>http://tizen.org/privilege/internet</privilege>
         /// <feature>http://tizen.org/feature/network.service_discovery.dnssd</feature>
         /// <feature>http://tizen.org/feature/network.service_discovery.ssdp</feature>
         /// <exception cref="InvalidOperationException">Thrown when any other error occured.</exception>
-        /// <exception cref="NotSupportedException">Thrown when DNSSD/SSDP is not supported.</exception>
-        /// <exception cref="UnauthorizedAccessException">Thrown when permission is denied.</exception>
+        /// <exception cref="NotSupportedException">Thrown when DNS-SD/SSDP is not supported.</exception>
+        /// <exception cref="UnauthorizedAccessException">Thrown when the permission is denied.</exception>
         void StartDiscovery();
 
         /// <summary>
-        /// Stops browsing the DNSSD/SSDP remote service.
+        /// Stops browsing the DNS-SD/SSDP remote service.
         /// </summary>
         /// <since_tizen> 4 </since_tizen>
         /// <feature>http://tizen.org/feature/network.service_discovery.dnssd</feature>
         /// <feature>http://tizen.org/feature/network.service_discovery.ssdp</feature>
         /// <exception cref="InvalidOperationException">Thrown when any other error occured.</exception>
-        /// <exception cref="NotSupportedException">Thrown when DNSSD/SSDP is not supported.</exception>
+        /// <exception cref="NotSupportedException">Thrown when DNS-SD/SSDP is not supported.</exception>
         void StopDiscovery();
     }
 }

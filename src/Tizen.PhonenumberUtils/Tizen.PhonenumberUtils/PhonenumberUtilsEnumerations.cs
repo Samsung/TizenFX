@@ -17,1121 +17,1121 @@
 namespace Tizen.PhonenumberUtils
 {
     /// <summary>
-    /// Enumeration for language type.
+    /// Enumeration for the language types.
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
     public enum Language
     {
         /// <summary>
-        /// Amharic
+        /// Amharic.
         /// </summary>
         Amharic,
         /// <summary>
-        /// Arabic
+        /// Arabic.
         /// </summary>
         Arabic,
         /// <summary>
-        /// Belarusian
+        /// Belarusian.
         /// </summary>
         Belarusian,
         /// <summary>
-        /// Bulgarian
+        /// Bulgarian.
         /// </summary>
         Bulgarian,
         /// <summary>
-        /// Chinese
+        /// Chinese.
         /// </summary>
         Chinese,
         /// <summary>
-        /// Chinese (Traditional)
+        /// Traditional Chinese.
         /// </summary>
         ChineseTraditional,
         /// <summary>
-        /// Czech
+        /// Czech.
         /// </summary>
         Czech,
         /// <summary>
-        /// Dutch
+        /// Dutch.
         /// </summary>
         Dutch,
         /// <summary>
-        /// English
+        /// English.
         /// </summary>
         English,
         /// <summary>
-        /// Finnish
+        /// Finnish.
         /// </summary>
         Finnish,
         /// <summary>
-        /// French
+        /// French.
         /// </summary>
         French,
         /// <summary>
-        /// German
+        /// German.
         /// </summary>
         German,
         /// <summary>
-        /// Greek
+        /// Greek.
         /// </summary>
         Greek,
         /// <summary>
-        /// Hungarian
+        /// Hungarian.
         /// </summary>
         Hungarian,
         /// <summary>
-        /// Indonesian
+        /// Indonesian.
         /// </summary>
         Indonesian,
         /// <summary>
-        /// Italian
+        /// Italian.
         /// </summary>
         Italian,
         /// <summary>
-        /// Japanese
+        /// Japanese.
         /// </summary>
         Japanese,
         /// <summary>
-        /// Korean
+        /// Korean.
         /// </summary>
         Korean,
         /// <summary>
-        /// Nothern Sami
+        /// Nothern Sami.
         /// </summary>
         NorthernSami,
         /// <summary>
-        /// Persian
+        /// Persian.
         /// </summary>
         Persian,
         /// <summary>
-        /// Polish
+        /// Polish.
         /// </summary>
         Polish,
         /// <summary>
-        /// Portuguese
+        /// Portuguese.
         /// </summary>
         Portuguese,
         /// <summary>
-        /// Romanian
+        /// Romanian.
         /// </summary>
         Romanian,
         /// <summary>
-        /// Russian
+        /// Russian.
         /// </summary>
         Russian,
         /// <summary>
-        /// Serbian
+        /// Serbian.
         /// </summary>
         Serbian,
         /// <summary>
-        /// Spanish
+        /// Spanish.
         /// </summary>
         Spanish,
         /// <summary>
-        /// Swedish
+        /// Swedish.
         /// </summary>
         Swedish,
         /// <summary>
-        /// Thai
+        /// Thai.
         /// </summary>
         Thai,
         /// <summary>
-        /// Turkish
+        /// Turkish.
         /// </summary>
         Turkish,
         /// <summary>
-        /// Vietnamese
+        /// Vietnamese.
         /// </summary>
         Vietnamese,
         /// <summary>
-        /// Current System Value
+        /// The current system value.
         /// </summary>
         System
     }
 
     /// <summary>
-    /// Enumeration for region type.
+    /// Enumeration for the region types.
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
     public enum Region
     {
         /// <summary>
-        /// Aland Islands
+        /// Aland Islands.
         /// </summary>
         AlandIslands,
         /// <summary>
-        /// Albania
+        /// Albania.
         /// </summary>
         Albania,
         /// <summary>
-        /// Algeria
+        /// Algeria.
         /// </summary>
         Algeria,
         /// <summary>
-        /// American Samoa
+        /// American Samoa.
         /// </summary>
         AmericanSamoa,
         /// <summary>
-        /// Angola
+        /// Angola.
         /// </summary>
         Angola,
         /// <summary>
-        /// Anguilla
+        /// Anguilla.
         /// </summary>
         Anguilla,
         /// <summary>
-        /// Argentina
+        /// Argentina.
         /// </summary>
         Argentina,
         /// <summary>
-        /// Armenia
+        /// Armenia.
         /// </summary>
         Armenia,
         /// <summary>
-        /// Ascension Island
+        /// Ascension Island.
         /// </summary>
         AscensionIsland,
         /// <summary>
-        /// Antigua and Barbuda
+        /// Antigua and Barbuda.
         /// </summary>
         AntiguaAndBarbuda,
         /// <summary>
-        /// Austria
+        /// Austria.
         /// </summary>
         Austria,
         /// <summary>
-        /// Bahamas
+        /// Bahamas.
         /// </summary>
         Bahamas,
         /// <summary>
-        /// Barbados
+        /// Barbados.
         /// </summary>
         Barbados,
         /// <summary>
-        /// Belarus
+        /// Belarus.
         /// </summary>
         Belarus,
         /// <summary>
-        /// Belgium
+        /// Belgium.
         /// </summary>
         Belgium,
         /// <summary>
-        /// Benin
+        /// Benin.
         /// </summary>
         Benin,
         /// <summary>
-        /// Bermuda
+        /// Bermuda.
         /// </summary>
         Bermuda,
         /// <summary>
-        /// Bonaire, Sint Eustatius and Saba
+        /// Bonaire, Sint Eustatius, and Saba.
         /// </summary>
         BonaireSintEustatiusAndSaba,
         /// <summary>
-        /// Botswana
+        /// Botswana.
         /// </summary>
         Botswana,
         /// <summary>
-        /// Brazil
+        /// Brazil.
         /// </summary>
         Brazil,
         /// <summary>
-        /// Bulgaria
+        /// Bulgaria.
         /// </summary>
         Bulgaria,
         /// <summary>
-        /// Burkina Faso
+        /// Burkina Faso.
         /// </summary>
         BurkinaFaso,
         /// <summary>
-        /// Burundi
+        /// Burundi.
         /// </summary>
         Burundi,
         /// <summary>
-        /// Cape Verde (Cabo Verde)
+        /// Cape Verde (Cabo Verde).
         /// </summary>
         CapeVerde,
         /// <summary>
-        /// Cameroon
+        /// Cameroon.
         /// </summary>
         Cameroon,
         /// <summary>
-        /// Canada
+        /// Canada.
         /// </summary>
         Canada,
         /// <summary>
-        /// Cayman Island
+        /// Cayman Islands.
         /// </summary>
         CaymanIsland,
         /// <summary>
-        /// Chile
+        /// Chile.
         /// </summary>
         Chile,
         /// <summary>
-        /// China
+        /// China.
         /// </summary>
         China,
         /// <summary>
-        /// Colombia
+        /// Colombia.
         /// </summary>
         Colombia,
         /// <summary>
-        /// Comoros
+        /// Comoros.
         /// </summary>
         Comoros,
         /// <summary>
-        /// Congo
+        /// Congo.
         /// </summary>
         Congo,
         /// <summary>
-        /// Ivory Coast (Cote d'Ivoire)
+        /// Ivory Coast (Cote d'Ivoire).
         /// </summary>
         IvoryCoast,
         /// <summary>
-        /// Cuba
+        /// Cuba.
         /// </summary>
         Cuba,
         /// <summary>
-        /// Curacao
+        /// Curacao.
         /// </summary>
         Curacao,
         /// <summary>
         /// Czech Republic
-        /// </summary>
+        /// </summary>.
         CzechRepublic,
         /// <summary>
-        /// Congo, Democratic Republic of the
+        /// Democratic Republic of the Congo.
         /// </summary>
         DemocraticRepublicOfTheCongo,
         /// <summary>
-        /// Dominica
+        /// Dominica.
         /// </summary>
         Dominica,
         /// <summary>
-        /// Dominican Republic
+        /// Dominican Republic.
         /// </summary>
         DominicanRepublic,
         /// <summary>
-        /// Egypt
+        /// Egypt.
         /// </summary>
         Egypt,
         /// <summary>
-        /// Estonia
+        /// Estonia.
         /// </summary>
         Estonia,
         /// <summary>
-        /// Ethiopia
+        /// Ethiopia.
         /// </summary>
         Ethiopia,
         /// <summary>
-        /// Finland
+        /// Finland.
         /// </summary>
         Finland,
         /// <summary>
-        /// France
+        /// France.
         /// </summary>
         France,
         /// <summary>
-        /// Gabon
+        /// Gabon.
         /// </summary>
         Gabon,
         /// <summary>
-        /// Gambia
+        /// Gambia.
         /// </summary>
         Gambia,
         /// <summary>
-        /// Germany
+        /// Germany.
         /// </summary>
         Germany,
         /// <summary>
-        /// Ghana
+        /// Ghana.
         /// </summary>
         Ghana,
         /// <summary>
-        /// Greece
+        /// Greece.
         /// </summary>
         Greece,
         /// <summary>
-        /// Greenland
+        /// Greenland.
         /// </summary>
         Greenland,
         /// <summary>
-        /// Grenada
+        /// Grenada.
         /// </summary>
         Grenada,
         /// <summary>
-        /// Guam
+        /// Guam.
         /// </summary>
         Guam,
         /// <summary>
-        /// Guernsey
+        /// Guernsey.
         /// </summary>
         Guernsey,
         /// <summary>
-        /// Guinea
+        /// Guinea.
         /// </summary>
         Guinea,
         /// <summary>
-        /// Guinea-Bissau
+        /// Guinea-Bissau.
         /// </summary>
         GuineaBissau,
         /// <summary>
-        /// Hungary
+        /// Hungary.
         /// </summary>
         Hungary,
         /// <summary>
-        /// Iceland
+        /// Iceland.
         /// </summary>
         Iceland,
         /// <summary>
-        /// India
+        /// India.
         /// </summary>
         India,
         /// <summary>
-        /// Indonesia
+        /// Indonesia.
         /// </summary>
         Indonesia,
         /// <summary>
-        /// Ireland
+        /// Ireland.
         /// </summary>
         Ireland,
         /// <summary>
-        /// Iran, Islamic Republic of
+        /// Islamic Republic of Iran.
         /// </summary>
         Iran,
         /// <summary>
-        /// Isle of Man
+        /// Isle of Man.
         /// </summary>
         IsleOfMan,
         /// <summary>
-        /// Italy
+        /// Italy.
         /// </summary>
         Italy,
         /// <summary>
-        /// Jamaica
+        /// Jamaica.
         /// </summary>
         Jamaica,
         /// <summary>
-        /// Japan
+        /// Japan.
         /// </summary>
         Japan,
         /// <summary>
-        /// Jersey
+        /// Jersey.
         /// </summary>
         Jersey,
         /// <summary>
-        /// Jordan
+        /// Jordan.
         /// </summary>
         Jordan,
         /// <summary>
-        /// Kazakhstan
+        /// Kazakhstan.
         /// </summary>
         Kazakhstan,
         /// <summary>
-        /// Kenya
+        /// Kenya.
         /// </summary>
         Kenya,
         /// <summary>
-        /// Kiribati
+        /// Kiribati.
         /// </summary>
         Kiribati,
         /// <summary>
-        /// Latvia
+        /// Latvia.
         /// </summary>
         Latvia,
         /// <summary>
-        /// Lesotho
+        /// Lesotho.
         /// </summary>
         Lesotho,
         /// <summary>
-        /// Lithuania
+        /// Lithuania.
         /// </summary>
         Lithuania,
         /// <summary>
-        /// Luxembourg
+        /// Luxembourg.
         /// </summary>
         Luxembourg,
         /// <summary>
-        /// Madagascar
+        /// Madagascar.
         /// </summary>
         Madagascar,
         /// <summary>
-        /// Mauritania
+        /// Mauritania.
         /// </summary>
         Mauritania,
         /// <summary>
-        /// Mauritius
+        /// Mauritius.
         /// </summary>
         Mauritius,
         /// <summary>
-        /// Montserrat
+        /// Montserrat.
         /// </summary>
         Montserrat,
         /// <summary>
-        /// Morocco
+        /// Morocco.
         /// </summary>
         Morocco,
         /// <summary>
-        /// Mozambique
+        /// Mozambique.
         /// </summary>
         Mozambique,
         /// <summary>
-        /// Namibia
+        /// Namibia.
         /// </summary>
         Namibia,
         /// <summary>
-        /// Netherlands
+        /// Netherlands.
         /// </summary>
         Netherlands,
         /// <summary>
-        /// Nigeria
+        /// Nigeria.
         /// </summary>
         Nigeria,
         /// <summary>
-        /// Northern Mariana Islands
+        /// Northern Mariana Islands.
         /// </summary>
         NorthernMarianaIslands,
         /// <summary>
-        /// Norway
+        /// Norway.
         /// </summary>
         Norway,
         /// <summary>
-        /// Peru
+        /// Peru.
         /// </summary>
         Peru,
         /// <summary>
-        /// Poland
+        /// Poland.
         /// </summary>
         Poland,
         /// <summary>
-        /// Portugal
+        /// Portugal.
         /// </summary>
         Portugal,
         /// <summary>
-        /// Puerto Rico
+        /// Puerto Rico.
         /// </summary>
         PuertoRico,
         /// <summary>
-        /// Korea (Republic of)
+        /// Republic of Korea.
         /// </summary>
         Korea,
         /// <summary>
-        /// Moldova (Republic of)
+        /// Republic of Moldova.
         /// </summary>
         Moldova,
         /// <summary>
-        /// Romania
+        /// Romania.
         /// </summary>
         Romania,
         /// <summary>
-        /// Russian Federation
+        /// Russian Federation.
         /// </summary>
         RussianFederation,
         /// <summary>
-        /// Saint Helena, Ascension and Tristan da Cunha
+        /// Saint Helena, Ascension and Tristan da Cunha.
         /// </summary>
         SaintHelena,
         /// <summary>
-        /// Saint Kitts and Nevis
+        /// Saint Kitts and Nevis.
         /// </summary>
         SaintKittsAndNevis,
         /// <summary>
-        /// Saint Lucia
+        /// Saint Lucia.
         /// </summary>
         SaintLucia,
         /// <summary>
-        /// Saint Vincent and the Grenadines
+        /// Saint Vincent and the Grenadines.
         /// </summary>
         SaintVicentAndTheGrenadines,
         /// <summary>
-        /// Saint Thomas And Principe (Sao Tome and Principe)
+        /// Saint Thomas And Principe (Sao Tome and Principe).
         /// </summary>
         SaintThomasAndPrincipe,
         /// <summary>
-        /// Saudi Arabia
+        /// Saudi Arabia.
         /// </summary>
         SaudiArabia,
         /// <summary>
-        /// Senegal
+        /// Senegal.
         /// </summary>
         Senegal,
         /// <summary>
-        /// Serbia
+        /// Serbia.
         /// </summary>
         Serbia,
         /// <summary>
-        /// Sierra Leone
+        /// Sierra Leone.
         /// </summary>
         SierraLeone,
         /// <summary>
-        /// Saint Martin (Sint Maarten), Dutch part
+        /// Saint Martin (Sint Maarten), Dutch part.
         /// </summary>
         SintMaarten,
         /// <summary>
-        /// Slovakia
+        /// Slovakia.
         /// </summary>
         Slovakia,
         /// <summary>
-        /// Somalia
+        /// Somalia.
         /// </summary>
         Somalia,
         /// <summary>
-        /// South Africa
+        /// South Africa.
         /// </summary>
         SouthAfrica,
         /// <summary>
-        /// Spain
+        /// Spain.
         /// </summary>
         Spain,
         /// <summary>
-        /// Sri Lanka
+        /// Sri Lanka.
         /// </summary>
         SriLanka,
         /// <summary>
-        /// Sudan
+        /// Sudan.
         /// </summary>
         Sudan,
         /// <summary>
-        /// Svalbard and Jan Mayen
+        /// Svalbard and Jan Mayen.
         /// </summary>
         SvalbardAndJanMayen,
         /// <summary>
-        /// Swaziland
+        /// Swaziland.
         /// </summary>
         Swaziland,
         /// <summary>
-        /// Sweden
+        /// Sweden.
         /// </summary>
         Sweden,
         /// <summary>
-        /// Switzerland
+        /// Switzerland.
         /// </summary>
         Switzerland,
         /// <summary>
-        /// Taiwan, Province of China
+        /// Taiwan, Province of China.
         /// </summary>
         Taiwan,
         /// <summary>
-        /// Thailand
+        /// Thailand.
         /// </summary>
         Thailand,
         /// <summary>
-        /// Macedonia (the Former Yugoslav Republic of)
+        /// The Former Yugoslav Republic of Macedonia.
         /// </summary>
         Macedonia,
         /// <summary>
-        /// Togo
+        /// Togo.
         /// </summary>
         Togo,
         /// <summary>
-        /// Trinidad and Tobago
+        /// Trinidad and Tobago.
         /// </summary>
         TrinidadAndTobago,
         /// <summary>
-        /// Tristan da Cunha
+        /// Tristan da Cunha.
         /// </summary>
         TristanDaCunha,
         /// <summary>
-        /// Tunisia
+        /// Tunisia.
         /// </summary>
         Tunisia,
         /// <summary>
-        /// Turkey
+        /// Turkey.
         /// </summary>
         Turkey,
         /// <summary>
-        /// Turks and Caicos Islands
+        /// Turks and Caicos Islands.
         /// </summary>
         TurksAndCaicosIslands,
         /// <summary>
-        /// Uganda
+        /// Uganda.
         /// </summary>
         Uganda,
         /// <summary>
-        /// United Kingdom
+        /// United Kingdom.
         /// </summary>
         UnitedKingdom,
         /// <summary>
-        /// United States of America
+        /// United States of America.
         /// </summary>
         UnitedStatesOfAmerica,
         /// <summary>
-        /// Venezuela
+        /// Venezuela.
         /// </summary>
         Venezuela,
         /// <summary>
-        /// Viet Nam
+        /// Viet Nam.
         /// </summary>
         VietNam,
         /// <summary>
-        /// Virgin Island (British)
+        /// British Virgin Islands.
         /// </summary>
         VirginIslandBritish,
         /// <summary>
-        /// Virgin Island (U.S.)
+        /// U.S. Virgin Islands.
         /// </summary>
         VirginIslandUs,
         /// <summary>
-        /// Western Sahara
+        /// Western Sahara.
         /// </summary>
         WesternSahara,
         /// <summary>
-        /// Zambia
+        /// Zambia.
         /// </summary>
         Zambia,
         /// <summary>
-        /// Zimbabwe
+        /// Zimbabwe.
         /// </summary>
         Zimbabwe,
         /// <summary>
-        /// Andorra
+        /// Andorra.
         /// </summary>
         Andorra,
         /// <summary>
-        /// United Arab Emirates
+        /// United Arab Emirates.
         /// </summary>
         UnitedArabEmirates,
         /// <summary>
-        /// Afghanistan
+        /// Afghanistan.
         /// </summary>
         Afghanistan,
         /// <summary>
-        /// Australia
+        /// Australia.
         /// </summary>
         Australia,
         /// <summary>
-        /// Aruba
+        /// Aruba.
         /// </summary>
         Aruba,
         /// <summary>
-        /// Azerbaijan
+        /// Azerbaijan.
         /// </summary>
         Azerbaijan,
         /// <summary>
-        /// Bosnia and Herzegovina
+        /// Bosnia and Herzegovina.
         /// </summary>
         BosniaAndHerzegovina,
         /// <summary>
-        /// Bangladesh
+        /// Bangladesh.
         /// </summary>
         Bangladesh,
         /// <summary>
-        /// Bahrain
+        /// Bahrain.
         /// </summary>
         Bahrain,
         /// <summary>
-        /// Saint Barthelemy, French Antilles
+        /// Saint Barthelemy, French Antilles.
         /// </summary>
         SaintBarthelemy,
         /// <summary>
-        /// Brunei Darussalam
+        /// Brunei Darussalam.
         /// </summary>
         BruneiDarussalam,
         /// <summary>
-        /// Bolivia
+        /// Bolivia.
         /// </summary>
         Bolivia,
         /// <summary>
-        /// Bhutan
+        /// Bhutan.
         /// </summary>
         Bhutan,
         /// <summary>
-        /// Belize
+        /// Belize.
         /// </summary>
         Belize,
         /// <summary>
-        /// Cocos Islands
+        /// Cocos Islands.
         /// </summary>
         CocosIslands,
         /// <summary>
-        /// Central African Republic
+        /// Central African Republic.
         /// </summary>
         CentralAfricanRepublic,
         /// <summary>
-        /// Cook Islands
+        /// Cook Islands.
         /// </summary>
         CookIslands,
         /// <summary>
-        /// Costa Rica
+        /// Costa Rica.
         /// </summary>
         CostaRica,
         /// <summary>
-        /// Christmas Islands
+        /// Christmas Islands.
         /// </summary>
         ChristmasIslands,
         /// <summary>
-        /// Cyprus
+        /// Cyprus.
         /// </summary>
         Cyprus,
         /// <summary>
-        /// Djibouti
+        /// Djibouti.
         /// </summary>
         Djibouti,
         /// <summary>
-        /// Denmark
+        /// Denmark.
         /// </summary>
         Denmark,
         /// <summary>
-        /// Ecuador
+        /// Ecuador.
         /// </summary>
         Ecuador,
         /// <summary>
-        /// Eritrea
+        /// Eritrea.
         /// </summary>
         Eritrea,
         /// <summary>
-        /// Fiji
+        /// Fiji.
         /// </summary>
         Fiji,
         /// <summary>
-        /// Falkland Islands
+        /// Falkland Islands.
         /// </summary>
         FalklandIslands,
         /// <summary>
-        /// Micronesia, Federated States of
+        /// Federated States of Micronesia.
         /// </summary>
         Micronesia,
         /// <summary>
-        /// Faroe Islands
+        /// Faroe Islands.
         /// </summary>
         FaroeIslands,
         /// <summary>
-        /// Georgia
+        /// Georgia.
         /// </summary>
         Georgia,
         /// <summary>
-        /// French Guiana
+        /// French Guiana.
         /// </summary>
         FrenchGuiana,
         /// <summary>
-        /// Gibraltar
+        /// Gibraltar.
         /// </summary>
         Gibraltar,
         /// <summary>
-        /// Guadeloupe
+        /// Guadeloupe.
         /// </summary>
         Guadeloupe,
         /// <summary>
-        /// Equatorial Guinea
+        /// Equatorial Guinea.
         /// </summary>
         EquatorialGuinea,
         /// <summary>
-        /// Guatemala
+        /// Guatemala.
         /// </summary>
         Guatemala,
         /// <summary>
-        /// Guyana
+        /// Guyana.
         /// </summary>
         Guyana,
         /// <summary>
-        /// Hong Kong
+        /// Hong Kong.
         /// </summary>
         HongKong,
         /// <summary>
-        /// Honduras
+        /// Honduras.
         /// </summary>
         Honduras,
         /// <summary>
-        /// Croatia
+        /// Croatia.
         /// </summary>
         Croatia,
         /// <summary>
-        /// Haiti
+        /// Haiti.
         /// </summary>
         Haiti,
         /// <summary>
-        /// Israel
+        /// Israel.
         /// </summary>
         Israel,
         /// <summary>
-        /// British Indian Ocean Territory / Diego Garcia
+        /// British Indian Ocean Territory/Diego Garcia.
         /// </summary>
         DiegoGarcia,
         /// <summary>
-        /// Iraq
+        /// Iraq.
         /// </summary>
         Iraq,
         /// <summary>
-        /// Kyrgyzstan
+        /// Kyrgyzstan.
         /// </summary>
         Kyrgyzstan,
         /// <summary>
-        /// Cambodia
+        /// Cambodia.
         /// </summary>
         Cambodia,
         /// <summary>
-        /// Korea, Dem. People's Rep. of
+        /// Democratic People's Republic of Korea.
         /// </summary>
         NorthKorea,
         /// <summary>
-        /// Kuwait
+        /// Kuwait.
         /// </summary>
         Kuwait,
         /// <summary>
-        /// Lao People's Dem. Rep.
+        /// Lao People's Democratic Republic.
         /// </summary>
         Laos,
         /// <summary>
-        /// Lebanon
+        /// Lebanon.
         /// </summary>
         Lebanon,
         /// <summary>
-        /// Liechtenstein
+        /// Liechtenstein.
         /// </summary>
         Liechtenstein,
         /// <summary>
-        /// Liberia
+        /// Liberia.
         /// </summary>
         Liberia,
         /// <summary>
-        /// Libya (Soc. People's Libyan Arab Jamahiriva)
+        /// Libya, The Socialist People's Libyan Arab Jamahiriva.
         /// </summary>
         Libya,
         /// <summary>
-        /// Monaco
+        /// Monaco.
         /// </summary>
         Monaco,
         /// <summary>
-        /// Montenegro
+        /// Montenegro.
         /// </summary>
         Montenegro,
         /// <summary>
-        /// Saint Martin, French part
+        /// Saint Martin, French part.
         /// </summary>
         SaintMartin,
         /// <summary>
-        /// Marshall Islands
+        /// Marshall Islands.
         /// </summary>
         MarshallIslands,
         /// <summary>
-        /// Mali
+        /// Mali.
         /// </summary>
         Mali,
         /// <summary>
-        /// Myanmar
+        /// Myanmar.
         /// </summary>
         Myanmar,
         /// <summary>
-        /// Mongolia
+        /// Mongolia.
         /// </summary>
         Mongolia,
         /// <summary>
-        /// Macao, China
+        /// Macao, China.
         /// </summary>
         Macao,
         /// <summary>
-        /// Martinique (French Dept. of)
+        /// French Department of Martinique.
         /// </summary>
         Martinique,
         /// <summary>
-        /// Malta
+        /// Malta.
         /// </summary>
         Malta,
         /// <summary>
-        /// Maldives
+        /// Maldives.
         /// </summary>
         Maldives,
         /// <summary>
-        /// Malawi
+        /// Malawi.
         /// </summary>
         Malawi,
         /// <summary>
-        /// Mexico
+        /// Mexico.
         /// </summary>
         Mexico,
         /// <summary>
-        /// Malaysia
+        /// Malaysia.
         /// </summary>
         Malaysia,
         /// <summary>
-        /// New Caledonia
+        /// New Caledonia.
         /// </summary>
         NewCaledonia,
         /// <summary>
-        /// Niger
+        /// Niger.
         /// </summary>
         Niger,
         /// <summary>
-        /// Norfolk Island
+        /// Norfolk Island.
         /// </summary>
         NorfolkIsland,
         /// <summary>
-        /// Nicaragua
+        /// Nicaragua.
         /// </summary>
         Nicaragua,
         /// <summary>
-        /// Nepal
+        /// Nepal.
         /// </summary>
         Nepal,
         /// <summary>
-        /// Nauru
+        /// Nauru.
         /// </summary>
         Nauru,
         /// <summary>
-        /// Niue
+        /// Niue.
         /// </summary>
         Niue,
         /// <summary>
-        /// New Zealand
+        /// New Zealand.
         /// </summary>
         NewZealand,
         /// <summary>
-        /// Oman
+        /// Oman.
         /// </summary>
         Oman,
         /// <summary>
-        /// Panama
+        /// Panama.
         /// </summary>
         Panama,
         /// <summary>
-        /// French Polynesia
+        /// French Polynesia.
         /// </summary>
         FrenchPolynesia,
         /// <summary>
-        /// Papua New Guinea
+        /// Papua New Guinea.
         /// </summary>
         PapuaNewGuinea,
         /// <summary>
-        /// Philippines
+        /// Philippines.
         /// </summary>
         Philippines,
         /// <summary>
-        /// Pakistan
+        /// Pakistan.
         /// </summary>
         Pakistan,
         /// <summary>
-        /// Saint Pierre and Miquelon
+        /// Saint Pierre and Miquelon.
         /// </summary>
         SaintPierreAndMiquelon,
         /// <summary>
-        /// Palestine
+        /// Palestine.
         /// </summary>
         Palestine,
         /// <summary>
-        /// Palau
+        /// Palau.
         /// </summary>
         Palau,
         /// <summary>
-        /// Paraguay
+        /// Paraguay.
         /// </summary>
         Paraguay,
         /// <summary>
-        /// Qatar
+        /// Qatar.
         /// </summary>
         Qatar,
         /// <summary>
-        /// Reunion
+        /// Reunion.
         /// </summary>
         Reunion,
         /// <summary>
-        /// Rwanda
+        /// Rwanda.
         /// </summary>
         Rwanda,
         /// <summary>
-        /// Solomon Islands
+        /// Solomon Islands.
         /// </summary>
         SolomonIslands,
         /// <summary>
-        /// Seychelles
+        /// Seychelles.
         /// </summary>
         Seychelles,
         /// <summary>
-        /// Singapore
+        /// Singapore.
         /// </summary>
         Singapore,
         /// <summary>
-        /// Slovenia
+        /// Slovenia.
         /// </summary>
         Slovenia,
         /// <summary>
-        /// San Marino
+        /// San Marino.
         /// </summary>
         SanMarino,
         /// <summary>
-        /// Suriname
+        /// Suriname.
         /// </summary>
         Suriname,
         /// <summary>
-        /// South Sudan
+        /// South Sudan.
         /// </summary>
         SouthSudan,
         /// <summary>
-        /// El Salvador
+        /// El Salvador.
         /// </summary>
         ElSalvador,
         /// <summary>
-        /// Syrian Arab Republic
+        /// Syrian Arab Republic.
         /// </summary>
         SyrianArabRepublic,
         /// <summary>
-        /// Chad
+        /// Chad.
         /// </summary>
         Chad,
         /// <summary>
-        /// Tajikistan
+        /// Tajikistan.
         /// </summary>
         Tajikistan,
         /// <summary>
-        /// Tokelau
+        /// Tokelau.
         /// </summary>
         Tokelau,
         /// <summary>
-        /// Timor-Leste (East Timor)
+        /// Timor-Leste (East Timor).
         /// </summary>
         TimorLeste,
         /// <summary>
-        /// Turkmenistan
+        /// Turkmenistan.
         /// </summary>
         Turkmenistan,
         /// <summary>
-        /// Tonga
+        /// Tonga.
         /// </summary>
         Tonga,
         /// <summary>
-        /// Tuvalu
+        /// Tuvalu.
         /// </summary>
         Tuvalu,
         /// <summary>
-        /// Tanzania
+        /// Tanzania.
         /// </summary>
         Tanzania,
         /// <summary>
-        /// Ukraine
+        /// Ukraine.
         /// </summary>
         Ukraine,
         /// <summary>
-        /// Uruguay
+        /// Uruguay.
         /// </summary>
         Uruguay,
         /// <summary>
-        /// Uzbekistan
+        /// Uzbekistan.
         /// </summary>
         Uzbekistan,
         /// <summary>
-        /// Vatican City
+        /// Vatican City.
         /// </summary>
         VaticanCity,
         /// <summary>
-        /// Vanuatu
+        /// Vanuatu.
         /// </summary>
         Vanuatu,
         /// <summary>
-        /// Wallis and Futuna
+        /// Wallis and Futuna.
         /// </summary>
         WallisAndFutuna,
         /// <summary>
-        /// Samoa
+        /// Samoa.
         /// </summary>
         Samoa,
         /// <summary>
-        /// Yemen
+        /// Yemen.
         /// </summary>
         Yemen,
         /// <summary>
-        /// Mayotte
+        /// Mayotte.
         /// </summary>
         Mayotte,
         /// <summary>
-        /// Current System Value
+        /// The current system value.
         /// </summary>
         System
     }
