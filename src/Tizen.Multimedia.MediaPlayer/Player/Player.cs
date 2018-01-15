@@ -47,11 +47,9 @@ namespace Tizen.Multimedia
         /// <since_tizen> 3 </since_tizen>
         public Player()
         {
-            NativePlayer.Create(out _handle).ThrowIfFailed("Failed to create player");
+            NativePlayer.Create(out _handle).ThrowIfFailed(null, "Failed to create player");
 
             Debug.Assert(_handle != null);
-
-            RetrieveProperties();
 
             if (Features.IsSupported(PlayerFeatures.AudioEffect))
             {
@@ -154,7 +152,7 @@ namespace Tizen.Multimedia
             int start = 0;
             int current = 0;
             NativePlayer.GetStreamingDownloadProgress(Handle, out start, out current).
-                ThrowIfFailed("Failed to get download progress");
+                ThrowIfFailed(this, "Failed to get download progress");
 
             Log.Info(PlayerLog.Tag, "get download progress : " + start + ", " + current);
 
@@ -193,7 +191,7 @@ namespace Tizen.Multimedia
             }
 
             NativePlayer.SetSubtitlePath(Handle, path).
-                ThrowIfFailed("Failed to set the subtitle path to the player");
+                ThrowIfFailed(this, "Failed to set the subtitle path to the player");
         }
 
         /// <summary>
@@ -208,7 +206,7 @@ namespace Tizen.Multimedia
             ValidatePlayerState(PlayerState.Idle);
 
             NativePlayer.SetSubtitlePath(Handle, null).
-                ThrowIfFailed("Failed to clear the subtitle of the player");
+                ThrowIfFailed(this, "Failed to clear the subtitle of the player");
         }
 
         /// <summary>
@@ -235,12 +233,12 @@ namespace Tizen.Multimedia
                 throw new InvalidOperationException("No subtitle set");
             }
 
-            err.ThrowIfFailed("Failed to the subtitle offset of the player");
+            err.ThrowIfFailed(this, "Failed to the subtitle offset of the player");
         }
 
         private void Prepare()
         {
-            NativePlayer.Prepare(Handle).ThrowIfFailed("Failed to prepare the player");
+            NativePlayer.Prepare(Handle).ThrowIfFailed(this, "Failed to prepare the player");
         }
 
         /// <summary>
@@ -271,7 +269,7 @@ namespace Tizen.Multimedia
 
             ValidatePlayerState(PlayerState.Idle);
 
-            SetDisplay(_display).ThrowIfFailed("Failed to configure display of the player");
+            SetDisplay(_display).ThrowIfFailed(this, "Failed to configure display of the player");
 
             OnPreparing();
 
@@ -320,7 +318,7 @@ namespace Tizen.Multimedia
             }
             ValidatePlayerState(PlayerState.Ready, PlayerState.Paused, PlayerState.Playing);
 
-            NativePlayer.Unprepare(Handle).ThrowIfFailed("Failed to unprepare the player");
+            NativePlayer.Unprepare(Handle).ThrowIfFailed(this, "Failed to unprepare the player");
 
             OnUnprepared();
         }
@@ -362,7 +360,7 @@ namespace Tizen.Multimedia
             }
             ValidatePlayerState(PlayerState.Ready, PlayerState.Paused);
 
-            NativePlayer.Start(Handle).ThrowIfFailed("Failed to start the player");
+            NativePlayer.Start(Handle).ThrowIfFailed(this, "Failed to start the player");
         }
 
         /// <summary>
@@ -386,7 +384,7 @@ namespace Tizen.Multimedia
             }
             ValidatePlayerState(PlayerState.Paused, PlayerState.Playing);
 
-            NativePlayer.Stop(Handle).ThrowIfFailed("Failed to stop the player");
+            NativePlayer.Stop(Handle).ThrowIfFailed(this, "Failed to stop the player");
         }
 
         /// <summary>
@@ -410,7 +408,7 @@ namespace Tizen.Multimedia
 
             ValidatePlayerState(PlayerState.Playing);
 
-            NativePlayer.Pause(Handle).ThrowIfFailed("Failed to pause the player");
+            NativePlayer.Pause(Handle).ThrowIfFailed(this, "Failed to pause the player");
         }
 
         private MediaSource _source;
@@ -476,7 +474,7 @@ namespace Tizen.Multimedia
             using (var cbKeeper = ObjectKeeper.Get(cb))
             {
                 NativePlayer.CaptureVideo(Handle, cb)
-                    .ThrowIfFailed("Failed to capture the video");
+                    .ThrowIfFailed(this, "Failed to capture the video");
 
                 return await t.Task;
             }
@@ -498,7 +496,7 @@ namespace Tizen.Multimedia
             int playPosition = 0;
 
             NativePlayer.GetPlayPosition(Handle, out playPosition).
-                ThrowIfFailed("Failed to get the play position of the player");
+                ThrowIfFailed(this, "Failed to get the play position of the player");
 
             Log.Info(PlayerLog.Tag, "get play position : " + playPosition);
 
@@ -520,7 +518,7 @@ namespace Tizen.Multimedia
             {
                 Log.Error(PlayerLog.Tag, "Failed to set play position, " + (PlayerError)ret);
             }
-            ret.ThrowIfFailed("Failed to set play position");
+            ret.ThrowIfFailed(this, "Failed to set play position");
         }
 
         /// <summary>
@@ -593,7 +591,7 @@ namespace Tizen.Multimedia
 
             ValidatePlayerState(PlayerState.Ready, PlayerState.Playing, PlayerState.Paused);
 
-            NativePlayer.SetPlaybackRate(Handle, rate).ThrowIfFailed("Failed to set the playback rate.");
+            NativePlayer.SetPlaybackRate(Handle, rate).ThrowIfFailed(this, "Failed to set the playback rate.");
         }
 
         /// <summary>
@@ -642,7 +640,7 @@ namespace Tizen.Multimedia
                 throw new NotSupportedException("The specified policy is not supported on the current system.");
             }
 
-            ret.ThrowIfFailed("Failed to set the audio stream policy to the player");
+            ret.ThrowIfFailed(this, "Failed to set the audio stream policy to the player");
         }
         #endregion
 
@@ -666,13 +664,5 @@ namespace Tizen.Multimedia
         }
 
         #endregion
-
-        /// <summary>
-        /// This method supports the product infrastructure and is not intended to be used directly from application code.
-        /// </summary>
-        /// <since_tizen> 4 </since_tizen>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        protected static Exception GetException(int errorCode, string message) =>
-            ((PlayerErrorCode)errorCode).GetException(message);
     }
 }

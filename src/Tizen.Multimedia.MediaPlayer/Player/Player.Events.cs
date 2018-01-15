@@ -106,12 +106,12 @@ namespace Tizen.Multimedia
         {
             _subtitleUpdatedCallback = (duration, text, _) =>
             {
-                Log.Debug(PlayerLog.Tag, "duration : " + duration + ", text : " + text);
+                Log.Debug(PlayerLog.Tag, $"duration : {duration}, text : {text}");
                 SubtitleUpdated?.Invoke(this, new SubtitleUpdatedEventArgs(duration, text));
             };
 
             NativePlayer.SetSubtitleUpdatedCb(Handle, _subtitleUpdatedCallback).
-                ThrowIfFailed("Failed to initialize the player");
+                ThrowIfFailed(this, "Failed to initialize the player");
         }
 
         private void RegisterPlaybackCompletedCallback()
@@ -122,7 +122,7 @@ namespace Tizen.Multimedia
                 PlaybackCompleted?.Invoke(this, EventArgs.Empty);
             };
             NativePlayer.SetCompletedCb(Handle, _playbackCompletedCallback).
-                ThrowIfFailed("Failed to set PlaybackCompleted");
+                ThrowIfFailed(this, "Failed to set PlaybackCompleted");
         }
 
         private void RegisterPlaybackInterruptedCallback()
@@ -139,12 +139,12 @@ namespace Tizen.Multimedia
                     OnUnprepared();
                 }
 
-                Log.Warn(PlayerLog.Tag, "interrupted reason : " + code);
+                Log.Warn(PlayerLog.Tag, $"interrupted reason : {code}");
                 PlaybackInterrupted?.Invoke(this, new PlaybackInterruptedEventArgs(code));
             };
 
             NativePlayer.SetInterruptedCb(Handle, _playbackInterruptedCallback).
-                ThrowIfFailed("Failed to set PlaybackInterrupted");
+                ThrowIfFailed(this, "Failed to set PlaybackInterrupted");
         }
 
         private void RegisterErrorOccurredCallback()
@@ -157,7 +157,7 @@ namespace Tizen.Multimedia
             };
 
             NativePlayer.SetErrorCb(Handle, _playbackErrorCallback).
-                ThrowIfFailed("Failed to set PlaybackError");
+                ThrowIfFailed(this, "Failed to set PlaybackError");
         }
 
         #region VideoFrameDecoded event
@@ -211,7 +211,7 @@ namespace Tizen.Multimedia
             };
 
             NativePlayer.SetVideoFrameDecodedCb(Handle, _videoFrameDecodedCallback).
-                ThrowIfFailed("Failed to register the VideoFrameDecoded");
+                ThrowIfFailed(this, "Failed to register the VideoFrameDecoded");
         }
         #endregion
 
@@ -221,14 +221,13 @@ namespace Tizen.Multimedia
 
             _videoStreamChangedCallback = (width, height, fps, bitrate, _) =>
             {
-                Log.Debug(PlayerLog.Tag, "height : " + height + ", width : " + width
-                + ", fps : " + fps + ", bitrate : " + bitrate);
+                Log.Debug(PlayerLog.Tag, $"height={height}, width={width}, fps={fps}, bitrate={bitrate}");
 
                 VideoStreamChanged?.Invoke(this, new VideoStreamChangedEventArgs(height, width, fps, bitrate));
             };
 
             NativePlayer.SetVideoStreamChangedCb(Handle, _videoStreamChangedCallback).
-                ThrowIfFailed("Failed to set the video stream changed callback");
+                ThrowIfFailed(this, "Failed to set the video stream changed callback");
         }
 
         private void RegisterBufferingCallback()
@@ -236,11 +235,12 @@ namespace Tizen.Multimedia
             _bufferingProgressCallback = (percent, _) =>
             {
                 Log.Debug(PlayerLog.Tag, $"Buffering callback with percent { percent }");
+
                 BufferingProgressChanged?.Invoke(this, new BufferingProgressChangedEventArgs(percent));
             };
 
             NativePlayer.SetBufferingCb(Handle, _bufferingProgressCallback).
-                ThrowIfFailed("Failed to set BufferingProgress");
+                ThrowIfFailed(this, "Failed to set BufferingProgress");
         }
 
         private void RegisterMediaStreamBufferStatusCallback()
@@ -249,6 +249,7 @@ namespace Tizen.Multimedia
             {
                 Debug.Assert(Enum.IsDefined(typeof(MediaStreamBufferStatus), status));
                 Log.Debug(PlayerLog.Tag, "audio buffer status : " + status);
+
                 MediaStreamAudioBufferStatusChanged?.Invoke(this,
                     new MediaStreamBufferStatusChangedEventArgs(status));
             };
@@ -256,6 +257,7 @@ namespace Tizen.Multimedia
             {
                 Debug.Assert(Enum.IsDefined(typeof(MediaStreamBufferStatus), status));
                 Log.Debug(PlayerLog.Tag, "video buffer status : " + status);
+
                 MediaStreamVideoBufferStatusChanged?.Invoke(this,
                     new MediaStreamBufferStatusChangedEventArgs(status));
             };
@@ -268,7 +270,7 @@ namespace Tizen.Multimedia
             NativePlayer.MediaStreamBufferStatusCallback cb)
         {
             NativePlayer.SetMediaStreamBufferStatusCb(Handle, streamType, cb).
-                ThrowIfFailed("Failed to SetMediaStreamBufferStatus");
+                ThrowIfFailed(this, "Failed to SetMediaStreamBufferStatus");
         }
 
         private void RegisterMediaStreamSeekCallback()
@@ -291,7 +293,7 @@ namespace Tizen.Multimedia
         private void RegisterMediaStreamSeekCallback(StreamType streamType, NativePlayer.MediaStreamSeekCallback cb)
         {
             NativePlayer.SetMediaStreamSeekCb(Handle, streamType, cb).
-                ThrowIfFailed("Failed to SetMediaStreamSeek");
+                ThrowIfFailed(this, "Failed to SetMediaStreamSeek");
         }
     }
 }
