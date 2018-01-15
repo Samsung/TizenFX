@@ -86,6 +86,7 @@ namespace Tizen.System
         /// </summary>
         /// <param name="type">Storage type</param>
         /// <param name="handler">An eventhandler to register</param>
+        /// <since_tizen> 4 </since_tizen>
         public static void SetChangedEvent(StorageArea type, EventHandler handler)
         {
             if (type == StorageArea.Internal)
@@ -112,6 +113,7 @@ namespace Tizen.System
         /// </summary>
         /// <param name="type">Storage type</param>
         /// <param name="handler">An eventhandler to unregister</param>
+        /// <since_tizen> 4 </since_tizen>
         public static void UnsetChangedEvent(StorageArea type, EventHandler handler)
         {
             if (type == StorageArea.Internal)
