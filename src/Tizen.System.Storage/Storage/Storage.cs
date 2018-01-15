@@ -192,7 +192,7 @@ namespace Tizen.System
         /// <summary>
         /// The StorageDevice
         /// </summary>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 4 </since_tizen>
         /// <exception cref="InvalidOperationException">Thrown when DeviceType is not initialized.</exception>
         public StorageDevice DeviceType
         {
@@ -210,7 +210,7 @@ namespace Tizen.System
         /// <summary>
         /// The type of file system
         /// </summary>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 4 </since_tizen>
         /// <exception cref="InvalidOperationException">Thrown when Fstype is not initialized.</exception>
         public string Fstype
         {
@@ -228,7 +228,7 @@ namespace Tizen.System
         /// <summary>
         /// The uuid of the file system
         /// </summary>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 4 </since_tizen>
         /// <exception cref="InvalidOperationException">Thrown when Fsuuid is not initialized.</exception>
         public string Fsuuid
         {
@@ -246,7 +246,7 @@ namespace Tizen.System
         /// <summary>
         /// Information about whether this is primary partition
         /// </summary>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 4 </since_tizen>
         /// <exception cref="InvalidOperationException">Thrown when Primary is not initialized.</exception>
         public bool Primary
         {
@@ -264,7 +264,7 @@ namespace Tizen.System
         /// <summary>
         /// The flags for the storage status
         /// </summary>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 4 </since_tizen>
         /// <exception cref="InvalidOperationException">Thrown when Flags is not initialized.</exception>
         public int Flags
         {
