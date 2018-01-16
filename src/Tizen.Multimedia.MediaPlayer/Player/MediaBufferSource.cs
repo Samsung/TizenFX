@@ -84,22 +84,19 @@ namespace Tizen.Multimedia
         {
             if (buffer == null)
             {
-                Log.Error(PlayerLog.Tag, "invalid buffer");
                 throw new ArgumentNullException(nameof(buffer));
             }
+
             if (offset < 0)
             {
-                Log.Error(PlayerLog.Tag, "invalid offset : " + offset);
                 throw new ArgumentOutOfRangeException(nameof(offset), offset, "offset can't be less than zero.");
             }
             if (length <= 0)
             {
-                Log.Error(PlayerLog.Tag, "invalid length : " + length);
                 throw new ArgumentOutOfRangeException(nameof(length), length, "length can't be equal to or less than zero.");
             }
             if (length + offset > buffer.Length)
             {
-                Log.Error(PlayerLog.Tag, "invalid total length : " + (int)(length + offset));
                 throw new ArgumentOutOfRangeException($"length + offset can't be greater than the length of the { nameof(buffer) }.");
             }
 
@@ -140,7 +137,7 @@ namespace Tizen.Multimedia
         internal override void OnAttached(Player player)
         {
             NativePlayer.SetMemoryBuffer(player.Handle, _buffer, _buffer.Length).
-                ThrowIfFailed("Failed to set the memory buffer");
+                ThrowIfFailed(player, "Failed to set the memory buffer");
         }
     }
 }

@@ -243,7 +243,7 @@ namespace Tizen.Multimedia
             _player.ValidatePlayerState(PlayerState.Paused, PlayerState.Playing, PlayerState.Ready);
 
             NativePlayer.PushMediaStream(_player.Handle, packet.GetHandle()).
-                ThrowIfFailed("Failed to push the packet to the player");
+                ThrowIfFailed(_player, "Failed to push the packet to the player");
         }
 
         private void SetMediaStreamInfo(StreamType streamType, MediaFormat mediaFormat)
@@ -259,8 +259,9 @@ namespace Tizen.Multimedia
             try
             {
                 ptr = mediaFormat.AsNativeHandle();
-                NativePlayer.SetMediaStreamInfo(_player.Handle, (int)streamType, ptr).
-                    ThrowIfFailed("Failed to set the media stream info");
+
+                NativePlayer.SetMediaStreamInfo(_player.Handle, streamType, ptr).
+                    ThrowIfFailed(_player, "Failed to set the media stream info");
             }
             finally
             {

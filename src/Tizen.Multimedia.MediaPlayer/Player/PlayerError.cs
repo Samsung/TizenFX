@@ -13,6 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 using System;
 using System.IO;
 using Tizen.Internals.Errors;
@@ -52,14 +53,24 @@ namespace Tizen.Multimedia
 
     internal static class PlayerErrorCodeExtensions
     {
-        internal static void ThrowIfFailed(this PlayerErrorCode err, string message)
+        internal static void ThrowIfFailed(this PlayerErrorCode err, Player player, string message)
         {
             if (err == PlayerErrorCode.None)
             {
                 return;
             }
 
-            throw err.GetException(message);
+            var ex = err.GetException(message);
+
+            if (ex == null)
+            {
+                // Notify only when it can't be handled.
+                Player.NotifyError(player, (int)err, message);
+
+                throw new InvalidOperationException($"Unknown error : {err.ToString()}");
+            }
+
+            throw ex;
         }
 
         internal static Exception GetException(this PlayerErrorCode err, string message)
@@ -118,10 +129,9 @@ namespace Tizen.Multimedia
 
                 case PlayerErrorCode.NotSupportedVideoCodec:
                     throw new CodecNotSupportedException(CodecKind.Video);
-
             }
 
-            throw new InvalidOperationException(msg);
+            return null;
         }
     }
 
