@@ -1,5 +1,5 @@
 /*
- * Copyright(c) 2017 Samsung Electronics Co., Ltd.
+ * Copyright(c) 2018 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -884,6 +884,7 @@ namespace Tizen.NUI
         internal static readonly int IMAGE_VISUAL_BATCH_SIZE = NDalicPINVOKE.IMAGE_VISUAL_BATCH_SIZE_get();
         internal static readonly int IMAGE_VISUAL_CACHE_SIZE = NDalicPINVOKE.IMAGE_VISUAL_CACHE_SIZE_get();
         internal static readonly int IMAGE_VISUAL_FRAME_DELAY = NDalicPINVOKE.IMAGE_VISUAL_FRAME_DELAY_get();
+        internal static readonly int IMAGE_VISUAL_LOOP_COUNT = NDalicPINVOKE.IMAGE_VISUAL_LOOP_COUNT_get();
         internal static readonly int IMAGE_VISUAL_MASK_CONTENT_SCALE = NDalicPINVOKE.IMAGE_VISUAL_MASK_CONTENT_SCALE_get();
         internal static readonly int IMAGE_VISUAL_CROP_TO_MASK = NDalicPINVOKE.IMAGE_VISUAL_CROP_TO_MASK_get();
         internal static readonly int IMAGE_VISUAL_RELEASE_POLICY = NDalicPINVOKE.IMAGE_VISUAL_RELEASE_POLICY_get();
