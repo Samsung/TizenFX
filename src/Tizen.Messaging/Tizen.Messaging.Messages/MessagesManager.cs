@@ -41,7 +41,7 @@ namespace Tizen.Messaging.Messages
         /// <since_tizen> 3 </since_tizen>
         public static Task<SentResult> SendMessageAsync(Message message, bool saveToSentbox)
         {
-            return MessagesManagerImpl.Instance.SendMessageAsync(message, saveToSentbox);
+            return MessagesManagerImpl.GetInstance().SendMessageAsync(message, saveToSentbox);
         }
 
         /// <summary>
@@ -58,7 +58,7 @@ namespace Tizen.Messaging.Messages
         /// <since_tizen> 3 </since_tizen>
         public static Task<IEnumerable<Message>> SearchMessageAsync(MessagesSearchFilter filter)
         {
-            return MessagesManagerImpl.Instance.SearchMessageAsync(filter);
+            return MessagesManagerImpl.GetInstance().SearchMessageAsync(filter);
         }
 
         /// <summary>
@@ -70,11 +70,11 @@ namespace Tizen.Messaging.Messages
         {
             add
             {
-                MessagesManagerImpl.Instance._MessageReceived += value;
+                MessagesManagerImpl.GetInstance()._MessageReceived += value;
             }
             remove
             {
-                MessagesManagerImpl.Instance._MessageReceived -= value;
+                MessagesManagerImpl.GetInstance()._MessageReceived -= value;
             }
         }
     }
