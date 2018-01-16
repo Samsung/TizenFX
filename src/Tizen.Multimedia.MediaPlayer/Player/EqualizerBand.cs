@@ -37,14 +37,11 @@ namespace Tizen.Multimedia
             _owner = owner;
             _index = index;
 
-            int frequency = 0;
-            int range = 0;
+            Native.GetEqualizerBandFrequency(_owner.Player.Handle, _index, out var frequency).
+                ThrowIfFailed(_owner.Player, "Failed to initialize equalizer band");
 
-            Native.GetEqualizerBandFrequency(_owner.Player.Handle, _index, out frequency).
-                ThrowIfFailed("Failed to initialize equalizer band");
-
-            Native.GetEqualizerBandFrequencyRange(_owner.Player.Handle, _index, out range).
-                ThrowIfFailed("Failed to initialize equalizer band");
+            Native.GetEqualizerBandFrequencyRange(_owner.Player.Handle, _index, out var range).
+                ThrowIfFailed(_owner.Player, "Failed to initialize equalizer band");
 
             Frequency = frequency;
             FrequencyRange = range;
@@ -66,9 +63,9 @@ namespace Tizen.Multimedia
             {
                 _owner.Player.ValidateNotDisposed();
 
-                int value = 0;
-                Native.GetEqualizerBandLevel(_owner.Player.Handle, _index, out value).
-                    ThrowIfFailed("Failed to get the level of the equalizer band");
+                Native.GetEqualizerBandLevel(_owner.Player.Handle, _index, out var value).
+                    ThrowIfFailed(_owner.Player, "Failed to get the level of the equalizer band");
+
                 Log.Info(PlayerLog.Tag, "get level : " + value);
                 return value;
             }
@@ -85,7 +82,7 @@ namespace Tizen.Multimedia
                 }
 
                 Native.SetEqualizerBandLevel(_owner.Player.Handle, _index, value).
-                    ThrowIfFailed("Failed to set the level of the equalizer band");
+                    ThrowIfFailed(_owner.Player, "Failed to set the level of the equalizer band");
             }
         }
 
