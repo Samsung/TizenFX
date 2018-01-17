@@ -93,11 +93,6 @@ internal static partial class Interop
 
         internal static void elm_object_focused_clear(IntPtr handle)
         {
-            IntPtr win = elm_widget_top_get(handle);
-
-            if (win == IntPtr.Zero || Interop.Eo.eo_class_name_get(win) != "Elm_Win")
-                return;
-
             if (elm_widget_is(handle))
             {
                 elm_widget_focused_object_clear(handle);
@@ -106,6 +101,10 @@ internal static partial class Interop
             {
                 Evas.evas_object_focus_set(handle, false);
             }
+
+            IntPtr win = elm_widget_top_get(handle);
+            if (win == IntPtr.Zero || Eo.eo_class_name_get(Eo.eo_class_get(win)) != "Elm_Win")
+                return;
 
             Evas.evas_object_focus_set(win, true);
         }
