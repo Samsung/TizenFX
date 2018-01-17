@@ -993,16 +993,19 @@ namespace Tizen.Multimedia
         {
             _mediaPacketPreviewCallback = (IntPtr mediaPacket, IntPtr userData) =>
             {
-                MediaPacket packet = MediaPacket.From(mediaPacket);
-                var eventHandler = _mediaPacketPreview;
+                lock (_mediaPacketPreviewEventLock)
+                {
+                    MediaPacket packet = MediaPacket.From(mediaPacket);
+                    var eventHandler = _mediaPacketPreview;
 
-                if (eventHandler != null)
-                {
-                    eventHandler.Invoke(this, new MediaPacketPreviewEventArgs(packet));
-                }
-                else
-                {
-                    packet.Dispose();
+                    if (eventHandler != null)
+                    {
+                        eventHandler.Invoke(this, new MediaPacketPreviewEventArgs(packet));
+                    }
+                    else
+                    {
+                        packet.Dispose();
+                    }
                 }
             };
             CameraErrorFactory.ThrowIfError(Native.SetMediaPacketPreviewCallback(_handle, _mediaPacketPreviewCallback, IntPtr.Zero),

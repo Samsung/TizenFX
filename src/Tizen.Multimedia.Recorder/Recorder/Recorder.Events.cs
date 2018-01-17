@@ -251,7 +251,10 @@ namespace Tizen.Multimedia
         {
             _deviceStateChangedCallback = (type, state, _) =>
             {
-                _deviceStateChanged?.Invoke(null, new RecorderDeviceStateChangedEventArgs(type, state));
+                lock (_deviceStateChangedLock)
+                {
+                    _deviceStateChanged?.Invoke(null, new RecorderDeviceStateChangedEventArgs(type, state));
+                }
             };
 
             Native.AddDeviceStateChangedCallback(_deviceStateChangedCallback, IntPtr.Zero, out _deviceStateChangedId).
