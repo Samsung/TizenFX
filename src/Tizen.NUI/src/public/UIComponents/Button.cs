@@ -757,8 +757,8 @@ namespace Tizen.NUI.UIComponents
                 Tizen.NUI.PropertyMap map = new Tizen.NUI.PropertyMap();
                 GetProperty( Button.Property.LABEL).Get(map);
                 Tizen.NUI.PropertyValue value = map.Find( TextVisualProperty.Text, "Text");
-                string str;
-                value.Get(out str);
+                string str = "";
+                value?.Get(out str);
                 return str;
             }
             set
