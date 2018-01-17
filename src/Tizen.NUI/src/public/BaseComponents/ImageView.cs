@@ -244,7 +244,7 @@ namespace Tizen.NUI.BaseComponents
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void Reload()
         {
-            this.DoAction(ImageView.Property.IMAGE, ACTION_RELOAD, new PropertyValue(0));
+            this.DoAction(ImageView.Property.IMAGE, Property.ACTION_RELOAD, new PropertyValue(0));
         }
 
         /// <summary>
@@ -255,7 +255,7 @@ namespace Tizen.NUI.BaseComponents
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void Play()
         {
-            this.DoAction(ImageView.Property.IMAGE, ACTION_PLAY, new PropertyValue(0));
+            this.DoAction(ImageView.Property.IMAGE, Property.ACTION_PLAY, new PropertyValue(0));
         }
 
         /// <summary>
@@ -266,7 +266,7 @@ namespace Tizen.NUI.BaseComponents
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void Pause()
         {
-            this.DoAction(ImageView.Property.IMAGE, ACTION_PAUSE, new PropertyValue(0));
+            this.DoAction(ImageView.Property.IMAGE, Property.ACTION_PAUSE, new PropertyValue(0));
         }
 
         /// <summary>
@@ -277,7 +277,7 @@ namespace Tizen.NUI.BaseComponents
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void Stop()
         {
-            this.DoAction(ImageView.Property.IMAGE, ACTION_STOP, new PropertyValue(0));
+            this.DoAction(ImageView.Property.IMAGE, Property.ACTION_STOP, new PropertyValue(0));
         }
 
         /// <summary>

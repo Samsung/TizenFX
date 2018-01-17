@@ -2321,7 +2321,7 @@ namespace Tizen.NUI
         private int? _batchSize = null;
         private int? _cacheSize = null;
         private float? _frameDelay = null;
-        private int? _loopCount = null;
+        private float? _loopCount = null;
 
         /// <summary>
         /// Gets and Sets the url in the AnimatedImageVisual.
