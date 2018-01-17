@@ -103,10 +103,10 @@ internal static partial class Interop
             }
 
             IntPtr win = elm_widget_top_get(handle);
-            if (win == IntPtr.Zero || Eo.eo_class_name_get(Eo.eo_class_get(win)) != "Elm_Win")
-                return;
-
-            Evas.evas_object_focus_set(win, true);
+            if (win != IntPtr.Zero && Eo.eo_class_name_get(Eo.eo_class_get(win)) == "Elm_Win")
+            {
+                Evas.evas_object_focus_set(win, true);
+            }
         }
 
         [DllImport(Libraries.Elementary)]
