@@ -213,7 +213,11 @@ namespace Tizen.System
                 {
                     Brightness = val
                 };
+
+                lock (s_lock)
+                {
                 s_brightnessChanged?.Invoke(null, e);
+                }
                 return true;
             };
             Interop.Device.DeviceAddCallback(EventType.FlashBrightness, s_handler, IntPtr.Zero);

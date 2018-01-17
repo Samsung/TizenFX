@@ -282,7 +282,11 @@ namespace Tizen.System
                         {
                             Percent = val
                         };
+
+                        lock (s_lock)
+                        {
                         s_capacityChanged?.Invoke(null, e);
+                        }
                         return true;
                     };
 
