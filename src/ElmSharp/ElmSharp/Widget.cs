@@ -293,14 +293,11 @@ namespace ElmSharp
         /// <since_tizen> preview </since_tizen>
         public void SetFocus(bool isFocus)
         {
-            Interop.Elementary.elm_object_focus_set(RealHandle, isFocus);
-
-            // Temporary code due to focus issue (will be removed at Tizen 5.0)
-            if (this is Window)
-            {
-                if (isFocus && !Interop.Evas.evas_object_focus_get(RealHandle))
-                    Interop.Evas.evas_object_focus_set(RealHandle, true);
-            }
+            if (isFocus)
+                Interop.Elementary.elm_object_focus_set(RealHandle, isFocus);
+            else
+                // Temporary code due to focus issue (will be removed at Tizen 5.0)
+                Interop.Elementary.elm_object_focused_clear(RealHandle);
         }
 
         /// <summary>
