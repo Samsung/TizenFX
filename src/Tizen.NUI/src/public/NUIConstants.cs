@@ -1,4 +1,4 @@
-// Copyright (c) 2017 Samsung Electronics Co., Ltd.
+// Copyright (c) 2018 Samsung Electronics Co., Ltd.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -1259,6 +1259,12 @@ namespace Tizen.NUI
         /// </summary>
         /// <since_tizen> 4 </since_tizen>
         public static readonly int FrameDelay = NDalic.IMAGE_VISUAL_FRAME_DELAY;
+        /// <summary>
+        /// The number of times the AnimatedImageVisual will be looped
+        /// Default -1. if < 0, loop unlimited. else, loop loopCount times.
+        /// </summary>
+        /// <since_tizen> 4 </since_tizen>
+        public static readonly int LoopCount = NDalic.IMAGE_VISUAL_LOOP_COUNT;
         /// <summary>
         /// The policy to determine when an image should no longer be cached
         /// </summary>
