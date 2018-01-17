@@ -2222,9 +2222,23 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
-                int temp = 0;
-                GetProperty(View.Property.SIBLING_ORDER).Get(out temp);
-                return temp;
+                var parentChildren = Parent?.Children;
+                int currentOrder = 0;
+                if (parentChildren != null)
+                {
+                    currentOrder = parentChildren.IndexOf(this);
+
+                    if (currentOrder < 0)
+                    {
+                        return 0;
+                    }
+                    else if (currentOrder < parentChildren.Count)
+                    {
+                        return currentOrder;
+                    }
+                }
+
+                return 0;
             }
             set
             {
