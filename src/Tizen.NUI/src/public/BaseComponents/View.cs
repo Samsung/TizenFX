@@ -2234,14 +2234,18 @@ namespace Tizen.NUI.BaseComponents
                 if (parentChildren != null)
                 {
                     currentOrder = parentChildren.IndexOf(this);
-                    
-                    if (currentOrder < parentChildren.Count)
+
+                    if (currentOrder < 0)
+                    {
+                        return 0;
+                    }
+                    else if (currentOrder < parentChildren.Count)
                     {
                         return currentOrder;
                     }
                 }
-                
-                return currentOrder;
+
+                return 0;
             }
             set
             {
