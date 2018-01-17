@@ -69,6 +69,11 @@ namespace Tizen.Multimedia
 
         private static Capabilities LoadCapabilities()
         {
+            if (!Features.IsSupported(RecorderFeatures.AudioRecorder))
+            {
+                throw new NotSupportedException("Audio Recorder is not supported.");
+            }
+
             var ret = Native.Create(out var handle);
 
             if (ret == RecorderErrorCode.NotSupported)
@@ -87,12 +92,16 @@ namespace Tizen.Multimedia
         /// <summary>
         /// Gets the file formats that the current device supports.
         /// </summary>
+        /// <feature>http://tizen.org/feature/media.audio_recording</feature>
+        /// <exception cref="NotSupportedException">A required feature is not supported.</exception>
         /// <since_tizen> 4 </since_tizen>
         public static IEnumerable<RecorderFileFormat> GetSupportedFileFormats() => Capabilities.Value.SupportedFileFormats;
 
         /// <summary>
         /// Gets the audio encoders that the current device supports.
         /// </summary>
+        /// <feature>http://tizen.org/feature/media.audio_recording</feature>
+        /// <exception cref="NotSupportedException">A required feature is not supported.</exception>
         /// <since_tizen> 4 </since_tizen>
         public static IEnumerable<RecorderAudioCodec> GetSupportedAudioCodecs() => Capabilities.Value.SupportedAudioCodecs;
 

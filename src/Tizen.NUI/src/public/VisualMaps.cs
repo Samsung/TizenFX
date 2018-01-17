@@ -1,5 +1,5 @@
 /*
- * Copyright(c) 2017 Samsung Electronics Co., Ltd.
+ * Copyright(c) 2018 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -2321,6 +2321,7 @@ namespace Tizen.NUI
         private int? _batchSize = null;
         private int? _cacheSize = null;
         private float? _frameDelay = null;
+        private float? _loopCount = null;
 
         /// <summary>
         /// Gets and Sets the url in the AnimatedImageVisual.
@@ -2423,6 +2424,24 @@ namespace Tizen.NUI
         }
 
         /// <summary>
+        /// Gets and Sets the number of times the AnimatedImageVisual will be looped.
+        /// Default -1. if < 0, loop unlimited. else, loop loopCount times.
+        /// </summary>
+        /// <since_tizen> 4 </since_tizen>
+        public float LoopCount
+        {
+            get
+            {
+                return _loopCount ?? -1;
+            }
+            set
+            {
+                _loopCount = value;
+                UpdateVisual();
+            }
+        }
+
+        /// <summary>
         /// Compose the out visual map.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
@@ -2448,6 +2467,7 @@ namespace Tizen.NUI
                 if (_batchSize != null ) {_outputVisualMap.Add((int)ImageVisualProperty.BatchSize, new PropertyValue((int)_batchSize)); }
                 if (_cacheSize != null ) {_outputVisualMap.Add((int)ImageVisualProperty.CacheSize, new PropertyValue((int)_cacheSize)); }
                 if (_frameDelay != null ) {_outputVisualMap.Add((int)ImageVisualProperty.FrameDelay, new PropertyValue((float)_frameDelay)); }
+                if (_loopCount != null ) {_outputVisualMap.Add((int)ImageVisualProperty.LoopCount, new PropertyValue((int)_loopCount)); }
                 if (_shader != null) { _outputVisualMap.Add((int)Visual.Property.Shader, new PropertyValue(_shader)); }
                 if (_premultipliedAlpha != null) { _outputVisualMap.Add((int)Visual.Property.PremultipliedAlpha, new PropertyValue((bool)_premultipliedAlpha)); }
                 if (_mixColor != null) { _outputVisualMap.Add((int)Visual.Property.MixColor, new PropertyValue(_mixColor)); }

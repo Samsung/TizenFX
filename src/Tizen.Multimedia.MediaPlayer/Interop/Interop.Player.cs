@@ -179,7 +179,7 @@ internal static partial class Interop
         internal static extern PlayerErrorCode PushMediaStream(IntPtr player, IntPtr packet);
 
         [DllImport(Libraries.Player, EntryPoint = "player_set_media_stream_info")]
-        internal static extern PlayerErrorCode SetMediaStreamInfo(IntPtr player, int type, IntPtr format);
+        internal static extern PlayerErrorCode SetMediaStreamInfo(IntPtr player, StreamType type, IntPtr format);
 
         [DllImport(Libraries.Player, EntryPoint = "player_set_media_stream_buffer_status_cb")]
         internal static extern PlayerErrorCode SetMediaStreamBufferStatusCb(IntPtr player, StreamType type,
@@ -249,16 +249,18 @@ internal static partial class Interop
         internal static extern PlayerErrorCode UnsetVideoStreamChangedCb(IntPtr player);
 
         [DllImport(Libraries.Player, EntryPoint = "player_get_track_count")]
-        internal static extern PlayerErrorCode GetTrackCount(IntPtr player, int type, out int count);
+        internal static extern PlayerErrorCode GetTrackCount(IntPtr player, StreamType type, out int count);
 
         [DllImport(Libraries.Player, EntryPoint = "player_select_track")]
-        internal static extern PlayerErrorCode SelectTrack(IntPtr player, int type, int index);
+        internal static extern PlayerErrorCode SelectTrack(IntPtr player, StreamType type, int index);
 
         [DllImport(Libraries.Player, EntryPoint = "player_get_current_track")]
-        internal static extern PlayerErrorCode GetCurrentTrack(IntPtr player, int type, out int index);
+        internal static extern PlayerErrorCode GetCurrentTrack(IntPtr player, StreamType type,
+            out int index);
 
         [DllImport(Libraries.Player, EntryPoint = "player_get_track_language_code")]
-        internal static extern PlayerErrorCode GetTrackLanguageCode(IntPtr player, int type, int index, out IntPtr code);
+        internal static extern PlayerErrorCode GetTrackLanguageCode(IntPtr player, StreamType type,
+            int index, out IntPtr code);
     }
 
     internal class PlayerHandle : SafeHandle

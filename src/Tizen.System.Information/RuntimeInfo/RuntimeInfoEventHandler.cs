@@ -59,11 +59,19 @@ namespace Tizen.System
             }
         }
 
-        private void RuntimeInformationChangedCallback(RuntimeInfoKey key, IntPtr userData)
+        private void RuntimeInformationChangedCallback(RuntimeInfoKey num, IntPtr userData)
         {
+            string strKey = "Invalid";
+            RuntimeInfoKey key = TvProductHelper.ReconvertKeyIfTvProduct(num);
+            
+            if (key > 0 && Information.EnumStringMapping.ContainsKey(key))
+            {
+                strKey = Information.EnumStringMapping[key];
+            }
+
             RuntimeFeatureStatusChangedEventArgs eventArgs = new RuntimeFeatureStatusChangedEventArgs()
             {
-                Key = Information.HttpPrefix + Information.RuntimeInfoStringKeyPrefix + (Information.EnumStringMapping.ContainsKey(key) ? Information.EnumStringMapping[key] : "Invalid")
+                Key = Information.HttpPrefix + Information.RuntimeInfoStringKeyPrefix + strKey
             };
 
             Handler?.Invoke(null, eventArgs);
