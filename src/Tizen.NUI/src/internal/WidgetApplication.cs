@@ -147,7 +147,10 @@ namespace Tizen.NUI
                 if (widgetInfo[widgetType] == widgetName)
                 {
                     Widget widget = Activator.CreateInstance(widgetType) as Widget;
-                    return widget.GetIntPtr();
+                    if (widget)
+                    {
+                        return widget.GetIntPtr();
+                    }
                 }
             }
 
