@@ -1,5 +1,5 @@
 /*
- * Copyright(c) 2017 Samsung Electronics Co., Ltd.
+ * Copyright(c) 2018 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -6624,6 +6624,9 @@ class NDalicPINVOKE {
 
   [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint="CSharp_Dali_IMAGE_VISUAL_FRAME_DELAY_get")]
   public static extern int IMAGE_VISUAL_FRAME_DELAY_get();
+
+  [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint="CSharp_Dali_IMAGE_VISUAL_LOOP_COUNT_get")]
+  public static extern int IMAGE_VISUAL_LOOP_COUNT_get();
 
   [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint="CSharp_Dali_IMAGE_VISUAL_MASK_CONTENT_SCALE_get")]
   public static extern int IMAGE_VISUAL_MASK_CONTENT_SCALE_get();
