@@ -1,5 +1,5 @@
 /*
- * Copyright(c) 2017 Samsung Electronics Co., Ltd.
+ * Copyright(c) 2018 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -92,16 +92,32 @@ namespace Tizen.NUI
             RefObject refObj = baseHandle.GetObjectPtr();
             IntPtr refObjectPtr = (IntPtr)RefObject.getCPtr(refObj);
 
-            // we store a dictionary of ref-obects (C++ land) to managed obects (C# land)
-            return GetManagedBaseHandleFromRefObject(refObjectPtr);
+            if (refObjectPtr != null)
+            {
+                // we store a dictionary of ref-obects (C++ land) to managed obects (C# land)
+                return GetManagedBaseHandleFromRefObject(refObjectPtr);
+            }
+            else
+            {
+                NUILog.Error("NUI Registry RefObjectPtr is NULL!");
+                return null;
+            }
         }
 
         internal static BaseHandle GetManagedBaseHandleFromNativePtr(IntPtr cPtr)
         {
             IntPtr refObjectPtr = NDalicPINVOKE.GetRefObjectPtr(cPtr);
 
-            // we store a dictionary of ref-obects (C++ land) to managed obects (C# land)
-            return GetManagedBaseHandleFromRefObject(refObjectPtr);
+            if (refObjectPtr != null)
+            {
+                // we store a dictionary of ref-obects (C++ land) to managed obects (C# land)
+                return GetManagedBaseHandleFromRefObject(refObjectPtr);
+            }
+            else
+            {
+                NUILog.Error("NUI Registry RefObjectPtr is NULL!");
+                return null;
+            }
         }
 
         internal static BaseHandle GetManagedBaseHandleFromRefObject(IntPtr refObjectPtr)

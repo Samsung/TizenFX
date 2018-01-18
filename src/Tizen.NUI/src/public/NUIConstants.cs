@@ -2452,6 +2452,39 @@ namespace Tizen.NUI
     }
 
     /// <summary>
+    /// An enum of vertical line alignment.
+    /// </summary>
+    /// <since_tizen> 5 </since_tizen>
+    /// This will be released at Tizen.NET API Level 5, so currently this would be used as inhouse API. 
+    [EditorBrowsable(EditorBrowsableState.Never)]
+    public enum VerticalLineAlignment
+    {    
+        /// <summary>
+        /// vertical line alignment is from top. 
+        /// </summary>
+        /// <since_tizen> 5 </since_tizen>
+        /// This will be released at Tizen.NET API Level 5, so currently this would be used as inhouse API. 
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        Top,
+
+        /// <summary>
+        /// vertical line alignment is from center.
+        /// </summary>
+        /// <since_tizen> 5 </since_tizen>
+        /// This will be released at Tizen.NET API Level 5, so currently this would be used as inhouse API. 
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        Center,
+
+        /// <summary>
+        /// vertical line alignment is from bottom.
+        /// </summary>
+        /// <since_tizen> 5 </since_tizen>
+        /// This will be released at Tizen.NET API Level 5, so currently this would be used as inhouse API. 
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        Bottom
+    }
+
+    /// <summary>
     /// Enumeration type for the font's slant.
     /// </summary>
     /// <since_tizen> 5 </since_tizen>
