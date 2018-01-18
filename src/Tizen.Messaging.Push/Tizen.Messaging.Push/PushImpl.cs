@@ -40,8 +40,8 @@ namespace Tizen.Messaging.Push
                         Log.Info(Interop.PushClient.LogTag, "Creating New Instance");
                         _instance = new PushImpl();
                     }
+                    return _instance;
                 }
-                return _instance;
             }
         }
 
