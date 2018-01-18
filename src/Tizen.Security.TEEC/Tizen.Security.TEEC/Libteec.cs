@@ -19,6 +19,8 @@ using System.Collections.Generic;
 using System.Runtime.InteropServices;
 using System.Threading;
 using System.Threading.Tasks;
+using System.Runtime.CompilerServices;
+using System.IO;
 
 namespace Tizen.Security.TEEC
 {
@@ -326,8 +328,10 @@ namespace Tizen.Security.TEEC
     /// This type denotes a TEE Session, the logical container linking a client application with a particular trusted application.
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
-    public sealed class Session
+    public sealed class Session : IDisposable
     {
+        private bool disposed = false;
+        private bool opened = false;
         private Context context;
         private IntPtr session_imp;
         private IntPtr opptr;
@@ -340,14 +344,37 @@ namespace Tizen.Security.TEEC
             for (int i=0; i < 4; ++i) shm[i] = null;
         }
 
+        // internal since class is sealed
+        internal void Dispose(bool disposing)
+        {
+            if (disposed) {
+                return ;
+            }
+            if (opened) {
+                Interop.Libteec.CloseSession(session_imp);
+                opened = false;
+            }
+            Marshal.FreeHGlobal(this.opptr);
+            Marshal.FreeHGlobal(this.session_imp);
+            this.opptr = IntPtr.Zero;
+            this.session_imp = IntPtr.Zero;
+            disposed = true;
+        }
+
         /// <summary>
         /// Destructor of the class.
         /// </summary>
         ~Session()
         {
+            Dispose(false);
+        }
+
+        /// <summary>
+        /// Disposable interface implememtation.
+        /// </summary>
+        public void Dispose()
+        {
             Close();
-            Marshal.FreeHGlobal(this.opptr);
-            Marshal.FreeHGlobal(this.session_imp);
         }
 
         internal UInt32 InitParam(ref Interop.TEEC_Parameter32[] dst, int i, Parameter src)
@@ -550,6 +577,7 @@ namespace Tizen.Security.TEEC
 
             //MAYBE map origin of return code to specyfic Exception
             Interop.CheckNThrowException(ret, string.Format("OpenSession('{0}')", destination));
+            opened = true;
         }
         internal void Open64(Guid destination, uint loginMethod, byte[] connectionData, Parameter[] paramlist)
         {
@@ -582,6 +610,7 @@ namespace Tizen.Security.TEEC
 
             //MAYBE map origin of return code to specyfic Exception
             Interop.CheckNThrowException(ret, string.Format("OpenSession('{0}')", destination));
+            opened = true;
         }
 
         /// <summary>
@@ -596,7 +625,8 @@ namespace Tizen.Security.TEEC
         /// <exception cref="NotSupportedException">The required feature is not supported.</exception>
         /// <exception cref="InvalidOperationException">The operation is invalid.</exception>
         public void Close() {
-            Interop.Libteec.CloseSession(session_imp);
+            Dispose(true);
+            GC.SuppressFinalize(this);
         }
 
         /// <summary>
@@ -689,6 +719,8 @@ namespace Tizen.Security.TEEC
     /// <since_tizen> 3 </since_tizen>
     public sealed class Context : IDisposable
     {
+        private bool disposed = false;
+        private bool initialized = false;
         internal IntPtr context_imp;
 
         /// <summary>
@@ -711,6 +743,7 @@ namespace Tizen.Security.TEEC
             try {
                 int ret = Interop.Libteec.InitializeContext(name, context_imp);
                 Interop.CheckNThrowException(ret, string.Format("InititalizeContext('{0}')", name));
+				initialized = true;
             }
             catch (global::System.DllNotFoundException e)
             {
@@ -720,12 +753,26 @@ namespace Tizen.Security.TEEC
             }
         }
 
+        // internal since class is sealed
+        internal void Dispose(bool disposing)
+        {
+            if (disposed) {
+                return ;
+            }
+            if (initialized) {
+                Interop.Libteec.FinalizeContext(context_imp);
+            }
+            Marshal.FreeHGlobal(context_imp);
+            context_imp = IntPtr.Zero;
+            disposed = true;
+        }
+
         /// <summary>
         /// Destructor of the class.
         /// </summary>
         ~Context()
         {
-            Dispose();
+            Dispose(false);
         }
 
         /// <summary>
@@ -736,10 +783,8 @@ namespace Tizen.Security.TEEC
         /// <privlevel>partner</privlevel>
         /// <feature>http://tizen.org/feature/security.tee</feature>
         public void Dispose() {
-            try {
-                Interop.Libteec.FinalizeContext(context_imp);
-            }
-            catch (global::System.DllNotFoundException) { }
+            Dispose(true);
+            GC.SuppressFinalize(this);
         }
 
         /// <summary>
@@ -920,4 +965,5 @@ namespace Tizen.Security.TEEC
             Interop.Libteec.ReleaseSharedMemory(ref shm.shm);
         }
     };
+
 }
