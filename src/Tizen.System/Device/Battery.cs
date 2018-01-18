@@ -129,7 +129,7 @@ namespace Tizen.System
             }
         }
 
-        private static EventHandler<BatteryPercentChangedEventArgs> s_capacityChanged;
+        private static event EventHandler<BatteryPercentChangedEventArgs> s_capacityChanged;
         /// <summary>
         /// CapacityChanged is triggered when the battery charge percentage is changed.
         /// </summary>
