@@ -720,6 +720,9 @@ namespace Tizen.NUI
         [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint="CSharp_TextLabel_Property_TEXT_DIRECTION_get")]
         public static extern int TextLabel_Property_TEXT_DIRECTION_get();
 
+        [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint="CSharp_TextLabel_Property_VERTICAL_LINE_ALIGNMENT_get")]
+        public static extern int TextLabel_Property_VERTICAL_LINE_ALIGNMENT_get();
+
         [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint = "CSharp_HIDDENINPUT_PROPERTY_MODE_get")]
         public static extern int HIDDENINPUT_PROPERTY_MODE_get();
 
@@ -1738,5 +1741,6 @@ namespace Tizen.NUI
 
         [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint = "CSharp_ImageView_IMAGE_VISUAL_ACTION_STOP_get")]
         public static extern int ImageView_IMAGE_VISUAL_ACTION_STOP_get();
+
     }
 }
