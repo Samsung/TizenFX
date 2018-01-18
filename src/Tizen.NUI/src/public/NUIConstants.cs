@@ -2416,7 +2416,6 @@ namespace Tizen.NUI
     /// An enum of text direction.
     /// </summary>
     /// <since_tizen> 5 </since_tizen>
-    [EditorBrowsable(EditorBrowsableState.Never)]
     public enum TextDirection
     {
         /// <summary>
@@ -2430,6 +2429,31 @@ namespace Tizen.NUI
         /// </summary>
         /// <since_tizen> 5 </since_tizen>
         RightToLeft
+    }
+
+    /// <summary>
+    /// An enum of vertical line alignment.
+    /// </summary>
+    /// <since_tizen> 5 </since_tizen>
+    public enum VerticalLineAlignment
+    {    
+        /// <summary>
+        /// vertical line alignment is from top. 
+        /// </summary>
+        /// <since_tizen> 5 </since_tizen>
+        Top,
+
+        /// <summary>
+        /// vertical line alignment is from center.
+        /// </summary>
+        /// <since_tizen> 5 </since_tizen>
+        Center,
+
+        /// <summary>
+        /// vertical line alignment is from bottom.
+        /// </summary>
+        /// <since_tizen> 5 </since_tizen>
+        Bottom
     }
 
     /// <summary>
