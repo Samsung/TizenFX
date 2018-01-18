@@ -125,6 +125,8 @@ namespace ElmSharp
         private Interop.Eext.EextEventCallback _backButtonHandler;
         private Interop.Eext.EextEventCallback _moreButtonHandler;
 
+        private static Dictionary<IntPtr, EvasObject> s_handleTable = new Dictionary<IntPtr, EvasObject>();
+
         /// <summary>
         /// Sets or gets the handle for EvasObject.
         /// </summary>
@@ -884,6 +886,13 @@ namespace ElmSharp
             return obj.Handle;
         }
 
+	/// <summary>
+        /// Define cast to EvasObject operator from IntPtr
+        /// </summary>
+        /// <param name="handle">Native handle to EvasObject</param>
+        /// <since_tizen> preview </since_tizen>
+        public static explicit operator EvasObject(IntPtr handle) => EvasObject.s_handleTable.TryGetValue(handle, out EvasObject obj) ? obj : null;
+
         /// <summary>
         /// Requests the keyname key events to be directed to the current object.
         /// </summary>
@@ -1063,6 +1072,8 @@ namespace ElmSharp
                 Handle = CreateHandle(parent);
                 Debug.Assert(Handle != IntPtr.Zero);
 
+                s_handleTable[Handle] = this;
+
                 (parent as Window)?.AddChild(this);
 
                 OnRealized();
@@ -1100,6 +1111,7 @@ namespace ElmSharp
 
                 Interop.Evas.evas_object_del(toBeDeleted);
                 Parent = null;
+                s_handleTable.Remove(toBeDeleted);
             }
         }
 
@@ -1107,6 +1119,7 @@ namespace ElmSharp
         {
             Deleted?.Invoke(this, EventArgs.Empty);
             OnInvalidate();
+            IntPtr toBeDeleted = Handle;
             Handle = IntPtr.Zero;
 
             MakeInvalidateEvent();
@@ -1114,6 +1127,8 @@ namespace ElmSharp
             (Parent as Window)?.RemoveChild(this);
             Parent = null;
             _deleted = null;
+
+            s_handleTable.Remove(toBeDeleted);
         }
 
         private void DisposeEvent()

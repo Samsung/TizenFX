@@ -326,7 +326,7 @@ namespace Tizen.Multimedia
                         throw new InvalidOperationException("Video option is not set.");
                     }
 
-                    if ((packet.Format is VideoMediaFormat format) &&
+                    if (!(packet.Format is VideoMediaFormat format) ||
                         (AreVideoTypesMatched(_sourceFormat, format.MimeType) == false))
                     {
                         throw new InvalidOperationException("Video format does not match.");
