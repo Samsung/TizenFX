@@ -34,7 +34,7 @@ namespace Tizen.Multimedia
             bool available = false;
 
             Native.EqualizerIsAvailable(Player.Handle, out available).
-                ThrowIfFailed("Failed to initialize the AudioEffect");
+                ThrowIfFailed(Player, "Failed to initialize the AudioEffect");
 
             IsAvailable = available;
 
@@ -45,12 +45,12 @@ namespace Tizen.Multimedia
 
             int count = 0;
             Native.GetEqualizerBandsCount(Player.Handle, out count).
-                ThrowIfFailed("Failed to initialize the AudioEffect");
+                ThrowIfFailed(Player, "Failed to initialize the AudioEffect");
 
             int min = 0;
             int max = 0;
             Native.GetEqualizerLevelRange(Player.Handle, out min, out max).
-                ThrowIfFailed("Failed to initialize the AudioEffect");
+                ThrowIfFailed(Player, "Failed to initialize the AudioEffect");
 
             Count = count;
             BandLevelRange = new Range(min, max);
@@ -100,7 +100,7 @@ namespace Tizen.Multimedia
             Player.ValidateNotDisposed();
 
             Native.EqualizerClear(Player.Handle).
-                ThrowIfFailed("Failed to clear equalizer effect");
+                ThrowIfFailed(Player, "Failed to clear equalizer effect");
         }
 
         /// <summary>
