@@ -27,20 +27,12 @@ namespace Tizen.Messaging.Messages
 
     internal partial class MessagesManagerImpl : IDisposable
     {
-        private static readonly MessagesManagerImpl _instance = new MessagesManagerImpl();
+        private static readonly MessagesManagerImpl _instance = null;
         private bool disposed = false;
 
         private static IntPtr _MessageServiceHandle;
 
         private Interop.Messages.MessageSentCallback _messageSentCallback;
-
-        internal static MessagesManagerImpl Instance
-        {
-            get
-            {
-                return _instance;
-            }
-        }
 
         private MessagesManagerImpl()
         {
@@ -99,6 +91,15 @@ namespace Tizen.Messaging.Messages
 
                 _MessageServiceHandle = IntPtr.Zero;
             }
+        }
+
+        internal static MessagesManagerImpl GetInstance()
+        {
+            if (null == _instance)
+                return new MessagesManagerImpl();
+            else
+                return _instance;
+
         }
 
         internal Task<SentResult> SendMessageAsync(Message message, bool saveToSentbox)
