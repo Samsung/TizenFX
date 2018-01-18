@@ -46,14 +46,14 @@ namespace Tizen.Multimedia
 
             _focusStateChangedCallback = (IntPtr streamInfo, AudioStreamFocusOptions focusMask,
                 AudioStreamFocusState state, AudioStreamFocusChangedReason reason, AudioStreamBehaviors behaviors,
-                string extraInfo, IntPtr userData) =>
+                string extraInfo, IntPtr _) =>
             {
                 FocusStateChanged?.Invoke(this,
                     new AudioStreamPolicyFocusStateChangedEventArgs(focusMask, state, reason, behaviors, extraInfo));
             };
 
             Interop.AudioStreamPolicy.Create(streamType, _focusStateChangedCallback,
-                IntPtr.Zero, out _handle).Validate("Unable to create stream information");
+                IntPtr.Zero, out _handle).ThrowIfError("Unable to create stream information");
 
             Debug.Assert(_handle != null);
         }
@@ -81,14 +81,13 @@ namespace Tizen.Multimedia
         {
             get
             {
-                AudioVolumeType type;
-                var ret = Interop.AudioStreamPolicy.GetSoundType(Handle, out type);
+                var ret = Interop.AudioStreamPolicy.GetSoundType(Handle, out var type);
                 if (ret == AudioManagerError.NoData)
                 {
                     return AudioVolumeType.None;
                 }
 
-                ret.Validate("Failed to get volume type");
+                ret.ThrowIfError("Failed to get volume type");
 
                 return type;
             }
@@ -136,14 +135,14 @@ namespace Tizen.Multimedia
             get
             {
                 Interop.AudioStreamPolicy.GetFocusReacquisition(Handle, out var enabled).
-                    Validate("Failed to get focus reacquisition state");
+                    ThrowIfError("Failed to get focus reacquisition state");
 
                 return enabled;
             }
             set
             {
                 Interop.AudioStreamPolicy.SetFocusReacquisition(Handle, value).
-                    Validate("Failed to set focus reacquisition");
+                    ThrowIfError("Failed to set focus reacquisition");
             }
         }
 
@@ -193,7 +192,7 @@ namespace Tizen.Multimedia
             }
 
             Interop.AudioStreamPolicy.AcquireFocus(Handle, options, behaviors, extraInfo).
-                Validate("Failed to acquire focus");
+                ThrowIfError("Failed to acquire focus");
         }
 
         /// <summary>
@@ -229,7 +228,7 @@ namespace Tizen.Multimedia
             }
 
             Interop.AudioStreamPolicy.ReleaseFocus(Handle, options, behaviors, extraInfo).
-                Validate("Failed to release focus");
+                ThrowIfError("Failed to release focus");
         }
 
         /// <summary>
@@ -244,7 +243,7 @@ namespace Tizen.Multimedia
         /// <since_tizen> 3 </since_tizen>
         public void ApplyStreamRouting()
         {
-            Interop.AudioStreamPolicy.ApplyStreamRouting(Handle).Validate("Failed to apply stream routing");
+            Interop.AudioStreamPolicy.ApplyStreamRouting(Handle).ThrowIfError("Failed to apply stream routing");
         }
 
         /// <summary>
@@ -279,7 +278,7 @@ namespace Tizen.Multimedia
                 throw new InvalidOperationException("The device seems not connected.");
             }
 
-            ret.Validate("Failed to add device for stream routing");
+            ret.ThrowIfError("Failed to add device for stream routing");
         }
 
         /// <summary>
@@ -302,7 +301,7 @@ namespace Tizen.Multimedia
             }
 
             Interop.AudioStreamPolicy.RemoveDeviceForStreamRouting(Handle, device.Id).
-                Validate("Failed to remove device for stream routing");
+                ThrowIfError("Failed to remove device for stream routing");
         }
 
         /// <summary>
@@ -336,7 +335,7 @@ namespace Tizen.Multimedia
         private static bool _isWatchCallbackRegistered;
         private static EventHandler<StreamFocusStateChangedEventArgs> _streamFocusStateChanged;
         private static Interop.AudioStreamPolicy.FocusStateWatchCallback _focusStateWatchCallback;
-        private static object _streamFocusEventLock = new object();
+        private static readonly object _streamFocusEventLock = new object();
 
         /// <summary>
         /// Occurs when the focus state for stream types is changed regardless of the process.
@@ -367,8 +366,7 @@ namespace Tizen.Multimedia
 
         private static void RegisterFocusStateWatch()
         {
-            _focusStateWatchCallback = (int id, AudioStreamFocusOptions options, AudioStreamFocusState focusState,
-                AudioStreamFocusChangedReason reason, string extraInfo, IntPtr userData) =>
+            _focusStateWatchCallback = (id, options, focusState, reason, extraInfo, _) =>
             {
                 _streamFocusStateChanged?.Invoke(null,
                     new StreamFocusStateChangedEventArgs(options, focusState, reason, extraInfo));
@@ -377,7 +375,7 @@ namespace Tizen.Multimedia
             Interop.AudioStreamPolicy.AddFocusStateWatchCallback(
                 AudioStreamFocusOptions.Playback | AudioStreamFocusOptions.Recording,
                 _focusStateWatchCallback, IntPtr.Zero, out var cbId).
-                Validate("Failed to initialize focus state event");
+                ThrowIfError("Failed to initialize focus state event");
         }
         #endregion
     }

@@ -42,7 +42,7 @@ namespace Tizen.Multimedia
             ret = Interop.AudioDevice.GetDeviceType(deviceHandle, out _type);
             MultimediaDebug.AssertNoError(ret);
 
-            ret = (int)Interop.AudioDevice.GetDeviceIoDirection(deviceHandle, out _ioDirection);
+            ret = Interop.AudioDevice.GetDeviceIoDirection(deviceHandle, out _ioDirection);
             MultimediaDebug.AssertNoError(ret);
         }
 
@@ -84,7 +84,7 @@ namespace Tizen.Multimedia
             get
             {
                 Interop.AudioDevice.GetDeviceState(Id, out var state).
-                    Validate("Failed to get the state of the device");
+                    ThrowIfError("Failed to get the state of the device");
 
                 return state;
             }
