@@ -849,6 +849,10 @@ namespace Tizen.NUI.BaseComponents
                 GetProperty(TextLabel.Property.VERTICAL_LINE_ALIGNMENT).Get(out temp);
                 return (VerticalLineAlignment)temp;
             }
+            set
+            {
+                SetProperty(TextLabel.Property.VERTICAL_LINE_ALIGNMENT, new Tizen.NUI.PropertyValue((int)value));
+            }
         }
 
     }
