@@ -172,7 +172,7 @@ namespace Tizen.System
         }
 
 
-        private static EventHandler<LedBrightnessChangedEventArgs> s_brightnessChanged;
+        private static event EventHandler<LedBrightnessChangedEventArgs> s_brightnessChanged;
         /// <summary>
         /// StateChanged is raised when the LED state is changed.
         /// </summary>

@@ -28,15 +28,14 @@ namespace Tizen.Multimedia
     /// <since_tizen> 3 </since_tizen>
     public class PlayerTrackInfo
     {
-        private readonly int _streamType;
+        private readonly StreamType _streamType;
         private readonly Player _owner;
 
         internal PlayerTrackInfo(Player player, StreamType streamType)
         {
             Debug.Assert(player != null);
 
-            Log.Debug(PlayerLog.Tag, "streamType : " + streamType);
-            _streamType = (int)streamType;
+            _streamType = streamType;
             _owner = player;
         }
 
@@ -55,10 +54,11 @@ namespace Tizen.Multimedia
         {
             _owner.ValidatePlayerState(PlayerState.Ready, PlayerState.Playing, PlayerState.Paused);
 
-            int count = 0;
-            NativePlayer.GetTrackCount(_owner.Handle, _streamType, out count).
-                ThrowIfFailed("Failed to get count of the track");
+            NativePlayer.GetTrackCount(_owner.Handle, _streamType, out var count).
+                ThrowIfFailed(_owner, "Failed to get count of the track");
+
             Log.Info(PlayerLog.Tag, "get count : " + count);
+
             return count;
         }
 
@@ -85,9 +85,8 @@ namespace Tizen.Multimedia
 
             if (index < 0 || GetCount() <= index)
             {
-                Log.Error(PlayerLog.Tag, "invalid index");
                 throw new ArgumentOutOfRangeException(nameof(index), index,
-                    $"valid index range is 0 <= x < {nameof(GetCount)}(), but got { index }.");
+                    $"Valid index range is 0 <= x < {nameof(GetCount)}(), but got { index }.");
             }
 
             IntPtr code = IntPtr.Zero;
@@ -95,7 +94,7 @@ namespace Tizen.Multimedia
             try
             {
                 NativePlayer.GetTrackLanguageCode(_owner.Handle, _streamType, index, out code).
-                    ThrowIfFailed("Failed to get the selected language of the player");
+                    ThrowIfFailed(_owner, "Failed to get the selected language of the player");
 
                 string result = Marshal.PtrToStringAnsi(code);
 
@@ -135,10 +134,8 @@ namespace Tizen.Multimedia
             {
                 _owner.ValidatePlayerState(PlayerState.Ready, PlayerState.Playing, PlayerState.Paused);
 
-                int value = 0;
-
-                NativePlayer.GetCurrentTrack(_owner.Handle, _streamType, out value).
-                    ThrowIfFailed("Failed to get the selected index of the player");
+                NativePlayer.GetCurrentTrack(_owner.Handle, _streamType, out var value).
+                    ThrowIfFailed(_owner, "Failed to get the selected index of the player");
                 Log.Debug(PlayerLog.Tag, "get selected index : " + value);
                 return value;
             }
@@ -146,15 +143,14 @@ namespace Tizen.Multimedia
             {
                 if (value < 0 || GetCount() <= value)
                 {
-                    Log.Error(PlayerLog.Tag, "invalid index");
                     throw new ArgumentOutOfRangeException(nameof(value), value,
-                        $"valid index range is 0 <= x < {nameof(GetCount)}(), but got { value }.");
+                        $"Valid index range is 0 <= x < {nameof(GetCount)}(), but got { value }.");
                 }
 
                 _owner.ValidatePlayerState(PlayerState.Ready, PlayerState.Playing, PlayerState.Paused);
 
                 NativePlayer.SelectTrack(_owner.Handle, _streamType, value).
-                    ThrowIfFailed("Failed to set the selected index of the player");
+                    ThrowIfFailed(_owner, "Failed to set the selected index of the player");
             }
         }
     }

@@ -37,7 +37,8 @@ namespace Tizen.Multimedia
             SampleRate = sampleRate;
             Channels = channels;
             BitRate = bitRate;
-            Log.Debug(PlayerLog.Tag, "sampleRate : " + sampleRate + ", channels : " + channels + ", bitRate : " + bitRate);
+
+            Log.Debug(PlayerLog.Tag, $"sampleRate={sampleRate}, channels={channels}, bitRate={bitRate}");
         }
 
         /// <summary>
@@ -99,8 +100,7 @@ namespace Tizen.Multimedia
             Fps = fps;
             BitRate = bitRate;
             Size = size;
-            Log.Debug(PlayerLog.Tag, "fps : " + fps + ", bitrate : " + bitRate +
-                ", width : " + size.Width + ", height : " + size.Height);
+            Log.Debug(PlayerLog.Tag, $"fps={fps}, bitrate={bitRate}, size=({size})");
         }
         /// <summary>
         /// Initializes a new instance of the VideoStreamProperties struct with the specified fps, bit rate, width, and height.
@@ -111,12 +111,8 @@ namespace Tizen.Multimedia
         /// <param name="height">The height of the stream.</param>
         /// <since_tizen> 3 </since_tizen>
         public VideoStreamProperties(int fps, int bitRate, int width, int height)
+            : this(fps, bitRate, new Size(width, height))
         {
-            Fps = fps;
-            BitRate = bitRate;
-            Size = new Size(width, height);
-            Log.Debug(PlayerLog.Tag, "fps : " + fps + ", bitrate : " + bitRate +
-                ", width : " + width + ", height : " + height);
         }
 
         /// <summary>
@@ -190,11 +186,10 @@ namespace Tizen.Multimedia
             Player.ValidatePlayerState(PlayerState.Ready, PlayerState.Playing, PlayerState.Paused);
 
             NativePlayer.GetAlbumArt(Player.Handle, out var art, out var size).
-                ThrowIfFailed("Failed to get the album art");
+                ThrowIfFailed(Player, "Failed to get the album art");
 
             if (art == IntPtr.Zero || size == 0)
             {
-                Log.Error(PlayerLog.Tag, "art is null or size is 0 : " + size);
                 return null;
             }
 
@@ -212,7 +207,7 @@ namespace Tizen.Multimedia
             try
             {
                 NativePlayer.GetCodecInfo(Player.Handle, out audioPtr, out videoPtr).
-                    ThrowIfFailed("Failed to get codec info");
+                    ThrowIfFailed(Player, "Failed to get codec info");
 
                 if (audioInfo)
                 {
@@ -271,9 +266,8 @@ namespace Tizen.Multimedia
         {
             Player.ValidatePlayerState(PlayerState.Ready, PlayerState.Playing, PlayerState.Paused);
 
-            int duration = 0;
-            NativePlayer.GetDuration(Player.Handle, out duration).
-                ThrowIfFailed("Failed to get the duration");
+            NativePlayer.GetDuration(Player.Handle, out var duration).
+                ThrowIfFailed(Player, "Failed to get the duration");
 
             Log.Info(PlayerLog.Tag, "get duration : " + duration);
             return duration;
@@ -298,12 +292,9 @@ namespace Tizen.Multimedia
         {
             Player.ValidatePlayerState(PlayerState.Ready, PlayerState.Playing, PlayerState.Paused);
 
-            int sampleRate = 0;
-            int channels = 0;
-            int bitRate = 0;
-
-            NativePlayer.GetAudioStreamInfo(Player.Handle, out sampleRate, out channels, out bitRate).
-                ThrowIfFailed("Failed to get audio stream info");
+            NativePlayer.GetAudioStreamInfo(Player.Handle, out var sampleRate,
+                out var channels, out var bitRate).
+                ThrowIfFailed(Player, "Failed to get audio stream info");
 
             return new AudioStreamProperties(sampleRate, channels, bitRate);
         }
@@ -327,11 +318,8 @@ namespace Tizen.Multimedia
         {
             Player.ValidatePlayerState(PlayerState.Ready, PlayerState.Playing, PlayerState.Paused);
 
-            int fps = 0;
-            int bitRate = 0;
-
-            NativePlayer.GetVideoStreamInfo(Player.Handle, out fps, out bitRate).
-                ThrowIfFailed("Failed to get the video stream info");
+            NativePlayer.GetVideoStreamInfo(Player.Handle, out var fps, out var bitRate).
+                ThrowIfFailed(Player, "Failed to get the video stream info");
 
             return new VideoStreamProperties(fps, bitRate, GetVideoSize());
         }
@@ -340,11 +328,8 @@ namespace Tizen.Multimedia
         {
             Player.ValidatePlayerState(PlayerState.Ready, PlayerState.Playing, PlayerState.Paused);
 
-            int height = 0;
-            int width = 0;
-
-            NativePlayer.GetVideoSize(Player.Handle, out width, out height).
-                ThrowIfFailed("Failed to get the video size");
+            NativePlayer.GetVideoSize(Player.Handle, out var width, out var height).
+                ThrowIfFailed(Player, "Failed to get the video size");
 
             return new Size(width, height);
         }
@@ -375,7 +360,7 @@ namespace Tizen.Multimedia
             try
             {
                 NativePlayer.GetContentInfo(Player.Handle, key, out ptr).
-                    ThrowIfFailed($"Failed to get the meta data with the key '{ key }'");
+                    ThrowIfFailed(Player, $"Failed to get the meta data with the key '{ key }'");
 
                 return Marshal.PtrToStringAnsi(ptr);
             }
