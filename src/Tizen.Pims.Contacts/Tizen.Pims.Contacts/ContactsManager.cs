@@ -153,7 +153,10 @@ namespace Tizen.Pims.Contacts
                         _displayOrderChangedCallback = (ContactDisplayOrder nameDisplayOrder, IntPtr userData) =>
                         {
                             NameDisplayOrderChangedEventArgs args = new NameDisplayOrderChangedEventArgs(nameDisplayOrder);
-                            _nameDisplayOrderChanged?.Invoke(this, args);
+                            lock (thisLock)
+                            {
+                                _nameDisplayOrderChanged?.Invoke(this, args);
+                            }
                         };
                     }
 
@@ -204,7 +207,10 @@ namespace Tizen.Pims.Contacts
                         _sortingOrderChangedCallback = (ContactSortingOrder nameSortingOrder, IntPtr userData) =>
                         {
                             NameSortingOrderChangedEventArgs args = new NameSortingOrderChangedEventArgs(nameSortingOrder);
-                            _nameSortingOrderChanged?.Invoke(this, args);
+                            lock (thisLock)
+                            {
+                                _nameSortingOrderChanged?.Invoke(this, args);
+                            }
                         };
                     }
 
