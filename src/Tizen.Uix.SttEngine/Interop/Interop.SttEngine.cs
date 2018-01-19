@@ -30,7 +30,7 @@ internal static partial class Interop
     /// </summary>
     internal static class SttEngine
     {
-        internal static string LogTag = "Tizen.Uix.SttEngine";
+        internal const string LogTag = "Tizen.Uix.SttEngine";
 
         private const int ErrorStt = -0x02F00000;
 
