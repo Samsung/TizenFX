@@ -109,7 +109,10 @@ namespace Tizen.Pims.Contacts
                         _contactsDBStatusChangedCallback = (DBStatus status, IntPtr userData) =>
                         {
                             DBStatusChangedEventArgs args = new DBStatusChangedEventArgs(status);
-                            _dbStatusChanged?.Invoke(this, args);
+                            lock (thisLock)
+                            {
+                                _dbStatusChanged?.Invoke(this, args);
+                            }
                         };
                     }
 
