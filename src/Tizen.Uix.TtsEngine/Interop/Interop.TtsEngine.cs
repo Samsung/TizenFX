@@ -30,7 +30,7 @@ internal static partial class Interop
     /// </summary>
     internal static class TtsEngine
     {
-        internal static string LogTag = "Tizen.Uix.TtsEngine";
+        internal const string LogTag = "Tizen.Uix.TtsEngine";
 
         private const int ErrorTts = -0x02F10000;
 
