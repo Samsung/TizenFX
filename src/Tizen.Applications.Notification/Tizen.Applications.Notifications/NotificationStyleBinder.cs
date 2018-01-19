@@ -253,6 +253,7 @@ namespace Tizen.Applications.Notifications
                         Interop.Notification.GetExtensionData(notification.Handle, replyKey, out bundleHandle);
                         Bundle bundle = new Bundle(bundleHandle);
                         reply.ParentIndex = (ButtonIndex)int.Parse(bundle.GetItem(replyKey).ToString());
+                        bundle.Dispose();
                     }
                     catch (Exception ex)
                     {
