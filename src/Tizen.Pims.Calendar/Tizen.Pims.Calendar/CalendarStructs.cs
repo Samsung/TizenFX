@@ -24,7 +24,7 @@ namespace Tizen.Pims.Calendar
     /// <since_tizen> 4 </since_tizen>
     public class CalendarTime:IComparable<CalendarTime>
     {
-        internal int _type;
+        internal int _type = 0;
         internal const int milliseconds = 10000000;
 
         /// <summary>

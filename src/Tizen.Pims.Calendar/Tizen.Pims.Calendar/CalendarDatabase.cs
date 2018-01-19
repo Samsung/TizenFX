@@ -373,9 +373,16 @@ namespace Tizen.Pims.Calendar
         {
             CalendarRecord record = null;
             if (list.Count <= 0)
+            {
                 return;
+            }
 
             int[] ids = new int[list.Count];
+            if (ids == null || ids.Length == 0)
+            {
+                return;
+            }
+
             int i;
             uint propertyId = 0;
             list.MoveFirst();
