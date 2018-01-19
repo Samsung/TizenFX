@@ -28,7 +28,7 @@ internal static partial class Interop
     /// </summary>
     internal static class Stt
     {
-        internal static string LogTag = "Tizen.Uix.Stt";
+        internal const string LogTag = "Tizen.Uix.Stt";
 
         private const int ErrorStt = -0x02F00000;
 
