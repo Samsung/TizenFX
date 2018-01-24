@@ -105,8 +105,10 @@ namespace Tizen.NUI.BaseComponents
         public override Container GetParent()
         {
             IntPtr cPtr = NDalicPINVOKE.Actor_GetParent(swigCPtr);
-
-            BaseHandle basehandle = Registry.GetManagedBaseHandleFromNativePtr(cPtr);
+            HandleRef CPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
+            BaseHandle basehandle = Registry.GetManagedBaseHandleFromNativePtr(CPtr.Handle);
+            NDalicPINVOKE.delete_BaseHandle(CPtr);
+            CPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
 
             if (NDalicPINVOKE.SWIGPendingException.Pending)
                 throw NDalicPINVOKE.SWIGPendingException.Retrieve();
@@ -2580,8 +2582,10 @@ namespace Tizen.NUI.BaseComponents
         public View FindChildByName(string viewName)
         {
             IntPtr cPtr = NDalicPINVOKE.Actor_FindChildByName(swigCPtr, viewName);
-
-            View ret = Registry.GetManagedBaseHandleFromNativePtr(cPtr) as View;
+            HandleRef CPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
+            View ret = Registry.GetManagedBaseHandleFromNativePtr(CPtr.Handle) as View;
+            NDalicPINVOKE.delete_BaseHandle(CPtr);
+            CPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
 
             if (NDalicPINVOKE.SWIGPendingException.Pending)
                 throw NDalicPINVOKE.SWIGPendingException.Retrieve();
@@ -2591,8 +2595,10 @@ namespace Tizen.NUI.BaseComponents
         internal View FindChildById(uint id)
         {
             IntPtr cPtr = NDalicPINVOKE.Actor_FindChildById(swigCPtr, id);
-
-            View ret = Registry.GetManagedBaseHandleFromNativePtr(cPtr) as View;
+            HandleRef CPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
+            View ret = Registry.GetManagedBaseHandleFromNativePtr(CPtr.Handle) as View;
+            NDalicPINVOKE.delete_BaseHandle(CPtr);
+            CPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
 
             if (NDalicPINVOKE.SWIGPendingException.Pending)
                 throw NDalicPINVOKE.SWIGPendingException.Retrieve();
@@ -3258,14 +3264,16 @@ namespace Tizen.NUI.BaseComponents
             return ret;
         }
 
-        internal ViewVisibilityChangedSignal VisibilityChangedSignal(View view) {
+        internal ViewVisibilityChangedSignal VisibilityChangedSignal(View view)
+        {
             ViewVisibilityChangedSignal ret = new ViewVisibilityChangedSignal(NDalicPINVOKE.VisibilityChangedSignal(View.getCPtr(view)), false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
 
-        internal ViewLayoutDirectionChangedSignal LayoutDirectionChangedSignal(View view) {
+        internal ViewLayoutDirectionChangedSignal LayoutDirectionChangedSignal(View view)
+        {
             ViewLayoutDirectionChangedSignal ret = new ViewLayoutDirectionChangedSignal(NDalicManualPINVOKE.LayoutDirectionChangedSignal(View.getCPtr(view)), false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
@@ -4250,8 +4258,10 @@ namespace Tizen.NUI.BaseComponents
             {
                 View ret;
                 IntPtr cPtr = NDalicPINVOKE.Actor_GetParent(swigCPtr);
-
-                BaseHandle basehandle = Registry.GetManagedBaseHandleFromNativePtr(cPtr);
+                HandleRef CPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
+                BaseHandle basehandle = Registry.GetManagedBaseHandleFromNativePtr(CPtr.Handle);
+                NDalicPINVOKE.delete_BaseHandle(CPtr);
+                CPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
 
                 if (basehandle is Layer)
                 {
