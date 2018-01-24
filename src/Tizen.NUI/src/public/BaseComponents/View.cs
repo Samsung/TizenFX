@@ -403,6 +403,12 @@ namespace Tizen.NUI.BaseComponents
 
         private bool OnKeyEvent(IntPtr view, IntPtr keyEvent)
         {
+            if (keyEvent == global::System.IntPtr.Zero)
+            {
+                Tizen.Log.Error("NUI", "keyEvent should not be null!");
+                return true;
+            }
+
             KeyEventArgs e = new KeyEventArgs();
 
             bool result = false;
@@ -530,6 +536,12 @@ namespace Tizen.NUI.BaseComponents
         // Callback for View TouchSignal
         private bool OnTouch(IntPtr view, IntPtr touchData)
         {
+            if (touchData == global::System.IntPtr.Zero)
+            {
+                Tizen.Log.Error("NUI", "touchData should not be null!");
+                return true;
+            }
+
             TouchEventArgs e = new TouchEventArgs();
 
             e.Touch = Tizen.NUI.Touch.GetTouchFromPtr(touchData);
@@ -605,6 +617,12 @@ namespace Tizen.NUI.BaseComponents
         // Callback for View Hover signal
         private bool OnHoverEvent(IntPtr view, IntPtr hoverEvent)
         {
+            if (hoverEvent == global::System.IntPtr.Zero)
+            {
+                Tizen.Log.Error("NUI", "hoverEvent should not be null!");
+                return true;
+            }
+
             HoverEventArgs e = new HoverEventArgs();
 
             e.Hover = Tizen.NUI.Hover.GetHoverFromPtr(hoverEvent);
@@ -680,6 +698,12 @@ namespace Tizen.NUI.BaseComponents
         // Callback for View Wheel signal
         private bool OnWheelEvent(IntPtr view, IntPtr wheelEvent)
         {
+            if (wheelEvent == global::System.IntPtr.Zero)
+            {
+                Tizen.Log.Error("NUI", "wheelEvent should not be null!");
+                return true;
+            }
+
             WheelEventArgs e = new WheelEventArgs();
 
             e.Wheel = Tizen.NUI.Wheel.GetWheelFromPtr(wheelEvent);
