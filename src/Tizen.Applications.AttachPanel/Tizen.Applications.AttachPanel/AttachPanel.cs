@@ -13,29 +13,40 @@ namespace Tizen.Applications.AttachPanel
         /// </summary>
         /// <since_tizen> 4 </since_tizen>
         /// <param name="conformant">The caller's conformant.</param>
+        /// <exception cref="ArgumentNullException">Thrown when the parameter is null</exception>
         /// <exception cref="OutOfMemoryException">Thrown when an attempt to allocate the memory fails.</exception>
         /// <exception cref="InvalidOperationException">Thrown when the AttachPanel already exists or the <paramref name="conformant"/> is not a conformant object.</exception>
+        /// <exception cref="NotSupportedException">Thrown when the AttachPanel is not supported in the device.</exception>
         public AttachPanel(EvasObject conformant)
         {
             if (conformant == IntPtr.Zero)
             {
-                throw new ArgumentNullException("Use the value property, not null value");
+                throw new ArgumentNullException("Invalid conformant, it's null");
             }
 
-            IntPtr candidateAttachPanel = new IntPtr();
-            Interop.AttachPanel.ErrorCode err = Interop.AttachPanel.CreateAttachPanel(conformant, ref candidateAttachPanel);
+            if (IsAttachPanelSupported() == false)
+            {
+                CheckException(Interop.AttachPanel.ErrorCode.NotSupported);
+            }
+
+            if (IsInitialized())
+            {
+                CheckException(Interop.AttachPanel.ErrorCode.AlreadyExists);
+            }
+
+            var candidateAttachPanel = new IntPtr();
+            var err = Interop.AttachPanel.CreateAttachPanel(conformant, ref candidateAttachPanel);
             CheckException(err);
 
             Tizen.Log.Debug("AttachPanelSharp", "Success to create an AttachPanel Instance");
-            isCreationSucceed = true;
-            _attachPanel = candidateAttachPanel;
+            s_attachPanel = candidateAttachPanel;
 
-            if (_eventEventHandler == null)
+            if (s_eventEventHandler == null)
             {
                 StateEventListenStart();
             }
 
-            if (_resultEventHandler == null)
+            if (s_resultEventHandler == null)
             {
                 ResultEventListenStart();
             }
@@ -48,27 +59,38 @@ namespace Tizen.Applications.AttachPanel
         /// <param name="conformant">The caller's conformant.</param>
         /// <exception cref="OutOfMemoryException">Thrown when an attempt to allocate the memory fails.</exception>
         /// <exception cref="InvalidOperationException">Thrown when the AttachPanel already exists or the <paramref name="conformant"/> is not a conformant object.</exception>
+        /// <exception cref="NotSupportedException">Thrown when the AttachPanel is not supported in the device.</exception>
+        /// <exception cref="ArgumentNullException">Thrown when the parameter is null</exception>
         public AttachPanel(Conformant conformant)
         {
             if (conformant == IntPtr.Zero)
             {
-                throw new ArgumentNullException("Use the value property, not null value");
+                throw new ArgumentNullException("Invalid conformant, it's null");
             }
 
-            IntPtr candidateAttachPanel = new IntPtr();
-            Interop.AttachPanel.ErrorCode err = Interop.AttachPanel.CreateAttachPanel(conformant, ref candidateAttachPanel);
+            if (IsAttachPanelSupported() == false)
+            {
+                CheckException(Interop.AttachPanel.ErrorCode.NotSupported);
+            }
+
+            if (IsInitialized())
+            {
+                CheckException(Interop.AttachPanel.ErrorCode.AlreadyExists);
+            }
+
+            var candidateAttachPanel = new IntPtr();
+            var err = Interop.AttachPanel.CreateAttachPanel(conformant, ref candidateAttachPanel);
             CheckException(err);
 
             Tizen.Log.Debug("AttachPanelSharp", "Success to create an AttachPanel Instance");
-            isCreationSucceed = true;
-            _attachPanel = candidateAttachPanel;
+            s_attachPanel = candidateAttachPanel;
 
-            if (_eventEventHandler == null)
+            if (s_eventEventHandler == null)
             {
                 StateEventListenStart();
             }
 
-            if (_resultEventHandler == null)
+            if (s_resultEventHandler == null)
             {
                 ResultEventListenStart();
             }
@@ -79,12 +101,10 @@ namespace Tizen.Applications.AttachPanel
         /// </summary>
         ~AttachPanel()
         {
-            if (isCreationSucceed &&
-                _attachPanel != IntPtr.Zero)
+            if (IsInitialized())
             {
-                Interop.AttachPanel.ErrorCode err = Interop.AttachPanel.DestroyAttachPanel(_attachPanel);
-                CheckException(err);
-                _attachPanel = IntPtr.Zero;
+                Interop.AttachPanel.DestroyAttachPanel(s_attachPanel);
+                s_attachPanel = IntPtr.Zero;
             }
         }
 
@@ -93,15 +113,27 @@ namespace Tizen.Applications.AttachPanel
         /// </summary>
         /// <value>The AttachPanel window state.</value>
         /// <since_tizen> 4 </since_tizen>
+        /// <exception cref="InvalidOperationException">Thrown when the AttachPanel is not created yet or is already destroyed.</exception>
+        /// <exception cref="NotSupportedException">Thrown when the AttachPanel is not supported in the device.</exception>
+        /// <exception cref="ArgumentException">Thrown when the parameter is invalid</exception>
         public StateType State
         {
             get
             {
-                int interopState;
-                Interop.AttachPanel.ErrorCode err = Interop.AttachPanel.GetState(_attachPanel, out interopState);
+                if (IsAttachPanelSupported() == false)
+                {
+                    CheckException(Interop.AttachPanel.ErrorCode.NotSupported);
+                }
+
+                if(IsInitialized() == false)
+                {
+                    CheckException(Interop.AttachPanel.ErrorCode.NotInitialized);
+                }
+
+                var err = Interop.AttachPanel.GetState(s_attachPanel, out int interopState);
                 CheckException(err);
-                StateType state = (StateType)Enum.ToObject(typeof(StateType), interopState);
-                return state;
+
+                return (StateType)Enum.ToObject(typeof(StateType), interopState);
             }
         }
 
@@ -110,14 +142,26 @@ namespace Tizen.Applications.AttachPanel
         /// </summary>
         /// <value>Visible value of the AttachPanel state.</value>
         /// <since_tizen> 4 </since_tizen>
+        /// <exception cref="InvalidOperationException">Thrown when the AttachPanel is not created yet or is already destroyed.</exception>
+        /// <exception cref="NotSupportedException">Thrown when the AttachPanel is not supported in the device.</exception>
         public bool Visible
         {
             get
             {
-                int visible;
-                Interop.AttachPanel.ErrorCode err = Interop.AttachPanel.GetVisibility(_attachPanel, out visible);
+                if (IsAttachPanelSupported() == false)
+                {
+                    CheckException(Interop.AttachPanel.ErrorCode.NotSupported);
+                }
+
+                if (IsInitialized() == false)
+                {
+                    CheckException(Interop.AttachPanel.ErrorCode.NotInitialized);
+                }
+
+                var err = Interop.AttachPanel.GetVisibility(s_attachPanel, out int visible);
                 CheckException(err);
-                return (visible == 1);
+
+                return visible == 1;
             }
         }
 
@@ -136,7 +180,7 @@ namespace Tizen.Applications.AttachPanel
         /// The caller application has to check the return value of this function.
         /// Content categories will be shown as the sequence of using AddCategory.
         /// Some contents need time to load it all.
-        /// So, it is needed to use this before the mainloop of the Show.
+        /// So, it is needed to use this before the main-loop of the Show.
         /// Privileges,
         /// http://tizen.org/privilege/mediastorage, for using Image or Camera.
         /// http://tizen.org/privilege/camera, for using Camera or TakePicture.
@@ -152,16 +196,27 @@ namespace Tizen.Applications.AttachPanel
         /// <exception cref="UnauthorizedAccessException">Thrown when the application does not have the privilege to access this method.</exception>
         /// <exception cref="NotSupportedException">Thrown when the device does not support the <paramref name="category"/> feature.</exception>
         /// <exception cref="InvalidOperationException">Thrown when the AttachPanel is not created yet or is already destroyed.</exception>
+        /// <exception cref="NotSupportedException">Thrown when the AttachPanel is not supported in the device.</exception>
         /// <since_tizen> 4 </since_tizen>
         public void AddCategory(ContentCategory category, Bundle extraData)
         {
-            IntPtr bundle = IntPtr.Zero;
+            if (IsAttachPanelSupported() == false)
+            {
+                CheckException(Interop.AttachPanel.ErrorCode.NotSupported);
+            }
+
+            if (IsInitialized() == false)
+            {
+                CheckException(Interop.AttachPanel.ErrorCode.NotInitialized);
+            }
+
+            var bundle = IntPtr.Zero;
             if (extraData != null)
             {
                 bundle = extraData.SafeBundleHandle.DangerousGetHandle();
             }
 
-            Interop.AttachPanel.ErrorCode err = Interop.AttachPanel.AddCategory(_attachPanel, (int)category, bundle);
+            var err = Interop.AttachPanel.AddCategory(s_attachPanel, (int)category, bundle);
             CheckException(err);
         }
 
@@ -171,10 +226,21 @@ namespace Tizen.Applications.AttachPanel
         /// <param name="category">The ContentCategory to be added in the AttachPanel.</param>
         ///  <exception cref="ArgumentOutOfRangeException">Thrown when the <paramref name="category"/> is not a valid category.</exception>
         /// <exception cref="InvalidOperationException">Thrown when the AttachPanel is not created yet or is already destroyed.</exception>
+        /// <exception cref="NotSupportedException">Thrown when the AttachPanel is not supported in the device.</exception>
         /// <since_tizen> 4 </since_tizen>
         public void RemoveCategory(ContentCategory category)
         {
-            Interop.AttachPanel.ErrorCode err = Interop.AttachPanel.RemoveCategory(_attachPanel, (int)category);
+            if (IsAttachPanelSupported() == false)
+            {
+                CheckException(Interop.AttachPanel.ErrorCode.NotSupported);
+            }
+
+            if (IsInitialized() == false)
+            {
+                CheckException(Interop.AttachPanel.ErrorCode.NotInitialized);
+            }
+
+            var err = Interop.AttachPanel.RemoveCategory(s_attachPanel, (int)category);
             CheckException(err);
         }
 
@@ -186,6 +252,7 @@ namespace Tizen.Applications.AttachPanel
         /// <exception cref="ArgumentOutOfRangeException">Thrown when the <paramref name="category"/> is not a valid category.</exception>
         /// <exception cref="InvalidOperationException">Thrown when the AttachPanel is destroyed.</exception>
         /// <exception cref="OutOfMemoryException">Thrown when an attempt to allocate the memory fails.</exception>
+        /// <exception cref="NotSupportedException">Thrown when the AttachPanel is not supported in the device.</exception>
         /// <since_tizen> 4 </since_tizen>
         public void SetExtraData(ContentCategory category, Bundle extraData)
         {
@@ -194,13 +261,23 @@ namespace Tizen.Applications.AttachPanel
                 CheckException(Interop.AttachPanel.ErrorCode.InvalidParameter);
             }
 
-            IntPtr bundle = IntPtr.Zero;
+            if (IsAttachPanelSupported() == false)
+            {
+                CheckException(Interop.AttachPanel.ErrorCode.NotSupported);
+            }
+
+            if (IsInitialized() == false)
+            {
+                CheckException(Interop.AttachPanel.ErrorCode.NotInitialized);
+            }
+
+            var bundle = IntPtr.Zero;
             if (extraData != null)
             {
                 bundle = extraData.SafeBundleHandle.DangerousGetHandle();
             }
 
-            Interop.AttachPanel.ErrorCode err = Interop.AttachPanel.SetExtraData(_attachPanel, (int)category, bundle);
+            var err = Interop.AttachPanel.SetExtraData(s_attachPanel, (int)category, bundle);
             CheckException(err);
         }
 
@@ -208,10 +285,21 @@ namespace Tizen.Applications.AttachPanel
         /// Shows the attach panel with the animations.
         /// </summary>
         /// <exception cref="InvalidOperationException">Thrown when the AttachPanel is destroyed.</exception>
+        /// <exception cref="NotSupportedException">Thrown when the AttachPanel is not supported in the device.</exception>
         /// <since_tizen> 4 </since_tizen>
         public void Show()
         {
-            Interop.AttachPanel.ErrorCode err = Interop.AttachPanel.Show(_attachPanel);
+            if (IsAttachPanelSupported() == false)
+            {
+                CheckException(Interop.AttachPanel.ErrorCode.NotSupported);
+            }
+
+            if (IsInitialized() == false)
+            {
+                CheckException(Interop.AttachPanel.ErrorCode.NotInitialized);
+            }
+
+            var err = Interop.AttachPanel.Show(s_attachPanel);
             CheckException(err);
         }
 
@@ -220,17 +308,28 @@ namespace Tizen.Applications.AttachPanel
         /// </summary>
         /// <param name="animation">A flag which turns on or turns off the animation while the attach panel is showing.</param>
         /// <exception cref="InvalidOperationException">Thrown when the AttachPanel is destroyed.</exception>
+        /// <exception cref="NotSupportedException">Thrown when the AttachPanel is not supported in the device.</exception>
         /// <since_tizen> 4 </since_tizen>
         public void Show(bool animation)
         {
+            if (IsAttachPanelSupported() == false)
+            {
+                CheckException(Interop.AttachPanel.ErrorCode.NotSupported);
+            }
+
+            if (IsInitialized() == false)
+            {
+                CheckException(Interop.AttachPanel.ErrorCode.NotInitialized);
+            }
+
             if (animation)
             {
-                Interop.AttachPanel.ErrorCode err = Interop.AttachPanel.Show(_attachPanel);
+                var err = Interop.AttachPanel.Show(s_attachPanel);
                 CheckException(err);
             }
             else
             {
-                Interop.AttachPanel.ErrorCode err = Interop.AttachPanel.ShowWithoutAnimation(_attachPanel);
+                var err = Interop.AttachPanel.ShowWithoutAnimation(s_attachPanel);
                 CheckException(err);
             }
         }
@@ -239,10 +338,21 @@ namespace Tizen.Applications.AttachPanel
         /// Hides the attach panel with the animations.
         /// </summary>
         /// <exception cref="InvalidOperationException">Thrown when the AttachPanel is destroyed.</exception>
+        /// <exception cref="NotSupportedException">Thrown when the AttachPanel is not supported in the device.</exception>
         /// <since_tizen> 4 </since_tizen>
         public void Hide()
         {
-            Interop.AttachPanel.ErrorCode err = Interop.AttachPanel.Hide(_attachPanel);
+            if (IsAttachPanelSupported() == false)
+            {
+                CheckException(Interop.AttachPanel.ErrorCode.NotSupported);
+            }
+
+            if (IsInitialized() == false)
+            {
+                CheckException(Interop.AttachPanel.ErrorCode.NotInitialized);
+            }
+
+            var err = Interop.AttachPanel.Hide(s_attachPanel);
             CheckException(err);
         }
 
@@ -251,17 +361,28 @@ namespace Tizen.Applications.AttachPanel
         /// </summary>
         /// <param name="animation">A flag which turns on or turns off the animation while the attach panel is hiding.</param>
         /// <exception cref="InvalidOperationException">Thrown when the AttachPanel is destroyed.</exception>
+        /// <exception cref="NotSupportedException">Thrown when the AttachPanel is not supported in the device.</exception>
         /// <since_tizen> 4 </since_tizen>
         public void Hide(bool animation)
         {
+            if (IsAttachPanelSupported() == false)
+            {
+                CheckException(Interop.AttachPanel.ErrorCode.NotSupported);
+            }
+
+            if (IsInitialized() == false)
+            {
+                CheckException(Interop.AttachPanel.ErrorCode.NotInitialized);
+            }
+
             if (animation)
             {
-                Interop.AttachPanel.ErrorCode err = Interop.AttachPanel.Hide(_attachPanel);
+                var err = Interop.AttachPanel.Hide(s_attachPanel);
                 CheckException(err);
             }
             else
             {
-                Interop.AttachPanel.ErrorCode err = Interop.AttachPanel.HideWithoutAnimation(_attachPanel);
+                var err = Interop.AttachPanel.HideWithoutAnimation(s_attachPanel);
                 CheckException(err);
             }
         }
@@ -274,18 +395,18 @@ namespace Tizen.Applications.AttachPanel
         {
             add
             {
-                if (_eventEventHandler == null)
+                if (s_eventEventHandler == null)
                 {
                     StateEventListenStart();
                 }
 
-                _eventEventHandler += value;
+                s_eventEventHandler += value;
             }
 
             remove
             {
-                _eventEventHandler -= value;
-                if (_eventEventHandler == null)
+                s_eventEventHandler -= value;
+                if (s_eventEventHandler == null)
                 {
                     StateEventListenStop();
                 }
@@ -300,18 +421,18 @@ namespace Tizen.Applications.AttachPanel
         {
             add
             {
-                if (_resultEventHandler == null)
+                if (s_resultEventHandler == null)
                 {
                     ResultEventListenStart();
                 }
 
-                _resultEventHandler += value;
+                s_resultEventHandler += value;
             }
 
             remove
             {
-                _resultEventHandler -= value;
-                if (_resultEventHandler == null)
+                s_resultEventHandler -= value;
+                if (s_resultEventHandler == null)
                 {
                     ResultEventListenStop();
                 }

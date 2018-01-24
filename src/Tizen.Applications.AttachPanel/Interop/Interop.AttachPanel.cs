@@ -22,6 +22,7 @@ internal static partial class Interop
             NotInitialized = -0x02850000 | 0x02,
             UnsupportedContentCategory = -0x02850000 | 0x03,
             AlreadyDestroyed = -0x02850000 | 0x05,
+            NotSupported = Tizen.Internals.Errors.ErrorCode.NotSupported,
         }
 
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]

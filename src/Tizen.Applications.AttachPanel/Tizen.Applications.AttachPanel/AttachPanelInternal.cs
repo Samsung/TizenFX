@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using Tizen.System;
 
 namespace Tizen.Applications.AttachPanel
 {
@@ -9,51 +10,45 @@ namespace Tizen.Applications.AttachPanel
     /// <since_tizen> 4 </since_tizen>
     public partial class AttachPanel
     {
-        private static IntPtr _attachPanel;
-        private bool isCreationSucceed;
+        private static IntPtr s_attachPanel = IntPtr.Zero;
 
-        private static event EventHandler<StateEventArgs> _eventEventHandler;
-        private static event EventHandler<ResultEventArgs> _resultEventHandler;
+        private static event EventHandler<StateEventArgs> s_eventEventHandler;
+        private static event EventHandler<ResultEventArgs> s_resultEventHandler;
 
-        private static Interop.AttachPanel.AttachPanelEventCallback SetEventListener;
-        private static Interop.AttachPanel.AttachPanelResultCallback SetResultListener;
+        private static Interop.AttachPanel.AttachPanelEventCallback s_setEventListener;
+        private static Interop.AttachPanel.AttachPanelResultCallback s_setResultListener;
 
         private void StateEventListenStart()
         {
-            Interop.AttachPanel.ErrorCode err = 0;
-
-            SetEventListener = (attachPanel, eventType, eventInfo, userData) =>
+            s_setEventListener = (attachPanel, eventType, eventInfo, userData) =>
             {
-                _eventEventHandler?.Invoke(null, new StateEventArgs((EventType)eventType));
+                s_eventEventHandler?.Invoke(null, new StateEventArgs((EventType)eventType));
             };
-            err = Interop.AttachPanel.SetEventCb(_attachPanel, SetEventListener, IntPtr.Zero);
+            var err = Interop.AttachPanel.SetEventCb(s_attachPanel, s_setEventListener, IntPtr.Zero);
             CheckException(err);
         }
 
         private void StateEventListenStop()
         {
-            Interop.AttachPanel.ErrorCode err = 0;
-            err = Interop.AttachPanel.UnsetEventCb(_attachPanel);
+            var err = Interop.AttachPanel.UnsetEventCb(s_attachPanel);
             CheckException(err);
         }
 
         private void ResultEventListenStart()
         {
-            Interop.AttachPanel.ErrorCode err = 0;
-            SetResultListener = (attachPanel, category, resulthandler, resultCode, userData) =>
+            s_setResultListener = (attachPanel, category, resulthandler, resultCode, userData) =>
             {
                 SafeAppControlHandle handle = new SafeAppControlHandle(resulthandler, false);
                 AppControl result = new AppControl(handle);
-                _resultEventHandler?.Invoke(null, new ResultEventArgs((ContentCategory)category, result, (AppControlReplyResult)resultCode));
+                s_resultEventHandler?.Invoke(null, new ResultEventArgs((ContentCategory)category, result, (AppControlReplyResult)resultCode));
             };
-            err = Interop.AttachPanel.SetResultCb(_attachPanel, SetResultListener, IntPtr.Zero);
+            var err = Interop.AttachPanel.SetResultCb(s_attachPanel, s_setResultListener, IntPtr.Zero);
             CheckException(err);
         }
 
         private void ResultEventListenStop()
         {
-            Interop.AttachPanel.ErrorCode err = 0;
-            err = Interop.AttachPanel.UnsetResultCb(_attachPanel);
+            var err = Interop.AttachPanel.UnsetResultCb(s_attachPanel);
             CheckException(err);
         }
 
@@ -75,7 +70,19 @@ namespace Tizen.Applications.AttachPanel
                     throw new NotSupportedException("Unsupported Content Category");
                 case Interop.AttachPanel.ErrorCode.AlreadyDestroyed:
                     throw new InvalidOperationException("Already Destroyed");
+                case Interop.AttachPanel.ErrorCode.NotSupported:
+                    throw new NotSupportedException("AttachPanel API is not supported");
             }
+        }
+
+        internal static bool IsAttachPanelSupported()
+        {
+            return Information.TryGetValue("http://tizen.org/feature/attach_panel", out bool isAttachPanelSupported) && isAttachPanelSupported;
+        }
+
+        internal static bool IsInitialized()
+        {
+            return s_attachPanel != IntPtr.Zero;
         }
     }
 }
