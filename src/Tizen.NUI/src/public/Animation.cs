@@ -83,12 +83,7 @@ namespace Tizen.NUI
 
             }
 
-            if (this)
-            {
-                this.Clear();
-                this.Reset();
-                //throw new System.InvalidOperationException("Animation Instance should not be disposed until getting Finished event. Should be a global variable");
-            }
+            this?.Clear();
 
             //Release your own unmanaged resources here.
             //You should not access any managed member here except static instance.
