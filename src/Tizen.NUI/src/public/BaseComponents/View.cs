@@ -2248,13 +2248,50 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
-                int temp = 0;
-                GetProperty(View.Property.SIBLING_ORDER).Get(out temp);
-                return temp;
+                var parentChildren = Parent?.Children;
+                int currentOrder = 0;
+                if (parentChildren != null)
+                {
+                    currentOrder = parentChildren.IndexOf(this);
+                    
+                    if (currentOrder < parentChildren.Count)
+                    {
+                        return currentOrder;
+                    }
+                }
+                
+                return currentOrder;
             }
             set
             {
-                SetProperty(View.Property.SIBLING_ORDER, new Tizen.NUI.PropertyValue(value));
+                var siblings = Parent?.Children;
+                if (siblings != null)
+                {
+                    int currentOrder = siblings.IndexOf(this);
+
+                    if (value != currentOrder)
+                    {
+                        if (value == 0)
+                        {
+                            LowerToBottom();
+                        }
+                        else if (value < siblings.Count - 1)
+                        {
+                            if (value > currentOrder)
+                            {
+                                RaiseAbove(siblings[value]);
+                            }
+                            else
+                            {
+                                LowerBelow(siblings[value]);
+                            }
+                        }
+                        else
+                        {
+                            RaiseToTop();
+                        }
+                    }
+                }
             }
         }
 
