@@ -13,6 +13,7 @@ namespace Tizen.Applications.AttachPanel
         private static IntPtr s_attachPanel = IntPtr.Zero;
 
         private static event EventHandler<StateEventArgs> s_eventEventHandler;
+
         private static event EventHandler<ResultEventArgs> s_resultEventHandler;
 
         private static Interop.AttachPanel.AttachPanelEventCallback s_setEventListener;
@@ -57,21 +58,21 @@ namespace Tizen.Applications.AttachPanel
             switch (err)
             {
                 case Interop.AttachPanel.ErrorCode.InvalidParameter:
-                    throw new ArgumentOutOfRangeException("Invalid parameter error at unmanaged code");
+                    throw new ArgumentOutOfRangeException("Invalid parameter");
                 case Interop.AttachPanel.ErrorCode.OutOfMemory:
                     throw new OutOfMemoryException("Out of Memory");
                 case Interop.AttachPanel.ErrorCode.PermissionDenied:
                     throw new UnauthorizedAccessException();
                 case Interop.AttachPanel.ErrorCode.AlreadyExists:
-                    throw new InvalidOperationException("Already Exists");
+                    throw new InvalidOperationException("AttachPanel is already exists");
                 case Interop.AttachPanel.ErrorCode.NotInitialized:
-                    throw new InvalidOperationException("Not initialized");
+                    throw new InvalidOperationException("AttachPanel is not initialized");
                 case Interop.AttachPanel.ErrorCode.UnsupportedContentCategory:
-                    throw new NotSupportedException("Unsupported Content Category");
+                    throw new NotSupportedException("Unsupported content category");
                 case Interop.AttachPanel.ErrorCode.AlreadyDestroyed:
-                    throw new InvalidOperationException("Already Destroyed");
+                    throw new InvalidOperationException("AttachPanel is already destroyed");
                 case Interop.AttachPanel.ErrorCode.NotSupported:
-                    throw new NotSupportedException("AttachPanel API is not supported");
+                    throw new NotSupportedException("AttachPanel is not supported in this device");
             }
         }
 

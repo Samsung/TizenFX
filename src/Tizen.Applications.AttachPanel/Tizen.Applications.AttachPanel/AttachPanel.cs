@@ -125,7 +125,7 @@ namespace Tizen.Applications.AttachPanel
                     CheckException(Interop.AttachPanel.ErrorCode.NotSupported);
                 }
 
-                if(IsInitialized() == false)
+                if (IsInitialized() == false)
                 {
                     CheckException(Interop.AttachPanel.ErrorCode.NotInitialized);
                 }
