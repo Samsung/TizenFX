@@ -50,18 +50,11 @@ namespace Tizen.NUI
         /// <since_tizen> 4 </since_tizen>
         public override void Add(View child)
         {
-            Container oldParent = child.GetParent();
-            if (oldParent != this)
-            {
-                if (oldParent != null)
-                {
-                    oldParent.Remove(child);
-                }
-                NDalicPINVOKE.Actor_Add(swigCPtr, View.getCPtr(child));
-                if (NDalicPINVOKE.SWIGPendingException.Pending)
-                    throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-                Children.Add(child);
-            }
+            NDalicPINVOKE.Actor_Add(swigCPtr, View.getCPtr(child));
+            if (NDalicPINVOKE.SWIGPendingException.Pending)
+                throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+
+            Children.Add(child);
         }
 
         /// <summary>
@@ -270,8 +263,6 @@ namespace Tizen.NUI
                     parentChildren[currentIdx] = temp;
                 }
             }
-            NDalicPINVOKE.Layer_Raise(swigCPtr);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         /// <summary>
@@ -295,46 +286,16 @@ namespace Tizen.NUI
 
                 }
             }
-            NDalicPINVOKE.Layer_Lower(swigCPtr);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         internal void RaiseAbove(Layer target)
         {
-            var parentChildren = Window.Instance.LayersChildren;
-            if (parentChildren != null)
-            {
-                int currentIndex = parentChildren.IndexOf(this);
-                int targetIndex = parentChildren.IndexOf(target);
-
-                // If the currentIndex is less than the target index and the target has the same parent.
-                if (currentIndex < targetIndex)
-                {
-                    parentChildren.Remove(this);
-                    parentChildren.Insert(targetIndex, this);
-                }
-            }
             NDalicPINVOKE.Layer_RaiseAbove(swigCPtr, Layer.getCPtr(target));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         internal void LowerBelow(Layer target)
         {
-            var parentChildren = Window.Instance.LayersChildren;
-
-            if (parentChildren != null)
-            {
-                int currentIndex = parentChildren.IndexOf(this);
-                int targetIndex = parentChildren.IndexOf(target);
-
-                // If the currentIndex is not already the 0th index and the target has the same parent.
-                if ((currentIndex != 0) && (targetIndex != -1) &&
-                    (currentIndex > targetIndex))
-                {
-                    parentChildren.Remove(this);
-                    parentChildren.Insert(targetIndex, this);
-                }
-            }
             NDalicPINVOKE.Layer_LowerBelow(swigCPtr, Layer.getCPtr(target));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }

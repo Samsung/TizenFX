@@ -49,18 +49,11 @@ namespace Tizen.NUI.BaseComponents
         /// <since_tizen> 4 </since_tizen>
         public override void Add(View child)
         {
-            Container oldParent = child.Parent;
-            if(oldParent != this)
-            {
-                if (oldParent != null)
-                {
-                    oldParent.Remove(child);
-                }
-                NDalicPINVOKE.Actor_Add(swigCPtr, View.getCPtr(child));
-                if (NDalicPINVOKE.SWIGPendingException.Pending)
-                    throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-                Children.Add(child);
-            }
+            NDalicPINVOKE.Actor_Add(swigCPtr, View.getCPtr(child));
+            if (NDalicPINVOKE.SWIGPendingException.Pending)
+                throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+
+            Children.Add(child);
         }
 
         /// <summary>
@@ -2255,54 +2248,13 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
-                var parentChildren = Parent?.Children;
-                int currentOrder = 0;
-                if (parentChildren != null)
-                {
-                    currentOrder = parentChildren.IndexOf(this);
-
-                    if (currentOrder < 0)
-                    {
-                        return 0;
-                    }
-                    else if (currentOrder < parentChildren.Count)
-                    {
-                        return currentOrder;
-                    }
-                }
-
-                return 0;
+                int temp = 0;
+                GetProperty(View.Property.SIBLING_ORDER).Get(out temp);
+                return temp;
             }
             set
             {
-                var siblings = Parent?.Children;
-                if (siblings != null)
-                {
-                    int currentOrder = siblings.IndexOf(this);
-
-                    if (value != currentOrder)
-                    {
-                        if (value == 0)
-                        {
-                            LowerToBottom();
-                        }
-                        else if (value < siblings.Count - 1)
-                        {
-                            if (value > currentOrder)
-                            {
-                                RaiseAbove(siblings[value]);
-                            }
-                            else
-                            {
-                                LowerBelow(siblings[value]);
-                            }
-                        }
-                        else
-                        {
-                            RaiseToTop();
-                        }
-                    }
-                }
+                SetProperty(View.Property.SIBLING_ORDER, new Tizen.NUI.PropertyValue(value));
             }
         }
 
@@ -3743,22 +3695,6 @@ namespace Tizen.NUI.BaseComponents
                 return temp;
             }
         }
-
-
-        /// <summary>
-        /// [Obsolete("Please do not use! this will be deprecated. Please use Visibility instead.")]
-        /// </summary>
-        /// <since_tizen> 3 </since_tizen>
-        [Obsolete("Please do not use! This will be deprecated! Please use Visibility instead!")]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public bool Visible
-        {
-            get
-            {
-                return IsVisible();
-            }
-        }
-
 
         /// <summary>
         /// Gets the view's world color.
