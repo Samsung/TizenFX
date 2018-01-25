@@ -49,18 +49,11 @@ namespace Tizen.NUI.BaseComponents
         /// <since_tizen> 4 </since_tizen>
         public override void Add(View child)
         {
-            Container oldParent = child.Parent;
-            if(oldParent != this)
-            {
-                if (oldParent != null)
-                {
-                    oldParent.Remove(child);
-                }
-                NDalicPINVOKE.Actor_Add(swigCPtr, View.getCPtr(child));
-                if (NDalicPINVOKE.SWIGPendingException.Pending)
-                    throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-                Children.Add(child);
-            }
+            NDalicPINVOKE.Actor_Add(swigCPtr, View.getCPtr(child));
+            if (NDalicPINVOKE.SWIGPendingException.Pending)
+                throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+
+            Children.Add(child);
         }
 
         /// <summary>
@@ -3739,22 +3732,6 @@ namespace Tizen.NUI.BaseComponents
                 return temp;
             }
         }
-
-
-        /// <summary>
-        /// [Obsolete("Please do not use! this will be deprecated. Please use Visibility instead.")]
-        /// </summary>
-        /// <since_tizen> 3 </since_tizen>
-        [Obsolete("Please do not use! This will be deprecated! Please use Visibility instead!")]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public bool Visible
-        {
-            get
-            {
-                return IsVisible();
-            }
-        }
-
 
         /// <summary>
         /// Gets the view's world color.
