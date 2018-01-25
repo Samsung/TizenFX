@@ -418,7 +418,7 @@ namespace Tizen.NUI.BaseComponents
         {
             if (keyEvent == global::System.IntPtr.Zero)
             {
-                Tizen.Log.Error("NUI", "keyEvent should not be null!");
+                NUILog.Error("keyEvent should not be null!");
                 return true;
             }
 
@@ -551,7 +551,7 @@ namespace Tizen.NUI.BaseComponents
         {
             if (touchData == global::System.IntPtr.Zero)
             {
-                Tizen.Log.Error("NUI", "touchData should not be null!");
+                NUILog.Error("touchData should not be null!");
                 return true;
             }
 
@@ -632,7 +632,7 @@ namespace Tizen.NUI.BaseComponents
         {
             if (hoverEvent == global::System.IntPtr.Zero)
             {
-                Tizen.Log.Error("NUI", "hoverEvent should not be null!");
+                NUILog.Error("hoverEvent should not be null!");
                 return true;
             }
 
@@ -713,7 +713,7 @@ namespace Tizen.NUI.BaseComponents
         {
             if (wheelEvent == global::System.IntPtr.Zero)
             {
-                Tizen.Log.Error("NUI", "wheelEvent should not be null!");
+                NUILog.Error("wheelEvent should not be null!");
                 return true;
             }
 
