@@ -50,7 +50,8 @@ namespace Tizen.Multimedia.Vision
             }
             set
             {
-                ValidationUtil.ValidateEnum(typeof(BarcodeDetectionTarget), value);
+                ValidationUtil.ValidateEnum(typeof(BarcodeDetectionTarget), value, nameof(value));
+
                 Set(KeyAttrTarget, (int)value);
             }
         }

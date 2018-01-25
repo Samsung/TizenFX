@@ -158,7 +158,7 @@ namespace Tizen.Multimedia
             {
                 ValidateNotDisposed();
 
-                ValidationUtil.ValidateEnum(typeof(AudioLatencyMode), value);
+                ValidationUtil.ValidateEnum(typeof(AudioLatencyMode), value, nameof(value));
 
                 NativePlayer.SetAudioLatencyMode(Handle, value).
                     ThrowIfFailed(this, "Failed to set the audio latency mode of the player");
