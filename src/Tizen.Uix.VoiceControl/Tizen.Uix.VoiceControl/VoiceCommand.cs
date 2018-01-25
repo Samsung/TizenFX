@@ -91,6 +91,8 @@ namespace Tizen.Uix.VoiceControl
         /// An empty string will be returned in case of some internal error.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        /// <exception cref="UnauthorizedAccessException">This exception can be due to permission denied.</exception>
+        /// <exception cref="NotSupportedException">This exception can be due to not supported.</exception>
         public string UnfixedCommand
         {
             get
@@ -100,7 +102,7 @@ namespace Tizen.Uix.VoiceControl
                 if (error != ErrorCode.None)
                 {
                     Log.Error(LogTag, "UnfixedCommand Failed with error " + error);
-                    return "";
+                throw ExceptionFactory.CreateException(error);
                 }
 
                 return unfixedCommand;
@@ -124,7 +126,7 @@ namespace Tizen.Uix.VoiceControl
                 if (error != ErrorCode.None)
                 {
                     Log.Error(LogTag, "GetType Failed with error " + error);
-                    return CommandType.Undefined;
+                    throw ExceptionFactory.CreateException(error);
                 }
 
                 if (type != -1)
@@ -140,6 +142,7 @@ namespace Tizen.Uix.VoiceControl
                 if (error != ErrorCode.None)
                 {
                     Log.Error(LogTag, "SetType Failed with error " + error);
+                    throw ExceptionFactory.CreateException(error);
                 }
             }
         }
@@ -160,7 +163,7 @@ namespace Tizen.Uix.VoiceControl
                 if (error != ErrorCode.None)
                 {
                     Log.Error(LogTag, "GetFormat Failed with error " + error);
-                    return CommandFormat.Undefined;
+                    throw ExceptionFactory.CreateException(error);
                 }
 
                 return format;
@@ -171,6 +174,7 @@ namespace Tizen.Uix.VoiceControl
                 if (error != ErrorCode.None)
                 {
                     Log.Error(LogTag, "SetFormat Failed with error " + error);
+                    throw ExceptionFactory.CreateException(error);
                 }
             }
         }
@@ -191,7 +195,7 @@ namespace Tizen.Uix.VoiceControl
                 if (error != ErrorCode.None)
                 {
                     Log.Error(LogTag, "GetCommand Failed with error " + error);
-                    return "";
+                    throw ExceptionFactory.CreateException(error);
                 }
 
                 return command;
@@ -202,6 +206,7 @@ namespace Tizen.Uix.VoiceControl
                 if (error != ErrorCode.None)
                 {
                     Log.Error(LogTag, "SetCommand Failed with error " + error);
+                    throw ExceptionFactory.CreateException(error);
                 }
             }
         }

@@ -339,14 +339,10 @@ namespace Tizen.Uix.Stt
         /// Constructor to create a STT instance.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        /// <privilege>
-        /// http://tizen.org/privilege/recorder
-        /// </privilege>
-        /// <feature>
-        /// http://tizen.org/feature/speech.recognition
-        /// http://tizen.org/feature/microphone
-        /// </feature>
-        /// <exception cref="InvalidOperationException">This exception can be due to operation failed.</exception>
+        /// <privilege>http://tizen.org/privilege/recorder</privilege>
+        /// <feature>http://tizen.org/feature/speech.recognition</feature>
+        /// <feature>http://tizen.org/feature/microphone</feature>
+        /// <exception cref="InvalidOperationException">This exception can be due to Operation failure.</exception>
         /// <exception cref="OutOfMemoryException">This exception can be due to out of memory.</exception>
         /// <exception cref="NotSupportedException">This exception can be due to STT not supported.</exception>
         /// <exception cref="UnauthorizedAccessException">This exception can be due to permission denied.</exception>
@@ -367,34 +363,48 @@ namespace Tizen.Uix.Stt
         /// Event to be invoked when the recognition is done.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        /// <privilege>http://tizen.org/privilege/recorder</privilege>
+        /// <exception cref="InvalidOperationException">This exception can be due to an invalid state.</exception>
+        /// <exception cref="NotSupportedException">This exception can be due to STT not supported.</exception>
+        /// <exception cref="UnauthorizedAccessException">This exception can be due to permission denied.</exception>
+        /// <exception cref="ArgumentException">This exception can be due to improper value provided while setting the value.</exception>
+        /// <pre>
+        /// The state must be created.
+        /// </pre>
         public event EventHandler<RecognitionResultEventArgs> RecognitionResult
         {
             add
             {
                 lock (thisLock)
                 {
-                    _resultDelegate = (IntPtr handle, ResultEvent e, IntPtr data, int dataCount, IntPtr msg, IntPtr userData) =>
+                    if (State.Created != CurrentState)
                     {
-                        Log.Info(LogTag, "Recognition Result Event Triggered");
-                        if (data != null && msg != null)
-                        {
-                            RecognitionResultEventArgs args = new RecognitionResultEventArgs(e, data, dataCount, Marshal.PtrToStringAnsi(msg));
-                            _recognitionResult?.Invoke(this, args);
-                        }
-                        else
-                        {
-                            Log.Info(LogTag, "Recognition Result Event null received");
-                        }
-                    };
-                    SttError error = SttSetRecognitionResultCB(_handle, _resultDelegate, IntPtr.Zero);
-                    if (error != SttError.None)
-                    {
-                        Log.Error(LogTag, "Add RecognitionResult Failed with error " + error);
+                        Log.Error(LogTag, "Add RecognitionResult Failed with error " + SttError.InvalidState);
+                        throw ExceptionFactory.CreateException(SttError.InvalidState);
                     }
-                    else
+                    if (null == _recognitionResult)
                     {
-                        _recognitionResult += value;
+                        _resultDelegate = (IntPtr handle, ResultEvent e, IntPtr data, int dataCount, IntPtr msg, IntPtr userData) =>
+                        {
+                            Log.Info(LogTag, "Recognition Result Event Triggered");
+                            if (data != null && msg != null)
+                            {
+                                RecognitionResultEventArgs args = new RecognitionResultEventArgs(e, data, dataCount, Marshal.PtrToStringAnsi(msg));
+                                _recognitionResult?.Invoke(this, args);
+                            }
+                            else
+                            {
+                                Log.Info(LogTag, "Recognition Result Event null received");
+                            }
+                        };
+                        SttError error = SttSetRecognitionResultCB(_handle, _resultDelegate, IntPtr.Zero);
+                        if (error != SttError.None)
+                        {
+                            Log.Error(LogTag, "Add RecognitionResult Failed with error " + error);
+                            throw ExceptionFactory.CreateException(error);
+                        }
                     }
+                    _recognitionResult += value;
                 }
             }
 
@@ -402,13 +412,22 @@ namespace Tizen.Uix.Stt
             {
                 lock (thisLock)
                 {
-                    SttError error = SttUnsetRecognitionResultCB(_handle);
-                    if (error != SttError.None)
+                    if (State.Created != CurrentState)
                     {
-                        Log.Error(LogTag, "Remove RecognitionResult Failed with error " + error);
+                        Log.Error(LogTag, "Remove RecognitionResult Failed with error " + SttError.InvalidState);
+                        throw ExceptionFactory.CreateException(SttError.InvalidState);
                     }
 
                     _recognitionResult -= value;
+                    if (null == _recognitionResult)
+                    {
+                        SttError error = SttUnsetRecognitionResultCB(_handle);
+                        if (error != SttError.None)
+                        {
+                            Log.Error(LogTag, "Remove RecognitionResult Failed with error " + error);
+                            throw ExceptionFactory.CreateException(error);
+                        }
+                    }
                 }
             }
         }
@@ -417,27 +436,41 @@ namespace Tizen.Uix.Stt
         /// Event to be invoked when the STT state changes.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        /// <privilege>http://tizen.org/privilege/recorder</privilege>
+        /// <exception cref="InvalidOperationException">This exception can be due to an invalid state.</exception>
+        /// <exception cref="NotSupportedException">This exception can be due to STT not supported.</exception>
+        /// <exception cref="UnauthorizedAccessException">This exception can be due to permission denied.</exception>
+        /// <exception cref="ArgumentException">This exception can be due to improper value provided while setting the value.</exception>
+        /// <pre>
+        /// The state must be created.
+        /// </pre>
         public event EventHandler<StateChangedEventArgs> StateChanged
         {
             add
             {
                 lock (thisLock)
                 {
-                    SttClient obj = this;
-                    _stateDelegate = (IntPtr handle, State previous, State current, IntPtr userData) =>
+                    if (State.Created != CurrentState)
                     {
-                        StateChangedEventArgs args = new StateChangedEventArgs(previous, current);
-                        _stateChanged?.Invoke(obj, args);
-                    };
-                    SttError error = SttSetStateChangedCB(_handle, _stateDelegate, IntPtr.Zero);
-                    if (error != SttError.None)
-                    {
-                        Log.Error(LogTag, "Add StateChanged Failed with error " + error);
+                        Log.Error(LogTag, "Add StateChanged Failed with error " + SttError.InvalidState);
+                        throw ExceptionFactory.CreateException(SttError.InvalidState);
                     }
-                    else
+                    if (null == _stateChanged)
                     {
-                        _stateChanged += value;
+                        SttClient obj = this;
+                        _stateDelegate = (IntPtr handle, State previous, State current, IntPtr userData) =>
+                        {
+                            StateChangedEventArgs args = new StateChangedEventArgs(previous, current);
+                            _stateChanged?.Invoke(obj, args);
+                        };
+                        SttError error = SttSetStateChangedCB(_handle, _stateDelegate, IntPtr.Zero);
+                        if (error != SttError.None)
+                        {
+                            Log.Error(LogTag, "Add StateChanged Failed with error " + error);
+                            throw ExceptionFactory.CreateException(error);
+                        }
                     }
+                    _stateChanged += value;
                 }
             }
 
@@ -445,43 +478,64 @@ namespace Tizen.Uix.Stt
             {
                 lock (thisLock)
                 {
-                    SttError error = SttUnsetStateChangedCB(_handle);
-                    if (error != SttError.None)
+                    if (State.Created != CurrentState)
                     {
-                        Log.Error(LogTag, "Remove StateChanged Failed with error " + error);
+                        Log.Error(LogTag, "Remove StateChanged Failed with error " + SttError.InvalidState);
+                        throw ExceptionFactory.CreateException(SttError.InvalidState);
                     }
 
                     _stateChanged -= value;
+                    if (null == _stateChanged)
+                    {
+                        SttError error = SttUnsetStateChangedCB(_handle);
+                        if (error != SttError.None)
+                        {
+                            Log.Error(LogTag, "Remove StateChanged Failed with error " + error);
+                            throw ExceptionFactory.CreateException(error);
+                        }
+                    }
                 }
             }
-
         }
 
         /// <summary>
         /// Event to be invoked when an error occurs.
         /// </summary>
         /// <since_tizen> 4 </since_tizen>
+        /// <privilege>http://tizen.org/privilege/recorder</privilege>
+        /// <exception cref="InvalidOperationException">This exception can be due to an invalid state.</exception>
+        /// <exception cref="NotSupportedException">This exception can be due to STT not supported.</exception>
+        /// <exception cref="UnauthorizedAccessException">This exception can be due to permission denied.</exception>
+        /// <exception cref="ArgumentException">This exception can be due to improper value provided while setting the value.</exception>
+        /// <pre>
+        /// The state must be created.
+        /// </pre>
         public event EventHandler<ErrorOccurredEventArgs> ErrorOccurred
         {
             add
             {
                 lock (thisLock)
                 {
-                    _errorDelegate = (IntPtr handle, SttError reason, IntPtr userData) =>
+                    if (State.Created != CurrentState)
                     {
-                        ErrorOccurredEventArgs args = new ErrorOccurredEventArgs(handle, reason);
-                        _errorOccurred?.Invoke(this, args);
-                    };
-                    SttError error = SttSetErrorCB(_handle, _errorDelegate, IntPtr.Zero);
-                    if (error != SttError.None)
-                    {
-                        Log.Error(LogTag, "Add ErrorOccurred Failed with error " + error);
+                        Log.Error(LogTag, "Add ErrorOccurred Failed with error " + SttError.InvalidState);
+                        throw ExceptionFactory.CreateException(SttError.InvalidState);
                     }
-
-                    else
+                    if (null == _errorOccurred)
                     {
-                        _errorOccurred += value;
+                        _errorDelegate = (IntPtr handle, SttError reason, IntPtr userData) =>
+                        {
+                            ErrorOccurredEventArgs args = new ErrorOccurredEventArgs(handle, reason);
+                            _errorOccurred?.Invoke(this, args);
+                        };
+                        SttError error = SttSetErrorCB(_handle, _errorDelegate, IntPtr.Zero);
+                        if (error != SttError.None)
+                        {
+                            Log.Error(LogTag, "Add ErrorOccurred Failed with error " + error);
+                            throw ExceptionFactory.CreateException(error);
+                        }
                     }
+                    _errorOccurred += value;
                 }
             }
 
@@ -489,13 +543,22 @@ namespace Tizen.Uix.Stt
             {
                 lock (thisLock)
                 {
-                    SttError error = SttUnsetErrorCB(_handle);
-                    if (error != SttError.None)
+                    if (State.Created != CurrentState)
                     {
-                        Log.Error(LogTag, "Remove ErrorOccurred Failed with error " + error);
+                        Log.Error(LogTag, "Remove ErrorOccurred Failed with error " + SttError.InvalidState);
+                        throw ExceptionFactory.CreateException(SttError.InvalidState);
                     }
 
                     _errorOccurred -= value;
+                    if (null == _errorOccurred)
+                    {
+                        SttError error = SttUnsetErrorCB(_handle);
+                        if (error != SttError.None)
+                        {
+                            Log.Error(LogTag, "Remove ErrorOccurred Failed with error " + error);
+                            throw ExceptionFactory.CreateException(error);
+                        }
+                    }
                 }
             }
         }
@@ -504,29 +567,42 @@ namespace Tizen.Uix.Stt
         /// Event to be invoked when the default language changes.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        /// <privilege>http://tizen.org/privilege/recorder</privilege>
+        /// <exception cref="InvalidOperationException">This exception can be due to an invalid state.</exception>
+        /// <exception cref="NotSupportedException">This exception can be due to STT not supported.</exception>
+        /// <exception cref="UnauthorizedAccessException">This exception can be due to permission denied.</exception>
+        /// <exception cref="ArgumentException">This exception can be due to improper value provided while setting the value.</exception>
+        /// <pre>
+        /// The state must be created.
+        /// </pre>
         public event EventHandler<DefaultLanguageChangedEventArgs> DefaultLanguageChanged
         {
             add
             {
                 lock (thisLock)
                 {
-                    _languageDelegate = (IntPtr handle, IntPtr previousLanguage, IntPtr currentLanguage, IntPtr userData) =>
+                    if (State.Created != CurrentState)
                     {
-                        string previousLanguageString = Marshal.PtrToStringAnsi(previousLanguage);
-                        string currentLanguageString = Marshal.PtrToStringAnsi(currentLanguage);
-                        DefaultLanguageChangedEventArgs args = new DefaultLanguageChangedEventArgs(previousLanguageString, currentLanguageString);
-                        _defaultLanguageChanged?.Invoke(this, args);
-                    };
-                    SttError error = SttSetDefaultLanguageChangedCB(_handle, _languageDelegate, IntPtr.Zero);
-                    if (error != SttError.None)
-                    {
-                        Log.Error(LogTag, "Add DefaultLanguageChanged Failed with error " + error);
+                        Log.Error(LogTag, "Add DefaultLanguageChanged Failed with error " + SttError.InvalidState);
+                        throw ExceptionFactory.CreateException(SttError.InvalidState);
                     }
-
-                    else
+                    if (null == _defaultLanguageChanged)
                     {
-                        _defaultLanguageChanged += value;
+                        _languageDelegate = (IntPtr handle, IntPtr previousLanguage, IntPtr currentLanguage, IntPtr userData) =>
+                        {
+                            string previousLanguageString = Marshal.PtrToStringAnsi(previousLanguage);
+                            string currentLanguageString = Marshal.PtrToStringAnsi(currentLanguage);
+                            DefaultLanguageChangedEventArgs args = new DefaultLanguageChangedEventArgs(previousLanguageString, currentLanguageString);
+                            _defaultLanguageChanged?.Invoke(this, args);
+                        };
+                        SttError error = SttSetDefaultLanguageChangedCB(_handle, _languageDelegate, IntPtr.Zero);
+                        if (error != SttError.None)
+                        {
+                            Log.Error(LogTag, "Add DefaultLanguageChanged Failed with error " + error);
+                            throw ExceptionFactory.CreateException(error);
+                        }
                     }
+                    _defaultLanguageChanged += value;
                 }
             }
 
@@ -534,44 +610,66 @@ namespace Tizen.Uix.Stt
             {
                 lock (thisLock)
                 {
-                    SttError error = SttUnsetDefaultLanguageChangedCB(_handle);
-                    if (error != SttError.None)
+                    if (State.Created != CurrentState)
                     {
-                        Log.Error(LogTag, "Remove DefaultLanguageChanged Failed with error " + error);
+                        Log.Error(LogTag, "Remove DefaultLanguageChanged Failed with error " + SttError.InvalidState);
+                        throw ExceptionFactory.CreateException(SttError.InvalidState);
                     }
 
                     _defaultLanguageChanged -= value;
+                    if (null == _defaultLanguageChanged)
+                    {
+                        SttError error = SttUnsetDefaultLanguageChangedCB(_handle);
+                        if (error != SttError.None)
+                        {
+                            Log.Error(LogTag, "Remove DefaultLanguageChanged Failed with error " + error);
+                            throw ExceptionFactory.CreateException(error);
+                        }
+                    }
                 }
             }
-
         }
 
         /// <summary>
         /// Event to be invoked to detect the engine change.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        /// <privilege>http://tizen.org/privilege/recorder</privilege>
+        /// <exception cref="InvalidOperationException">This exception can be due to an invalid state.</exception>
+        /// <exception cref="NotSupportedException">This exception can be due to STT not supported.</exception>
+        /// <exception cref="UnauthorizedAccessException">This exception can be due to permission denied.</exception>
+        /// <exception cref="ArgumentException">This exception can be due to improper value provided while setting the value.</exception>
+        /// <pre>
+        /// The state must be created.
+        /// </pre>
         public event EventHandler<EngineChangedEventArgs> EngineChanged
         {
             add
             {
                 lock (thisLock)
                 {
-                    _engineDelegate = (IntPtr handle, IntPtr engineId, IntPtr language, bool supportSilence, bool needCredential, IntPtr userData) =>
+                    if (State.Created != CurrentState)
                     {
-                        string engineIdString = Marshal.PtrToStringAnsi(engineId);
-                        string languageString = Marshal.PtrToStringAnsi(language);
-                        EngineChangedEventArgs args = new EngineChangedEventArgs(engineIdString, languageString, supportSilence, needCredential);
-                        _engineChanged?.Invoke(this, args);
-                    };
-                    SttError error = SttSetEngineChangedCB(_handle, _engineDelegate, IntPtr.Zero);
-                    if (error != SttError.None)
-                    {
-                        Log.Error(LogTag, "Add EngineChanged Failed with error " + error);
+                        Log.Error(LogTag, "Add EngineChanged Failed with error " + SttError.InvalidState);
+                        throw ExceptionFactory.CreateException(SttError.InvalidState);
                     }
-                    else
+                    if (null == _engineChanged)
                     {
-                        _engineChanged += value;
+                        _engineDelegate = (IntPtr handle, IntPtr engineId, IntPtr language, bool supportSilence, bool needCredential, IntPtr userData) =>
+                        {
+                            string engineIdString = Marshal.PtrToStringAnsi(engineId);
+                            string languageString = Marshal.PtrToStringAnsi(language);
+                            EngineChangedEventArgs args = new EngineChangedEventArgs(engineIdString, languageString, supportSilence, needCredential);
+                            _engineChanged?.Invoke(this, args);
+                        };
+                        SttError error = SttSetEngineChangedCB(_handle, _engineDelegate, IntPtr.Zero);
+                        if (error != SttError.None)
+                        {
+                            Log.Error(LogTag, "Add EngineChanged Failed with error " + error);
+                            throw ExceptionFactory.CreateException(error);
+                        }
                     }
+                    _engineChanged += value;
                 }
             }
 
@@ -579,13 +677,22 @@ namespace Tizen.Uix.Stt
             {
                 lock (thisLock)
                 {
-                    SttError error = SttUnsetEngineChangedCB(_handle);
-                    if (error != SttError.None)
+                    if (State.Created != CurrentState)
                     {
-                        Log.Error(LogTag, "Remove EngineChanged Failed with error " + error);
+                        Log.Error(LogTag, "Remove EngineChanged Failed with error " + SttError.InvalidState);
+                        throw ExceptionFactory.CreateException(SttError.InvalidState);
                     }
 
                     _engineChanged -= value;
+                    if (null == _engineChanged)
+                    {
+                        SttError error = SttUnsetEngineChangedCB(_handle);
+                        if (error != SttError.None)
+                        {
+                            Log.Error(LogTag, "Remove EngineChanged Failed with error " + error);
+                            throw ExceptionFactory.CreateException(error);
+                        }
+                    }
                 }
             }
         }
@@ -599,12 +706,10 @@ namespace Tizen.Uix.Stt
         /// <value>
         /// Default language in STT.
         /// </value>
-        /// <privilege>
-        /// http://tizen.org/privilege/recorder
-        /// </privilege>
-        /// <returns>
-        /// Default Language string value.
-        /// </returns>
+        /// <privilege>http://tizen.org/privilege/recorder</privilege>
+        /// <exception cref="InvalidOperationException">This exception can be due to Operation failure.</exception>
+        /// <exception cref="NotSupportedException">This exception can be due to STT not supported.</exception>
+        /// <exception cref="UnauthorizedAccessException">This exception can be due to permission denied.</exception>
         public string DefaultLanguage
         {
             get
@@ -616,7 +721,7 @@ namespace Tizen.Uix.Stt
                     if (error != SttError.None)
                     {
                         Log.Error(LogTag, "DefaultLanguage Failed with error " + error);
-                        return "";
+                        throw ExceptionFactory.CreateException(error);
                     }
                 }
 
@@ -634,6 +739,10 @@ namespace Tizen.Uix.Stt
         /// <privilege>
         /// http://tizen.org/privilege/recorder
         /// </privilege>
+        /// <exception cref="InvalidOperationException">This exception can be due to an invalid state.</exception>
+        /// <exception cref="NotSupportedException">This exception can be due to STT not supported.</exception>
+        /// <exception cref="UnauthorizedAccessException">This exception can be due to permission denied.</exception>
+        /// <exception cref="ArgumentException">This exception can be due to improper value provided while setting the value.</exception>
         /// <pre>
         /// The state must be recording.
         /// </pre>
@@ -648,13 +757,12 @@ namespace Tizen.Uix.Stt
                     if (error != SttError.None)
                     {
                         Log.Error(LogTag, "GetRecordingVolume Failed with error " + error);
-                        return 0.0f;
+                        throw ExceptionFactory.CreateException(error);
                     }
                 }
 
                 return volume;
             }
-
         }
 
         /// <summary>
@@ -667,9 +775,8 @@ namespace Tizen.Uix.Stt
         /// <privilege>
         /// http://tizen.org/privilege/recorder
         /// </privilege>
-        /// <returns>
-        /// Current STT state value.
-        /// </returns>
+        /// <exception cref="NotSupportedException">This exception can be due to STT not supported.</exception>
+        /// <exception cref="UnauthorizedAccessException">This exception can be due to permission denied.</exception>
         public State CurrentState
         {
             get
@@ -681,29 +788,30 @@ namespace Tizen.Uix.Stt
                     if (error != SttError.None)
                     {
                         Log.Error(LogTag, "GetState Failed with error " + error);
-                        return State.Unavailable;
+                        throw ExceptionFactory.CreateException(error);
                     }
                 }
 
                 return state;
             }
-
         }
 
         /// <summary>
-        /// This property can be used to get and set the current engine id.
+        /// This property can get and set the current engine id.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <value>
         /// Current STT engine id.
         /// </value>
-        /// <privilege>
-        /// http://tizen.org/privilege/recorder
-        /// </privilege>
+        /// <privilege>http://tizen.org/privilege/recorder</privilege>
+        /// <privilege>http://tizen.org/privilege/appmanager.launch</privilege>
+        /// <remarks>
+        /// A privilege (http://tizen.org/privilege/appmanager.launch) is necessary.
+        /// </remarks>
         /// <exception cref="InvalidOperationException">
         /// This exceptioncan occur while setting due to the following reasons:
-        /// 1. Operation Failed
-        /// 2. Invalid State
+        /// 1. Operation failure
+        /// 2. Invalid state
         /// </exception>
         /// <exception cref="OutOfMemoryException">This exception can be due to out of memory.</exception>
         /// <exception cref="NotSupportedException">This exception can be due to STT not supported.</exception>
@@ -723,7 +831,7 @@ namespace Tizen.Uix.Stt
                     if (error != SttError.None)
                     {
                         Log.Error(LogTag, "Get EngineId Failed with error " + error);
-                        return "";
+                        throw ExceptionFactory.CreateException(error);
                     }
                 }
 
@@ -740,7 +848,6 @@ namespace Tizen.Uix.Stt
                         throw ExceptionFactory.CreateException(error);
                     }
                 }
-
             }
         }
 
@@ -751,17 +858,13 @@ namespace Tizen.Uix.Stt
         /// <returns>
         /// List of ResultTime.
         /// </returns>
-        /// <privilege>
-        /// http://tizen.org/privilege/recorder
-        /// </privilege>
-        /// <feature>
-        /// http://tizen.org/feature/speech.recognition
-        /// http://tizen.org/feature/microphone
-        /// </feature>
+        /// <privilege>http://tizen.org/privilege/recorder</privilege>
+        /// <feature>http://tizen.org/feature/speech.recognition</feature>
+        /// <feature>http://tizen.org/feature/microphone</feature>
         /// <remarks>
         /// This function should only be called in the RecognitionResult event.
         /// </remarks>
-        /// <exception cref="InvalidOperationException">This exception can be due to operation failed.</exception>
+        /// <exception cref="InvalidOperationException">This exception can be due to Operation failure.</exception>
         /// <exception cref="NotSupportedException">This exception can be due to STT not supported.</exception>
         /// <exception cref="UnauthorizedAccessException">This exception can be due to permission denied.</exception>
         public IEnumerable<ResultTime> GetDetailedResult()
@@ -782,7 +885,6 @@ namespace Tizen.Uix.Stt
             return list;
         }
 
-
         /// <summary>
         /// Gets the private data from the STT engine.
         /// </summary>
@@ -793,13 +895,9 @@ namespace Tizen.Uix.Stt
         /// <returns>
         /// The data corresponding to the key is provided.
         /// </returns>
-        /// <privilege>
-        /// http://tizen.org/privilege/recorder
-        /// </privilege>
-        /// <feature>
-        /// http://tizen.org/feature/speech.recognition
-        /// http://tizen.org/feature/microphone
-        /// </feature>
+        /// <privilege>http://tizen.org/privilege/recorder</privilege>
+        /// <feature>http://tizen.org/feature/speech.recognition</feature>
+        /// <feature>http://tizen.org/feature/microphone</feature>
         /// <exception cref="InvalidOperationException">This exception can be due to invalid state.</exception>
         /// <exception cref="NotSupportedException">This exception can be due to STT not supported.</exception>
         /// <exception cref="TimeoutException">This exception can be due to No Answer from STT Service.</exception>
@@ -832,13 +930,9 @@ namespace Tizen.Uix.Stt
         /// <param name="data">
         /// The data string.
         /// </param>
-        /// <privilege>
-        /// http://tizen.org/privilege/recorder
-        /// </privilege>
-        /// <feature>
-        /// http://tizen.org/feature/speech.recognition
-        /// http://tizen.org/feature/microphone
-        /// </feature>
+        /// <privilege>http://tizen.org/privilege/recorder</privilege>
+        /// <feature>http://tizen.org/feature/speech.recognition</feature>
+        /// <feature>http://tizen.org/feature/microphone</feature>
         /// <exception cref="InvalidOperationException">This exception can be due to invalid state.</exception>
         /// <exception cref="NotSupportedException">This exception can be due to STT not supported.</exception>
         /// <exception cref="TimeoutException">This exception can be due to No Answer from STT Service.</exception>
@@ -866,14 +960,10 @@ namespace Tizen.Uix.Stt
         /// <returns>
         /// IEnumerable&lt;SupportedEngine&gt; list of supported engines.
         /// </returns>
-        /// <privilege>
-        /// http://tizen.org/privilege/recorder
-        /// </privilege>
-        /// <feature>
-        /// http://tizen.org/feature/speech.recognition
-        /// http://tizen.org/feature/microphone
-        /// </feature>
-        /// <exception cref="InvalidOperationException">This exception can be due to operation failed.</exception>
+        /// <privilege>http://tizen.org/privilege/recorder</privilege>
+        /// <feature>http://tizen.org/feature/speech.recognition</feature>
+        /// <feature>http://tizen.org/feature/microphone</feature>
+        /// <exception cref="InvalidOperationException">This exception can be due to Operation failure.</exception>
         /// <exception cref="OutOfMemoryException">This exception can be due to out of memory.</exception>
         /// <exception cref="NotSupportedException">This exception can be due to STT not supported.</exception>
         /// <exception cref="UnauthorizedAccessException">This exception can be due to permission denied.</exception>
@@ -908,17 +998,13 @@ namespace Tizen.Uix.Stt
         /// <param name="credential">
         /// The credential string.
         /// </param>
-        /// <privilege>
-        /// http://tizen.org/privilege/recorder
-        /// </privilege>
-        /// <feature>
-        /// http://tizen.org/feature/speech.recognition
-        /// http://tizen.org/feature/microphone
-        /// </feature>
+        /// <privilege>http://tizen.org/privilege/recorder</privilege>
+        /// <feature>http://tizen.org/feature/speech.recognition</feature>
+        /// <feature>http://tizen.org/feature/microphone</feature>
         /// <exception cref="InvalidOperationException">
         /// This exceptioncan be due to the following reasons:
-        /// 1. Operation Failed
-        /// 2. Invalid State
+        /// 1. Operation failure
+        /// 2. Invalid state
         /// </exception>
         /// <exception cref="OutOfMemoryException">This exception can be due to out of memory.</exception>
         /// <exception cref="NotSupportedException">This exception can be due to STT not supported.</exception>
@@ -944,13 +1030,9 @@ namespace Tizen.Uix.Stt
         /// Connects to the STT service asynchronously.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        /// <privilege>
-        /// http://tizen.org/privilege/recorder
-        /// </privilege>
-        /// <feature>
-        /// http://tizen.org/feature/speech.recognition
-        /// http://tizen.org/feature/microphone
-        /// </feature>
+        /// <privilege>http://tizen.org/privilege/recorder</privilege>
+        /// <feature>http://tizen.org/feature/speech.recognition</feature>
+        /// <feature>http://tizen.org/feature/microphone</feature>
         /// <exception cref="InvalidOperationException">This exception can be due to invalid state.</exception>
         /// <exception cref="NotSupportedException">This exception can be due to STT not supported.</exception>
         /// <exception cref="UnauthorizedAccessException">This exception can be due to permission denied.</exception>
@@ -978,13 +1060,9 @@ namespace Tizen.Uix.Stt
         /// Disconnects from the STT service.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        /// <privilege>
-        /// http://tizen.org/privilege/recorder
-        /// </privilege>
-        /// <feature>
-        /// http://tizen.org/feature/speech.recognition
-        /// http://tizen.org/feature/microphone
-        /// </feature>
+        /// <privilege>http://tizen.org/privilege/recorder</privilege>
+        /// <feature>http://tizen.org/feature/speech.recognition</feature>
+        /// <feature>http://tizen.org/feature/microphone</feature>
         /// <exception cref="InvalidOperationException">This exception can be due to invalid state.</exception>
         /// <exception cref="NotSupportedException">This exception can be due to STT not supported.</exception>
         /// <exception cref="UnauthorizedAccessException">This exception can be due to permission denied.</exception>
@@ -1013,20 +1091,16 @@ namespace Tizen.Uix.Stt
         /// For example, "ko_KR" for Korean, "en_US" for American English.
         /// </summary>
         /// <since_tizen> 4 </since_tizen>
-        /// <privilege>
-        /// http://tizen.org/privilege/recorder
-        /// </privilege>
+        /// <privilege>http://tizen.org/privilege/recorder</privilege>
         /// <returns>
         /// List of strings for supported languages.
         /// </returns>
-        /// <feature>
-        /// http://tizen.org/feature/speech.recognition
-        /// http://tizen.org/feature/microphone
-        /// </feature>
+        /// <feature>http://tizen.org/feature/speech.recognition</feature>
+        /// <feature>http://tizen.org/feature/microphone</feature>
         /// <exception cref="InvalidOperationException">
         /// This exception can be due to the following reasons:
-        /// 1. Engine Not Found.
-        /// 2. Operation Failed.
+        /// 1. Engine not found
+        /// 2. Operation failure
         /// </exception>
         /// <exception cref="NotSupportedException">This exception can be due to STT not supported.</exception>
         /// <exception cref="UnauthorizedAccessException">This exception can be due to permission denied.</exception>
@@ -1057,24 +1131,20 @@ namespace Tizen.Uix.Stt
         /// Checks whether the recognition type is supported.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        /// <privilege>
-        /// http://tizen.org/privilege/recorder
-        /// </privilege>
+        /// <privilege>http://tizen.org/privilege/recorder</privilege>
         /// <param name="type">
         /// RecognitionType value.
         /// </param>
         /// <returns>
         /// Bool value indicating whether the recognition type is supported.
         /// </returns>
-        /// <feature>
-        /// http://tizen.org/feature/speech.recognition
-        /// http://tizen.org/feature/microphone
-        /// </feature>
+        /// <feature>http://tizen.org/feature/speech.recognition</feature>
+        /// <feature>http://tizen.org/feature/microphone</feature>
         /// <exception cref="InvalidOperationException">
         /// This exception can be due to the following reasons:
-        /// 1. Invalid State
-        /// 2. Engine Not Found
-        /// 3. Operation Failed
+        /// 1. Invalid state
+        /// 2. Engine not found
+        /// 3. Operation failure
         /// </exception>
         /// <exception cref="NotSupportedException">This exception can be due to STT not supported.</exception>
         /// <pre>
@@ -1134,21 +1204,17 @@ namespace Tizen.Uix.Stt
         /// Sets the silence detection.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        /// <privilege>
-        /// http://tizen.org/privilege/recorder
-        /// </privilege>
+        /// <privilege>http://tizen.org/privilege/recorder</privilege>
         /// <param name="type">
         /// SilenceDetection value.
         /// </param>
-        /// <feature>
-        /// http://tizen.org/feature/speech.recognition
-        /// http://tizen.org/feature/microphone
-        /// </feature>
+        /// <feature>http://tizen.org/feature/speech.recognition</feature>
+        /// <feature>http://tizen.org/feature/microphone</feature>
         /// <exception cref="InvalidOperationException">
         /// This exception can be due to the following reasons:
-        /// 1. Invalid State
+        /// 1. Invalid state
         /// 2. Not supported feature of current engine
-        /// 3. Operation Failed
+        /// 3. Operation failure
         /// </exception>
         /// <exception cref="NotSupportedException">This exception can be due to STT not supported.</exception>
         /// <pre>
@@ -1172,20 +1238,16 @@ namespace Tizen.Uix.Stt
         /// Sound file type should be .wav type.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        /// <privilege>
-        /// http://tizen.org/privilege/recorder
-        /// </privilege>
+        /// <privilege>http://tizen.org/privilege/recorder</privilege>
         /// <param name="filePath">
         /// File path for the sound.
         /// </param>
-        /// <feature>
-        /// http://tizen.org/feature/speech.recognition
-        /// http://tizen.org/feature/microphone
-        /// </feature>
+        /// <feature>http://tizen.org/feature/speech.recognition</feature>
+        /// <feature>http://tizen.org/feature/microphone</feature>
         /// <exception cref="InvalidOperationException">
         /// This exception can be due to the following reasons:
-        /// 1. Invalid State
-        /// 2. Operation Failed
+        /// 1. Invalid state
+        /// 2. Operation failure
         /// </exception>
         /// <exception cref="NotSupportedException">This exception can be due to STT not supported.</exception>
         /// <exception cref="UnauthorizedAccessException">This exception can be due to permission denied.</exception>
@@ -1210,17 +1272,13 @@ namespace Tizen.Uix.Stt
         /// Unsets the sound to start recording.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        /// <privilege>
-        /// http://tizen.org/privilege/recorder
-        /// </privilege>
-        /// <feature>
-        /// http://tizen.org/feature/speech.recognition
-        /// http://tizen.org/feature/microphone
-        /// </feature>
+        /// <privilege>http://tizen.org/privilege/recorder</privilege>
+        /// <feature>http://tizen.org/feature/speech.recognition</feature>
+        /// <feature>http://tizen.org/feature/microphone</feature>
         /// <exception cref="InvalidOperationException">
         /// This exception can be due to the following reasons:
-        /// 1. Invalid State
-        /// 2. Operation Failed
+        /// 1. Invalid state
+        /// 2. Operation failure
         /// </exception>
         /// <exception cref="NotSupportedException">This exception can be due to STT not supported.</exception>
         /// <exception cref="UnauthorizedAccessException">This exception can be due to permission denied.</exception>
@@ -1245,20 +1303,16 @@ namespace Tizen.Uix.Stt
         /// Sound file type should be .wav type.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        /// <privilege>
-        /// http://tizen.org/privilege/recorder
-        /// </privilege>
+        /// <privilege>http://tizen.org/privilege/recorder</privilege>
         /// <param name="filePath">
         /// File Path for the sound.
         /// </param>
-        /// <feature>
-        /// http://tizen.org/feature/speech.recognition
-        /// http://tizen.org/feature/microphone
-        /// </feature>
+        /// <feature>http://tizen.org/feature/speech.recognition</feature>
+        /// <feature>http://tizen.org/feature/microphone</feature>
         /// <exception cref="InvalidOperationException">
         /// This exception can be due to the following reasons:
-        /// 1. Invalid State
-        /// 2. Operation Failed
+        /// 1. Invalid state
+        /// 2. Operation failure
         /// </exception>
         /// <exception cref="NotSupportedException">This exception can be due to STT not supported.</exception>
         /// <exception cref="UnauthorizedAccessException">This exception can be due to permission denied.</exception>
@@ -1283,17 +1337,13 @@ namespace Tizen.Uix.Stt
         /// Unsets the sound to stop recording.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        /// <privilege>
-        /// http://tizen.org/privilege/recorder
-        /// </privilege>
-        /// <feature>
-        /// http://tizen.org/feature/speech.recognition
-        /// http://tizen.org/feature/microphone
-        /// </feature>
+        /// <privilege>http://tizen.org/privilege/recorder</privilege>
+        /// <feature>http://tizen.org/feature/speech.recognition</feature>
+        /// <feature>http://tizen.org/feature/microphone</feature>
         /// <exception cref="InvalidOperationException">
         /// This exception can be due to the following reasons:
-        /// 1. Invalid State
-        /// 2. Operation Failed
+        /// 1. Invalid state
+        /// 2. Operation failure
         /// </exception>
         /// <exception cref="NotSupportedException">This exception can be due to STT not supported.</exception>
         /// <exception cref="UnauthorizedAccessException"> his exception can be due to permission denied.</exception>
@@ -1319,24 +1369,20 @@ namespace Tizen.Uix.Stt
         /// This work continues until stop, cancel, or silence is detected by engine.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        /// <privilege>
-        /// http://tizen.org/privilege/recorder
-        /// </privilege>
+        /// <privilege>http://tizen.org/privilege/recorder</privilege>
         /// <param name="language">
         /// The language selected.
         /// </param>
         /// <param name="type">
         /// The type for recognition.
         /// </param>
-        /// <feature>
-        /// http://tizen.org/feature/speech.recognition
-        /// http://tizen.org/feature/microphone
-        /// </feature>
+        /// <feature>http://tizen.org/feature/speech.recognition</feature>
+        /// <feature>http://tizen.org/feature/microphone</feature>
         /// <exception cref="InvalidOperationException">
         /// This exception can be due to the following reasons:
-        /// 1. Invalid State
-        /// 2. Operation Failed
-        /// 3. Recorder Busy
+        /// 1. Invalid state
+        /// 2. Operation failure
+        /// 3. Recorder busy
         /// 4. Progress to recording is not finished
         /// </exception>
         /// <exception cref="NotSupportedException">This exception can be due to STT not supported.</exception>
@@ -1401,17 +1447,13 @@ namespace Tizen.Uix.Stt
         /// Finishes the recording and starts recognition processing in the engine asynchronously.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        /// <privilege>
-        /// http://tizen.org/privilege/recorder
-        /// </privilege>
-        /// <feature>
-        /// http://tizen.org/feature/speech.recognition
-        /// http://tizen.org/feature/microphone
-        /// </feature>
+        /// <privilege>http://tizen.org/privilege/recorder</privilege>
+        /// <feature>http://tizen.org/feature/speech.recognition</feature>
+        /// <feature>http://tizen.org/feature/microphone</feature>
         /// <exception cref="InvalidOperationException">
         /// This exception can be due to the following reasons:
-        /// 1. Invalid State
-        /// 2. Operation Failed
+        /// 1. Invalid state
+        /// 2. Operation failure
         /// 3. Progress to ready is not finished
         /// 4. Progress to recording is not finished
         /// 5. Progress to processing is not finished
@@ -1446,17 +1488,13 @@ namespace Tizen.Uix.Stt
         /// After successful cancellation, the StateChanged event is invoked, otherwise if an error is occurs, the ErrorOccurred event is invoked.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        /// <privilege>
-        /// http://tizen.org/privilege/recorder
-        /// </privilege>
-        /// <feature>
-        /// http://tizen.org/feature/speech.recognition
-        /// http://tizen.org/feature/microphone
-        /// </feature>
+        /// <privilege>http://tizen.org/privilege/recorder</privilege>
+        /// <feature>http://tizen.org/feature/speech.recognition</feature>
+        /// <feature>http://tizen.org/feature/microphone</feature>
         /// <exception cref="InvalidOperationException">
         /// This exception can be due to the following reasons:
-        /// 1. Invalid State
-        /// 2. Operation Failed
+        /// 1. Invalid state
+        /// 2. Operation failure
         /// 3. Progress to ready is not finished
         /// 4. Progress to recording is not finished
         /// 5. Progress to processing is not finished

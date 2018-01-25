@@ -138,9 +138,8 @@ namespace Tizen.Uix.Tts
         /// Gets the current error message.
         /// </summary>
         /// <since_tizen> 4 </since_tizen>
-        /// <returns>
-        /// String error message.
-        /// </returns>
+        /// <exception cref="NotSupportedException">This exception can be due to TTS not supported.</exception>
+        /// <exception cref="ArgumentException">This exception can be due to improper value provided while setting the value.</exception>
         public string ErrorMessage
         {
             get
@@ -150,7 +149,7 @@ namespace Tizen.Uix.Tts
                 if (error != TtsError.None)
                 {
                     Log.Error(LogTag, "GetErrorMessage Failed with error " + error);
-                    return "";
+                    throw ExceptionFactory.CreateException(error);
                 }
 
                 return errorMesage;

@@ -36,16 +36,10 @@ namespace Tizen.Uix.VoiceControl
         /// The public constructor.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        /// <privilege>
-        /// http://tizen.org/privilege/recorder
-        /// </privilege>
-        /// <privlevel>
-        /// public
-        /// </privlevel>
-        /// <feature>
-        /// http://tizen.org/feature/speech.control
-        /// http://tizen.org/feature/microphone
-        /// </feature>
+        /// <privilege>http://tizen.org/privilege/recorder</privilege>
+        /// <privlevel>public</privlevel>
+        /// <feature>http://tizen.org/feature/speech.control</feature>
+        /// <feature>http://tizen.org/feature/microphone</feature>
         /// <exception cref="OutOfMemoryException">This exception can be due to out of memory.</exception>
         /// <exception cref="ArgumentException">This exception can be due to an invalid parameter.</exception>
         /// <exception cref="UnauthorizedAccessException">This exception can be due to permission denied.</exception>
@@ -93,12 +87,10 @@ namespace Tizen.Uix.VoiceControl
         /// <value>
         /// Command count of the list.
         /// </value>
-        /// <privilege>
-        /// http://tizen.org/privilege/recorder
-        /// </privilege>
-        /// <privlevel>
-        /// public
-        /// </privlevel>
+        /// <privilege>http://tizen.org/privilege/recorder</privilege>
+        /// <privlevel>public</privlevel>
+        /// <exception cref="UnauthorizedAccessException">This exception can be due to permission denied.</exception>
+        /// <exception cref="NotSupportedException">This exception can be due to not supported.</exception>
         public int Count
         {
             get
@@ -108,7 +100,7 @@ namespace Tizen.Uix.VoiceControl
                 if (error != ErrorCode.None)
                 {
                     Log.Error(LogTag, "Count Failed with error " + error);
-                    return -1;
+                    throw ExceptionFactory.CreateException(error);
                 }
 
                 return count;
@@ -123,12 +115,11 @@ namespace Tizen.Uix.VoiceControl
         /// <value>
         /// Current command from the command list.
         /// </value>
-        /// <privilege>
-        /// http://tizen.org/privilege/recorder
-        /// </privilege>
-        /// <privlevel>
-        /// public
-        /// </privlevel>
+        /// <privilege>http://tizen.org/privilege/recorder</privilege>
+        /// <privlevel>public</privlevel>
+        /// <exception cref="InvalidOperationException">This exception can be due to list empty.</exception>
+        /// <exception cref="UnauthorizedAccessException">This exception can be due to permission denied.</exception>
+        /// <exception cref="NotSupportedException">This exception can be due to not supported.</exception>
         public VoiceCommand Current
         {
             get
@@ -138,7 +129,7 @@ namespace Tizen.Uix.VoiceControl
                 if (ErrorCode.None != error)
                 {
                     Log.Error(LogTag, "Current Failed with error " + error);
-                    return null;
+                    throw ExceptionFactory.CreateException(error);
                 }
 
                 current._ownership = false;
@@ -150,16 +141,10 @@ namespace Tizen.Uix.VoiceControl
         /// Adds a command to the command list.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        /// <privilege>
-        /// http://tizen.org/privilege/recorder
-        /// </privilege>
-        /// <privlevel>
-        /// public
-        /// </privlevel>
-        /// <feature>
-        /// http://tizen.org/feature/speech.control
-        /// http://tizen.org/feature/microphone
-        /// </feature>
+        /// <privilege>http://tizen.org/privilege/recorder</privilege>
+        /// <privlevel>public</privlevel>
+        /// <feature>http://tizen.org/feature/speech.control</feature>
+        /// <feature>http://tizen.org/feature/microphone</feature>
         /// <param name="command">The command</param>
         /// <exception cref="UnauthorizedAccessException">This exception can be due to permission denied.</exception>
         /// <exception cref="NotSupportedException">This exception can be due to not supported.</exception>
@@ -183,16 +168,10 @@ namespace Tizen.Uix.VoiceControl
         /// Removes a command from the command list.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        /// <privilege>
-        /// http://tizen.org/privilege/recorder
-        /// </privilege>
-        /// <privlevel>
-        /// public
-        /// </privlevel>
-        /// <feature>
-        /// http://tizen.org/feature/speech.control
-        /// http://tizen.org/feature/microphone
-        /// </feature>
+        /// <privilege>http://tizen.org/privilege/recorder</privilege>
+        /// <privlevel>public</privlevel>
+        /// <feature>http://tizen.org/feature/speech.control</feature>
+        /// <feature>http://tizen.org/feature/microphone</feature>
         /// <param name="command">The command</param>
         /// <exception cref="UnauthorizedAccessException">This exception can be due to permission denied.</exception>
         /// <exception cref="NotSupportedException">This exception can be due to not supported.</exception>
@@ -216,16 +195,10 @@ namespace Tizen.Uix.VoiceControl
         /// Retrieves all commands from the command list.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        /// <privilege>
-        /// http://tizen.org/privilege/recorder
-        /// </privilege>
-        /// <privlevel>
-        /// public
-        /// </privlevel>
-        /// <feature>
-        /// http://tizen.org/feature/speech.control
-        /// http://tizen.org/feature/microphone
-        /// </feature>
+        /// <privilege>http://tizen.org/privilege/recorder</privilege>
+        /// <privlevel>public</privlevel>
+        /// <feature>http://tizen.org/feature/speech.control</feature>
+        /// <feature>http://tizen.org/feature/microphone</feature>
         /// <exception cref="UnauthorizedAccessException">This exception can be due to permission denied.</exception>
         /// <exception cref="NotSupportedException">This exception can be due to not supported.</exception>
         public IEnumerable<VoiceCommand> GetAllCommands()
@@ -252,16 +225,10 @@ namespace Tizen.Uix.VoiceControl
         /// Moves an index to the first command.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        /// <privilege>
-        /// http://tizen.org/privilege/recorder
-        /// </privilege>
-        /// <privlevel>
-        /// public
-        /// </privlevel>
-        /// <feature>
-        /// http://tizen.org/feature/speech.control
-        /// http://tizen.org/feature/microphone
-        /// </feature>
+        /// <privilege>http://tizen.org/privilege/recorder</privilege>
+        /// <privlevel>public</privlevel>
+        /// <feature>http://tizen.org/feature/speech.control</feature>
+        /// <feature>http://tizen.org/feature/microphone</feature>
         /// <exception cref="InvalidOperationException">This exception can be due to list empty.</exception>
         /// <exception cref="UnauthorizedAccessException">This exception can be due to permission denied.</exception>
         /// <exception cref="NotSupportedException">This exception can be due to not supported.</exception>
@@ -280,16 +247,10 @@ namespace Tizen.Uix.VoiceControl
         /// Moves an index to the last command.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        /// <privilege>
-        /// http://tizen.org/privilege/recorder
-        /// </privilege>
-        /// <privlevel>
-        /// public
-        /// </privlevel>
-        /// <feature>
-        /// http://tizen.org/feature/speech.control
-        /// http://tizen.org/feature/microphone
-        /// </feature>
+        /// <privilege>http://tizen.org/privilege/recorder</privilege>
+        /// <privlevel>public</privlevel>
+        /// <feature>http://tizen.org/feature/speech.control</feature>
+        /// <feature>http://tizen.org/feature/microphone</feature>
         /// <exception cref="InvalidOperationException">This exception can be due to list empty.</exception>
         /// <exception cref="UnauthorizedAccessException">This exception can be due to permission denied.</exception>
         /// <exception cref="NotSupportedException">This exception can be due to not supported.</exception>
@@ -308,16 +269,10 @@ namespace Tizen.Uix.VoiceControl
         /// Moves an index to the next command.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        /// <privilege>
-        /// http://tizen.org/privilege/recorder
-        /// </privilege>
-        /// <privlevel>
-        /// public
-        /// </privlevel>
-        /// <feature>
-        /// http://tizen.org/feature/speech.control
-        /// http://tizen.org/feature/microphone
-        /// </feature>
+        /// <privilege>http://tizen.org/privilege/recorder</privilege>
+        /// <privlevel>public</privlevel>
+        /// <feature>http://tizen.org/feature/speech.control</feature>
+        /// <feature>http://tizen.org/feature/microphone</feature>
         /// <exception cref="InvalidOperationException">
         /// This exception can be due to the following reasons:
         /// 1. List empty
@@ -340,16 +295,10 @@ namespace Tizen.Uix.VoiceControl
         /// Moves an index to the previous command.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        /// <privilege>
-        /// http://tizen.org/privilege/recorder
-        /// </privilege>
-        /// <privlevel>
-        /// public
-        /// </privlevel>
-        /// <feature>
-        /// http://tizen.org/feature/speech.control
-        /// http://tizen.org/feature/microphone
-        /// </feature>
+        /// <privilege>http://tizen.org/privilege/recorder</privilege>
+        /// <privlevel>public</privlevel>
+        /// <feature>http://tizen.org/feature/speech.control</feature>
+        /// <feature>http://tizen.org/feature/microphone</feature>
         /// <exception cref="InvalidOperationException">
         /// This exception can be due to the following reasons:
         /// 1. List empty

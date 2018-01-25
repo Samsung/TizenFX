@@ -216,13 +216,11 @@ namespace Tizen.Uix.Tts
         /// Constructor to create a TTS instance.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        /// <feature>
-        /// http://tizen.org/feature/speech.synthesis
-        /// </feature>
+        /// <feature>http://tizen.org/feature/speech.synthesis</feature>
         /// <exception cref="InvalidOperationException">
         /// This exception can be due to the following reasons:
-        /// 1. Operation Failed
-        /// 2. Engine Not Found
+        /// 1. Engine not found
+        /// 2. Operation failure
         /// </exception>
         /// <exception cref="OutOfMemoryException">This exception can be due to out Of memory.</exception>
         /// <exception cref="NotSupportedException">This exception can be due to TTS not supported.</exception>
@@ -243,70 +241,101 @@ namespace Tizen.Uix.Tts
         /// Event to be invoked when TTS state changes.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        /// <exception cref="InvalidOperationException">This exception can be due to an invalid state.</exception>
+        /// <exception cref="NotSupportedException">This exception can be due to TTS not supported.</exception>
+        /// <exception cref="ArgumentException">This exception can be due to improper value provided while setting the value.</exception>
+        /// <pre>
+        /// The state must be created.
+        /// </pre>
         public event EventHandler<StateChangedEventArgs> StateChanged
         {
             add
             {
                 lock (thisLock)
                 {
-                    _stateDelegate = (IntPtr handle, State previous, State current, IntPtr userData) =>
+                    if (State.Created != CurrentState)
                     {
-                        StateChangedEventArgs args = new StateChangedEventArgs(previous, current);
-                        _stateChanged?.Invoke(this, args);
-                    };
-                    TtsError error = TtsSetStateChangedCB(_handle, _stateDelegate, IntPtr.Zero);
-                    if (error != TtsError.None)
-                    {
-                        Log.Error(LogTag, "Add StateChanged Failed with error " + error);
+                        Log.Error(LogTag, "Add StateChanged Failed with error " + TtsError.InvalidState);
+                        throw ExceptionFactory.CreateException(TtsError.InvalidState);
                     }
-                    else
+                    if (null == _stateChanged)
                     {
-                        _stateChanged += value;
+                        _stateDelegate = (IntPtr handle, State previous, State current, IntPtr userData) =>
+                        {
+                            StateChangedEventArgs args = new StateChangedEventArgs(previous, current);
+                            _stateChanged?.Invoke(this, args);
+                        };
+                        TtsError error = TtsSetStateChangedCB(_handle, _stateDelegate, IntPtr.Zero);
+                        if (TtsError.None != error)
+                        {
+                            Log.Error(LogTag, "Add StateChanged Failed with error " + error);
+                            throw ExceptionFactory.CreateException(error);
+                        }
                     }
+                    _stateChanged += value;
                 }
-
             }
 
             remove
             {
                 lock (thisLock)
                 {
-                    TtsError error = TtsUnsetStateChangedCB(_handle);
-                    if (error != TtsError.None)
+                    if (State.Created != CurrentState)
                     {
-                        Log.Error(LogTag, "Remove StateChanged Failed with error " + error);
+                        Log.Error(LogTag, "Remove StateChanged Failed with error " + TtsError.InvalidState);
+                        throw ExceptionFactory.CreateException(TtsError.InvalidState);
                     }
 
                     _stateChanged -= value;
+                    if (null == _stateChanged)
+                    {
+                        TtsError error = TtsUnsetStateChangedCB(_handle);
+                        if (error != TtsError.None)
+                        {
+                            Log.Error(LogTag, "Remove StateChanged Failed with error " + error);
+                            throw ExceptionFactory.CreateException(error);
+                        }
+                    }
                 }
             }
-
         }
 
         /// <summary>
         /// Event to be invoked when the utterance starts.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        /// <exception cref="InvalidOperationException">This exception can be due to an invalid state.</exception>
+        /// <exception cref="NotSupportedException">This exception can be due to TTS not supported.</exception>
+        /// <exception cref="ArgumentException">This exception can be due to improper value provided while setting the value.</exception>
+        /// <pre>
+        /// The state must be created.
+        /// </pre>
         public event EventHandler<UtteranceEventArgs> UtteranceStarted
         {
             add
             {
                 lock (thisLock)
                 {
-                    _utteranceStartedResultDelegate = (IntPtr handle, int uttId, IntPtr userData) =>
+                    if (State.Created != CurrentState)
                     {
-                        UtteranceEventArgs args = new UtteranceEventArgs(uttId);
-                        _utteranceStarted?.Invoke(this, args);
-                    };
-                    TtsError error = TtsSetUtteranceStartedCB(_handle, _utteranceStartedResultDelegate, IntPtr.Zero);
-                    if (error != TtsError.None)
-                    {
-                        Log.Error(LogTag, "Add UtteranceStarted Failed with error " + error);
+                            Log.Error(LogTag, "Add UtteranceStarted Failed with error " + TtsError.InvalidState);
+                        throw ExceptionFactory.CreateException(TtsError.InvalidState);
                     }
-                    else
+                    if (null == _utteranceStarted)
                     {
-                        _utteranceStarted += value;
+                        _utteranceStartedResultDelegate = (IntPtr handle, int uttId, IntPtr userData) =>
+                        {
+                            UtteranceEventArgs args = new UtteranceEventArgs(uttId);
+                            _utteranceStarted?.Invoke(this, args);
+                        };
+                        TtsError error = TtsSetUtteranceStartedCB(_handle, _utteranceStartedResultDelegate, IntPtr.Zero);
+                        if (error != TtsError.None)
+                        {
+                            Log.Error(LogTag, "Add UtteranceStarted Failed with error " + error);
+                            throw ExceptionFactory.CreateException(error);
+                        }
                     }
+                    _utteranceStarted += value;
                 }
             }
 
@@ -314,13 +343,22 @@ namespace Tizen.Uix.Tts
             {
                 lock (thisLock)
                 {
-                    TtsError error = TtsUnsetUtteranceStartedCB(_handle);
-                    if (error != TtsError.None)
+                    if (State.Created != CurrentState)
                     {
-                        Log.Error(LogTag, "Remove UtteranceStarted Failed with error " + error);
+                        Log.Error(LogTag, "Remove UtteranceStarted Failed with error " + TtsError.InvalidState);
+                        throw ExceptionFactory.CreateException(TtsError.InvalidState);
                     }
 
                     _utteranceStarted -= value;
+                    if (null == _utteranceStarted)
+                    {
+                        TtsError error = TtsUnsetUtteranceStartedCB(_handle);
+                        if (error != TtsError.None)
+                        {
+                            Log.Error(LogTag, "Remove UtteranceStarted Failed with error " + error);
+                            throw ExceptionFactory.CreateException(error);
+                        }
+                    }
                 }
             }
         }
@@ -329,26 +367,38 @@ namespace Tizen.Uix.Tts
         /// Event to be invoked when the utterance completes.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        /// <exception cref="InvalidOperationException">This exception can be due to an invalid state.</exception>
+        /// <exception cref="NotSupportedException">This exception can be due to TTS not supported.</exception>
+        /// <exception cref="ArgumentException">This exception can be due to improper value provided while setting the value.</exception>
+        /// <pre>
+        /// The state must be created.
+        /// </pre>
         public event EventHandler<UtteranceEventArgs> UtteranceCompleted
         {
             add
             {
                 lock (thisLock)
                 {
-                    _utteranceCompletedResultDelegate = (IntPtr handle, int uttId, IntPtr userData) =>
+                    if (State.Created != CurrentState)
                     {
-                        UtteranceEventArgs args = new UtteranceEventArgs(uttId);
-                        _utteranceCompleted?.Invoke(this, args);
-                    };
-                    TtsError error = TtsSetUtteranceCompletedCB(_handle, _utteranceCompletedResultDelegate, IntPtr.Zero);
-                    if (error != TtsError.None)
-                    {
-                        Log.Error(LogTag, "Add UtteranceCompleted Failed with error " + error);
+                        Log.Error(LogTag, "Add UtteranceCompleted Failed with error " + TtsError.InvalidState);
+                        throw ExceptionFactory.CreateException(TtsError.InvalidState);
                     }
-                    else
+                    if (null == _utteranceCompleted)
                     {
-                        _utteranceCompleted += value;
+                        _utteranceCompletedResultDelegate = (IntPtr handle, int uttId, IntPtr userData) =>
+                        {
+                            UtteranceEventArgs args = new UtteranceEventArgs(uttId);
+                            _utteranceCompleted?.Invoke(this, args);
+                        };
+                        TtsError error = TtsSetUtteranceCompletedCB(_handle, _utteranceCompletedResultDelegate, IntPtr.Zero);
+                        if (error != TtsError.None)
+                        {
+                            Log.Error(LogTag, "Add UtteranceCompleted Failed with error " + error);
+                            throw ExceptionFactory.CreateException(error);
+                        }
                     }
+                    _utteranceCompleted += value;
                 }
             }
 
@@ -356,13 +406,22 @@ namespace Tizen.Uix.Tts
             {
                 lock (thisLock)
                 {
-                    TtsError error = TtsUnsetUtteranceCompletedCB(_handle);
-                    if (error != TtsError.None)
+                    if (State.Created != CurrentState)
                     {
-                        Log.Error(LogTag, "Remove UtteranceCompleted Failed with error " + error);
+                        Log.Error(LogTag, "Remove UtteranceCompleted Failed with error " + TtsError.InvalidState);
+                        throw ExceptionFactory.CreateException(TtsError.InvalidState);
                     }
 
                     _utteranceCompleted -= value;
+                    if (null == _utteranceCompleted)
+                    {
+                        TtsError error = TtsUnsetUtteranceCompletedCB(_handle);
+                        if (error != TtsError.None)
+                        {
+                            Log.Error(LogTag, "Remove UtteranceCompleted Failed with error " + error);
+                            throw ExceptionFactory.CreateException(error);
+                        }
+                    }
                 }
             }
         }
@@ -371,27 +430,38 @@ namespace Tizen.Uix.Tts
         /// Event to be invoked when an error occurs.
         /// </summary>
         /// <since_tizen> 4 </since_tizen>
+        /// <exception cref="InvalidOperationException">This exception can be due to an invalid state.</exception>
+        /// <exception cref="NotSupportedException">This exception can be due to TTS not supported.</exception>
+        /// <exception cref="ArgumentException">This exception can be due to improper value provided while setting the value.</exception>
+        /// <pre>
+        /// The state must be created.
+        /// </pre>
         public event EventHandler<ErrorOccurredEventArgs> ErrorOccurred
         {
             add
             {
                 lock (thisLock)
                 {
-                    _errorDelegate = (IntPtr handle, int uttId, TtsError reason, IntPtr userData) =>
+                    if (State.Created != CurrentState)
                     {
-                        ErrorOccurredEventArgs args = new ErrorOccurredEventArgs(handle, uttId, reason);
-                        _errorOccurred?.Invoke(this, args);
-                    };
-                    TtsError error = TtsSetErrorCB(_handle, _errorDelegate, IntPtr.Zero);
-                    if (error != TtsError.None)
-                    {
-                        Log.Error(LogTag, "Add ErrorOccurred Failed with error " + error);
+                        Log.Error(LogTag, "Add ErrorOccurred Failed with error " + TtsError.InvalidState);
+                        throw ExceptionFactory.CreateException(TtsError.InvalidState);
                     }
-
-                    else
+                    if (null == _errorOccurred)
                     {
-                        _errorOccurred += value;
+                        _errorDelegate = (IntPtr handle, int uttId, TtsError reason, IntPtr userData) =>
+                        {
+                            ErrorOccurredEventArgs args = new ErrorOccurredEventArgs(handle, uttId, reason);
+                            _errorOccurred?.Invoke(this, args);
+                        };
+                        TtsError error = TtsSetErrorCB(_handle, _errorDelegate, IntPtr.Zero);
+                        if (error != TtsError.None)
+                        {
+                            Log.Error(LogTag, "Add ErrorOccurred Failed with error " + error);
+                            throw ExceptionFactory.CreateException(error);
+                        }
                     }
+                    _errorOccurred += value;
                 }
             }
 
@@ -399,13 +469,22 @@ namespace Tizen.Uix.Tts
             {
                 lock (thisLock)
                 {
-                    TtsError error = TtsUnsetErrorCB(_handle);
-                    if (error != TtsError.None)
+                    if (State.Created != CurrentState)
                     {
-                        Log.Error(LogTag, "Remove ErrorOccurred Failed with error " + error);
+                        Log.Error(LogTag, "Remove ErrorOccurred Failed with error " + TtsError.InvalidState);
+                        throw ExceptionFactory.CreateException(TtsError.InvalidState);
                     }
 
                     _errorOccurred -= value;
+                    if (null == _errorOccurred)
+                    {
+                        TtsError error = TtsUnsetErrorCB(_handle);
+                        if (error != TtsError.None)
+                        {
+                            Log.Error(LogTag, "Remove ErrorOccurred Failed with error " + error);
+                            throw ExceptionFactory.CreateException(error);
+                        }
+                    }
                 }
             }
         }
@@ -414,44 +493,62 @@ namespace Tizen.Uix.Tts
         /// Event to be invoked when an error occurs.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        /// <exception cref="InvalidOperationException">This exception can be due to an invalid state.</exception>
+        /// <exception cref="NotSupportedException">This exception can be due to TTS not supported.</exception>
+        /// <exception cref="ArgumentException">This exception can be due to improper value provided while setting the value.</exception>
+        /// <pre>
+        /// The state must be created.
+        /// </pre>
         public event EventHandler<DefaultVoiceChangedEventArgs> DefaultVoiceChanged
         {
             add
             {
                 lock (thisLock)
                 {
-                    _voiceChangedDelegate = (IntPtr handle, IntPtr previousLanguage, int previousVoiceType, IntPtr currentLanguage, int currentVoiceType, IntPtr userData) =>
+                    if (State.Created != CurrentState)
                     {
-                        string previousLanguageString = Marshal.PtrToStringAnsi(previousLanguage);
-                        string currentLanguageString = Marshal.PtrToStringAnsi(currentLanguage);
-                        DefaultVoiceChangedEventArgs args = new DefaultVoiceChangedEventArgs(previousLanguageString, previousVoiceType, currentLanguageString, currentVoiceType);
-                        _defaultVoiceChanged?.Invoke(this, args);
-                    };
-                    TtsError error = TtsSetDefaultVoiceChangedCB(_handle, _voiceChangedDelegate, IntPtr.Zero);
-                    if (error != TtsError.None)
-                    {
-                        Log.Error(LogTag, "Add DefaultVoiceChanged Failed with error " + error);
+                        Log.Error(LogTag, "Add DefaultVoiceChanged Failed with error " + TtsError.InvalidState);
+                        throw ExceptionFactory.CreateException(TtsError.InvalidState);
                     }
-
-                    else
+                    if (null == _defaultVoiceChanged)
                     {
-                        _defaultVoiceChanged += value;
+                        _voiceChangedDelegate = (IntPtr handle, IntPtr previousLanguage, int previousVoiceType, IntPtr currentLanguage, int currentVoiceType, IntPtr userData) =>
+                        {
+                            string previousLanguageString = Marshal.PtrToStringAnsi(previousLanguage);
+                            string currentLanguageString = Marshal.PtrToStringAnsi(currentLanguage);
+                            DefaultVoiceChangedEventArgs args = new DefaultVoiceChangedEventArgs(previousLanguageString, previousVoiceType, currentLanguageString, currentVoiceType);
+                            _defaultVoiceChanged?.Invoke(this, args);
+                        };
+                        TtsError error = TtsSetDefaultVoiceChangedCB(_handle, _voiceChangedDelegate, IntPtr.Zero);
+                        if (error != TtsError.None)
+                        {
+                            Log.Error(LogTag, "Add DefaultVoiceChanged Failed with error " + error);
+                            throw ExceptionFactory.CreateException(error);
+                        }
                     }
+                    _defaultVoiceChanged += value;
                 }
-
             }
 
             remove
             {
                 lock (thisLock)
                 {
-                    TtsError error = TtsUnsetDefaultVoiceChangedCB(_handle);
-                    if (error != TtsError.None)
+                    if (State.Created != CurrentState)
                     {
-                        Log.Error(LogTag, "Remove DefaultVoiceChanged Failed with error " + error);
+                        throw ExceptionFactory.CreateException(TtsError.InvalidState);
                     }
 
                     _defaultVoiceChanged -= value;
+                    if (null == _defaultVoiceChanged)
+                    {
+                        TtsError error = TtsUnsetDefaultVoiceChangedCB(_handle);
+                        if (error != TtsError.None)
+                        {
+                            Log.Error(LogTag, "Remove DefaultVoiceChanged Failed with error " + error);
+                            throw ExceptionFactory.CreateException(error);
+                        }
+                    }
                 }
             }
         }
@@ -460,28 +557,39 @@ namespace Tizen.Uix.Tts
         /// Event to be invoked to detect engine change.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        /// <exception cref="InvalidOperationException">This exception can be due to an invalid state.</exception>
+        /// <exception cref="NotSupportedException">This exception can be due to TTS not supported.</exception>
+        /// <exception cref="ArgumentException">This exception can be due to improper value provided while setting the value.</exception>
+        /// <pre>
+        /// The state must be created.
+        /// </pre>
         public event EventHandler<EngineChangedEventArgs> EngineChanged
         {
             add
             {
                 lock (thisLock)
                 {
-                    _engineDelegate = (IntPtr handle, IntPtr engineId, IntPtr language, int voiceType, bool needCredential, IntPtr userData) =>
+                    if (State.Created != CurrentState)
                     {
-                        string engineIdString = Marshal.PtrToStringAnsi(engineId);
-                        string languageString = Marshal.PtrToStringAnsi(language);
-                        EngineChangedEventArgs args = new EngineChangedEventArgs(engineIdString, languageString, voiceType, needCredential);
-                        _engineChanged?.Invoke(this, args);
-                    };
-                    TtsError error = TtsSetEngineChangedCB(_handle, _engineDelegate, IntPtr.Zero);
-                    if (error != TtsError.None)
-                    {
-                        Log.Error(LogTag, "Add EngineChanged Failed with error " + error);
+                        throw ExceptionFactory.CreateException(TtsError.InvalidState);
                     }
-                    else
+                    if (null == _engineChanged)
                     {
-                        _engineChanged += value;
+                        _engineDelegate = (IntPtr handle, IntPtr engineId, IntPtr language, int voiceType, bool needCredential, IntPtr userData) =>
+                        {
+                            string engineIdString = Marshal.PtrToStringAnsi(engineId);
+                            string languageString = Marshal.PtrToStringAnsi(language);
+                            EngineChangedEventArgs args = new EngineChangedEventArgs(engineIdString, languageString, voiceType, needCredential);
+                            _engineChanged?.Invoke(this, args);
+                        };
+                        TtsError error = TtsSetEngineChangedCB(_handle, _engineDelegate, IntPtr.Zero);
+                        if (error != TtsError.None)
+                        {
+                            Log.Error(LogTag, "Add EngineChanged Failed with error " + error);
+                            throw ExceptionFactory.CreateException(error);
+                        }
                     }
+                    _engineChanged += value;
                 }
             }
 
@@ -489,13 +597,21 @@ namespace Tizen.Uix.Tts
             {
                 lock (thisLock)
                 {
-                    TtsError error = TtsUnsetEngineChangedCB(_handle);
-                    if (error != TtsError.None)
+                    if (State.Created != CurrentState)
                     {
-                        Log.Error(LogTag, "Remove EngineChanged Failed with error " + error);
+                        throw ExceptionFactory.CreateException(TtsError.InvalidState);
                     }
 
                     _engineChanged -= value;
+                    if (null == _engineChanged)
+                    {
+                        TtsError error = TtsUnsetEngineChangedCB(_handle);
+                        if (error != TtsError.None)
+                        {
+                            Log.Error(LogTag, "Remove EngineChanged Failed with error " + error);
+                            throw ExceptionFactory.CreateException(error);
+                        }
+                    }
                 }
             }
         }
@@ -507,9 +623,11 @@ namespace Tizen.Uix.Tts
         /// <value>
         /// The default voice in TTS.
         /// </value>
-        /// <returns>
-        /// The default voice SupportedVoice value.
-        /// </returns>
+        /// <exception cref="InvalidOperationException">
+        /// This exception can be due to the following reasons while setting the value:
+        /// 1. Engine not found
+        /// 2. Operation failure
+        /// <exception cref="NotSupportedException">This exception can be due to TTS not supported.</exception>
         public SupportedVoice DefaultVoice
         {
             get
@@ -522,7 +640,7 @@ namespace Tizen.Uix.Tts
                     if (error != TtsError.None)
                     {
                         Log.Error(LogTag, "DefaultVoice Failed with error " + error);
-                        return new SupportedVoice();
+                            throw ExceptionFactory.CreateException(error);
                     }
 
                     return new SupportedVoice(language, voiceType);
@@ -537,9 +655,8 @@ namespace Tizen.Uix.Tts
         /// <value>
         /// The Maximum byte size for text.
         /// </value>
-        /// <returns>
-        /// The Default Voice SupportedVoice value, 0 if unable to get the value.
-        /// </returns>
+        /// <exception cref="InvalidOperationException">This exception can be due to an invalid state.</exception>
+        /// <exception cref="NotSupportedException">This exception can be due to TTS not supported.</exception>
         /// <pre>
         /// The State should be ready.
         /// </pre>
@@ -560,7 +677,6 @@ namespace Tizen.Uix.Tts
 
                 return maxTextSize;
             }
-
         }
 
         /// <summary>
@@ -570,9 +686,7 @@ namespace Tizen.Uix.Tts
         /// <value>
         /// The current state of TTS.
         /// </value>
-        /// <returns>
-        /// Current TTS State value.
-        /// </returns>
+        /// <exception cref="NotSupportedException">This exception can be due to TTS not supported.</exception>
         public State CurrentState
         {
             get
@@ -590,28 +704,24 @@ namespace Tizen.Uix.Tts
 
                 return state;
             }
-
         }
 
         /// <summary>
-        /// The TTS Mode can be set using this property.
+        /// The TTS Mode can be get and set using this property.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <value>
         /// The current TTS mode (default, screen-reader, notification).
         /// </value>
-        /// <returns>
-        /// The Mode value.
-        /// </returns>
         /// <exception cref="InvalidOperationException">
         /// This exception can be due to the following reasons while setting the value:
-        /// 1. Operation Failed
-        /// 2. Engine Not Found
+        /// 1. Engine not found
+        /// 2. Operation failure
         /// </exception>
         /// <exception cref="OutOfMemoryException">This exception can be due to out Of memory.</exception>
         /// <exception cref="NotSupportedException">This exception can be due to TTS not supported.</exception>
         /// <pre>
-        /// The State should be created.
+        /// The state should be created.
         /// </pre>
         public Mode CurrentMode
         {
@@ -630,6 +740,7 @@ namespace Tizen.Uix.Tts
 
                 return mode;
             }
+
             set
             {
                 TtsError error;
@@ -653,14 +764,12 @@ namespace Tizen.Uix.Tts
         /// <param name="credential">.
         /// The credential string.
         /// </param>
-        /// <feature>
-        /// http://tizen.org/feature/speech.synthesis
-        /// </feature>
+        /// <feature>http://tizen.org/feature/speech.synthesis</feature>
         /// <exception cref="InvalidOperationException">This exception can be due to an invalid state.</exception>
         /// <exception cref="NotSupportedException">This exception can be due to TTS not supported.</exception>
         /// <exception cref="ArgumentException">This exception can be due to improper value provided while setting the value.</exception>
         /// <pre>
-        /// The State should be created or ready.
+        /// The state should be created or ready.
         /// </pre>
         public void SetCredential(string credential)
         {
@@ -679,13 +788,11 @@ namespace Tizen.Uix.Tts
         /// Connects to the TTS service asynchronously.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        /// <feature>
-        /// http://tizen.org/feature/speech.synthesis
-        /// </feature>
+        /// <feature>http://tizen.org/feature/speech.synthesis</feature>
         /// <exception cref="InvalidOperationException">This exception can be due to an invalid state.</exception>
         /// <exception cref="NotSupportedException">This exception can be due to TTS not supported.</exception>
         /// <pre>
-        /// The State must be Created.
+        /// The state must be created.
         /// </pre>
         /// <post>
         /// If this function is successful, the TTS state will be ready.
@@ -708,9 +815,7 @@ namespace Tizen.Uix.Tts
         /// Disconnects from the STT service.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        /// <feature>
-        /// http://tizen.org/feature/speech.synthesis
-        /// </feature>
+        /// <feature>http://tizen.org/feature/speech.synthesis</feature>
         /// <exception cref="InvalidOperationException">This exception can be due to an invalid state.</exception>
         /// <exception cref="NotSupportedException">This exception can be due to TTS not supported.</exception>
         /// <pre>
@@ -739,13 +844,11 @@ namespace Tizen.Uix.Tts
         /// <returns>
         /// The list of SupportedVoice.
         /// </returns>
-        /// <feature>
-        /// http://tizen.org/feature/speech.synthesis
-        /// </feature>
+        /// <feature>http://tizen.org/feature/speech.synthesis</feature>
         /// <exception cref="InvalidOperationException">
         /// This exception can be due to the following reasons:
-        /// 1. Engine Not Found
-        /// 2. Operation Failed
+        /// 1. Engine not found
+        /// 2. Operation failure
         /// </exception>
         /// <exception cref="NotSupportedException">This exception can be due to TTS not supported.</exception>
         public IEnumerable<SupportedVoice> GetSupportedVoices()
@@ -781,14 +884,12 @@ namespace Tizen.Uix.Tts
         /// <returns>
         /// The data corresponding to the provided key.
         /// </returns>
-        /// <feature>
-        /// http://tizen.org/feature/speech.synthesis
-        /// </feature>
+        /// <feature>http://tizen.org/feature/speech.synthesis</feature>
         /// <exception cref="InvalidOperationException">
         /// This exception can be due to the following reasons:
-        /// 1. Invalid State
-        /// 2. Engine Not found
-        /// 3. Operation Failure
+        /// 1. Invalid state
+        /// 2. Engine not found
+        /// 3. Operation failure
         /// </exception>
         /// <exception cref="NotSupportedException">This exception can be due to TTS not supported.</exception>
         /// <pre>
@@ -820,14 +921,12 @@ namespace Tizen.Uix.Tts
         /// <param name="data">
         /// The data string.
         /// </param>
-        /// <feature>
-        /// http://tizen.org/feature/speech.synthesis
-        /// </feature>
+        /// <feature>http://tizen.org/feature/speech.synthesis</feature>
         /// <exception cref="InvalidOperationException">
         /// This exception can be due to the following reasons:
-        /// 1. Invalid State
-        /// 2. Engine Not found
-        /// 3. Operation Failure
+        /// 1. Invalid state
+        /// 2. Engine not found
+        /// 3. Operation failure
         /// </exception>
         /// <exception cref="NotSupportedException">This exception can be due to TTS not supported.</exception>
         /// <exception cref="ArgumentException">This exception can be due to improper value provided while setting the value.</exception>
@@ -854,13 +953,11 @@ namespace Tizen.Uix.Tts
         /// <returns>
         /// The SpeedRange value.
         /// </returns>
-        /// <feature>
-        /// http://tizen.org/feature/speech.synthesis
-        /// </feature>
+        /// <feature>http://tizen.org/feature/speech.synthesis</feature>
         /// <exception cref="InvalidOperationException">
         /// This exception can be due to the following reasons:
-        /// 1. Invalid State
-        /// 2. Operation Failure
+        /// 1. Invalid state
+        /// 2. Operation failure
         /// </exception>
         /// <exception cref="NotSupportedException">This exception can be due to TTS not supported.</exception>
         /// <pre>
@@ -904,14 +1001,12 @@ namespace Tizen.Uix.Tts
         /// <returns>
         /// The utterance ID.
         /// </returns>
-        /// <feature>
-        /// http://tizen.org/feature/speech.synthesis
-        /// </feature>
+        /// <feature>http://tizen.org/feature/speech.synthesis</feature>
         /// <exception cref="InvalidOperationException">
         /// This exception can be due to the following reasons:
-        /// 1. Invalid State
-        /// 2. Operation Failure
-        /// 3. Invalid Voice
+        /// 1. Invalid state
+        /// 2. Operation failure
+        /// 3. Invalid voice
         /// </exception>
         /// <exception cref="NotSupportedException">This exception can be due to TTS not supported.</exception>
         /// <exception cref="UnauthorizedAccessException">This exception can be due to permission denied.</exception>
@@ -939,14 +1034,12 @@ namespace Tizen.Uix.Tts
         /// Starts synthesizing voice from the text and plays the synthesized audio data.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        /// <feature>
-        /// http://tizen.org/feature/speech.synthesis
-        /// </feature>
+        /// <feature>http://tizen.org/feature/speech.synthesis</feature>
         /// <exception cref="InvalidOperationException">
         /// This exception can be due to the following reasons:
-        /// 1. Invalid State
-        /// 2. Operation Failure
-        /// 3. Out of Network
+        /// 1. Invalid state
+        /// 2. Operation failure
+        /// 3. Out of network
         /// </exception>
         /// <exception cref="NotSupportedException">This exception can be due to TTS not supported.</exception>
         /// <exception cref="UnauthorizedAccessException">This exception can be due to permission denied.</exception>
@@ -973,13 +1066,11 @@ namespace Tizen.Uix.Tts
         /// Stops playing the utterance and clears the queue.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        /// <feature>
-        /// http://tizen.org/feature/speech.synthesis
-        /// </feature>
+        /// <feature>http://tizen.org/feature/speech.synthesis</feature>
         /// <exception cref="InvalidOperationException">
         /// This exception can be due to the following reasons:
-        /// 1. Invalid Stat
-        /// 2. Operation Failure
+        /// 1. Invalid state
+        /// 2. Operation failure
         /// </exception>
         /// <exception cref="NotSupportedException">This exception can be due to TTS not supported.</exception>
         /// <pre>
@@ -1006,13 +1097,11 @@ namespace Tizen.Uix.Tts
         /// Pauses the currently playing utterance.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        /// <feature>
-        /// http://tizen.org/feature/speech.synthesis
-        /// </feature>
+        /// <feature>http://tizen.org/feature/speech.synthesis</feature>
         /// <exception cref="InvalidOperationException">
         /// This exception can be due to the following reasons:
-        /// 1. Invalid State
-        /// 2. Operation Failure
+        /// 1. Invalid state
+        /// 2. Operation failure
         /// </exception>
         /// <exception cref="NotSupportedException">This exception can be due to TTS not supported.</exception>
         /// <pre>
