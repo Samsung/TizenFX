@@ -25,7 +25,6 @@ namespace Tizen.Multimedia
     /// <since_tizen> 3 </since_tizen>
     public sealed class AudioMediaFormat : MediaFormat
     {
-
         /// <summary>
         /// Initializes a new instance of the AudioMediaFormat class with the specified mime type,
         /// channel, sample rate, bit, and bit rate.
@@ -42,7 +41,7 @@ namespace Tizen.Multimedia
         /// <since_tizen> 3 </since_tizen>
         public AudioMediaFormat(MediaFormatAudioMimeType mimeType,
             int channel, int sampleRate, int bit, int bitRate)
-        : this(mimeType, channel, sampleRate, bit, bitRate, MediaFormatAacType.None)
+            : this(mimeType, channel, sampleRate, bit, bitRate, MediaFormatAacType.None)
         {
         }
 
@@ -69,30 +68,31 @@ namespace Tizen.Multimedia
             int channel, int sampleRate, int bit, int bitRate, MediaFormatAacType aacType)
             : base(MediaFormatType.Audio)
         {
-            if (!Enum.IsDefined(typeof(MediaFormatAudioMimeType), mimeType))
-            {
-                throw new ArgumentException($"Invalid mime type value : { (int)mimeType }");
-            }
+            ValidationUtil.ValidateEnum(typeof(MediaFormatAudioMimeType), mimeType, nameof(mimeType));
+
             if (channel < 0)
             {
-                throw new ArgumentOutOfRangeException("Channel value can't be negative.");
+                throw new ArgumentOutOfRangeException(nameof(channel), channel,
+                    "Channel value can't be negative.");
             }
             if (sampleRate < 0)
             {
-                throw new ArgumentOutOfRangeException("Sample rate value can't be negative.");
+                throw new ArgumentOutOfRangeException(nameof(sampleRate), sampleRate,
+                    "Sample rate value can't be negative.");
             }
             if (bit < 0)
             {
-                throw new ArgumentOutOfRangeException("Bit value can't be negative.");
+                throw new ArgumentOutOfRangeException(nameof(bit), bit,
+                    "Bit value can't be negative.");
             }
             if (bitRate < 0)
             {
-                throw new ArgumentOutOfRangeException("Bit rate value can't be negative.");
+                throw new ArgumentOutOfRangeException(nameof(bitRate), bitRate,
+                    "Bit rate value can't be negative.");
             }
-            if (!Enum.IsDefined(typeof(MediaFormatAacType), aacType))
-            {
-                throw new ArgumentException($"Invalid aac type value : { (int)aacType }");
-            }
+
+            ValidationUtil.ValidateEnum(typeof(MediaFormatAacType), aacType, nameof(aacType));
+
             if (!IsAacSupportedMimeType(mimeType) && aacType != MediaFormatAacType.None)
             {
                 throw new ArgumentException("Aac is supported only with aac mime types.");
@@ -115,29 +115,14 @@ namespace Tizen.Multimedia
         {
             Debug.Assert(handle != IntPtr.Zero, "The handle is invalid!");
 
-            MediaFormatAudioMimeType mimeType;
-            int channel = 0;
-            int sampleRate = 0;
-            int bit = 0;
-            int bitRate = 0;
-            MediaFormatAacType aacType;
-            GetInfo(handle, out mimeType, out channel, out sampleRate, out bit, out bitRate);
-
-            if (IsAacSupportedMimeType(mimeType))
-            {
-                GetAacType(handle, out aacType);
-            }
-            else
-            {
-                aacType = MediaFormatAacType.None;
-            }
+            GetInfo(handle, out var mimeType, out var channel, out var sampleRate, out var bit, out var bitRate);
 
             MimeType = mimeType;
             Channel = channel;
             SampleRate = sampleRate;
             Bit = bit;
             BitRate = bitRate;
-            AacType = aacType;
+            AacType = IsAacSupportedMimeType(mimeType) ? GetAacType(handle) : MediaFormatAacType.None;
         }
 
         /// <summary>
@@ -165,12 +150,8 @@ namespace Tizen.Multimedia
         {
             Debug.Assert(handle != IntPtr.Zero, "The handle is invalid!");
 
-            int mimeTypeValue = 0;
-
             int ret = Interop.MediaFormat.GetAudioInfo(handle,
-                out mimeTypeValue, out channel, out sampleRate, out bit, out bitRate);
-
-            mimeType = (MediaFormatAudioMimeType)mimeTypeValue;
+                out mimeType, out channel, out sampleRate, out bit, out bitRate);
 
             MultimediaDebug.AssertNoError(ret);
 
@@ -182,27 +163,24 @@ namespace Tizen.Multimedia
         /// Retrieves the AAC type value from a native handle.
         /// </summary>
         /// <param name="handle">A native handle that the properties are retrieved from.</param>
-        /// <param name="aacType">An out parameter for tha AAC type.</param>
-        private static void GetAacType(IntPtr handle, out MediaFormatAacType aacType)
+        private static MediaFormatAacType GetAacType(IntPtr handle)
         {
             Debug.Assert(handle != IntPtr.Zero, "The handle is invalid!");
 
-            int aacTypeValue = 0;
-
-            int ret = Interop.MediaFormat.GetAudioAacType(handle, out aacTypeValue);
+            int ret = Interop.MediaFormat.GetAudioAacType(handle, out var aacType);
 
             MultimediaDebug.AssertNoError(ret);
 
-            aacType = (MediaFormatAacType)aacTypeValue;
-
             Debug.Assert(Enum.IsDefined(typeof(MediaFormatAacType), aacType), "Invalid aac type!");
+
+            return aacType;
         }
 
         internal override void AsNativeHandle(IntPtr handle)
         {
             Debug.Assert(Type == MediaFormatType.Audio);
 
-            int ret = Interop.MediaFormat.SetAudioMimeType(handle, (int)MimeType);
+            int ret = Interop.MediaFormat.SetAudioMimeType(handle, MimeType);
             MultimediaDebug.AssertNoError(ret);
 
             ret = Interop.MediaFormat.SetAudioChannel(handle, Channel);
@@ -217,7 +195,7 @@ namespace Tizen.Multimedia
             ret = Interop.MediaFormat.SetAudioAverageBps(handle, BitRate);
             MultimediaDebug.AssertNoError(ret);
 
-            ret = Interop.MediaFormat.SetAudioAacType(handle, (int)AacType);
+            ret = Interop.MediaFormat.SetAudioAacType(handle, AacType);
             MultimediaDebug.AssertNoError(ret);
         }
 
@@ -281,7 +259,7 @@ namespace Tizen.Multimedia
             }
 
             return MimeType == rhs.MimeType && Channel == rhs.Channel && SampleRate == rhs.SampleRate &&
-                Bit == rhs.Bit && BitRate == rhs.BitRate;
+                Bit == rhs.Bit && BitRate == rhs.BitRate && AacType == rhs.AacType;
         }
 
         /// <summary>
@@ -290,6 +268,6 @@ namespace Tizen.Multimedia
         /// <returns>The hash code for this instance of <see cref="AudioMediaFormat"/>.</returns>
         /// <since_tizen> 3 </since_tizen>
         public override int GetHashCode()
-            => new { MimeType, Channel, SampleRate, Bit, BitRate }.GetHashCode();
+            => new { MimeType, Channel, SampleRate, Bit, BitRate, AacType }.GetHashCode();
     }
 }

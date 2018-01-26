@@ -34,10 +34,9 @@ namespace Tizen.Multimedia
         public ContainerMediaFormat(MediaFormatContainerMimeType mimeType)
             : base(MediaFormatType.Container)
         {
-            if (!Enum.IsDefined(typeof(MediaFormatContainerMimeType), mimeType))
-            {
-                throw new ArgumentException($"Invalid mime type value : { (int)mimeType }");
-            }
+            ValidationUtil.ValidateEnum(typeof(MediaFormatContainerMimeType), mimeType,
+                nameof(mimeType));
+
             MimeType = mimeType;
         }
 
@@ -50,16 +49,14 @@ namespace Tizen.Multimedia
         {
             Debug.Assert(handle != IntPtr.Zero, "The handle is invalid!");
 
-            int mimeType = 0;
-
-            int ret = Interop.MediaFormat.GetContainerMimeType(handle, out mimeType);
+            int ret = Interop.MediaFormat.GetContainerMimeType(handle, out var mimeType);
 
             MultimediaDebug.AssertNoError(ret);
 
             Debug.Assert(Enum.IsDefined(typeof(MediaFormatContainerMimeType), mimeType),
                 "Invalid container mime type!");
 
-            MimeType = (MediaFormatContainerMimeType)mimeType;
+            MimeType = mimeType;
         }
 
         /// <summary>
@@ -72,7 +69,7 @@ namespace Tizen.Multimedia
         {
             Debug.Assert(Type == MediaFormatType.Container);
 
-            int ret = Interop.MediaFormat.SetContainerMimeType(handle, (int)MimeType);
+            int ret = Interop.MediaFormat.SetContainerMimeType(handle, MimeType);
 
             MultimediaDebug.AssertNoError(ret);
         }
@@ -106,7 +103,6 @@ namespace Tizen.Multimedia
         /// </summary>
         /// <returns>The hash code for this instance of <see cref="ContainerMediaFormat"/>.</returns>
         /// <since_tizen> 3 </since_tizen>
-        public override int GetHashCode()
-            => (int)MimeType;
+        public override int GetHashCode() => MimeType.GetHashCode();
     }
 }

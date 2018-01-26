@@ -134,10 +134,8 @@ namespace Tizen.Multimedia
             int frameRate, int bitRate)
             : base(MediaFormatType.Video)
         {
-            if (!Enum.IsDefined(typeof(MediaFormatVideoMimeType), mimeType))
-            {
-                throw new ArgumentException($"Invalid mime type value : { (int)mimeType }");
-            }
+            ValidationUtil.ValidateEnum(typeof(MediaFormatVideoMimeType), mimeType, nameof(mimeType));
+
             if (size.Width < 0)
             {
                 throw new ArgumentOutOfRangeException(nameof(size), size.Width, "Size.Width value can't be less than zero.");
@@ -170,14 +168,17 @@ namespace Tizen.Multimedia
         {
             Debug.Assert(handle != IntPtr.Zero, "The handle is invalid!");
 
-            int width = 0;
-            int height = 0;
-            int bitRate = 0;
-            int frameRate = 0;
-            MediaFormatVideoMimeType mimeType;
-            GetInfo(handle, out width, out height, out bitRate, out mimeType);
+            int ret = Interop.MediaFormat.GetVideoInfo(handle,
+                out var mimeType, out var width, out var height, out var bitRate, out var maxBps);
 
-            GetFrameRate(handle, out frameRate);
+            MultimediaDebug.AssertNoError(ret);
+
+            Debug.Assert(Enum.IsDefined(typeof(MediaFormatVideoMimeType), mimeType),
+                "Invalid video mime type!");
+
+            ret = Interop.MediaFormat.GetVideoFrameRate(handle, out var frameRate);
+
+            MultimediaDebug.AssertNoError(ret);
 
             MimeType = mimeType;
             Size = new Size(width, height);
@@ -185,52 +186,11 @@ namespace Tizen.Multimedia
             BitRate = bitRate;
         }
 
-        /// <summary>
-        /// Retrieves video properties of the media format from a native handle.
-        /// </summary>
-        /// <param name="handle">A native handle that the properties are retrieved from.</param>
-        /// <param name="width">An out parameter for the width.</param>
-        /// <param name="height">An out parameter for the height.</param>
-        /// <param name="bitRate">An out parameter for the bit rate.</param>
-        /// <param name="mimeType">An out parameter for the mime type.</param>
-        private static void GetInfo(IntPtr handle, out int width, out int height, out int bitRate,
-            out MediaFormatVideoMimeType mimeType)
-        {
-            Debug.Assert(handle != IntPtr.Zero, "The handle is invalid!");
-
-            int mimeTypeValue = 0;
-            int maxBps = 0;
-
-            int ret = Interop.MediaFormat.GetVideoInfo(handle,
-                out mimeTypeValue, out width, out height, out bitRate, out maxBps);
-
-            MultimediaDebug.AssertNoError(ret);
-
-            mimeType = (MediaFormatVideoMimeType)mimeTypeValue;
-
-            Debug.Assert(Enum.IsDefined(typeof(MediaFormatVideoMimeType), mimeType),
-                "Invalid video mime type!");
-        }
-
-        /// <summary>
-        /// Retrieves frame rate from a native handle.
-        /// </summary>
-        /// <param name="handle">A native handle that the properties are retrieved from.</param>
-        /// <param name="frameRate">An out parameter for the frame rate.</param>
-        private static void GetFrameRate(IntPtr handle, out int frameRate)
-        {
-            Debug.Assert(handle != IntPtr.Zero, "The handle is invalid!");
-
-            int ret = Interop.MediaFormat.GetVideoFrameRate(handle, out frameRate);
-
-            MultimediaDebug.AssertNoError(ret);
-        }
-
         internal override void AsNativeHandle(IntPtr handle)
         {
             Debug.Assert(Type == MediaFormatType.Video);
 
-            int ret = Interop.MediaFormat.SetVideoMimeType(handle, (int)MimeType);
+            int ret = Interop.MediaFormat.SetVideoMimeType(handle, MimeType);
             MultimediaDebug.AssertNoError(ret);
 
             ret = Interop.MediaFormat.SetVideoWidth(handle, Size.Width);
