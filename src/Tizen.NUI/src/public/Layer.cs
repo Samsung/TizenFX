@@ -212,6 +212,7 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public View FindChildById(uint id)
         {
+            //to fix memory leak issue, match the handle count with native side.
             IntPtr cPtr = NDalicPINVOKE.Actor_FindChildById(swigCPtr, id);
             HandleRef CPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
             View ret = Registry.GetManagedBaseHandleFromNativePtr(CPtr.Handle) as View;

@@ -449,9 +449,13 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public View GetCurrentFocusView()
         {
+            //to fix memory leak issue, match the handle count with native side.
             IntPtr cPtr = NDalicManualPINVOKE.FocusManager_GetCurrentFocusActor(swigCPtr);
+            HandleRef CPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
+            View ret = Registry.GetManagedBaseHandleFromNativePtr(CPtr.Handle) as View;
+            NDalicPINVOKE.delete_BaseHandle(CPtr);
+            CPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
 
-            View ret = Registry.GetManagedBaseHandleFromNativePtr(cPtr) as View;
             return ret;
         }
 
@@ -553,17 +557,12 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public View GetFocusGroup(View view)
         {
+            //to fix memory leak issue, match the handle count with native side.
             IntPtr cPtr = NDalicManualPINVOKE.FocusManager_GetFocusGroup(swigCPtr, View.getCPtr(view));
-
-            View ret = Registry.GetManagedBaseHandleFromNativePtr(cPtr) as View;
-
-
-            /*View ret = new View(NDalicManualPINVOKE.FocusManager_GetFocusGroup(swigCPtr, View.getCPtr(view)), true);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            if (ret.HasBody() == false)
-            {
-                return null;
-            }*/
+            HandleRef CPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
+            View ret = Registry.GetManagedBaseHandleFromNativePtr(CPtr.Handle) as View;
+            NDalicPINVOKE.delete_BaseHandle(CPtr);
+            CPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
 
             return ret;
         }
@@ -593,9 +592,12 @@ namespace Tizen.NUI
 
         internal View GetFocusIndicatorView()
         {
+            //to fix memory leak issue, match the handle count with native side.
             IntPtr cPtr = NDalicManualPINVOKE.FocusManager_GetFocusIndicatorActor(swigCPtr);
-
-            View ret = Registry.GetManagedBaseHandleFromNativePtr(cPtr) as View;
+            HandleRef CPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
+            View ret = Registry.GetManagedBaseHandleFromNativePtr(CPtr.Handle) as View;
+            NDalicPINVOKE.delete_BaseHandle(CPtr);
+            CPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
 
             return ret;
         }
