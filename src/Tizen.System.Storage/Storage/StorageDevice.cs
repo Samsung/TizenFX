@@ -17,25 +17,25 @@
 namespace Tizen.System
 {
     /// <summary>
-    /// Enumeration for the storage area types.
+    /// Enumeration for storage devices.
     /// </summary>
-    /// <since_tizen> 3 </since_tizen>
-    public enum StorageArea
+    /// <since_tizen> 4 </since_tizen>
+    public enum StorageDevice
     {
         /// <summary>
-        /// Internal device storage (built-in storage in a device, non-removable).
+        /// External sd card device
         /// </summary>
-        /// <since_tizen> 3 </since_tizen>
-        Internal = Interop.Storage.StorageArea.Internal,
+        /// <since_tizen> 4 </since_tizen>
+        ExternalSDCard = Interop.Storage.StorageDevice.ExternalSDCard,
         /// <summary>
-        /// External storage.
+        /// External usb mass storage
         /// </summary>
-        /// <since_tizen> 3 </since_tizen>
-        External = Interop.Storage.StorageArea.External,
+        /// <since_tizen> 4 </since_tizen>
+        ExternalUSBMassStorage = Interop.Storage.StorageDevice.ExternalUSBMassStorage,
         /// <summary>
         /// Extended internal storage
         /// </summary>
         /// <since_tizen> 4 </since_tizen>
-        ExtendedInternal = Interop.Storage.StorageArea.ExtendedInternal,
+        ExtendedInternalStorage = Interop.Storage.StorageDevice.ExtendedInternalStorage,
     }
 }
