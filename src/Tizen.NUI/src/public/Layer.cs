@@ -261,17 +261,18 @@ namespace Tizen.NUI
             {
                 int currentIdx = parentChildren.IndexOf(this);
 
-                if (currentIdx != parentChildren.Count - 1)
+                if (currentIdx >= 0 && currentIdx < parentChildren.Count - 1)
                 {
                     RaiseAbove(parentChildren[currentIdx + 1]);
 
                     Layer temp = parentChildren[currentIdx + 1];
                     parentChildren[currentIdx + 1] = this;
                     parentChildren[currentIdx] = temp;
+
+                    NDalicPINVOKE.Layer_Raise(swigCPtr);
+                    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
                 }
             }
-            NDalicPINVOKE.Layer_Raise(swigCPtr);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         /// <summary>
@@ -285,7 +286,7 @@ namespace Tizen.NUI
             {
                 int currentIdx = parentChildren.IndexOf(this);
 
-                if (currentIdx > 0)
+                if (currentIdx > 0 && currentIdx < parentChildren.Count)
                 {
                     LowerBelow(parentChildren[currentIdx - 1]);
 
@@ -293,10 +294,10 @@ namespace Tizen.NUI
                     parentChildren[currentIdx - 1] = this;
                     parentChildren[currentIdx] = temp;
 
+                    NDalicPINVOKE.Layer_Lower(swigCPtr);
+                    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
                 }
             }
-            NDalicPINVOKE.Layer_Lower(swigCPtr);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         internal void RaiseAbove(Layer target)
@@ -307,15 +308,23 @@ namespace Tizen.NUI
                 int currentIndex = parentChildren.IndexOf(this);
                 int targetIndex = parentChildren.IndexOf(target);
 
+                if(currentIndex < 0 || targetIndex < 0 ||
+                    currentIndex >= parentChildren.Count || targetIndex >= parentChildren.Count)
+                {
+                    NUILog.Error("index should be bigger than 0 and less than children of layer count");
+                    return;
+                }
+
                 // If the currentIndex is less than the target index and the target has the same parent.
                 if (currentIndex < targetIndex)
                 {
                     parentChildren.Remove(this);
                     parentChildren.Insert(targetIndex, this);
+
+                    NDalicPINVOKE.Layer_RaiseAbove(swigCPtr, Layer.getCPtr(target));
+                    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
                 }
             }
-            NDalicPINVOKE.Layer_RaiseAbove(swigCPtr, Layer.getCPtr(target));
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         internal void LowerBelow(Layer target)
@@ -327,16 +336,24 @@ namespace Tizen.NUI
                 int currentIndex = parentChildren.IndexOf(this);
                 int targetIndex = parentChildren.IndexOf(target);
 
+                if(currentIndex < 0 || targetIndex < 0 ||
+                    currentIndex >= parentChildren.Count || targetIndex >= parentChildren.Count)
+                {
+                    NUILog.Error("index should be bigger than 0 and less than children of layer count");
+                    return;
+                }
+
                 // If the currentIndex is not already the 0th index and the target has the same parent.
                 if ((currentIndex != 0) && (targetIndex != -1) &&
                     (currentIndex > targetIndex))
                 {
                     parentChildren.Remove(this);
                     parentChildren.Insert(targetIndex, this);
+
+                    NDalicPINVOKE.Layer_LowerBelow(swigCPtr, Layer.getCPtr(target));
+                    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
                 }
             }
-            NDalicPINVOKE.Layer_LowerBelow(swigCPtr, Layer.getCPtr(target));
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         /// <summary>
@@ -351,9 +368,10 @@ namespace Tizen.NUI
             {
                 parentChildren.Remove(this);
                 parentChildren.Add(this);
+
+                NDalicPINVOKE.Layer_RaiseToTop(swigCPtr);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
-            NDalicPINVOKE.Layer_RaiseToTop(swigCPtr);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         /// <summary>
@@ -368,10 +386,11 @@ namespace Tizen.NUI
             {
                 parentChildren.Remove(this);
                 parentChildren.Insert(0, this);
+
+                NDalicPINVOKE.Layer_LowerToBottom(swigCPtr);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
 
-            NDalicPINVOKE.Layer_LowerToBottom(swigCPtr);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         /// <summary>

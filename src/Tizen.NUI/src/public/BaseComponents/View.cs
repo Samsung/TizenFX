@@ -49,7 +49,7 @@ namespace Tizen.NUI.BaseComponents
         /// <since_tizen> 4 </since_tizen>
         public override void Add(View child)
         {
-            Container oldParent = child.Parent;
+            Container oldParent = child.GetParent();
             if(oldParent != this)
             {
                 if (oldParent != null)
@@ -2246,7 +2246,7 @@ namespace Tizen.NUI.BaseComponents
         /// Sets the sibling order of the view so the depth position can be defined within the same parent.
         /// </summary>
         /// <remarks>
-        /// Note the initial value is 0.
+        /// Note the initial value is 0. SiblingOrder should be bigger than 0 or equal to 0.
         /// Raise, Lower, RaiseToTop, LowerToBottom, RaiseAbove, and LowerBelow will override the sibling order.
         /// The values set by this property will likely change.
         /// </remarks>
@@ -2255,7 +2255,7 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
-                var parentChildren = Parent?.Children;
+                var parentChildren = GetParent()?.Children;
                 int currentOrder = 0;
                 if (parentChildren != null)
                 {
@@ -2275,11 +2275,15 @@ namespace Tizen.NUI.BaseComponents
             }
             set
             {
-                var siblings = Parent?.Children;
+                if(value < 0)
+                {
+                    NUILog.Error("SiblingOrder should be bigger than 0 or equal to 0.");
+                    return;
+                }
+                var siblings = GetParent()?.Children;
                 if (siblings != null)
                 {
                     int currentOrder = siblings.IndexOf(this);
-
                     if (value != currentOrder)
                     {
                         if (value == 0)
@@ -2378,46 +2382,47 @@ namespace Tizen.NUI.BaseComponents
 
         internal void Raise()
         {
-            var parentChildren = Parent?.Children;
+            var parentChildren = GetParent()?.Children;
 
             if (parentChildren != null)
             {
                 int currentIndex = parentChildren.IndexOf(this);
 
                 // If the view is not already the last item in the list.
-                if (currentIndex != parentChildren.Count -1)
+                if (currentIndex >= 0 && currentIndex < parentChildren.Count -1)
                 {
                     View temp = parentChildren[currentIndex + 1];
                     parentChildren[currentIndex + 1] = this;
                     parentChildren[currentIndex] = temp;
+
+                    NDalicPINVOKE.Raise(swigCPtr);
+                    if (NDalicPINVOKE.SWIGPendingException.Pending)
+                        throw NDalicPINVOKE.SWIGPendingException.Retrieve();
                 }
             }
 
-            NDalicPINVOKE.Raise(swigCPtr);
-            if (NDalicPINVOKE.SWIGPendingException.Pending)
-                throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         internal void Lower()
         {
-            var parentChildren = Parent?.Children;
+            var parentChildren = GetParent()?.Children;
 
             if (parentChildren != null)
             {
                 int currentIndex = parentChildren.IndexOf(this);
 
                 // If the view is not already the first item in the list.
-                if (currentIndex > 0)
+                if (currentIndex > 0 && currentIndex < parentChildren.Count)
                 {
                     View temp = parentChildren[currentIndex - 1];
                     parentChildren[currentIndex - 1] = this;
                     parentChildren[currentIndex] = temp;
+
+                    NDalicPINVOKE.Lower(swigCPtr);
+                    if (NDalicPINVOKE.SWIGPendingException.Pending)
+                        throw NDalicPINVOKE.SWIGPendingException.Retrieve();
                 }
             }
-
-            NDalicPINVOKE.Lower(swigCPtr);
-            if (NDalicPINVOKE.SWIGPendingException.Pending)
-                throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         /// <summary>
@@ -2430,17 +2435,18 @@ namespace Tizen.NUI.BaseComponents
         /// <since_tizen> 3 </since_tizen>
         public void RaiseToTop()
         {
-            var parentChildren = Parent?.Children;
+            var parentChildren = GetParent()?.Children;
 
             if (parentChildren != null)
             {
                 parentChildren.Remove(this);
                 parentChildren.Add(this);
+
+                NDalicPINVOKE.RaiseToTop(swigCPtr);
+                if (NDalicPINVOKE.SWIGPendingException.Pending)
+                    throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
 
-            NDalicPINVOKE.RaiseToTop(swigCPtr);
-            if (NDalicPINVOKE.SWIGPendingException.Pending)
-                throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         /// <summary>
@@ -2453,17 +2459,17 @@ namespace Tizen.NUI.BaseComponents
         /// <since_tizen> 3 </since_tizen>
         public void LowerToBottom()
         {
-            var parentChildren = Parent?.Children;
+            var parentChildren = GetParent()?.Children;
 
             if (parentChildren != null)
             {
                 parentChildren.Remove(this);
                 parentChildren.Insert(0, this);
-            }
 
-            NDalicPINVOKE.LowerToBottom(swigCPtr);
-            if (NDalicPINVOKE.SWIGPendingException.Pending)
-                throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                NDalicPINVOKE.LowerToBottom(swigCPtr);
+                if (NDalicPINVOKE.SWIGPendingException.Pending)
+                    throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            }
         }
 
         /// <summary>
@@ -2490,24 +2496,31 @@ namespace Tizen.NUI.BaseComponents
         /// <param name="target">Will be raised above this view.</param>
         internal void RaiseAbove(View target)
         {
-            var parentChildren = Parent?.Children;
+            var parentChildren = GetParent()?.Children;
 
             if (parentChildren != null)
             {
                 int currentIndex = parentChildren.IndexOf(this);
                 int targetIndex = parentChildren.IndexOf(target);
 
+                if(currentIndex < 0 || targetIndex < 0 ||
+                    currentIndex >= parentChildren.Count || targetIndex >= parentChildren.Count)
+                {
+                    NUILog.Error("index should be bigger than 0 and less than children of layer count");
+                    return;
+                }
                 // If the currentIndex is less than the target index and the target has the same parent.
                 if (currentIndex < targetIndex)
                 {
                     parentChildren.Remove(this);
                     parentChildren.Insert(targetIndex, this);
+
+                    NDalicPINVOKE.RaiseAbove(swigCPtr, View.getCPtr(target));
+                    if (NDalicPINVOKE.SWIGPendingException.Pending)
+                        throw NDalicPINVOKE.SWIGPendingException.Retrieve();
                 }
             }
 
-            NDalicPINVOKE.RaiseAbove(swigCPtr, View.getCPtr(target));
-            if (NDalicPINVOKE.SWIGPendingException.Pending)
-                throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         /// <summary>
@@ -2520,12 +2533,18 @@ namespace Tizen.NUI.BaseComponents
         /// <param name="target">Will be lowered below this view.</param>
         internal void LowerBelow(View target)
         {
-            var parentChildren = Parent?.Children;
+            var parentChildren = GetParent()?.Children;
 
             if (parentChildren != null)
             {
                 int currentIndex = parentChildren.IndexOf(this);
                 int targetIndex = parentChildren.IndexOf(target);
+                if(currentIndex < 0 || targetIndex < 0 ||
+                   currentIndex >= parentChildren.Count ||targetIndex >= parentChildren.Count)
+                {
+                    NUILog.Error("index should be bigger than 0 and less than children of layer count");
+                    return;
+                }
 
                 // If the currentIndex is not already the 0th index and the target has the same parent.
                 if ((currentIndex != 0) && (targetIndex != -1) &&
@@ -2533,12 +2552,13 @@ namespace Tizen.NUI.BaseComponents
                 {
                     parentChildren.Remove(this);
                     parentChildren.Insert(targetIndex, this);
+
+                    NDalicPINVOKE.LowerBelow(swigCPtr, View.getCPtr(target));
+                    if (NDalicPINVOKE.SWIGPendingException.Pending)
+                        throw NDalicPINVOKE.SWIGPendingException.Retrieve();
                 }
             }
 
-            NDalicPINVOKE.LowerBelow(swigCPtr, View.getCPtr(target));
-            if (NDalicPINVOKE.SWIGPendingException.Pending)
-                throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         internal string GetName()
@@ -3743,22 +3763,6 @@ namespace Tizen.NUI.BaseComponents
                 return temp;
             }
         }
-
-
-        /// <summary>
-        /// [Obsolete("Please do not use! this will be deprecated. Please use Visibility instead.")]
-        /// </summary>
-        /// <since_tizen> 3 </since_tizen>
-        [Obsolete("Please do not use! This will be deprecated! Please use Visibility instead!")]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public bool Visible
-        {
-            get
-            {
-                return IsVisible();
-            }
-        }
-
 
         /// <summary>
         /// Gets the view's world color.
