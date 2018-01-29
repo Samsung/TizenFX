@@ -30,6 +30,8 @@ namespace Tizen.NUI
     /// So this is required to be removed.
     /// currently no use. will be added later
     /// <since_tizen> 5 </since_tizen>
+    /// This will be released at Tizen.NET API Level 5, so currently this would be used as inhouse API.
+    [EditorBrowsable(EditorBrowsableState.Never)]
     public class PixelData : BaseHandle
     {
         private global::System.Runtime.InteropServices.HandleRef swigCPtr;
@@ -91,6 +93,8 @@ namespace Tizen.NUI
         /// <param name="pixelFormat">The pixel format.</param>
         /// <param name="releaseFunction">The function used to release the memory.</param>
         /// <since_tizen> 5 </since_tizen>
+        /// This will be released at Tizen.NET API Level 5, so currently this would be used as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public PixelData(byte[] buffer, uint bufferSize, uint width, uint height, PixelFormat pixelFormat, PixelData.ReleaseFunction releaseFunction) : this(NDalicPINVOKE.PixelData_New(buffer, bufferSize, width, height, (int)pixelFormat, (int)releaseFunction), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
@@ -102,6 +106,8 @@ namespace Tizen.NUI
         /// </summary>
         /// <returns>The width of the buffer in pixels.</returns>
         /// <since_tizen> 5 </since_tizen>
+        /// This will be released at Tizen.NET API Level 5, so currently this would be used as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public uint GetWidth()
         {
             uint ret = NDalicPINVOKE.PixelData_GetWidth(swigCPtr);
@@ -114,6 +120,8 @@ namespace Tizen.NUI
         /// </summary>
         /// <returns>The height of the buffer in pixels.</returns>
         /// <since_tizen> 5 </since_tizen>
+        /// This will be released at Tizen.NET API Level 5, so currently this would be used as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public uint GetHeight()
         {
             uint ret = NDalicPINVOKE.PixelData_GetHeight(swigCPtr);
@@ -126,6 +134,8 @@ namespace Tizen.NUI
         /// </summary>
         /// <returns>The pixel format.</returns>
         /// <since_tizen> 5 </since_tizen>
+        /// This will be released at Tizen.NET API Level 5, so currently this would be used as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public PixelFormat GetPixelFormat()
         {
             PixelFormat ret = (PixelFormat)NDalicPINVOKE.PixelData_GetPixelFormat(swigCPtr);
@@ -137,6 +147,8 @@ namespace Tizen.NUI
         /// Enumeration for Function to release the pixel buffer.
         /// </summary>
         /// <since_tizen> 5 </since_tizen>
+        /// This will be released at Tizen.NET API Level 5, so currently this would be used as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public enum ReleaseFunction
         {
             /// <summary>
