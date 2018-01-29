@@ -4328,10 +4328,11 @@ namespace Tizen.NUI.BaseComponents
             {
                 View ret;
                 IntPtr cPtr = NDalicPINVOKE.Actor_GetParent(swigCPtr);
-                HandleRef CPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
-                BaseHandle basehandle = Registry.GetManagedBaseHandleFromNativePtr(CPtr.Handle);
-                NDalicPINVOKE.delete_BaseHandle(CPtr);
-                CPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
+                BaseHandle basehandle = Registry.GetManagedBaseHandleFromNativePtr(cPtr);
+                //HandleRef CPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
+                //BaseHandle basehandle = Registry.GetManagedBaseHandleFromNativePtr(CPtr.Handle);
+                //NDalicPINVOKE.delete_BaseHandle(CPtr);
+                //CPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
 
                 if (basehandle is Layer)
                 {
