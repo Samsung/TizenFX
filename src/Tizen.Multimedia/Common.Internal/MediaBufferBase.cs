@@ -33,7 +33,7 @@ namespace Tizen.Multimedia
 
             _dataHandle = dataHandle;
             Length = size;
-            IsReadOnly = false;
+            IsReadOnly = isReadOnly;
         }
 
         internal MediaBufferBase(IntPtr dataHandle, int size) :
