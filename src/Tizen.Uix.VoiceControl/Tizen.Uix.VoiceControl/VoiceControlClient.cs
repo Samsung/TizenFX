@@ -195,7 +195,7 @@ namespace Tizen.Uix.VoiceControl
     };
 
     /// <summary>
-    /// A main function of the voice control API registers the command and gets a notification for the recognition result. 
+    /// A main function of the voice control API registers the command and gets a notification for the recognition result.
     /// Applications can add their own commands and provide results when their command is recognized by the user voice input.
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
@@ -723,7 +723,14 @@ namespace Tizen.Uix.VoiceControl
             s_recognitionResult = null;
             s_resultCb = (ResultEvent evt, IntPtr cmdList, IntPtr result, IntPtr userData) =>
             {
-                s_recognitionResult = new RecognitionResult(evt, cmdList, result);
+                if (IntPtr.Zero != cmdList && IntPtr.Zero != result)
+                {
+                    s_recognitionResult = new RecognitionResult(evt, cmdList, result);
+                }
+                else
+                {
+                    Log.Info(LogTag, "cmdList or result is null");
+                }
             };
             ErrorCode error = VcGetResult(s_resultCb, IntPtr.Zero);
             if (error != ErrorCode.None)
@@ -749,9 +756,9 @@ namespace Tizen.Uix.VoiceControl
                 s_resultDelegate = (ResultEvent evt, IntPtr cmdList, IntPtr result, IntPtr userData) =>
                 {
                     Log.Info(LogTag, "Recognition Result Event Triggered");
-                    if ((cmdList != null) && (result != null))
+                    if (IntPtr.Zero != cmdList && IntPtr.Zero != result)
                     {
-                        RecognitionResultEventArgs args = new RecognitionResultEventArgs(new RecognitionResult( evt, cmdList, result));
+                        RecognitionResultEventArgs args = new RecognitionResultEventArgs(new RecognitionResult(evt, cmdList, result));
                         _recognitionResult?.Invoke(null, args);
                     }
                     else
