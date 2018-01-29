@@ -42,7 +42,7 @@ namespace Tizen.Multimedia
             internal static extern int GetDeviceType(IntPtr device, out AudioDeviceType type);
 
             [DllImport(Libraries.SoundManager, EntryPoint = "sound_manager_get_device_io_direction")]
-            internal static extern AudioManagerError GetDeviceIoDirection(IntPtr device, out AudioDeviceIoDirection ioDirection);
+            internal static extern int GetDeviceIoDirection(IntPtr device, out AudioDeviceIoDirection ioDirection);
 
             [DllImport(Libraries.SoundManager, EntryPoint = "sound_manager_get_device_id")]
             internal static extern int GetDeviceId(IntPtr device, out int id);

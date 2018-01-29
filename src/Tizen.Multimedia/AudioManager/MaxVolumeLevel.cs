@@ -49,7 +49,7 @@ namespace Tizen.Multimedia
                 }
 
                 Interop.AudioVolume.GetMaxVolume(type, out var maxVolume).
-                    Validate("Failed to get the max volume level");
+                    ThrowIfError("Failed to get the max volume level");
 
                 return maxVolume;
             }

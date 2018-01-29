@@ -50,33 +50,38 @@ namespace Tizen.Multimedia
             {
                 var ret = Interop.AudioDevice.GetDeviceList(AudioDeviceOptions.All, out deviceListHandle);
 
-                List<AudioDevice> result = new List<AudioDevice>();
-
                 if (ret == AudioManagerError.NoData)
                 {
-                    return result;
+                    return new List<AudioDevice>();
                 }
 
-                ret.Validate("Failed to get connected devices");
+                ret.ThrowIfError("Failed to get connected devices");
 
-                while (ret == AudioManagerError.None)
+                return RetrieveDevices();
+            }
+            finally
+            {
+                Interop.AudioDevice.FreeDeviceList(deviceListHandle);
+            }
+
+            IEnumerable<AudioDevice> RetrieveDevices()
+            {
+                var result = new List<AudioDevice>();
+
+                while (true)
                 {
-                    ret = Interop.AudioDevice.GetNextDevice(deviceListHandle, out var deviceHandle);
+                    var ret = Interop.AudioDevice.GetNextDevice(deviceListHandle, out var deviceHandle);
 
                     if (ret == AudioManagerError.NoData)
                     {
                         break;
                     }
 
-                    ret.Validate("Failed to get connected devices");
+                    ret.ThrowIfError("Failed to get connected devices");
 
                     result.Add(new AudioDevice(deviceHandle));
                 }
                 return result;
-            }
-            finally
-            {
-                Interop.AudioDevice.FreeDeviceList(deviceListHandle);
             }
         }
 
@@ -85,7 +90,7 @@ namespace Tizen.Multimedia
 
         private static Interop.AudioDevice.ConnectionChangedCallback _audioDeviceConnectionChangedCallback;
         private static EventHandler<AudioDeviceConnectionChangedEventArgs> _audioDeviceConnectionChanged;
-        private static object _audioDeviceConnectionLock = new object();
+        private static readonly object _audioDeviceConnectionLock = new object();
 
         /// <summary>
         /// Occurs when the state of a connection of an audio device changes.
@@ -95,6 +100,11 @@ namespace Tizen.Multimedia
         {
             add
             {
+                if (value == null)
+                {
+                    return;
+                }
+
                 lock (_audioDeviceConnectionLock)
                 {
                     if (_audioDeviceConnectionChanged == null)
@@ -124,7 +134,7 @@ namespace Tizen.Multimedia
 
         private static void RegisterAudioDeviceEvent()
         {
-            _audioDeviceConnectionChangedCallback = (IntPtr device, bool isConnected, IntPtr userData) =>
+            _audioDeviceConnectionChangedCallback = (device, isConnected, _) =>
             {
                 _audioDeviceConnectionChanged?.Invoke(null,
                     new AudioDeviceConnectionChangedEventArgs(new AudioDevice(device), isConnected));
@@ -132,13 +142,13 @@ namespace Tizen.Multimedia
 
             Interop.AudioDevice.AddDeviceConnectionChangedCallback(AudioDeviceOptions.All,
                 _audioDeviceConnectionChangedCallback, IntPtr.Zero, out _deviceConnectionChangedCallbackId).
-                Validate("Unable to add device connection changed callback");
+                ThrowIfError("Unable to add device connection changed callback");
         }
 
         private static void UnregisterDeviceConnectionChangedEvent()
         {
             Interop.AudioDevice.RemoveDeviceConnectionChangedCallback(_deviceConnectionChangedCallbackId).
-                Validate("Unable to remove device connection changed callback");
+                ThrowIfError("Unable to remove device connection changed callback");
         }
         #endregion
 
@@ -147,7 +157,7 @@ namespace Tizen.Multimedia
 
         private static Interop.AudioDevice.StateChangedCallback _audioDeviceStateChangedCallback;
         private static EventHandler<AudioDeviceStateChangedEventArgs> _audioDeviceStateChanged;
-        private static object _audioDeviceStateLock = new object();
+        private static readonly object _audioDeviceStateLock = new object();
 
         /// <summary>
         /// Occurs when the state of an audio device changes.
@@ -157,6 +167,11 @@ namespace Tizen.Multimedia
         {
             add
             {
+                if (value == null)
+                {
+                    return;
+                }
+
                 lock (_audioDeviceStateLock)
                 {
                     if (_audioDeviceStateChanged == null)
@@ -186,7 +201,7 @@ namespace Tizen.Multimedia
 
         private static void RegisterDeviceStateChangedEvent()
         {
-            _audioDeviceStateChangedCallback = (IntPtr device, AudioDeviceState changedState, IntPtr userData) =>
+            _audioDeviceStateChangedCallback = (device, changedState, _) =>
             {
                 _audioDeviceStateChanged?.Invoke(null,
                     new AudioDeviceStateChangedEventArgs(new AudioDevice(device), changedState));
@@ -194,13 +209,13 @@ namespace Tizen.Multimedia
 
             Interop.AudioDevice.AddDeviceStateChangedCallback(AudioDeviceOptions.All,
                 _audioDeviceStateChangedCallback, IntPtr.Zero, out _deviceStateChangedCallbackId).
-                Validate("Failed to add device state changed event");
+                ThrowIfError("Failed to add device state changed event");
         }
 
         private static void UnregisterDeviceStateChangedEvent()
         {
             Interop.AudioDevice.RemoveDeviceStateChangedCallback(_deviceStateChangedCallbackId).
-                Validate("Failed to remove device state changed event");
+                ThrowIfError("Failed to remove device state changed event");
         }
         #endregion
     }
