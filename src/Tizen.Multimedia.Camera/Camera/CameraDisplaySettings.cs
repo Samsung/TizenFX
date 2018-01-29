@@ -56,7 +56,8 @@ namespace Tizen.Multimedia
 
             set
             {
-                ValidationUtil.ValidateEnum(typeof(CameraDisplayMode), value);
+                ValidationUtil.ValidateEnum(typeof(CameraDisplayMode), value, nameof(value));
+
                 CameraErrorFactory.ThrowIfError(Native.SetMode(_camera.GetHandle(), value),
                     "Failed to set camera display mode.");
             }
@@ -111,7 +112,7 @@ namespace Tizen.Multimedia
 
             set
             {
-                ValidationUtil.ValidateEnum(typeof(Rotation), value);
+                ValidationUtil.ValidateEnum(typeof(Rotation), value, nameof(value));
 
                 CameraErrorFactory.ThrowIfError(Native.SetRotation(_camera.GetHandle(), value),
                     "Failed to set display rotation.");

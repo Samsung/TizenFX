@@ -353,7 +353,7 @@ namespace Tizen.Multimedia
         {
             Player.ValidatePlayerState(PlayerState.Ready, PlayerState.Playing, PlayerState.Paused);
 
-            ValidationUtil.ValidateEnum(typeof(StreamMetadataKey), key);
+            ValidationUtil.ValidateEnum(typeof(StreamMetadataKey), key, nameof(key));
 
             IntPtr ptr = IntPtr.Zero;
 
