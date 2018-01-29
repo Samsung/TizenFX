@@ -405,8 +405,12 @@ namespace Tizen.NUI.UIComponents
 
         internal View GetTitle()
         {
+            //to fix memory leak issue, match the handle count with native side.
             IntPtr cPtr = NDalicPINVOKE.Popup_GetTitle(swigCPtr);
-            View ret = Registry.GetManagedBaseHandleFromNativePtr(cPtr) as View;
+            HandleRef CPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
+            View ret = Registry.GetManagedBaseHandleFromNativePtr(CPtr.Handle) as View;
+            NDalicPINVOKE.delete_BaseHandle(CPtr);
+            CPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
 
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
@@ -425,8 +429,12 @@ namespace Tizen.NUI.UIComponents
 
         internal View GetContent()
         {
+            //to fix memory leak issue, match the handle count with native side.
             IntPtr cPtr = NDalicPINVOKE.Popup_GetContent(swigCPtr);
-            View ret = Registry.GetManagedBaseHandleFromNativePtr(cPtr) as View;
+            HandleRef CPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
+            View ret = Registry.GetManagedBaseHandleFromNativePtr(CPtr.Handle) as View;
+            NDalicPINVOKE.delete_BaseHandle(CPtr);
+            CPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
 
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
@@ -445,8 +453,12 @@ namespace Tizen.NUI.UIComponents
 
         internal View GetFooter()
         {
+            //to fix memory leak issue, match the handle count with native side.
             IntPtr cPtr = NDalicPINVOKE.Popup_GetFooter(swigCPtr);
-            View ret = Registry.GetManagedBaseHandleFromNativePtr(cPtr) as View;
+            HandleRef CPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
+            View ret = Registry.GetManagedBaseHandleFromNativePtr(CPtr.Handle) as View;
+            NDalicPINVOKE.delete_BaseHandle(CPtr);
+            CPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
 
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;

@@ -32,7 +32,10 @@ namespace Tizen.NUI.BaseComponents
         internal View(global::System.IntPtr cPtr, bool cMemoryOwn) : base(NDalicPINVOKE.View_SWIGUpcast(cPtr), cMemoryOwn)
         {
             swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
-            PositionUsesPivotPoint = false;
+            if (HasBody())
+            {
+                PositionUsesPivotPoint = false;
+            }
         }
 
         internal static global::System.Runtime.InteropServices.HandleRef getCPtr(View obj)
@@ -111,6 +114,7 @@ namespace Tizen.NUI.BaseComponents
         /// <since_tizen> 4 </since_tizen>
         public override Container GetParent()
         {
+            //to fix memory leak issue, match the handle count with native side.
             IntPtr cPtr = NDalicPINVOKE.Actor_GetParent(swigCPtr);
             HandleRef CPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
             BaseHandle basehandle = Registry.GetManagedBaseHandleFromNativePtr(CPtr.Handle);
@@ -125,7 +129,7 @@ namespace Tizen.NUI.BaseComponents
 
         internal bool IsTopLevelView()
         {
-            if(GetParent() is Layer)
+            if (GetParent() is Layer)
             {
                 return true;
             }
@@ -139,12 +143,12 @@ namespace Tizen.NUI.BaseComponents
         /// <since_tizen> 3 </since_tizen>
         protected override void Dispose(DisposeTypes type)
         {
-            if(disposed)
+            if (disposed)
             {
                 return;
             }
 
-            if(type == DisposeTypes.Explicit)
+            if (type == DisposeTypes.Explicit)
             {
                 //Called by User
                 //Release your own managed resources here.
@@ -429,9 +433,9 @@ namespace Tizen.NUI.BaseComponents
                 Delegate[] delegateList = _keyEventHandler.GetInvocationList();
 
                 // Oring the result of each callback.
-                foreach ( EventHandlerWithReturnType<object, KeyEventArgs, bool> del in delegateList )
+                foreach (EventHandlerWithReturnType<object, KeyEventArgs, bool> del in delegateList)
                 {
-                    result |= del( this, e );
+                    result |= del(this, e);
                 }
             }
 
@@ -1393,7 +1397,7 @@ namespace Tizen.NUI.BaseComponents
         /// background visual, creates one with transparent black as it's mixColor.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        public Animation AnimateBackgroundColor( object destinationValue,
+        public Animation AnimateBackgroundColor(object destinationValue,
                                                  int startTime,
                                                  int endTime,
                                                  AlphaFunction.BuiltinFunctions? alphaFunction = null,
@@ -1401,51 +1405,51 @@ namespace Tizen.NUI.BaseComponents
         {
             Tizen.NUI.PropertyMap background = Background;
 
-            if( background.Empty() )
+            if (background.Empty())
             {
                 // If there is no background yet, ensure there is a transparent
                 // color visual
                 BackgroundColor = new Color(0.0f, 0.0f, 0.0f, 0.0f);
                 background = Background;
             }
-            return AnimateColor( "background", destinationValue, startTime, endTime, alphaFunction, initialValue );
+            return AnimateColor("background", destinationValue, startTime, endTime, alphaFunction, initialValue);
         }
 
         /// <summary>
         /// Creates an animation to animate the mixColor of the named visual.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        public Animation AnimateColor( string targetVisual, object destinationColor, int startTime, int endTime, AlphaFunction.BuiltinFunctions? alphaFunction = null, object initialColor = null )
+        public Animation AnimateColor(string targetVisual, object destinationColor, int startTime, int endTime, AlphaFunction.BuiltinFunctions? alphaFunction = null, object initialColor = null)
         {
             Animation animation = null;
             {
                 PropertyMap _animator = new PropertyMap();
-                if( alphaFunction != null )
+                if (alphaFunction != null)
                 {
-                    _animator.Add("alphaFunction", new PropertyValue( AlphaFunction.BuiltinToPropertyKey(alphaFunction) ) );
+                    _animator.Add("alphaFunction", new PropertyValue(AlphaFunction.BuiltinToPropertyKey(alphaFunction)));
                 }
 
                 PropertyMap _timePeriod = new PropertyMap();
-                _timePeriod.Add( "duration", new PropertyValue((endTime-startTime)/1000.0f) );
-                _timePeriod.Add( "delay", new PropertyValue( startTime/1000.0f ) );
-                _animator.Add( "timePeriod", new PropertyValue( _timePeriod ) );
+                _timePeriod.Add("duration", new PropertyValue((endTime - startTime) / 1000.0f));
+                _timePeriod.Add("delay", new PropertyValue(startTime / 1000.0f));
+                _animator.Add("timePeriod", new PropertyValue(_timePeriod));
 
                 PropertyMap _transition = new PropertyMap();
-                _transition.Add( "animator", new PropertyValue( _animator ) );
-                _transition.Add( "target", new PropertyValue( targetVisual ) );
-                _transition.Add( "property", new PropertyValue( "mixColor" ) );
+                _transition.Add("animator", new PropertyValue(_animator));
+                _transition.Add("target", new PropertyValue(targetVisual));
+                _transition.Add("property", new PropertyValue("mixColor"));
 
-                if( initialColor != null )
+                if (initialColor != null)
                 {
-                    PropertyValue initValue = PropertyValue.CreateFromObject( initialColor );
-                    _transition.Add( "initialValue", initValue );
+                    PropertyValue initValue = PropertyValue.CreateFromObject(initialColor);
+                    _transition.Add("initialValue", initValue);
                 }
 
-                PropertyValue destValue = PropertyValue.CreateFromObject( destinationColor );
-                _transition.Add( "targetValue", destValue );
-                TransitionData _transitionData = new TransitionData( _transition );
+                PropertyValue destValue = PropertyValue.CreateFromObject(destinationColor);
+                _transition.Add("targetValue", destValue);
+                TransitionData _transitionData = new TransitionData(_transition);
 
-                animation = new Animation( NDalicManualPINVOKE.View_CreateTransition(swigCPtr, TransitionData.getCPtr(_transitionData)), true );
+                animation = new Animation(NDalicManualPINVOKE.View_CreateTransition(swigCPtr, TransitionData.getCPtr(_transitionData)), true);
                 if (NDalicPINVOKE.SWIGPendingException.Pending)
                     throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
@@ -1487,7 +1491,7 @@ namespace Tizen.NUI.BaseComponents
             get
             {
                 Tizen.NUI.PropertyMap temp = new Tizen.NUI.PropertyMap();
-                GetProperty( View.Property.BACKGROUND ).Get(temp);
+                GetProperty(View.Property.BACKGROUND).Get(temp);
                 return temp;
             }
             set
@@ -1513,21 +1517,21 @@ namespace Tizen.NUI.BaseComponents
                 switch (temp)
                 {
                     case 0:
-                    {
-                        return States.Normal;
-                    }
+                        {
+                            return States.Normal;
+                        }
                     case 1:
-                    {
-                        return States.Focused;
-                    }
+                        {
+                            return States.Focused;
+                        }
                     case 2:
-                    {
-                        return States.Disabled;
-                    }
+                        {
+                            return States.Disabled;
+                        }
                     default:
-                    {
-                        return States.Normal;
-                    }
+                        {
+                            return States.Normal;
+                        }
                 }
             }
             set
@@ -1567,25 +1571,25 @@ namespace Tizen.NUI.BaseComponents
                 switch (value)
                 {
                     case States.Normal:
-                    {
-                        valueToString = "NORMAL";
-                        break;
-                    }
+                        {
+                            valueToString = "NORMAL";
+                            break;
+                        }
                     case States.Focused:
-                    {
-                        valueToString = "FOCUSED";
-                        break;
-                    }
+                        {
+                            valueToString = "FOCUSED";
+                            break;
+                        }
                     case States.Disabled:
-                    {
-                        valueToString = "DISABLED";
-                        break;
-                    }
+                        {
+                            valueToString = "DISABLED";
+                            break;
+                        }
                     default:
-                    {
-                        valueToString = "NORMAL";
-                        break;
-                    }
+                        {
+                            valueToString = "NORMAL";
+                            break;
+                        }
                 }
                 SetProperty(View.Property.SUB_STATE, new Tizen.NUI.PropertyValue(valueToString));
             }
@@ -1821,25 +1825,25 @@ namespace Tizen.NUI.BaseComponents
                 switch (value)
                 {
                     case Tizen.NUI.HorizontalAlignmentType.Left:
-                    {
-                        valueToString = "left";
-                        break;
-                    }
+                        {
+                            valueToString = "left";
+                            break;
+                        }
                     case Tizen.NUI.HorizontalAlignmentType.Center:
-                    {
-                        valueToString = "center";
-                        break;
-                    }
+                        {
+                            valueToString = "center";
+                            break;
+                        }
                     case Tizen.NUI.HorizontalAlignmentType.Right:
-                    {
-                        valueToString = "right";
-                        break;
-                    }
+                        {
+                            valueToString = "right";
+                            break;
+                        }
                     default:
-                    {
-                        valueToString = "left";
-                        break;
-                    }
+                        {
+                            valueToString = "left";
+                            break;
+                        }
                 }
                 SetProperty(TableView.ChildProperty.CELL_HORIZONTAL_ALIGNMENT, new Tizen.NUI.PropertyValue(valueToString));
             }
@@ -1877,25 +1881,25 @@ namespace Tizen.NUI.BaseComponents
                 switch (value)
                 {
                     case Tizen.NUI.VerticalAlignmentType.Top:
-                    {
-                        valueToString = "top";
-                        break;
-                    }
+                        {
+                            valueToString = "top";
+                            break;
+                        }
                     case Tizen.NUI.VerticalAlignmentType.Center:
-                    {
-                        valueToString = "center";
-                        break;
-                    }
+                        {
+                            valueToString = "center";
+                            break;
+                        }
                     case Tizen.NUI.VerticalAlignmentType.Bottom:
-                    {
-                        valueToString = "bottom";
-                        break;
-                    }
+                        {
+                            valueToString = "bottom";
+                            break;
+                        }
                     default:
-                    {
-                        valueToString = "top";
-                        break;
-                    }
+                        {
+                            valueToString = "top";
+                            break;
+                        }
                 }
                 SetProperty(TableView.ChildProperty.CELL_VERTICAL_ALIGNMENT, new Tizen.NUI.PropertyValue(valueToString));
             }
@@ -1920,7 +1924,7 @@ namespace Tizen.NUI.BaseComponents
             }
             set
             {
-                if(value)
+                if (value)
                 {
                     LeftFocusableViewId = (int)value.GetId();
                 }
@@ -1950,7 +1954,7 @@ namespace Tizen.NUI.BaseComponents
             }
             set
             {
-                if(value)
+                if (value)
                 {
                     RightFocusableViewId = (int)value.GetId();
                 }
@@ -1980,7 +1984,7 @@ namespace Tizen.NUI.BaseComponents
             }
             set
             {
-                if(value)
+                if (value)
                 {
                     UpFocusableViewId = (int)value.GetId();
                 }
@@ -2010,7 +2014,7 @@ namespace Tizen.NUI.BaseComponents
             }
             set
             {
-                if(value)
+                if (value)
                 {
                     DownFocusableViewId = (int)value.GetId();
                 }
@@ -2609,8 +2613,12 @@ namespace Tizen.NUI.BaseComponents
         [EditorBrowsable(EditorBrowsableState.Never)]
         public Layer GetLayer()
         {
+            //to fix memory leak issue, match the handle count with native side.
             IntPtr cPtr = NDalicPINVOKE.Actor_GetLayer(swigCPtr);
-            Layer ret = Registry.GetManagedBaseHandleFromNativePtr(cPtr) as Layer;
+            HandleRef CPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
+            Layer ret = Registry.GetManagedBaseHandleFromNativePtr(CPtr.Handle) as Layer;
+            NDalicPINVOKE.delete_BaseHandle(CPtr);
+            CPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
 
             if (NDalicPINVOKE.SWIGPendingException.Pending)
                 throw NDalicPINVOKE.SWIGPendingException.Retrieve();
@@ -2637,6 +2645,7 @@ namespace Tizen.NUI.BaseComponents
         /// <since_tizen> 3 </since_tizen>
         public View FindChildByName(string viewName)
         {
+            //to fix memory leak issue, match the handle count with native side.
             IntPtr cPtr = NDalicPINVOKE.Actor_FindChildByName(swigCPtr, viewName);
             HandleRef CPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
             View ret = Registry.GetManagedBaseHandleFromNativePtr(CPtr.Handle) as View;
@@ -2650,6 +2659,7 @@ namespace Tizen.NUI.BaseComponents
 
         internal View FindChildById(uint id)
         {
+            //to fix memory leak issue, match the handle count with native side.
             IntPtr cPtr = NDalicPINVOKE.Actor_FindChildById(swigCPtr, id);
             HandleRef CPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
             View ret = Registry.GetManagedBaseHandleFromNativePtr(CPtr.Handle) as View;
@@ -3248,8 +3258,12 @@ namespace Tizen.NUI.BaseComponents
         /// <since_tizen> 3 </since_tizen>
         public Renderer GetRendererAt(uint index)
         {
+            //to fix memory leak issue, match the handle count with native side.
             IntPtr cPtr = NDalicPINVOKE.Actor_GetRendererAt(swigCPtr, index);
-            Renderer ret = Registry.GetManagedBaseHandleFromNativePtr(cPtr) as Renderer;
+            HandleRef CPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
+            Renderer ret = Registry.GetManagedBaseHandleFromNativePtr(CPtr.Handle) as Renderer;
+            NDalicPINVOKE.delete_BaseHandle(CPtr);
+            CPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
 
             if (NDalicPINVOKE.SWIGPendingException.Pending)
                 throw NDalicPINVOKE.SWIGPendingException.Retrieve();
@@ -3924,13 +3938,13 @@ namespace Tizen.NUI.BaseComponents
                 switch (temp)
                 {
                     case "NORMAL":
-                    return DrawModeType.Normal;
+                        return DrawModeType.Normal;
                     case "OVERLAY_2D":
-                    return DrawModeType.Overlay2D;
+                        return DrawModeType.Overlay2D;
                     case "STENCIL":
-                    return DrawModeType.Stencil;
+                        return DrawModeType.Stencil;
                     default:
-                    return DrawModeType.Normal;
+                        return DrawModeType.Normal;
                 }
             }
             set
@@ -4223,13 +4237,13 @@ namespace Tizen.NUI.BaseComponents
                 switch (temp)
                 {
                     case "DISABLED":
-                    return ClippingModeType.Disabled;
+                        return ClippingModeType.Disabled;
                     case "CLIP_CHILDREN":
-                    return ClippingModeType.ClipChildren;
+                        return ClippingModeType.ClipChildren;
                     case "CLIP_TO_BOUNDING_BOX":
-                    return ClippingModeType.ClipToBoundingBox;
+                        return ClippingModeType.ClipToBoundingBox;
                     default:
-                    return ClippingModeType.Disabled;
+                        return ClippingModeType.Disabled;
                 }
             }
             set
