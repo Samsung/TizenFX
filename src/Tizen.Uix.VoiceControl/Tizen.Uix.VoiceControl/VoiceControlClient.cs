@@ -195,7 +195,7 @@ namespace Tizen.Uix.VoiceControl
     };
 
     /// <summary>
-    /// A main function of the voice control API registers the command and gets a notification for the recognition result. 
+    /// A main function of the voice control API registers the command and gets a notification for the recognition result.
     /// Applications can add their own commands and provide results when their command is recognized by the user voice input.
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
@@ -227,9 +227,7 @@ namespace Tizen.Uix.VoiceControl
         /// <value>
         /// The current language in voice control.
         /// </value>
-        /// <privilege>
-        /// http://tizen.org/privilege/recorder
-        /// </privilege>
+        /// <privilege>http://tizen.org/privilege/recorder</privilege>
         /// <pre>
         /// The state must be initialized or ready.
         /// </pre>
@@ -257,9 +255,7 @@ namespace Tizen.Uix.VoiceControl
         /// <value>
         /// The current state of the voice control client.
         /// </value>
-        /// <privilege>
-        /// http://tizen.org/privilege/recorder
-        /// </privilege>
+        /// <privilege>http://tizen.org/privilege/recorder</privilege>
         /// <pre>
         /// The state must be initialized or ready.
         /// </pre>
@@ -287,9 +283,7 @@ namespace Tizen.Uix.VoiceControl
         /// <value>
         /// The current state of the voice control service.
         /// </value>
-        /// <privilege>
-        /// http://tizen.org/privilege/recorder
-        /// </privilege>
+        /// <privilege>http://tizen.org/privilege/recorder</privilege>
         /// <pre>
         /// The state must be ready.
         /// </pre>
@@ -314,16 +308,10 @@ namespace Tizen.Uix.VoiceControl
         /// Sets the invocation name.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        /// <privilege>
-        /// http://tizen.org/privilege/recorder
-        /// </privilege>
-        /// <privlevel>
-        /// public
-        /// </privlevel>
-        /// <feature>
-        /// http://tizen.org/feature/speech.control
-        /// http://tizen.org/feature/microphone
-        /// </feature>
+        /// <privilege>http://tizen.org/privilege/recorder</privilege>
+        /// <privlevel>public</privlevel>
+        /// <feature>http://tizen.org/feature/speech.control</feature>
+        /// <feature>http://tizen.org/feature/microphone</feature>
         /// <remarks>
         /// The invocation name is used to activate background commands. The invocation name can be same as the application name or any other phrase.
         /// For example, an application "Tizen Sample" has a background command, "Play music", and the invocation name of the application is set to "Tizen Sample".
@@ -354,16 +342,10 @@ namespace Tizen.Uix.VoiceControl
         /// Initializes the voice control.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        /// <privilege>
-        /// http://tizen.org/privilege/recorder
-        /// </privilege>
-        /// <privlevel>
-        /// public
-        /// </privlevel>
-        /// <feature>
-        /// http://tizen.org/feature/speech.control
-        /// http://tizen.org/feature/microphone
-        /// </feature>
+        /// <privilege>http://tizen.org/privilege/recorder</privilege>
+        /// <privlevel>public</privlevel>
+        /// <feature>http://tizen.org/feature/speech.control</feature>
+        /// <feature>http://tizen.org/feature/microphone</feature>
         /// <exception cref="InvalidOperationException">This exception can be due to operation failed.</exception>
         /// <exception cref="OutOfMemoryException">This exception can be due to out Of memory.</exception>
         /// <exception cref="NotSupportedException">This exception can be due to not supported.</exception>
@@ -385,16 +367,10 @@ namespace Tizen.Uix.VoiceControl
         /// Deinitializes the voice control.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        /// <privilege>
-        /// http://tizen.org/privilege/recorder
-        /// </privilege>
-        /// <privlevel>
-        /// public
-        /// </privlevel>
-        /// <feature>
-        /// http://tizen.org/feature/speech.control
-        /// http://tizen.org/feature/microphone
-        /// </feature>
+        /// <privilege>http://tizen.org/privilege/recorder</privilege>
+        /// <privlevel>public</privlevel>
+        /// <feature>http://tizen.org/feature/speech.control</feature>
+        /// <feature>http://tizen.org/feature/microphone</feature>
         /// <exception cref="InvalidOperationException">This exception can be due to an invalid state.</exception>
         /// <exception cref="InvalidOperationException">This exception can be due to operation failed.</exception>
         /// <exception cref="NotSupportedException">This exception can be due to not supported.</exception>
@@ -413,16 +389,10 @@ namespace Tizen.Uix.VoiceControl
         /// Connects the voice control service.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        /// <privilege>
-        /// http://tizen.org/privilege/recorder
-        /// </privilege>
-        /// <privlevel>
-        /// public
-        /// </privlevel>
-        /// <feature>
-        /// http://tizen.org/feature/speech.control
-        /// http://tizen.org/feature/microphone
-        /// </feature>
+        /// <privilege>http://tizen.org/privilege/recorder</privilege>
+        /// <privlevel>public</privlevel>
+        /// <feature>http://tizen.org/feature/speech.control</feature>
+        /// <feature>http://tizen.org/feature/microphone</feature>
         /// <exception cref="InvalidOperationException">This exception can be due to an invalid state.</exception>
         /// <exception cref="InvalidOperationException">This exception can be due to operation failed.</exception>
         /// <exception cref="NotSupportedException">This exception can be due to not supported.</exception>
@@ -447,16 +417,10 @@ namespace Tizen.Uix.VoiceControl
         /// Disconnects the voice control service.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        /// <privilege>
-        /// http://tizen.org/privilege/recorder
-        /// </privilege>
-        /// <privlevel>
-        /// public
-        /// </privlevel>
-        /// <feature>
-        /// http://tizen.org/feature/speech.control
-        /// http://tizen.org/feature/microphone
-        /// </feature>
+        /// <privilege>http://tizen.org/privilege/recorder</privilege>
+        /// <privlevel>public</privlevel>
+        /// <feature>http://tizen.org/feature/speech.control</feature>
+        /// <feature>http://tizen.org/feature/microphone</feature>
         /// <exception cref="InvalidOperationException">This exception can be due to an invalid state.</exception>
         /// <exception cref="NotSupportedException">This exception can be due to not supported.</exception>
         /// <exception cref="UnauthorizedAccessException">This exception can be due to permission denied.</exception>
@@ -483,16 +447,10 @@ namespace Tizen.Uix.VoiceControl
         /// For example, "ko_KR" for Korean, "en_US" for American English.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        /// <privilege>
-        /// http://tizen.org/privilege/recorder
-        /// </privilege>
-        /// <privlevel>
-        /// public
-        /// </privlevel>
-        /// <feature>
-        /// http://tizen.org/feature/speech.control
-        /// http://tizen.org/feature/microphone
-        /// </feature>
+        /// <privilege>http://tizen.org/privilege/recorder</privilege>
+        /// <privlevel>public</privlevel>
+        /// <feature>http://tizen.org/feature/speech.control</feature>
+        /// <feature>http://tizen.org/feature/microphone</feature>
         /// <exception cref="InvalidOperationException">This exception can be due to an invalid state.</exception>
         /// <exception cref="InvalidOperationException">This exception can be due to operation failed.</exception>
         /// <exception cref="NotSupportedException">This exception can be due to not supported.</exception>
@@ -526,16 +484,10 @@ namespace Tizen.Uix.VoiceControl
         /// <returns>
         /// The command list, else null in case of no system commands.
         /// </returns>
-        /// <privilege>
-        /// http://tizen.org/privilege/recorder
-        /// </privilege>
-        /// <privlevel>
-        /// public.
-        /// </privlevel>
-        /// <feature>
-        /// http://tizen.org/feature/speech.control
-        /// http://tizen.org/feature/microphone
-        /// </feature>
+        /// <privilege>http://tizen.org/privilege/recorder</privilege>
+        /// <privlevel>public</privlevel>
+        /// <feature>http://tizen.org/feature/speech.control</feature>
+        /// <feature>http://tizen.org/feature/microphone</feature>
         /// <remarks>
         /// In the system command list, there are system commands predefined by product manufacturers.
         /// Those commands have the highest priority. Therefore, the user cannot set any commands similar to system commands.
@@ -576,16 +528,10 @@ namespace Tizen.Uix.VoiceControl
         /// If the developer sets autoStart as True, the framework will start to record the next speech and continue the dialogue.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        /// <privilege>
-        /// http://tizen.org/privilege/recorder
-        /// </privilege>
-        /// <privlevel>
-        /// public
-        /// </privlevel>
-        /// <feature>
-        /// http://tizen.org/feature/speech.control
-        /// http://tizen.org/feature/microphone
-        /// </feature>
+        /// <privilege>http://tizen.org/privilege/recorder</privilege>
+        /// <privlevel>public</privlevel>
+        /// <feature>http://tizen.org/feature/speech.control</feature>
+        /// <feature>http://tizen.org/feature/microphone</feature>
         /// <remarks>
         /// If autoStart is True, the recognition will start again. In this case, it can be restarted up to 4 times.
         /// </remarks>
@@ -613,16 +559,10 @@ namespace Tizen.Uix.VoiceControl
         /// Sets the command list.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        /// <privilege>
-        /// http://tizen.org/privilege/recorder
-        /// </privilege>
-        /// <privlevel>
-        /// public
-        /// </privlevel>
-        /// <feature>
-        /// http://tizen.org/feature/speech.control
-        /// http://tizen.org/feature/microphone
-        /// </feature>
+        /// <privilege>http://tizen.org/privilege/recorder</privilege>
+        /// <privlevel>public</privlevel>
+        /// <feature>http://tizen.org/feature/speech.control</feature>
+        /// <feature>http://tizen.org/feature/microphone</feature>
         /// <remarks>
         /// The command type is valid for CommandType 'Foreground' or 'Background'.
         /// The matched commands of the command list should be set and they should include type and command text at least.
@@ -658,16 +598,10 @@ namespace Tizen.Uix.VoiceControl
         /// Unsets the command list.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        /// <privilege>
-        /// http://tizen.org/privilege/recorder
-        /// </privilege>
-        /// <privlevel>
-        /// public
-        /// </privlevel>
-        /// <feature>
-        /// http://tizen.org/feature/speech.control
-        /// http://tizen.org/feature/microphone
-        /// </feature>
+        /// <privilege>http://tizen.org/privilege/recorder</privilege>
+        /// <privlevel>public</privlevel>
+        /// <feature>http://tizen.org/feature/speech.control</feature>
+        /// <feature>http://tizen.org/feature/microphone</feature>
         /// <param name="type">Command type</param>
         /// <exception cref="InvalidOperationException">This exception can be due to an invalid state.</exception>
         /// <exception cref="ArgumentException">This exception can be due to an invalid parameter.</exception>
@@ -701,16 +635,10 @@ namespace Tizen.Uix.VoiceControl
         /// Gets the recognition result.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        /// <privilege>
-        /// http://tizen.org/privilege/recorder
-        /// </privilege>
-        /// <privlevel>
-        /// public
-        /// </privlevel>
-        /// <feature>
-        /// http://tizen.org/feature/speech.control
-        /// http://tizen.org/feature/microphone
-        /// </feature>
+        /// <privilege>http://tizen.org/privilege/recorder</privilege>
+        /// <privlevel>public</privlevel>
+        /// <feature>http://tizen.org/feature/speech.control</feature>
+        /// <feature>http://tizen.org/feature/microphone</feature>
         /// <exception cref="InvalidOperationException">This exception can be due to an invalid state.</exception>
         /// <exception cref="ArgumentException">This exception can be due to an invalid parameter.</exception>
         /// <exception cref="NotSupportedException">This exception can be due to not supported.</exception>
@@ -746,39 +674,44 @@ namespace Tizen.Uix.VoiceControl
         {
             add
             {
-                s_resultDelegate = (ResultEvent evt, IntPtr cmdList, IntPtr result, IntPtr userData) =>
+                if (null == _recognitionResult)
                 {
-                    Log.Info(LogTag, "Recognition Result Event Triggered");
-                    if ((cmdList != null) && (result != null))
+                    s_resultDelegate = (ResultEvent evt, IntPtr cmdList, IntPtr result, IntPtr userData) =>
                     {
-                        RecognitionResultEventArgs args = new RecognitionResultEventArgs(new RecognitionResult( evt, cmdList, result));
-                        _recognitionResult?.Invoke(null, args);
-                    }
-                    else
+                        Log.Info(LogTag, "Recognition Result Event Triggered");
+                        if ((cmdList != null) && (result != null))
+                        {
+                            RecognitionResultEventArgs args = new RecognitionResultEventArgs(new RecognitionResult(evt, cmdList, result));
+                            _recognitionResult?.Invoke(null, args);
+                        }
+                        else
+                        {
+                            Log.Info(LogTag, "Recognition Result Event null received");
+                        }
+                    };
+                    ErrorCode error = VcSetResultCb(s_resultDelegate, IntPtr.Zero);
+                    if (error != ErrorCode.None)
                     {
-                        Log.Info(LogTag, "Recognition Result Event null received");
+                        Log.Error(LogTag, "Add RecognitionResult Failed with error " + error);
+                        throw ExceptionFactory.CreateException(error);
                     }
-                };
-                ErrorCode error = VcSetResultCb(s_resultDelegate, IntPtr.Zero);
-                if (error != ErrorCode.None)
-                {
-                    Log.Error(LogTag, "Add RecognitionResult Failed with error " + error);
                 }
-                else
-                {
-                    _recognitionResult += value;
-                }
+                _recognitionResult += value;
             }
 
             remove
             {
-                ErrorCode error = VcUnsetResultCb();
-                if (error != ErrorCode.None)
-                {
-                    Log.Error(LogTag, "Remove RecognitionResult Failed with error " + error);
-                }
-
                 _recognitionResult -= value;
+
+                if (null == _recognitionResult)
+                {
+                    ErrorCode error = VcUnsetResultCb();
+                    if (error != ErrorCode.None)
+                    {
+                        Log.Error(LogTag, "Remove RecognitionResult Failed with error " + error);
+                        throw ExceptionFactory.CreateException(error);
+                    }
+                }
             }
         }
 
@@ -793,31 +726,36 @@ namespace Tizen.Uix.VoiceControl
         {
             add
             {
-                s_serviceStateDelegate = (ServiceState previous, ServiceState current, IntPtr userData) =>
+                if (null == _serviceStateChanged)
                 {
-                    ServiceStateChangedEventArgs args = new ServiceStateChangedEventArgs(previous, current);
-                    _serviceStateChanged?.Invoke(null, args);
-                };
-                ErrorCode error = VcSetServiceStateChangedCb(s_serviceStateDelegate, IntPtr.Zero);
-                if (error != ErrorCode.None)
-                {
-                    Log.Error(LogTag, "Add ServiceStateChanged Failed with error " + error);
+                    s_serviceStateDelegate = (ServiceState previous, ServiceState current, IntPtr userData) =>
+                    {
+                        ServiceStateChangedEventArgs args = new ServiceStateChangedEventArgs(previous, current);
+                        _serviceStateChanged?.Invoke(null, args);
+                    };
+                    ErrorCode error = VcSetServiceStateChangedCb(s_serviceStateDelegate, IntPtr.Zero);
+                    if (error != ErrorCode.None)
+                    {
+                        Log.Error(LogTag, "Add ServiceStateChanged Failed with error " + error);
+                        throw ExceptionFactory.CreateException(error);
+                    }
                 }
-                else
-                {
-                    _serviceStateChanged += value;
-                }
+                _serviceStateChanged += value;
             }
 
             remove
             {
-                ErrorCode error = VcUnsetServiceStateChangedCb();
-                if (error != ErrorCode.None)
-                {
-                    Log.Error(LogTag, "Remove ServiceStateChanged Failed with error " + error);
-                }
-
                 _serviceStateChanged -= value;
+
+                if (null == _serviceStateChanged)
+                {
+                    ErrorCode error = VcUnsetServiceStateChangedCb();
+                    if (error != ErrorCode.None)
+                    {
+                        Log.Error(LogTag, "Remove ServiceStateChanged Failed with error " + error);
+                        throw ExceptionFactory.CreateException(error);
+                    }
+                }
             }
         }
 
@@ -832,31 +770,36 @@ namespace Tizen.Uix.VoiceControl
         {
             add
             {
-                s_stateDelegate = (State previous, State current, IntPtr userData) =>
+                if (null == _stateChanged)
                 {
-                    StateChangedEventArgs args = new StateChangedEventArgs(previous, current);
-                    _stateChanged?.Invoke(null, args);
-                };
-                ErrorCode error = VcSetStateChangedCb(s_stateDelegate, IntPtr.Zero);
-                if (error != ErrorCode.None)
-                {
-                    Log.Error(LogTag, "Add StateChanged Failed with error " + error);
+                    s_stateDelegate = (State previous, State current, IntPtr userData) =>
+                    {
+                        StateChangedEventArgs args = new StateChangedEventArgs(previous, current);
+                        _stateChanged?.Invoke(null, args);
+                    };
+                    ErrorCode error = VcSetStateChangedCb(s_stateDelegate, IntPtr.Zero);
+                    if (error != ErrorCode.None)
+                    {
+                        Log.Error(LogTag, "Add StateChanged Failed with error " + error);
+                        throw ExceptionFactory.CreateException(error);
+                    }
                 }
-                else
-                {
-                    _stateChanged += value;
-                }
+                _stateChanged += value;
             }
 
             remove
             {
-                ErrorCode error = VcUnsetStateChangedCb();
-                if (error != ErrorCode.None)
-                {
-                    Log.Error(LogTag, "Remove StateChanged Failed with error " + error);
-                }
-
                 _stateChanged -= value;
+
+                if (null == _stateChanged)
+                {
+                    ErrorCode error = VcUnsetStateChangedCb();
+                    if (error != ErrorCode.None)
+                    {
+                        Log.Error(LogTag, "Remove StateChanged Failed with error " + error);
+                        throw ExceptionFactory.CreateException(error);
+                    }
+                }
             }
         }
 
@@ -871,33 +814,36 @@ namespace Tizen.Uix.VoiceControl
         {
             add
             {
-                s_errorDelegate = (ErrorCode reason, IntPtr userData) =>
-            {
-                ErrorOccuredEventArgs args = new ErrorOccuredEventArgs(reason);
-                _errorOccured?.Invoke(null, args);
-            };
-                ErrorCode error = VcSetErrorCb(s_errorDelegate, IntPtr.Zero);
-                if (error != ErrorCode.None)
+                if (null == _errorOccured)
                 {
-                    Log.Error(LogTag, "Add ErrorOccured Failed with error " + error);
+                    s_errorDelegate = (ErrorCode reason, IntPtr userData) =>
+                    {
+                        ErrorOccuredEventArgs args = new ErrorOccuredEventArgs(reason);
+                        _errorOccured?.Invoke(null, args);
+                    };
+                    ErrorCode error = VcSetErrorCb(s_errorDelegate, IntPtr.Zero);
+                    if (error != ErrorCode.None)
+                    {
+                        Log.Error(LogTag, "Add ErrorOccured Failed with error " + error);
+                        throw ExceptionFactory.CreateException(error);
+                    }
                 }
-
-                else
-                {
-                    _errorOccured += value;
-                }
+                _errorOccured += value;
             }
-
 
             remove
             {
-                ErrorCode error = VcUnsetErrorCb();
-                if (error != ErrorCode.None)
-                {
-                    Log.Error(LogTag, "Remove ErrorOccured Failed with error " + error);
-                }
-
                 _errorOccured -= value;
+
+                if (null == _errorOccured)
+                {
+                    ErrorCode error = VcUnsetErrorCb();
+                    if (error != ErrorCode.None)
+                    {
+                        Log.Error(LogTag, "Remove ErrorOccured Failed with error " + error);
+                        throw ExceptionFactory.CreateException(error);
+                    }
+                }
             }
         }
 
@@ -912,34 +858,38 @@ namespace Tizen.Uix.VoiceControl
         {
             add
             {
-                s_languageDelegate = (IntPtr previousLanguage, IntPtr currentLanguage, IntPtr userData) =>
-            {
-                string previousLanguageString = Marshal.PtrToStringAnsi(previousLanguage);
-                string currentLanguageString = Marshal.PtrToStringAnsi(currentLanguage);
-                CurrentLanguageChangedEventArgs args = new CurrentLanguageChangedEventArgs(previousLanguageString, currentLanguageString);
-                _currentLanguageChanged?.Invoke(null, args);
-            };
-                ErrorCode error = VcSetCurrentLanguageChangedCb(s_languageDelegate, IntPtr.Zero);
-                if (error != ErrorCode.None)
+                if (null == _currentLanguageChanged)
                 {
-                    Log.Error(LogTag, "Add CurrentLanguageChanged Failed with error " + error);
+                    s_languageDelegate = (IntPtr previousLanguage, IntPtr currentLanguage, IntPtr userData) =>
+                    {
+                        string previousLanguageString = Marshal.PtrToStringAnsi(previousLanguage);
+                        string currentLanguageString = Marshal.PtrToStringAnsi(currentLanguage);
+                        CurrentLanguageChangedEventArgs args = new CurrentLanguageChangedEventArgs(previousLanguageString, currentLanguageString);
+                        _currentLanguageChanged?.Invoke(null, args);
+                    };
+                    ErrorCode error = VcSetCurrentLanguageChangedCb(s_languageDelegate, IntPtr.Zero);
+                    if (error != ErrorCode.None)
+                    {
+                        Log.Error(LogTag, "Add CurrentLanguageChanged Failed with error " + error);
+                        throw ExceptionFactory.CreateException(error);
+                    }
                 }
-
-                else
-                {
-                    _currentLanguageChanged += value;
-                }
+                _currentLanguageChanged += value;
             }
 
             remove
             {
-                ErrorCode error = VcUnsetCurrentLanguageChangedCb();
-                if (error != ErrorCode.None)
-                {
-                    Log.Error(LogTag, "Remove CurrentLanguageChanged Failed with error " + error);
-                }
-
                 _currentLanguageChanged -= value;
+
+                if (null == _currentLanguageChanged)
+                {
+                    ErrorCode error = VcUnsetCurrentLanguageChangedCb();
+                    if (error != ErrorCode.None)
+                    {
+                        Log.Error(LogTag, "Remove CurrentLanguageChanged Failed with error " + error);
+                        throw ExceptionFactory.CreateException(error);
+                    }
+                }
             }
         }
     }

@@ -170,9 +170,8 @@ namespace Tizen.Uix.Stt
         /// Gets the current error message.
         /// </summary>
         /// <since_tizen> 4 </since_tizen>
-        /// <returns>
-        /// String error message.
-        /// </returns>
+        /// <exception cref="NotSupportedException">This exception can be due to STT not supported.</exception>
+        /// <exception cref="UnauthorizedAccessException">This exception can be due to permission denied.</exception>
         public string ErrorMessage
         {
             get
@@ -182,12 +181,11 @@ namespace Tizen.Uix.Stt
                 if (error != SttError.None)
                 {
                     Log.Error(LogTag, "GetErrorMessage Failed with error " + error);
-                    return "";
+                    throw ExceptionFactory.CreateException(error);
                 }
 
                 return errorMesage;
             }
-
         }
     }
 }
