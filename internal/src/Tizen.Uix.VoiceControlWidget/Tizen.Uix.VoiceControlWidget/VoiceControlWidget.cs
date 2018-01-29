@@ -677,7 +677,7 @@ namespace Tizen.Uix.VoiceControlWidget
                 _resultDelegate = (ResultEvent evt, IntPtr cmdList, IntPtr result, IntPtr userData) =>
                 {
                     Log.Info(LogTag, "Recognition Result Event Triggered");
-                    if ((cmdList != null) && (result != null))
+                    if (IntPtr.Zero != cmdList && IntPtr.Zero != result)
                     {
                         RecognitionResult args = new RecognitionResult(evt, cmdList, result);
                         _recognitionResult?.Invoke(null, args);
