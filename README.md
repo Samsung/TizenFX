@@ -1,7 +1,7 @@
 # TizenFX
 
 [![License](https://img.shields.io/badge/licence-Apache%202.0-brightgreen.svg?style=flat)](LICENSE)
-[![BuildStatus](https://travis-ci.org/Samsung/TizenFX.svg?branch=API4)](https://travis-ci.org/Samsung/TizenFX)
+[![Build status](https://ci.appveyor.com/api/projects/status/xm8rsgl4d0a37hwx/branch/API4?svg=true)](https://ci.appveyor.com/project/TizenAPI/tizenfx/branch/API4)
 
 TizenFX API, which allows you to access platform-specific features not covered by the generic .NET and Xamarin.Forms features, such as system information and status, battery status, sensor date, and account and connectivity services.
 
