@@ -19,23 +19,23 @@ namespace Tizen.System
     /// <summary>
     /// Enumeration for storage devices.
     /// </summary>
-    /// <since_tizen> 4 </since_tizen>
+    /// <since_tizen> 5 </since_tizen>
     public enum StorageDevice
     {
         /// <summary>
         /// External sd card device
         /// </summary>
-        /// <since_tizen> 4 </since_tizen>
+        /// <since_tizen> 5 </since_tizen>
         ExternalSDCard = Interop.Storage.StorageDevice.ExternalSDCard,
         /// <summary>
         /// External usb mass storage
         /// </summary>
-        /// <since_tizen> 4 </since_tizen>
+        /// <since_tizen> 5 </since_tizen>
         ExternalUSBMassStorage = Interop.Storage.StorageDevice.ExternalUSBMassStorage,
         /// <summary>
         /// Extended internal storage
         /// </summary>
-        /// <since_tizen> 4 </since_tizen>
+        /// <since_tizen> 5 </since_tizen>
         ExtendedInternalStorage = Interop.Storage.StorageDevice.ExtendedInternalStorage,
     }
 }
