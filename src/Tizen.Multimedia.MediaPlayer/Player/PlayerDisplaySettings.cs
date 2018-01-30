@@ -71,7 +71,7 @@ namespace Tizen.Multimedia
             }
             set
             {
-                ValidationUtil.ValidateEnum(typeof(PlayerDisplayMode), value);
+                ValidationUtil.ValidateEnum(typeof(PlayerDisplayMode), value, nameof(value));
 
                 Native.SetMode(Player.Handle, value).
                     ThrowIfFailed(Player, "Failed to set display mode");
@@ -125,7 +125,7 @@ namespace Tizen.Multimedia
             }
             set
             {
-                ValidationUtil.ValidateEnum(typeof(Rotation), value);
+                ValidationUtil.ValidateEnum(typeof(Rotation), value, nameof(value));
 
                 Native.SetRotation(Player.Handle, value).
                     ThrowIfFailed(Player, "Failed to set the rotation state of the display");
