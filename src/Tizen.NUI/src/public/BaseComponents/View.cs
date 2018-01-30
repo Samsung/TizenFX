@@ -4328,11 +4328,8 @@ namespace Tizen.NUI.BaseComponents
             {
                 View ret;
                 IntPtr cPtr = NDalicPINVOKE.Actor_GetParent(swigCPtr);
-                BaseHandle basehandle = Registry.GetManagedBaseHandleFromNativePtr(cPtr);
-                //HandleRef CPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
-                //BaseHandle basehandle = Registry.GetManagedBaseHandleFromNativePtr(CPtr.Handle);
-                //NDalicPINVOKE.delete_BaseHandle(CPtr);
-                //CPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
+                HandleRef CPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
+                BaseHandle basehandle = Registry.GetManagedBaseHandleFromNativePtr(CPtr.Handle);
 
                 if (basehandle is Layer)
                 {
@@ -4342,6 +4339,9 @@ namespace Tizen.NUI.BaseComponents
                 {
                     ret = basehandle as View;
                 }
+
+                NDalicPINVOKE.delete_BaseHandle(CPtr);
+                CPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
 
                 if (NDalicPINVOKE.SWIGPendingException.Pending)
                     throw NDalicPINVOKE.SWIGPendingException.Retrieve();
