@@ -1003,6 +1003,10 @@ namespace Tizen.System
 
             remove
             {
+                if (s_incomingCallRingtoneChanged == null) {
+                    Tizen.Log.Info("Tizen.System.SystemSettings","There is no event handler");
+                    return;
+                }
                 s_incomingCallRingtoneChanged -= value;
                 if (s_incomingCallRingtoneChanged == null)
                 {
@@ -1051,6 +1055,10 @@ namespace Tizen.System
 
             remove
             {
+                if (s_wallpaperHomeScreenChanged == null) {
+                    Tizen.Log.Info("Tizen.System.SystemSettings","There is no event handler");
+                    return;
+                }
                 s_wallpaperHomeScreenChanged -= value;
                 if (s_wallpaperHomeScreenChanged == null)
                 {
@@ -1099,6 +1107,10 @@ namespace Tizen.System
 
             remove
             {
+                if (s_wallpaperLockScreenChanged == null) {
+                    Tizen.Log.Info("Tizen.System.SystemSettings","There is no event handler");
+                    return;
+                }
                 s_wallpaperLockScreenChanged -= value;
                 if (s_wallpaperLockScreenChanged == null)
                 {
@@ -1146,6 +1158,10 @@ namespace Tizen.System
 
             remove
             {
+                if (s_fontSizeChanged == null) {
+                    Tizen.Log.Info("Tizen.System.SystemSettings","There is no event handler");
+                    return;
+                }
                 s_fontSizeChanged -= value;
                 if (s_fontSizeChanged == null)
                 {
@@ -1193,6 +1209,10 @@ namespace Tizen.System
 
             remove
             {
+                if (s_fontTypeChanged == null) {
+                    Tizen.Log.Info("Tizen.System.SystemSettings","There is no event handler");
+                    return;
+                }
                 s_fontTypeChanged -= value;
                 if (s_fontTypeChanged == null)
                 {
@@ -1240,6 +1260,10 @@ namespace Tizen.System
 
             remove
             {
+                if (s_motionActivationChanged == null) {
+                    Tizen.Log.Info("Tizen.System.SystemSettings","There is no event handler");
+                    return;
+                }
                 s_motionActivationChanged -= value;
                 if (s_motionActivationChanged == null)
                 {
@@ -1288,6 +1312,10 @@ namespace Tizen.System
 
             remove
             {
+                if (s_emailAlertRingtoneChanged == null) {
+                    Tizen.Log.Info("Tizen.System.SystemSettings","There is no event handler");
+                    return;
+                }
                 s_emailAlertRingtoneChanged -= value;
                 if (s_emailAlertRingtoneChanged == null)
                 {
@@ -1335,6 +1363,10 @@ namespace Tizen.System
 
             remove
             {
+                if (s_usbDebuggingSettingChanged == null) {
+                    Tizen.Log.Info("Tizen.System.SystemSettings","There is no event handler");
+                    return;
+                }
                 s_usbDebuggingSettingChanged -= value;
                 if (s_usbDebuggingSettingChanged == null)
                 {
@@ -1382,6 +1414,10 @@ namespace Tizen.System
 
             remove
             {
+                if (s_data3GNetworkSettingChanged == null) {
+                    Tizen.Log.Info("Tizen.System.SystemSettings","There is no event handler");
+                    return;
+                }
                 s_data3GNetworkSettingChanged -= value;
                 if (s_data3GNetworkSettingChanged == null)
                 {
@@ -1430,6 +1466,11 @@ namespace Tizen.System
 
             remove
             {
+                if (s_lockscreenAppChanged == null) {
+                    Tizen.Log.Info("Tizen.System.SystemSettings","There is no event handler");
+                    return;
+                }
+
                 s_lockscreenAppChanged -= value;
                 if (s_lockscreenAppChanged == null)
                 {
@@ -1477,6 +1518,10 @@ namespace Tizen.System
 
             remove
             {
+                if (s_localeCountryChanged == null) {
+                    Tizen.Log.Info("Tizen.System.SystemSettings","There is no event handler");
+                    return;
+                }
                 s_localeCountryChanged -= value;
                 if (s_localeCountryChanged == null)
                 {
@@ -1524,6 +1569,10 @@ namespace Tizen.System
 
             remove
             {
+                if (s_localeLanguageChanged == null) {
+                    Tizen.Log.Info("Tizen.System.SystemSettings","There is no event handler");
+                    return;
+                }
                 s_localeLanguageChanged -= value;
                 if (s_localeLanguageChanged == null)
                 {
@@ -1571,6 +1620,10 @@ namespace Tizen.System
 
             remove
             {
+                if (s_localeTimeFormat24HourChanged == null) {
+                    Tizen.Log.Info("Tizen.System.SystemSettings","There is no event handler");
+                    return;
+                }
                 s_localeTimeFormat24HourChanged -= value;
                 if (s_localeTimeFormat24HourChanged == null)
                 {
@@ -1618,6 +1671,10 @@ namespace Tizen.System
 
             remove
             {
+                if (s_localeTimeZoneChanged == null) {
+                    Tizen.Log.Info("Tizen.System.SystemSettings","There is no event handler");
+                    return;
+                }
                 s_localeTimeZoneChanged -= value;
                 if (s_localeTimeZoneChanged == null)
                 {
@@ -1666,6 +1723,10 @@ namespace Tizen.System
 
             remove
             {
+                if (s_timeChanged == null) {
+                    Tizen.Log.Info("Tizen.System.SystemSettings","There is no event handler");
+                    return;
+                }
                 s_timeChanged -= value;
                 if (s_timeChanged == null)
                 {
@@ -1713,6 +1774,10 @@ namespace Tizen.System
 
             remove
             {
+                if (s_soundLockChanged == null) {
+                    Tizen.Log.Info("Tizen.System.SystemSettings","There is no event handler");
+                    return;
+                }
                 s_soundLockChanged -= value;
                 if (s_soundLockChanged == null)
                 {
@@ -1760,6 +1825,10 @@ namespace Tizen.System
 
             remove
             {
+                if (s_soundSilentModeChanged == null) {
+                    Tizen.Log.Info("Tizen.System.SystemSettings","There is no event handler");
+                    return;
+                }
                 s_soundSilentModeChanged -= value;
                 if (s_soundSilentModeChanged == null)
                 {
@@ -1807,6 +1876,10 @@ namespace Tizen.System
 
             remove
             {
+                if (s_soundTouchChanged == null) {
+                    Tizen.Log.Info("Tizen.System.SystemSettings","There is no event handler");
+                    return;
+                }
                 s_soundTouchChanged -= value;
                 if (s_soundTouchChanged == null)
 
@@ -1855,6 +1928,10 @@ namespace Tizen.System
 
             remove
             {
+                if (s_displayScreenRotationAutoChanged == null) {
+                    Tizen.Log.Info("Tizen.System.SystemSettings","There is no event handler");
+                    return;
+                }
                 s_displayScreenRotationAutoChanged -= value;
                 if (s_displayScreenRotationAutoChanged == null)
                 {
@@ -1902,6 +1979,10 @@ namespace Tizen.System
 
             remove
             {
+                if (s_deviceNameChanged == null) {
+                    Tizen.Log.Info("Tizen.System.SystemSettings","There is no event handler");
+                    return;
+                }
                 s_deviceNameChanged -= value;
                 if (s_deviceNameChanged == null)
                 {
@@ -1949,6 +2030,10 @@ namespace Tizen.System
 
             remove
             {
+                if (s_motionSettingChanged == null) {
+                    Tizen.Log.Info("Tizen.System.SystemSettings","There is no event handler");
+                    return;
+                }
                 s_motionSettingChanged -= value;
                 if (s_motionSettingChanged == null)
                 {
@@ -1997,6 +2082,10 @@ namespace Tizen.System
 
             remove
             {
+                if (s_networkWifiNotificationChanged == null) {
+                    Tizen.Log.Info("Tizen.System.SystemSettings","There is no event handler");
+                    return;
+                }
                 s_networkWifiNotificationChanged -= value;
                 if (s_networkWifiNotificationChanged == null)
                 {
@@ -2044,6 +2133,10 @@ namespace Tizen.System
 
             remove
             {
+                if (s_networkFlightModeChanged == null) {
+                    Tizen.Log.Info("Tizen.System.SystemSettings","There is no event handler");
+                    return;
+                }
                 s_networkFlightModeChanged -= value;
                 if (s_networkFlightModeChanged == null)
                 {
@@ -2091,6 +2184,10 @@ namespace Tizen.System
 
             remove
             {
+                if (s_screenBacklightTimeChanged == null) {
+                    Tizen.Log.Info("Tizen.System.SystemSettings","There is no event handler");
+                    return;
+                }
                 s_screenBacklightTimeChanged -= value;
                 if (s_screenBacklightTimeChanged == null)
                 {
@@ -2139,6 +2236,10 @@ namespace Tizen.System
 
             remove
             {
+                if (s_soundNotificationChanged == null) {
+                    Tizen.Log.Info("Tizen.System.SystemSettings","There is no event handler");
+                    return;
+                }
                 s_soundNotificationChanged -= value;
                 if (s_soundNotificationChanged == null)
                 {
@@ -2186,6 +2287,10 @@ namespace Tizen.System
 
             remove
             {
+                if (s_soundNotificationRepetitionPeriodChanged == null) {
+                    Tizen.Log.Info("Tizen.System.SystemSettings","There is no event handler");
+                    return;
+                }
                 s_soundNotificationRepetitionPeriodChanged -= value;
                 if (s_soundNotificationRepetitionPeriodChanged == null)
                 {
@@ -2233,6 +2338,10 @@ namespace Tizen.System
 
             remove
             {
+                if (s_lockStateChanged == null) {
+                    Tizen.Log.Info("Tizen.System.SystemSettings","There is no event handler");
+                    return;
+                }
                 s_lockStateChanged -= value;
                 if (s_lockStateChanged == null)
                 {
@@ -2280,6 +2389,10 @@ namespace Tizen.System
 
             remove
             {
+                if (s_adsIdChanged == null) {
+                    Tizen.Log.Info("Tizen.System.SystemSettings","There is no event handler");
+                    return;
+                }
                 s_adsIdChanged -= value;
                 if (s_adsIdChanged == null)
                 {
@@ -2328,6 +2441,10 @@ namespace Tizen.System
 
             remove
             {
+                if (s_ultraDataSaveChanged == null) {
+                    Tizen.Log.Info("Tizen.System.SystemSettings","There is no event handler");
+                    return;
+                }
                 s_ultraDataSaveChanged -= value;
                 if (s_ultraDataSaveChanged == null)
                 {
@@ -2376,6 +2493,10 @@ namespace Tizen.System
 
             remove
             {
+                if (s_ultraDataSavePackageListChanged == null) {
+                    Tizen.Log.Info("Tizen.System.SystemSettings","There is no event handler");
+                    return;
+                }
                 s_ultraDataSavePackageListChanged -= value;
                 if (s_ultraDataSavePackageListChanged == null)
                 {
@@ -2423,6 +2544,10 @@ namespace Tizen.System
 
             remove
             {
+                if (s_accessibilityTtsChanged == null) {
+                    Tizen.Log.Info("Tizen.System.SystemSettings","There is no event handler");
+                    return;
+                }
                 s_accessibilityTtsChanged -= value;
                 if (s_accessibilityTtsChanged == null)
 
