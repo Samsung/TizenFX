@@ -50,7 +50,7 @@ namespace Tizen.System
                 return storageList;
             }
         }
-        
+
         private static EventHandler s_ExternalStorageChangedEventHandler;
         private static EventHandler s_ExtendedInternalStorageChangedEventHandler;
         private static Interop.Storage.StorageChangedCallback s_ChangedEventCallback = (int id, Interop.Storage.StorageDevice devicetype, Interop.Storage.StorageState state, string fstype, string fsuuid, string rootDirectory, bool primary, int flags, IntPtr userData) =>
@@ -86,7 +86,7 @@ namespace Tizen.System
         /// </summary>
         /// <param name="type">Storage type</param>
         /// <param name="handler">An eventhandler to register</param>
-        /// <since_tizen> 4 </since_tizen>
+        /// <since_tizen> 5 </since_tizen>
         public static void SetChangedEvent(StorageArea type, EventHandler handler)
         {
             if (type == StorageArea.Internal)
@@ -113,7 +113,7 @@ namespace Tizen.System
         /// </summary>
         /// <param name="type">Storage type</param>
         /// <param name="handler">An eventhandler to unregister</param>
-        /// <since_tizen> 4 </since_tizen>
+        /// <since_tizen> 5 </since_tizen>
         public static void UnsetChangedEvent(StorageArea type, EventHandler handler)
         {
             if (type == StorageArea.Internal)
