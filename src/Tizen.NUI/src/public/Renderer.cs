@@ -231,12 +231,8 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public Geometry GetGeometry()
         {
-            //to fix memory leak issue, match the handle count with native side.
             System.IntPtr cPtr = NDalicPINVOKE.Renderer_GetGeometry(swigCPtr);
-            HandleRef CPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
-            Geometry ret = Registry.GetManagedBaseHandleFromNativePtr(CPtr.Handle) as Geometry;
-            NDalicPINVOKE.delete_BaseHandle(CPtr);
-            CPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
+            Geometry ret = Registry.GetManagedBaseHandleFromNativePtr(cPtr) as Geometry;
 
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
@@ -272,12 +268,8 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public TextureSet GetTextures()
         {
-            //to fix memory leak issue, match the handle count with native side.
             System.IntPtr cPtr = NDalicPINVOKE.Renderer_GetTextures(swigCPtr);
-            HandleRef CPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
-            TextureSet ret = Registry.GetManagedBaseHandleFromNativePtr(CPtr.Handle) as TextureSet;
-            NDalicPINVOKE.delete_BaseHandle(CPtr);
-            CPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
+            TextureSet ret = Registry.GetManagedBaseHandleFromNativePtr(cPtr) as TextureSet;
 
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
@@ -301,12 +293,8 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public Shader GetShader()
         {
-            //to fix memory leak issue, match the handle count with native side.
             System.IntPtr cPtr = NDalicPINVOKE.Renderer_GetShader(swigCPtr);
-            HandleRef CPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
-            Shader ret = Registry.GetManagedBaseHandleFromNativePtr(CPtr.Handle) as Shader;
-            NDalicPINVOKE.delete_BaseHandle(CPtr);
-            CPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
+            Shader ret = Registry.GetManagedBaseHandleFromNativePtr(cPtr) as Shader;
 
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
