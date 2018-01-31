@@ -34,10 +34,15 @@ namespace Tizen.NUI
             get { return _disposableQueue; }
         }
 
+        private bool _isCalled = false;
         public void Initialize()
         {
+            if(_isCalled == false)
+            {
             _disposeQueueProcessDisposablesDelegate = new EventThreadCallback.CallbackDelegate(ProcessDisposables);
             _eventThreadCallback = new EventThreadCallback(_disposeQueueProcessDisposablesDelegate);
+                _isCalled = true;
+            }
         }
 
         public void Add(IDisposable disposable)

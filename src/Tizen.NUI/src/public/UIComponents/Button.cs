@@ -72,8 +72,10 @@ namespace Tizen.NUI.UIComponents
             //Release your own unmanaged resources here.
             //You should not access any managed member here except static instance.
             //because the execution order of Finalizes is non-deterministic.
-
-            DisConnectFromSignals();
+            if (this != null)
+            {
+                DisConnectFromSignals();
+            }
 
             if (swigCPtr.Handle != global::System.IntPtr.Zero)
             {
@@ -755,8 +757,8 @@ namespace Tizen.NUI.UIComponents
                 Tizen.NUI.PropertyMap map = new Tizen.NUI.PropertyMap();
                 GetProperty( Button.Property.LABEL).Get(map);
                 Tizen.NUI.PropertyValue value = map.Find( TextVisualProperty.Text, "Text");
-                string str;
-                value.Get(out str);
+                string str = "";
+                value?.Get(out str);
                 return str;
             }
             set

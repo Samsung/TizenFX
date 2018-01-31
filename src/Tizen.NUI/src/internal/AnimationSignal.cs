@@ -123,6 +123,19 @@ namespace Tizen.NUI
             }
         }
 
+
+        public void Connect(System.IntPtr callback)
+        {
+            NDalicPINVOKE.AnimationSignal_Connect(swigCPtr, new System.Runtime.InteropServices.HandleRef(this, callback));
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+        public void Disconnect(System.IntPtr callback)
+        {
+            NDalicPINVOKE.AnimationSignal_Disconnect(swigCPtr, new System.Runtime.InteropServices.HandleRef(this, callback));
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+
         public void Disconnect(System.Delegate func)
         {
             System.IntPtr ip = System.Runtime.InteropServices.Marshal.GetFunctionPointerForDelegate<System.Delegate>(func);
