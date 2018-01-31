@@ -402,7 +402,7 @@ namespace Tizen.Pims.Contacts
         /// <privilege>http://tizen.org/privilege/contact.write</privilege>
         /// <privilege>http://tizen.org/privilege/callhistory.write</privilege>
         /// <feature>http://tizen.org/feature/contact</feature>
-        /// <exception cref="InvalidOperationException">Thrown when the method failed due to an invalid operation<./exception>
+        /// <exception cref="InvalidOperationException">Thrown when the method failed due to an invalid operation.</exception>
         /// <exception cref="NotSupportedException">Thrown when the feature is not supported.</exception>
         /// <exception cref="ArgumentException">Thrown when one of the arguments provided to a method is not valid.</exception>
         /// <exception cref="OutOfMemoryException">Thrown when failed due to out of memory.</exception>
