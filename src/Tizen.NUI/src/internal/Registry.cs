@@ -92,36 +92,26 @@ namespace Tizen.NUI
             RefObject refObj = baseHandle.GetObjectPtr();
             IntPtr refObjectPtr = (IntPtr)RefObject.getCPtr(refObj);
 
-            if (refObjectPtr != null)
-            {
-                // we store a dictionary of ref-obects (C++ land) to managed obects (C# land)
-                return GetManagedBaseHandleFromRefObject(refObjectPtr);
-            }
-            else
-            {
-                NUILog.Error("NUI Registry RefObjectPtr is NULL!");
-                return null;
-            }
+            // we store a dictionary of ref-obects (C++ land) to managed obects (C# land)
+            return GetManagedBaseHandleFromRefObject(refObjectPtr);
         }
 
         internal static BaseHandle GetManagedBaseHandleFromNativePtr(IntPtr cPtr)
         {
             IntPtr refObjectPtr = NDalicPINVOKE.GetRefObjectPtr(cPtr);
 
-            if (refObjectPtr != null)
-            {
-                // we store a dictionary of ref-obects (C++ land) to managed obects (C# land)
-                return GetManagedBaseHandleFromRefObject(refObjectPtr);
-            }
-            else
-            {
-                NUILog.Error("NUI Registry RefObjectPtr is NULL!");
-                return null;
-            }
+            // we store a dictionary of ref-obects (C++ land) to managed obects (C# land)
+            return GetManagedBaseHandleFromRefObject(refObjectPtr);
         }
 
         internal static BaseHandle GetManagedBaseHandleFromRefObject(IntPtr refObjectPtr)
         {
+            if (refObjectPtr == global::System.IntPtr.Zero)
+            {
+                NUILog.Error("NUI Registry RefObjectPtr is NULL!");
+                return null;
+            }
+
             // we store a dictionary of ref-obects (C++ land) to managed obects (C# land)
             WeakReference weakReference;
 
