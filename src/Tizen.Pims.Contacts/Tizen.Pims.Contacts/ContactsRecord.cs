@@ -337,7 +337,7 @@ namespace Tizen.Pims.Contacts
         /// Adds a child record to the parent record.
         /// </summary>
         /// <param name="propertyId">The property ID.</param>
-        /// <param name="childRecord">The child record to add to the parent record<./param>
+        /// <param name="childRecord">The child record to add to the parent record.</param>
         /// <feature>http://tizen.org/feature/contact</feature>
         /// <exception cref="NotSupportedException">Thrown when the feature is not supported.</exception>
         /// <exception cref="ArgumentException">Thrown when one of the arguments provided to a method is not valid.</exception>
