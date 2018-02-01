@@ -61,7 +61,7 @@ namespace Tizen.NUI.BaseComponents
             //You should not access any managed member here except static instance.
             //because the execution order of Finalizes is non-deterministic.
 
-            if (_videoViewFinishedCallbackDelegate != null)
+            if (this != null && _videoViewFinishedCallbackDelegate != null)
             {
                 FinishedSignal().Disconnect(_videoViewFinishedCallbackDelegate);
             }

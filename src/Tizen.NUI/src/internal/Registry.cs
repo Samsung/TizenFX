@@ -1,5 +1,5 @@
 /*
- * Copyright(c) 2017 Samsung Electronics Co., Ltd.
+ * Copyright(c) 2018 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -55,16 +55,12 @@ namespace Tizen.NUI
         /// <param name="baseHandle">The instance of BaseHandle (C# base class).</param>
         internal static void Register(BaseHandle baseHandle)
         {
-            if(savedApplicationThread?.ManagedThreadId != Thread.CurrentThread.ManagedThreadId)
-            {
-                throw new global::System.ApplicationException("NUI object is attempt to be created in another thread. It should be created in main thread only!");
-            }
 
             // We store a pointer to the RefObject for the control
             RefObject refObj = baseHandle.GetObjectPtr();
             IntPtr refCptr = (IntPtr)RefObject.getCPtr(refObj);
 
-            NUILog.Debug("Storing ref object cptr in control map Hex: {0:X}" + refCptr);
+            //NUILog.Debug("Storing ref object cptr in control map Hex: {0:X}" + refCptr);
 
             if (!Instance._controlMap.ContainsKey(refCptr))
             {
@@ -96,16 +92,32 @@ namespace Tizen.NUI
             RefObject refObj = baseHandle.GetObjectPtr();
             IntPtr refObjectPtr = (IntPtr)RefObject.getCPtr(refObj);
 
-            // we store a dictionary of ref-obects (C++ land) to managed obects (C# land)
-            return GetManagedBaseHandleFromRefObject(refObjectPtr);
+            if (refObjectPtr != null)
+            {
+                // we store a dictionary of ref-obects (C++ land) to managed obects (C# land)
+                return GetManagedBaseHandleFromRefObject(refObjectPtr);
+            }
+            else
+            {
+                NUILog.Error("NUI Registry RefObjectPtr is NULL!");
+                return null;
+            }
         }
 
         internal static BaseHandle GetManagedBaseHandleFromNativePtr(IntPtr cPtr)
         {
             IntPtr refObjectPtr = NDalicPINVOKE.GetRefObjectPtr(cPtr);
 
-            // we store a dictionary of ref-obects (C++ land) to managed obects (C# land)
-            return GetManagedBaseHandleFromRefObject(refObjectPtr);
+            if (refObjectPtr != null)
+            {
+                // we store a dictionary of ref-obects (C++ land) to managed obects (C# land)
+                return GetManagedBaseHandleFromRefObject(refObjectPtr);
+            }
+            else
+            {
+                NUILog.Error("NUI Registry RefObjectPtr is NULL!");
+                return null;
+            }
         }
 
         internal static BaseHandle GetManagedBaseHandleFromRefObject(IntPtr refObjectPtr)

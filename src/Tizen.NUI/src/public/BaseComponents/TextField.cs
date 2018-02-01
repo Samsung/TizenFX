@@ -67,15 +67,17 @@ namespace Tizen.NUI.BaseComponents
             //Release your own unmanaged resources here.
             //You should not access any managed member here except static instance.
             //because the execution order of Finalizes is non-deterministic.
-
-            if (_textFieldMaxLengthReachedCallbackDelegate != null)
+            if (this != null)
             {
-                this.MaxLengthReachedSignal().Disconnect(_textFieldMaxLengthReachedCallbackDelegate);
-            }
+                if (_textFieldMaxLengthReachedCallbackDelegate != null)
+                {
+                    this.MaxLengthReachedSignal().Disconnect(_textFieldMaxLengthReachedCallbackDelegate);
+                }
 
-            if (_textFieldTextChangedCallbackDelegate != null)
-            {
-                TextChangedSignal().Disconnect(_textFieldTextChangedCallbackDelegate);
+                if (_textFieldTextChangedCallbackDelegate != null)
+                {
+                    TextChangedSignal().Disconnect(_textFieldTextChangedCallbackDelegate);
+                }
             }
 
             if (swigCPtr.Handle != global::System.IntPtr.Zero)
@@ -286,6 +288,7 @@ namespace Tizen.NUI.BaseComponents
             internal static readonly int ENABLE_SELECTION = NDalicManualPINVOKE.TextField_Property_ENABLE_SELECTION_get();
             internal static readonly int PLACEHOLDER = NDalicManualPINVOKE.TextField_Property_PLACEHOLDER_get();
             internal static readonly int ELLIPSIS = NDalicManualPINVOKE.TextField_Property_ELLIPSIS_get();
+            internal static readonly int ENABLE_SHIFT_SELECTION = NDalicManualPINVOKE.TextField_Property_ENABLE_SHIFT_SELECTION_get();
         }
 
         internal class InputStyle
@@ -1441,7 +1444,28 @@ namespace Tizen.NUI.BaseComponents
             }
         }
 
+        /// <summary>
+        /// Enables Text selection using Shift key.
+        /// </summary>
+        /// <since_tizen> 5 </since_tizen>
+        /// This will be released at Tizen.NET API Level 5, so currently this would be used as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public bool EnableShiftSelection
+        {
+            get
+            {
+                // mShiftSelectionFlag( true )
+                bool temp = true;
+                GetProperty(TextField.Property.ENABLE_SHIFT_SELECTION).Get(out temp);
+                return temp;
+            }
+            set
+            {
+                SetProperty(TextField.Property.ENABLE_SHIFT_SELECTION, new Tizen.NUI.PropertyValue(value));
+            }
+        }
+
+
 
     }
-
 }

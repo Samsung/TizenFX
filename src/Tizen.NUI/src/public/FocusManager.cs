@@ -43,72 +43,6 @@ namespace Tizen.NUI
             return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
         }
 
-        /// <summary>
-        /// To make the FocusManager instance be disposed.
-        /// </summary>
-        /// Please DO NOT use! This will be deprecated!
-        /// Dispose() method in Singletone classes (ex: FocusManager, StyleManager, VisualFactory, IMFManager, TtsPlayer, Window) is not required.
-        /// Because it is Sigletone, so it is alive for one thread until the NUI is terminated, so it never be disposed.
-        /// <since_tizen> 3 </since_tizen>
-        [Obsolete("Please do not use! This will be deprecated!")]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        protected override void Dispose(DisposeTypes type)
-        {
-            if (disposed)
-            {
-                return;
-            }
-
-            if (type == DisposeTypes.Explicit)
-            {
-                //Called by User
-                //Release your own managed resources here.
-                //You should release all of your own disposable objects here.
-            }
-
-            //Release your own unmanaged resources here.
-            //You should not access any managed member here except static instance.
-            //because the execution order of Finalizes is non-deterministic.
-
-            if (_focusedViewEnterKeyEventCallback2 != null)
-            {
-                FocusedViewEnterKeySignal().Disconnect(_focusedViewEnterKeyEventCallback2);
-            }
-
-            if (_focusedViewEnterKeyEventCallback != null)
-            {
-                FocusedViewEnterKeySignal().Disconnect(_focusedViewEnterKeyEventCallback);
-            }
-
-            if (_focusGroupChangedEventCallback != null)
-            {
-                FocusGroupChangedSignal().Disconnect(_focusGroupChangedEventCallback);
-            }
-
-            if (_focusChangedEventCallback != null)
-            {
-                FocusChangedSignal().Disconnect(_focusChangedEventCallback);
-            }
-
-            if (_preFocusChangeCallback != null)
-            {
-                PreFocusChangeSignal().Disconnect(_preFocusChangeCallback);
-            }
-
-            if (swigCPtr.Handle != global::System.IntPtr.Zero)
-            {
-                if (swigCMemOwn)
-                {
-                    swigCMemOwn = false;
-                    NDalicManualPINVOKE.delete_FocusManager(swigCPtr);
-                }
-                swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
-            }
-
-            base.Dispose(type);
-        }
-
-
         ///<summary>
         /// Event arguments that passed via the PreFocusChange signal.
         /// </summary>
@@ -515,9 +449,13 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public View GetCurrentFocusView()
         {
+            //to fix memory leak issue, match the handle count with native side.
             IntPtr cPtr = NDalicManualPINVOKE.FocusManager_GetCurrentFocusActor(swigCPtr);
+            HandleRef CPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
+            View ret = Registry.GetManagedBaseHandleFromNativePtr(CPtr.Handle) as View;
+            NDalicPINVOKE.delete_BaseHandle(CPtr);
+            CPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
 
-            View ret = Registry.GetManagedBaseHandleFromNativePtr(cPtr) as View;
             return ret;
         }
 
@@ -619,17 +557,12 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public View GetFocusGroup(View view)
         {
+            //to fix memory leak issue, match the handle count with native side.
             IntPtr cPtr = NDalicManualPINVOKE.FocusManager_GetFocusGroup(swigCPtr, View.getCPtr(view));
-
-            View ret = Registry.GetManagedBaseHandleFromNativePtr(cPtr) as View;
-
-
-            /*View ret = new View(NDalicManualPINVOKE.FocusManager_GetFocusGroup(swigCPtr, View.getCPtr(view)), true);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            if (ret.HasBody() == false)
-            {
-                return null;
-            }*/
+            HandleRef CPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
+            View ret = Registry.GetManagedBaseHandleFromNativePtr(CPtr.Handle) as View;
+            NDalicPINVOKE.delete_BaseHandle(CPtr);
+            CPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
 
             return ret;
         }
@@ -659,9 +592,12 @@ namespace Tizen.NUI
 
         internal View GetFocusIndicatorView()
         {
+            //to fix memory leak issue, match the handle count with native side.
             IntPtr cPtr = NDalicManualPINVOKE.FocusManager_GetFocusIndicatorActor(swigCPtr);
-
-            View ret = Registry.GetManagedBaseHandleFromNativePtr(cPtr) as View;
+            HandleRef CPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
+            View ret = Registry.GetManagedBaseHandleFromNativePtr(CPtr.Handle) as View;
+            NDalicPINVOKE.delete_BaseHandle(CPtr);
+            CPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
 
             return ret;
         }

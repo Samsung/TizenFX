@@ -168,17 +168,7 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         protected override void OnCreate()
         {
-            // This is also required to create DisposeQueue on main thread.
-            DisposeQueue disposeQ = DisposeQueue.Instance;
-            disposeQ.Initialize();
             base.OnCreate();
-
-            // Dali's default layer is default center origin. need to change as top left.
-            // NUI's Layer is like a transparent film which covers entire window. (Layer is not an actor of Dali)
-            // otherwise, this makes ScreenPosition as wrong value.
-            Layer defaultLayer = Window.Instance.GetDefaultLayer();
-            defaultLayer.SetParentOrigin(Tizen.NUI.ParentOrigin.TopLeft);
-            defaultLayer.SetAnchorPoint(Tizen.NUI.PivotPoint.TopLeft);
         }
 
         /// <summary>

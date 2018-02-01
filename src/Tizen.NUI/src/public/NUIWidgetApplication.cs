@@ -14,12 +14,9 @@
  * limitations under the License.
  *
  */
-
-using System;
-using System.ComponentModel;
 using Tizen.Applications;
 using Tizen.Applications.CoreBackend;
-using Tizen.NUI;
+using System.Collections.Generic;
 
 namespace Tizen.NUI
 {
@@ -28,32 +25,34 @@ namespace Tizen.NUI
     /// Represents an application that have UI screen. The NUIWidgetApplication class has a default stage.
     /// </summary>
     /// <since_tizen> 4 </since_tizen>
-    [Obsolete("Please do not use! This will be deprecated!")]
-    [EditorBrowsable(EditorBrowsableState.Never)]
     public class NUIWidgetApplication : CoreApplication
     {
-
         /// <summary>
         /// The default constructor.
         /// </summary>
-        /// <since_tizen> 4 </since_tizen>
-        public NUIWidgetApplication() : base(new NUIWidgetCoreBackend())
+        /// <remarks>Widget ID will be replaced as the application ID.</remarks>
+        /// <param name="widgetType">Derived widget class type.</param>
+        public NUIWidgetApplication( System.Type widgetType ) : base(new NUIWidgetCoreBackend())
         {
-            Tizen.Log.Fatal("NUI", "### NUIWidgetApplication called");
+            NUIWidgetCoreBackend core = Backend as NUIWidgetCoreBackend;
+            core?.RegisterWidgetInfo(new Dictionary<System.Type, string> { { widgetType, ApplicationInfo.ApplicationId } });
         }
 
         /// <summary>
-        /// The constructor with stylesheet.
+        /// The default constructor with stylesheet.
         /// </summary>
+        /// <remarks>Widget ID will be replaced as the application ID.</remarks>
+        /// <param name="widgetType">Derived widget class type.</param>
         /// <param name="styleSheet">The styleSheet url.</param>
         /// <since_tizen> 4 </since_tizen>
-        public NUIWidgetApplication(string styleSheet) : base(new NUIWidgetCoreBackend(styleSheet))
+        public NUIWidgetApplication(System.Type widgetType, string styleSheet) : base(new NUIWidgetCoreBackend(styleSheet))
         {
-            Tizen.Log.Fatal("NUI", "### NUIWidgetApplication(string) called");
+            NUIWidgetCoreBackend core = Backend as NUIWidgetCoreBackend;
+            core?.RegisterWidgetInfo(new Dictionary<System.Type, string> { { widgetType, ApplicationInfo.ApplicationId } });
         }
 
         /// <summary>
-        /// Overrides this method if want to handle behavior.
+        /// Overrides this method if want to handle OnLocaleChanged behavior.
         /// </summary>
         /// <since_tizen> 4 </since_tizen>
         protected override void OnLocaleChanged(LocaleChangedEventArgs e)
@@ -63,7 +62,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Overrides this method if want to handle behavior.
+        /// Overrides this method if want to handle OnLowBattery behavior.
         /// </summary>
         /// <since_tizen> 4 </since_tizen>
         protected override void OnLowBattery(LowBatteryEventArgs e)
@@ -73,7 +72,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Overrides this method if want to handle behavior.
+        /// Overrides this method if want to handle OnLowMemory behavior.
         /// </summary>
         /// <since_tizen> 4 </since_tizen>
         protected override void OnLowMemory(LowMemoryEventArgs e)
@@ -83,7 +82,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Overrides this method if want to handle behavior.
+        /// Overrides this method if want to handle OnRegionFormatChanged behavior.
         /// </summary>
         /// <since_tizen> 4 </since_tizen>
         protected override void OnRegionFormatChanged(RegionFormatChangedEventArgs e)
@@ -93,7 +92,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Overrides this method if want to handle behavior.
+        /// Overrides this method if want to handle OnTerminate behavior.
         /// </summary>
         /// <since_tizen> 4 </since_tizen>
         protected override void OnTerminate()
@@ -103,7 +102,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Overrides this method if want to handle behavior.
+        /// Overrides this method if want to handle OnPreCreate behavior.
         /// </summary>
         /// <since_tizen> 4 </since_tizen>
         protected virtual void OnPreCreate()
@@ -112,7 +111,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Overrides this method if want to handle behavior.
+        /// Overrides this method if want to handle OnCreate behavior.
         /// </summary>
         /// <since_tizen> 4 </since_tizen>
         protected override void OnCreate()
