@@ -1196,10 +1196,9 @@ namespace Tizen.NUI.BaseComponents
         private View ConvertIdToView(uint id)
         {
             View view = null;
-
-            if (Parent is View)
+            if (GetParent() is View)
             {
-                View parentView = Parent as View;
+                View parentView = GetParent() as View;
                 view = parentView.FindChildById(id);
             }
 
@@ -4334,14 +4333,15 @@ namespace Tizen.NUI.BaseComponents
                 if (basehandle is Layer)
                 {
                     ret = new View(cPtr, false);
+                    NUILog.Error("This Parent property is deprecated, shoud do not be used");
                 }
                 else
                 {
                     ret = basehandle as View;
+                    NDalicPINVOKE.delete_BaseHandle(CPtr);
+                    CPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
                 }
 
-                NDalicPINVOKE.delete_BaseHandle(CPtr);
-                CPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
 
                 if (NDalicPINVOKE.SWIGPendingException.Pending)
                     throw NDalicPINVOKE.SWIGPendingException.Retrieve();
