@@ -45,12 +45,8 @@ namespace Tizen.Multimedia
                 throw new ArgumentNullException(nameof(format));
             }
 
-            if (format.Type == MediaFormatType.Container)
-            {
-                throw new ArgumentException("Container format can't be used to create a new packet.");
-            }
-
             Initialize(format);
+
             _format = format;
             _buffer = new Lazy<IMediaBuffer>(GetBuffer);
         }
@@ -98,7 +94,8 @@ namespace Tizen.Multimedia
         {
             if (format.Type == MediaFormatType.Container)
             {
-                throw new ArgumentException("Creating a packet for container is not supported.");
+                throw new ArgumentException("Container format can't be used to create a new packet.",
+                    nameof(format));
             }
 
             IntPtr formatHandle = IntPtr.Zero;
@@ -187,8 +184,7 @@ namespace Tizen.Multimedia
             {
                 ValidateNotDisposed();
 
-                ulong value = 0;
-                int ret = Interop.MediaPacket.GetPts(_handle, out value);
+                int ret = Interop.MediaPacket.GetPts(_handle, out var value);
 
                 MultimediaDebug.AssertNoError(ret);
 
@@ -219,8 +215,7 @@ namespace Tizen.Multimedia
             {
                 ValidateNotDisposed();
 
-                ulong value = 0;
-                int ret = Interop.MediaPacket.GetDts(_handle, out value);
+                int ret = Interop.MediaPacket.GetDts(_handle, out var value);
 
                 MultimediaDebug.AssertNoError(ret);
 
@@ -249,8 +244,7 @@ namespace Tizen.Multimedia
             {
                 ValidateNotDisposed();
 
-                bool value = false;
-                int ret = Interop.MediaPacket.IsEncoded(_handle, out value);
+                int ret = Interop.MediaPacket.IsEncoded(_handle, out var value);
 
                 MultimediaDebug.AssertNoError(ret);
 
@@ -304,8 +298,7 @@ namespace Tizen.Multimedia
             {
                 ValidateNotDisposed();
 
-                ulong value = 0;
-                int ret = Interop.MediaPacket.GetBufferSize(_handle, out value);
+                int ret = Interop.MediaPacket.GetBufferSize(_handle, out var value);
                 MultimediaDebug.AssertNoError(ret);
 
                 Debug.Assert(value < int.MaxValue);
@@ -327,7 +320,8 @@ namespace Tizen.Multimedia
 
                 if (value < 0 || value >= Buffer.Length)
                 {
-                    throw new ArgumentOutOfRangeException("value must be less than Buffer.Size.");
+                    throw new ArgumentOutOfRangeException(nameof(value), value,
+                        "value must be less than Buffer.Size.");
                 }
 
                 int ret = Interop.MediaPacket.SetBufferSize(_handle, (ulong)value);
@@ -499,13 +493,7 @@ namespace Tizen.Multimedia
         /// Gets a value indicating whether the packet is in the raw video format.
         /// </summary>
         /// <value>true if the packet is in the raw video format; otherwise, false.</value>
-        private bool IsVideoPlaneSupported
-        {
-            get
-            {
-                return !IsEncoded && Format.Type == MediaFormatType.Video;
-            }
-        }
+        private bool IsVideoPlaneSupported => !IsEncoded && Format.Type == MediaFormatType.Video;
 
         /// <summary>
         /// Retrieves video planes of the current packet.
@@ -515,8 +503,7 @@ namespace Tizen.Multimedia
         {
             Debug.Assert(_handle != IntPtr.Zero, "The handle is invalid!");
 
-            uint numberOfPlanes = 0;
-            int ret = Interop.MediaPacket.GetNumberOfVideoPlanes(_handle, out numberOfPlanes);
+            int ret = Interop.MediaPacket.GetNumberOfVideoPlanes(_handle, out var numberOfPlanes);
 
             MultimediaDebug.AssertNoError(ret);
 
@@ -540,15 +527,12 @@ namespace Tizen.Multimedia
 
             Debug.Assert(_handle != IntPtr.Zero, "The handle is invalid!");
 
-            IntPtr dataHandle;
-
-            int ret = Interop.MediaPacket.GetBufferData(_handle, out dataHandle);
+            int ret = Interop.MediaPacket.GetBufferData(_handle, out var dataHandle);
             MultimediaDebug.AssertNoError(ret);
 
             Debug.Assert(dataHandle != IntPtr.Zero, "Data handle is invalid!");
 
-            int size = 0;
-            ret = Interop.MediaPacket.GetAllocatedBufferSize(_handle, out size);
+            ret = Interop.MediaPacket.GetAllocatedBufferSize(_handle, out var size);
             MultimediaDebug.AssertNoError(ret);
 
             Debug.Assert(size >= 0, "size must not be negative!");
