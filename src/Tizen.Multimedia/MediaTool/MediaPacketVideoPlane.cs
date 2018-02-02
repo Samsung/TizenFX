@@ -47,8 +47,7 @@ namespace Tizen.Multimedia
 
             Debug.Assert(_strideWidth >= 0 && _strideHeight >= 0, "size must not be negative!");
 
-            IntPtr dataHandle;
-            ret = Interop.MediaPacket.GetVideoPlaneData(packet.GetHandle(), index, out dataHandle);
+            ret = Interop.MediaPacket.GetVideoPlaneData(packet.GetHandle(), index, out var dataHandle);
             MultimediaDebug.AssertNoError(ret);
 
             Debug.Assert(dataHandle != IntPtr.Zero, "Data handle is invalid!");
