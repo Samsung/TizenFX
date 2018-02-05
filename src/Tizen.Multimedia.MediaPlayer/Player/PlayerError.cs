@@ -86,25 +86,25 @@ namespace Tizen.Multimedia
             {
                 case PlayerErrorCode.InvalidArgument:
                 case PlayerErrorCode.InvalidUri:
-                    throw new ArgumentException(msg);
+                    return new ArgumentException(msg);
 
                 case PlayerErrorCode.NoSuchFile:
-                    throw new FileNotFoundException(msg);
+                    return new FileNotFoundException(msg);
 
                 case PlayerErrorCode.OutOfMemory:
-                    throw new OutOfMemoryException(msg);
+                    return new OutOfMemoryException(msg);
 
                 case PlayerErrorCode.NoSpaceOnDevice:
-                    throw new IOException(msg);
+                    return new IOException(msg);
 
                 case PlayerErrorCode.PermissionDenied:
-                    throw new UnauthorizedAccessException(msg);
+                    return new UnauthorizedAccessException(msg);
 
                 case PlayerErrorCode.NotSupportedFile:
-                    throw new FileFormatException(msg);
+                    return new FileFormatException(msg);
 
                 case PlayerErrorCode.FeatureNotSupported:
-                    throw new NotSupportedException(msg);
+                    return new NotSupportedException(msg);
 
                 case PlayerErrorCode.DrmExpired:
                 case PlayerErrorCode.DrmNoLicense:
@@ -116,19 +116,19 @@ namespace Tizen.Multimedia
                 case PlayerErrorCode.SeekFailed:
                 case PlayerErrorCode.ConnectionFailed:
                 case PlayerErrorCode.VideoCaptureFailed:
-                    throw new InvalidOperationException(msg);
+                    return new InvalidOperationException(msg);
 
                 case PlayerErrorCode.NoBufferSpace:
-                    throw new NoBufferSpaceException(msg);
+                    return new NoBufferSpaceException(msg);
 
                 case PlayerErrorCode.ResourceLimit:
-                    throw new ResourceLimitException(msg);
+                    return new ResourceLimitException(msg);
 
                 case PlayerErrorCode.NotSupportedAudioCodec:
-                    throw new CodecNotSupportedException(CodecKind.Audio);
+                    return new CodecNotSupportedException(CodecKind.Audio);
 
                 case PlayerErrorCode.NotSupportedVideoCodec:
-                    throw new CodecNotSupportedException(CodecKind.Video);
+                    return new CodecNotSupportedException(CodecKind.Video);
             }
 
             return null;
