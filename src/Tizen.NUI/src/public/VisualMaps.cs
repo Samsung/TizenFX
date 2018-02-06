@@ -2425,7 +2425,7 @@ namespace Tizen.NUI
 
         /// <summary>
         /// Gets and Sets the number of times the AnimatedImageVisual will be looped.
-        /// Default -1. if &lt; 0, loop unlimited. else, loop loopCount times.
+        /// Default -1. if < 0, loop unlimited. else, loop loopCount times.
         /// </summary>
         /// <since_tizen> 4 </since_tizen>
         public float LoopCount

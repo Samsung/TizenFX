@@ -4338,10 +4338,10 @@ namespace Tizen.NUI.BaseComponents
                 else
                 {
                     ret = basehandle as View;
-                    NDalicPINVOKE.delete_BaseHandle(CPtr);
-                    CPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
                 }
 
+                NDalicPINVOKE.delete_BaseHandle(CPtr);
+                CPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
 
                 if (NDalicPINVOKE.SWIGPendingException.Pending)
                     throw NDalicPINVOKE.SWIGPendingException.Retrieve();
