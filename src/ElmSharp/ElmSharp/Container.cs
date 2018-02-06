@@ -83,6 +83,7 @@ namespace ElmSharp
         {
             _children.Add(obj);
             obj.Deleted += OnChildDeleted;
+            OnChildAdded(obj);
         }
 
         /// <summary>
@@ -93,6 +94,7 @@ namespace ElmSharp
         protected void RemoveChild(EvasObject obj)
         {
             _children.Remove(obj);
+            OnChildRemoved(obj);
         }
 
         /// <summary>
@@ -112,6 +114,22 @@ namespace ElmSharp
         void OnChildDeleted(object sender, EventArgs a)
         {
             _children.Remove((EvasObject)sender);
+        }
+
+        /// <summary>
+        /// The Container listener that is invoked when a child is added.
+        /// </summary>
+        /// <param name="child">The EvasObject object to be added</param>
+        protected virtual void OnChildAdded(EvasObject child)
+        {
+        }
+
+        /// <summary>
+        /// The Container listener that is invoked when a child is removed.
+        /// </summary>
+        /// <param name="child">The EvasObject object to be removed</param>
+        protected virtual void OnChildRemoved(EvasObject child)
+        {
         }
     }
 }
