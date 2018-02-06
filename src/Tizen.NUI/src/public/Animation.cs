@@ -83,7 +83,10 @@ namespace Tizen.NUI
 
             }
 
-            this?.Clear();
+            if (this != null)
+            {
+                this.Clear();
+            }
 
             //Release your own unmanaged resources here.
             //You should not access any managed member here except static instance.
