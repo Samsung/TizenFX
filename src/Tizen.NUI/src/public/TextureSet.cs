@@ -104,8 +104,12 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public Texture GetTexture(uint index)
         {
+            //to fix memory leak issue, match the handle count with native side.
             System.IntPtr cPtr = NDalicPINVOKE.TextureSet_GetTexture(swigCPtr, index);
-            Texture ret = Registry.GetManagedBaseHandleFromNativePtr(cPtr) as Texture;
+            HandleRef CPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
+            Texture ret = Registry.GetManagedBaseHandleFromNativePtr(CPtr.Handle) as Texture;
+            NDalicPINVOKE.delete_BaseHandle(CPtr);
+            CPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
 
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
@@ -131,8 +135,12 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public Sampler GetSampler(uint index)
         {
+            //to fix memory leak issue, match the handle count with native side.
             System.IntPtr cPtr = NDalicPINVOKE.TextureSet_GetSampler(swigCPtr, index);
-            Sampler ret = Registry.GetManagedBaseHandleFromNativePtr(cPtr) as Sampler;
+            HandleRef CPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
+            Sampler ret = Registry.GetManagedBaseHandleFromNativePtr(CPtr.Handle) as Sampler;
+            NDalicPINVOKE.delete_BaseHandle(CPtr);
+            CPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
 
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
