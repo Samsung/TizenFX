@@ -127,4 +127,9 @@ internal static partial class Interop
         [DllImport(Libraries.Libteec, EntryPoint = "TEEC_RequestCancellation", CallingConvention = CallingConvention.Cdecl)]
         static public extern void RequestCancellation(IntPtr operation);
     }
+
+    internal static partial class Libc {
+        [DllImport("msvcrt.dll", EntryPoint = "memcpy", CallingConvention = CallingConvention.Cdecl)]
+        static public extern int Memcpy(IntPtr dst, IntPtr src, UIntPtr len);
+    }
 }
