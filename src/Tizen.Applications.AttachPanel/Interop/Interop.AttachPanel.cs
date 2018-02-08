@@ -31,7 +31,7 @@ internal static partial class Interop
         internal delegate void AttachPanelResultCallback(IntPtr attachPanel, int category, IntPtr result, int resultCode, IntPtr userData);
 
         [DllImport(Libraries.AttachPanel, EntryPoint = "attach_panel_create")]
-        internal static extern ErrorCode CreateAttachPanel(IntPtr conform, ref IntPtr attach_panel);
+        internal static extern ErrorCode CreateAttachPanel(IntPtr conform, out IntPtr attach_panel);
 
         [DllImport(Libraries.AttachPanel, EntryPoint = "attach_panel_destroy")]
         internal static extern ErrorCode DestroyAttachPanel(IntPtr attach_panel);
