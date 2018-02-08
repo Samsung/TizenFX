@@ -39,7 +39,7 @@ namespace Tizen.Multimedia.Vision
                 throw new ArgumentNullException(nameof(message));
             }
 
-            ValidationUtil.ValidateEnum(typeof(BarcodeType), type);
+            ValidationUtil.ValidateEnum(typeof(BarcodeType), type, nameof(type));
 
             MediaVisionSource source = new MediaVisionSource();
             try
@@ -197,7 +197,7 @@ namespace Tizen.Multimedia.Vision
                 throw new ArgumentNullException(nameof(imageConfig));
             }
 
-            ValidationUtil.ValidateEnum(typeof(BarcodeType), type);
+            ValidationUtil.ValidateEnum(typeof(BarcodeType), type, nameof(type));
 
             InteropBarcode.GenerateImage(EngineConfiguration.GetHandle(config), message,
                 imageConfig.Width, imageConfig.Height, type, qrMode, qrEcc, qrVersion,

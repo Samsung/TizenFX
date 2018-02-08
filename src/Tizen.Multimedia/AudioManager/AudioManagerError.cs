@@ -70,15 +70,14 @@ namespace Tizen.Multimedia
 
     internal static class AudioManagerErrorExtensions
     {
-        internal static void Validate(this AudioManagerError err, string msg)
+        internal static void ThrowIfError(this AudioManagerError err, string msg)
         {
             if (err == AudioManagerError.None)
             {
                 return;
             }
 
-            msg = msg ?? "";
-            msg += $" : {err}.";
+            msg = $"{msg ?? ""} : {err}.";
 
             switch (err)
             {
@@ -98,7 +97,6 @@ namespace Tizen.Multimedia
                     throw new AudioPolicyException(msg);
 
                 case AudioManagerError.NoData:
-                    // TODO check when it is thrown
                     throw new InvalidOperationException(msg);
 
                 case AudioManagerError.Internal:

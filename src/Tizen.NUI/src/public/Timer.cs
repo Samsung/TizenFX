@@ -41,6 +41,16 @@ namespace Tizen.NUI
         internal Timer(global::System.IntPtr cPtr, bool cMemoryOwn) : base(NDalicPINVOKE.Timer_SWIGUpcast(cPtr), cMemoryOwn)
         {
             swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
+
+            _timerTickCallbackDelegate = OnTick;
+            _timerTickCallbackOfNative = System.Runtime.InteropServices.Marshal.GetFunctionPointerForDelegate<System.Delegate>(_timerTickCallbackDelegate);
+
+            NUILog.Debug($"(0x{swigCPtr.Handle:X})Timer() contructor!");
+        }
+
+        ~Timer()
+        {
+            NUILog.Debug($"(0x{swigCPtr.Handle:X})Timer() distructor!, disposed={disposed}");
         }
 
         internal static global::System.Runtime.InteropServices.HandleRef getCPtr(Timer obj)
@@ -54,6 +64,13 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         protected override void Dispose(DisposeTypes type)
         {
+            NUILog.Debug($"(0x{swigCPtr.Handle:X}) Timer.Dispose(type={type}, disposed={disposed})");
+
+            if (this != null && _timerTickCallbackDelegate != null)
+            {
+                TickSignal().Disconnect(_timerTickCallbackOfNative);
+            }
+
             if (disposed)
             {
                 return;
@@ -69,11 +86,6 @@ namespace Tizen.NUI
             //Release your own unmanaged resources here.
             //You should not access any managed member here except static instance.
             //because the execution order of Finalizes is non-deterministic.
-
-            if (_timerTickCallbackDelegate != null)
-            {
-                TickSignal().Disconnect(_timerTickCallbackDelegate);
-            }
 
             if (swigCPtr.Handle != global::System.IntPtr.Zero)
             {
@@ -99,9 +111,11 @@ namespace Tizen.NUI
         }
 
         [UnmanagedFunctionPointer(CallingConvention.StdCall)]
-        private delegate bool TickCallbackDelegate(IntPtr data);
+        private delegate bool TickCallbackDelegate();
         private EventHandlerWithReturnType<object, TickEventArgs, bool> _timerTickEventHandler;
         private TickCallbackDelegate _timerTickCallbackDelegate;
+
+        private System.IntPtr _timerTickCallbackOfNative;
 
         /// <summary>
         /// @brief Event for the ticked signal, which can be used to subscribe or unsubscribe the event handler
@@ -112,10 +126,9 @@ namespace Tizen.NUI
         {
             add
             {
-                if (_timerTickEventHandler == null)
+                if (_timerTickEventHandler == null && disposed == false)
                 {
-                    _timerTickCallbackDelegate = new TickCallbackDelegate(OnTick);
-                    TickSignal().Connect(_timerTickCallbackDelegate);
+                    TickSignal().Connect(_timerTickCallbackOfNative);
                 }
                 _timerTickEventHandler += value;
             }
@@ -124,18 +137,19 @@ namespace Tizen.NUI
                 _timerTickEventHandler -= value;
                 if (_timerTickEventHandler == null && TickSignal().Empty() == false)
                 {
-                    TickSignal().Disconnect(_timerTickCallbackDelegate);
+                    TickSignal().Disconnect(_timerTickCallbackOfNative);
                 }
             }
         }
 
-        private bool OnTick(IntPtr data)
+        private bool OnTick()
         {
             TickEventArgs e = new TickEventArgs();
 
             if (played == false)
             {
-                Tizen.Log.Fatal("NUI", $"({swigCPtr.Handle}) OnTick() is called even played is false!");
+                Tizen.Log.Fatal("NUI", $"(0x{swigCPtr.Handle:X}) OnTick() is called even played is false!");
+                //throw new System.InvalidOperationException($"OnTick() excpetion!");
             }
 
             if (_timerTickEventHandler != null && played == true)
@@ -156,7 +170,7 @@ namespace Tizen.NUI
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
 
-            Tizen.Log.Error("NUI", $"({swigCPtr.Handle}) Timer({milliSec}) Constructor!");
+            NUILog.Debug($"(0x{swigCPtr.Handle:X})  Timer({milliSec}) Constructor!");
         }
         internal Timer(Timer timer) : this(NDalicPINVOKE.new_Timer__SWIG_1(Timer.getCPtr(timer)), true)
         {
@@ -191,6 +205,9 @@ namespace Tizen.NUI
         /// <summary>
         /// Gets/Sets the interval of the timer.
         /// </summary>
+        /// <remarks>For setter, this sets a new interval on the timer and starts the timer. <br />
+        /// Cancels the previous timer.
+        /// </remarks>
         /// <since_tizen> 4 </since_tizen>
         public uint Interval
         {
@@ -211,20 +228,18 @@ namespace Tizen.NUI
         /// <param name="milliSec">MilliSec interval in milliseconds.</param>
         internal void SetInterval(uint milliSec)
         {
+            NUILog.Debug($"(0x{swigCPtr.Handle:X})SetInterval({milliSec})");
 
-            Tizen.Log.Error("NUI", $"({swigCPtr.Handle}) SetInterval({milliSec})");
+            played = true;
 
             NDalicPINVOKE.Timer_SetInterval(swigCPtr, milliSec);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-
-            played = true;
         }
 
         internal uint GetInterval()
         {
             uint ret = NDalicPINVOKE.Timer_GetInterval(swigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            Tizen.Log.Error("NUI", $"({swigCPtr.Handle})GetInterval({ret})");
             return ret;
         }
 

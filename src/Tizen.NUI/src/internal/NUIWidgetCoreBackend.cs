@@ -30,6 +30,7 @@ namespace Tizen.NUI
         /// </summary>
         protected WidgetApplication _application;
         private string _stylesheet = "";
+        Dictionary<System.Type, string> _widgetInfo;
 
         /// <summary>
         /// Dictionary to contain each type of event callback.
@@ -41,8 +42,6 @@ namespace Tizen.NUI
         /// </summary>
         public NUIWidgetCoreBackend()
         {
-            //Tizen.Log.Fatal("NUI", "### NUIWidgetCoreBackend called");
-            //_application = WidgetApplication.NewWidgetApplication();
         }
 
         /// <summary>
@@ -51,7 +50,6 @@ namespace Tizen.NUI
         public NUIWidgetCoreBackend(string stylesheet)
         {
             _stylesheet = stylesheet;
-            //_application = WidgetApplication.NewWidgetApplication(stylesheet);
         }
 
         /// <summary>
@@ -83,7 +81,6 @@ namespace Tizen.NUI
         /// </summary>
         public void Dispose()
         {
-            Tizen.Log.Fatal("NUI", "### NUIWidgetCoreBackend Dispose called");
             if (_application != null)
             {
                 _application.Dispose();
@@ -95,11 +92,15 @@ namespace Tizen.NUI
         /// </summary>
         public void Exit()
         {
-            Tizen.Log.Fatal("NUI", "### NUIWidgetCoreBackend Exit called");
             if (_application != null)
             {
                 _application.Quit();
             }
+        }
+
+        public void RegisterWidgetInfo(Dictionary<System.Type, string> widgetInfo)
+        {
+            _widgetInfo = widgetInfo;
         }
 
         /// <summary>
@@ -108,93 +109,125 @@ namespace Tizen.NUI
         /// <param name="args">Arguments from commandline.</param>
         public void Run(string[] args)
         {
+            TizenSynchronizationContext.Initialize();
+
             args[0] = Tizen.Applications.Application.Current.ApplicationInfo.ExecutablePath;
             _application = WidgetApplication.NewWidgetApplication(args, _stylesheet);
+            _application.RegisterWidgetInfo(_widgetInfo);
 
-            TizenSynchronizationContext.Initialize();
             _application.BatteryLow += OnBatteryLow;
             _application.LanguageChanged += OnLanguageChanged;
             _application.MemoryLow += OnMemoryLow;
             _application.RegionChanged += OnRegionChanged; ;
-
-            _application.Init += OnInit;
-            _application.Terminate += OnTerminate;
+            _application.Initialized += OnInitialized;
+            _application.Terminating += OnTerminated;
 
             _application.MainLoop();
         }
 
-        private void OnInit(object sender, WidgetApplication.WidgetApplicationEventArgs e)
+        /// <summary>
+        /// The Initialized event callback function.
+        /// </summary>
+        /// <param name="source">The application instance.</param>
+        /// <param name="e">The event argument for Initialized.</param>
+        private void OnInitialized(object source, NUIApplicationInitEventArgs e)
         {
-            Log.Fatal("NUI", "NUIWidgetApplication OnPreCreated Called");
             var preCreateHandler = Handlers[EventType.PreCreated] as Action;
             preCreateHandler?.Invoke();
 
-            Log.Fatal("NUI", "NUIWidgetApplication OnCreate Called");
             var createHandler = Handlers[EventType.Created] as Action;
             createHandler?.Invoke();
-
+            _application.RegisterWidgetCreatingFunction();
         }
 
-        private void OnTerminate(object sender, WidgetApplication.WidgetApplicationEventArgs e)
+        /// <summary>
+        /// The Terminated event callback function.
+        /// </summary>
+        /// <param name="source">The application instance.</param>
+        /// <param name="e">The event argument for Terminated.</param>
+        private void OnTerminated(object source, NUIApplicationTerminatingEventArgs e)
         {
-            Log.Fatal("NUI", "NUIWidgetApplication OnTerminated Called");
             var handler = Handlers[EventType.Terminated] as Action;
             handler?.Invoke();
         }
 
         /// <summary>
-        /// Region changed event callback function.
+        /// The Region changed event callback function.
         /// </summary>
-        /// <param name="sender">Application instance</param>
-        /// <param name="e">Event argument for RegionChanged</param>
-        private void OnRegionChanged(object sender, WidgetApplication.WidgetApplicationEventArgs e)
+        /// <param name="source">The application instance.</param>
+        /// <param name="e">The event argument for RegionChanged.</param>
+        private void OnRegionChanged(object source, NUIApplicationRegionChangedEventArgs e)
         {
-            Log.Fatal("NUI", "NUIWidgetApplication OnRegionChanged Called");
             var handler = Handlers[EventType.RegionFormatChanged] as Action<RegionFormatChangedEventArgs>;
-            // Need to make new signal return in native to return right value.
-            handler?.Invoke(new RegionFormatChangedEventArgs(""));
+            handler?.Invoke(new RegionFormatChangedEventArgs(e.Application.GetRegion()));
         }
 
         /// <summary>
-        /// Memory Low event callback function.
+        /// The Language changed event callback function.
         /// </summary>
-        /// <param name="sender">Application instance</param>
-        /// <param name="e">Event argument for MemoryLow</param>
-        private void OnMemoryLow(object sender, WidgetApplication.WidgetApplicationEventArgs e)
+        /// <param name="source">The application instance.</param>
+        /// <param name="e">The event argument for LanguageChanged.</param>
+        private void OnLanguageChanged(object source, NUIApplicationLanguageChangedEventArgs e)
         {
-            Log.Fatal("NUI", "NUIWidgetApplication OnMemoryLow Called");
-            var handler = Handlers[EventType.LowMemory] as Action<LowMemoryEventArgs>;
-            // Need to make new signal return in native to return right value.
-            handler?.Invoke(new LowMemoryEventArgs(LowMemoryStatus.None));
-        }
-
-        /// <summary>
-        /// Language changed event callback function.
-        /// </summary>
-        /// <param name="sender">Application instance</param>
-        /// <param name="e">Event argument for LanguageChanged</param>
-        private void OnLanguageChanged(object sender, WidgetApplication.WidgetApplicationEventArgs e)
-        {
-
-            Log.Fatal("NUI", "NUIWidgetApplication OnLanguageChanged Called");
             var handler = Handlers[EventType.LocaleChanged] as Action<LocaleChangedEventArgs>;
-            // Need to make new signal return in native to return right value.
-            handler?.Invoke(new LocaleChangedEventArgs(""));
-
+            handler?.Invoke(new LocaleChangedEventArgs(e.Application.GetLanguage()));
         }
 
         /// <summary>
-        /// Battery low event callback function.
+        /// The Memory Low event callback function.
         /// </summary>
-        /// <param name="sender">Application instance</param>
-        /// <param name="e">Event argument for BatteryLow</param>
-        private void OnBatteryLow(object sender, WidgetApplication.WidgetApplicationEventArgs e)
+        /// <param name="source">The application instance.</param>
+        /// <param name="e">The event argument for MemoryLow.</param>
+        private void OnMemoryLow(object source, NUIApplicationMemoryLowEventArgs e)
         {
-            Log.Fatal("NUI", "NUIWidgetApplication OnBatteryLow Called");
-            var handler = Handlers[EventType.LowBattery] as Action<LowBatteryEventArgs>;
-            // Need to make new signal return in native to return right value.
-            handler?.Invoke(new LowBatteryEventArgs(LowBatteryStatus.None));
+            var handler = Handlers[EventType.LowMemory] as Action<LowMemoryEventArgs>;
 
+            switch (e.MemoryStatus)
+            {
+                case Application.MemoryStatus.Normal:
+                {
+                    handler?.Invoke(new LowMemoryEventArgs(LowMemoryStatus.None));
+                    break;
+                }
+                case Application.MemoryStatus.Low:
+                {
+                    handler?.Invoke(new LowMemoryEventArgs(LowMemoryStatus.SoftWarning));
+                    break;
+                }
+                case Application.MemoryStatus.CriticallyLow:
+                {
+                    handler?.Invoke(new LowMemoryEventArgs(LowMemoryStatus.HardWarning));
+                    break;
+                }
+            }
+        }
+
+        /// <summary>
+        /// The Battery Low event callback function.
+        /// </summary>
+        /// <param name="source">The application instance.</param>
+        /// <param name="e">The event argument for BatteryLow.</param>
+        private void OnBatteryLow(object source, NUIApplicationBatteryLowEventArgs e)
+        {
+            var handler = Handlers[EventType.LowBattery] as Action<LowBatteryEventArgs>;
+            switch (e.BatteryStatus)
+            {
+                case Application.BatteryStatus.Normal:
+                {
+                    handler?.Invoke(new LowBatteryEventArgs(LowBatteryStatus.None));
+                    break;
+                }
+                case Application.BatteryStatus.CriticallyLow:
+                {
+                    handler?.Invoke(new LowBatteryEventArgs(LowBatteryStatus.CriticalLow));
+                    break;
+                }
+                case Application.BatteryStatus.PowerOff:
+                {
+                    handler?.Invoke(new LowBatteryEventArgs(LowBatteryStatus.PowerOff));
+                    break;
+                }
+            }
         }
 
         internal WidgetApplication WidgetApplicationHandle

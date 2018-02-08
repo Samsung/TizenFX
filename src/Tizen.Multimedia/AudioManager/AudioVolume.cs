@@ -31,7 +31,7 @@ namespace Tizen.Multimedia
         private EventHandler<VolumeChangedEventArgs> _volumeChanged;
         private Interop.AudioVolume.VolumeChangedCallback _volumeChangedCallback;
 
-        private object _eventLock = new object();
+        private readonly object _eventLock = new object();
 
         internal AudioVolume()
         {
@@ -47,6 +47,11 @@ namespace Tizen.Multimedia
         {
             add
             {
+                if (value == null)
+                {
+                    return;
+                }
+
                 lock (_eventLock)
                 {
                     if (_volumeChanged == null)
@@ -88,7 +93,7 @@ namespace Tizen.Multimedia
                 {
                     return AudioVolumeType.None;
                 }
-                ret.Validate("Failed to get current volume type");
+                ret.ThrowIfError("Failed to get current volume type");
 
                 return currentType;
             }
@@ -110,21 +115,22 @@ namespace Tizen.Multimedia
 
         private void RegisterVolumeChangedEvent()
         {
-            _volumeChangedCallback = (AudioVolumeType type, uint volume, IntPtr userData) =>
+            _volumeChangedCallback = (type, volume, _) =>
             {
                 _volumeChanged?.Invoke(this, new VolumeChangedEventArgs(type, volume));
             };
+
             var error = Interop.AudioVolume.AddVolumeChangedCallback(_volumeChangedCallback, IntPtr.Zero,
                 out _volumeChangedCallbackId);
             Log.Info(Tag, $"VolumeController callback id:{_volumeChangedCallbackId}");
 
-            error.Validate("Failed to add volume changed event");
+            error.ThrowIfError("Failed to add volume changed event");
         }
 
         private void UnregisterVolumeChangedEvent()
         {
             Interop.AudioVolume.RemoveVolumeChangedCallback(_volumeChangedCallbackId).
-                Validate("Failed to remove volume changed event");
+                ThrowIfError("Failed to remove volume changed event");
         }
     }
 }

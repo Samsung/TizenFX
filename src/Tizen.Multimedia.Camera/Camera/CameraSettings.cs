@@ -130,7 +130,8 @@ namespace Tizen.Multimedia
 
             set
             {
-                ValidationUtil.ValidateEnum(typeof(CameraAutoFocusMode), value);
+                ValidationUtil.ValidateEnum(typeof(CameraAutoFocusMode), value, nameof(value));
+
                 CameraErrorFactory.ThrowIfError(Native.SetAutoFocusMode(_camera.GetHandle(), value),
                     "Failed to set camera autofocus mode.");
             }
@@ -292,7 +293,8 @@ namespace Tizen.Multimedia
 
             set
             {
-                ValidationUtil.ValidateEnum(typeof(CameraExposureMode), value);
+                ValidationUtil.ValidateEnum(typeof(CameraExposureMode), value, nameof(value));
+
                 CameraErrorFactory.ThrowIfError(Native.SetExposureMode(_camera.GetHandle(), value),
                     "Failed to set camera exposure mode.");
             }
@@ -386,7 +388,8 @@ namespace Tizen.Multimedia
 
             set
             {
-                ValidationUtil.ValidateEnum(typeof(CameraWhiteBalance), value);
+                ValidationUtil.ValidateEnum(typeof(CameraWhiteBalance), value, nameof(value));
+
                 CameraErrorFactory.ThrowIfError(Native.SetWhitebalance(_camera.GetHandle(), value),
                     "Failed to set camera whitebalance.");
             }
@@ -412,7 +415,8 @@ namespace Tizen.Multimedia
 
             set
             {
-                ValidationUtil.ValidateEnum(typeof(CameraIsoLevel), value);
+                ValidationUtil.ValidateEnum(typeof(CameraIsoLevel), value, nameof(value));
+
                 CameraErrorFactory.ThrowIfError(Native.SetIso(_camera.GetHandle(), value),
                     "Failed to set camera Iso level.");
             }
@@ -465,7 +469,8 @@ namespace Tizen.Multimedia
 
             set
             {
-                ValidationUtil.ValidateEnum(typeof(CameraFps), value);
+                ValidationUtil.ValidateEnum(typeof(CameraFps), value, nameof(value));
+
                 CameraErrorFactory.ThrowIfError(Native.SetPreviewFps(_camera.GetHandle(), value),
                     "Failed to set preview fps.");
             }
@@ -533,7 +538,8 @@ namespace Tizen.Multimedia
 
             set
             {
-                ValidationUtil.ValidateEnum(typeof(CameraPixelFormat), value);
+                ValidationUtil.ValidateEnum(typeof(CameraPixelFormat), value, nameof(value));
+
                 CameraErrorFactory.ThrowIfError(SetPreviewPixelFormat(_camera.GetHandle(), value),
                     "Failed to set preview format.");
             }
@@ -583,7 +589,8 @@ namespace Tizen.Multimedia
 
             set
             {
-                ValidationUtil.ValidateEnum(typeof(CameraPixelFormat), value);
+                ValidationUtil.ValidateEnum(typeof(CameraPixelFormat), value, nameof(value));
+
                 CameraErrorFactory.ThrowIfError(SetCaptureFormat(_camera.GetHandle(), value),
                     "Failed to set capture format.");
             }
@@ -658,7 +665,8 @@ namespace Tizen.Multimedia
 
             set
             {
-                ValidationUtil.ValidateEnum(typeof(CameraTheaterMode), value);
+                ValidationUtil.ValidateEnum(typeof(CameraTheaterMode), value, nameof(value));
+
                 CameraErrorFactory.ThrowIfError(Native.SetTheaterMode(_camera.GetHandle(), value),
                     "Failed to set camera theater mode.");
             }
@@ -682,7 +690,8 @@ namespace Tizen.Multimedia
 
             set
             {
-                ValidationUtil.ValidateEnum(typeof(CameraEffectMode), value);
+                ValidationUtil.ValidateEnum(typeof(CameraEffectMode), value, nameof(value));
+
                 CameraErrorFactory.ThrowIfError(Native.SetEffect(_camera.GetHandle(), value),
                     "Failed to set camera effect.");
             }
@@ -706,7 +715,8 @@ namespace Tizen.Multimedia
 
             set
             {
-                ValidationUtil.ValidateEnum(typeof(CameraSceneMode), value);
+                ValidationUtil.ValidateEnum(typeof(CameraSceneMode), value, nameof(value));
+
                 CameraErrorFactory.ThrowIfError(Native.SetSceneMode(_camera.GetHandle(), value),
                     "Failed to set camera scene mode.");
             }
@@ -730,7 +740,8 @@ namespace Tizen.Multimedia
 
             set
             {
-                ValidationUtil.ValidateEnum(typeof(CameraFlashMode), value);
+                ValidationUtil.ValidateEnum(typeof(CameraFlashMode), value, nameof(value));
+
                 CameraErrorFactory.ThrowIfError(Native.SetFlashMode(_camera.GetHandle(), value),
                     "Failed to set camera flash mode.");
             }
@@ -770,7 +781,7 @@ namespace Tizen.Multimedia
 
             set
             {
-                ValidationUtil.ValidateEnum(typeof(Rotation), value);
+                ValidationUtil.ValidateEnum(typeof(Rotation), value, nameof(value));
 
                 CameraErrorFactory.ThrowIfError(Native.SetStreamRotation(_camera.GetHandle(), value),
                     "Failed to set camera stream rotation.");
@@ -825,7 +836,8 @@ namespace Tizen.Multimedia
 
             set
             {
-                ValidationUtil.ValidateEnum(typeof(CameraHdrMode), value);
+                ValidationUtil.ValidateEnum(typeof(CameraHdrMode), value, nameof(value));
+
                 CameraErrorFactory.ThrowIfError(Native.SetHdrMode(_camera.GetHandle(), value),
                     "Failed to set camera hdr mode.");
             }
@@ -909,7 +921,7 @@ namespace Tizen.Multimedia
         {
             set
             {
-                ValidationUtil.ValidateEnum(typeof(CameraPtzType), value);
+                ValidationUtil.ValidateEnum(typeof(CameraPtzType), value, nameof(value));
 
                 CameraErrorFactory.ThrowIfError(Native.SetPtzType(_camera.GetHandle(), value),
                     "Failed to set camera ptz type.");
@@ -927,6 +939,7 @@ namespace Tizen.Multimedia
         public void SetPan(CameraPtzMoveType type, int panStep)
         {
             ValidationUtil.ValidateEnum(typeof(CameraPtzMoveType), type, nameof(type));
+
             CameraErrorFactory.ThrowIfError(Native.SetPan(_camera.GetHandle(), type, panStep),
                 "Failed to set the camera pan type.");
         }
@@ -1152,7 +1165,8 @@ namespace Tizen.Multimedia
 
             set
             {
-                ValidationUtil.ValidateEnum(typeof(CameraTagOrientation), value);
+                ValidationUtil.ValidateEnum(typeof(CameraTagOrientation), value, nameof(value));
+
                 CameraErrorFactory.ThrowIfError(Native.SetTagOrientation(_camera.GetHandle(), value),
                     "Failed to set camera tag orientation.");
             }

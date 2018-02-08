@@ -32,5 +32,10 @@ namespace Tizen.System
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         External = Interop.Storage.StorageArea.External,
+        /// <summary>
+        /// Extended internal storage
+        /// </summary>
+        /// <since_tizen> 5 </since_tizen>
+        ExtendedInternal = Interop.Storage.StorageArea.ExtendedInternal,
     }
 }

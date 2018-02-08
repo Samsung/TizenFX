@@ -17,6 +17,7 @@
 
 namespace Tizen.NUI
 {
+    using System.Runtime.InteropServices;
     using Tizen.NUI.BaseComponents;
     /// <summary>
     /// Touch events are a collection of points at a specific moment in time.<br />
@@ -164,8 +165,12 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public View GetHitView(uint point)
         {
+            //to fix memory leak issue, match the handle count with native side.
             global::System.IntPtr cPtr = NDalicPINVOKE.Touch_GetHitActor(swigCPtr, point);
-            View ret = Registry.GetManagedBaseHandleFromNativePtr(cPtr) as View;
+            HandleRef CPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
+            View ret = Registry.GetManagedBaseHandleFromNativePtr(CPtr.Handle) as View;
+            NDalicPINVOKE.delete_BaseHandle(CPtr);
+            CPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
 
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;

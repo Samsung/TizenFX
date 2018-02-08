@@ -25,11 +25,11 @@ namespace Tizen.Account.AccountManager
     /// 2. Adding an account information when an application signs in successfully to share the account information to the Tizen system. This information will be shown in the Tizen settings account menu.
     ///
     /// The APIs of both of the sections consist of the following functionality:
-    /// <list>
-    /// <item> Create an account or account provider.</item>
-    /// <item> Update an account or account provider (Only available for the creator).</item>
-    /// <item> Delete an account or account provider (Only available for the creator).</item>
-    /// <item> Read an account or account provider with some filter.</item>
+    /// <list type="bullet">
+    /// <item><description>Create an account or account provider.</description></item>
+    /// <item><description>Update an account or account provider (Only available for the creator).</description></item>
+    /// <item><description>Delete an account or account provider (Only available for the creator).</description></item>
+    /// <item><description>Read an account or account provider with some filter.</description></item>
     /// </list>
     /// </summary>
     /// <since_tizen> 3 </since_tizen>

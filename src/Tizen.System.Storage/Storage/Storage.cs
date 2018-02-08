@@ -26,7 +26,13 @@ namespace Tizen.System
     {
         private const string LogTag = "Tizen.System";
         private Interop.Storage.StorageState _state;
+        private StorageDevice _devicetype;
+        private string _fstype;
+        private string _fsuuid;
         private ulong _totalSpace;
+        private bool _primary;
+        private int _flags;
+        private bool information_set = false;
 
         internal Storage(int storageID, Interop.Storage.StorageArea storageType, Interop.Storage.StorageState storagestate, string rootDirectory)
         {
@@ -34,6 +40,36 @@ namespace Tizen.System
             StorageType = (StorageArea)storageType;
             RootDirectory = rootDirectory;
             _state = storagestate;
+
+
+            Interop.Storage.ErrorCode err = Interop.Storage.StorageGetTotalSpace(Id, out _totalSpace);
+            if (err != Interop.Storage.ErrorCode.None)
+            {
+                Log.Warn(LogTag, string.Format("Failed to get total storage space for storage Id: {0}. err = {1}", Id, err));
+            }
+
+            s_stateChangedEventCallback = (id, state, userData) =>
+            {
+                if (id == Id)
+                {
+                    _state = state;
+                    s_stateChangedEventHandler?.Invoke(this, EventArgs.Empty);
+                }
+            };
+        }
+
+        internal Storage(int storageID, Interop.Storage.StorageArea storageType, Interop.Storage.StorageState storagestate, string rootDirectory, Interop.Storage.StorageDevice devicetype, string fstype, string fsuuid, bool primary, int flags)
+        {
+            Id = storageID;
+            StorageType = (StorageArea)storageType;
+            RootDirectory = rootDirectory;
+            _state = storagestate;
+            _devicetype = (StorageDevice)devicetype;
+            _fstype = fstype;
+            _fsuuid = fsuuid;
+            _primary = primary;
+            _flags = flags;
+            information_set = true;
 
             Interop.Storage.ErrorCode err = Interop.Storage.StorageGetTotalSpace(Id, out _totalSpace);
             if (err != Interop.Storage.ErrorCode.None)
@@ -150,6 +186,96 @@ namespace Tizen.System
                     }
                 }
                 return (StorageState)_state;
+            }
+        }
+
+        /// <summary>
+        /// The StorageDevice
+        /// </summary>
+        /// <since_tizen> 5 </since_tizen>
+        /// <exception cref="InvalidOperationException">Thrown when DeviceType is not initialized.</exception>
+        public StorageDevice DeviceType
+        {
+            get
+            {
+                if (!information_set)
+                {
+                    Log.Error(LogTag, string.Format("Doesn't know StorageDevice type."));
+                    throw new InvalidOperationException("Doesn't know StorageDevice type");
+                }
+                return (StorageDevice)_devicetype;
+            }
+        }
+
+        /// <summary>
+        /// The type of file system
+        /// </summary>
+        /// <since_tizen> 5 </since_tizen>
+        /// <exception cref="InvalidOperationException">Thrown when Fstype is not initialized.</exception>
+        public string Fstype
+        {
+            get
+            {
+                if (!information_set)
+                {
+                    Log.Error(LogTag, string.Format("Doesn't know fstype."));
+                    throw new InvalidOperationException("Doesn't know type of file system");
+                }
+                return _fstype;
+            }
+        }
+
+        /// <summary>
+        /// The uuid of the file system
+        /// </summary>
+        /// <since_tizen> 5 </since_tizen>
+        /// <exception cref="InvalidOperationException">Thrown when Fsuuid is not initialized.</exception>
+        public string Fsuuid
+        {
+            get
+            {
+                if (!information_set)
+                {
+                    Log.Error(LogTag, string.Format("Doesn't know fsuuid."));
+                    throw new InvalidOperationException("Doesn't know uuid of file system");
+                }
+                return _fsuuid;
+            }
+        }
+
+        /// <summary>
+        /// Information about whether this is primary partition
+        /// </summary>
+        /// <since_tizen> 5 </since_tizen>
+        /// <exception cref="InvalidOperationException">Thrown when Primary is not initialized.</exception>
+        public bool Primary
+        {
+            get
+            {
+                if (!information_set)
+                {
+                    Log.Error(LogTag, string.Format("Doesn't know primary information."));
+                    throw new InvalidOperationException("Doesn't know primary information");
+                }
+                return _primary;
+            }
+        }
+
+        /// <summary>
+        /// The flags for the storage status
+        /// </summary>
+        /// <since_tizen> 5 </since_tizen>
+        /// <exception cref="InvalidOperationException">Thrown when Flags is not initialized.</exception>
+        public int Flags
+        {
+            get
+            {
+                if (!information_set)
+                {
+                    Log.Error(LogTag, string.Format("Doesn't know flags."));
+                    throw new InvalidOperationException("Doesn't know flags");
+                }
+                return _flags;
             }
         }
 

@@ -37,6 +37,9 @@ namespace Tizen.NUI
         internal Animation(global::System.IntPtr cPtr, bool cMemoryOwn) : base(NDalicPINVOKE.Animation_SWIGUpcast(cPtr), cMemoryOwn)
         {
             swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
+
+            _animationFinishedEventCallback = OnFinished;
+            _finishedCallbackOfNative = System.Runtime.InteropServices.Marshal.GetFunctionPointerForDelegate<System.Delegate>(_animationFinishedEventCallback);
         }
 
         internal static global::System.Runtime.InteropServices.HandleRef getCPtr(Animation obj)
@@ -50,6 +53,20 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         protected override void Dispose(DisposeTypes type)
         {
+            if (this != null)
+            {
+                if (_animationFinishedEventCallback != null)
+                {
+                    FinishedSignal().Disconnect(_finishedCallbackOfNative);
+                }
+
+                if (_animationProgressReachedEventCallback != null)
+                {
+
+                    ProgressReachedSignal().Disconnect(_animationProgressReachedEventCallback);
+                }
+            }
+
             if(disposed)
             {
                 return;
@@ -66,23 +83,9 @@ namespace Tizen.NUI
 
             }
 
-            if (_animationFinishedEventCallback != null)
-            {
-                FinishedSignal().Disconnect(_animationFinishedEventCallback);
-            }
-
-            if (_animationProgressReachedEventCallback != null)
-            {
-
-                ProgressReachedSignal().Disconnect(_animationProgressReachedEventCallback);
-            }
-
-            if(this)
+            if (this != null)
             {
                 this.Clear();
-                this.Reset();
-                NUILog.Error("Now Animation is playing! Clear and Reset here!");
-                //throw new System.InvalidOperationException("Animation Instance should not be disposed until getting Finished event. Should be a global variable");
             }
 
             //Release your own unmanaged resources here.
@@ -120,6 +123,9 @@ namespace Tizen.NUI
         [UnmanagedFunctionPointer(CallingConvention.StdCall)]
         private delegate void AnimationFinishedEventCallbackType(IntPtr data);
         private event EventHandler _animationFinishedEventHandler;
+
+        private System.IntPtr _finishedCallbackOfNative;
+
         /**
         * @brief Event for the finished signal which can be used to subscribe or unsubscribe the event handler.
         * The finished signal is emitted when an animation's animations have finished.
@@ -129,12 +135,9 @@ namespace Tizen.NUI
         {
             add
             {
-                if (_animationFinishedEventHandler == null)
+                if (_animationFinishedEventHandler == null && disposed == false)
                 {
-                    NUILog.Debug("[add before]FinishedSignal().Empty=" + FinishedSignal().Empty() + " GetConnectionCount=" + FinishedSignal().GetConnectionCount());
-                    _animationFinishedEventCallback = OnFinished;
-                    FinishedSignal().Connect(_animationFinishedEventCallback);
-                    NUILog.Debug("[add after]FinishedSignal().Empty=" + FinishedSignal().Empty() + " GetConnectionCount=" + FinishedSignal().GetConnectionCount());
+                    FinishedSignal().Connect(_finishedCallbackOfNative);
                 }
                 _animationFinishedEventHandler += value;
             }
@@ -144,9 +147,7 @@ namespace Tizen.NUI
 
                 if (_animationFinishedEventHandler == null && FinishedSignal().Empty() == false)
                 {
-                    NUILog.Debug("[remove before]FinishedSignal().Empty=" + FinishedSignal().Empty() + " GetConnectionCount=" + FinishedSignal().GetConnectionCount());
-                    FinishedSignal().Disconnect(_animationFinishedEventCallback);
-                    NUILog.Debug("[remove after]FinishedSignal().Empty=" + FinishedSignal().Empty() + " GetConnectionCount=" + FinishedSignal().GetConnectionCount());
+                    FinishedSignal().Disconnect(_finishedCallbackOfNative);
                 }
             }
         }
@@ -174,10 +175,8 @@ namespace Tizen.NUI
             {
                 if (_animationProgressReachedEventHandler == null)
                 {
-                    NUILog.Debug("[add before]ProgressReachedSignal().Empty=" + FinishedSignal().Empty() + " GetConnectionCount=" + FinishedSignal().GetConnectionCount());
                     _animationProgressReachedEventCallback = OnProgressReached;
                     ProgressReachedSignal().Connect(_animationProgressReachedEventCallback);
-                    NUILog.Debug("[add after]ProgressReachedSignal().Empty=" + FinishedSignal().Empty() + " GetConnectionCount=" + FinishedSignal().GetConnectionCount());
                 }
 
                 _animationProgressReachedEventHandler += value;
@@ -188,9 +187,7 @@ namespace Tizen.NUI
 
                 if (_animationProgressReachedEventHandler == null && ProgressReachedSignal().Empty() == false)
                 {
-                    NUILog.Debug("[remove before]ProgressReachedSignal().Empty=" + FinishedSignal().Empty() + " GetConnectionCount=" + FinishedSignal().GetConnectionCount());
                     ProgressReachedSignal().Disconnect(_animationProgressReachedEventCallback);
-                    NUILog.Debug("[remove after]ProgressReachedSignal().Empty=" + FinishedSignal().Empty() + " GetConnectionCount=" + FinishedSignal().GetConnectionCount());
                 }
             }
         }

@@ -32,7 +32,10 @@ namespace Tizen.NUI.BaseComponents
         internal View(global::System.IntPtr cPtr, bool cMemoryOwn) : base(NDalicPINVOKE.View_SWIGUpcast(cPtr), cMemoryOwn)
         {
             swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
-            PositionUsesPivotPoint = false;
+            if (HasBody())
+            {
+                PositionUsesPivotPoint = false;
+            }
         }
 
         internal static global::System.Runtime.InteropServices.HandleRef getCPtr(View obj)
@@ -49,11 +52,18 @@ namespace Tizen.NUI.BaseComponents
         /// <since_tizen> 4 </since_tizen>
         public override void Add(View child)
         {
-            NDalicPINVOKE.Actor_Add(swigCPtr, View.getCPtr(child));
-            if (NDalicPINVOKE.SWIGPendingException.Pending)
-                throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-
-            Children.Add(child);
+            Container oldParent = child.GetParent();
+            if(oldParent != this)
+            {
+                if (oldParent != null)
+                {
+                    oldParent.Remove(child);
+                }
+                NDalicPINVOKE.Actor_Add(swigCPtr, View.getCPtr(child));
+                if (NDalicPINVOKE.SWIGPendingException.Pending)
+                    throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                Children.Add(child);
+            }
         }
 
         /// <summary>
@@ -104,9 +114,12 @@ namespace Tizen.NUI.BaseComponents
         /// <since_tizen> 4 </since_tizen>
         public override Container GetParent()
         {
+            //to fix memory leak issue, match the handle count with native side.
             IntPtr cPtr = NDalicPINVOKE.Actor_GetParent(swigCPtr);
-
-            BaseHandle basehandle = Registry.GetManagedBaseHandleFromNativePtr(cPtr);
+            HandleRef CPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
+            BaseHandle basehandle = Registry.GetManagedBaseHandleFromNativePtr(CPtr.Handle);
+            NDalicPINVOKE.delete_BaseHandle(CPtr);
+            CPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
 
             if (NDalicPINVOKE.SWIGPendingException.Pending)
                 throw NDalicPINVOKE.SWIGPendingException.Retrieve();
@@ -116,7 +129,7 @@ namespace Tizen.NUI.BaseComponents
 
         internal bool IsTopLevelView()
         {
-            if(GetParent() is Layer)
+            if (GetParent() is Layer)
             {
                 return true;
             }
@@ -130,12 +143,12 @@ namespace Tizen.NUI.BaseComponents
         /// <since_tizen> 3 </since_tizen>
         protected override void Dispose(DisposeTypes type)
         {
-            if(disposed)
+            if (disposed)
             {
                 return;
             }
 
-            if(type == DisposeTypes.Explicit)
+            if (type == DisposeTypes.Explicit)
             {
                 //Called by User
                 //Release your own managed resources here.
@@ -145,8 +158,10 @@ namespace Tizen.NUI.BaseComponents
             //Release your own unmanaged resources here.
             //You should not access any managed member here except static instance.
             //because the execution order of Finalizes is non-deterministic.
-
-            DisConnectFromSignals();
+            if (this != null)
+            {
+                DisConnectFromSignals();
+            }
 
             if (swigCPtr.Handle != global::System.IntPtr.Zero)
             {
@@ -401,6 +416,12 @@ namespace Tizen.NUI.BaseComponents
 
         private bool OnKeyEvent(IntPtr view, IntPtr keyEvent)
         {
+            if (keyEvent == global::System.IntPtr.Zero)
+            {
+                NUILog.Error("keyEvent should not be null!");
+                return true;
+            }
+
             KeyEventArgs e = new KeyEventArgs();
 
             bool result = false;
@@ -412,9 +433,9 @@ namespace Tizen.NUI.BaseComponents
                 Delegate[] delegateList = _keyEventHandler.GetInvocationList();
 
                 // Oring the result of each callback.
-                foreach ( EventHandlerWithReturnType<object, KeyEventArgs, bool> del in delegateList )
+                foreach (EventHandlerWithReturnType<object, KeyEventArgs, bool> del in delegateList)
                 {
-                    result |= del( this, e );
+                    result |= del(this, e);
                 }
             }
 
@@ -528,6 +549,12 @@ namespace Tizen.NUI.BaseComponents
         // Callback for View TouchSignal
         private bool OnTouch(IntPtr view, IntPtr touchData)
         {
+            if (touchData == global::System.IntPtr.Zero)
+            {
+                NUILog.Error("touchData should not be null!");
+                return true;
+            }
+
             TouchEventArgs e = new TouchEventArgs();
 
             e.Touch = Tizen.NUI.Touch.GetTouchFromPtr(touchData);
@@ -603,6 +630,12 @@ namespace Tizen.NUI.BaseComponents
         // Callback for View Hover signal
         private bool OnHoverEvent(IntPtr view, IntPtr hoverEvent)
         {
+            if (hoverEvent == global::System.IntPtr.Zero)
+            {
+                NUILog.Error("hoverEvent should not be null!");
+                return true;
+            }
+
             HoverEventArgs e = new HoverEventArgs();
 
             e.Hover = Tizen.NUI.Hover.GetHoverFromPtr(hoverEvent);
@@ -678,6 +711,12 @@ namespace Tizen.NUI.BaseComponents
         // Callback for View Wheel signal
         private bool OnWheelEvent(IntPtr view, IntPtr wheelEvent)
         {
+            if (wheelEvent == global::System.IntPtr.Zero)
+            {
+                NUILog.Error("wheelEvent should not be null!");
+                return true;
+            }
+
             WheelEventArgs e = new WheelEventArgs();
 
             e.Wheel = Tizen.NUI.Wheel.GetWheelFromPtr(wheelEvent);
@@ -1157,10 +1196,9 @@ namespace Tizen.NUI.BaseComponents
         private View ConvertIdToView(uint id)
         {
             View view = null;
-
-            if (Parent is View)
+            if (GetParent() is View)
             {
-                View parentView = Parent as View;
+                View parentView = GetParent() as View;
                 view = parentView.FindChildById(id);
             }
 
@@ -1358,7 +1396,7 @@ namespace Tizen.NUI.BaseComponents
         /// background visual, creates one with transparent black as it's mixColor.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        public Animation AnimateBackgroundColor( object destinationValue,
+        public Animation AnimateBackgroundColor(object destinationValue,
                                                  int startTime,
                                                  int endTime,
                                                  AlphaFunction.BuiltinFunctions? alphaFunction = null,
@@ -1366,51 +1404,51 @@ namespace Tizen.NUI.BaseComponents
         {
             Tizen.NUI.PropertyMap background = Background;
 
-            if( background.Empty() )
+            if (background.Empty())
             {
                 // If there is no background yet, ensure there is a transparent
                 // color visual
                 BackgroundColor = new Color(0.0f, 0.0f, 0.0f, 0.0f);
                 background = Background;
             }
-            return AnimateColor( "background", destinationValue, startTime, endTime, alphaFunction, initialValue );
+            return AnimateColor("background", destinationValue, startTime, endTime, alphaFunction, initialValue);
         }
 
         /// <summary>
         /// Creates an animation to animate the mixColor of the named visual.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        public Animation AnimateColor( string targetVisual, object destinationColor, int startTime, int endTime, AlphaFunction.BuiltinFunctions? alphaFunction = null, object initialColor = null )
+        public Animation AnimateColor(string targetVisual, object destinationColor, int startTime, int endTime, AlphaFunction.BuiltinFunctions? alphaFunction = null, object initialColor = null)
         {
             Animation animation = null;
             {
                 PropertyMap _animator = new PropertyMap();
-                if( alphaFunction != null )
+                if (alphaFunction != null)
                 {
-                    _animator.Add("alphaFunction", new PropertyValue( AlphaFunction.BuiltinToPropertyKey(alphaFunction) ) );
+                    _animator.Add("alphaFunction", new PropertyValue(AlphaFunction.BuiltinToPropertyKey(alphaFunction)));
                 }
 
                 PropertyMap _timePeriod = new PropertyMap();
-                _timePeriod.Add( "duration", new PropertyValue((endTime-startTime)/1000.0f) );
-                _timePeriod.Add( "delay", new PropertyValue( startTime/1000.0f ) );
-                _animator.Add( "timePeriod", new PropertyValue( _timePeriod ) );
+                _timePeriod.Add("duration", new PropertyValue((endTime - startTime) / 1000.0f));
+                _timePeriod.Add("delay", new PropertyValue(startTime / 1000.0f));
+                _animator.Add("timePeriod", new PropertyValue(_timePeriod));
 
                 PropertyMap _transition = new PropertyMap();
-                _transition.Add( "animator", new PropertyValue( _animator ) );
-                _transition.Add( "target", new PropertyValue( targetVisual ) );
-                _transition.Add( "property", new PropertyValue( "mixColor" ) );
+                _transition.Add("animator", new PropertyValue(_animator));
+                _transition.Add("target", new PropertyValue(targetVisual));
+                _transition.Add("property", new PropertyValue("mixColor"));
 
-                if( initialColor != null )
+                if (initialColor != null)
                 {
-                    PropertyValue initValue = PropertyValue.CreateFromObject( initialColor );
-                    _transition.Add( "initialValue", initValue );
+                    PropertyValue initValue = PropertyValue.CreateFromObject(initialColor);
+                    _transition.Add("initialValue", initValue);
                 }
 
-                PropertyValue destValue = PropertyValue.CreateFromObject( destinationColor );
-                _transition.Add( "targetValue", destValue );
-                TransitionData _transitionData = new TransitionData( _transition );
+                PropertyValue destValue = PropertyValue.CreateFromObject(destinationColor);
+                _transition.Add("targetValue", destValue);
+                TransitionData _transitionData = new TransitionData(_transition);
 
-                animation = new Animation( NDalicManualPINVOKE.View_CreateTransition(swigCPtr, TransitionData.getCPtr(_transitionData)), true );
+                animation = new Animation(NDalicManualPINVOKE.View_CreateTransition(swigCPtr, TransitionData.getCPtr(_transitionData)), true);
                 if (NDalicPINVOKE.SWIGPendingException.Pending)
                     throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
@@ -1452,7 +1490,7 @@ namespace Tizen.NUI.BaseComponents
             get
             {
                 Tizen.NUI.PropertyMap temp = new Tizen.NUI.PropertyMap();
-                GetProperty( View.Property.BACKGROUND ).Get(temp);
+                GetProperty(View.Property.BACKGROUND).Get(temp);
                 return temp;
             }
             set
@@ -1478,21 +1516,21 @@ namespace Tizen.NUI.BaseComponents
                 switch (temp)
                 {
                     case 0:
-                    {
-                        return States.Normal;
-                    }
+                        {
+                            return States.Normal;
+                        }
                     case 1:
-                    {
-                        return States.Focused;
-                    }
+                        {
+                            return States.Focused;
+                        }
                     case 2:
-                    {
-                        return States.Disabled;
-                    }
+                        {
+                            return States.Disabled;
+                        }
                     default:
-                    {
-                        return States.Normal;
-                    }
+                        {
+                            return States.Normal;
+                        }
                 }
             }
             set
@@ -1532,25 +1570,25 @@ namespace Tizen.NUI.BaseComponents
                 switch (value)
                 {
                     case States.Normal:
-                    {
-                        valueToString = "NORMAL";
-                        break;
-                    }
+                        {
+                            valueToString = "NORMAL";
+                            break;
+                        }
                     case States.Focused:
-                    {
-                        valueToString = "FOCUSED";
-                        break;
-                    }
+                        {
+                            valueToString = "FOCUSED";
+                            break;
+                        }
                     case States.Disabled:
-                    {
-                        valueToString = "DISABLED";
-                        break;
-                    }
+                        {
+                            valueToString = "DISABLED";
+                            break;
+                        }
                     default:
-                    {
-                        valueToString = "NORMAL";
-                        break;
-                    }
+                        {
+                            valueToString = "NORMAL";
+                            break;
+                        }
                 }
                 SetProperty(View.Property.SUB_STATE, new Tizen.NUI.PropertyValue(valueToString));
             }
@@ -1786,25 +1824,25 @@ namespace Tizen.NUI.BaseComponents
                 switch (value)
                 {
                     case Tizen.NUI.HorizontalAlignmentType.Left:
-                    {
-                        valueToString = "left";
-                        break;
-                    }
+                        {
+                            valueToString = "left";
+                            break;
+                        }
                     case Tizen.NUI.HorizontalAlignmentType.Center:
-                    {
-                        valueToString = "center";
-                        break;
-                    }
+                        {
+                            valueToString = "center";
+                            break;
+                        }
                     case Tizen.NUI.HorizontalAlignmentType.Right:
-                    {
-                        valueToString = "right";
-                        break;
-                    }
+                        {
+                            valueToString = "right";
+                            break;
+                        }
                     default:
-                    {
-                        valueToString = "left";
-                        break;
-                    }
+                        {
+                            valueToString = "left";
+                            break;
+                        }
                 }
                 SetProperty(TableView.ChildProperty.CELL_HORIZONTAL_ALIGNMENT, new Tizen.NUI.PropertyValue(valueToString));
             }
@@ -1842,25 +1880,25 @@ namespace Tizen.NUI.BaseComponents
                 switch (value)
                 {
                     case Tizen.NUI.VerticalAlignmentType.Top:
-                    {
-                        valueToString = "top";
-                        break;
-                    }
+                        {
+                            valueToString = "top";
+                            break;
+                        }
                     case Tizen.NUI.VerticalAlignmentType.Center:
-                    {
-                        valueToString = "center";
-                        break;
-                    }
+                        {
+                            valueToString = "center";
+                            break;
+                        }
                     case Tizen.NUI.VerticalAlignmentType.Bottom:
-                    {
-                        valueToString = "bottom";
-                        break;
-                    }
+                        {
+                            valueToString = "bottom";
+                            break;
+                        }
                     default:
-                    {
-                        valueToString = "top";
-                        break;
-                    }
+                        {
+                            valueToString = "top";
+                            break;
+                        }
                 }
                 SetProperty(TableView.ChildProperty.CELL_VERTICAL_ALIGNMENT, new Tizen.NUI.PropertyValue(valueToString));
             }
@@ -1885,7 +1923,7 @@ namespace Tizen.NUI.BaseComponents
             }
             set
             {
-                if(value)
+                if (value)
                 {
                     LeftFocusableViewId = (int)value.GetId();
                 }
@@ -1915,7 +1953,7 @@ namespace Tizen.NUI.BaseComponents
             }
             set
             {
-                if(value)
+                if (value)
                 {
                     RightFocusableViewId = (int)value.GetId();
                 }
@@ -1945,7 +1983,7 @@ namespace Tizen.NUI.BaseComponents
             }
             set
             {
-                if(value)
+                if (value)
                 {
                     UpFocusableViewId = (int)value.GetId();
                 }
@@ -1975,7 +2013,7 @@ namespace Tizen.NUI.BaseComponents
             }
             set
             {
-                if(value)
+                if (value)
                 {
                     DownFocusableViewId = (int)value.GetId();
                 }
@@ -2118,10 +2156,6 @@ namespace Tizen.NUI.BaseComponents
             {
                 Vector2 temp = new Vector2(0.0f, 0.0f);
                 GetProperty(View.Property.SCREEN_POSITION).Get(temp);
-                // Dali's default layer is default center origin. need to change as top left.
-                // NUI's Layer is like a transparent film which covers entire window. (Layer is not an actor of Dali)
-                // otherwise, this makes ScreenPosition as wrong value.
-                temp -= (Window.Instance.GetSize() * 0.5f);
                 return temp;
             }
         }
@@ -2215,7 +2249,7 @@ namespace Tizen.NUI.BaseComponents
         /// Sets the sibling order of the view so the depth position can be defined within the same parent.
         /// </summary>
         /// <remarks>
-        /// Note the initial value is 0.
+        /// Note the initial value is 0. SiblingOrder should be bigger than 0 or equal to 0.
         /// Raise, Lower, RaiseToTop, LowerToBottom, RaiseAbove, and LowerBelow will override the sibling order.
         /// The values set by this property will likely change.
         /// </remarks>
@@ -2224,13 +2258,58 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
-                int temp = 0;
-                GetProperty(View.Property.SIBLING_ORDER).Get(out temp);
-                return temp;
+                var parentChildren = GetParent()?.Children;
+                int currentOrder = 0;
+                if (parentChildren != null)
+                {
+                    currentOrder = parentChildren.IndexOf(this);
+
+                    if (currentOrder < 0)
+                    {
+                        return 0;
+                    }
+                    else if (currentOrder < parentChildren.Count)
+                    {
+                        return currentOrder;
+                    }
+                }
+
+                return 0;
             }
             set
             {
-                SetProperty(View.Property.SIBLING_ORDER, new Tizen.NUI.PropertyValue(value));
+                if(value < 0)
+                {
+                    NUILog.Error("SiblingOrder should be bigger than 0 or equal to 0.");
+                    return;
+                }
+                var siblings = GetParent()?.Children;
+                if (siblings != null)
+                {
+                    int currentOrder = siblings.IndexOf(this);
+                    if (value != currentOrder)
+                    {
+                        if (value == 0)
+                        {
+                            LowerToBottom();
+                        }
+                        else if (value < siblings.Count - 1)
+                        {
+                            if (value > currentOrder)
+                            {
+                                RaiseAbove(siblings[value]);
+                            }
+                            else
+                            {
+                                LowerBelow(siblings[value]);
+                            }
+                        }
+                        else
+                        {
+                            RaiseToTop();
+                        }
+                    }
+                }
             }
         }
 
@@ -2306,46 +2385,47 @@ namespace Tizen.NUI.BaseComponents
 
         internal void Raise()
         {
-            var parentChildren = Parent?.Children;
+            var parentChildren = GetParent()?.Children;
 
             if (parentChildren != null)
             {
                 int currentIndex = parentChildren.IndexOf(this);
 
                 // If the view is not already the last item in the list.
-                if (currentIndex != parentChildren.Count -1)
+                if (currentIndex >= 0 && currentIndex < parentChildren.Count -1)
                 {
                     View temp = parentChildren[currentIndex + 1];
                     parentChildren[currentIndex + 1] = this;
                     parentChildren[currentIndex] = temp;
+
+                    NDalicPINVOKE.Raise(swigCPtr);
+                    if (NDalicPINVOKE.SWIGPendingException.Pending)
+                        throw NDalicPINVOKE.SWIGPendingException.Retrieve();
                 }
             }
 
-            NDalicPINVOKE.Raise(swigCPtr);
-            if (NDalicPINVOKE.SWIGPendingException.Pending)
-                throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         internal void Lower()
         {
-            var parentChildren = Parent?.Children;
+            var parentChildren = GetParent()?.Children;
 
             if (parentChildren != null)
             {
                 int currentIndex = parentChildren.IndexOf(this);
 
                 // If the view is not already the first item in the list.
-                if (currentIndex > 0)
+                if (currentIndex > 0 && currentIndex < parentChildren.Count)
                 {
                     View temp = parentChildren[currentIndex - 1];
                     parentChildren[currentIndex - 1] = this;
                     parentChildren[currentIndex] = temp;
+
+                    NDalicPINVOKE.Lower(swigCPtr);
+                    if (NDalicPINVOKE.SWIGPendingException.Pending)
+                        throw NDalicPINVOKE.SWIGPendingException.Retrieve();
                 }
             }
-
-            NDalicPINVOKE.Lower(swigCPtr);
-            if (NDalicPINVOKE.SWIGPendingException.Pending)
-                throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         /// <summary>
@@ -2358,17 +2438,18 @@ namespace Tizen.NUI.BaseComponents
         /// <since_tizen> 3 </since_tizen>
         public void RaiseToTop()
         {
-            var parentChildren = Parent?.Children;
+            var parentChildren = GetParent()?.Children;
 
             if (parentChildren != null)
             {
                 parentChildren.Remove(this);
                 parentChildren.Add(this);
+
+                NDalicPINVOKE.RaiseToTop(swigCPtr);
+                if (NDalicPINVOKE.SWIGPendingException.Pending)
+                    throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
 
-            NDalicPINVOKE.RaiseToTop(swigCPtr);
-            if (NDalicPINVOKE.SWIGPendingException.Pending)
-                throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         /// <summary>
@@ -2381,17 +2462,17 @@ namespace Tizen.NUI.BaseComponents
         /// <since_tizen> 3 </since_tizen>
         public void LowerToBottom()
         {
-            var parentChildren = Parent?.Children;
+            var parentChildren = GetParent()?.Children;
 
             if (parentChildren != null)
             {
                 parentChildren.Remove(this);
                 parentChildren.Insert(0, this);
-            }
 
-            NDalicPINVOKE.LowerToBottom(swigCPtr);
-            if (NDalicPINVOKE.SWIGPendingException.Pending)
-                throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                NDalicPINVOKE.LowerToBottom(swigCPtr);
+                if (NDalicPINVOKE.SWIGPendingException.Pending)
+                    throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            }
         }
 
         /// <summary>
@@ -2418,24 +2499,31 @@ namespace Tizen.NUI.BaseComponents
         /// <param name="target">Will be raised above this view.</param>
         internal void RaiseAbove(View target)
         {
-            var parentChildren = Parent?.Children;
+            var parentChildren = GetParent()?.Children;
 
             if (parentChildren != null)
             {
                 int currentIndex = parentChildren.IndexOf(this);
                 int targetIndex = parentChildren.IndexOf(target);
 
+                if(currentIndex < 0 || targetIndex < 0 ||
+                    currentIndex >= parentChildren.Count || targetIndex >= parentChildren.Count)
+                {
+                    NUILog.Error("index should be bigger than 0 and less than children of layer count");
+                    return;
+                }
                 // If the currentIndex is less than the target index and the target has the same parent.
                 if (currentIndex < targetIndex)
                 {
                     parentChildren.Remove(this);
                     parentChildren.Insert(targetIndex, this);
+
+                    NDalicPINVOKE.RaiseAbove(swigCPtr, View.getCPtr(target));
+                    if (NDalicPINVOKE.SWIGPendingException.Pending)
+                        throw NDalicPINVOKE.SWIGPendingException.Retrieve();
                 }
             }
 
-            NDalicPINVOKE.RaiseAbove(swigCPtr, View.getCPtr(target));
-            if (NDalicPINVOKE.SWIGPendingException.Pending)
-                throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         /// <summary>
@@ -2448,12 +2536,18 @@ namespace Tizen.NUI.BaseComponents
         /// <param name="target">Will be lowered below this view.</param>
         internal void LowerBelow(View target)
         {
-            var parentChildren = Parent?.Children;
+            var parentChildren = GetParent()?.Children;
 
             if (parentChildren != null)
             {
                 int currentIndex = parentChildren.IndexOf(this);
                 int targetIndex = parentChildren.IndexOf(target);
+                if(currentIndex < 0 || targetIndex < 0 ||
+                   currentIndex >= parentChildren.Count ||targetIndex >= parentChildren.Count)
+                {
+                    NUILog.Error("index should be bigger than 0 and less than children of layer count");
+                    return;
+                }
 
                 // If the currentIndex is not already the 0th index and the target has the same parent.
                 if ((currentIndex != 0) && (targetIndex != -1) &&
@@ -2461,12 +2555,13 @@ namespace Tizen.NUI.BaseComponents
                 {
                     parentChildren.Remove(this);
                     parentChildren.Insert(targetIndex, this);
+
+                    NDalicPINVOKE.LowerBelow(swigCPtr, View.getCPtr(target));
+                    if (NDalicPINVOKE.SWIGPendingException.Pending)
+                        throw NDalicPINVOKE.SWIGPendingException.Retrieve();
                 }
             }
 
-            NDalicPINVOKE.LowerBelow(swigCPtr, View.getCPtr(target));
-            if (NDalicPINVOKE.SWIGPendingException.Pending)
-                throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         internal string GetName()
@@ -2515,8 +2610,12 @@ namespace Tizen.NUI.BaseComponents
         /// <since_tizen> 5 </since_tizen>
         public Layer GetLayer()
         {
+            //to fix memory leak issue, match the handle count with native side.
             IntPtr cPtr = NDalicPINVOKE.Actor_GetLayer(swigCPtr);
-            Layer ret = Registry.GetManagedBaseHandleFromNativePtr(cPtr) as Layer;
+            HandleRef CPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
+            Layer ret = Registry.GetManagedBaseHandleFromNativePtr(CPtr.Handle) as Layer;
+            NDalicPINVOKE.delete_BaseHandle(CPtr);
+            CPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
 
             if (NDalicPINVOKE.SWIGPendingException.Pending)
                 throw NDalicPINVOKE.SWIGPendingException.Retrieve();
@@ -2543,9 +2642,12 @@ namespace Tizen.NUI.BaseComponents
         /// <since_tizen> 3 </since_tizen>
         public View FindChildByName(string viewName)
         {
+            //to fix memory leak issue, match the handle count with native side.
             IntPtr cPtr = NDalicPINVOKE.Actor_FindChildByName(swigCPtr, viewName);
-
-            View ret = Registry.GetManagedBaseHandleFromNativePtr(cPtr) as View;
+            HandleRef CPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
+            View ret = Registry.GetManagedBaseHandleFromNativePtr(CPtr.Handle) as View;
+            NDalicPINVOKE.delete_BaseHandle(CPtr);
+            CPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
 
             if (NDalicPINVOKE.SWIGPendingException.Pending)
                 throw NDalicPINVOKE.SWIGPendingException.Retrieve();
@@ -2554,9 +2656,12 @@ namespace Tizen.NUI.BaseComponents
 
         internal View FindChildById(uint id)
         {
+            //to fix memory leak issue, match the handle count with native side.
             IntPtr cPtr = NDalicPINVOKE.Actor_FindChildById(swigCPtr, id);
-
-            View ret = Registry.GetManagedBaseHandleFromNativePtr(cPtr) as View;
+            HandleRef CPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
+            View ret = Registry.GetManagedBaseHandleFromNativePtr(CPtr.Handle) as View;
+            NDalicPINVOKE.delete_BaseHandle(CPtr);
+            CPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
 
             if (NDalicPINVOKE.SWIGPendingException.Pending)
                 throw NDalicPINVOKE.SWIGPendingException.Retrieve();
@@ -3150,8 +3255,12 @@ namespace Tizen.NUI.BaseComponents
         /// <since_tizen> 3 </since_tizen>
         public Renderer GetRendererAt(uint index)
         {
+            //to fix memory leak issue, match the handle count with native side.
             IntPtr cPtr = NDalicPINVOKE.Actor_GetRendererAt(swigCPtr, index);
-            Renderer ret = Registry.GetManagedBaseHandleFromNativePtr(cPtr) as Renderer;
+            HandleRef CPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
+            Renderer ret = Registry.GetManagedBaseHandleFromNativePtr(CPtr.Handle) as Renderer;
+            NDalicPINVOKE.delete_BaseHandle(CPtr);
+            CPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
 
             if (NDalicPINVOKE.SWIGPendingException.Pending)
                 throw NDalicPINVOKE.SWIGPendingException.Retrieve();
@@ -3222,14 +3331,16 @@ namespace Tizen.NUI.BaseComponents
             return ret;
         }
 
-        internal ViewVisibilityChangedSignal VisibilityChangedSignal(View view) {
+        internal ViewVisibilityChangedSignal VisibilityChangedSignal(View view)
+        {
             ViewVisibilityChangedSignal ret = new ViewVisibilityChangedSignal(NDalicPINVOKE.VisibilityChangedSignal(View.getCPtr(view)), false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
 
-        internal ViewLayoutDirectionChangedSignal LayoutDirectionChangedSignal(View view) {
+        internal ViewLayoutDirectionChangedSignal LayoutDirectionChangedSignal(View view)
+        {
             ViewLayoutDirectionChangedSignal ret = new ViewLayoutDirectionChangedSignal(NDalicManualPINVOKE.LayoutDirectionChangedSignal(View.getCPtr(view)), false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
@@ -3824,13 +3935,13 @@ namespace Tizen.NUI.BaseComponents
                 switch (temp)
                 {
                     case "NORMAL":
-                    return DrawModeType.Normal;
+                        return DrawModeType.Normal;
                     case "OVERLAY_2D":
-                    return DrawModeType.Overlay2D;
+                        return DrawModeType.Overlay2D;
                     case "STENCIL":
-                    return DrawModeType.Stencil;
+                        return DrawModeType.Stencil;
                     default:
-                    return DrawModeType.Normal;
+                        return DrawModeType.Normal;
                 }
             }
             set
@@ -4123,13 +4234,13 @@ namespace Tizen.NUI.BaseComponents
                 switch (temp)
                 {
                     case "DISABLED":
-                    return ClippingModeType.Disabled;
+                        return ClippingModeType.Disabled;
                     case "CLIP_CHILDREN":
-                    return ClippingModeType.ClipChildren;
+                        return ClippingModeType.ClipChildren;
                     case "CLIP_TO_BOUNDING_BOX":
-                    return ClippingModeType.ClipToBoundingBox;
+                        return ClippingModeType.ClipToBoundingBox;
                     default:
-                    return ClippingModeType.Disabled;
+                        return ClippingModeType.Disabled;
                 }
             }
             set
@@ -4214,17 +4325,21 @@ namespace Tizen.NUI.BaseComponents
             {
                 View ret;
                 IntPtr cPtr = NDalicPINVOKE.Actor_GetParent(swigCPtr);
-
-                BaseHandle basehandle = Registry.GetManagedBaseHandleFromNativePtr(cPtr);
+                HandleRef CPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
+                BaseHandle basehandle = Registry.GetManagedBaseHandleFromNativePtr(CPtr.Handle);
 
                 if (basehandle is Layer)
                 {
                     ret = new View(cPtr, false);
+                    NUILog.Error("This Parent property is deprecated, shoud do not be used");
                 }
                 else
                 {
                     ret = basehandle as View;
                 }
+
+                NDalicPINVOKE.delete_BaseHandle(CPtr);
+                CPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
 
                 if (NDalicPINVOKE.SWIGPendingException.Pending)
                     throw NDalicPINVOKE.SWIGPendingException.Retrieve();
