@@ -22,6 +22,7 @@ internal static partial class Interop
             NotInitialized = -0x02850000 | 0x02,
             UnsupportedContentCategory = -0x02850000 | 0x03,
             AlreadyDestroyed = -0x02850000 | 0x05,
+            NotSupported = Tizen.Internals.Errors.ErrorCode.NotSupported,
         }
 
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
@@ -30,7 +31,7 @@ internal static partial class Interop
         internal delegate void AttachPanelResultCallback(IntPtr attachPanel, int category, IntPtr result, int resultCode, IntPtr userData);
 
         [DllImport(Libraries.AttachPanel, EntryPoint = "attach_panel_create")]
-        internal static extern ErrorCode CreateAttachPanel(IntPtr conform, ref IntPtr attach_panel);
+        internal static extern ErrorCode CreateAttachPanel(IntPtr conform, out IntPtr attach_panel);
 
         [DllImport(Libraries.AttachPanel, EntryPoint = "attach_panel_destroy")]
         internal static extern ErrorCode DestroyAttachPanel(IntPtr attach_panel);
