@@ -51,9 +51,17 @@ namespace Tizen.Network.WiFi
         /// </summary>
         protected override bool ReleaseHandle()
         {
-            Interop.WiFi.Deinitialize(this.handle);
-            this.SetHandle(IntPtr.Zero);
+            if (this.handle != IntPtr.Zero)
+            {
+                Interop.WiFi.Deinitialize(this.handle);
+                this.SetHandle(IntPtr.Zero);
+            }
             return true;
+        }
+
+        internal void Release()
+        {
+            ReleaseHandle();
         }
     }
 
@@ -378,6 +386,15 @@ namespace Tizen.Network.WiFi
         static public Task ScanSpecificAPAsync(string essid)
         {
             return WiFiManagerImpl.Instance.ScanSpecificAPAsync(essid);
+        }
+
+        /// <summary>
+        /// Release unmanaged resources
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        static public void DisposeResources()
+        {
+            WiFiManagerImpl.Instance.GetSafeHandle().Release();
         }
     }
 }
