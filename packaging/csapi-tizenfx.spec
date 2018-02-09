@@ -1,7 +1,7 @@
 # Auto-generated from csapi-tizenfx.spec.in by makespec.sh
 
 %define TIZEN_NET_API_VERSION 5
-%define TIZEN_NET_RPM_VERSION 5.0.0.999+nui61.3
+%define TIZEN_NET_RPM_VERSION 5.0.0.999
 %define TIZEN_NET_NUGET_VERSION 5.0.0-preview1-99999
 %define TIZEN_NET_INTERNAL_NUGET_VERSION 5.0.0.999
 
