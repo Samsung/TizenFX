@@ -8,6 +8,3 @@ INTERNAL_NUGET_VERSION=4.0.1.999
 
 # RPM Version Suffix
 RPM_VERSION_SUFFIX=nui401
-
-# Native Dependencies
-DALI_VERSION=0
