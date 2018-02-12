@@ -47,6 +47,7 @@ namespace Tizen.Network.WiFi
     internal partial class WiFiManagerImpl
     {
         private static WiFiManagerImpl _instance = null;
+        private static Object _instanceLock = new Object();
         private Dictionary<IntPtr, Interop.WiFi.VoidCallback> _callback_map = new Dictionary<IntPtr, Interop.WiFi.VoidCallback>();
         private int _requestId = 0;
         private string _macAddress;
@@ -121,13 +122,16 @@ namespace Tizen.Network.WiFi
         {
             get
             {
-                if (_instance == null)
+                lock (_instanceLock)
                 {
-                    Log.Debug(Globals.LogTag, "Instance is null");
-                    _instance = new WiFiManagerImpl();
-                }
+                    if (_instance == null)
+                    {
+                        Log.Debug(Globals.LogTag, "Instance is null");
+                        _instance = new WiFiManagerImpl();
+                    }
 
-                return _instance;
+                    return _instance;
+                }
             }
         }
 
