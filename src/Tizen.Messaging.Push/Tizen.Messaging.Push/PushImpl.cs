@@ -26,8 +26,10 @@ namespace Tizen.Messaging.Push
     {
         private static readonly object _lock = new object();
         private static PushImpl _instance;
-        private Interop.PushClient.VoidResultCallback registerResult;
-        private Interop.PushClient.VoidResultCallback unregisterResult;
+        private static Interop.PushClient.VoidStateChangedCallback stateDelegate = null;
+		private static Interop.PushClient.VoidNotifyCallback notifyDelegate = null;
+        private static Interop.PushClient.VoidResultCallback registerResult = null;
+        private static Interop.PushClient.VoidResultCallback unregisterResult = null;
 
         internal static PushImpl Instance
         {
@@ -54,7 +56,7 @@ namespace Tizen.Messaging.Push
 
         internal void PushServiceConnect(string pushAppId)
         {
-            Interop.PushClient.VoidStateChangedCallback stateDelegate = (int state, string err, IntPtr userData) =>
+            stateDelegate = (int state, string err, IntPtr userData) =>
             {
                 if (err == null)
                 {
@@ -63,7 +65,7 @@ namespace Tizen.Messaging.Push
                 PushConnectionStateEventArgs args = new PushConnectionStateEventArgs((PushConnectionStateEventArgs.PushState)state, err);
                 PushClient.StateChange(args);
             };
-            Interop.PushClient.VoidNotifyCallback notifyDelegate = (IntPtr notification, IntPtr userData) =>
+            notifyDelegate = (IntPtr notification, IntPtr userData) =>
             {
                 Interop.PushClient.ServiceError result;
                 PushMessageEventArgs ob = new PushMessageEventArgs();
@@ -157,20 +159,41 @@ namespace Tizen.Messaging.Push
         {
             Log.Info(Interop.PushClient.LogTag, "Register Called");
             var task = new TaskCompletionSource<ServerResponse>();
+            if (registerResult != null)
+            {
+                Log.Error(Interop.PushClient.LogTag, "Register callback was already registered with same callback");
+                task.SetException(PushExceptionFactory.CreateResponseException(Interop.PushClient.ServiceError.OpearationFailed));
+                return await task.Task;
+            }
+
             registerResult = (Interop.PushClient.Result regResult, IntPtr msgPtr, IntPtr userData) =>
             {
                 Log.Info(Interop.PushClient.LogTag, "Register Callback Called with " + regResult);
-                string msg = "";
-                if (msgPtr != IntPtr.Zero)
+
+                if (regResult < Interop.PushClient.Result.Success || regResult > Interop.PushClient.Result.SystemError)
                 {
-                    msg = Marshal.PtrToStringAnsi(msgPtr);
+                    Log.Error(Interop.PushClient.LogTag, "registerResult is called but has wrong resResult value");
+                    task.SetException(PushExceptionFactory.CreateResponseException(Interop.PushClient.ServiceError.OpearationFailed));
+				}
+                else
+                {
+                    string msg = "";
+                    if (msgPtr != IntPtr.Zero)
+                    {
+                        msg = Marshal.PtrToStringAnsi(msgPtr);
+                    }
+                    ServerResponse response = new ServerResponse();
+                    response.ServerResult = (ServerResponse.Result)regResult;
+                    response.ServerMessage = msg;
+                    if (task.TrySetResult(response) == false)
+                    {
+                        Log.Error(Interop.PushClient.LogTag, "Unable to set the Result for register");
+                    }
                 }
-                ServerResponse response = new ServerResponse();
-                response.ServerResult = (ServerResponse.Result)regResult;
-                response.ServerMessage = msg;
-                if (task.TrySetResult(response) == false)
+                lock (_lock)
                 {
-                    Log.Error(Interop.PushClient.LogTag, "Unable to set the Result for register");
+                    Log.Error(Interop.PushClient.LogTag, "resigterResult is unset");
+                    registerResult = null;
                 }
             };
             Interop.PushClient.ServiceError result = Interop.PushClient.ServiceRegister(_connection, registerResult, IntPtr.Zero);
@@ -179,6 +202,11 @@ namespace Tizen.Messaging.Push
             {
                 Log.Error(Interop.PushClient.LogTag, "Register failed with " + result);
                 task.SetException(PushExceptionFactory.CreateResponseException(result));
+                lock (_lock)
+                {
+                    Log.Error(Interop.PushClient.LogTag, "resigterResult is unset (failed)");
+                    registerResult = null;
+                }
             }
             return await task.Task;
         }
@@ -188,18 +216,27 @@ namespace Tizen.Messaging.Push
             var task = new TaskCompletionSource<ServerResponse>();
             unregisterResult = (Interop.PushClient.Result regResult, IntPtr msgPtr, IntPtr userData) =>
             {
-                Log.Info(Interop.PushClient.LogTag, "Unregister Callback Called");
-                string msg = "";
-                if (msgPtr != IntPtr.Zero)
+                Log.Info(Interop.PushClient.LogTag, "Unregister Callback Called with " + regResult);
+
+                if (regResult < Interop.PushClient.Result.Success || regResult > Interop.PushClient.Result.SystemError)
                 {
-                    msg = Marshal.PtrToStringAnsi(msgPtr);
+                    Log.Error(Interop.PushClient.LogTag, "unregisterResult is called but has wrong resResult value");
+                    task.SetException(PushExceptionFactory.CreateResponseException(Interop.PushClient.ServiceError.OpearationFailed));
                 }
-                ServerResponse response = new ServerResponse();
-                response.ServerResult = (ServerResponse.Result)regResult;
-                response.ServerMessage = msg;
-                if (task.TrySetResult(response) == false)
+				else
                 {
-                    Log.Error(Interop.PushClient.LogTag, "Unable to set the Result for Unregister");
+                    string msg = "";
+                    if (msgPtr != IntPtr.Zero)
+                    {
+                        msg = Marshal.PtrToStringAnsi(msgPtr);
+                    }
+                    ServerResponse response = new ServerResponse();
+                    response.ServerResult = (ServerResponse.Result)regResult;
+                    response.ServerMessage = msg;
+                    if (task.TrySetResult(response) == false)
+                    {
+                        Log.Error(Interop.PushClient.LogTag, "Unable to set the Result for Unregister");
+                    }
                 }
             };
             Interop.PushClient.ServiceError result = Interop.PushClient.ServiceDeregister(_connection, unregisterResult, IntPtr.Zero);
