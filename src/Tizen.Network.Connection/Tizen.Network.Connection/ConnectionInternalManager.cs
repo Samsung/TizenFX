@@ -86,7 +86,7 @@ namespace Tizen.Network.Connection
     internal class ConnectionInternalManager
     {
         private bool disposed = false;
-        private static ConnectionInternalManager s_instance = null;
+        private static Lazy<ConnectionInternalManager> s_instance = null;
 
         private EventHandler<ConnectionTypeEventArgs> _ConnectionTypeChanged = null;
         private EventHandler<AddressEventArgs> _IPAddressChanged = null;
@@ -104,10 +104,13 @@ namespace Tizen.Network.Connection
             {
                 if (s_instance == null)
                 {
-                    s_instance = new ConnectionInternalManager();
+                    s_instance = new Lazy<ConnectionInternalManager>(() =>
+                            {
+                                return new ConnectionInternalManager();
+                            });
                 }
 
-                return s_instance;
+                return s_instance.Value;
             }
         }
 
