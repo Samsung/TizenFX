@@ -269,6 +269,11 @@ internal static partial class Interop
         {
         }
 
+        internal PlayerHandle(IntPtr rawHandle) : this()
+        {
+            handle = rawHandle;
+        }
+
         public override bool IsInvalid => handle == IntPtr.Zero;
 
         protected override bool ReleaseHandle()
