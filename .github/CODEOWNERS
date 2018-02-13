@@ -21,7 +21,7 @@
 
 # Content
 /src/Tizen.Content.Download/          @taesubkim @chleun-moon @jeik01
-/src/Tizen.Content.MediaContent/      @coderhyme @hsgwon @hcjeon @jiyong2 @wantfire @haejeongkim @hancepark @gilboklee @eunhaechoi @tyoungroy
+/src/Tizen.Content.MediaContent/      @coderhyme @hsgwon @knl7777 @jiyong2 @wantfire @haejeongkim @hancepark @gilboklee @eunhaechoi @tyoungroy
 /src/Tizen.Content.MimeType/          @semun-lee @linuxias @pjh9216 @sukhyungkang
 
 # Context
@@ -36,7 +36,7 @@
 /src/Tizen.Messaging/                 @jeesunhub @jkkoo
 
 # Multimedia
-/src/Tizen.Multimedia*/               @coderhyme @hsgwon @hcjeon @jiyong2 @wantfire @haejeongkim @hancepark @gilboklee @eunhaechoi @tyoungroy
+/src/Tizen.Multimedia*/               @coderhyme @hsgwon @knl7777 @jiyong2 @wantfire @haejeongkim @hancepark @gilboklee @eunhaechoi @tyoungroy
 
 # NUI
 /src/Tizen.NUI*/                      @hyunjushin @dongsug-song @huiyueun @lxmark21 @neostom432
