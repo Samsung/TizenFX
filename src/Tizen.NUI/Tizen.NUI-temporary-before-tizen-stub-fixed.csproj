@@ -1,0 +1,31 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <!-- ProjectReference Include="..\Tizen.Applications.Common\Tizen.Applications.Common.csproj" / -->
+    <ProjectReference Include="..\Tizen.System.SystemSettings\Tizen.System.SystemSettings.csproj" />
+  </ItemGroup>
+
+  <Target Name="ChangeAliasesOfStrongNameAssemblies" BeforeTargets="FindReferenceAssembliesForReferences;ResolveReferences">
+    <ItemGroup>
+      <ReferencePath Condition="'%(FileName)' == 'Tizen.System.SystemSettings'">
+        <Aliases>TizenSystemSettings</Aliases>
+      </ReferencePath>
+    </ItemGroup>
+  </Target>
+
+  <ItemGroup>
+    <Compile Remove="src\internal\NUICoreBackend.cs" />
+    <Compile Remove="src\internal\NUIEventType.cs" />
+    <Compile Remove="src\internal\NUIWatchCoreBackend.cs" />
+    <Compile Remove="src\public\NUIApplication.cs" />
+    <Compile Remove="src\public\NUIWatchApplication.cs" />
+    <Compile Remove="src\public\NUIWidgetApplication.cs" />
+    <Compile Remove="src\public\WidgetViewManager.cs" />	
+    <Compile Remove="src\internal\NUIWidgetCoreBackend.cs" />	
+  </ItemGroup>
+
+</Project>
