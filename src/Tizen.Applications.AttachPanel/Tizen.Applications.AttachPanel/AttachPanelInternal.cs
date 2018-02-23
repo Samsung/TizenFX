@@ -10,7 +10,7 @@ namespace Tizen.Applications.AttachPanel
     /// <since_tizen> 4 </since_tizen>
     public partial class AttachPanel
     {
-        private static IntPtr s_attachPanel = IntPtr.Zero;
+        private IntPtr s_attachPanel = IntPtr.Zero;
 
         private static event EventHandler<StateEventArgs> s_eventEventHandler;
 
@@ -81,7 +81,7 @@ namespace Tizen.Applications.AttachPanel
             return Information.TryGetValue("http://tizen.org/feature/attach_panel", out bool isAttachPanelSupported) && isAttachPanelSupported;
         }
 
-        internal static bool IsInitialized()
+        internal bool IsInitialized()
         {
             return s_attachPanel != IntPtr.Zero;
         }
