@@ -46,7 +46,8 @@ namespace Tizen.Network.WiFi
 
     internal partial class WiFiManagerImpl
     {
-        private static WiFiManagerImpl _instance = null;
+        private static readonly Lazy<WiFiManagerImpl> _instance =
+            new Lazy<WiFiManagerImpl>(() => new WiFiManagerImpl());
         private Dictionary<IntPtr, Interop.WiFi.VoidCallback> _callback_map = new Dictionary<IntPtr, Interop.WiFi.VoidCallback>();
         private int _requestId = 0;
         private string _macAddress;
@@ -121,13 +122,7 @@ namespace Tizen.Network.WiFi
         {
             get
             {
-                if (_instance == null)
-                {
-                    Log.Debug(Globals.LogTag, "Instance is null");
-                    _instance = new WiFiManagerImpl();
-                }
-
-                return _instance;
+                return _instance.Value; 
             }
         }
 
@@ -139,6 +134,7 @@ namespace Tizen.Network.WiFi
 
         private WiFiManagerImpl()
         {
+            Log.Info(Globals.LogTag, "WiFiManagerImpl constructor"); 
         }
 
         internal SafeWiFiManagerHandle GetSafeHandle()
