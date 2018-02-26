@@ -46,8 +46,7 @@ namespace Tizen.Network.WiFi
 
     internal partial class WiFiManagerImpl
     {
-        private static readonly Lazy<WiFiManagerImpl> _instance =
-            new Lazy<WiFiManagerImpl>(() => new WiFiManagerImpl());
+        private static Lazy<WiFiManagerImpl> _instance = null;
         private Dictionary<IntPtr, Interop.WiFi.VoidCallback> _callback_map = new Dictionary<IntPtr, Interop.WiFi.VoidCallback>();
         private int _requestId = 0;
         private string _macAddress;
@@ -122,7 +121,16 @@ namespace Tizen.Network.WiFi
         {
             get
             {
-                return _instance.Value; 
+                if (_instance == null)
+                {
+                    Log.Debug(Globals.LogTag, "Instance is null");
+                    _instance = new Lazy<WiFiManagerImpl>(() =>
+                            {
+                                return new WiFiManagerImpl();
+                            });
+                }
+
+                return _instance.Value;
             }
         }
 
@@ -134,7 +142,6 @@ namespace Tizen.Network.WiFi
 
         private WiFiManagerImpl()
         {
-            Log.Info(Globals.LogTag, "WiFiManagerImpl constructor"); 
         }
 
         internal SafeWiFiManagerHandle GetSafeHandle()
@@ -448,16 +455,6 @@ namespace Tizen.Network.WiFi
                 WiFiErrorFactory.ThrowWiFiException(ret, GetSafeHandle().DangerousGetHandle());
             }
             return task.Task;
-        }
-
-        internal void UpdateAP(Interop.WiFi.SafeWiFiAPHandle apHandle)
-        {
-            int ret = Interop.WiFi.UpdateAP(GetSafeHandle(), apHandle.DangerousGetHandle());
-            if (ret != (int)WiFiError.None)
-            {
-                Log.Error(Globals.LogTag, "Failed to update AP, Error - " + (WiFiError)ret);
-                WiFiErrorFactory.ThrowWiFiException(ret, GetSafeHandle().DangerousGetHandle(), apHandle.DangerousGetHandle());
-            }
         }
     }
 }
