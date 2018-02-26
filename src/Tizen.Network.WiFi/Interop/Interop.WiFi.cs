@@ -38,10 +38,10 @@ internal static partial class Interop
         internal delegate void RssiLevelChangedCallback(int level, IntPtr userData);
 
         //capi-network-wifi-1.0.65-19.23.armv7l
-        [DllImport(Libraries.WiFi, EntryPoint = "wifi_manager_initialize")]
-        internal static extern int Initialize(out SafeWiFiManagerHandle wifi);
-        [DllImport(Libraries.WiFi, EntryPoint = "wifi_manager_deinitialize")]
-        internal static extern int Deinitialize(IntPtr wifi);
+        [DllImport(Libraries.WiFi, EntryPoint = "wifi_manager_initialize_cs")]
+        internal static extern int Initialize(int tid, out SafeWiFiManagerHandle wifi);
+        [DllImport(Libraries.WiFi, EntryPoint = "wifi_manager_deinitialize_cs")]
+        internal static extern int Deinitialize(int tid, IntPtr wifi);
 
         ////Wi-Fi Manager
         [DllImport(Libraries.WiFi, EntryPoint = "wifi_manager_activate")]
