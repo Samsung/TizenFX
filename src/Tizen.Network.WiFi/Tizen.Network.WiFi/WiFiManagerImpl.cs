@@ -122,7 +122,7 @@ namespace Tizen.Network.WiFi
         {
             get
             {
-               return _instance.Value;
+                return _instance.Value; 
             }
         }
 
