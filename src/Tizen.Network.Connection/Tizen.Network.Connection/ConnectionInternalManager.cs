@@ -25,15 +25,17 @@ using System.Threading;
 
 namespace Tizen.Network.Connection
 {
-    class HandleHolder : IDisposable
+    class HandleHolder
     {
         private IntPtr Handle;
-        private bool disposed = false;
+        private int tid;
 
         public HandleHolder()
         {
-            Log.Debug(Globals.LogTag, "Handle: " + Handle);
-            int ret = Interop.Connection.Create(out Handle);
+            tid = Thread.CurrentThread.ManagedThreadId;
+            Log.Info(Globals.LogTag, "PInvoke connection_destroy for Thread " + tid);
+            int ret = Interop.Connection.Create(tid, out Handle);
+            Log.Info(Globals.LogTag, "Handle: " + Handle);
             if(ret != (int)ConnectionError.None)
             {
                 ConnectionErrorFactory.CheckFeatureUnsupportedException(ret, "http://tizen.org/feature/network.telephony " + "http://tizen.org/feature/network.wifi " + "http://tizen.org/feature/network.tethering.bluetooth " + "http://tizen.org/feature/network.ethernet");
@@ -44,7 +46,7 @@ namespace Tizen.Network.Connection
 
         ~HandleHolder()
         {
-            Dispose(false);
+            Destroy();
         }
 
         internal IntPtr GetHandle()
@@ -52,30 +54,11 @@ namespace Tizen.Network.Connection
             Log.Debug(Globals.LogTag, "handleholder handle = " + Handle);
             return Handle;
         }
-        public void Dispose()
-        {
-            Dispose(true);
-            GC.SuppressFinalize(this);
-        }
-
-        private void Dispose(bool disposing)
-        {
-            Log.Debug(Globals.LogTag, ">>> HandleHolder Dispose with " + disposing);
-            Log.Debug(Globals.LogTag, ">>> Handle: " + Handle);
-            if (disposed)
-                return;
-
-            if (disposing)
-            {
-                // Free managed objects.
-                Destroy();
-            }
-            disposed = true;
-        }
 
         private void Destroy()
         {
-            Interop.Connection.Destroy(Handle);
+            Log.Info(Globals.LogTag, "PInvoke connection_destroy for Thread " + tid);
+            Interop.Connection.Destroy(tid, Handle);
             if (Handle != IntPtr.Zero)
             {
                 Handle = IntPtr.Zero;
@@ -85,8 +68,8 @@ namespace Tizen.Network.Connection
 
     internal class ConnectionInternalManager
     {
-        private bool disposed = false;
-        private static ConnectionInternalManager s_instance = null;
+        private static readonly Lazy<ConnectionInternalManager> s_instance =
+            new Lazy<ConnectionInternalManager>(() => new ConnectionInternalManager());
 
         private EventHandler<ConnectionTypeEventArgs> _ConnectionTypeChanged = null;
         private EventHandler<AddressEventArgs> _IPAddressChanged = null;
@@ -102,12 +85,7 @@ namespace Tizen.Network.Connection
         {
             get
             {
-                if (s_instance == null)
-                {
-                    s_instance = new ConnectionInternalManager();
-                }
-
-                return s_instance;
+                return s_instance.Value;
             }
         }
 
@@ -119,34 +97,11 @@ namespace Tizen.Network.Connection
 
         private ConnectionInternalManager()
         {
-
+            Log.Info(Globals.LogTag, "ConnectionInternalManager constructor");
         }
 
         ~ConnectionInternalManager()
         {
-            Dispose(false);
-        }
-
-        public void Dispose()
-        {
-            Dispose(true);
-            GC.SuppressFinalize(this);
-        }
-
-        private void Dispose(bool disposing)
-        {
-            Log.Debug(Globals.LogTag, ">>> ConnectionInternalManager Dispose with disposing " + disposing + ", disposed " + disposed);
-            Log.Debug(Globals.LogTag, ">>> Handle: " + GetHandle());
-            if (disposed)
-                return;
-
-            if (disposing)
-            {
-                // Free managed objects.
-            }
-
-            UnregisterEvents();
-            disposed = true;
         }
 
         internal IntPtr GetHandle()
@@ -405,7 +360,7 @@ namespace Tizen.Network.Connection
 
         internal System.Net.IPAddress GetIPAddress(AddressFamily family)
         {
-            Log.Debug(Globals.LogTag, "GetIPAddress " + family);
+            Log.Info(Globals.LogTag, "GetIPAddress " + family);
             IntPtr ip;
             int ret = Interop.Connection.GetIPAddress(GetHandle(), (int)family, out ip);
             if ((ConnectionError)ret != ConnectionError.None)
@@ -418,7 +373,7 @@ namespace Tizen.Network.Connection
 
             string result = Marshal.PtrToStringAnsi(ip);
             Interop.Libc.Free(ip);
-            Log.Debug(Globals.LogTag, "IPAddress " + result + " (" + result.Length + ")");
+            Log.Info(Globals.LogTag, "IPAddress " + result + " (" + result.Length + ")");
             if (result.Length == 0)
             {
                 if (family == AddressFamily.IPv4)
@@ -479,7 +434,7 @@ namespace Tizen.Network.Connection
 
         internal string GetMacAddress(ConnectionType type)
         {
-            Log.Debug(Globals.LogTag, "GetMacAddress " + type);
+            Log.Info(Globals.LogTag, "GetMacAddress " + type);
             IntPtr mac;
             int ret = Interop.Connection.GetMacAddress(GetHandle(), (int)type, out mac);
             if ((ConnectionError)ret != ConnectionError.None)
@@ -575,7 +530,7 @@ namespace Tizen.Network.Connection
         {
             get
             {
-                Log.Debug(Globals.LogTag, "get ConnectionType");
+                Log.Info(Globals.LogTag, "get ConnectionType");
                 int type = 0;
                 int ret = Interop.Connection.GetType(GetHandle(), out type);
                 if ((ConnectionError)ret != ConnectionError.None)
@@ -591,7 +546,7 @@ namespace Tizen.Network.Connection
         {
             get
             {
-                Log.Debug(Globals.LogTag, "get CellularState");
+                Log.Info(Globals.LogTag, "get CellularState");
                 int type = 0;
                 int ret = Interop.Connection.GetCellularState(GetHandle(), out type);
                 if ((ConnectionError)ret != ConnectionError.None)
@@ -607,7 +562,7 @@ namespace Tizen.Network.Connection
         {
             get
             {
-                Log.Debug(Globals.LogTag, "get WiFiState");
+                Log.Info(Globals.LogTag, "get WiFiState");
                 int type = 0;
                 int ret = Interop.Connection.GetWiFiState(GetHandle(), out type);
                 if ((ConnectionError)ret != ConnectionError.None)
@@ -623,7 +578,7 @@ namespace Tizen.Network.Connection
         {
             get
             {
-                Log.Debug(Globals.LogTag, "get BluetoothState");
+                Log.Info(Globals.LogTag, "get BluetoothState");
                 int type = 0;
                 int ret = Interop.Connection.GetBtState(GetHandle(), out type);
                 if ((ConnectionError)ret != ConnectionError.None)
@@ -639,7 +594,7 @@ namespace Tizen.Network.Connection
         {
             get
             {
-                Log.Debug(Globals.LogTag, "get ConnectionType");
+                Log.Info(Globals.LogTag, "get ConnectionType");
                 int type = 0;
                 int ret = Interop.Connection.GetEthernetState(GetHandle(), out type);
                 if ((ConnectionError)ret != ConnectionError.None)
@@ -655,7 +610,7 @@ namespace Tizen.Network.Connection
         {
             get
             {
-                Log.Debug(Globals.LogTag, "get EthernetCableState");
+                Log.Info(Globals.LogTag, "get EthernetCableState");
                 int type = 0;
                 int ret = Interop.Connection.GetEthernetCableState(GetHandle(), out type);
                 if ((ConnectionError)ret != ConnectionError.None)
@@ -745,7 +700,7 @@ namespace Tizen.Network.Connection
 
         internal void UpdateProfile(ConnectionProfile profile)
         {
-            Log.Debug(Globals.LogTag, "UpdateProfile");
+            Log.Info(Globals.LogTag, "UpdateProfile");
             if (profile != null)
             {
                 int ret = Interop.Connection.UpdateProfile(GetHandle(), profile.ProfileHandle);
@@ -766,7 +721,7 @@ namespace Tizen.Network.Connection
 
         internal ConnectionProfile GetCurrentProfile()
         {
-            Log.Debug(Globals.LogTag, "GetCurrentProfile");
+            Log.Info(Globals.LogTag, "GetCurrentProfile");
             IntPtr ProfileHandle;
             int ret = Interop.Connection.GetCurrentProfile(GetHandle(), out ProfileHandle);
             if ((ConnectionError)ret != ConnectionError.None)
