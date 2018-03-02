@@ -19,6 +19,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Runtime.InteropServices;
+using Tizen.Applications;
 
 namespace Tizen.Network.Connection
 {
@@ -35,6 +36,8 @@ namespace Tizen.Network.Connection
         private EventHandler<ProfileStateEventArgs> _ProfileStateChanged = null;
 
         private Interop.ConnectionProfile.ProfileStateChangedCallback _profileChangedCallback;
+
+        private static TizenSynchronizationContext context = new TizenSynchronizationContext();
 
         internal IntPtr GetHandle()
         {
@@ -57,7 +60,7 @@ namespace Tizen.Network.Connection
                 Log.Debug(Globals.LogTag, "ProfileStateChanged add");
                 if (_ProfileStateChanged == null)
                 {
-                    ProfileStateChangedStart();
+                    context.Post((x) => { ProfileStateChangedStart(); }, null);
                 }
                 _ProfileStateChanged += value;
             }
@@ -67,7 +70,7 @@ namespace Tizen.Network.Connection
                 _ProfileStateChanged -= value;
                 if (_ProfileStateChanged == null)
                 {
-                    ProfileStateChangedStop();
+                    context.Post((x) => { ProfileStateChangedStop(); }, null);
                 }
             }
         }

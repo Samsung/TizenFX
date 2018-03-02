@@ -22,6 +22,7 @@ using System.Threading.Tasks;
 using System.Runtime.InteropServices;
 using System.Collections;
 using System.Threading;
+using Tizen.Applications;
 
 namespace Tizen.Network.Connection
 {
@@ -81,6 +82,8 @@ namespace Tizen.Network.Connection
         private Interop.Connection.ConnectionAddressChangedCallback _proxyAddressChangedCallback;
         private Interop.Connection.EthernetCableStateChangedCallback _ethernetCableStateChangedCallback;
 
+        private static TizenSynchronizationContext context = new TizenSynchronizationContext();
+
         internal static ConnectionInternalManager Instance
         {
             get
@@ -115,9 +118,8 @@ namespace Tizen.Network.Connection
             {
                 if (_ConnectionTypeChanged == null)
                 {
-                    ConnectionTypeChangedStart();
+                    context.Post((x) => { ConnectionTypeChangedStart(); }, null);
                 }
-
                 _ConnectionTypeChanged += value;
             }
             remove
@@ -125,7 +127,7 @@ namespace Tizen.Network.Connection
                 _ConnectionTypeChanged -= value;
                 if (_ConnectionTypeChanged == null)
                 {
-                    ConnectionTypeChangedStop();
+                    context.Post((x) => { ConnectionTypeChangedStop(); }, null);
                 }
             }
         }
@@ -164,7 +166,7 @@ namespace Tizen.Network.Connection
             {
                 if (_EthernetCableStateChanged == null)
                 {
-                    EthernetCableStateChangedStart();
+                    context.Post((x) => { EthernetCableStateChangedStart(); }, null);
                 }
                 _EthernetCableStateChanged += value;
             }
@@ -173,7 +175,7 @@ namespace Tizen.Network.Connection
                 _EthernetCableStateChanged -= value;
                 if (_EthernetCableStateChanged == null)
                 {
-                    EthernetCableStateChangedStop();
+                    context.Post((x) => { EthernetCableStateChangedStop(); }, null);
                 }
             }
         }
@@ -216,7 +218,7 @@ namespace Tizen.Network.Connection
             {
                 if (_IPAddressChanged == null)
                 {
-                    IPAddressChangedStart();
+                    context.Post((x) => { IPAddressChangedStart(); }, null);
                 }
                 _IPAddressChanged += value;
             }
@@ -226,7 +228,7 @@ namespace Tizen.Network.Connection
                 _IPAddressChanged -= value;
                 if (_IPAddressChanged == null)
                 {
-                    IPAddressChangedStop();
+                    context.Post((x) => { IPAddressChangedStop(); }, null);
                 }
             }
         }
@@ -270,7 +272,7 @@ namespace Tizen.Network.Connection
                 //Console.WriteLine("ProxyAddressChanged Add **");
                 if (_ProxyAddressChanged == null)
                 {
-                    ProxyAddressChangedStart();
+                    context.Post((x) => { ProxyAddressChangedStart(); }, null);
                 }
 
                 _ProxyAddressChanged += value;
@@ -281,7 +283,7 @@ namespace Tizen.Network.Connection
                 _ProxyAddressChanged -= value;
                 if (_ProxyAddressChanged == null)
                 {
-                    ProxyAddressChangedStop();
+                    context.Post((x) => { ProxyAddressChangedStop(); }, null);
                 }
             }
         }

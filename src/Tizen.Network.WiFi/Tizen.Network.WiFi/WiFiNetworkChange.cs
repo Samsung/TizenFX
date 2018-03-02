@@ -16,6 +16,8 @@
 
 using System;
 using System.Threading.Tasks;
+using System.Threading;
+using Tizen.Applications;
 
 namespace Tizen.Network.WiFi
 {
@@ -52,13 +54,14 @@ namespace Tizen.Network.WiFi
         private Interop.WiFi.RssiLevelChangedCallback _rssiChangedCallback;
         private Interop.WiFi.VoidCallback _backgroundScanFinishedCallback;
 
+        private static TizenSynchronizationContext context = new TizenSynchronizationContext();
         internal event EventHandler<DeviceStateChangedEventArgs> DeviceStateChanged
         {
             add
             {
                 if (_deviceStateChanged == null)
                 {
-                    RegisterDeviceStateChangedEvent();
+                    context.Post((x) => { RegisterDeviceStateChangedEvent(); }, null);
                 }
                 _deviceStateChanged += value;
             }
@@ -67,7 +70,7 @@ namespace Tizen.Network.WiFi
                 _deviceStateChanged -= value;
                 if (_deviceStateChanged == null)
                 {
-                    UnregisterDeviceStateChangedEvent();
+                    context.Post((x) => { UnregisterDeviceStateChangedEvent(); }, null);
                 }
             }
         }
@@ -78,7 +81,7 @@ namespace Tizen.Network.WiFi
             {
                 if (_connectionStateChanged == null)
                 {
-                    RegisterConnectionStateChangedEvent();
+                    context.Post((x) => { RegisterConnectionStateChangedEvent(); }, null);
                 }
                 _connectionStateChanged += value;
             }
@@ -87,7 +90,7 @@ namespace Tizen.Network.WiFi
                 _connectionStateChanged -= value;
                 if (_connectionStateChanged == null)
                 {
-                    UnregisterConnectionStateChangedEvent();
+                    context.Post((x) => { UnregisterConnectionStateChangedEvent(); }, null);
                 }
             }
         }
@@ -98,7 +101,7 @@ namespace Tizen.Network.WiFi
             {
                 if (_rssiLevelChanged == null)
                 {
-                    RegisterRssiLevelChangedEvent();
+                    context.Post((x) => { RegisterRssiLevelChangedEvent(); }, null);
                 }
                 _rssiLevelChanged += value;
             }
@@ -107,7 +110,7 @@ namespace Tizen.Network.WiFi
                 _rssiLevelChanged -= value;
                 if (_rssiLevelChanged == null)
                 {
-                    UnregisterRssiLevelChangedEvent();
+                    context.Post((x) => { UnregisterRssiLevelChangedEvent(); }, null);
                 }
             }
         }
@@ -118,7 +121,7 @@ namespace Tizen.Network.WiFi
             {
                 if (_backgroundScanFinished == null)
                 {
-                    RegisterBackgroundScanFinishedEvent();
+                    context.Post((x) => { RegisterBackgroundScanFinishedEvent(); }, null);
                 }
                 _backgroundScanFinished += value;
             }
@@ -127,13 +130,14 @@ namespace Tizen.Network.WiFi
                 _backgroundScanFinished -= value;
                 if (_backgroundScanFinished == null)
                 {
-                    UnregisterBackgroundScanFinishedEvent();
+                    context.Post((x) => { UnregisterBackgroundScanFinishedEvent(); }, null);
                 }
             }
         }
 
         private void RegisterDeviceStateChangedEvent()
         {
+            Log.Info(Globals.LogTag, "RegisterDeviceStateChangedEvent in Thread " + Thread.CurrentThread.ManagedThreadId);
             _deviceChangedCallback = (int deviceState, IntPtr userDate) =>
             {
                 WiFiDeviceState state = (WiFiDeviceState)deviceState;
