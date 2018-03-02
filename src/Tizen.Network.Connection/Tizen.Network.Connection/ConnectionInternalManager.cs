@@ -116,19 +116,25 @@ namespace Tizen.Network.Connection
         {
             add
             {
-                if (_ConnectionTypeChanged == null)
-                {
-                    context.Post((x) => { ConnectionTypeChangedStart(); }, null);
-                }
-                _ConnectionTypeChanged += value;
+                context.Post((x) =>
+                        {
+                            if (_ConnectionTypeChanged == null)
+                            {
+                                ConnectionTypeChangedStart();
+                            }
+                            _ConnectionTypeChanged += value;
+                        }, null);
             }
             remove
             {
-                _ConnectionTypeChanged -= value;
-                if (_ConnectionTypeChanged == null)
-                {
-                    context.Post((x) => { ConnectionTypeChangedStop(); }, null);
-                }
+                context.Post((x) =>
+                        {
+                            _ConnectionTypeChanged -= value;
+                            if (_ConnectionTypeChanged == null)
+                            {
+                                ConnectionTypeChangedStop();
+                            }
+                        }, null);
             }
         }
 
@@ -164,19 +170,25 @@ namespace Tizen.Network.Connection
         {
             add
             {
-                if (_EthernetCableStateChanged == null)
-                {
-                    context.Post((x) => { EthernetCableStateChangedStart(); }, null);
-                }
-                _EthernetCableStateChanged += value;
+                context.Post((x) =>
+                        {
+                            if (_EthernetCableStateChanged == null)
+                            {
+                                EthernetCableStateChangedStart();
+                            }
+                            _EthernetCableStateChanged += value;
+                        }, null);
             }
             remove
             {
-                _EthernetCableStateChanged -= value;
-                if (_EthernetCableStateChanged == null)
-                {
-                    context.Post((x) => { EthernetCableStateChangedStop(); }, null);
-                }
+                context.Post((x) =>
+                        {
+                            _EthernetCableStateChanged -= value;
+                            if (_EthernetCableStateChanged == null)
+                            {
+                                EthernetCableStateChangedStop();
+                            }
+                        }, null);
             }
         }
 
@@ -216,20 +228,26 @@ namespace Tizen.Network.Connection
         {
             add
             {
-                if (_IPAddressChanged == null)
-                {
-                    context.Post((x) => { IPAddressChangedStart(); }, null);
-                }
-                _IPAddressChanged += value;
+                context.Post((x) =>
+                        {
+                            if (_IPAddressChanged == null)
+                            {
+                                IPAddressChangedStart();
+                            }
+                            _IPAddressChanged += value;
+                        }, null);
             }
 
             remove
             {
-                _IPAddressChanged -= value;
-                if (_IPAddressChanged == null)
-                {
-                    context.Post((x) => { IPAddressChangedStop(); }, null);
-                }
+                context.Post((x) =>
+                        {
+                            _IPAddressChanged -= value;
+                            if (_IPAddressChanged == null)
+                            {
+                                IPAddressChangedStop();
+                            }
+                        }, null);
             }
         }
 
@@ -269,22 +287,25 @@ namespace Tizen.Network.Connection
         {
             add
             {
-                //Console.WriteLine("ProxyAddressChanged Add **");
-                if (_ProxyAddressChanged == null)
-                {
-                    context.Post((x) => { ProxyAddressChangedStart(); }, null);
-                }
-
-                _ProxyAddressChanged += value;
+                context.Post((x) =>
+                        {
+                            if (_ProxyAddressChanged == null)
+                            {
+                               ProxyAddressChangedStart();
+                            }
+                            _ProxyAddressChanged += value;
+                        }, null);
             }
             remove
             {
-                //Console.WriteLine("ProxyAddressChanged Remove");
-                _ProxyAddressChanged -= value;
-                if (_ProxyAddressChanged == null)
-                {
-                    context.Post((x) => { ProxyAddressChangedStop(); }, null);
-                }
+                context.Post((x) =>
+                        {
+                            _ProxyAddressChanged -= value;
+                            if (_ProxyAddressChanged == null)
+                            {
+                                ProxyAddressChangedStop();
+                            }
+                        }, null);
             }
         }
 

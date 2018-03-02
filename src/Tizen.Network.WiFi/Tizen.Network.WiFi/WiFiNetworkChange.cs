@@ -59,19 +59,25 @@ namespace Tizen.Network.WiFi
         {
             add
             {
-                if (_deviceStateChanged == null)
-                {
-                    context.Post((x) => { RegisterDeviceStateChangedEvent(); }, null);
-                }
-                _deviceStateChanged += value;
+                context.Post((x) =>
+                        {
+                            if (_deviceStateChanged == null)
+                            {
+                                RegisterDeviceStateChangedEvent(); 
+                            }
+                            _deviceStateChanged += value;
+                        }, null);
             }
             remove
             {
-                _deviceStateChanged -= value;
-                if (_deviceStateChanged == null)
-                {
-                    context.Post((x) => { UnregisterDeviceStateChangedEvent(); }, null);
-                }
+                context.Post((x) =>
+                        {
+                            _deviceStateChanged -= value;
+                            if (_deviceStateChanged == null)
+                            {
+                                UnregisterDeviceStateChangedEvent();
+                            }
+                        }, null);
             }
         }
 
@@ -79,19 +85,25 @@ namespace Tizen.Network.WiFi
         {
             add
             {
-                if (_connectionStateChanged == null)
-                {
-                    context.Post((x) => { RegisterConnectionStateChangedEvent(); }, null);
-                }
-                _connectionStateChanged += value;
+                context.Post((x) =>
+                        {
+                            if (_connectionStateChanged == null)
+                            {
+                                RegisterConnectionStateChangedEvent();
+                            }
+                            _connectionStateChanged += value;
+                        }, null);
             }
             remove
             {
-                _connectionStateChanged -= value;
-                if (_connectionStateChanged == null)
-                {
-                    context.Post((x) => { UnregisterConnectionStateChangedEvent(); }, null);
-                }
+                context.Post((x) =>
+                        {
+                            _connectionStateChanged -= value;
+                            if (_connectionStateChanged == null)
+                            {
+                                UnregisterConnectionStateChangedEvent();
+                            }
+                        }, null);
             }
         }
 
@@ -99,19 +111,25 @@ namespace Tizen.Network.WiFi
         {
             add
             {
-                if (_rssiLevelChanged == null)
-                {
-                    context.Post((x) => { RegisterRssiLevelChangedEvent(); }, null);
-                }
-                _rssiLevelChanged += value;
+                context.Post((x) =>
+                        {
+                            if (_rssiLevelChanged == null)
+                            {
+                                RegisterRssiLevelChangedEvent();
+                            }
+                            _rssiLevelChanged += value;
+                        }, null);
             }
             remove
             {
-                _rssiLevelChanged -= value;
-                if (_rssiLevelChanged == null)
-                {
-                    context.Post((x) => { UnregisterRssiLevelChangedEvent(); }, null);
-                }
+                context.Post((x) =>
+                        {
+                            _rssiLevelChanged -= value;
+                            if (_rssiLevelChanged == null)
+                            {
+                                UnregisterRssiLevelChangedEvent();
+                            }
+                        }, null);
             }
         }
 
@@ -119,19 +137,25 @@ namespace Tizen.Network.WiFi
         {
             add
             {
-                if (_backgroundScanFinished == null)
-                {
-                    context.Post((x) => { RegisterBackgroundScanFinishedEvent(); }, null);
-                }
-                _backgroundScanFinished += value;
+                context.Post((x) =>
+                        {
+                            if (_backgroundScanFinished == null)
+                            {
+                                RegisterBackgroundScanFinishedEvent();
+                            }
+                            _backgroundScanFinished += value;
+                        }, null);
             }
             remove
             {
-                _backgroundScanFinished -= value;
-                if (_backgroundScanFinished == null)
-                {
-                    context.Post((x) => { UnregisterBackgroundScanFinishedEvent(); }, null);
-                }
+                context.Post((x) =>
+                        {
+                            _backgroundScanFinished -= value;
+                            if (_backgroundScanFinished == null)
+                            {
+                                UnregisterBackgroundScanFinishedEvent();
+                            }
+                        }, null);
             }
         }
 
