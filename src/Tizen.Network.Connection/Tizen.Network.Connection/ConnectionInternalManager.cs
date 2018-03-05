@@ -58,6 +58,7 @@ namespace Tizen.Network.Connection
 
         private void Destroy()
         {
+
             Log.Info(Globals.LogTag, "PInvoke connection_destroy for Thread " + _tid);
             Interop.Connection.Destroy(_tid, Handle);
             if (Handle != IntPtr.Zero)
