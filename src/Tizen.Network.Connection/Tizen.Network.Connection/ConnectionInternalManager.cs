@@ -29,13 +29,13 @@ namespace Tizen.Network.Connection
     class HandleHolder
     {
         private IntPtr Handle;
-        private int tid;
+        private int _tid;
 
         public HandleHolder()
         {
-            tid = Thread.CurrentThread.ManagedThreadId;
-            Log.Info(Globals.LogTag, "PInvoke connection_destroy for Thread " + tid);
-            int ret = Interop.Connection.Create(tid, out Handle);
+            _tid = Thread.CurrentThread.ManagedThreadId;
+            Log.Info(Globals.LogTag, "PInvoke connection_destroy for Thread " + _tid);
+            int ret = Interop.Connection.Create(_tid, out Handle);
             Log.Info(Globals.LogTag, "Handle: " + Handle);
             if(ret != (int)ConnectionError.None)
             {
@@ -58,8 +58,8 @@ namespace Tizen.Network.Connection
 
         private void Destroy()
         {
-            Log.Info(Globals.LogTag, "PInvoke connection_destroy for Thread " + tid);
-            Interop.Connection.Destroy(tid, Handle);
+            Log.Info(Globals.LogTag, "PInvoke connection_destroy for Thread " + _tid);
+            Interop.Connection.Destroy(_tid, Handle);
             if (Handle != IntPtr.Zero)
             {
                 Handle = IntPtr.Zero;
@@ -105,6 +105,7 @@ namespace Tizen.Network.Connection
 
         ~ConnectionInternalManager()
         {
+            UnregisterEvents();
         }
 
         internal IntPtr GetHandle()

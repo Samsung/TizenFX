@@ -140,12 +140,9 @@ namespace Tizen.Network.Connection
             if (disposed)
                 return;
 
-            if (disposing)
-            {
-                // Free managed objects.
-                UnregisterEvents();
-                Destroy();
-            }
+            // Free unmanaged objects
+            UnregisterEvents();
+            Destroy();
             disposed = true;
         }
 
