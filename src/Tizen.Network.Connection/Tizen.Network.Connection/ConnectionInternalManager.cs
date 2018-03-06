@@ -83,7 +83,7 @@ namespace Tizen.Network.Connection
         private Interop.Connection.ConnectionAddressChangedCallback _proxyAddressChangedCallback;
         private Interop.Connection.EthernetCableStateChangedCallback _ethernetCableStateChangedCallback;
 
-        private static TizenSynchronizationContext context = new TizenSynchronizationContext();
+        private TizenSynchronizationContext context = new TizenSynchronizationContext();
 
         internal static ConnectionInternalManager Instance
         {

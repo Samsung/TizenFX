@@ -37,7 +37,7 @@ namespace Tizen.Network.Connection
 
         private Interop.ConnectionProfile.ProfileStateChangedCallback _profileChangedCallback;
 
-        private static TizenSynchronizationContext context = new TizenSynchronizationContext();
+        private TizenSynchronizationContext context = new TizenSynchronizationContext();
 
         internal IntPtr GetHandle()
         {

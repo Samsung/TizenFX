@@ -54,7 +54,7 @@ namespace Tizen.Network.WiFi
         private Interop.WiFi.RssiLevelChangedCallback _rssiChangedCallback;
         private Interop.WiFi.VoidCallback _backgroundScanFinishedCallback;
 
-        private static TizenSynchronizationContext context = new TizenSynchronizationContext();
+        private TizenSynchronizationContext context = new TizenSynchronizationContext();
         internal event EventHandler<DeviceStateChangedEventArgs> DeviceStateChanged
         {
             add
@@ -177,6 +177,7 @@ namespace Tizen.Network.WiFi
 
         private void UnregisterDeviceStateChangedEvent()
         {
+            Log.Info(Globals.LogTag, "UnregisterDeviceStateChangedEvent in Thread " + Thread.CurrentThread.ManagedThreadId);
             int ret = Interop.WiFi.UnsetDeviceStateChangedCallback(GetSafeHandle());
             if (ret != (int)WiFiError.None)
             {
