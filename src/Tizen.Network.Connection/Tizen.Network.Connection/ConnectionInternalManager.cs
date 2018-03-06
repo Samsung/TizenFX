@@ -22,19 +22,20 @@ using System.Threading.Tasks;
 using System.Runtime.InteropServices;
 using System.Collections;
 using System.Threading;
+using Tizen.Applications;
 
 namespace Tizen.Network.Connection
 {
     class HandleHolder
     {
         private IntPtr Handle;
-        private int tid;
+        private int _tid;
 
         public HandleHolder()
         {
-            tid = Thread.CurrentThread.ManagedThreadId;
-            Log.Info(Globals.LogTag, "PInvoke connection_destroy for Thread " + tid);
-            int ret = Interop.Connection.Create(tid, out Handle);
+            _tid = Thread.CurrentThread.ManagedThreadId;
+            Log.Info(Globals.LogTag, "PInvoke connection_destroy for Thread " + _tid);
+            int ret = Interop.Connection.Create(_tid, out Handle);
             Log.Info(Globals.LogTag, "Handle: " + Handle);
             if(ret != (int)ConnectionError.None)
             {
@@ -57,8 +58,9 @@ namespace Tizen.Network.Connection
 
         private void Destroy()
         {
-            Log.Info(Globals.LogTag, "PInvoke connection_destroy for Thread " + tid);
-            Interop.Connection.Destroy(tid, Handle);
+
+            Log.Info(Globals.LogTag, "PInvoke connection_destroy for Thread " + _tid);
+            Interop.Connection.Destroy(_tid, Handle);
             if (Handle != IntPtr.Zero)
             {
                 Handle = IntPtr.Zero;
@@ -81,6 +83,8 @@ namespace Tizen.Network.Connection
         private Interop.Connection.ConnectionAddressChangedCallback _proxyAddressChangedCallback;
         private Interop.Connection.EthernetCableStateChangedCallback _ethernetCableStateChangedCallback;
 
+        private TizenSynchronizationContext context = new TizenSynchronizationContext();
+
         internal static ConnectionInternalManager Instance
         {
             get
@@ -102,6 +106,7 @@ namespace Tizen.Network.Connection
 
         ~ConnectionInternalManager()
         {
+            UnregisterEvents();
         }
 
         internal IntPtr GetHandle()
@@ -113,20 +118,25 @@ namespace Tizen.Network.Connection
         {
             add
             {
-                if (_ConnectionTypeChanged == null)
-                {
-                    ConnectionTypeChangedStart();
-                }
-
-                _ConnectionTypeChanged += value;
+                context.Post((x) =>
+                        {
+                            if (_ConnectionTypeChanged == null)
+                            {
+                                ConnectionTypeChangedStart();
+                            }
+                            _ConnectionTypeChanged += value;
+                        }, null);
             }
             remove
             {
-                _ConnectionTypeChanged -= value;
-                if (_ConnectionTypeChanged == null)
-                {
-                    ConnectionTypeChangedStop();
-                }
+                context.Post((x) =>
+                        {
+                            _ConnectionTypeChanged -= value;
+                            if (_ConnectionTypeChanged == null)
+                            {
+                                ConnectionTypeChangedStop();
+                            }
+                        }, null);
             }
         }
 
@@ -162,19 +172,25 @@ namespace Tizen.Network.Connection
         {
             add
             {
-                if (_EthernetCableStateChanged == null)
-                {
-                    EthernetCableStateChangedStart();
-                }
-                _EthernetCableStateChanged += value;
+                context.Post((x) =>
+                        {
+                            if (_EthernetCableStateChanged == null)
+                            {
+                                EthernetCableStateChangedStart();
+                            }
+                            _EthernetCableStateChanged += value;
+                        }, null);
             }
             remove
             {
-                _EthernetCableStateChanged -= value;
-                if (_EthernetCableStateChanged == null)
-                {
-                    EthernetCableStateChangedStop();
-                }
+                context.Post((x) =>
+                        {
+                            _EthernetCableStateChanged -= value;
+                            if (_EthernetCableStateChanged == null)
+                            {
+                                EthernetCableStateChangedStop();
+                            }
+                        }, null);
             }
         }
 
@@ -214,20 +230,26 @@ namespace Tizen.Network.Connection
         {
             add
             {
-                if (_IPAddressChanged == null)
-                {
-                    IPAddressChangedStart();
-                }
-                _IPAddressChanged += value;
+                context.Post((x) =>
+                        {
+                            if (_IPAddressChanged == null)
+                            {
+                                IPAddressChangedStart();
+                            }
+                            _IPAddressChanged += value;
+                        }, null);
             }
 
             remove
             {
-                _IPAddressChanged -= value;
-                if (_IPAddressChanged == null)
-                {
-                    IPAddressChangedStop();
-                }
+                context.Post((x) =>
+                        {
+                            _IPAddressChanged -= value;
+                            if (_IPAddressChanged == null)
+                            {
+                                IPAddressChangedStop();
+                            }
+                        }, null);
             }
         }
 
@@ -267,22 +289,25 @@ namespace Tizen.Network.Connection
         {
             add
             {
-                //Console.WriteLine("ProxyAddressChanged Add **");
-                if (_ProxyAddressChanged == null)
-                {
-                    ProxyAddressChangedStart();
-                }
-
-                _ProxyAddressChanged += value;
+                context.Post((x) =>
+                        {
+                            if (_ProxyAddressChanged == null)
+                            {
+                               ProxyAddressChangedStart();
+                            }
+                            _ProxyAddressChanged += value;
+                        }, null);
             }
             remove
             {
-                //Console.WriteLine("ProxyAddressChanged Remove");
-                _ProxyAddressChanged -= value;
-                if (_ProxyAddressChanged == null)
-                {
-                    ProxyAddressChangedStop();
-                }
+                context.Post((x) =>
+                        {
+                            _ProxyAddressChanged -= value;
+                            if (_ProxyAddressChanged == null)
+                            {
+                                ProxyAddressChangedStop();
+                            }
+                        }, null);
             }
         }
 

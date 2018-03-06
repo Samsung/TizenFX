@@ -16,6 +16,8 @@
 
 using System;
 using System.Threading.Tasks;
+using System.Threading;
+using Tizen.Applications;
 
 namespace Tizen.Network.WiFi
 {
@@ -52,23 +54,30 @@ namespace Tizen.Network.WiFi
         private Interop.WiFi.RssiLevelChangedCallback _rssiChangedCallback;
         private Interop.WiFi.VoidCallback _backgroundScanFinishedCallback;
 
+        private TizenSynchronizationContext context = new TizenSynchronizationContext();
         internal event EventHandler<DeviceStateChangedEventArgs> DeviceStateChanged
         {
             add
             {
-                if (_deviceStateChanged == null)
-                {
-                    RegisterDeviceStateChangedEvent();
-                }
-                _deviceStateChanged += value;
+                context.Post((x) =>
+                        {
+                            if (_deviceStateChanged == null)
+                            {
+                                RegisterDeviceStateChangedEvent(); 
+                            }
+                            _deviceStateChanged += value;
+                        }, null);
             }
             remove
             {
-                _deviceStateChanged -= value;
-                if (_deviceStateChanged == null)
-                {
-                    UnregisterDeviceStateChangedEvent();
-                }
+                context.Post((x) =>
+                        {
+                            _deviceStateChanged -= value;
+                            if (_deviceStateChanged == null)
+                            {
+                                UnregisterDeviceStateChangedEvent();
+                            }
+                        }, null);
             }
         }
 
@@ -76,19 +85,25 @@ namespace Tizen.Network.WiFi
         {
             add
             {
-                if (_connectionStateChanged == null)
-                {
-                    RegisterConnectionStateChangedEvent();
-                }
-                _connectionStateChanged += value;
+                context.Post((x) =>
+                        {
+                            if (_connectionStateChanged == null)
+                            {
+                                RegisterConnectionStateChangedEvent();
+                            }
+                            _connectionStateChanged += value;
+                        }, null);
             }
             remove
             {
-                _connectionStateChanged -= value;
-                if (_connectionStateChanged == null)
-                {
-                    UnregisterConnectionStateChangedEvent();
-                }
+                context.Post((x) =>
+                        {
+                            _connectionStateChanged -= value;
+                            if (_connectionStateChanged == null)
+                            {
+                                UnregisterConnectionStateChangedEvent();
+                            }
+                        }, null);
             }
         }
 
@@ -96,19 +111,25 @@ namespace Tizen.Network.WiFi
         {
             add
             {
-                if (_rssiLevelChanged == null)
-                {
-                    RegisterRssiLevelChangedEvent();
-                }
-                _rssiLevelChanged += value;
+                context.Post((x) =>
+                        {
+                            if (_rssiLevelChanged == null)
+                            {
+                                RegisterRssiLevelChangedEvent();
+                            }
+                            _rssiLevelChanged += value;
+                        }, null);
             }
             remove
             {
-                _rssiLevelChanged -= value;
-                if (_rssiLevelChanged == null)
-                {
-                    UnregisterRssiLevelChangedEvent();
-                }
+                context.Post((x) =>
+                        {
+                            _rssiLevelChanged -= value;
+                            if (_rssiLevelChanged == null)
+                            {
+                                UnregisterRssiLevelChangedEvent();
+                            }
+                        }, null);
             }
         }
 
@@ -116,24 +137,31 @@ namespace Tizen.Network.WiFi
         {
             add
             {
-                if (_backgroundScanFinished == null)
-                {
-                    RegisterBackgroundScanFinishedEvent();
-                }
-                _backgroundScanFinished += value;
+                context.Post((x) =>
+                        {
+                            if (_backgroundScanFinished == null)
+                            {
+                                RegisterBackgroundScanFinishedEvent();
+                            }
+                            _backgroundScanFinished += value;
+                        }, null);
             }
             remove
             {
-                _backgroundScanFinished -= value;
-                if (_backgroundScanFinished == null)
-                {
-                    UnregisterBackgroundScanFinishedEvent();
-                }
+                context.Post((x) =>
+                        {
+                            _backgroundScanFinished -= value;
+                            if (_backgroundScanFinished == null)
+                            {
+                                UnregisterBackgroundScanFinishedEvent();
+                            }
+                        }, null);
             }
         }
 
         private void RegisterDeviceStateChangedEvent()
         {
+            Log.Info(Globals.LogTag, "RegisterDeviceStateChangedEvent in Thread " + Thread.CurrentThread.ManagedThreadId);
             _deviceChangedCallback = (int deviceState, IntPtr userDate) =>
             {
                 WiFiDeviceState state = (WiFiDeviceState)deviceState;
@@ -149,6 +177,7 @@ namespace Tizen.Network.WiFi
 
         private void UnregisterDeviceStateChangedEvent()
         {
+            Log.Info(Globals.LogTag, "UnregisterDeviceStateChangedEvent in Thread " + Thread.CurrentThread.ManagedThreadId);
             int ret = Interop.WiFi.UnsetDeviceStateChangedCallback(GetSafeHandle());
             if (ret != (int)WiFiError.None)
             {
