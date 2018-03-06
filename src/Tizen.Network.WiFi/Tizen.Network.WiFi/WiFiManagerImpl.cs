@@ -153,7 +153,7 @@ namespace Tizen.Network.WiFi
                 Log.Error(Globals.LogTag, "Failed to initialize wifi, Error - " + (WiFiError)ret);
                 WiFiErrorFactory.ThrowWiFiException(ret, "http://tizen.org/privilege/network.get");
             }
-            handle.TID = tid;
+            handle.SetTID(tid);
             return handle;
         }
 
