@@ -19,6 +19,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Runtime.InteropServices;
+using Tizen.Applications;
 
 namespace Tizen.Network.Connection
 {
@@ -35,6 +36,8 @@ namespace Tizen.Network.Connection
         private EventHandler<ProfileStateEventArgs> _ProfileStateChanged = null;
 
         private Interop.ConnectionProfile.ProfileStateChangedCallback _profileChangedCallback;
+
+        private TizenSynchronizationContext context = new TizenSynchronizationContext();
 
         internal IntPtr GetHandle()
         {
@@ -55,20 +58,26 @@ namespace Tizen.Network.Connection
             add
             {
                 Log.Debug(Globals.LogTag, "ProfileStateChanged add");
-                if (_ProfileStateChanged == null)
-                {
-                    ProfileStateChangedStart();
-                }
-                _ProfileStateChanged += value;
+                context.Post((x) =>
+                        {
+                            if (_ProfileStateChanged == null)
+                            {
+                                ProfileStateChangedStart();
+                            }
+                            _ProfileStateChanged += value;
+                        }, null);
             }
             remove
             {
                 Log.Debug(Globals.LogTag, "ProfileStateChanged remove");
-                _ProfileStateChanged -= value;
-                if (_ProfileStateChanged == null)
-                {
-                    ProfileStateChangedStop();
-                }
+                context.Post((x) =>
+                        {
+                            _ProfileStateChanged -= value;
+                            if (_ProfileStateChanged == null)
+                            {
+                                ProfileStateChangedStop();
+                            }
+                        }, null);
             }
         }
 
@@ -131,12 +140,9 @@ namespace Tizen.Network.Connection
             if (disposed)
                 return;
 
-            if (disposing)
-            {
-                // Free managed objects.
-                UnregisterEvents();
-                Destroy();
-            }
+            // Free unmanaged objects
+            UnregisterEvents();
+            Destroy();
             disposed = true;
         }
 
