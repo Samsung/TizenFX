@@ -59,25 +59,25 @@ namespace Tizen.Network.Connection
             {
                 Log.Debug(Globals.LogTag, "ProfileStateChanged add");
                 context.Post((x) =>
-                        {
-                            if (_ProfileStateChanged == null)
-                            {
-                                ProfileStateChangedStart();
-                            }
-                            _ProfileStateChanged += value;
-                        }, null);
+                {
+                    if (_ProfileStateChanged == null)
+                    {
+                        ProfileStateChangedStart();
+                    }
+                    _ProfileStateChanged += value;
+                }, null);
             }
             remove
             {
                 Log.Debug(Globals.LogTag, "ProfileStateChanged remove");
                 context.Post((x) =>
-                        {
-                            _ProfileStateChanged -= value;
-                            if (_ProfileStateChanged == null)
-                            {
-                                ProfileStateChangedStop();
-                            }
-                        }, null);
+                {
+                    _ProfileStateChanged -= value;
+                    if (_ProfileStateChanged == null)
+                    {
+                        ProfileStateChangedStop();
+                    }
+                }, null);
             }
         }
 
