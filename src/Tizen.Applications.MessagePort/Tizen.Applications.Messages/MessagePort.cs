@@ -161,7 +161,7 @@ namespace Tizen.Applications.Messages
                         Message = new Bundle(new SafeBundleHandle(message, false))
                     };
 
-                    if (!String.IsNullOrEmpty(remotePortName) && !String.IsNullOrEmpty(remoteAppId))
+                    if (!String.IsNullOrEmpty(remoteAppId))
                     {
                         args.Remote = new RemoteValues()
                         {

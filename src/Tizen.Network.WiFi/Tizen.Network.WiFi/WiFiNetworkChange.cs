@@ -17,6 +17,7 @@
 using System;
 using System.Threading.Tasks;
 using System.Threading;
+using Tizen.Applications;
 
 namespace Tizen.Network.WiFi
 {
@@ -53,6 +54,7 @@ namespace Tizen.Network.WiFi
         private Interop.WiFi.RssiLevelChangedCallback _rssiChangedCallback;
         private Interop.WiFi.VoidCallback _backgroundScanFinishedCallback;
 
+        private TizenSynchronizationContext context = new TizenSynchronizationContext();
         internal event EventHandler<DeviceStateChangedEventArgs> DeviceStateChanged
         {
             add
