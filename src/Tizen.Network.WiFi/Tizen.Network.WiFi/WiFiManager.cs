@@ -29,6 +29,8 @@ namespace Tizen.Network.WiFi
     [EditorBrowsable(EditorBrowsableState.Never)]
     public sealed class SafeWiFiManagerHandle : SafeHandle
     {
+        private int _tid;
+
         internal SafeWiFiManagerHandle() : base(IntPtr.Zero, true)
         {
         }
@@ -51,9 +53,15 @@ namespace Tizen.Network.WiFi
         /// </summary>
         protected override bool ReleaseHandle()
         {
-            Interop.WiFi.Deinitialize(this.handle);
+            Interop.WiFi.Deinitialize(_tid, this.handle);
             this.SetHandle(IntPtr.Zero);
             return true;
+        }
+
+        internal void SetTID(int id)
+        {
+            _tid = id;
+            Log.Info(Globals.LogTag, "New Handle for Thread " + _tid);
         }
     }
 
