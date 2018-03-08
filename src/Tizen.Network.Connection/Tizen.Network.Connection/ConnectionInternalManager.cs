@@ -34,7 +34,7 @@ namespace Tizen.Network.Connection
         public HandleHolder()
         {
             _tid = Thread.CurrentThread.ManagedThreadId;
-            Log.Info(Globals.LogTag, "PInvoke connection_destroy for Thread " + _tid);
+            Log.Info(Globals.LogTag, "PInvoke connection_create for Thread " + _tid);
             int ret = Interop.Connection.Create(_tid, out Handle);
             Log.Info(Globals.LogTag, "Handle: " + Handle);
             if(ret != (int)ConnectionError.None)
@@ -142,6 +142,7 @@ namespace Tizen.Network.Connection
 
         private void ConnectionTypeChangedStart()
         {
+            Log.Info(Globals.LogTag, "Register ConnectionTypeChanged");
             _connectionTypeChangedCallback = (ConnectionType type, IntPtr user_data) =>
             {
                 if (_ConnectionTypeChanged != null)
@@ -160,6 +161,7 @@ namespace Tizen.Network.Connection
 
         private void ConnectionTypeChangedStop()
         {
+            Log.Info(Globals.LogTag, "Unregister ConnectionTypeChanged");
             int ret = Interop.Connection.UnsetTypeChangedCallback(GetHandle());
             if ((ConnectionError)ret != ConnectionError.None)
             {
@@ -196,6 +198,7 @@ namespace Tizen.Network.Connection
 
         private void EthernetCableStateChangedStart()
         {
+            Log.Info(Globals.LogTag, "Register EthernetCableStateChanged");
             _ethernetCableStateChangedCallback = (EthernetCableState state, IntPtr user_data) =>
             {
                 if (_EthernetCableStateChanged != null)
@@ -216,6 +219,7 @@ namespace Tizen.Network.Connection
 
         private void EthernetCableStateChangedStop()
         {
+            Log.Info(Globals.LogTag, "Unregister EthernetCableStateChanged");
             int ret = Interop.Connection.UnsetEthernetCableStateChagedCallback(GetHandle());
             if ((ConnectionError)ret != ConnectionError.None)
             {
@@ -255,6 +259,7 @@ namespace Tizen.Network.Connection
 
         private void IPAddressChangedStart()
         {
+            Log.Info(Globals.LogTag, "Register IPAddressChanged");
             _connectionAddressChangedCallback = (IntPtr IPv4, IntPtr IPv6, IntPtr UserData) =>
             {
                 if (_IPAddressChanged != null)
@@ -278,6 +283,7 @@ namespace Tizen.Network.Connection
 
         private void IPAddressChangedStop()
         {
+            Log.Info(Globals.LogTag, "Unregister IPAddressChanged");
             int ret = Interop.Connection.UnsetIPAddressChangedCallback(GetHandle());
             if ((ConnectionError)ret != ConnectionError.None)
             {
@@ -313,6 +319,7 @@ namespace Tizen.Network.Connection
 
         private void ProxyAddressChangedStart()
         {
+            Log.Info(Globals.LogTag, "Register ProxyAddressChanged");
             _proxyAddressChangedCallback = (IntPtr IPv4, IntPtr IPv6, IntPtr UserData) =>
             {
                 if (_ProxyAddressChanged != null)
@@ -336,6 +343,7 @@ namespace Tizen.Network.Connection
 
         private void ProxyAddressChangedStop()
         {
+            Log.Info(Globals.LogTag, "Unregister ProxyAddressChanged");
             int ret = Interop.Connection.UnsetProxyAddressChangedCallback(GetHandle());
             if ((ConnectionError)ret != ConnectionError.None)
             {
