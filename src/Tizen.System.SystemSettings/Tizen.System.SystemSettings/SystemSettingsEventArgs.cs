@@ -1021,4 +1021,37 @@ namespace Tizen.System
         }
     }
 
+
+    /// <summary>
+    /// EventArgs type for the VibrationChanged event.
+    /// </summary>
+    /// <privilege>http://tizen.org/privilege/systemsettings.admin</privilege>
+    /// <privlevel>platform</privlevel>
+    /// <feature>http://tizen.org/feature/systemsetting</feature>
+    /// <exception cref="ArgumentException">Invalid Argument</exception>
+    /// <exception cref="NotSupportedException">Not Supported feature</exception>
+    /// <exception cref="InvalidOperationException">Invalid operation</exception>
+    /// <exception cref="UnauthorizedAccessException">Thrown when application does not have privilege to access this method.</exception>
+    /// <since_tizen> 3 </since_tizen>
+    public class VibrationChangedEventArgs : EventArgs
+    {
+        private readonly bool _vibration;
+        internal VibrationChangedEventArgs(bool val)
+        {
+            _vibration = val;
+        }
+
+        /// <summary>
+        /// Indicates whether the 24-hour clock is used. If the value is false, the 12-hour clock is used.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
+        public bool Value
+        {
+            get
+            {
+                return _vibration;
+            }
+        }
+    }
+
 }
