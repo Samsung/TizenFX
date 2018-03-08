@@ -19,6 +19,7 @@ using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Runtime.InteropServices;
+using Tizen.Applications;
 
 namespace Tizen.Network.WiFi
 {
@@ -48,7 +49,12 @@ namespace Tizen.Network.WiFi
     {
         private static readonly Lazy<WiFiManagerImpl> _instance =
             new Lazy<WiFiManagerImpl>(() => new WiFiManagerImpl());
-        private Dictionary<IntPtr, Interop.WiFi.VoidCallback> _callback_map = new Dictionary<IntPtr, Interop.WiFi.VoidCallback>();
+
+        private TizenSynchronizationContext context = new TizenSynchronizationContext();
+        
+        private Dictionary<IntPtr, Interop.WiFi.VoidCallback> _callback_map =
+            new Dictionary<IntPtr, Interop.WiFi.VoidCallback>();
+        
         private int _requestId = 0;
         private string _macAddress;
 
@@ -288,7 +294,7 @@ namespace Tizen.Network.WiFi
                 id = (IntPtr)_requestId++;
                 _callback_map[id] = (error, key) =>
                 {
-                    Log.Info(Globals.LogTag, "wifi activated");
+                    Log.Info(Globals.LogTag, "ActivateAsync done");
                     if (error != (int)WiFiError.None)
                     {
                         Log.Error(Globals.LogTag, "Error occurs during WiFi activating, " + (WiFiError)error);
@@ -304,18 +310,24 @@ namespace Tizen.Network.WiFi
                     }
                 };
             }
-            int ret = Interop.WiFi.Activate(GetSafeHandle(), _callback_map[id], id);
-            if (ret != (int)WiFiError.None)
+
+            context.Post((x) =>
             {
+                Log.Info(Globals.LogTag, "Interop.WiFi.ActivateAsync");
+                int ret = Interop.WiFi.Activate(GetSafeHandle(), _callback_map[id], id);
+                if (ret != (int)WiFiError.None)
+                {
                 Log.Error(Globals.LogTag, "Failed to activate wifi, Error - " + (WiFiError)ret);
                 WiFiErrorFactory.ThrowWiFiException(ret, GetSafeHandle().DangerousGetHandle());
-            }
+                }
+            }, null);
+
             return task.Task;
         }
 
         internal Task ActivateWithWiFiPickerTestedAsync()
         {
-            Log.Debug(Globals.LogTag, "ActivateWithWiFiPickerTestedAsync");
+            Log.Info(Globals.LogTag, "ActivateWithWiFiPickerTestedAsync");
             TaskCompletionSource<bool> task = new TaskCompletionSource<bool>();
             IntPtr id;
             lock (_callback_map)
@@ -323,7 +335,7 @@ namespace Tizen.Network.WiFi
                 id = (IntPtr)_requestId++;
                 _callback_map[id] = (error, key) =>
                 {
-                    Log.Debug(Globals.LogTag, "Activation finished");
+                    Log.Info(Globals.LogTag, "ActivateWithWiFiPickerTestedAsync done");
                     if (error != (int)WiFiError.None)
                     {
                         Log.Error(Globals.LogTag, "Error occurs during WiFi activating, " + (WiFiError)error);
@@ -339,12 +351,18 @@ namespace Tizen.Network.WiFi
                     }
                 };
             }
-            int ret = Interop.WiFi.ActivateWithWiFiPickerTested(GetSafeHandle(), _callback_map[id], id);
-            if (ret != (int)WiFiError.None)
+
+            context.Post((x) =>
             {
-                Log.Error(Globals.LogTag, "Failed to activate wifi, Error - " + (WiFiError)ret);
-                WiFiErrorFactory.ThrowWiFiException(ret, GetSafeHandle().DangerousGetHandle());
-            }
+                Log.Info(Globals.LogTag, "Interop.WiFi.ActivateWithWiFiPickerTestedAsync");
+                int ret = Interop.WiFi.ActivateWithWiFiPickerTested(GetSafeHandle(), _callback_map[id], id);
+                if (ret != (int)WiFiError.None)
+                {
+                    Log.Error(Globals.LogTag, "Failed to activate wifi, Error - " + (WiFiError)ret);
+                    WiFiErrorFactory.ThrowWiFiException(ret, GetSafeHandle().DangerousGetHandle());
+                }
+            }, null);
+            
             return task.Task;
         }
 
@@ -358,7 +376,7 @@ namespace Tizen.Network.WiFi
                 id = (IntPtr)_requestId++;
                 _callback_map[id] = (error, key) =>
                 {
-                    Log.Info(Globals.LogTag, "Deactivation finished");
+                    Log.Info(Globals.LogTag, "DeactivateAsync done");
                     if (error != (int)WiFiError.None)
                     {
                         Log.Error(Globals.LogTag, "Error occurs during WiFi deactivating, " + (WiFiError)error);
@@ -374,13 +392,19 @@ namespace Tizen.Network.WiFi
                     }
                 };
             }
-            int ret = Interop.WiFi.Deactivate(GetSafeHandle(), _callback_map[id], id);
-            if (ret != (int)WiFiError.None)
+
+            context.Post((x) =>
             {
-                Log.Error(Globals.LogTag, "Failed to deactivate wifi, Error - " + (WiFiError)ret);
-                WiFiErrorFactory.ThrowWiFiException(ret, GetSafeHandle().DangerousGetHandle());
-            }
-            return task.Task;
+                Log.Info(Globals.LogTag, "Interop.WiFi.Deactivate");
+                int ret = Interop.WiFi.Deactivate(GetSafeHandle(), _callback_map[id], id);
+                if (ret != (int)WiFiError.None)
+                {
+                    Log.Error(Globals.LogTag, "Failed to deactivate wifi, Error - " + (WiFiError)ret);
+                    WiFiErrorFactory.ThrowWiFiException(ret, GetSafeHandle().DangerousGetHandle());
+                }
+            }, null);
+
+            return task.Task;           
         }
 
         internal Task ScanAsync()
@@ -393,7 +417,7 @@ namespace Tizen.Network.WiFi
                 id = (IntPtr)_requestId++;
                 _callback_map[id] = (error, key) =>
                 {
-                    Log.Info(Globals.LogTag, "Scanning finished");
+                    Log.Info(Globals.LogTag, "ScanAsync done");
                     if (error != (int)WiFiError.None)
                     {
                         Log.Error(Globals.LogTag, "Error occurs during WiFi scanning, " + (WiFiError)error);
@@ -409,12 +433,18 @@ namespace Tizen.Network.WiFi
                     }
                 };
             }
-            int ret = Interop.WiFi.Scan(GetSafeHandle(), _callback_map[id], id);
-            if (ret != (int)WiFiError.None)
+
+            context.Post((x) =>
             {
-                Log.Error(Globals.LogTag, "Failed to scan all AP, Error - " + (WiFiError)ret);
-                WiFiErrorFactory.ThrowWiFiException(ret, GetSafeHandle().DangerousGetHandle());
-            }
+                Log.Info(Globals.LogTag, "Interop.WiFi.Scan");
+                int ret = Interop.WiFi.Scan(GetSafeHandle(), _callback_map[id], id);
+                if (ret != (int)WiFiError.None)
+                {
+                    Log.Error(Globals.LogTag, "Failed to scan all AP, Error - " + (WiFiError)ret);
+                    WiFiErrorFactory.ThrowWiFiException(ret, GetSafeHandle().DangerousGetHandle());
+                }
+            }, null);
+
             return task.Task;
         }
 
@@ -428,7 +458,7 @@ namespace Tizen.Network.WiFi
                 id = (IntPtr)_requestId++;
                 _callback_map[id] = (error, key) =>
                 {
-                    Log.Info(Globals.LogTag, "Scanning with specific AP finished");
+                    Log.Info(Globals.LogTag, "ScanSpecificAPAsync Done " + essid);
                     if (error != (int)WiFiError.None)
                     {
                         Log.Error(Globals.LogTag, "Error occurs during WiFi scanning, " + (WiFiError)error);
@@ -444,12 +474,18 @@ namespace Tizen.Network.WiFi
                     }
                 };
             }
-            int ret = Interop.WiFi.ScanSpecificAP(GetSafeHandle(), essid, _callback_map[id], id);
-            if (ret != (int)WiFiError.None)
+
+            context.Post((x) =>
             {
-                Log.Error(Globals.LogTag, "Failed to scan with specific AP, Error - " + (WiFiError)ret);
-                WiFiErrorFactory.ThrowWiFiException(ret, GetSafeHandle().DangerousGetHandle());
-            }
+                Log.Info(Globals.LogTag, "Interop.WiFi.ScanSpecificAPAsync");
+                int ret = Interop.WiFi.ScanSpecificAP(GetSafeHandle(), essid, _callback_map[id], id);
+                if (ret != (int)WiFiError.None)
+                {
+                    Log.Error(Globals.LogTag, "Failed to scan with specific AP, Error - " + (WiFiError)ret);
+                    WiFiErrorFactory.ThrowWiFiException(ret, GetSafeHandle().DangerousGetHandle());
+                }
+            }, null);
+
             return task.Task;
         }
 
