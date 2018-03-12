@@ -966,6 +966,104 @@ namespace Tizen.System
             }
         }
 
+        /// <summary>
+        /// Indicates whether the vibration is enabled on the device.
+        /// </summary>
+        /// <privilege>http://tizen.org/privilege/systemsettings.admin</privilege>
+        /// <privlevel>platform</privlevel>
+        /// <feature>http://tizen.org/feature/systemsetting</feature>
+        /// <exception cref="ArgumentException">Invalid Argument</exception>
+        /// <exception cref="NotSupportedException">Not Supported feature</exception>
+        /// <exception cref="InvalidOperationException">Invalid operation</exception>
+        /// <exception cref="UnauthorizedAccessException">Thrown when application does not have privilege to access this method.</exception>
+        /// <since_tizen> 5 </since_tizen>
+        public static bool Vibration
+        {
+            get
+            {
+                bool isVibration;
+                SystemSettingsError res = (SystemSettingsError)Interop.Settings.SystemSettingsGetValueBool(SystemSettingsKeys.Vibration, out isVibration);
+                if (res != SystemSettingsError.None)
+                {
+                    throw SystemSettingsExceptionFactory.CreateException(res, "unable to get isVibration system setting.");
+                }
+                return isVibration;
+            }
+            set
+            {
+                SystemSettingsError res = (SystemSettingsError)Interop.Settings.SystemSettingsSetValueBool(SystemSettingsKeys.Vibration, value);
+                if (res != SystemSettingsError.None)
+                {
+                    throw SystemSettingsExceptionFactory.CreateException(res, "unable to set isVibration system setting.");
+                }
+            }
+        }
+
+        /// <summary>
+        /// Indicates whether the automatic time update is enabled on the device.
+        /// </summary>
+        /// <privilege>http://tizen.org/privilege/systemsettings.admin</privilege>
+        /// <privlevel>platform</privlevel>
+        /// <feature>http://tizen.org/feature/systemsetting</feature>
+        /// <exception cref="ArgumentException">Invalid Argument</exception>
+        /// <exception cref="NotSupportedException">Not Supported feature</exception>
+        /// <exception cref="InvalidOperationException">Invalid operation</exception>
+        /// <exception cref="UnauthorizedAccessException">Thrown when application does not have privilege to access this method.</exception>
+        /// <since_tizen> 5 </since_tizen>
+        public static bool AutomaticTimeUpdate
+        {
+            get
+            {
+                bool isAutomaticTimeUpdate;
+                SystemSettingsError res = (SystemSettingsError)Interop.Settings.SystemSettingsGetValueBool(SystemSettingsKeys.AutomaticTimeUpdate, out isAutomaticTimeUpdate);
+                if (res != SystemSettingsError.None)
+                {
+                    throw SystemSettingsExceptionFactory.CreateException(res, "unable to get isAutomaticTimeUpdate system setting.");
+                }
+                return isAutomaticTimeUpdate;
+            }
+            set
+            {
+                SystemSettingsError res = (SystemSettingsError)Interop.Settings.SystemSettingsSetValueBool(SystemSettingsKeys.AutomaticTimeUpdate, value);
+                if (res != SystemSettingsError.None)
+                {
+                    throw SystemSettingsExceptionFactory.CreateException(res, "unable to set isAutomaticTimeUpdate system setting.");
+                }
+            }
+        }
+
+        /// <summary>
+        /// Indicates whether the developer option state is enabled on the device.
+        /// </summary>
+        /// <privilege>http://tizen.org/privilege/systemsettings.admin</privilege>
+        /// <privlevel>platform</privlevel>
+        /// <feature>http://tizen.org/feature/systemsetting</feature>
+        /// <exception cref="ArgumentException">Invalid Argument</exception>
+        /// <exception cref="NotSupportedException">Not Supported feature</exception>
+        /// <exception cref="InvalidOperationException">Invalid operation</exception>
+        /// <exception cref="UnauthorizedAccessException">Thrown when application does not have privilege to access this method.</exception>
+        /// <since_tizen> 5 </since_tizen>
+        public static bool DeveloperOptionState
+        {
+            get
+            {
+                bool isDeveloperOptionState;
+                SystemSettingsError res = (SystemSettingsError)Interop.Settings.SystemSettingsGetValueBool(SystemSettingsKeys.DeveloperOptionState, out isDeveloperOptionState);
+                if (res != SystemSettingsError.None)
+                {
+                    throw SystemSettingsExceptionFactory.CreateException(res, "unable to get isDeveloperOptionState system setting.");
+                }
+                return isDeveloperOptionState;
+            }
+            set
+            {
+                SystemSettingsError res = (SystemSettingsError)Interop.Settings.SystemSettingsSetValueBool(SystemSettingsKeys.DeveloperOptionState, value);
+                if (res != SystemSettingsError.None)
+                {
+                    throw SystemSettingsExceptionFactory.CreateException(res, "unable to set isDeveloperOptionState system setting.");
+                }
+            }
+        }
 
         private static readonly Interop.Settings.SystemSettingsChangedCallback s_incomingCallRingtoneChangedCallback = (SystemSettingsKeys key, IntPtr userData) =>
         {
@@ -2561,6 +2659,146 @@ namespace Tizen.System
             }
         }
 
+        private static readonly Interop.Settings.SystemSettingsChangedCallback s_vibrationChangedCallback = (SystemSettingsKeys key, IntPtr userData) =>
+        {
+            bool vibration = SystemSettings.Vibration;
+            VibrationChangedEventArgs eventArgs = new VibrationChangedEventArgs(vibration);
+            s_vibrationChanged?.Invoke(null, eventArgs);
+        };
+        private static event EventHandler<VibrationChangedEventArgs> s_vibrationChanged;
+        /// <summary>
+        /// The VibrationChanged event is triggered when the vibration value is changed.
+        /// </summary>
+        /// <privilege>http://tizen.org/privilege/systemsettings.admin</privilege>
+        /// <privlevel>platform</privlevel>
+        /// <feature>http://tizen.org/feature/systemsetting</feature>
+        /// <exception cref="ArgumentException">Invalid Argument</exception>
+        /// <exception cref="NotSupportedException">Not Supported feature</exception>
+        /// <exception cref="InvalidOperationException">Invalid operation</exception>
+        /// <exception cref="UnauthorizedAccessException">Thrown when application does not have privilege to access this method.</exception>
+        /// <since_tizen> 5 </since_tizen>
+        public static event EventHandler<VibrationChangedEventArgs> VibrationChanged
+        {
+            add
+            {
+                if (s_vibrationChanged == null)
+                {
+                    SystemSettingsError ret = (SystemSettingsError)Interop.Settings.SystemSettingsSetCallback(SystemSettingsKeys.Vibration, s_vibrationChangedCallback, IntPtr.Zero);
+                    if (ret != SystemSettingsError.None)
+                    {
+                        throw SystemSettingsExceptionFactory.CreateException(ret, "Error in callback handling");
+                    }
+                }
+                s_vibrationChanged += value;
+            }
+
+            remove
+            {
+                s_vibrationChanged -= value;
+                if (s_vibrationChanged == null)
+                {
+                    SystemSettingsError ret = (SystemSettingsError)Interop.Settings.SystemSettingsRemoveCallback(SystemSettingsKeys.Vibration, s_vibrationChangedCallback);
+                    if (ret != SystemSettingsError.None)
+                    {
+                        throw SystemSettingsExceptionFactory.CreateException(ret, "Error in callback handling");
+                    }
+                }
+            }
+        }
+
+        private static readonly Interop.Settings.SystemSettingsChangedCallback s_automaticTimeUpdateChangedCallback = (SystemSettingsKeys key, IntPtr userData) =>
+        {
+            bool automaticTimeUpdate = SystemSettings.AutomaticTimeUpdate;
+            AutomaticTimeUpdateChangedEventArgs eventArgs = new AutomaticTimeUpdateChangedEventArgs(automaticTimeUpdate);
+            s_automaticTimeUpdateChanged?.Invoke(null, eventArgs);
+        };
+        private static event EventHandler<AutomaticTimeUpdateChangedEventArgs> s_automaticTimeUpdateChanged;
+        /// <summary>
+        /// The AutomaticTimeUpdateChanged event is triggered when the automaticTimeUpdate value is changed.
+        /// </summary>
+        /// <privilege>http://tizen.org/privilege/systemsettings.admin</privilege>
+        /// <privlevel>platform</privlevel>
+        /// <feature>http://tizen.org/feature/systemsetting</feature>
+        /// <exception cref="ArgumentException">Invalid Argument</exception>
+        /// <exception cref="NotSupportedException">Not Supported feature</exception>
+        /// <exception cref="InvalidOperationException">Invalid operation</exception>
+        /// <exception cref="UnauthorizedAccessException">Thrown when application does not have privilege to access this method.</exception>
+        /// <since_tizen> 5 </since_tizen>
+        public static event EventHandler<AutomaticTimeUpdateChangedEventArgs> AutomaticTimeUpdateChanged
+        {
+            add
+            {
+                if (s_automaticTimeUpdateChanged == null)
+                {
+                    SystemSettingsError ret = (SystemSettingsError)Interop.Settings.SystemSettingsSetCallback(SystemSettingsKeys.AutomaticTimeUpdate, s_automaticTimeUpdateChangedCallback, IntPtr.Zero);
+                    if (ret != SystemSettingsError.None)
+                    {
+                        throw SystemSettingsExceptionFactory.CreateException(ret, "Error in callback handling");
+                    }
+                }
+                s_automaticTimeUpdateChanged += value;
+            }
+
+            remove
+            {
+                s_automaticTimeUpdateChanged -= value;
+                if (s_automaticTimeUpdateChanged == null)
+                {
+                    SystemSettingsError ret = (SystemSettingsError)Interop.Settings.SystemSettingsRemoveCallback(SystemSettingsKeys.AutomaticTimeUpdate, s_automaticTimeUpdateChangedCallback);
+                    if (ret != SystemSettingsError.None)
+                    {
+                        throw SystemSettingsExceptionFactory.CreateException(ret, "Error in callback handling");
+                    }
+                }
+            }
+        }
+
+        private static readonly Interop.Settings.SystemSettingsChangedCallback s_developerOptionStateChangedCallback = (SystemSettingsKeys key, IntPtr userData) =>
+        {
+            bool developerOptionState = SystemSettings.DeveloperOptionState;
+            DeveloperOptionStateChangedEventArgs eventArgs = new DeveloperOptionStateChangedEventArgs(developerOptionState);
+            s_developerOptionStateChanged?.Invoke(null, eventArgs);
+        };
+        private static event EventHandler<DeveloperOptionStateChangedEventArgs> s_developerOptionStateChanged;
+        /// <summary>
+        /// The DeveloperOptionStateChanged event is triggered when the developerOptionState value is changed.
+        /// </summary>
+        /// <privilege>http://tizen.org/privilege/systemsettings.admin</privilege>
+        /// <privlevel>platform</privlevel>
+        /// <feature>http://tizen.org/feature/systemsetting</feature>
+        /// <exception cref="ArgumentException">Invalid Argument</exception>
+        /// <exception cref="NotSupportedException">Not Supported feature</exception>
+        /// <exception cref="InvalidOperationException">Invalid operation</exception>
+        /// <exception cref="UnauthorizedAccessException">Thrown when application does not have privilege to access this method.</exception>
+        /// <since_tizen> 5 </since_tizen>
+        public static event EventHandler<DeveloperOptionStateChangedEventArgs> DeveloperOptionStateChanged
+        {
+            add
+            {
+                if (s_developerOptionStateChanged == null)
+                {
+                    SystemSettingsError ret = (SystemSettingsError)Interop.Settings.SystemSettingsSetCallback(SystemSettingsKeys.DeveloperOptionState, s_developerOptionStateChangedCallback, IntPtr.Zero);
+                    if (ret != SystemSettingsError.None)
+                    {
+                        throw SystemSettingsExceptionFactory.CreateException(ret, "Error in callback handling");
+                    }
+                }
+                s_developerOptionStateChanged += value;
+            }
+
+            remove
+            {
+                s_developerOptionStateChanged -= value;
+                if (s_developerOptionStateChanged == null)
+                {
+                    SystemSettingsError ret = (SystemSettingsError)Interop.Settings.SystemSettingsRemoveCallback(SystemSettingsKeys.DeveloperOptionState, s_developerOptionStateChangedCallback);
+                    if (ret != SystemSettingsError.None)
+                    {
+                        throw SystemSettingsExceptionFactory.CreateException(ret, "Error in callback handling");
+                    }
+                }
+            }
+        }
     }
 }
 
