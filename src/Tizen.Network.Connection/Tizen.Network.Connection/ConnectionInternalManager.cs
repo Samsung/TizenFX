@@ -18,10 +18,10 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Threading;
 using System.Threading.Tasks;
 using System.Runtime.InteropServices;
 using System.Collections;
+using System.Threading;
 using Tizen.Applications;
 
 namespace Tizen.Network.Connection
@@ -34,7 +34,6 @@ namespace Tizen.Network.Connection
         public HandleHolder()
         {
             _tid = Thread.CurrentThread.ManagedThreadId;
-
             Log.Info(Globals.LogTag, "PInvoke connection_create for Thread " + _tid);
             int ret = Interop.Connection.Create(_tid, out Handle);
             Log.Info(Globals.LogTag, "Handle: " + Handle);
@@ -123,7 +122,15 @@ namespace Tizen.Network.Connection
                 {
                     if (_ConnectionTypeChanged == null)
                     {
-                        ConnectionTypeChangedStart();
+                        try
+                        {
+                            ConnectionTypeChangedStart();
+                        }
+                        catch (Exception e)
+                        {
+                            Log.Error(Globals.LogTag, "Exception on adding ConnectionTypeChanged\n" + e.ToString());
+                            return;
+                        }
                     }
                     _ConnectionTypeChanged += value;
                 }, null);
@@ -135,7 +142,14 @@ namespace Tizen.Network.Connection
                     _ConnectionTypeChanged -= value;
                     if (_ConnectionTypeChanged == null)
                     {
-                        ConnectionTypeChangedStop();
+                        try
+                        {
+                            ConnectionTypeChangedStop();
+                        }
+                        catch (Exception e)
+                        {
+                            Log.Error(Globals.LogTag, "Exception on removing ConnectionTypeChanged\n" + e.ToString());
+                        }
                     }
                 }, null);
             }
@@ -179,7 +193,15 @@ namespace Tizen.Network.Connection
                 {
                     if (_EthernetCableStateChanged == null)
                     {
-                        EthernetCableStateChangedStart();
+                        try
+                        {
+                            EthernetCableStateChangedStart();
+                        }
+                        catch (Exception e)
+                        {
+                            Log.Error(Globals.LogTag, "Exception on adding EthernetCableStateChanged\n" + e.ToString());
+                            return;
+                        }
                     }
                     _EthernetCableStateChanged += value;
                 }, null);
@@ -191,7 +213,14 @@ namespace Tizen.Network.Connection
                     _EthernetCableStateChanged -= value;
                     if (_EthernetCableStateChanged == null)
                     {
-                        EthernetCableStateChangedStop();
+                        try
+                        {
+                            EthernetCableStateChangedStop();
+                        }
+                        catch (Exception e)
+                        {
+                            Log.Error(Globals.LogTag, "Exception on removing EthernetCableStateChanged\n" + e.ToString());
+                        }
                     }
                 }, null);
             }
@@ -239,7 +268,15 @@ namespace Tizen.Network.Connection
                 {
                     if (_IPAddressChanged == null)
                     {
-                        IPAddressChangedStart();
+                        try
+                        {
+                            IPAddressChangedStart();
+                        }
+                        catch (Exception e)
+                        {
+                            Log.Error(Globals.LogTag, "Exception on adding IPAddressChanged\n" + e.ToString());
+                            return;
+                        }
                     }
                     _IPAddressChanged += value;
                 }, null);
@@ -252,7 +289,14 @@ namespace Tizen.Network.Connection
                     _IPAddressChanged -= value;
                     if (_IPAddressChanged == null)
                     {
-                        IPAddressChangedStop();
+                        try
+                        {
+                            IPAddressChangedStop();
+                        }
+                        catch (Exception e)
+                        {
+                            Log.Error(Globals.LogTag, "Exception on removing IPAddressChanged\n" + e.ToString());
+                        }
                     }
                 }, null);
             }
@@ -300,7 +344,15 @@ namespace Tizen.Network.Connection
                 {
                     if (_ProxyAddressChanged == null)
                     {
-                        ProxyAddressChangedStart();
+                        try
+                        {
+                            ProxyAddressChangedStart();
+                        }
+                        catch (Exception e)
+                        {
+                            Log.Error(Globals.LogTag, "Exception on adding ProxyAddressChanged\n" + e.ToString());
+                            return;
+                        }
                     }
                     _ProxyAddressChanged += value;
                 }, null);
@@ -312,7 +364,14 @@ namespace Tizen.Network.Connection
                     _ProxyAddressChanged -= value;
                     if (_ProxyAddressChanged == null)
                     {
-                        ProxyAddressChangedStop();
+                        try
+                        {
+                            ProxyAddressChangedStop();
+                        }
+                        catch (Exception e)
+                        {
+                            Log.Error(Globals.LogTag, "Exception on removing ProxyAddressChanged\n" + e.ToString());
+                        }
                     }
                 }, null);
             }
@@ -821,13 +880,21 @@ namespace Tizen.Network.Connection
                 context.Post((x) =>
                 {
                     Log.Info(Globals.LogTag, "Interop.Connection.SetDefaultCellularServiceProfileAsync " + profile.Name);
-                    int ret = Interop.Connection.SetDefaultCellularServiceProfileAsync(GetHandle(), (int)type, profile.ProfileHandle, Callback, (IntPtr)0);
-                    if ((ConnectionError)ret != ConnectionError.None)
+                    try
                     {
-                        Log.Error(Globals.LogTag, "It failed to set default cellular profile, " + (ConnectionError)ret);
-                        ConnectionErrorFactory.CheckFeatureUnsupportedException(ret, "http://tizen.org/feature/network.telephony");
-                        ConnectionErrorFactory.CheckHandleNullException(ret, (GetHandle() == IntPtr.Zero || profile.ProfileHandle == IntPtr.Zero), "Connection or Profile Handle may have been disposed or released");
-                        ConnectionErrorFactory.ThrowConnectionException(ret);
+                        int ret = Interop.Connection.SetDefaultCellularServiceProfileAsync(GetHandle(), (int)type, profile.ProfileHandle, Callback, (IntPtr)0);
+
+                        if ((ConnectionError)ret != ConnectionError.None)
+                        {
+                            Log.Error(Globals.LogTag, "It failed to set default cellular profile, " + (ConnectionError)ret);
+                            ConnectionErrorFactory.CheckFeatureUnsupportedException(ret, "http://tizen.org/feature/network.telephony");
+                            ConnectionErrorFactory.CheckHandleNullException(ret, (GetHandle() == IntPtr.Zero || profile.ProfileHandle == IntPtr.Zero), "Connection or Profile Handle may have been disposed or released");
+                            ConnectionErrorFactory.ThrowConnectionException(ret);
+                        }
+                    } catch (Exception e)
+                    {
+                        Log.Error(Globals.LogTag, "Exception on SetDefaultCellularServiceProfileAsync\n" + e.ToString());
+                        task.SetException(e);
                     }
                 }, null);
 
@@ -911,13 +978,21 @@ namespace Tizen.Network.Connection
                 context.Post((x) =>
                 {
                     Log.Info(Globals.LogTag, "Interop.Connection.OpenProfile " + profile.Name);
-                    int ret = Interop.Connection.OpenProfile(GetHandle(), profile.ProfileHandle, Callback, IntPtr.Zero);
-                    if ((ConnectionError)ret != ConnectionError.None)
+                    try
                     {
-                        Log.Error(Globals.LogTag, "It failed to connect profile, " + (ConnectionError)ret);
-                        ConnectionErrorFactory.CheckFeatureUnsupportedException(ret, "http://tizen.org/feature/network.telephony " + "http://tizen.org/feature/network.wifi " + "http://tizen.org/feature/network.tethering.bluetooth");
-                        ConnectionErrorFactory.CheckHandleNullException(ret, (GetHandle() == IntPtr.Zero || profile.ProfileHandle == IntPtr.Zero), "Connection or Profile Handle may have been disposed or released");
-                        ConnectionErrorFactory.ThrowConnectionException(ret);
+                        int ret = Interop.Connection.OpenProfile(GetHandle(), profile.ProfileHandle, Callback, IntPtr.Zero);
+                        if ((ConnectionError)ret != ConnectionError.None)
+                        {
+                            Log.Error(Globals.LogTag, "It failed to connect profile, " + (ConnectionError)ret);
+                            ConnectionErrorFactory.CheckFeatureUnsupportedException(ret, "http://tizen.org/feature/network.telephony " + "http://tizen.org/feature/network.wifi " + "http://tizen.org/feature/network.tethering.bluetooth");
+                            ConnectionErrorFactory.CheckHandleNullException(ret, (GetHandle() == IntPtr.Zero || profile.ProfileHandle == IntPtr.Zero), "Connection or Profile Handle may have been disposed or released");
+                            ConnectionErrorFactory.ThrowConnectionException(ret);
+                        }
+                    }
+                    catch (Exception e)
+                    {
+                        Log.Error(Globals.LogTag, "Exception on OpenProfile\n" + e.ToString());
+                        task.SetException(e);
                     }
                 }, null);
 
@@ -954,14 +1029,22 @@ namespace Tizen.Network.Connection
                 context.Post((x) =>
                 {
                     Log.Info(Globals.LogTag, "Interop.Connection.CloseProfile " + profile.Name);
-                    int ret = Interop.Connection.CloseProfile(GetHandle(), profile.ProfileHandle, Callback, IntPtr.Zero);
-                    if ((ConnectionError)ret != ConnectionError.None)
+                    try
                     {
-                        Log.Error(Globals.LogTag, "It failed to disconnect profile, " + (ConnectionError)ret);
-                        ConnectionErrorFactory.CheckFeatureUnsupportedException(ret, "http://tizen.org/feature/network.telephony " + "http://tizen.org/feature/network.wifi " + "http://tizen.org/feature/network.tethering.bluetooth");
-                        ConnectionErrorFactory.CheckPermissionDeniedException(ret, "(http://tizen.org/privilege/network.set)");
-                        ConnectionErrorFactory.CheckHandleNullException(ret, (GetHandle() == IntPtr.Zero || profile.ProfileHandle == IntPtr.Zero), "Connection or Profile Handle may have been disposed or released");
-                        ConnectionErrorFactory.ThrowConnectionException(ret);
+                        int ret = Interop.Connection.CloseProfile(GetHandle(), profile.ProfileHandle, Callback, IntPtr.Zero);
+                        if ((ConnectionError)ret != ConnectionError.None)
+                        {
+                            Log.Error(Globals.LogTag, "It failed to disconnect profile, " + (ConnectionError)ret);
+                            ConnectionErrorFactory.CheckFeatureUnsupportedException(ret, "http://tizen.org/feature/network.telephony " + "http://tizen.org/feature/network.wifi " + "http://tizen.org/feature/network.tethering.bluetooth");
+                            ConnectionErrorFactory.CheckPermissionDeniedException(ret, "(http://tizen.org/privilege/network.set)");
+                            ConnectionErrorFactory.CheckHandleNullException(ret, (GetHandle() == IntPtr.Zero || profile.ProfileHandle == IntPtr.Zero), "Connection or Profile Handle may have been disposed or released");
+                            ConnectionErrorFactory.ThrowConnectionException(ret);
+                        }
+                    }
+                    catch (Exception e)
+                    {
+                        Log.Error(Globals.LogTag, "Exception on CloseProfile\n" + e.ToString());
+                        task.SetException(e);
                     }
                 }, null);
 
