@@ -219,11 +219,8 @@ namespace Tizen.Network.WiFi
             if (_disposed)
                 return;
 
-            if (disposing)
-            {
-                Interop.WiFi.Config.Destroy(_configHandle);
-                _configHandle = IntPtr.Zero;
-            }
+            Interop.WiFi.Config.Destroy(_configHandle);
+            _configHandle = IntPtr.Zero;
             _disposed = true;
         }
 
