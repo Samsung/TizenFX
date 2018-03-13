@@ -314,19 +314,11 @@ namespace Tizen.Network.WiFi
             context.Post((x) =>
             {
                 Log.Info(Globals.LogTag, "Interop.WiFi.ActivateAsync");
-                try
+                int ret = Interop.WiFi.Activate(GetSafeHandle(), _callback_map[id], id);
+                if (ret != (int)WiFiError.None)
                 {
-                    int ret = Interop.WiFi.Activate(GetSafeHandle(), _callback_map[id], id);
-                    if (ret != (int)WiFiError.None)
-                    {
-                        Log.Error(Globals.LogTag, "Failed to activate wifi, Error - " + (WiFiError)ret);
-                        WiFiErrorFactory.ThrowWiFiException(ret, GetSafeHandle().DangerousGetHandle());
-                    }
-                }
-                catch (Exception e)
-                {
-                    Log.Error(Globals.LogTag, "Exception on ActivateAsync\n" + e.ToString());
-                    task.SetException(e);
+                Log.Error(Globals.LogTag, "Failed to activate wifi, Error - " + (WiFiError)ret);
+                WiFiErrorFactory.ThrowWiFiException(ret, GetSafeHandle().DangerousGetHandle());
                 }
             }, null);
 
@@ -363,19 +355,11 @@ namespace Tizen.Network.WiFi
             context.Post((x) =>
             {
                 Log.Info(Globals.LogTag, "Interop.WiFi.ActivateWithWiFiPickerTestedAsync");
-                try
+                int ret = Interop.WiFi.ActivateWithWiFiPickerTested(GetSafeHandle(), _callback_map[id], id);
+                if (ret != (int)WiFiError.None)
                 {
-                    int ret = Interop.WiFi.ActivateWithWiFiPickerTested(GetSafeHandle(), _callback_map[id], id);
-                    if (ret != (int)WiFiError.None)
-                    {
-                        Log.Error(Globals.LogTag, "Failed to activate wifi, Error - " + (WiFiError)ret);
-                        WiFiErrorFactory.ThrowWiFiException(ret, GetSafeHandle().DangerousGetHandle());
-                    }
-                }
-                catch (Exception e)
-                {
-                    Log.Error(Globals.LogTag, "Exception on ActivateWithWiFiPickerTestedAsync\n" + e.ToString());
-                    task.SetException(e);
+                    Log.Error(Globals.LogTag, "Failed to activate wifi, Error - " + (WiFiError)ret);
+                    WiFiErrorFactory.ThrowWiFiException(ret, GetSafeHandle().DangerousGetHandle());
                 }
             }, null);
             
@@ -412,19 +396,11 @@ namespace Tizen.Network.WiFi
             context.Post((x) =>
             {
                 Log.Info(Globals.LogTag, "Interop.WiFi.Deactivate");
-                try
+                int ret = Interop.WiFi.Deactivate(GetSafeHandle(), _callback_map[id], id);
+                if (ret != (int)WiFiError.None)
                 {
-                    int ret = Interop.WiFi.Deactivate(GetSafeHandle(), _callback_map[id], id);
-                    if (ret != (int)WiFiError.None)
-                    {
-                        Log.Error(Globals.LogTag, "Failed to deactivate wifi, Error - " + (WiFiError)ret);
-                        WiFiErrorFactory.ThrowWiFiException(ret, GetSafeHandle().DangerousGetHandle());
-                    }
-                }
-                catch (Exception e)
-                {
-                    Log.Error(Globals.LogTag, "Exception on Deactivate\n" + e.ToString());
-                    task.SetException(e);
+                    Log.Error(Globals.LogTag, "Failed to deactivate wifi, Error - " + (WiFiError)ret);
+                    WiFiErrorFactory.ThrowWiFiException(ret, GetSafeHandle().DangerousGetHandle());
                 }
             }, null);
 
@@ -461,19 +437,11 @@ namespace Tizen.Network.WiFi
             context.Post((x) =>
             {
                 Log.Info(Globals.LogTag, "Interop.WiFi.Scan");
-                try
+                int ret = Interop.WiFi.Scan(GetSafeHandle(), _callback_map[id], id);
+                if (ret != (int)WiFiError.None)
                 {
-                    int ret = Interop.WiFi.Scan(GetSafeHandle(), _callback_map[id], id);
-                    if (ret != (int)WiFiError.None)
-                    {
-                        Log.Error(Globals.LogTag, "Failed to scan all AP, Error - " + (WiFiError)ret);
-                        WiFiErrorFactory.ThrowWiFiException(ret, GetSafeHandle().DangerousGetHandle());
-                    }
-                }
-                catch (Exception e)
-                {
-                    Log.Error(Globals.LogTag, "Exception on Scan\n" + e.ToString());
-                    task.SetException(e);
+                    Log.Error(Globals.LogTag, "Failed to scan all AP, Error - " + (WiFiError)ret);
+                    WiFiErrorFactory.ThrowWiFiException(ret, GetSafeHandle().DangerousGetHandle());
                 }
             }, null);
 
@@ -510,19 +478,11 @@ namespace Tizen.Network.WiFi
             context.Post((x) =>
             {
                 Log.Info(Globals.LogTag, "Interop.WiFi.ScanSpecificAPAsync");
-                try
+                int ret = Interop.WiFi.ScanSpecificAP(GetSafeHandle(), essid, _callback_map[id], id);
+                if (ret != (int)WiFiError.None)
                 {
-                    int ret = Interop.WiFi.ScanSpecificAP(GetSafeHandle(), essid, _callback_map[id], id);
-                    if (ret != (int)WiFiError.None)
-                    {
-                        Log.Error(Globals.LogTag, "Failed to scan with specific AP, Error - " + (WiFiError)ret);
-                        WiFiErrorFactory.ThrowWiFiException(ret, GetSafeHandle().DangerousGetHandle());
-                    }
-                }
-                catch (Exception e)
-                {
-                    Log.Error(Globals.LogTag, "Exception on ScanSpecificAPAsync\n" + e.ToString());
-                    task.SetException(e);
+                    Log.Error(Globals.LogTag, "Failed to scan with specific AP, Error - " + (WiFiError)ret);
+                    WiFiErrorFactory.ThrowWiFiException(ret, GetSafeHandle().DangerousGetHandle());
                 }
             }, null);
 

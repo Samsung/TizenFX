@@ -62,14 +62,7 @@ namespace Tizen.Network.WiFi
                 {
                     if (_deviceStateChanged == null)
                     {
-                        try
-                        {
-                            RegisterDeviceStateChangedEvent();
-                        } catch (Exception e)
-                        {
-                            Log.Error(Globals.LogTag, "Exception on adding DeviceStateChanged\n" + e.ToString());
-                            return;
-                        }
+                        RegisterDeviceStateChangedEvent(); 
                     }
                     _deviceStateChanged += value;
                 }, null);
@@ -81,14 +74,7 @@ namespace Tizen.Network.WiFi
                     _deviceStateChanged -= value;
                     if (_deviceStateChanged == null)
                     {
-                        try
-                        {
-                            UnregisterDeviceStateChangedEvent();
-                        }
-                        catch (Exception e)
-                        {
-                            Log.Error(Globals.LogTag, "Exception on removing DeviceStateChanged\n" + e.ToString());
-                        }
+                        UnregisterDeviceStateChangedEvent();
                     }
                 }, null);
             }
@@ -102,15 +88,7 @@ namespace Tizen.Network.WiFi
                 {
                     if (_connectionStateChanged == null)
                     {
-                        try
-                        {
-                            RegisterConnectionStateChangedEvent();
-                        }
-                        catch (Exception e)
-                        {
-                            Log.Error(Globals.LogTag, "Exception on adding ConnectionStateChanged\n" + e.ToString());
-                            return;
-                        }
+                        RegisterConnectionStateChangedEvent();
                     }
                     _connectionStateChanged += value;
                 }, null);
@@ -122,14 +100,7 @@ namespace Tizen.Network.WiFi
                     _connectionStateChanged -= value;
                     if (_connectionStateChanged == null)
                     {
-                        try
-                        {
-                            UnregisterConnectionStateChangedEvent();
-                        }
-                        catch (Exception e)
-                        {
-                            Log.Error(Globals.LogTag, "Exception on removing ConnectionStateChanged\n" + e.ToString());
-                        }
+                        UnregisterConnectionStateChangedEvent();
                     }
                 }, null);
             }
@@ -143,15 +114,7 @@ namespace Tizen.Network.WiFi
                 {
                     if (_rssiLevelChanged == null)
                     {
-                        try
-                        {
-                            RegisterRssiLevelChangedEvent();
-                        }
-                        catch (Exception e)
-                        {
-                            Log.Error(Globals.LogTag, "Exception on adding RssiLevelChanged\n" + e.ToString());
-                            return;
-                        }
+                        RegisterRssiLevelChangedEvent();
                     }
                     _rssiLevelChanged += value;
                 }, null);
@@ -163,14 +126,7 @@ namespace Tizen.Network.WiFi
                     _rssiLevelChanged -= value;
                     if (_rssiLevelChanged == null)
                     {
-                        try
-                        {
-                            UnregisterRssiLevelChangedEvent();
-                        }
-                        catch (Exception e)
-                        {
-                            Log.Error(Globals.LogTag, "Exception on removing RssiLevelChanged\n" + e.ToString());
-                        }
+                        UnregisterRssiLevelChangedEvent();
                     }
                 }, null);
             }
@@ -184,15 +140,7 @@ namespace Tizen.Network.WiFi
                 {
                     if (_backgroundScanFinished == null)
                     {
-                        try
-                        {
-                            RegisterBackgroundScanFinishedEvent();
-                        }
-                        catch (Exception e)
-                        {
-                            Log.Error(Globals.LogTag, "Exception on adding BackgroundScanFinished\n" + e.ToString());
-                            return;
-                        }
+                        RegisterBackgroundScanFinishedEvent();
                     }
                     _backgroundScanFinished += value;
                 }, null);
@@ -204,14 +152,7 @@ namespace Tizen.Network.WiFi
                     _backgroundScanFinished -= value;
                     if (_backgroundScanFinished == null)
                     {
-                        try
-                        {
-                            UnregisterBackgroundScanFinishedEvent();
-                        }
-                        catch (Exception e)
-                        {
-                            Log.Error(Globals.LogTag, "Exception on removing BackgroundScanFinished\n" + e.ToString());
-                        }
+                        UnregisterBackgroundScanFinishedEvent();
                     }
                 }, null);
             }
