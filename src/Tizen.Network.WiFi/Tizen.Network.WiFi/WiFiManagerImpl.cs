@@ -114,6 +114,7 @@ namespace Tizen.Network.WiFi
         {
             get
             {
+                Log.Info(Globals.LogTag, "IsActive");
                 bool active;
                 int ret = Interop.WiFi.IsActive(GetSafeHandle(), out active);
                 if (ret != (int)WiFiError.None)

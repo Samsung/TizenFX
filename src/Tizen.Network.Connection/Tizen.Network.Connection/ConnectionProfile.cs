@@ -57,7 +57,7 @@ namespace Tizen.Network.Connection
         {
             add
             {
-                Log.Debug(Globals.LogTag, "ProfileStateChanged add");
+                Log.Info(Globals.LogTag, "ProfileStateChanged add");
                 context.Post((x) =>
                 {
                     if (_ProfileStateChanged == null)
@@ -69,7 +69,7 @@ namespace Tizen.Network.Connection
             }
             remove
             {
-                Log.Debug(Globals.LogTag, "ProfileStateChanged remove");
+                Log.Info(Globals.LogTag, "ProfileStateChanged remove");
                 context.Post((x) =>
                 {
                     _ProfileStateChanged -= value;
@@ -92,7 +92,7 @@ namespace Tizen.Network.Connection
                 }
             };
 
-            Log.Debug(Globals.LogTag, "ProfileStateChangedStart");
+            Log.Info(Globals.LogTag, "ProfileStateChangedStart");
             int ret = Interop.ConnectionProfile.SetStateChangeCallback(ProfileHandle, _profileChangedCallback, IntPtr.Zero);
             if ((ConnectionError)ret != ConnectionError.None)
             {
@@ -102,7 +102,7 @@ namespace Tizen.Network.Connection
 
         private void ProfileStateChangedStop()
         {
-            Log.Debug(Globals.LogTag, "ProfileStateChangedStop");
+            Log.Info(Globals.LogTag, "ProfileStateChangedStop");
             int ret = Interop.ConnectionProfile.UnsetStateChangeCallback(ProfileHandle);
             if ((ConnectionError)ret != ConnectionError.None)
             {
