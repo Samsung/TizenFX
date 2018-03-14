@@ -959,7 +959,7 @@ namespace Tizen.Network.Connection
             Log.Info(Globals.LogTag, "OpenProfileAsync");
             if (profile != null)
             {
-                Log.Debug(Globals.LogTag, "OpenProfileAsync " + profile.Name);
+                Log.Info(Globals.LogTag, "OpenProfileAsync " + profile.Name);
                 TaskCompletionSource<bool> task = new TaskCompletionSource<bool>();
                 Interop.Connection.ConnectionCallback Callback = (ConnectionError Result, IntPtr Data) =>
                 {
