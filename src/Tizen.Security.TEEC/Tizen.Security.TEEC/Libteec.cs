@@ -248,12 +248,35 @@ namespace Tizen.Security.TEEC
         public TEnum Type { get; }
     }
 
+    public abstract class TempMemoryRefBase : BaseParameter<TEFTempMemoryType>
+    {
+        internal abstract void UpdateBuffer(IntPtr buffer, UIntPtr size);
+        internal abstract void UpdateValue(IntPtr buffer, UIntPtr size);
+        internal protected TempMemoryRefBase(TEFTempMemoryType type) : base(type) {}
+
+        /// <summary>
+        /// This property represents the size of the buffer.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
+        public uint Size { get; internal set; }
+    }
+
     /// <summary>
     /// This type defines a temporary memory reference.
     /// </summary>
+    /// Please do not use! this will be deprecated!
+    /// Instead please use TempMemoryReference<T>.
     /// <since_tizen> 3 </since_tizen>
-    public sealed class TempMemoryReference : BaseParameter<TEFTempMemoryType>
+    //[Obsolete("Please do not use! This will be deprecated! Please use TempMemoryReference<T> instead!")]
+    public sealed class TempMemoryReference : TempMemoryRefBase
     {
+        internal override void UpdateBuffer(IntPtr buffer, UIntPtr size) {
+            Interop.Libc.Memcpy(buffer, this.Buffer, size);
+        }
+        internal override void UpdateValue(IntPtr buffer, UIntPtr size) {
+            Interop.Libc.Memcpy(this.Buffer, buffer, size);
+        }
+
         /// <summary>
         /// Constructs a parameter object which holds information about the temporary memory copied to or from TA.
         /// </summary>
@@ -267,17 +290,48 @@ namespace Tizen.Security.TEEC
             this.Buffer = buffer;
             this.Size = size;
         }
+
         /// <summary>
         /// This property represents the memory address of the buffer.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public IntPtr Buffer { get; }
-        /// <summary>
-        /// This property represents the size of the buffer.
-        /// </summary>
-        /// <since_tizen> 3 </since_tizen>
-        public uint Size { get; internal set; }
     };
+
+    /// <summary>
+    /// This type defines a temporary memory reference, generic.
+    /// </summary>
+    /// Note: definition of T type must be annotated with [StructLayout(LayoutKind.Sequential)]
+    /// Note: fields of T must be annotated with [MarshalAs(...)] where needed (non primitive types)
+    /// <since_tizen> 5 </since_tizen>
+    public sealed class TempMemoryReference<T> : TempMemoryRefBase
+		where T : class
+    {
+        internal override void UpdateBuffer(IntPtr buffer, UIntPtr size) {
+            Marshal.StructureToPtr(this.Data, buffer, false);
+        }
+        internal override void UpdateValue(IntPtr buffer, UIntPtr size) {
+            Marshal.PtrToStructure<T>(buffer, this.Data);
+        }
+
+        /// <summary>
+        /// Constructs a parameter object which holds information about the temporary generic object copied to or from TA.
+        /// </summary>
+        /// <since_tizen> 5 </since_tizen>
+        /// <param name="v">The generic class/struct.</param>
+        /// <param name="type">The kind of access allowed for TA <see cref="TEFTempMemoryType"/>.</param>
+        public TempMemoryReference(T v, TEFTempMemoryType type) : base(type)
+        {
+            this.Data = v;
+            this.Size = (uint)Marshal.SizeOf<T>();
+        }
+
+        /// <summary>
+        /// This property represents the generic object updated by TA
+        /// </summary>
+        /// <since_tizen> 5 </since_tizen>
+        private T Data;
+    }
 
     /// <summary>
     /// This type defines a memory reference that uses a pre-registered or pre-allocated shared memory block.
@@ -398,6 +452,7 @@ namespace Tizen.Security.TEEC
             Marshal.FreeHGlobal(this.session_imp);
             this.opptr = IntPtr.Zero;
             this.session_imp = IntPtr.Zero;
+            this.context = null;
             disposed = true;
         }
 
@@ -433,11 +488,10 @@ namespace Tizen.Security.TEEC
                 case (int)TEFTempMemoryType.Input:
                 case (int)TEFTempMemoryType.Output:
                 case (int)TEFTempMemoryType.InOut:
-                    byte[] mem = new byte[(uint)((TempMemoryReference)src).Size];
-                    Marshal.Copy(((TempMemoryReference)src).Buffer, mem, 0, mem.Length);
-                    shm[i] = context.AllocateSharedMemory((uint)mem.Length, SharedMemoryFlags.InOut);
-                    Marshal.Copy(mem, 0, shm[i].shm.buffer, mem.Length);
-                    dst[i].tmpref.size = (uint)mem.Length;
+                    TempMemoryReference tmr = (TempMemoryReference)src;
+                    shm[i] = context.AllocateSharedMemory(tmr.Size, SharedMemoryFlags.InOut);
+                    tmr.UpdateBuffer(shm[i].shm.buffer, (UIntPtr)tmr.Size);
+                    dst[i].tmpref.size = tmr.Size;
                     dst[i].tmpref.buffer = shm[i].shm.buffer.ToInt32();
                     break;
 
@@ -477,10 +531,8 @@ namespace Tizen.Security.TEEC
                 case (int)TEFTempMemoryType.Input:
                 case (int)TEFTempMemoryType.Output:
                 case (int)TEFTempMemoryType.InOut:
-                    byte[] mem = new byte[src.tmpref.size];
-                    Marshal.Copy(shm[i].shm.buffer, mem, 0, mem.Length);
-                    Marshal.Copy(mem, 0, ((TempMemoryReference)dst[i]).Buffer, mem.Length);
-                    ((TempMemoryReference)dst[i]).Size = src.tmpref.size;
+                    ((TempMemoryRefBase)dst[i]).UpdateValue(shm[i].shm.buffer, (UIntPtr)src.tmpref.size);
+                    ((TempMemoryRefBase)dst[i]).Size = src.tmpref.size;
                     break;
 
                 case (int)TEFRegisteredMemoryType.Whole:
@@ -517,11 +569,10 @@ namespace Tizen.Security.TEEC
                 case (int)TEFTempMemoryType.Input:
                 case (int)TEFTempMemoryType.Output:
                 case (int)TEFTempMemoryType.InOut:
-                    byte[] mem = new byte[(uint)((TempMemoryReference)src).Size];
-                    Marshal.Copy(((TempMemoryReference)src).Buffer, mem, 0, mem.Length);
-                    shm[i] = context.AllocateSharedMemory((uint)mem.Length, SharedMemoryFlags.InOut);
-                    Marshal.Copy(mem, 0, shm[i].shm.buffer, mem.Length);
-                    dst[i].tmpref.size = (UInt64)mem.Length;
+                    TempMemoryRefBase tmr = (TempMemoryRefBase)src;
+                    shm[i] = context.AllocateSharedMemory(tmr.Size, SharedMemoryFlags.InOut);
+                    tmr.UpdateBuffer(shm[i].shm.buffer, (UIntPtr)tmr.Size);
+                    dst[i].tmpref.size = (UInt64)tmr.Size;
                     dst[i].tmpref.buffer = shm[i].shm.buffer.ToInt64();
                     break;
 
@@ -562,10 +613,8 @@ namespace Tizen.Security.TEEC
                case (int)TEFTempMemoryType.Input:
                case (int)TEFTempMemoryType.Output:
                case (int)TEFTempMemoryType.InOut:
-                    byte[] mem = new byte[src.tmpref.size];
-                    Marshal.Copy(shm[i].shm.buffer, mem, 0, mem.Length);
-                    Marshal.Copy(mem, 0, ((TempMemoryReference)dst[i]).Buffer, mem.Length);
-                   ((TempMemoryReference)dst[i]).Size = (uint)src.tmpref.size;
+                   ((TempMemoryRefBase)dst[i]).UpdateValue(shm[i].shm.buffer, (UIntPtr)src.tmpref.size);
+                   ((TempMemoryRefBase)dst[i]).Size = (uint)src.tmpref.size;
                    break;
 
                case (int)TEFRegisteredMemoryType.Whole:
