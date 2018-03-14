@@ -1,5 +1,7 @@
 # TizenFX
 
+[![Join the chat at https://gitter.im/Samsung/TizenFX](https://badges.gitter.im/Samsung/TizenFX.svg)](https://gitter.im/Samsung/TizenFX?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+
 [![License](https://img.shields.io/badge/licence-Apache%202.0-brightgreen.svg?style=flat)](LICENSE)
 [![Build status](https://ci.appveyor.com/api/projects/status/xm8rsgl4d0a37hwx/branch/master?svg=true)](https://ci.appveyor.com/project/TizenAPI/tizenfx/branch/master)
 
