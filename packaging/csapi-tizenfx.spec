@@ -128,6 +128,7 @@ Tizen .NET assemblies for Wearable profile
 cp %{SOURCE1} .
 
 %build
+%{?asan:export ASAN_OPTIONS=use_sigaltstack=false:allow_user_segv_handler=true:handle_sigfpe=false:`cat /ASAN_OPTIONS`}
 
 %define _tizenfx_bin_path Artifacts
 
