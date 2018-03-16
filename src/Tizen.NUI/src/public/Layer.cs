@@ -50,7 +50,7 @@ namespace Tizen.NUI
         /// <since_tizen> 4 </since_tizen>
         public override void Add(View child)
         {
-            Container oldParent = child.GetParent();
+            Container oldParent = child.Parent;
             if (oldParent != this)
             {
                 if (oldParent != null)
@@ -98,13 +98,7 @@ namespace Tizen.NUI
             }
         }
 
-
-        /// <summary>
-        /// Get parent of the layer.
-        /// </summary>
-        /// <returns>The view's container</returns>
-        /// <since_tizen> 4 </since_tizen>
-        public override Container GetParent()
+        protected override Container GetParent()
         {
             return null;
         }
