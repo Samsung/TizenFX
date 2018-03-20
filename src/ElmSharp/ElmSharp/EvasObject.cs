@@ -1099,6 +1099,7 @@ namespace ElmSharp
                 (Parent as Window)?.RemoveChild(this);
 
                 Interop.Evas.evas_object_del(toBeDeleted);
+                Deleted?.Invoke(this, EventArgs.Empty);
                 Parent = null;
             }
         }
