@@ -1,9 +1,9 @@
 # Auto-generated from csapi-tizenfx.spec.in by makespec.sh
 
 %define TIZEN_NET_API_VERSION 5
-%define TIZEN_NET_RPM_VERSION 5.0.0.14284+nui83
-%define TIZEN_NET_NUGET_VERSION 5.0.0.14284
-%define TIZEN_NET_INTERNAL_NUGET_VERSION 5.0.0.14284
+%define TIZEN_NET_RPM_VERSION 5.0.0.14289+nui83
+%define TIZEN_NET_NUGET_VERSION 5.0.0.14289
+%define TIZEN_NET_INTERNAL_NUGET_VERSION 5.0.0.14289
 
 %define DOTNET_ASSEMBLY_PATH /usr/share/dotnet.tizen/framework
 %define DOTNET_ASSEMBLY_DUMMY_PATH %{DOTNET_ASSEMBLY_PATH}/ref
@@ -128,6 +128,7 @@ Tizen .NET assemblies for Wearable profile
 cp %{SOURCE1} .
 
 %build
+%{?asan:export ASAN_OPTIONS=use_sigaltstack=false:allow_user_segv_handler=true:handle_sigfpe=false:`cat /ASAN_OPTIONS`}
 
 %define _tizenfx_bin_path Artifacts
 
