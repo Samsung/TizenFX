@@ -1109,6 +1109,7 @@ namespace ElmSharp
 
                 (Parent as Window)?.RemoveChild(this);
 
+                Deleted?.Invoke(this, EventArgs.Empty);
                 Interop.Evas.evas_object_del(toBeDeleted);
                 Parent = null;
                 s_handleTable.Remove(toBeDeleted);
