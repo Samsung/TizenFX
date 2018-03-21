@@ -50,7 +50,7 @@ namespace Tizen.System
 #pragma warning disable CS0618 // Type or member is obsolete
             is_key_existed = SystemInfo.TryGetValue<string>("http://com.samsung/build_config/product_type", out profile);
 #pragma warning restore CS0618 // Type or member is obsolete
-            if (is_key_existed && String.Compare(profile, "TV") == 0)
+            if (is_key_existed && (String.Compare(profile, "TV") == 0 || String.Compare(profile, "AV") == 0))
             {
                 is_TV_product = 1;
             }
