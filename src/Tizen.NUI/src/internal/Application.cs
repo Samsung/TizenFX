@@ -515,6 +515,11 @@ namespace Tizen.NUI
         // Callback for Application InitSignal
         private void OnApplicationInit(IntPtr data)
         {
+            if (Version.DaliVersionMatchWithNUI() == false)
+            {
+                Tizen.Log.Fatal("NUI", "Dali and NUI are version mismatched!");
+            }
+
             // Initialize DisposeQueue Singleton class. This is also required to create DisposeQueue on main thread.
             DisposeQueue.Instance.Initialize();
 
