@@ -63,6 +63,7 @@ namespace Tizen.NUI.BaseComponents
                 if (NDalicPINVOKE.SWIGPendingException.Pending)
                     throw NDalicPINVOKE.SWIGPendingException.Retrieve();
                 Children.Add(child);
+                child.SetParent(this);
             }
         }
 
@@ -78,6 +79,7 @@ namespace Tizen.NUI.BaseComponents
                 throw NDalicPINVOKE.SWIGPendingException.Retrieve();
 
             Children.Remove(child);
+            child.SetParent(null);
         }
 
         /// <summary>
@@ -114,17 +116,7 @@ namespace Tizen.NUI.BaseComponents
         /// <since_tizen> 4 </since_tizen>
         protected override Container GetParent()
         {
-            //to fix memory leak issue, match the handle count with native side.
-            IntPtr cPtr = NDalicPINVOKE.Actor_GetParent(swigCPtr);
-            HandleRef CPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
-            BaseHandle basehandle = Registry.GetManagedBaseHandleFromNativePtr(CPtr.Handle);
-            NDalicPINVOKE.delete_BaseHandle(CPtr);
-            CPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
-
-            if (NDalicPINVOKE.SWIGPendingException.Pending)
-                throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-
-            return basehandle as Container;
+            return Parent;
         }
 
         internal bool IsTopLevelView()

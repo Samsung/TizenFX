@@ -61,6 +61,7 @@ namespace Tizen.NUI
                 if (NDalicPINVOKE.SWIGPendingException.Pending)
                     throw NDalicPINVOKE.SWIGPendingException.Retrieve();
                 Children.Add(child);
+                child.SetParent(this);
             }
         }
 
@@ -77,6 +78,7 @@ namespace Tizen.NUI
                 throw NDalicPINVOKE.SWIGPendingException.Retrieve();
 
             Children.Remove(child);
+            child.SetParent(null);
         }
 
         /// <summary>
@@ -98,6 +100,10 @@ namespace Tizen.NUI
             }
         }
 
+        /// <summary>
+        /// protected override method derived from Container abstract parent class
+        /// </summary>
+        /// <returns>always return null, because in NUI, Layer can be added under Window</returns>
         protected override Container GetParent()
         {
             return null;
