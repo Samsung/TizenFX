@@ -11514,5 +11514,5 @@ class NDalicPINVOKE {
   public static extern uint GetMaxTextureSize();
 
     }
-}
 
+}

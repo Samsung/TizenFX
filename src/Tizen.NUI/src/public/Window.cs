@@ -1398,7 +1398,8 @@ namespace Tizen.NUI
         /// </summary>
         /// <param name="transparent">Whether the window is transparent.</param>
         /// <since_tizen> 5 </since_tizen>
-        public void SetTransparency(bool transparent) {
+        public void SetTransparency(bool transparent) 
+        {
             NDalicManualPINVOKE.SetTransparency(swigCPtr, transparent);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }

@@ -30,6 +30,7 @@ namespace Tizen.NUI
     {
 
         private List<View> _childViews = new List<View>();
+        private Container _parent = null;
 
         /// <summary>
         /// List of children of Container.
@@ -62,6 +63,10 @@ namespace Tizen.NUI
             base.Dispose(type);
         }
 
+        /// <summary>
+        /// This should be implemented in derived child classes such as View and Layer
+        /// </summary>
+        /// <returns>parent object of mine, which will be Container class</returns>
         protected abstract Container GetParent();
 
         /// <summary>
@@ -110,8 +115,13 @@ namespace Tizen.NUI
         {
             get
             {
-                return GetParent();
+                return _parent;
             }
+        }
+
+        internal void SetParent(Container parent)
+        {
+            _parent = parent;
         }
 
         /// <summary>
