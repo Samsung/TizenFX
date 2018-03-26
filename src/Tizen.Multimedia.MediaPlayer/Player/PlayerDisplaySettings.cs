@@ -137,12 +137,10 @@ namespace Tizen.Multimedia
         /// </summary>
         /// <param name="roi">The region.</param>
         /// <remarks>
-        /// To set roi, <see cref="Mode"/> must be set to <see cref="PlayerDisplayMode.Roi"/> first.
+        /// the roi can be set before setting <see cref="PlayerDisplayMode.Roi"/>. (since 4.0)
         /// </remarks>
         /// <exception cref="InvalidOperationException">
-        ///     Operation failed; internal error.<br/>
-        ///     -or-<br/>
-        ///     <see cref="Mode"/> is not set to <see cref="PlayerDisplayMode.Roi"/>.
+        ///     Operation failed; internal error.
         /// </exception>
         /// <exception cref="ObjectDisposedException">The player has already been disposed of.</exception>
         /// <exception cref="ArgumentOutOfRangeException">The width or the height is less than or equal to zero.</exception>
@@ -154,15 +152,11 @@ namespace Tizen.Multimedia
                 throw new ArgumentOutOfRangeException(nameof(roi), roi.Width,
                     $"The width of the roi can't be less than or equal to zero.");
             }
+
             if (roi.Height <= 0)
             {
                 throw new ArgumentOutOfRangeException(nameof(roi), roi.Height,
                     $"The height of the roi can't be less than or equal to zero.");
-            }
-
-            if (Mode != PlayerDisplayMode.Roi)
-            {
-                throw new InvalidOperationException("Mode is not set to Roi");
             }
 
             Native.SetRoi(Player.Handle, roi.X, roi.Y, roi.Width, roi.Height).
