@@ -618,23 +618,23 @@ namespace ElmSharp
                 }
             };
 
-            MemoryStream memstream = new MemoryStream();
-            await stream.CopyToAsync(memstream);
-
-            unsafe
+            using (MemoryStream memstream = new MemoryStream())
             {
-                byte[] dataArr = memstream.ToArray();
-                fixed (byte* data = &dataArr[0])
+                await stream.CopyToAsync(memstream);
+
+                unsafe
                 {
-                    bool ret = Interop.Elementary.elm_image_memfile_set(RealHandle, data, dataArr.Length, IntPtr.Zero, IntPtr.Zero);
-                    if (!ret)
+                    byte[] dataArr = memstream.ToArray();
+                    fixed (byte* data = &dataArr[0])
                     {
-                        return false;
+                        bool ret = Interop.Elementary.elm_image_memfile_set(RealHandle, data, dataArr.Length, IntPtr.Zero, IntPtr.Zero);
+                        if (!ret)
+                        {
+                            return false;
+                        }
                     }
                 }
             }
-
-            memstream.Dispose();
 
             return await tcs.Task;
         }
