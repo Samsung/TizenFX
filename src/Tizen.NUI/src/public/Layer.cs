@@ -188,6 +188,21 @@ namespace Tizen.NUI
         }
 
         /// <summary>
+        /// Downcasts a handle to layer handle.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
+        /// Please do not use! this will be deprecated!
+        /// Instead please use as keyword.
+        [Obsolete("Please do not use! This will be deprecated! Please use as keyword instead!")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static Layer DownCast(BaseHandle handle)
+        {
+            Layer ret =  Registry.GetManagedBaseHandleFromNativePtr(handle) as Layer;
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        /// <summary>
         /// Search through this layer's hierarchy for a view with the given unique ID.
         /// </summary>
         /// <pre>This layer (the parent) has been initialized.</pre>
