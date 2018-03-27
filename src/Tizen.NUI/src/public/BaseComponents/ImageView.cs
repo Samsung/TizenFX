@@ -299,6 +299,38 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
+        /// This will be deprecated, please use Image instead. <br />
+        /// ImageView ImageMap, type PropertyMap: string if it is a URL, map otherwise.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
+        [Obsolete("Please do not use! This will be deprecated! Please use Image property instead!")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public PropertyMap ImageMap
+        {
+            get
+            {
+                if (_border == null)
+                {
+                    PropertyMap temp = new PropertyMap();
+                    GetProperty(ImageView.Property.IMAGE).Get(temp);
+                    return temp;
+                }
+                else
+                {
+                    return null;
+                }
+            }
+            set
+            {
+                if (_border == null)
+                {
+                    if (_url != null) { value.Add("url", new PropertyValue(_url)); }
+                    SetProperty(ImageView.Property.IMAGE, new Tizen.NUI.PropertyValue(value));
+                }
+            }
+        }
+
+        /// <summary>
         /// ImageView Image, type PropertyMap
         /// </summary>
         /// <since_tizen> 4 </since_tizen>
