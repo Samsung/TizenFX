@@ -32,21 +32,23 @@ namespace Tizen.Multimedia
 
         private readonly Range? _brightnessRange;
         private readonly Range? _contrastRange;
+        private readonly Range? _exposureRange;
+        private readonly Range? _hueRange;
         private readonly Range? _panRange;
         private readonly Range? _tiltRange;
-        private readonly Range? _exposureRange;
         private readonly Range? _zoomRange;
 
         internal CameraSettings(Camera camera)
         {
             _camera = camera;
 
-            _contrastRange = GetRange(Native.GetContrastRange);
             _brightnessRange = GetRange(Native.GetBrightnessRange);
+            _contrastRange = GetRange(Native.GetContrastRange);
+            _hueRange = GetRange(Native.GetHueRange);
             _exposureRange = GetRange(Native.GetExposureRange);
-            _zoomRange = GetRange(Native.GetZoomRange);
             _panRange = GetRange(Native.GetPanRange);
             _tiltRange = GetRange(Native.GetTiltRange);
+            _zoomRange = GetRange(Native.GetZoomRange);
         }
 
         private delegate CameraError GetRangeDelegate(IntPtr handle, out int min, out int max);
@@ -182,6 +184,7 @@ namespace Tizen.Multimedia
                     "Failed to set camera enable auto contrast.");
             }
         }
+
         /// <summary>
         /// Gets the available contrast level.
         /// </summary>
@@ -203,6 +206,49 @@ namespace Tizen.Multimedia
             }
         }
         #endregion Contrast
+
+        #region Hue
+        /// <summary>
+        /// The hue level of the camera.
+        /// </summary>
+        /// <since_tizen> 5 </since_tizen>
+        /// <exception cref="ObjectDisposedException">The camera already has been disposed of.</exception>
+        public int Hue
+        {
+            get
+            {
+                CameraErrorFactory.ThrowIfError(Native.GetHue(_camera.GetHandle(), out int val),
+                    "Failed to get camera hue value");
+
+                return val;
+            }
+
+            set
+            {
+                CameraErrorFactory.ThrowIfError(Native.SetHue(_camera.GetHandle(), value),
+                    "Failed to set camera hue value.");
+            }
+        }
+
+        /// <summary>
+        /// Gets the available hue level.
+        /// </summary>
+        /// <since_tizen> 5 </since_tizen>
+        /// <exception cref="NotSupportedException">In case of this feature is not supported.</exception>
+        /// <seealso cref="Hue"/>
+        public Range HueRange
+        {
+            get
+            {
+                if (!_hueRange.HasValue)
+                {
+                    throw new NotSupportedException("Hue is not supported.");
+                }
+
+                return _hueRange.Value;
+            }
+        }
+        #endregion
 
         #region Brightness
         /// <summary>
