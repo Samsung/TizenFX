@@ -20,11 +20,14 @@ using System.ComponentModel;
 
 namespace Tizen.NUI
 {
+    // Please do not use! This will be changed to internal class.
     /// <summary>
     /// A three-dimensional size.
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
-    internal class Size : global::System.IDisposable
+    [Obsolete("Please do not use! This will be deprecated! Please use Size2D instead!")]
+    [EditorBrowsable(EditorBrowsableState.Never)]
+    public class Size : global::System.IDisposable
     {
         private global::System.Runtime.InteropServices.HandleRef swigCPtr;
         /// <summary>swigCMemOwn.</summary>
