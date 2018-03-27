@@ -197,6 +197,24 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
+        /// Downcasts a handle to imageView handle.
+        /// </summary>
+        /// Please do not use! this will be deprecated!
+        /// Instead please use as keyword.
+        /// <since_tizen> 3 </since_tizen>
+        [Obsolete("Please do not use! This will be deprecated! Please use as keyword instead! " +
+            "Like: " +
+            "BaseHandle handle = new ImageView(imagePath); " +
+            "ImageView image = handle as ImageView")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public new static ImageView DownCast(BaseHandle handle)
+        {
+            ImageView ret = Registry.GetManagedBaseHandleFromNativePtr(handle) as ImageView;
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        /// <summary>
         /// Sets this ImageView from the given URL.<br />
         /// If the URL is empty, ImageView will not display anything.<br />
         /// </summary>
