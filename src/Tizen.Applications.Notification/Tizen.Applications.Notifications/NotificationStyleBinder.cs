@@ -99,7 +99,7 @@ namespace Tizen.Applications.Notifications
                 }
             }
 
-            ret = Interop.Notification.SetImage(notification.Handle, NotificationImage.Background, style?.BackgroundImage);
+            ret = Interop.Notification.SetImage(notification.Handle, NotificationImage.Background, style.BackgroundImage);
             if (ret != NotificationError.None)
             {
                 throw NotificationErrorFactory.GetException(ret, "unable to set background Image");

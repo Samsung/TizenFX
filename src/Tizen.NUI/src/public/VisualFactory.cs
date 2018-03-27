@@ -39,7 +39,16 @@ namespace Tizen.NUI
             return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
         }
 
-        internal static VisualFactory Get()
+        /// <summary>
+        /// Please do not use! this will be deprecated, please use VisualFactory.Instance instead.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
+        [Obsolete("Please do not use! This will be deprecated! Please use VisualFactory.Instance instead! " +
+            "Like: " +
+            "VisualFactory visualFactory = VisualFactory.Instance; " +
+            "visualFactory.CreateVisual(visualMap);")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static VisualFactory Get()
         {
             VisualFactory ret = new VisualFactory(NDalicPINVOKE.VisualFactory_Get(), true);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
@@ -50,6 +59,7 @@ namespace Tizen.NUI
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
+
 
         /// <summary>
         /// Request the visual.
