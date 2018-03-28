@@ -252,8 +252,12 @@ namespace Tizen.NUI
 
         public VisualBase GetVisual(int index)
         {
-            VisualBase visualBase = new VisualBase(NDalicManualPINVOKE.ViewWrapperImpl_GetVisual(swigCPtr, index), true);
-            VisualBase ret = Registry.GetManagedBaseHandleFromNativePtr(visualBase) as VisualBase;
+            //to fix memory leak issue, match the handle count with native side.
+            System.IntPtr cPtr = NDalicManualPINVOKE.ViewWrapperImpl_GetVisual(swigCPtr, index);
+            HandleRef CPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
+            VisualBase ret = Registry.GetManagedBaseHandleFromNativePtr(CPtr.Handle) as VisualBase;
+            NDalicPINVOKE.delete_BaseHandle(CPtr);
+            CPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
 
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;

@@ -201,7 +201,7 @@ namespace Tizen.NUI
 
 internal class NUILog
 {
-    //[Conditional("DEBUG_ON")]
+    [Conditional("DEBUG_ON")]
     public static void Debug(string msg,
         [CallerLineNumber] int lineNum = 0,
         [CallerMemberName] string caller = null,

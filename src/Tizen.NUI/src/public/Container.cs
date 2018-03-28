@@ -30,7 +30,6 @@ namespace Tizen.NUI
     {
 
         private List<View> _childViews = new List<View>();
-        private Container _parent = null;
 
         /// <summary>
         /// List of children of Container.
@@ -64,12 +63,6 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// This should be implemented in derived child classes such as View and Layer
-        /// </summary>
-        /// <returns>parent object of mine, which will be Container class</returns>
-        protected abstract Container GetParent();
-
-        /// <summary>
         /// Adds a child view to this Container.
         /// </summary>
         /// <pre>This Container (the parent) has been initialized. The child view has been initialized. The child view is not the same as the parent view.</pre>
@@ -97,6 +90,14 @@ namespace Tizen.NUI
         public abstract View GetChildAt( uint index );
 
         /// <summary>
+        /// Gets the parent of this container.
+        /// </summary>
+        /// <pre>The child container has been initialized.</pre>
+        /// <returns>The parent container.</returns>
+        /// <since_tizen> 4 </since_tizen>
+        public abstract Container GetParent();
+
+        /// <summary>
         /// Gets the number of children for this container.
         /// </summary>
         /// <pre>The container has been initialized.</pre>
@@ -115,13 +116,8 @@ namespace Tizen.NUI
         {
             get
             {
-                return _parent;
+                return GetParent();
             }
-        }
-
-        internal void SetParent(Container parent)
-        {
-            _parent = parent;
         }
 
         /// <summary>
