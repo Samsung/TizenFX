@@ -9,7 +9,7 @@ RPMSPEC_IN=$RPMSPEC.in
 
 source $VERSION_FILE
 
-while getopts ":r:n:i:c:" opt; do
+while getopts ":r:n:i:" opt; do
   case $opt in
     r) RPM_VERSION=$OPTARG ;;
     n) NUGET_VERSION=$OPTARG ;;
