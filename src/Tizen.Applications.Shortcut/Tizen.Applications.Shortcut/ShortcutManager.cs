@@ -191,7 +191,7 @@ namespace Tizen.Applications.Shortcut
         {
             if (ret != (int)Interop.Shortcut.ErrorCode.None)
             {
-                throw ShortcutErrorFactory.GetException((Interop.Shortcut.ErrorCode)ret, "unable to add shortcut");
+                Log.Error(LogTag, "unable to add shortcut " + ret);
             }
 
             return 0;
@@ -201,7 +201,7 @@ namespace Tizen.Applications.Shortcut
         {
             if (ret != (int)Interop.Shortcut.ErrorCode.None)
             {
-                throw ShortcutErrorFactory.GetException((Interop.Shortcut.ErrorCode)ret, "unable to add widget");
+                Log.Error(LogTag, "unable to add widget " + ret);
             }
 
             return 0;
@@ -211,7 +211,7 @@ namespace Tizen.Applications.Shortcut
         {
             if (ret != (int)Interop.Shortcut.ErrorCode.None)
             {
-                throw ShortcutErrorFactory.GetException((Interop.Shortcut.ErrorCode)ret, "unable to delete shortcut");
+                Log.Error(LogTag, "unable to delete shortcut " + ret);
             }
 
             return 0;
