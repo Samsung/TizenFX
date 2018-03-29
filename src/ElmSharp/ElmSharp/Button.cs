@@ -105,13 +105,9 @@ namespace ElmSharp
             {
                 return Interop.Elementary.elm_button_autorepeat_get(RealHandle);
             }
-        }
-        
-        public bool AutoRepeatTest
-        {
-            get
+            set
             {
-                return Interop.Elementary.elm_button_autorepeat_get(RealHandle);
+                Interop.Elementary.elm_button_autorepeat_set(RealHandle, value);
             }
         }
 
