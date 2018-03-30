@@ -1,7 +1,7 @@
 # TizenFX
 
 [![License](https://img.shields.io/badge/licence-Apache%202.0-brightgreen.svg?style=flat)](LICENSE)
-[![Jenkins](https://img.shields.io/jenkins/s/https/jenkins.qa.ubuntu.com/view/Precise/view/All%20Precise/job/precise-desktop-amd64_default.svg)](http://13.124.0.26:8080/job/TizenFX/job/TizenFX_Checkers/job/Build_Checker/lastBuild/)
+[![Build status](https://img.shields.io/jenkins/s/http/13.124.0.26:8080/job/TizenFX/job/TizenFX_Checkers/job/Branch_Builder_master.svg)](http://13.124.0.26:8080/job/TizenFX/job/TizenFX_Checkers/job/Branch_Builder_master/lastBuild/)
 
 
 
