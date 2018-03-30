@@ -945,8 +945,9 @@ namespace Tizen.Multimedia
         /// <summary>
         /// Turn the shutter sound on or off, if it is permitted by policy.
         /// </summary>
-        /// <since_tizen> 4 </since_tizen>
         /// <param name="shutterSound">Shutter sound On/Off flag</param>
+        /// <since_tizen> 4 </since_tizen>
+        /// <feature> http://tizen.org/feature/camera </feature>
         /// <remarks>
         /// If this value is true, shutter sound will be disabled, otherwise enabled.
         /// In some countries, this operation is not permitted.
