@@ -1021,4 +1021,100 @@ namespace Tizen.System
         }
     }
 
+
+    /// <summary>
+    /// EventArgs type for the VibrationChanged event.
+    /// </summary>
+    /// <privilege>http://tizen.org/privilege/systemsettings.admin</privilege>
+    /// <privlevel>platform</privlevel>
+    /// <feature>http://tizen.org/feature/systemsetting</feature>
+    /// <exception cref="ArgumentException">Invalid Argument</exception>
+    /// <exception cref="NotSupportedException">Not Supported feature</exception>
+    /// <exception cref="InvalidOperationException">Invalid operation</exception>
+    /// <exception cref="UnauthorizedAccessException">Thrown when application does not have privilege to access this method.</exception>
+    /// <since_tizen> 5 </since_tizen>
+    public class VibrationChangedEventArgs : EventArgs
+    {
+        private readonly bool _vibration;
+        internal VibrationChangedEventArgs(bool val)
+        {
+            _vibration = val;
+        }
+
+        /// <summary>
+        /// Indicates whether the vibration is enabled on the device.
+        /// </summary>
+        /// <since_tizen> 5 </since_tizen>
+        public bool Value
+        {
+            get
+            {
+                return _vibration;
+            }
+        }
+    }
+
+    /// <summary>
+    /// EventArgs type for the AutomaticTimeUpdateChanged event.
+    /// </summary>
+    /// <privilege>http://tizen.org/privilege/systemsettings.admin</privilege>
+    /// <privlevel>platform</privlevel>
+    /// <feature>http://tizen.org/feature/systemsetting</feature>
+    /// <exception cref="ArgumentException">Invalid Argument</exception>
+    /// <exception cref="NotSupportedException">Not Supported feature</exception>
+    /// <exception cref="InvalidOperationException">Invalid operation</exception>
+    /// <exception cref="UnauthorizedAccessException">Thrown when application does not have privilege to access this method.</exception>
+    /// <since_tizen> 5 </since_tizen>
+    public class AutomaticTimeUpdateChangedEventArgs : EventArgs
+    {
+        private readonly bool _automaticTimeUpdate;
+        internal AutomaticTimeUpdateChangedEventArgs(bool val)
+        {
+            _automaticTimeUpdate = val;
+        }
+
+        /// <summary>
+        /// Indicates whether the updating time automatically is enabled on the device.
+        /// </summary>
+        /// <since_tizen> 5 </since_tizen>
+        public bool Value
+        {
+            get
+            {
+                return _automaticTimeUpdate;
+            }
+        }
+    }
+
+    /// <summary>
+    /// EventArgs type for the DeveloperOptionStateChanged event.
+    /// </summary>
+    /// <privilege>http://tizen.org/privilege/systemsettings.admin</privilege>
+    /// <privlevel>platform</privlevel>
+    /// <feature>http://tizen.org/feature/systemsetting</feature>
+    /// <exception cref="ArgumentException">Invalid Argument</exception>
+    /// <exception cref="NotSupportedException">Not Supported feature</exception>
+    /// <exception cref="InvalidOperationException">Invalid operation</exception>
+    /// <exception cref="UnauthorizedAccessException">Thrown when application does not have privilege to access this method.</exception>
+    /// <since_tizen> 5 </since_tizen>
+    public class DeveloperOptionStateChangedEventArgs : EventArgs
+    {
+        private readonly bool _developerOptionState;
+        internal DeveloperOptionStateChangedEventArgs(bool val)
+        {
+            _developerOptionState = val;
+        }
+
+        /// <summary>
+        /// Indicates whether developer option state is enabled on the device.
+        /// </summary>
+        /// <since_tizen> 5 </since_tizen>
+        public bool Value
+        {
+            get
+            {
+                return _developerOptionState;
+            }
+        }
+    }
 }
