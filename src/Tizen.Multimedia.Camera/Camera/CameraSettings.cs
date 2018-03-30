@@ -32,21 +32,23 @@ namespace Tizen.Multimedia
 
         private readonly Range? _brightnessRange;
         private readonly Range? _contrastRange;
+        private readonly Range? _exposureRange;
+        private readonly Range? _hueRange;
         private readonly Range? _panRange;
         private readonly Range? _tiltRange;
-        private readonly Range? _exposureRange;
         private readonly Range? _zoomRange;
 
         internal CameraSettings(Camera camera)
         {
             _camera = camera;
 
-            _contrastRange = GetRange(Native.GetContrastRange);
             _brightnessRange = GetRange(Native.GetBrightnessRange);
+            _contrastRange = GetRange(Native.GetContrastRange);
             _exposureRange = GetRange(Native.GetExposureRange);
-            _zoomRange = GetRange(Native.GetZoomRange);
+            _hueRange = GetRange(Native.GetHueRange);
             _panRange = GetRange(Native.GetPanRange);
             _tiltRange = GetRange(Native.GetTiltRange);
+            _zoomRange = GetRange(Native.GetZoomRange);
         }
 
         private delegate CameraError GetRangeDelegate(IntPtr handle, out int min, out int max);
@@ -67,13 +69,14 @@ namespace Tizen.Multimedia
         /// <summary>
         /// Sets the auto focus area.
         /// </summary>
+        /// <param name="x">X position.</param>
+        /// <param name="y">Y position.</param>
         /// <since_tizen> 3 </since_tizen>
+        /// <feature> http://tizen.org/feature/camera </feature>
         /// <remarks>
         /// <see cref="CameraAutoFocusMode"/> should not be the <see cref="CameraAutoFocusMode.None"/>.
         /// </remarks>
-        /// <param name="x">X position.</param>
-        /// <param name="y">Y position.</param>
-        /// <exception cref="ArgumentException">In case of invalid parameters.</exception>
+        /// /// <exception cref="ArgumentException">In case of invalid parameters.</exception>
         /// <exception cref="InvalidOperationException">In case of any invalid operations.</exception>
         /// <exception cref="ObjectDisposedException">The camera already has been disposed of.</exception>
         public void SetAutoFocusArea(int x, int y)
@@ -85,12 +88,13 @@ namespace Tizen.Multimedia
         /// <summary>
         /// Sets the auto focus area.
         /// </summary>
+        /// <param name="pos"><see cref="Point"/> structure including X, Y position.</param>
         /// <since_tizen> 3 </since_tizen>
+        /// <feature> http://tizen.org/feature/camera </feature>
         /// <remarks>
         /// <see cref="CameraAutoFocusMode"/> should not be the <see cref="CameraAutoFocusMode.None"/>.
         /// </remarks>
-        /// <param name="pos"><see cref="Point"/> structure including X, Y position.</param>
-        /// <exception cref="ArgumentException">In case of invalid parameters.</exception>
+        /// /// <exception cref="ArgumentException">In case of invalid parameters.</exception>
         /// <exception cref="InvalidOperationException">In case of any invalid operations.</exception>
         /// <exception cref="ObjectDisposedException">The camera already has been disposed of.</exception>
         public void SetAutoFocusArea(Point pos)
@@ -103,6 +107,7 @@ namespace Tizen.Multimedia
         /// Clears the auto focus area.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        /// <feature> http://tizen.org/feature/camera </feature>
         /// <exception cref="ObjectDisposedException">The camera already has been disposed of.</exception>
         public void ClearFocusArea()
         {
@@ -183,6 +188,7 @@ namespace Tizen.Multimedia
                     "Failed to set camera enable auto contrast.");
             }
         }
+
         /// <summary>
         /// Gets the available contrast level.
         /// </summary>
@@ -204,6 +210,49 @@ namespace Tizen.Multimedia
             }
         }
         #endregion Contrast
+
+        #region Hue
+        /// <summary>
+        /// The hue level of the camera.
+        /// </summary>
+        /// <since_tizen> 5 </since_tizen>
+        /// <exception cref="ObjectDisposedException">The camera already has been disposed of.</exception>
+        public int Hue
+        {
+            get
+            {
+                CameraErrorFactory.ThrowIfError(Native.GetHue(_camera.GetHandle(), out int val),
+                    "Failed to get camera hue value");
+
+                return val;
+            }
+
+            set
+            {
+                CameraErrorFactory.ThrowIfError(Native.SetHue(_camera.GetHandle(), value),
+                    "Failed to set camera hue value.");
+            }
+        }
+
+        /// <summary>
+        /// Gets the available hue level.
+        /// </summary>
+        /// <since_tizen> 5 </since_tizen>
+        /// <exception cref="NotSupportedException">In case of this feature is not supported.</exception>
+        /// <seealso cref="Hue"/>
+        public Range HueRange
+        {
+            get
+            {
+                if (!_hueRange.HasValue)
+                {
+                    throw new NotSupportedException("Hue is not supported.");
+                }
+
+                return _hueRange.Value;
+            }
+        }
+        #endregion
 
         #region Brightness
         /// <summary>
@@ -931,9 +980,10 @@ namespace Tizen.Multimedia
         /// <summary>
         /// Sets the position to move horizontally.
         /// </summary>
-        /// <since_tizen> 3 </since_tizen>
         /// <param name="type">The PTZ move type. <seealso cref="CameraPtzMoveType"/>.</param>
         /// <param name="panStep">The pan step.</param>
+        /// <since_tizen> 3 </since_tizen>
+        /// <feature> http://tizen.org/feature/camera </feature>
         /// <exception cref="ArgumentException">In case of invalid parameters.</exception>
         /// <exception cref="ObjectDisposedException">The camera already has been disposed of.</exception>
         public void SetPan(CameraPtzMoveType type, int panStep)
@@ -947,8 +997,9 @@ namespace Tizen.Multimedia
         /// <summary>
         /// Gets the current position of the camera.
         /// </summary>
-        /// <since_tizen> 3 </since_tizen>
         /// <returns>Returns the camera's horizontal position.</returns>
+        /// <since_tizen> 3 </since_tizen>
+        /// <feature> http://tizen.org/feature/camera </feature>
         /// <exception cref="ObjectDisposedException">The camera already has been disposed of.</exception>
         public int GetPan()
         {
@@ -961,9 +1012,10 @@ namespace Tizen.Multimedia
         /// <summary>
         /// Sets the position to move vertically.
         /// </summary>
-        /// <since_tizen> 3 </since_tizen>
         /// <param name="type">the PTZ move type.</param>
         /// <param name="tiltStep">The tilt step.</param>
+        /// <since_tizen> 3 </since_tizen>
+        /// <feature> http://tizen.org/feature/camera </feature>
         /// <exception cref="ArgumentException">In case of invalid parameters.</exception>
         /// <exception cref="ObjectDisposedException">The camera already has been disposed of.</exception>
         public void SetTilt(CameraPtzMoveType type, int tiltStep)
@@ -977,6 +1029,7 @@ namespace Tizen.Multimedia
         /// Gets the current position of the camera.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        /// <feature> http://tizen.org/feature/camera </feature>
         /// <returns>Returns the current vertical position.</returns>
         /// <exception cref="ObjectDisposedException">The camera already has been disposed of.</exception>
         public int GetTilt()
@@ -1141,6 +1194,7 @@ namespace Tizen.Multimedia
         /// Removes the geo tag(GPS data) in the EXIF(EXchangeable Image File format) tag.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        /// <feature> http://tizen.org/feature/camera </feature>
         /// <exception cref="ObjectDisposedException">The camera already has been disposed of.</exception>
         public void RemoveGeoTag()
         {
