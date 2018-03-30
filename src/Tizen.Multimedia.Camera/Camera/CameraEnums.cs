@@ -31,7 +31,47 @@ namespace Tizen.Multimedia
         /// <summary>
         /// The front camera device.
         /// </summary>
-        Front
+        Front,
+        /// <summary>
+        /// The primary camera device.
+        /// </summary>
+        CameraDevice0 = Rear,
+        /// <summary>
+        /// The secondary camera device.
+        /// </summary>
+        CameraDevice1 = Front,
+        /// <summary>
+        /// The third camera device. (Since 4.0)
+        /// </summary>
+        CameraDevice2,
+        /// <summary>
+        /// The 4th camera device. (Since 4.0)
+        /// </summary>
+        CameraDevice3,
+        /// <summary>
+        /// The 5th camera device. (Since 4.0)
+        /// </summary>
+        CameraDevice4,
+        /// <summary>
+        /// The 6th camera device. (Since 4.0)
+        /// </summary>
+        CameraDevice5,
+        /// <summary>
+        /// The 7th camera device. (Since 4.0)
+        /// </summary>
+        CameraDevice6,
+        /// <summary>
+        /// The 8th camera device. (Since 4.0)
+        /// </summary>
+        CameraDevice7,
+        /// <summary>
+        /// The 9th camera device. (Since 4.0)
+        /// </summary>
+        CameraDevice8,
+        /// <summary>
+        /// The 10th camera device. (Since 4.0)
+        /// </summary>
+        CameraDevice9
     }
 
     /// <summary>
