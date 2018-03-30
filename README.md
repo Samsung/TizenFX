@@ -3,8 +3,6 @@
 [![License](https://img.shields.io/badge/licence-Apache%202.0-brightgreen.svg?style=flat)](LICENSE)
 [![Build status](https://img.shields.io/jenkins/s/http/13.124.0.26:8080/job/TizenFX/job/TizenFX_Checkers/job/Branch_Builder_master.svg)](http://13.124.0.26:8080/job/TizenFX/job/TizenFX_Checkers/job/Branch_Builder_master/lastBuild/)
 
-
-
 TizenFX API, which allows you to access platform-specific features not covered by the generic .NET and Xamarin.Forms features, such as system information and status, battery status, sensor date, and account and connectivity services.
 
 ## Contents
