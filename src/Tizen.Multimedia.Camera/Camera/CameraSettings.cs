@@ -33,7 +33,7 @@ namespace Tizen.Multimedia
         private readonly Range? _brightnessRange;
         private readonly Range? _contrastRange;
         private readonly Range? _exposureRange;
-        private readonly Range? _hueRange;
+        private readonly Range? _hueRange = null;
         private readonly Range? _panRange;
         private readonly Range? _tiltRange;
         private readonly Range? _zoomRange;
@@ -238,15 +238,18 @@ namespace Tizen.Multimedia
         /// Gets the available hue level.
         /// </summary>
         /// <since_tizen> 5 </since_tizen>
-        /// <exception cref="NotSupportedException">In case of this feature is not supported.</exception>
+        /// <remarks>
+        /// If HueRange returns null, it means that hue feature is not supported.
+        /// It can be checked also with <seec cref="CameraCapabilities.IsHueSupported"/>.
+        /// </remarks>
         /// <seealso cref="Hue"/>
-        public Range HueRange
+        public Range? HueRange
         {
             get
             {
                 if (!_hueRange.HasValue)
                 {
-                    throw new NotSupportedException("Hue is not supported.");
+                    return null;
                 }
 
                 return _hueRange.Value;

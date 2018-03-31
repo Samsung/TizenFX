@@ -66,6 +66,7 @@ namespace Tizen.Multimedia
             IsZoomSupported = CheckRangeValid(NativeSettings.GetZoomRange);
             IsPanSupported = CheckRangeValid(NativeSettings.GetPanRange);
             IsTiltSupported = CheckRangeValid(NativeSettings.GetTiltRange);
+            IsHueSupported = CheckRangeValid(NativeSettings.GetHueRange);
         }
 
         private bool IsFeatureSupported(IsSupportedDelegate func)
@@ -171,6 +172,13 @@ namespace Tizen.Multimedia
         /// <value>true if supported, otherwise false.</value>
         /// <since_tizen> 4 </since_tizen>
         public bool IsTiltSupported { get; }
+
+        /// <summary>
+        /// Gets the support state of the hue feature.
+        /// </summary>
+        /// <value>true if supported, otherwise false.</value>
+        /// <since_tizen> 5 </since_tizen>
+        public bool IsHueSupported { get; }
 
         /// <summary>
         /// Retrieves all the preview resolutions supported by the camera.
