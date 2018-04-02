@@ -42,15 +42,9 @@ goto :EOF
 
 :Pack
 set VERSION=%2
-set VERSION_INTERNAL=%3
 call :GetUnixTime TIMESTAMP
 if /I [%VERSION%] == [] set VERSION=4.0.1-local-%TIMESTAMP%
-if /I [%VERSION_INTERNAL%] == [] set VERSION_INTERNAL=%VERSION%
-set OUTDIR=%~dp0Artifacts
-set NUGET_CMD=%~dp0tools\NuGet.exe
-%NUGET_CMD% pack %~dp0pkg\Tizen.NET.nuspec -NoPackageAnalysis -Version %VERSION% -BasePath %~dp0 -OutputDirectory %OUTDIR%
-%NUGET_CMD% pack %~dp0pkg\Tizen.NET.API4.nuspec -NoPackageAnalysis -Version %VERSION% -BasePath %~dp0 -OutputDirectory %OUTDIR%
-%NUGET_CMD% pack %~dp0pkg\Tizen.NET.Internals.nuspec -NoPackageAnalysis -Version %VERSION_INTERNAL% -BasePath %~dp0 -OutputDirectory %OUTDIR%
+call dotnet msbuild %~dp0build\build.proj /nologo /t:pack /p:Version=%VERSION%
 goto :EOF
 
 :Clean
