@@ -1,0 +1,21 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <Import Project="$(MSBuildThisFileDirectory)directories.props" />
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <DisableImplicitFrameworkReferences>false</DisableImplicitFrameworkReferences>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <IncludeBuildOutput>false</IncludeBuildOutput>
+    <NoPackageAnalysis>true</NoPackageAnalysis>
+    <NuspecBasePath>$(ProjectRootDir)</NuspecBasePath>
+    <NuspecProperties>$(NuspecProperties);version=$(Version)</NuspecProperties>
+    <PackageOutputPath>$(OutputBaseDir)</PackageOutputPath>
+  </PropertyGroup>
+
+</Project>
