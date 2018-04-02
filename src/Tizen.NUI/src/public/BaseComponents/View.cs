@@ -38,11 +38,6 @@ namespace Tizen.NUI.BaseComponents
             }
         }
 
-        internal View(global::System.IntPtr cPtr, bool cMemoryOwn, bool ignore) : base(NDalicPINVOKE.View_SWIGUpcast(cPtr), cMemoryOwn)
-        {
-            swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
-        }
-
         internal static global::System.Runtime.InteropServices.HandleRef getCPtr(View obj)
         {
             return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
@@ -68,7 +63,6 @@ namespace Tizen.NUI.BaseComponents
                 if (NDalicPINVOKE.SWIGPendingException.Pending)
                     throw NDalicPINVOKE.SWIGPendingException.Retrieve();
                 Children.Add(child);
-                child.SetParent(this);
             }
         }
 
@@ -84,7 +78,6 @@ namespace Tizen.NUI.BaseComponents
                 throw NDalicPINVOKE.SWIGPendingException.Retrieve();
 
             Children.Remove(child);
-            child.SetParent(null);
         }
 
         /// <summary>
@@ -119,9 +112,19 @@ namespace Tizen.NUI.BaseComponents
         /// </summary>
         /// <seealso cref="Container.GetParent()" />
         /// <since_tizen> 4 </since_tizen>
-        protected override Container GetParent()
+        public override Container GetParent()
         {
-            return Parent;
+            //to fix memory leak issue, match the handle count with native side.
+            IntPtr cPtr = NDalicPINVOKE.Actor_GetParent(swigCPtr);
+            HandleRef CPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
+            BaseHandle basehandle = Registry.GetManagedBaseHandleFromNativePtr(CPtr.Handle);
+            NDalicPINVOKE.delete_BaseHandle(CPtr);
+            CPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
+
+            if (NDalicPINVOKE.SWIGPendingException.Pending)
+                throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+
+            return basehandle as Container;
         }
 
         internal bool IsTopLevelView()
@@ -2607,8 +2610,12 @@ namespace Tizen.NUI.BaseComponents
         /// <since_tizen> 5 </since_tizen>
         public Layer GetLayer()
         {
-            Layer layer = new Layer(NDalicPINVOKE.Actor_GetLayer(swigCPtr), true);
-            Layer ret = Registry.GetManagedBaseHandleFromNativePtr(layer) as Layer;
+            //to fix memory leak issue, match the handle count with native side.
+            IntPtr cPtr = NDalicPINVOKE.Actor_GetLayer(swigCPtr);
+            HandleRef CPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
+            Layer ret = Registry.GetManagedBaseHandleFromNativePtr(CPtr.Handle) as Layer;
+            NDalicPINVOKE.delete_BaseHandle(CPtr);
+            CPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
 
             if (NDalicPINVOKE.SWIGPendingException.Pending)
                 throw NDalicPINVOKE.SWIGPendingException.Retrieve();
@@ -2635,8 +2642,12 @@ namespace Tizen.NUI.BaseComponents
         /// <since_tizen> 3 </since_tizen>
         public View FindChildByName(string viewName)
         {
-            View view = new View(NDalicPINVOKE.Actor_FindChildByName(swigCPtr, viewName), true, true);
-            View ret = Registry.GetManagedBaseHandleFromNativePtr(view) as View;
+            //to fix memory leak issue, match the handle count with native side.
+            IntPtr cPtr = NDalicPINVOKE.Actor_FindChildByName(swigCPtr, viewName);
+            HandleRef CPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
+            View ret = Registry.GetManagedBaseHandleFromNativePtr(CPtr.Handle) as View;
+            NDalicPINVOKE.delete_BaseHandle(CPtr);
+            CPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
 
             if (NDalicPINVOKE.SWIGPendingException.Pending)
                 throw NDalicPINVOKE.SWIGPendingException.Retrieve();
@@ -2645,8 +2656,12 @@ namespace Tizen.NUI.BaseComponents
 
         internal View FindChildById(uint id)
         {
-            View view = new View(NDalicPINVOKE.Actor_FindChildById(swigCPtr, id), true, true);
-            View ret = Registry.GetManagedBaseHandleFromNativePtr(view) as View;
+            //to fix memory leak issue, match the handle count with native side.
+            IntPtr cPtr = NDalicPINVOKE.Actor_FindChildById(swigCPtr, id);
+            HandleRef CPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
+            View ret = Registry.GetManagedBaseHandleFromNativePtr(CPtr.Handle) as View;
+            NDalicPINVOKE.delete_BaseHandle(CPtr);
+            CPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
 
             if (NDalicPINVOKE.SWIGPendingException.Pending)
                 throw NDalicPINVOKE.SWIGPendingException.Retrieve();
@@ -3240,8 +3255,12 @@ namespace Tizen.NUI.BaseComponents
         /// <since_tizen> 3 </since_tizen>
         public Renderer GetRendererAt(uint index)
         {
-            Renderer renderer = new Renderer(NDalicPINVOKE.Actor_GetRendererAt(swigCPtr, index), true);
-            Renderer ret = Registry.GetManagedBaseHandleFromNativePtr(renderer) as Renderer;
+            //to fix memory leak issue, match the handle count with native side.
+            IntPtr cPtr = NDalicPINVOKE.Actor_GetRendererAt(swigCPtr, index);
+            HandleRef CPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
+            Renderer ret = Registry.GetManagedBaseHandleFromNativePtr(CPtr.Handle) as Renderer;
+            NDalicPINVOKE.delete_BaseHandle(CPtr);
+            CPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
 
             if (NDalicPINVOKE.SWIGPendingException.Pending)
                 throw NDalicPINVOKE.SWIGPendingException.Retrieve();

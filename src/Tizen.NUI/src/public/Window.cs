@@ -1398,8 +1398,7 @@ namespace Tizen.NUI
         /// </summary>
         /// <param name="transparent">Whether the window is transparent.</param>
         /// <since_tizen> 5 </since_tizen>
-        public void SetTransparency(bool transparent) 
-        {
+        public void SetTransparency(bool transparent) {
             NDalicManualPINVOKE.SetTransparency(swigCPtr, transparent);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
@@ -1609,7 +1608,7 @@ namespace Tizen.NUI
         /// <param name="keyEvent">The key event to feed.</param>
         /// <since_tizen> 4 </since_tizen>
         [Obsolete("Please do not use! This will be deprecated! Please use FeedKey(Key keyEvent) instead!")]
-        public void FeedKeyEvent(Key keyEvent)
+        public static void FeedKeyEvent(Key keyEvent)
         {
             NDalicManualPINVOKE.Window_FeedKeyEvent(Key.getCPtr(keyEvent));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
