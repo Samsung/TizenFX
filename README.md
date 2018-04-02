@@ -20,7 +20,7 @@ TizenFX API, which allows you to access platform-specific features not covered b
 ### master
 The __master__ branch is the main development branch for the Tizen .NET __API Level 5__.
 
-The following NuGet packages will be published to [Tizen MyGet Gallery](https://tizen.myget.org/gallery/dotnet) every day if there are any changes. (Nightly Build) 
+The following NuGet packages will be published to [Tizen MyGet Gallery](https://tizen.myget.org/gallery/dotnet) every day if there are any changes. (Nightly Build)
 * Tizen.NET-5.0.0.#####
 * Tizen.NET.API5-5.0.0.#####
 * Tizen.NET.Internals-5.0.0.#####
