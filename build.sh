@@ -5,7 +5,6 @@ SCRIPT_DIR=$(dirname $SCRIPT_FILE)
 
 OUTDIR=$SCRIPT_DIR/Artifacts
 
-NUGET_CMD="mono $SCRIPT_DIR/tools/NuGet.exe"
 RETRY_CMD="$SCRIPT_DIR/tools/retry.sh"
 TIMEOUT_CMD="$SCRIPT_DIR/tools/timeout.sh"
 DOTNET_CMD="$RETRY_CMD $TIMEOUT_CMD 600 dotnet"
