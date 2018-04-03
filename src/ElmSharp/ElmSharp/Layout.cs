@@ -325,10 +325,9 @@ namespace ElmSharp
         {
             set
             {
-                if (value.IsDefault && ClassName != null)
+                if (value.IsDefault)
                 {
-                    string part = ClassName.ToLower().Replace("elm_", "") + "/" + "bg";
-                    EdjeObject.DeleteColorClass(part);
+                    Interop.Elementary.elm_object_color_class_del(RealHandle, "bg");
                 }
                 else
                 {

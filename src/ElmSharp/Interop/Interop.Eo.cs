@@ -22,14 +22,14 @@ internal static partial class Interop
     internal static partial class Eo
     {
         [DllImport(Libraries.Eo)]
-        internal static extern IntPtr eo_class_get(IntPtr obj);
+        internal static extern IntPtr efl_class_get(IntPtr obj);
 
-        [DllImport(Libraries.Eo, EntryPoint = "eo_class_name_get", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true, CharSet = CharSet.Ansi)]
-        internal static extern IntPtr _eo_class_name_get(IntPtr klass);
+        [DllImport(Libraries.Eo, EntryPoint = "efl_class_name_get", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true, CharSet = CharSet.Ansi)]
+        internal static extern IntPtr _efl_class_name_get(IntPtr klass);
 
-        internal static string eo_class_name_get(IntPtr obj)
+        internal static string efl_class_name_get(IntPtr obj)
         {
-            var name = _eo_class_name_get(obj);
+            var name = _efl_class_name_get(obj);
             return Marshal.PtrToStringAnsi(name);
         }
 
