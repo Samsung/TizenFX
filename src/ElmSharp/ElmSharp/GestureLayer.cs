@@ -531,7 +531,7 @@ namespace ElmSharp
         /// <since_tizen> preview </since_tizen>
         protected override IntPtr CreateHandle(EvasObject parent)
         {
-            return Interop.Elementary.elm_gesture_layer_add(parent);
+            return Interop.Elementary.elm_gesture_layer_add(parent.Handle);
         }
 
         /// <summary>
