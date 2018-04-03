@@ -360,7 +360,7 @@ namespace ElmSharp
         {
             get
             {
-                return Interop.Eo.eo_class_name_get(Interop.Eo.eo_class_get(RealHandle));
+                return Interop.Eo.efl_class_name_get(Interop.Eo.efl_class_get(RealHandle));
             }
         }
 
