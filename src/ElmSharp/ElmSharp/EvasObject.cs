@@ -999,6 +999,7 @@ namespace ElmSharp
         /// <param name="h">h coordinate of the line.</param>
         /// <returns></returns>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("GetTextBlockGeometryByLineNumber is obsolete as of version 5.0.0.14299 and is no longer supported.")]
         public bool GetTextBlockGeometryByLineNumber(int lineNumber, out int x, out int y, out int w, out int h)
         {
             return Interop.Evas.evas_object_textblock_line_number_geometry_get(RealHandle, lineNumber, out x, out y, out w, out h);
