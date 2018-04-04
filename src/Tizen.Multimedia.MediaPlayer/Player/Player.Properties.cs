@@ -418,7 +418,7 @@ namespace Tizen.Multimedia
         /// Gets or sets the audio-only state.
         /// </summary>
         /// <value>true if the playback is audio-only mode; otherwise, false. The default value is false.</value>
-        /// The <see cref="Player"/> To set or get, the player must be in the <see cref="PlayerState.Ready"/>,
+        /// The <see cref="Player"/> must be in the <see cref="PlayerState.Ready"/>,
         /// <see cref="PlayerState.Playing"/>, or <see cref="PlayerState.Paused"/> state.
         /// <exception cref="InvalidOperationException">The player is not in the valid state.</exception>
         /// <exception cref="ObjectDisposedException">The player has already been disposed of.</exception>
