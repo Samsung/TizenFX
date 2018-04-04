@@ -25,7 +25,7 @@ namespace Tizen.Multimedia.MediaCodec
         None = ErrorCode.None,
         OutOfMemory = ErrorCode.OutOfMemory,
         InvalidParameter = ErrorCode.InvalidParameter,
-        InvalidOperation = ErrorCode.InvalidParameter,
+        InvalidOperation = ErrorCode.InvalidOperation,
         NotSupportedOnDevice = ErrorCode.NotSupported,
         PermissionDenied = ErrorCode.PermissionDenied,
 
