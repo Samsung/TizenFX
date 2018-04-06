@@ -42,6 +42,9 @@ And, This branch is pushed to the [tizen_4.0 branch](https://git.tizen.org/cgit/
 
 
 ## Quick Start
+### Prerequisites
+Install .NET Core SDK 2.0+ : https://www.microsoft.com/net/download/
+
 ### Getting the sources
 ```bash
 git clone https://github.com/Samsung/TizenFX.git
@@ -62,21 +65,5 @@ You can download the latest binaries with TizenFX from the link below :
 |-------------------|------|
 | Tizen 4.0         | http://download.tizen.org/snapshots/tizen/4.0-unified/latest/ |
 | Tizen vNext (5.0) | http://download.tizen.org/snapshots/tizen/unified/latest/ |
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
