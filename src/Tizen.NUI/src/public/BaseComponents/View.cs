@@ -52,7 +52,7 @@ namespace Tizen.NUI.BaseComponents
         /// <since_tizen> 4 </since_tizen>
         public override void Add(View child)
         {
-            Container oldParent = child.GetParent();
+            Container oldParent = child.Parent;
             if(oldParent != this)
             {
                 if (oldParent != null)
@@ -4328,9 +4328,9 @@ namespace Tizen.NUI.BaseComponents
                 HandleRef CPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
                 BaseHandle basehandle = Registry.GetManagedBaseHandleFromNativePtr(CPtr.Handle);
 
-                if (basehandle is Layer)
+                if (basehandle is Layer layer)
                 {
-                    ret = new View(cPtr, false);
+                    ret = new View(Layer.getCPtr(layer).Handle, false);
                     NUILog.Error("This Parent property is deprecated, shoud do not be used");
                 }
                 else

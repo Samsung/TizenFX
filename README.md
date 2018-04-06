@@ -1,7 +1,7 @@
 # TizenFX
 
 [![License](https://img.shields.io/badge/licence-Apache%202.0-brightgreen.svg?style=flat)](LICENSE)
-[![Build status](https://ci.appveyor.com/api/projects/status/xm8rsgl4d0a37hwx/branch/master?svg=true)](https://ci.appveyor.com/project/TizenAPI/tizenfx/branch/master)
+[![Build status](https://img.shields.io/jenkins/s/http/13.124.0.26:8080/job/TizenFX/job/TizenFX_Checkers/job/Branch_Builder_master.svg)](http://13.124.0.26:8080/job/TizenFX/job/TizenFX_Checkers/job/Branch_Builder_master/lastBuild/)
 
 TizenFX API, which allows you to access platform-specific features not covered by the generic .NET and Xamarin.Forms features, such as system information and status, battery status, sensor date, and account and connectivity services.
 
@@ -42,6 +42,9 @@ And, This branch is pushed to the [tizen_4.0 branch](https://git.tizen.org/cgit/
 
 
 ## Quick Start
+### Prerequisites
+Install .NET Core SDK 2.0+ : https://www.microsoft.com/net/download/
+
 ### Getting the sources
 ```bash
 git clone https://github.com/Samsung/TizenFX.git
@@ -62,21 +65,5 @@ You can download the latest binaries with TizenFX from the link below :
 |-------------------|------|
 | Tizen 4.0         | http://download.tizen.org/snapshots/tizen/4.0-unified/latest/ |
 | Tizen vNext (5.0) | http://download.tizen.org/snapshots/tizen/unified/latest/ |
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 

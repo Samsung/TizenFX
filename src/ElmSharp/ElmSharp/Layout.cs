@@ -179,6 +179,9 @@ namespace ElmSharp
         /// Once the object is appended, it will become a child of the layout.
         /// Its lifetime will be bound to the layout. Whenever the layout dies, the child will be deleted automatically.
         /// </summary>
+        /// <remarks>
+        /// This will only work if the layout edc have box part.
+        /// </remarks>
         /// <param name="part">The part.</param>
         /// <param name="child">The object to append.</param>
         /// <returns>Success is true.</returns>
@@ -194,6 +197,9 @@ namespace ElmSharp
         /// Once the object is prepended, it will become a child of the layout.
         /// Its lifetime will be bound to the layout. Whenever the layout dies, the child will be deleted automatically.
         /// </summary>
+        /// <remarks>
+        /// This will only work if the layout edc have box part.
+        /// </remarks>
         /// <param name="part">The part.</param>
         /// <param name="child">The object to prepend.</param>
         /// <returns>Success is true.</returns>
@@ -208,6 +214,9 @@ namespace ElmSharp
         /// Removes a child from the given part box.
         /// The object will be removed from the box part and its lifetime will not be handled by the layout anymore.
         /// </summary>
+        /// <remarks>
+        /// This will only work if the layout edc have box part.
+        /// </remarks>
         /// <param name="part">The part.</param>
         /// <param name="child">The object to remove.</param>
         /// <returns>Success if true</returns>
@@ -215,13 +224,16 @@ namespace ElmSharp
         public bool BoxRemove(string part, EvasObject child)
         {
             RemoveChild(child);
-            return Interop.Elementary.elm_layout_box_remove(RealHandle, part, child.Handle) != null;
+            return Interop.Elementary.elm_layout_box_remove(RealHandle, part, child.Handle) != IntPtr.Zero;
         }
 
         /// <summary>
         /// Removes all the children from the given part box.
         /// The objects will be removed from the box part and their lifetime will not be handled by the layout anymore.
         /// </summary>
+        /// <remarks>
+        /// This will only work if the layout edc have box part.
+        /// </remarks>
         /// <param name="part">The part.</param>
         /// <param name="clear">If true, then all the objects will be deleted as well, otherwise they will just be removed and will be dangling on the canvas.</param>
         /// <returns>Success if true.</returns>
@@ -237,6 +249,9 @@ namespace ElmSharp
         /// Once the object is inserted, it will become a child of the layout.
         /// Its lifetime will be bound to the layout. Whenever the layout dies, the child will be deleted automatically.
         /// </summary>
+        /// <remarks>
+        /// This will only work if the layout edc have box part.
+        /// </remarks>
         /// <param name="part">The part.</param>
         /// <param name="child">The child object to insert into the box.</param>
         /// <param name="position">The numeric position >=0 to insert the child.</param>
@@ -253,6 +268,9 @@ namespace ElmSharp
         /// Once the object is inserted, it will become child of the layout.
         /// Its lifetime will be bound to the layout. Whenever the layout dies, the child will be deleted automatically.
         /// </summary>
+        /// <remarks>
+        /// This will only work if the layout edc have box part.
+        /// </remarks>
         /// <param name="part">The part.</param>
         /// <param name="child">The child object to insert into the box.</param>
         /// <param name="reference">Another reference object to insert before the box.</param>
@@ -325,10 +343,9 @@ namespace ElmSharp
         {
             set
             {
-                if (value.IsDefault && ClassName != null)
+                if (value.IsDefault)
                 {
-                    string part = ClassName.ToLower().Replace("elm_", "") + "/" + "bg";
-                    EdjeObject.DeleteColorClass(part);
+                    Interop.Elementary.elm_object_color_class_del(RealHandle, "bg");
                 }
                 else
                 {

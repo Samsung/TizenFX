@@ -5,7 +5,6 @@ SCRIPT_DIR=$(dirname $SCRIPT_FILE)
 
 OUTDIR=$SCRIPT_DIR/Artifacts
 
-NUGET_CMD="mono $SCRIPT_DIR/tools/NuGet.exe"
 RETRY_CMD="$SCRIPT_DIR/tools/retry.sh"
 TIMEOUT_CMD="$SCRIPT_DIR/tools/timeout.sh"
 DOTNET_CMD="$RETRY_CMD $TIMEOUT_CMD 600 dotnet"
@@ -53,18 +52,12 @@ cmd_dummy_build() {
 
 cmd_pack() {
   VERSION=$1
-  VERSION_INTERNAL=$2
   if [ -z "$VERSION" ]; then
     TIMESTAMP=$(date +"%s")
     VERSION="5.0.0-local-$TIMESTAMP"
   fi
-  if [ -z "$VERSION_INTERNAL" ]; then
-    VERSION_INTERNAL=$VERSION
-  fi
 
-  $NUGET_CMD pack $SCRIPT_DIR/pkg/Tizen.NET.nuspec -NoPackageAnalysis -Version $VERSION -BasePath $SCRIPT_DIR -OutputDirectory $OUTDIR
-  $NUGET_CMD pack $SCRIPT_DIR/pkg/Tizen.NET.API5.nuspec -NoPackageAnalysis -Version $VERSION -BasePath $SCRIPT_DIR -OutputDirectory $OUTDIR
-  $NUGET_CMD pack $SCRIPT_DIR/pkg/Tizen.NET.Internals.nuspec -NoPackageAnalysis -Version $VERSION_INTERNAL -BasePath $SCRIPT_DIR -OutputDirectory $OUTDIR
+  $RUN_BUILD /t:pack /p:Version=$VERSION
 }
 
 cmd_clean() {

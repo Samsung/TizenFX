@@ -44,6 +44,27 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
+        /// Downcasts a handle to textLabel handle
+        /// </summary>
+        /// <param name="handle"></param>
+        /// <returns></returns>
+        /// <since_tizen> 3 </since_tizen>
+        /// Please do not use! this will be deprecated!
+        /// Instead please use as keyword.
+        [Obsolete("Please do not use! This will be deprecated! Please use as keyword instead! " +
+            "Like: " +
+            "BaseHandle handle = new TextLabel(\"Hello World!\"); " +
+            "TextLabel label = handle as TextLabel")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public new static TextLabel DownCast(BaseHandle handle)
+        {
+            TextLabel ret = Registry.GetManagedBaseHandleFromNativePtr(handle) as TextLabel;
+
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        /// <summary>
         /// Dispose.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>

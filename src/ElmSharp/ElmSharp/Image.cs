@@ -618,23 +618,23 @@ namespace ElmSharp
                 }
             };
 
-            MemoryStream memstream = new MemoryStream();
-            await stream.CopyToAsync(memstream);
-
-            unsafe
+            using (MemoryStream memstream = new MemoryStream())
             {
-                byte[] dataArr = memstream.ToArray();
-                fixed (byte* data = &dataArr[0])
+                await stream.CopyToAsync(memstream);
+
+                unsafe
                 {
-                    bool ret = Interop.Elementary.elm_image_memfile_set(RealHandle, data, dataArr.Length, IntPtr.Zero, IntPtr.Zero);
-                    if (!ret)
+                    byte[] dataArr = memstream.ToArray();
+                    fixed (byte* data = &dataArr[0])
                     {
-                        return false;
+                        bool ret = Interop.Elementary.elm_image_memfile_set(RealHandle, data, dataArr.Length, IntPtr.Zero, IntPtr.Zero);
+                        if (!ret)
+                        {
+                            return false;
+                        }
                     }
                 }
             }
-
-            memstream.Dispose();
 
             return await tcs.Task;
         }
@@ -673,7 +673,7 @@ namespace ElmSharp
         /// <since_tizen> preview </since_tizen>
         protected override IntPtr CreateHandle(EvasObject parent)
         {
-            IntPtr handle = Interop.Elementary.elm_layout_add(parent);
+            IntPtr handle = Interop.Elementary.elm_layout_add(parent.Handle);
             Interop.Elementary.elm_layout_theme_set(handle, "layout", "background", "default");
 
             RealHandle = Interop.Elementary.elm_image_add(handle);

@@ -62,7 +62,6 @@ namespace Tizen.NUI
             base.Dispose(type);
         }
 
-
         /// <summary>
         /// Adds a child view to this Container.
         /// </summary>
