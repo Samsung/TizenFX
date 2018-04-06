@@ -63,20 +63,3 @@ You can download the latest binaries with TizenFX from the link below :
 | Tizen 4.0         | http://download.tizen.org/snapshots/tizen/4.0-unified/latest/ |
 | Tizen vNext (5.0) | http://download.tizen.org/snapshots/tizen/unified/latest/ |
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
