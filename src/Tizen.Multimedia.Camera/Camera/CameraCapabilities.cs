@@ -66,6 +66,7 @@ namespace Tizen.Multimedia
             IsZoomSupported = CheckRangeValid(NativeSettings.GetZoomRange);
             IsPanSupported = CheckRangeValid(NativeSettings.GetPanRange);
             IsTiltSupported = CheckRangeValid(NativeSettings.GetTiltRange);
+            IsHueSupported = CheckRangeValid(NativeSettings.GetHueRange);
         }
 
         private bool IsFeatureSupported(IsSupportedDelegate func)
@@ -171,6 +172,13 @@ namespace Tizen.Multimedia
         /// <value>true if supported, otherwise false.</value>
         /// <since_tizen> 4 </since_tizen>
         public bool IsTiltSupported { get; }
+
+        /// <summary>
+        /// Gets the support state of the hue feature.
+        /// </summary>
+        /// <value>true if supported, otherwise false.</value>
+        /// <since_tizen> 5 </since_tizen>
+        public bool IsHueSupported { get; }
 
         /// <summary>
         /// Retrieves all the preview resolutions supported by the camera.
@@ -280,12 +288,13 @@ namespace Tizen.Multimedia
         /// <summary>
         /// Retrieves all the fps by resolution supported by the camera.
         /// </summary>
-        /// <since_tizen> 4 </since_tizen>
         /// <param name="width">The width of required preview resolution.</param>
         /// <param name="height">The height of required preview resolution.</param>
         /// <returns>
         /// It returns a list containing all the supported <see cref="CameraFps"/> by resolution.
         /// </returns>
+        /// <since_tizen> 4 </since_tizen>
+        /// <feature> http://tizen.org/feature/camera </feature>
         /// <exception cref="ObjectDisposedException">The camera already has been disposed of.</exception>
         public IEnumerable<CameraFps> GetSupportedPreviewFpsByResolution(int width, int height)
         {
@@ -295,11 +304,12 @@ namespace Tizen.Multimedia
         /// <summary>
         /// Retrieves all the fps by resolution supported by the camera.
         /// </summary>
-        /// <since_tizen> 4 </since_tizen>
         /// <param name="size">The size of required preview resolution.</param>
         /// <returns>
         /// It returns a list containing all the supported <see cref="CameraFps"/> by resolution.
         /// </returns>
+        /// <since_tizen> 4 </since_tizen>
+        /// <feature> http://tizen.org/feature/camera </feature>
         /// <exception cref="ObjectDisposedException">The camera already has been disposed of.</exception>
         public IEnumerable<CameraFps> GetSupportedPreviewFpsByResolution(Size size)
         {
@@ -309,10 +319,10 @@ namespace Tizen.Multimedia
         /// <summary>
         /// Retrieves all the auto focus modes supported by the camera.
         /// </summary>
-        /// <since_tizen> 4 </since_tizen>
         /// <returns>
         /// It returns a list containing all the supported <see cref="CameraAutoFocusMode"/>.
         /// </returns>
+        /// <since_tizen> 4 </since_tizen>
         /// <exception cref="ObjectDisposedException">The camera already has been disposed of.</exception>
         public IEnumerable<CameraAutoFocusMode> SupportedAutoFocusModes
         {
@@ -330,10 +340,10 @@ namespace Tizen.Multimedia
         /// <summary>
         /// Retrieves all the exposure modes supported by the camera.
         /// </summary>
-        /// <since_tizen> 4 </since_tizen>
         /// <returns>
         /// It returns a list containing all the supported <see cref="CameraExposureMode"/>.
         /// </returns>
+        /// <since_tizen> 4 </since_tizen>
         /// <exception cref="ObjectDisposedException">The camera already has been disposed of.</exception>
         public IEnumerable<CameraExposureMode> SupportedExposureModes
         {
