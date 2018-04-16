@@ -636,6 +636,9 @@ namespace ElmSharp
         /// Gets the borderless state of the window.
         /// This function requests the Window Manager to not draw any decoration around the window.
         /// </summary>
+        /// <remarks>
+        /// The window will have no border because the window on Tizen is fullscreen window by default.
+        /// </remarks>
         /// <since_tizen> preview </since_tizen>
         public bool Borderless
         {
