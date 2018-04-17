@@ -191,12 +191,14 @@ namespace Tizen.Multimedia
 
         #region Display methods
 
+        private PlayerDisplaySettings _displaySettings;
+
         /// <summary>
         /// Gets the display settings.
         /// </summary>
         /// <value>A <see cref="PlayerDisplaySettings"/> that specifies the display settings.</value>
         /// <since_tizen> 3 </since_tizen>
-        public PlayerDisplaySettings DisplaySettings { get; }
+        public PlayerDisplaySettings DisplaySettings => _displaySettings;
 
         private Display _display;
 
@@ -255,6 +257,8 @@ namespace Tizen.Multimedia
 
                     throw new ArgumentException("The display has already been assigned to another.");
                 }
+
+                SetDisplay(value).ThrowIfFailed(this, "Failed to configure display of the player");
 
                 ReplaceDisplay(value);
             }
@@ -336,7 +340,7 @@ namespace Tizen.Multimedia
             }
         }
 
-        private readonly AudioEffect _audioEffect;
+        private AudioEffect _audioEffect;
 
         /// <summary>
         /// Gets the audio effect.
