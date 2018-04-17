@@ -15,38 +15,17 @@
  */
 
 using System;
-using System.Collections.Generic;
 using System.ComponentModel;
 
 namespace Tizen.Multimedia
 {
     public partial class Player
     {
-        private static List<Action<Player, int, string>> _errorHandlers;
+        private Action<int, string> _errorHandler;
 
-        private static object _errorHandlerLock = new object();
-
-        /// <summary>
-        /// This method supports the product infrastructure and is not intended to be used directly from application code.
-        /// </summary>
-        /// <since_tizen> 4 </since_tizen>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        protected static void AddErrorHandler(Action<Player, int, string> errorHandler)
+        internal void NotifyError(int errorCode, string message)
         {
-            if (errorHandler == null)
-            {
-                throw new ArgumentNullException(nameof(errorHandler));
-            }
-
-            lock (_errorHandlerLock)
-            {
-                if (_errorHandlers == null)
-                {
-                    _errorHandlers = new List<Action<Player, int, string>>();
-                }
-
-                _errorHandlers.Add(errorHandler);
-            }
+            _errorHandler?.Invoke(errorCode, message);
         }
 
         /// <summary>
@@ -54,28 +33,7 @@ namespace Tizen.Multimedia
         /// </summary>
         /// <since_tizen> 4 </since_tizen>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        protected static void RemoveErrorHandler(Action<Player, int, string> errorHandler)
-        {
-            lock (_errorHandlerLock)
-            {
-                _errorHandlers?.Remove(errorHandler);
-            }
-        }
-
-        internal static void NotifyError(Player player, int errorCode, string message)
-        {
-            if (_errorHandlers == null)
-            {
-                return;
-            }
-
-            lock (_errorHandlerLock)
-            {
-                foreach (var handler in _errorHandlers)
-                {
-                    handler(player, errorCode, message);
-                }
-            }
-        }
+        protected static Exception GetException(int errorCode, string message) =>
+            ((PlayerErrorCode)errorCode).GetException(message);
     }
 }
