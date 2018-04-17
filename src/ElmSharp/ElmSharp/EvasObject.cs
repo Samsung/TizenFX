@@ -110,6 +110,73 @@ namespace ElmSharp
     }
 
     /// <summary>
+    /// How the object should be rendered to output.
+    /// </summary>
+    /// <since_tizen> 5 </since_tizen>
+    public enum RenderOp
+    {
+        /// <summary>
+        /// default op: d = d * (1 - sa) + s
+        /// </summary>
+        Blend = 0,
+
+        /// <summary>
+        /// d = d*(1 - sa) + s*da
+        /// </summary>
+        BlendRel = 1,
+
+        /// <summary>
+        /// d = s
+        /// </summary>
+        Copy = 2,
+
+        /// <summary>
+        /// d = s*da
+        /// </summary>
+        CopyRel = 3,
+
+        /// <summary>
+        /// d = d + s
+        /// </summary>
+        Add = 4,
+
+        /// <summary>
+        /// d = d + s*da
+        /// </summary>
+        AddRel = 5,
+
+        /// <summary>
+        /// d = d - s
+        /// </summary>
+        Sub = 6,
+
+        /// <summary>
+        /// d = d - s*da
+        /// </summary>
+        SubRel = 7,
+
+        /// <summary>
+        /// d = d*s + d*(1 - sa) + s*(1 - da)
+        /// </summary>
+        Tint = 8,
+
+        /// <summary>
+        /// d = d*(1 - sa + s)
+        /// </summary>
+        TintRel = 9,
+
+        /// <summary>
+        /// d = d*sa
+        /// </summary>
+        Mask = 10,
+
+        /// <summary>
+        /// d = d*s
+        /// </summary>
+        Mul = 11
+    }
+
+    /// <summary>
     /// The EvasObject is a base class for other widget classes.
     /// </summary>
     /// <since_tizen> preview </since_tizen>
@@ -736,6 +803,23 @@ namespace ElmSharp
                 Interop.Evas.evas_object_layer_set(Handle, value);
             }
         }
+
+        /// <summary>
+        /// Sets or gets the render operation to be used for rendering the Evas object.
+        /// </summary>
+        /// <since_tizen> 5 </since_tizen>
+        public RenderOp RenderOperation
+        {
+            get
+            {
+                return (RenderOp)Interop.Evas.evas_object_render_op_get(RealHandle);
+            }
+            set
+            {
+                Interop.Evas.evas_object_render_op_set(RealHandle, (Interop.Evas.RenderOp)value);
+            }
+        }
+
 
         /// <summary>
         /// Clips one object to another.
