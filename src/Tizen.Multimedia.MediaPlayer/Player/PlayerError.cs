@@ -65,7 +65,7 @@ namespace Tizen.Multimedia
             if (ex == null)
             {
                 // Notify only when it can't be handled.
-                Player.NotifyError(player, (int)err, message);
+                player?.NotifyError((int)err, message);
 
                 throw new InvalidOperationException($"{message} : Unknown error({err.ToString()}).");
             }
