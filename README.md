@@ -12,10 +12,10 @@ TizenFX API, which allows you to access platform-specific features not covered b
 
 ## Branches
 
-| branch | API level | platform          | myget.org | nuget.org  |
-|--------|:---------:|-------------------|-------------|--------|
-|master  | 5         | Tizen vNext (5.0) | [![api5_myget](https://img.shields.io/tizen.myget/dotnet/vpre/Tizen.NET.API5.svg)](https://tizen.myget.org/feed/dotnet/package/nuget/Tizen.NET) | |
-|API4    | 4         | Tizen 4.0         | [![api4_myget](https://img.shields.io/tizen.myget/dotnet/vpre/Tizen.NET.API4.svg)](https://tizen.myget.org/feed/dotnet/package/nuget/Tizen.NET) | [![api4_nuget](https://img.shields.io/nuget/v/Tizen.NET.svg)](https://www.nuget.org/packages/Tizen.NET/) |
+| Branch | API Level | API Reference | Platform          | myget.org | nuget.org  |
+|--------|:---------:|---------------|-------------------|-----------|------------|
+|master  | 5         | [Link](https://samsung.github.io/TizenFX/master/) | Tizen vNext (5.0) | [![api5_myget](https://img.shields.io/tizen.myget/dotnet/vpre/Tizen.NET.API5.svg)](https://tizen.myget.org/feed/dotnet/package/nuget/Tizen.NET) | |
+|API4    | 4         | [Link](https://samsung.github.io/TizenFX/API4/) | Tizen 4.0         | [![api4_myget](https://img.shields.io/tizen.myget/dotnet/vpre/Tizen.NET.API4.svg)](https://tizen.myget.org/feed/dotnet/package/nuget/Tizen.NET) | [![api4_nuget](https://img.shields.io/nuget/v/Tizen.NET.svg)](https://www.nuget.org/packages/Tizen.NET/) |
 
 ### master
 The __master__ branch is the main development branch for the Tizen .NET __API Level 5__.
