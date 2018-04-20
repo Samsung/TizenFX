@@ -9147,6 +9147,9 @@ class NDalicPINVOKE {
   [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint="CSharp_Dali_TextEditor_DownCast")]
   public static extern global::System.IntPtr TextEditor_DownCast(global::System.Runtime.InteropServices.HandleRef jarg1);
 
+  [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint="CSharp_Dali_TextEditor_GetInputMethodContext")]
+  public static extern global::System.IntPtr TextEditor_GetInputMethodContext(global::System.Runtime.InteropServices.HandleRef jarg1);
+
   [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint="CSharp_Dali_TextEditor_TextChangedSignal")]
   public static extern global::System.IntPtr TextEditor_TextChangedSignal(global::System.Runtime.InteropServices.HandleRef jarg1);
 
@@ -9323,6 +9326,9 @@ class NDalicPINVOKE {
 
   [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint="CSharp_Dali_TextField_DownCast")]
   public static extern global::System.IntPtr TextField_DownCast(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+  [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint="CSharp_Dali_TextField_GetInputMethodContext")]
+  public static extern global::System.IntPtr TextField_GetInputMethodContext(global::System.Runtime.InteropServices.HandleRef jarg1);
 
   [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint="CSharp_Dali_TextField_TextChangedSignal")]
   public static extern global::System.IntPtr TextField_TextChangedSignal(global::System.Runtime.InteropServices.HandleRef jarg1);
