@@ -179,7 +179,7 @@ namespace Tizen.NUI
         /// </summary>
         /// <param name="arg">The member function to connect</param>
         /// <since_tizen> 4 </since_tizen>
-        public void Emit(ImfManager.KeyboardType arg)
+        public void Emit(InputMethodContext.KeyboardType arg)
         {
             NDalicManualPINVOKE.KeyboardTypeSignalType_Emit(swigCPtr, (int)arg);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
