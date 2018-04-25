@@ -1,5 +1,5 @@
 /*
- *  Copyright (c) 2016 Samsung Electronics Co., Ltd All Rights Reserved
+ *  Copyright (c) 2016-2018 Samsung Electronics Co., Ltd All Rights Reserved
  *
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -151,6 +151,7 @@ namespace Tizen.Security
         /// <exception cref="System.ArgumentException">Thrown when there is an invalid parameter.</exception>
         /// <exception cref="System.OutOfMemoryException">Thrown when out of memory occurs.</exception>
         /// <exception cref="System.InvalidOperationException">Thrown when an internal error occurs.</exception>
+        /// <exception cref="System.NotSupportedException">Thrown when security.privacy_privilege feature is not supported in the device.</exception>
         public static string GetPrivacyDisplayName(string privilege)
         {
             string displayName;
@@ -173,6 +174,8 @@ namespace Tizen.Security
         /// <exception cref="System.ArgumentException">Thrown when there is an invalid parameter.</exception>
         /// <exception cref="System.OutOfMemoryException">Thrown when out of memory occurs.</exception>
         /// <exception cref="System.InvalidOperationException">Thrown when an internal error occurs.</exception>
+        /// <exception cref="System.NotSupportedException">Thrown when security.privacy_privilege feature is not supported in the device.</exception>
+        [Obsolete("Deprecated since API level 5. Please use PrivacyPrivilegeManager.CheckPermission instead.")]
         public static bool GetPrivacyPrivilegeStatus(string privilege)
         {
             bool status;
@@ -199,6 +202,8 @@ namespace Tizen.Security
             Tizen.Log.Error(Interop.Privilege.LogTag, "[" + ErrorFacts.GetErrorMessage(err) + "] " + msg);
             switch (err)
             {
+                case (int)ErrorCode.NotSupported:
+                    throw new NotSupportedException();
                 case (int)ErrorCode.InvalidParameter:
                     throw new ArgumentException();
                 case (int)ErrorCode.OutOfMemory:
