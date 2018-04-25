@@ -14,6 +14,8 @@
  * limitations under the License.
  *
  */
+using System;
+using Tizen.NUI.Binding;
 
 namespace Tizen.NUI
 {
@@ -22,6 +24,7 @@ namespace Tizen.NUI
     /// A two-dimensional size.
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
+    [Tizen.NUI.Binding.TypeConverter(typeof(Size2DTypeConverter))]
     public class Size2D : global::System.IDisposable
     {
         private global::System.Runtime.InteropServices.HandleRef swigCPtr;

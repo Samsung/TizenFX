@@ -335,6 +335,15 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
+        /// Creates the default TableView view.
+        /// </summary>
+        public TableView() : this(NDalicPINVOKE.TableView_New(1, 1), true)
+        {
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+
+        /// <summary>
         /// Creates the TableView view.
         /// </summary>
         /// <param name="initialRows">Initial rows for the table.</param>

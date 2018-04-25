@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<ContentPage x:Class="Tizen.NUI.Examples.FlexContainerPage"
+  xmlns="http://tizen.org/Tizen.NUI/2018/XAML"
+  xmlns:l="clr-namespace:Tizen.UI_Xaml;assembly=Tizen.UI_Xaml"
+  xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
+
+    <FlexContainer BackgroundColor="Red" SizeWidth="470" SizeHeight="500" PositionX="5" PositionY="100" FlexDirection="Row" ContentDirection="LTR" FlexWrap="Wrap" JustifyContent="JustifyFlexStart">
+      <TextLabel BackgroundColor="Green" Text="Text1" Flex="0.2" FlexMargin="5,0,5,0" HeightResizePolicy="FillToParent"/>
+      <TextLabel BackgroundColor="Blue" Text="Text2" Flex="0.2" FlexMargin="5,0,5,0" HeightResizePolicy="FillToParent"/>
+      <TextLabel BackgroundColor="Blue" Text="Text2" Flex="0.2" FlexMargin="5,0,5,0" HeightResizePolicy="FillToParent"/>
+      <TextLabel BackgroundColor="Green" Text="Text2" Flex="0.2" FlexMargin="5,0,5,0" HeightResizePolicy="FillToParent"/>
+    </FlexContainer>
+</ContentPage>

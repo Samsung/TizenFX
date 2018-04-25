@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<ContentPage x:Class="Tizen.NUI.Examples.TextFieldTestPage"
+  xmlns="http://tizen.org/Tizen.NUI/2018/XAML"
+  xmlns:l="clr-namespace:Tizen.UI_Xaml;assembly=Tizen.UI_Xaml"
+  xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
+
+      <TextField BackgroundColor="Red" Text="Text1" PositionX="10"  PositionY="50" 
+        ParentOrigin="TopLeft" PivotPoint="TopLeft" PositionUsesPivotPoint="true"
+        MaxLengthReached="OnMaxLengthReached" HorizontalAlignment="Begin" VerticalAlignment="Center" Size2D="460,50" />
+      <TextField BackgroundColor="Cyan" PlaceholderText="Input something.." PositionX="10"  PositionY="150" HorizontalAlignment="End" 
+        ParentOrigin="TopLeft" PivotPoint="TopLeft" PositionUsesPivotPoint="true" TextChanged="OnTextChanged" Size2D="460,50" />
+      <TextField BackgroundColor="Green" PlaceholderText="Input something.." TextColor="Red" PositionX="10"  PositionY="250"
+        ParentOrigin="TopLeft" PivotPoint="TopLeft" PositionUsesPivotPoint="true" Size2D="460,50" />
+
+</ContentPage>

@@ -162,9 +162,8 @@ namespace Tizen.NUI
             }
             else
             {
-                //if (e.ProposedView) return proposed;
-                //else return current;
-                return current; //xb.teng
+                if (e.ProposedView) return proposed;
+                else return current;
             }
         }
 
