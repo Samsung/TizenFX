@@ -177,9 +177,9 @@ namespace Tizen.NUI
         /// </summary>
         /// <param name="arg">The first value to pass to callbacks</param>
         /// <since_tizen> 4 </since_tizen>
-        public void Emit(ImfManager arg)
+        public void Emit(InputMethodContext arg)
         {
-            NDalicManualPINVOKE.ActivatedSignalType_Emit(swigCPtr, ImfManager.getCPtr(arg));
+            NDalicManualPINVOKE.ActivatedSignalType_Emit(swigCPtr, InputMethodContext.getCPtr(arg));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
