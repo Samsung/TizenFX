@@ -203,6 +203,9 @@ namespace Tizen.Network.WiFi
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <returns> A task indicating whether the connect method is done or not.</returns>
+        /// <remarks>
+        /// This method must be called from MainThread.
+        /// </remarks>
         /// <feature>http://tizen.org/feature/network.wifi</feature>
         /// <privilege>http://tizen.org/privilege/network.set</privilege>
         /// <privilege>http://tizen.org/privilege/network.get</privilege>
@@ -271,6 +274,9 @@ namespace Tizen.Network.WiFi
         /// <since_tizen> 3 </since_tizen>
         /// <param name="info">A WpsInfo instance which is type of WpsPbcInfo or WpsPinInfo.</param>
         /// <returns>A task indicating whether the ConnectWps method is done or not.</returns>
+        /// <remarks>
+        /// This method must be called from MainThread.
+        /// </remarks>
         /// <feature>http://tizen.org/feature/network.wifi</feature>
         /// <privilege>http://tizen.org/privilege/network.profile</privilege>
         /// <privilege>http://tizen.org/privilege/network.get</privilege>
@@ -363,7 +369,8 @@ namespace Tizen.Network.WiFi
         /// <param name="info">A WpsInfo instance which is of type WpsPbcInfo or WpsPinInfo.</param>
         /// <returns>A task which contains Connected access point information.</returns>
         /// <remarks>
-        /// If WpsPinInfo is used, its object has to be constructed with a pin which must be 4 or 8 characters long.
+        /// If WpsPinInfo is used, its object has to be constructed with a pin which must be 4 or 8 characters long. \n
+        /// This method must be called from MainThread.
         /// </remarks>
         /// <feature>http://tizen.org/feature/network.wifi</feature>
         /// <privilege>http://tizen.org/privilege/network.set</privilege>
@@ -452,6 +459,9 @@ namespace Tizen.Network.WiFi
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <returns> A task indicating whether the disconnect method is done or not.</returns>
+        /// <remarks>
+        /// This method must be called from MainThread.
+        /// </remarks>
         /// <feature>http://tizen.org/feature/network.wifi</feature>
         /// <privilege>http://tizen.org/privilege/network.set</privilege>
         /// <privilege>http://tizen.org/privilege/network.get</privilege>
