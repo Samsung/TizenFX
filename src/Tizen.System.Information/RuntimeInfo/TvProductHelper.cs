@@ -39,7 +39,7 @@ namespace Tizen.System
             [RuntimeInfoKey.Charger] = 26,
             [RuntimeInfoKey.AutoRotation] = 28,
             [RuntimeInfoKey.Gps] = 21,
-            [RuntimeInfoKey.AudioJackConnector] = 20
+            [RuntimeInfoKey.AudioJackConnector] = 23
         };
 
         private static void CheckTvProduct()
