@@ -62,7 +62,14 @@ namespace Tizen.Network.Connection
                 {
                     if (_ProfileStateChanged == null)
                     {
-                        ProfileStateChangedStart();
+                        try
+                        {
+                            ProfileStateChangedStart();
+                        } catch (Exception e)
+                        {
+                            Log.Error(Globals.LogTag, "Exception on adding ProfileStateChanged\n" + e.ToString());
+                            return;
+                        }
                     }
                     _ProfileStateChanged += value;
                 }, null);
@@ -75,7 +82,14 @@ namespace Tizen.Network.Connection
                     _ProfileStateChanged -= value;
                     if (_ProfileStateChanged == null)
                     {
-                        ProfileStateChangedStop();
+                        try
+                        {
+                            ProfileStateChangedStop();
+                        }
+                        catch (Exception e)
+                        {
+                            Log.Error(Globals.LogTag, "Exception on removing ProfileStateChanged\n" + e.ToString());
+                        }
                     }
                 }, null);
             }
@@ -96,6 +110,7 @@ namespace Tizen.Network.Connection
             if ((ConnectionError)ret != ConnectionError.None)
             {
                 Log.Error(Globals.LogTag, "It failed to register callback for changing profile state, " + (ConnectionError)ret);
+                ConnectionErrorFactory.ThrowConnectionException(ret);
             }
         }
 
@@ -106,6 +121,7 @@ namespace Tizen.Network.Connection
             if ((ConnectionError)ret != ConnectionError.None)
             {
                 Log.Error(Globals.LogTag, "It failed to unregister callback for changing profile state, " + (ConnectionError)ret);
+                ConnectionErrorFactory.ThrowConnectionException(ret);
             }
         }
 
@@ -136,7 +152,6 @@ namespace Tizen.Network.Connection
 
         private void Dispose(bool disposing)
         {
-            Log.Debug(Globals.LogTag, ">>> ConnectionProfile Dispose with " + disposing);
             if (disposed)
                 return;
 
