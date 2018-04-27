@@ -135,8 +135,12 @@ namespace Tizen.Network.WiFi
             if (_disposed)
                 return;
 
-            Interop.WiFi.AP.Destroy(_apHandle);
-            _apHandle = IntPtr.Zero;
+            Log.Info(Globals.LogTag, "WiFiAP Handle HashCode: " + _apHandle.GetHashCode());
+            int ret = Interop.WiFi.AP.Destroy(_apHandle);
+            if (ret == (int)WiFiError.None)
+            {
+                _apHandle = IntPtr.Zero;
+            }
             _disposed = true;
         }
 
@@ -217,7 +221,7 @@ namespace Tizen.Network.WiFi
         /// <exception cref="InvalidOperationException">Thrown when the method failed due to an invalid operation.</exception>
         public Task ConnectAsync()
         {
-            Log.Info(Globals.LogTag, "ConnectAsync");
+            Log.Info(Globals.LogTag, "ConnectAsync HashCode: " + _apHandle.GetHashCode());
             if (_disposed)
             {
                 throw new ObjectDisposedException("Invalid AP instance (Object may have been disposed or released)");
