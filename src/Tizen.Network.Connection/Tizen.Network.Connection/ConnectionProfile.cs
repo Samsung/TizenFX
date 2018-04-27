@@ -170,8 +170,12 @@ namespace Tizen.Network.Connection
 
         private void Destroy()
         {
-            Interop.ConnectionProfile.Destroy(ProfileHandle);
-            ProfileHandle = IntPtr.Zero;
+            int ret = Interop.ConnectionProfile.Destroy(ProfileHandle);
+            if ((ConnectionError)ret == ConnectionError.None)
+            {
+                ProfileHandle = IntPtr.Zero;
+            }
+            
         }
 
         internal void CheckDisposed()
