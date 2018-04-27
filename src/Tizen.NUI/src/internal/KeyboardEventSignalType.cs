@@ -1,5 +1,5 @@
 /*
- * Copyright(c) 2017 Samsung Electronics Co., Ltd.
+ * Copyright(c) 2018 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -20,7 +20,7 @@ using System.ComponentModel;
 
 namespace Tizen.NUI
 {
-    internal class ImfEventSignalType : global::System.IDisposable
+    internal class KeyboardEventSignalType : global::System.IDisposable
     {
         private global::System.Runtime.InteropServices.HandleRef swigCPtr;
         /// <summary>
@@ -29,13 +29,13 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         protected bool swigCMemOwn;
 
-        internal ImfEventSignalType(global::System.IntPtr cPtr, bool cMemoryOwn)
+        internal KeyboardEventSignalType(global::System.IntPtr cPtr, bool cMemoryOwn)
         {
             swigCMemOwn = cMemoryOwn;
             swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
         }
 
-        internal static global::System.Runtime.InteropServices.HandleRef getCPtr(ImfEventSignalType obj)
+        internal static global::System.Runtime.InteropServices.HandleRef getCPtr(KeyboardEventSignalType obj)
         {
             return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
         }
@@ -52,7 +52,7 @@ namespace Tizen.NUI
         /// Dispose
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        ~ImfEventSignalType()
+        ~KeyboardEventSignalType()
         {
             if (!isDisposeQueued)
             {
@@ -112,7 +112,7 @@ namespace Tizen.NUI
                 if (swigCMemOwn)
                 {
                     swigCMemOwn = false;
-                    NDalicManualPINVOKE.delete_ImfEventSignalType(swigCPtr);
+                    NDalicManualPINVOKE.delete_KeyboardEventSignalType(swigCPtr);
                 }
                 swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
             }
@@ -127,7 +127,7 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public bool Empty()
         {
-            bool ret = NDalicManualPINVOKE.ImfEventSignalType_Empty(swigCPtr);
+            bool ret = NDalicManualPINVOKE.KeyboardEventSignalType_Empty(swigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -139,7 +139,7 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public uint GetConnectionCount()
         {
-            uint ret = NDalicManualPINVOKE.ImfEventSignalType_GetConnectionCount(swigCPtr);
+            uint ret = NDalicManualPINVOKE.KeyboardEventSignalType_GetConnectionCount(swigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -153,7 +153,7 @@ namespace Tizen.NUI
         {
             System.IntPtr ip = System.Runtime.InteropServices.Marshal.GetFunctionPointerForDelegate<System.Delegate>(func);
             {
-                NDalicManualPINVOKE.ImfEventSignalType_Connect(swigCPtr, new System.Runtime.InteropServices.HandleRef(this, ip));
+                NDalicManualPINVOKE.KeyboardEventSignalType_Connect(swigCPtr, new System.Runtime.InteropServices.HandleRef(this, ip));
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
         }
@@ -167,7 +167,7 @@ namespace Tizen.NUI
         {
             System.IntPtr ip = System.Runtime.InteropServices.Marshal.GetFunctionPointerForDelegate<System.Delegate>(func);
             {
-                NDalicManualPINVOKE.ImfEventSignalType_Disconnect(swigCPtr, new System.Runtime.InteropServices.HandleRef(this, ip));
+                NDalicManualPINVOKE.KeyboardEventSignalType_Disconnect(swigCPtr, new System.Runtime.InteropServices.HandleRef(this, ip));
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
         }
@@ -179,9 +179,9 @@ namespace Tizen.NUI
         /// <param name="arg2">The second value to pass to callbacks</param>
         /// <returns>The value returned by the last callback, or a default constructed value if no callbacks are connected</returns>
         /// <since_tizen> 4 </since_tizen>
-        public ImfManager.ImfCallbackData Emit(ImfManager arg1, ImfManager.ImfEventData arg2)
+        public InputMethodContext.CallbackData Emit(InputMethodContext arg1, InputMethodContext.EventData arg2)
         {
-            ImfManager.ImfCallbackData ret = new ImfManager.ImfCallbackData(NDalicManualPINVOKE.ImfEventSignalType_Emit(swigCPtr, ImfManager.getCPtr(arg1), ImfManager.ImfEventData.getCPtr(arg2)), true);
+            InputMethodContext.CallbackData ret = new InputMethodContext.CallbackData(NDalicManualPINVOKE.KeyboardEventSignalType_Emit(swigCPtr, InputMethodContext.getCPtr(arg1), InputMethodContext.EventData.getCPtr(arg2)), true);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -190,7 +190,7 @@ namespace Tizen.NUI
         /// The contructor.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        public ImfEventSignalType() : this(NDalicManualPINVOKE.new_ImfEventSignalType(), true)
+        public KeyboardEventSignalType() : this(NDalicManualPINVOKE.new_KeyboardEventSignalType(), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
