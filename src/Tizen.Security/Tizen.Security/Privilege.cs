@@ -143,6 +143,7 @@ namespace Tizen.Security
         /// <summary>
         /// Gets the display name of the privacy group in which the given privilege is included.
         /// </summary>
+        /// <feature>http://tizen.org/feature/security.privacy_privilege</feature>
         /// <since_tizen> 3 </since_tizen>
         /// <param name="privilege">The privilege.</param>
         /// <remarks>The privilege must be privacy related.</remarks>
@@ -151,7 +152,7 @@ namespace Tizen.Security
         /// <exception cref="System.ArgumentException">Thrown when there is an invalid parameter.</exception>
         /// <exception cref="System.OutOfMemoryException">Thrown when out of memory occurs.</exception>
         /// <exception cref="System.InvalidOperationException">Thrown when an internal error occurs.</exception>
-        /// <exception cref="System.NotSupportedException">Thrown when security.privacy_privilege feature is not supported in the device.</exception>
+        /// <exception cref="System.NotSupportedException">The required feature is not supported.</exception>
         public static string GetPrivacyDisplayName(string privilege)
         {
             string displayName;
@@ -166,6 +167,7 @@ namespace Tizen.Security
         /// <summary>
         /// Gets the status of the given privacy related privilege.
         /// </summary>
+        /// <feature>http://tizen.org/feature/security.privacy_privilege</feature>
         /// <since_tizen> 3 </since_tizen>
         /// <param name="privilege">The privilege.</param>
         /// <remarks>The privilege must be privacy related.</remarks>
@@ -174,7 +176,7 @@ namespace Tizen.Security
         /// <exception cref="System.ArgumentException">Thrown when there is an invalid parameter.</exception>
         /// <exception cref="System.OutOfMemoryException">Thrown when out of memory occurs.</exception>
         /// <exception cref="System.InvalidOperationException">Thrown when an internal error occurs.</exception>
-        /// <exception cref="System.NotSupportedException">Thrown when security.privacy_privilege feature is not supported in the device.</exception>
+        /// <exception cref="System.NotSupportedException">The required feature is not supported.</exception>
         [Obsolete("Deprecated since API level 5. Please use PrivacyPrivilegeManager.CheckPermission instead.")]
         public static bool GetPrivacyPrivilegeStatus(string privilege)
         {
