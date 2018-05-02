@@ -417,5 +417,32 @@ namespace Tizen.Multimedia
                     ThrowIfFailed(this, "Failed to set the volume of the player");
             }
         }
+
+        /// <summary>
+        /// Gets or sets the audio-only state.
+        /// </summary>
+        /// <value>true if the playback is audio-only mode; otherwise, false. The default value is false.</value>
+        /// The <see cref="Player"/> must be in the <see cref="PlayerState.Ready"/>,
+        /// <see cref="PlayerState.Playing"/>, or <see cref="PlayerState.Paused"/> state.
+        /// <exception cref="InvalidOperationException">The player is not in the valid state.</exception>
+        /// <exception cref="ObjectDisposedException">The player has already been disposed of.</exception>
+        /// <since_tizen> 5 </since_tizen>
+        public bool IsAudioOnly
+        {
+            get
+            {
+                ValidatePlayerState(PlayerState.Ready, PlayerState.Playing, PlayerState.Paused);
+                NativePlayer.IsAudioOnly(Handle, out var value).
+                    ThrowIfFailed(this, "Failed to get the audio-only state of the player");
+                return value;
+            }
+            set
+            {
+                ValidateNotDisposed();
+                ValidatePlayerState(PlayerState.Ready, PlayerState.Playing, PlayerState.Paused);
+                NativePlayer.SetAudioOnly(Handle, value).
+                    ThrowIfFailed(this, "Failed to set the audio-only state of the player");
+            }
+        }
     }
 }

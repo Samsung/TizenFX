@@ -261,6 +261,12 @@ internal static partial class Interop
         [DllImport(Libraries.Player, EntryPoint = "player_get_track_language_code")]
         internal static extern PlayerErrorCode GetTrackLanguageCode(IntPtr player, StreamType type,
             int index, out IntPtr code);
+
+        [DllImport(Libraries.Player, EntryPoint = "player_set_audio_only")]
+        internal static extern PlayerErrorCode SetAudioOnly(IntPtr player, bool audioOnly);
+
+        [DllImport(Libraries.Player, EntryPoint = "player_is_audio_only")]
+        internal static extern PlayerErrorCode IsAudioOnly(IntPtr player, out bool audioOnly);
     }
 
     internal class PlayerHandle : SafeHandle
