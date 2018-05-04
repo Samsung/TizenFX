@@ -444,5 +444,24 @@ namespace Tizen.Multimedia
                     ThrowIfFailed(this, "Failed to set the audio-only state of the player");
             }
         }
+
+        private SphericalVideo _sphericalVideo;
+
+        /// <summary>
+        /// Gets the 360 video settings.
+        /// </summary>
+        /// <value>A <see cref="_sphericalVideo"/> that specifies the display settings.</value>
+        /// <since_tizen> 5 </since_tizen>
+        public SphericalVideo SphericalVideo
+        {
+            get
+            {
+                if (_sphericalVideo == null)
+                {
+                    _sphericalVideo = new SphericalVideo(this);
+                }
+                return _sphericalVideo;
+            }
+        }
     }
 }
