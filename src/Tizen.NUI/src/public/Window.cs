@@ -1487,6 +1487,79 @@ namespace Tizen.NUI
         }
 
         /// <summary>
+        /// Please do not use! this will be deprecated
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
+        [Obsolete("Please do not use! This will be deprecated! Please use FocusChangedEventArgs instead! " +
+            "Like: " +
+            "Window.Instance.FocusChanged = OnFocusChanged; " +
+            "private void OnFocusChanged(object source, Window.FocusChangedEventArgs args) {...}")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public class WindowFocusChangedEventArgs : EventArgs
+        {
+            /// <summary>
+            /// Please do not use! this will be deprecated
+            /// </summary>
+            /// <since_tizen> 3 </since_tizen>
+            public bool FocusGained
+            {
+                get;
+                set;
+            }
+        }
+
+        private WindowFocusChangedEventCallbackType _windowFocusChangedEventCallback2;
+        [UnmanagedFunctionPointer(CallingConvention.StdCall)]
+        private delegate void WindowFocusChangedEventCallbackType2(bool focusGained);
+        private event EventHandler<WindowFocusChangedEventArgs> _windowFocusChangedEventHandler2;
+
+        /// <summary>
+        /// Please do not use! this will be deprecated. Please use 'FocusChanged' event instead.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
+        /// Please do not use! this will be deprecated!
+        /// Instead please use FocusChanged.
+        [Obsolete("Please do not use! This will be deprecated! Please use FocusChanged instead! " +
+            "Like: " +
+            "Window.Instance.FocusChanged = OnFocusChanged; " +
+            "private void OnFocusChanged(object source, Window.FocusChangedEventArgs args) {...}")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public event EventHandler<WindowFocusChangedEventArgs> WindowFocusChanged
+        {
+            add
+            {
+                if (_windowFocusChangedEventHandler2 == null)
+                {
+                    _windowFocusChangedEventCallback2 = OnWindowFocusedChanged2;
+                    WindowFocusChangedSignal().Connect(_windowFocusChangedEventCallback2);
+                }
+
+                _windowFocusChangedEventHandler2 += value;
+            }
+            remove
+            {
+                _windowFocusChangedEventHandler2 -= value;
+
+                if (_windowFocusChangedEventHandler2 == null && WindowFocusChangedSignal().Empty() == false && _windowFocusChangedEventCallback2 != null)
+                {
+                    WindowFocusChangedSignal().Disconnect(_windowFocusChangedEventCallback2);
+                }
+            }
+        }
+
+        private void OnWindowFocusedChanged2(bool focusGained)
+        {
+            WindowFocusChangedEventArgs e = new WindowFocusChangedEventArgs();
+
+            e.FocusGained = focusGained;
+
+            if (_windowFocusChangedEventHandler2 != null)
+            {
+                _windowFocusChangedEventHandler2(this, e);
+            }
+        }
+
+        /// <summary>
         /// Gets or sets a size of the window.
         /// </summary>
         /// <since_tizen> 4 </since_tizen>
@@ -1524,6 +1597,18 @@ namespace Tizen.NUI
         /// <param name="keyEvent">The key event to feed.</param>
         /// <since_tizen> 5 </since_tizen>
         public void FeedKey(Key keyEvent)
+        {
+            NDalicManualPINVOKE.Window_FeedKeyEvent(Key.getCPtr(keyEvent));
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        /// <summary>
+        /// Feed a key-event into the window.
+        /// </summary>
+        /// <param name="keyEvent">The key event to feed.</param>
+        /// <since_tizen> 4 </since_tizen>
+        [Obsolete("Please do not use! This will be deprecated! Please use FeedKey(Key keyEvent) instead!")]
+        public static void FeedKeyEvent(Key keyEvent)
         {
             NDalicManualPINVOKE.Window_FeedKeyEvent(Key.getCPtr(keyEvent));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();

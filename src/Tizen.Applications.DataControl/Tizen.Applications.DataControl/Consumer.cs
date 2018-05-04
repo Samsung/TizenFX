@@ -435,6 +435,12 @@ namespace Tizen.Applications.DataControl
             {
                 int count;
 
+                if (!_reqProviderList.ContainsKey(providerId))
+                {
+                    Log.Error(LogTag, "The provider id is not contained : " + providerId);
+                    return;
+                }
+
                 _reqProviderList[providerId]--;
                 count = _reqProviderList[providerId];
                 if (count <= 0)
@@ -872,7 +878,9 @@ namespace Tizen.Applications.DataControl
 
             Interop.DataControl.DataControlSetProviderId(_handle, providerId);
             Interop.DataControl.DataControlSetDataId(_handle, dataId);
+            _lock.WaitOne();
             CallbackManager.RegisterCallback(_handle, providerId);
+            _lock.ReleaseMutex();
             _dataID = dataId;
             _providerID = providerId;
         }
@@ -994,7 +1002,9 @@ namespace Tizen.Applications.DataControl
                     Interop.DataControl.RemoveDataChangeCallback(_handle, _changeCallbackID);
                 }
 
+                _lock.WaitOne();
                 CallbackManager.UnregisterCallback(_handle, _providerID);
+                _lock.ReleaseMutex();
                 _handle.Dispose();
                 _disposed = true;
             }

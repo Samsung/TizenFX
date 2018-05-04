@@ -698,8 +698,95 @@ namespace Tizen.NUI
             }
         }
 
+
+        /// <summary>
+        /// Please do not use! this will be deprecated
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
+        /// Please do not use! this will be deprecated.
+        /// Instead please use FocusedViewActivatedEventArgs.
+        [Obsolete("Please do not use! This will be deprecated! Please use FocusedViewActivatedEventArgs instead! " +
+            "Like: " +
+            "FocusManager.Instance.FocusedViewActivated = OnFocusedViewActivated; " +
+            "private void OnFocusedViewActivated(object source, FocusManager.FocusedViewActivatedEventArgs arg)" +
+            "{...}")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public class FocusedViewEnterKeyEventArgs : EventArgs
+        {
+            private View _view;
+
+            /// <summary>
+            /// View.
+            /// </summary>
+            /// <since_tizen> 3 </since_tizen>
+            public View View
+            {
+                get
+                {
+                    return _view;
+                }
+                set
+                {
+                    _view = value;
+                }
+            }
+        }
+
+        private EventHandler<FocusedViewEnterKeyEventArgs> _focusedViewEnterKeyEventHandler2;
         [UnmanagedFunctionPointer(CallingConvention.StdCall)]
         private delegate void FocusedViewEnterKeyEventCallback2(IntPtr view);
         private FocusedViewEnterKeyEventCallback2 _focusedViewEnterKeyEventCallback2;
+
+        /// <summary>
+        /// [Obsolete("Please do not use! this will be deprecated")]
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
+        /// Please do not use! this will be deprecated!
+        /// Instead please use FocusedViewActivated.
+        [Obsolete("Please do not use! This will be deprecated! Please use FocusManager.FocusedViewActivated instead! " +
+            "Like: " +
+            "FocusManager.Instance.FocusedViewActivated = OnFocusedViewActivated; " +
+            "private void OnFocusedViewActivated(object source, FocusManager.FocusedViewActivatedEventArgs args) {...}")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public event EventHandler<FocusedViewEnterKeyEventArgs> FocusedViewEnterKeyPressed
+        {
+            add
+            {
+                if (_focusedViewEnterKeyEventCallback2 == null)
+                {
+                    _focusedViewEnterKeyEventCallback2 = OnFocusedViewEnterKey2;
+                    FocusedViewEnterKeySignal().Connect(_focusedViewEnterKeyEventCallback2);
+                }
+                _focusedViewEnterKeyEventHandler2 += value;
+            }
+            remove
+            {
+                _focusedViewEnterKeyEventHandler2 -= value;
+
+                if (_focusedViewEnterKeyEventCallback2 != null && FocusedViewEnterKeySignal().Empty() == false)
+                {
+                    FocusedViewEnterKeySignal().Disconnect(_focusedViewEnterKeyEventCallback2);
+                }
+            }
+        }
+
+        /// <summary>
+        /// Please do not use! this will be deprecated!
+        /// </summary>
+        /// Please do not use! this will be deprecated!
+        /// Instead please use OnFocusedViewEnterKey.
+        [Obsolete("Please do not use! This will be deprecated! Please use FocusManager.OnFocusedViewEnterKey instead!")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        private void OnFocusedViewEnterKey2(IntPtr view)
+        {
+            FocusedViewActivatedEventArgs e = new FocusedViewActivatedEventArgs();
+
+            e.View = Registry.GetManagedBaseHandleFromNativePtr(view) as View;
+
+            if (_focusedViewEnterKeyEventHandler != null)
+            {
+                _focusedViewEnterKeyEventHandler(this, e);
+            }
+        }
     }
 }

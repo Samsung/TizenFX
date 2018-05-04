@@ -62,8 +62,6 @@ namespace Tizen.NUI
             base.Dispose(type);
         }
 
-        protected abstract Container GetParent();
-
         /// <summary>
         /// Adds a child view to this Container.
         /// </summary>
@@ -90,6 +88,14 @@ namespace Tizen.NUI
         /// <returns>The view for the given index or empty handle if children are not initialized.</returns>
         /// <since_tizen> 4 </since_tizen>
         public abstract View GetChildAt( uint index );
+
+        /// <summary>
+        /// Gets the parent of this container.
+        /// </summary>
+        /// <pre>The child container has been initialized.</pre>
+        /// <returns>The parent container.</returns>
+        /// <since_tizen> 4 </since_tizen>
+        public abstract Container GetParent();
 
         /// <summary>
         /// Gets the number of children for this container.

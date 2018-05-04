@@ -98,7 +98,12 @@ namespace Tizen.NUI
             }
         }
 
-        protected override Container GetParent()
+        /// <summary>
+        /// Get parent of the layer.
+        /// </summary>
+        /// <returns>The view's container</returns>
+        /// <since_tizen> 4 </since_tizen>
+        public override Container GetParent()
         {
             return null;
         }
@@ -179,6 +184,21 @@ namespace Tizen.NUI
             NDalicPINVOKE.Actor_SetResizePolicy(swigCPtr, (int)policy, (int)dimension);
             if (NDalicPINVOKE.SWIGPendingException.Pending)
                 throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        /// <summary>
+        /// Downcasts a handle to layer handle.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
+        /// Please do not use! this will be deprecated!
+        /// Instead please use as keyword.
+        [Obsolete("Please do not use! This will be deprecated! Please use as keyword instead!")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static Layer DownCast(BaseHandle handle)
+        {
+            Layer ret =  Registry.GetManagedBaseHandleFromNativePtr(handle) as Layer;
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
         }
 
         /// <summary>

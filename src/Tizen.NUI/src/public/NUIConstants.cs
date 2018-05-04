@@ -258,7 +258,14 @@ namespace Tizen.NUI
         /// <summary>
         /// Use to make style change event disabled.
         /// </summary>
-        DisableStyleChangeSignals = 1 << 6
+        DisableStyleChangeSignals = 1 << 6,
+        /// <summary>
+        /// Please do not use! This will be deprecated!
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
+        [Obsolete("Please do not use! This will be deprecated!")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        LastViewBehaviourFlag
     }
 
     /// <summary>
@@ -2166,6 +2173,209 @@ namespace Tizen.NUI
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         Implicit,
+    }
+
+
+
+    /// <summary>
+    /// [Obsolete("Please do not use! this will be deprecated")]
+    /// </summary>
+    /// <since_tizen> 3 </since_tizen>
+    [Obsolete("Please do not use! This will be deprecated! Please use PivotPoint instead!")]
+    [EditorBrowsable(EditorBrowsableState.Never)]
+    public struct AnchorPoint
+    {
+        /// <summary>
+        /// Top
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
+        public static float Top
+        {
+            get
+            {
+                float ret = NDalicPINVOKE.AnchorPointTop_get();
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                return ret;
+            }
+        }
+        /// <summary>
+        /// Bottom
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
+        public static float Bottom
+        {
+            get
+            {
+                float ret = NDalicPINVOKE.AnchorPointBottom_get();
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                return ret;
+            }
+        }
+        /// <summary>
+        /// Left
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
+        public static float Left
+        {
+            get
+            {
+                float ret = NDalicPINVOKE.AnchorPointLeft_get();
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                return ret;
+            }
+        }
+        /// <summary>
+        /// Right
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
+        public static float Right
+        {
+            get
+            {
+                float ret = NDalicPINVOKE.AnchorPointRight_get();
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                return ret;
+            }
+        }
+        /// <summary>
+        /// Middle
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
+        public static float Middle
+        {
+            get
+            {
+                float ret = NDalicPINVOKE.AnchorPointMiddle_get();
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                return ret;
+            }
+        }
+        /// <summary>
+        /// TopLeft
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
+        public static Position TopLeft
+        {
+            get
+            {
+                global::System.IntPtr cPtr = NDalicPINVOKE.AnchorPointTopLeft_get();
+                Position ret = (cPtr == global::System.IntPtr.Zero) ? null : new Position(cPtr, false);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                return ret;
+            }
+        }
+        /// <summary>
+        /// TopCenter
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
+        public static Position TopCenter
+        {
+            get
+            {
+                global::System.IntPtr cPtr = NDalicPINVOKE.AnchorPointTopCenter_get();
+                Position ret = (cPtr == global::System.IntPtr.Zero) ? null : new Position(cPtr, false);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                return ret;
+            }
+        }
+        /// <summary>
+        /// TopRight
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
+        public static Position TopRight
+        {
+            get
+            {
+                global::System.IntPtr cPtr = NDalicPINVOKE.AnchorPointTopRight_get();
+                Position ret = (cPtr == global::System.IntPtr.Zero) ? null : new Position(cPtr, false);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                return ret;
+            }
+        }
+        /// <summary>
+        /// CenterLeft
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
+        public static Position CenterLeft
+        {
+            get
+            {
+                global::System.IntPtr cPtr = NDalicPINVOKE.AnchorPointCenterLeft_get();
+                Position ret = (cPtr == global::System.IntPtr.Zero) ? null : new Position(cPtr, false);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                return ret;
+            }
+        }
+        /// <summary>
+        /// Center
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
+        public static Position Center
+        {
+            get
+            {
+                global::System.IntPtr cPtr = NDalicPINVOKE.AnchorPointCenter_get();
+                Position ret = (cPtr == global::System.IntPtr.Zero) ? null : new Position(cPtr, false);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                return ret;
+            }
+        }
+        /// <summary>
+        /// CenterRight
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
+        public static Position CenterRight
+        {
+            get
+            {
+                global::System.IntPtr cPtr = NDalicPINVOKE.AnchorPointCenterRight_get();
+                Position ret = (cPtr == global::System.IntPtr.Zero) ? null : new Position(cPtr, false);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                return ret;
+            }
+        }
+        /// <summary>
+        /// BottomLeft
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
+        public static Position BottomLeft
+        {
+            get
+            {
+                global::System.IntPtr cPtr = NDalicPINVOKE.AnchorPointBottomLeft_get();
+                Position ret = (cPtr == global::System.IntPtr.Zero) ? null : new Position(cPtr, false);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                return ret;
+            }
+        }
+        /// <summary>
+        /// BottomCenter
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
+        public static Position BottomCenter
+        {
+            get
+            {
+                global::System.IntPtr cPtr = NDalicPINVOKE.AnchorPointBottomCenter_get();
+                Position ret = (cPtr == global::System.IntPtr.Zero) ? null : new Position(cPtr, false);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                return ret;
+            }
+        }
+        /// <summary>
+        /// BottomRight
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
+        public static Position BottomRight
+        {
+            get
+            {
+                global::System.IntPtr cPtr = NDalicPINVOKE.AnchorPointBottomRight_get();
+                Position ret = (cPtr == global::System.IntPtr.Zero) ? null : new Position(cPtr, false);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                return ret;
+            }
+        }
     }
 
     /// <summary>

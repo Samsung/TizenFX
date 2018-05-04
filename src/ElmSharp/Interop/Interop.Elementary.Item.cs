@@ -85,6 +85,9 @@ internal static partial class Interop
         internal static extern IntPtr elm_object_item_track(IntPtr obj);
 
         [DllImport(Libraries.Elementary)]
+        internal static extern int elm_object_item_track_get(IntPtr obj);
+
+        [DllImport(Libraries.Elementary)]
         internal static extern void elm_object_item_untrack(IntPtr obj);
 
         [DllImport(Libraries.Elementary)]

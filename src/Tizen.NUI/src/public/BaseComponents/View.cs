@@ -112,7 +112,7 @@ namespace Tizen.NUI.BaseComponents
         /// </summary>
         /// <seealso cref="Container.GetParent()" />
         /// <since_tizen> 4 </since_tizen>
-        protected override Container GetParent()
+        public override Container GetParent()
         {
             //to fix memory leak issue, match the handle count with native side.
             IntPtr cPtr = NDalicPINVOKE.Actor_GetParent(swigCPtr);
@@ -2182,6 +2182,32 @@ namespace Tizen.NUI.BaseComponents
             }
         }
 
+        /// <summary>
+        /// Please do not use! this will be deprecated.
+        /// </summary>
+        /// Please do not use! this will be deprecated!
+        /// Instead please use PositionUsesPivotPoint.
+        /// <since_tizen> 3 </since_tizen>
+        [Obsolete("Please do not use! This will be deprecated! Please use PositionUsesPivotPoint instead! " +
+            "Like: " +
+            "View view = new View(); " +
+            "view.PivotPoint = PivotPoint.Center; " +
+            "view.PositionUsesPivotPoint = true;")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public bool PositionUsesAnchorPoint
+        {
+            get
+            {
+                bool temp = false;
+                GetProperty(View.Property.POSITION_USES_ANCHOR_POINT).Get(out temp);
+                return temp;
+            }
+            set
+            {
+                SetProperty(View.Property.POSITION_USES_ANCHOR_POINT, new Tizen.NUI.PropertyValue(value));
+            }
+        }
+
         internal bool FocusState
         {
             get
@@ -2284,6 +2310,31 @@ namespace Tizen.NUI.BaseComponents
                         }
                     }
                 }
+            }
+        }
+
+        /// <summary>
+        /// Returns the natural size of the view.
+        /// </summary>
+        /// <remarks>
+        /// Deriving classes stipulate the natural size and by default a view has a zero natural size.
+        /// </remarks>
+        /// /// Please do not use! this will be deprecated!
+        /// Instead please use NaturalSize2D.
+        /// <since_tizen> 3 </since_tizen>
+        [Obsolete("Please do not use! This will be deprecated! Please use NaturalSize2D instead! " +
+            "Like: " +
+            "TextLabel label = new TextLabel(\"Hello World!\"); " +
+            "Size2D size = label.NaturalSize2D;")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public Vector3 NaturalSize
+        {
+            get
+            {
+                Vector3 ret = new Vector3(NDalicPINVOKE.Actor_GetNaturalSize(swigCPtr), true);
+                if (NDalicPINVOKE.SWIGPendingException.Pending)
+                    throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                return ret;
             }
         }
 
@@ -4211,6 +4262,92 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
+        /// [Obsolete("Please do not use! this will be deprecated")]
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
+        /// Please do not use! this will be deprecated!
+        /// Instead please use PivotPoint.
+        [Obsolete("Please do not use! This will be deprecated! Please use PivotPoint instead! " +
+            "Like: " +
+            "View view = new View(); " +
+            "view.PivotPoint = PivotPoint.Center; " +
+            "view.PositionUsesPivotPoint = true;")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public Position AnchorPoint
+        {
+            get
+            {
+                Position temp = new Position(0.0f, 0.0f, 0.0f);
+                GetProperty(View.Property.ANCHOR_POINT).Get(temp);
+                return temp;
+            }
+            set
+            {
+                SetProperty(View.Property.ANCHOR_POINT, new Tizen.NUI.PropertyValue(value));
+            }
+        }
+
+        /// <summary>
+        /// [Obsolete("Please do not use! this will be deprecated")]
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
+        [Obsolete("Please do not use! This will be deprecated! Please use Size2D instead! " +
+            "Like: " +
+            "View view = new View(); " +
+            "view.Size2D = new Size2D(100, 100);")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public Size Size
+        {
+            get
+            {
+                Size temp = new Size(0.0f, 0.0f, 0.0f);
+                GetProperty(View.Property.SIZE).Get(temp);
+                return temp;
+            }
+            set
+            {
+                SetProperty(View.Property.SIZE, new Tizen.NUI.PropertyValue(value));
+            }
+        }
+
+        /// <summary>
+        /// "Please DO NOT use! This will be deprecated! Please use 'Container GetParent() for derived class' instead!"
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
+        [Obsolete("Please do not use! This will be deprecated! Please use 'Container GetParent() for derived class' instead! " +
+            "Like: " +
+            "Container parent =  view.GetParent(); " +
+            "View view = parent as View;")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public new View Parent
+        {
+            get
+            {
+                View ret;
+                IntPtr cPtr = NDalicPINVOKE.Actor_GetParent(swigCPtr);
+                HandleRef CPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
+                BaseHandle basehandle = Registry.GetManagedBaseHandleFromNativePtr(CPtr.Handle);
+
+                if (basehandle is Layer layer)
+                {
+                    ret = new View(Layer.getCPtr(layer).Handle, false);
+                    NUILog.Error("This Parent property is deprecated, shoud do not be used");
+                }
+                else
+                {
+                    ret = basehandle as View;
+                }
+
+                NDalicPINVOKE.delete_BaseHandle(CPtr);
+                CPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
+
+                if (NDalicPINVOKE.SWIGPendingException.Pending)
+                    throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                return ret;
+            }
+        }
+
+        /// <summary>
         /// Gets/Sets whether inherit parent's the layout Direction.
         /// </summary>
         /// <since_tizen> 4 </since_tizen>
@@ -4264,6 +4401,28 @@ namespace Tizen.NUI.BaseComponents
             set
             {
                 SetProperty(View.Property.MARGIN, new Tizen.NUI.PropertyValue(value));
+            }
+        }
+
+        /// <summary>
+        /// [Obsolete("Please do not use! this will be deprecated")]
+        /// </summary>
+        /// Please do not use! this will be deprecated!
+        /// Instead please use Padding.
+        /// <since_tizen> 4 </since_tizen>
+        [Obsolete("Please do not use! this will be deprecated, instead please use Padding.")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public Extents PaddingEX
+        {
+            get
+            {
+                Extents temp = new Extents(0, 0, 0, 0);
+                GetProperty(View.Property.PADDING).Get(temp);
+                return temp;
+            }
+            set
+            {
+                SetProperty(View.Property.PADDING, new Tizen.NUI.PropertyValue(value));
             }
         }
 

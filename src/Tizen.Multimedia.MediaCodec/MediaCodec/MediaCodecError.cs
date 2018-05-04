@@ -14,6 +14,8 @@
  * limitations under the License.
  */
 
+using System;
+using System.IO;
 using Tizen.Internals.Errors;
 
 namespace Tizen.Multimedia.MediaCodec
@@ -25,7 +27,7 @@ namespace Tizen.Multimedia.MediaCodec
         None = ErrorCode.None,
         OutOfMemory = ErrorCode.OutOfMemory,
         InvalidParameter = ErrorCode.InvalidParameter,
-        InvalidOperation = ErrorCode.InvalidParameter,
+        InvalidOperation = ErrorCode.InvalidOperation,
         NotSupportedOnDevice = ErrorCode.NotSupported,
         PermissionDenied = ErrorCode.PermissionDenied,
 
@@ -70,5 +72,56 @@ namespace Tizen.Multimedia.MediaCodec
         /// The stream is invalid.
         /// </summary>
         InvalidStream = MediaCodecErrorCode.InvalidStream,
+    }
+
+    internal static class MediaCodecErrorExtensions
+    {
+        internal static void ThrowIfFailed(this MediaCodecErrorCode errorCode, string message)
+        {
+            if (errorCode == MediaCodecErrorCode.None)
+            {
+                return;
+            }
+
+            string msg = $"{ (message ?? "Operation failed") } : { errorCode.ToString() }.";
+
+            switch (errorCode)
+            {
+                case MediaCodecErrorCode.OutOfMemory:
+                    throw new OutOfMemoryException(msg);
+
+                case MediaCodecErrorCode.InvalidParameter:
+                    throw new ArgumentException(msg);
+
+                case MediaCodecErrorCode.CodecNotFound:
+                case MediaCodecErrorCode.DecodingError:
+                case MediaCodecErrorCode.InvalidOperation:
+                case MediaCodecErrorCode.InvalidState:
+                case MediaCodecErrorCode.InvalidInBuffer:
+                case MediaCodecErrorCode.InvalidOutBuffer:
+                case MediaCodecErrorCode.Internal:
+                case MediaCodecErrorCode.NotInitialized:
+                case MediaCodecErrorCode.InvalidStream:
+                case MediaCodecErrorCode.StreamNotFound:
+                    throw new InvalidOperationException(msg);
+
+                case MediaCodecErrorCode.NotSupportedOnDevice:
+                case MediaCodecErrorCode.NotSupportedFormat:
+                    throw new NotSupportedException(msg);
+
+                case MediaCodecErrorCode.PermissionDenied:
+                    throw new UnauthorizedAccessException(msg);
+
+                case MediaCodecErrorCode.OutOfStorage:
+                    throw new IOException($"{msg}; Not enough disk space or specified path is not available to .");
+
+                case MediaCodecErrorCode.NoAvailableBuffer:
+                case MediaCodecErrorCode.OverflowInBuffer:
+                    throw new InternalBufferOverflowException(msg);
+
+                default:
+                    throw new Exception($"Unknown error : {errorCode.ToString()}.");
+            }
+        }
     }
 }

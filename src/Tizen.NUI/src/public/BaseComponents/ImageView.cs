@@ -197,6 +197,24 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
+        /// Downcasts a handle to imageView handle.
+        /// </summary>
+        /// Please do not use! this will be deprecated!
+        /// Instead please use as keyword.
+        /// <since_tizen> 3 </since_tizen>
+        [Obsolete("Please do not use! This will be deprecated! Please use as keyword instead! " +
+            "Like: " +
+            "BaseHandle handle = new ImageView(imagePath); " +
+            "ImageView image = handle as ImageView")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public new static ImageView DownCast(BaseHandle handle)
+        {
+            ImageView ret = Registry.GetManagedBaseHandleFromNativePtr(handle) as ImageView;
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        /// <summary>
         /// Sets this ImageView from the given URL.<br />
         /// If the URL is empty, ImageView will not display anything.<br />
         /// </summary>
@@ -295,6 +313,38 @@ namespace Tizen.NUI.BaseComponents
             {
                 _url = (value == null? "" : value);
                 UpdateImage();
+            }
+        }
+
+        /// <summary>
+        /// This will be deprecated, please use Image instead. <br />
+        /// ImageView ImageMap, type PropertyMap: string if it is a URL, map otherwise.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
+        [Obsolete("Please do not use! This will be deprecated! Please use Image property instead!")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public PropertyMap ImageMap
+        {
+            get
+            {
+                if (_border == null)
+                {
+                    PropertyMap temp = new PropertyMap();
+                    GetProperty(ImageView.Property.IMAGE).Get(temp);
+                    return temp;
+                }
+                else
+                {
+                    return null;
+                }
+            }
+            set
+            {
+                if (_border == null)
+                {
+                    if (_url != null) { value.Add("url", new PropertyValue(_url)); }
+                    SetProperty(ImageView.Property.IMAGE, new Tizen.NUI.PropertyValue(value));
+                }
             }
         }
 
