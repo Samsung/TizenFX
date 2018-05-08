@@ -224,7 +224,7 @@ namespace ElmSharp
         public bool BoxRemove(string part, EvasObject child)
         {
             RemoveChild(child);
-            return Interop.Elementary.elm_layout_box_remove(RealHandle, part, child.Handle) != IntPtr.Zero;
+            return Interop.Elementary.elm_layout_box_remove(RealHandle, part, child.Handle) != null;
         }
 
         /// <summary>
