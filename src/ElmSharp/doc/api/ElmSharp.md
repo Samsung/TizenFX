@@ -14,6 +14,5 @@
 # limitations under the License
 
 uid: ElmSharp
-summary: ElmSharp is a simple c# wrapper of native EFL elementary which is provide all the widget you need to build a full application.
-These APIs are at the beta status and may be changed in backward/forward-incompatible ways, and are not guarantee to be released.
+summary: ElmSharp is a simple c# wrapper of native EFL elementary which is provide all the widget you need to build a full application. These APIs are at the beta status and may be changed in backward/forward-incompatible ways, and are not guarantee to be released.
 ---
