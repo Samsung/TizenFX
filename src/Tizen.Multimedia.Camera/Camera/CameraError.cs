@@ -40,9 +40,9 @@ namespace Tizen.Multimedia
         ServiceDisconnected = CameraErrorClass | 0x0e
     }
 
-    internal static class CameraErrorFactory
+    internal static class CameraErrorCodeExtensions
     {
-        internal static void ThrowIfError(CameraError errorCode, string errorMessage = null,
+        internal static void ThrowIfFailed(this CameraError errorCode, string errorMessage = null,
             [CallerMemberName] string caller = null, [CallerLineNumber] int line = 0)
         {
             if (errorCode == CameraError.None)
