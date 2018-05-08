@@ -1260,8 +1260,6 @@ namespace Tizen.NUI
         /// Default -1. if < 0, loop unlimited. else, loop loopCount times.
         /// </summary>
         /// <since_tizen> 5 </since_tizen>
-        /// This will be released at Tizen.NET API Level 5, so currently this would be used as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly int LoopCount = NDalic.IMAGE_VISUAL_LOOP_COUNT;
         /// <summary>
         /// The policy to determine when an image should no longer be cached

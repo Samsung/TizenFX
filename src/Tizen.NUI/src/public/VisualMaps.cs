@@ -2418,8 +2418,6 @@ namespace Tizen.NUI
         /// Default -1. if < 0, loop unlimited. else, loop loopCount times.
         /// </summary>
         /// <since_tizen> 5 </since_tizen>
-        /// This will be released at Tizen.NET API Level 5, so currently this would be used as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
         public float LoopCount
         {
             get

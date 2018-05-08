@@ -844,8 +844,6 @@ namespace Tizen.NUI.BaseComponents
         /// The text direction.
         /// </summary>
         /// <since_tizen> 5 </since_tizen>
-        /// This will be released at Tizen.NET API Level 5, so currently this would be used as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
         public TextDirection TextDirection
         {
             get
@@ -860,8 +858,6 @@ namespace Tizen.NUI.BaseComponents
         /// The text vertical line alignment.
         /// </summary>
         /// <since_tizen> 5 </since_tizen>
-        /// This will be released at Tizen.NET API Level 5, so currently this would be used as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
         public VerticalLineAlignment VerticalLineAlignment
         {
             get
