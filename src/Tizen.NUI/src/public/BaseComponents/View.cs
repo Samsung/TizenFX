@@ -1,5 +1,5 @@
 /*
- * Copyright(c) 2017 Samsung Electronics Co., Ltd.
+ * Copyright(c) 2018 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -1186,7 +1186,6 @@ namespace Tizen.NUI.BaseComponents
         public View() : this(NDalicPINVOKE.View_New(), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-
         }
         internal View(View uiControl) : this(NDalicPINVOKE.new_View__SWIG_1(View.getCPtr(uiControl)), true)
         {
@@ -2354,6 +2353,20 @@ namespace Tizen.NUI.BaseComponents
                     throw NDalicPINVOKE.SWIGPendingException.Retrieve();
 
                 return new Size2D((int)temp.Width, (int)temp.Height);
+            }
+        }
+
+        /// <summary>
+        /// Set the layout on this control.
+        /// </summary>
+        /// <remarks>
+        /// </remarks>
+        /// <since_tizen> 4 </since_tizen>
+        public LayoutItem Layout
+        {
+            set
+            {
+                Tizen.NUI.NDalicManualPINVOKE.SetLayout__SWIG_1( View.getCPtr( this ), LayoutItem.getCPtr( value )  );
             }
         }
 
