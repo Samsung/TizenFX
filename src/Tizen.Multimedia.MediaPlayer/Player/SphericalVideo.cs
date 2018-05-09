@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2016 Samsung Electronics Co., Ltd All Rights Reserved
+ * Copyright (c) 2018 Samsung Electronics Co., Ltd All Rights Reserved
  *
  * Licensed under the Apache License, Version 2.0 (the License);
  * you may not use this file except in compliance with the License.
@@ -21,13 +21,13 @@ using static Interop;
 namespace Tizen.Multimedia
 {
     /// <summary>
-    /// Represents properties for the 360 video direction of view
+    /// Represents properties for the spherical video direction of view
     /// </summary>
     /// <since_tizen> 5 </since_tizen>
     public struct DirectionOfView
     {
         /// <summary>
-        /// Initializes a new instance of the struct with the specified direction of view for the 360 video.
+        /// Initializes a new instance of the struct with the specified direction of view for the spherical video.
         /// </summary>
         /// <param name="yaw">Pointer to store current value of direction of view angle around vertical axis.</param>
         /// <param name="pitch">Pointer to store current value of direction of view angle around lateral axis.</param>
@@ -70,13 +70,13 @@ namespace Tizen.Multimedia
     }
 
     /// <summary>
-    /// Represents properties for the 360 video field of view
+    /// Represents properties for the spherical video field of view
     /// </summary>
     /// <since_tizen> 5 </since_tizen>
     public struct FieldOfView
     {
         /// <summary>
-        /// Initializes a new instance of the struct with the specified field of view for the 360 video.
+        /// Initializes a new instance of the struct with the specified field of view for the spherical video.
         /// </summary>
         /// <param name="horizontalDegrees">The horizontal field of view to display in degrees.</param>
         /// <remarks>
@@ -149,7 +149,7 @@ namespace Tizen.Multimedia
         /// <summary>
         /// Gets information whether the current content of the player is spherical.
         /// </summary>
-        /// <returns>whethrer the current content of the player is spherical or not.</returns>
+        /// <returns>true if the current content is spherical; otherwise false.</returns>
         /// <remarks>
         /// The <see cref="Player"/> that owns this instance must be in the <see cref="PlayerState.Ready"/>,
         /// <see cref="PlayerState.Playing"/>, or <see cref="PlayerState.Paused"/> state.
@@ -213,12 +213,12 @@ namespace Tizen.Multimedia
         /// <exception cref="ObjectDisposedException">The player has already been disposed of.</exception>
         /// <exception cref="InvalidOperationException">The player is not in the valid state.</exception>
         /// <since_tizen> 5 </since_tizen>
-        public bool IsSphericalMode
+        public bool Mode
         {
             get
             {
                 NativePlayer.IsSphericalMode(Player.Handle, out var value).
-                    ThrowIfFailed(Player, "Failed to get the spherical mode of the player");
+                    ThrowIfFailed(Player, "Failed to get whether the spherical mode of the player is enabled or not");
                 return value;
             }
 
@@ -244,13 +244,13 @@ namespace Tizen.Multimedia
         /// <exception cref="InvalidOperationException">
         /// The <see cref="Multimedia.Player"/> that this instance belongs to is not in the valid state.
         /// </exception>
+        /// <seealso cref="DirectionOfView"/>
         /// <since_tizen> 5 </since_tizen>
         public DirectionOfView GetDirectionOfView()
         {
             Player.ValidateNotDisposed();
 
-            NativePlayer.GetDirectionOfView(Player.Handle, out var yaw,
-                out var pitch).
+            NativePlayer.GetDirectionOfView(Player.Handle, out var yaw, out var pitch).
                 ThrowIfFailed(Player, "Failed to get the direction of view");
 
             return new DirectionOfView(yaw, pitch);
@@ -276,7 +276,7 @@ namespace Tizen.Multimedia
             }
 
             NativePlayer.SetDirectionOfView(Player.Handle, directionofview.Yaw, directionofview.Pitch).
-                ThrowIfFailed(Player, "Failed to set the level of the zoom.");
+                ThrowIfFailed(Player, "Failed to set the direction of the view.");
         }
 
         /// <summary>
@@ -292,6 +292,7 @@ namespace Tizen.Multimedia
         /// <exception cref="InvalidOperationException">
         /// The <see cref="Multimedia.Player"/> that this instance belongs to is not in the valid state.
         /// </exception>
+        /// <seealso cref="FieldOfView"/>
         /// <since_tizen> 5 </since_tizen>
         public FieldOfView GetFieldOfView()
         {
@@ -323,7 +324,7 @@ namespace Tizen.Multimedia
             }
 
             NativePlayer.SetFieldOfView(Player.Handle, fieldofview.HorizontalDegrees, fieldofview.VerticalDegrees).
-                ThrowIfFailed(Player, "Failed to set the level of the zoom.");
+                ThrowIfFailed(Player, "Failed to set the field of the view.");
         }
     }
 }

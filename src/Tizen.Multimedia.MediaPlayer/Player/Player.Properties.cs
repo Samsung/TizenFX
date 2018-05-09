@@ -448,9 +448,8 @@ namespace Tizen.Multimedia
         private SphericalVideo _sphericalVideo;
 
         /// <summary>
-        /// Gets the 360 video settings.
+        /// Gets the spherical video settings.
         /// </summary>
-        /// <value>A <see cref="_sphericalVideo"/> that specifies the display settings.</value>
         /// <since_tizen> 5 </since_tizen>
         public SphericalVideo SphericalVideo
         {
@@ -460,6 +459,7 @@ namespace Tizen.Multimedia
                 {
                     _sphericalVideo = new SphericalVideo(this);
                 }
+
                 return _sphericalVideo;
             }
         }
