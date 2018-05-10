@@ -68,7 +68,8 @@ namespace Tizen.NUI
             int ver3 = -1;
 
             NDalicManualPINVOKE.NativeVersionCheck(ref ver1, ref ver2, ref ver3);
-            NUILog.Debug($"DALi Version: ({ver1}.{ver2}.{ver3}), NUI API Version: ({nuiAPIVer})");
+            //NUILog.Debug($"DALi Version: ({ver1}.{ver2}.{ver3}), NUI API Version: ({nuiAPIVer})");
+            NUILog.Error($"DALi Version: ({ver1}.{ver2}.{ver3}), NUI API Version: ({nuiAPIVer})");
         }
     }
 }
