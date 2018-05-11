@@ -72,20 +72,27 @@ internal static partial class Interop
             UnknownFormat = 6 /* File is not a known format */
         }
 
-        public enum Colorspace
+        public enum ColorspaceType
         {
-            Argb8888, /* ARGB 32 bits per pixel, high-byte is Alpha, accessed 1 32bit word at a time */
-            Ycbcr422p709pl, /* YCbCr 4:2:2 Planar, ITU.BT-709 specifications. The data pointed to is just an array of row pointer, pointing to the Y rows, then the Cb, then Cr rows */
-            Ergb565a5p, /* 16bit rgb565 + Alpha plane at end - 5 bits of the 8 being used per alpha byte */
-            Egry8, /* 8bit grayscale */
-            Eycbcr422601pl, /*  YCbCr 4:2:2, ITU.BT-601 specifications. The data pointed to is just an array of row pointer, pointing to line of Y,Cb,Y,Cr bytes */
-            Eycbcr420nv12601pl, /* YCbCr 4:2:0, ITU.BT-601 specification. The data pointed to is just an array of row pointer, pointing to the Y rows, then the Cb,Cr rows. */
-            Eycbcr420tm12601pl, /* YCbCr 4:2:0, ITU.BT-601 specification. The data pointed to is just an array of tiled row pointer, pointing to the Y rows, then the Cb,Cr rows. */
-            Eagry88, /* AY 8bits Alpha and 8bits Grey, accessed 1 16bits at a time */
-            Eetc1, /* OpenGL ETC1 encoding of RGB texture (4 bit per pixel) @since 1.10 */
-            Ergb8etc2, /* OpenGL GL_COMPRESSED_RGB8_ETC2 texture compression format (4 bit per pixel) @since 1.10 */
-            Ergba8etc2eac, /* OpenGL GL_COMPRESSED_RGBA8_ETC2_EAC texture compression format, supports alpha (8 bit per pixel) @since 1.10 */
-            Eetc1alpha,     /* ETC1 with alpha support using two planes: ETC1 RGB and ETC1 grey for alpha @since 1.11 */
+            Argb8888, /* ARGB 32 bits per pixel, high-byte is Alpha, accessed one 32bit word at a time */
+            Ycbcr422p601Pl, /* YCbCr 4:2:2 Planar, ITU.BT-601 specifications. The data pointed to is just an array of row pointer, pointing to the Y rows, then the Cb, then Cr rows */
+            Ycbcr422p709Pl, /* YCbCr 4:2:2 Planar, ITU.BT-709 specifications. The data pointed to is just an array of row pointer, pointing to the Y rows, then the Cb, then Cr rows */
+            Rgb565A5p, /* 16bit rgb565 + Alpha plane at end - 5 bits of the 8 being used per alpha byte */
+            Gry8 = 4, /* 8-bit gray image, or alpha only */
+            Ycbcr422601Pl, /*  YCbCr 4:2:2, ITU.BT-601 specifications. The data pointed to is just an array of row pointer, pointing to line of Y,Cb,Y,Cr bytes */
+            Ycbcr420nv12601Pl, /* YCbCr 4:2:0, ITU.BT-601 specifications. The data pointed to is just an array of row pointer, pointing to the Y rows, then the Cb,Cr rows */
+            Ycbcr420tm12601Pl, /* YCbCr 4:2:0, ITU.BT-601 specifications. The data pointed to is just an array of tiled row pointer, pointing to the Y rows, then the Cb,Cr rows */
+            Agry88 = 8, /* AY 8bits Alpha and 8bits Grey, accessed 1 16bits at a time */
+            Etc1 = 9, /* OpenGL ETC1 encoding of RGB texture (4 bit per pixel) @since 1.10 */
+            Rgb8Etc2 = 10, /* OpenGLGL_COMPRESSED_RGB8_ETC2 texture compression format (4 bit per pixel) @since 1.10 */
+            Rgba8Etc2Eac = 11, /* OpenGLGL_COMPRESSED_RGBA8_ETC2_EAC texture compression format, supports alpha (8 bit per pixel) @since 1.10 */
+            Etc1Alpha = 12, /* ETC1 with alpha support using two planes: ETC1 RGB and ETC1 grey for alpha @since 1.11 */
+            RgbS3tcDxt1 = 13, /* OpenGL COMPRESSED_RGB_S3TC_DXT1_EXT format with RGB only @since 1.11 */
+            RgbaS3tcDxt1 = 14, /* OpenGL COMPRESSED_RGBA_S3TC_DXT1_EXT format with RGBA punchthrough @since 1.11 */
+            RgbaS3tcDxt2 = 15, /* DirectDraw DXT2 format with premultiplied RGBA. Not supported by OpenGL itself @since 1.11 */
+            RgbaS3tcDxt3 = 16, /* OpenGL COMPRESSED_RGBA_S3TC_DXT3_EXT format with RGBA @since 1.11 */
+            RgbaS3tcDxt4 = 17, /* DirectDraw DXT4 format with premultiplied RGBA. Not supported by OpenGL itself @since 1.11 */
+            RgbaS3tcDxt5 = 18 /* OpenGL COMPRESSED_RGBA_S3TC_DXT5_EXT format with RGBA. @since 1.11 */
         }
 
         public enum ImageScaleHint
@@ -353,6 +360,30 @@ internal static partial class Interop
 
         [DllImport(Libraries.Evas)]
         internal static extern void evas_map_free(IntPtr map);
+
+        [DllImport(Libraries.Evas)]
+        internal static extern IntPtr evas_gl_new(IntPtr evas);
+
+        [DllImport(Libraries.Evas)]
+        internal static extern void evas_gl_free(IntPtr evasgl);
+
+        [DllImport(Libraries.Evas)]
+        internal static extern IntPtr evas_gl_context_create(IntPtr evasgl, IntPtr ctx);
+
+        [DllImport(Libraries.Evas)]
+        internal static extern void evas_gl_context_destroy(IntPtr evasgl, IntPtr ctx);
+
+        [DllImport(Libraries.Evas)]
+        internal static extern IntPtr evas_gl_surface_create(IntPtr evasgl, IntPtr cfg, int w, int h);
+
+        [DllImport(Libraries.Evas)]
+        internal static extern void evas_gl_surface_destroy(IntPtr evasgl, IntPtr surf);
+
+        [DllImport(Libraries.Evas)]
+        internal static extern bool evas_gl_native_surface_get(IntPtr evasgl, IntPtr surf, out IntPtr ns);
+
+        [DllImport(Libraries.Evas)]
+        internal static extern bool evas_gl_make_current(IntPtr evasgl, IntPtr surf, IntPtr ctx);
 
         [DllImport(Libraries.Evas)]
         internal static extern IntPtr evas_object_polygon_add(IntPtr evas);

@@ -21,7 +21,6 @@ internal static partial class Interop
 {
     internal static partial class Evas
     {
-
         [DllImport(Libraries.Evas)]
         internal static extern IntPtr evas_object_image_add(IntPtr obj);
 
@@ -91,7 +90,10 @@ internal static partial class Interop
         internal static extern bool evas_object_image_alpha_get(IntPtr obj);
 
         [DllImport(Libraries.Evas)]
-        internal static extern void evas_object_image_colorspace_set(IntPtr obj, Colorspace colorSpace);
+        internal static extern void evas_object_image_colorspace_set(IntPtr obj, ColorspaceType colorSpace);
+
+        [DllImport(Libraries.Evas)]
+        internal static extern ColorspaceType evas_object_image_colorspace_get(IntPtr obj);
 
         [DllImport(Libraries.Evas)]
         internal static extern void evas_object_image_data_copy_set(IntPtr obj, IntPtr data);
@@ -143,5 +145,10 @@ internal static partial class Interop
 
         [DllImport(Libraries.Evas)]
         internal static extern void evas_object_image_native_surface_set(IntPtr obj, IntPtr surface);
+
+        internal delegate void EvasImagePixelsGetCallback(IntPtr data, IntPtr o);
+
+        [DllImport(Libraries.Evas)]
+        internal static extern void evas_object_image_pixels_get_callback_set(IntPtr obj, EvasImagePixelsGetCallback func, IntPtr data);
     }
 }

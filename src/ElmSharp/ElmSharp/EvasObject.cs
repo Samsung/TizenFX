@@ -110,6 +110,108 @@ namespace ElmSharp
     }
 
     /// <summary>
+    /// Graphics colorspace type.
+    /// </summary>
+    /// <since_tizen> 5 </since_tizen>
+    public enum Colorspace
+    {
+        /// <summary>
+        /// ARGB 32 bits per pixel, high-byte is Alpha, accessed one 32bit word at a time.
+        /// </summary>
+        Argb8888 = 0,
+
+        /// <summary>
+        /// YCbCr 4:2:2 Planar, ITU.BT-601 specifications. The data pointed to is just an array of row pointer, pointing to the Y rows, then the Cb, then Cr rows.
+        /// </summary>
+        Ycbcr422p601Pl = 1,
+
+        /// <summary>
+        /// YCbCr 4:2:2 Planar, ITU.BT-709 specifications. The data pointed to is just an array of row pointer, pointing to the Y rows, then the Cb, then Cr rows.
+        /// </summary>
+        Ycbcr422p709Pl = 2,
+
+        /// <summary>
+        /// 16bit rgb565 + Alpha plane at end - 5 bits of the 8 being used per alpha byte.
+        /// </summary>
+        Rgb565A5p = 3,
+
+        /// <summary>
+        /// 8-bit gray image, or alpha only.
+        /// </summary>
+        Gry8 = 4,
+
+        /// <summary>
+        /// YCbCr 4:2:2, ITU.BT-601 specifications. The data pointed to is just an array of row pointer, pointing to line of Y,Cb,Y,Cr bytes.
+        /// </summary>
+        Ycbcr422601Pl = 5,
+
+        /// <summary>
+        /// YCbCr 4:2:0, ITU.BT-601 specifications. The data pointed to is just an array of row pointer, pointing to the Y rows, then the Cb,Cr rows.
+        /// </summary>
+        Ycbcr420nv12601Pl = 6,
+
+        /// <summary>
+        /// YCbCr 4:2:0, ITU.BT-601 specifications. The data pointed to is just an array of tiled row pointer, pointing to the Y rows, then the Cb,Cr rows.
+        /// </summary>
+        Ycbcr420tm12601Pl = 7,
+
+        /// <summary>
+        /// AY 8bits Alpha and 8bits Grey, accessed 1 16bits at a time.
+        /// </summary>
+        Agry88 = 8,
+
+        /// <summary>
+        /// OpenGL ETC1 encoding of RGB texture. (4 bit per pixel)
+        /// </summary>
+        Etc1 = 9,
+
+        /// <summary>
+        /// OpenGL GL_COMPRESSED_RGB8_ETC2 texture compression format. (4 bit per pixel)
+        /// </summary>
+        rgb8Etc2 = 10,
+
+        /// <summary>
+        /// OpenGL GL_COMPRESSED_RGBA8_ETC2_EAC texture compression format, supports alpha. (8 bit per pixel)
+        /// </summary>
+        Rgba8Etc2Eac = 11,
+
+        /// <summary>
+        /// ETC1 with alpha support using two planes: ETC1 RGB and ETC1 grey for alpha.
+        /// </summary>
+        Etc1Alpha = 12,
+
+        /// <summary>
+        /// OpenGL COMPRESSED_RGB_S3TC_DXT1_EXT format with RGB only.
+        /// </summary>
+        RgbS3tcDxt1 = 13,
+
+        /// <summary>
+        /// OpenGL COMPRESSED_RGBA_S3TC_DXT1_EXT format with RGBA punchthrough.
+        /// </summary>
+        RgbaS3tcDxt1 = 14,
+
+        /// <summary>
+        /// DirectDraw DXT2 format with premultiplied RGBA. Not supported by OpenGL itself.
+        /// </summary>
+        RgbaS3tcDxt2 = 15,
+
+        /// <summary>
+        /// OpenGL COMPRESSED_RGBA_S3TC_DXT3_EXT format with RGBA.
+        /// </summary>
+        RgbaS3tcDxt3 = 16,
+
+        /// <summary>
+        /// DirectDraw DXT4 format with premultiplied RGBA. Not supported by OpenGL itself.
+        /// </summary>
+        RgbaS3tcDxt4 = 17,
+
+        /// <summary>
+        /// OpenGL COMPRESSED_RGBA_S3TC_DXT5_EXT format with RGBA.
+        /// </summary>
+        RgbaS3tcDxt5 = 18
+    }
+
+    /// <summary>
     /// How the object should be rendered to output.
     /// </summary>
     /// <since_tizen> 5 </since_tizen>

@@ -29,6 +29,8 @@ namespace ElmSharp
     public class EvasImage : EvasObject
     {
         EvasObject _source = null;
+        EventHandler _pixelsGet;
+        Interop.Evas.EvasImagePixelsGetCallback _pixelsGetCallback = null;
         IntPtr _handle = IntPtr.Zero;
 
         /// <summary>
@@ -44,6 +46,32 @@ namespace ElmSharp
         {
             _handle = handle;
             Realize(parent);
+        }
+
+        /// <summary>
+        /// PixelsGet will be triggered when the image object will ready to get pixels.
+        /// </summary>
+        /// <since_tizen> preview </since_tizen>
+        public event EventHandler PixelsGet
+        {
+            add
+            {
+                _pixelsGet += value;
+                if (_pixelsGetCallback == null)
+                {
+                    _pixelsGetCallback = new Interop.Evas.EvasImagePixelsGetCallback((o, d) => _pixelsGet?.Invoke(this, EventArgs.Empty));
+                    Interop.Evas.evas_object_image_pixels_get_callback_set(RealHandle, _pixelsGetCallback, IntPtr.Zero);
+                }
+            }
+            remove
+            {
+                _pixelsGet -= value;
+                if (_pixelsGet == null)
+                {
+                    Interop.Evas.evas_object_image_pixels_get_callback_set(RealHandle, null, IntPtr.Zero);
+                    _pixelsGetCallback = null;
+                }
+            }
         }
 
         /// <summary>
@@ -212,6 +240,58 @@ namespace ElmSharp
         }
 
         /// <summary>
+        /// Sets or gets the colorspace of a given image of the canvas.
+        /// </summary>
+        /// <since_tizen> 5 </since_tizen>
+        public Colorspace Colorspace
+        {
+            get
+            {
+                return (Colorspace)Interop.Evas.evas_object_image_colorspace_get(RealHandle);
+            }
+            set
+            {
+                Interop.Evas.evas_object_image_colorspace_set(RealHandle, (Interop.Evas.ColorspaceType)value);
+            }
+        }
+
+        /// <summary>
+        /// Sets or gets the raw image data of the given image object.
+        /// </summary>
+        /// <since_tizen> 5 </since_tizen>
+        public IntPtr Data
+        {
+            get
+            {
+                return Interop.Evas.evas_object_image_data_get(RealHandle, true);
+            }
+            set
+            {
+                Interop.Evas.evas_object_image_data_set(RealHandle, value);
+            }
+        }
+
+        /// <summary>
+        /// Mark whether the given image object is dirty and needs to request its pixels.
+        /// </summary>
+        /// <param name="geometry">The rectangle of the given image object that the image will be redrawn.</param>
+        /// <since_tizen> 5 </since_tizen>
+        public void UpdateData(Rect geometry)
+        {
+            Interop.Evas.evas_object_image_data_update_add(RealHandle, geometry.X, geometry.Y, geometry.Width, geometry.Height);
+        }
+
+        /// <summary>
+        /// Mark a sub-region of the given image object to be redrawn.
+        /// </summary>
+        /// <param name="dirty">Whether the image is dirty. (needs to be redrawn)</param>
+        /// <since_tizen> 5 </since_tizen>
+        public void SetPixelsDirty(bool dirty)
+        {
+            Interop.Evas.evas_object_image_pixels_dirty_set(RealHandle, dirty);
+        }
+
+        /// <summary>
         /// Sets how to fill an image object's drawing rectangle given the (real) image bound to it.
         /// </summary>
         /// <param name="geometry">The rectangle of the given image object that the image will be drawn to.</param>
@@ -276,7 +356,6 @@ namespace ElmSharp
         /// </summary>
         /// <param name="surface">The surface.</param>
         /// <since_tizen> preview </since_tizen>
-        [EditorBrowsable(EditorBrowsableState.Never)]
         public void SetNativeSurface(IntPtr surface)
         {
             Interop.Evas.evas_object_image_native_surface_set(RealHandle, surface);
@@ -304,6 +383,20 @@ namespace ElmSharp
         protected override IntPtr CreateHandle(EvasObject parent)
         {
             return _handle != IntPtr.Zero ? _handle : Interop.Evas.evas_object_image_add(Interop.Evas.evas_object_evas_get(parent.Handle));
+        }
+
+        /// <summary>
+        /// Delete callback.
+        /// </summary>
+        /// <since_tizen> 5 </since_tizen>
+        protected override void OnUnrealize()
+        {
+            if (_pixelsGetCallback != null)
+            {
+                Interop.Evas.evas_object_image_pixels_get_callback_set(RealHandle, null, IntPtr.Zero);
+                _pixelsGetCallback = null;
+            }
+            base.OnUnrealize();
         }
     }
 }
