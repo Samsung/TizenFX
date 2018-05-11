@@ -735,6 +735,16 @@ namespace Tizen.NUI
             return ret;
         }
 
+
+        private WheelSignal StageWheelEventSignal()
+        {
+            WheelSignal ret = new WheelSignal(NDalicPINVOKE.Actor_WheelEventSignal(Layer.getCPtr(this.GetRootLayer())), false);
+            if (NDalicPINVOKE.SWIGPendingException.Pending)
+                throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+
         internal VoidSignal ContextLostSignal()
         {
             VoidSignal ret = new VoidSignal(NDalicPINVOKE.Stage_ContextLostSignal(stageCPtr), false);
@@ -1040,7 +1050,10 @@ namespace Tizen.NUI
         }
 
         private event EventHandler<WheelEventArgs> _stageWheelHandler;
-        private EventCallbackDelegateType1 _stageWheelCallbackDelegate;
+
+        [UnmanagedFunctionPointer(CallingConvention.StdCall)]
+        private delegate bool WheelEventCallbackType(IntPtr view, IntPtr wheelEvent);
+        private WheelEventCallbackType _wheelEventCallback;
 
         /// <summary>
         /// This event is emitted when the wheel event is received.
@@ -1052,34 +1065,38 @@ namespace Tizen.NUI
             {
                 if (_stageWheelHandler == null)
                 {
-                    _stageWheelCallbackDelegate = OnStageWheel;
-                    WheelEventSignal().Connect(_stageWheelCallbackDelegate);
+                    _wheelEventCallback = OnStageWheel;
+                    this.StageWheelEventSignal().Connect(_wheelEventCallback);
                 }
                 _stageWheelHandler += value;
             }
             remove
             {
                 _stageWheelHandler -= value;
-                if (_stageWheelHandler == null && WheelEventSignal().Empty() == false)
+                if (_stageWheelHandler == null && StageWheelEventSignal().Empty() == false)
                 {
-                    WheelEventSignal().Disconnect(_stageWheelCallbackDelegate);
+                    this.StageWheelEventSignal().Disconnect(_wheelEventCallback);
                 }
             }
         }
 
-        private void OnStageWheel(IntPtr data)
+        private bool OnStageWheel(IntPtr rootLayer, IntPtr wheelEvent)
         {
+            if (wheelEvent == global::System.IntPtr.Zero)
+        {
+                NUILog.Error("wheelEvent should not be null!");
+                return true;
+            }
+
             WheelEventArgs e = new WheelEventArgs();
 
-            if (data != null)
-            {
-                e.Wheel = Tizen.NUI.Wheel.GetWheelFromPtr(data);
-            }
+            e.Wheel = Tizen.NUI.Wheel.GetWheelFromPtr(wheelEvent);
 
             if (_stageWheelHandler != null)
             {
                 _stageWheelHandler(this, e);
             }
+            return true;
         }
 
         /// <summary>
