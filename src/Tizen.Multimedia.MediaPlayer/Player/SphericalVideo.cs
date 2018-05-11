@@ -29,8 +29,10 @@ namespace Tizen.Multimedia
         /// <summary>
         /// Initializes a new instance of the struct with the specified direction of view for the spherical video.
         /// </summary>
-        /// <param name="yaw">Pointer to store current value of direction of view angle around vertical axis.</param>
-        /// <param name="pitch">Pointer to store current value of direction of view angle around lateral axis.</param>
+        /// <param name="yaw">Pointer to store current value of direction of view angle around vertical axis.
+        /// valid range is [-3.141592, 3.141592]. value will be truncated to 6 decimal places.
+        /// <param name="pitch">Pointer to store current value of direction of view angle around lateral axis.
+        /// valid range is [-1.570796, 1.570796]. value will be truncated to 6 decimal places.
         /// <since_tizen> 5 </since_tizen>
         public DirectionOfView(float yaw, float pitch)
         {
@@ -130,6 +132,8 @@ namespace Tizen.Multimedia
     /// <since_tizen> 5 </since_tizen>
     public class SphericalVideo
     {
+        private float truncateDecimal(double n, int digit) => (float)(Math.Truncate(n * Math.Pow(10, digit)) / Math.Pow(10, digit));
+
         /// <summary>
         /// Gets the <see cref="Multimedia.Player"/> that owns this instance.
         /// </summary>
@@ -154,11 +158,17 @@ namespace Tizen.Multimedia
         /// The <see cref="Player"/> that owns this instance must be in the <see cref="PlayerState.Ready"/>,
         /// <see cref="PlayerState.Playing"/>, or <see cref="PlayerState.Paused"/> state.
         /// </remarks>
+        /// <feature>http://tizen.org/feature/opengles.version.2_0</feature>
+        /// <feature>http://tizen.org/feature/multimedia.player.spherical_video</feature>
+        /// <exception cref="NotSupportedException">The required feature is not supported.</exception>
         /// <exception cref="ObjectDisposedException">The <see cref="Player"/> that this instance belongs to has been disposed of.</exception>
         /// <exception cref="InvalidOperationException">The <see cref="Player"/> that this instance belongs to is not in the valid state.</exception>
         /// <since_tizen> 5 </since_tizen>
         public bool IsSphericalContent()
         {
+            ValidationUtil.ValidateFeatureSupported(PlayerFeatures.OpenGl);
+            ValidationUtil.ValidateFeatureSupported(PlayerFeatures.SphericalVideo);
+
             Player.ValidatePlayerState(PlayerState.Ready, PlayerState.Playing, PlayerState.Paused);
 
             NativePlayer.IsSphericalContent(Player.Handle, out var value).
@@ -171,12 +181,18 @@ namespace Tizen.Multimedia
         /// Gets the level of the zoom when it is spherical.
         /// </summary>
         /// <remarks>Remark.</remarks>
+        /// <feature>http://tizen.org/feature/opengles.version.2_0</feature>
+        /// <feature>http://tizen.org/feature/multimedia.player.spherical_video</feature>
+        /// <exception cref="NotSupportedException">The required feature is not supported.</exception>
         /// <exception cref="ObjectDisposedException">The player has already been disposed of.</exception>
         /// <exception cref="InvalidOperationException">The player is not in the valid state.</exception>
         /// <seealso cref="SetZoom(float)"/>
         /// <since_tizen> 5 </since_tizen>
         public float GetZoom()
         {
+            ValidationUtil.ValidateFeatureSupported(PlayerFeatures.OpenGl);
+            ValidationUtil.ValidateFeatureSupported(PlayerFeatures.SphericalVideo);
+
             Player.ValidateNotDisposed();
 
             NativePlayer.GetZoom(Player.Handle, out var value).
@@ -186,15 +202,21 @@ namespace Tizen.Multimedia
         }
 
         /// <summary>
-        /// Gets the level of the zoom when it is spherical .
+        /// Sets the level of the zoom when it is spherical .
         /// </summary>
         /// <remarks>Remark.</remarks>
+        /// <feature>http://tizen.org/feature/opengles.version.2_0</feature>
+        /// <feature>http://tizen.org/feature/multimedia.player.spherical_video</feature>
+        /// <exception cref="NotSupportedException">The required feature is not supported.</exception>
         /// <exception cref="ObjectDisposedException">The player has already been disposed of.</exception>
         /// <exception cref="InvalidOperationException">The player is not in the valid state.</exception>
         /// <seealso cref="GetZoom()"/>
         /// <since_tizen> 5 </since_tizen>
         public void SetZoom(float level)
         {
+            ValidationUtil.ValidateFeatureSupported(PlayerFeatures.OpenGl);
+            ValidationUtil.ValidateFeatureSupported(PlayerFeatures.SphericalVideo);
+
             Player.ValidateNotDisposed();
 
             if (level < 1.0F || 10.0F < level)
@@ -210,6 +232,9 @@ namespace Tizen.Multimedia
         /// </summary>
         /// <remarks>The player must be in the <see cref="PlayerState.Ready"/>, <see cref="PlayerState.Playing"/>,
         /// or <see cref="PlayerState.Paused"/> state.</remarks>
+        /// <feature>http://tizen.org/feature/opengles.version.2_0</feature>
+        /// <feature>http://tizen.org/feature/multimedia.player.spherical_video</feature>
+        /// <exception cref="NotSupportedException">The required feature is not supported.</exception>
         /// <exception cref="ObjectDisposedException">The player has already been disposed of.</exception>
         /// <exception cref="InvalidOperationException">The player is not in the valid state.</exception>
         /// <since_tizen> 5 </since_tizen>
@@ -217,6 +242,9 @@ namespace Tizen.Multimedia
         {
             get
             {
+                ValidationUtil.ValidateFeatureSupported(PlayerFeatures.OpenGl);
+                ValidationUtil.ValidateFeatureSupported(PlayerFeatures.SphericalVideo);
+
                 NativePlayer.IsSphericalMode(Player.Handle, out var value).
                     ThrowIfFailed(Player, "Failed to get whether the spherical mode of the player is enabled or not");
                 return value;
@@ -224,6 +252,9 @@ namespace Tizen.Multimedia
 
             set
             {
+                ValidationUtil.ValidateFeatureSupported(PlayerFeatures.OpenGl);
+                ValidationUtil.ValidateFeatureSupported(PlayerFeatures.SphericalVideo);
+
                 Player.ValidateNotDisposed();
                 NativePlayer.SetSphericalMode(Player.Handle, value).
                     ThrowIfFailed(Player, "Failed to set the spherical mode of the player");
@@ -232,12 +263,15 @@ namespace Tizen.Multimedia
 
 
         /// <summary>
-        /// Gets the properties of the audio.
+        /// Gets the direction of view for spherical video.
         /// </summary>
         /// <returns>A <see cref="DirectionOfView"/> that contains the audio stream information.</returns>
         /// <remarks>
         /// Remark
         /// </remarks>
+        /// <feature>http://tizen.org/feature/opengles.version.2_0</feature>
+        /// <feature>http://tizen.org/feature/multimedia.player.spherical_video</feature>
+        /// <exception cref="NotSupportedException">The required feature is not supported.</exception>
         /// <exception cref="ObjectDisposedException">
         /// The <see cref="Multimedia.Player"/> that this instance belongs to has been disposed of.
         /// </exception>
@@ -248,6 +282,9 @@ namespace Tizen.Multimedia
         /// <since_tizen> 5 </since_tizen>
         public DirectionOfView GetDirectionOfView()
         {
+            ValidationUtil.ValidateFeatureSupported(PlayerFeatures.OpenGl);
+            ValidationUtil.ValidateFeatureSupported(PlayerFeatures.SphericalVideo);
+
             Player.ValidateNotDisposed();
 
             NativePlayer.GetDirectionOfView(Player.Handle, out var yaw, out var pitch).
@@ -257,35 +294,58 @@ namespace Tizen.Multimedia
         }
 
         /// <summary>
-        /// Sets the properties of the video.
+        /// Sets the direction of view for spherical video.
         /// </summary>
+        /// <feature>http://tizen.org/feature/opengles.version.2_0</feature>
+        /// <feature>http://tizen.org/feature/multimedia.player.spherical_video</feature>
+        /// <exception cref="NotSupportedException">The required feature is not supported.</exception>
+        /// <exception cref="ObjectDisposedException">
+        /// The <see cref="Multimedia.Player"/> that this instance belongs to has been disposed of.
+        /// </exception>
+        /// <exception cref="InvalidOperationException">
+        /// The <see cref="Multimedia.Player"/> that this instance belongs to is not in the valid state.
+        /// </exception>
+        /// <seealso cref="DirectionOfView"/>
+        /// <since_tizen> 5 </since_tizen>
         public void SetDirectionOfView(DirectionOfView directionofview)
         {
+            ValidationUtil.ValidateFeatureSupported(PlayerFeatures.OpenGl);
+            ValidationUtil.ValidateFeatureSupported(PlayerFeatures.SphericalVideo);
+
             Player.ValidateNotDisposed();
 
-            if (directionofview.Yaw > Math.PI || directionofview.Yaw < -Math.PI)
+            float pi = truncateDecimal(Math.PI, 6);
+            float halfPi = truncateDecimal(Math.PI/2, 6);
+
+            directionofview.Yaw = truncateDecimal(directionofview.Yaw, 6);
+            directionofview.Pitch = truncateDecimal(directionofview.Pitch, 6);
+
+            if (directionofview.Yaw > pi || directionofview.Yaw < -pi)
             {
                 throw new ArgumentOutOfRangeException(nameof(directionofview.Yaw), directionofview.Yaw,
-                    $"Valid values are in range [-PI, PI].");
+                    $"Valid values are in range [-PI, PI] : " + directionofview.Yaw);
             }
 
-            if (directionofview.Pitch > Math.PI/2 || directionofview.Pitch < -Math.PI/2)
+            if (directionofview.Pitch > halfPi || directionofview.Pitch < -halfPi)
             {
                 throw new ArgumentOutOfRangeException(nameof(directionofview.Pitch), directionofview.Pitch,
-                    $"Valid values are in range [-PI/2, PI/2].");
+                    $"Valid values are in range [-PI/2, PI/2] : " + directionofview.Pitch);
             }
 
-            NativePlayer.SetDirectionOfView(Player.Handle, directionofview.Yaw, directionofview.Pitch).
+            NativePlayer.SetDirectionOfView(Player.Handle, (float)directionofview.Yaw, (float)directionofview.Pitch).
                 ThrowIfFailed(Player, "Failed to set the direction of the view.");
         }
 
         /// <summary>
-        /// Gets the properties of the video.
+        /// Gets the field of view for spherical video.
         /// </summary>
         /// <returns>A <see cref="VideoStreamProperties"/> that contains the video stream information.</returns>
         /// <remarks>
         /// Remark
         /// </remarks>
+        /// <feature>http://tizen.org/feature/opengles.version.2_0</feature>
+        /// <feature>http://tizen.org/feature/multimedia.player.spherical_video</feature>
+        /// <exception cref="NotSupportedException">The required feature is not supported.</exception>
         /// <exception cref="ObjectDisposedException">
         /// The <see cref="Multimedia.Player"/> that this instance belongs to has been disposed of.
         /// </exception>
@@ -296,6 +356,9 @@ namespace Tizen.Multimedia
         /// <since_tizen> 5 </since_tizen>
         public FieldOfView GetFieldOfView()
         {
+            ValidationUtil.ValidateFeatureSupported(PlayerFeatures.OpenGl);
+            ValidationUtil.ValidateFeatureSupported(PlayerFeatures.SphericalVideo);
+
             Player.ValidateNotDisposed();
 
             NativePlayer.GetFieldOfView(Player.Handle, out var horizontalDegrees, out var verticalDegrees).
@@ -305,22 +368,36 @@ namespace Tizen.Multimedia
         }
 
         /// <summary>
-        /// Sets the properties of the video.
+        /// Sets the field of view for spherical video.
         /// </summary>
+        /// <feature>http://tizen.org/feature/opengles.version.2_0</feature>
+        /// <feature>http://tizen.org/feature/multimedia.player.spherical_video</feature>
+        /// <exception cref="NotSupportedException">The required feature is not supported.</exception>
+        /// <exception cref="ObjectDisposedException">
+        /// The <see cref="Multimedia.Player"/> that this instance belongs to has been disposed of.
+        /// </exception>
+        /// <exception cref="InvalidOperationException">
+        /// The <see cref="Multimedia.Player"/> that this instance belongs to is not in the valid state.
+        /// </exception>
+        /// <seealso cref="DirectionOfView"/>
+        /// <since_tizen> 5 </since_tizen>
         public void SetFieldOfView(FieldOfView fieldofview)
         {
+            ValidationUtil.ValidateFeatureSupported(PlayerFeatures.OpenGl);
+            ValidationUtil.ValidateFeatureSupported(PlayerFeatures.SphericalVideo);
+
             Player.ValidateNotDisposed();
 
             if (fieldofview.HorizontalDegrees < 1 || fieldofview.HorizontalDegrees > 360)
             {
                 throw new ArgumentOutOfRangeException(nameof(fieldofview.HorizontalDegrees), fieldofview.HorizontalDegrees,
-                    $"Valid range is 1-360 degrees.");
+                    $"Valid range is 1-360 degrees. : " + fieldofview.HorizontalDegrees);
             }
 
             if (fieldofview.VerticalDegrees < 1 || fieldofview.VerticalDegrees > 180)
             {
                 throw new ArgumentOutOfRangeException(nameof(fieldofview.VerticalDegrees), fieldofview.VerticalDegrees,
-                    $"Valid range is 1-180 degrees.");
+                    $"Valid range is 1-180 degrees. : " + fieldofview.VerticalDegrees);
             }
 
             NativePlayer.SetFieldOfView(Player.Handle, fieldofview.HorizontalDegrees, fieldofview.VerticalDegrees).
