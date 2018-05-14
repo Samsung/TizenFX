@@ -30,9 +30,9 @@ namespace Tizen.Multimedia
         /// Initializes a new instance of the struct with the specified direction of view for the spherical video.
         /// </summary>
         /// <param name="yaw">Pointer to store current value of direction of view angle around vertical axis.
-        /// valid range is [-3.141592, 3.141592]. value will be truncated to 6 decimal places.
+        /// valid range is [-3.141593, 3.141593]. value will be rounded off to 6 decimal places.
         /// <param name="pitch">Pointer to store current value of direction of view angle around lateral axis.
-        /// valid range is [-1.570796, 1.570796]. value will be truncated to 6 decimal places.
+        /// valid range is [-1.570796, 1.570796]. value will be rounded off to 6 decimal places.
         /// <since_tizen> 5 </since_tizen>
         public DirectionOfView(float yaw, float pitch)
         {
@@ -132,8 +132,6 @@ namespace Tizen.Multimedia
     /// <since_tizen> 5 </since_tizen>
     public class SphericalVideo
     {
-        private float truncateDecimal(double n, int digit) => (float)(Math.Truncate(n * Math.Pow(10, digit)) / Math.Pow(10, digit));
-
         /// <summary>
         /// Gets the <see cref="Multimedia.Player"/> that owns this instance.
         /// </summary>
@@ -238,13 +236,14 @@ namespace Tizen.Multimedia
         /// <exception cref="ObjectDisposedException">The player has already been disposed of.</exception>
         /// <exception cref="InvalidOperationException">The player is not in the valid state.</exception>
         /// <since_tizen> 5 </since_tizen>
-        public bool Mode
+        public bool IsEnabled
         {
             get
             {
                 ValidationUtil.ValidateFeatureSupported(PlayerFeatures.OpenGl);
                 ValidationUtil.ValidateFeatureSupported(PlayerFeatures.SphericalVideo);
 
+                Player.ValidateNotDisposed();
                 NativePlayer.IsSphericalMode(Player.Handle, out var value).
                     ThrowIfFailed(Player, "Failed to get whether the spherical mode of the player is enabled or not");
                 return value;
@@ -314,19 +313,13 @@ namespace Tizen.Multimedia
 
             Player.ValidateNotDisposed();
 
-            float pi = truncateDecimal(Math.PI, 6);
-            float halfPi = truncateDecimal(Math.PI/2, 6);
-
-            directionofview.Yaw = truncateDecimal(directionofview.Yaw, 6);
-            directionofview.Pitch = truncateDecimal(directionofview.Pitch, 6);
-
-            if (directionofview.Yaw > pi || directionofview.Yaw < -pi)
+            if (directionofview.Yaw > (float)Math.PI || directionofview.Yaw < -(float)Math.PI)
             {
                 throw new ArgumentOutOfRangeException(nameof(directionofview.Yaw), directionofview.Yaw,
                     $"Valid values are in range [-PI, PI] : " + directionofview.Yaw);
             }
 
-            if (directionofview.Pitch > halfPi || directionofview.Pitch < -halfPi)
+            if (directionofview.Pitch > (float)Math.PI/2 || directionofview.Pitch < -(float)Math.PI/2)
             {
                 throw new ArgumentOutOfRangeException(nameof(directionofview.Pitch), directionofview.Pitch,
                     $"Valid values are in range [-PI/2, PI/2] : " + directionofview.Pitch);
