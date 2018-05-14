@@ -59,15 +59,6 @@ namespace Tizen.NUI
             RefObject refObj = baseHandle.GetObjectPtr();
             IntPtr refCptr = (IntPtr)RefObject.getCPtr(refObj);
 
-            if(baseHandle == null)
-            {
-                NUILog.Debug($"Register: baseHandle == null ! means native object is null!");
-            }
-            else
-            {
-                NUILog.Debug($"Register: type={baseHandle?.GetTypeName()} refCptr=0x{refCptr.ToInt64():X}");
-            }
-
             RegistryCurrentThreadCheck();
 
             if(Instance._controlMap.TryAdd(refCptr, new WeakReference(baseHandle, false)) != true)
@@ -86,15 +77,6 @@ namespace Tizen.NUI
         {
             RefObject refObj = baseHandle.GetObjectPtr();
             IntPtr refCptr = (IntPtr)RefObject.getCPtr(refObj);
-
-            if (baseHandle == null)
-            {
-                NUILog.Debug($"Unregister: baseHandle == null ! means native object is null!");
-            }
-            else
-            {
-                NUILog.Debug($"Unregister: type={baseHandle?.GetTypeName()} refCptr=0x{refCptr.ToInt64():X}");
-            }
 
             RegistryCurrentThreadCheck();
 
@@ -172,6 +154,11 @@ namespace Tizen.NUI
 
         private static void RegistryCurrentThreadCheck()
         {
+            if(savedApplicationThread == null)
+            {
+                Tizen.Log.Fatal("NUI", $"Error! maybe main thread is created by other process ");
+                return;
+            }
             int currentId = Thread.CurrentThread.ManagedThreadId;
             int mainThreadId = savedApplicationThread.ManagedThreadId;
 
