@@ -17,6 +17,8 @@
 
 using System;
 using System.ComponentModel;
+using System.Collections.Generic;
+using Tizen.NUI.Binding;
 
 namespace Tizen.NUI
 {
@@ -460,6 +462,18 @@ namespace Tizen.NUI
         {
             NDalicPINVOKE.Property_Array_PushBack(swigCPtr, PropertyValue.getCPtr(value));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        /// <summary>
+        /// Adds an keyvalue to the array.
+        /// This function should be first
+        /// </summary>
+        /// <param name="value">The value to add at the end of the array.</param>
+        public PropertyArray Add(KeyValue value)
+        {
+            PropertyArray ret = new PropertyArray(NDalicPINVOKE.Property_Array_Add(swigCPtr, PropertyValue.getCPtr(value.TrueValue)), false);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
         }
 
         /// <summary>
@@ -1009,6 +1023,28 @@ namespace Tizen.NUI
         }
 
         /// <summary>
+        /// Inserts the keyvalue to the map.<br />
+        /// Does not check for duplicates.<br />
+        /// </summary>
+        /// <param name="keyValue">The keyvalue to insert.</param>
+        /// <returns>Returns a reference to this object.</returns>
+        public PropertyMap Add(KeyValue keyValue)
+        {
+            PropertyMap ret = new PropertyMap();
+            if ( keyValue.KeyInt != null )
+            {
+                ret = new PropertyMap(NDalicPINVOKE.Property_Map_Add__SWIG_2(swigCPtr, (int)keyValue.KeyInt, PropertyValue.getCPtr(keyValue.TrueValue)), false);
+            }
+            else if ( keyValue.KeyString != null)
+            {
+                ret = new PropertyMap(NDalicPINVOKE.Property_Map_Add__SWIG_0(swigCPtr, keyValue.KeyString, PropertyValue.getCPtr(keyValue.TrueValue)), false);
+            }
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+
+            return ret;
+        }
+
+        /// <summary>
         /// Retrieves the value at the specified position.
         /// </summary>
         /// <param name="position">The specified position.</param>
@@ -1225,12 +1261,15 @@ namespace Tizen.NUI
             System.Type type = obj.GetType();
 
             PropertyValue value;
-
-            if (type.Equals(typeof(int)))
+            if (type.IsEnum)
+            {
+                value = new PropertyValue((int)obj);//Enum.Parse(type, str);
+            }
+            else if (type.Equals(typeof(int)))
             {
                 value = new PropertyValue((int)obj);
             }
-            if (type.Equals(typeof(System.Int32)))
+            else if (type.Equals(typeof(System.Int32)))
             {
                 value = new PropertyValue((int)obj);
             }
@@ -1768,6 +1807,326 @@ namespace Tizen.NUI
             bool ret = NDalicPINVOKE.Property_Value_Get__SWIG_15(swigCPtr, Extents.getCPtr(extentsValue));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
+        }
+    }
+
+    /// <summary>
+    /// KeyValue class.
+    /// </summary>
+    public class KeyValue
+    {
+        private string _key = null;
+        private object _originalValue = null;
+        private object _originalKey = null;
+
+        public int? KeyInt = null;
+        public string KeyString = null;
+        public PropertyValue TrueValue = null;
+
+        /// <summary>
+        /// Default Constructor.
+        /// </summary>
+        public KeyValue()
+        {}
+
+        /// <summary>
+        /// Key property.
+        /// </summary>
+        public string Key
+        {
+            get
+            {
+                return _key;
+            }
+            set
+            {
+                _key = value;
+                ParseKey(value);
+            }
+        }
+
+        /// <summary>
+        /// OriginalKey property.
+        /// </summary>
+        public object OriginalKey
+        {
+            get
+            {
+                return _originalKey;
+            }
+            set
+            {
+                _originalKey = value;
+                if (value is int || value is Int32)
+                {
+                    KeyInt = (int)value;
+                }
+                if (value is string)
+                {
+                    KeyString = (string)value;
+                }
+
+
+                if (value.GetType().Equals(typeof(int)) || value.GetType().Equals(typeof(Int32)))
+                {
+                    KeyInt = (int)value;
+                }
+                else if (value.GetType().Equals(typeof(string)))
+                {
+                    KeyString = (string)value;
+                }
+                KeyInt = (int)value;
+            }
+        }
+
+        /// <summary>
+        /// Value property.
+        /// </summary>
+        public object Value
+        {
+            get
+            {
+                return _originalValue;
+            }
+            set
+            {
+                _originalValue = value;
+                TrueValue = PropertyValue.CreateFromObject(value);
+            }
+        }
+
+        /// <summary>
+        /// IntergerValue property.
+        /// </summary>
+        public int IntergerValue
+        {
+            set
+            {
+                TrueValue = new PropertyValue(value);
+            }
+        }
+
+        /// <summary>
+        /// BooleanValue property.
+        /// </summary>
+        public bool BooleanValue
+        {
+            set
+            {
+                TrueValue = new PropertyValue(value);
+            }
+        }
+
+        /// <summary>
+        /// SingleValue property.
+        /// </summary>
+        public float SingleValue
+        {
+            set
+            {
+                TrueValue = new PropertyValue(value);
+            }
+        }
+
+        /// <summary>
+        /// StringValue property.
+        /// </summary>
+        public string StringValue
+        {
+            set
+            {
+                TrueValue = new PropertyValue(value);
+            }
+        }
+
+        /// <summary>
+        /// Vector2Value property.
+        /// </summary>
+        public Vector2 Vector2Value
+        {
+            set
+            {
+                TrueValue = new PropertyValue(value);
+            }
+        }
+
+        /// <summary>
+        /// Vector3Value property.
+        /// </summary>
+        public Vector3 Vector3Value
+        {
+            set
+            {
+                TrueValue = new PropertyValue(value);
+            }
+        }
+
+        /// <summary>
+        /// Vector4Value property.
+        /// </summary>
+        public Vector4 Vector4Value
+        {
+            set
+            {
+                TrueValue = new PropertyValue(value);
+            }
+        }
+
+        /// <summary>
+        /// PositionValue property.
+        /// </summary>
+        public Position PositionValue
+        {
+            set
+            {
+                TrueValue = new PropertyValue(value);
+            }
+        }
+
+        /// <summary>
+        /// Position2DValue property.
+        /// </summary>
+        public Position2D Position2DValue
+        {
+            set
+            {
+                TrueValue = new PropertyValue(value);
+            }
+        }
+
+        /// <summary>
+        /// SizeValue property.
+        /// </summary>
+        public Size SizeValue
+        {
+            set
+            {
+                TrueValue = new PropertyValue(value);
+            }
+        }
+
+        /// <summary>
+        /// Size2DValue property.
+        /// </summary>
+        public Size2D Size2DValue
+        {
+            set
+            {
+                TrueValue = new PropertyValue(value);
+            }
+        }
+
+        /// <summary>
+        /// ColorValue property.
+        /// </summary>
+        public Color ColorValue
+        {
+            set
+            {
+                TrueValue = new PropertyValue(value);
+            }
+        }
+
+        /// <summary>
+        /// RectangleValue property.
+        /// </summary>
+        public Rectangle RectangleValue
+        {
+            set
+            {
+                TrueValue = new PropertyValue(value);
+            }
+        }
+
+        /// <summary>
+        /// RotationValue property.
+        /// </summary>
+        public Rotation RotationValue
+        {
+            set
+            {
+                TrueValue = new PropertyValue(value);
+            }
+        }
+
+        /// <summary>
+        /// RelativeVector2Value property.
+        /// </summary>
+        public RelativeVector2 RelativeVector2Value
+        {
+            set
+            {
+                TrueValue = new PropertyValue(value);
+            }
+        }
+
+        /// <summary>
+        /// RelativeVector3Value property.
+        /// </summary>
+        public RelativeVector3 RelativeVector3Value
+        {
+            set
+            {
+                TrueValue = new PropertyValue(value);
+            }
+        }
+
+        /// <summary>
+        /// RelativeVector4Value property.
+        /// </summary>
+        public RelativeVector4 RelativeVector4Value
+        {
+            set
+            {
+                TrueValue = new PropertyValue(value);
+            }
+        }
+
+        /// <summary>
+        /// ExtentsValue property.
+        /// </summary>
+        public Extents ExtentsValue
+        {
+            set
+            {
+                TrueValue = new PropertyValue(value);
+            }
+        }
+
+        /// <summary>
+        /// PropertyArrayValue property.
+        /// </summary>
+        public PropertyArray PropertyArrayValue
+        {
+            set
+            {
+                TrueValue = new PropertyValue(value);
+            }
+        }
+
+        /// <summary>
+        /// PropertyMapValue property.
+        /// </summary>
+        public PropertyMap PropertyMapValue
+        {
+            set
+            {
+                TrueValue = new PropertyValue(value);
+            }
+        }
+
+        private void ParseKey(string key)
+        {
+            int v = -1;
+            if (VisualExtension.KeyDictionary.ContainsKey(key))
+            {
+                VisualExtension.KeyDictionary.TryGetValue(key, out v);
+                KeyInt = v;
+            }
+            else
+            {
+                KeyString = Key;
+            }
         }
     }
 }
