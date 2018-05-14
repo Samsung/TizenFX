@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<ContentPage x:Class="Tizen.NUI.Examples.TempPage"
+  xmlns="http://tizen.org/Tizen.NUI/2018/XAML"
+  xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
+
+  <PushButton LabelText="Button1" Focusable="true" Position2D="50,50" Size2D="100,50" >
+  </PushButton>
+</ContentPage>
