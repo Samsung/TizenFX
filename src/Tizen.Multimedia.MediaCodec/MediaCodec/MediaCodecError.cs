@@ -44,6 +44,8 @@ namespace Tizen.Multimedia.MediaCodec
         NotSupportedFormat = CodecDefinedBase | 0x0b,
         NoAvailableBuffer = CodecDefinedBase | 0x0c,
         OverflowInBuffer = CodecDefinedBase | 0x0d,
+        ResourceOverloaded = CodecDefinedBase | 0x0e,
+        ResourceConflict = CodecDefinedBase | 0x0f
     }
 
     /// <summary>
@@ -100,8 +102,10 @@ namespace Tizen.Multimedia.MediaCodec
                 case MediaCodecErrorCode.InvalidInBuffer:
                 case MediaCodecErrorCode.InvalidOutBuffer:
                 case MediaCodecErrorCode.Internal:
-                case MediaCodecErrorCode.NotInitialized:
                 case MediaCodecErrorCode.InvalidStream:
+                case MediaCodecErrorCode.NotInitialized:
+                case MediaCodecErrorCode.ResourceConflict:
+                case MediaCodecErrorCode.ResourceOverloaded:
                 case MediaCodecErrorCode.StreamNotFound:
                     throw new InvalidOperationException(msg);
 
