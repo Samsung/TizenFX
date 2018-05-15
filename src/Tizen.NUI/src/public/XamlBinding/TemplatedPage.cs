@@ -3,11 +3,20 @@ using Tizen.NUI.Binding;
 
 namespace Tizen.NUI
 {
+    /// <summary>
+    /// A page that displays full-screen content with a control template, and the base class for ContentPage.
+    /// </summary>
 	public class TemplatedPage : Page, IControlTemplated
 	{
+        /// <summary>
+        /// Backing store for the ControlTemplate property.
+        /// </summary>
 		public static readonly BindableProperty ControlTemplateProperty = BindableProperty.Create(nameof(ControlTemplate), typeof(ControlTemplate), typeof(TemplatedPage), null,
 			propertyChanged: TemplateUtilities.OnControlTemplateChanged);
 
+        /// <summary>
+        /// Gets or sets the control template that is used to display content.
+        /// </summary>
 		public ControlTemplate ControlTemplate
 		{
 			get { return (ControlTemplate)GetValue(ControlTemplateProperty); }

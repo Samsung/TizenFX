@@ -2,6 +2,9 @@ using System;
 
 namespace Tizen.NUI.Binding
 {
+    /// <summary>
+    /// The secret key to a BindableProperty, used to implement a BindableProperty with restricted write access.
+    /// </summary>
 	public sealed class BindablePropertyKey
 	{
 		internal BindablePropertyKey(BindableProperty property)
@@ -12,6 +15,9 @@ namespace Tizen.NUI.Binding
 			BindableProperty = property;
 		}
 
+        /// <summary>
+        /// Gets the BindableProperty.
+        /// </summary>
 		public BindableProperty BindableProperty { get; private set; }
 	}
 }

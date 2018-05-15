@@ -57,11 +57,18 @@ namespace Tizen.NUI.Binding
 		}
 	}
 
+    /// <summary>
+    /// Defines an ICommand implementation that wraps a Action.
+    /// </summary>
 	public class Command : ICommand
 	{
 		readonly Func<object, bool> _canExecute;
 		readonly Action<object> _execute;
 
+        /// <summary>
+        /// Initializes a new instance of the Command class.
+        /// </summary>
+        /// <param name="execute">An instance to execute when the Command is executed.</param>
 		public Command(Action<object> execute)
 		{
 			if (execute == null)
@@ -70,12 +77,21 @@ namespace Tizen.NUI.Binding
 			_execute = execute;
 		}
 
+        /// <summary>
+        /// Initializes a new instance of the Command class.
+        /// </summary>
+        /// <param name="execute">An Action to execute when the Command is executed.</param>
 		public Command(Action execute) : this(o => execute())
 		{
 			if (execute == null)
 				throw new ArgumentNullException(nameof(execute));
 		}
 
+        /// <summary>
+        /// Initializes a new instance of the Command class.
+        /// </summary>
+        /// <param name="execute">An Action to execute when the Command is executed.</param>
+        /// <param name="canExecute">A instance indicating if the Command can be executed.</param>
 		public Command(Action<object> execute, Func<object, bool> canExecute) : this(execute)
 		{
 			if (canExecute == null)
@@ -84,6 +100,11 @@ namespace Tizen.NUI.Binding
 			_canExecute = canExecute;
 		}
 
+        /// <summary>
+        /// Initializes a new instance of the Command class.
+        /// </summary>
+        /// <param name="execute">An Action to execute when the Command is executed.</param>
+        /// <param name="canExecute">A instance indicating if the Command can be executed.</param>
 		public Command(Action execute, Func<bool> canExecute) : this(o => execute(), o => canExecute())
 		{
 			if (execute == null)
@@ -92,6 +113,11 @@ namespace Tizen.NUI.Binding
 				throw new ArgumentNullException(nameof(canExecute));
 		}
 
+        /// <summary>
+        /// Returns a Boolean indicating if the Command can be exectued with the given parameter.
+        /// </summary>
+        /// <param name="parameter">An Object used as parameter to determine if the Command can be executed.</param>
+        /// <returns>true if the Command can be executed, false otherwise.</returns>
 		public bool CanExecute(object parameter)
 		{
 			if (_canExecute != null)
@@ -100,13 +126,23 @@ namespace Tizen.NUI.Binding
 			return true;
 		}
 
+        /// <summary>
+        /// Occurs when the target of the Command should reevaluate whether or not the Command can be executed.
+        /// </summary>
 		public event EventHandler CanExecuteChanged;
 
-		public void Execute(object parameter)
+        /// <summary>
+        /// Invokes the execute Action.
+        /// </summary>
+        /// <param name="parameter">An Object used as parameter for the execute Action.</param>
+        public void Execute(object parameter)
 		{
 			_execute(parameter);
 		}
 
+        /// <summary>
+        /// Send a CanExecuteChanged.
+        /// </summary>
 		public void ChangeCanExecute()
 		{
 			EventHandler changed = CanExecuteChanged;

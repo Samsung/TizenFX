@@ -30,14 +30,31 @@ using System.Reflection;
 
 namespace Tizen.NUI.Xaml
 {
+    /// <summary>
+    /// Extension class for View defining Xamarin.Forms.Xaml.Extensions.LoadFromXaml{TView} method.
+    /// </summary>
 	public static class Extensions
 	{
+        /// <summary>
+        /// Returns an initialized view by loading the specified xaml.
+        /// </summary>
+        /// <typeparam name="TXaml">The type of view to initialize with state from XAML.</typeparam>
+        /// <param name="view">The view on which this method operates.</param>
+        /// <param name="callingType">The type of the caller.</param>
+        /// <returns>A TXaml with the properties that are defined in the application manifest for callingType.</returns>
 		public static TXaml LoadFromXaml<TXaml>(this TXaml view, Type callingType) 
 		{
 			XamlLoader.Load(view, callingType);
 			return view;
 		}
 
+        /// <summary>
+        /// Returns a TXaml with the properties that are defined in the application manifest for callingType.
+        /// </summary>
+        /// <typeparam name="TXaml">The type of view to initialize with state from XAML.</typeparam>
+        /// <param name="view">The view on which this method operates.</param>
+        /// <param name="xaml">The XAML that encodes the view state.</param>
+        /// <returns>A TXaml with the properties that are defined in the application manifest for callingType.</returns>
 		public static TXaml LoadFromXaml<TXaml>(this TXaml view, string xaml)
 		{
 			XamlLoader.Load(view, xaml);

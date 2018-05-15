@@ -27,7 +27,6 @@ namespace Tizen.NUI
     public class ContentPage : TemplatedPage
     {
         private View _content;
-        private Window Window;
 
 		// public static readonly BindableProperty ContentProperty = BindableProperty.Create(nameof(Content), typeof(View), typeof(ContentPage), null, propertyChanged: TemplateUtilities.OnContentChanged);
 
@@ -37,6 +36,9 @@ namespace Tizen.NUI
 		// 	set { SetValue(ContentProperty, value); }
 		// }
 
+        /// <summary>
+        /// Method that is called when the binding content changes.
+        /// </summary>
 		protected override void OnBindingContextChanged()
 		{
 			base.OnBindingContextChanged();
@@ -154,6 +156,9 @@ namespace Tizen.NUI
 
         private EventHandler _clearEventHandler;
 
+        /// <summary>
+        /// Clear event.
+        /// </summary>
         public event EventHandler ClearEvent
         {
             add

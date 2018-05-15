@@ -27,25 +27,52 @@ using Tizen.NUI.Binding;
 
 namespace Tizen.NUI
 {
-	// [RenderWith(typeof(_PageRenderer))]
-	public class Page : /*VisualElement*/BaseHandle, ILayout, IPageController, IElementConfiguration<Page>, IPaddingElement
+    /// <summary>
+    /// A BaseHandle that occupies the entire screen.
+    /// </summary>
+    // [RenderWith(typeof(_PageRenderer))]
+    public class Page : /*VisualElement*/BaseHandle, ILayout, IPageController, IElementConfiguration<Page>, IPaddingElement
 	{
+        /// <summary>
+        /// For internal use.
+        /// </summary>
 		public const string BusySetSignalName = "Xamarin.BusySet";
 
+        /// <summary>
+        /// For internal use.
+        /// </summary>
 		public const string AlertSignalName = "Xamarin.SendAlert";
 
+        /// <summary>
+        /// For internal use.
+        /// </summary>
 		public const string ActionSheetSignalName = "Xamarin.ShowActionSheet";
 
 		internal static readonly BindableProperty IgnoresContainerAreaProperty = BindableProperty.Create("IgnoresContainerArea", typeof(bool), typeof(Page), false);
 
+        /// <summary>
+        /// Identifies the BackgroundImage property.
+        /// </summary>
 		public static readonly BindableProperty BackgroundImageProperty = BindableProperty.Create("BackgroundImage", typeof(string), typeof(Page), default(string));
 
+        /// <summary>
+        /// Identifies the IsBusy property.
+        /// </summary>
 		public static readonly BindableProperty IsBusyProperty = BindableProperty.Create("IsBusy", typeof(bool), typeof(Page), false, propertyChanged: (bo, o, n) => ((Page)bo).OnPageBusyChanged());
 
+        /// <summary>
+        /// Identifies the Padding property.
+        /// </summary>
 		public static readonly BindableProperty PaddingProperty = PaddingElement.PaddingProperty;
 
+        /// <summary>
+        /// Identifies the Title property.
+        /// </summary>
 		public static readonly BindableProperty TitleProperty = BindableProperty.Create("Title", typeof(string), typeof(Page), null);
 
+        /// <summary>
+        /// Identifies the Icon property.
+        /// </summary>
 		public static readonly BindableProperty IconProperty = BindableProperty.Create("Icon", typeof(FileImageSource), typeof(Page), default(FileImageSource));
 
 		readonly Lazy<PlatformConfigurationRegistry<Page>> _platformConfigurationRegistry;
@@ -59,6 +86,9 @@ namespace Tizen.NUI
 
 		ReadOnlyCollection<Element> _logicalChildren;
 
+        /// <summary>
+        /// Creates a new Page element with default values.
+        /// </summary>
 		public Page()
 		{
 			var toolbarItems = new ObservableCollection<ToolbarItem>();
@@ -68,6 +98,9 @@ namespace Tizen.NUI
 			_platformConfigurationRegistry = new Lazy<PlatformConfigurationRegistry<Page>>(() => new PlatformConfigurationRegistry<Page>(this));
 		}
 
+        /// <summary>
+        /// Identifies the image used as a background for the Page.
+        /// </summary>
 		public string BackgroundImage
 		{
 			get { return (string)GetValue(BackgroundImageProperty); }
@@ -80,12 +113,18 @@ namespace Tizen.NUI
 			set { SetValue(IconProperty, value); }
 		}
 
+        /// <summary>
+        /// Marks the Page as busy. This will cause the platform specific global activity indicator to show a busy state.
+        /// </summary>
 		public bool IsBusy
 		{
 			get { return (bool)GetValue(IsBusyProperty); }
 			set { SetValue(IsBusyProperty, value); }
 		}
 
+        /// <summary>
+        /// The space between the content of the Page and it's border.
+        /// </summary>
 		public Thickness Padding
 		{
 			get { return (Thickness)GetValue(PaddingElement.PaddingProperty); }
@@ -102,6 +141,9 @@ namespace Tizen.NUI
 			UpdateChildrenLayout();
 		}
 
+        /// <summary>
+        /// The Page's title.
+        /// </summary>
 		public string Title
 		{
 			get { return (string)GetValue(TitleProperty); }
@@ -110,6 +152,9 @@ namespace Tizen.NUI
 
 		internal IList<ToolbarItem> ToolbarItems { get;/* internal set;*/ }
 
+        /// <summary>
+        /// For internal use.
+        /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public Rectangle ContainerArea
 		{
@@ -124,6 +169,9 @@ namespace Tizen.NUI
 			}
 		}
 
+        /// <summary>
+        /// For internal use.
+        /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public bool IgnoresContainerArea
 		{
@@ -131,18 +179,38 @@ namespace Tizen.NUI
 			set { SetValue(IgnoresContainerAreaProperty, value); }
 		}
 
+        /// <summary>
+        /// For internal use.
+        /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public ObservableCollection<Element> InternalChildren { get; } = new ObservableCollection<Element>();
 
 		internal override ReadOnlyCollection<Element> LogicalChildrenInternal => 
 			_logicalChildren ?? (_logicalChildren = new ReadOnlyCollection<Element>(InternalChildren));
 
+        /// <summary>
+        /// Raised when the layout of the Page has changed.
+        /// </summary>
 		public event EventHandler LayoutChanged;
 
+        /// <summary>
+        /// ndicates that the Page is about to appear.
+        /// </summary>
 		public event EventHandler Appearing;
 
+        /// <summary>
+        /// Indicates that the Page is about to cease displaying.
+        /// </summary>
 		public event EventHandler Disappearing;
 
+        /// <summary>
+        /// Displays a native platform action sheet, allowing the application user to choose from several buttons.
+        /// </summary>
+        /// <param name="title">Title of the displayed action sheet. Must not be null.</param>
+        /// <param name="cancel">Text to be displayed in the 'Cancel' button. Can be null to hide the cancel action.</param>
+        /// <param name="destruction">Text to be displayed in the 'Destruct' button. Can be null to hide the destructive option.</param>
+        /// <param name="buttons">Text labels for additional buttons. Must not be null.</param>
+        /// <returns>An awaitable Task that displays an action sheet and returns the Text of the button pressed by the user.</returns>
 		public Task<string> DisplayActionSheet(string title, string cancel, string destruction, params string[] buttons)
 		{
 			var args = new ActionSheetArguments(title, cancel, destruction, buttons);
@@ -150,11 +218,26 @@ namespace Tizen.NUI
 			return args.Result.Task;
 		}
 
+        /// <summary>
+        /// Presents an alert dialog to the application user with a single cancel button.
+        /// </summary>
+        /// <param name="title">The title of the alert dialog.</param>
+        /// <param name="message">The body text of the alert dialog.</param>
+        /// <param name="cancel">Text to be displayed on the 'Cancel' button.</param>
+        /// <returns></returns>
 		public Task DisplayAlert(string title, string message, string cancel)
 		{
 			return DisplayAlert(title, message, null, cancel);
 		}
 
+        /// <summary>
+        /// resents an alert dialog to the application user with an accept and a cancel button.
+        /// </summary>
+        /// <param name="title">The title of the alert dialog.</param>
+        /// <param name="message">The body text of the alert dialog.</param>
+        /// <param name="accept">Text to be displayed on the 'Accept' button.</param>
+        /// <param name="cancel">Text to be displayed on the 'Cancel' button.</param>
+        /// <returns></returns>
 		public Task<bool> DisplayAlert(string title, string message, string accept, string cancel)
 		{
 			if (string.IsNullOrEmpty(cancel))
@@ -165,16 +248,30 @@ namespace Tizen.NUI
 			return args.Result.Task;
 		}
 
+        /// <summary>
+        /// Forces the Page to perform a layout pass.
+        /// </summary>
 		public void ForceLayout()
 		{
 			// SizeAllocated(Width, Height);
 		}
 
+        /// <summary>
+        /// Calls OnBackButtonPressed().
+        /// </summary>
+        /// <returns></returns>
 		public bool SendBackButtonPressed()
 		{
 			return OnBackButtonPressed();
 		}
 
+        /// <summary>
+        /// Lays out children Elements into the specified area.
+        /// </summary>
+        /// <param name="x">Left-hand side of layout area.</param>
+        /// <param name="y">Top of layout area.</param>
+        /// <param name="width">Width of layout area.</param>
+        /// <param name="height">Height of layout area.</param>
 		protected virtual void LayoutChildren(double x, double y, double width, double height)
 		{
 			var area = new Rectangle((int)x, (int)y, (int)width, (int)height);
@@ -204,10 +301,17 @@ namespace Tizen.NUI
 			}
 		}
 
+        /// <summary>
+        /// When overridden, allows application developers to customize behavior immediately prior to the Page becoming visible.
+        /// </summary>
 		protected virtual void OnAppearing()
 		{
 		}
 
+        /// <summary>
+        /// Application developers can override this method to provide behavior when the back button is pressed.
+        /// </summary>
+        /// <returns>true if consumed</returns>
 		protected virtual bool OnBackButtonPressed()
 		{
 			var application = RealParent as Application;
@@ -223,6 +327,9 @@ namespace Tizen.NUI
 			return !canceled;
 		}
 
+        /// <summary>
+        /// Invoked whenever the binding context of the Page changes. Override this method to add class handling for this event.
+        /// </summary>
 		protected override void OnBindingContextChanged()
 		{
 			base.OnBindingContextChanged();
@@ -232,16 +339,27 @@ namespace Tizen.NUI
 			}
 		}
 
+        /// <summary>
+        /// Indicates that the preferred size of a child Element has changed.
+        /// </summary>
+        /// <param name="sender">The object that raised the event.</param>
+        /// <param name="e">The event arguments.</param>
 		protected virtual void OnChildMeasureInvalidated(object sender, EventArgs e)
 		{
 			InvalidationTrigger trigger = (e as InvalidationEventArgs)?.Trigger ?? InvalidationTrigger.Undefined;
 			OnChildMeasureInvalidated((/*VisualElement*/BaseHandle)sender, trigger);
 		}
 
+        /// <summary>
+        /// When overridden, allows the application developer to customize behavior as the Page disappears.
+        /// </summary>
 		protected virtual void OnDisappearing()
 		{
 		}
 
+        /// <summary>
+        /// Called when the Page's Parent property has changed.
+        /// </summary>
 		protected override void OnParentSet()
 		{
 			//if (!Application.IsApplicationOrNull(RealParent) && !(RealParent is Page))
@@ -249,14 +367,20 @@ namespace Tizen.NUI
 			base.OnParentSet();
 		}
 
-		// protected override void OnSizeAllocated(double width, double height)
-		// {
-		// 	_allocatedFlag = true;
-		// 	//base.OnSizeAllocated(width, height);
-		// 	UpdateChildrenLayout();
-		// }
+        ///// <summary>
+        ///// Indicates that the Page has been assigned a size.
+        ///// </summary>
+        // protected override void OnSizeAllocated(double width, double height)
+        // {
+        // 	_allocatedFlag = true;
+        // 	//base.OnSizeAllocated(width, height);
+        // 	UpdateChildrenLayout();
+        // }
 
-		protected void UpdateChildrenLayout()
+        /// <summary>
+        /// Requests that the children Elements of the Page update their layouts.
+        /// </summary>
+        protected void UpdateChildrenLayout()
 		{
 			if (!ShouldLayoutChildren())
 				return;
@@ -313,6 +437,9 @@ namespace Tizen.NUI
 			}
 		}
 
+        /// <summary>
+        /// For intarnal use.
+        /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void SendAppearing()
 		{
@@ -333,6 +460,9 @@ namespace Tizen.NUI
 			//FindApplication(this)?.OnPageAppearing(this);
 		}
 
+        /// <summary>
+        /// For intarnal use.
+        /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void SendDisappearing()
 		{
@@ -433,6 +563,11 @@ namespace Tizen.NUI
 			return !any;
 		}
 
+        /// <summary>
+        /// Returns the platform-specific instance of this Page, on which a platform-specific method may be called.
+        /// </summary>
+        /// <typeparam name="T">The platform for which to return an instance.</typeparam>
+        /// <returns>The platform-specific instance of this Page</returns>
 		public IPlatformElementConfiguration<T, Page> On<T>() where T : IConfigPlatform
 		{
 			return _platformConfigurationRegistry.Value.On<T>();

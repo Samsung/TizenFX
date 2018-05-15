@@ -48,6 +48,9 @@ namespace Tizen.NUI
             NUILog.Debug($"(0x{swigCPtr.Handle:X})Timer() contructor!");
         }
 
+        /// <summary>
+        /// Destructor.
+        /// </summary>
         ~Timer()
         {
             NUILog.Debug($"(0x{swigCPtr.Handle:X})Timer() distructor!, disposed={disposed}");

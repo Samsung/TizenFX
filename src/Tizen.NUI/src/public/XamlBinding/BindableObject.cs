@@ -8,8 +8,14 @@ using Tizen.NUI.Internals;
 
 namespace Tizen.NUI.Binding
 {
+    /// <summary>
+    /// Provides a mechanism by which application developers can propagate changes that are made to data in one object to another, by enabling validation, type coercion, and an event system.
+    /// </summary>
 	public abstract class BindableObject : INotifyPropertyChanged, IDynamicResourceHandler
 	{
+        /// <summary>
+        /// Implements the bound property whose interface is provided by the BindingContext property.
+        /// </summary>
 		public static readonly BindableProperty BindingContextProperty =
 			BindableProperty.Create("BindingContext", typeof(object), typeof(BindableObject), default(object),
 									BindingMode.OneWay, null, BindingContextPropertyChanged, null, null, BindingContextPropertyBindingChanging);
@@ -19,6 +25,9 @@ namespace Tizen.NUI.Binding
 		bool _applying;
 		object _inheritedContext;
 
+        /// <summary>
+        /// Gets or sets object that contains the properties that will be targeted by the bound properties that belong to this BindableObject.
+        /// </summary>
 		public object BindingContext
 		{
 			get { return _inheritedContext ?? GetValue(BindingContextProperty); }
@@ -30,8 +39,14 @@ namespace Tizen.NUI.Binding
 			SetDynamicResource(property, key, false);
 		}
 
+        /// <summary>
+        /// Raised when a property has changed.
+        /// </summary>
 		public event PropertyChangedEventHandler PropertyChanged;
 
+        /// <summary>
+        /// Raised whenever the BindingContext property changes.
+        /// </summary>
 		public event EventHandler BindingContextChanged;
 
 		internal void ClearValue(BindableProperty property, bool fromStyle)
@@ -39,12 +54,20 @@ namespace Tizen.NUI.Binding
 			ClearValue(property, fromStyle: fromStyle, checkAccess: true);
 		}
 
-		public void ClearValue(BindableProperty property)
+        /// <summary>
+        /// Clears any value set by Xamarin.Forms.BindableObject.SetValue.
+        /// </summary>
+        /// <param name="property">The BindableProperty to clear</param>
+        public void ClearValue(BindableProperty property)
 		{
 			ClearValue(property, fromStyle: false, checkAccess: true);
 		}
 
-		public void ClearValue(BindablePropertyKey propertyKey)
+        /// <summary>
+        /// Clears any value set by Xamarin.Forms.BindableObject.SetValue for the property that is identified by propertyKey.
+        /// </summary>
+        /// <param name="propertyKey">The BindablePropertyKey that identifies the BindableProperty to clear.</param>
+        public void ClearValue(BindablePropertyKey propertyKey)
 		{
 			if (propertyKey == null)
 				throw new ArgumentNullException("propertyKey");
@@ -52,6 +75,11 @@ namespace Tizen.NUI.Binding
 			ClearValue(propertyKey.BindableProperty, fromStyle:false, checkAccess: false);
 		}
 
+        /// <summary>
+        /// Return true if the target property exists and has been set.
+        /// </summary>
+        /// <param name="targetProperty">The target property</param>
+        /// <returns>return true if the target property exists and has been set</returns>
 		public bool IsSet(BindableProperty targetProperty)
 		{
 			if (targetProperty == null)
@@ -62,6 +90,11 @@ namespace Tizen.NUI.Binding
 				&& (bpcontext.Attributes & BindableContextAttributes.IsDefaultValue) == 0;
 		}
 
+        /// <summary>
+        /// Returns the value that is contained the BindableProperty.
+        /// </summary>
+        /// <param name="property">The BindableProperty for which to get the value.</param>
+        /// <returns>The value that is contained the BindableProperty</returns>
 		public object GetValue(BindableProperty property)
 		{
 			if (property == null)
@@ -75,9 +108,16 @@ namespace Tizen.NUI.Binding
 			return context.Value;
 		}
 
+        /// <summary>
+        /// Raised when a property is about to change.
+        /// </summary>
 		public event PropertyChangingEventHandler PropertyChanging;
 
-		public void RemoveBinding(BindableProperty property)
+        /// <summary>
+        /// Removes a previously set binding.
+        /// </summary>
+        /// <param name="property">The BindableProperty from which to remove bindings.</param>
+        public void RemoveBinding(BindableProperty property)
 		{
 			if (property == null)
 				throw new ArgumentNullException("property");
@@ -89,16 +129,31 @@ namespace Tizen.NUI.Binding
 			RemoveBinding(property, context);
 		}
 
-		public void SetBinding(BindableProperty targetProperty, BindingBase binding)
+        /// <summary>
+        /// Assigns a binding to a property.
+        /// </summary>
+        /// <param name="targetProperty">The BindableProperty on which to set a binding.</param>
+        /// <param name="binding">The binding to set.</param>
+        public void SetBinding(BindableProperty targetProperty, BindingBase binding)
 		{
 			SetBinding(targetProperty, binding, false);
 		}
 
+        /// <summary>
+        /// Sets the value of the specified property.
+        /// </summary>
+        /// <param name="property">The BindableProperty on which to assign a value.</param>
+        /// <param name="value">The value to set.</param>
 		public void SetValue(BindableProperty property, object value)
 		{
 			SetValue(property, value, false, true);
 		}
 
+        /// <summary>
+        /// Sets the value of the propertyKey.
+        /// </summary>
+        /// <param name="propertyKey">The BindablePropertyKey on which to assign a value.</param>
+        /// <param name="value">The value to set.</param>
 		public void SetValue(BindablePropertyKey propertyKey, object value)
 		{
 			if (propertyKey == null)
@@ -107,6 +162,11 @@ namespace Tizen.NUI.Binding
 			SetValue(propertyKey.BindableProperty, value, false, false);
 		}
 
+        /// <summary>
+        /// Set the inherited context to a neated element.
+        /// </summary>
+        /// <param name="bindable">The object on which to set the inherited binding context.</param>
+        /// <param name="value">The inherited context to set.</param>
 		[EditorBrowsable(EditorBrowsableState.Never)]
 		public static void SetInheritedBindingContext(BindableObject bindable, object value)
 		{
@@ -136,22 +196,39 @@ namespace Tizen.NUI.Binding
 			bindable.OnBindingContextChanged();
 		}
 
+        /// <summary>
+        /// Apply the bindings to BindingContext.
+        /// </summary>
 		protected void ApplyBindings()
 		{
 			ApplyBindings(skipBindingContext: false, fromBindingContextChanged: false);
 		}
 
+        /// <summary>
+        /// Override this method to execute an action when the BindingContext changes.
+        /// </summary>
 		protected virtual void OnBindingContextChanged()
 		{
 			BindingContextChanged?.Invoke(this, EventArgs.Empty);
 		}
 
-		protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
+        /// <summary>
+        /// Call this method from a child class to notify that a change happened on a property.
+        /// </summary>
+        /// <param name="propertyName">The name of the property that changed.</param>
+        protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
 			=> PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
 
+        /// <summary>
+        /// Call this method from a child class to notify that a change is going to happen on a property.
+        /// </summary>
+        /// <param name="propertyName">The name of the property that is changing.</param>
 		protected virtual void OnPropertyChanging([CallerMemberName] string propertyName = null)
 			=> PropertyChanging?.Invoke(this, new PropertyChangingEventArgs(propertyName));
 
+        /// <summary>
+        /// Unapplies all previously set bindings.
+        /// </summary>
 		protected void UnapplyBindings()
 		{
 			for (int i = 0, _propertiesCount = _properties.Count; i < _propertiesCount; i++) {
@@ -172,6 +249,12 @@ namespace Tizen.NUI.Binding
 			return bpcontext != null && bpcontext.Binding != null;
 		}
 
+        /// <summary>
+        /// Returns the value that is contained the BindableProperty.
+        /// </summary>
+        /// <param name="property0">The BindableProperty instance.</param>
+        /// <param name="property1">The BindableProperty instance.</param>
+        /// <returns>The value that is contained the BindableProperty</returns>
 		[EditorBrowsable(EditorBrowsableState.Never)]
 		public object[] GetValues(BindableProperty property0, BindableProperty property1)
 		{
@@ -204,6 +287,13 @@ namespace Tizen.NUI.Binding
 			return values;
 		}
 
+        /// <summary>
+        /// Returns the value that is contained the BindableProperty.
+        /// </summary>
+        /// <param name="property0">The BindableProperty instance.</param>
+        /// <param name="property1">The BindableProperty instance.</param>
+        /// <param name="property2">The BindableProperty instance.</param>
+        /// <returns>The value that is contained the BindableProperty</returns>
 		[EditorBrowsable(EditorBrowsableState.Never)]
 		public object[] GetValues(BindableProperty property0, BindableProperty property1, BindableProperty property2)
 		{
@@ -243,6 +333,11 @@ namespace Tizen.NUI.Binding
 			return values;
 		}
 
+        /// <summary>
+        /// Returns the value that is contained the BindableProperty.
+        /// </summary>
+        /// <param name="properties">The array of the BindableProperty instances</param>
+        /// <returns>The values that is contained the BindableProperty instances.</returns>
 		[EditorBrowsable(EditorBrowsableState.Never)]
 		internal object[] GetValues(params BindableProperty[] properties)
 		{
@@ -356,6 +451,12 @@ namespace Tizen.NUI.Binding
 			SetValueCore(propertyKey.BindableProperty, value, attributes, SetValuePrivateFlags.None);
 		}
 
+        /// <summary>
+        /// For internal use.
+        /// </summary>
+        /// <param name="property">The BindableProperty on which to assign a value.</param>
+        /// <param name="value">The value to set</param>
+        /// <param name="attributes">The set value flag</param>
 		[EditorBrowsable(EditorBrowsableState.Never)]
 		public void SetValueCore(BindableProperty property, object value, SetValueFlags attributes = SetValueFlags.None)
 		{
@@ -680,14 +781,36 @@ namespace Tizen.NUI.Binding
 
 namespace Tizen.NUI.Internals
 {
+    /// <summary>
+    /// SetValueFlags. For internal use.
+    /// </summary>
 	[Flags]
 	[EditorBrowsable(EditorBrowsableState.Never)]
 	public enum SetValueFlags
 	{
+        /// <summary>
+        /// None.
+        /// </summary>
 		None = 0,
+
+        /// <summary>
+        /// Clear OneWay bindings.
+        /// </summary>
 		ClearOneWayBindings = 1 << 0,
+
+        /// <summary>
+        /// Clear TwoWay bindings.
+        /// </summary>
 		ClearTwoWayBindings = 1 << 1,
+
+        /// <summary>
+        /// Clear dynamic resource.
+        /// </summary>
 		ClearDynamicResource = 1 << 2,
+
+        /// <summary>
+        /// Raise or equal.
+        /// </summary>
 		RaiseOnEqual = 1 << 3
 	}
 }
