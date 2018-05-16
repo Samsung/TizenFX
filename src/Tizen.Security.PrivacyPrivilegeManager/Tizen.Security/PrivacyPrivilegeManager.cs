@@ -1,5 +1,5 @@
-﻿/*
- * Copyright (c) 2017 Samsung Electronics Co., Ltd All Rights Reserved
+/*
+ * Copyright (c) 2017 - 2018 Samsung Electronics Co., Ltd All Rights Reserved
  *
  * Licensed under the Apache License, Version 2.0 (the License);
  * you may not use this file except in compliance with the License.
@@ -16,6 +16,8 @@
 
 using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 using Tizen.Internals.Errors;
 
 namespace Tizen.Security
@@ -27,35 +29,58 @@ namespace Tizen.Security
     public static class PrivacyPrivilegeManager
     {
         private const string LogTag = "Tizen.Privilege";
-        private static Interop.PrivacyPrivilegeManager.RequestResponseCallback s_requestResponseCb;
         private static IDictionary<string, WeakReference<ResponseContext>> s_responseWeakMap = new Dictionary<string, WeakReference<ResponseContext>>();
-        private static IDictionary<string, ResponseContext> s_responseMap = new Dictionary<string, ResponseContext>();
+        private static Interop.PrivacyPrivilegeManager.RequestResponseCallback s_requestResponseCb =
+                       (Interop.PrivacyPrivilegeManager.CallCause cause, Interop.PrivacyPrivilegeManager.RequestResult result,
+                           string privilege, IntPtr userData) =>
+                        {
+                            try
+                            {
+                                if (s_responseWeakMap.TryGetValue(privilege, out WeakReference<ResponseContext> weakRef))
+                                {
+                                    if (weakRef.TryGetTarget(out ResponseContext context))
+                                    {
+                                        context.FireEvent((CallCause)cause, (RequestResult)result);
+                                    }
+                                    else
+                                    {
+                                        s_responseWeakMap.Remove(privilege);
+                                        Log.Error(LogTag, "No response context for: " + privilege);
+                                    }
+                                }
+                                else
+                                {
+                                    Log.Error(LogTag, "No listener for: " + privilege);
+                                }
+                            }
+                            catch (Exception e)
+                            {
+                                Log.Error(LogTag, "Exception in callback : " + e.Message);
+                            }
+                            s_PrivilegesInProgress.Remove(privilege);
+                        };
 
-        static PrivacyPrivilegeManager()
+        private static IDictionary<string, ResponseContext> s_responseMap = new Dictionary<string, ResponseContext>();
+        private static HashSet<string> s_PrivilegesInProgress = new HashSet<string>();
+
+        private static string[] CheckPrivilegesArgument(IEnumerable<string> privileges, string methodName)
         {
-            s_requestResponseCb = (Interop.PrivacyPrivilegeManager.CallCause cause, Interop.PrivacyPrivilegeManager.RequestResult result, string privilege, IntPtr userData) =>
+            if (privileges == null || !privileges.Any())
             {
-                try
+                Log.Error(LogTag, "privileges for " + methodName + " are null or empty.");
+                throw new ArgumentException("privileges for " + methodName + " are null or empty.");
+            }
+
+            foreach (var privilege in privileges)
+            {
+                if (string.IsNullOrEmpty(privilege))
                 {
-                    if (s_responseWeakMap.TryGetValue(privilege, out WeakReference<ResponseContext> weakRef))
-                    {
-                        if (weakRef.TryGetTarget(out ResponseContext context))
-                        {
-                            context.FireEvent((CallCause)cause, (RequestResult)result);
-                            return;
-                        }
-                        else
-                        {
-                            s_responseWeakMap.Remove(privilege);
-                        }
-                    }
-                    Log.Error(LogTag, "No listener");
+                    Log.Error(LogTag, " At least one privilege for " + methodName + " is null or empty.");
+                    throw new ArgumentException(" At least one privilege for " + methodName + " is null or empty.");
                 }
-                catch (Exception e)
-                {
-                    Log.Error(LogTag, "Exception in callback : " + e.Message);
-                }
-            };
+            }
+
+            return privileges as string[] ?? privileges.ToArray();
         }
 
         /// <summary>
@@ -98,6 +123,61 @@ namespace Tizen.Security
         }
 
         /// <summary>
+        /// Gets the status of a privacy privileges permission.
+        /// </summary>
+        /// <param name="privileges">The privacy privileges to be checked.</param>
+        /// <returns>The permission setting for a respective privileges.</returns>
+        /// <exception cref="ArgumentException">Thrown when an invalid parameter is passed.</exception>
+        /// <exception cref="OutOfMemoryException">Thrown when a memory error occurred.</exception>
+        /// <exception cref="System.IO.IOException">Thrown when the method failed due to an internal I/O error.</exception>
+        /// <example>
+        /// <code>
+        ///     string[] privileges = new [] {"http://tizen.org/privilege/account.read",
+        ///                                   "http://tizen.org/privilege/alarm"};
+        ///     CheckResult[] results = PrivacyPrivilegeManager.CheckPermissions(privileges).ToArray();
+        ///     List&lt;string&gt; privilegesWithAskStatus = new List&lt;string&gt;();
+        ///     for (int iterator = 0; iterator &lt; results.Length; ++iterator)
+        ///     {
+        ///         switch (results[iterator])
+        ///         {
+        ///             case CheckResult.Allow:
+        ///                 // Privilege can be used
+        ///                 break;
+        ///             case CheckResult.Deny:
+        ///                 // Privilege can't be used
+        ///                 break;
+        ///             case CheckResult.Ask:
+        ///                 // User permission request required
+        ///                 privilegesWithAskStatus.Add(privileges[iterator]);
+        ///                 break;
+        ///         }
+        ///     }
+        ///     PrivacyPrivilegeManager.RequestPermissions(privilegesWithAskStatus);
+        /// </code>
+        /// </example>
+        /// <since_tizen> 6 </since_tizen>
+        public static IEnumerable<CheckResult> CheckPermissions(IEnumerable<string> privileges)
+        {
+            string[] privilegesArray = CheckPrivilegesArgument(privileges, "CheckPermissions");
+
+            Interop.PrivacyPrivilegeManager.CheckResult[] results = new Interop.PrivacyPrivilegeManager.CheckResult[privilegesArray.Length];
+            int ret = (int)Interop.PrivacyPrivilegeManager.CheckPermissions(privilegesArray, (uint)privilegesArray.Length, results);
+            if (ret != (int)Interop.PrivacyPrivilegeManager.ErrorCode.None)
+            {
+                Log.Error(LogTag, "Failed to check permission");
+                throw PrivacyPrivilegeManagerErrorFactory.GetException(ret);
+            }
+
+            CheckResult[] checkResults = new CheckResult[results.Length];
+            for (int iterator = 0; iterator < results.Length; ++iterator)
+            {
+                checkResults[iterator] = (CheckResult)results[iterator];
+            }
+            return checkResults;
+        }
+
+
+        /// <summary>
         /// Triggers the permission request for a user.
         /// </summary>
         /// <param name="privilege">The privacy privilege to be requested.</param>
@@ -125,11 +205,117 @@ namespace Tizen.Security
         /// <since_tizen> 4 </since_tizen>
         public static void RequestPermission(string privilege)
         {
+            if (!s_PrivilegesInProgress.Add(privilege))
+            {
+                Log.Error(LogTag, "Request for this privilege: " + privilege + " is already in progress.");
+                throw new ArgumentException("Request for this privilege: " + privilege + " is already in progress.");
+            }
+
             int ret = (int)Interop.PrivacyPrivilegeManager.RequestPermission(privilege, s_requestResponseCb, IntPtr.Zero);
             if (ret != (int)Interop.PrivacyPrivilegeManager.ErrorCode.None)
             {
                 Log.Error(LogTag, "Failed to request permission");
+                s_PrivilegesInProgress.Remove(privilege);
                 throw PrivacyPrivilegeManagerErrorFactory.GetException(ret);
+            }
+        }
+
+        /// <summary>
+        /// Triggers the permissions request for a user.
+        /// </summary>
+        /// <param name="privileges">The privacy privileges to be requested.</param>
+        /// <exception cref="ArgumentException">Thrown when an invalid parameter is passed.</exception>
+        /// <exception cref="OutOfMemoryException">Thrown when a memory error occurred.</exception>
+        /// <exception cref="System.IO.IOException">Thrown when the method failed due to an internal I/O error.</exception>
+        /// <returns>Permission request Task</returns>
+        /// <example>
+        /// <code>
+        ///     string[] privileges = new [] {"http://tizen.org/privilege/account.read",
+        ///                                   "http://tizen.org/privilege/alarm"};
+        ///     CheckResult[] results = PrivacyPrivilegeManager.CheckPermissions(privileges).ToArray();
+        ///     List&lt;string&gt; privilegesWithAskStatus = new List&lt;string&gt;();
+        ///     for (int iterator = 0; iterator &lt; results.Length; ++iterator)
+        ///     {
+        ///         switch (results[iterator])
+        ///         {
+        ///             case CheckResult.Allow:
+        ///                 // Privilege can be used
+        ///                 break;
+        ///             case CheckResult.Deny:
+        ///                 // Privilege can't be used
+        ///                 break;
+        ///             case CheckResult.Ask:
+        ///                 // User permission request required
+        ///                 privilegesWithAskStatus.Add(privileges[iterator]);
+        ///                 break;
+        ///         }
+        ///     }
+        ///     IEnumerable&lt;PermissionRequestResponse&gt; responses = PrivacyPrivilegeManager.RequestPermissions(privilegesWithAskStatus).Result;
+        ///     //handle responses
+        /// </code>
+        /// </example>
+        /// <since_tizen> 6 </since_tizen>
+        public static Task<RequestMultipleResponseEventArgs> RequestPermissions(IEnumerable<string> privileges)
+        {
+            string[] privilegesArray = CheckPrivilegesArgument(privileges, "RequestPermissions");
+
+            for (int iterator = 0; iterator < privilegesArray.Length; ++iterator)
+            {
+                if (!s_PrivilegesInProgress.Add(privilegesArray[iterator]))
+                {
+                    Log.Error(LogTag, "Request for this privilege: " + privilegesArray[iterator] + " is already in progress.");
+
+                    for (int removeIterator = iterator - 1; removeIterator >= 0; --removeIterator)
+                    {
+                        s_PrivilegesInProgress.Remove(privilegesArray[removeIterator]);
+                    }
+                    Log.Error(LogTag, "Request for this privilege: " + privilegesArray[iterator] + " is already in progress.");
+                    throw new ArgumentException("Request for this privilege: " + privilegesArray[iterator] + " is already in progress.");
+                }
+            }
+
+            Log.Info(LogTag, "Sending request for permissions: " + string.Join(" ", privilegesArray));
+
+            TaskCompletionSource<RequestMultipleResponseEventArgs> permissionResponsesTask = new TaskCompletionSource<RequestMultipleResponseEventArgs>();
+            int ret = (int)Interop.PrivacyPrivilegeManager.RequestPermissions(privilegesArray, (uint)privilegesArray.Length,
+                        (Interop.PrivacyPrivilegeManager.CallCause cause, Interop.PrivacyPrivilegeManager.RequestResult[] results,
+                        string[] requestedPrivileges, uint privilegesCount, IntPtr userData) =>
+                        {
+                            Log.Info(LogTag, "Sending request for permissions: ");
+                            RequestMultipleResponseEventArgs requestResponse = new RequestMultipleResponseEventArgs();
+                            PermissionRequestResponse[] permissionResponses = new PermissionRequestResponse[privilegesCount];
+
+                            for (int iterator = 0; iterator < privilegesCount; ++iterator)
+                            {
+                                permissionResponses[iterator] = new PermissionRequestResponse
+                                {
+                                    Privilege = requestedPrivileges[iterator],
+                                    Result = (RequestResult)results[iterator]
+                                };
+                            }
+                            requestResponse.Cause = (CallCause)cause;
+                            requestResponse.Responses = permissionResponses;
+
+                            foreach (string privilege in requestedPrivileges)
+                            {
+                                s_PrivilegesInProgress.Remove(privilege);
+                            }
+                            permissionResponsesTask.SetResult(requestResponse);
+                        }, IntPtr.Zero);
+
+            if (ret != (int)Interop.PrivacyPrivilegeManager.ErrorCode.None)
+            {
+                Log.Error(LogTag, "Failed to request permissions.");
+                foreach (string privilege in privileges)
+                {
+                    s_PrivilegesInProgress.Remove(privilege);
+                }
+                throw PrivacyPrivilegeManagerErrorFactory.GetException(ret);
+            }
+            else
+            {
+                Log.Info(LogTag, "Requesting permissions successfull.");
+                return permissionResponsesTask.Task;
             }
         }
 
@@ -243,7 +429,7 @@ namespace Tizen.Security
 
             internal void FireEvent(CallCause _cause, RequestResult _result)
             {
-                _ResponseFetched?.Invoke(null, new RequestResponseEventArgs() { cause = _cause, result = _result, privilege = _privilege });
+                _ResponseFetched?.Invoke(this, new RequestResponseEventArgs { cause = _cause, result = _result, privilege = _privilege });
             }
         }
     }
@@ -253,7 +439,7 @@ namespace Tizen.Security
         static internal Exception GetException(int error)
         {
             Interop.PrivacyPrivilegeManager.ErrorCode errCode = (Interop.PrivacyPrivilegeManager.ErrorCode)error;
-            switch(errCode)
+            switch (errCode)
             {
                 case Interop.PrivacyPrivilegeManager.ErrorCode.InvalidParameter:
                     return new ArgumentException("Invalid parameter");
