@@ -4,6 +4,9 @@ using System.Runtime.CompilerServices;
 
 namespace Tizen.NUI.Binding
 {
+    /// <summary>
+    /// An abstract class that provides a BindingMode and a formatting option.
+    /// </summary>
 	public abstract class BindingBase
 	{
 		static readonly ConditionalWeakTable<IEnumerable, CollectionSynchronizationContext> SynchronizedCollections = new ConditionalWeakTable<IEnumerable, CollectionSynchronizationContext>();
@@ -15,6 +18,9 @@ namespace Tizen.NUI.Binding
 		{
 		}
 
+        /// <summary>
+        /// Gets or sets the mode for this binding.
+        /// </summary>
 		public BindingMode Mode
 		{
 			get { return _mode; }
@@ -33,6 +39,9 @@ namespace Tizen.NUI.Binding
 			}
 		}
 
+        /// <summary>
+        /// Gets or sets the string format for this binding.
+        /// </summary>
 		public string StringFormat
 		{
 			get { return _stringFormat; }
@@ -50,6 +59,10 @@ namespace Tizen.NUI.Binding
 
 		internal bool IsApplied { get; private set; }
 
+        /// <summary>
+        /// Stops synchronization on the collection.
+        /// </summary>
+        /// <param name="collection">The collection on which to stop synchronization.</param>
 		public static void DisableCollectionSynchronization(IEnumerable collection)
 		{
 			if (collection == null)
@@ -68,6 +81,9 @@ namespace Tizen.NUI.Binding
 			SynchronizedCollections.Add(collection, new CollectionSynchronizationContext(context, callback));
 		}
 
+        /// <summary>
+        /// Throws an InvalidOperationException if the binding has been applied.
+        /// </summary>
 		protected void ThrowIfApplied()
 		{
 			if (IsApplied)

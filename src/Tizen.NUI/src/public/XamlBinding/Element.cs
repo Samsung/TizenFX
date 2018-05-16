@@ -9,6 +9,9 @@ using Tizen.NUI.Internals;
 
 namespace Tizen.NUI.Binding
 {
+    /// <summary>
+    /// Provides the base class for all Tizen.NUI.Binding hierarchal elements. This class contains all the methods and properties required to represent an element in the Tizen.NUI.Binding hierarchy.
+    /// </summary>
 	public abstract partial class Element : BindableObject, IElement, INameScope, IElementController
 	{
 
@@ -26,6 +29,9 @@ namespace Tizen.NUI.Binding
 
 		internal static readonly ReadOnlyCollection<Element> EmptyChildren = new ReadOnlyCollection<Element>(new Element[0]);
 
+        /// <summary>
+        /// Identifies the ClassId bindable property.
+        /// </summary>
 		public static readonly BindableProperty ClassIdProperty = BindableProperty.Create("ClassId", typeof(string), typeof(Tizen.NUI.BaseComponents.View), null);
 
 		string _automationId;
@@ -48,6 +54,9 @@ namespace Tizen.NUI.Binding
 
 		string _styleId;
 
+        /// <summary>
+        /// Gets or sets a value that allows the automation framework to find and interact with this element.
+        /// </summary>
 		public string AutomationId
 		{
 			get { return _automationId; }
@@ -59,6 +68,9 @@ namespace Tizen.NUI.Binding
 			}
 		}
 
+        /// <summary>
+        /// Gets or sets a value used to identify a collection of semantically similar elements.
+        /// </summary>
 		public string ClassId
 		{
 			get { return (string)GetValue(ClassIdProperty); }
@@ -79,6 +91,9 @@ namespace Tizen.NUI.Binding
 			}
 		}
 
+        /// <summary>
+        /// Gets a value that can be used to uniquely identify an element through the run of an application.
+        /// </summary>
 		public Guid Id
 		{
 			get
@@ -89,6 +104,9 @@ namespace Tizen.NUI.Binding
 			}
 		}
 
+        /// <summary>
+        /// Gets the element which is the closest ancestor of this element that is a BaseHandle.
+        /// </summary>
 		[Obsolete("ParentView is obsolete as of version 2.1.0. Please use Parent instead.")]
 		public /*VisualElement*/BaseHandle ParentView
 		{
@@ -106,6 +124,9 @@ namespace Tizen.NUI.Binding
 			}
 		}
 
+        /// <summary>
+        /// Gets or sets a user defined value to uniquely identify the element.
+        /// </summary>
 		public string StyleId
 		{
 			get { return _styleId; }
@@ -122,6 +143,9 @@ namespace Tizen.NUI.Binding
 
 		internal virtual ReadOnlyCollection<Element> LogicalChildrenInternal => EmptyChildren;
 
+        /// <summary>
+        /// For internal use.
+        /// </summary>
 		[EditorBrowsable(EditorBrowsableState.Never)]
 		public ReadOnlyCollection<Element> LogicalChildren => LogicalChildrenInternal;
 
@@ -147,6 +171,9 @@ namespace Tizen.NUI.Binding
 			}
 		}
 
+        /// <summary>
+        /// For internal use.
+        /// </summary>
 		[EditorBrowsable(EditorBrowsableState.Never)]
 		public IPlatform Platform
 		{
@@ -170,8 +197,10 @@ namespace Tizen.NUI.Binding
 			}
 		}
 
-		// you're not my real dad
-		[EditorBrowsable(EditorBrowsableState.Never)]
+        /// <summary>
+        /// For internal use.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
 		public Element RealParent { get; private set; }
 
 		Dictionary<BindableProperty, string> DynamicResources
@@ -185,6 +214,9 @@ namespace Tizen.NUI.Binding
 			_changeHandlers.Add(onchanged);
 		}
 
+        /// <summary>
+        /// Gets or sets the parent element of the element.
+        /// </summary>
 		public Element Parent
 		{
 			get { return _parentOverride ?? RealParent; }
@@ -234,6 +266,9 @@ namespace Tizen.NUI.Binding
 			_changeHandlers.Remove(onchanged);
 		}
 
+        /// <summary>
+        /// For internal use.
+        /// </summary>
 		[EditorBrowsable(EditorBrowsableState.Never)]
 		public IEffectControlProvider EffectControlProvider
 		{
@@ -260,18 +295,34 @@ namespace Tizen.NUI.Binding
 		}
 
 		void IElementController.SetValueFromRenderer(BindableProperty property, object value) => SetValueFromRenderer(property, value);
+
+        /// <summary>
+        /// Sets the value of the specified property.
+        /// </summary>
+        /// <param name="property">The BindableProperty on which to assign a value.</param>
+        /// <param name="value">The value to set.</param>
 		[EditorBrowsable(EditorBrowsableState.Never)]
 		public void SetValueFromRenderer(BindableProperty property, object value)
 		{
 			SetValueCore(property, value);
 		}
 
+        /// <summary>
+        /// Sets the value of the propertyKey.
+        /// </summary>
+        /// <param name="property">The BindablePropertyKey on which to assign a value.</param>
+        /// <param name="value">The value to set.</param>
 		[EditorBrowsable(EditorBrowsableState.Never)]
 		public void SetValueFromRenderer(BindablePropertyKey property, object value)
 		{
 			SetValueCore(property, value);
 		}
 
+        /// <summary>
+        /// For internal use.
+        /// </summary>
+        /// <param name="name">The nameof the effect</param>
+        /// <returns>true if attached</returns>
 		[EditorBrowsable(EditorBrowsableState.Never)]
 		public bool EffectIsAttached(string name)
 		{
@@ -324,16 +375,28 @@ namespace Tizen.NUI.Binding
 
 		internal event EventHandler<ElementEventArgs> DescendantRemoved;
 
+        /// <summary>
+        /// Removes a previously set dynamic resource.
+        /// </summary>
+        /// <param name="property">The BindableProperty from which to remove the DynamicResource.</param>
 		public new void RemoveDynamicResource(BindableProperty property)
 		{
 			base.RemoveDynamicResource(property);
 		}
 
+        /// <summary>
+        /// Sets the BindableProperty property of this element to be updated via the DynamicResource with the provided key.
+        /// </summary>
+        /// <param name="property">The BindableProperty.</param>
+        /// <param name="key">The key of the DynamicResource</param>
 		public new void SetDynamicResource(BindableProperty property, string key)
 		{
 			base.SetDynamicResource(property, key);
 		}
 
+        /// <summary>
+        /// Invoked whenever the binding context of the element changes. Implement this method to add class handling for this event.
+        /// </summary>
 		protected override void OnBindingContextChanged()
 		{
 			var gotBindingContext = false;
@@ -361,7 +424,11 @@ namespace Tizen.NUI.Binding
 			base.OnBindingContextChanged();
 		}
 
-		protected virtual void OnChildAdded(Element child)
+        /// <summary>
+        /// Invoked whenever the ChildAdded event needs to be emitted.Implement this method to add class handling for this event.
+        /// </summary>
+        /// <param name="child">The element that was added.</param>
+        protected virtual void OnChildAdded(Element child)
 		{
 			child.Parent = this;
 			if (Platform != null)
@@ -376,7 +443,11 @@ namespace Tizen.NUI.Binding
 				OnDescendantAdded(element);
 		}
 
-		protected virtual void OnChildRemoved(Element child)
+        /// <summary>
+        /// Invoked whenever the ChildRemoved event needs to be emitted.Implement this method to add class handling for this event.
+        /// </summary>
+        /// <param name="child">The element that was removed.</param>
+        protected virtual void OnChildRemoved(Element child)
 		{
 			child.Parent = null;
 
@@ -387,12 +458,19 @@ namespace Tizen.NUI.Binding
 				OnDescendantRemoved(element);
 		}
 
+        /// <summary>
+        /// Invoked whenever the Parent of an element is set.Implement this method in order to add behavior when the element is added to a parent.
+        /// </summary>
 		protected virtual void OnParentSet()
 		{
 			ParentSet?.Invoke(this, EventArgs.Empty);
 			// ApplyStyleSheetsOnParentSet();
 		}
 
+        /// <summary>
+        /// Method that is called when a bound property is changed.
+        /// </summary>
+        /// <param name="propertyName">The name of the bound property that changed.</param>
 		protected override void OnPropertyChanged([CallerMemberName] string propertyName = null)
 		{
 			base.OnPropertyChanged(propertyName);
@@ -407,6 +485,10 @@ namespace Tizen.NUI.Binding
 			}
 		}
 
+        /// <summary>
+        /// For internal use.
+        /// </summary>
+        /// <returns>the elements</returns>
 		[EditorBrowsable(EditorBrowsableState.Never)]
 		public IEnumerable<Element> Descendants()
 		{
@@ -524,6 +606,9 @@ namespace Tizen.NUI.Binding
 			// }
 		}
 
+        /// <summary>
+        /// For internal use.
+        /// </summary>
 		[EditorBrowsable(EditorBrowsableState.Never)]
 		public event EventHandler PlatformSet;
 

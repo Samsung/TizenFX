@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace Tizen.NUI.Binding
 {
+    /// <summary>
+    /// For internal use.
+    /// </summary>
 	[EditorBrowsable(EditorBrowsableState.Never)]
 	public class NavigationProxy : INavigation
 	{
@@ -54,56 +57,105 @@ namespace Tizen.NUI.Binding
 			}
 		}
 
-		public void InsertPageBefore(Page page, Page before)
+        /// <summary>
+        /// Inserts a page in the navigation stack before an existing page in the stack.
+        /// </summary>
+        /// <param name="page">The page to add.</param>
+        /// <param name="before">The existing page, before which page will be inserted.</param>
+        public void InsertPageBefore(Page page, Page before)
 		{
 			OnInsertPageBefore(page, before);
 		}
 
-		public IReadOnlyList<Page> ModalStack
+        /// <summary>
+        /// Gets the modal navigation stack.
+        /// </summary>
+        public IReadOnlyList<Page> ModalStack
 		{
 			get { return GetModalStack(); }
 		}
 
-		public IReadOnlyList<Page> NavigationStack
+        /// <summary>
+        /// Gets the stack of pages in the navigation.
+        /// </summary>
+        public IReadOnlyList<Page> NavigationStack
 		{
 			get { return GetNavigationStack(); }
 		}
 
-		public Task<Page> PopAsync()
+        /// <summary>
+        /// Asynchronously removes the most recent Page from the navigation stack.
+        /// </summary>
+        /// <returns>The Page that had been at the top of the navigation stack.</returns>
+        public Task<Page> PopAsync()
 		{
 			return OnPopAsync(true);
 		}
 
-		public Task<Page> PopAsync(bool animated)
+        /// <summary>
+        /// Asynchronously removes the top Page from the navigation stack, with optional animation.
+        /// </summary>
+        /// <param name="animated">Whether to animate the pop.</param>
+        /// <returns>The Page that had been at the top of the navigation stack.</returns>
+        public Task<Page> PopAsync(bool animated)
 		{
 			return OnPopAsync(animated);
 		}
 
+        /// <summary>
+        /// Asynchronously dismisses the most recent modally presented Page.
+        /// </summary>
+        /// <returns>An awaitable instance, indicating the PopModalAsync completion. The Task.Result is the Page that has been popped.</returns>
 		public Task<Page> PopModalAsync()
 		{
 			return OnPopModal(true);
 		}
 
-		public Task<Page> PopModalAsync(bool animated)
+        /// <summary>
+        /// Asynchronously removes the top Page from the navigation stack, with optional animation.
+        /// </summary>
+        /// <param name="animated">Whether to animate the pop.</param>
+        /// <returns>The Page that had been at the top of the navigation stack.</returns>
+        public Task<Page> PopModalAsync(bool animated)
 		{
 			return OnPopModal(animated);
 		}
 
-		public Task PopToRootAsync()
+        /// <summary>
+        /// Pops all but the root Page off the navigation stack.
+        /// </summary>
+        /// <returns>A task representing the asynchronous dismiss operation.</returns>
+        public Task PopToRootAsync()
 		{
 			return OnPopToRootAsync(true);
 		}
 
+        /// <summary>
+        /// Pops all but the root Page off the navigation stack, with optional animation.
+        /// </summary>
+        /// <param name="animated">Whether to animate the pop.</param>
+        /// <returns>A task representing the asynchronous dismiss operation.</returns>
 		public Task PopToRootAsync(bool animated)
 		{
 			return OnPopToRootAsync(animated);
 		}
 
-		public Task PushAsync(Page root)
+        /// <summary>
+        /// Asynchronously adds a Page to the top of the navigation stack.
+        /// </summary>
+        /// <param name="root">The Page to be pushed on top of the navigation stack.</param>
+        /// <returns>A task that represents the asynchronous push operation.</returns>
+        public Task PushAsync(Page root)
 		{
 			return PushAsync(root, true);
 		}
 
+        /// <summary>
+        /// Asynchronously adds a Page to the top of the navigation stack, with optional animation.
+        /// </summary>
+        /// <param name="root">The page to push.</param>
+        /// <param name="animated">Whether to animate the push.</param>
+        /// <returns>A task that represents the asynchronous push operation.</returns>
 		public Task PushAsync(Page root, bool animated)
 		{
 			if (root.RealParent != null)
@@ -111,35 +163,63 @@ namespace Tizen.NUI.Binding
 			return OnPushAsync(root, animated);
 		}
 
-		public Task PushModalAsync(Page modal)
+        /// <summary>
+        /// Presents a Page modally.
+        /// </summary>
+        /// <param name="modal">The Page to present modally.</param>
+        /// <returns>An awaitable Task, indicating the PushModal completion.</returns>
+        public Task PushModalAsync(Page modal)
 		{
 			return PushModalAsync(modal, true);
 		}
 
-		public Task PushModalAsync(Page modal, bool animated)
+        /// <summary>
+        /// Presents a Page modally, with optional animation.
+        /// </summary>
+        /// <param name="modal">The page to push.</param>
+        /// <param name="animated">Whether to animate the push.</param>
+        /// <returns>An awaitable Task, indicating the PushModal completion.</returns>
+        public Task PushModalAsync(Page modal, bool animated)
 		{
 			if (modal.RealParent != null)
 				throw new InvalidOperationException("Page must not already have a parent.");
 			return OnPushModal(modal, animated);
 		}
 
-		public void RemovePage(Page page)
+        /// <summary>
+        /// Removes the specified page from the navigation stack.
+        /// </summary>
+        /// <param name="page">The page to remove.</param>
+        public void RemovePage(Page page)
 		{
 			OnRemovePage(page);
 		}
 
+        /// <summary>
+        /// For internal use. Returns the modal navigation stack.
+        /// </summary>
+        /// <returns>The modal navigation stack.</returns>
 		protected virtual IReadOnlyList<Page> GetModalStack()
 		{
 			INavigation currentInner = Inner;
 			return currentInner == null ? _modalStack.Value : currentInner.ModalStack;
 		}
 
+        /// <summary>
+        /// For internal use. Returns the stack of pages in the navigation.
+        /// </summary>
+        /// <returns>The stack of pages in the navigation.</returns>
 		protected virtual IReadOnlyList<Page> GetNavigationStack()
 		{
 			INavigation currentInner = Inner;
 			return currentInner == null ? _pushStack.Value : currentInner.NavigationStack;
 		}
 
+        /// <summary>
+        /// The method called when insert a page in the navigation stack before an existing page in the stack.
+        /// </summary>
+        /// <param name="page">The page to add.</param>
+        /// <param name="before">The existing page, before which page will be inserted.</param>
 		protected virtual void OnInsertPageBefore(Page page, Page before)
 		{
 			INavigation currentInner = Inner;
@@ -156,18 +236,33 @@ namespace Tizen.NUI.Binding
 			}
 		}
 
+        /// <summary>
+        /// This method calls when removes the top Page from the navigation stack
+        /// </summary>
+        /// <param name="animated">Whether to animate the pop.</param>
+        /// <returns></returns>
 		protected virtual Task<Page> OnPopAsync(bool animated)
 		{
 			INavigation inner = Inner;
 			return inner == null ? Task.FromResult(Pop()) : inner.PopAsync(animated);
 		}
 
+        /// <summary>
+        /// This method calls when removes the top Page from the navigation stack
+        /// </summary>
+        /// <param name="animated">Whether to animate the pop.</param>
+        /// <returns>An awaitable instance, indicating the PopModalAsync completion</returns>
 		protected virtual Task<Page> OnPopModal(bool animated)
 		{
 			INavigation innerNav = Inner;
 			return innerNav == null ? Task.FromResult(PopModal()) : innerNav.PopModalAsync(animated);
 		}
 
+        /// <summary>
+        /// This method calls when Pops all but the root Page off the navigation stack.
+        /// </summary>
+        /// <param name="animated">Whether to animate the pop.</param>
+        /// <returns>A task representing the asynchronous dismiss operation.</returns>
 		protected virtual Task OnPopToRootAsync(bool animated)
 		{
 			INavigation currentInner = Inner;
@@ -181,6 +276,12 @@ namespace Tizen.NUI.Binding
 			return currentInner.PopToRootAsync(animated);
 		}
 
+        /// <summary>
+        /// This method calls when adds a Page to the top of the navigation stack, with optional animation.
+        /// </summary>
+        /// <param name="page">The page to add</param>
+        /// <param name="animated">Whether to animate the pop.</param>
+        /// <returns>A task that represents the asynchronous push operation.</returns>
 		protected virtual Task OnPushAsync(Page page, bool animated)
 		{
 			INavigation currentInner = Inner;
@@ -192,6 +293,12 @@ namespace Tizen.NUI.Binding
 			return currentInner.PushAsync(page, animated);
 		}
 
+        /// <summary>
+        /// This method calls when Presents a Page modally, with optional animation.
+        /// </summary>
+        /// <param name="modal">The page to push.</param>
+        /// <param name="animated">Whether to animate the pop.</param>
+        /// <returns>An awaitable Task, indicating the PushModal completion.</returns>
 		protected virtual Task OnPushModal(Page modal, bool animated)
 		{
 			INavigation currentInner = Inner;
@@ -203,6 +310,10 @@ namespace Tizen.NUI.Binding
 			return currentInner.PushModalAsync(modal, animated);
 		}
 
+        /// <summary>
+        /// This method calls when Removes the specified page from the navigation stack.
+        /// </summary>
+        /// <param name="page">The page to add.</param>
 		protected virtual void OnRemovePage(Page page)
 		{
 			INavigation currentInner = Inner;

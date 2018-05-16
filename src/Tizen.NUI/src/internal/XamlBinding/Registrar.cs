@@ -16,11 +16,20 @@ namespace Tizen.NUI.Binding
 
 namespace Tizen.NUI.Internals
 {
+    /// <summary>
+    /// For internal use.
+    /// </summary>
+    /// <typeparam name="TRegistrable"></typeparam>
 	[EditorBrowsable(EditorBrowsableState.Never)]
 	public class Registrar<TRegistrable> where TRegistrable : class
 	{
 		readonly Dictionary<Type, Type> _handlers = new Dictionary<Type, Type>();
 
+        /// <summary>
+        /// Register.
+        /// </summary>
+        /// <param name="tview">The type of the view</param>
+        /// <param name="trender">The type of the render.</param>
 		public void Register(Type tview, Type trender)
 		{
 			//avoid caching null renderers
@@ -54,16 +63,35 @@ namespace Tizen.NUI.Internals
 			return (TRegistrable)DependencyResolver.ResolveOrCreate(handlerType, args);
 		}
 
+        /// <summary>
+        /// For internal use. Returns handler.
+        /// </summary>
+        /// <typeparam name="TOut">The type of the handler</typeparam>
+        /// <param name="type">The type.</param>
+        /// <returns>The handler instance.</returns>
 		public TOut GetHandler<TOut>(Type type) where TOut : TRegistrable
 		{
 			return (TOut)GetHandler(type);
 		}
 
+        /// <summary>
+        /// For internal use. Returns handler.
+        /// </summary>
+        /// <typeparam name="TOut">The type of the handler</typeparam>
+        /// <param name="type">The type.</param>
+        /// <param name="args">The args of the type</param>
+        /// <returns>The handler instance.</returns>
 		public TOut GetHandler<TOut>(Type type, params object[] args) where TOut : TRegistrable
 		{
 			return (TOut)GetHandler(type, args);
 		}
 
+        /// <summary>
+        /// For internal use. Return the handler of the object.
+        /// </summary>
+        /// <typeparam name="TOut">Thetype</typeparam>
+        /// <param name="obj">The object instance.</param>
+        /// <returns>The handle of the obj.</returns>
 		public TOut GetHandlerForObject<TOut>(object obj) where TOut : TRegistrable
 		{
 			if (obj == null)
@@ -75,6 +103,13 @@ namespace Tizen.NUI.Internals
 			return (TOut)GetHandler(type);
 		}
 
+        /// <summary>
+        /// For inetrnal use. Return the handler of the object.
+        /// </summary>
+        /// <typeparam name="TOut">The type</typeparam>
+        /// <param name="obj">The object instance</param>
+        /// <param name="args">The args of the type</param>
+        /// <returns>The handler of the object.</returns>
 		public TOut GetHandlerForObject<TOut>(object obj, params object[] args) where TOut : TRegistrable
 		{
 			if (obj == null)
@@ -86,6 +121,11 @@ namespace Tizen.NUI.Internals
 			return (TOut)GetHandler(type, args);
 		}
 
+        /// <summary>
+        /// For internal use. Returns the handle type.
+        /// </summary>
+        /// <param name="viewType">The view type.</param>
+        /// <returns>The type of the handle.</returns>
 		public Type GetHandlerType(Type viewType)
 		{
 			Type type;
@@ -121,6 +161,11 @@ namespace Tizen.NUI.Internals
 			return type;
 		}
 
+        /// <summary>
+        /// For internal use. Return the handle type of the object
+        /// </summary>
+        /// <param name="obj">The object instance.</param>
+        /// <returns>The type of the handler.</returns>
 		public Type GetHandlerTypeForObject(object obj)
 		{
 			if (obj == null)
@@ -152,6 +197,9 @@ namespace Tizen.NUI.Internals
 		}
 	}
 
+    /// <summary>
+    /// For internal use
+    /// </summary>
 	[EditorBrowsable(EditorBrowsableState.Never)]
 	internal static class Registrar
 	{
