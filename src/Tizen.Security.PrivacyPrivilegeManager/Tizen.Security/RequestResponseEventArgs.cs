@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2017 Samsung Electronics Co., Ltd All Rights Reserved
+ * Copyright (c) 2017 - 2018 Samsung Electronics Co., Ltd All Rights Reserved
  *
  * Licensed under the Apache License, Version 2.0 (the License);
  * you may not use this file except in compliance with the License.
@@ -42,5 +42,21 @@ namespace Tizen.Security
         /// </summary>
         /// <since_tizen> 4 </since_tizen>
         public string privilege { get; internal set; }
+
+        /// <summary>
+        /// The response for privilege request
+        /// </summary>
+        /// <since_tizen> 5 </since_tizen>
+        public PermissionRequestResponse Response
+        {
+            get
+            {
+                return new PermissionRequestResponse
+                {
+                    Result = result,
+                    Privilege = privilege,
+                };
+            }
+        }
     }
 }
