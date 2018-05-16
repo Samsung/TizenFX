@@ -3,7 +3,6 @@ using System.ComponentModel;
 
 namespace Tizen.NUI.Internals
 {
-	[Obsolete]
 	[EditorBrowsable(EditorBrowsableState.Never)]
 	internal interface IDataTemplate
 	{

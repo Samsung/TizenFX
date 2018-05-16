@@ -1819,8 +1819,19 @@ namespace Tizen.NUI
         private object _originalValue = null;
         private object _originalKey = null;
 
+        /// <summary>
+        /// Int key.
+        /// </summary>
         public int? KeyInt = null;
+
+        /// <summary>
+        /// String key.
+        /// </summary>
         public string KeyString = null;
+
+        /// <summary>
+        /// True value.
+        /// </summary>
         public PropertyValue TrueValue = null;
 
         /// <summary>

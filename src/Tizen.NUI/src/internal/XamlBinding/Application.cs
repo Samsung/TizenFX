@@ -24,7 +24,7 @@ namespace Tizen.NUI.Binding
 
 		public Application()
 		{
-			var f = false;
+			// var f = false;
 			// if (f)
 			// 	Loader.Load();
 			NavigationProxy = new NavigationImpl(this);

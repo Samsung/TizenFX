@@ -56,7 +56,7 @@ namespace Tizen.NUI.BaseComponents
             "BaseHandle handle = new TextLabel(\"Hello World!\"); " +
             "TextLabel label = handle as TextLabel")]
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public new static TextLabel DownCast(BaseHandle handle)
+        public static TextLabel DownCast(BaseHandle handle)
         {
             TextLabel ret = Registry.GetManagedBaseHandleFromNativePtr(handle) as TextLabel;
 

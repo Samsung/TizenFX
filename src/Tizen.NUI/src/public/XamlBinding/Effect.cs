@@ -4,21 +4,37 @@ using Tizen.NUI.Internals;
 
 namespace Tizen.NUI.Binding
 {
+    /// <summary>
+    /// A collection of styles and properties that can be added to an element at run time.
+    /// </summary>
 	public abstract class Effect
 	{
 		internal Effect()
 		{
 		}
 
+        /// <summary>
+        /// Gets the element to which the style is attached.
+        /// </summary>
 		public Element Element { get; internal set; }
 
+        /// <summary>
+        /// Gets a value that tells whether the effect is attached to an element.
+        /// </summary>
 		public bool IsAttached { get; private set; }
 
+        /// <summary>
+        /// Gets the ID that is used to resolve this effect at runtime.
+        /// </summary>
 		public string ResolveId { get; internal set; }
 
-		#region Statics
-
-		public static Effect Resolve(string name)
+        #region Statics
+        /// <summary>
+        /// Returns an Effect for the specified name, which is of the form ResolutionGroupName.ExportEffect.
+        /// </summary>
+        /// <param name="name">The name of the effect to get.</param>
+        /// <returns>The uniquely identified effect.</returns>
+        public static Effect Resolve(string name)
 		{
 			Effect result = null;
 			if (Tizen.NUI.Internals.Registrar.Effects.TryGetValue(name, out Type effectType))
@@ -32,12 +48,16 @@ namespace Tizen.NUI.Binding
 			return result;
 		}
 
-		#endregion
+        #endregion
 
-		// Received after Control/Container/Element made valid
+        /// <summary>
+        /// Method that is called after the effect is attached and made valid.
+        /// </summary>
 		protected abstract void OnAttached();
 
-		// Received after Control/Container made invalid
+        /// <summary>
+        /// Method that is called after the effect is detached and invalidated.
+        /// </summary>
 		protected abstract void OnDetached();
 
 		internal virtual void ClearEffect()
