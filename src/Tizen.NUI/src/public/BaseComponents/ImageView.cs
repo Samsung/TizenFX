@@ -207,7 +207,7 @@ namespace Tizen.NUI.BaseComponents
             "BaseHandle handle = new ImageView(imagePath); " +
             "ImageView image = handle as ImageView")]
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public new static ImageView DownCast(BaseHandle handle)
+        public static ImageView DownCast(BaseHandle handle)
         {
             ImageView ret = Registry.GetManagedBaseHandleFromNativePtr(handle) as ImageView;
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();

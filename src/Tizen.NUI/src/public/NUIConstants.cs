@@ -1257,7 +1257,7 @@ namespace Tizen.NUI
         public static readonly int FrameDelay = NDalic.IMAGE_VISUAL_FRAME_DELAY;
         /// <summary>
         /// The number of times the AnimatedImageVisual will be looped
-        /// Default -1. if < 0, loop unlimited. else, loop loopCount times.
+        /// Default -1. if less than 0, loop unlimited. else, loop loopCount times.
         /// </summary>
         /// <since_tizen> 5 </since_tizen>
         public static readonly int LoopCount = NDalic.IMAGE_VISUAL_LOOP_COUNT;

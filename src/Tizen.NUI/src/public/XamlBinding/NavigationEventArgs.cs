@@ -2,8 +2,15 @@ using System;
 
 namespace Tizen.NUI.Binding
 {
+    /// <summary>
+    /// EventArgs for the NavigationPage's navigation events.
+    /// </summary>
 	public class NavigationEventArgs : EventArgs
 	{
+        /// <summary>
+        /// Create a NavigationEventArgs instance.
+        /// </summary>
+        /// <param name="page">The page that was popped or is newly visible.</param>
 		public NavigationEventArgs(Page page)
 		{
 			if (page == null)
@@ -12,6 +19,9 @@ namespace Tizen.NUI.Binding
 			Page = page;
 		}
 
+        /// <summary>
+        /// Gets the page that was removed or is newly visible.
+        /// </summary>
 		public Page Page { get; private set; }
 	}
 }

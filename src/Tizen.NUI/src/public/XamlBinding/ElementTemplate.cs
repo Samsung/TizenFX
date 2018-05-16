@@ -4,6 +4,9 @@ using Tizen.NUI.Internals;
 
 namespace Tizen.NUI.Binding
 {
+    /// <summary>
+    /// Base class for DataTemplate and ControlTemplate classes.
+    /// </summary>
 	public class ElementTemplate : IElement, IDataTemplate
 	{
 		List<Action<object, ResourcesChangedEventArgs>> _changeHandlers;
@@ -70,7 +73,11 @@ namespace Tizen.NUI.Binding
 			_changeHandlers.Remove(onchanged);
 		}
 
-		public object CreateContent()
+        /// <summary>
+        /// Used by the XAML infrastructure to load data templates and set up the content of the resulting UI.
+        /// </summary>
+        /// <returns></returns>
+        public object CreateContent()
 		{
 			if (LoadTemplate == null)
 				throw new InvalidOperationException("LoadTemplate should not be null");
