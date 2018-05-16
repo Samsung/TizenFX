@@ -27,13 +27,15 @@
 
 using System;
 using System.Reflection;
+using System.ComponentModel;
 
 namespace Tizen.NUI.Xaml
 {
     /// <summary>
     /// Extension class for View defining Xamarin.Forms.Xaml.Extensions.LoadFromXaml{TView} method.
     /// </summary>
-	public static class Extensions
+    [EditorBrowsable(EditorBrowsableState.Never)]
+    public static class Extensions
 	{
         /// <summary>
         /// Returns an initialized view by loading the specified xaml.
@@ -42,7 +44,7 @@ namespace Tizen.NUI.Xaml
         /// <param name="view">The view on which this method operates.</param>
         /// <param name="callingType">The type of the caller.</param>
         /// <returns>A TXaml with the properties that are defined in the application manifest for callingType.</returns>
-		public static TXaml LoadFromXaml<TXaml>(this TXaml view, Type callingType) 
+        public static TXaml LoadFromXaml<TXaml>(this TXaml view, Type callingType) 
 		{
 			XamlLoader.Load(view, callingType);
 			return view;

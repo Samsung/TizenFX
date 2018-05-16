@@ -15,6 +15,7 @@
  *
  */
 using System;
+using System.ComponentModel;
 using Tizen.NUI.Binding;
 using Tizen.NUI.BaseComponents;
 
@@ -24,6 +25,7 @@ namespace Tizen.NUI
     /// The ContentPage class.
     /// </summary>
     [ContentProperty("Content")]
+    [EditorBrowsable(EditorBrowsableState.Never)]
     public class ContentPage : TemplatedPage
     {
         private View _content;

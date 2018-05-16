@@ -11,7 +11,8 @@ namespace Tizen.NUI.Binding
     /// <summary>
     /// Provides a mechanism by which application developers can propagate changes that are made to data in one object to another, by enabling validation, type coercion, and an event system.
     /// </summary>
-	public abstract class BindableObject : INotifyPropertyChanged, IDynamicResourceHandler
+    [EditorBrowsable(EditorBrowsableState.Never)]
+    public abstract class BindableObject : INotifyPropertyChanged, IDynamicResourceHandler
 	{
         /// <summary>
         /// Implements the bound property whose interface is provided by the BindingContext property.

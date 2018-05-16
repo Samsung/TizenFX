@@ -1,12 +1,14 @@
 using System;
 using System.Collections;
 using System.Runtime.CompilerServices;
+using System.ComponentModel;
 
 namespace Tizen.NUI.Binding
 {
     /// <summary>
     /// An abstract class that provides a BindingMode and a formatting option.
     /// </summary>
+    [EditorBrowsable(EditorBrowsableState.Never)]
 	public abstract class BindingBase
 	{
 		static readonly ConditionalWeakTable<IEnumerable, CollectionSynchronizationContext> SynchronizedCollections = new ConditionalWeakTable<IEnumerable, CollectionSynchronizationContext>();

@@ -1,8 +1,10 @@
+using System.ComponentModel;
 
 namespace Tizen.NUI.Binding
 {
     /// <summary>
     /// Base interface for marker classes that identify target platforms for platform specific effects.
     /// </summary>
-	public interface IConfigPlatform { }
+    [EditorBrowsable(EditorBrowsableState.Never)]
+    public interface IConfigPlatform { }
 }
