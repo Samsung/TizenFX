@@ -410,7 +410,7 @@ article section {
 
 .sidetoc {
   position: fixed;
-  width: 260px;
+  width: 320px;
   top: 150px;
   bottom: 0;
   overflow-x: hidden;
@@ -515,7 +515,7 @@ body .toc{
   font-weight: bold;
   margin-top: 10px;
   position: relative;
-  font-size: 16px;
+  font-size: 14px;
 }
 .toc .level2 {
   font-weight: normal;
@@ -529,7 +529,7 @@ body .toc{
 .sidefilter {
   position: fixed;
   top: 90px;
-  width: 260px;
+  width: 320px;
   background-color: #f1f1f1;
   padding: 15px;
   border-left: 1px solid #e7e7e7;
@@ -568,7 +568,7 @@ body .toc{
 }
 
 .article.grid-right {
-  margin-left: 280px;
+  margin-left: 340px;
 }
 
 .inheritance hr {
@@ -814,7 +814,7 @@ footer {
 }
 
 /* For toc iframe */
-@media (max-width: 260px) {
+@media (max-width: 320px) {
   .toc .level2 > li {
     display: block;
   }
