@@ -37,9 +37,6 @@
     ],
     "overwrite": [
       {
-        "files": "overwrites/**.md"
-      },
-      {
         "files": "*/doc/api/**.md",
         "src": "../src"
       }
