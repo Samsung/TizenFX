@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.ComponentModel;
 using Tizen.NUI.Binding;
 
 namespace Tizen.NUI
@@ -6,7 +7,8 @@ namespace Tizen.NUI
     /// <summary>
     /// A page that displays full-screen content with a control template, and the base class for ContentPage.
     /// </summary>
-	public class TemplatedPage : Page, IControlTemplated
+    [EditorBrowsable(EditorBrowsableState.Never)]
+    public class TemplatedPage : Page, IControlTemplated
 	{
         /// <summary>
         /// Backing store for the ControlTemplate property.

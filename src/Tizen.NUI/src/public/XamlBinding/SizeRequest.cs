@@ -1,4 +1,5 @@
 using System.Diagnostics;
+using System.ComponentModel;
 
 namespace Tizen.NUI.Binding
 {
@@ -6,7 +7,8 @@ namespace Tizen.NUI.Binding
     /// Struct that defines minimum and maximum Sizes.
     /// </summary>
 	[DebuggerDisplay("Request={Request.Width}x{Request.Height}, Minimum={Minimum.Width}x{Minimum.Height}")]
-	public struct SizeRequest
+    [EditorBrowsable(EditorBrowsableState.Never)]
+    public struct SizeRequest
 	{
         /// <summary>
         /// The requested size.

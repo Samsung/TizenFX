@@ -7,7 +7,8 @@ namespace Tizen.NUI.Binding
     /// <summary>
     /// A collection of styles and properties that can be added to an element at run time.
     /// </summary>
-	public abstract class Effect
+    [EditorBrowsable(EditorBrowsableState.Never)]
+    public abstract class Effect
 	{
 		internal Effect()
 		{

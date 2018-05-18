@@ -31,6 +31,7 @@ namespace Tizen.NUI
     /// A BaseHandle that occupies the entire screen.
     /// </summary>
     // [RenderWith(typeof(_PageRenderer))]
+    [EditorBrowsable(EditorBrowsableState.Never)]
     public class Page : /*VisualElement*/BaseHandle, ILayout, IPageController, IElementConfiguration<Page>, IPaddingElement
 	{
         /// <summary>
