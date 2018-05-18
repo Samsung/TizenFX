@@ -61,8 +61,7 @@ namespace Tizen.NUI.StyleSheets
 				case '^':				//not in CSS spec
 					reader.Read();
 					var element = reader.ReadIdent();
-					if (element == null)
-					return Invalid;
+					if (element == null) return Invalid;
 					setCurrentSelector(new And(), new Base(element));
 					break;
 				case ' ':

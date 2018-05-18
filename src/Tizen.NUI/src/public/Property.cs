@@ -1874,7 +1874,7 @@ namespace Tizen.NUI
                 }
                 if (value is string)
                 {
-                    KeyString = (string)value;
+                    KeyString = value.ToString();
                 }
 
 

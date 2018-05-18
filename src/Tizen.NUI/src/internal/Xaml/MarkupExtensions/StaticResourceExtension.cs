@@ -49,7 +49,7 @@ namespace Tizen.NUI.Xaml
 				}
 				return resource;
 			}
-			if (propertyType.IsAssignableFrom(resource.GetType()))
+			if (propertyType.IsAssignableFrom(resource?.GetType()))
 				return resource;
 			var implicit_op =  resource.GetType().GetImplicitConversionOperator(fromType: resource.GetType(), toType: propertyType)
 							?? propertyType.GetImplicitConversionOperator(fromType: resource.GetType(), toType: propertyType);
