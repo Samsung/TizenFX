@@ -78,7 +78,7 @@ namespace Tizen.NUI.Binding
 					_snapshot = snap = new ReadOnlyCollection<T>(_list.ToList());
 			}
 
-			return snap.GetEnumerator();
+			return snap?.GetEnumerator();
 		}
 
 		public int IndexOf(T item)

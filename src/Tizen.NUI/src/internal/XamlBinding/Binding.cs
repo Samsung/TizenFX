@@ -128,7 +128,7 @@ namespace Tizen.NUI.Binding
 			if (_expression == null && bindingContext != null)
 				_expression = new BindingExpression(this, SelfPath);
 
-			_expression.Apply(bindingContext, bindObj, targetProperty);
+			_expression?.Apply(bindingContext, bindObj, targetProperty);
 		}
 
 		internal override BindingBase Clone()
