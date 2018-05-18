@@ -1,11 +1,13 @@
 using System;
+using System.ComponentModel;
 
 namespace Tizen.NUI.Binding
 {
     /// <summary>
     /// EventArgs for the NavigationPage's navigation events.
     /// </summary>
-	public class NavigationEventArgs : EventArgs
+    [EditorBrowsable(EditorBrowsableState.Never)]
+    public class NavigationEventArgs : EventArgs
 	{
         /// <summary>
         /// Create a NavigationEventArgs instance.

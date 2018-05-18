@@ -1,3 +1,4 @@
+using System.ComponentModel;
 
 namespace Tizen.NUI.Binding
 {
@@ -6,7 +7,8 @@ namespace Tizen.NUI.Binding
     /// </summary>
     /// <typeparam name="TPlatform">The platform type.</typeparam>
     /// <typeparam name="TElement">The element type.</typeparam>
-	public interface IPlatformElementConfiguration<out TPlatform, out TElement> : IConfigElement<TElement>
+    [EditorBrowsable(EditorBrowsableState.Never)]
+    public interface IPlatformElementConfiguration<out TPlatform, out TElement> : IConfigElement<TElement>
 			where TPlatform : IConfigPlatform
 	 		where TElement : Element
 	{

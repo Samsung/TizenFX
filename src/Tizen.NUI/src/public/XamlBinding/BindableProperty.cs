@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq.Expressions;
 using System.Reflection;
+using System.ComponentModel;
 using Tizen.NUI.Internals;
 using Tizen.NUI.Xaml;
 
@@ -13,7 +14,8 @@ namespace Tizen.NUI.Binding
     /// </summary>
 	[DebuggerDisplay("{PropertyName}")]
 	[TypeConverter(typeof(BindablePropertyConverter))]
-	public sealed class BindableProperty
+    [EditorBrowsable(EditorBrowsableState.Never)]
+    public sealed class BindableProperty
 	{
         /// <summary>
         /// Delegate for BindableProperty.PropertyChanged.
