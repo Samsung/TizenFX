@@ -12,7 +12,8 @@ namespace Tizen.NUI.Binding
     /// <summary>
     /// Provides the base class for all Tizen.NUI.Binding hierarchal elements. This class contains all the methods and properties required to represent an element in the Tizen.NUI.Binding hierarchy.
     /// </summary>
-	public abstract partial class Element : BindableObject, IElement, INameScope, IElementController
+    [EditorBrowsable(EditorBrowsableState.Never)]
+    public abstract partial class Element : BindableObject, IElement, INameScope, IElementController
 	{
 
 		// public static readonly BindableProperty MenuProperty = BindableProperty.CreateAttached(nameof(Menu), typeof(Menu), typeof(Element), null);

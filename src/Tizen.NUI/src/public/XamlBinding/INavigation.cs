@@ -1,12 +1,14 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using System.ComponentModel;
 
 namespace Tizen.NUI.Binding
 {
     /// <summary>
     /// Interface abstracting platform-specific navigation.
     /// </summary>
-	public interface INavigation
+    [EditorBrowsable(EditorBrowsableState.Never)]
+    public interface INavigation
 	{
         /// <summary>
         /// Gets the modal navigation stack.

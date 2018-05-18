@@ -1,6 +1,7 @@
 using System;
 using System.Reflection;
 using System.Windows.Input;
+using System.ComponentModel;
 
 namespace Tizen.NUI.Binding
 {
@@ -60,7 +61,8 @@ namespace Tizen.NUI.Binding
     /// <summary>
     /// Defines an ICommand implementation that wraps a Action.
     /// </summary>
-	public class Command : ICommand
+    [EditorBrowsable(EditorBrowsableState.Never)]
+    public class Command : ICommand
 	{
 		readonly Func<object, bool> _canExecute;
 		readonly Action<object> _execute;

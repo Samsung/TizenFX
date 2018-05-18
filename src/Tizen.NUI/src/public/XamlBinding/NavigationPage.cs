@@ -13,6 +13,7 @@ namespace Tizen.NUI
     /// A Page that manages the navigation and user-experience of a stack of other pages.
     /// </summary>
     // [RenderWith(typeof(_NavigationPageRenderer))]
+    [EditorBrowsable(EditorBrowsableState.Never)]
     public class NavigationPage : Page, IPageContainer<Page>, INavigationPageController, IElementConfiguration<NavigationPage>
 	{
         /// <summary>

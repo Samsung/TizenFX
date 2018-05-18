@@ -1,4 +1,5 @@
 using System.Diagnostics;
+using System.ComponentModel;
 
 namespace Tizen.NUI.Binding
 {
@@ -7,7 +8,8 @@ namespace Tizen.NUI.Binding
     /// </summary>
 	[DebuggerDisplay("Left={Left}, Top={Top}, Right={Right}, Bottom={Bottom}, HorizontalThickness={HorizontalThickness}, VerticalThickness={VerticalThickness}")]
 	[TypeConverter(typeof(ThicknessTypeConverter))]
-	public struct Thickness
+    [EditorBrowsable(EditorBrowsableState.Never)]
+    public struct Thickness
 	{
         /// <summary>
         /// The thickness of the left side of a rectangle.

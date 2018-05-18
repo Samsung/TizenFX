@@ -1,3 +1,4 @@
+using System.ComponentModel;
 
 namespace Tizen.NUI.Binding
 {
@@ -5,7 +6,8 @@ namespace Tizen.NUI.Binding
     /// This interface is for internal use by platform renderers.
     /// </summary>
     /// <typeparam name="T"></typeparam>
-	public interface IConfigElement<out T> where T : Element
+    [EditorBrowsable(EditorBrowsableState.Never)]
+    public interface IConfigElement<out T> where T : Element
 	{
         /// <summary>
         /// For internal use

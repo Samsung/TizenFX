@@ -1,11 +1,13 @@
 using System;
+using System.ComponentModel;
 
 namespace Tizen.NUI.Binding
 {
     /// <summary>
     /// Template that specifies a group of styles and effects for controls.
     /// </summary>
-	public class ControlTemplate : ElementTemplate
+    [EditorBrowsable(EditorBrowsableState.Never)]
+    public class ControlTemplate : ElementTemplate
 	{
         /// <summary>
         /// For internal use only.
