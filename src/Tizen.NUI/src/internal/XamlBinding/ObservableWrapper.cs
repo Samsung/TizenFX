@@ -180,7 +180,7 @@ namespace Tizen.NUI.Binding
 					handler(this, new NotifyCollectionChangedEventArgs(NotifyCollectionChangedAction.Move, e.NewItems, outerNewIndex, outerOldIndex));
 					break;
 				case NotifyCollectionChangedAction.Remove:
-					if (e.OldStartingIndex == -1 || e.OldItems.Count > 1)
+					if (e.OldStartingIndex == -1 || e.OldItems?.Count > 1)
 						goto case NotifyCollectionChangedAction.Reset;
 
 					var removedItem = e.OldItems[0] as TRestrict;
@@ -192,11 +192,11 @@ namespace Tizen.NUI.Binding
 					handler(this, args);
 					break;
 				case NotifyCollectionChangedAction.Replace:
-					if (e.NewStartingIndex == -1 || e.OldStartingIndex == -1 || e.NewItems.Count > 1)
+					if (e.NewStartingIndex == -1 || e.OldStartingIndex == -1 || e.NewItems?.Count > 1)
 						goto case NotifyCollectionChangedAction.Reset;
 
 					var newReplaceItem = e.NewItems[0] as TRestrict;
-					var oldReplaceItem = e.OldItems[0] as TRestrict;
+					var oldReplaceItem = e.OldItems?[0] as TRestrict;
 
 					if ((newReplaceItem == null || !newReplaceItem.Owned) && (oldReplaceItem == null || !oldReplaceItem.Owned))
 					{
