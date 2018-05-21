@@ -31,8 +31,10 @@ namespace Tizen.Multimedia
         /// </summary>
         /// <param name="yaw">Pointer to store current value of direction of view angle around vertical axis.
         /// valid range is [-3.141593, 3.141593]. value will be rounded off to 6 decimal places.
+        /// Default value is 0. </param>
         /// <param name="pitch">Pointer to store current value of direction of view angle around lateral axis.
         /// valid range is [-1.570796, 1.570796]. value will be rounded off to 6 decimal places.
+        /// Default value is 0. </param>
         /// <since_tizen> 5 </since_tizen>
         public DirectionOfView(float yaw, float pitch)
         {
@@ -151,7 +153,7 @@ namespace Tizen.Multimedia
         /// <summary>
         /// Gets information whether the current content of the player is spherical.
         /// </summary>
-        /// <returns>true if the current content is spherical; otherwise false.</returns>
+        /// <returns>True if the current content is spherical; otherwise false.</returns>
         /// <remarks>
         /// The <see cref="Player"/> that owns this instance must be in the <see cref="PlayerState.Ready"/>,
         /// <see cref="PlayerState.Playing"/>, or <see cref="PlayerState.Paused"/> state.
@@ -176,8 +178,9 @@ namespace Tizen.Multimedia
         }
 
         /// <summary>
-        /// Gets the level of the zoom when it is spherical.
+        /// Gets the level of the zoom of spherical video.
         /// </summary>
+        /// <returns>The current zoom level of spherical video.</returns>
         /// <remarks>Remark.</remarks>
         /// <feature>http://tizen.org/feature/opengles.version.2_0</feature>
         /// <feature>http://tizen.org/feature/multimedia.player.spherical_video</feature>
@@ -200,9 +203,9 @@ namespace Tizen.Multimedia
         }
 
         /// <summary>
-        /// Sets the level of the zoom when it is spherical .
+        /// Sets the level of the zoom of spherical video.
         /// </summary>
-        /// <remarks>Remark.</remarks>
+        /// <param name="level">The zoom level.</param>
         /// <feature>http://tizen.org/feature/opengles.version.2_0</feature>
         /// <feature>http://tizen.org/feature/multimedia.player.spherical_video</feature>
         /// <exception cref="NotSupportedException">The required feature is not supported.</exception>
@@ -264,10 +267,7 @@ namespace Tizen.Multimedia
         /// <summary>
         /// Gets the direction of view for spherical video.
         /// </summary>
-        /// <returns>A <see cref="DirectionOfView"/> that contains the audio stream information.</returns>
-        /// <remarks>
-        /// Remark
-        /// </remarks>
+        /// <returns>The <see cref="DirectionOfView"/> containing the angle information.</returns>
         /// <feature>http://tizen.org/feature/opengles.version.2_0</feature>
         /// <feature>http://tizen.org/feature/multimedia.player.spherical_video</feature>
         /// <exception cref="NotSupportedException">The required feature is not supported.</exception>
@@ -277,7 +277,6 @@ namespace Tizen.Multimedia
         /// <exception cref="InvalidOperationException">
         /// The <see cref="Multimedia.Player"/> that this instance belongs to is not in the valid state.
         /// </exception>
-        /// <seealso cref="DirectionOfView"/>
         /// <since_tizen> 5 </since_tizen>
         public DirectionOfView GetDirectionOfView()
         {
@@ -295,6 +294,7 @@ namespace Tizen.Multimedia
         /// <summary>
         /// Sets the direction of view for spherical video.
         /// </summary>
+        /// <param name="directionOfView">The angle values around the vertical and lateral axis.</param>
         /// <feature>http://tizen.org/feature/opengles.version.2_0</feature>
         /// <feature>http://tizen.org/feature/multimedia.player.spherical_video</feature>
         /// <exception cref="NotSupportedException">The required feature is not supported.</exception>
@@ -306,36 +306,33 @@ namespace Tizen.Multimedia
         /// </exception>
         /// <seealso cref="DirectionOfView"/>
         /// <since_tizen> 5 </since_tizen>
-        public void SetDirectionOfView(DirectionOfView directionofview)
+        public void SetDirectionOfView(DirectionOfView directionOfView)
         {
             ValidationUtil.ValidateFeatureSupported(PlayerFeatures.OpenGl);
             ValidationUtil.ValidateFeatureSupported(PlayerFeatures.SphericalVideo);
 
             Player.ValidateNotDisposed();
 
-            if (directionofview.Yaw > (float)Math.PI || directionofview.Yaw < -(float)Math.PI)
+            if (directionOfView.Yaw > (float)Math.PI || directionOfView.Yaw < -(float)Math.PI)
             {
-                throw new ArgumentOutOfRangeException(nameof(directionofview.Yaw), directionofview.Yaw,
-                    $"Valid values are in range [-PI, PI] : " + directionofview.Yaw);
+                throw new ArgumentOutOfRangeException(nameof(directionOfView.Yaw), directionOfView.Yaw,
+                    $"Valid values are in range [-PI, PI] : " + directionOfView.Yaw);
             }
 
-            if (directionofview.Pitch > (float)Math.PI/2 || directionofview.Pitch < -(float)Math.PI/2)
+            if (directionOfView.Pitch > (float)Math.PI/2 || directionOfView.Pitch < -(float)Math.PI/2)
             {
-                throw new ArgumentOutOfRangeException(nameof(directionofview.Pitch), directionofview.Pitch,
-                    $"Valid values are in range [-PI/2, PI/2] : " + directionofview.Pitch);
+                throw new ArgumentOutOfRangeException(nameof(directionOfView.Pitch), directionOfView.Pitch,
+                    $"Valid values are in range [-PI/2, PI/2] : " + directionOfView.Pitch);
             }
 
-            NativePlayer.SetDirectionOfView(Player.Handle, (float)directionofview.Yaw, (float)directionofview.Pitch).
+            NativePlayer.SetDirectionOfView(Player.Handle, (float)directionOfView.Yaw, (float)directionOfView.Pitch).
                 ThrowIfFailed(Player, "Failed to set the direction of the view.");
         }
 
         /// <summary>
         /// Gets the field of view for spherical video.
         /// </summary>
-        /// <returns>A <see cref="VideoStreamProperties"/> that contains the video stream information.</returns>
-        /// <remarks>
-        /// Remark
-        /// </remarks>
+        /// <returns>The <see cref="FieldOfView"/> containing the degree information to display.</returns>
         /// <feature>http://tizen.org/feature/opengles.version.2_0</feature>
         /// <feature>http://tizen.org/feature/multimedia.player.spherical_video</feature>
         /// <exception cref="NotSupportedException">The required feature is not supported.</exception>
@@ -345,7 +342,6 @@ namespace Tizen.Multimedia
         /// <exception cref="InvalidOperationException">
         /// The <see cref="Multimedia.Player"/> that this instance belongs to is not in the valid state.
         /// </exception>
-        /// <seealso cref="FieldOfView"/>
         /// <since_tizen> 5 </since_tizen>
         public FieldOfView GetFieldOfView()
         {
@@ -363,6 +359,7 @@ namespace Tizen.Multimedia
         /// <summary>
         /// Sets the field of view for spherical video.
         /// </summary>
+        /// <param name="fieldOfView">The degree values to display.</param>
         /// <feature>http://tizen.org/feature/opengles.version.2_0</feature>
         /// <feature>http://tizen.org/feature/multimedia.player.spherical_video</feature>
         /// <exception cref="NotSupportedException">The required feature is not supported.</exception>
@@ -374,26 +371,26 @@ namespace Tizen.Multimedia
         /// </exception>
         /// <seealso cref="DirectionOfView"/>
         /// <since_tizen> 5 </since_tizen>
-        public void SetFieldOfView(FieldOfView fieldofview)
+        public void SetFieldOfView(FieldOfView fieldOfView)
         {
             ValidationUtil.ValidateFeatureSupported(PlayerFeatures.OpenGl);
             ValidationUtil.ValidateFeatureSupported(PlayerFeatures.SphericalVideo);
 
             Player.ValidateNotDisposed();
 
-            if (fieldofview.HorizontalDegrees < 1 || fieldofview.HorizontalDegrees > 360)
+            if (fieldOfView.HorizontalDegrees < 1 || fieldOfView.HorizontalDegrees > 360)
             {
-                throw new ArgumentOutOfRangeException(nameof(fieldofview.HorizontalDegrees), fieldofview.HorizontalDegrees,
-                    $"Valid range is 1-360 degrees. : " + fieldofview.HorizontalDegrees);
+                throw new ArgumentOutOfRangeException(nameof(fieldOfView.HorizontalDegrees), fieldOfView.HorizontalDegrees,
+                    $"Valid range is 1-360 degrees. : " + fieldOfView.HorizontalDegrees);
             }
 
-            if (fieldofview.VerticalDegrees < 1 || fieldofview.VerticalDegrees > 180)
+            if (fieldOfView.VerticalDegrees < 1 || fieldOfView.VerticalDegrees > 180)
             {
-                throw new ArgumentOutOfRangeException(nameof(fieldofview.VerticalDegrees), fieldofview.VerticalDegrees,
-                    $"Valid range is 1-180 degrees. : " + fieldofview.VerticalDegrees);
+                throw new ArgumentOutOfRangeException(nameof(fieldOfView.VerticalDegrees), fieldOfView.VerticalDegrees,
+                    $"Valid range is 1-180 degrees. : " + fieldOfView.VerticalDegrees);
             }
 
-            NativePlayer.SetFieldOfView(Player.Handle, fieldofview.HorizontalDegrees, fieldofview.VerticalDegrees).
+            NativePlayer.SetFieldOfView(Player.Handle, fieldOfView.HorizontalDegrees, fieldOfView.VerticalDegrees).
                 ThrowIfFailed(Player, "Failed to set the field of the view.");
         }
     }
