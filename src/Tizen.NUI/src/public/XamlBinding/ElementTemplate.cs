@@ -38,13 +38,14 @@ namespace Tizen.NUI.Binding
 		}
 
 		Func<object> LoadTemplate { get; set; }
+
 #pragma warning disable 0612
 		Func<object> IDataTemplate.LoadTemplate
 		{
-#pragma warning restore 0612
 			get { return LoadTemplate; }
 			set { LoadTemplate = value; }
 		}
+#pragma warning restore 0612
 
 		void IElement.AddResourcesChangedListener(Action<object, ResourcesChangedEventArgs> onchanged)
 		{
