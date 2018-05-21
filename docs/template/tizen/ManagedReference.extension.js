@@ -4,6 +4,18 @@
  * This method will be called at the start of exports.transform in ManagedReference.html.primary.js
  */
 exports.preTransform = function (model) {
+  function applyDefaultPrivilegeLevel(item) {
+    if (item.privilege && !item.privlevel) {
+      //console.log('Default "public" privilege for ' + item.uid);
+      item.privlevel = 'public';
+    }
+    if (item.children) {
+      for (var i=0, len=item.children.length; i < len; i++) {
+        applyDefaultPrivilegeLevel(item.children[i]);
+      }
+    }
+  };
+  applyDefaultPrivilegeLevel(model);
   return model;
 }
 
