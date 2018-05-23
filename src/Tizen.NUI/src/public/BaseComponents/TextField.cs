@@ -327,7 +327,7 @@ namespace Tizen.NUI.BaseComponents
         /// </summary>
         /// <returns>The InputMethodContext instance.</returns>
         public InputMethodContext GetInputMethodContext() {
-            InputMethodContext ret = new InputMethodContext(NDalicPINVOKE.TextEditor_GetInputMethodContext(swigCPtr), true);
+            InputMethodContext ret = new InputMethodContext(NDalicPINVOKE.TextField_GetInputMethodContext(swigCPtr), true);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -1458,8 +1458,6 @@ namespace Tizen.NUI.BaseComponents
         /// Enables Text selection using Shift key.
         /// </summary>
         /// <since_tizen> 5 </since_tizen>
-        /// This will be released at Tizen.NET API Level 5, so currently this would be used as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
         public bool EnableShiftSelection
         {
             get

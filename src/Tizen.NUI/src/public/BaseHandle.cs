@@ -14,6 +14,11 @@
  * limitations under the License.
  *
  */
+using System;
+using System.ComponentModel;
+using Tizen.NUI.Binding;
+using Tizen.NUI.Internals;
+
 namespace Tizen.NUI
 {
 
@@ -21,8 +26,15 @@ namespace Tizen.NUI
     /// BaseHandle is a handle to an internal Dali resource.
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
-    public class BaseHandle : global::System.IDisposable
+    public class BaseHandle : Element, global::System.IDisposable
     {
+
+        internal static readonly BindablePropertyKey NavigationPropertyKey = BindableProperty.CreateReadOnly("Navigation", typeof(INavigation), typeof(/*VisualElement*/BaseHandle), default(INavigation));
+        /// <summary>
+        /// Backing store for the Navigation property.
+        /// </summary>
+        public static readonly BindableProperty NavigationProperty = NavigationPropertyKey.BindableProperty;
+
         private global::System.Runtime.InteropServices.HandleRef swigCPtr;
         /// <summary>
         /// swigCMemOwn
@@ -465,6 +477,40 @@ namespace Tizen.NUI
             }
         }
 
+        /// <summary>
+        /// For internal use.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public NavigationProxy NavigationProxy
+        {
+            get { return Navigation as NavigationProxy; }
+        }
+
+        /// <summary>
+        /// Gets the navigation.
+        /// </summary>
+        public INavigation Navigation
+        {
+            get { return (INavigation)GetValue(NavigationProperty); }
+            internal set { SetValue(NavigationPropertyKey, value); }
+        }
+
+        /// <summary>
+        /// Contains event arguments for the FocusChangeRequested event.
+        /// </summary>
+        public class FocusRequestArgs : EventArgs
+        {
+
+            /// <summary>
+            /// Gets or sets a value that indicates the starting focus state of the element for which a focus change is requested.
+            /// </summary>
+            public bool Focus { get; set; }
+
+            /// <summary>
+            /// Gets or sets a value that indicates the ending focus state of the element for which a focus change is requested.
+            /// </summary>
+            public bool Result { get; set; }
+        }
     }
 
 }

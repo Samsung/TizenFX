@@ -54,8 +54,8 @@ namespace Tizen.Multimedia
         private delegate CameraError GetRangeDelegate(IntPtr handle, out int min, out int max);
         private Range? GetRange(GetRangeDelegate func)
         {
-            CameraErrorFactory.ThrowIfError(func(_camera.GetHandle(), out int min, out int max),
-                "Failed to initialize the camera settings");
+            func(_camera.GetHandle(), out int min, out int max).
+                ThrowIfFailed("Failed to initialize the camera settings");
 
             if (min > max)
             {
@@ -81,8 +81,8 @@ namespace Tizen.Multimedia
         /// <exception cref="ObjectDisposedException">The camera already has been disposed of.</exception>
         public void SetAutoFocusArea(int x, int y)
         {
-            CameraErrorFactory.ThrowIfError(Native.SetAutoFocusArea(_camera.GetHandle(), x, y),
-                "Failed to set the autofocus area.");
+            Native.SetAutoFocusArea(_camera.GetHandle(), x, y).
+                ThrowIfFailed("Failed to set the autofocus area.");
         }
 
         /// <summary>
@@ -99,8 +99,8 @@ namespace Tizen.Multimedia
         /// <exception cref="ObjectDisposedException">The camera already has been disposed of.</exception>
         public void SetAutoFocusArea(Point pos)
         {
-            CameraErrorFactory.ThrowIfError(Native.SetAutoFocusArea(_camera.GetHandle(), pos.X, pos.Y),
-                "Failed to set the autofocus area.");
+            Native.SetAutoFocusArea(_camera.GetHandle(), pos.X, pos.Y).
+                ThrowIfFailed("Failed to set the autofocus area.");
         }
 
         /// <summary>
@@ -111,8 +111,8 @@ namespace Tizen.Multimedia
         /// <exception cref="ObjectDisposedException">The camera already has been disposed of.</exception>
         public void ClearFocusArea()
         {
-            CameraErrorFactory.ThrowIfError(Native.ClearAutoFocusArea(_camera.GetHandle()),
-                "Failed to clear the autofocus area.");
+            Native.ClearAutoFocusArea(_camera.GetHandle()).
+                ThrowIfFailed("Failed to clear the autofocus area.");
         }
 
         /// <summary>
@@ -127,8 +127,8 @@ namespace Tizen.Multimedia
             {
                 CameraAutoFocusMode val = CameraAutoFocusMode.None;
 
-                CameraErrorFactory.ThrowIfError(Native.GetAutoFocusMode(_camera.GetHandle(), out val),
-                    "Failed to get camera autofocus mode");
+                Native.GetAutoFocusMode(_camera.GetHandle(), out val).
+                    ThrowIfFailed("Failed to get camera autofocus mode");
 
                 return val;
             }
@@ -137,8 +137,8 @@ namespace Tizen.Multimedia
             {
                 ValidationUtil.ValidateEnum(typeof(CameraAutoFocusMode), value, nameof(value));
 
-                CameraErrorFactory.ThrowIfError(Native.SetAutoFocusMode(_camera.GetHandle(), value),
-                    "Failed to set camera autofocus mode.");
+                Native.SetAutoFocusMode(_camera.GetHandle(), value).
+                    ThrowIfFailed("Failed to set camera autofocus mode.");
             }
         }
         #endregion Auto Focus
@@ -153,16 +153,16 @@ namespace Tizen.Multimedia
         {
             get
             {
-                CameraErrorFactory.ThrowIfError(Native.GetContrast(_camera.GetHandle(), out int val),
-                    "Failed to get camera contrast value");
+                Native.GetContrast(_camera.GetHandle(), out int val).
+                    ThrowIfFailed("Failed to get camera contrast value");
 
                 return val;
             }
 
             set
             {
-                CameraErrorFactory.ThrowIfError(Native.SetContrast(_camera.GetHandle(), value),
-                    "Failed to set camera contrast value.");
+                Native.SetContrast(_camera.GetHandle(), value).
+                    ThrowIfFailed("Failed to set camera contrast value.");
             }
         }
 
@@ -176,16 +176,16 @@ namespace Tizen.Multimedia
         {
             get
             {
-                CameraErrorFactory.ThrowIfError(Native.IsEnabledAutoContrast(_camera.GetHandle(), out bool val),
-                    "Failed to get camera auto contrast");
+                Native.IsEnabledAutoContrast(_camera.GetHandle(), out bool val).
+                    ThrowIfFailed("Failed to get camera auto contrast");
 
                 return val;
             }
 
             set
             {
-                CameraErrorFactory.ThrowIfError(Native.EnableAutoContrast(_camera.GetHandle(), value),
-                    "Failed to set camera enable auto contrast.");
+                Native.EnableAutoContrast(_camera.GetHandle(), value).
+                    ThrowIfFailed("Failed to set camera enable auto contrast.");
             }
         }
 
@@ -221,16 +221,16 @@ namespace Tizen.Multimedia
         {
             get
             {
-                CameraErrorFactory.ThrowIfError(Native.GetHue(_camera.GetHandle(), out int val),
-                    "Failed to get camera hue value");
+                Native.GetHue(_camera.GetHandle(), out int val).
+                    ThrowIfFailed("Failed to get camera hue value");
 
                 return val;
             }
 
             set
             {
-                CameraErrorFactory.ThrowIfError(Native.SetHue(_camera.GetHandle(), value),
-                    "Failed to set camera hue value.");
+                Native.SetHue(_camera.GetHandle(), value).
+                    ThrowIfFailed("Failed to set camera hue value.");
             }
         }
 
@@ -267,16 +267,16 @@ namespace Tizen.Multimedia
         {
             get
             {
-                CameraErrorFactory.ThrowIfError(Native.GetBrightness(_camera.GetHandle(), out int val),
-                    "Failed to get camera brightness value");
+                Native.GetBrightness(_camera.GetHandle(), out int val).
+                    ThrowIfFailed("Failed to get camera brightness value");
 
                 return val;
             }
 
             set
             {
-                CameraErrorFactory.ThrowIfError(Native.SetBrightness(_camera.GetHandle(), value),
-                    "Failed to set camera brightness value.");
+                Native.SetBrightness(_camera.GetHandle(), value).
+                    ThrowIfFailed("Failed to set camera brightness value.");
             }
         }
 
@@ -312,16 +312,16 @@ namespace Tizen.Multimedia
         {
             get
             {
-                CameraErrorFactory.ThrowIfError(Native.GetExposure(_camera.GetHandle(), out int val),
-                    "Failed to get camera exposure value");
+                Native.GetExposure(_camera.GetHandle(), out int val).
+                    ThrowIfFailed("Failed to get camera exposure value");
 
                 return val;
             }
 
             set
             {
-                CameraErrorFactory.ThrowIfError(Native.SetExposure(_camera.GetHandle(), value),
-                    "Failed to set camera exposure value.");
+                Native.SetExposure(_camera.GetHandle(), value).
+                    ThrowIfFailed("Failed to set camera exposure value.");
             }
         }
 
@@ -337,8 +337,8 @@ namespace Tizen.Multimedia
             {
                 CameraExposureMode val = CameraExposureMode.Off;
 
-                CameraErrorFactory.ThrowIfError(Native.GetExposureMode(_camera.GetHandle(), out val),
-                    "Failed to get camera exposure mode");
+                Native.GetExposureMode(_camera.GetHandle(), out val).
+                    ThrowIfFailed("Failed to get camera exposure mode");
 
                 return val;
             }
@@ -347,8 +347,8 @@ namespace Tizen.Multimedia
             {
                 ValidationUtil.ValidateEnum(typeof(CameraExposureMode), value, nameof(value));
 
-                CameraErrorFactory.ThrowIfError(Native.SetExposureMode(_camera.GetHandle(), value),
-                    "Failed to set camera exposure mode.");
+                Native.SetExposureMode(_camera.GetHandle(), value).
+                    ThrowIfFailed("Failed to set camera exposure mode.");
             }
         }
 
@@ -385,16 +385,16 @@ namespace Tizen.Multimedia
         {
             get
             {
-                CameraErrorFactory.ThrowIfError(Native.GetZoom(_camera.GetHandle(), out int val),
-                    "Failed to get zoom level");
+                Native.GetZoom(_camera.GetHandle(), out int val).
+                    ThrowIfFailed("Failed to get zoom level");
 
                 return val;
             }
 
             set
             {
-                CameraErrorFactory.ThrowIfError(Native.SetZoom(_camera.GetHandle(), value),
-                    "Failed to set zoom level.");
+                Native.SetZoom(_camera.GetHandle(), value).
+                    ThrowIfFailed("Failed to set zoom level.");
             }
         }
 
@@ -432,8 +432,8 @@ namespace Tizen.Multimedia
             {
                 CameraWhiteBalance val = CameraWhiteBalance.None;
 
-                CameraErrorFactory.ThrowIfError(Native.GetWhiteBalance(_camera.GetHandle(), out val),
-                    "Failed to get camera whitebalance");
+                Native.GetWhiteBalance(_camera.GetHandle(), out val).
+                    ThrowIfFailed("Failed to get camera whitebalance");
 
                 return val;
             }
@@ -442,8 +442,8 @@ namespace Tizen.Multimedia
             {
                 ValidationUtil.ValidateEnum(typeof(CameraWhiteBalance), value, nameof(value));
 
-                CameraErrorFactory.ThrowIfError(Native.SetWhitebalance(_camera.GetHandle(), value),
-                    "Failed to set camera whitebalance.");
+                Native.SetWhitebalance(_camera.GetHandle(), value).
+                    ThrowIfFailed("Failed to set camera whitebalance.");
             }
         }
 
@@ -459,8 +459,8 @@ namespace Tizen.Multimedia
             {
                 CameraIsoLevel val = CameraIsoLevel.Auto;
 
-                CameraErrorFactory.ThrowIfError(Native.GetIso(_camera.GetHandle(), out val),
-                    "Failed to get camera Iso level");
+                Native.GetIso(_camera.GetHandle(), out val).
+                    ThrowIfFailed("Failed to get camera Iso level");
 
                 return val;
             }
@@ -469,8 +469,8 @@ namespace Tizen.Multimedia
             {
                 ValidationUtil.ValidateEnum(typeof(CameraIsoLevel), value, nameof(value));
 
-                CameraErrorFactory.ThrowIfError(Native.SetIso(_camera.GetHandle(), value),
-                    "Failed to set camera Iso level.");
+                Native.SetIso(_camera.GetHandle(), value).
+                    ThrowIfFailed("Failed to set camera Iso level.");
             }
         }
 
@@ -484,8 +484,8 @@ namespace Tizen.Multimedia
         {
             get
             {
-                CameraErrorFactory.ThrowIfError(Native.GetImageQuality(_camera.GetHandle(), out int val),
-                    "Failed to get image quality");
+                Native.GetImageQuality(_camera.GetHandle(), out int val).
+                    ThrowIfFailed("Failed to get image quality");
 
                 return val;
             }
@@ -497,8 +497,8 @@ namespace Tizen.Multimedia
                     throw new ArgumentException("Valid value is from 1(lowest quality) to 100(highest quality)");
                 }
 
-                CameraErrorFactory.ThrowIfError(Native.SetImageQuality(_camera.GetHandle(), value),
-                    "Failed to set image quality.");
+                Native.SetImageQuality(_camera.GetHandle(), value).
+                    ThrowIfFailed("Failed to set image quality.");
             }
         }
 
@@ -513,8 +513,8 @@ namespace Tizen.Multimedia
         {
             get
             {
-                CameraErrorFactory.ThrowIfError(Native.GetPreviewFps(_camera.GetHandle(), out var val),
-                    "Failed to get camera preview fps");
+                Native.GetPreviewFps(_camera.GetHandle(), out var val).
+                    ThrowIfFailed("Failed to get camera preview fps");
 
                 return val;
             }
@@ -523,8 +523,8 @@ namespace Tizen.Multimedia
             {
                 ValidationUtil.ValidateEnum(typeof(CameraFps), value, nameof(value));
 
-                CameraErrorFactory.ThrowIfError(Native.SetPreviewFps(_camera.GetHandle(), value),
-                    "Failed to set preview fps.");
+                Native.SetPreviewFps(_camera.GetHandle(), value).
+                    ThrowIfFailed("Failed to set preview fps.");
             }
         }
 
@@ -538,16 +538,16 @@ namespace Tizen.Multimedia
         {
             get
             {
-                CameraErrorFactory.ThrowIfError(GetPreviewResolution(_camera.GetHandle(), out int width, out int height),
-                    "Failed to get camera preview resolution");
+                GetPreviewResolution(_camera.GetHandle(), out int width, out int height).
+                    ThrowIfFailed("Failed to get camera preview resolution");
 
                 return new Size(width, height);
             }
 
             set
             {
-                CameraErrorFactory.ThrowIfError(SetPreviewResolution(_camera.GetHandle(), value.Width, value.Height),
-                    "Failed to set preview resolution.");
+                SetPreviewResolution(_camera.GetHandle(), value.Width, value.Height).
+                    ThrowIfFailed("Failed to set preview resolution.");
             }
         }
 
@@ -564,8 +564,8 @@ namespace Tizen.Multimedia
         {
             get
             {
-                CameraErrorFactory.ThrowIfError(GetRecommendedPreviewResolution(_camera.GetHandle(), out int width, out int height),
-                    "Failed to get recommended preview resolution");
+                GetRecommendedPreviewResolution(_camera.GetHandle(), out int width, out int height).
+                    ThrowIfFailed("Failed to get recommended preview resolution");
 
                 return new Size(width, height);
             }
@@ -582,8 +582,8 @@ namespace Tizen.Multimedia
         {
             get
             {
-                CameraErrorFactory.ThrowIfError(GetPreviewPixelFormat(_camera.GetHandle(), out var val),
-                    "Failed to get preview format");
+                GetPreviewPixelFormat(_camera.GetHandle(), out var val).
+                    ThrowIfFailed("Failed to get preview format");
 
                 return val;
             }
@@ -592,8 +592,8 @@ namespace Tizen.Multimedia
             {
                 ValidationUtil.ValidateEnum(typeof(CameraPixelFormat), value, nameof(value));
 
-                CameraErrorFactory.ThrowIfError(SetPreviewPixelFormat(_camera.GetHandle(), value),
-                    "Failed to set preview format.");
+                SetPreviewPixelFormat(_camera.GetHandle(), value).
+                    ThrowIfFailed("Failed to set preview format.");
             }
         }
 
@@ -607,8 +607,8 @@ namespace Tizen.Multimedia
         {
             get
             {
-                CameraErrorFactory.ThrowIfError(GetCaptureResolution(_camera.GetHandle(), out int width, out int height),
-                    "Failed to get camera capture resolution");
+                GetCaptureResolution(_camera.GetHandle(), out int width, out int height).
+                    ThrowIfFailed("Failed to get camera capture resolution");
 
                 return new Size(width, height);
             }
@@ -617,8 +617,8 @@ namespace Tizen.Multimedia
             {
                 Size res = value;
 
-                CameraErrorFactory.ThrowIfError(SetCaptureResolution(_camera.GetHandle(), res.Width, res.Height),
-                    "Failed to set capture resolution.");
+                SetCaptureResolution(_camera.GetHandle(), res.Width, res.Height).
+                    ThrowIfFailed("Failed to set capture resolution.");
             }
         }
 
@@ -633,8 +633,8 @@ namespace Tizen.Multimedia
         {
             get
             {
-                CameraErrorFactory.ThrowIfError(GetCaptureFormat(_camera.GetHandle(), out var val),
-                    "Failed to get camera capture formats");
+                GetCaptureFormat(_camera.GetHandle(), out var val).
+                    ThrowIfFailed("Failed to get camera capture formats");
 
                 return val;
             }
@@ -643,8 +643,8 @@ namespace Tizen.Multimedia
             {
                 ValidationUtil.ValidateEnum(typeof(CameraPixelFormat), value, nameof(value));
 
-                CameraErrorFactory.ThrowIfError(SetCaptureFormat(_camera.GetHandle(), value),
-                    "Failed to set capture format.");
+                SetCaptureFormat(_camera.GetHandle(), value).
+                    ThrowIfFailed("Failed to set capture format.");
             }
         }
         #endregion Resolution, Format, Fps of preview, capture
@@ -659,16 +659,16 @@ namespace Tizen.Multimedia
         {
             get
             {
-                CameraErrorFactory.ThrowIfError(Native.GetBitrate(_camera.GetHandle(), out int val),
-                    "Failed to get preview bitrate");
+                Native.GetBitrate(_camera.GetHandle(), out int val).
+                    ThrowIfFailed("Failed to get preview bitrate");
 
                 return val;
             }
 
             set
             {
-                CameraErrorFactory.ThrowIfError(Native.SetBitrate(_camera.GetHandle(), value),
-                    "Failed to set encoded preview bitrate.");
+                Native.SetBitrate(_camera.GetHandle(), value).
+                    ThrowIfFailed("Failed to set encoded preview bitrate.");
             }
         }
 
@@ -681,16 +681,16 @@ namespace Tizen.Multimedia
         {
             get
             {
-                CameraErrorFactory.ThrowIfError(Native.GetGopInterval(_camera.GetHandle(), out int val),
-                    "Failed to get preview gop interval");
+                Native.GetGopInterval(_camera.GetHandle(), out int val).
+                    ThrowIfFailed("Failed to get preview gop interval");
 
                 return val;
             }
 
             set
             {
-                CameraErrorFactory.ThrowIfError(Native.SetGopInterval(_camera.GetHandle(), value),
-                    "Failed to set encoded preview gop intervals.");
+                Native.SetGopInterval(_camera.GetHandle(), value).
+                    ThrowIfFailed("Failed to set encoded preview gop intervals.");
             }
         }
         #endregion Encoded preview
@@ -709,8 +709,8 @@ namespace Tizen.Multimedia
         {
             get
             {
-                CameraErrorFactory.ThrowIfError(Native.GetTheaterMode(_camera.GetHandle(), out var val),
-                    "Failed to get camera theater mode");
+                Native.GetTheaterMode(_camera.GetHandle(), out var val).
+                    ThrowIfFailed("Failed to get camera theater mode");
 
                 return val;
             }
@@ -719,8 +719,8 @@ namespace Tizen.Multimedia
             {
                 ValidationUtil.ValidateEnum(typeof(CameraTheaterMode), value, nameof(value));
 
-                CameraErrorFactory.ThrowIfError(Native.SetTheaterMode(_camera.GetHandle(), value),
-                    "Failed to set camera theater mode.");
+                Native.SetTheaterMode(_camera.GetHandle(), value).
+                    ThrowIfFailed("Failed to set camera theater mode.");
             }
         }
 
@@ -734,8 +734,8 @@ namespace Tizen.Multimedia
         {
             get
             {
-                CameraErrorFactory.ThrowIfError(Native.GetEffect(_camera.GetHandle(), out var val),
-                    "Failed to get camera effect");
+                Native.GetEffect(_camera.GetHandle(), out var val).
+                    ThrowIfFailed("Failed to get camera effect");
 
                 return val;
             }
@@ -744,8 +744,8 @@ namespace Tizen.Multimedia
             {
                 ValidationUtil.ValidateEnum(typeof(CameraEffectMode), value, nameof(value));
 
-                CameraErrorFactory.ThrowIfError(Native.SetEffect(_camera.GetHandle(), value),
-                    "Failed to set camera effect.");
+                Native.SetEffect(_camera.GetHandle(), value).
+                    ThrowIfFailed("Failed to set camera effect.");
             }
         }
 
@@ -759,8 +759,8 @@ namespace Tizen.Multimedia
         {
             get
             {
-                CameraErrorFactory.ThrowIfError(Native.GetSceneMode(_camera.GetHandle(), out var val),
-                    "Failed to get camera scene mode");
+                Native.GetSceneMode(_camera.GetHandle(), out var val).
+                    ThrowIfFailed("Failed to get camera scene mode");
 
                 return val;
             }
@@ -769,8 +769,8 @@ namespace Tizen.Multimedia
             {
                 ValidationUtil.ValidateEnum(typeof(CameraSceneMode), value, nameof(value));
 
-                CameraErrorFactory.ThrowIfError(Native.SetSceneMode(_camera.GetHandle(), value),
-                    "Failed to set camera scene mode.");
+                Native.SetSceneMode(_camera.GetHandle(), value).
+                    ThrowIfFailed("Failed to set camera scene mode.");
             }
         }
 
@@ -784,8 +784,8 @@ namespace Tizen.Multimedia
         {
             get
             {
-                CameraErrorFactory.ThrowIfError(Native.GetFlashMode(_camera.GetHandle(), out var val),
-                    "Failed to get camera flash mode");
+                Native.GetFlashMode(_camera.GetHandle(), out var val).
+                    ThrowIfFailed("Failed to get camera flash mode");
 
                 return val;
             }
@@ -794,8 +794,8 @@ namespace Tizen.Multimedia
             {
                 ValidationUtil.ValidateEnum(typeof(CameraFlashMode), value, nameof(value));
 
-                CameraErrorFactory.ThrowIfError(Native.SetFlashMode(_camera.GetHandle(), value),
-                    "Failed to set camera flash mode.");
+                Native.SetFlashMode(_camera.GetHandle(), value).
+                    ThrowIfFailed("Failed to set camera flash mode.");
             }
         }
 
@@ -808,8 +808,8 @@ namespace Tizen.Multimedia
         {
             get
             {
-                CameraErrorFactory.ThrowIfError(Native.GetLensOrientation(_camera.GetHandle(), out var val),
-                    "Failed to get camera lens orientation");
+                Native.GetLensOrientation(_camera.GetHandle(), out var val).
+                    ThrowIfFailed("Failed to get camera lens orientation");
 
                 return val;
             }
@@ -825,8 +825,8 @@ namespace Tizen.Multimedia
         {
             get
             {
-                CameraErrorFactory.ThrowIfError(Native.GetStreamRotation(_camera.GetHandle(), out var val),
-                    "Failed to get camera stream rotation");
+                Native.GetStreamRotation(_camera.GetHandle(), out var val).
+                    ThrowIfFailed("Failed to get camera stream rotation");
 
                 return val;
             }
@@ -835,8 +835,8 @@ namespace Tizen.Multimedia
             {
                 ValidationUtil.ValidateEnum(typeof(Rotation), value, nameof(value));
 
-                CameraErrorFactory.ThrowIfError(Native.SetStreamRotation(_camera.GetHandle(), value),
-                    "Failed to set camera stream rotation.");
+                Native.SetStreamRotation(_camera.GetHandle(), value).
+                    ThrowIfFailed("Failed to set camera stream rotation.");
             }
         }
 
@@ -850,8 +850,8 @@ namespace Tizen.Multimedia
         {
             get
             {
-                CameraErrorFactory.ThrowIfError(Native.GetFlip(_camera.GetHandle(), out var val),
-                    "Failed to get camera stream flip");
+                Native.GetFlip(_camera.GetHandle(), out var val).
+                    ThrowIfFailed("Failed to get camera stream flip");
 
                 return val;
             }
@@ -860,8 +860,8 @@ namespace Tizen.Multimedia
             {
                 ValidationUtil.ValidateFlagsEnum(value, Flips.Horizontal | Flips.Vertical, nameof(Flips));
 
-                CameraErrorFactory.ThrowIfError(Native.SetFlip(_camera.GetHandle(), value),
-                    "Failed to set camera flip.");
+                Native.SetFlip(_camera.GetHandle(), value).
+                    ThrowIfFailed("Failed to set camera flip.");
             }
         }
 
@@ -880,8 +880,8 @@ namespace Tizen.Multimedia
         {
             get
             {
-                CameraErrorFactory.ThrowIfError(Native.GetHdrMode(_camera.GetHandle(), out var val),
-                    "Failed to get camera hdr mode");
+                Native.GetHdrMode(_camera.GetHandle(), out var val).
+                    ThrowIfFailed("Failed to get camera hdr mode");
 
                 return val;
             }
@@ -890,8 +890,8 @@ namespace Tizen.Multimedia
             {
                 ValidationUtil.ValidateEnum(typeof(CameraHdrMode), value, nameof(value));
 
-                CameraErrorFactory.ThrowIfError(Native.SetHdrMode(_camera.GetHandle(), value),
-                    "Failed to set camera hdr mode.");
+                Native.SetHdrMode(_camera.GetHandle(), value).
+                    ThrowIfFailed("Failed to set camera hdr mode.");
             }
         }
 
@@ -905,16 +905,16 @@ namespace Tizen.Multimedia
         {
             get
             {
-                CameraErrorFactory.ThrowIfError(Native.IsEnabledAntiShake(_camera.GetHandle(), out bool val),
-                    "Failed to get camera anti shake value");
+                Native.IsEnabledAntiShake(_camera.GetHandle(), out bool val).
+                    ThrowIfFailed("Failed to get camera anti shake value");
 
                 return val;
             }
 
             set
             {
-                CameraErrorFactory.ThrowIfError(Native.EnableAntiShake(_camera.GetHandle(), value),
-                    "Failed to set camera anti shake value.");
+                Native.EnableAntiShake(_camera.GetHandle(), value).
+                    ThrowIfFailed("Failed to set camera anti shake value.");
             }
         }
 
@@ -932,16 +932,16 @@ namespace Tizen.Multimedia
         {
             get
             {
-                CameraErrorFactory.ThrowIfError(Native.IsEnabledVideoStabilization(_camera.GetHandle(), out bool val),
-                    "Failed to get camera video stabilization");
+                Native.IsEnabledVideoStabilization(_camera.GetHandle(), out bool val).
+                    ThrowIfFailed("Failed to get camera video stabilization");
 
                 return val;
             }
 
             set
             {
-                CameraErrorFactory.ThrowIfError(Native.EnableVideoStabilization(_camera.GetHandle(), value),
-                    "Failed to set camera video stabilization.");
+                Native.EnableVideoStabilization(_camera.GetHandle(), value).
+                    ThrowIfFailed("Failed to set camera video stabilization.");
             }
         }
 
@@ -959,8 +959,8 @@ namespace Tizen.Multimedia
         /// <exception cref="ObjectDisposedException">The camera already has been disposed of.</exception>
         public void DisableShutterSound(bool shutterSound)
         {
-            CameraErrorFactory.ThrowIfError(Native.DisableShutterSound(_camera.GetHandle(), shutterSound),
-                    "Failed to set disable shutter sound.");
+            Native.DisableShutterSound(_camera.GetHandle(), shutterSound).
+                ThrowIfFailed("Failed to set disable shutter sound.");
         }
 
         #region PTZ(Pan Tilt Zoom), Pan, Tilt
@@ -976,8 +976,8 @@ namespace Tizen.Multimedia
             {
                 ValidationUtil.ValidateEnum(typeof(CameraPtzType), value, nameof(value));
 
-                CameraErrorFactory.ThrowIfError(Native.SetPtzType(_camera.GetHandle(), value),
-                    "Failed to set camera ptz type.");
+                Native.SetPtzType(_camera.GetHandle(), value).
+                    ThrowIfFailed("Failed to set camera ptz type.");
             }
         }
 
@@ -994,8 +994,8 @@ namespace Tizen.Multimedia
         {
             ValidationUtil.ValidateEnum(typeof(CameraPtzMoveType), type, nameof(type));
 
-            CameraErrorFactory.ThrowIfError(Native.SetPan(_camera.GetHandle(), type, panStep),
-                "Failed to set the camera pan type.");
+            Native.SetPan(_camera.GetHandle(), type, panStep).
+                ThrowIfFailed("Failed to set the camera pan type.");
         }
 
         /// <summary>
@@ -1007,8 +1007,8 @@ namespace Tizen.Multimedia
         /// <exception cref="ObjectDisposedException">The camera already has been disposed of.</exception>
         public int GetPan()
         {
-            CameraErrorFactory.ThrowIfError(Native.GetPan(_camera.GetHandle(), out int val),
-                "Failed to get the camera pan step.");
+            Native.GetPan(_camera.GetHandle(), out int val).
+                ThrowIfFailed("Failed to get the camera pan step.");
 
             return val;
         }
@@ -1025,8 +1025,9 @@ namespace Tizen.Multimedia
         public void SetTilt(CameraPtzMoveType type, int tiltStep)
         {
             ValidationUtil.ValidateEnum(typeof(CameraPtzMoveType), type, nameof(type));
-            CameraErrorFactory.ThrowIfError(Native.SetTilt(_camera.GetHandle(), type, tiltStep),
-                "Failed to set the camera tilt type\t.");
+
+            Native.SetTilt(_camera.GetHandle(), type, tiltStep).
+                ThrowIfFailed("Failed to set the camera tilt type\t.");
         }
 
         /// <summary>
@@ -1038,8 +1039,8 @@ namespace Tizen.Multimedia
         /// <exception cref="ObjectDisposedException">The camera already has been disposed of.</exception>
         public int GetTilt()
         {
-            CameraErrorFactory.ThrowIfError(Native.GetTilt(_camera.GetHandle(), out int val),
-                "Failed to set the camera current position.");
+            Native.GetTilt(_camera.GetHandle(), out int val).
+                ThrowIfFailed("Failed to set the camera current position.");
 
             return val;
         }
@@ -1098,16 +1099,16 @@ namespace Tizen.Multimedia
         {
             get
             {
-                CameraErrorFactory.ThrowIfError(Native.IsEnabledTag(_camera.GetHandle(), out bool val),
-                    "Failed to get camera enable tag");
+                Native.IsEnabledTag(_camera.GetHandle(), out bool val).
+                    ThrowIfFailed("Failed to get camera enable tag");
 
                 return val;
             }
 
             set
             {
-                CameraErrorFactory.ThrowIfError(Native.EnableTag(_camera.GetHandle(), value),
-                    "Failed to set camera enable tag.");
+                Native.EnableTag(_camera.GetHandle(), value).
+                    ThrowIfFailed("Failed to set camera enable tag.");
             }
         }
 
@@ -1123,8 +1124,8 @@ namespace Tizen.Multimedia
                 IntPtr val = IntPtr.Zero;
                 try
                 {
-                    CameraErrorFactory.ThrowIfError(Native.GetImageDescription(_camera.GetHandle(), out val),
-                    "Failed to get image description");
+                    Native.GetImageDescription(_camera.GetHandle(), out val).
+                        ThrowIfFailed("Failed to get image description");
 
                     return Marshal.PtrToStringAnsi(val);
                 }
@@ -1136,8 +1137,8 @@ namespace Tizen.Multimedia
 
             set
             {
-                CameraErrorFactory.ThrowIfError(Native.SetImageDescription(_camera.GetHandle(), value),
-                    "Failed to set image description.");
+                Native.SetImageDescription(_camera.GetHandle(), value).
+                    ThrowIfFailed("Failed to set image description.");
             }
         }
 
@@ -1154,8 +1155,8 @@ namespace Tizen.Multimedia
 
                 try
                 {
-                    CameraErrorFactory.ThrowIfError(Native.GetTagSoftware(_camera.GetHandle(), out val),
-                    "Failed to get tag software");
+                    Native.GetTagSoftware(_camera.GetHandle(), out val).
+                        ThrowIfFailed("Failed to get tag software");
 
                     return Marshal.PtrToStringAnsi(val);
                 }
@@ -1167,8 +1168,8 @@ namespace Tizen.Multimedia
 
             set
             {
-                CameraErrorFactory.ThrowIfError(Native.SetTagSoftware(_camera.GetHandle(), value),
-                    "Failed to set tag software.");
+                Native.SetTagSoftware(_camera.GetHandle(), value).
+                    ThrowIfFailed("Failed to set tag software.");
             }
         }
 
@@ -1181,16 +1182,16 @@ namespace Tizen.Multimedia
         {
             get
             {
-                CameraErrorFactory.ThrowIfError(Native.GetGeotag(_camera.GetHandle(),
-                    out double latitude, out double longitude, out double altitude), "Failed to get tag");
+                Native.GetGeotag(_camera.GetHandle(), out double latitude, out double longitude, out double altitude).
+                    ThrowIfFailed("Failed to get tag");
 
                 return new Location(latitude, longitude, altitude);
             }
 
             set
             {
-                CameraErrorFactory.ThrowIfError(Native.SetGeotag(_camera.GetHandle(),
-                    value.Latitude, value.Longitude, value.Altitude), "Failed to set geo tag.");
+                Native.SetGeotag(_camera.GetHandle(), value.Latitude, value.Longitude, value.Altitude).
+                    ThrowIfFailed("Failed to set geo tag.");
             }
         }
 
@@ -1202,8 +1203,8 @@ namespace Tizen.Multimedia
         /// <exception cref="ObjectDisposedException">The camera already has been disposed of.</exception>
         public void RemoveGeoTag()
         {
-            CameraErrorFactory.ThrowIfError(Native.RemoveGeotag(_camera.GetHandle()),
-                "Failed to remove the geotag\t.");
+            Native.RemoveGeotag(_camera.GetHandle()).
+                ThrowIfFailed("Failed to remove the geotag.");
         }
 
         /// <summary>
@@ -1215,8 +1216,8 @@ namespace Tizen.Multimedia
         {
             get
             {
-                CameraErrorFactory.ThrowIfError(Native.GetTagOrientation(_camera.GetHandle(), out var val),
-                    "Failed to get camera tag orientation");
+                Native.GetTagOrientation(_camera.GetHandle(), out var val).
+                    ThrowIfFailed("Failed to get camera tag orientation");
 
                 return val;
             }
@@ -1225,8 +1226,8 @@ namespace Tizen.Multimedia
             {
                 ValidationUtil.ValidateEnum(typeof(CameraTagOrientation), value, nameof(value));
 
-                CameraErrorFactory.ThrowIfError(Native.SetTagOrientation(_camera.GetHandle(), value),
-                    "Failed to set camera tag orientation.");
+                Native.SetTagOrientation(_camera.GetHandle(), value).
+                    ThrowIfFailed("Failed to set camera tag orientation.");
             }
         }
         #endregion EXIF tag

@@ -1752,5 +1752,8 @@ namespace Tizen.NUI
         [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint = "CSharp_ImageView_IMAGE_VISUAL_ACTION_STOP_get")]
         public static extern int ImageView_IMAGE_VISUAL_ACTION_STOP_get();
 
+        [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint = "CSharp_NUI_InternalAPIVersionCheck")]
+        public static extern bool InternalAPIVersionCheck(ref int ver1, ref int ver2, ref int ver3);
+
     }
 }
