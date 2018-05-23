@@ -66,7 +66,7 @@ namespace Tizen.NUI.Xaml
 			else if (!type.GetTypeInfo().DeclaredConstructors.Any(ci => ci.IsPublic && ci.GetParameters().Length == 0) &&
 			         !ValidateCtorArguments(type, node, out ctorargname))
 			{
-				throw new XamlParseException($"The Property {ctorargname} is required to create a {type.FullName} object.", node);
+				throw new XamlParseException($"The Property {ctorargname} is required to create a {type?.FullName} object.", node);
 			}
 			else
 			{
