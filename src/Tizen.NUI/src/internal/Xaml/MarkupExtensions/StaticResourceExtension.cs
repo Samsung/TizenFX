@@ -69,7 +69,7 @@ namespace Tizen.NUI.Xaml
 				if (opImplicit != null) {
 					//convert the OnPlatform<T> to T
 					var opPlatformImplicitConversionOperator = resource.GetType().GetImplicitConversionOperator(fromType: resource.GetType(), toType: tType);
-					resource = opPlatformImplicitConversionOperator.Invoke(null, new[] { resource });
+					resource = opPlatformImplicitConversionOperator?.Invoke(null, new[] { resource });
 
 					//and convert to toType
 					resource = opImplicit.Invoke(null, new[] { resource });
