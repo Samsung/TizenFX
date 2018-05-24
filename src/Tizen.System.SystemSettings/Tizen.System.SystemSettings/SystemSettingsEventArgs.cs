@@ -123,6 +123,7 @@ namespace Tizen.System
     /// <privilege>http://tizen.org/privilege/systemsettings.admin</privilege>
     /// <privlevel>platform</privlevel>
     /// <feature>http://tizen.org/feature/systemsetting</feature>
+    /// <feature>http://tizen.org/feature/systemsetting.font</feature>
     /// <exception cref="ArgumentException">Invalid Argument</exception>
     /// <exception cref="NotSupportedException">Not Supported feature</exception>
     /// <exception cref="InvalidOperationException">Invalid operation</exception>
@@ -155,6 +156,7 @@ namespace Tizen.System
     /// <privilege>http://tizen.org/privilege/systemsettings.admin</privilege>
     /// <privlevel>platform</privlevel>
     /// <feature>http://tizen.org/feature/systemsetting</feature>
+    /// <feature>http://tizen.org/feature/systemsetting.font</feature>
     /// <exception cref="ArgumentException">Invalid Argument</exception>
     /// <exception cref="NotSupportedException">Not Supported feature</exception>
     /// <exception cref="InvalidOperationException">Invalid operation</exception>
@@ -1060,6 +1062,7 @@ namespace Tizen.System
     /// <privilege>http://tizen.org/privilege/systemsettings.admin</privilege>
     /// <privlevel>platform</privlevel>
     /// <feature>http://tizen.org/feature/systemsetting</feature>
+    /// <feature>http://tizen.org/feature/network.telephony</feature>
     /// <exception cref="ArgumentException">Invalid Argument</exception>
     /// <exception cref="NotSupportedException">Not Supported feature</exception>
     /// <exception cref="InvalidOperationException">Invalid operation</exception>
