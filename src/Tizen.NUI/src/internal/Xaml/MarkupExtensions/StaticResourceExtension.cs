@@ -51,8 +51,8 @@ namespace Tizen.NUI.Xaml
 			}
 			if (propertyType.IsAssignableFrom(resource?.GetType()))
 				return resource;
-			var implicit_op =  resource.GetType().GetImplicitConversionOperator(fromType: resource.GetType(), toType: propertyType)
-							?? propertyType.GetImplicitConversionOperator(fromType: resource.GetType(), toType: propertyType);
+			var implicit_op =  resource?.GetType().GetImplicitConversionOperator(fromType: resource?.GetType(), toType: propertyType)
+							?? propertyType.GetImplicitConversionOperator(fromType: resource?.GetType(), toType: propertyType);
 			if (implicit_op != null)
 				return implicit_op.Invoke(resource, new [] { resource });
 
@@ -68,7 +68,7 @@ namespace Tizen.NUI.Xaml
 
 				if (opImplicit != null) {
 					//convert the OnPlatform<T> to T
-					var opPlatformImplicitConversionOperator = resource.GetType().GetImplicitConversionOperator(fromType: resource.GetType(), toType: tType);
+					var opPlatformImplicitConversionOperator = resource?.GetType().GetImplicitConversionOperator(fromType: resource?.GetType(), toType: tType);
 					resource = opPlatformImplicitConversionOperator?.Invoke(null, new[] { resource });
 
 					//and convert to toType
