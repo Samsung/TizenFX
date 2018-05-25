@@ -154,7 +154,7 @@ namespace Tizen.NUI.Xaml
 				}
 
 				var namespaceuri = nsResolver.LookupNamespace(prefix) ?? "";
-				var xmltype = new XmlType(namespaceuri, type.Name, null);
+				var xmltype = new XmlType(namespaceuri, type?.Name, null);
 
 				if (type == null)
 					throw new NotSupportedException();

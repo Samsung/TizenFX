@@ -1884,7 +1884,7 @@ namespace Tizen.NUI
                 }
                 else if (value.GetType().Equals(typeof(string)))
                 {
-                    KeyString = (string)value;
+                    KeyString = value.ToString();
                 }
                 KeyInt = (int)value;
             }
