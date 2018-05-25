@@ -56,27 +56,28 @@ namespace Tizen.NUI.Xaml
 			if (implicit_op != null)
 				return implicit_op.Invoke(resource, new [] { resource });
 
-			//Special case for https://bugzilla.xamarin.com/show_bug.cgi?id=59818
-			//On OnPlatform, check for an opImplicit from the targetType
-			if (   Device.Flags != null
-				&& Device.Flags.Contains("xamlDoubleImplicitOpHack")
-				&& resource.GetType().GetTypeInfo().IsGenericType
-				&& (resource.GetType().GetGenericTypeDefinition() == typeof(OnPlatform<>))) {
-				var tType = resource.GetType().GenericTypeArguments[0];
-				var opImplicit = tType.GetImplicitConversionOperator(fromType: tType, toType: propertyType)
-								?? propertyType.GetImplicitConversionOperator(fromType: tType, toType: propertyType);
+			if (resource != null) { 
+				//Special case for https://bugzilla.xamarin.com/show_bug.cgi?id=59818
+				//On OnPlatform, check for an opImplicit from the targetType
+				if (   Device.Flags != null
+					&& Device.Flags.Contains("xamlDoubleImplicitOpHack")
+					&& resource.GetType().GetTypeInfo().IsGenericType
+					&& (resource.GetType().GetGenericTypeDefinition() == typeof(OnPlatform<>))) {
+					var tType = resource.GetType().GenericTypeArguments[0];
+					var opImplicit = tType.GetImplicitConversionOperator(fromType: tType, toType: propertyType)
+									?? propertyType.GetImplicitConversionOperator(fromType: tType, toType: propertyType);
 
-				if (opImplicit != null) {
-					//convert the OnPlatform<T> to T
-					var opPlatformImplicitConversionOperator = resource?.GetType().GetImplicitConversionOperator(fromType: resource?.GetType(), toType: tType);
-					resource = opPlatformImplicitConversionOperator?.Invoke(null, new[] { resource });
+					if (opImplicit != null) {
+						//convert the OnPlatform<T> to T
+						var opPlatformImplicitConversionOperator = resource?.GetType().GetImplicitConversionOperator(fromType: resource?.GetType(), toType: tType);
+						resource = opPlatformImplicitConversionOperator?.Invoke(null, new[] { resource });
 
-					//and convert to toType
-					resource = opImplicit.Invoke(null, new[] { resource });
-					return resource;
+						//and convert to toType
+						resource = opImplicit.Invoke(null, new[] { resource });
+						return resource;
+					}
 				}
 			}
-
 			return resource;
 		}
 
