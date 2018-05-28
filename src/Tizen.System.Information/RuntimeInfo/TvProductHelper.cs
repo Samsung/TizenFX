@@ -19,6 +19,7 @@ using System.Collections.Generic;
 
 namespace Tizen.System
 {
+    /// This class is for a TV product. It will be removed.
     internal static class TvProductHelper
     {
         private static int is_TV_product = -1;
@@ -41,39 +42,66 @@ namespace Tizen.System
             [RuntimeInfoKey.AudioJackConnector] = 20
         };
 
-        /// This function is for a TV product. It will be removed.
-        internal static RuntimeInfoKey ConvertKeyIfTvProduct(RuntimeInfoKey key)
+        private static void CheckTvProduct()
         {
             bool is_key_existed = false;
             string profile;
-            int key_TV = -1;
 
-            if (is_TV_product == -1)
-            {
 #pragma warning disable CS0618 // Type or member is obsolete
-                is_key_existed = SystemInfo.TryGetValue<string>("http://com.samsung/build_config/product_type", out profile);
+            is_key_existed = SystemInfo.TryGetValue<string>("http://com.samsung/build_config/product_type", out profile);
 #pragma warning restore CS0618 // Type or member is obsolete
-                if (is_key_existed && String.Compare(profile, "TV") == 0)
-                {
-                    is_TV_product = 1;
-                }
-                else
-                {
-                    is_TV_product = 0;
-                }
-            }
-
-            if (is_TV_product == 0)
+            if (is_key_existed && String.Compare(profile, "TV") == 0)
             {
-                return key;
+                is_TV_product = 1;
             }
             else
             {
-                if (!s_keyTVkeyMapping.TryGetValue(key, out key_TV))
+                is_TV_product = 0;
+            }
+        }
+
+        internal static RuntimeInfoKey ConvertKeyIfTvProduct(RuntimeInfoKey key)
+        {
+            if (is_TV_product == -1)
+            {
+                CheckTvProduct();
+            }
+
+            if (is_TV_product == 1)
+            {
+                if (!s_keyTVkeyMapping.TryGetValue(key, out int key_TV))
                 {
                     InformationErrorFactory.ThrowException(InformationError.InvalidParameter);
                 }
                 return (RuntimeInfoKey)key_TV;
+            }
+            else
+            {
+                return key;
+            }
+        }
+
+        internal static RuntimeInfoKey ReconvertKeyIfTvProduct(RuntimeInfoKey key)
+        {
+            if (is_TV_product == -1)
+            {
+                CheckTvProduct();
+            }
+
+            if (is_TV_product == 1)
+            {
+                foreach (KeyValuePair<RuntimeInfoKey, int> kvp in s_keyTVkeyMapping)
+                {
+                    if (kvp.Value == (int)key)
+                        return kvp.Key;
+                }
+
+                Log.Error(InformationErrorFactory.LogTag, "Key mapping failed");
+                return 0;
+            }
+            else
+            {
+                return key;
             }
         }
     }

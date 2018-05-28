@@ -65,7 +65,7 @@ namespace Tizen.NUI.Binding
 			try
 			{
 				_eventinfo = bindable.GetType().GetRuntimeEvent(Event);
-				_handlerdelegate = s_handlerinfo.CreateDelegate(_eventinfo.EventHandlerType, this);
+				_handlerdelegate = s_handlerinfo.CreateDelegate(_eventinfo?.EventHandlerType, this);
 			}
 			catch (Exception)
 			{

@@ -233,7 +233,7 @@ namespace Tizen.NUI.Binding
 				RealParent = value;
 				if (RealParent != null)
 				{
-					OnParentResourcesChanged(RealParent.GetMergedResources());
+					OnParentResourcesChanged(RealParent?.GetMergedResources());
 					((IElement)RealParent).AddResourcesChangedListener(OnParentResourcesChanged);
 				}
 

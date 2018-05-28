@@ -75,7 +75,7 @@ namespace Tizen.NUI.Xaml
 					(Func<TypeConverter>)null, serviceProvider);
 			}
 
-			setter.Invoke(markupExtension, new[] { value });
+			setter?.Invoke(markupExtension, new[] { value });
 		}
 	}
 }
