@@ -861,6 +861,36 @@ namespace Tizen.NUI
             return ret;
         }
 
+        /// <summary>
+        /// Sets keyboard repeat infomation.
+        /// </summary>
+        /// <param name="rate">The key repeat rate value</param>
+        /// <param name="delay">The key repeat delay value</param>
+        /// <returns>True if setting the keyboard repeat succeeds.</returns>
+        /// This will be released at Tizen.NET API Level 5, so currently this would be used as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public bool SetKeyboardRepeatInfo(double rate, double delay)
+        {
+            bool ret = NDalicManualPINVOKE.SetKeyboardRepeatInfo(rate, delay);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        /// <summary>
+        /// Gets keyboard repeat infomation.
+        /// </summary>
+        /// <param name="rate">The key repeat rate value</param>
+        /// <param name="delay">The key repeat delay value</param>
+        /// <returns>True if setting the keyboard repeat succeeds.</returns>
+        /// This will be released at Tizen.NET API Level 5, so currently this would be used as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public bool GetKeyboardRepeatInfo(out double rate, out double delay)
+        {
+            bool ret = NDalicManualPINVOKE.GetKeyboardRepeatInfo(out rate, out delay);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
         internal System.IntPtr GetNativeWindowHandler()
         {
             System.IntPtr ret = NDalicManualPINVOKE.GetNativeWindowHandler(HandleRef.ToIntPtr(this.swigCPtr));
