@@ -10,7 +10,7 @@
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
+ * See the License for the specific language governing permissions and2084
  * limitations under the License.
  *
  */
@@ -2073,6 +2073,8 @@ namespace Tizen.NUI.BaseComponents
             }
         }
 
+        Size2D _size2D;
+
         /// <summary>
         /// Sets the size of a view for the width and the height.<br />
         /// Geometry can be scaled to fit within this area.<br />
@@ -2084,15 +2086,21 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
-                Size temp = new Size(0.0f, 0.0f, 0.0f);
-                GetProperty(View.Property.SIZE).Get(temp);
-                Size2D size = new Size2D((int)temp.Width, (int)temp.Height);
-                return size;
+                GetProperty(View.Property.SIZE).Get(_size2D);
+                return _size2D;
             }
             set
             {
+                _size2D = value;
+                _size2D.PropertyChanged += OnSize2DPropertyChanged;
+
                 SetProperty(View.Property.SIZE, new Tizen.NUI.PropertyValue(new Size(value)));
             }
+        }
+
+        private void OnSize2DPropertyChanged(object sender, Size2D.PropertyChangedEventArgs e)
+        {
+            SetProperty(View.Property.SIZE, new Tizen.NUI.PropertyValue(new Size(new Size2D(e.Width, e.Height))));
         }
 
         /// <summary>
@@ -4460,3 +4468,4 @@ namespace Tizen.NUI.BaseComponents
         RTL
     }
 }
+

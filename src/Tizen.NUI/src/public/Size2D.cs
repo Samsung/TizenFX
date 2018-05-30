@@ -14,6 +14,8 @@
  * limitations under the License.
  *
  */
+using System;
+using System.Runtime.InteropServices;
 
 namespace Tizen.NUI
 {
@@ -346,6 +348,7 @@ namespace Tizen.NUI
             {
                 NDalicPINVOKE.Vector2_Width_set(swigCPtr, (float)value);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                OnPropertyChanged(value, Height);
             }
             get
             {
@@ -365,6 +368,7 @@ namespace Tizen.NUI
             {
                 NDalicPINVOKE.Vector2_Height_set(swigCPtr, (float)value);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                OnPropertyChanged(Width, value);
             }
             get
             {
@@ -395,6 +399,59 @@ namespace Tizen.NUI
         {
             return new Size2D((int)vector2.X, (int)vector2.Y);
         }
+
+        internal class PropertyChangedEventArgs : EventArgs
+        {
+            public int Width
+            {
+                get;
+                set;
+            }
+	    public int Height
+	    {
+                get;
+		set;
+	    }
+        }
+
+        [UnmanagedFunctionPointer(CallingConvention.StdCall)]
+        internal delegate void PropertyChangedEventCallbackType(int width, int height);
+        internal PropertyChangedEventCallbackType _propertyChangedEventCallback;
+        internal event EventHandler<PropertyChangedEventArgs> _propertyChangedEventHandler;
+        /// <summary>
+        /// ImfManager status changed.
+        /// </summary>
+        /// <since_tizen> 4 </since_tizen>
+        internal event EventHandler<PropertyChangedEventArgs> PropertyChanged
+        {
+            add
+            {
+                if (_propertyChangedEventHandler == null)
+                {
+                    _propertyChangedEventCallback = OnPropertyChanged;
+                }
+
+                _propertyChangedEventHandler += value;
+
+            }
+            remove
+            {
+                _propertyChangedEventHandler -= value;
+            }
+        }
+
+
+        private void OnPropertyChanged(int width, int height)
+        {
+            PropertyChangedEventArgs e = new PropertyChangedEventArgs();
+            e.Width = width;
+	    e.Height = height;
+            if (_propertyChangedEventHandler != null)
+            {
+                _propertyChangedEventHandler(this, e);
+            }
+        }
     }
 
 }
+
