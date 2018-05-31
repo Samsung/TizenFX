@@ -862,10 +862,10 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Sets keyboard repeat infomation.
+        /// Sets keyboard repeat information.
         /// </summary>
-        /// <param name="rate">The key repeat rate value</param>
-        /// <param name="delay">The key repeat delay value</param>
+        /// <param name="rate">The key repeat rate value in seconds</param>
+        /// <param name="delay">The key repeat delay value in seconds</param>
         /// <returns>True if setting the keyboard repeat succeeds.</returns>
         /// This will be released at Tizen.NET API Level 5, so currently this would be used as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
@@ -877,10 +877,10 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Gets keyboard repeat infomation.
+        /// Gets keyboard repeat information.
         /// </summary>
-        /// <param name="rate">The key repeat rate value</param>
-        /// <param name="delay">The key repeat delay value</param>
+        /// <param name="rate">The key repeat rate value in seconds</param>
+        /// <param name="delay">The key repeat delay value in seconds</param>
         /// <returns>True if setting the keyboard repeat succeeds.</returns>
         /// This will be released at Tizen.NET API Level 5, so currently this would be used as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
