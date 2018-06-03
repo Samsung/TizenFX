@@ -127,6 +127,7 @@ namespace Tizen.Applications
         /// The actual interval is calculated by the OS. The minimum value is 600sec.</param>
         /// <param name="appControl"> The destination AppControl is used to perform a specific task when the alarm is triggered. </param>
         /// <returns> An alarm instance is created with the set param values.</returns>
+        /// <remarks>If app_control is specified with service-application, the application is only allowed to run on which has Background Category.</remarks>
         /// <exception cref="ArgumentException">Thrown in case of an invalid parameter.</exception>
         /// <exception cref="UnauthorizedAccessException">Thrown in case of a permission denied.</exception>
         /// <exception cref="InvalidOperationException">Thrown in case of any internal error.</exception>
@@ -154,6 +155,7 @@ namespace Tizen.Applications
         /// <param name="delay"> The amount of time before the execution (in seconds). </param>
         /// <param name="appControl"> The destination AppControl to perform a specific task when the alarm is triggered. </param>
         /// <returns> An alarm instance is created with the set param values.</returns>
+        /// <remarks>This operation is permitted with the UI application appcontrol only.</remarks>
         /// <exception cref="ArgumentException">Thrown in case of an invalid parameter.</exception>
         /// <exception cref="UnauthorizedAccessException">Thrown in case of a permission denied.</exception>
         /// <exception cref="InvalidOperationException">Thrown in case of any internal error.</exception>
