@@ -151,8 +151,8 @@ namespace Tizen.NUI
         {
             PropertyMap _outputMap = new PropertyMap();
             if (_panelLayout != null) { _outputMap.Add("PANEL_LAYOUT", new PropertyValue((int)_panelLayout)); }
-            if (_actionButton != null) { _outputMap.Add("ACTION_BUTTON", new PropertyValue((int)_actionButton)); }
-            if (_autoCapital != null) { _outputMap.Add("AUTO_CAPITALISE", new PropertyValue((int)_autoCapital)); }
+            if (_actionButton != null) { _outputMap.Add("BUTTON_ACTION", new PropertyValue((int)_actionButton)); }
+            if (_autoCapital != null) { _outputMap.Add("AUTO_CAPITALIZE", new PropertyValue((int)_autoCapital)); }
             if (_variation != null) { _outputMap.Add("VARIATION", new PropertyValue((int)_variation)); }
             return _outputMap;
         }
