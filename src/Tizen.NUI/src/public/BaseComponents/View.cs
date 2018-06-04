@@ -28,7 +28,6 @@ namespace Tizen.NUI.BaseComponents
     {
         private global::System.Runtime.InteropServices.HandleRef swigCPtr;
 
-
         internal View(global::System.IntPtr cPtr, bool cMemoryOwn) : base(NDalicPINVOKE.View_SWIGUpcast(cPtr), cMemoryOwn)
         {
             swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
@@ -2072,7 +2071,7 @@ namespace Tizen.NUI.BaseComponents
                 return GetCurrentPosition();
             }
         }
-
+        private Size2D _size2D;
         /// <summary>
         /// Sets the size of a view for the width and the height.<br />
         /// Geometry can be scaled to fit within this area.<br />
@@ -2084,13 +2083,13 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
-                Size temp = new Size(0.0f, 0.0f, 0.0f);
-                GetProperty(View.Property.SIZE).Get(temp);
-                Size2D size = new Size2D((int)temp.Width, (int)temp.Height);
-                return size;
+                GetProperty(View.Property.SIZE).Get(_size2D);
+                return _size2D;
             }
             set
             {
+                _size2D = value;
+                _size2D.SetView(this);
                 SetProperty(View.Property.SIZE, new Tizen.NUI.PropertyValue(new Size(value)));
             }
         }

@@ -14,6 +14,7 @@
  * limitations under the License.
  *
  */
+using Tizen.NUI.BaseComponents;
 
 namespace Tizen.NUI
 {
@@ -30,6 +31,12 @@ namespace Tizen.NUI
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         protected bool swigCMemOwn;
+
+        private View _view;
+        internal void SetView(View view)
+        {
+            _view = view;
+        }
 
         internal Size2D(global::System.IntPtr cPtr, bool cMemoryOwn)
         {
@@ -345,6 +352,10 @@ namespace Tizen.NUI
             set
             {
                 NDalicPINVOKE.Vector2_Width_set(swigCPtr, (float)value);
+                if(_view)
+                {
+                    _view.Size2D = this;
+                }
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
             get
@@ -364,6 +375,10 @@ namespace Tizen.NUI
             set
             {
                 NDalicPINVOKE.Vector2_Height_set(swigCPtr, (float)value);
+                if(_view)
+                {
+                    _view.Size2D = this;
+                }
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
             get
