@@ -16,6 +16,7 @@
  */
 using System;
 using System.ComponentModel;
+using System.Runtime.CompilerServices;
 using Tizen.NUI.Binding;
 using Tizen.NUI.Internals;
 
@@ -26,8 +27,17 @@ namespace Tizen.NUI
     /// BaseHandle is a handle to an internal Dali resource.
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
-    public class BaseHandle : Element, global::System.IDisposable
+    public class BaseHandle : Element, global::System.IDisposable, INotifyPropertyChanged
     {
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        internal void NotifyPropertyChanged([CallerMemberName] String propertyName = "")
+        {
+            if (PropertyChanged != null)
+            {
+                PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+            }
+        }
 
         internal static readonly BindablePropertyKey NavigationPropertyKey = BindableProperty.CreateReadOnly("Navigation", typeof(INavigation), typeof(/*VisualElement*/BaseHandle), default(INavigation));
         /// <summary>

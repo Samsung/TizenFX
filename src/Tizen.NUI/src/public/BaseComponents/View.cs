@@ -2092,6 +2092,7 @@ namespace Tizen.NUI.BaseComponents
             set
             {
                 SetProperty(View.Property.SIZE, new Tizen.NUI.PropertyValue(new Size(value)));
+                NotifyPropertyChanged();
             }
         }
 
@@ -2143,6 +2144,7 @@ namespace Tizen.NUI.BaseComponents
             set
             {
                 SetProperty(View.Property.POSITION, new Tizen.NUI.PropertyValue(new Position(value)));
+                NotifyPropertyChanged();
             }
         }
 
@@ -3498,6 +3500,7 @@ namespace Tizen.NUI.BaseComponents
             set
             {
                 SetProperty(View.Property.SIZE_WIDTH, new Tizen.NUI.PropertyValue(value));
+                NotifyPropertyChanged();
             }
         }
 
@@ -3516,6 +3519,7 @@ namespace Tizen.NUI.BaseComponents
             set
             {
                 SetProperty(View.Property.SIZE_HEIGHT, new Tizen.NUI.PropertyValue(value));
+                NotifyPropertyChanged();
             }
         }
 
