@@ -218,6 +218,33 @@ namespace Tizen.Network.WiFi
             return apList;
         }
 
+        internal IEnumerable<WiFiAP> GetFoundBssidAPs()
+        {
+            Log.Info(Globals.LogTag, "GetFoundBssidAPs");
+            List<WiFiAP> apList = new List<WiFiAP>();
+            Interop.WiFi.HandleCallback callback = (IntPtr apHandle, IntPtr userData) =>
+            {
+                if (apHandle != IntPtr.Zero)
+                {
+                    IntPtr clonedHandle;
+                    Interop.WiFi.AP.Clone(out clonedHandle, apHandle);
+                    WiFiAP apItem = new WiFiAP(clonedHandle);
+                    apList.Add(apItem);
+                    return true;
+                }
+                return false;
+            };
+
+            int ret = Interop.WiFi.GetForeachFoundBssidAPs(GetSafeHandle(), callback, IntPtr.Zero);
+            if (ret != (int)WiFiError.None)
+            {
+                Log.Error(Globals.LogTag, "Failed to get bssid APs, Error - " + (WiFiError)ret);
+                WiFiErrorFactory.ThrowWiFiException(ret, GetSafeHandle().DangerousGetHandle(), "http://tizen.org/privilege/network.get");
+            }
+
+            return apList;
+        }
+
         internal IEnumerable<WiFiConfiguration> GetWiFiConfigurations()
         {
             Log.Debug(Globals.LogTag, "GetWiFiConfigurations");
@@ -522,6 +549,55 @@ namespace Tizen.Network.WiFi
                 catch (Exception e)
                 {
                     Log.Error(Globals.LogTag, "Exception on ScanSpecificAPAsync\n" + e.ToString());
+                    task.SetException(e);
+                }
+            }, null);
+
+            return task.Task;
+        }
+
+        internal Task BssidScanAsync()
+        {
+            Log.Info(Globals.LogTag, "BssidScanAsync");
+            TaskCompletionSource<bool> task = new TaskCompletionSource<bool>();
+            IntPtr id;
+            lock (_callback_map)
+            {
+                id = (IntPtr)_requestId++;
+                _callback_map[id] = (error, key) =>
+                {
+                    Log.Info(Globals.LogTag, "BssidScanAsync done");
+                    if (error != (int)WiFiError.None)
+                    {
+                        Log.Error(Globals.LogTag, "Error occurs during bssid scanning, " + (WiFiError)error);
+                        task.SetException(new InvalidOperationException("Error occurs during bssid scanning, " + (WiFiError)error));
+                    }
+                    else
+                    {
+                        task.SetResult(true);
+                    }
+                    lock (_callback_map)
+                    {
+                        _callback_map.Remove(key);
+                    }
+                };
+            }
+
+            context.Post((x) =>
+            {
+                Log.Info(Globals.LogTag, "Interop.WiFi.BssidScan");
+                try
+                {
+                    int ret = Interop.WiFi.BssidScan(GetSafeHandle(), _callback_map[id], id);
+                    if (ret != (int)WiFiError.None)
+                    {
+                        Log.Error(Globals.LogTag, "Failed to scan Bssid AP, Error - " + (WiFiError)ret);
+                        WiFiErrorFactory.ThrowWiFiException(ret, GetSafeHandle().DangerousGetHandle());
+                    }
+                }
+                catch (Exception e)
+                {
+                    Log.Error(Globals.LogTag, "Exception on BssidScan\n" + e.ToString());
                     task.SetException(e);
                 }
             }, null);

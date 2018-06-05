@@ -252,6 +252,22 @@ namespace Tizen.Network.WiFi
         }
 
         /// <summary>
+        /// Gets the result of the BssidScanAsync() API.
+        /// </summary>
+        /// <since_tizen> 5 </since_tizen>
+        /// <returns>A list of the WiFiAP objects.</returns>
+        /// <feature>http://tizen.org/feature/network.wifi</feature>
+        /// <privilege>http://tizen.org/privilege/network.get</privilege>
+        /// <exception cref="NotSupportedException">Thrown when the Wi-Fi is not supported.</exception>
+        /// <exception cref="UnauthorizedAccessException">Thrown when the permission is denied.</exception>
+        /// <exception cref="ArgumentException">Thrown when the method failed due to an invalid parameter.</exception>
+        /// <exception cref="InvalidOperationException">Thrown when the method failed due to an invalid operation.</exception>
+        static public IEnumerable<WiFiAP> GetFoundBssidAPs()
+        {
+            return WiFiManagerImpl.Instance.GetFoundBssidAPs();
+        }
+
+        /// <summary>
         /// Gets the list of Wi-Fi configurations.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
@@ -386,6 +402,25 @@ namespace Tizen.Network.WiFi
         static public Task ScanSpecificAPAsync(string essid)
         {
             return WiFiManagerImpl.Instance.ScanSpecificAPAsync(essid);
+        }
+
+        /// <summary>
+        /// Starts BSSID scan asynchronously.
+        /// </summary>
+        /// <remarks>
+        /// This method must be called from MainThread.
+        /// </remarks>
+        /// <since_tizen> 5 </since_tizen>
+        /// <returns>A task indicating whether the BssidScanAsync method is done or not.</returns>
+        /// <feature>http://tizen.org/feature/network.wifi</feature>
+        /// <privilege>http://tizen.org/privilege/network.set</privilege>
+        /// <privilege>http://tizen.org/privilege/network.get</privilege>
+        /// <exception cref="NotSupportedException">Thrown when the Wi-Fi is not supported.</exception>
+        /// <exception cref="UnauthorizedAccessException">Thrown when the permission is denied.</exception>
+        /// <exception cref="InvalidOperationException">Thrown when the method failed due to an invalid operation.</exception>
+        static public Task BssidScanAsync()
+        {
+            return WiFiManagerImpl.Instance.BssidScanAsync();
         }
     }
 }
