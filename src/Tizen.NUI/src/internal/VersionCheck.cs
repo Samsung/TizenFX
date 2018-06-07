@@ -24,8 +24,9 @@ namespace Tizen.NUI
     internal static class Version
     {
         //Lower than dali_1.2.85 : NUI internal API version 400
-        //dali_1.2.86 : NUI internal API version 401
-        public const int nuiAPIVer = 401;
+        //dali_1.2.86 ~ dali_1.2.89 : NUI internal API version 401
+        //dali_1.2.90 : NUI internal API version 402
+        public const int nuiAPIVer = 402;
         public const int reservedVer1 = 0;
         public const int reservedVer2 = 0;
 
