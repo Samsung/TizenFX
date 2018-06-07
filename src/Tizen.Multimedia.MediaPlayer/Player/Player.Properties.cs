@@ -191,12 +191,14 @@ namespace Tizen.Multimedia
 
         #region Display methods
 
+        private PlayerDisplaySettings _displaySettings;
+
         /// <summary>
         /// Gets the display settings.
         /// </summary>
         /// <value>A <see cref="PlayerDisplaySettings"/> that specifies the display settings.</value>
         /// <since_tizen> 3 </since_tizen>
-        public PlayerDisplaySettings DisplaySettings { get; }
+        public PlayerDisplaySettings DisplaySettings => _displaySettings;
 
         private Display _display;
 
@@ -255,6 +257,8 @@ namespace Tizen.Multimedia
 
                     throw new ArgumentException("The display has already been assigned to another.");
                 }
+
+                SetDisplay(value).ThrowIfFailed(this, "Failed to configure display of the player");
 
                 ReplaceDisplay(value);
             }
@@ -336,7 +340,7 @@ namespace Tizen.Multimedia
             }
         }
 
-        private readonly AudioEffect _audioEffect;
+        private AudioEffect _audioEffect;
 
         /// <summary>
         /// Gets the audio effect.
@@ -411,6 +415,52 @@ namespace Tizen.Multimedia
 
                 NativePlayer.SetVolume(Handle, value, value).
                     ThrowIfFailed(this, "Failed to set the volume of the player");
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the audio-only state.
+        /// </summary>
+        /// <value>true if the playback is audio-only mode; otherwise, false. The default value is false.</value>
+        /// The <see cref="Player"/> must be in the <see cref="PlayerState.Ready"/>,
+        /// <see cref="PlayerState.Playing"/>, or <see cref="PlayerState.Paused"/> state.
+        /// <exception cref="InvalidOperationException">The player is not in the valid state.</exception>
+        /// <exception cref="ObjectDisposedException">The player has already been disposed of.</exception>
+        /// <since_tizen> 5 </since_tizen>
+        public bool IsAudioOnly
+        {
+            get
+            {
+                ValidatePlayerState(PlayerState.Ready, PlayerState.Playing, PlayerState.Paused);
+                NativePlayer.IsAudioOnly(Handle, out var value).
+                    ThrowIfFailed(this, "Failed to get the audio-only state of the player");
+                return value;
+            }
+            set
+            {
+                ValidateNotDisposed();
+                ValidatePlayerState(PlayerState.Ready, PlayerState.Playing, PlayerState.Paused);
+                NativePlayer.SetAudioOnly(Handle, value).
+                    ThrowIfFailed(this, "Failed to set the audio-only state of the player");
+            }
+        }
+
+        private SphericalVideo _sphericalVideo;
+
+        /// <summary>
+        /// Gets the spherical video settings.
+        /// </summary>
+        /// <since_tizen> 5 </since_tizen>
+        public SphericalVideo SphericalVideo
+        {
+            get
+            {
+                if (_sphericalVideo == null)
+                {
+                    _sphericalVideo = new SphericalVideo(this);
+                }
+
+                return _sphericalVideo;
             }
         }
     }

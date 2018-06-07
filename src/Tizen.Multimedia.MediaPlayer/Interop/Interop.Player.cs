@@ -261,12 +261,51 @@ internal static partial class Interop
         [DllImport(Libraries.Player, EntryPoint = "player_get_track_language_code")]
         internal static extern PlayerErrorCode GetTrackLanguageCode(IntPtr player, StreamType type,
             int index, out IntPtr code);
+
+        [DllImport(Libraries.Player, EntryPoint = "player_set_audio_only")]
+        internal static extern PlayerErrorCode SetAudioOnly(IntPtr player, bool audioOnly);
+
+        [DllImport(Libraries.Player, EntryPoint = "player_is_audio_only")]
+        internal static extern PlayerErrorCode IsAudioOnly(IntPtr player, out bool audioOnly);
+
+        [DllImport(Libraries.Player, EntryPoint = "player_360_is_content_spherical")]
+        internal static extern PlayerErrorCode IsSphericalContent(IntPtr player, out bool isspherical);
+
+        [DllImport(Libraries.Player, EntryPoint = "player_360_set_enabled")]
+        internal static extern PlayerErrorCode SetSphericalMode(IntPtr player, bool enabled);
+
+        [DllImport(Libraries.Player, EntryPoint = "player_360_is_enabled")]
+        internal static extern PlayerErrorCode IsSphericalMode(IntPtr player, out bool enabled);
+
+        [DllImport(Libraries.Player, EntryPoint = "player_360_set_direction_of_view")]
+        internal static extern PlayerErrorCode SetDirectionOfView(IntPtr player, float yaw, float pitch);
+
+        [DllImport(Libraries.Player, EntryPoint = "player_360_get_direction_of_view")]
+        internal static extern PlayerErrorCode GetDirectionOfView(IntPtr player, out float yaw, out float pitch);
+
+        [DllImport(Libraries.Player, EntryPoint = "player_360_set_zoom")]
+        internal static extern PlayerErrorCode SetZoom(IntPtr player, float level);
+
+        [DllImport(Libraries.Player, EntryPoint = "player_360_get_zoom")]
+        internal static extern PlayerErrorCode GetZoom(IntPtr player, out float level);
+
+        [DllImport(Libraries.Player, EntryPoint = "player_360_set_field_of_view")]
+        internal static extern PlayerErrorCode SetFieldOfView(IntPtr player, int horizontalDegrees, int verticalDegrees);
+
+        [DllImport(Libraries.Player, EntryPoint = "player_360_get_field_of_view")]
+        internal static extern PlayerErrorCode GetFieldOfView(IntPtr player, out int horizontalDegrees, out int verticalDegrees);
+
     }
 
     internal class PlayerHandle : SafeHandle
     {
         protected PlayerHandle() : base(IntPtr.Zero, true)
         {
+        }
+
+        internal PlayerHandle(IntPtr rawHandle) : this()
+        {
+            handle = rawHandle;
         }
 
         public override bool IsInvalid => handle == IntPtr.Zero;

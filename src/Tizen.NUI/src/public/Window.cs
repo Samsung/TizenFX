@@ -728,12 +728,30 @@ namespace Tizen.NUI
             return ret;
         }
 
+        internal TouchDataSignal TouchDataSignal()
+        {
+            TouchDataSignal ret = new TouchDataSignal(NDalicPINVOKE.Actor_TouchSignal(Layer.getCPtr(GetRootLayer())), false);
+            if (NDalicPINVOKE.SWIGPendingException.Pending)
+                throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
         private StageWheelSignal WheelEventSignal()
         {
             StageWheelSignal ret = new StageWheelSignal(NDalicPINVOKE.Stage_WheelEventSignal(stageCPtr), false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
+
+
+        private WheelSignal StageWheelEventSignal()
+        {
+            WheelSignal ret = new WheelSignal(NDalicPINVOKE.Actor_WheelEventSignal(Layer.getCPtr(this.GetRootLayer())), false);
+            if (NDalicPINVOKE.SWIGPendingException.Pending)
+                throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
 
         internal VoidSignal ContextLostSignal()
         {
@@ -965,9 +983,11 @@ namespace Tizen.NUI
             }
         }
 
-        private event EventHandler<TouchEventArgs> _stageTouchHandler;
-        private EventCallbackDelegateType1 _stageTouchCallbackDelegate;
 
+        private event EventHandler<TouchEventArgs> _rootLayerTouchDataEventHandler;
+        [UnmanagedFunctionPointer(CallingConvention.StdCall)]
+        private delegate bool RootLayerTouchDataCallbackType(IntPtr view, IntPtr touchData);
+        private RootLayerTouchDataCallbackType _rootLayerTouchDataCallback;
         /// <summary>
         /// This event is emitted when the screen is touched and when the touch ends.<br />
         /// If there are multiple touch points, then this will be emitted when the first touch occurs and
@@ -979,39 +999,40 @@ namespace Tizen.NUI
         {
             add
             {
-                lock (this)
+                if (_rootLayerTouchDataEventHandler == null)
                 {
-                    _stageTouchHandler += value;
-                    _stageTouchCallbackDelegate = OnStageTouch;
-                    this.TouchSignal().Connect(_stageTouchCallbackDelegate);
+                    _rootLayerTouchDataCallback = OnWindowTouch;
+                    this.TouchDataSignal().Connect(_rootLayerTouchDataCallback);
                 }
+                _rootLayerTouchDataEventHandler += value;
             }
             remove
             {
-                lock (this)
+                _rootLayerTouchDataEventHandler -= value;
+                if (_rootLayerTouchDataEventHandler == null && TouchSignal().Empty() == false)
                 {
-                    if (_stageTouchHandler != null)
-                    {
-                        this.TouchSignal().Disconnect(_stageTouchCallbackDelegate);
-                    }
-                    _stageTouchHandler -= value;
+                    this.TouchDataSignal().Disconnect(_rootLayerTouchDataCallback);
                 }
             }
         }
 
-        private void OnStageTouch(IntPtr data)
+        private bool OnWindowTouch(IntPtr view, IntPtr touchData)
         {
+            if (touchData == global::System.IntPtr.Zero)
+            {
+                NUILog.Error("touchData should not be null!");
+                return false;
+            }
+
             TouchEventArgs e = new TouchEventArgs();
 
-            if (data != null)
-            {
-                e.Touch = Tizen.NUI.Touch.GetTouchFromPtr(data);
-            }
+            e.Touch = Tizen.NUI.Touch.GetTouchFromPtr(touchData);
 
-            if (_stageTouchHandler != null)
+            if (_rootLayerTouchDataEventHandler != null)
             {
-                _stageTouchHandler(this, e);
+                _rootLayerTouchDataEventHandler(this, e);
             }
+            return false;
         }
 
         /// <summary>
@@ -1040,7 +1061,10 @@ namespace Tizen.NUI
         }
 
         private event EventHandler<WheelEventArgs> _stageWheelHandler;
-        private EventCallbackDelegateType1 _stageWheelCallbackDelegate;
+
+        [UnmanagedFunctionPointer(CallingConvention.StdCall)]
+        private delegate bool WheelEventCallbackType(IntPtr view, IntPtr wheelEvent);
+        private WheelEventCallbackType _wheelEventCallback;
 
         /// <summary>
         /// This event is emitted when the wheel event is received.
@@ -1052,34 +1076,38 @@ namespace Tizen.NUI
             {
                 if (_stageWheelHandler == null)
                 {
-                    _stageWheelCallbackDelegate = OnStageWheel;
-                    WheelEventSignal().Connect(_stageWheelCallbackDelegate);
+                    _wheelEventCallback = OnStageWheel;
+                    this.StageWheelEventSignal().Connect(_wheelEventCallback);
                 }
                 _stageWheelHandler += value;
             }
             remove
             {
                 _stageWheelHandler -= value;
-                if (_stageWheelHandler == null && WheelEventSignal().Empty() == false)
+                if (_stageWheelHandler == null && StageWheelEventSignal().Empty() == false)
                 {
-                    WheelEventSignal().Disconnect(_stageWheelCallbackDelegate);
+                    this.StageWheelEventSignal().Disconnect(_wheelEventCallback);
                 }
             }
         }
 
-        private void OnStageWheel(IntPtr data)
+        private bool OnStageWheel(IntPtr rootLayer, IntPtr wheelEvent)
         {
+            if (wheelEvent == global::System.IntPtr.Zero)
+        {
+                NUILog.Error("wheelEvent should not be null!");
+                return true;
+            }
+
             WheelEventArgs e = new WheelEventArgs();
 
-            if (data != null)
-            {
-                e.Wheel = Tizen.NUI.Wheel.GetWheelFromPtr(data);
-            }
+            e.Wheel = Tizen.NUI.Wheel.GetWheelFromPtr(wheelEvent);
 
             if (_stageWheelHandler != null)
             {
                 _stageWheelHandler(this, e);
             }
+            return true;
         }
 
         /// <summary>

@@ -80,6 +80,9 @@ namespace Tizen.Network.Connection
         /// <since_tizen> 3 </since_tizen>
         /// <param name="profile">The connection profile object.</param>
         /// <returns>A task indicates whether the ConnectProfileAsync method is done successfully or not.</returns>
+        /// <remarks>
+        /// This method must be called from MainThread.
+        /// </remarks>
         /// <privilege>http://tizen.org/privilege/network.get</privilege>
         /// <privilege>http://tizen.org/privilege/network.set</privilege>
         /// <feature>http://tizen.org/feature/network.telephony</feature>
@@ -104,6 +107,9 @@ namespace Tizen.Network.Connection
         /// <since_tizen> 3 </since_tizen>
         /// <param name="profile">The connection profile object.</param>
         /// <returns>A task indicates whether the DisconnectProfileAsync method is done successfully or not.</returns>
+        /// <remarks>
+        /// This method must be called from MainThread.
+        /// </remarks>
         /// <privilege>http://tizen.org/privilege/network.get</privilege>
         /// <privilege>http://tizen.org/privilege/network.set</privilege>
         /// <feature>http://tizen.org/feature/network.telephony</feature>
@@ -220,6 +226,9 @@ namespace Tizen.Network.Connection
         /// <param name="type">The cellular service type.</param>
         /// <param name="profile">The connection profile object.</param>
         /// <returns>A task indicates whether the SetDefaultCellularProfile method is done successfully or not.</returns>
+        /// <remarks>
+        /// This method must be called from MainThread.
+        /// </remarks>
         /// <privilege>http://tizen.org/privilege/network.get</privilege>
         /// <privilege>http://tizen.org/privilege/network.profile</privilege>
         /// <feature>http://tizen.org/feature/network.telephony</feature>

@@ -31,7 +31,57 @@ namespace Tizen.Multimedia
         /// <summary>
         /// The front camera device.
         /// </summary>
-        Front
+        Front,
+        /// <summary>
+        /// The primary camera device.
+        /// </summary>
+        /// <since_tizen> 5 </since_tizen>
+        CameraDevice0 = Rear,
+        /// <summary>
+        /// The secondary camera device.
+        /// </summary>
+        /// <since_tizen> 5 </since_tizen>
+        CameraDevice1 = Front,
+        /// <summary>
+        /// The third camera device.
+        /// </summary>
+        /// <since_tizen> 5 </since_tizen>
+        CameraDevice2,
+        /// <summary>
+        /// The 4th camera device.
+        /// </summary>
+        /// <since_tizen> 5 </since_tizen>
+        CameraDevice3,
+        /// <summary>
+        /// The 5th camera device.
+        /// </summary>
+        /// <since_tizen> 5 </since_tizen>
+        CameraDevice4,
+        /// <summary>
+        /// The 6th camera device.
+        /// </summary>
+        /// <since_tizen> 5 </since_tizen>
+        CameraDevice5,
+        /// <summary>
+        /// The 7th camera device.
+        /// </summary>
+        /// <since_tizen> 5 </since_tizen>
+        CameraDevice6,
+        /// <summary>
+        /// The 8th camera device.
+        /// </summary>
+        /// <since_tizen> 5 </since_tizen>
+        CameraDevice7,
+        /// <summary>
+        /// The 9th camera device.
+        /// </summary>
+        /// <since_tizen> 5 </since_tizen>
+        CameraDevice8,
+        /// <summary>
+        /// The 10th camera device.
+        /// </summary>
+        /// <since_tizen> 5 </since_tizen>
+        CameraDevice9
     }
 
     /// <summary>

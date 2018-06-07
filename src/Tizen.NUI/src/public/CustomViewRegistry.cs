@@ -229,7 +229,14 @@ namespace Tizen.NUI
             {
                 // Create the control
                 CustomView newControl = controlConstructor();
-                return newControl.GetPtrfromView();  // return pointer to handle
+                if (newControl != null)
+                {
+                    return newControl.GetPtrfromView();  // return pointer to handle
+                }
+                else
+                {
+                    return IntPtr.Zero;
+                }
             }
             else
             {
@@ -461,23 +468,23 @@ namespace Tizen.NUI
                 {
                     PropertyMap map = new PropertyMap();
                     ok = propValue.Get(map);
-                    if( ok )
+                    if (ok)
                     {
-                        propertyInfo.SetValue( view, map );
+                        propertyInfo.SetValue(view, map);
                     }
                 }
                 else if (type.Equals(typeof(PropertyArray)))
                 {
                     PropertyArray array = new PropertyArray();
                     ok = propValue.Get(array);
-                    if( ok )
+                    if (ok)
                     {
-                        propertyInfo.SetValue( view, array );
+                        propertyInfo.SetValue(view, array);
                     }
                 }
                 else
                 {
-                    throw new global::System.InvalidOperationException("SetPropertyValue Unimplemented type for Property Value for " + type.FullName );
+                    throw new global::System.InvalidOperationException("SetPropertyValue Unimplemented type for Property Value for " + type.FullName);
                 }
                 if (!ok)
                 {

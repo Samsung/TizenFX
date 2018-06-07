@@ -23,6 +23,11 @@
     </ProjectToBuild>
   </ItemGroup>
 
+  <!-- Nuspec files to pack -->
+  <ItemGroup>
+    <NuspecFiles Include="$(ProjectRootDir)pkg\*.nuspec" />
+  </ItemGroup>
+
   <!--
     Target : Clean
     ==============
@@ -79,6 +84,23 @@
              Properties="Configuration=$(Configuration)"
              BuildInParallel="false"
              Targets="CopyToArtifactsDirectory" />
+
+  </Target>
+
+  <!--
+    Target : Pack
+    ==============
+    Generate nuget packages.
+  -->
+  <Target Name="Pack">
+
+    <MSBuild Projects="$(MSBuildThisFileDirectory)pack.csproj"
+             Properties="NoBuild=True"
+             Targets="Restore" />
+
+    <MSBuild Projects="$(MSBuildThisFileDirectory)pack.csproj"
+             Properties="NoBuild=True;Version=$(Version);NuspecFile=%(NuspecFiles.Identity)"
+             Targets="Pack" />
 
   </Target>
 

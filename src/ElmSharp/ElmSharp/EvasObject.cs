@@ -110,6 +110,73 @@ namespace ElmSharp
     }
 
     /// <summary>
+    /// How the object should be rendered to output.
+    /// </summary>
+    /// <since_tizen> 5 </since_tizen>
+    public enum RenderOp
+    {
+        /// <summary>
+        /// default op: d = d * (1 - sa) + s
+        /// </summary>
+        Blend = 0,
+
+        /// <summary>
+        /// d = d*(1 - sa) + s*da
+        /// </summary>
+        BlendRel = 1,
+
+        /// <summary>
+        /// d = s
+        /// </summary>
+        Copy = 2,
+
+        /// <summary>
+        /// d = s*da
+        /// </summary>
+        CopyRel = 3,
+
+        /// <summary>
+        /// d = d + s
+        /// </summary>
+        Add = 4,
+
+        /// <summary>
+        /// d = d + s*da
+        /// </summary>
+        AddRel = 5,
+
+        /// <summary>
+        /// d = d - s
+        /// </summary>
+        Sub = 6,
+
+        /// <summary>
+        /// d = d - s*da
+        /// </summary>
+        SubRel = 7,
+
+        /// <summary>
+        /// d = d*s + d*(1 - sa) + s*(1 - da)
+        /// </summary>
+        Tint = 8,
+
+        /// <summary>
+        /// d = d*(1 - sa + s)
+        /// </summary>
+        TintRel = 9,
+
+        /// <summary>
+        /// d = d*sa
+        /// </summary>
+        Mask = 10,
+
+        /// <summary>
+        /// d = d*s
+        /// </summary>
+        Mul = 11
+    }
+
+    /// <summary>
     /// The EvasObject is a base class for other widget classes.
     /// </summary>
     /// <since_tizen> preview </since_tizen>
@@ -360,7 +427,7 @@ namespace ElmSharp
         {
             get
             {
-                return Interop.Eo.eo_class_name_get(Interop.Eo.eo_class_get(RealHandle));
+                return Interop.Eo.efl_class_name_get(Interop.Eo.efl_class_get(RealHandle));
             }
         }
 
@@ -738,6 +805,23 @@ namespace ElmSharp
         }
 
         /// <summary>
+        /// Sets or gets the render operation to be used for rendering the Evas object.
+        /// </summary>
+        /// <since_tizen> 5 </since_tizen>
+        public RenderOp RenderOperation
+        {
+            get
+            {
+                return (RenderOp)Interop.Evas.evas_object_render_op_get(RealHandle);
+            }
+            set
+            {
+                Interop.Evas.evas_object_render_op_set(RealHandle, (Interop.Evas.RenderOp)value);
+            }
+        }
+
+
+        /// <summary>
         /// Clips one object to another.
         /// </summary>
         /// <param name="clip">The object to clip object by.</param>
@@ -999,6 +1083,7 @@ namespace ElmSharp
         /// <param name="h">h coordinate of the line.</param>
         /// <returns></returns>
         /// <since_tizen> preview </since_tizen>
+        [Obsolete("GetTextBlockGeometryByLineNumber is obsolete as of version 5.0.0.14299 and is no longer supported.")]
         public bool GetTextBlockGeometryByLineNumber(int lineNumber, out int x, out int y, out int w, out int h)
         {
             return Interop.Evas.evas_object_textblock_line_number_geometry_get(RealHandle, lineNumber, out x, out y, out w, out h);

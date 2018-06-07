@@ -153,10 +153,25 @@ namespace Tizen.System
         /// </summary>
         UltraDataSavePackageList,
         /// <summary>
-        /// GET (bool) Indicates whether the the accessibility TTS is enabled on the device.
+        /// GET (bool) Indicates whether the accessibility TTS is enabled on the device.
         /// </summary>
         /// <since_tizen> 4 </since_tizen>
         AccessibilityTtsEnabled,
+        /// <summary>
+        /// GET (bool) Indicates whether the Vibration is enabled on the device.
+        /// </summary>
+        /// <since_tizen> 5 </since_tizen>
+        Vibration,
+        /// <summary>
+        /// GET (bool) Indicates whether the AutomaticTimeUpdate is enabled on the device.
+        /// </summary>
+        /// <since_tizen> 5 </since_tizen>
+        AutomaticTimeUpdate,
+        /// <summary>
+        /// GET (bool) Indicates whether the Developer Option State is enabled on the device.
+        /// </summary>
+        /// <since_tizen> 5 </since_tizen>
+        DeveloperOptionState,
     }
     /// <summary>
     /// Enumeration for the Idle Lock State.

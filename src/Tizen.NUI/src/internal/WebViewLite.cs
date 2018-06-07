@@ -155,7 +155,7 @@ internal class WebViewLite : View
     return ret;
   }
 
-  internal new static WebViewLite DownCast(BaseHandle handle) {
+  internal static WebViewLite DownCast(BaseHandle handle) {
     WebViewLite ret = new WebViewLite(NDalicPINVOKE.WebViewLite_DownCast(BaseHandle.getCPtr(handle)), true);
     if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
     return ret;

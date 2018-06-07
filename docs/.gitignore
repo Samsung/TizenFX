@@ -1,0 +1,4 @@
+html/
+api/*.yml
+api/.manifest
+obj/
