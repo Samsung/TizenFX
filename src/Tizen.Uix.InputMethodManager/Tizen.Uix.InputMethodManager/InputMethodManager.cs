@@ -173,6 +173,7 @@ namespace Tizen.Uix.InputMethodManager
         /// 1) The application does not have the privilege to call this function.
         /// 2) Operation failed.
         /// </exception>
+        /// <since_tizen> 5 </since_tizen>
         public static void PrelaunchIME()
         {
             ErrorCode error = ImeManagerPrelaunchIme();
