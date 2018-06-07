@@ -78,7 +78,7 @@
              Properties="Configuration=$(Configuration)"
              BuildInParallel="true"
              UseResultsCache="true"
-             Targets="Rebuild" />
+             Targets="Build" />
 
     <MSBuild Projects="@(ProjectToBuild)"
              Properties="Configuration=$(Configuration)"
@@ -109,19 +109,45 @@
     ==============
     Generate dummy assemblies of all projects.
   -->
-  <Target Name="Dummy">
+  <Target Name="Dummy" DependsOnTargets="GenerateDummyProject">
 
-    <MSBuild Projects="@(ProjectToBuild)"
-             Properties="Configuration=$(Configuration);IsDummyBuild=True"
+    <ItemGroup>
+      <DummyProjectToBuild Include="$(PublicDummyProjectDir)**\*.csproj" />
+      <DummyProjectToBuild Include="$(InternalDummyProjectDir)**\*.csproj" />
+    </ItemGroup>
+
+    <MSBuild Projects="@(DummyProjectToBuild)"
+             Properties="Configuration=$(Configuration);RestoreSources=$(RestoreSources)"
+             BuildInParallel="false"
+             Targets="Restore" />
+
+    <MSBuild Projects="@(DummyProjectToBuild)"
+             Properties="Configuration=$(Configuration);WarningLevel=0;OutDir=$(OutputDummyDir);ProduceReferenceAssembly=False"
              BuildInParallel="true"
              UseResultsCache="true"
-             Targets="Rebuild" />
+             Targets="Build" />
 
-    <MSBuild Projects="@(ProjectToBuild)"
-             Properties="Configuration=$(Configuration)"
-             BuildInParallel="false"
-             Targets="CopyToDummyArtifactsDirectory" />
+  </Target>
 
+
+  <Target Name="GenerateDummyProject" Inputs="@(ProjectToBuild)" Outputs="%(Filename)" >
+
+    <PropertyGroup>
+      <GeneratedDummyAssembly>$(OutputDummyDir)%(ProjectToBuild.Filename).dll</GeneratedDummyAssembly>
+      <ClonedProjectsDir Condition="'%(ProjectToBuild.Visibility)' == 'Public'" >$(PublicDummyProjectDir)</ClonedProjectsDir>
+      <ClonedProjectsDir Condition="'%(ProjectToBuild.Visibility)' == 'Internal'" >$(InternalDummyProjectDir)</ClonedProjectsDir>
+    </PropertyGroup>
+
+    <Message Text="[GenDummy] %(ProjectToBuild.Filename)" Importance="High" />
+    <Message Text="Directory = %(ProjectToBuild.Directory)" Importance="High" />
+
+    <Exec Command='$(GenDummyCommand) -project %(ProjectToBuild.Filename) -source %(ProjectToBuild.RootDir)%(ProjectToBuild.Directory).. -clonePath $(ClonedProjectsDir)' />
+
+  </Target>
+
+  <Target Name="AfterDummy">
+    <Message Text="Clean Directory" Importance="High" />
+    <RemoveDir Directories="$(PublicDummyProjectDir);$(InternalDummyProjectDir)" />
   </Target>
 
 </Project>
