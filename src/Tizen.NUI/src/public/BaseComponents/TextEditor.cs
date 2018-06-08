@@ -389,6 +389,7 @@ namespace Tizen.NUI.BaseComponents
                 }
                 textEditorTextSid = value;
                 Text = SetTranslatable(textEditorTextSid);
+                NotifyPropertyChanged();
             }
         }
         /// <summary>
@@ -413,6 +414,7 @@ namespace Tizen.NUI.BaseComponents
                 }
                 textEditorPlaceHolderTextSid = value;
                 PlaceholderText = SetTranslatable(textEditorPlaceHolderTextSid);
+                NotifyPropertyChanged();
             }
         }
         private string SetTranslatable(string textEditorSid)
@@ -460,6 +462,7 @@ namespace Tizen.NUI.BaseComponents
             set
             {
                 SetProperty(TextEditor.Property.TEXT, new Tizen.NUI.PropertyValue(value));
+                NotifyPropertyChanged();
             }
         }
 
@@ -478,6 +481,7 @@ namespace Tizen.NUI.BaseComponents
             set
             {
                 SetProperty(TextEditor.Property.TEXT_COLOR, new Tizen.NUI.PropertyValue(value));
+                NotifyPropertyChanged();
             }
         }
 
@@ -496,6 +500,7 @@ namespace Tizen.NUI.BaseComponents
             set
             {
                 SetProperty(TextEditor.Property.FONT_FAMILY, new Tizen.NUI.PropertyValue(value));
+                NotifyPropertyChanged();
             }
         }
 
@@ -514,6 +519,7 @@ namespace Tizen.NUI.BaseComponents
             set
             {
                 SetProperty(TextEditor.Property.FONT_STYLE, new Tizen.NUI.PropertyValue(value));
+                NotifyPropertyChanged();
             }
         }
 
@@ -532,6 +538,7 @@ namespace Tizen.NUI.BaseComponents
             set
             {
                 SetProperty(TextEditor.Property.POINT_SIZE, new Tizen.NUI.PropertyValue(value));
+                NotifyPropertyChanged();
             }
         }
 
@@ -588,6 +595,7 @@ namespace Tizen.NUI.BaseComponents
                     }
                 }
                 SetProperty(TextEditor.Property.HORIZONTAL_ALIGNMENT, new Tizen.NUI.PropertyValue(valueToString));
+                NotifyPropertyChanged();
             }
         }
 
@@ -606,6 +614,7 @@ namespace Tizen.NUI.BaseComponents
             set
             {
                 SetProperty(TextEditor.Property.SCROLL_THRESHOLD, new Tizen.NUI.PropertyValue(value));
+                NotifyPropertyChanged();
             }
         }
 
@@ -624,6 +633,7 @@ namespace Tizen.NUI.BaseComponents
             set
             {
                 SetProperty(TextEditor.Property.SCROLL_SPEED, new Tizen.NUI.PropertyValue(value));
+                NotifyPropertyChanged();
             }
         }
 
@@ -642,6 +652,7 @@ namespace Tizen.NUI.BaseComponents
             set
             {
                 SetProperty(TextEditor.Property.PRIMARY_CURSOR_COLOR, new Tizen.NUI.PropertyValue(value));
+                NotifyPropertyChanged();
             }
         }
 
@@ -660,6 +671,7 @@ namespace Tizen.NUI.BaseComponents
             set
             {
                 SetProperty(TextEditor.Property.SECONDARY_CURSOR_COLOR, new Tizen.NUI.PropertyValue(value));
+                NotifyPropertyChanged();
             }
         }
 
@@ -678,6 +690,7 @@ namespace Tizen.NUI.BaseComponents
             set
             {
                 SetProperty(TextEditor.Property.ENABLE_CURSOR_BLINK, new Tizen.NUI.PropertyValue(value));
+                NotifyPropertyChanged();
             }
         }
 
@@ -696,6 +709,7 @@ namespace Tizen.NUI.BaseComponents
             set
             {
                 SetProperty(TextEditor.Property.CURSOR_BLINK_INTERVAL, new Tizen.NUI.PropertyValue(value));
+                NotifyPropertyChanged();
             }
         }
 
@@ -714,6 +728,7 @@ namespace Tizen.NUI.BaseComponents
             set
             {
                 SetProperty(TextEditor.Property.CURSOR_BLINK_DURATION, new Tizen.NUI.PropertyValue(value));
+                NotifyPropertyChanged();
             }
         }
 
@@ -732,6 +747,7 @@ namespace Tizen.NUI.BaseComponents
             set
             {
                 SetProperty(TextEditor.Property.CURSOR_WIDTH, new Tizen.NUI.PropertyValue(value));
+                NotifyPropertyChanged();
             }
         }
 
@@ -750,6 +766,7 @@ namespace Tizen.NUI.BaseComponents
             set
             {
                 SetProperty(TextEditor.Property.GRAB_HANDLE_IMAGE, new Tizen.NUI.PropertyValue(value));
+                NotifyPropertyChanged();
             }
         }
 
@@ -768,6 +785,7 @@ namespace Tizen.NUI.BaseComponents
             set
             {
                 SetProperty(TextEditor.Property.GRAB_HANDLE_PRESSED_IMAGE, new Tizen.NUI.PropertyValue(value));
+                NotifyPropertyChanged();
             }
         }
 
@@ -786,6 +804,7 @@ namespace Tizen.NUI.BaseComponents
             set
             {
                 SetProperty(TextEditor.Property.SELECTION_HANDLE_IMAGE_LEFT, new Tizen.NUI.PropertyValue(value));
+                NotifyPropertyChanged();
             }
         }
 
@@ -804,6 +823,7 @@ namespace Tizen.NUI.BaseComponents
             set
             {
                 SetProperty(TextEditor.Property.SELECTION_HANDLE_IMAGE_RIGHT, new Tizen.NUI.PropertyValue(value));
+                NotifyPropertyChanged();
             }
         }
 
@@ -822,6 +842,7 @@ namespace Tizen.NUI.BaseComponents
             set
             {
                 SetProperty(TextEditor.Property.SELECTION_HANDLE_PRESSED_IMAGE_LEFT, new Tizen.NUI.PropertyValue(value));
+                NotifyPropertyChanged();
             }
         }
 
@@ -840,6 +861,7 @@ namespace Tizen.NUI.BaseComponents
             set
             {
                 SetProperty(TextEditor.Property.SELECTION_HANDLE_PRESSED_IMAGE_RIGHT, new Tizen.NUI.PropertyValue(value));
+                NotifyPropertyChanged();
             }
         }
 
@@ -858,6 +880,7 @@ namespace Tizen.NUI.BaseComponents
             set
             {
                 SetProperty(TextEditor.Property.SELECTION_HANDLE_MARKER_IMAGE_LEFT, new Tizen.NUI.PropertyValue(value));
+                NotifyPropertyChanged();
             }
         }
 
@@ -876,6 +899,7 @@ namespace Tizen.NUI.BaseComponents
             set
             {
                 SetProperty(TextEditor.Property.SELECTION_HANDLE_MARKER_IMAGE_RIGHT, new Tizen.NUI.PropertyValue(value));
+                NotifyPropertyChanged();
             }
         }
 
@@ -894,6 +918,7 @@ namespace Tizen.NUI.BaseComponents
             set
             {
                 SetProperty(TextEditor.Property.SELECTION_HIGHLIGHT_COLOR, new Tizen.NUI.PropertyValue(value));
+                NotifyPropertyChanged();
             }
         }
 
@@ -912,6 +937,7 @@ namespace Tizen.NUI.BaseComponents
             set
             {
                 SetProperty(TextEditor.Property.DECORATION_BOUNDING_BOX, new Tizen.NUI.PropertyValue(value));
+                NotifyPropertyChanged();
             }
         }
 
@@ -930,6 +956,7 @@ namespace Tizen.NUI.BaseComponents
             set
             {
                 SetProperty(TextEditor.Property.ENABLE_MARKUP, new Tizen.NUI.PropertyValue(value));
+                NotifyPropertyChanged();
             }
         }
 
@@ -948,6 +975,7 @@ namespace Tizen.NUI.BaseComponents
             set
             {
                 SetProperty(TextEditor.Property.INPUT_COLOR, new Tizen.NUI.PropertyValue(value));
+                NotifyPropertyChanged();
             }
         }
 
@@ -966,6 +994,7 @@ namespace Tizen.NUI.BaseComponents
             set
             {
                 SetProperty(TextEditor.Property.INPUT_FONT_FAMILY, new Tizen.NUI.PropertyValue(value));
+                NotifyPropertyChanged();
             }
         }
 
@@ -984,6 +1013,7 @@ namespace Tizen.NUI.BaseComponents
             set
             {
                 SetProperty(TextEditor.Property.INPUT_FONT_STYLE, new Tizen.NUI.PropertyValue(value));
+                NotifyPropertyChanged();
             }
         }
 
@@ -1002,6 +1032,7 @@ namespace Tizen.NUI.BaseComponents
             set
             {
                 SetProperty(TextEditor.Property.INPUT_POINT_SIZE, new Tizen.NUI.PropertyValue(value));
+                NotifyPropertyChanged();
             }
         }
 
@@ -1020,6 +1051,7 @@ namespace Tizen.NUI.BaseComponents
             set
             {
                 SetProperty(TextEditor.Property.LINE_SPACING, new Tizen.NUI.PropertyValue(value));
+                NotifyPropertyChanged();
             }
         }
 
@@ -1038,6 +1070,7 @@ namespace Tizen.NUI.BaseComponents
             set
             {
                 SetProperty(TextEditor.Property.INPUT_LINE_SPACING, new Tizen.NUI.PropertyValue(value));
+                NotifyPropertyChanged();
             }
         }
 
@@ -1056,6 +1089,7 @@ namespace Tizen.NUI.BaseComponents
             set
             {
                 SetProperty(TextEditor.Property.UNDERLINE, new Tizen.NUI.PropertyValue(value));
+                NotifyPropertyChanged();
             }
         }
 
@@ -1074,6 +1108,7 @@ namespace Tizen.NUI.BaseComponents
             set
             {
                 SetProperty(TextEditor.Property.INPUT_UNDERLINE, new Tizen.NUI.PropertyValue(value));
+                NotifyPropertyChanged();
             }
         }
 
@@ -1092,6 +1127,7 @@ namespace Tizen.NUI.BaseComponents
             set
             {
                 SetProperty(TextEditor.Property.SHADOW, new Tizen.NUI.PropertyValue(value));
+                NotifyPropertyChanged();
             }
         }
 
@@ -1110,6 +1146,7 @@ namespace Tizen.NUI.BaseComponents
             set
             {
                 SetProperty(TextEditor.Property.INPUT_SHADOW, new Tizen.NUI.PropertyValue(value));
+                NotifyPropertyChanged();
             }
         }
 
@@ -1128,6 +1165,7 @@ namespace Tizen.NUI.BaseComponents
             set
             {
                 SetProperty(TextEditor.Property.EMBOSS, new Tizen.NUI.PropertyValue(value));
+                NotifyPropertyChanged();
             }
         }
 
@@ -1146,6 +1184,7 @@ namespace Tizen.NUI.BaseComponents
             set
             {
                 SetProperty(TextEditor.Property.INPUT_EMBOSS, new Tizen.NUI.PropertyValue(value));
+                NotifyPropertyChanged();
             }
         }
 
@@ -1164,6 +1203,7 @@ namespace Tizen.NUI.BaseComponents
             set
             {
                 SetProperty(TextEditor.Property.OUTLINE, new Tizen.NUI.PropertyValue(value));
+                NotifyPropertyChanged();
             }
         }
 
@@ -1182,6 +1222,7 @@ namespace Tizen.NUI.BaseComponents
             set
             {
                 SetProperty(TextEditor.Property.INPUT_OUTLINE, new Tizen.NUI.PropertyValue(value));
+                NotifyPropertyChanged();
             }
         }
 
@@ -1200,6 +1241,7 @@ namespace Tizen.NUI.BaseComponents
             set
             {
                 SetProperty(TextEditor.Property.SMOOTH_SCROLL, new Tizen.NUI.PropertyValue(value));
+                NotifyPropertyChanged();
             }
         }
 
@@ -1218,6 +1260,7 @@ namespace Tizen.NUI.BaseComponents
             set
             {
                 SetProperty(TextEditor.Property.SMOOTH_SCROLL_DURATION, new Tizen.NUI.PropertyValue(value));
+                NotifyPropertyChanged();
             }
         }
 
@@ -1236,6 +1279,7 @@ namespace Tizen.NUI.BaseComponents
             set
             {
                 SetProperty(TextEditor.Property.ENABLE_SCROLL_BAR, new Tizen.NUI.PropertyValue(value));
+                NotifyPropertyChanged();
             }
         }
 
@@ -1254,6 +1298,7 @@ namespace Tizen.NUI.BaseComponents
             set
             {
                 SetProperty(TextEditor.Property.SCROLL_BAR_SHOW_DURATION, new Tizen.NUI.PropertyValue(value));
+                NotifyPropertyChanged();
             }
         }
 
@@ -1272,6 +1317,7 @@ namespace Tizen.NUI.BaseComponents
             set
             {
                 SetProperty(TextEditor.Property.SCROLL_BAR_FADE_DURATION, new Tizen.NUI.PropertyValue(value));
+                NotifyPropertyChanged();
             }
         }
 
@@ -1290,6 +1336,7 @@ namespace Tizen.NUI.BaseComponents
             set
             {
                 SetProperty(TextEditor.Property.PIXEL_SIZE, new Tizen.NUI.PropertyValue(value));
+                NotifyPropertyChanged();
             }
         }
 
@@ -1322,6 +1369,7 @@ namespace Tizen.NUI.BaseComponents
             set
             {
                 SetProperty(TextEditor.Property.PLACEHOLDER_TEXT, new Tizen.NUI.PropertyValue(value));
+                NotifyPropertyChanged();
             }
         }
 
@@ -1340,6 +1388,7 @@ namespace Tizen.NUI.BaseComponents
             set
             {
                 SetProperty(TextEditor.Property.PLACEHOLDER_TEXT_COLOR, new Tizen.NUI.PropertyValue(value));
+                NotifyPropertyChanged();
             }
         }
 
@@ -1358,6 +1407,7 @@ namespace Tizen.NUI.BaseComponents
             set
             {
                 SetProperty(TextEditor.Property.ENABLE_SELECTION, new Tizen.NUI.PropertyValue(value));
+                NotifyPropertyChanged();
             }
         }
 
@@ -1397,6 +1447,7 @@ namespace Tizen.NUI.BaseComponents
             set
             {
                 SetProperty(TextEditor.Property.PLACEHOLDER, new Tizen.NUI.PropertyValue(value));
+                NotifyPropertyChanged();
             }
         }
 
@@ -1419,6 +1470,7 @@ namespace Tizen.NUI.BaseComponents
             set
             {
                 SetProperty(TextEditor.Property.LINE_WRAP_MODE, new Tizen.NUI.PropertyValue((int)value));
+                NotifyPropertyChanged();
             }
         }
 
@@ -1438,6 +1490,7 @@ namespace Tizen.NUI.BaseComponents
             set
             {
                 SetProperty(TextEditor.Property.ENABLE_SHIFT_SELECTION, new Tizen.NUI.PropertyValue(value));
+                NotifyPropertyChanged();
             }
         }
 
