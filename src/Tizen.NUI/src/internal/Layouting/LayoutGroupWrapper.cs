@@ -102,9 +102,17 @@ namespace Tizen.NUI
 
         public LayoutItem GetChildAt(uint index)
         {
-            LayoutItem ret = new LayoutItem(LayoutPINVOKE.LayoutGroupWrapper_GetChildAt(swigCPtr, index), true);
+            global::System.IntPtr cPtr = LayoutPINVOKE.LayoutGroupWrapper_GetChildAt(swigCPtr, index);
+
+
+            global::System.Runtime.InteropServices.HandleRef CPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
+            BaseHandle basehandle = Registry.GetManagedBaseHandleFromNativePtr(CPtr.Handle);
+            NDalicPINVOKE.delete_BaseHandle(CPtr);
+            CPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
+
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
+
+            return basehandle as LayoutItem;
         }
 
         private uint GetChildCount()

@@ -32,7 +32,6 @@ namespace Tizen.NUI
             layoutGroupWrapperImpl.OnMeasure = new LayoutGroupWrapperImpl.OnMeasureDelegate(OnMeasure);
             layoutGroupWrapperImpl.OnLayout = new LayoutGroupWrapperImpl.OnLayoutDelegate(OnLayout);
             layoutGroupWrapperImpl.OnSizeChanged = new LayoutGroupWrapperImpl.OnSizeChangedDelegate(OnSizeChanged);
-            layoutGroupWrapperImpl.OnInitialize = new LayoutGroupWrapperImpl.OnInitializeDelegate(OnInitialize);
             layoutGroupWrapperImpl.OnChildAdd = new LayoutGroupWrapperImpl.OnChildAddDelegate(OnChildAdd);
             layoutGroupWrapperImpl.OnChildRemove = new LayoutGroupWrapperImpl.OnChildRemoveDelegate(OnChildRemove);
             layoutGroupWrapperImpl.DoInitialize = new LayoutGroupWrapperImpl.DoInitializeDelegate(DoInitialize);
@@ -84,7 +83,8 @@ namespace Tizen.NUI
         /// <param name="heightMeasureSpec">vertical space requirements as imposed by the parent.</param>
         protected virtual void OnMeasure(LayoutMeasureSpec widthMeasureSpec, LayoutMeasureSpec heightMeasureSpec)
         {
-
+            SetMeasuredDimensions( new MeasuredSize( LayoutItemWrapperImpl.GetDefaultSize( layoutItemWrapperImpl.GetSuggestedMinimumWidth(), widthMeasureSpec ) ),
+                                   new MeasuredSize( LayoutItemWrapperImpl.GetDefaultSize( layoutItemWrapperImpl.GetSuggestedMinimumHeight(), heightMeasureSpec )));
         }
 
         /// <summary>
@@ -112,21 +112,12 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Initialization method for LayoutGroup to override. This should not be overriden by driving classes.<br />
-        /// </summary>
-        protected sealed override void OnInitialize()
-        {
-
-        }
-
-        /// <summary>
         /// Callback when child is added to container.<br />
         /// Derived classes can use this to set their own child properties on the child layout's owner.<br />
         /// </summary>
         /// <param name="child">The Layout child.</param>
         internal virtual void OnChildAdd(LayoutItemWrapperImpl child)
         {
-            layoutGroupWrapperImpl.OnChildAddNative(child);
         }
 
         /// <summary>
@@ -135,7 +126,6 @@ namespace Tizen.NUI
         /// <param name="child">The Layout child.</param>
         internal virtual void OnChildRemove(LayoutItemWrapperImpl child)
         {
-            layoutGroupWrapperImpl.OnChildRemoveNative(child);
         }
 
         /// <summary>
@@ -143,7 +133,6 @@ namespace Tizen.NUI
         /// </summary>
         protected virtual void DoInitialize()
         {
-            layoutGroupWrapperImpl.DoInitializeNative();
         }
 
         /// <summary>
@@ -152,7 +141,6 @@ namespace Tizen.NUI
         /// <param name="containerType">The fully qualified typename of the container.</param>
         protected virtual void DoRegisterChildProperties(string containerType)
         {
-            layoutGroupWrapperImpl.DoRegisterChildPropertiesNative(containerType);
         }
 
         /// <summary>

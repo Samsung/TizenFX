@@ -59,6 +59,10 @@ namespace Tizen.NUI.BaseComponents
                 {
                     oldParent.Remove(child);
                 }
+
+                LayoutItem layoutItem = new LayoutItem();
+                child.Layout = layoutItem;
+
                 NDalicPINVOKE.Actor_Add(swigCPtr, View.getCPtr(child));
                 if (NDalicPINVOKE.SWIGPendingException.Pending)
                     throw NDalicPINVOKE.SWIGPendingException.Retrieve();
@@ -2364,6 +2368,19 @@ namespace Tizen.NUI.BaseComponents
         /// <since_tizen> 4 </since_tizen>
         public LayoutItem Layout
         {
+            get
+            {
+                IntPtr cPtr = Tizen.NUI.NDalicManualPINVOKE.GetLayout__SWIG_1( View.getCPtr( this ));
+
+                HandleRef CPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
+                BaseHandle basehandle = Registry.GetManagedBaseHandleFromNativePtr(CPtr.Handle);
+                NDalicPINVOKE.delete_BaseHandle(CPtr);
+                CPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
+
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+
+                return basehandle as LayoutItem;
+            }
             set
             {
                 Tizen.NUI.NDalicManualPINVOKE.SetLayout__SWIG_1( View.getCPtr( this ), LayoutItem.getCPtr( value )  );

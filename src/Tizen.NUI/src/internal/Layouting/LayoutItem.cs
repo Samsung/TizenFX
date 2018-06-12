@@ -34,12 +34,9 @@ namespace Tizen.NUI
         internal void LayoutItemInitialize(LayoutItemWrapperImpl implementation)
         {
             layoutItemWrapperImpl = implementation;
-            layoutItemWrapperImpl.OnUnparent = new LayoutItemWrapperImpl.OnUnparentDelegate(OnUnparent);
-            layoutItemWrapperImpl.OnRegisterChildProperties = new LayoutItemWrapperImpl.OnRegisterChildPropertiesDelegate(OnRegisterChildProperties);
             layoutItemWrapperImpl.OnMeasure = new LayoutItemWrapperImpl.OnMeasureDelegate(OnMeasure);
             layoutItemWrapperImpl.OnLayout = new LayoutItemWrapperImpl.OnLayoutDelegate(OnLayout);
             layoutItemWrapperImpl.OnSizeChanged = new LayoutItemWrapperImpl.OnSizeChangedDelegate(OnSizeChanged);
-            layoutItemWrapperImpl.OnInitialize = new LayoutItemWrapperImpl.OnInitializeDelegate(OnInitialize);
         }
 
         /// <summary>
@@ -53,17 +50,6 @@ namespace Tizen.NUI
         protected void SetMeasuredDimensions(MeasuredSize measuredWidth, MeasuredSize measuredHeight)
         {
             layoutItemWrapperImpl.SetMeasuredDimensions(measuredWidth, measuredHeight);
-        }
-
-        /// <summary>
-        /// Register child properties of layout with owner type. <br />
-        /// The Actor hierarchy uses these registered properties in the type
-        /// system to ensure child custom properties are properly initialized. <br />
-        /// </summary>
-        /// <param name="containerType"> The type of the containing view (owner).</param>
-        public void RegisterChildProperties(string containerType)
-        {
-            layoutItemWrapperImpl.RegisterChildProperties(containerType);
         }
 
         /// <summary>
@@ -347,23 +333,6 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Allow directly deriving classes to remove layout children when unparented.<br />
-        /// </summary>
-        protected virtual void OnUnparent()
-        {
-            layoutItemWrapperImpl.OnUnparentNative();
-        }
-
-        /// <summary>
-        /// Ensure direct derived types register their child properties with the owner.<br />
-        /// </summary>
-        /// <param name="containerType">The type name of the owner container.</param>
-        protected virtual void OnRegisterChildProperties(string containerType)
-        {
-            layoutItemWrapperImpl.OnRegisterChildPropertiesNative(containerType);
-        }
-
-        /// <summary>
         /// Measure the layout and its content to determine the measured width and the
         /// measured height.<br />
         /// The base class implementation of measure defaults to the background size,
@@ -390,7 +359,6 @@ namespace Tizen.NUI
         /// <param name="bottom">Bottom position, relative to parent.</param>
         protected virtual void OnLayout(bool changed, LayoutLength left, LayoutLength top, LayoutLength right, LayoutLength bottom)
         {
-            layoutItemWrapperImpl.OnLayoutNative(changed, left, top, right, bottom);
         }
 
         /// <summary>
@@ -400,15 +368,6 @@ namespace Tizen.NUI
         /// <param name="oldSize">The old size of the layout.</param>
         protected virtual void OnSizeChanged(LayoutSize newSize, LayoutSize oldSize)
         {
-            layoutItemWrapperImpl.OnSizeChangedNative(newSize, oldSize);
-        }
-
-        /// <summary>
-        /// Initialization method for LayoutGroup to override. <br />
-        /// </summary>
-        protected virtual void OnInitialize()
-        {
-            layoutItemWrapperImpl.OnInitializeNative();
         }
     }
 }
