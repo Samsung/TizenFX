@@ -23,19 +23,13 @@ namespace Tizen.NUI
     {
         private global::System.Runtime.InteropServices.HandleRef swigCPtr;
 
-        public delegate void OnUnparentDelegate();
-        public delegate void OnRegisterChildPropertiesDelegate(string containerType);
         public delegate void OnMeasureDelegate(LayoutMeasureSpec widthMeasureSpec, LayoutMeasureSpec heightMeasureSpec);
         public delegate void OnLayoutDelegate(bool changed, LayoutLength left, LayoutLength top, LayoutLength right, LayoutLength bottom);
         public delegate void OnSizeChangedDelegate(LayoutSize newSize, LayoutSize oldSize);
-        public delegate void OnInitializeDelegate();
 
-        public OnUnparentDelegate OnUnparent;
-        public OnRegisterChildPropertiesDelegate OnRegisterChildProperties;
         public OnMeasureDelegate OnMeasure;
         public OnLayoutDelegate OnLayout;
         public OnSizeChangedDelegate OnSizeChanged;
-        public OnInitializeDelegate OnInitialize;
 
         internal LayoutItemWrapperImpl(global::System.IntPtr cPtr, bool cMemoryOwn) : base(LayoutPINVOKE.LayoutItemWrapperImpl_SWIGUpcast(cPtr), cMemoryOwn)
         {
@@ -119,12 +113,6 @@ namespace Tizen.NUI
             bool ret = LayoutPINVOKE.LayoutItemWrapperImpl_IsLayoutAnimated(swigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
-        }
-
-        internal void RegisterChildProperties(string containerType)
-        {
-            LayoutPINVOKE.LayoutItemWrapperImpl_RegisterChildProperties(swigCPtr, containerType);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         internal void Measure(LayoutMeasureSpec widthMeasureSpec, LayoutMeasureSpec heightMeasureSpec)
@@ -249,21 +237,9 @@ namespace Tizen.NUI
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
-        internal void OnUnparentNative()
-        {
-            LayoutPINVOKE.LayoutItemWrapperImpl_OnUnparent(swigCPtr);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-        }
-
-        internal void OnRegisterChildPropertiesNative(string containerType)
-        {
-            LayoutPINVOKE.LayoutItemWrapperImpl_OnRegisterChildProperties(swigCPtr, containerType);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-        }
-
         internal void OnMeasureNative(LayoutMeasureSpec widthMeasureSpec, LayoutMeasureSpec heightMeasureSpec)
         {
-            LayoutPINVOKE.LayoutItemWrapperImpl_OnMeasure(swigCPtr, LayoutMeasureSpec.getCPtr(widthMeasureSpec), LayoutMeasureSpec.getCPtr(heightMeasureSpec));
+            LayoutPINVOKE.LayoutItemWrapperImpl_OnMeasureSwigExplicitLayoutItemWrapperImpl(swigCPtr, LayoutMeasureSpec.getCPtr(widthMeasureSpec), LayoutMeasureSpec.getCPtr(heightMeasureSpec));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
@@ -279,21 +255,12 @@ namespace Tizen.NUI
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
-        internal void OnInitializeNative()
-        {
-            LayoutPINVOKE.LayoutItemWrapperImpl_OnInitialize(swigCPtr);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-        }
-
         protected void SwigDirectorConnect()
         {
             //swigDelegate0 = new SwigDelegateLayoutItemWrapperImpl_0(SwigDirectorGetParent);
-            swigDelegate1 = new SwigDelegateLayoutItemWrapperImpl_1(SwigDirectorOnUnparent);
-            swigDelegate2 = new SwigDelegateLayoutItemWrapperImpl_2(SwigDirectorOnRegisterChildProperties);
             swigDelegate3 = new SwigDelegateLayoutItemWrapperImpl_3(SwigDirectorOnMeasure);
             swigDelegate4 = new SwigDelegateLayoutItemWrapperImpl_4(SwigDirectorOnLayout);
             swigDelegate5 = new SwigDelegateLayoutItemWrapperImpl_5(SwigDirectorOnSizeChanged);
-            swigDelegate6 = new SwigDelegateLayoutItemWrapperImpl_6(SwigDirectorOnInitialize);
 
             LayoutPINVOKE.LayoutItemWrapperImpl_director_connect(swigCPtr, swigDelegate0, swigDelegate1, swigDelegate2, swigDelegate3, swigDelegate4, swigDelegate5, swigDelegate6);
         }
@@ -310,16 +277,6 @@ namespace Tizen.NUI
             return ILayoutParent.getCPtr(GetParent()).Handle;
         }*/
 
-        private void SwigDirectorOnUnparent()
-        {
-            OnUnparent();
-        }
-
-        private void SwigDirectorOnRegisterChildProperties(string containerType)
-        {
-            OnRegisterChildProperties(containerType);
-        }
-
         private void SwigDirectorOnMeasure(global::System.IntPtr widthMeasureSpec, global::System.IntPtr heightMeasureSpec)
         {
             OnMeasure(new LayoutMeasureSpec(widthMeasureSpec, true), new LayoutMeasureSpec(heightMeasureSpec, true));
@@ -333,11 +290,6 @@ namespace Tizen.NUI
         private void SwigDirectorOnSizeChanged(global::System.IntPtr newSize, global::System.IntPtr oldSize)
         {
             OnSizeChanged(new LayoutSize(newSize, true), new LayoutSize(oldSize, true));
-        }
-
-        private void SwigDirectorOnInitialize()
-        {
-            OnInitialize();
         }
 
         public delegate global::System.IntPtr SwigDelegateLayoutItemWrapperImpl_0();
