@@ -69,7 +69,7 @@ internal static partial class Interop
         [DllImport(Libraries.WiFi, EntryPoint = "wifi_manager_foreach_found_specific_ap")]
         internal static extern int GetForeachFoundSpecificAPs(SafeWiFiManagerHandle wifi, HandleCallback callback, IntPtr userData);
         [DllImport(Libraries.WiFi, EntryPoint = "wifi_manager_foreach_found_bssid_ap")]
-        internal static extern int GetForeachFoundBssidAPs(SafeWiFiManagerHandle wifi, HandleCallback callback, IntPtr userData);
+        internal static extern int GetForeachFoundBssids(SafeWiFiManagerHandle wifi, HandleCallback callback, IntPtr userData);
         [DllImport(Libraries.WiFi, EntryPoint = "wifi_manager_connect")]
         internal static extern int Connect(SafeWiFiManagerHandle wifi, IntPtr ap, VoidCallback callback, IntPtr userData);
         [DllImport(Libraries.WiFi, EntryPoint = "wifi_manager_disconnect")]

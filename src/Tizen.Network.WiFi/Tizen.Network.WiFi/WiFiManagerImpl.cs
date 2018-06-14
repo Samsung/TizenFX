@@ -218,9 +218,9 @@ namespace Tizen.Network.WiFi
             return apList;
         }
 
-        internal IEnumerable<WiFiAP> GetFoundBssidAPs()
+        internal IEnumerable<WiFiAP> GetFoundBssids()
         {
-            Log.Info(Globals.LogTag, "GetFoundBssidAPs");
+            Log.Info(Globals.LogTag, "GetFoundBssids");
             List<WiFiAP> apList = new List<WiFiAP>();
             Interop.WiFi.HandleCallback callback = (IntPtr apHandle, IntPtr userData) =>
             {
@@ -235,7 +235,7 @@ namespace Tizen.Network.WiFi
                 return false;
             };
 
-            int ret = Interop.WiFi.GetForeachFoundBssidAPs(GetSafeHandle(), callback, IntPtr.Zero);
+            int ret = Interop.WiFi.GetForeachFoundBssids(GetSafeHandle(), callback, IntPtr.Zero);
             if (ret != (int)WiFiError.None)
             {
                 Log.Error(Globals.LogTag, "Failed to get bssid APs, Error - " + (WiFiError)ret);

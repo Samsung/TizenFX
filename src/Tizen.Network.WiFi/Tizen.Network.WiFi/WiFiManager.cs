@@ -262,9 +262,9 @@ namespace Tizen.Network.WiFi
         /// <exception cref="UnauthorizedAccessException">Thrown when the permission is denied.</exception>
         /// <exception cref="ArgumentException">Thrown when the method failed due to an invalid parameter.</exception>
         /// <exception cref="InvalidOperationException">Thrown when the method failed due to an invalid operation.</exception>
-        static public IEnumerable<WiFiAP> GetFoundBssidAPs()
+        static public IEnumerable<WiFiAP> GetFoundBssids()
         {
-            return WiFiManagerImpl.Instance.GetFoundBssidAPs();
+            return WiFiManagerImpl.Instance.GetFoundBssids();
         }
 
         /// <summary>
