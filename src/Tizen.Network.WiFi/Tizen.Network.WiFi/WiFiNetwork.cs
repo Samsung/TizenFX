@@ -54,6 +54,7 @@ namespace Tizen.Network.WiFi
                     else
                     {
                         _essid = Marshal.PtrToStringAnsi(strPtr);
+                        Interop.Libc.Free(strPtr);
                     }
                 }
                 return _essid;
@@ -69,14 +70,20 @@ namespace Tizen.Network.WiFi
         {
             get
             {
+                string bssid;
                 IntPtr strPtr;
                 int ret = Interop.WiFi.AP.GetBssid(_apHandle, out strPtr);
                 if (ret != (int)WiFiError.None)
                 {
                     Log.Error(Globals.LogTag, "Failed to get bssid, Error - " + (WiFiError)ret);
-                    return "";
+                    bssid = "";
                 }
-                return Marshal.PtrToStringAnsi(strPtr);
+                else
+                {
+                    bssid = Marshal.PtrToStringAnsi(strPtr);
+                    Interop.Libc.Free(strPtr);
+                }
+                return bssid;
             }
         }
 
@@ -118,14 +125,20 @@ namespace Tizen.Network.WiFi
         {
             get
             {
+                string proxy;
                 IntPtr strPtr;
                 int ret = Interop.WiFi.AP.GetProxyAddress(_apHandle, (int)AddressFamily.IPv4, out strPtr);
                 if (ret != (int)WiFiError.None)
                 {
                     Log.Error(Globals.LogTag, "Failed to get proxy address, Error - " + (WiFiError)ret);
-                    return "";
+                    proxy = "";
                 }
-                return Marshal.PtrToStringAnsi(strPtr);
+                else
+                {
+                    proxy = Marshal.PtrToStringAnsi(strPtr);
+                    Interop.Libc.Free(strPtr);
+                }
+                return proxy;
             }
             set
             {
@@ -355,6 +368,7 @@ namespace Tizen.Network.WiFi
                 Log.Error(Globals.LogTag, "Failed to get essid, Error - " + (WiFiError)ret);
             }
             _essid = Marshal.PtrToStringAnsi(strPtr);
+            Interop.Libc.Free(strPtr);
         }
     } //WiFiNetworkInformation
 }

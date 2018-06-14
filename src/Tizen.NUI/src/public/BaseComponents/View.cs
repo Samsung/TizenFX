@@ -1,5 +1,5 @@
 /*
- * Copyright(c) 2017 Samsung Electronics Co., Ltd.
+ * Copyright(c) 2018 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -53,12 +53,16 @@ namespace Tizen.NUI.BaseComponents
         public override void Add(View child)
         {
             Container oldParent = child.Parent;
-            if(oldParent != this)
+            if (oldParent != this)
             {
                 if (oldParent != null)
                 {
                     oldParent.Remove(child);
                 }
+
+                LayoutItem layoutItem = new LayoutItem();
+                child.Layout = layoutItem;
+
                 NDalicPINVOKE.Actor_Add(swigCPtr, View.getCPtr(child));
                 if (NDalicPINVOKE.SWIGPendingException.Pending)
                     throw NDalicPINVOKE.SWIGPendingException.Retrieve();
@@ -2278,7 +2282,7 @@ namespace Tizen.NUI.BaseComponents
             }
             set
             {
-                if(value < 0)
+                if (value < 0)
                 {
                     NUILog.Error("SiblingOrder should be bigger than 0 or equal to 0.");
                     return;
@@ -2358,6 +2362,35 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
+        /// Set the layout on this control.
+        /// </summary>
+        /// <remarks>
+        /// </remarks>
+        /// <since_tizen> 5 </since_tizen>
+        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public LayoutItem Layout
+        {
+            get
+            {
+                IntPtr cPtr = Tizen.NUI.NDalicManualPINVOKE.GetLayout__SWIG_1(View.getCPtr(this));
+
+                HandleRef CPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
+                BaseHandle basehandle = Registry.GetManagedBaseHandleFromNativePtr(CPtr.Handle);
+                NDalicPINVOKE.delete_BaseHandle(CPtr);
+                CPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
+
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+
+                return basehandle as LayoutItem;
+            }
+            set
+            {
+                Tizen.NUI.NDalicManualPINVOKE.SetLayout__SWIG_1(View.getCPtr(this), LayoutItem.getCPtr(value));
+            }
+        }
+
+        /// <summary>
         /// Shows the view.
         /// </summary>
         /// <remarks>
@@ -2392,7 +2425,7 @@ namespace Tizen.NUI.BaseComponents
                 int currentIndex = parentChildren.IndexOf(this);
 
                 // If the view is not already the last item in the list.
-                if (currentIndex >= 0 && currentIndex < parentChildren.Count -1)
+                if (currentIndex >= 0 && currentIndex < parentChildren.Count - 1)
                 {
                     View temp = parentChildren[currentIndex + 1];
                     parentChildren[currentIndex + 1] = this;
@@ -2506,7 +2539,7 @@ namespace Tizen.NUI.BaseComponents
                 int currentIndex = parentChildren.IndexOf(this);
                 int targetIndex = parentChildren.IndexOf(target);
 
-                if(currentIndex < 0 || targetIndex < 0 ||
+                if (currentIndex < 0 || targetIndex < 0 ||
                     currentIndex >= parentChildren.Count || targetIndex >= parentChildren.Count)
                 {
                     NUILog.Error("index should be bigger than 0 and less than children of layer count");
@@ -2542,8 +2575,8 @@ namespace Tizen.NUI.BaseComponents
             {
                 int currentIndex = parentChildren.IndexOf(this);
                 int targetIndex = parentChildren.IndexOf(target);
-                if(currentIndex < 0 || targetIndex < 0 ||
-                   currentIndex >= parentChildren.Count ||targetIndex >= parentChildren.Count)
+                if (currentIndex < 0 || targetIndex < 0 ||
+                   currentIndex >= parentChildren.Count || targetIndex >= parentChildren.Count)
                 {
                     NUILog.Error("index should be bigger than 0 and less than children of layer count");
                     return;
