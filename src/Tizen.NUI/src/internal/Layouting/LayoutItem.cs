@@ -39,12 +39,9 @@ namespace Tizen.NUI
         internal void LayoutItemInitialize(LayoutItemWrapperImpl implementation)
         {
             layoutItemWrapperImpl = implementation;
-            layoutItemWrapperImpl.OnUnparent = new LayoutItemWrapperImpl.OnUnparentDelegate(OnUnparent);
-            layoutItemWrapperImpl.OnRegisterChildProperties = new LayoutItemWrapperImpl.OnRegisterChildPropertiesDelegate(OnRegisterChildProperties);
             layoutItemWrapperImpl.OnMeasure = new LayoutItemWrapperImpl.OnMeasureDelegate(OnMeasure);
             layoutItemWrapperImpl.OnLayout = new LayoutItemWrapperImpl.OnLayoutDelegate(OnLayout);
             layoutItemWrapperImpl.OnSizeChanged = new LayoutItemWrapperImpl.OnSizeChangedDelegate(OnSizeChanged);
-            layoutItemWrapperImpl.OnInitialize = new LayoutItemWrapperImpl.OnInitializeDelegate(OnInitialize);
         }
 
         /// <summary>
@@ -65,19 +62,6 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Register child properties of layout with owner type. <br />
-        /// The Actor hierarchy uses these registered properties in the type
-        /// system to ensure child custom properties are properly initialized. <br />
-        /// </summary>
-        /// <param name="containerType"> The type of the containing view (owner).</param>
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public void RegisterChildProperties(string containerType)
-        {
-            //layoutItemWrapperImpl.RegisterChildProperties(containerType);
-        }
-
-        /// <summary>
         /// This is called to find out how big a layout should be. <br />
         /// The parent supplies constraint information in the width and height parameters. <br />
         /// The actual measurement work of a layout is performed in OnMeasure called by this
@@ -87,7 +71,7 @@ namespace Tizen.NUI
         /// <param name="heightMeasureSpec">Vertical space requirements as imposed by the parent.</param>
         internal void Measure(LayoutMeasureSpec widthMeasureSpec, LayoutMeasureSpec heightMeasureSpec)
         {
-            //layoutItemWrapperImpl.Measure(widthMeasureSpec, heightMeasureSpec);
+            layoutItemWrapperImpl.Measure(widthMeasureSpec, heightMeasureSpec);
         }
 
         /// <summary>
@@ -384,27 +368,6 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Allow directly deriving classes to remove layout children when unparented.<br />
-        /// </summary>
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        protected virtual void OnUnparent()
-        {
-            //layoutItemWrapperImpl.OnUnparentNative();
-        }
-
-        /// <summary>
-        /// Ensure direct derived types register their child properties with the owner.<br />
-        /// </summary>
-        /// <param name="containerType">The type name of the owner container.</param>
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        protected virtual void OnRegisterChildProperties(string containerType)
-        {
-            //layoutItemWrapperImpl.OnRegisterChildPropertiesNative(containerType);
-        }
-
-        /// <summary>
         /// Measure the layout and its content to determine the measured width and the
         /// measured height.<br />
         /// The base class implementation of measure defaults to the background size,
@@ -419,7 +382,7 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected virtual void OnMeasure(LayoutMeasureSpec widthMeasureSpec, LayoutMeasureSpec heightMeasureSpec)
         {
-            //layoutItemWrapperImpl.OnMeasureNative(widthMeasureSpec, heightMeasureSpec);
+            layoutItemWrapperImpl.OnMeasureNative(widthMeasureSpec, heightMeasureSpec);
         }
 
         /// <summary>
@@ -435,7 +398,6 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected virtual void OnLayout(bool changed, LayoutLength left, LayoutLength top, LayoutLength right, LayoutLength bottom)
         {
-            //layoutItemWrapperImpl.OnLayoutNative(changed, left, top, right, bottom);
         }
 
         /// <summary>
@@ -443,21 +405,8 @@ namespace Tizen.NUI
         /// </summary>
         /// <param name="newSize">The new size of the layout.</param>
         /// <param name="oldSize">The old size of the layout.</param>
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
         protected virtual void OnSizeChanged(LayoutSize newSize, LayoutSize oldSize)
         {
-            //layoutItemWrapperImpl.OnSizeChangedNative(newSize, oldSize);
-        }
-
-        /// <summary>
-        /// Initialization method for LayoutGroup to override. <br />
-        /// </summary>
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        protected virtual void OnInitialize()
-        {
-            //layoutItemWrapperImpl.OnInitializeNative();
         }
     }
 }
