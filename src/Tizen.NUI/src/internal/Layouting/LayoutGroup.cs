@@ -37,7 +37,6 @@ namespace Tizen.NUI
             layoutGroupWrapperImpl.OnMeasure = new LayoutGroupWrapperImpl.OnMeasureDelegate(OnMeasure);
             layoutGroupWrapperImpl.OnLayout = new LayoutGroupWrapperImpl.OnLayoutDelegate(OnLayout);
             layoutGroupWrapperImpl.OnSizeChanged = new LayoutGroupWrapperImpl.OnSizeChangedDelegate(OnSizeChanged);
-            layoutGroupWrapperImpl.OnInitialize = new LayoutGroupWrapperImpl.OnInitializeDelegate(OnInitialize);
             layoutGroupWrapperImpl.OnChildAdd = new LayoutGroupWrapperImpl.OnChildAddDelegate(OnChildAdd);
             layoutGroupWrapperImpl.OnChildRemove = new LayoutGroupWrapperImpl.OnChildRemoveDelegate(OnChildRemove);
             layoutGroupWrapperImpl.DoInitialize = new LayoutGroupWrapperImpl.DoInitializeDelegate(DoInitialize);
@@ -128,23 +127,12 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Initialization method for LayoutGroup to override. This should not be overriden by driving classes.<br />
-        /// </summary>
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        protected sealed override void OnInitialize()
-        {
-
-        }
-
-        /// <summary>
         /// Callback when child is added to container.<br />
         /// Derived classes can use this to set their own child properties on the child layout's owner.<br />
         /// </summary>
         /// <param name="child">The Layout child.</param>
         internal virtual void OnChildAdd(LayoutItemWrapperImpl child)
         {
-            //layoutGroupWrapperImpl.OnChildAddNative(child);
         }
 
         /// <summary>
@@ -153,7 +141,6 @@ namespace Tizen.NUI
         /// <param name="child">The Layout child.</param>
         internal virtual void OnChildRemove(LayoutItemWrapperImpl child)
         {
-            //layoutGroupWrapperImpl.OnChildRemoveNative(child);
         }
 
         /// <summary>
@@ -163,7 +150,6 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected virtual void DoInitialize()
         {
-            //layoutGroupWrapperImpl.DoInitializeNative();
         }
 
         /// <summary>
@@ -174,7 +160,6 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected virtual void DoRegisterChildProperties(string containerType)
         {
-            //layoutGroupWrapperImpl.DoRegisterChildPropertiesNative(containerType);
         }
 
         /// <summary>
@@ -188,7 +173,7 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected virtual void MeasureChildren(LayoutMeasureSpec widthMeasureSpec, LayoutMeasureSpec heightMeasureSpec)
         {
-            //layoutGroupWrapperImpl.MeasureChildrenNative(widthMeasureSpec, heightMeasureSpec);
+            layoutGroupWrapperImpl.MeasureChildrenNative(widthMeasureSpec, heightMeasureSpec);
         }
 
         /// <summary>
@@ -203,7 +188,7 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected virtual void MeasureChild(LayoutItem child, LayoutMeasureSpec parentWidthMeasureSpec, LayoutMeasureSpec parentHeightMeasureSpec)
         {
-            //layoutGroupWrapperImpl.MeasureChildNative(child, parentWidthMeasureSpec, parentHeightMeasureSpec);
+            layoutGroupWrapperImpl.MeasureChildNative(child, parentWidthMeasureSpec, parentHeightMeasureSpec);
         }
 
         /// <summary>
