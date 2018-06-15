@@ -42,12 +42,9 @@ namespace Tizen.NUI
 
         public virtual void Dispose()
         {
-            lock (this)
-            {
-                if (swigCPtr.Handle != global::System.IntPtr.Zero)
-                {
-                    if (swigCMemOwn)
-                    {
+            lock(this) {
+            if (swigCPtr.Handle != global::System.IntPtr.Zero) {
+                if (swigCMemOwn) {
                         swigCMemOwn = false;
                         LayoutPINVOKE.delete_LayoutItemPtr(swigCPtr);
                     }
