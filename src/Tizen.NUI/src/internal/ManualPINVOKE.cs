@@ -1276,6 +1276,9 @@ namespace Tizen.NUI
         [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint="CSharp_Dali_Adaptor_RenderOnce")]
         public static extern void Window_RenderOnce(global::System.Runtime.InteropServices.HandleRef jarg1);
 
+        [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint="CSharp_Dali_Window_New_Root_Layout")]
+        public static extern global::System.IntPtr Window_NewRootLayout();
+
         //for watch
         [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint="CSharp_Dali_new_WatchTime")]
         public static extern global::System.IntPtr new_WatchTime();
