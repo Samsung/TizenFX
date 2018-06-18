@@ -293,9 +293,6 @@ namespace Tizen.NUI
         [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint="CSharp_Dali_LayoutItemWrapperImpl_IsLayoutAnimated")]
         public static extern bool LayoutItemWrapperImpl_IsLayoutAnimated(global::System.Runtime.InteropServices.HandleRef jarg1);
 
-        [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint="CSharp_Dali_LayoutItemWrapperImpl_RegisterChildProperties")]
-        public static extern void LayoutItemWrapperImpl_RegisterChildProperties(global::System.Runtime.InteropServices.HandleRef jarg1, string jarg2);
-
         [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint="CSharp_Dali_LayoutItemWrapperImpl_Measure")]
         public static extern void LayoutItemWrapperImpl_Measure(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2, global::System.Runtime.InteropServices.HandleRef jarg3);
 
@@ -589,9 +586,6 @@ namespace Tizen.NUI
 
         [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint="CSharp_Dali_LayoutItemPtr_IsLayoutAnimated")]
         public static extern bool LayoutItemPtr_IsLayoutAnimated(global::System.Runtime.InteropServices.HandleRef jarg1);
-
-        [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint="CSharp_Dali_LayoutItemPtr_RegisterChildProperties")]
-        public static extern void LayoutItemPtr_RegisterChildProperties(global::System.Runtime.InteropServices.HandleRef jarg1, string jarg2);
 
         [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint="CSharp_Dali_LayoutItemPtr_Measure")]
         public static extern void LayoutItemPtr_Measure(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2, global::System.Runtime.InteropServices.HandleRef jarg3);
