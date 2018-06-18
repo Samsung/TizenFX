@@ -79,6 +79,27 @@ namespace Tizen.Applications.RPCPort
         }
 
         /// <summary>
+        /// Gets a port
+        /// </summary>
+        /// <param name="t">The type of port</param>
+        /// <returns>Port object</returns>
+        /// <exception cref="InvalidIOException">Thrown when internal IO error happens</exception>
+        /// <since_tizen> 5 </since_tizen>
+        protected Port GetPort(Port.Type t)
+        {
+            var err = Interop.LibRPCPort.Proxy.GetPort(_proxy,
+                (Interop.LibRPCPort.PortType)t, out IntPtr port);
+            switch (err)
+            {
+                case Interop.LibRPCPort.ErrorCode.InvalidParameter:
+                case Interop.LibRPCPort.ErrorCode.IoError:
+                    throw new InvalidIOException();
+            }
+
+            return new Port() { Handle = port };
+        }
+
+        /// <summary>
         /// Abstract method for receiving connected event
         /// </summary>
         /// <param name="endPoint">The target stub app ID</param>

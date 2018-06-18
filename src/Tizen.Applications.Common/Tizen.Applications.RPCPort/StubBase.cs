@@ -94,6 +94,30 @@ namespace Tizen.Applications.RPCPort
         }
 
         /// <summary>
+        /// Gets s port
+        /// </summary>
+        /// <param name="t">The type of port</param>
+        /// <param name="instance">The ID of the instance which is connected</param>
+        /// <returns>Port object</returns>
+        /// <exception cref="InvalidIDException">Thrown when invalid instance was used</exception>
+        /// <exception cref="InvalidIOException">Thrown when internal IO error happens</exception>
+        /// <since_tizen> 5 </since_tizen>
+        protected Port GetPort(Port.Type t, string instance)
+        {
+            var err = Interop.LibRPCPort.Stub.GetPort(_stub,
+                (Interop.LibRPCPort.PortType)t, instance, out IntPtr port);
+            switch (err)
+            {
+                case Interop.LibRPCPort.ErrorCode.InvalidParameter:
+                    throw new InvalidIDException();
+                case Interop.LibRPCPort.ErrorCode.IoError:
+                    throw new InvalidIOException();
+            }
+
+            return new Port() { Handle = port };
+        }
+
+        /// <summary>
         /// Abstract method for receiving connected event
         /// </summary>
         /// <param name="sender">The target proxy app ID</param>

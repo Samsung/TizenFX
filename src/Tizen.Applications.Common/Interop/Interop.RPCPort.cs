@@ -33,6 +33,12 @@ internal static partial class Interop
             IoError = Tizen.Internals.Errors.ErrorCode.IoError,
         }
 
+        internal enum PortType
+        {
+            Main,
+            Callback
+        }
+
         internal static partial class Parcel
         {
             //int rpc_port_parcel_create(rpc_port_parcel_h *h);
@@ -185,6 +191,10 @@ internal static partial class Interop
             //int rpc_port_proxy_add_received_event_cb(rpc_port_proxy_h h, rpc_port_proxy_received_event_cb cb, void* data);
             [DllImport(Libraries.RpcPort, EntryPoint = "rpc_port_proxy_add_received_event_cb")]
             internal static extern ErrorCode AddReceivedEventCb(IntPtr handle, ReceivedEventCallback cb, IntPtr data);
+
+            //int rpc_port_proxy_get_port(rpc_port_proxy_h h, rpc_port_port_type_e type, rpc_port_h* port);
+            [DllImport(Libraries.RpcPort, EntryPoint = "rpc_port_proxy_get_port")]
+            internal static extern ErrorCode GetPort(IntPtr handle, PortType t, out IntPtr port);
         }
 
         internal static partial class Stub
@@ -232,6 +242,10 @@ internal static partial class Interop
             //int rpc_port_stub_set_trusted(rpc_port_stub_h h, const bool trusted);
             [DllImport(Libraries.RpcPort, EntryPoint = "rpc_port_stub_set_trusted")]
             internal static extern ErrorCode SetTrusted(IntPtr handle, bool trusted);
+
+            //int rpc_port_stub_get_port(rpc_port_stub_h h, rpc_port_port_type_e type, const char* instance, rpc_port_h *port);
+            [DllImport(Libraries.RpcPort, EntryPoint = "rpc_port_stub_get_port")]
+            internal static extern ErrorCode GetPort(IntPtr handle, PortType t, string instance, out IntPtr port);
         }
     }
 }

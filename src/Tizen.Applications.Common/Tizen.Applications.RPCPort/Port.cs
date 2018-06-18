@@ -24,6 +24,22 @@ namespace Tizen.Applications.RPCPort
     /// <since_tizen> 5 </since_tizen>
     public class Port
     {
+        /// <summary>
+        /// Enumeration for RPC port types
+        /// </summary>
+        public enum Type
+        {
+            /// <summary>
+            /// Main channel to communicate
+            /// </summary>
+            Main,
+
+            /// <summary>
+            /// Sub channel for callbacks
+            /// </summary>
+            Callback
+        }
+
         internal IntPtr Handle { get; set; }
         internal Port() { }
     }
