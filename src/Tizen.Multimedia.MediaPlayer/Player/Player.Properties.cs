@@ -42,71 +42,6 @@ namespace Tizen.Multimedia
             }
         }
 
-        #region Network configuration
-        private string _cookie = "";
-        private string _userAgent = "";
-
-        /// <summary>
-        /// Gets or sets the cookie for streaming playback.
-        /// </summary>
-        /// <remarks>To set, the player must be in the <see cref="PlayerState.Idle"/> state.</remarks>
-        /// <exception cref="InvalidOperationException">The player is not in the valid state.</exception>
-        /// <exception cref="ObjectDisposedException">The player has already been disposed of.</exception>
-        /// <exception cref="ArgumentNullException">The value to set is null.</exception>
-        /// <since_tizen> 3 </since_tizen>
-        public string Cookie
-        {
-            get
-            {
-                return _cookie;
-            }
-            set
-            {
-                ValidatePlayerState(PlayerState.Idle);
-
-                if (value == null)
-                {
-                    throw new ArgumentNullException(nameof(value), "Cookie can't be null.");
-                }
-
-                NativePlayer.SetStreamingCookie(Handle, value, value.Length).
-                    ThrowIfFailed(this, "Failed to set the cookie to the player");
-
-                _cookie = value;
-            }
-        }
-
-        /// <summary>
-        /// Gets or sets the user agent for streaming playback.
-        /// </summary>
-        /// <remarks>To set, the player must be in the <see cref="PlayerState.Idle"/> state.</remarks>
-        /// <exception cref="InvalidOperationException">The player is not in the valid state.</exception>
-        /// <exception cref="ObjectDisposedException">The player has already been disposed of.</exception>
-        /// <exception cref="ArgumentNullException">The value to set is null.</exception>
-        /// <since_tizen> 3 </since_tizen>
-        public string UserAgent
-        {
-            get
-            {
-                return _userAgent;
-            }
-            set
-            {
-                ValidatePlayerState(PlayerState.Idle);
-
-                if (value == null)
-                {
-                    throw new ArgumentNullException(nameof(value), "UserAgent can't be null.");
-                }
-
-                NativePlayer.SetStreamingUserAgent(Handle, value, value.Length).
-                    ThrowIfFailed(this, "Failed to set the user agent to the player");
-
-                _userAgent = value;
-            }
-        }
-        #endregion
-
         /// <summary>
         /// Gets the state of the player.
         /// </summary>
@@ -445,6 +380,31 @@ namespace Tizen.Multimedia
             }
         }
 
+        /// <summary>
+        /// Gets or sets the player's replaygain state.
+        /// </summary>
+        /// <value>If the replaygain status is true, replaygain is applied (if contents has a replaygain tag);
+        /// otherwise, the replaygain isn't affected by tag and properties.</value>
+        /// <exception cref="ObjectDisposedException">The player has already been disposed of.</exception>
+        /// <exception cref="ArgumentException">The value is not valid.</exception>
+        /// <since_tizen> 5 </since_tizen>
+        public bool Replaygain
+        {
+            get
+            {
+                ValidateNotDisposed();
+                NativePlayer.IsReplaygain(Handle, out var value).
+                    ThrowIfFailed(this, "Failed to get the replaygain of the player");
+                return value;
+            }
+            set
+            {
+                ValidateNotDisposed();
+                NativePlayer.SetReplaygain(Handle, value).
+                    ThrowIfFailed(this, "Failed to set the replaygain of the player");
+            }
+        }
+
         private SphericalVideo _sphericalVideo;
 
         /// <summary>
@@ -461,6 +421,44 @@ namespace Tizen.Multimedia
                 }
 
                 return _sphericalVideo;
+            }
+        }
+
+        private StreamingSettings _streamingSettings;
+
+        /// <summary>
+        /// Gets the streaming settings.
+        /// </summary>
+        /// <since_tizen> 5 </since_tizen>
+        public StreamingSettings StreamingSettings
+        {
+            get
+            {
+                if (_streamingSettings == null)
+                {
+                    _streamingSettings = new StreamingSettings(this);
+                }
+
+                return _streamingSettings;
+            }
+        }
+
+        private AdaptiveVariants _adaptiveVariants;
+
+        /// <summary>
+        /// Gets the adaptive variants settings.
+        /// </summary>
+        /// <since_tizen> 5 </since_tizen>
+        public AdaptiveVariants AdaptiveVariants
+        {
+            get
+            {
+                if (_adaptiveVariants == null)
+                {
+                    _adaptiveVariants = new AdaptiveVariants(this);
+                }
+
+                return _adaptiveVariants;
             }
         }
     }

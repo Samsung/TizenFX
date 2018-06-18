@@ -60,6 +60,9 @@ internal static partial class Interop
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         internal delegate void SeekCompletedCallback(IntPtr userData);
 
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+        internal delegate bool AdaptiveVariantCallback(int bandwidth, int width, int height, IntPtr userData);
+
         [DllImport(Libraries.Player, EntryPoint = "player_create")]
         internal static extern PlayerErrorCode Create(out PlayerHandle player);
 
@@ -95,6 +98,12 @@ internal static partial class Interop
 
         [DllImport(Libraries.Player, EntryPoint = "player_get_volume")]
         internal static extern PlayerErrorCode GetVolume(IntPtr player, out float left, out float right);
+
+        [DllImport(Libraries.Player, EntryPoint = "player_set_replaygain_enabled")]
+        internal static extern PlayerErrorCode SetReplaygain(IntPtr player, bool enabled);
+
+        [DllImport(Libraries.Player, EntryPoint = "player_is_replaygain_enabled")]
+        internal static extern PlayerErrorCode IsReplaygain(IntPtr player, out bool enabled);
 
         [DllImport(Libraries.Player, EntryPoint = "player_set_sound_stream_info")]
         internal static extern PlayerErrorCode SetAudioPolicyInfo(IntPtr player, AudioStreamPolicyHandle streamInfo);
@@ -164,6 +173,12 @@ internal static partial class Interop
 
         [DllImport(Libraries.Player, EntryPoint = "player_get_streaming_download_progress")]
         internal static extern PlayerErrorCode GetStreamingDownloadProgress(IntPtr player, out int start, out int current);
+
+        [DllImport(Libraries.Player, EntryPoint = "player_set_streaming_buffering_time")]
+        internal static extern PlayerErrorCode SetStreamingBufferingTime(IntPtr player, int bufferingTime, int reBufferingTime);
+
+        [DllImport(Libraries.Player, EntryPoint = "player_get_streaming_buffering_time")]
+        internal static extern PlayerErrorCode GetStreamingBufferingTime(IntPtr player, out int bufferingTime, out int reBufferingTime);
 
         [DllImport(Libraries.Player, EntryPoint = "player_set_buffering_cb")]
         internal static extern PlayerErrorCode SetBufferingCb(IntPtr player,
@@ -295,6 +310,14 @@ internal static partial class Interop
         [DllImport(Libraries.Player, EntryPoint = "player_360_get_field_of_view")]
         internal static extern PlayerErrorCode GetFieldOfView(IntPtr player, out int horizontalDegrees, out int verticalDegrees);
 
+        [DllImport(Libraries.Player, EntryPoint = "player_foreach_adaptive_variant")]
+        internal static extern PlayerErrorCode ForeachAdaptiveVariants(IntPtr player, AdaptiveVariantCallback callback, IntPtr userData);
+
+        [DllImport(Libraries.Player, EntryPoint = "player_set_max_adaptive_variant_limit")]
+        internal static extern PlayerErrorCode SetMaxLimit(IntPtr player, int bandwidth, int width, int height);
+
+        [DllImport(Libraries.Player, EntryPoint = "player_get_max_adaptive_variant_limit")]
+        internal static extern PlayerErrorCode GetMaxLimit(IntPtr player, out int bandwidth, out int width, out int height);
     }
 
     internal class PlayerHandle : SafeHandle
