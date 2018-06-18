@@ -54,7 +54,6 @@ namespace Tizen.Network.WiFi
                     else
                     {
                         _essid = Marshal.PtrToStringAnsi(strPtr);
-                        Interop.Libc.Free(strPtr);
                     }
                 }
                 return _essid;
@@ -81,7 +80,6 @@ namespace Tizen.Network.WiFi
                 else
                 {
                     bssid = Marshal.PtrToStringAnsi(strPtr);
-                    Interop.Libc.Free(strPtr);
                 }
                 return bssid;
             }
@@ -136,7 +134,6 @@ namespace Tizen.Network.WiFi
                 else
                 {
                     proxy = Marshal.PtrToStringAnsi(strPtr);
-                    Interop.Libc.Free(strPtr);
                 }
                 return proxy;
             }
@@ -366,9 +363,12 @@ namespace Tizen.Network.WiFi
             if (ret != (int)WiFiError.None)
             {
                 Log.Error(Globals.LogTag, "Failed to get essid, Error - " + (WiFiError)ret);
+                _essid = "";
             }
-            _essid = Marshal.PtrToStringAnsi(strPtr);
-            Interop.Libc.Free(strPtr);
+            else
+            {
+                _essid = Marshal.PtrToStringAnsi(strPtr);
+            }
         }
     } //WiFiNetworkInformation
 }
