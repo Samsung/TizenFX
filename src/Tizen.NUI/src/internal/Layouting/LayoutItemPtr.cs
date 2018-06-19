@@ -144,12 +144,6 @@ namespace Tizen.NUI
             return ret;
         }
 
-        public void RegisterChildProperties(string containerType)
-        {
-            LayoutPINVOKE.LayoutItemPtr_RegisterChildProperties(swigCPtr, containerType);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-        }
-
         public void Measure(LayoutMeasureSpec widthMeasureSpec, LayoutMeasureSpec heightMeasureSpec)
         {
             LayoutPINVOKE.LayoutItemPtr_Measure(swigCPtr, LayoutMeasureSpec.getCPtr(widthMeasureSpec), LayoutMeasureSpec.getCPtr(heightMeasureSpec));
