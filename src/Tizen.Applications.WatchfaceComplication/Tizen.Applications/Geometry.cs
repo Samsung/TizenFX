@@ -4,11 +4,11 @@ using System.Text;
 
 namespace Tizen.Applications.WatchfaceComplication
 {
-    public class EditableGeometry
+    public class Geometry
     {
         private IntPtr _raw;
 
-        public EditableGeometry(int x, int y, int w, int h)
+        public Geometry(int x, int y, int w, int h)
         {
             ComplicationError ret = Interop.WatchfaceComplication.CreateGeometry(out _raw);
             if (ret != ComplicationError.None)
@@ -102,7 +102,7 @@ namespace Tizen.Applications.WatchfaceComplication
         }
 
 
-        ~EditableGeometry()
+        ~Geometry()
         {
             Interop.WatchfaceComplication.DestroyGeometry(_raw);            
         }

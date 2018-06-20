@@ -11,7 +11,7 @@ namespace Tizen.Applications.WatchfaceComplication
         internal IntPtr _container = IntPtr.Zero;
         private Interop.WatchfaceComplication.EditableUpdatedCallback _updatedCallback;
 
-        public int Add(DesignElement de, int editableId, EditableGeometry geo)
+        public int Add(DesignElement de, int editableId, Geometry geo)
         {
             IEditable e = de;
             e.EditableId = editableId;
@@ -20,7 +20,7 @@ namespace Tizen.Applications.WatchfaceComplication
             return 0;
         }
 
-        public int Add(Complication comp, int editableId, EditableGeometry geo)
+        public int Add(Complication comp, int editableId, Geometry geo)
         {
             IEditable e = comp;
             e.EditableId = editableId;
@@ -44,7 +44,7 @@ namespace Tizen.Applications.WatchfaceComplication
             OnEditReady(editorAppid);
         }
 
-        protected virtual void OnUpdate(IEditable ed, int selectedIdx, EditableState state)
+        protected virtual void OnUpdate(IEditable ed, int selectedIdx, State state)
         {            
 
         }

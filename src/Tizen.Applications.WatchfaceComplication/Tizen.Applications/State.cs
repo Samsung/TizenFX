@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Tizen.Applications.WatchfaceComplication
 {    
-    public enum EditableState
+    public enum State
     {
         Complete,
         OnGoing,

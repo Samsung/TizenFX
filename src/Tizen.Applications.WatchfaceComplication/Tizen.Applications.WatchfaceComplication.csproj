@@ -8,9 +8,6 @@
     <PackageIconUrl>https://developer.tizen.org/sites/default/files/images/tizen-pinwheel-on-light-rgb_64_64.png</PackageIconUrl>
     </PropertyGroup>
   <ItemGroup>
-    <Compile Remove="Tizen.Applications\WatchfaceComplication.cs" />
-  </ItemGroup>
-  <ItemGroup>
     <PackageReference Include="Tizen.NET" Version="4.0.0" />
   </ItemGroup>
   <ItemGroup>

@@ -11,15 +11,15 @@ namespace Tizen.Applications.WatchfaceComplication
         private int _supportTypes;
         private string _defaultProviderId;
         private ComplicationType _defaultType;
-        private EditableGeometry _geometry;
-        private EditableState _state;
+        private Geometry _geometry;
+        private State _state;
         private IEnumerable<Bundle> _candidates;
-        private EditableShapeType _shapeType;
+        private ShapeType _shapeType;
         private Interop.WatchfaceComplication.SafeComplicationHandle _handle;
         private Interop.WatchfaceComplication.ComplicationUpdatedCallback _updatedCallback;
         private int _editableId;
 
-        public Complication(int complicationId, int supportTypes, string defaultProviderId, ComplicationType defaultType, EditableShapeType shapeType)
+        public Complication(int complicationId, int supportTypes, string defaultProviderId, ComplicationType defaultType, ShapeType shapeType)
         {
             _complicationId = complicationId;
             _supportTypes = supportTypes;
@@ -56,7 +56,7 @@ namespace Tizen.Applications.WatchfaceComplication
             }
         }
         
-        EditableGeometry IEditable.Geometry
+        Geometry IEditable.Geometry
         {
             get
             {
@@ -114,7 +114,15 @@ namespace Tizen.Applications.WatchfaceComplication
                 return null;
             }
         }
-        
+
+        State IEditable.State
+        {
+            get
+            {
+                return _state;
+            }
+        }
+
         Bundle IEditable.GetNthData(int index)
         {
             throw new NotImplementedException();
@@ -135,6 +143,94 @@ namespace Tizen.Applications.WatchfaceComplication
                 ErrorFactory.ThrowException(ret, "Fail to get current idx");
             }
             return ret;
+        }
+
+        public ComplicationType GetType(Bundle data)
+        {
+            ComplicationType type;
+
+            Interop.WatchfaceComplication.GetDataType(data.SafeBundleHandle, out type);
+            return type;
+        }
+
+        public string GetShortText(Bundle data)
+        {
+            string shortText;
+
+            Interop.WatchfaceComplication.GetShortText(data.SafeBundleHandle, out shortText);
+            return shortText;
+        }
+
+        public string GetLongText(Bundle data)
+        {
+            string longText;
+
+            Interop.WatchfaceComplication.GetShortText(data.SafeBundleHandle, out longText);
+            return longText;
+        }
+
+        public string GetTitle(Bundle data)
+        {
+            string title;
+
+            Interop.WatchfaceComplication.GetShortText(data.SafeBundleHandle, out title);
+            return title;
+        }
+
+        public long GetTimestamp(Bundle data)
+        {
+            long timestamp;
+
+            Interop.WatchfaceComplication.GetTimestamp(data.SafeBundleHandle, out timestamp);
+            return timestamp;
+        }
+
+        public string GetImagePath(Bundle data)
+        {
+            string imagePath;
+
+            Interop.WatchfaceComplication.GetShortText(data.SafeBundleHandle, out imagePath);
+            return imagePath;
+        }
+
+        public double GetCurrentValue(Bundle data)
+        {
+            double curVal, minVal, maxVal;
+
+            Interop.WatchfaceComplication.GetRangedValue(data.SafeBundleHandle, out curVal, out minVal, out maxVal);
+            return curVal;
+        }
+
+        public double GetMinValue(Bundle data)
+        {
+            double curVal, minVal, maxVal;
+
+            Interop.WatchfaceComplication.GetRangedValue(data.SafeBundleHandle, out curVal, out minVal, out maxVal);
+            return minVal;
+        }
+
+        public double GetMaxValue(Bundle data)
+        {
+            double curVal, minVal, maxVal;
+
+            Interop.WatchfaceComplication.GetRangedValue(data.SafeBundleHandle, out curVal, out minVal, out maxVal);
+            return maxVal;
+        }
+
+        public string GetIconPath(Bundle data)
+        {
+            string iconPath;
+
+            Interop.WatchfaceComplication.GetIconPath(data.SafeBundleHandle, out iconPath);
+            return iconPath;
+        }
+
+        public string GetExtraData(Bundle data)
+        {
+            string extraData;
+
+            Interop.WatchfaceComplication.GetIconPath(data.SafeBundleHandle, out extraData);
+            return extraData;
         }
 
         protected virtual void OnComplicationUpdate(string providerId, ComplicationType type, Bundle data)

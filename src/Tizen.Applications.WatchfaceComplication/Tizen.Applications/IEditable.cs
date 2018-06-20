@@ -9,8 +9,9 @@ namespace Tizen.Applications.WatchfaceComplication
 	{        
         int EditableId { get; set; }
         string Name { get;}        
-        EditableGeometry Geometry { get; set; }        
+        Geometry Geometry { get; set; }
+        State State { get; }
         int CurrentDataIndex { get; }        
-        Bundle GetNthData(int index);        
+        Bundle GetNthData(int index);
     }
 }

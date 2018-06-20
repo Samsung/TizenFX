@@ -2,7 +2,7 @@ using System;
 
 namespace Tizen.Applications.WatchfaceComplication
 {
-    public enum EditableShapeType {
+    public enum ShapeType {
         Circle,
         Rectangle
     }

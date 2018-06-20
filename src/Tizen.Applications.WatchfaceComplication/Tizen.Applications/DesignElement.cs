@@ -8,11 +8,11 @@ namespace Tizen.Applications.WatchfaceComplication
 
         private IEnumerable<Bundle> _candidates;
         private int _curDataIdx;
-        private EditableGeometry _geometry;
+        private Geometry _geometry;
         private string _editableName;
         private int _editableId;
 
-        public DesignElement(IEnumerable<Bundle> candidates, int curDataIdx, EditableGeometry geometry, string editableName)
+        public DesignElement(IEnumerable<Bundle> candidates, int curDataIdx, Geometry geometry, string editableName)
         {
             _candidates = candidates;
             _curDataIdx = curDataIdx;
@@ -48,14 +48,16 @@ namespace Tizen.Applications.WatchfaceComplication
             }
         }
        
-        EditableGeometry IEditable.Geometry { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+        Geometry IEditable.Geometry { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
         int IEditable.CurrentDataIndex
         {
             get
             {
                 return _curDataIdx;
             }
-        }        
+        }
+
+        State IEditable.State => throw new NotImplementedException();
 
         Bundle IEditable.GetNthData(int index)
         {
