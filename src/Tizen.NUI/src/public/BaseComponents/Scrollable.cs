@@ -513,6 +513,7 @@ namespace Tizen.NUI.BaseComponents
             set
             {
                 SetProperty(Scrollable.Property.OVERSHOOT_EFFECT_COLOR, new Tizen.NUI.PropertyValue(value));
+                NotifyPropertyChanged();
             }
         }
 
@@ -531,6 +532,7 @@ namespace Tizen.NUI.BaseComponents
             set
             {
                 SetProperty(Scrollable.Property.OVERSHOOT_ANIMATION_SPEED, new Tizen.NUI.PropertyValue(value));
+                NotifyPropertyChanged();
             }
         }
 
@@ -549,6 +551,7 @@ namespace Tizen.NUI.BaseComponents
             set
             {
                 SetProperty(Scrollable.Property.OVERSHOOT_ENABLED, new Tizen.NUI.PropertyValue(value));
+                NotifyPropertyChanged();
             }
         }
 
@@ -567,6 +570,7 @@ namespace Tizen.NUI.BaseComponents
             set
             {
                 SetProperty(Scrollable.Property.OVERSHOOT_SIZE, new Tizen.NUI.PropertyValue(value));
+                NotifyPropertyChanged();
             }
         }
 
@@ -585,6 +589,7 @@ namespace Tizen.NUI.BaseComponents
             set
             {
                 SetProperty(Scrollable.Property.SCROLL_TO_ALPHA_FUNCTION, new Tizen.NUI.PropertyValue(value));
+                NotifyPropertyChanged();
             }
         }
 
@@ -603,6 +608,7 @@ namespace Tizen.NUI.BaseComponents
             set
             {
                 SetProperty(Scrollable.Property.SCROLL_RELATIVE_POSITION, new Tizen.NUI.PropertyValue(value));
+                NotifyPropertyChanged();
             }
         }
 
@@ -621,6 +627,7 @@ namespace Tizen.NUI.BaseComponents
             set
             {
                 SetProperty(Scrollable.Property.SCROLL_POSITION_MIN, new Tizen.NUI.PropertyValue(value));
+                NotifyPropertyChanged();
             }
         }
 
@@ -639,6 +646,7 @@ namespace Tizen.NUI.BaseComponents
             set
             {
                 SetProperty(Scrollable.Property.SCROLL_POSITION_MAX, new Tizen.NUI.PropertyValue(value));
+                NotifyPropertyChanged();
             }
         }
 
@@ -657,6 +665,7 @@ namespace Tizen.NUI.BaseComponents
             set
             {
                 SetProperty(Scrollable.Property.CAN_SCROLL_VERTICAL, new Tizen.NUI.PropertyValue(value));
+                NotifyPropertyChanged();
             }
         }
 
@@ -675,6 +684,7 @@ namespace Tizen.NUI.BaseComponents
             set
             {
                 SetProperty(Scrollable.Property.CAN_SCROLL_HORIZONTAL, new Tizen.NUI.PropertyValue(value));
+                NotifyPropertyChanged();
             }
         }
 

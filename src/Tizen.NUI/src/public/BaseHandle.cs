@@ -16,6 +16,7 @@
  */
 using System;
 using System.ComponentModel;
+using System.Runtime.CompilerServices;
 using Tizen.NUI.Binding;
 using Tizen.NUI.Internals;
 
@@ -28,6 +29,18 @@ namespace Tizen.NUI
     /// <since_tizen> 3 </since_tizen>
     public class BaseHandle : Element, global::System.IDisposable
     {
+        /// <summary>
+        /// Event which is occurred when a property is set
+        /// </summary>
+        /// <since_tizen> 5 </since_tizen>
+        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public event PropertyChangedEventHandler PropertySet;
+
+        internal void NotifyPropertyChanged([CallerMemberName] String propertyName = "")
+        {
+            PropertySet?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
 
         internal static readonly BindablePropertyKey NavigationPropertyKey = BindableProperty.CreateReadOnly("Navigation", typeof(INavigation), typeof(/*VisualElement*/BaseHandle), default(INavigation));
         /// <summary>
