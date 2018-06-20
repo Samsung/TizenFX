@@ -1774,5 +1774,8 @@ namespace Tizen.NUI
         [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint = "CSharp_Dali_SetLayout__SWIG_1")]
         public static extern void SetLayout__SWIG_1(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
 
+        [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint = "CSharp_Dali_Touch_GetMouseButton")]
+        public static extern int Touch_GetMouseButton(global::System.Runtime.InteropServices.HandleRef jarg1, ulong jarg2);
+
     }
 }
