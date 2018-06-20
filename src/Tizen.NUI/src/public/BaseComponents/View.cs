@@ -43,8 +43,30 @@ namespace Tizen.NUI.BaseComponents
             return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
         }
 
-        // From Container Base class
+        /// <summary>
+        /// Event argument passed through ChildAdded event
+        /// </summary>
+        /// <since_tizen> 5 </since_tizen>
+        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public class ChildAddedEventArgs : EventArgs
+        {
+            /// <summary>
+            /// Added child View at moment
+            /// </summary>
+            /// <since_tizen> 5 </since_tizen>
+            public View Added { get; set; }
+        }
 
+        /// <summary>
+        /// Event when a child is added
+        /// </summary>
+        /// <since_tizen> 5 </since_tizen>
+        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public new event EventHandler<ChildAddedEventArgs> ChildAdded;
+
+        // From Container Base class
         /// <summary>
         /// Adds a child view to this view.
         /// </summary>
@@ -67,8 +89,41 @@ namespace Tizen.NUI.BaseComponents
                 if (NDalicPINVOKE.SWIGPendingException.Pending)
                     throw NDalicPINVOKE.SWIGPendingException.Retrieve();
                 Children.Add(child);
+
+                if (ChildAdded != null)
+                {
+                    ChildAddedEventArgs e = new ChildAddedEventArgs
+                    {
+                        Added = child
+                    };
+                    ChildAdded(this, e);
             }
         }
+        }
+
+        /// <summary>
+        /// Event argument passed through ChildRemoved event
+        /// </summary>
+        /// <since_tizen> 5 </since_tizen>
+        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public class ChildRemovedEventArgs : EventArgs
+        {
+            /// <summary>
+            /// Removed child View at moment
+            /// </summary>
+            /// <since_tizen> 5 </since_tizen>
+            public View Removed { get; set; }
+        }
+
+        /// <summary>
+        /// Event when a child is removed
+        /// </summary>
+        /// <since_tizen> 5 </since_tizen>
+        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public new event EventHandler<ChildRemovedEventArgs> ChildRemoved;
+        
 
         /// <summary>
         /// Removes a child view from this View. If the view was not a child of this view, this is a no-op.
@@ -82,6 +137,15 @@ namespace Tizen.NUI.BaseComponents
                 throw NDalicPINVOKE.SWIGPendingException.Retrieve();
 
             Children.Remove(child);
+
+            if (ChildRemoved != null)
+            {
+                ChildRemovedEventArgs e = new ChildRemovedEventArgs
+                {
+                    Removed = child
+                };
+                ChildRemoved(this, e);
+            }
         }
 
         /// <summary>
@@ -1366,6 +1430,7 @@ namespace Tizen.NUI.BaseComponents
             set
             {
                 SetProperty(View.Property.STYLE_NAME, new Tizen.NUI.PropertyValue(value));
+                NotifyPropertyChanged();
             }
         }
 
@@ -1392,6 +1457,7 @@ namespace Tizen.NUI.BaseComponents
             set
             {
                 SetProperty(View.Property.BACKGROUND, new Tizen.NUI.PropertyValue(value));
+                NotifyPropertyChanged();
             }
         }
 
@@ -1482,6 +1548,7 @@ namespace Tizen.NUI.BaseComponents
             set
             {
                 SetProperty(View.Property.BACKGROUND, new Tizen.NUI.PropertyValue(value));
+                NotifyPropertyChanged();
             }
         }
 
@@ -1500,6 +1567,7 @@ namespace Tizen.NUI.BaseComponents
             set
             {
                 SetProperty(View.Property.BACKGROUND, new Tizen.NUI.PropertyValue(value));
+                NotifyPropertyChanged();
             }
         }
 
@@ -1540,6 +1608,7 @@ namespace Tizen.NUI.BaseComponents
             set
             {
                 SetProperty(View.Property.STATE, new Tizen.NUI.PropertyValue((int)value));
+                NotifyPropertyChanged();
             }
         }
 
@@ -1595,6 +1664,7 @@ namespace Tizen.NUI.BaseComponents
                         }
                 }
                 SetProperty(View.Property.SUB_STATE, new Tizen.NUI.PropertyValue(valueToString));
+                NotifyPropertyChanged();
             }
         }
 
@@ -1613,6 +1683,7 @@ namespace Tizen.NUI.BaseComponents
             set
             {
                 SetProperty(View.Property.TOOLTIP, new Tizen.NUI.PropertyValue(value));
+                NotifyPropertyChanged();
             }
         }
 
@@ -1625,6 +1696,7 @@ namespace Tizen.NUI.BaseComponents
             set
             {
                 SetProperty(View.Property.TOOLTIP, new Tizen.NUI.PropertyValue(value));
+                NotifyPropertyChanged();
             }
         }
 
@@ -1701,6 +1773,7 @@ namespace Tizen.NUI.BaseComponents
             set
             {
                 SetProperty(FlexContainer.ChildProperty.FLEX, new Tizen.NUI.PropertyValue(value));
+                NotifyPropertyChanged();
             }
         }
 
@@ -1720,6 +1793,7 @@ namespace Tizen.NUI.BaseComponents
             set
             {
                 SetProperty(FlexContainer.ChildProperty.ALIGN_SELF, new Tizen.NUI.PropertyValue(value));
+                NotifyPropertyChanged();
             }
         }
 
@@ -1739,6 +1813,7 @@ namespace Tizen.NUI.BaseComponents
             set
             {
                 SetProperty(FlexContainer.ChildProperty.FLEX_MARGIN, new Tizen.NUI.PropertyValue(value));
+                NotifyPropertyChanged();
             }
         }
 
@@ -1757,6 +1832,7 @@ namespace Tizen.NUI.BaseComponents
             set
             {
                 SetProperty(TableView.ChildProperty.CELL_INDEX, new Tizen.NUI.PropertyValue(value));
+                NotifyPropertyChanged();
             }
         }
 
@@ -1775,6 +1851,7 @@ namespace Tizen.NUI.BaseComponents
             set
             {
                 SetProperty(TableView.ChildProperty.ROW_SPAN, new Tizen.NUI.PropertyValue(value));
+                NotifyPropertyChanged();
             }
         }
 
@@ -1793,6 +1870,7 @@ namespace Tizen.NUI.BaseComponents
             set
             {
                 SetProperty(TableView.ChildProperty.COLUMN_SPAN, new Tizen.NUI.PropertyValue(value));
+                NotifyPropertyChanged();
             }
         }
 
@@ -1849,6 +1927,7 @@ namespace Tizen.NUI.BaseComponents
                         }
                 }
                 SetProperty(TableView.ChildProperty.CELL_HORIZONTAL_ALIGNMENT, new Tizen.NUI.PropertyValue(valueToString));
+                NotifyPropertyChanged();
             }
         }
 
@@ -1905,6 +1984,7 @@ namespace Tizen.NUI.BaseComponents
                         }
                 }
                 SetProperty(TableView.ChildProperty.CELL_VERTICAL_ALIGNMENT, new Tizen.NUI.PropertyValue(valueToString));
+                NotifyPropertyChanged();
             }
         }
 
@@ -1935,6 +2015,7 @@ namespace Tizen.NUI.BaseComponents
                 {
                     LeftFocusableViewId = -1;
                 }
+                NotifyPropertyChanged();
             }
         }
 
@@ -1965,6 +2046,7 @@ namespace Tizen.NUI.BaseComponents
                 {
                     RightFocusableViewId = -1;
                 }
+                NotifyPropertyChanged();
             }
         }
 
@@ -1995,6 +2077,7 @@ namespace Tizen.NUI.BaseComponents
                 {
                     UpFocusableViewId = -1;
                 }
+                NotifyPropertyChanged();
             }
         }
 
@@ -2025,6 +2108,7 @@ namespace Tizen.NUI.BaseComponents
                 {
                     DownFocusableViewId = -1;
                 }
+                NotifyPropertyChanged();
             }
         }
 
@@ -2037,6 +2121,7 @@ namespace Tizen.NUI.BaseComponents
             set
             {
                 SetKeyboardFocusable(value);
+                NotifyPropertyChanged();
             }
             get
             {
@@ -2096,6 +2181,7 @@ namespace Tizen.NUI.BaseComponents
             set
             {
                 SetProperty(View.Property.SIZE, new Tizen.NUI.PropertyValue(new Size(value)));
+                NotifyPropertyChanged();
             }
         }
 
@@ -2127,6 +2213,7 @@ namespace Tizen.NUI.BaseComponents
             set
             {
                 SetProperty(View.Property.OPACITY, new Tizen.NUI.PropertyValue(value));
+                NotifyPropertyChanged();
             }
         }
 
@@ -2147,6 +2234,7 @@ namespace Tizen.NUI.BaseComponents
             set
             {
                 SetProperty(View.Property.POSITION, new Tizen.NUI.PropertyValue(new Position(value)));
+                NotifyPropertyChanged();
             }
         }
 
@@ -2183,6 +2271,7 @@ namespace Tizen.NUI.BaseComponents
             set
             {
                 SetProperty(View.Property.POSITION_USES_ANCHOR_POINT, new Tizen.NUI.PropertyValue(value));
+                NotifyPropertyChanged();
             }
         }
 
@@ -2209,6 +2298,7 @@ namespace Tizen.NUI.BaseComponents
             set
             {
                 SetProperty(View.Property.POSITION_USES_ANCHOR_POINT, new Tizen.NUI.PropertyValue(value));
+                NotifyPropertyChanged();
             }
         }
 
@@ -2314,6 +2404,7 @@ namespace Tizen.NUI.BaseComponents
                         }
                     }
                 }
+                NotifyPropertyChanged();
             }
         }
 
@@ -3406,6 +3497,7 @@ namespace Tizen.NUI.BaseComponents
             set
             {
                 SetProperty(View.Property.PARENT_ORIGIN, new Tizen.NUI.PropertyValue(value));
+                NotifyPropertyChanged();
             }
         }
 
@@ -3420,6 +3512,7 @@ namespace Tizen.NUI.BaseComponents
             set
             {
                 SetProperty(View.Property.PARENT_ORIGIN_X, new Tizen.NUI.PropertyValue(value));
+                NotifyPropertyChanged();
             }
         }
 
@@ -3434,6 +3527,7 @@ namespace Tizen.NUI.BaseComponents
             set
             {
                 SetProperty(View.Property.PARENT_ORIGIN_Y, new Tizen.NUI.PropertyValue(value));
+                NotifyPropertyChanged();
             }
         }
 
@@ -3448,6 +3542,7 @@ namespace Tizen.NUI.BaseComponents
             set
             {
                 SetProperty(View.Property.PARENT_ORIGIN_Z, new Tizen.NUI.PropertyValue(value));
+                NotifyPropertyChanged();
             }
         }
 
@@ -3471,6 +3566,7 @@ namespace Tizen.NUI.BaseComponents
             set
             {
                 SetProperty(View.Property.ANCHOR_POINT, new Tizen.NUI.PropertyValue(value));
+                NotifyPropertyChanged();
             }
         }
 
@@ -3531,6 +3627,7 @@ namespace Tizen.NUI.BaseComponents
             set
             {
                 SetProperty(View.Property.SIZE_WIDTH, new Tizen.NUI.PropertyValue(value));
+                NotifyPropertyChanged();
             }
         }
 
@@ -3549,6 +3646,7 @@ namespace Tizen.NUI.BaseComponents
             set
             {
                 SetProperty(View.Property.SIZE_HEIGHT, new Tizen.NUI.PropertyValue(value));
+                NotifyPropertyChanged();
             }
         }
 
@@ -3569,6 +3667,7 @@ namespace Tizen.NUI.BaseComponents
             set
             {
                 SetProperty(View.Property.POSITION, new Tizen.NUI.PropertyValue(value));
+                NotifyPropertyChanged();
             }
         }
 
@@ -3587,6 +3686,7 @@ namespace Tizen.NUI.BaseComponents
             set
             {
                 SetProperty(View.Property.POSITION_X, new Tizen.NUI.PropertyValue(value));
+                NotifyPropertyChanged();
             }
         }
 
@@ -3605,6 +3705,7 @@ namespace Tizen.NUI.BaseComponents
             set
             {
                 SetProperty(View.Property.POSITION_Y, new Tizen.NUI.PropertyValue(value));
+                NotifyPropertyChanged();
             }
         }
 
@@ -3623,6 +3724,7 @@ namespace Tizen.NUI.BaseComponents
             set
             {
                 SetProperty(View.Property.POSITION_Z, new Tizen.NUI.PropertyValue(value));
+                NotifyPropertyChanged();
             }
         }
 
@@ -3687,6 +3789,7 @@ namespace Tizen.NUI.BaseComponents
             set
             {
                 SetProperty(View.Property.ORIENTATION, new Tizen.NUI.PropertyValue(value));
+                NotifyPropertyChanged();
             }
         }
 
@@ -3719,6 +3822,7 @@ namespace Tizen.NUI.BaseComponents
             set
             {
                 SetProperty(View.Property.SCALE, new Tizen.NUI.PropertyValue(value));
+                NotifyPropertyChanged();
             }
         }
 
@@ -3737,6 +3841,7 @@ namespace Tizen.NUI.BaseComponents
             set
             {
                 SetProperty(View.Property.SCALE_X, new Tizen.NUI.PropertyValue(value));
+                NotifyPropertyChanged();
             }
         }
 
@@ -3755,6 +3860,7 @@ namespace Tizen.NUI.BaseComponents
             set
             {
                 SetProperty(View.Property.SCALE_Y, new Tizen.NUI.PropertyValue(value));
+                NotifyPropertyChanged();
             }
         }
 
@@ -3773,6 +3879,7 @@ namespace Tizen.NUI.BaseComponents
             set
             {
                 SetProperty(View.Property.SCALE_Z, new Tizen.NUI.PropertyValue(value));
+                NotifyPropertyChanged();
             }
         }
 
@@ -3847,6 +3954,7 @@ namespace Tizen.NUI.BaseComponents
             set
             {
                 SetProperty(View.Property.NAME, new Tizen.NUI.PropertyValue(value));
+                NotifyPropertyChanged();
             }
         }
 
@@ -3890,6 +3998,7 @@ namespace Tizen.NUI.BaseComponents
             set
             {
                 SetProperty(View.Property.SENSITIVE, new Tizen.NUI.PropertyValue(value));
+                NotifyPropertyChanged();
             }
         }
 
@@ -3908,6 +4017,7 @@ namespace Tizen.NUI.BaseComponents
             set
             {
                 SetProperty(View.Property.LEAVE_REQUIRED, new Tizen.NUI.PropertyValue(value));
+                NotifyPropertyChanged();
             }
         }
 
@@ -3926,6 +4036,7 @@ namespace Tizen.NUI.BaseComponents
             set
             {
                 SetProperty(View.Property.INHERIT_ORIENTATION, new Tizen.NUI.PropertyValue(value));
+                NotifyPropertyChanged();
             }
         }
 
@@ -3944,6 +4055,7 @@ namespace Tizen.NUI.BaseComponents
             set
             {
                 SetProperty(View.Property.INHERIT_SCALE, new Tizen.NUI.PropertyValue(value));
+                NotifyPropertyChanged();
             }
         }
 
@@ -3980,6 +4092,7 @@ namespace Tizen.NUI.BaseComponents
             set
             {
                 SetProperty(View.Property.DRAW_MODE, new Tizen.NUI.PropertyValue((int)value));
+                NotifyPropertyChanged();
             }
         }
 
@@ -4000,6 +4113,7 @@ namespace Tizen.NUI.BaseComponents
             set
             {
                 SetProperty(View.Property.SIZE_MODE_FACTOR, new Tizen.NUI.PropertyValue(value));
+                NotifyPropertyChanged();
             }
         }
 
@@ -4041,6 +4155,7 @@ namespace Tizen.NUI.BaseComponents
             set
             {
                 SetProperty(View.Property.WIDTH_RESIZE_POLICY, new Tizen.NUI.PropertyValue((int)value));
+                NotifyPropertyChanged();
             }
         }
 
@@ -4082,6 +4197,7 @@ namespace Tizen.NUI.BaseComponents
             set
             {
                 SetProperty(View.Property.HEIGHT_RESIZE_POLICY, new Tizen.NUI.PropertyValue((int)value));
+                NotifyPropertyChanged();
             }
         }
 
@@ -4138,6 +4254,7 @@ namespace Tizen.NUI.BaseComponents
                         }
                 }
                 SetProperty(View.Property.SIZE_SCALE_POLICY, new Tizen.NUI.PropertyValue(valueToString));
+                NotifyPropertyChanged();
             }
         }
 
@@ -4156,6 +4273,7 @@ namespace Tizen.NUI.BaseComponents
             set
             {
                 SetProperty(View.Property.WIDTH_FOR_HEIGHT, new Tizen.NUI.PropertyValue(value));
+                NotifyPropertyChanged();
             }
         }
 
@@ -4174,6 +4292,7 @@ namespace Tizen.NUI.BaseComponents
             set
             {
                 SetProperty(View.Property.HEIGHT_FOR_WIDTH, new Tizen.NUI.PropertyValue(value));
+                NotifyPropertyChanged();
             }
         }
 
@@ -4192,6 +4311,7 @@ namespace Tizen.NUI.BaseComponents
             set
             {
                 SetProperty(View.Property.PADDING, new Tizen.NUI.PropertyValue(value));
+                NotifyPropertyChanged();
             }
         }
 
@@ -4210,6 +4330,7 @@ namespace Tizen.NUI.BaseComponents
             set
             {
                 SetProperty(View.Property.MINIMUM_SIZE, new Tizen.NUI.PropertyValue(value));
+                NotifyPropertyChanged();
             }
         }
 
@@ -4228,6 +4349,7 @@ namespace Tizen.NUI.BaseComponents
             set
             {
                 SetProperty(View.Property.MAXIMUM_SIZE, new Tizen.NUI.PropertyValue(value));
+                NotifyPropertyChanged();
             }
         }
 
@@ -4248,6 +4370,7 @@ namespace Tizen.NUI.BaseComponents
             set
             {
                 SetProperty(View.Property.INHERIT_POSITION, new Tizen.NUI.PropertyValue(value));
+                NotifyPropertyChanged();
             }
         }
 
@@ -4279,6 +4402,7 @@ namespace Tizen.NUI.BaseComponents
             set
             {
                 SetProperty(View.Property.CLIPPING_MODE, new Tizen.NUI.PropertyValue((int)value));
+                NotifyPropertyChanged();
             }
         }
 
@@ -4317,6 +4441,7 @@ namespace Tizen.NUI.BaseComponents
             set
             {
                 SetProperty(View.Property.ANCHOR_POINT, new Tizen.NUI.PropertyValue(value));
+                NotifyPropertyChanged();
             }
         }
 
@@ -4340,6 +4465,7 @@ namespace Tizen.NUI.BaseComponents
             set
             {
                 SetProperty(View.Property.SIZE, new Tizen.NUI.PropertyValue(value));
+                NotifyPropertyChanged();
             }
         }
 
@@ -4395,6 +4521,7 @@ namespace Tizen.NUI.BaseComponents
             set
             {
                 SetProperty(View.Property.INHERIT_LAYOUT_DIRECTION, new Tizen.NUI.PropertyValue(value));
+                NotifyPropertyChanged();
             }
         }
 
@@ -4416,6 +4543,7 @@ namespace Tizen.NUI.BaseComponents
             set
             {
                 SetProperty(View.Property.LAYOUT_DIRECTION, new Tizen.NUI.PropertyValue((int)value));
+                NotifyPropertyChanged();
             }
         }
 
@@ -4434,6 +4562,7 @@ namespace Tizen.NUI.BaseComponents
             set
             {
                 SetProperty(View.Property.MARGIN, new Tizen.NUI.PropertyValue(value));
+                NotifyPropertyChanged();
             }
         }
 
@@ -4456,6 +4585,7 @@ namespace Tizen.NUI.BaseComponents
             set
             {
                 SetProperty(View.Property.PADDING, new Tizen.NUI.PropertyValue(value));
+                NotifyPropertyChanged();
             }
         }
 
