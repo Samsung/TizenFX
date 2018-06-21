@@ -638,7 +638,7 @@ namespace Tizen.NUI
         [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint = "CSharp_Dali_LayoutItemPtr_GetPadding")]
         public static extern global::System.IntPtr LayoutItemPtr_GetPadding(global::System.Runtime.InteropServices.HandleRef jarg1);
 
-        [global::System.Runtime.InteropServices.DllImport("NDalic", EntryPoint = "CSharp_Dali_LayoutItemPtr_SetMeasuredDimensions")]
+        [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint = "CSharp_Dali_LayoutItemPtr_SetMeasuredDimensions")]
         public static extern void LayoutItemPtr_SetMeasuredDimensions(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2, global::System.Runtime.InteropServices.HandleRef jarg3);
 
         [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint = "CSharp_Dali_LayoutItemPtr_DoAction")]
@@ -661,5 +661,117 @@ namespace Tizen.NUI
 
         [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint = "CSharp_Dali_LayoutItemPtr_ReferenceCount")]
         public static extern int LayoutItemPtr_ReferenceCount(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+        [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint="CSharp_Dali_AbsoluteLayout_SWIGUpcast")]
+        public static extern global::System.IntPtr AbsoluteLayout_SWIGUpcast(global::System.IntPtr jarg1);
+
+        [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint="CSharp_Dali_new_AbsoluteLayout__SWIG_0")]
+        public static extern global::System.IntPtr new_AbsoluteLayout__SWIG_0();
+
+        [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint="CSharp_Dali_AbsoluteLayout_New")]
+        public static extern global::System.IntPtr AbsoluteLayout_New();
+
+        [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint="CSharp_Dali_AbsoluteLayout_DownCast")]
+        public static extern global::System.IntPtr AbsoluteLayout_DownCast(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+        [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint="CSharp_Dali_new_AbsoluteLayout__SWIG_1")]
+        public static extern global::System.IntPtr new_AbsoluteLayout__SWIG_1(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+        [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint="CSharp_Dali_AbsoluteLayout_Assign")]
+        public static extern global::System.IntPtr AbsoluteLayout_Assign(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+
+        [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint="CSharp_Dali_delete_AbsoluteLayout")]
+        public static extern void delete_AbsoluteLayout(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+        [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint="CSharp_Dali_FlexLayout_SWIGUpcast")]
+        public static extern global::System.IntPtr FlexLayout_SWIGUpcast(global::System.IntPtr jarg1);
+
+        [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint="CSharp_Dali_FlexLayout_ChildProperty_FLEX_get")]
+        public static extern int FlexLayout_ChildProperty_FLEX_get();
+
+        [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint="CSharp_Dali_FlexLayout_ChildProperty_ALIGN_SELF_get")]
+        public static extern int FlexLayout_ChildProperty_ALIGN_SELF_get();
+
+        [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint="CSharp_Dali_new_FlexLayout__SWIG_0")]
+        public static extern global::System.IntPtr new_FlexLayout__SWIG_0();
+
+        [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint="CSharp_Dali_FlexLayout_New")]
+        public static extern global::System.IntPtr FlexLayout_New();
+
+        [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint="CSharp_Dali_FlexLayout_DownCast")]
+        public static extern global::System.IntPtr FlexLayout_DownCast(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+        [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint="CSharp_Dali_new_FlexLayout__SWIG_1")]
+        public static extern global::System.IntPtr new_FlexLayout__SWIG_1(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+        [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint="CSharp_Dali_FlexLayout_Assign")]
+        public static extern global::System.IntPtr FlexLayout_Assign(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+
+        [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint="CSharp_Dali_delete_FlexLayout")]
+        public static extern void delete_FlexLayout(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+        [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint="CSharp_Dali_FlexLayout_SetFlexDirection")]
+        public static extern void FlexLayout_SetFlexDirection(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2);
+
+        [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint="CSharp_Dali_FlexLayout_GetFlexDirection")]
+        public static extern int FlexLayout_GetFlexDirection(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+        [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint="CSharp_Dali_FlexLayout_SetFlexJustification")]
+        public static extern void FlexLayout_SetFlexJustification(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2);
+
+        [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint="CSharp_Dali_FlexLayout_GetFlexJustification")]
+        public static extern int FlexLayout_GetFlexJustification(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+        [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint="CSharp_Dali_FlexLayout_SetFlexWrap")]
+        public static extern void FlexLayout_SetFlexWrap(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2);
+
+        [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint="CSharp_Dali_FlexLayout_GetFlexWrap")]
+        public static extern int FlexLayout_GetFlexWrap(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+        [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint="CSharp_Dali_FlexLayout_SetFlexAlignment")]
+        public static extern void FlexLayout_SetFlexAlignment(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2);
+
+        [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint="CSharp_Dali_FlexLayout_GetFlexAlignment")]
+        public static extern int FlexLayout_GetFlexAlignment(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+        [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint="CSharp_Dali_FlexLayout_SetFlexItemsAlignment")]
+        public static extern void FlexLayout_SetFlexItemsAlignment(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2);
+
+        [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint="CSharp_Dali_FlexLayout_GetFlexItemsAlignment")]
+        public static extern int FlexLayout_GetFlexItemsAlignment(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+        [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint="CSharp_Dali_LinearLayout_SWIGUpcast")]
+        public static extern global::System.IntPtr LinearLayout_SWIGUpcast(global::System.IntPtr jarg1);
+
+        [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint="CSharp_Dali_new_LinearLayout__SWIG_0")]
+        public static extern global::System.IntPtr new_LinearLayout__SWIG_0();
+
+        [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint="CSharp_Dali_LinearLayout_New")]
+        public static extern global::System.IntPtr LinearLayout_New();
+
+        [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint="CSharp_Dali_LinearLayout_DownCast")]
+        public static extern global::System.IntPtr LinearLayout_DownCast(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+        [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint="CSharp_Dali_new_LinearLayout__SWIG_1")]
+        public static extern global::System.IntPtr new_LinearLayout__SWIG_1(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+        [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint="CSharp_Dali_LinearLayout_Assign")]
+        public static extern global::System.IntPtr LinearLayout_Assign(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+
+        [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint="CSharp_Dali_delete_LinearLayout")]
+        public static extern void delete_LinearLayout(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+        [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint="CSharp_Dali_LinearLayout_SetCellPadding")]
+        public static extern void LinearLayout_SetCellPadding(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+
+        [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint="CSharp_Dali_LinearLayout_GetCellPadding")]
+        public static extern global::System.IntPtr LinearLayout_GetCellPadding(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+        [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint="CSharp_Dali_LinearLayout_SetOrientation")]
+        public static extern void LinearLayout_SetOrientation(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2);
+
+        [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint="CSharp_Dali_LinearLayout_GetOrientation")]
+        public static extern int LinearLayout_GetOrientation(global::System.Runtime.InteropServices.HandleRef jarg1);
+
     }
 }
