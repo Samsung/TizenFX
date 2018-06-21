@@ -156,7 +156,6 @@ namespace Tizen.Network.WiFi
             {
                 ret = Interop.WiFi.AP.CreateHiddenAP(WiFiManagerImpl.Instance.GetSafeHandle(), id, out _apHandle);
             }
-
             else
             {
                 ret = Interop.WiFi.AP.Create(WiFiManagerImpl.Instance.GetSafeHandle(), id, out _apHandle);
@@ -457,6 +456,30 @@ namespace Tizen.Network.WiFi
 
             return task.Task;
         }
+
+        /// <summary>
+        /// Stops ongoing WPS provisioning
+        /// </summary>
+        /// <since_tizen> 5 </since_tizen>
+        /// <feature>http://tizen.org/feature/network.wifi</feature>
+        /// <privilege>http://tizen.org/privilege/network.set</privilege>
+        /// <privilege>http://tizen.org/privilege/network.get</privilege>
+        /// <exception cref="NotSupportedException">Thrown when the Wi-Fi is not supported.</exception>
+        /// <exception cref="UnauthorizedAccessException">Thrown when permission is denied.</exception>
+        /// <exception cref="ObjectDisposedException">Thrown when the object instance is disposed or released.</exception>
+        /// <exception cref="OutOfMemoryException">Thrown when the system is out of memory.</exception>
+        /// <exception cref="InvalidOperationException">Thrown when the method failed due to an invalid operation.</exception>
+        public static void CancelWps()
+        {
+            Log.Debug(Globals.LogTag, "CancelWps");
+            int ret = Interop.WiFi.CancelWps(WiFiManagerImpl.Instance.GetSafeHandle());
+            if (ret != (int)WiFiError.None)
+            {
+                Log.Error(Globals.LogTag, "Failed to cancel Wps, Error - " + (WiFiError)ret);
+                WiFiErrorFactory.ThrowWiFiException(ret, WiFiManagerImpl.Instance.GetSafeHandle().DangerousGetHandle());
+            }
+        }
+
 
         /// <summary>
         /// Disconnects the access point asynchronously.
