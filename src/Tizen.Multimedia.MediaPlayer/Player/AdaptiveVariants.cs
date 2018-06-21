@@ -34,7 +34,7 @@ namespace Tizen.Multimedia
         /// <param name="width">The width of the stream, this is optional parameter. (deafult: -1)</param>
         /// <param name="height">The height of the stream, this is optional parameter. (deafult: -1)</param>
         /// <since_tizen> 5 </since_tizen>
-        public VariantInfo(int bandwidth, int width, int height)
+        public VariantInfo(int bandwidth, int width = -1, int height = -1)
         {
             Bandwidth = bandwidth;
             Width = width;
@@ -106,7 +106,7 @@ namespace Tizen.Multimedia
         /// <exception cref="ArgumentException">The value is not valid.</exception>
         /// <seealso cref="GetMaxLimit()"/>
         /// <since_tizen> 5 </since_tizen>
-        public void SetMaxLimit(int bandwidth, int width, int height)
+        public void SetMaxLimit(int bandwidth, int width = -1, int height = -1)
         {
             Player.ValidateNotDisposed();
 

@@ -28,35 +28,37 @@ namespace Tizen.Multimedia
     /// Represents properties for streaming buffering time
     /// </summary>
     /// <since_tizen> 5 </since_tizen>
-    public struct StreamingBufferingTime
+    public struct PlayerBufferingTime
     {
         /// <summary>
-        /// Initializes a new instance of the StreamingBufferingTime struct.
+        /// Initializes a new instance of the PlayerBufferingTime struct.
         /// </summary>
-        /// <param name="preBuffMs">The buffer time to start playback.</param>
-        /// <param name="reBuffMs">The buffer time during playback if player enter pause state for buffering.</param>
+        /// <param name="preBufferMs">A duration of buffering data that must be prerolled to start playback.</param>
+        /// <param name="reBufferMs">A duration of buffering data that must be prerolled to resume playback
+        /// if player enters pause state for buffering.</param>
         /// <since_tizen> 5 </since_tizen>
-        public StreamingBufferingTime(int preBuffMs, int reBuffMs)
+        public PlayerBufferingTime(int preBufferMs, int reBufferMs)
         {
-            PreBuffMs = preBuffMs;
-            ReBuffMs = reBuffMs;
+            PreBufferMs = preBufferMs;
+            ReBufferMs = reBufferMs;
         }
 
         /// <summary>
-        /// Gets or sets the buffer time to start playback.
+        /// Gets or sets the duration of buffering data that must be prerolled to start playback
         /// </summary>
         /// <since_tizen> 5 </since_tizen>
-        public int PreBuffMs
+        public int PreBufferMs
         {
             get;
             set;
         }
 
         /// <summary>
-        /// Gets or sets the buffer time during playback if player enter pause state for buffering.
+        /// Gets or sets the duration of buffering data that must be prerolled to resume playback
+        /// if player enters pause state for buffering.
         /// </summary>
         /// <since_tizen> 5 </since_tizen>
-        public int ReBuffMs
+        public int ReBufferMs
         {
             get;
             set;
@@ -151,14 +153,14 @@ namespace Tizen.Multimedia
         /// <exception cref="InvalidOperationException">The player is not in the valid state.</exception>
         /// <exception cref="ObjectDisposedException">The player has already been disposed of.</exception>
         /// <exception cref="ArgumentOutOfRangeException">
-        ///     <pramref name="PreBuffMs"/> is less than 0.<br/>
+        ///     <pramref name="PreBufferMs"/> is less than 0.<br/>
         ///     -or-<br/>
-        ///     <pramref name="ReBuffMs"/> is less than 0.<br/>
+        ///     <pramref name="ReBufferMs"/> is less than 0.<br/>
         /// </exception>
         /// <exception cref="ArgumentException">The value is not valid.</exception>
-        /// <seealso cref="StreamingBufferingTime"/>
+        /// <seealso cref="PlayerBufferingTime"/>
         /// <since_tizen> 5 </since_tizen>
-        public StreamingBufferingTime BuffTime
+        public PlayerBufferingTime BufferingTime
         {
             get
             {
@@ -167,18 +169,18 @@ namespace Tizen.Multimedia
                 NativePlayer.GetStreamingBufferingTime(Handle, out var PreBuffMs, out var ReBuffMs).
                         ThrowIfFailed(this, "Failed to get the buffering time of the player");
 
-                return new StreamingBufferingTime(PreBuffMs, ReBuffMs);
+                return new PlayerBufferingTime(PreBuffMs, ReBuffMs);
             }
             set
             {
                 ValidatePlayerState(PlayerState.Idle);
 
-                if (value.PreBuffMs < 0 || value.ReBuffMs < 0)
+                if (value.PreBufferMs < 0 || value.ReBufferMs < 0)
                 {
                     throw new ArgumentOutOfRangeException("invalid range");
                 }
 
-                NativePlayer.SetStreamingBufferingTime(Handle, value.PreBuffMs, value.ReBuffMs).
+                NativePlayer.SetStreamingBufferingTime(Handle, value.PreBufferMs, value.ReBufferMs).
                     ThrowIfFailed(this, "Failed to set the buffering time of the player");
             }
         }
