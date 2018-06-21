@@ -109,7 +109,6 @@ namespace Tizen.Network.WiFi
                 else
                 {
                     bssid = Marshal.PtrToStringAnsi(strPtr);
-                    Interop.Libc.Free(strPtr);
                 }
                 return bssid;
             }
@@ -153,14 +152,19 @@ namespace Tizen.Network.WiFi
         {
             get
             {
+                string proxy;
                 IntPtr strPtr;
                 int ret = Interop.WiFi.AP.GetProxyAddress(_apHandle, (int)AddressFamily.IPv4, out strPtr);
                 if (ret != (int)WiFiError.None)
                 {
                     Log.Error(Globals.LogTag, "Failed to get proxy address, Error - " + (WiFiError)ret);
-                    return "";
+                    proxy = "";
                 }
-                return Marshal.PtrToStringAnsi(strPtr);
+                else
+                {
+                    proxy = Marshal.PtrToStringAnsi(strPtr);
+                }
+                return proxy;
             }
             set
             {
@@ -447,8 +451,12 @@ namespace Tizen.Network.WiFi
             if (ret != (int)WiFiError.None)
             {
                 Log.Error(Globals.LogTag, "Failed to get essid, Error - " + (WiFiError)ret);
+                _essid = "";
             }
-            _essid = Marshal.PtrToStringAnsi(strPtr);
+            else
+            {
+                _essid = Marshal.PtrToStringAnsi(strPtr);
+            }
         }
     } //WiFiNetworkInformation
 }

@@ -261,6 +261,7 @@ namespace Tizen.NUI.BaseComponents
             set
             {
                 SetProperty(VideoView.Property.VIDEO, new Tizen.NUI.PropertyValue(value));
+                NotifyPropertyChanged();
             }
         }
 
@@ -279,6 +280,7 @@ namespace Tizen.NUI.BaseComponents
             set
             {
                 SetProperty(VideoView.Property.LOOPING, new Tizen.NUI.PropertyValue(value));
+                NotifyPropertyChanged();
             }
         }
 
@@ -297,6 +299,7 @@ namespace Tizen.NUI.BaseComponents
             set
             {
                 SetProperty(VideoView.Property.MUTED, new Tizen.NUI.PropertyValue(value));
+                NotifyPropertyChanged();
             }
         }
 
@@ -315,6 +318,7 @@ namespace Tizen.NUI.BaseComponents
             set
             {
                 SetProperty(VideoView.Property.VOLUME, new PropertyValue(value));
+                NotifyPropertyChanged();
             }
         }
 
@@ -334,6 +338,7 @@ namespace Tizen.NUI.BaseComponents
             set
             {
                 SetProperty(VideoView.Property.UNDERLAY, new PropertyValue(value));
+                NotifyPropertyChanged();
             }
         }
 
@@ -352,6 +357,7 @@ namespace Tizen.NUI.BaseComponents
             set
             {
                 SetProperty(VideoView.Property.VIDEO, new PropertyValue(value));
+                NotifyPropertyChanged();
             }
         }
 

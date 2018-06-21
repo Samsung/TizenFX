@@ -305,6 +305,7 @@ namespace Tizen.NUI.BaseComponents
             {
                 _url = (value == null? "" : value);
                 UpdateImage();
+                NotifyPropertyChanged();
             }
         }
 
@@ -336,6 +337,7 @@ namespace Tizen.NUI.BaseComponents
                 {
                     if (_url != null) { value.Add("url", new PropertyValue(_url)); }
                     SetProperty(ImageView.Property.IMAGE, new Tizen.NUI.PropertyValue(value));
+                    NotifyPropertyChanged();
                 }
             }
         }
@@ -365,6 +367,7 @@ namespace Tizen.NUI.BaseComponents
                 {
                     if(_url != null) { value.Add("url", new PropertyValue(_url)); }
                     SetProperty(ImageView.Property.IMAGE, new Tizen.NUI.PropertyValue(value));
+                    NotifyPropertyChanged();
                 }
             }
         }
@@ -385,6 +388,7 @@ namespace Tizen.NUI.BaseComponents
             set
             {
                 SetProperty(ImageView.Property.PRE_MULTIPLIED_ALPHA, new Tizen.NUI.PropertyValue(value));
+                NotifyPropertyChanged();
             }
         }
 
@@ -404,6 +408,7 @@ namespace Tizen.NUI.BaseComponents
             set
             {
                 SetProperty(ImageView.Property.PIXEL_AREA, new Tizen.NUI.PropertyValue(value));
+                NotifyPropertyChanged();
             }
         }
 
@@ -424,6 +429,7 @@ namespace Tizen.NUI.BaseComponents
             {
                 _border = value;
                 UpdateImage();
+                NotifyPropertyChanged();
             }
         }
 
@@ -444,6 +450,7 @@ namespace Tizen.NUI.BaseComponents
             {
                 _borderOnly = value;
                 UpdateImage();
+                NotifyPropertyChanged();
             }
         }
 
@@ -461,6 +468,7 @@ namespace Tizen.NUI.BaseComponents
             {
                 _synchronousLoading = value;
                 UpdateImage();
+                NotifyPropertyChanged();
             }
         }
 
@@ -478,6 +486,7 @@ namespace Tizen.NUI.BaseComponents
             {
                 _orientationCorrection = value;
                 UpdateImage();
+                NotifyPropertyChanged();
             }
         }
 

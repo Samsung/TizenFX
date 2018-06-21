@@ -262,6 +262,7 @@ namespace Tizen.NUI.BaseComponents
             set
             {
                 SetProperty(FlexContainer.Property.CONTENT_DIRECTION, new Tizen.NUI.PropertyValue((int)value));
+                NotifyPropertyChanged();
             }
         }
 
@@ -280,6 +281,7 @@ namespace Tizen.NUI.BaseComponents
             set
             {
                 SetProperty(FlexContainer.Property.FLEX_DIRECTION, new Tizen.NUI.PropertyValue((int)value));
+                NotifyPropertyChanged();
             }
         }
 
@@ -298,6 +300,7 @@ namespace Tizen.NUI.BaseComponents
             set
             {
                 SetProperty(FlexContainer.Property.FLEX_WRAP, new Tizen.NUI.PropertyValue((int)value));
+                NotifyPropertyChanged();
             }
         }
 
@@ -316,6 +319,7 @@ namespace Tizen.NUI.BaseComponents
             set
             {
                 SetProperty(FlexContainer.Property.JUSTIFY_CONTENT, new Tizen.NUI.PropertyValue((int)value));
+                NotifyPropertyChanged();
             }
         }
 
@@ -334,6 +338,7 @@ namespace Tizen.NUI.BaseComponents
             set
             {
                 SetProperty(FlexContainer.Property.ALIGN_ITEMS, new Tizen.NUI.PropertyValue((int)value));
+                NotifyPropertyChanged();
             }
         }
 
@@ -352,6 +357,7 @@ namespace Tizen.NUI.BaseComponents
             set
             {
                 SetProperty(FlexContainer.Property.ALIGN_CONTENT, new Tizen.NUI.PropertyValue((int)value));
+                NotifyPropertyChanged();
             }
         }
 
