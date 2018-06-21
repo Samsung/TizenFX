@@ -4603,7 +4603,87 @@ namespace Tizen.NUI.BaseComponents
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
+        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public int WidthSpecificationFixed
+        {
+            get
+            {
+                int tmp = 0;
+                if (GetProperty(LayoutItemWrapper.ChildProperty.WIDTH_SPECIFICATION).Get(out tmp) == false)
+                {
+                    NUILog.Error("WidthSpecificationFixed get error!");
+                }
+                return tmp;
+            }
+            set
+            {
+                SetProperty(LayoutItemWrapper.ChildProperty.WIDTH_SPECIFICATION, new Tizen.NUI.PropertyValue(value));
+            }
+        }
+        
+        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public int HeightSpecificationFixed
+        {
+            get
+            {
+                int tmp = 0;
+                if (GetProperty(LayoutItemWrapper.ChildProperty.HEIGHT_SPECIFICATION).Get(out tmp) == false)
+                {
+                    NUILog.Error("HeightSpecificationFixed get error!");
+                }
+                return tmp;
+            }
+            set
+            {
+                SetProperty(LayoutItemWrapper.ChildProperty.HEIGHT_SPECIFICATION, new Tizen.NUI.PropertyValue(value));
+            }
+        }
+        
+        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public ChildLayoutData WidthSpecification
+        {
+            get
+            {
+                int tmp = 0;
+                if (GetProperty(LayoutItemWrapper.ChildProperty.WIDTH_SPECIFICATION).Get(out tmp) == false)
+                {
+                    NUILog.Error("WidthSpecificationFixed get error!");
+                }
+                return (ChildLayoutData)tmp;
+            }
+            set
+            {
+                SetProperty(LayoutItemWrapper.ChildProperty.WIDTH_SPECIFICATION, new Tizen.NUI.PropertyValue((int)value));
+            }
+        }
+        
+        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public ChildLayoutData HeightSpecification
+        {
+            get
+            {
+                int tmp = 0;
+                if (GetProperty(LayoutItemWrapper.ChildProperty.HEIGHT_SPECIFICATION).Get(out tmp) == false)
+                {
+                    NUILog.Error("HeightSpecificationFixed get error!");
+                }
+                return (ChildLayoutData)tmp;
+            }
+            set
+            {
+                SetProperty(LayoutItemWrapper.ChildProperty.HEIGHT_SPECIFICATION, new Tizen.NUI.PropertyValue((int)value));
+            }
+        }
+
+
     }
+
+
+
 
     /// <summary>
     /// The View layout Direction type.
@@ -4622,4 +4702,13 @@ namespace Tizen.NUI.BaseComponents
         /// <since_tizen> 4 </since_tizen>
         RTL
     }
+
+    /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+    [EditorBrowsable(EditorBrowsableState.Never)]
+    public enum ChildLayoutData
+    {
+        MatchParent = -1,
+        WrapContent = -2,
+    }
+
 }
