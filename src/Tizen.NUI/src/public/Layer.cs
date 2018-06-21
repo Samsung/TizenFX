@@ -1,5 +1,5 @@
 /*
- * Copyright(c) 2017 Samsung Electronics Co., Ltd.
+ * Copyright(c) 2018 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -63,6 +63,7 @@ namespace Tizen.NUI
                 Children.Add(child);
             }
         }
+
 
         /// <summary>
         /// Removes a child view from this layer. If the view was not a child of this layer, this is a no-op.
@@ -460,6 +461,16 @@ namespace Tizen.NUI
             bool ret = NDalicPINVOKE.Layer_IsHoverConsumed(swigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
+        }
+
+        internal void AddViewToLayerList( View view )
+        {
+            Children.Add(view);
+        }
+
+        internal void RemoveViewFromLayerList( View view )
+        {
+            Children.Remove(view);
         }
 
         /// <summary>

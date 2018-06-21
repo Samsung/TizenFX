@@ -1,5 +1,5 @@
 /*
- * Copyright(c) 2017 Samsung Electronics Co., Ltd.
+ * Copyright(c) 2018 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -31,6 +31,8 @@ namespace Tizen.NUI
     {
         private global::System.Runtime.InteropServices.HandleRef swigCPtr;
         private global::System.Runtime.InteropServices.HandleRef stageCPtr;
+        private global::System.Runtime.InteropServices.HandleRef rootLayoutCPtr;
+        private global::System.IntPtr rootLayoutIntPtr;
         private Layer _rootLayer;
         private string _windowTitle;
 
@@ -49,6 +51,15 @@ namespace Tizen.NUI
             if (NDalicPINVOKE.Stage_IsInstalled())
             {
                 stageCPtr = new global::System.Runtime.InteropServices.HandleRef(this, NDalicPINVOKE.Stage_GetCurrent());
+                // Create a root layout (AbsoluteLayout) that is invisible to the user but enables layouts added to the Window
+                // Enables layouts added to the Window to have a parent layout.  As parent layout is needed to store measure spec properties.
+                // Currently without these measure specs the new layout added will always be the size of the window.
+                rootLayoutIntPtr = NDalicManualPINVOKE.Window_NewRootLayout();
+                // Store HandleRef used by Add()
+                rootLayoutCPtr = new global::System.Runtime.InteropServices.HandleRef(this, rootLayoutIntPtr);
+                Layer rootLayer = GetRootLayer();
+                // Add the root layout created above to the root layer.
+                NDalicPINVOKE.Actor_Add(  Layer.getCPtr(rootLayer), rootLayoutCPtr );
             }
         }
 
@@ -597,7 +608,9 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public void Add(View view)
         {
-            GetRootLayer()?.Add(view);
+            NDalicPINVOKE.Actor_Add( rootLayoutCPtr, View.getCPtr(view) );
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            this.GetRootLayer().AddViewToLayerList(view); // Maintain the children list in the Layer
         }
 
         /// <summary>
@@ -607,7 +620,8 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public void Remove(View view)
         {
-            GetRootLayer()?.Remove(view);
+            NDalicPINVOKE.Actor_Remove( rootLayoutCPtr, View.getCPtr(view) );
+            this.GetRootLayer().RemoveViewFromLayerList(view); // Maintain the children list in the Layer
         }
 
         internal Vector2 GetSize()
@@ -662,6 +676,7 @@ namespace Tizen.NUI
             // Core has been initialized, not when Stage is ready.
             if (_rootLayer == null && Window.IsInstalled())
             {
+                // Get RootLayer so can add RootLayout to it.
                 _rootLayer = new Layer(NDalicPINVOKE.Stage_GetRootLayer(stageCPtr), true);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
                 LayersChildren.Add(_rootLayer);
