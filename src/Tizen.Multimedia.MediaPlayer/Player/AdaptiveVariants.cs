@@ -93,7 +93,7 @@ namespace Tizen.Multimedia
         }
 
         /// <summary>
-        /// Sets the streaming buffering time.
+        /// Sets the maximum limit of the streaming variant.
         /// </summary>
         /// <exception cref="ObjectDisposedException">The <see cref="Player"/> has already been disposed of.</exception>
         /// <exception cref="ArgumentOutOfRangeException">
@@ -120,7 +120,7 @@ namespace Tizen.Multimedia
         }
 
         /// <summary>
-        /// Gets the streaming buffering time.
+        /// Gets the maximum limit of the streaming variant.
         /// </summary>
         /// <returns>The <see cref="VariantInfo"/> containing the variant information.</returns>
         /// <exception cref="ObjectDisposedException">The <see cref="Player"/> has already been disposed of.</exception>
