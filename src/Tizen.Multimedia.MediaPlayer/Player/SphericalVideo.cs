@@ -369,7 +369,7 @@ namespace Tizen.Multimedia
         /// <exception cref="InvalidOperationException">
         /// The <see cref="Multimedia.Player"/> that this instance belongs to is not in the valid state.
         /// </exception>
-        /// <seealso cref="DirectionOfView"/>
+        /// <seealso cref="FieldOfView"/>
         /// <since_tizen> 5 </since_tizen>
         public void SetFieldOfView(FieldOfView fieldOfView)
         {

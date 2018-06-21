@@ -24,6 +24,44 @@ using static Interop;
 
 namespace Tizen.Multimedia
 {
+    /// <summary>
+    /// Represents properties for streaming buffering time
+    /// </summary>
+    /// <since_tizen> 5 </since_tizen>
+    public struct StreamingBufferingTime
+    {
+        /// <summary>
+        /// Initializes a new instance of the StreamingBufferingTime struct.
+        /// </summary>
+        /// <param name="preBuffMs">The buffer time to start playback.</param>
+        /// <param name="reBuffMs">The buffer time during playback if player enter pause state for buffering.</param>
+        /// <since_tizen> 5 </since_tizen>
+        public StreamingBufferingTime(int preBuffMs, int reBuffMs)
+        {
+            PreBuffMs = preBuffMs;
+            ReBuffMs = reBuffMs;
+        }
+
+        /// <summary>
+        /// Gets or sets the buffer time to start playback.
+        /// </summary>
+        /// <since_tizen> 5 </since_tizen>
+        public int PreBuffMs
+        {
+            get;
+            set;
+        }
+
+        /// <summary>
+        /// Gets or sets the buffer time during playback if player enter pause state for buffering.
+        /// </summary>
+        /// <since_tizen> 5 </since_tizen>
+        public int ReBuffMs
+        {
+            get;
+            set;
+        }
+    }
     /// <since_tizen> 3 </since_tizen>
     public partial class Player
     {
@@ -103,6 +141,45 @@ namespace Tizen.Multimedia
                     ThrowIfFailed(this, "Failed to set the user agent to the player");
 
                 _userAgent = value;
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the streaming buffering time.
+        /// </summary>
+        /// <remarks>To set, the player must be in the <see cref="PlayerState.Idle"/> state.</remarks>
+        /// <exception cref="InvalidOperationException">The player is not in the valid state.</exception>
+        /// <exception cref="ObjectDisposedException">The player has already been disposed of.</exception>
+        /// <exception cref="ArgumentOutOfRangeException">
+        ///     <pramref name="PreBuffMs"/> is less than 0.<br/>
+        ///     -or-<br/>
+        ///     <pramref name="ReBuffMs"/> is less than 0.<br/>
+        /// </exception>
+        /// <exception cref="ArgumentException">The value is not valid.</exception>
+        /// <seealso cref="StreamingBufferingTime"/>
+        /// <since_tizen> 5 </since_tizen>
+        public StreamingBufferingTime BuffTime
+        {
+            get
+            {
+                ValidateNotDisposed();
+
+                NativePlayer.GetStreamingBufferingTime(Handle, out var PreBuffMs, out var ReBuffMs).
+                        ThrowIfFailed(this, "Failed to get the buffering time of the player");
+
+                return new StreamingBufferingTime(PreBuffMs, ReBuffMs);
+            }
+            set
+            {
+                ValidatePlayerState(PlayerState.Idle);
+
+                if (value.PreBuffMs < 0 || value.ReBuffMs < 0)
+                {
+                    throw new ArgumentOutOfRangeException("invalid range");
+                }
+
+                NativePlayer.SetStreamingBufferingTime(Handle, value.PreBuffMs, value.ReBuffMs).
+                    ThrowIfFailed(this, "Failed to set the buffering time of the player");
             }
         }
         #endregion
@@ -461,6 +538,25 @@ namespace Tizen.Multimedia
                 }
 
                 return _sphericalVideo;
+            }
+        }
+
+        private AdaptiveVariants _adaptiveVariants;
+
+        /// <summary>
+        /// Gets the adaptive variants settings.
+        /// </summary>
+        /// <since_tizen> 5 </since_tizen>
+        public AdaptiveVariants AdaptiveVariants
+        {
+            get
+            {
+                if (_adaptiveVariants == null)
+                {
+                    _adaptiveVariants = new AdaptiveVariants(this);
+                }
+
+                return _adaptiveVariants;
             }
         }
     }
