@@ -62,7 +62,7 @@ namespace Tizen.NUI
                 }
                 swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
             }
-            base.Dispose();
+            base.Dispose(type);
         }
 
         /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
