@@ -33,21 +33,21 @@ namespace Tizen.Multimedia
         /// <summary>
         /// Initializes a new instance of the PlayerBufferingTime struct.
         /// </summary>
-        /// <param name="preBufferMs">A duration of buffering data that must be prerolled to start playback.</param>
-        /// <param name="reBufferMs">A duration of buffering data that must be prerolled to resume playback
+        /// <param name="preBufferMillisecond">A duration of buffering data that must be prerolled to start playback.</param>
+        /// <param name="reBufferMillisecond">A duration of buffering data that must be prerolled to resume playback
         /// if player enters pause state for buffering.</param>
         /// <since_tizen> 5 </since_tizen>
-        public PlayerBufferingTime(int preBufferMs, int reBufferMs)
+        public PlayerBufferingTime(int preBufferMillisecond, int reBufferMillisecond)
         {
-            PreBufferMs = preBufferMs;
-            ReBufferMs = reBufferMs;
+            PreBufferMillisecond = preBufferMillisecond;
+            ReBufferMillisecond = reBufferMillisecond;
         }
 
         /// <summary>
         /// Gets or sets the duration of buffering data that must be prerolled to start playback
         /// </summary>
         /// <since_tizen> 5 </since_tizen>
-        public int PreBufferMs
+        public int PreBufferMillisecond
         {
             get;
             set;
@@ -58,7 +58,7 @@ namespace Tizen.Multimedia
         /// if player enters pause state for buffering.
         /// </summary>
         /// <since_tizen> 5 </since_tizen>
-        public int ReBufferMs
+        public int ReBufferMillisecond
         {
             get;
             set;
@@ -153,9 +153,9 @@ namespace Tizen.Multimedia
         /// <exception cref="InvalidOperationException">The player is not in the valid state.</exception>
         /// <exception cref="ObjectDisposedException">The player has already been disposed of.</exception>
         /// <exception cref="ArgumentOutOfRangeException">
-        ///     <pramref name="PreBufferMs"/> is less than 0.<br/>
+        ///     <pramref name="PreBufferMillisecond"/> is less than 0.<br/>
         ///     -or-<br/>
-        ///     <pramref name="ReBufferMs"/> is less than 0.<br/>
+        ///     <pramref name="ReBufferMillisecond"/> is less than 0.<br/>
         /// </exception>
         /// <exception cref="ArgumentException">The value is not valid.</exception>
         /// <seealso cref="PlayerBufferingTime"/>
@@ -166,21 +166,21 @@ namespace Tizen.Multimedia
             {
                 ValidateNotDisposed();
 
-                NativePlayer.GetStreamingBufferingTime(Handle, out var PreBuffMs, out var ReBuffMs).
+                NativePlayer.GetStreamingBufferingTime(Handle, out var PreBuffMillisecond, out var ReBuffMillisecond).
                         ThrowIfFailed(this, "Failed to get the buffering time of the player");
 
-                return new PlayerBufferingTime(PreBuffMs, ReBuffMs);
+                return new PlayerBufferingTime(PreBuffMillisecond, ReBuffMillisecond);
             }
             set
             {
                 ValidatePlayerState(PlayerState.Idle);
 
-                if (value.PreBufferMs < 0 || value.ReBufferMs < 0)
+                if (value.PreBufferMillisecond < 0 || value.ReBufferMillisecond < 0)
                 {
                     throw new ArgumentOutOfRangeException("invalid range");
                 }
 
-                NativePlayer.SetStreamingBufferingTime(Handle, value.PreBufferMs, value.ReBufferMs).
+                NativePlayer.SetStreamingBufferingTime(Handle, value.PreBufferMillisecond, value.ReBufferMillisecond).
                     ThrowIfFailed(this, "Failed to set the buffering time of the player");
             }
         }
