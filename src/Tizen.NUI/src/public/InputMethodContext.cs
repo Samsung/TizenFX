@@ -821,6 +821,36 @@ namespace Tizen.NUI
             return ret;
         }
 
+        internal void AllowTextPrediction(bool prediction)
+        {
+            NDalicManualPINVOKE.InputMethodContext_AllowTextPrediction(swigCPtr, prediction);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        internal bool IsTextPredictionAllowed()
+        {
+            bool ret = NDalicManualPINVOKE.InputMethodContext_IsTextPredictionAllowed(swigCPtr);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        /// <summary>
+        /// Gets/Sets whether the IM context allow to use the text prediction.
+        /// </summary>
+        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public bool TextPrediction
+        {
+            get
+            {
+                return IsTextPredictionAllowed();
+            }
+            set
+            {
+                AllowTextPrediction(value);
+            }
+        }
+
         /// <summary>
         /// InputMethodContext activated event arguments.
         /// </summary>
