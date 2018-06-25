@@ -207,7 +207,7 @@ namespace Tizen.NUI.BaseComponents
             "BaseHandle handle = new ImageView(imagePath); " +
             "ImageView image = handle as ImageView")]
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public new static ImageView DownCast(BaseHandle handle)
+        public static ImageView DownCast(BaseHandle handle)
         {
             ImageView ret = Registry.GetManagedBaseHandleFromNativePtr(handle) as ImageView;
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
@@ -258,8 +258,6 @@ namespace Tizen.NUI.BaseComponents
         /// Force reloading of the image, all visuals using this image will get the latest one.
         /// </summary>
         /// <since_tizen> 5 </since_tizen>        
-        /// This will be released at Tizen.NET API Level 5, so currently this would be used as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
         public void Reload()
         {
             this.DoAction(ImageView.Property.IMAGE, Property.ACTION_RELOAD, new PropertyValue(0));
@@ -269,8 +267,6 @@ namespace Tizen.NUI.BaseComponents
         /// Play the animated GIF. This is also Default playback mode.
         /// </summary>
         /// <since_tizen> 5 </since_tizen>
-        /// This will be released at Tizen.NET API Level 5, so currently this would be used as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
         public void Play()
         {
             this.DoAction(ImageView.Property.IMAGE, Property.ACTION_PLAY, new PropertyValue(0));
@@ -280,8 +276,6 @@ namespace Tizen.NUI.BaseComponents
         /// Pause the animated GIF.
         /// </summary>
         /// <since_tizen> 5 </since_tizen>
-        /// This will be released at Tizen.NET API Level 5, so currently this would be used as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
         public void Pause()
         {
             this.DoAction(ImageView.Property.IMAGE, Property.ACTION_PAUSE, new PropertyValue(0));
@@ -291,8 +285,6 @@ namespace Tizen.NUI.BaseComponents
         /// Stop the animated GIF.
         /// </summary>
         /// <since_tizen> 5 </since_tizen>
-        /// This will be released at Tizen.NET API Level 5, so currently this would be used as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
         public void Stop()
         {
             this.DoAction(ImageView.Property.IMAGE, Property.ACTION_STOP, new PropertyValue(0));
@@ -313,6 +305,7 @@ namespace Tizen.NUI.BaseComponents
             {
                 _url = (value == null? "" : value);
                 UpdateImage();
+                NotifyPropertyChanged();
             }
         }
 
@@ -344,6 +337,7 @@ namespace Tizen.NUI.BaseComponents
                 {
                     if (_url != null) { value.Add("url", new PropertyValue(_url)); }
                     SetProperty(ImageView.Property.IMAGE, new Tizen.NUI.PropertyValue(value));
+                    NotifyPropertyChanged();
                 }
             }
         }
@@ -373,6 +367,7 @@ namespace Tizen.NUI.BaseComponents
                 {
                     if(_url != null) { value.Add("url", new PropertyValue(_url)); }
                     SetProperty(ImageView.Property.IMAGE, new Tizen.NUI.PropertyValue(value));
+                    NotifyPropertyChanged();
                 }
             }
         }
@@ -393,6 +388,7 @@ namespace Tizen.NUI.BaseComponents
             set
             {
                 SetProperty(ImageView.Property.PRE_MULTIPLIED_ALPHA, new Tizen.NUI.PropertyValue(value));
+                NotifyPropertyChanged();
             }
         }
 
@@ -412,6 +408,7 @@ namespace Tizen.NUI.BaseComponents
             set
             {
                 SetProperty(ImageView.Property.PIXEL_AREA, new Tizen.NUI.PropertyValue(value));
+                NotifyPropertyChanged();
             }
         }
 
@@ -432,6 +429,7 @@ namespace Tizen.NUI.BaseComponents
             {
                 _border = value;
                 UpdateImage();
+                NotifyPropertyChanged();
             }
         }
 
@@ -452,6 +450,7 @@ namespace Tizen.NUI.BaseComponents
             {
                 _borderOnly = value;
                 UpdateImage();
+                NotifyPropertyChanged();
             }
         }
 
@@ -469,6 +468,7 @@ namespace Tizen.NUI.BaseComponents
             {
                 _synchronousLoading = value;
                 UpdateImage();
+                NotifyPropertyChanged();
             }
         }
 
@@ -486,6 +486,7 @@ namespace Tizen.NUI.BaseComponents
             {
                 _orientationCorrection = value;
                 UpdateImage();
+                NotifyPropertyChanged();
             }
         }
 

@@ -14,6 +14,8 @@
 * limitations under the License.
 *
 */
+using System;
+using Tizen.NUI.Binding;
 
 namespace Tizen.NUI
 {
@@ -21,6 +23,7 @@ namespace Tizen.NUI
     /// Extents class describing the a collection of uint16_t.
     /// </summary>
     /// <since_tizen> 4 </since_tizen>
+    [TypeConverter(typeof(ExtentsTypeConverter))]
     public class Extents : global::System.IDisposable
     {
         private global::System.Runtime.InteropServices.HandleRef swigCPtr;

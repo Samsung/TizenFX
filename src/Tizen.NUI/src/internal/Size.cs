@@ -17,6 +17,7 @@
 
 using System;
 using System.ComponentModel;
+using Tizen.NUI.Binding;
 
 namespace Tizen.NUI
 {
@@ -25,7 +26,7 @@ namespace Tizen.NUI
     /// A three-dimensional size.
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
-    [Obsolete("Please do not use! This will be deprecated! Please use Size2D instead!")]
+    [Tizen.NUI.Binding.TypeConverter(typeof(SizeTypeConverter))]
     [EditorBrowsable(EditorBrowsableState.Never)]
     public class Size : global::System.IDisposable
     {

@@ -260,6 +260,8 @@ namespace Tizen.NUI.BaseComponents
             /// The index of a row.
             /// </summary>
             /// <since_tizen> 3 </since_tizen>
+            [Obsolete("Please do not use! This will be deprecated! Please use RowIndex instead!")]
+            [EditorBrowsable(EditorBrowsableState.Never)]
             public uint rowIndex
             {
                 set
@@ -276,9 +278,28 @@ namespace Tizen.NUI.BaseComponents
             }
 
             /// <summary>
+            /// The index of a row.
+            /// </summary>
+            /// <since_tizen> 5 </since_tizen>
+            /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            public uint RowIndex
+            {
+                get
+                {
+                    uint ret = NDalicPINVOKE.TableView_CellPosition_rowIndex_get(swigCPtr);
+                    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                    return ret;
+                }
+            }
+
+
+            /// <summary>
             /// The index of a column.
             /// </summary>
             /// <since_tizen> 3 </since_tizen>
+            [Obsolete("Please do not use! This will be deprecated! Please use ColumnIndex instead!")]
+            [EditorBrowsable(EditorBrowsableState.Never)]
             public uint columnIndex
             {
                 set
@@ -295,9 +316,27 @@ namespace Tizen.NUI.BaseComponents
             }
 
             /// <summary>
+            /// The index of a column.
+            /// </summary>
+            /// <since_tizen> 5 </since_tizen>
+            /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            public uint ColumnIndex
+            {
+                get
+                {
+                    uint ret = NDalicPINVOKE.TableView_CellPosition_columnIndex_get(swigCPtr);
+                    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                    return ret;
+                }
+            }
+
+            /// <summary>
             /// The span of a row.
             /// </summary>
             /// <since_tizen> 3 </since_tizen>
+            [Obsolete("Please do not use! This will be deprecated! Please use RowSpan instead!")]
+            [EditorBrowsable(EditorBrowsableState.Never)]
             public uint rowSpan
             {
                 set
@@ -314,9 +353,27 @@ namespace Tizen.NUI.BaseComponents
             }
 
             /// <summary>
+            /// The span of a row.
+            /// </summary>
+            /// <since_tizen> 5 </since_tizen>
+            /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            public uint RowSpan
+            {
+                get
+                {
+                    uint ret = NDalicPINVOKE.TableView_CellPosition_rowSpan_get(swigCPtr);
+                    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                    return ret;
+                }
+            }
+
+            /// <summary>
             /// The span of a column.
             /// </summary>
             /// <since_tizen> 3 </since_tizen>
+            [Obsolete("Please do not use! This will be deprecated! Please use ColumnSpan instead!")]
+            [EditorBrowsable(EditorBrowsableState.Never)]
             public uint columnSpan
             {
                 set
@@ -332,7 +389,33 @@ namespace Tizen.NUI.BaseComponents
                 }
             }
 
+            /// <summary>
+            /// The span of a column.
+            /// </summary>
+            /// <since_tizen> 5 </since_tizen>
+            /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            public uint ColumnSpan
+            {
+                get
+                {
+                    uint ret = NDalicPINVOKE.TableView_CellPosition_columnSpan_get(swigCPtr);
+                    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                    return ret;
+                }
+            }
+
+
         }
+
+        /// <summary>
+        /// Creates the default TableView view.
+        /// </summary>
+        public TableView() : this(NDalicPINVOKE.TableView_New(1, 1), true)
+        {
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
 
         /// <summary>
         /// Creates the TableView view.
@@ -715,6 +798,7 @@ namespace Tizen.NUI.BaseComponents
             set
             {
                 SetProperty(TableView.Property.ROWS, new Tizen.NUI.PropertyValue(value));
+                NotifyPropertyChanged();
             }
         }
         /// <summary>
@@ -732,6 +816,7 @@ namespace Tizen.NUI.BaseComponents
             set
             {
                 SetProperty(TableView.Property.COLUMNS, new Tizen.NUI.PropertyValue(value));
+                NotifyPropertyChanged();
             }
         }
         /// <summary>
@@ -749,6 +834,7 @@ namespace Tizen.NUI.BaseComponents
             set
             {
                 SetProperty(TableView.Property.CELL_PADDING, new Tizen.NUI.PropertyValue(value));
+                NotifyPropertyChanged();
             }
         }
 
@@ -767,6 +853,7 @@ namespace Tizen.NUI.BaseComponents
             set
             {
                 SetProperty(TableView.Property.LAYOUT_ROWS, new Tizen.NUI.PropertyValue(value));
+                NotifyPropertyChanged();
             }
         }
 
@@ -785,6 +872,7 @@ namespace Tizen.NUI.BaseComponents
             set
             {
                 SetProperty(TableView.Property.LAYOUT_COLUMNS, new Tizen.NUI.PropertyValue(value));
+                NotifyPropertyChanged();
             }
         }
 

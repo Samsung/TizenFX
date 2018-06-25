@@ -140,7 +140,7 @@ namespace Tizen.NUI
 
         }
 
-        internal new static WidgetView DownCast(BaseHandle handle)
+        internal static WidgetView DownCast(BaseHandle handle)
         {
             WidgetView ret = new WidgetView(NDalicManualPINVOKE.WidgetView_DownCast(BaseHandle.getCPtr(handle)), true);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();

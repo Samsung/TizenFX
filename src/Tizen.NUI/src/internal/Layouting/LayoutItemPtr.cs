@@ -43,14 +43,14 @@ namespace Tizen.NUI
         public virtual void Dispose()
         {
             lock(this) {
-            if (swigCPtr.Handle != global::System.IntPtr.Zero) {
-                if (swigCMemOwn) {
-                swigCMemOwn = false;
-                LayoutPINVOKE.delete_LayoutItemPtr(swigCPtr);
+                if (swigCPtr.Handle != global::System.IntPtr.Zero) {
+                    if (swigCMemOwn) {
+                        swigCMemOwn = false;
+                        LayoutPINVOKE.delete_LayoutItemPtr(swigCPtr);
+                    }
+                    swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
                 }
-                swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
-            }
-            global::System.GC.SuppressFinalize(this);
+                global::System.GC.SuppressFinalize(this);
             }
         }
 

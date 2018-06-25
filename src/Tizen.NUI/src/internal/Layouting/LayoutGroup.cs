@@ -15,6 +15,7 @@
  *
  */
 
+using System.ComponentModel;
 using Tizen.NUI.BaseComponents;
 
 namespace Tizen.NUI
@@ -22,9 +23,13 @@ namespace Tizen.NUI
     /// <summary>
     /// LayoutGroup class providing container functionality.
     /// </summary>
+    /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+    [EditorBrowsable(EditorBrowsableState.Never)]
     public class LayoutGroup : LayoutGroupWrapper
     {
-        public LayoutGroup() : base( new LayoutGroupWrapperImpl() )
+        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public LayoutGroup() : base(new LayoutGroupWrapperImpl())
         {
             // Initialize delegates of LayoutItem
             LayoutItemInitialize(layoutGroupWrapperImpl);
@@ -36,14 +41,16 @@ namespace Tizen.NUI
             layoutGroupWrapperImpl.OnChildRemove = new LayoutGroupWrapperImpl.OnChildRemoveDelegate(OnChildRemove);
             layoutGroupWrapperImpl.DoInitialize = new LayoutGroupWrapperImpl.DoInitializeDelegate(DoInitialize);
             layoutGroupWrapperImpl.DoRegisterChildProperties = new LayoutGroupWrapperImpl.DoRegisterChildPropertiesDelegate(DoRegisterChildProperties);
-            layoutGroupWrapperImpl.MeasureChildren  = new LayoutGroupWrapperImpl.MeasureChildrenDelegate(MeasureChildren);
-            layoutGroupWrapperImpl.MeasureChild  = new LayoutGroupWrapperImpl.MeasureChildDelegate(MeasureChild);
-            layoutGroupWrapperImpl.MeasureChildWithMargins  = new LayoutGroupWrapperImpl.MeasureChildWithMarginsDelegate(MeasureChildWithMargins);
+            layoutGroupWrapperImpl.MeasureChildren = new LayoutGroupWrapperImpl.MeasureChildrenDelegate(MeasureChildren);
+            layoutGroupWrapperImpl.MeasureChild = new LayoutGroupWrapperImpl.MeasureChildDelegate(MeasureChild);
+            layoutGroupWrapperImpl.MeasureChildWithMargins = new LayoutGroupWrapperImpl.MeasureChildWithMarginsDelegate(MeasureChildWithMargins);
         }
 
         /// <summary>
         /// Remove all layout children.<br />
         /// </summary>
+        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public void RemoveAll()
         {
             layoutGroupWrapperImpl.RemoveAll();
@@ -68,6 +75,8 @@ namespace Tizen.NUI
         /// <param name="padding">The padding of this view for the current dimension and margins, if applicable.</param>
         /// <param name="childDimension"> How big the child wants to be in the current dimension.</param>
         /// <returns>a MeasureSpec for the child.</returns>
+        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public static LayoutMeasureSpec GetChildMeasureSpec(LayoutMeasureSpec measureSpec, LayoutLength padding, LayoutLength childDimension)
         {
             return LayoutGroupWrapperImpl.GetChildMeasureSpec(measureSpec, padding, childDimension);
@@ -81,10 +90,12 @@ namespace Tizen.NUI
         /// </summary>
         /// <param name="widthMeasureSpec">horizontal space requirements as imposed by the parent.</param>
         /// <param name="heightMeasureSpec">vertical space requirements as imposed by the parent.</param>
+        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         protected virtual void OnMeasure(LayoutMeasureSpec widthMeasureSpec, LayoutMeasureSpec heightMeasureSpec)
         {
-            SetMeasuredDimensions( new MeasuredSize( LayoutItemWrapperImpl.GetDefaultSize( layoutItemWrapperImpl.GetSuggestedMinimumWidth(), widthMeasureSpec ) ),
-                                   new MeasuredSize( LayoutItemWrapperImpl.GetDefaultSize( layoutItemWrapperImpl.GetSuggestedMinimumHeight(), heightMeasureSpec )));
+            SetMeasuredDimensions(new MeasuredSize(LayoutItemWrapperImpl.GetDefaultSize(layoutItemWrapperImpl.GetSuggestedMinimumWidth(), widthMeasureSpec)),
+                                   new MeasuredSize(LayoutItemWrapperImpl.GetDefaultSize(layoutItemWrapperImpl.GetSuggestedMinimumHeight(), heightMeasureSpec)));
         }
 
         /// <summary>
@@ -96,6 +107,8 @@ namespace Tizen.NUI
         /// <param name="top"> Top position, relative to parent.</param>
         /// <param name="right">Right position, relative to parent.</param>
         /// <param name="bottom">Bottom position, relative to parent.</param>
+        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         protected virtual void OnLayout(bool changed, LayoutLength left, LayoutLength top, LayoutLength right, LayoutLength bottom)
         {
 
@@ -106,6 +119,8 @@ namespace Tizen.NUI
         /// </summary>
         /// <param name="newSize">The new size of the layout.</param>
         /// <param name="oldSize">The old size of the layout.</param>
+        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         protected virtual void OnSizeChanged(LayoutSize newSize, LayoutSize oldSize)
         {
 
@@ -131,6 +146,8 @@ namespace Tizen.NUI
         /// <summary>
         /// Second stage initialization method for deriving classes to override.<br />
         /// </summary>
+        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         protected virtual void DoInitialize()
         {
         }
@@ -139,6 +156,8 @@ namespace Tizen.NUI
         /// Method for derived classes to implement in order to register child property types with the container.<br />
         /// </summary>
         /// <param name="containerType">The fully qualified typename of the container.</param>
+        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         protected virtual void DoRegisterChildProperties(string containerType)
         {
         }
@@ -150,6 +169,8 @@ namespace Tizen.NUI
         /// </summary>
         /// <param name="widthMeasureSpec">The width requirements for this view.</param>
         /// <param name="heightMeasureSpec">The height requirements for this view.</param>
+        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         protected virtual void MeasureChildren(LayoutMeasureSpec widthMeasureSpec, LayoutMeasureSpec heightMeasureSpec)
         {
             layoutGroupWrapperImpl.MeasureChildrenNative(widthMeasureSpec, heightMeasureSpec);
@@ -163,6 +184,8 @@ namespace Tizen.NUI
         /// <param name="child">The child to measure.</param>
         /// <param name="parentWidthMeasureSpec">The width requirements for this view.</param>
         /// <param name="parentHeightMeasureSpec">The height requirements for this view.</param>
+        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         protected virtual void MeasureChild(LayoutItem child, LayoutMeasureSpec parentWidthMeasureSpec, LayoutMeasureSpec parentHeightMeasureSpec)
         {
             layoutGroupWrapperImpl.MeasureChildNative(child, parentWidthMeasureSpec, parentHeightMeasureSpec);
@@ -179,6 +202,8 @@ namespace Tizen.NUI
         /// <param name="widthUsed">Extra space that has been used up by the parent horizontally (possibly by other children of the parent).</param>
         /// <param name="parentHeightMeasureSpec">The height requirements for this view.</param>
         /// <param name="heightUsed">Extra space that has been used up by the parent vertically (possibly by other children of the parent).</param>
+        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         protected virtual void MeasureChildWithMargins(LayoutItem child, LayoutMeasureSpec parentWidthMeasureSpec, LayoutLength widthUsed, LayoutMeasureSpec parentHeightMeasureSpec, LayoutLength heightUsed)
         {
             layoutGroupWrapperImpl.MeasureChildWithMarginsNative(child, parentWidthMeasureSpec, widthUsed, parentHeightMeasureSpec, heightUsed);

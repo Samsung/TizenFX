@@ -160,5 +160,28 @@ namespace Tizen.Uix.InputMethodManager
 
             return activeIME;
         }
+
+        /// <summary>
+        /// Requests to pre-launch the IME.
+        /// The developers can use this function to launch IME in On-demand mode.
+        /// </summary>
+        /// <privilege>
+        /// http://tizen.org/privilege/imemanager
+        /// </privilege>
+        /// <exception cref="InvalidOperationException">
+        /// This exception can occur if:
+        /// 1) The application does not have the privilege to call this function.
+        /// 2) Operation failed.
+        /// </exception>
+        /// <since_tizen> 5 </since_tizen>
+        public static void PrelaunchIME()
+        {
+            ErrorCode error = ImeManagerPrelaunchIme();
+            if (error != ErrorCode.None)
+            {
+                Log.Error(LogTag, "PrelaunchIME Failed with error " + error);
+                throw InputMethodManagerExceptionFactory.CreateException(error);
+            }
+        }
     }
 }

@@ -15,17 +15,22 @@
  *
  */
 
+using System.ComponentModel;
 using Tizen.NUI.BaseComponents;
 
 namespace Tizen.NUI
 {
+    /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+    [EditorBrowsable(EditorBrowsableState.Never)]
     public class LayoutItem : LayoutItemWrapper
     {
         internal LayoutItem(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn)
         {
         }
 
-        public LayoutItem() : base( new LayoutItemWrapperImpl() )
+        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public LayoutItem() : base(new LayoutItemWrapperImpl())
         {
             LayoutItemInitialize(layoutItemWrapperImpl);
         }
@@ -42,11 +47,15 @@ namespace Tizen.NUI
         /// <summary>
         /// Unparent this layout from it's owner, and remove any layout children in derived types. <br />
         /// </summary>
+        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public void Unparent()
         {
             layoutItemWrapperImpl.Unparent();
         }
 
+        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         protected void SetMeasuredDimensions(MeasuredSize measuredWidth, MeasuredSize measuredHeight)
         {
             layoutItemWrapperImpl.SetMeasuredDimensions(measuredWidth, measuredHeight);
@@ -75,6 +84,8 @@ namespace Tizen.NUI
         /// <param name="top">Top position, relative to parent.</param>
         /// <param name="right">Right position, relative to parent.</param>
         /// <param name="bottom">Bottom position, relative to parent.</param>
+        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public void Layout(LayoutLength left, LayoutLength top, LayoutLength right, LayoutLength bottom)
         {
             layoutItemWrapperImpl.Layout(left, top, right, bottom);
@@ -88,11 +99,15 @@ namespace Tizen.NUI
         /// <param name="size"> Default size for this layout.</param>
         /// <param name="measureSpec"> Constraints imposed by the parent.</param>
         /// <returns>The size this layout should be.</returns>
+        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public static LayoutLength GetDefaultSize(LayoutLength size, LayoutMeasureSpec measureSpec)
         {
             return LayoutItemWrapperImpl.GetDefaultSize(size, measureSpec);
         }
 
+        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public ILayoutParent GetParent
         {
             get
@@ -105,6 +120,8 @@ namespace Tizen.NUI
         /// Request that this layout is re-laid out.<br />
         /// This will make this layout and all it's parent layouts dirty.<br />
         /// </summary>
+        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public void RequestLayout()
         {
             layoutItemWrapperImpl.RequestLayout();
@@ -113,6 +130,8 @@ namespace Tizen.NUI
         /// <summary>
         /// Predicate to determine if this layout has been requested to re-layout.<br />
         /// </summary>
+        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public bool LayoutRequested
         {
             get
@@ -134,6 +153,8 @@ namespace Tizen.NUI
         /// Get the measured width (without any measurement flags).<br />
         /// This method should be used only during measurement and layout calculations.<br />
         /// </summary>
+        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public LayoutLength MeasuredWidth
         {
             get
@@ -155,6 +176,8 @@ namespace Tizen.NUI
         /// Get the measured height (without any measurement flags).<br />
         /// This method should be used only during measurement and layout calculations.<br />
         /// </summary>
+        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public LayoutLength MeasuredHeight
         {
             get
@@ -176,6 +199,8 @@ namespace Tizen.NUI
         /// Get the measured width and state.<br />
         /// This method should be used only during measurement and layout calculations.<br />
         /// </summary>
+        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public MeasuredSize MeasuredWidthAndState
         {
             get
@@ -197,6 +222,8 @@ namespace Tizen.NUI
         /// Get the measured height and state.<br />
         /// This method should be used only during measurement and layout calculations.<br />
         /// </summary>
+        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public MeasuredSize MeasuredHeightAndState
         {
             get
@@ -218,6 +245,8 @@ namespace Tizen.NUI
         /// Returns the suggested minimum width that the layout should use.<br />
         /// This returns the maximum of the layout's minimum width and the background's minimum width.<br />
         /// </summary>
+        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public LayoutLength SuggestedMinimumWidth
         {
             get
@@ -240,6 +269,8 @@ namespace Tizen.NUI
         /// Returns the suggested minimum height that the layout should use.<br />
         /// This returns the maximum of the layout's minimum height and the background's minimum height.<br />
         /// </summary>
+        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public LayoutLength SuggestedMinimumHeight
         {
             get
@@ -263,6 +294,8 @@ namespace Tizen.NUI
         /// It is not guaranteed the layout will be able to achieve this minimum width (for example, if its parent
         /// layout constrains it with less available width).<br />
         /// </summary>
+        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public LayoutLength MinimumWidth
         {
             get
@@ -291,6 +324,8 @@ namespace Tizen.NUI
         /// It is not guaranteed the layout will be able to achieve this minimum height (for example, if its parent
         /// layout constrains it with less available height).<br />
         /// </summary>
+        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public LayoutLength MinimumHeight
         {
             get
@@ -343,6 +378,8 @@ namespace Tizen.NUI
         /// </summary>
         /// <param name="widthMeasureSpec">horizontal space requirements as imposed by the parent.</param>
         /// <param name="heightMeasureSpec">vertical space requirements as imposed by the parent.</param>
+        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         protected virtual void OnMeasure(LayoutMeasureSpec widthMeasureSpec, LayoutMeasureSpec heightMeasureSpec)
         {
             layoutItemWrapperImpl.OnMeasureNative(widthMeasureSpec, heightMeasureSpec);
@@ -357,6 +394,8 @@ namespace Tizen.NUI
         /// <param name="top">Top position, relative to parent.</param>
         /// <param name="right">Right position, relative to parent.</param>
         /// <param name="bottom">Bottom position, relative to parent.</param>
+        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         protected virtual void OnLayout(bool changed, LayoutLength left, LayoutLength top, LayoutLength right, LayoutLength bottom)
         {
         }
