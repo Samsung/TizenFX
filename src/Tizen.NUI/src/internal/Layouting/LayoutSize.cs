@@ -101,27 +101,40 @@ namespace Tizen.NUI
 
         /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static bool operator ==(LayoutSize r1, LayoutSize r2)
+        public bool IsEqualTo(LayoutSize target)
         {
-            return r1.EqualTo(r2);
+            if (this.Width == target.Width && this.Height == target.Height)
+            {
+                return true;
+            }
+            return false;
         }
 
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public static bool operator !=(LayoutSize r1, LayoutSize r2)
-        {
-            return !r1.EqualTo(r2);
-        }
+
+        // This causes crash!
+        // compile warning message :
+        //'LayoutSize' defines operator == or operator != but does not override Object.Equals(object o)
+        //'LayoutSize' defines operator == or operator != but does not override Object.GetHashCode()
+        //public static bool operator ==(LayoutSize r1, LayoutSize r2)
+        //{
+        //    return r1.EqualTo(r2);
+        //}
+        //public static bool operator !=(LayoutSize r1, LayoutSize r2)
+        //{
+        //    return !r1.EqualTo(r2);
+        //}
+
 
         /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public int Width
         {
-            set
-            {
-                LayoutPINVOKE.LayoutSize_width_set(swigCPtr, value);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            }
+            //This should be blocked! Otherwise, user can set multiple-cascading property setting like "LinearLayout.CellPadding.Width = 100;". This will not be working!
+            //set
+            //{
+            //    LayoutPINVOKE.LayoutSize_width_set(swigCPtr, value);
+            //    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            //}
             get
             {
                 int ret = LayoutPINVOKE.LayoutSize_width_get(swigCPtr);
@@ -134,11 +147,12 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public int Height
         {
-            set
-            {
-                LayoutPINVOKE.LayoutSize_height_set(swigCPtr, value);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            }
+            //This should be blocked! Otherwise, user can set multiple-cascading property setting like "LinearLayout.CellPadding.Height = 100;". This will not be working!
+            //set
+            //{
+            //    LayoutPINVOKE.LayoutSize_height_set(swigCPtr, value);
+            //    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            //}
             get
             {
                 int ret = LayoutPINVOKE.LayoutSize_height_get(swigCPtr);
