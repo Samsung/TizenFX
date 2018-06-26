@@ -24,6 +24,46 @@ using static Interop;
 
 namespace Tizen.Multimedia
 {
+    /// <summary>
+    /// Represents properties for streaming buffering time
+    /// </summary>
+    /// <since_tizen> 5 </since_tizen>
+    public struct PlayerBufferingTime
+    {
+        /// <summary>
+        /// Initializes a new instance of the PlayerBufferingTime struct.
+        /// </summary>
+        /// <param name="preBufferMillisecond">A duration of buffering data that must be prerolled to start playback.</param>
+        /// <param name="reBufferMillisecond">A duration of buffering data that must be prerolled to resume playback
+        /// if player enters pause state for buffering.</param>
+        /// <since_tizen> 5 </since_tizen>
+        public PlayerBufferingTime(int preBufferMillisecond, int reBufferMillisecond)
+        {
+            PreBufferMillisecond = preBufferMillisecond;
+            ReBufferMillisecond = reBufferMillisecond;
+        }
+
+        /// <summary>
+        /// Gets or sets the duration of buffering data that must be prerolled to start playback
+        /// </summary>
+        /// <since_tizen> 5 </since_tizen>
+        public int PreBufferMillisecond
+        {
+            get;
+            set;
+        }
+
+        /// <summary>
+        /// Gets or sets the duration of buffering data that must be prerolled to resume playback
+        /// if player enters pause state for buffering.
+        /// </summary>
+        /// <since_tizen> 5 </since_tizen>
+        public int ReBufferMillisecond
+        {
+            get;
+            set;
+        }
+    }
     /// <since_tizen> 3 </since_tizen>
     public partial class Player
     {
@@ -103,6 +143,44 @@ namespace Tizen.Multimedia
                     ThrowIfFailed(this, "Failed to set the user agent to the player");
 
                 _userAgent = value;
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the streaming buffering time.
+        /// </summary>
+        /// <remarks>To set, the player must be in the <see cref="PlayerState.Idle"/> state.</remarks>
+        /// <exception cref="InvalidOperationException">The player is not in the valid state.</exception>
+        /// <exception cref="ObjectDisposedException">The player has already been disposed of.</exception>
+        /// <exception cref="ArgumentOutOfRangeException">
+        ///     <pramref name="PreBufferMillisecond"/> is less than 0.<br/>
+        ///     -or-<br/>
+        ///     <pramref name="ReBufferMillisecond"/> is less than 0.<br/>
+        /// </exception>
+        /// <seealso cref="PlayerBufferingTime"/>
+        /// <since_tizen> 5 </since_tizen>
+        public PlayerBufferingTime BufferingTime
+        {
+            get
+            {
+                ValidateNotDisposed();
+
+                NativePlayer.GetStreamingBufferingTime(Handle, out var PreBuffMillisecond, out var ReBuffMillisecond).
+                        ThrowIfFailed(this, "Failed to get the buffering time of the player");
+
+                return new PlayerBufferingTime(PreBuffMillisecond, ReBuffMillisecond);
+            }
+            set
+            {
+                ValidatePlayerState(PlayerState.Idle);
+
+                if (value.PreBufferMillisecond < 0 || value.ReBufferMillisecond < 0)
+                {
+                    throw new ArgumentOutOfRangeException("invalid range");
+                }
+
+                NativePlayer.SetStreamingBufferingTime(Handle, value.PreBufferMillisecond, value.ReBufferMillisecond).
+                    ThrowIfFailed(this, "Failed to set the buffering time of the player");
             }
         }
         #endregion
@@ -461,6 +539,25 @@ namespace Tizen.Multimedia
                 }
 
                 return _sphericalVideo;
+            }
+        }
+
+        private AdaptiveVariants _adaptiveVariants;
+
+        /// <summary>
+        /// Gets the adaptive variants settings.
+        /// </summary>
+        /// <since_tizen> 5 </since_tizen>
+        public AdaptiveVariants AdaptiveVariants
+        {
+            get
+            {
+                if (_adaptiveVariants == null)
+                {
+                    _adaptiveVariants = new AdaptiveVariants(this);
+                }
+
+                return _adaptiveVariants;
             }
         }
     }
