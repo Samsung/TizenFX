@@ -4,7 +4,7 @@ using Tizen.NUI;
 using Tizen.NUI.BaseComponents;
 using System.Collections.Generic;
 
-namespace CustomLayoutByAbsoluteLayout
+namespace CustomLayoutTest2
 {
     static class Images
     {
@@ -233,12 +233,11 @@ namespace CustomLayoutByAbsoluteLayout
             Initialize();
         }
 
-        static View rootLayoutView, linearContainer;
+        static View linearContainer;
         const int MAX_CHILDREN = 7;
         static ImageView[] imageViews = new ImageView[MAX_CHILDREN];
         static CustomLayoutHorizental horizontalLayout;
         static CustomLayoutVertical verticalLayout;
-        static AbsoluteLayout rootLayout;
 
         private void Initialize()
         {
@@ -246,17 +245,10 @@ namespace CustomLayoutByAbsoluteLayout
             Window window = Window.Instance;
             window.BackgroundColor = Color.Green;
 
-            rootLayoutView = new View();
-            rootLayoutView.WidthSpecificationFixed = 1900;
-            rootLayoutView.HeightSpecificationFixed = 1000;
-            rootLayoutView.Position = new Position(0, 0, 0);
-            rootLayoutView.BackgroundColor = Color.Magenta;
-
             linearContainer = new View();
             linearContainer.PositionUsesPivotPoint = true;
             linearContainer.PivotPoint = PivotPoint.Center;
             linearContainer.ParentOrigin = ParentOrigin.Center;
-            //linearContainer.BackgroundColor = Color.Yellow;
             linearContainer.KeyEvent += OnKeyEvent;
             linearContainer.Focusable = true;
 
@@ -280,11 +272,7 @@ namespace CustomLayoutByAbsoluteLayout
             horizontalLayout.LayoutAnimate = true;
             linearContainer.Layout = horizontalLayout;
 
-            rootLayout = new AbsoluteLayout();
-            rootLayoutView.Layout = rootLayout;
-
-            rootLayoutView.Add(linearContainer);
-            window.Add(rootLayoutView);
+            window.Add(linearContainer);
             FocusManager.Instance.SetCurrentFocusView(linearContainer);
             FocusManager.Instance.FocusIndicator = new View();
         }

@@ -676,7 +676,6 @@ namespace Tizen.NUI
             // Core has been initialized, not when Stage is ready.
             if (_rootLayer == null && Window.IsInstalled())
             {
-                // Get RootLayer so can add RootLayout to it.
                 _rootLayer = new Layer(NDalicPINVOKE.Stage_GetRootLayer(stageCPtr), true);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
                 LayersChildren.Add(_rootLayer);

@@ -2,8 +2,10 @@
 using System.Threading;
 using Tizen.NUI;
 using Tizen.NUI.BaseComponents;
+using System.Runtime.InteropServices;
 
-namespace NUILayoutSample
+
+namespace NUILinearLayoutSample
 {
     static class Images
     {
@@ -36,6 +38,8 @@ namespace NUILayoutSample
         View rootLayoutView, linearContainer;
         const int MAX_CHILDREN = 7;
         ImageView[] imageViews = new ImageView[MAX_CHILDREN];
+        LinearLayout linearlayout;
+        LayoutSize layoutsize;
         private void Initialize()
         {
             Console.WriteLine("Initialize()!");
@@ -47,7 +51,7 @@ namespace NUILayoutSample
             rootLayoutView.HeightSpecificationFixed = 1000;
             rootLayoutView.Position = new Position(0, 0, 0);
             rootLayoutView.BackgroundColor = Color.Green;
-            window.Add(rootLayoutView);
+            //window.Add(rootLayoutView);
 
             linearContainer = new View();
             linearContainer.PositionUsesPivotPoint = true;
@@ -56,9 +60,6 @@ namespace NUILayoutSample
             linearContainer.BackgroundColor = Color.Yellow;
             linearContainer.KeyEvent += OnKeyEvent;
             linearContainer.Focusable = true;
-
-            rootLayoutView.Add(linearContainer);
-            FocusManager.Instance.SetCurrentFocusView(linearContainer);
 
             for (int index = 0; index < MAX_CHILDREN - 3; index++)
             {
@@ -78,16 +79,36 @@ namespace NUILayoutSample
                 //imageViews[index].HeightSpecification = ChildLayoutData.MatchParent;
             }
 
-            var layout = new LinearLayout();
-            layout.LayoutAnimate = true;
-            layout.LinearOrientation = LinearLayout.Orientation.Vertical;
-            //layout.CellPadding = new LayoutSize(50, 50);
+            layoutsize = new LayoutSize(50, 50);
+            Console.WriteLine($"## layoutsize width={layoutsize.Width}, height={layoutsize.Height}");
+
+            linearlayout = new LinearLayout();
+            linearlayout.LayoutAnimate = true;
+            linearlayout.LinearOrientation = LinearLayout.Orientation.Vertical;
+
+            Console.WriteLine($"## TP1");
+            //Console.WriteLine($"linearlayout p=0x{LinearLayout.getCPtr(linearlayout).Handle.ToInt64():X},  layoutsize p=0x{LayoutSize.getCPtr(layoutsize).Handle.ToInt64():X}");
+
+            linearlayout.CellPadding = layoutsize;
+            Console.WriteLine($"## TP2");
             linearContainer.WidthSpecification = ChildLayoutData.WrapContent;
             linearContainer.HeightSpecification = ChildLayoutData.WrapContent;
-            linearContainer.Layout = layout;
+            Console.WriteLine($"## TP3");
+            linearContainer.Layout = linearlayout;
+            Console.WriteLine($"## TP4");
 
-            var rootLayout = new AbsoluteLayout();
-            rootLayoutView.Layout = rootLayout;
+            //var __layout = linearContainer.Layout as LinearLayout;
+            var __layout = linearlayout;
+            Console.WriteLine($"##  layout orientation={__layout.LinearOrientation}");
+            var __cellpadding = __layout.CellPadding;
+            Console.WriteLine($"##  layout cellpadding width={__cellpadding.Width}, height={ __cellpadding.Height}");
+
+            //var rootLayout = new AbsoluteLayout();
+            //rootLayoutView.Layout = rootLayout;
+            //rootLayoutView.Add(linearContainer);
+
+            window.Add(linearContainer);
+            FocusManager.Instance.SetCurrentFocusView(linearContainer);
         }
 
         int cnt1 = 1;
@@ -129,6 +150,7 @@ namespace NUILayoutSample
                         var horizon = new LinearLayout();
                         horizon.LayoutAnimate = true;
                         horizon.LinearOrientation = LinearLayout.Orientation.Horizontal;
+                        horizon.CellPadding = new LayoutSize(200, 200);
                         linearContainer.Layout = horizon;
                         break;
 
@@ -142,7 +164,7 @@ namespace NUILayoutSample
         }
 
         [STAThread]
-        static void Main(string[] args)
+        static void _Main(string[] args)
         {
             Example layoutSample = new Example();
             layoutSample.Run(args);
@@ -150,3 +172,7 @@ namespace NUILayoutSample
 
     }
 }
+
+
+
+
