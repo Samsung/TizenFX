@@ -103,7 +103,6 @@ namespace Tizen.Multimedia
         ///     -or-<br/>
         ///     <pramref name="height"/> is less than -1.<br/>
         /// </exception>
-        /// <exception cref="ArgumentException">The value is not valid.</exception>
         /// <seealso cref="GetMaxLimit()"/>
         /// <since_tizen> 5 </since_tizen>
         public void SetMaxLimit(int bandwidth, int width = -1, int height = -1)
@@ -124,7 +123,6 @@ namespace Tizen.Multimedia
         /// </summary>
         /// <returns>The <see cref="VariantInfo"/> containing the variant information.</returns>
         /// <exception cref="ObjectDisposedException">The <see cref="Player"/> has already been disposed of.</exception>
-        /// <exception cref="ArgumentException">The value is not valid.</exception>
         /// <seealso cref="SetMaxLimit(int, int, int)"/>
         /// <since_tizen> 5 </since_tizen>
         public VariantInfo GetMaxLimit()
@@ -143,8 +141,10 @@ namespace Tizen.Multimedia
         /// <returns>
         /// It returns a list contained all the available adaptive variants.
         /// </returns>
+        /// The <see cref="Player"/> must be in the <see cref="PlayerState.Ready"/>,
+        /// <see cref="PlayerState.Playing"/>, or <see cref="PlayerState.Paused"/> state.
+        /// <exception cref="InvalidOperationException">The player is not in the valid state.</exception>
         /// <exception cref="ObjectDisposedException">The <see cref="Player"/> has already been disposed of.</exception>
-        /// <exception cref="ArgumentException">The value is not valid.</exception>
         /// <seealso cref="VariantInfo"/>
         /// <since_tizen> 5 </since_tizen>
         public IEnumerable<VariantInfo> AvailableAdaptiveVariants

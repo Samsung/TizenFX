@@ -157,7 +157,6 @@ namespace Tizen.Multimedia
         ///     -or-<br/>
         ///     <pramref name="ReBufferMillisecond"/> is less than 0.<br/>
         /// </exception>
-        /// <exception cref="ArgumentException">The value is not valid.</exception>
         /// <seealso cref="PlayerBufferingTime"/>
         /// <since_tizen> 5 </since_tizen>
         public PlayerBufferingTime BufferingTime
