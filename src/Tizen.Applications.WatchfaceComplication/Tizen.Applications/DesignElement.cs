@@ -7,18 +7,19 @@ namespace Tizen.Applications.WatchfaceComplication
     {
 
         private IEnumerable<Bundle> _candidates;
-        private int _curDataIdx;
+        private int _currentDataIndex;
         private Geometry _geometry;
         private string _editableName;
         private int _editableId;
 
-        public DesignElement(IEnumerable<Bundle> candidates, int curDataIdx, Geometry geometry, string editableName)
+
+        public DesignElement(IEnumerable<Bundle> candidates, int currentDataIndex, Geometry geometry, string editableName)
         {
             _candidates = candidates;
-            _curDataIdx = curDataIdx;
+            _currentDataIndex = currentDataIndex;
             _geometry = geometry;
             _editableName = editableName;
-        }        
+        }
 
         int IEditable.EditableId
         {
@@ -44,24 +45,53 @@ namespace Tizen.Applications.WatchfaceComplication
         {
             get
             {
-                return null;
+                return _editableName;
             }
         }
-       
-        Geometry IEditable.Geometry { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+
+        Geometry IEditable.Geometry
+        {
+            get
+            {
+                return _geometry;
+            }
+            set
+            {
+                _geometry = value;
+            }
+        }
+
         int IEditable.CurrentDataIndex
         {
             get
             {
-                return _curDataIdx;
+                return _currentDataIndex;
+            }
+            set
+            {
+                _currentDataIndex = value;
             }
         }
 
-        State IEditable.State => throw new NotImplementedException();
-
-        Bundle IEditable.GetNthData(int index)
+        Bundle IEditable.GetCurrentData()
         {
-            throw new NotImplementedException();
+            int idx = 0;
+            foreach (Bundle data in _candidates)
+            {
+                if (idx == _currentDataIndex)
+                    return data;
+                idx++;
+            }
+            return null;
+        }
+
+        void IEditable.OnUpdate(int selectedIdx, State state)
+        {
+            OnDesignUpdate(selectedIdx, state);
+        }
+
+        protected virtual void OnDesignUpdate(int selectedIdx, State state)
+        {
         }
     }
 }

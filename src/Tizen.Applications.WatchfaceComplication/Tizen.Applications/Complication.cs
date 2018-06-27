@@ -4,7 +4,7 @@ using Tizen.Applications;
 
 
 namespace Tizen.Applications.WatchfaceComplication
-{    
+{
     public abstract class Complication : IEditable
     {
         private int _complicationId;
@@ -15,9 +15,10 @@ namespace Tizen.Applications.WatchfaceComplication
         private State _state;
         private IEnumerable<Bundle> _candidates;
         private ShapeType _shapeType;
-        private Interop.WatchfaceComplication.SafeComplicationHandle _handle;
+        private IntPtr _handle;
         private Interop.WatchfaceComplication.ComplicationUpdatedCallback _updatedCallback;
         private int _editableId;
+        private static string _logTag = "WatchfaceComplication";
 
         public Complication(int complicationId, int supportTypes, string defaultProviderId, ComplicationType defaultType, ShapeType shapeType)
         {
@@ -44,7 +45,7 @@ namespace Tizen.Applications.WatchfaceComplication
         {
             get
             {
-                return _handle.DangerousGetHandle();
+                return _handle;
             }
         }
 
@@ -55,7 +56,7 @@ namespace Tizen.Applications.WatchfaceComplication
                 return _supportTypes;
             }
         }
-        
+
         Geometry IEditable.Geometry
         {
             get
@@ -66,20 +67,23 @@ namespace Tizen.Applications.WatchfaceComplication
             {
                 _geometry = value;
             }
-        }        
+        }
 
         int IEditable.CurrentDataIndex
         {
             get
             {
                 int curIdx;
-                ComplicationError ret = Interop.WatchfaceComplication.GetCurrentIdx(_handle.DangerousGetHandle(), out curIdx);
+                ComplicationError ret = Interop.WatchfaceComplication.GetCurrentIdx(_handle, out curIdx);
                 if (ret != ComplicationError.None)
                 {
                     ErrorFactory.ThrowException(ret, "Fail to get current idx");
                 }
                 return curIdx;
-            }            
+            }
+            set
+            {
+            }
         }
 
         public int ComplicationId
@@ -89,18 +93,12 @@ namespace Tizen.Applications.WatchfaceComplication
                 return _complicationId;
             }
         }
-                
+
         int IEditable.EditableId
         {
             get
             {
-                int editableId;
-                ComplicationError ret = Interop.WatchfaceComplication.GetCurrentIdx(_handle.DangerousGetHandle(), out editableId);
-                if (ret != ComplicationError.None)
-                {
-                    ErrorFactory.ThrowException(ret, "Fail to get current idx");
-                }
-                return editableId;
+                return _editableId;
             }
             set
             {
@@ -115,17 +113,14 @@ namespace Tizen.Applications.WatchfaceComplication
             }
         }
 
-        State IEditable.State
+        Bundle IEditable.GetCurrentData()
         {
-            get
-            {
-                return _state;
-            }
-        }
-
-        Bundle IEditable.GetNthData(int index)
-        {
-            throw new NotImplementedException();
+            SafeBundleHandle bundleHandle;
+            ComplicationError err = Interop.WatchfaceComplication.GetCurrentData(_handle, out bundleHandle);
+            if (err != ComplicationError.None)
+                ErrorFactory.ThrowException(err, "Can not get current data");
+            Bundle data = new Bundle(bundleHandle);
+            return data;
         }
 
         private void ComplicationUpdate(int complicationId,
@@ -165,7 +160,7 @@ namespace Tizen.Applications.WatchfaceComplication
         {
             string longText;
 
-            Interop.WatchfaceComplication.GetShortText(data.SafeBundleHandle, out longText);
+            Interop.WatchfaceComplication.GetLongText(data.SafeBundleHandle, out longText);
             return longText;
         }
 
@@ -173,7 +168,7 @@ namespace Tizen.Applications.WatchfaceComplication
         {
             string title;
 
-            Interop.WatchfaceComplication.GetShortText(data.SafeBundleHandle, out title);
+            Interop.WatchfaceComplication.GetTitle(data.SafeBundleHandle, out title);
             return title;
         }
 
@@ -189,7 +184,7 @@ namespace Tizen.Applications.WatchfaceComplication
         {
             string imagePath;
 
-            Interop.WatchfaceComplication.GetShortText(data.SafeBundleHandle, out imagePath);
+            Interop.WatchfaceComplication.GetImagePath(data.SafeBundleHandle, out imagePath);
             return imagePath;
         }
 
@@ -233,8 +228,12 @@ namespace Tizen.Applications.WatchfaceComplication
             return extraData;
         }
 
+        void IEditable.OnUpdate(int selectedIdx, State state)
+        {
+        }
+
         protected virtual void OnComplicationUpdate(string providerId, ComplicationType type, Bundle data)
         {
-        }        
+        }
     }
 }

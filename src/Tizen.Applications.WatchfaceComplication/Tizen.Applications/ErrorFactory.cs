@@ -5,7 +5,7 @@ namespace Tizen.Applications.WatchfaceComplication
 {
     internal static class ErrorFactory
     {
-        private const string LogTag = "Tizen.Applications.WatchfaceComplication";
+        private const string LogTag = "WatchfaceComplication";
 
         internal static void ThrowException(ComplicationError errorCode, string errorMessage = null,
             [CallerMemberName] string memberName = "", [CallerFilePath] string filePath = "", [CallerLineNumber] int lineNumber = 0)
@@ -31,7 +31,7 @@ namespace Tizen.Applications.WatchfaceComplication
                     throw new ArgumentException(string.IsNullOrEmpty(errorMessage) ? "Invalid parameter" : "Invalid parameter : " + errorMessage);
                 case ComplicationError.PermissionDeny:
                     Log.Error(LogTag, "Permission denied : " + errorMessage);
-                    throw new UnauthorizedAccessException(string.IsNullOrEmpty(errorMessage) ? "Permission denied" : "Permission denied : " + errorMessage);                
+                    throw new UnauthorizedAccessException(string.IsNullOrEmpty(errorMessage) ? "Permission denied" : "Permission denied : " + errorMessage);
                 default:
                     Log.Error(LogTag, $"Unknown error : {errorMessage} - {errorCode}");
                     throw new InvalidOperationException(string.IsNullOrEmpty(errorMessage) ? "Unknown error : " + errorCode.ToString() :

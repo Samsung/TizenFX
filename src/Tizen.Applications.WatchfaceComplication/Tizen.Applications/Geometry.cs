@@ -6,7 +6,7 @@ namespace Tizen.Applications.WatchfaceComplication
 {
     public class Geometry
     {
-        private IntPtr _raw;
+        private IntPtr _raw = IntPtr.Zero;
 
         public Geometry(int x, int y, int w, int h)
         {

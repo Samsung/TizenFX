@@ -18,57 +18,32 @@ internal static partial class Interop
             InvalidParameter = Tizen.Internals.Errors.ErrorCode.InvalidParameter,
             PermissionDenied = Tizen.Internals.Errors.ErrorCode.PermissionDenied,
             MaxExceed = -0x01190000 | 0x01,
-        }        
+        }
 
-        internal sealed class SafeComplicationHandle : SafeHandle
-        {
-            internal SafeComplicationHandle()
-                : base(IntPtr.Zero, true)
-            {
-            }
-
-            internal SafeComplicationHandle(IntPtr existingHandle, bool ownsHandle) : base(IntPtr.Zero, ownsHandle)
-            {
-                SetHandle(existingHandle);
-            }
-
-            public override bool IsInvalid
-            {
-                get { return this.handle == IntPtr.Zero; }
-            }
-
-            protected override bool ReleaseHandle()
-            {
-                WatchfaceComplication.Destroy(this.handle);
-                this.SetHandle(IntPtr.Zero);
-                return true;
-            }
-        }        
-
-        [DllImport(Libraries.Editable, EntryPoint = "watchface_editable_geometry_create")]
+        [DllImport(Libraries.Complication, EntryPoint = "watchface_editable_geometry_create")]
         internal static extern ComplicationError CreateGeometry(out IntPtr handle);
 
-        [DllImport(Libraries.Editable, EntryPoint = "watchface_editable_geometry_destroy")]
+        [DllImport(Libraries.Complication, EntryPoint = "watchface_editable_geometry_destroy")]
         internal static extern ComplicationError DestroyGeometry(IntPtr handle);
 
-        [DllImport(Libraries.Editable, EntryPoint = "watchface_editable_geometry_set")]
+        [DllImport(Libraries.Complication, EntryPoint = "watchface_editable_geometry_set")]
         internal static extern ComplicationError SetGeometry(IntPtr handle, int x, int y, int w, int h);
 
-        [DllImport(Libraries.Editable, EntryPoint = "watchface_editable_geometry_get")]
+        [DllImport(Libraries.Complication, EntryPoint = "watchface_editable_geometry_get")]
         internal static extern ComplicationError GetGeometry(IntPtr handle, out int x, out int y, out int w, out int h);
-        
+
         [DllImport(Libraries.Complication, EntryPoint = "watchface_complication_create")]
         internal static extern ComplicationError CreateComplication(int complicationId,
-            string defaultProviderId, ComplicationType defaultType, int supportTypes, ShapeType shapeType, out SafeComplicationHandle handle);
+            string defaultProviderId, ComplicationType defaultType, int supportTypes, ShapeType shapeType, out IntPtr handle);
 
         [DllImport(Libraries.Complication, EntryPoint = "watchface_complication_destroy")]
         internal static extern ComplicationError Destroy(IntPtr handle);
 
         [DllImport(Libraries.Complication, EntryPoint = "watchface_complication_add_updated_cb")]
-        internal static extern ComplicationError AddUpdatedCallback(SafeComplicationHandle handle, ComplicationUpdatedCallback callback, IntPtr userData);
+        internal static extern ComplicationError AddUpdatedCallback(IntPtr handle, ComplicationUpdatedCallback callback, IntPtr userData);
 
         [DllImport(Libraries.Complication, EntryPoint = "watchface_complication_send_update_request")]
-        internal static extern ComplicationError SendUpdateRequest(SafeComplicationHandle handle);
+        internal static extern ComplicationError SendUpdateRequest(IntPtr handle);
 
         [DllImport(Libraries.Complication, EntryPoint = "watchface_complication_data_get_type")]
         internal static extern ComplicationError GetDataType(SafeBundleHandle handle, out ComplicationType type);
@@ -78,10 +53,10 @@ internal static partial class Interop
 
         [DllImport(Libraries.Complication, EntryPoint = "watchface_complication_data_get_long_text")]
         internal static extern ComplicationError GetLongText(SafeBundleHandle handle, out string longText);
-        
+
         [DllImport(Libraries.Complication, EntryPoint = "watchface_complication_data_get_title")]
         internal static extern ComplicationError GetTitle(SafeBundleHandle handle, out string title);
-        
+
         [DllImport(Libraries.Complication, EntryPoint = "watchface_complication_data_get_timestamp")]
         internal static extern ComplicationError GetTimestamp(SafeBundleHandle handle, out long timestamp);
 
@@ -97,30 +72,41 @@ internal static partial class Interop
         [DllImport(Libraries.Complication, EntryPoint = "watchface_complication_data_get_extra_data")]
         internal static extern ComplicationError GetExtraData(SafeBundleHandle handle, out string extraData);
 
-        [DllImport(Libraries.Editable, EntryPoint = "watchface_editable_get_current_data_idx")]
+        [DllImport(Libraries.Complication, EntryPoint = "watchface_editable_add_edit_ready_cb")]
+        internal static extern ComplicationError AddEditReadyCallback(EditReadyCallback callback, IntPtr userData);
+
+        [DllImport(Libraries.Complication, EntryPoint = "watchface_editable_remove_edit_ready_cb")]
+        internal static extern ComplicationError RemoveEditReadyCallback(EditReadyCallback callback);
+
+        [DllImport(Libraries.Complication, EntryPoint = "watchface_editable_get_current_data_idx")]
         internal static extern ComplicationError GetCurrentIdx(IntPtr handle, out int curIdx);
 
-        [DllImport(Libraries.Editable, EntryPoint = "watchface_editable_get_editable_id")]
-        internal static extern ComplicationError GetEditableId(IntPtr handle, out int editableId);
-        
+        [DllImport(Libraries.Complication, EntryPoint = "watchface_editable_get_current_data")]
+        internal static extern ComplicationError GetCurrentData(IntPtr handle, out SafeBundleHandle data);
 
-        [DllImport(Libraries.Editable, EntryPoint = "watchface_editable_add_complication")]
+        [DllImport(Libraries.Complication, EntryPoint = "watchface_editable_get_editable_id")]
+        internal static extern ComplicationError GetEditableId(IntPtr handle, out int editableId);
+
+        [DllImport(Libraries.Complication, EntryPoint = "watchface_editable_add_complication")]
         internal static extern ComplicationError AddComplication(IntPtr container, int editId, IntPtr comp, IntPtr geo);
 
-        [DllImport(Libraries.Editable, EntryPoint = "watchface_editable_add_design_element")]
+        [DllImport(Libraries.Complication, EntryPoint = "watchface_editable_add_design_element")]
         internal static extern ComplicationError AddDesignElement(IntPtr container, int editId, int curDataIdx, IntPtr listHandle, IntPtr geo, string editableName);
 
-        [DllImport(Libraries.Editable, EntryPoint = "watchface_editable_candidates_list_create")]
+        [DllImport(Libraries.Complication, EntryPoint = "watchface_editable_candidates_list_create")]
         internal static extern ComplicationError CreateCandidatesList(out IntPtr listHandle);
 
-        [DllImport(Libraries.Editable, EntryPoint = "watchface_editable_candidates_list_add")]
+        [DllImport(Libraries.Complication, EntryPoint = "watchface_editable_candidates_list_add")]
         internal static extern ComplicationError AddCandidatesListItem(IntPtr listHandle, SafeBundleHandle candidate);
 
-        [DllImport(Libraries.Editable, EntryPoint = "watchface_editable_candidates_list_destroy")]
+        [DllImport(Libraries.Complication, EntryPoint = "watchface_editable_candidates_list_destroy")]
         internal static extern ComplicationError DestroyCandidatesList(IntPtr listHandle);
 
-        [DllImport(Libraries.Editable, EntryPoint = "watchface_editable_request_edit")]
+        [DllImport(Libraries.Complication, EntryPoint = "watchface_editable_request_edit")]
         internal static extern ComplicationError RequestEdit(IntPtr container, EditableUpdatedCallback callback, IntPtr userData);
+
+        [DllImport(Libraries.Complication, EntryPoint = "watchface_editable_container_get")]
+        internal static extern ComplicationError GetEditableContainer(out IntPtr container);
 
         [DllImport(Libraries.ComplicationProvider, EntryPoint = "watchface_complication_provider_add_update_requested_cb")]
         internal static extern ComplicationError AddUpdateRequestedCallback(string providerId, UpdateRequestedCallback callback, IntPtr userData);
@@ -129,37 +115,37 @@ internal static partial class Interop
         internal static extern ComplicationError RemoveUpdateRequestedCallback(string providerId, UpdateRequestedCallback callback);
 
         [DllImport(Libraries.ComplicationProvider, EntryPoint = "watchface_complication_provider_data_set_type")]
-        internal static extern ComplicationError ComplicationProviderSetType(SafeBundleHandle sharedData, ComplicationType type);
-
-        [DllImport(Libraries.ComplicationProvider, EntryPoint = "watchface_complication_provider_data_set_type")]
-        internal static extern ComplicationError ProviderSetType(SafeBundleHandle sharedData, ComplicationType type);
+        internal static extern ComplicationError ProviderSetType(IntPtr sharedData, ComplicationType type);
 
         [DllImport(Libraries.ComplicationProvider, EntryPoint = "watchface_complication_provider_data_set_title")]
-        internal static extern ComplicationError ProviderSetTitle(SafeBundleHandle sharedData, string title);
+        internal static extern ComplicationError ProviderSetTitle(IntPtr sharedData, string title);
 
         [DllImport(Libraries.ComplicationProvider, EntryPoint = "watchface_complication_provider_data_set_short_text")]
-        internal static extern ComplicationError ProviderSetShortText(SafeBundleHandle sharedData, string shortText);
+        internal static extern ComplicationError ProviderSetShortText(IntPtr sharedData, string shortText);
 
         [DllImport(Libraries.ComplicationProvider, EntryPoint = "watchface_complication_provider_data_set_long_text")]
-        internal static extern ComplicationError ProviderSetLongText(SafeBundleHandle sharedData, string longText);
+        internal static extern ComplicationError ProviderSetLongText(IntPtr sharedData, string longText);
 
         [DllImport(Libraries.ComplicationProvider, EntryPoint = "watchface_complication_provider_data_set_timestamp")]
-        internal static extern ComplicationError ProviderSetTimestamp(SafeBundleHandle sharedData, long timestamp);
+        internal static extern ComplicationError ProviderSetTimestamp(IntPtr sharedData, long timestamp);
 
         [DllImport(Libraries.ComplicationProvider, EntryPoint = "watchface_complication_provider_data_set_image_path")]
-        internal static extern ComplicationError ProviderSetImagePath(SafeBundleHandle sharedData, string imagePath);
-        
+        internal static extern ComplicationError ProviderSetImagePath(IntPtr sharedData, string imagePath);
+
         [DllImport(Libraries.ComplicationProvider, EntryPoint = "watchface_complication_provider_data_set_ranged_value")]
-        internal static extern ComplicationError ProviderSetRangedValue(SafeBundleHandle sharedData, double currentValue, double minValue, double maxValue);
+        internal static extern ComplicationError ProviderSetRangedValue(IntPtr sharedData, double currentValue, double minValue, double maxValue);
 
         [DllImport(Libraries.ComplicationProvider, EntryPoint = "watchface_complication_provider_data_set_icon_path")]
-        internal static extern ComplicationError ProviderSetIconPath(SafeBundleHandle sharedData, string iconPath);
-        
+        internal static extern ComplicationError ProviderSetIconPath(IntPtr sharedData, string iconPath);
+
         [DllImport(Libraries.ComplicationProvider, EntryPoint = "watchface_complication_provider_data_set_extra_data")]
-        internal static extern ComplicationError ProviderSetExtraData(SafeBundleHandle sharedData, string extraData);
+        internal static extern ComplicationError ProviderSetExtraData(IntPtr sharedData, string extraData);
 
         [DllImport(Libraries.ComplicationProvider, EntryPoint = "watchface_complication_provider_notify_update")]
-        internal static extern ComplicationError NotifyUpdate(string updatedProviderId);        
+        internal static extern ComplicationError NotifyUpdate(string updatedProviderId);
+
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+        internal delegate void EditReadyCallback(IntPtr handle, string editorAppId, IntPtr userData);
 
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         internal delegate void UpdateRequestedCallback(string providerId, string reqAppId, ComplicationType type,

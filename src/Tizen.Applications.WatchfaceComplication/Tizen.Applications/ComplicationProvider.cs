@@ -6,8 +6,17 @@ namespace Tizen.Applications.WatchfaceComplication
 {
     public abstract class ComplicationProvider
     {
-        private Bundle _sharedData;
         private string _providerId;
+        private string _title;
+        private string _shortText;
+        private string _longText;
+        private long _timestamp;
+        private string _imagePath;
+        private double _currentValue;
+        private double _minValue;
+        private double _maxValue;
+        private string _iconPath;
+        private string _extraData;
 
         public string Id
         {
@@ -21,18 +30,49 @@ namespace Tizen.Applications.WatchfaceComplication
         {
             Interop.WatchfaceComplication.AddUpdateRequestedCallback(providerId, DataUpdateRequested, IntPtr.Zero);
             _providerId = providerId;
-            _sharedData = new Bundle();
         }
 
         private void DataUpdateRequested(string providerId, string reqAppId, ComplicationType type,
             IntPtr context, IntPtr sharedData, IntPtr userData)
         {
             OnDataUpdateRequested(reqAppId, type, new Bundle(new SafeBundleHandle(context, false)));
-            Bundle nativeShared = new Bundle(new SafeBundleHandle(sharedData, false));
-            foreach (string key in _sharedData.Keys)
+            ComplicationError err;
+
+            err = Interop.WatchfaceComplication.ProviderSetType(sharedData, type);
+            switch (type)
             {
-                string val = _sharedData.GetItem(key).ToString();
-                nativeShared.AddItem(key, val);
+                case ComplicationType.ShortText:
+                    err = Interop.WatchfaceComplication.ProviderSetShortText(sharedData, _shortText);
+                    err = Interop.WatchfaceComplication.ProviderSetIconPath(sharedData, _iconPath);
+                    err = Interop.WatchfaceComplication.ProviderSetTitle(sharedData, _title);
+                    err = Interop.WatchfaceComplication.ProviderSetExtraData(sharedData, _extraData);
+                    break;
+                case ComplicationType.LongText:
+                    err = Interop.WatchfaceComplication.ProviderSetLongText(sharedData, _longText);
+                    err = Interop.WatchfaceComplication.ProviderSetIconPath(sharedData, _iconPath);
+                    err = Interop.WatchfaceComplication.ProviderSetTitle(sharedData, _title);
+                    err = Interop.WatchfaceComplication.ProviderSetExtraData(sharedData, _extraData);
+                    break;
+                case ComplicationType.RangedValue:
+                    err = Interop.WatchfaceComplication.ProviderSetLongText(sharedData, _shortText);
+                    err = Interop.WatchfaceComplication.ProviderSetIconPath(sharedData, _iconPath);
+                    err = Interop.WatchfaceComplication.ProviderSetTitle(sharedData, _title);
+                    err = Interop.WatchfaceComplication.ProviderSetRangedValue(sharedData, _currentValue, _minValue, _maxValue);
+                    err = Interop.WatchfaceComplication.ProviderSetExtraData(sharedData, _extraData);
+                    break;
+                case ComplicationType.Time:
+                    err = Interop.WatchfaceComplication.ProviderSetTimestamp(sharedData, _timestamp);
+                    err = Interop.WatchfaceComplication.ProviderSetIconPath(sharedData, _iconPath);
+                    err = Interop.WatchfaceComplication.ProviderSetExtraData(sharedData, _extraData);
+                    break;
+                case ComplicationType.Icon:
+                    err = Interop.WatchfaceComplication.ProviderSetIconPath(sharedData, _iconPath);
+                    err = Interop.WatchfaceComplication.ProviderSetExtraData(sharedData, _extraData);
+                    break;
+                case ComplicationType.Image:
+                    err = Interop.WatchfaceComplication.ProviderSetImagePath(sharedData, _imagePath);
+                    err = Interop.WatchfaceComplication.ProviderSetExtraData(sharedData, _extraData);
+                    break;
             }
         }
 
@@ -41,52 +81,54 @@ namespace Tizen.Applications.WatchfaceComplication
 
         }
 
-        public int SetTitle(string title)
+        public ComplicationError SetTitle(string title)
         {
-            Interop.WatchfaceComplication.ProviderSetTitle(_sharedData.SafeBundleHandle, title);
-            return 0;
+            _title = title;
+            return ComplicationError.None;
         }
 
-        public int SetShortText(string shortText)
+        public ComplicationError SetShortText(string shortText)
         {
-            Interop.WatchfaceComplication.ProviderSetShortText(_sharedData.SafeBundleHandle, shortText);
-            return 0;
+            _shortText = shortText;
+            return ComplicationError.None;
         }
 
-        public int SetLongText(string longText)
+        public ComplicationError SetLongText(string longText)
         {
-            Interop.WatchfaceComplication.ProviderSetLongText(_sharedData.SafeBundleHandle, longText);
-            return 0;
+            _longText = longText;
+            return ComplicationError.None;
         }
 
-        public int SetTimestamp(long timestamp)
+        public ComplicationError SetTimestamp(long timestamp)
         {
-            Interop.WatchfaceComplication.ProviderSetTimestamp(_sharedData.SafeBundleHandle, timestamp);
-            return 0;
+            _timestamp = timestamp;
+            return ComplicationError.None;
         }
 
-        public int SetImagePath(string imagePath)
+        public ComplicationError SetImagePath(string imagePath)
         {
-            Interop.WatchfaceComplication.ProviderSetImagePath(_sharedData.SafeBundleHandle, imagePath);
-            return 0;
+            _imagePath = imagePath;
+            return ComplicationError.None;
         }
 
-        public int SetRangedValue(double currentValue, double minValue, double maxValue)
+        public ComplicationError SetRangedValue(double currentValue, double minValue, double maxValue)
         {
-            Interop.WatchfaceComplication.ProviderSetRangedValue(_sharedData.SafeBundleHandle, currentValue, minValue, maxValue);
-            return 0;
+            _currentValue = currentValue;
+            _minValue = minValue;
+            _maxValue = maxValue;
+            return ComplicationError.None;
         }
 
-        public int SetIconPath(string iconPath)
+        public ComplicationError SetIconPath(string iconPath)
         {
-            Interop.WatchfaceComplication.ProviderSetIconPath(_sharedData.SafeBundleHandle, iconPath);
-            return 0;
+            _iconPath = iconPath;
+            return ComplicationError.None;
         }
 
-        public int SetExtraData(string extraData)
+        public ComplicationError SetExtraData(string extraData)
         {
-            Interop.WatchfaceComplication.ProviderSetExtraData(_sharedData.SafeBundleHandle, extraData);
-            return 0;
+            _extraData = extraData;
+            return ComplicationError.None;
         }
 
         public int NotifyUpdate(string updatedProviderId)
