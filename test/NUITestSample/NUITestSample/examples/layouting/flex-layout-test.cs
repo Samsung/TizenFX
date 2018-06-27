@@ -74,12 +74,15 @@ namespace NUIFlexLayoutSample
             window.KeyEvent += OnKeyEvent;
         }
 
-        int cnt1 = 1;
+        int cnt1 = 1, cnt2;
         private void OnKeyEvent(object source, Window.KeyEventArgs e)
         {
             if (e.Key.State == Key.StateType.Down)
             {
                 Console.WriteLine($"key pressed name={e.Key.KeyPressedName}");
+                var tmpLayout = flexContainer.Layout as FlexLayout;
+                cnt2++;
+
                 switch (e.Key.KeyPressedName)
                 {
                     case "Right":
@@ -122,16 +125,31 @@ namespace NUIFlexLayoutSample
                         break;
 
                     case "1":
-                        var tmpLayout = flexContainer.Layout as FlexLayout;
-                        if (tmpLayout.WrapType == FlexLayout.FlexWrapType.NoWrap) { tmpLayout.WrapType = FlexLayout.FlexWrapType.Wrap; }
-                        else { tmpLayout.WrapType = FlexLayout.FlexWrapType.NoWrap; }
+                        var dir = cnt2 % 4;
+                        tmpLayout.Direction = (FlexLayout.FlexDirection)dir;
                         break;
+
+                    case "2":
+                        var justi = cnt2 % 5;
+                        tmpLayout.Justification = (FlexLayout.FlexJustification)justi;
+                        break;
+
+                    case "3":
+                        var wrap = cnt2 % 2;
+                        tmpLayout.WrapType = (FlexLayout.FlexWrapType)wrap;
+                        break;
+
+                    case "4":
+                        var align = cnt2 % 5;
+                        tmpLayout.ItemsAlignment = (FlexLayout.AlignmentType)align;
+                        break;
+
                 }
             }
         }
 
         [STAThread]
-        static void Main(string[] args)
+        static void _Main(string[] args)
         {
             Example layoutSample = new Example();
             layoutSample.Run(args);
