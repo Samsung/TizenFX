@@ -242,9 +242,7 @@ namespace Tizen.Network.WiFi
                     }
                     else
                     {
-                        Log.Info(Globals.LogTag, "--------- MOON before SetResult");
                         task.SetResult(true);
-                        Log.Info(Globals.LogTag, "--------- MOON after SetResult");
                     }
                     lock (_callback_map)
                     {
