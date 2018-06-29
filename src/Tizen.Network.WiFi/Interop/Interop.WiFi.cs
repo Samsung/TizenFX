@@ -128,7 +128,7 @@ internal static partial class Interop
             ////Network Information
             [DllImport(Libraries.WiFi, EntryPoint = "wifi_manager_ap_get_essid")]
             internal static extern int GetEssid(SafeWiFiAPHandle ap, out IntPtr essid);
-            [DllImport(Libraries.WiFi, EntryPoint = "wifi_manager_ap_get_raw_essid")]
+            [DllImport(Libraries.WiFi, EntryPoint = "wifi_manager_ap_get_raw_ssid")]
             internal static extern int GetRawSsid(SafeWiFiAPHandle ap, out IntPtr raw_ssid, out int length);
             [DllImport(Libraries.WiFi, EntryPoint = "wifi_manager_ap_get_bssid")]
             internal static extern int GetBssid(SafeWiFiAPHandle ap, out IntPtr bssid);
