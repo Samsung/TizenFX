@@ -11,16 +11,16 @@ using System;
 
 namespace Tizen.NUI.Binding
 {
-	[AttributeUsage(AttributeTargets.Class)]
-	internal sealed class ContentPropertyAttribute : Attribute
-	{
-		internal static string[] ContentPropertyTypes = { "Tizen.NUI.Binding.ContentPropertyAttribute", "System.Windows.Markup.ContentPropertyAttribute" };
+    [AttributeUsage(AttributeTargets.Class)]
+    internal sealed class ContentPropertyAttribute : Attribute
+    {
+        internal static string[] ContentPropertyTypes = { "Tizen.NUI.Binding.ContentPropertyAttribute", "System.Windows.Markup.ContentPropertyAttribute" };
 
-		public ContentPropertyAttribute(string name)
-		{
-			Name = name;
-		}
+        public ContentPropertyAttribute(string name)
+        {
+            Name = name;
+        }
 
-		public string Name { get; private set; }
-	}
+        public string Name { get; private set; }
+    }
 }

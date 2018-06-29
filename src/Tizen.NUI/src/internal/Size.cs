@@ -26,8 +26,8 @@ namespace Tizen.NUI
     /// A three-dimensional size.
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
-    [Tizen.NUI.Binding.TypeConverter(typeof(SizeTypeConverter))]
     [EditorBrowsable(EditorBrowsableState.Never)]
+    [Tizen.NUI.Binding.TypeConverter(typeof(SizeTypeConverter))]
     public class Size : global::System.IDisposable
     {
         private global::System.Runtime.InteropServices.HandleRef swigCPtr;

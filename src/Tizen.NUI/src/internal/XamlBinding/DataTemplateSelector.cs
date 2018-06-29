@@ -3,39 +3,39 @@ using System.Collections.Generic;
 
 namespace Tizen.NUI.Binding
 {
-	internal abstract class DataTemplateSelector : DataTemplate
-	{
-		Dictionary<Type, DataTemplate> _dataTemplates = new Dictionary<Type, DataTemplate>();
+    internal abstract class DataTemplateSelector : DataTemplate
+    {
+        Dictionary<Type, DataTemplate> _dataTemplates = new Dictionary<Type, DataTemplate>();
 
-		public DataTemplate SelectTemplate(object item, BindableObject container)
-		{
-			// var listView = container as ListView;
+        public DataTemplate SelectTemplate(object item, BindableObject container)
+        {
+            // var listView = container as ListView;
 
-			// var recycle = listView == null ? false :
-			// 	(listView.CachingStrategy & ListViewCachingStrategy.RecycleElementAndDataTemplate) ==
-			// 		ListViewCachingStrategy.RecycleElementAndDataTemplate;
+            // var recycle = listView == null ? false :
+            // 	(listView.CachingStrategy & ListViewCachingStrategy.RecycleElementAndDataTemplate) ==
+            // 		ListViewCachingStrategy.RecycleElementAndDataTemplate;
 
-			DataTemplate dataTemplate = null;
-			// if (recycle && _dataTemplates.TryGetValue(item.GetType(), out dataTemplate))
-				// return dataTemplate;
+            DataTemplate dataTemplate = null;
+            // if (recycle && _dataTemplates.TryGetValue(item.GetType(), out dataTemplate))
+                // return dataTemplate;
 
-			dataTemplate = OnSelectTemplate(item, container);
-			if (dataTemplate is DataTemplateSelector)
-				throw new NotSupportedException(
-					"DataTemplateSelector.OnSelectTemplate must not return another DataTemplateSelector");
+            dataTemplate = OnSelectTemplate(item, container);
+            if (dataTemplate is DataTemplateSelector)
+                throw new NotSupportedException(
+                    "DataTemplateSelector.OnSelectTemplate must not return another DataTemplateSelector");
 
-			// if (recycle)
-			// {
-			// 	if (!dataTemplate.CanRecycle)
-			// 		throw new NotSupportedException(
-			// 			"RecycleElementAndDataTemplate requires DataTemplate activated with ctor taking a type.");
+            // if (recycle)
+            // {
+            // 	if (!dataTemplate.CanRecycle)
+            // 		throw new NotSupportedException(
+            // 			"RecycleElementAndDataTemplate requires DataTemplate activated with ctor taking a type.");
 
-			// 	_dataTemplates[item.GetType()] = dataTemplate;
-			// }
+            // 	_dataTemplates[item.GetType()] = dataTemplate;
+            // }
 
-			return dataTemplate;
-		}
+            return dataTemplate;
+        }
 
-		protected abstract DataTemplate OnSelectTemplate(object item, BindableObject container);
-	}
+        protected abstract DataTemplate OnSelectTemplate(object item, BindableObject container);
+    }
 }

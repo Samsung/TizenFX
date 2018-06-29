@@ -18,8 +18,10 @@
 using System;
 using System.ComponentModel;
 using System.Threading;
+using System.Reflection;
 using Tizen.Applications;
 using Tizen.Applications.CoreBackend;
+using Tizen.NUI.Xaml;
 
 namespace Tizen.NUI
 {
@@ -244,6 +246,20 @@ namespace Tizen.NUI
             set
             {
                 resourceManager = value;
+            }
+        }
+
+        /// <summary>
+        /// Register assembly to parse control namespace.
+        /// </summary>
+        /// <param name="assembly">The assembly to parse.</param>
+        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static void RegisterAssembly(Assembly assembly)
+        {
+            if (false == XamlParser.s_assemblies.Contains(assembly))
+            {
+                XamlParser.s_assemblies.Add(assembly);
             }
         }
 

@@ -18,7 +18,6 @@ using System;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using Tizen.NUI.Binding;
-using Tizen.NUI.Internals;
 
 namespace Tizen.NUI
 {
@@ -46,7 +45,7 @@ namespace Tizen.NUI
         /// <summary>
         /// Backing store for the Navigation property.
         /// </summary>
-        public static readonly BindableProperty NavigationProperty = NavigationPropertyKey.BindableProperty;
+        internal static readonly BindableProperty NavigationProperty = NavigationPropertyKey.BindableProperty;
 
         private global::System.Runtime.InteropServices.HandleRef swigCPtr;
         /// <summary>
@@ -493,8 +492,7 @@ namespace Tizen.NUI
         /// <summary>
         /// For internal use.
         /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public NavigationProxy NavigationProxy
+        internal NavigationProxy NavigationProxy
         {
             get { return Navigation as NavigationProxy; }
         }
@@ -502,26 +500,32 @@ namespace Tizen.NUI
         /// <summary>
         /// Gets the navigation.
         /// </summary>
-        public INavigation Navigation
+        internal INavigation Navigation
         {
             get { return (INavigation)GetValue(NavigationProperty); }
-            internal set { SetValue(NavigationPropertyKey, value); }
+            set { SetValue(NavigationPropertyKey, value); }
         }
 
         /// <summary>
         /// Contains event arguments for the FocusChangeRequested event.
         /// </summary>
+        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public class FocusRequestArgs : EventArgs
         {
 
             /// <summary>
             /// Gets or sets a value that indicates the starting focus state of the element for which a focus change is requested.
             /// </summary>
+            /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+            [EditorBrowsable(EditorBrowsableState.Never)]
             public bool Focus { get; set; }
 
             /// <summary>
             /// Gets or sets a value that indicates the ending focus state of the element for which a focus change is requested.
             /// </summary>
+            /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+            [EditorBrowsable(EditorBrowsableState.Never)]
             public bool Result { get; set; }
         }
     }

@@ -33,7 +33,7 @@ using System.Reflection;
 using System.Text.RegularExpressions;
 using System.Xml;
 using Tizen.NUI.Binding;
-using Tizen.NUI.Internals;
+using Tizen.NUI.Binding.Internals;
 
 namespace Tizen.NUI.Xaml.Internals
 {
@@ -58,7 +58,7 @@ namespace Tizen.NUI.Xaml.Internals
 
 namespace Tizen.NUI.Xaml
 {
-	static class XamlLoader
+	internal static class XamlLoader
 	{
 		public static void Load(object view, Type callingType)
 		{

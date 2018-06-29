@@ -1,9 +1,9 @@
 ﻿using System;
 
-namespace Tizen.NUI.Internals
+namespace Tizen.NUI.Binding.Internals
 {
-	interface INameScopeProvider
-	{
-		INameScope NameScope { get; }
-	}
+    interface INameScopeProvider
+    {
+        INameScope NameScope { get; }
+    }
 }

@@ -469,6 +469,8 @@ namespace Tizen.NUI
         /// This function should be first
         /// </summary>
         /// <param name="value">The value to add at the end of the array.</param>
+        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public PropertyArray Add(KeyValue value)
         {
             PropertyArray ret = new PropertyArray(NDalicPINVOKE.Property_Array_Add(swigCPtr, PropertyValue.getCPtr(value.TrueValue)), false);
@@ -1028,6 +1030,8 @@ namespace Tizen.NUI
         /// </summary>
         /// <param name="keyValue">The keyvalue to insert.</param>
         /// <returns>Returns a reference to this object.</returns>
+        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public PropertyMap Add(KeyValue keyValue)
         {
             PropertyMap ret = new PropertyMap();
@@ -1813,6 +1817,8 @@ namespace Tizen.NUI
     /// <summary>
     /// KeyValue class.
     /// </summary>
+    /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+    [EditorBrowsable(EditorBrowsableState.Never)]
     public class KeyValue
     {
         private string _key = null;
@@ -1822,27 +1828,37 @@ namespace Tizen.NUI
         /// <summary>
         /// Int key.
         /// </summary>
+        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public int? KeyInt = null;
 
         /// <summary>
         /// String key.
         /// </summary>
+        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public string KeyString = null;
 
         /// <summary>
         /// True value.
         /// </summary>
+        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public PropertyValue TrueValue = null;
 
         /// <summary>
         /// Default Constructor.
         /// </summary>
+        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public KeyValue()
         {}
 
         /// <summary>
         /// Key property.
         /// </summary>
+        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public string Key
         {
             get
@@ -1859,6 +1875,8 @@ namespace Tizen.NUI
         /// <summary>
         /// OriginalKey property.
         /// </summary>
+        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public object OriginalKey
         {
             get
@@ -1893,6 +1911,8 @@ namespace Tizen.NUI
         /// <summary>
         /// Value property.
         /// </summary>
+        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public object Value
         {
             get
@@ -1909,6 +1929,8 @@ namespace Tizen.NUI
         /// <summary>
         /// IntergerValue property.
         /// </summary>
+        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public int IntergerValue
         {
             set
@@ -1920,6 +1942,8 @@ namespace Tizen.NUI
         /// <summary>
         /// BooleanValue property.
         /// </summary>
+        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public bool BooleanValue
         {
             set
@@ -1931,6 +1955,8 @@ namespace Tizen.NUI
         /// <summary>
         /// SingleValue property.
         /// </summary>
+        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public float SingleValue
         {
             set
@@ -1942,6 +1968,8 @@ namespace Tizen.NUI
         /// <summary>
         /// StringValue property.
         /// </summary>
+        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public string StringValue
         {
             set
@@ -1953,6 +1981,8 @@ namespace Tizen.NUI
         /// <summary>
         /// Vector2Value property.
         /// </summary>
+        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public Vector2 Vector2Value
         {
             set
@@ -1964,6 +1994,8 @@ namespace Tizen.NUI
         /// <summary>
         /// Vector3Value property.
         /// </summary>
+        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public Vector3 Vector3Value
         {
             set
@@ -1975,6 +2007,8 @@ namespace Tizen.NUI
         /// <summary>
         /// Vector4Value property.
         /// </summary>
+        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public Vector4 Vector4Value
         {
             set
@@ -1986,6 +2020,8 @@ namespace Tizen.NUI
         /// <summary>
         /// PositionValue property.
         /// </summary>
+        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public Position PositionValue
         {
             set
@@ -1997,6 +2033,8 @@ namespace Tizen.NUI
         /// <summary>
         /// Position2DValue property.
         /// </summary>
+        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public Position2D Position2DValue
         {
             set
@@ -2008,6 +2046,8 @@ namespace Tizen.NUI
         /// <summary>
         /// SizeValue property.
         /// </summary>
+        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public Size SizeValue
         {
             set
@@ -2019,6 +2059,8 @@ namespace Tizen.NUI
         /// <summary>
         /// Size2DValue property.
         /// </summary>
+        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public Size2D Size2DValue
         {
             set
@@ -2030,6 +2072,8 @@ namespace Tizen.NUI
         /// <summary>
         /// ColorValue property.
         /// </summary>
+        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public Color ColorValue
         {
             set
@@ -2041,6 +2085,8 @@ namespace Tizen.NUI
         /// <summary>
         /// RectangleValue property.
         /// </summary>
+        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public Rectangle RectangleValue
         {
             set
@@ -2052,6 +2098,8 @@ namespace Tizen.NUI
         /// <summary>
         /// RotationValue property.
         /// </summary>
+        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public Rotation RotationValue
         {
             set
@@ -2063,6 +2111,8 @@ namespace Tizen.NUI
         /// <summary>
         /// RelativeVector2Value property.
         /// </summary>
+        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public RelativeVector2 RelativeVector2Value
         {
             set
@@ -2074,6 +2124,8 @@ namespace Tizen.NUI
         /// <summary>
         /// RelativeVector3Value property.
         /// </summary>
+        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public RelativeVector3 RelativeVector3Value
         {
             set
@@ -2085,6 +2137,8 @@ namespace Tizen.NUI
         /// <summary>
         /// RelativeVector4Value property.
         /// </summary>
+        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public RelativeVector4 RelativeVector4Value
         {
             set
@@ -2096,6 +2150,8 @@ namespace Tizen.NUI
         /// <summary>
         /// ExtentsValue property.
         /// </summary>
+        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public Extents ExtentsValue
         {
             set
@@ -2107,6 +2163,8 @@ namespace Tizen.NUI
         /// <summary>
         /// PropertyArrayValue property.
         /// </summary>
+        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public PropertyArray PropertyArrayValue
         {
             set
@@ -2118,6 +2176,8 @@ namespace Tizen.NUI
         /// <summary>
         /// PropertyMapValue property.
         /// </summary>
+        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public PropertyMap PropertyMapValue
         {
             set

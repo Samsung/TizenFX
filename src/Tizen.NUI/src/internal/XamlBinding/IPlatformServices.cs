@@ -4,35 +4,35 @@ using System.IO;
 using System.Reflection;
 using System.Threading;
 using System.Threading.Tasks;
-using Tizen.NUI.Internals;
+using Tizen.NUI.Binding.Internals;
 
 namespace Tizen.NUI.Binding
 {
-	[EditorBrowsable(EditorBrowsableState.Never)]
-	internal interface IPlatformServices
-	{
-		bool IsInvokeRequired { get; }
+    [EditorBrowsable(EditorBrowsableState.Never)]
+    internal interface IPlatformServices
+    {
+        bool IsInvokeRequired { get; }
 
-		void BeginInvokeOnMainThread(Action action);
+        void BeginInvokeOnMainThread(Action action);
 
-		Ticker CreateTicker();
+        Ticker CreateTicker();
 
-		Assembly[] GetAssemblies();
+        Assembly[] GetAssemblies();
 
-		string GetMD5Hash(string input);
+        string GetMD5Hash(string input);
 
-		double GetNamedSize(NamedSize size, Type targetElementType, bool useOldSizes);
+        double GetNamedSize(NamedSize size, Type targetElementType, bool useOldSizes);
 
-		Task<Stream> GetStreamAsync(Uri uri, CancellationToken cancellationToken);
+        Task<Stream> GetStreamAsync(Uri uri, CancellationToken cancellationToken);
 
-		IIsolatedStorageFile GetUserStoreForApplication();
+        IIsolatedStorageFile GetUserStoreForApplication();
 
-		void OpenUriAction(Uri uri);
+        void OpenUriAction(Uri uri);
 
-		void StartTimer(TimeSpan interval, Func<bool> callback);
+        void StartTimer(TimeSpan interval, Func<bool> callback);
 
-		string RuntimePlatform { get; }
+        string RuntimePlatform { get; }
 
-		void QuitApplication();
-	}
+        void QuitApplication();
+    }
 }
