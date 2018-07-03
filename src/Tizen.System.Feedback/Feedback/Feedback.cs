@@ -94,7 +94,10 @@ namespace Tizen.System
         /// Constructor of Feedback class
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        /// <exception cref="NotSupportedException">Thrown when failed becuase the device (haptic, sound) is not supported.</exception>
+        /// <feature>
+        /// http://tizen.org/feature/feedback.vibration for FeedbackType.Vibration
+        /// </feature>
+        /// <exception cref="NotSupportedException">Thrown when failed because the devices (vibration and sound) are not supported.</exception>
         /// <exception cref="InvalidOperationException">Thrown when failed because of a system error.</exception>
         /// <privilege>http://tizen.org/privilege/haptic</privilege>
         /// <example>
@@ -228,6 +231,9 @@ namespace Tizen.System
         /// <since_tizen> 3 </since_tizen>
         /// <param name="type">The feedback type.</param>
         /// <param name="pattern">The feedback pattern string.</param>
+        /// <feature>
+        /// http://tizen.org/feature/feedback.vibration for FeedbackType.Vibration
+        /// </feature>
         /// <returns>Information whether a pattern is supported.</returns>
         /// <exception cref="Exception">Thrown when failed because the feedback is not initialized.</exception>
         /// <exception cref="ArgumentException">Thrown when failed because of an invalid arguament.</exception>
@@ -293,6 +299,9 @@ namespace Tizen.System
         /// <since_tizen> 3 </since_tizen>
         /// <param name="type">The feedback type.</param>
         /// <param name="pattern">The feedback pattern string.</param>
+        /// <feature>
+        /// http://tizen.org/feature/feedback.vibration for FeedbackType.Vibration
+        /// </feature>
         /// <exception cref="Exception">Thrown when failed because feedback is not initialized.</exception>
         /// <exception cref="ArgumentException">Thrown when failed because of an invalid arguament.</exception>
         /// <exception cref="NotSupportedException">Thrown when failed because the device (haptic, sound) or a specific pattern is not supported.</exception>
@@ -355,6 +364,9 @@ namespace Tizen.System
         /// To stop vibration, the application should have http://tizen.org/privilege/haptic privilege.
         /// </remarks>
         /// <since_tizen> 3 </since_tizen>
+        /// <feature>
+        /// http://tizen.org/feature/feedback.vibration
+        /// </feature>
         /// <exception cref="Exception">Thrown when failed because the feedback is not initialized.</exception>
         /// <exception cref="ArgumentException">Thrown when failed because of an invalid arguament</exception>
         /// <exception cref="NotSupportedException">Thrown when failed because the device (haptic, sound) or a specific pattern is not supported.</exception>
