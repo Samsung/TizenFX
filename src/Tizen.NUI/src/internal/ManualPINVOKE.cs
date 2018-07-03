@@ -302,6 +302,12 @@ namespace Tizen.NUI
         [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint = "CSharp_Dali_UngrabKey")]
         public static extern bool UngrabKey(System.IntPtr Window, int DaliKey);
 
+        [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint = "CSharp_Dali_SetKeyboardRepeatInfo")]
+        public static extern bool SetKeyboardRepeatInfo(double rate, double delay);
+
+        [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint = "CSharp_Dali_GetKeyboardRepeatInfo")]
+        public static extern bool GetKeyboardRepeatInfo(out double rate, out double delay);
+
         [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint = "CSharp_Dali_GetNativeWindowHandler")]
         public static extern System.IntPtr GetNativeWindowHandler(System.IntPtr Window);
 
