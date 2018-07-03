@@ -7,20 +7,20 @@ namespace Tizen.NUI.Binding
     /// <summary>
     /// For internal use.
     /// </summary>
-	[EditorBrowsable(EditorBrowsableState.Never)]
-	public class NavigationRequestedEventArgs : NavigationEventArgs
-	{
+    [EditorBrowsable(EditorBrowsableState.Never)]
+    internal class NavigationRequestedEventArgs : NavigationEventArgs
+    {
         /// <summary>
         /// Constructor.
         /// </summary>
         /// <param name="page"></param>
         /// <param name="animated"></param>
         /// <param name="realize"></param>
-		public NavigationRequestedEventArgs(Page page, bool animated, bool realize = true) : base(page)
-		{
-			Animated = animated;
-			Realize = realize;
-		}
+        public NavigationRequestedEventArgs(Page page, bool animated, bool realize = true) : base(page)
+        {
+            Animated = animated;
+            Realize = realize;
+        }
 
         /// <summary>
         /// Constructor.
@@ -28,29 +28,29 @@ namespace Tizen.NUI.Binding
         /// <param name="page"></param>
         /// <param name="before"></param>
         /// <param name="animated"></param>
-		public NavigationRequestedEventArgs(Page page, Page before, bool animated) : this(page, animated)
-		{
-			BeforePage = before;
-		}
+        public NavigationRequestedEventArgs(Page page, Page before, bool animated) : this(page, animated)
+        {
+            BeforePage = before;
+        }
 
         /// <summary>
         /// Gets or Sets the whether animate.
         /// </summary>
-		public bool Animated { get; set; }
+        public bool Animated { get; set; }
 
         /// <summary>
         /// Gets or Sets the before page.
         /// </summary>
-		public Page BeforePage { get; set; }
+        public Page BeforePage { get; set; }
 
         /// <summary>
         /// Gets or Sets the realize.
         /// </summary>
-		public bool Realize { get; set; }
+        public bool Realize { get; set; }
 
         /// <summary>
         /// Gets or Sets the Task.
         /// </summary>
-		public Task<bool> Task { get; set; }
-	}
+        public Task<bool> Task { get; set; }
+    }
 }

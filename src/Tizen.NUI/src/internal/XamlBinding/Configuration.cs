@@ -1,21 +1,21 @@
 
 namespace Tizen.NUI.Binding
 {
-	internal class Configuration<TPlatform, TElement> : IPlatformElementConfiguration<TPlatform, TElement>
-			where TPlatform : IConfigPlatform
-			where TElement : Element
+    internal class Configuration<TPlatform, TElement> : IPlatformElementConfiguration<TPlatform, TElement>
+            where TPlatform : IConfigPlatform
+            where TElement : Element
 
-	{
-		public Configuration(TElement element)
-		{
-			Element = element;
-		}
+    {
+        public Configuration(TElement element)
+        {
+            Element = element;
+        }
 
-		public TElement Element { get; }
+        public TElement Element { get; }
 
-		public static Configuration<TPlatform, TElement> Create(TElement element)
-		{
-			return new Configuration<TPlatform, TElement>(element);
-		}
-	}
+        public static Configuration<TPlatform, TElement> Create(TElement element)
+        {
+            return new Configuration<TPlatform, TElement>(element);
+        }
+    }
 }

@@ -27,6 +27,25 @@ namespace Tizen.NUI
     [Tizen.NUI.Binding.TypeConverter(typeof(Position2DTypeConverter))]
     public class Position2D : global::System.IDisposable
     {
+        static public Position2D ConvertFromString(System.String value)
+        {
+            if (value != null)
+            {
+                string[] parts = value.Split(',');
+                if (parts.Length == 2)
+                {
+                    return new Position2D(int.Parse(parts[0].Trim()), int.Parse(parts[1].Trim()));
+                }
+            }
+
+            throw new InvalidOperationException($"Cannot convert \"{value}\" into {typeof(Position2D)}");
+        }
+
+        public static implicit operator Position2D(System.String value)
+        {
+            return ConvertFromString(value);
+        }
+
         private global::System.Runtime.InteropServices.HandleRef swigCPtr;
         /// <summary>
         /// swigCMemOwn
@@ -307,6 +326,22 @@ namespace Tizen.NUI
             Position2D ret = new Position2D(NDalicPINVOKE.Vector2_Subtract__SWIG_1(swigCPtr), true);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
+        }
+
+        /// <summary>
+        /// Determines whether the specified object is equal to the current object.
+        /// </summary>
+        /// <param name="obj">The object to compare with the current object.</param>
+        /// <returns>true if the specified object is equal to the current object; otherwise, false.</returns>
+        public override bool Equals(System.Object obj)
+        {
+            Position2D position2D = obj as Position2D;
+            bool equal = false;
+            if (X == position2D?.X && Y == position2D?.Y)
+            {
+                equal = true;
+            }
+            return equal;
         }
 
         /// <summary>
