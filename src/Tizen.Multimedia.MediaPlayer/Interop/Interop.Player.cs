@@ -99,6 +99,12 @@ internal static partial class Interop
         [DllImport(Libraries.Player, EntryPoint = "player_get_volume")]
         internal static extern PlayerErrorCode GetVolume(IntPtr player, out float left, out float right);
 
+        [DllImport(Libraries.Player, EntryPoint = "player_set_replaygain_enabled")]
+        internal static extern PlayerErrorCode SetReplaygain(IntPtr player, bool enabled);
+
+        [DllImport(Libraries.Player, EntryPoint = "player_is_replaygain_enabled")]
+        internal static extern PlayerErrorCode IsReplaygain(IntPtr player, out bool enabled);
+
         [DllImport(Libraries.Player, EntryPoint = "player_set_sound_stream_info")]
         internal static extern PlayerErrorCode SetAudioPolicyInfo(IntPtr player, AudioStreamPolicyHandle streamInfo);
 
