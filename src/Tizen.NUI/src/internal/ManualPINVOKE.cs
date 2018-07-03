@@ -466,6 +466,12 @@ namespace Tizen.NUI
         [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint = "CSharp_Dali_InputMethodContext_GetInputPanelLocale")]
         public static extern string InputMethodContext_GetInputPanelLocale(global::System.Runtime.InteropServices.HandleRef jarg1);
 
+        [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint = "CSharp_Dali_InputMethodContext_AllowTextPrediction")]
+        public static extern void InputMethodContext_AllowTextPrediction(global::System.Runtime.InteropServices.HandleRef jarg1, bool jarg2);
+
+        [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint = "CSharp_Dali_InputMethodContext_IsTextPredictionAllowed")]
+        public static extern bool InputMethodContext_IsTextPredictionAllowed(global::System.Runtime.InteropServices.HandleRef jarg1);
+
         [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint = "CSharp_Dali_InputMethodContext_ActivatedSignal")]
         public static extern global::System.IntPtr InputMethodContext_ActivatedSignal(global::System.Runtime.InteropServices.HandleRef jarg1);
 
