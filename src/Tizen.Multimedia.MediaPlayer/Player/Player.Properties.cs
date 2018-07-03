@@ -531,19 +531,19 @@ namespace Tizen.Multimedia
         /// <exception cref="ObjectDisposedException">The player has already been disposed of.</exception>
         /// <exception cref="InvalidOperationException">The player is not in the valid state.</exception>
         /// <since_tizen> 5 </since_tizen>
-        public bool Replaygain
+        public bool ReplayGain
         {
             get
             {
                 ValidateNotDisposed();
-                NativePlayer.IsReplaygain(Handle, out var value).
+                NativePlayer.IsReplayGain(Handle, out var value).
                     ThrowIfFailed(this, "Failed to get the replaygain of the player");
                 return value;
             }
             set
             {
                 ValidateNotDisposed();
-                NativePlayer.SetReplaygain(Handle, value).
+                NativePlayer.SetReplayGain(Handle, value).
                     ThrowIfFailed(this, "Failed to set the replaygain of the player");
             }
         }
