@@ -1,6 +1,7 @@
 using System;
 using System.Linq;
 using System.Reflection;
+using System.Globalization;
 
 using Tizen.NUI;
 
@@ -49,6 +50,14 @@ namespace Tizen.NUI.Binding
                             return ParentOrigin.BottomRight;
                     }
                 }
+
+                parts = value.Split(',');
+                if (parts.Length == 3)
+                {
+                    return new Position(Single.Parse(parts[0].Trim(), CultureInfo.InvariantCulture),
+                                    Single.Parse(parts[1].Trim(), CultureInfo.InvariantCulture),
+                                    Single.Parse(parts[2].Trim(), CultureInfo.InvariantCulture));
+                }
             }
 
             throw new InvalidOperationException($"Cannot convert \"{value}\" into {typeof(Position)}");
@@ -59,16 +68,7 @@ namespace Tizen.NUI.Binding
     {
         public override object ConvertFromInvariantString(string value)
         {
-            if (value != null)
-            {
-                string[] parts = value.Split(',');
-                if (parts.Length == 2)
-                {
-                    return new Position2D(int.Parse(parts[0].Trim()), int.Parse(parts[1].Trim()));
-                }
-            }
-
-            throw new InvalidOperationException($"Cannot convert \"{value}\" into {typeof(Position2D)}");
+            return Position2D.ConvertFromString(value);
         }
     }
 }

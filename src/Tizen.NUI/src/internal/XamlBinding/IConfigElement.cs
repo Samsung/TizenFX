@@ -7,11 +7,11 @@ namespace Tizen.NUI.Binding
     /// </summary>
     /// <typeparam name="T"></typeparam>
     [EditorBrowsable(EditorBrowsableState.Never)]
-    public interface IConfigElement<out T> where T : Element
-	{
+    internal interface IConfigElement<out T> where T : Element
+    {
         /// <summary>
         /// For internal use
         /// </summary>
-		T Element { get; }
-	}
+        T Element { get; }
+    }
 }

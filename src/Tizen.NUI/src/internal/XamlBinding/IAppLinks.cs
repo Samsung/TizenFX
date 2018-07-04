@@ -2,10 +2,10 @@
 
 namespace Tizen.NUI.Binding
 {
-	internal interface IAppLinks
-	{
-		void DeregisterLink(IAppLinkEntry appLink);
-		void DeregisterLink(Uri appLinkUri);
-		void RegisterLink(IAppLinkEntry appLink);
-	}
+    internal interface IAppLinks
+    {
+        void DeregisterLink(IAppLinkEntry appLink);
+        void DeregisterLink(Uri appLinkUri);
+        void RegisterLink(IAppLinkEntry appLink);
+    }
 }

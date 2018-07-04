@@ -1,15 +1,15 @@
 using System.ComponentModel;
 
-namespace Tizen.NUI.Internals
+namespace Tizen.NUI.Binding.Internals
 {
-	[EditorBrowsable(EditorBrowsableState.Never)]
-	internal class DynamicResource
-	{
-		public DynamicResource(string key)
-		{
-			Key = key;
-		}
+    [EditorBrowsable(EditorBrowsableState.Never)]
+    internal class DynamicResource
+    {
+        public DynamicResource(string key)
+        {
+            Key = key;
+        }
 
-		public string Key { get; private set; }
-	}
+        public string Key { get; private set; }
+    }
 }

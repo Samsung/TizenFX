@@ -302,6 +302,22 @@ namespace Tizen.NUI
             Size2D ret = new Size2D(NDalicPINVOKE.Vector2_Subtract__SWIG_1(swigCPtr), true);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
+        }  
+
+        /// <summary>
+        /// Determines whether the specified object is equal to the current object.
+        /// </summary>
+        /// <param name="obj">The object to compare with the current object.</param>
+        /// <returns>true if the specified object is equal to the current object; otherwise, false.</returns>
+        public override bool Equals(System.Object obj)
+        {
+            Size2D size2D = obj as Size2D;
+            bool equal = false;
+            if (Width == size2D?.Width && Height == size2D?.Height)
+            {
+                equal = true;
+            }
+            return equal;
         }
 
         /// <summary>

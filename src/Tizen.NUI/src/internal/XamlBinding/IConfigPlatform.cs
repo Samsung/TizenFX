@@ -6,5 +6,5 @@ namespace Tizen.NUI.Binding
     /// Base interface for marker classes that identify target platforms for platform specific effects.
     /// </summary>
     [EditorBrowsable(EditorBrowsableState.Never)]
-    public interface IConfigPlatform { }
+    internal interface IConfigPlatform { }
 }

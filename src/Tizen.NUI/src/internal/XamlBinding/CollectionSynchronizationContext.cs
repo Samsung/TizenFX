@@ -2,21 +2,21 @@ using System;
 
 namespace Tizen.NUI.Binding
 {
-	internal sealed class CollectionSynchronizationContext
-	{
-		internal CollectionSynchronizationContext(object context, CollectionSynchronizationCallback callback)
-		{
-			ContextReference = new WeakReference(context);
-			Callback = callback;
-		}
+    internal sealed class CollectionSynchronizationContext
+    {
+        internal CollectionSynchronizationContext(object context, CollectionSynchronizationCallback callback)
+        {
+            ContextReference = new WeakReference(context);
+            Callback = callback;
+        }
 
-		internal CollectionSynchronizationCallback Callback { get; private set; }
+        internal CollectionSynchronizationCallback Callback { get; private set; }
 
-		internal object Context
-		{
-			get { return ContextReference != null ? ContextReference.Target : null; }
-		}
+        internal object Context
+        {
+            get { return ContextReference != null ? ContextReference.Target : null; }
+        }
 
-		internal WeakReference ContextReference { get; }
-	}
+        internal WeakReference ContextReference { get; }
+    }
 }

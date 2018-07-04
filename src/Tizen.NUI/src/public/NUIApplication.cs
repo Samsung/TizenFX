@@ -18,8 +18,11 @@
 using System;
 using System.ComponentModel;
 using System.Threading;
+using System.Reflection;
 using Tizen.Applications;
 using Tizen.Applications.CoreBackend;
+using Tizen.NUI.Binding;
+using Tizen.NUI.Xaml;
 
 namespace Tizen.NUI
 {
@@ -169,6 +172,7 @@ namespace Tizen.NUI
         protected override void OnCreate()
         {
             base.OnCreate();
+            Device.PlatformServices = new TizenPlatformServices();
         }
 
         /// <summary>
@@ -245,6 +249,17 @@ namespace Tizen.NUI
             {
                 resourceManager = value;
             }
+        }
+
+        /// <summary>
+        /// Register the assembly to XAML.
+        /// </summary>
+        /// <since_tizen> 5 </since_tizen>
+        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static void RegisterAssembly(Assembly assembly)
+        {
+            XamlParser.s_assemblies.Add(assembly);
         }
 
         /// <summary>

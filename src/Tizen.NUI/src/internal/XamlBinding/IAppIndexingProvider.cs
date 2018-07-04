@@ -1,7 +1,7 @@
 ﻿namespace Tizen.NUI.Binding
 {
-	internal interface IAppIndexingProvider
-	{
-		IAppLinks AppLinks { get; }
-	}
+    internal interface IAppIndexingProvider
+    {
+        IAppLinks AppLinks { get; }
+    }
 }
