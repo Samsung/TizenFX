@@ -237,11 +237,11 @@ namespace Tizen.Network.WiFi
             if (ret != (int)WiFiError.None)
             {
                 Log.Error(Globals.LogTag, "Failed to get client cert file, Error - " + (WiFiError)ret);
+                if (ret == (int)WiFiError.InvalidParameterError)
+                {
+                    throw new InvalidOperationException("Invalid handle");
+                }
                 WiFiErrorFactory.ThrowWiFiException(ret, _configHandle.DangerousGetHandle());
-            }
-            if (ret == (int)WiFiError.InvalidParameterError)
-            {
-                throw new InvalidOperationException("Invalid handle");
             }
             return Marshal.PtrToStringAnsi(strPtr);
         }

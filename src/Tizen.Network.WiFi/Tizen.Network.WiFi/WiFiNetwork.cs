@@ -400,11 +400,11 @@ namespace Tizen.Network.WiFi
             if (ret != (int)WiFiError.None)
             {
                 Log.Error(Globals.LogTag, "Failed to get all IPv6 addresses, Error - " + (WiFiError)ret);
+                if (ret == (int)WiFiError.InvalidParameterError)
+                {
+                    throw new InvalidOperationException("Invalid handle");
+                }
                 WiFiErrorFactory.ThrowWiFiException(ret, _apHandle.DangerousGetHandle());
-            }
-            if (ret == (int)WiFiError.InvalidParameterError)
-            {
-                throw new InvalidOperationException("Invalid handle");
             }
 
             return ipList;
@@ -435,11 +435,11 @@ namespace Tizen.Network.WiFi
             int ret = Interop.WiFi.AP.GetBssids(_apHandle, callback, IntPtr.Zero);
             if (ret != (int)WiFiError.None)
             {
+                Log.Error(Globals.LogTag, "Failed to get BSSIDs, Error - " + (WiFiError)ret);
                 if (ret == (int)WiFiError.InvalidParameterError)
                 {
                     throw new InvalidOperationException("Invalid handle");
                 }
-                Log.Error(Globals.LogTag, "Failed to get BSSIDs, Error - " + (WiFiError)ret);
                 WiFiErrorFactory.ThrowWiFiException(ret, _apHandle.DangerousGetHandle());
             }
 

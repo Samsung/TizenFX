@@ -198,11 +198,11 @@ namespace Tizen.Network.WiFi
             if (ret != (int)WiFiError.None)
             {
                 Log.Error(Globals.LogTag, "Failed to refresh ap handle, Error - " + (WiFiError)ret);
+                if (ret == (int)WiFiError.InvalidParameterError)
+                {
+                    throw new InvalidOperationException("Invalid handle");
+                }
                 WiFiErrorFactory.ThrowWiFiException(ret, _apHandle, "http://tizen.org/privilege/network.get");
-            }
-            if (ret == (int)WiFiError.InvalidParameterError)
-            {
-                throw new InvalidOperationException("Invalid handle");
             }
         }
 
@@ -262,11 +262,11 @@ namespace Tizen.Network.WiFi
                     if (ret != (int)WiFiError.None)
                     {
                         Log.Error(Globals.LogTag, "Failed to connect wifi, Error - " + (WiFiError)ret);
+                        if (ret == (int)WiFiError.InvalidParameterError)
+                        {
+                            throw new InvalidOperationException("Invalid handle");
+                        }
                         WiFiErrorFactory.ThrowWiFiException(ret, WiFiManagerImpl.Instance.GetSafeHandle().DangerousGetHandle(), _apHandle);
-                    }
-                    if (ret == (int)WiFiError.InvalidParameterError)
-                    {
-                        throw new InvalidOperationException("Invalid handle");
                     }
                 }
                 catch (Exception e)
@@ -573,11 +573,11 @@ namespace Tizen.Network.WiFi
                     if (ret != (int)WiFiError.None)
                     {
                         Log.Error(Globals.LogTag, "Failed to disconnect wifi, Error - " + (WiFiError)ret);
+                        if (ret == (int)WiFiError.InvalidParameterError)
+                        {
+                            throw new InvalidOperationException("Invalid handle");
+                        }
                         WiFiErrorFactory.ThrowWiFiException(ret, WiFiManagerImpl.Instance.GetSafeHandle().DangerousGetHandle(), _apHandle);
-                    }
-                    if (ret == (int)WiFiError.InvalidParameterError)
-                    {
-                        throw new InvalidOperationException("Invalid handle");
                     }
                 }
                 catch (Exception e)
@@ -614,11 +614,11 @@ namespace Tizen.Network.WiFi
             if (ret != (int)WiFiError.None)
             {
                 Log.Error(Globals.LogTag, "Failed to forget AP, Error - " + (WiFiError)ret);
+                if (ret == (int)WiFiError.InvalidParameterError)
+                {
+                    throw new InvalidOperationException("Invalid handle");
+                }
                 WiFiErrorFactory.ThrowWiFiException(ret, WiFiManagerImpl.Instance.GetSafeHandle().DangerousGetHandle(), _apHandle);
-            }
-            if (ret == (int)WiFiError.InvalidParameterError)
-            {
-                throw new InvalidOperationException("Invalid handle");
             }
         }
 

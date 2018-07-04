@@ -198,11 +198,11 @@ namespace Tizen.Network.WiFi
             if (ret != (int)WiFiError.None)
             {
                 Log.Error(Globals.LogTag, "Failed to get client cert file, Error - " + (WiFiError)ret);
+                if (ret == (int)WiFiError.InvalidParameterError)
+                {
+                    throw new InvalidOperationException("Invalid handle");
+                }
                 WiFiErrorFactory.ThrowWiFiException(ret, _apHandle.DangerousGetHandle());
-            }
-            if (ret == (int)WiFiError.InvalidParameterError)
-            {
-                throw new InvalidOperationException("Invalid handle");
             }
             return Marshal.PtrToStringAnsi(strPtr);
         }
@@ -248,11 +248,11 @@ namespace Tizen.Network.WiFi
             if (ret != (int)WiFiError.None)
             {
                 Log.Error(Globals.LogTag, "Failed to get user name in eap passphrase, Error - " + (WiFiError)ret);
+                if (ret == (int)WiFiError.InvalidParameterError)
+                {
+                    throw new InvalidOperationException("Invalid handle");
+                }
                 WiFiErrorFactory.ThrowWiFiException(ret, _apHandle.DangerousGetHandle());
-            }
-            if (ret == (int)WiFiError.InvalidParameterError)
-            {
-                throw new InvalidOperationException("Invalid handle");
             }
             return Marshal.PtrToStringAnsi(strptr);
         }
@@ -274,11 +274,11 @@ namespace Tizen.Network.WiFi
             if (ret != (int)WiFiError.None)
             {
                 Log.Error(Globals.LogTag, "Failed to get IsPasswordSet in passphrase, Error - " + (WiFiError)ret);
+                if (ret == (int)WiFiError.InvalidParameterError)
+                {
+                    throw new InvalidOperationException("Invalid handle");
+                }
                 WiFiErrorFactory.ThrowWiFiException(ret, _apHandle.DangerousGetHandle());
-            }
-            if (ret == (int)WiFiError.InvalidParameterError)
-            {
-                throw new InvalidOperationException("Invalid handle");
             }
             return passwordSet;
         }
