@@ -36,7 +36,7 @@ namespace Tizen.NUI.Xaml
     /// </summary>
     [EditorBrowsable(EditorBrowsableState.Never)]
     public static class Extensions
-	{
+    {
         /// <summary>
         /// Returns an initialized view by loading the specified xaml.
         /// </summary>
@@ -44,11 +44,13 @@ namespace Tizen.NUI.Xaml
         /// <param name="view">The view on which this method operates.</param>
         /// <param name="callingType">The type of the caller.</param>
         /// <returns>A TXaml with the properties that are defined in the application manifest for callingType.</returns>
+        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public static TXaml LoadFromXaml<TXaml>(this TXaml view, Type callingType) 
-		{
-			XamlLoader.Load(view, callingType);
-			return view;
-		}
+        {
+            XamlLoader.Load(view, callingType);
+            return view;
+        }
 
         /// <summary>
         /// Returns a TXaml with the properties that are defined in the application manifest for callingType.
@@ -57,10 +59,19 @@ namespace Tizen.NUI.Xaml
         /// <param name="view">The view on which this method operates.</param>
         /// <param name="xaml">The XAML that encodes the view state.</param>
         /// <returns>A TXaml with the properties that are defined in the application manifest for callingType.</returns>
-		public static TXaml LoadFromXaml<TXaml>(this TXaml view, string xaml)
-		{
-			XamlLoader.Load(view, xaml);
-			return view;
-		}
+        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static TXaml LoadFromXaml<TXaml>(this TXaml view, string xaml)
+        {
+            XamlLoader.Load(view, xaml);
+            return view;
+        }
+
+        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static Transition LoadTransition(string animationXamlPath)
+        {
+            return XamlLoader.LoadTransition(animationXamlPath);
+        }
 	}
 }

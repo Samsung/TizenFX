@@ -2,41 +2,41 @@ using System.ComponentModel;
 
 namespace Tizen.NUI.Binding
 {
-	internal class RoutingEffect : Effect
-	{
-		internal readonly Effect Inner;
+    internal class RoutingEffect : Effect
+    {
+        internal readonly Effect Inner;
 
-		protected RoutingEffect(string effectId)
-		{
-			Inner = Resolve(effectId);
-		}
+        protected RoutingEffect(string effectId)
+        {
+            Inner = Resolve(effectId);
+        }
 
-		protected override void OnAttached()
-		{
-		}
+        protected override void OnAttached()
+        {
+        }
 
-		protected override void OnDetached()
-		{
-		}
+        protected override void OnDetached()
+        {
+        }
 
-		internal override void ClearEffect()
-		{
-			Inner?.ClearEffect();
-		}
+        internal override void ClearEffect()
+        {
+            Inner?.ClearEffect();
+        }
 
-		internal override void SendAttached()
-		{
-			Inner?.SendAttached();
-		}
+        internal override void SendAttached()
+        {
+            Inner?.SendAttached();
+        }
 
-		internal override void SendDetached()
-		{
-			Inner?.SendDetached();
-		}
+        internal override void SendDetached()
+        {
+            Inner?.SendDetached();
+        }
 
-		internal override void SendOnElementPropertyChanged(PropertyChangedEventArgs args)
-		{
-			Inner?.SendOnElementPropertyChanged(args);
-		}
-	}
+        internal override void SendOnElementPropertyChanged(PropertyChangedEventArgs args)
+        {
+            Inner?.SendOnElementPropertyChanged(args);
+        }
+    }
 }
