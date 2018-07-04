@@ -186,6 +186,10 @@ namespace Tizen.Network.WiFi
                 Log.Error(Globals.LogTag, "Failed to get all APs, Error - " + (WiFiError)ret);
                 WiFiErrorFactory.ThrowWiFiException(ret, GetSafeHandle().DangerousGetHandle(), "http://tizen.org/privilege/network.get");
             }
+            if (ret == (int)WiFiError.InvalidParameterError)
+            {
+                throw new InvalidOperationException("Invalid handle");
+            }
 
             return apList;
         }
@@ -214,6 +218,10 @@ namespace Tizen.Network.WiFi
                 Log.Error(Globals.LogTag, "Failed to get specific APs, Error - " + (WiFiError)ret);
                 WiFiErrorFactory.ThrowWiFiException(ret, GetSafeHandle().DangerousGetHandle(), "http://tizen.org/privilege/network.get");
             }
+            if (ret == (int)WiFiError.InvalidParameterError)
+            {
+                throw new InvalidOperationException("Invalid handle");
+            }
 
             return apList;
         }
@@ -241,6 +249,10 @@ namespace Tizen.Network.WiFi
                 Log.Error(Globals.LogTag, "Failed to get bssid APs, Error - " + (WiFiError)ret);
                 WiFiErrorFactory.ThrowWiFiException(ret, GetSafeHandle().DangerousGetHandle(), "http://tizen.org/privilege/network.get");
             }
+            if (ret == (int)WiFiError.InvalidParameterError)
+            {
+                throw new InvalidOperationException("Invalid handle");
+            }
 
             return apList;
         }
@@ -267,6 +279,10 @@ namespace Tizen.Network.WiFi
             {
                 Log.Error(Globals.LogTag, "Failed to get configurations, Error - " + (WiFiError)ret);
                 WiFiErrorFactory.ThrowWiFiException(ret, GetSafeHandle().DangerousGetHandle(), "http://tizen.org/privilege/network.profile");
+            }
+            if (ret == (int)WiFiError.InvalidParameterError)
+            {
+                throw new InvalidOperationException("Invalid handle");
             }
 
             return configList;
@@ -300,6 +316,10 @@ namespace Tizen.Network.WiFi
                 {
                     Log.Error(Globals.LogTag, "No connection " + (WiFiError)ret);
                     return null;
+                }
+                else if (ret == (int)WiFiError.InvalidParameterError)
+                {
+                    throw new InvalidOperationException("Invalid handle");
                 }
                 else
                 {
@@ -348,6 +368,10 @@ namespace Tizen.Network.WiFi
                     {
                         Log.Error(Globals.LogTag, "Failed to activate wifi, Error - " + (WiFiError)ret);
                         WiFiErrorFactory.ThrowWiFiException(ret, GetSafeHandle().DangerousGetHandle());
+                    }
+                    if (ret == (int)WiFiError.InvalidParameterError)
+                    {
+                        throw new InvalidOperationException("Invalid handle");
                     }
                 }
                 catch (Exception e)
@@ -398,6 +422,10 @@ namespace Tizen.Network.WiFi
                         Log.Error(Globals.LogTag, "Failed to activate wifi, Error - " + (WiFiError)ret);
                         WiFiErrorFactory.ThrowWiFiException(ret, GetSafeHandle().DangerousGetHandle());
                     }
+                    if (ret == (int)WiFiError.InvalidParameterError)
+                    {
+                        throw new InvalidOperationException("Invalid handle");
+                    }
                 }
                 catch (Exception e)
                 {
@@ -446,6 +474,10 @@ namespace Tizen.Network.WiFi
                     {
                         Log.Error(Globals.LogTag, "Failed to deactivate wifi, Error - " + (WiFiError)ret);
                         WiFiErrorFactory.ThrowWiFiException(ret, GetSafeHandle().DangerousGetHandle());
+                    }
+                    if (ret == (int)WiFiError.InvalidParameterError)
+                    {
+                        throw new InvalidOperationException("Invalid handle");
                     }
                 }
                 catch (Exception e)
@@ -496,6 +528,10 @@ namespace Tizen.Network.WiFi
                         Log.Error(Globals.LogTag, "Failed to scan all AP, Error - " + (WiFiError)ret);
                         WiFiErrorFactory.ThrowWiFiException(ret, GetSafeHandle().DangerousGetHandle());
                     }
+                    if (ret == (int)WiFiError.InvalidParameterError)
+                    {
+                        throw new InvalidOperationException("Invalid handle");
+                    }
                 }
                 catch (Exception e)
                 {
@@ -545,6 +581,10 @@ namespace Tizen.Network.WiFi
                         Log.Error(Globals.LogTag, "Failed to scan with specific AP, Error - " + (WiFiError)ret);
                         WiFiErrorFactory.ThrowWiFiException(ret, GetSafeHandle().DangerousGetHandle());
                     }
+                    if (ret == (int)WiFiError.InvalidParameterError)
+                    {
+                        throw new InvalidOperationException("Invalid handle");
+                    }
                 }
                 catch (Exception e)
                 {
@@ -593,6 +633,10 @@ namespace Tizen.Network.WiFi
                     {
                         Log.Error(Globals.LogTag, "Failed to scan Bssid AP, Error - " + (WiFiError)ret);
                         WiFiErrorFactory.ThrowWiFiException(ret, GetSafeHandle().DangerousGetHandle());
+                    }
+                    if (ret == (int)WiFiError.InvalidParameterError)
+                    {
+                        throw new InvalidOperationException("Invalid handle");
                     }
                 }
                 catch (Exception e)

@@ -377,7 +377,6 @@ namespace Tizen.Network.WiFi
         /// <returns>A list of IPv6 addresses of the access point.</returns>
         /// <feature>http://tizen.org/feature/network.wifi</feature>
         /// <exception cref="NotSupportedException">Thrown when the Wi-Fi is not supported.</exception>
-        /// <exception cref="ArgumentException">Thrown when the method failed due to an invalid parameter.</exception>
         /// <exception cref="InvalidOperationException">Thrown when the method failed due to an invalid operation.</exception>
         public IEnumerable<System.Net.IPAddress> GetAllIPv6Addresses()
         {
@@ -402,6 +401,10 @@ namespace Tizen.Network.WiFi
             {
                 Log.Error(Globals.LogTag, "Failed to get all IPv6 addresses, Error - " + (WiFiError)ret);
                 WiFiErrorFactory.ThrowWiFiException(ret, _apHandle.DangerousGetHandle());
+            }
+            if (ret == (int)WiFiError.InvalidParameterError)
+            {
+                throw new InvalidOperationException("Invalid handle");
             }
 
             return ipList;
