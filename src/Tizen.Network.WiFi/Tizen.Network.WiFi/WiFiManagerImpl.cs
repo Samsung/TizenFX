@@ -581,10 +581,6 @@ namespace Tizen.Network.WiFi
                         Log.Error(Globals.LogTag, "Failed to scan with specific AP, Error - " + (WiFiError)ret);
                         WiFiErrorFactory.ThrowWiFiException(ret, GetSafeHandle().DangerousGetHandle());
                     }
-                    if (ret == (int)WiFiError.InvalidParameterError)
-                    {
-                        throw new InvalidOperationException("Invalid handle");
-                    }
                 }
                 catch (Exception e)
                 {
