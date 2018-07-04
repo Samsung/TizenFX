@@ -116,11 +116,6 @@ namespace Tizen.NUI
             return ret;
         }
 
-        internal TypeRegistry(SWIGTYPE_p_Dali__Internal__TypeRegistry typeRegistry) : this(NDalicPINVOKE.new_TypeRegistry__SWIG_2(SWIGTYPE_p_Dali__Internal__TypeRegistry.getCPtr(typeRegistry)), true)
-        {
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-        }
-
     }
 
 }

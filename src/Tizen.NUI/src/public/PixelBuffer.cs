@@ -302,11 +302,6 @@ namespace Tizen.NUI
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
-        internal PixelBuffer(SWIGTYPE_p_unsigned_char pointer) : this(NDalicPINVOKE.new_PixelBuffer__SWIG_2(SWIGTYPE_p_unsigned_char.getCPtr(pointer)), true)
-        {
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-        }
-
     }
 
 }

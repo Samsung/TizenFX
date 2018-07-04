@@ -129,11 +129,6 @@ namespace Tizen.NUI
             return ret;
         }
 
-        internal TransitionData(SWIGTYPE_p_Dali__Toolkit__Internal__TransitionData impl) : this(NDalicPINVOKE.new_TransitionData__SWIG_2(SWIGTYPE_p_Dali__Toolkit__Internal__TransitionData.getCPtr(impl)), true)
-        {
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-        }
-
     }
 
 }
