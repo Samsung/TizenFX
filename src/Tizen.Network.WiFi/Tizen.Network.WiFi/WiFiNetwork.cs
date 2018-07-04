@@ -414,7 +414,6 @@ namespace Tizen.Network.WiFi
         /// <returns>A list of BSSIDs of access points with the same SSID as that of this access point.</returns>
         /// <feature>http://tizen.org/feature/network.wifi</feature>
         /// <exception cref="NotSupportedException">Thrown when the Wi-Fi is not supported.</exception>
-        /// <exception cref="ArgumentException">Thrown when the method failed due to an invalid parameter.</exception>
         /// <exception cref="InvalidOperationException">Thrown when the method failed due to an invalid operation.</exception>
         public IEnumerable<string> GetBssids()
         {
@@ -433,6 +432,10 @@ namespace Tizen.Network.WiFi
             int ret = Interop.WiFi.AP.GetBssids(_apHandle, callback, IntPtr.Zero);
             if (ret != (int)WiFiError.None)
             {
+                if (ret == (int)WiFiError.InvalidParameterError)
+                {
+                    throw new InvalidOperationException("Invalid handle");
+                }
                 Log.Error(Globals.LogTag, "Failed to get BSSIDs, Error - " + (WiFiError)ret);
                 WiFiErrorFactory.ThrowWiFiException(ret, _apHandle.DangerousGetHandle());
             }
