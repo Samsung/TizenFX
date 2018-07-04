@@ -213,32 +213,6 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        /// Called by the AccessibilityManager to activate the control.
-        /// </summary>
-        internal void AccessibilityActivate()
-        {
-            viewWrapperImpl.AccessibilityActivate();
-        }
-
-        /// <summary>
-        /// Called by the KeyboardFocusManager.
-        /// </summary>
-        internal void KeyboardEnter()
-        {
-            viewWrapperImpl.KeyboardEnter();
-        }
-
-        /// <summary>
-        /// Called by the KeyInputFocusManager to emit key event signals.
-        /// </summary>
-        /// <param name="key">The key event.</param>
-        /// <returns>True if the event was consumed.</returns>
-        internal bool EmitKeyEventSignal(Key key)
-        {
-            return viewWrapperImpl.EmitKeyEventSignal(key);
-        }
-
-        /// <summary>
         /// Requests a relayout, which means performing a size negotiation on this view, its parent, and children (and potentially whole scene).<br />
         /// This method can also be called from a derived class every time it needs a different size.<br />
         /// At the end of event processing, the relayout process starts and all controls which requested relayout will have their sizes (re)negotiated.<br />
