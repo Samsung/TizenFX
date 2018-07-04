@@ -322,6 +322,22 @@ namespace Tizen.NUI
         }
 
         /// <summary>
+        /// Determines whether the specified object is equal to the current object.
+        /// </summary>
+        /// <param name="obj">The object to compare with the current object.</param>
+        /// <returns>true if the specified object is equal to the current object; otherwise, false.</returns>
+        public override bool Equals(System.Object obj)
+        {
+            Position position = obj as Position;
+            bool equal = false;
+            if (X == position?.X && Y == position?.Y && Z == position?.Z)
+            {
+                equal = true;
+            }
+            return equal;
+        }
+
+        /// <summary>
         /// Compares if rhs is equal to.
         /// </summary>
         /// <param name="rhs">The vector to compare.</param>

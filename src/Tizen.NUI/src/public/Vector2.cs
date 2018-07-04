@@ -482,6 +482,22 @@ namespace Tizen.NUI
         }
 
         /// <summary>
+        /// Determines whether the specified object is equal to the current object.
+        /// </summary>
+        /// <param name="obj">The object to compare with the current object.</param>
+        /// <returns>true if the specified object is equal to the current object; otherwise, false.</returns>
+        public override bool Equals(System.Object obj)
+        {
+            Vector2 vector2 = obj as Vector2;
+            bool equal = false;
+            if (X == vector2?.X && Y == vector2?.Y)
+            {
+                equal = true;
+            }
+            return equal;
+        }
+
+        /// <summary>
         /// Returns the length of the vector.
         /// </summary>
         /// <returns>The length of the vector.</returns>

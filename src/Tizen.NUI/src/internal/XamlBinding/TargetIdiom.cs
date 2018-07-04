@@ -1,12 +1,12 @@
 namespace Tizen.NUI.Binding
 {
-	internal enum TargetIdiom
-	{
-		Unsupported,
-		Phone,
-		Tablet,
-		Desktop,
-		TV,
-		Watch
-	}
+    internal enum TargetIdiom
+    {
+        Unsupported,
+        Phone,
+        Tablet,
+        Desktop,
+        TV,
+        Watch
+    }
 }

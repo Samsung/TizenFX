@@ -319,6 +319,22 @@ namespace Tizen.NUI
         }
 
         /// <summary>
+        /// Determines whether the specified object is equal to the current object.
+        /// </summary>
+        /// <param name="obj">The object to compare with the current object.</param>
+        /// <returns>true if the specified object is equal to the current object; otherwise, false.</returns>
+        public override bool Equals(System.Object obj)
+        {
+            RelativeVector2 relativeRector2 = obj as RelativeVector2;
+            bool equal = false;
+            if (X == relativeRector2?.X && Y == relativeRector2?.Y)
+            {
+                equal = true;
+            }
+            return equal;
+        }
+
+        /// <summary>
         /// Compares if the rhs is equal to.
         /// </summary>
         /// <param name="rhs">The vector to compare.</param>

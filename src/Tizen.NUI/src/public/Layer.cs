@@ -73,7 +73,6 @@ namespace Tizen.NUI
             }
         }
 
-
         /// <summary>
         /// Removes a child view from this layer. If the view was not a child of this layer, this is a no-op.
         /// </summary>

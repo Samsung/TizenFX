@@ -5,9 +5,9 @@ namespace Tizen.NUI.Binding
     /// <summary>
     /// For internal use.
     /// </summary>
-	[EditorBrowsable(EditorBrowsableState.Never)]
-	public interface IPlatform
-	{
+    [EditorBrowsable(EditorBrowsableState.Never)]
+    internal interface IPlatform
+    {
         /// <summary>
         /// Returns the native size.
         /// </summary>
@@ -15,6 +15,6 @@ namespace Tizen.NUI.Binding
         /// <param name="widthConstraint">The width constraint.</param>
         /// <param name="heightConstraint">The height constraint.</param>
         /// <returns>The native size.</returns>
-		SizeRequest GetNativeSize(BaseHandle view, double widthConstraint, double heightConstraint);
-	}
+        SizeRequest GetNativeSize(BaseHandle view, double widthConstraint, double heightConstraint);
+    }
 }

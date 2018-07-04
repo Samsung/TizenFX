@@ -8,355 +8,355 @@ using Tizen.NUI.Binding;
 
 namespace Tizen.NUI.Xaml
 {
-	internal static class VisualStateManager
-	{
-		internal class CommonStates
-		{
-			public const string Normal = "Normal";
-			public const string Disabled = "Disabled";
-			public const string Focused = "Focused";
-		}
+    internal static class VisualStateManager
+    {
+        internal class CommonStates
+        {
+            public const string Normal = "Normal";
+            public const string Disabled = "Disabled";
+            public const string Focused = "Focused";
+        }
 
-		public static readonly BindableProperty VisualStateGroupsProperty =
-			BindableProperty.CreateAttached("VisualStateGroups", typeof(VisualStateGroupList), typeof(/*VisualElement*/BaseHandle), 
-				defaultValue: null, propertyChanged: VisualStateGroupsPropertyChanged, 
-				defaultValueCreator: bindable => new VisualStateGroupList());
+        public static readonly BindableProperty VisualStateGroupsProperty =
+            BindableProperty.CreateAttached("VisualStateGroups", typeof(VisualStateGroupList), typeof(/*VisualElement*/BaseHandle), 
+                defaultValue: null, propertyChanged: VisualStateGroupsPropertyChanged, 
+                defaultValueCreator: bindable => new VisualStateGroupList());
 
-		static void VisualStateGroupsPropertyChanged(BindableObject bindable, object oldValue, object newValue)
-		{
-			GoToState((/*VisualElement*/BaseHandle)bindable, CommonStates.Normal);
-		}
+        static void VisualStateGroupsPropertyChanged(BindableObject bindable, object oldValue, object newValue)
+        {
+            GoToState((/*VisualElement*/BaseHandle)bindable, CommonStates.Normal);
+        }
 
-		public static IList<VisualStateGroup> GetVisualStateGroups(/*VisualElement*/BaseHandle visualElement)
-		{
-			return (IList<VisualStateGroup>)visualElement.GetValue(VisualStateGroupsProperty);
-		}
+        public static IList<VisualStateGroup> GetVisualStateGroups(/*VisualElement*/BaseHandle visualElement)
+        {
+            return (IList<VisualStateGroup>)visualElement.GetValue(VisualStateGroupsProperty);
+        }
 
-		public static void SetVisualStateGroups(/*VisualElement*/BaseHandle visualElement, VisualStateGroupList value)
-		{
-			visualElement.SetValue(VisualStateGroupsProperty, value);
-		}
+        public static void SetVisualStateGroups(/*VisualElement*/BaseHandle visualElement, VisualStateGroupList value)
+        {
+            visualElement.SetValue(VisualStateGroupsProperty, value);
+        }
 
-		public static bool GoToState(/*VisualElement*/BaseHandle visualElement, string name)
-		{
-			if (!visualElement.IsSet(VisualStateGroupsProperty))
-			{
-				return false;
-			}
+        public static bool GoToState(/*VisualElement*/BaseHandle visualElement, string name)
+        {
+            if (!visualElement.IsSet(VisualStateGroupsProperty))
+            {
+                return false;
+            }
 
-			var groups = (IList<VisualStateGroup>)visualElement.GetValue(VisualStateGroupsProperty);
+            var groups = (IList<VisualStateGroup>)visualElement.GetValue(VisualStateGroupsProperty);
 
-			foreach (VisualStateGroup group in groups)
-			{
-				if (group.CurrentState?.Name == name)
-				{
-					// We're already in the target state; nothing else to do
-					return true;
-				}
+            foreach (VisualStateGroup group in groups)
+            {
+                if (group.CurrentState?.Name == name)
+                {
+                    // We're already in the target state; nothing else to do
+                    return true;
+                }
 
-				// See if this group contains the new state
-				var target = group.GetState(name);
-				if (target == null)
-				{
-					continue;
-				}
+                // See if this group contains the new state
+                var target = group.GetState(name);
+                if (target == null)
+                {
+                    continue;
+                }
 
-				// If we've got a new state to transition to, unapply the setters from the current state
-				if (group.CurrentState != null)
-				{
-					foreach (Setter setter in group.CurrentState.Setters)
-					{
-						setter.UnApply(visualElement);
-					}
-				}
+                // If we've got a new state to transition to, unapply the setters from the current state
+                if (group.CurrentState != null)
+                {
+                    foreach (Setter setter in group.CurrentState.Setters)
+                    {
+                        setter.UnApply(visualElement);
+                    }
+                }
 
-				// Update the current state
-				group.CurrentState = target;
+                // Update the current state
+                group.CurrentState = target;
 
-				// Apply the setters from the new state
-				foreach (Setter setter in target.Setters)
-				{
-					setter.Apply(visualElement);
-				}
+                // Apply the setters from the new state
+                foreach (Setter setter in target.Setters)
+                {
+                    setter.Apply(visualElement);
+                }
 
-				return true;
-			}
+                return true;
+            }
 
-			return false;
-		}
+            return false;
+        }
 
-		public static bool HasVisualStateGroups(this /*VisualElement*/BaseHandle element)
-		{
-			return element.IsSet(VisualStateGroupsProperty);
-		}
-	}
+        public static bool HasVisualStateGroups(this /*VisualElement*/BaseHandle element)
+        {
+            return element.IsSet(VisualStateGroupsProperty);
+        }
+    }
 
-	internal class VisualStateGroupList : IList<VisualStateGroup>
-	{
-		readonly IList<VisualStateGroup> _internalList;
+    internal class VisualStateGroupList : IList<VisualStateGroup>
+    {
+        readonly IList<VisualStateGroup> _internalList;
 
-		void Validate(IList<VisualStateGroup> groups)
-		{ 
-			// If we have 1 group, no need to worry about duplicate group names
-			if (groups.Count > 1)
-			{
-				if (groups.GroupBy(vsg => vsg.Name).Any(g => g.Count() > 1))
-				{
-					throw new InvalidOperationException("VisualStateGroup Names must be unique");
-				}
-			}
+        void Validate(IList<VisualStateGroup> groups)
+        { 
+            // If we have 1 group, no need to worry about duplicate group names
+            if (groups.Count > 1)
+            {
+                if (groups.GroupBy(vsg => vsg.Name).Any(g => g.Count() > 1))
+                {
+                    throw new InvalidOperationException("VisualStateGroup Names must be unique");
+                }
+            }
 
-			// State names must be unique within this group list, so pull in all 
-			// the states in all the groups, group them by name, and see if we have
-			// and duplicates
-			if (groups.SelectMany(group => group.States)
-				.GroupBy(state => state.Name)
-				.Any(g => g.Count() > 1))
-			{
-				throw new InvalidOperationException("VisualState Names must be unique");
-			}
-		}
+            // State names must be unique within this group list, so pull in all 
+            // the states in all the groups, group them by name, and see if we have
+            // and duplicates
+            if (groups.SelectMany(group => group.States)
+                .GroupBy(state => state.Name)
+                .Any(g => g.Count() > 1))
+            {
+                throw new InvalidOperationException("VisualState Names must be unique");
+            }
+        }
 
-		public VisualStateGroupList() 
-		{
-			_internalList = new WatchAddList<VisualStateGroup>(Validate);
-		}
+        public VisualStateGroupList() 
+        {
+            _internalList = new WatchAddList<VisualStateGroup>(Validate);
+        }
 
-		void ValidateOnStatesChanged(object sender, EventArgs eventArgs)
-		{
-			Validate(_internalList);
-		}
+        void ValidateOnStatesChanged(object sender, EventArgs eventArgs)
+        {
+            Validate(_internalList);
+        }
 
-		public IEnumerator<VisualStateGroup> GetEnumerator()
-		{
-			return _internalList.GetEnumerator();
-		}
+        public IEnumerator<VisualStateGroup> GetEnumerator()
+        {
+            return _internalList.GetEnumerator();
+        }
 
-		IEnumerator IEnumerable.GetEnumerator()
-		{
-			return ((IEnumerable)_internalList).GetEnumerator();
-		}
+        IEnumerator IEnumerable.GetEnumerator()
+        {
+            return ((IEnumerable)_internalList).GetEnumerator();
+        }
 
-		public void Add(VisualStateGroup item)
-		{
-			_internalList.Add(item);
-			item.StatesChanged += ValidateOnStatesChanged;
-		}
+        public void Add(VisualStateGroup item)
+        {
+            _internalList.Add(item);
+            item.StatesChanged += ValidateOnStatesChanged;
+        }
 
-		public void Clear()
-		{
-			foreach (var group in _internalList)
-			{
-				group.StatesChanged -= ValidateOnStatesChanged;
-			}
+        public void Clear()
+        {
+            foreach (var group in _internalList)
+            {
+                group.StatesChanged -= ValidateOnStatesChanged;
+            }
 
-			_internalList.Clear();
-		}
+            _internalList.Clear();
+        }
 
-		public bool Contains(VisualStateGroup item)
-		{
-			return _internalList.Contains(item);
-		}
+        public bool Contains(VisualStateGroup item)
+        {
+            return _internalList.Contains(item);
+        }
 
-		public void CopyTo(VisualStateGroup[] array, int arrayIndex)
-		{
-			_internalList.CopyTo(array, arrayIndex);
-		}
+        public void CopyTo(VisualStateGroup[] array, int arrayIndex)
+        {
+            _internalList.CopyTo(array, arrayIndex);
+        }
 
-		public bool Remove(VisualStateGroup item)
-		{
-			item.StatesChanged -= ValidateOnStatesChanged;
-			return _internalList.Remove(item);
-		}
+        public bool Remove(VisualStateGroup item)
+        {
+            item.StatesChanged -= ValidateOnStatesChanged;
+            return _internalList.Remove(item);
+        }
 
-		public int Count => _internalList.Count;
+        public int Count => _internalList.Count;
 
-		public bool IsReadOnly => false;
+        public bool IsReadOnly => false;
 
-		public int IndexOf(VisualStateGroup item)
-		{
-			return _internalList.IndexOf(item);
-		}
+        public int IndexOf(VisualStateGroup item)
+        {
+            return _internalList.IndexOf(item);
+        }
 
-		public void Insert(int index, VisualStateGroup item)
-		{
-			item.StatesChanged += ValidateOnStatesChanged;
-			_internalList.Insert(index, item);
-		}
+        public void Insert(int index, VisualStateGroup item)
+        {
+            item.StatesChanged += ValidateOnStatesChanged;
+            _internalList.Insert(index, item);
+        }
 
-		public void RemoveAt(int index)
-		{
-			_internalList[index].StatesChanged -= ValidateOnStatesChanged;
-			_internalList.RemoveAt(index);
-		}
+        public void RemoveAt(int index)
+        {
+            _internalList[index].StatesChanged -= ValidateOnStatesChanged;
+            _internalList.RemoveAt(index);
+        }
 
-		public VisualStateGroup this[int index]
-		{
-			get => _internalList[index];
-			set => _internalList[index] = value;
-		}
-	}
+        public VisualStateGroup this[int index]
+        {
+            get => _internalList[index];
+            set => _internalList[index] = value;
+        }
+    }
 
-	[RuntimeNameProperty(nameof(Name))]
-	[ContentProperty(nameof(States))]
-	internal sealed class VisualStateGroup 
-	{
-		public VisualStateGroup()
-		{
-			States = new WatchAddList<VisualState>(OnStatesChanged);
-		}
+    [RuntimeNameProperty(nameof(Name))]
+    [ContentProperty(nameof(States))]
+    internal sealed class VisualStateGroup 
+    {
+        public VisualStateGroup()
+        {
+            States = new WatchAddList<VisualState>(OnStatesChanged);
+        }
 
-		public Type TargetType { get; set; }
-		public string Name { get; set; }
-		public IList<VisualState> States { get; }
-		public VisualState CurrentState { get; internal set; }
+        public Type TargetType { get; set; }
+        public string Name { get; set; }
+        public IList<VisualState> States { get; }
+        public VisualState CurrentState { get; internal set; }
 
-		internal VisualState GetState(string name)
-		{
-			foreach (VisualState state in States)
-			{
-				if (string.CompareOrdinal(state.Name, name) == 0)
-				{
-					return state;
-				}
-			}
+        internal VisualState GetState(string name)
+        {
+            foreach (VisualState state in States)
+            {
+                if (string.CompareOrdinal(state.Name, name) == 0)
+                {
+                    return state;
+                }
+            }
 
-			return null;
-		}
+            return null;
+        }
 
-		internal VisualStateGroup Clone()
-		{
-			var clone =  new VisualStateGroup {TargetType = TargetType, Name = Name, CurrentState = CurrentState};
-			foreach (VisualState state in States)
-			{
-				clone.States.Add(state.Clone());
-			}
+        internal VisualStateGroup Clone()
+        {
+            var clone =  new VisualStateGroup {TargetType = TargetType, Name = Name, CurrentState = CurrentState};
+            foreach (VisualState state in States)
+            {
+                clone.States.Add(state.Clone());
+            }
 
-			return clone;
-		}
+            return clone;
+        }
 
-		internal event EventHandler StatesChanged;
+        internal event EventHandler StatesChanged;
 
-		void OnStatesChanged(IList<VisualState> list)
-		{
-			if (list.Any(state => string.IsNullOrEmpty(state.Name)))
-			{
-				throw new InvalidOperationException("State names may not be null or empty");
-			}
+        void OnStatesChanged(IList<VisualState> list)
+        {
+            if (list.Any(state => string.IsNullOrEmpty(state.Name)))
+            {
+                throw new InvalidOperationException("State names may not be null or empty");
+            }
 
-			StatesChanged?.Invoke(this, EventArgs.Empty);
-		}
-	}
+            StatesChanged?.Invoke(this, EventArgs.Empty);
+        }
+    }
 
-	[RuntimeNameProperty(nameof(Name))]
-	internal sealed class VisualState 
-	{
-		public VisualState()
-		{
-			Setters = new ObservableCollection<Setter>();
-		}
+    [RuntimeNameProperty(nameof(Name))]
+    internal sealed class VisualState 
+    {
+        public VisualState()
+        {
+            Setters = new ObservableCollection<Setter>();
+        }
 
-		public string Name { get; set; }
-		public IList<Setter> Setters { get;}
-		public Type TargetType { get; set; }
+        public string Name { get; set; }
+        public IList<Setter> Setters { get;}
+        public Type TargetType { get; set; }
 
-		internal VisualState Clone()
-		{
-			var clone = new VisualState { Name = Name, TargetType = TargetType };
-			foreach (var setter in Setters)
-			{
-				clone.Setters.Add(setter);
-			}
+        internal VisualState Clone()
+        {
+            var clone = new VisualState { Name = Name, TargetType = TargetType };
+            foreach (var setter in Setters)
+            {
+                clone.Setters.Add(setter);
+            }
 
-			return clone;
-		}
-	}
+            return clone;
+        }
+    }
 
-	internal static class VisualStateGroupListExtensions
-	{
-		internal static IList<VisualStateGroup> Clone(this IList<VisualStateGroup> groups)
-		{
-			var actual = new VisualStateGroupList();
-			foreach (var group in groups)
-			{
-				actual.Add(group.Clone());
-			}
+    internal static class VisualStateGroupListExtensions
+    {
+        internal static IList<VisualStateGroup> Clone(this IList<VisualStateGroup> groups)
+        {
+            var actual = new VisualStateGroupList();
+            foreach (var group in groups)
+            {
+                actual.Add(group.Clone());
+            }
 
-			return actual;
-		}
-	}
+            return actual;
+        }
+    }
 
-	internal class WatchAddList<T> : IList<T>
-	{
-		readonly Action<List<T>> _onAdd;
-		readonly List<T> _internalList;
+    internal class WatchAddList<T> : IList<T>
+    {
+        readonly Action<List<T>> _onAdd;
+        readonly List<T> _internalList;
 
-		public WatchAddList(Action<List<T>> onAdd)
-		{
-			_onAdd = onAdd;
-			_internalList = new List<T>();
-		}
+        public WatchAddList(Action<List<T>> onAdd)
+        {
+            _onAdd = onAdd;
+            _internalList = new List<T>();
+        }
 
-		public IEnumerator<T> GetEnumerator()
-		{
-			return _internalList.GetEnumerator();
-		}
+        public IEnumerator<T> GetEnumerator()
+        {
+            return _internalList.GetEnumerator();
+        }
 
-		IEnumerator IEnumerable.GetEnumerator()
-		{
-			return ((IEnumerable)_internalList).GetEnumerator();
-		}
+        IEnumerator IEnumerable.GetEnumerator()
+        {
+            return ((IEnumerable)_internalList).GetEnumerator();
+        }
 
-		public void Add(T item)
-		{
-			_internalList.Add(item);
-			_onAdd(_internalList);
-		}
+        public void Add(T item)
+        {
+            _internalList.Add(item);
+            _onAdd(_internalList);
+        }
 
-		public void Clear()
-		{
-			_internalList.Clear();
-		}
+        public void Clear()
+        {
+            _internalList.Clear();
+        }
 
-		public bool Contains(T item)
-		{
-			return _internalList.Contains(item);
-		}
+        public bool Contains(T item)
+        {
+            return _internalList.Contains(item);
+        }
 
-		public void CopyTo(T[] array, int arrayIndex)
-		{
-			_internalList.CopyTo(array, arrayIndex);
-		}
+        public void CopyTo(T[] array, int arrayIndex)
+        {
+            _internalList.CopyTo(array, arrayIndex);
+        }
 
-		public bool Remove(T item)
-		{
-			return _internalList.Remove(item);
-		}
+        public bool Remove(T item)
+        {
+            return _internalList.Remove(item);
+        }
 
-		public int Count => _internalList.Count;
+        public int Count => _internalList.Count;
 
-		public bool IsReadOnly => false;
+        public bool IsReadOnly => false;
 
-		public int IndexOf(T item)
-		{
-			return _internalList.IndexOf(item);
-		}
+        public int IndexOf(T item)
+        {
+            return _internalList.IndexOf(item);
+        }
 
-		public void Insert(int index, T item)
-		{
-			_internalList.Insert(index, item);
-			_onAdd(_internalList);
-		}
+        public void Insert(int index, T item)
+        {
+            _internalList.Insert(index, item);
+            _onAdd(_internalList);
+        }
 
-		public void RemoveAt(int index)
-		{
-			_internalList.RemoveAt(index);
-		}
+        public void RemoveAt(int index)
+        {
+            _internalList.RemoveAt(index);
+        }
 
-		public T this[int index]
-		{
-			get => _internalList[index];
-			set => _internalList[index] = value;
-		}
-	}
+        public T this[int index]
+        {
+            get => _internalList[index];
+            set => _internalList[index] = value;
+        }
+    }
 }
