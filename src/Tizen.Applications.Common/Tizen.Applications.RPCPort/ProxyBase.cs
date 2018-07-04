@@ -37,6 +37,12 @@ namespace Tizen.Applications.RPCPort
         protected Port Port { get; private set; }
 
         /// <summary>
+        /// Gets Port object for asynchronous events
+        /// </summary>
+        /// <since_tizen> 5 </since_tizen>
+        protected Port CallbackPort { get; private set; }
+
+        /// <summary>
         /// Constructor for this class
         /// </summary>
         /// <exception cref="InvalidIOException">Thrown when internal IO error happens</exception>
@@ -135,12 +141,14 @@ namespace Tizen.Applications.RPCPort
         private void OnConnectedEvent(string endPoint, string portName, IntPtr port, IntPtr data)
         {
             Port = new Port() { Handle = port };
+            CallbackPort = GetPort(Port.Type.Callback);
             OnConnectedEvent(endPoint, portName, Port);
         }
 
         private void OnDisconnectedEvent(string endPoint, string portName, IntPtr data)
         {
             Port = null;
+            CallbackPort = null;
             OnDisconnectedEvent(endPoint, portName);
         }
 

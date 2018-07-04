@@ -29,30 +29,39 @@ namespace Tizen.Applications.RPCPort
         /// <summary>
         /// Constructor for this class
         /// </summary>
+        /// <exception cref="InvalidIOException">Thrown when internal IO error happens</exception>
         /// <since_tizen> 5 </since_tizen>
         public Parcel()
         {
-            Interop.LibRPCPort.Parcel.Create(out _handle);
+            var r = Interop.LibRPCPort.Parcel.Create(out _handle);
+            if (r != Interop.LibRPCPort.ErrorCode.None)
+                throw new InvalidIOException();
         }
 
         /// <summary>
         /// Constructor with Port object
         /// </summary>
         /// <param name="port">Port object</param>
+        /// <exception cref="InvalidIOException">Thrown when internal IO error happens</exception>
         /// <since_tizen> 5 </since_tizen>
         public Parcel(Port port)
         {
-            Interop.LibRPCPort.Parcel.CreateFromPort(out _handle, port.Handle);
+            var r = Interop.LibRPCPort.Parcel.CreateFromPort(out _handle, port.Handle);
+            if (r != Interop.LibRPCPort.ErrorCode.None)
+                throw new InvalidIOException();
         }
 
         /// <summary>
         /// Sends parcel data through the port
         /// </summary>
         /// <param name="p">The RPC port object for writing data</param>
+        /// <exception cref="InvalidIOException">Thrown when internal IO error happens</exception>
         /// <since_tizen> 5 </since_tizen>
         public void Send(Port p)
         {
-            Interop.LibRPCPort.Parcel.Send(_handle, p.Handle);
+            var r = Interop.LibRPCPort.Parcel.Send(_handle, p.Handle);
+            if (r != Interop.LibRPCPort.ErrorCode.None)
+                throw new InvalidIOException();
         }
 
         /// <summary>
