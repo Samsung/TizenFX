@@ -62,11 +62,18 @@ namespace Tizen.NUI.Xaml
     {
         public static void Load(object view, Type callingType)
         {
-            var xaml = GetXamlForType(callingType);
-            if (string.IsNullOrEmpty(xaml))
-                throw new XamlParseException(string.Format("No embeddedresource found for {0}", callingType), new XmlLineInfo());
-            Console.WriteLine("============= Got xaml text is {0} ===========", xaml);
-            Load(view, xaml);
+            try
+            {
+                var xaml = GetXamlForType(callingType);
+                if (string.IsNullOrEmpty(xaml))
+                    throw new XamlParseException(string.Format("Can't get xaml from type {0}", callingType), new XmlLineInfo());
+                Load(view, xaml);
+            }
+            catch (XamlParseException e)
+            {
+                Tizen.Log.Fatal("NUI", "XamlParseException e.Message: " + e.Message);
+                Console.WriteLine("\n[FATAL] XamlParseException e.Message: {0}\n", e.Message);
+            }
         }
 
         public static Transition LoadTransition(string animationXamlPath)

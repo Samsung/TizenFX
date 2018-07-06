@@ -2448,26 +2448,16 @@ namespace Tizen.NUI.BaseComponents
             PageDown
         }
 
-        protected void InitXamlResource()
-        {
-            if (null != Application.Current)
-            {
-                Application.AddResourceChangedCallback(this, OnResourcesChanged);
-            }
-        }
-
         /// <summary>
         /// Creates a new instance of a view.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public View() : this(NDalicPINVOKE.View_New(), true)
         {
-            InitXamlResource();
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
         internal View(View uiControl) : this(NDalicPINVOKE.new_View__SWIG_1(View.getCPtr(uiControl)), true)
         {
-            InitXamlResource();
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 

@@ -41,11 +41,6 @@ namespace Tizen.NUI
             throw new InvalidOperationException($"Cannot convert \"{value}\" into {typeof(Position2D)}");
         }
 
-        public static implicit operator Position2D(System.String value)
-        {
-            return ConvertFromString(value);
-        }
-
         private global::System.Runtime.InteropServices.HandleRef swigCPtr;
         /// <summary>
         /// swigCMemOwn

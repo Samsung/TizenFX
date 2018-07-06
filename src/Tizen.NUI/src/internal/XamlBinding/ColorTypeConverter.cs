@@ -1,8 +1,5 @@
 using System;
-using System.Linq;
-using System.Reflection;
-
-using Tizen.NUI;
+using System.Globalization;
 
 namespace Tizen.NUI.Binding
 {
@@ -47,7 +44,10 @@ namespace Tizen.NUI.Binding
                 }
                 else if (parts.Length == 4) //like 0.5,0.5,0.5,0.5
                 {
-                    return new Color(float.Parse(parts[0].Trim()), float.Parse(parts[1].Trim()), float.Parse(parts[2].Trim()), float.Parse(parts[3].Trim()));
+                    return new Color(Single.Parse(parts[0].Trim(), CultureInfo.InvariantCulture),
+                                     Single.Parse(parts[1].Trim(), CultureInfo.InvariantCulture),
+                                     Single.Parse(parts[2].Trim(), CultureInfo.InvariantCulture),
+                                     Single.Parse(parts[3].Trim(), CultureInfo.InvariantCulture));
                 }
             }
 

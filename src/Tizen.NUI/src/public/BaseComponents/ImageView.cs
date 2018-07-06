@@ -328,7 +328,6 @@ namespace Tizen.NUI.BaseComponents
         /// <since_tizen> 3 </since_tizen>
         public ImageView() : this(NDalicPINVOKE.ImageView_New__SWIG_0(), true)
         {
-            base.InitXamlResource();
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
