@@ -9,9 +9,9 @@ namespace Tizen.NUI.StyleSheets
         {
             if (!resourcesProvider.IsResourcesCreated)
                 yield break;
-            if (resourcesProvider.Resources.StyleSheets == null)
+            if (resourcesProvider.XamlResources.StyleSheets == null)
                 yield break;
-            foreach (var styleSheet in resourcesProvider.Resources.StyleSheets)
+            foreach (var styleSheet in resourcesProvider.XamlResources.StyleSheets)
                 yield return styleSheet;
         }
     }
