@@ -7,6 +7,6 @@ namespace Tizen.NUI.Binding
     public interface IResourcesProvider
     {
         bool IsResourcesCreated { get; }
-        ResourceDictionary Resources { get; set; }
+        ResourceDictionary XamlResources { get; set; }
     }
 }
