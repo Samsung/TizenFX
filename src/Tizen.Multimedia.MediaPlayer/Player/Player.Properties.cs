@@ -523,6 +523,31 @@ namespace Tizen.Multimedia
             }
         }
 
+        /// <summary>
+        /// Gets or sets the player's replaygain state.
+        /// </summary>
+        /// <value>If the replaygain status is true, replaygain is applied (if contents has a replaygain tag);
+        /// otherwise, the replaygain isn't affected by tag and properties.</value>
+        /// <exception cref="ObjectDisposedException">The player has already been disposed of.</exception>
+        /// <exception cref="InvalidOperationException">The player is not in the valid state.</exception>
+        /// <since_tizen> 5 </since_tizen>
+        public bool ReplayGain
+        {
+            get
+            {
+                ValidateNotDisposed();
+                NativePlayer.IsReplayGain(Handle, out var value).
+                    ThrowIfFailed(this, "Failed to get the replaygain of the player");
+                return value;
+            }
+            set
+            {
+                ValidateNotDisposed();
+                NativePlayer.SetReplayGain(Handle, value).
+                    ThrowIfFailed(this, "Failed to set the replaygain of the player");
+            }
+        }
+
         private SphericalVideo _sphericalVideo;
 
         /// <summary>
