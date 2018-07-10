@@ -210,7 +210,9 @@ namespace Tizen.Multimedia
         /// <exception cref="NotSupportedException">The required feature is not supported.</exception>
         /// <exception cref="ObjectDisposedException">The player has already been disposed of.</exception>
         /// <exception cref="ArgumentOutOfRangeException">
-        ///     <pramref name="level"/> is less than 1 or lager than 10.<br/>
+        ///     <pramref name="level"/> is less than 1.0.
+        ///     -or-<br/>
+        ///     <paramref name="level"/> is greater than 10.0.<br/>
         /// </exception>
         /// <seealso cref="GetZoom()"/>
         /// <since_tizen> 5 </since_tizen>
@@ -362,9 +364,13 @@ namespace Tizen.Multimedia
         /// The <see cref="Multimedia.Player"/> that this instance belongs to has been disposed of.
         /// </exception>
         /// <exception cref="ArgumentOutOfRangeException">
-        ///     <pramref name="fieldOfView.HorizontalDegrees"/> is less than 1 or larger than 360.<br/>
+        ///     <pramref name="fieldOfView.HorizontalDegrees"/> is less than 1.<br/>
         ///     -or-<br/>
-        ///     <pramref name="fieldOfView.VerticalDegrees"/> is less than 1 or larger than 180.<br/>
+        ///     <pramref name="fieldOfView.HorizontalDegrees"/> is greater than 360.<br/>
+        ///     -or-<br/>
+        ///     <pramref name="fieldOfView.VerticalDegrees"/> is less than 1.<br/>
+        ///     -or-<br/>
+        ///     <pramref name="fieldOfView.VerticalDegrees"/> is greater than 180.<br/>
         /// </exception>
         /// <seealso cref="FieldOfView"/>
         /// <since_tizen> 5 </since_tizen>
@@ -403,11 +409,17 @@ namespace Tizen.Multimedia
         /// The <see cref="Multimedia.Player"/> that this instance belongs to has been disposed of.
         /// </exception>
         /// <exception cref="ArgumentOutOfRangeException">
-        ///     <pramref name="level"/> is less than 1 or lager than 10.<br/>
+        ///     <pramref name="level"/> is less than 1.0.
         ///     -or-<br/>
-        ///     <pramref name="fieldOfView.HorizontalDegrees"/> is less than 1 or larger than 360.<br/>
+        ///     <paramref name="level"/> is greater than 10.0.<br/>
         ///     -or-<br/>
-        ///     <pramref name="fieldOfView.VerticalDegrees"/> is less than 1 or larger than 180.<br/>
+        ///     <pramref name="fieldOfView.HorizontalDegrees"/> is less than 1.<br/>
+        ///     -or-<br/>
+        ///     <pramref name="fieldOfView.HorizontalDegrees"/> is greater than 360.<br/>
+        ///     -or-<br/>
+        ///     <pramref name="fieldOfView.VerticalDegrees"/> is less than 1.<br/>
+        ///     -or-<br/>
+        ///     <pramref name="fieldOfView.VerticalDegrees"/> is greater than 180.<br/>
         /// </exception>
         /// <seealso cref="FieldOfView"/>
         /// <seealso cref="GetZoom()"/>
