@@ -186,7 +186,6 @@ namespace Tizen.Multimedia
         /// <feature>http://tizen.org/feature/multimedia.player.spherical_video</feature>
         /// <exception cref="NotSupportedException">The required feature is not supported.</exception>
         /// <exception cref="ObjectDisposedException">The player has already been disposed of.</exception>
-        /// <exception cref="InvalidOperationException">The player is not in the valid state.</exception>
         /// <seealso cref="SetZoom(float)"/>
         /// <since_tizen> 5 </since_tizen>
         public float GetZoom()
@@ -210,7 +209,9 @@ namespace Tizen.Multimedia
         /// <feature>http://tizen.org/feature/multimedia.player.spherical_video</feature>
         /// <exception cref="NotSupportedException">The required feature is not supported.</exception>
         /// <exception cref="ObjectDisposedException">The player has already been disposed of.</exception>
-        /// <exception cref="InvalidOperationException">The player is not in the valid state.</exception>
+        /// <exception cref="ArgumentOutOfRangeException">
+        ///     <pramref name="level"/> is less than 1 or lager than 10.<br/>
+        /// </exception>
         /// <seealso cref="GetZoom()"/>
         /// <since_tizen> 5 </since_tizen>
         public void SetZoom(float level)
@@ -231,8 +232,6 @@ namespace Tizen.Multimedia
         /// <summary>
         /// Gets or sets the spherical mode.
         /// </summary>
-        /// <remarks>The player must be in the <see cref="PlayerState.Ready"/>, <see cref="PlayerState.Playing"/>,
-        /// or <see cref="PlayerState.Paused"/> state.</remarks>
         /// <feature>http://tizen.org/feature/opengles.version.2_0</feature>
         /// <feature>http://tizen.org/feature/multimedia.player.spherical_video</feature>
         /// <exception cref="NotSupportedException">The required feature is not supported.</exception>
@@ -274,9 +273,6 @@ namespace Tizen.Multimedia
         /// <exception cref="ObjectDisposedException">
         /// The <see cref="Multimedia.Player"/> that this instance belongs to has been disposed of.
         /// </exception>
-        /// <exception cref="InvalidOperationException">
-        /// The <see cref="Multimedia.Player"/> that this instance belongs to is not in the valid state.
-        /// </exception>
         /// <since_tizen> 5 </since_tizen>
         public DirectionOfView GetDirectionOfView()
         {
@@ -301,8 +297,10 @@ namespace Tizen.Multimedia
         /// <exception cref="ObjectDisposedException">
         /// The <see cref="Multimedia.Player"/> that this instance belongs to has been disposed of.
         /// </exception>
-        /// <exception cref="InvalidOperationException">
-        /// The <see cref="Multimedia.Player"/> that this instance belongs to is not in the valid state.
+        /// <exception cref="ArgumentOutOfRangeException">
+        ///     <pramref name="directionOfView.Yaw"/> should be in range of [-3.141593, 3.141593].<br/>
+        ///     -or-<br/>
+        ///     <pramref name="directionOfView.Pitch"/> should be in range of [-1.570796, 1.570796].<br/>
         /// </exception>
         /// <seealso cref="DirectionOfView"/>
         /// <since_tizen> 5 </since_tizen>
@@ -339,9 +337,6 @@ namespace Tizen.Multimedia
         /// <exception cref="ObjectDisposedException">
         /// The <see cref="Multimedia.Player"/> that this instance belongs to has been disposed of.
         /// </exception>
-        /// <exception cref="InvalidOperationException">
-        /// The <see cref="Multimedia.Player"/> that this instance belongs to is not in the valid state.
-        /// </exception>
         /// <since_tizen> 5 </since_tizen>
         public FieldOfView GetFieldOfView()
         {
@@ -366,8 +361,10 @@ namespace Tizen.Multimedia
         /// <exception cref="ObjectDisposedException">
         /// The <see cref="Multimedia.Player"/> that this instance belongs to has been disposed of.
         /// </exception>
-        /// <exception cref="InvalidOperationException">
-        /// The <see cref="Multimedia.Player"/> that this instance belongs to is not in the valid state.
+        /// <exception cref="ArgumentOutOfRangeException">
+        ///     <pramref name="fieldOfView.HorizontalDegrees"/> is less than 1 or larger than 360.<br/>
+        ///     -or-<br/>
+        ///     <pramref name="fieldOfView.VerticalDegrees"/> is less than 1 or larger than 180.<br/>
         /// </exception>
         /// <seealso cref="FieldOfView"/>
         /// <since_tizen> 5 </since_tizen>
@@ -392,6 +389,56 @@ namespace Tizen.Multimedia
 
             NativePlayer.SetFieldOfView(Player.Handle, fieldOfView.HorizontalDegrees, fieldOfView.VerticalDegrees).
                 ThrowIfFailed(Player, "Failed to set the field of the view.");
+        }
+
+        /// <summary>
+        /// Sets the zoom with the field of view for spherical video.
+        /// </summary>
+        /// <param name="level">The zoom level.</param>
+        /// <param name="fieldOfView">The degree values to display.</param>
+        /// <feature>http://tizen.org/feature/opengles.version.2_0</feature>
+        /// <feature>http://tizen.org/feature/multimedia.player.spherical_video</feature>
+        /// <exception cref="NotSupportedException">The required feature is not supported.</exception>
+        /// <exception cref="ObjectDisposedException">
+        /// The <see cref="Multimedia.Player"/> that this instance belongs to has been disposed of.
+        /// </exception>
+        /// <exception cref="ArgumentOutOfRangeException">
+        ///     <pramref name="level"/> is less than 1 or lager than 10.<br/>
+        ///     -or-<br/>
+        ///     <pramref name="fieldOfView.HorizontalDegrees"/> is less than 1 or larger than 360.<br/>
+        ///     -or-<br/>
+        ///     <pramref name="fieldOfView.VerticalDegrees"/> is less than 1 or larger than 180.<br/>
+        /// </exception>
+        /// <seealso cref="FieldOfView"/>
+        /// <seealso cref="GetZoom()"/>
+        /// <seealso cref="GetFileOfView()"/>
+        /// <since_tizen> 5 </since_tizen>
+        public void SetZoomWithFieldOfView(float level, FieldOfView fieldOfView)
+        {
+            ValidationUtil.ValidateFeatureSupported(PlayerFeatures.OpenGl);
+            ValidationUtil.ValidateFeatureSupported(PlayerFeatures.SphericalVideo);
+
+            Player.ValidateNotDisposed();
+
+            if (level < 1.0F || 10.0F < level)
+            {
+                throw new ArgumentOutOfRangeException(nameof(level), level, "Valid level is 1.0 to 10.0");
+            }
+
+            if (fieldOfView.HorizontalDegrees < 1 || fieldOfView.HorizontalDegrees > 360)
+            {
+                throw new ArgumentOutOfRangeException(nameof(fieldOfView.HorizontalDegrees), fieldOfView.HorizontalDegrees,
+                    $"Valid range is 1-360 degrees. : " + fieldOfView.HorizontalDegrees);
+            }
+
+            if (fieldOfView.VerticalDegrees < 1 || fieldOfView.VerticalDegrees > 180)
+            {
+                throw new ArgumentOutOfRangeException(nameof(fieldOfView.VerticalDegrees), fieldOfView.VerticalDegrees,
+                    $"Valid range is 1-180 degrees. : " + fieldOfView.VerticalDegrees);
+            }
+
+            NativePlayer.SetZoomWithFieldOfView(Player.Handle, level, fieldOfView.HorizontalDegrees, fieldOfView.VerticalDegrees).
+                ThrowIfFailed(Player, "Failed to set the zoom with the field of the view.");
         }
     }
 }

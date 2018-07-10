@@ -310,6 +310,9 @@ internal static partial class Interop
         [DllImport(Libraries.Player, EntryPoint = "player_360_get_field_of_view")]
         internal static extern PlayerErrorCode GetFieldOfView(IntPtr player, out int horizontalDegrees, out int verticalDegrees);
 
+        [DllImport(Libraries.Player, EntryPoint = "player_360_set_zoom_with_field_of_view")]
+        internal static extern PlayerErrorCode SetZoomWithFieldOfView(IntPtr player, float level, int horizontalDegrees, int verticalDegrees);
+
         [DllImport(Libraries.Player, EntryPoint = "player_foreach_adaptive_variant")]
         internal static extern PlayerErrorCode ForeachAdaptiveVariants(IntPtr player, AdaptiveVariantCallback callback, IntPtr userData);
 
