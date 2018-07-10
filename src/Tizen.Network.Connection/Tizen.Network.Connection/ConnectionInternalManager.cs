@@ -824,6 +824,10 @@ namespace Tizen.Network.Connection
                     Log.Error(Globals.LogTag, "No connection " + (ConnectionError)ret);
                     return null;
                 }
+                else if ((ConnectionError)ret == ConnectionError.InvalidParameter)
+                {
+                    throw new InvalidOperationException("Invalid handle");
+                }
                 else
                 {
                     Log.Error(Globals.LogTag, "It failed to get current profile, " + (ConnectionError)ret);
