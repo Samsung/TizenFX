@@ -82,11 +82,15 @@ namespace Tizen.NUI.Binding
         {
             get
             {
-                // if (s_platformServices == null)
-                // 	throw new InvalidOperationException("You MUST call Tizen.NUI.Init(); prior to using it.");
+                if (s_platformServices == null)
+                    throw new InvalidOperationException("You MUST call Tizen.NUI.Init(); prior to using it.");
                 return s_platformServices;
             }
-            set { s_platformServices = value; }
+            set
+            {
+                s_platformServices = value;
+                Console.WriteLine("Device s_platformServices : " + s_platformServices );
+            }
         }
 
         [EditorBrowsable(EditorBrowsableState.Never)]
@@ -101,17 +105,19 @@ namespace Tizen.NUI.Binding
         public static void BeginInvokeOnMainThread(Action action)
         {
             PlatformServices?.BeginInvokeOnMainThread(action);
+            action();
+            Console.WriteLine("Device BeginInvokeOnMainThread action called");
         }
 
-        public static double GetNamedSize(NamedSize size, Element targetElement)
-        {
-            return GetNamedSize(size, targetElement.GetType());
-        }
+        // public static double GetNamedSize(NamedSize size, Element targetElement)
+        // {
+        //     return GetNamedSize(size, targetElement.GetType());
+        // }
 
-        public static double GetNamedSize(NamedSize size, Type targetElementType)
-        {
-            return GetNamedSize(size, targetElementType, false);
-        }
+        // public static double GetNamedSize(NamedSize size, Type targetElementType)
+        // {
+        //     return GetNamedSize(size, targetElementType, false);
+        // }
 
         [Obsolete("OnPlatform is obsolete as of version 2.3.4. Please use switch(RuntimePlatform) instead.")]
         public static void OnPlatform(Action iOS = null, Action Android = null, Action WinPhone = null, Action Default = null)
@@ -163,12 +169,12 @@ namespace Tizen.NUI.Binding
 
         public static void OpenUri(Uri uri)
         {
-            PlatformServices?.OpenUriAction(uri);
+            // PlatformServices?.OpenUriAction(uri);
         }
 
         public static void StartTimer(TimeSpan interval, Func<bool> callback)
         {
-            PlatformServices?.StartTimer(interval, callback);
+            PlatformServices.StartTimer(interval, callback);
         }
 
         [EditorBrowsable(EditorBrowsableState.Never)]
@@ -177,11 +183,11 @@ namespace Tizen.NUI.Binding
             return PlatformServices?.GetAssemblies();
         }
 
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public static double GetNamedSize(NamedSize size, Type targetElementType, bool useOldSizes)
-        {
-            return PlatformServices.GetNamedSize(size, targetElementType, useOldSizes);
-        }
+        // [EditorBrowsable(EditorBrowsableState.Never)]
+        // public static double GetNamedSize(NamedSize size, Type targetElementType, bool useOldSizes)
+        // {
+        //     return PlatformServices.GetNamedSize(size, targetElementType, useOldSizes);
+        // }
 
         internal static Task<Stream> GetStreamAsync(Uri uri, CancellationToken cancellationToken)
         {

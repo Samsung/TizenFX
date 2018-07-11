@@ -478,7 +478,10 @@ namespace Tizen.NUI.Xaml
             if (attached)
                 minforetriever = () => property.DeclaringType.GetRuntimeMethod("Get" + property.PropertyName, new [] { typeof(BindableObject) });
             else
-                minforetriever = () => property.DeclaringType.GetRuntimeProperty(property.PropertyName);
+            {
+                minforetriever = () => property.DeclaringType.GetRuntimeProperties().LastOrDefault(p => p.Name == property.PropertyName);
+            }
+            //minforetriever = () => property.DeclaringType.GetRuntimeProperty(property.PropertyName);
             var convertedValue = value.ConvertTo(property.ReturnType, minforetriever, serviceProvider);
 
             if (bindable != null) {

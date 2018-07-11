@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using Tizen.NUI.Binding.Internals;
+using Tizen.NUI.Xaml;
 
 namespace Tizen.NUI.Binding
 {
@@ -91,6 +92,7 @@ namespace Tizen.NUI.Binding
             {
                 return;
             }
+            DependencyService.Register<IValueConverterProvider, ValueConverterProvider>();
 
             Type targetAttrType = typeof(DependencyAttribute);
 

@@ -18,6 +18,7 @@ using System;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using Tizen.NUI.Binding;
+using Tizen.NUI.Binding.Internals;
 
 namespace Tizen.NUI
 {
@@ -509,23 +510,17 @@ namespace Tizen.NUI
         /// <summary>
         /// Contains event arguments for the FocusChangeRequested event.
         /// </summary>
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
         public class FocusRequestArgs : EventArgs
         {
 
             /// <summary>
             /// Gets or sets a value that indicates the starting focus state of the element for which a focus change is requested.
             /// </summary>
-            /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
-            [EditorBrowsable(EditorBrowsableState.Never)]
             public bool Focus { get; set; }
 
             /// <summary>
             /// Gets or sets a value that indicates the ending focus state of the element for which a focus change is requested.
             /// </summary>
-            /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
-            [EditorBrowsable(EditorBrowsableState.Never)]
             public bool Result { get; set; }
         }
     }

@@ -332,6 +332,23 @@ namespace Tizen.NUI
         }
 
         /// <summary>
+        /// Determines whether the specified object is equal to the current object.
+        /// </summary>
+        /// <param name="obj">The object to compare with the current object.</param>
+        /// <returns>true if the specified object is equal to the current object; otherwise, false.</returns>
+        public override bool Equals(System.Object obj)
+        {
+            Size size = obj as Size;
+            bool equal = false;
+            if (Width == size?.Width && Height == size?.Height && Depth == size?.Depth)
+            {
+                equal = true;
+            }
+            return equal;
+        }
+
+
+        /// <summary>
         /// Checks equality.<br />
         /// Utilizes appropriate machine epsilon values.<br />
         /// </summary>

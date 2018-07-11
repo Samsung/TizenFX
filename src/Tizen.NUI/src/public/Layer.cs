@@ -29,22 +29,19 @@ namespace Tizen.NUI
     public class Layer : Container
     {
         private global::System.Runtime.InteropServices.HandleRef swigCPtr;
-        private global::System.IntPtr layoutIntPtr;
-        private global::System.Runtime.InteropServices.HandleRef layoutCPtr;
+        private global::System.IntPtr rootLayoutIntPtr;
+        private global::System.Runtime.InteropServices.HandleRef rootLayoutCPtr;
 
         internal Layer(global::System.IntPtr cPtr, bool cMemoryOwn) : base(NDalicPINVOKE.Layer_SWIGUpcast(cPtr), cMemoryOwn)
         {
             swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
-            // Create a default layout (AbsoluteLayout) for this layer that is invisible to the user but enables layouts
-            // to be added and work on this Layer.
-            // This layout is currently needed to store measure spec properties.
-            // Any children added to this Layer including other layouts will be added to this default layout.
-            // Each layer will have it's own default layout.
-            layoutIntPtr = NDalicManualPINVOKE.Window_NewRootLayout();
+            // Create a root layout (AbsoluteLayout) that is invisible to the user but enables layouts added to this Layer.
+            // Enables layouts added to the Layer to have a parent layout.  As parent layout is needed to store measure spec properties.
+            rootLayoutIntPtr = NDalicManualPINVOKE.Window_NewRootLayout();
             // Store HandleRef used by Add()
-            layoutCPtr = new global::System.Runtime.InteropServices.HandleRef(this, layoutIntPtr);
+            rootLayoutCPtr = new global::System.Runtime.InteropServices.HandleRef(this, rootLayoutIntPtr);
             // Add the root layout created above to this layer.
-            NDalicPINVOKE.Actor_Add( swigCPtr, layoutCPtr );
+            NDalicPINVOKE.Actor_Add( swigCPtr, rootLayoutCPtr );
         }
 
         internal static global::System.Runtime.InteropServices.HandleRef getCPtr(Layer obj)
@@ -69,13 +66,12 @@ namespace Tizen.NUI
                 {
                     oldParent.Remove(child);
                 }
-                NDalicPINVOKE.Actor_Add( layoutCPtr , View.getCPtr(child));
+                NDalicPINVOKE.Actor_Add( rootLayoutCPtr , View.getCPtr(child));
                 if (NDalicPINVOKE.SWIGPendingException.Pending)
                     throw NDalicPINVOKE.SWIGPendingException.Retrieve();
                 Children.Add(child);
             }
         }
-
 
         /// <summary>
         /// Removes a child view from this layer. If the view was not a child of this layer, this is a no-op.
@@ -85,7 +81,7 @@ namespace Tizen.NUI
         /// <since_tizen> 4 </since_tizen>
         public override void Remove(View child)
         {
-            NDalicPINVOKE.Actor_Remove( layoutCPtr, View.getCPtr(child));
+            NDalicPINVOKE.Actor_Remove( rootLayoutCPtr, View.getCPtr(child));
             if (NDalicPINVOKE.SWIGPendingException.Pending)
                 throw NDalicPINVOKE.SWIGPendingException.Retrieve();
 

@@ -4,6 +4,6 @@ namespace Tizen.NUI.Binding
 {
     internal interface ILayout
     {
-        // event EventHandler LayoutChanged;
+        event EventHandler LayoutChanged;
     }
 }

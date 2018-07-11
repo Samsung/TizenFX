@@ -29,7 +29,9 @@ namespace Tizen.NUI.Binding
         /// <summary>
         /// Gets or sets object that contains the properties that will be targeted by the bound properties that belong to this BindableObject.
         /// </summary>
-        internal object BindingContext
+        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public object BindingContext
         {
             get { return _inheritedContext ?? GetValue(BindingContextProperty); }
             set { SetValue(BindingContextProperty, value); }
@@ -50,7 +52,9 @@ namespace Tizen.NUI.Binding
         /// <summary>
         /// Raised whenever the BindingContext property changes.
         /// </summary>
-        internal event EventHandler BindingContextChanged;
+        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public event EventHandler BindingContextChanged;
 
         internal void ClearValue(BindableProperty property, bool fromStyle)
         {
@@ -114,7 +118,9 @@ namespace Tizen.NUI.Binding
         /// <summary>
         /// Raised when a property is about to change.
         /// </summary>
-        internal event PropertyChangingEventHandler PropertyChanging;
+        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public event PropertyChangingEventHandler PropertyChanging;
 
         /// <summary>
         /// Removes a previously set binding.
@@ -142,6 +148,8 @@ namespace Tizen.NUI.Binding
             SetBinding(targetProperty, binding, false);
         }
 
+        internal bool isCreateByXaml = false;
+
         /// <summary>
         /// Sets the value of the specified property.
         /// </summary>
@@ -149,7 +157,33 @@ namespace Tizen.NUI.Binding
         /// <param name="value">The value to set.</param>
         internal void SetValue(BindableProperty property, object value)
         {
-            SetValue(property, value, false, true);
+            if (true == isCreateByXaml)
+            {
+                SetValue(property, value, false, true);
+            }
+            else
+            {
+                property.PropertyChanged?.Invoke(this, null, value);
+            }
+        }
+
+        internal void SetValueAndForceSendChangeSignal(BindableProperty property, object value)
+        {
+            if (property == null)
+                throw new ArgumentNullException("property");
+
+            if (true == isCreateByXaml)
+            {
+                if (property.IsReadOnly)
+                    throw new InvalidOperationException(string.Format("The BindableProperty \"{0}\" is readonly.", property.PropertyName));
+
+                SetValueCore(property, value, SetValueFlags.ClearOneWayBindings | SetValueFlags.ClearDynamicResource,
+                    SetValuePrivateFlags.ManuallySet | SetValuePrivateFlags.CheckAccess, true);
+            }
+            else
+            {
+                property.PropertyChanged?.Invoke(this, null, value);
+            }
         }
 
         /// <summary>
@@ -171,7 +205,7 @@ namespace Tizen.NUI.Binding
         /// <param name="bindable">The object on which to set the inherited binding context.</param>
         /// <param name="value">The inherited context to set.</param>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        internal static void SetInheritedBindingContext(BindableObject bindable, object value)
+        public static void SetInheritedBindingContext(BindableObject bindable, object value)
         {
             BindablePropertyContext bpContext = bindable.GetContext(BindingContextProperty);
             if (bpContext != null && ((bpContext.Attributes & BindableContextAttributes.IsManuallySet) != 0))
@@ -202,6 +236,8 @@ namespace Tizen.NUI.Binding
         /// <summary>
         /// Apply the bindings to BindingContext.
         /// </summary>
+        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         protected void ApplyBindings()
         {
             ApplyBindings(skipBindingContext: false, fromBindingContextChanged: false);
@@ -210,6 +246,8 @@ namespace Tizen.NUI.Binding
         /// <summary>
         /// Override this method to execute an action when the BindingContext changes.
         /// </summary>
+        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         protected virtual void OnBindingContextChanged()
         {
             BindingContextChanged?.Invoke(this, EventArgs.Empty);
@@ -219,6 +257,8 @@ namespace Tizen.NUI.Binding
         /// Call this method from a child class to notify that a change happened on a property.
         /// </summary>
         /// <param name="propertyName">The name of the property that changed.</param>
+        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
             => PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
 
@@ -226,12 +266,16 @@ namespace Tizen.NUI.Binding
         /// Call this method from a child class to notify that a change is going to happen on a property.
         /// </summary>
         /// <param name="propertyName">The name of the property that is changing.</param>
+        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         protected virtual void OnPropertyChanging([CallerMemberName] string propertyName = null)
             => PropertyChanging?.Invoke(this, new PropertyChangingEventArgs(propertyName));
 
         /// <summary>
         /// Unapplies all previously set bindings.
         /// </summary>
+        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         protected void UnapplyBindings()
         {
             for (int i = 0, _propertiesCount = _properties.Count; i < _propertiesCount; i++) {
@@ -258,7 +302,6 @@ namespace Tizen.NUI.Binding
         /// <param name="property0">The BindableProperty instance.</param>
         /// <param name="property1">The BindableProperty instance.</param>
         /// <returns>The value that is contained the BindableProperty</returns>
-        [EditorBrowsable(EditorBrowsableState.Never)]
         internal object[] GetValues(BindableProperty property0, BindableProperty property1)
         {
             var values = new object[2];
@@ -297,7 +340,6 @@ namespace Tizen.NUI.Binding
         /// <param name="property1">The BindableProperty instance.</param>
         /// <param name="property2">The BindableProperty instance.</param>
         /// <returns>The value that is contained the BindableProperty</returns>
-        [EditorBrowsable(EditorBrowsableState.Never)]
         internal object[] GetValues(BindableProperty property0, BindableProperty property1, BindableProperty property2)
         {
             var values = new object[3];
@@ -341,7 +383,6 @@ namespace Tizen.NUI.Binding
         /// </summary>
         /// <param name="properties">The array of the BindableProperty instances</param>
         /// <returns>The values that is contained the BindableProperty instances.</returns>
-        [EditorBrowsable(EditorBrowsableState.Never)]
         internal object[] GetValues(params BindableProperty[] properties)
         {
             var values = new object[properties.Length];
@@ -451,7 +492,7 @@ namespace Tizen.NUI.Binding
 
         internal void SetValueCore(BindablePropertyKey propertyKey, object value, SetValueFlags attributes = SetValueFlags.None)
         {
-            SetValueCore(propertyKey.BindableProperty, value, attributes, SetValuePrivateFlags.None);
+            SetValueCore(propertyKey.BindableProperty, value, attributes, SetValuePrivateFlags.None, false);
         }
 
         /// <summary>
@@ -463,10 +504,10 @@ namespace Tizen.NUI.Binding
         [EditorBrowsable(EditorBrowsableState.Never)]
         internal void SetValueCore(BindableProperty property, object value, SetValueFlags attributes = SetValueFlags.None)
         {
-            SetValueCore(property, value, attributes, SetValuePrivateFlags.Default);
+            SetValueCore(property, value, attributes, SetValuePrivateFlags.Default, false);
         }
 
-        internal void SetValueCore(BindableProperty property, object value, SetValueFlags attributes, SetValuePrivateFlags privateAttributes)
+        internal void SetValueCore(BindableProperty property, object value, SetValueFlags attributes, SetValuePrivateFlags privateAttributes, bool forceSendChangeSignal)
         {
             bool checkAccess = (privateAttributes & SetValuePrivateFlags.CheckAccess) != 0;
             bool manuallySet = (privateAttributes & SetValuePrivateFlags.ManuallySet) != 0;
@@ -518,7 +559,7 @@ namespace Tizen.NUI.Binding
             else
             {
                 context.Attributes |= BindableContextAttributes.IsBeingSet;
-                SetValueActual(property, context, value, currentlyApplying, attributes, silent);
+                SetValueActual(property, context, value, currentlyApplying, forceSendChangeSignal, attributes, silent);
 
                 Queue<SetValueArgs> delayQueue = context.DelayedSetters;
                 if (delayQueue != null)
@@ -526,7 +567,7 @@ namespace Tizen.NUI.Binding
                     while (delayQueue.Count > 0)
                     {
                         SetValueArgs s = delayQueue.Dequeue();
-                        SetValueActual(s.Property, s.Context, s.Value, s.CurrentlyApplying, s.Attributes);
+                        SetValueActual(s.Property, s.Context, s.Value, s.CurrentlyApplying, forceSendChangeSignal, s.Attributes);
                     }
 
                     context.DelayedSetters = null;
@@ -650,6 +691,10 @@ namespace Tizen.NUI.Binding
             {
                 context = CreateAndAddContext(property);
             }
+            else if (property.DefaultValueCreator != null )
+            {
+                context.Value = property.DefaultValueCreator(this); //Update Value from dali
+            }//added by xb.teng
 
             return context;
         }
@@ -675,10 +720,11 @@ namespace Tizen.NUI.Binding
                 return;
 
             SetValueCore(property, value, SetValueFlags.ClearOneWayBindings | SetValueFlags.ClearDynamicResource,
-                (fromStyle ? SetValuePrivateFlags.FromStyle : SetValuePrivateFlags.ManuallySet) | (checkAccess ? SetValuePrivateFlags.CheckAccess : 0));
+                (fromStyle ? SetValuePrivateFlags.FromStyle : SetValuePrivateFlags.ManuallySet) | (checkAccess ? SetValuePrivateFlags.CheckAccess : 0),
+                false);
         }
 
-        void SetValueActual(BindableProperty property, BindablePropertyContext context, object value, bool currentlyApplying, SetValueFlags attributes, bool silent = false)
+        void SetValueActual(BindableProperty property, BindablePropertyContext context, object value, bool currentlyApplying, bool forceSendChangeSignal, SetValueFlags attributes, bool silent = false)
         {
             object original = context.Value;
             bool raiseOnEqual = (attributes & SetValueFlags.RaiseOnEqual) != 0;
@@ -715,18 +761,32 @@ namespace Tizen.NUI.Binding
                 }
             }
 
-            if (!silent && (!same || raiseOnEqual))
+            if (!silent)
             {
-                if (binding != null && !currentlyApplying)
+                if ((!same || raiseOnEqual))
                 {
-                    _applying = true;
-                    binding.Apply(true);
-                    _applying = false;
+                    property.PropertyChanged?.Invoke(this, original, value);
+
+                    if (binding != null && !currentlyApplying)
+                    {
+                        _applying = true;
+                        binding.Apply(true);
+                        _applying = false;
+                    }
+                   
+                    OnPropertyChanged(property.PropertyName);
                 }
+                else if (true == same && true == forceSendChangeSignal)
+                {
+                    if (binding != null && !currentlyApplying)
+                    {
+                        _applying = true;
+                        binding.Apply(true);
+                        _applying = false;
+                    }
 
-                OnPropertyChanged(property.PropertyName);
-
-                property.PropertyChanged?.Invoke(this, original, value);
+                    OnPropertyChanged(property.PropertyName);
+                }
             }
         }
 
@@ -789,31 +849,41 @@ namespace Tizen.NUI.Binding.Internals
     /// </summary>
     [Flags]
     [EditorBrowsable(EditorBrowsableState.Never)]
-    internal enum SetValueFlags
+    public enum SetValueFlags
     {
         /// <summary>
         /// None.
         /// </summary>
+        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         None = 0,
 
         /// <summary>
         /// Clear OneWay bindings.
         /// </summary>
+        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         ClearOneWayBindings = 1 << 0,
 
         /// <summary>
         /// Clear TwoWay bindings.
         /// </summary>
+        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         ClearTwoWayBindings = 1 << 1,
 
         /// <summary>
         /// Clear dynamic resource.
         /// </summary>
+        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         ClearDynamicResource = 1 << 2,
 
         /// <summary>
         /// Raise or equal.
         /// </summary>
+        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         RaiseOnEqual = 1 << 3
     }
 }

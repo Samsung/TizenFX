@@ -2,8 +2,8 @@
 {
     internal static class PaddingElement
     {
-        public static readonly BindableProperty PaddingProperty =
-            BindableProperty.Create(/*nameof(IPaddingElement.Padding)*/"Padding", typeof(Thickness), typeof(IPaddingElement), default(Thickness),
+        internal static readonly BindableProperty PaddingProperty =
+            BindableProperty.Create("Padding", typeof(Thickness), typeof(IPaddingElement), default(Thickness),
                                     propertyChanged: OnPaddingPropertyChanged,
                                     defaultValueCreator: PaddingDefaultValueCreator);
 

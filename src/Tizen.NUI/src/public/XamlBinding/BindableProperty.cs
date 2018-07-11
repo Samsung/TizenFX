@@ -15,7 +15,7 @@ namespace Tizen.NUI.Binding
     [DebuggerDisplay("{PropertyName}")]
     [TypeConverter(typeof(BindablePropertyConverter))]
     [EditorBrowsable(EditorBrowsableState.Never)]
-    internal sealed class BindableProperty
+    public sealed class BindableProperty
     {
         /// <summary>
         /// Delegate for BindableProperty.PropertyChanged.

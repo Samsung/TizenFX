@@ -7,7 +7,7 @@ namespace Tizen.NUI.Binding
     /// The secret key to a BindableProperty, used to implement a BindableProperty with restricted write access.
     /// </summary>
     [EditorBrowsable(EditorBrowsableState.Never)]
-    internal sealed class BindablePropertyKey
+    public sealed class BindablePropertyKey
     {
         internal BindablePropertyKey(BindableProperty property)
         {

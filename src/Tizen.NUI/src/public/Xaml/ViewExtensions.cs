@@ -66,5 +66,12 @@ namespace Tizen.NUI.Xaml
             XamlLoader.Load(view, xaml);
             return view;
         }
-    }
+
+        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static Transition LoadTransition(string animationXamlPath)
+        {
+            return XamlLoader.LoadTransition(animationXamlPath);
+        }
+	}
 }

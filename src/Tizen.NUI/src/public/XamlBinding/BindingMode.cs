@@ -6,7 +6,7 @@ namespace Tizen.NUI.Binding
     /// The direction of changes propagation for bindings.
     /// </summary>
     [EditorBrowsable(EditorBrowsableState.Never)]
-    internal enum BindingMode
+    public enum BindingMode
     {
         /// <summary>
         /// When used in Bindings, indicates that the Binding should use the DefaultBindingMode. When used in BindableProperty declaration, defaults to BindingMode.OneWay.

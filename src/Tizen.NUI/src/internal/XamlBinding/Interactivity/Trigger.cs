@@ -11,21 +11,21 @@ namespace Tizen.NUI.Binding
     [AcceptEmptyServiceProvider]
     internal sealed class Trigger : TriggerBase, IValueProvider
     {
-        public Trigger([TypeConverter(typeof(TypeTypeConverter))] [Parameter("TargetType")] Type targetType) : base(new PropertyCondition(), targetType)
+        public Trigger([TypeConverter(typeof(TypeTypeConverter))] [Parameter("TargetType")] Type targetType) : base(new XamlPropertyCondition(), targetType)
         {
         }
 
         public BindableProperty Property
         {
-            get { return ((PropertyCondition)Condition).Property; }
+            get { return ((XamlPropertyCondition)Condition).Property; }
             set
             {
-                if (((PropertyCondition)Condition).Property == value)
+                if (((XamlPropertyCondition)Condition).Property == value)
                     return;
                 if (IsSealed)
                     throw new InvalidOperationException("Can not change Property once the Trigger has been applied.");
                 OnPropertyChanging();
-                ((PropertyCondition)Condition).Property = value;
+                ((XamlPropertyCondition)Condition).Property = value;
                 OnPropertyChanged();
             }
         }
@@ -37,15 +37,15 @@ namespace Tizen.NUI.Binding
 
         public object Value
         {
-            get { return ((PropertyCondition)Condition).Value; }
+            get { return ((XamlPropertyCondition)Condition).Value; }
             set
             {
-                if (((PropertyCondition)Condition).Value == value)
+                if (((XamlPropertyCondition)Condition).Value == value)
                     return;
                 if (IsSealed)
                     throw new InvalidOperationException("Can not change Value once the Trigger has been applied.");
                 OnPropertyChanging();
-                ((PropertyCondition)Condition).Value = value;
+                ((XamlPropertyCondition)Condition).Value = value;
                 OnPropertyChanged();
             }
         }

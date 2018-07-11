@@ -18,6 +18,9 @@ using System;
 using System.ComponentModel;
 using Tizen.NUI.Binding;
 using Tizen.NUI.BaseComponents;
+using Tizen.NUI.Xaml;
+using System.Collections.Generic;
+using System.IO;
 
 namespace Tizen.NUI
 {
@@ -31,6 +34,7 @@ namespace Tizen.NUI
         /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public View Root {get; internal set;}
+        private Window Window;
 
         internal static readonly BindableProperty ContentProperty = BindableProperty.Create(nameof(Content), typeof(View), typeof(ContentPage), null, propertyChanged: (bindable, oldValue, newValue) =>
         {
@@ -74,16 +78,18 @@ namespace Tizen.NUI
         /// <summary>
         /// Method that is called when the binding content changes.
         /// </summary>
+        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         protected override void OnBindingContextChanged()
         {
             base.OnBindingContextChanged();
 
             View content = Content;
-            // ControlTemplate controlTemplate = ControlTemplate;
-            // if (content != null && controlTemplate != null)
-            // {
-            // 	SetInheritedBindingContext(content, BindingContext);
-            // }
+            ControlTemplate controlTemplate = ControlTemplate;
+            if (content != null && controlTemplate != null)
+            {
+                SetInheritedBindingContext(content, BindingContext);
+            }
         }
 
         internal override void OnControlTemplateChanged(ControlTemplate oldValue, ControlTemplate newValue)
@@ -107,16 +113,38 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public ContentPage(Window win)
         {
+            isCreateByXaml = true;
+
             Root = new View();
             Root.WidthResizePolicy = ResizePolicyType.FillToParent;
             Root.HeightResizePolicy = ResizePolicyType.FillToParent;
-
+            
             win.Add(Root);
+        }
+
+        /// <summary>
+        /// The Resources property.
+        /// </summary>
+        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public ResourceDictionary XamlResources
+        {
+            get
+            {
+                return Application.Current.XamlResources;
+            }
+
+            set
+            {
+                Application.Current.XamlResources = value;
+            }
         }
 
         /// <summary>
         /// To make the ContentPage instance be disposed.
         /// </summary>
+        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         protected override void Dispose(DisposeTypes type)
         {
             if (disposed)
@@ -212,5 +240,55 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public virtual void SetFocus() { }
 
+        private Dictionary<string, Transition> transDictionary = new Dictionary<string, Transition>();
+
+        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public Animation CreateAnimation(string animationType)
+        {
+            Animation ani = null;
+            Transition trans = null;
+            transDictionary.TryGetValue(animationType, out trans);
+
+            ani = trans?.CreateAnimation();
+            return ani;
+        }
+
+        private void CreateAnimationFactory()
+        {
+            foreach (string str in transitionType)
+            {
+                string resourceName = str + ".xaml";
+                Transition trans = null;
+
+                string resource = Tizen.Applications.Application.Current.DirectoryInfo.Resource;
+
+                string likelyResourcePath = resource + "animation/" + resourceName;
+
+                if (File.Exists(likelyResourcePath))
+                {
+                    trans = Extensions.LoadTransition(likelyResourcePath);
+                }
+
+                transDictionary.Add(trans.Name, trans);
+            }
+        }
+
+        private string[] transitionType;
+
+        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public string[] TransitionType
+        {
+            get
+            {
+                return transitionType;
+            }
+            set
+            {
+                transitionType = value;
+                CreateAnimationFactory();
+            }
+        }
     }
 }

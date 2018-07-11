@@ -38,7 +38,7 @@ using Tizen.NUI.Binding.Internals;
 
 namespace Tizen.NUI.Xaml
 {
-    static class XamlParser
+    internal static class XamlParser
     {
         public const string XFUri = "http://xamarin.com/schemas/2014/forms";
         public const string NUI2018Uri = "http://tizen.org/Tizen.NUI/2018/XAML";
@@ -312,7 +312,7 @@ namespace Tizen.NUI.Xaml
         }
 
         static IList<XmlnsDefinitionAttribute> s_xmlnsDefinitions;
-        internal static IList<Assembly> s_assemblies = new List<Assembly>();
+        public static IList<Assembly> s_assemblies = new List<Assembly>();// = new Assembly[]{};
 
         static void GatherXmlnsDefinitionAttributes()
         {
@@ -321,6 +321,7 @@ namespace Tizen.NUI.Xaml
             // 	typeof(View).GetTypeInfo().Assembly,
             // 	//typeof(XamlLoader).GetTypeInfo().Assembly,
             // };
+            // s_assemblies = new Assembly[]{typeof(View).GetTypeInfo().Assembly};
             s_assemblies.Add(typeof(View).GetTypeInfo().Assembly);
 
             s_xmlnsDefinitions = new List<XmlnsDefinitionAttribute>();

@@ -302,6 +302,12 @@ namespace Tizen.NUI
         [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint = "CSharp_Dali_UngrabKey")]
         public static extern bool UngrabKey(System.IntPtr Window, int DaliKey);
 
+        [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint = "CSharp_Dali_SetKeyboardRepeatInfo")]
+        public static extern bool SetKeyboardRepeatInfo(double rate, double delay);
+
+        [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint = "CSharp_Dali_GetKeyboardRepeatInfo")]
+        public static extern bool GetKeyboardRepeatInfo(out double rate, out double delay);
+
         [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint = "CSharp_Dali_GetNativeWindowHandler")]
         public static extern System.IntPtr GetNativeWindowHandler(System.IntPtr Window);
 
@@ -465,6 +471,12 @@ namespace Tizen.NUI
 
         [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint = "CSharp_Dali_InputMethodContext_GetInputPanelLocale")]
         public static extern string InputMethodContext_GetInputPanelLocale(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+        [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint = "CSharp_Dali_InputMethodContext_AllowTextPrediction")]
+        public static extern void InputMethodContext_AllowTextPrediction(global::System.Runtime.InteropServices.HandleRef jarg1, bool jarg2);
+
+        [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint = "CSharp_Dali_InputMethodContext_IsTextPredictionAllowed")]
+        public static extern bool InputMethodContext_IsTextPredictionAllowed(global::System.Runtime.InteropServices.HandleRef jarg1);
 
         [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint = "CSharp_Dali_InputMethodContext_ActivatedSignal")]
         public static extern global::System.IntPtr InputMethodContext_ActivatedSignal(global::System.Runtime.InteropServices.HandleRef jarg1);

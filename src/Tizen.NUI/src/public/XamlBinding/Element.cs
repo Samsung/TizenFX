@@ -15,14 +15,15 @@ namespace Tizen.NUI.Binding
     [EditorBrowsable(EditorBrowsableState.Never)]
     public abstract partial class Element : BindableObject, IElement, INameScope, IElementController
     {
-        // internal static readonly BindableProperty MenuProperty = BindableProperty.CreateAttached(nameof(Menu), typeof(Menu), typeof(Element), null);
 
-        // internal static Menu GetMenu(BindableObject bindable)
+        // public static readonly BindableProperty MenuProperty = BindableProperty.CreateAttached(nameof(Menu), typeof(Menu), typeof(Element), null);
+
+        // public static Menu GetMenu(BindableObject bindable)
         // {
         // 	return (Menu)bindable.GetValue(MenuProperty);
         // }
 
-        // internal static void SetMenu(BindableObject bindable, Menu menu)
+        // public static void SetMenu(BindableObject bindable, Menu menu)
         // {
         // 	bindable.SetValue(MenuProperty, menu);
         // }
@@ -57,7 +58,9 @@ namespace Tizen.NUI.Binding
         /// <summary>
         /// Gets or sets a value that allows the automation framework to find and interact with this element.
         /// </summary>
-        internal string AutomationId
+        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public string AutomationId
         {
             get { return _automationId; }
             set
@@ -71,7 +74,9 @@ namespace Tizen.NUI.Binding
         /// <summary>
         /// Gets or sets a value used to identify a collection of semantically similar elements.
         /// </summary>
-        internal string ClassId
+        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public string ClassId
         {
             get { return (string)GetValue(ClassIdProperty); }
             set { SetValue(ClassIdProperty, value); }
@@ -94,7 +99,9 @@ namespace Tizen.NUI.Binding
         /// <summary>
         /// Gets a value that can be used to uniquely identify an element through the run of an application.
         /// </summary>
-        internal Guid Id
+        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public Guid Id
         {
             get
             {
@@ -108,7 +115,9 @@ namespace Tizen.NUI.Binding
         /// Gets the element which is the closest ancestor of this element that is a BaseHandle.
         /// </summary>
         [Obsolete("ParentView is obsolete as of version 2.1.0. Please use Parent instead.")]
-        internal BaseHandle ParentView
+        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public /*VisualElement*/BaseHandle ParentView
         {
             get
             {
@@ -127,7 +136,9 @@ namespace Tizen.NUI.Binding
         /// <summary>
         /// Gets or sets a user defined value to uniquely identify the element.
         /// </summary>
-        internal string StyleId
+        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public string StyleId
         {
             get { return _styleId; }
             set
@@ -147,7 +158,7 @@ namespace Tizen.NUI.Binding
         /// For internal use.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        internal ReadOnlyCollection<Element> LogicalChildren => LogicalChildrenInternal;
+        public ReadOnlyCollection<Element> LogicalChildren => LogicalChildrenInternal;
 
         internal bool Owned { get; set; }
 
@@ -174,7 +185,6 @@ namespace Tizen.NUI.Binding
         /// <summary>
         /// For internal use.
         /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
         internal IPlatform Platform
         {
             get
@@ -188,11 +198,11 @@ namespace Tizen.NUI.Binding
                 if (_platform == value)
                     return;
                 _platform = value;
-                // PlatformSet?.Invoke(this, EventArgs.Empty);
+                PlatformSet?.Invoke(this, EventArgs.Empty);
                 foreach (Element descendant in Descendants())
                 {
                     descendant._platform = _platform;
-                    // descendant.PlatformSet?.Invoke(this, EventArgs.Empty);
+                    descendant.PlatformSet?.Invoke(this, EventArgs.Empty);
                 }
             }
         }
@@ -201,7 +211,7 @@ namespace Tizen.NUI.Binding
         /// For internal use.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        internal Element RealParent { get; private set; }
+        public Element RealParent { get; private set; }
 
         Dictionary<BindableProperty, string> DynamicResources
         {
@@ -217,7 +227,9 @@ namespace Tizen.NUI.Binding
         /// <summary>
         /// Gets or sets the parent element of the element.
         /// </summary>
-        internal Element Parent
+        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public Element Parent
         {
             get { return _parentOverride ?? RealParent; }
             set
@@ -269,7 +281,6 @@ namespace Tizen.NUI.Binding
         /// <summary>
         /// For internal use.
         /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
         internal IEffectControlProvider EffectControlProvider
         {
             get { return _effectControlProvider; }
@@ -294,14 +305,13 @@ namespace Tizen.NUI.Binding
             }
         }
 
-        // void IElementController.SetValueFromRenderer(BindableProperty property, object value) => SetValueFromRenderer(property, value);
+        //void IElementController.SetValueFromRenderer(BindableProperty property, object value) => SetValueFromRenderer(property, value);
 
         /// <summary>
         /// Sets the value of the specified property.
         /// </summary>
         /// <param name="property">The BindableProperty on which to assign a value.</param>
         /// <param name="value">The value to set.</param>
-        [EditorBrowsable(EditorBrowsableState.Never)]
         internal void SetValueFromRenderer(BindableProperty property, object value)
         {
             SetValueCore(property, value);
@@ -312,7 +322,6 @@ namespace Tizen.NUI.Binding
         /// </summary>
         /// <param name="property">The BindablePropertyKey on which to assign a value.</param>
         /// <param name="value">The value to set.</param>
-        [EditorBrowsable(EditorBrowsableState.Never)]
         internal void SetValueFromRenderer(BindablePropertyKey property, object value)
         {
             SetValueCore(property, value);
@@ -324,7 +333,7 @@ namespace Tizen.NUI.Binding
         /// <param name="name">The nameof the effect</param>
         /// <returns>true if attached</returns>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        internal bool EffectIsAttached(string name)
+        public bool EffectIsAttached(string name)
         {
             foreach (var effect in Effects)
             {
@@ -397,6 +406,8 @@ namespace Tizen.NUI.Binding
         /// <summary>
         /// Invoked whenever the binding context of the element changes. Implement this method to add class handling for this event.
         /// </summary>
+        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         protected override void OnBindingContextChanged()
         {
             var gotBindingContext = false;
@@ -428,6 +439,8 @@ namespace Tizen.NUI.Binding
         /// Invoked whenever the ChildAdded event needs to be emitted.Implement this method to add class handling for this event.
         /// </summary>
         /// <param name="child">The element that was added.</param>
+        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         protected virtual void OnChildAdded(Element child)
         {
             child.Parent = this;
@@ -447,6 +460,8 @@ namespace Tizen.NUI.Binding
         /// Invoked whenever the ChildRemoved event needs to be emitted.Implement this method to add class handling for this event.
         /// </summary>
         /// <param name="child">The element that was removed.</param>
+        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         protected virtual void OnChildRemoved(Element child)
         {
             child.Parent = null;
@@ -461,6 +476,8 @@ namespace Tizen.NUI.Binding
         /// <summary>
         /// Invoked whenever the Parent of an element is set.Implement this method in order to add behavior when the element is added to a parent.
         /// </summary>
+        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         protected virtual void OnParentSet()
         {
             ParentSet?.Invoke(this, EventArgs.Empty);
@@ -471,6 +488,8 @@ namespace Tizen.NUI.Binding
         /// Method that is called when a bound property is changed.
         /// </summary>
         /// <param name="propertyName">The name of the bound property that changed.</param>
+        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         protected override void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
             base.OnPropertyChanged(propertyName);
@@ -490,7 +509,7 @@ namespace Tizen.NUI.Binding
         /// </summary>
         /// <returns>the elements</returns>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        internal IEnumerable<Element> Descendants()
+        public IEnumerable<Element> Descendants()
         {
             var queue = new Queue<Element>(16);
             queue.Enqueue(this);
@@ -610,7 +629,7 @@ namespace Tizen.NUI.Binding
         /// For internal use.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        internal event EventHandler PlatformSet;
+        public event EventHandler PlatformSet;
 
         internal virtual void SetChildInheritedBindingContext(Element child, object context)
         {

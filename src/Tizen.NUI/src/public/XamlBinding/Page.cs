@@ -32,22 +32,28 @@ namespace Tizen.NUI
     /// </summary>
     // [RenderWith(typeof(_PageRenderer))]
     [EditorBrowsable(EditorBrowsableState.Never)]
-    public class Page : BaseHandle, ILayout, IPageController, IElementConfiguration<Page>, IPaddingElement
+    public class Page : /*VisualElement*/BaseHandle, ILayout, IPageController, IElementConfiguration<Page>, IPaddingElement
     {
         /// <summary>
         /// For internal use.
         /// </summary>
-        internal const string BusySetSignalName = "Xamarin.BusySet";
+        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public const string BusySetSignalName = "NUI.BusySet";
 
         /// <summary>
         /// For internal use.
         /// </summary>
-        internal const string AlertSignalName = "Xamarin.SendAlert";
+        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public const string AlertSignalName = "NUI.SendAlert";
 
         /// <summary>
         /// For internal use.
         /// </summary>
-        internal const string ActionSheetSignalName = "Xamarin.ShowActionSheet";
+        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public const string ActionSheetSignalName = "NUI.ShowActionSheet";
 
         internal static readonly BindableProperty IgnoresContainerAreaProperty = BindableProperty.Create("IgnoresContainerArea", typeof(bool), typeof(Page), false);
 
@@ -104,7 +110,9 @@ namespace Tizen.NUI
         /// <summary>
         /// Identifies the image used as a background for the Page.
         /// </summary>
-        internal string BackgroundImage
+        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public string BackgroundImage
         {
             get { return (string)GetValue(BackgroundImageProperty); }
             set { SetValue(BackgroundImageProperty, value); }
@@ -119,7 +127,9 @@ namespace Tizen.NUI
         /// <summary>
         /// Marks the Page as busy. This will cause the platform specific global activity indicator to show a busy state.
         /// </summary>
-        internal bool IsBusy
+        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public bool IsBusy
         {
             get { return (bool)GetValue(IsBusyProperty); }
             set { SetValue(IsBusyProperty, value); }
@@ -147,7 +157,9 @@ namespace Tizen.NUI
         /// <summary>
         /// The Page's title.
         /// </summary>
-        internal string Title
+        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public string Title
         {
             get { return (string)GetValue(TitleProperty); }
             set { SetValue(TitleProperty, value); }
@@ -159,7 +171,7 @@ namespace Tizen.NUI
         /// For internal use.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        internal Rectangle ContainerArea
+        public Rectangle ContainerArea
         {
             get { return _containerArea; }
             set
@@ -176,7 +188,7 @@ namespace Tizen.NUI
         /// For internal use.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        internal bool IgnoresContainerArea
+        public bool IgnoresContainerArea
         {
             get { return (bool)GetValue(IgnoresContainerAreaProperty); }
             set { SetValue(IgnoresContainerAreaProperty, value); }
@@ -186,7 +198,7 @@ namespace Tizen.NUI
         /// For internal use.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        internal ObservableCollection<Element> InternalChildren { get; } = new ObservableCollection<Element>();
+        public ObservableCollection<Element> InternalChildren { get; } = new ObservableCollection<Element>();
 
         internal override ReadOnlyCollection<Element> LogicalChildrenInternal => 
             _logicalChildren ?? (_logicalChildren = new ReadOnlyCollection<Element>(InternalChildren));
@@ -194,17 +206,23 @@ namespace Tizen.NUI
         /// <summary>
         /// Raised when the layout of the Page has changed.
         /// </summary>
-        internal event EventHandler LayoutChanged;
+        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public event EventHandler LayoutChanged;
 
         /// <summary>
         /// ndicates that the Page is about to appear.
         /// </summary>
-        internal event EventHandler Appearing;
+        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public event EventHandler Appearing;
 
         /// <summary>
         /// Indicates that the Page is about to cease displaying.
         /// </summary>
-        internal event EventHandler Disappearing;
+        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public event EventHandler Disappearing;
 
         /// <summary>
         /// Displays a native platform action sheet, allowing the application user to choose from several buttons.
@@ -214,7 +232,9 @@ namespace Tizen.NUI
         /// <param name="destruction">Text to be displayed in the 'Destruct' button. Can be null to hide the destructive option.</param>
         /// <param name="buttons">Text labels for additional buttons. Must not be null.</param>
         /// <returns>An awaitable Task that displays an action sheet and returns the Text of the button pressed by the user.</returns>
-        internal Task<string> DisplayActionSheet(string title, string cancel, string destruction, params string[] buttons)
+        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public Task<string> DisplayActionSheet(string title, string cancel, string destruction, params string[] buttons)
         {
             var args = new ActionSheetArguments(title, cancel, destruction, buttons);
             MessagingCenter.Send(this, ActionSheetSignalName, args);
@@ -228,7 +248,9 @@ namespace Tizen.NUI
         /// <param name="message">The body text of the alert dialog.</param>
         /// <param name="cancel">Text to be displayed on the 'Cancel' button.</param>
         /// <returns></returns>
-        internal Task DisplayAlert(string title, string message, string cancel)
+        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public Task DisplayAlert(string title, string message, string cancel)
         {
             return DisplayAlert(title, message, null, cancel);
         }
@@ -241,7 +263,9 @@ namespace Tizen.NUI
         /// <param name="accept">Text to be displayed on the 'Accept' button.</param>
         /// <param name="cancel">Text to be displayed on the 'Cancel' button.</param>
         /// <returns></returns>
-        internal Task<bool> DisplayAlert(string title, string message, string accept, string cancel)
+        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public Task<bool> DisplayAlert(string title, string message, string accept, string cancel)
         {
             if (string.IsNullOrEmpty(cancel))
                 throw new ArgumentNullException("cancel");
@@ -254,7 +278,9 @@ namespace Tizen.NUI
         /// <summary>
         /// Forces the Page to perform a layout pass.
         /// </summary>
-        internal void ForceLayout()
+        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void ForceLayout()
         {
             // SizeAllocated(Width, Height);
         }
@@ -263,7 +289,9 @@ namespace Tizen.NUI
         /// Calls OnBackButtonPressed().
         /// </summary>
         /// <returns></returns>
-        internal bool SendBackButtonPressed()
+        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public bool SendBackButtonPressed()
         {
             return OnBackButtonPressed();
         }
@@ -275,6 +303,8 @@ namespace Tizen.NUI
         /// <param name="y">Top of layout area.</param>
         /// <param name="width">Width of layout area.</param>
         /// <param name="height">Height of layout area.</param>
+        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         protected virtual void LayoutChildren(double x, double y, double width, double height)
         {
             var area = new Rectangle((int)x, (int)y, (int)width, (int)height);
@@ -307,6 +337,8 @@ namespace Tizen.NUI
         /// <summary>
         /// When overridden, allows application developers to customize behavior immediately prior to the Page becoming visible.
         /// </summary>
+        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         protected virtual void OnAppearing()
         {
         }
@@ -315,6 +347,8 @@ namespace Tizen.NUI
         /// Application developers can override this method to provide behavior when the back button is pressed.
         /// </summary>
         /// <returns>true if consumed</returns>
+        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         protected virtual bool OnBackButtonPressed()
         {
             var application = RealParent as Application;
@@ -333,13 +367,15 @@ namespace Tizen.NUI
         /// <summary>
         /// Invoked whenever the binding context of the Page changes. Override this method to add class handling for this event.
         /// </summary>
+        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         protected override void OnBindingContextChanged()
         {
             base.OnBindingContextChanged();
-            foreach (ToolbarItem toolbarItem in ToolbarItems)
-            {
-                SetInheritedBindingContext(toolbarItem, BindingContext);
-            }
+            // foreach (ToolbarItem toolbarItem in ToolbarItems)
+            // {
+            // 	SetInheritedBindingContext(toolbarItem, BindingContext);
+            // }
         }
 
         /// <summary>
@@ -347,6 +383,8 @@ namespace Tizen.NUI
         /// </summary>
         /// <param name="sender">The object that raised the event.</param>
         /// <param name="e">The event arguments.</param>
+        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         protected virtual void OnChildMeasureInvalidated(object sender, EventArgs e)
         {
             InvalidationTrigger trigger = (e as InvalidationEventArgs)?.Trigger ?? InvalidationTrigger.Undefined;
@@ -356,6 +394,8 @@ namespace Tizen.NUI
         /// <summary>
         /// When overridden, allows the application developer to customize behavior as the Page disappears.
         /// </summary>
+        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         protected virtual void OnDisappearing()
         {
         }
@@ -363,6 +403,8 @@ namespace Tizen.NUI
         /// <summary>
         /// Called when the Page's Parent property has changed.
         /// </summary>
+        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         protected override void OnParentSet()
         {
             //if (!Application.IsApplicationOrNull(RealParent) && !(RealParent is Page))
@@ -383,6 +425,8 @@ namespace Tizen.NUI
         /// <summary>
         /// Requests that the children Elements of the Page update their layouts.
         /// </summary>
+        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         protected void UpdateChildrenLayout()
         {
             if (!ShouldLayoutChildren())
@@ -444,7 +488,7 @@ namespace Tizen.NUI
         /// For intarnal use.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        internal void SendAppearing()
+        public void SendAppearing()
         {
             if (_hasAppeared)
                 return;
@@ -467,7 +511,7 @@ namespace Tizen.NUI
         /// For intarnal use.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        internal void SendDisappearing()
+        public void SendDisappearing()
         {
             if (!_hasAppeared)
                 return;
@@ -536,8 +580,8 @@ namespace Tizen.NUI
         {
             if (args.Action != NotifyCollectionChangedAction.Add)
                 return;
-            // foreach (IElement item in args.NewItems)
-                // item.Parent = this;
+            foreach (IElement item in args.NewItems)
+                item.Parent = this;
         }
 
         bool ShouldLayoutChildren()
@@ -571,9 +615,9 @@ namespace Tizen.NUI
         /// </summary>
         /// <typeparam name="T">The platform for which to return an instance.</typeparam>
         /// <returns>The platform-specific instance of this Page</returns>
-        // internal IPlatformElementConfiguration<T, Page> On<T>() where T : IConfigPlatform
-        // {
-        // 	return _platformConfigurationRegistry.Value.On<T>();
-        // }
+        internal IPlatformElementConfiguration<T, Page> On<T>() where T : IConfigPlatform
+        {
+            return _platformConfigurationRegistry.Value.On<T>();
+        }
     }
 }

@@ -86,7 +86,13 @@ namespace Tizen.NUI.Xaml
                             value = converted;
                     }
                     if (value == null)
+                    {
                         value = Activator.CreateInstance(type);
+                        if (value is BindableObject)
+                        {
+                            ((BindableObject)value).isCreateByXaml = true;
+                        }
+                    }
                 }
                 catch (TargetInvocationException e)
                 {
@@ -193,7 +199,12 @@ namespace Tizen.NUI.Xaml
             if (!node.Properties.ContainsKey(XmlName.xFactoryMethod))
             {
                 //non-default ctor
-                return Activator.CreateInstance(nodeType, arguments);
+                object ret = Activator.CreateInstance(nodeType, arguments);
+                if (ret is BindableObject)
+                {
+                    ((BindableObject)ret).isCreateByXaml = true;
+                }
+                return ret;
             }
 
             var factoryMethod = ((string)((ValueNode)node.Properties[XmlName.xFactoryMethod]).Value);
@@ -286,12 +297,18 @@ namespace Tizen.NUI.Xaml
         static object CreateLanguagePrimitive(Type nodeType, IElementNode node)
         {
             object value = null;
-            if (nodeType == typeof (string))
+            if (nodeType == typeof(string))
                 value = String.Empty;
-            else if (nodeType == typeof (Uri))
+            else if (nodeType == typeof(Uri))
                 value = null;
             else
+            {
                 value = Activator.CreateInstance(nodeType);
+                if (value is BindableObject)
+                {
+                    ((BindableObject)value).isCreateByXaml = true;
+                }
+            }
 
             if (node.CollectionItems.Count == 1 && node.CollectionItems[0] is ValueNode &&
                 ((ValueNode)node.CollectionItems[0]).Value is string)

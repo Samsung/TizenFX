@@ -54,20 +54,20 @@ namespace Tizen.NUI.Binding
         }
 
         internal bool CanRecycle => _canRecycle;
-        // Element IElement.Parent
-        // {
-        //     get { return _parent; }
-        //     set
-        //     {
-        //         if (_parent == value)
-        //             return;
-        //         if (_parent != null)
-        //             ((IElement)_parent).RemoveResourcesChangedListener(OnResourcesChanged);
-        //         _parent = value;
-        //         if (_parent != null)
-        //             ((IElement)_parent).AddResourcesChangedListener(OnResourcesChanged);
-        //     }
-        // }
+        Element IElement.Parent
+        {
+            get { return _parent; }
+            set
+            {
+                if (_parent == value)
+                    return;
+                if (_parent != null)
+                    ((IElement)_parent).RemoveResourcesChangedListener(OnResourcesChanged);
+                _parent = value;
+                if (_parent != null)
+                    ((IElement)_parent).AddResourcesChangedListener(OnResourcesChanged);
+            }
+        }
 
         void IElement.RemoveResourcesChangedListener(Action<object, ResourcesChangedEventArgs> onchanged)
         {
