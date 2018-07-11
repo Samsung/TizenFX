@@ -1,5 +1,5 @@
 ﻿namespace Tizen.Applications.WatchfaceComplication
-{    
+{
     public enum ComplicationError
     {
         None = Tizen.Internals.Errors.ErrorCode.None,

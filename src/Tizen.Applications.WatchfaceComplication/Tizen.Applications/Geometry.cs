@@ -4,10 +4,24 @@ using System.Text;
 
 namespace Tizen.Applications.WatchfaceComplication
 {
+    /// <summary>
+    /// Represents the Geometry class for the editable.
+    /// </summary>
+    /// <since_tizen> 5 </since_tizen>
     public class Geometry
     {
         private IntPtr _raw = IntPtr.Zero;
 
+        /// <summary>
+        /// Initializes the Geometry class.
+        /// </summary>
+        /// <exception cref="ArgumentException">Thrown when some parameter are invalid.</exception>
+        /// <example>
+        /// <code>
+        ///
+        /// </code>
+        /// </example>
+        /// <since_tizen> 5 </since_tizen>
         public Geometry(int x, int y, int w, int h)
         {
             ComplicationError ret = Interop.WatchfaceComplication.CreateGeometry(out _raw);
@@ -22,7 +36,15 @@ namespace Tizen.Applications.WatchfaceComplication
             }
         }
 
-        public IntPtr Raw
+        /// <summary>
+        /// Destructor of the Geometry class.
+        /// </summary>
+        ~Geometry()
+        {
+            Interop.WatchfaceComplication.DestroyGeometry(_raw);
+        }
+
+        internal IntPtr Raw
         {
             get
             {
@@ -30,6 +52,10 @@ namespace Tizen.Applications.WatchfaceComplication
             }
         }
 
+        /// <summary>
+        /// The x coordinate.
+        /// </summary>
+        /// <since_tizen> 5 </since_tizen>
         public int X
         {
             get
@@ -47,6 +73,11 @@ namespace Tizen.Applications.WatchfaceComplication
                 return x;
             }
         }
+
+        /// <summary>
+        /// The y coordinate.
+        /// </summary>
+        /// <since_tizen> 5 </since_tizen>
         public int Y
         {
             get
@@ -65,6 +96,10 @@ namespace Tizen.Applications.WatchfaceComplication
             }
         }
 
+        /// <summary>
+        /// The width of editable.
+        /// </summary>
+        /// <since_tizen> 5 </since_tizen>
         public int W
         {
             get
@@ -83,6 +118,10 @@ namespace Tizen.Applications.WatchfaceComplication
             }
         }
 
+        /// <summary>
+        /// The height of editable.
+        /// </summary>
+        /// <since_tizen> 5 </since_tizen>
         public int H
         {
             get
@@ -99,12 +138,6 @@ namespace Tizen.Applications.WatchfaceComplication
                 }
                 return h;
             }
-        }
-
-
-        ~Geometry()
-        {
-            Interop.WatchfaceComplication.DestroyGeometry(_raw);            
         }
     }
 }

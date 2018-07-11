@@ -1,8 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using Tizen.Applications.WatchfaceComplication;
 
 namespace Tizen.Applications.WatchfaceComplication
 {
+    /// <summary>
+    /// Represents the DesignElement class for the watch application.
+    /// </summary>
+    /// <since_tizen> 5 </since_tizen>
     public abstract class DesignElement : IEditable
     {
 
@@ -12,20 +17,42 @@ namespace Tizen.Applications.WatchfaceComplication
         private string _editableName;
         private int _editableId;
 
-
-        public DesignElement(IEnumerable<Bundle> candidates, int currentDataIndex, Geometry geometry, string editableName)
+        /// <summary>
+        /// Initializes the DesignElement class.
+        /// </summary>
+        /// <param name="candidates">The candidates list.</param>
+        /// <param name="currentDataIndex">The current selected candidate index.</param>
+        /// <param name="editableName">The design element name.</param>
+        /// <exception cref="ArgumentException">Thrown when some parameter are invalid.</exception>
+        /// <example>
+        /// <code>
+        ///
+        /// </code>
+        /// </example>
+        /// <since_tizen> 5 </since_tizen>
+        public DesignElement(IEnumerable<Bundle> candidates, int currentDataIndex, string editableName)
         {
+            if (candidates == null || currentDataIndex < 0)
+                ErrorFactory.ThrowException(ComplicationError.InvalidParam);
+            IList<Bundle> candidatesList = (IList<Bundle>)candidates.GetEnumerator();
+
+            if (candidatesList.Count < currentDataIndex)
+                ErrorFactory.ThrowException(ComplicationError.InvalidParam);
+
             _candidates = candidates;
             _currentDataIndex = currentDataIndex;
-            _geometry = geometry;
             _editableName = editableName;
         }
 
+        /// <summary>
+        /// The information of Editable ID.
+        /// </summary>
+        /// <since_tizen> 5 </since_tizen>
         int IEditable.EditableId
         {
             get
             {
-                return 0;
+                return _editableId;
             }
             set
             {
@@ -33,6 +60,10 @@ namespace Tizen.Applications.WatchfaceComplication
             }
         }
 
+        /// <summary>
+        /// The information of Editable candidates.
+        /// </summary>
+        /// <since_tizen> 5 </since_tizen>
         public IEnumerable<Bundle> Candidates
         {
             get
@@ -41,6 +72,10 @@ namespace Tizen.Applications.WatchfaceComplication
             }
         }
 
+        /// <summary>
+        /// The information of Editable name.
+        /// </summary>
+        /// <since_tizen> 5 </since_tizen>
         string IEditable.Name
         {
             get
@@ -49,6 +84,10 @@ namespace Tizen.Applications.WatchfaceComplication
             }
         }
 
+        /// <summary>
+        /// The information of Editable geometry.
+        /// </summary>
+        /// <since_tizen> 5 </since_tizen>
         Geometry IEditable.Geometry
         {
             get
@@ -61,6 +100,10 @@ namespace Tizen.Applications.WatchfaceComplication
             }
         }
 
+        /// <summary>
+        /// The information of Editable's current data index.
+        /// </summary>
+        /// <since_tizen> 5 </since_tizen>
         int IEditable.CurrentDataIndex
         {
             get
@@ -73,6 +116,11 @@ namespace Tizen.Applications.WatchfaceComplication
             }
         }
 
+        /// <summary>
+        /// Gets the current selected data.
+        /// </summary>
+        /// <returns>Current data</returns>
+        /// <since_tizen> 5 </since_tizen>
         Bundle IEditable.GetCurrentData()
         {
             int idx = 0;
@@ -85,12 +133,18 @@ namespace Tizen.Applications.WatchfaceComplication
             return null;
         }
 
-        void IEditable.OnUpdate(int selectedIdx, State state)
+        internal void NotifyUpdate(int candidateIdx, State state)
         {
-            OnDesignUpdate(selectedIdx, state);
+            OnDesignUpdated(candidateIdx, state);
         }
 
-        protected virtual void OnDesignUpdate(int selectedIdx, State state)
+        /// <summary>
+        /// Overrides this method to handle the behavior when the design element is updated.
+        /// </summary>
+        /// <param name="selectedIdx">The selected candidate index.</param>
+        /// <param name="state">The update state.</param>
+        /// <since_tizen> 5 </since_tizen>
+        protected virtual void OnDesignUpdated(int selectedIdx, State state)
         {
         }
     }

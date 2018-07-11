@@ -108,6 +108,9 @@ internal static partial class Interop
         [DllImport(Libraries.Complication, EntryPoint = "watchface_editable_container_get")]
         internal static extern ComplicationError GetEditableContainer(out IntPtr container);
 
+        [DllImport(Libraries.Complication, EntryPoint = "watchface_editable_load_current_data")]
+        internal static extern ComplicationError LoadCurrentData(int editableId, out SafeBundleHandle data);
+
         [DllImport(Libraries.ComplicationProvider, EntryPoint = "watchface_complication_provider_add_update_requested_cb")]
         internal static extern ComplicationError AddUpdateRequestedCallback(string providerId, UpdateRequestedCallback callback, IntPtr userData);
 

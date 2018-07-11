@@ -5,6 +5,10 @@ using Tizen.Applications;
 
 namespace Tizen.Applications.WatchfaceComplication
 {
+    /// <summary>
+    /// Represents the Complication class for the watch application which using watchface complication.
+    /// </summary>
+    /// <since_tizen> 5 </since_tizen>
     public abstract class Complication : IEditable
     {
         private int _complicationId;
@@ -12,14 +16,27 @@ namespace Tizen.Applications.WatchfaceComplication
         private string _defaultProviderId;
         private ComplicationType _defaultType;
         private Geometry _geometry;
-        private State _state;
-        private IEnumerable<Bundle> _candidates;
         private ShapeType _shapeType;
         private IntPtr _handle;
         private Interop.WatchfaceComplication.ComplicationUpdatedCallback _updatedCallback;
         private int _editableId;
         private static string _logTag = "WatchfaceComplication";
 
+        /// <summary>
+        /// Initializes the Complication class.
+        /// </summary>
+        /// <param name="complicationId">The id of the complication.</param>
+        /// <param name="supportTypes">The complication support types.</param>
+        /// <param name="defaultProviderId">The complication's default provider ID.</param>
+        /// <param name="defaultType">The complication's default type.</param>
+        /// <param name="shapeType">The complication's shape type.</param>
+        /// <exception cref="ArgumentException">Thrown when editableId is invalid.</exception>
+        /// <example>
+        /// <code>
+        ///
+        /// </code>
+        /// </example>
+        /// <since_tizen> 5 </since_tizen>
         public Complication(int complicationId, int supportTypes, string defaultProviderId, ComplicationType defaultType, ShapeType shapeType)
         {
             _complicationId = complicationId;
@@ -33,7 +50,7 @@ namespace Tizen.Applications.WatchfaceComplication
             {
                 ErrorFactory.ThrowException(ret, "Fail to create complication");
             }
-            _updatedCallback = new Interop.WatchfaceComplication.ComplicationUpdatedCallback(ComplicationUpdate);
+            _updatedCallback = new Interop.WatchfaceComplication.ComplicationUpdatedCallback(ComplicationUpdated);
             ret = Interop.WatchfaceComplication.AddUpdatedCallback(_handle, _updatedCallback, IntPtr.Zero);
             if (ret != ComplicationError.None)
             {
@@ -49,6 +66,10 @@ namespace Tizen.Applications.WatchfaceComplication
             }
         }
 
+        /// <summary>
+        /// Gets the support types.
+        /// </summary>
+        /// <since_tizen> 5 </since_tizen>
         public int SupportTypes
         {
             get
@@ -57,6 +78,10 @@ namespace Tizen.Applications.WatchfaceComplication
             }
         }
 
+        /// <summary>
+        /// The information of editable geometry.
+        /// </summary>
+        /// <since_tizen> 5 </since_tizen>
         Geometry IEditable.Geometry
         {
             get
@@ -69,6 +94,10 @@ namespace Tizen.Applications.WatchfaceComplication
             }
         }
 
+        /// <summary>
+        /// The information of editable's current data index.
+        /// </summary>
+        /// <since_tizen> 5 </since_tizen>
         int IEditable.CurrentDataIndex
         {
             get
@@ -86,6 +115,10 @@ namespace Tizen.Applications.WatchfaceComplication
             }
         }
 
+        /// <summary>
+        /// The information of complication ID.
+        /// </summary>
+        /// <since_tizen> 5 </since_tizen>
         public int ComplicationId
         {
             get
@@ -94,6 +127,10 @@ namespace Tizen.Applications.WatchfaceComplication
             }
         }
 
+        /// <summary>
+        /// The information of editable ID.
+        /// </summary>
+        /// <since_tizen> 5 </since_tizen>
         int IEditable.EditableId
         {
             get
@@ -105,6 +142,11 @@ namespace Tizen.Applications.WatchfaceComplication
                 _editableId = value;
             }
         }
+
+        /// <summary>
+        /// The information of editable name.
+        /// </summary>
+        /// <since_tizen> 5 </since_tizen>
         string IEditable.Name
         {
             get
@@ -113,6 +155,15 @@ namespace Tizen.Applications.WatchfaceComplication
             }
         }
 
+        /// <summary>
+        /// Gets the editable's current data.
+        /// </summary>
+        /// <example>
+        /// <code>
+        ///
+        /// </code>
+        /// </example>
+        /// <since_tizen> 5 </since_tizen>
         Bundle IEditable.GetCurrentData()
         {
             SafeBundleHandle bundleHandle;
@@ -123,13 +174,22 @@ namespace Tizen.Applications.WatchfaceComplication
             return data;
         }
 
-        private void ComplicationUpdate(int complicationId,
+        private void ComplicationUpdated(int complicationId,
             string providerId, ComplicationType type, IntPtr data, IntPtr userData)
         {
             if (_complicationId == complicationId)
-                OnComplicationUpdate(providerId, type, new Bundle(new SafeBundleHandle(data, false)));
+                OnComplicationUpdated(providerId, type, new Bundle(new SafeBundleHandle(data, false)));
         }
 
+        /// <summary>
+        /// Sends the complication update requests.
+        /// </summary>
+        /// <example>
+        /// <code>
+        ///
+        /// </code>
+        /// </example>
+        /// <since_tizen> 5 </since_tizen>
         public ComplicationError SendUpdateRequest()
         {
             ComplicationError ret = Interop.WatchfaceComplication.SendUpdateRequest(_handle);
@@ -140,6 +200,16 @@ namespace Tizen.Applications.WatchfaceComplication
             return ret;
         }
 
+        /// <summary>
+        /// Gets the complication type.
+        /// </summary>
+        /// <exception cref="ArgumentException">Thrown when editableId is invalid.</exception>
+        /// <example>
+        /// <code>
+        ///
+        /// </code>
+        /// </example>
+        /// <since_tizen> 5 </since_tizen>
         public ComplicationType GetType(Bundle data)
         {
             ComplicationType type;
@@ -148,6 +218,17 @@ namespace Tizen.Applications.WatchfaceComplication
             return type;
         }
 
+        /// <summary>
+        /// Gets the short text.
+        /// </summary>
+        /// <param name="data">The data from OnComplicationUpdate callback.</param>
+        /// <exception cref="ArgumentException">Thrown when data is invalid.</exception>
+        /// <example>
+        /// <code>
+        ///
+        /// </code>
+        /// </example>
+        /// <since_tizen> 5 </since_tizen>
         public string GetShortText(Bundle data)
         {
             string shortText;
@@ -156,6 +237,17 @@ namespace Tizen.Applications.WatchfaceComplication
             return shortText;
         }
 
+        /// <summary>
+        /// Gets the long text.
+        /// </summary>
+        /// <param name="data">The data from OnComplicationUpdate callback.</param>
+        /// <exception cref="ArgumentException">Thrown when data is invalid.</exception>
+        /// <example>
+        /// <code>
+        ///
+        /// </code>
+        /// </example>
+        /// <since_tizen> 5 </since_tizen>
         public string GetLongText(Bundle data)
         {
             string longText;
@@ -164,6 +256,17 @@ namespace Tizen.Applications.WatchfaceComplication
             return longText;
         }
 
+        /// <summary>
+        /// Gets the title.
+        /// </summary>
+        /// <param name="data">The data from OnComplicationUpdate callback.</param>
+        /// <exception cref="ArgumentException">Thrown when data is invalid.</exception>
+        /// <example>
+        /// <code>
+        ///
+        /// </code>
+        /// </example>
+        /// <since_tizen> 5 </since_tizen>
         public string GetTitle(Bundle data)
         {
             string title;
@@ -172,6 +275,17 @@ namespace Tizen.Applications.WatchfaceComplication
             return title;
         }
 
+        /// <summary>
+        /// Gets the timestamp.
+        /// </summary>
+        /// <param name="data">The data from OnComplicationUpdate callback.</param>
+        /// <exception cref="ArgumentException">Thrown when data is invalid.</exception>
+        /// <example>
+        /// <code>
+        ///
+        /// </code>
+        /// </example>
+        /// <since_tizen> 5 </since_tizen>
         public long GetTimestamp(Bundle data)
         {
             long timestamp;
@@ -180,6 +294,17 @@ namespace Tizen.Applications.WatchfaceComplication
             return timestamp;
         }
 
+        /// <summary>
+        /// Gets the image path.
+        /// </summary>
+        /// <param name="data">The data from OnComplicationUpdate callback.</param>
+        /// <exception cref="ArgumentException">Thrown when data is invalid.</exception>
+        /// <example>
+        /// <code>
+        ///
+        /// </code>
+        /// </example>
+        /// <since_tizen> 5 </since_tizen>
         public string GetImagePath(Bundle data)
         {
             string imagePath;
@@ -188,7 +313,18 @@ namespace Tizen.Applications.WatchfaceComplication
             return imagePath;
         }
 
-        public double GetCurrentValue(Bundle data)
+        /// <summary>
+        /// Gets the current value of ranged type data.
+        /// </summary>
+        /// <param name="data">The data from OnComplicationUpdate callback.</param>
+        /// <exception cref="ArgumentException">Thrown when data is invalid.</exception>
+        /// <example>
+        /// <code>
+        ///
+        /// </code>
+        /// </example>
+        /// <since_tizen> 5 </since_tizen>
+        public double GetCurrentValueOfRange(Bundle data)
         {
             double curVal, minVal, maxVal;
 
@@ -196,7 +332,18 @@ namespace Tizen.Applications.WatchfaceComplication
             return curVal;
         }
 
-        public double GetMinValue(Bundle data)
+        /// <summary>
+        /// Gets the minimum value of ranged type data.
+        /// </summary>
+        /// <param name="data">The data from OnComplicationUpdate callback.</param>
+        /// <exception cref="ArgumentException">Thrown when data is invalid.</exception>
+        /// <example>
+        /// <code>
+        ///
+        /// </code>
+        /// </example>
+        /// <since_tizen> 5 </since_tizen>
+        public double GetMinValueOfRange(Bundle data)
         {
             double curVal, minVal, maxVal;
 
@@ -204,7 +351,18 @@ namespace Tizen.Applications.WatchfaceComplication
             return minVal;
         }
 
-        public double GetMaxValue(Bundle data)
+        /// <summary>
+        /// Gets the max value of ranged type data.
+        /// </summary>
+        /// <param name="data">The data from OnComplicationUpdate callback.</param>
+        /// <exception cref="ArgumentException">Thrown when data is invalid.</exception>
+        /// <example>
+        /// <code>
+        ///
+        /// </code>
+        /// </example>
+        /// <since_tizen> 5 </since_tizen>
+        public double GetMaxValueOfRange(Bundle data)
         {
             double curVal, minVal, maxVal;
 
@@ -212,6 +370,17 @@ namespace Tizen.Applications.WatchfaceComplication
             return maxVal;
         }
 
+        /// <summary>
+        /// Gets the icon path.
+        /// </summary>
+        /// <param name="data">The data from OnComplicationUpdate callback.</param>
+        /// <exception cref="ArgumentException">Thrown when data is invalid.</exception>
+        /// <example>
+        /// <code>
+        ///
+        /// </code>
+        /// </example>
+        /// <since_tizen> 5 </since_tizen>
         public string GetIconPath(Bundle data)
         {
             string iconPath;
@@ -220,6 +389,17 @@ namespace Tizen.Applications.WatchfaceComplication
             return iconPath;
         }
 
+        /// <summary>
+        /// Gets the extra data.
+        /// </summary>
+        /// <param name="data">The data from OnComplicationUpdate callback.</param>
+        /// <exception cref="ArgumentException">Thrown when data is invalid.</exception>
+        /// <example>
+        /// <code>
+        ///
+        /// </code>
+        /// </example>
+        /// <since_tizen> 5 </since_tizen>
         public string GetExtraData(Bundle data)
         {
             string extraData;
@@ -228,11 +408,14 @@ namespace Tizen.Applications.WatchfaceComplication
             return extraData;
         }
 
-        void IEditable.OnUpdate(int selectedIdx, State state)
-        {
-        }
-
-        protected virtual void OnComplicationUpdate(string providerId, ComplicationType type, Bundle data)
+        /// <summary>
+        /// Overrides this method to handle the behavior when the complication update event comes.
+        /// </summary>
+        /// <param name="providerId">The updated provider's ID.</param>
+        /// <param name="type">The updated type.</param>
+        /// <param name="data">The updated data.</param>
+        /// <since_tizen> 5 </since_tizen>
+        protected virtual void OnComplicationUpdated(string providerId, ComplicationType type, Bundle data)
         {
         }
     }

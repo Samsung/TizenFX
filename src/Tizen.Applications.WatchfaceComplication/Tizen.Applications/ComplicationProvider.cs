@@ -4,6 +4,10 @@ using System.Text;
 
 namespace Tizen.Applications.WatchfaceComplication
 {
+    /// <summary>
+    /// Represents the ComplicationProvider class for the complication provider service application.
+    /// </summary>
+    /// <since_tizen> 5 </since_tizen>
     public abstract class ComplicationProvider
     {
         private string _providerId;
@@ -18,6 +22,27 @@ namespace Tizen.Applications.WatchfaceComplication
         private string _iconPath;
         private string _extraData;
 
+        /// <summary>
+        /// Initializes the ComplicationProvider class.
+        /// </summary>
+        /// <param name="providerId">The id of the complication provider.</param>
+        /// <exception cref="ArgumentException">Thrown when providerId is invalid.</exception>
+        /// <example>
+        /// <code>
+        ///
+        /// </code>
+        /// </example>
+        /// <since_tizen> 5 </since_tizen>
+        public ComplicationProvider(string providerId)
+        {
+            Interop.WatchfaceComplication.AddUpdateRequestedCallback(providerId, DataUpdateRequested, IntPtr.Zero);
+            _providerId = providerId;
+        }
+
+        /// <summary>
+        /// Gets the provider ID.
+        /// </summary>
+        /// <since_tizen> 5 </since_tizen>
         public string Id
         {
             get
@@ -26,11 +51,6 @@ namespace Tizen.Applications.WatchfaceComplication
             }
         }
 
-        public ComplicationProvider(string providerId)
-        {
-            Interop.WatchfaceComplication.AddUpdateRequestedCallback(providerId, DataUpdateRequested, IntPtr.Zero);
-            _providerId = providerId;
-        }
 
         private void DataUpdateRequested(string providerId, string reqAppId, ComplicationType type,
             IntPtr context, IntPtr sharedData, IntPtr userData)
@@ -76,82 +96,222 @@ namespace Tizen.Applications.WatchfaceComplication
             }
         }
 
+
+        /// <summary>
+        /// Overrides this method to handle the behavior when the complication data update request event comes from watchface complication.
+        /// </summary>
+        /// <param name="reqestAppId">The application ID of application which sent update request.</param>
+        /// <param name="type">The requested type.</param>
+        /// <param name="contextData">The complication's context which is set by complication setup application.</param>
+        /// <since_tizen> 5 </since_tizen>
         protected virtual void OnDataUpdateRequested(string reqestAppId, ComplicationType type, Bundle contextData)
         {
 
         }
 
-        public ComplicationError SetTitle(string title)
+        /// <summary>
+        /// Sets the title of complication data.
+        /// </summary>
+        /// <param name="title">The title.</param>
+        /// <example>
+        /// <code>
+        ///
+        /// </code>
+        /// </example>
+        /// <since_tizen> 5 </since_tizen>
+        public void SetTitle(string title)
         {
             _title = title;
-            return ComplicationError.None;
         }
 
-        public ComplicationError SetShortText(string shortText)
+        /// <summary>
+        /// Sets the short text of complication data.
+        /// </summary>
+        /// <param name="shortText">The short text.</param>
+        /// <example>
+        /// <code>
+        ///
+        /// </code>
+        /// </example>
+        /// <since_tizen> 5 </since_tizen>
+        public void SetShortText(string shortText)
         {
             _shortText = shortText;
-            return ComplicationError.None;
         }
 
-        public ComplicationError SetLongText(string longText)
+        /// <summary>
+        /// Sets the long text of complication data.
+        /// </summary>
+        /// <param name="longText">The long text.</param>
+        /// <example>
+        /// <code>
+        ///
+        /// </code>
+        /// </example>
+        /// <since_tizen> 5 </since_tizen>
+        public void SetLongText(string longText)
         {
             _longText = longText;
-            return ComplicationError.None;
         }
 
-        public ComplicationError SetTimestamp(long timestamp)
+        /// <summary>
+        /// Sets the timestamp of complication data.
+        /// </summary>
+        /// <param name="timestamp">The timestamp.</param>
+        /// <exception cref="ArgumentException">Thrown when timestamp is invalid.</exception>
+        /// <example>
+        /// <code>
+        ///
+        /// </code>
+        /// </example>
+        /// <since_tizen> 5 </since_tizen>
+        public void SetTimestamp(long timestamp)
         {
             _timestamp = timestamp;
-            return ComplicationError.None;
         }
 
-        public ComplicationError SetImagePath(string imagePath)
+        /// <summary>
+        /// Sets the image path of complication data.
+        /// </summary>
+        /// <param name="imagePath">The image path.</param>
+        /// <example>
+        /// <code>
+        ///
+        /// </code>
+        /// </example>
+        /// <since_tizen> 5 </since_tizen>
+        public void SetImagePath(string imagePath)
         {
             _imagePath = imagePath;
-            return ComplicationError.None;
         }
 
-        public ComplicationError SetRangedValue(double currentValue, double minValue, double maxValue)
+        /// <summary>
+        /// Sets the ranged value of complication data.
+        /// </summary>
+        /// <param name="currentValue">The current value of ranged value.</param>
+        /// <param name="minValue">The min value of ranged value.</param>
+        /// <param name="maxValue">The max value of ranged value.</param>
+        /// <exception cref="ArgumentException">Thrown when value is invalid.</exception>
+        /// <example>
+        /// <code>
+        ///
+        /// </code>
+        /// </example>
+        /// <since_tizen> 5 </since_tizen>
+        public void SetRangedValue(double currentValue, double minValue, double maxValue)
         {
             _currentValue = currentValue;
             _minValue = minValue;
             _maxValue = maxValue;
-            return ComplicationError.None;
         }
 
-        public ComplicationError SetIconPath(string iconPath)
+        /// <summary>
+        /// Sets the icon path of complication data.
+        /// </summary>
+        /// <param name="iconPath">The icon path.</param>
+        /// <example>
+        /// <code>
+        ///
+        /// </code>
+        /// </example>
+        /// <since_tizen> 5 </since_tizen>
+        public void SetIconPath(string iconPath)
         {
             _iconPath = iconPath;
-            return ComplicationError.None;
         }
 
-        public ComplicationError SetExtraData(string extraData)
+        /// <summary>
+        /// Sets the extra data of complication data.
+        /// </summary>
+        /// <param name="extraData">The extra data.</param>
+        /// <example>
+        /// <code>
+        ///
+        /// </code>
+        /// </example>
+        /// <since_tizen> 5 </since_tizen>
+        public void SetExtraData(string extraData)
         {
             _extraData = extraData;
-            return ComplicationError.None;
         }
 
-        public int NotifyUpdate(string updatedProviderId)
+        /// <summary>
+        /// Emits the update event for complications.
+        /// </summary>
+        /// <param name="updatedProviderId">The updated provider ID.</param>
+        /// <exception cref="ArgumentException">Thrown when updatedProviderId is invalid.</exception>
+        /// <example>
+        /// <code>
+        ///
+        /// </code>
+        /// </example>
+        /// <since_tizen> 5 </since_tizen>
+        public void NotifyUpdate(string updatedProviderId)
         {
-            Interop.WatchfaceComplication.NotifyUpdate(updatedProviderId);
-            return 0;
+            ComplicationError err = Interop.WatchfaceComplication.NotifyUpdate(updatedProviderId);
+            if (err != ComplicationError.None)
+                ErrorFactory.ThrowException(err, "fail to notify");
         }
 
+        /// <summary>
+        /// Checks the provider application is launched by touch launch operation.
+        /// </summary>
+        /// <param name="e">The appcontrol received event args.</param>
+        /// <example>
+        /// <code>
+        ///
+        /// </code>
+        /// </example>
+        /// <returns>true if the provider is launched by touch launch operation, ortherwise false</returns>
+        /// <since_tizen> 5 </since_tizen>
         static bool IsTouchLaunch(AppControlReceivedEventArgs e)
         {
             return false;
         }
 
+        /// <summary>
+        /// Gets the target provider id of touch launch operation.
+        /// </summary>
+        /// <param name="e">The appcontrol received event args.</param>
+        /// <example>
+        /// <code>
+        ///
+        /// </code>
+        /// </example>
+        /// <returns>Provider id</returns>
+        /// <since_tizen> 5 </since_tizen>
         static string GetTouchLaunchProviderId(AppControlReceivedEventArgs e)
         {
             return "";
         }
 
+        /// <summary>
+        /// Gets the target complication type of touch launch operation.
+        /// </summary>
+        /// <param name="e">The appcontrol received event args.</param>
+        /// <example>
+        /// <code>
+        ///
+        /// </code>
+        /// </example>
+        /// <returns>Complication type</returns>
+        /// <since_tizen> 5 </since_tizen>
         static ComplicationType GetTouchLaunchComplicationType(AppControlReceivedEventArgs e)
         {
             return ComplicationType.ShortText;
         }
 
+        /// <summary>
+        /// Gets the target complication's context of touch launch operation.
+        /// </summary>
+        /// <param name="e">The appcontrol received event args.</param>
+        /// <example>
+        /// <code>
+        ///
+        /// </code>
+        /// </example>
+        /// <returns>Context data</returns>
+        /// <since_tizen> 5 </since_tizen>
         static Bundle GetTouchLaunchContext(AppControlReceivedEventArgs e)
         {
             return null;
