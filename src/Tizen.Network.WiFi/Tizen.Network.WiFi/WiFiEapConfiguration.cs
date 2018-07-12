@@ -229,7 +229,6 @@ namespace Tizen.Network.WiFi
         /// <returns>The certification authority (CA) certificates file of the access point.</returns>
         /// <feature>http://tizen.org/feature/network.wifi</feature>
         /// <exception cref="NotSupportedException">Thrown when the Wi-Fi is not supported.</exception>
-        /// <exception cref="ArgumentException">Thrown when the method failed due to an invalid parameter.</exception>
         /// <exception cref="InvalidOperationException">Thrown when the method failed due to an invalid operation.</exception>
         public string GetClientCertFile()
         {
@@ -238,6 +237,10 @@ namespace Tizen.Network.WiFi
             if (ret != (int)WiFiError.None)
             {
                 Log.Error(Globals.LogTag, "Failed to get client cert file, Error - " + (WiFiError)ret);
+                if (ret == (int)WiFiError.InvalidParameterError)
+                {
+                    throw new InvalidOperationException("Invalid handle");
+                }
                 WiFiErrorFactory.ThrowWiFiException(ret, _configHandle.DangerousGetHandle());
             }
             return Marshal.PtrToStringAnsi(strPtr);
