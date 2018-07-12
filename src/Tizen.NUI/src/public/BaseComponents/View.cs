@@ -82,8 +82,11 @@ namespace Tizen.NUI.BaseComponents
                     oldParent.Remove(child);
                 }
 
-                LayoutItem layoutItem = new LayoutItem();
-                child.Layout = layoutItem;
+                if (child.Layout == null)
+                {
+                    LayoutItem layoutItem = new LayoutItem();
+                    child.Layout = layoutItem;
+                }
 
                 NDalicPINVOKE.Actor_Add(swigCPtr, View.getCPtr(child));
                 if (NDalicPINVOKE.SWIGPendingException.Pending)
@@ -97,8 +100,8 @@ namespace Tizen.NUI.BaseComponents
                         Added = child
                     };
                     ChildAdded(this, e);
+                }
             }
-        }
         }
 
         /// <summary>
