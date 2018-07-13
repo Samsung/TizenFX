@@ -621,7 +621,7 @@ namespace Tizen.Multimedia
         ///     Streaming playback.
         /// </exception>
         /// <exception cref="ArgumentOutOfRangeException">
-        ///     <paramref name="rate"/> is less than 5.0.<br/>
+        ///     <paramref name="rate"/> is less than -5.0.<br/>
         ///     -or-<br/>
         ///     <paramref name="rate"/> is greater than 5.0.<br/>
         ///     -or-<br/>
