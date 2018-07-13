@@ -638,7 +638,7 @@ namespace Tizen.NUI
                         if(destinationValue != null)
                         {
                             AnimateTo(target, _properties[index], destinationValue, _startTime[index], _endTime[index]);
-                        } 
+                        }
                     }
                 }
                 Play();
@@ -771,7 +771,7 @@ namespace Tizen.NUI
         internal MethodInfo GetImplicitConversionOperator(Type onType, Type fromType, Type toType)
         {
 #if NETSTANDARD1_0
-			var mi = onType.GetRuntimeMethod("op_Implicit", new[] { fromType });
+            var mi = onType.GetRuntimeMethod("op_Implicit", new[] { fromType });
 #else
             var bindingFlags = BindingFlags.Public | BindingFlags.Static | BindingFlags.FlattenHierarchy;
             var mi = onType.GetMethod("op_Implicit", bindingFlags, null, new[] { fromType }, null);

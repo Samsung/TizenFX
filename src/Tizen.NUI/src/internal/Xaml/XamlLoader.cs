@@ -275,7 +275,7 @@ namespace Tizen.NUI.Xaml
         }
 
         //if the assembly was generated using a version of XamlG that doesn't outputs XamlResourceIdAttributes, we still need to find the resource, and load it
-        static readonly Dictionary<Type, string> XamlResources = new Dictionary<Type, string>();		
+        static readonly Dictionary<Type, string> XamlResources = new Dictionary<Type, string>();
         static string LegacyGetXamlForType(Type type)
         {
             var assembly = type.GetTypeInfo().Assembly;

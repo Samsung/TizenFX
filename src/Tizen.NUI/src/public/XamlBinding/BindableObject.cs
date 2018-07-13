@@ -773,7 +773,7 @@ namespace Tizen.NUI.Binding
                         binding.Apply(true);
                         _applying = false;
                     }
-                   
+
                     OnPropertyChanged(property.PropertyName);
                 }
                 else if (true == same && true == forceSendChangeSignal)

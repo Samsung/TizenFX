@@ -20,12 +20,12 @@ namespace Tizen.NUI.Binding
                 var controlTemplated = element as IControlTemplated;
                 //if (controlTemplated?.ControlTemplate != null)
                 //{
-                //	if (skipCount == 0)
-                //		return element;
-                //	skipCount--;
+                //  if (skipCount == 0)
+                //      return element;
+                //  skipCount--;
                 //}
-                // if (element is ContentPresenter)
-                // 	skipCount++;
+                //  if (element is ContentPresenter)
+                //      skipCount++;
                 element = await GetRealParentAsync(element);
             }
 
@@ -59,20 +59,20 @@ namespace Tizen.NUI.Binding
             var newElement = (Element)newValue;
             //if (self.ControlTemplate == null)
             //{
-            //	while (self.InternalChildren.Count > 0)
-            //	{
-            //		self.InternalChildren.RemoveAt(self.InternalChildren.Count - 1);
-            //	}
+            //  while (self.InternalChildren.Count > 0)
+            //  {
+            //      self.InternalChildren.RemoveAt(self.InternalChildren.Count - 1);
+            //  }
 
-            //	if (newValue != null)
-            //		self.InternalChildren.Add(newElement);
+            //  if (newValue != null)
+            //      self.InternalChildren.Add(newElement);
             //}
             //else
             //{
-            //	if (newElement != null)
-            //	{
-            //		BindableObject.SetInheritedBindingContext(newElement, bindable.BindingContext);
-            //	}
+            //  if (newElement != null)
+            //  {
+            //      BindableObject.SetInheritedBindingContext(newElement, bindable.BindingContext);
+            //  }
             //}
         }
 
@@ -113,18 +113,18 @@ namespace Tizen.NUI.Binding
             //ControlTemplate template = self.ControlTemplate;
             //if (template == null)
             //{
-            //	// do nothing for now
+            //  // do nothing for now
             //}
             //else
             //{
-            //	var content = template.CreateContent() as View;
-            //	if (content == null)
-            //	{
-            //		throw new NotSupportedException("ControlTemplate must return a type derived from View.");
-            //	}
+            //  var content = template.CreateContent() as View;
+            //  if (content == null)
+            //  {
+            //      throw new NotSupportedException("ControlTemplate must return a type derived from View.");
+            //  }
 
-            //	self.InternalChildren.Add(content);
-            //	((IControlTemplated)bindable).OnControlTemplateChanged((ControlTemplate)oldValue, (ControlTemplate)newValue);
+            //  self.InternalChildren.Add(content);
+            //  ((IControlTemplated)bindable).OnControlTemplateChanged((ControlTemplate)oldValue, (ControlTemplate)newValue);
             //}
         }
     }

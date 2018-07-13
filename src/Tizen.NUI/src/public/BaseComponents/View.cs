@@ -61,7 +61,7 @@ namespace Tizen.NUI.BaseComponents
                 Tizen.NUI.Object.SetProperty(view.swigCPtr, View.Property.STYLE_NAME, new Tizen.NUI.PropertyValue((string)newValue));
             }
         },
-        defaultValueCreator:(bindable) => 
+        defaultValueCreator:(bindable) =>
         {
             var view = (View)bindable;
             string temp;
@@ -3337,7 +3337,7 @@ namespace Tizen.NUI.BaseComponents
             set
             {
                 SetValue(SiblingOrderProperty, value);
-				NotifyPropertyChanged();
+                NotifyPropertyChanged();
             }
         }
 

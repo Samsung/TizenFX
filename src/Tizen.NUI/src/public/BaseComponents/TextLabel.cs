@@ -572,7 +572,7 @@ namespace Tizen.NUI.BaseComponents
             Tizen.NUI.Object.GetProperty(textLabel.swigCPtr, TextLabel.Property.VERTICAL_LINE_ALIGNMENT).Get(out temp);
             return (VerticalLineAlignment)temp;
         });
-        
+
 
         private global::System.Runtime.InteropServices.HandleRef swigCPtr;
         private string textLabelSid = null;

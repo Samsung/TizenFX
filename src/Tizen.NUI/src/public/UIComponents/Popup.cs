@@ -39,12 +39,12 @@ namespace Tizen.NUI.UIComponents
             }
         },
         defaultValueCreator:(bindable) =>
-		{
-			var popup = (Popup)bindable;
+        {
+            var popup = (Popup)bindable;
             PropertyMap temp = new PropertyMap();
-			Tizen.NUI.Object.GetProperty(popup.swigCPtr, Popup.Property.TITLE).Get(temp);
-			return temp;
-		});
+            Tizen.NUI.Object.GetProperty(popup.swigCPtr, Popup.Property.TITLE).Get(temp);
+            return temp;
+        });
         /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty ContentProperty = BindableProperty.Create("Content", typeof(PropertyMap), typeof(Popup), new PropertyMap(), propertyChanged: (bindable, oldValue, newValue) =>
@@ -56,12 +56,12 @@ namespace Tizen.NUI.UIComponents
             }
         },
         defaultValueCreator:(bindable) =>
-		{
-			var popup = (Popup)bindable;
+        {
+            var popup = (Popup)bindable;
             PropertyMap temp = new PropertyMap();
-			Tizen.NUI.Object.GetProperty(popup.swigCPtr, Popup.Property.CONTENT).Get(temp);
-			return temp;
-		});
+            Tizen.NUI.Object.GetProperty(popup.swigCPtr, Popup.Property.CONTENT).Get(temp);
+            return temp;
+        });
         /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty FooterProperty = BindableProperty.Create("Footer", typeof(PropertyMap), typeof(Popup), new PropertyMap(), propertyChanged: (bindable, oldValue, newValue) =>
@@ -73,12 +73,12 @@ namespace Tizen.NUI.UIComponents
             }
         },
         defaultValueCreator:(bindable) =>
-		{
-			var popup = (Popup)bindable;
+        {
+            var popup = (Popup)bindable;
             PropertyMap temp = new PropertyMap();
-			Tizen.NUI.Object.GetProperty(popup.swigCPtr, Popup.Property.FOOTER).Get(temp);
-			return temp;
-		});
+            Tizen.NUI.Object.GetProperty(popup.swigCPtr, Popup.Property.FOOTER).Get(temp);
+            return temp;
+        });
         /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty DisplayStateProperty = BindableProperty.Create("DisplayState", typeof(DisplayStateType), typeof(Popup), DisplayStateType.Hidden, propertyChanged: (bindable, oldValue, newValue) =>
@@ -151,12 +151,12 @@ namespace Tizen.NUI.UIComponents
             }
         },
         defaultValueCreator:(bindable) =>
-		{
-			var popup = (Popup)bindable;
+        {
+            var popup = (Popup)bindable;
             bool temp = false;
-			Tizen.NUI.Object.GetProperty(popup.swigCPtr, Popup.Property.TOUCH_TRANSPARENT).Get(out temp);
-			return temp;
-		});
+            Tizen.NUI.Object.GetProperty(popup.swigCPtr, Popup.Property.TOUCH_TRANSPARENT).Get(out temp);
+            return temp;
+        });
         /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty TailVisibilityProperty = BindableProperty.Create("TailVisibility", typeof(bool), typeof(Popup), false, propertyChanged: (bindable, oldValue, newValue) =>
@@ -168,12 +168,12 @@ namespace Tizen.NUI.UIComponents
             }
         },
         defaultValueCreator:(bindable) =>
-		{
-			var popup = (Popup)bindable;
-			bool temp = false;
-			Tizen.NUI.Object.GetProperty(popup.swigCPtr, Popup.Property.TAIL_VISIBILITY).Get(out temp);
-			return temp;
-		});
+        {
+            var popup = (Popup)bindable;
+            bool temp = false;
+            Tizen.NUI.Object.GetProperty(popup.swigCPtr, Popup.Property.TAIL_VISIBILITY).Get(out temp);
+            return temp;
+        });
         /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty TailPositionProperty = BindableProperty.Create("TailPosition", typeof(Vector3), typeof(Popup), Vector3.Zero, propertyChanged: (bindable, oldValue, newValue) =>
@@ -185,12 +185,12 @@ namespace Tizen.NUI.UIComponents
             }
         },
         defaultValueCreator:(bindable) =>
-		{
-			var popup = (Popup)bindable;
+        {
+            var popup = (Popup)bindable;
             Vector3 temp = new Vector3(0.0f, 0.0f, 0.0f);
-			Tizen.NUI.Object.GetProperty(popup.swigCPtr, Popup.Property.TAIL_POSITION).Get(temp);
-			return temp;
-		});
+            Tizen.NUI.Object.GetProperty(popup.swigCPtr, Popup.Property.TAIL_POSITION).Get(temp);
+            return temp;
+        });
         /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty ContextualModeProperty = BindableProperty.Create("ContextualMode", typeof(ContextualModeType), typeof(Popup), ContextualModeType.Below, propertyChanged: (bindable, oldValue, newValue) =>
@@ -236,8 +236,8 @@ namespace Tizen.NUI.UIComponents
             }
         },
         defaultValueCreator:(bindable) =>
-		{
-			var popup = (Popup)bindable;
+        {
+            var popup = (Popup)bindable;
             string temp;
             if (Tizen.NUI.Object.GetProperty(popup.swigCPtr, Popup.Property.CONTEXTUAL_MODE).Get(out temp) == false)
             {
@@ -258,7 +258,7 @@ namespace Tizen.NUI.UIComponents
                 default:
                     return ContextualModeType.Below;
             }
-		});
+        });
         /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty AnimationDurationProperty = BindableProperty.Create("AnimationDuration", typeof(float), typeof(Popup), default(float), propertyChanged: (bindable, oldValue, newValue) =>
@@ -270,12 +270,12 @@ namespace Tizen.NUI.UIComponents
             }
         },
         defaultValueCreator:(bindable) =>
-		{
-			var popup = (Popup)bindable;
+        {
+            var popup = (Popup)bindable;
             float temp = 0.0f;
-			Tizen.NUI.Object.GetProperty(popup.swigCPtr, Popup.Property.ANIMATION_DURATION).Get(out temp);
-			return temp;
-		});
+            Tizen.NUI.Object.GetProperty(popup.swigCPtr, Popup.Property.ANIMATION_DURATION).Get(out temp);
+            return temp;
+        });
         /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty AnimationModeProperty = BindableProperty.Create("AnimationMode", typeof(AnimationModeType), typeof(Popup), AnimationModeType.Fade, propertyChanged: (bindable, oldValue, newValue) =>
@@ -316,8 +316,8 @@ namespace Tizen.NUI.UIComponents
             }
         },
         defaultValueCreator:(bindable) =>
-		{
-			var popup = (Popup)bindable;
+        {
+            var popup = (Popup)bindable;
             string temp;
             if (Tizen.NUI.Object.GetProperty(popup.swigCPtr, Popup.Property.ANIMATION_MODE).Get(out temp) == false)
             {
@@ -336,7 +336,7 @@ namespace Tizen.NUI.UIComponents
                 default:
                     return AnimationModeType.Fade;
             }
-		});
+        });
         /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty EntryAnimationProperty = BindableProperty.Create("EntryAnimation", typeof(PropertyMap), typeof(Popup), new PropertyMap(), propertyChanged: (bindable, oldValue, newValue) =>
@@ -348,12 +348,12 @@ namespace Tizen.NUI.UIComponents
             }
         },
         defaultValueCreator:(bindable) =>
-		{
-			var popup = (Popup)bindable;
+        {
+            var popup = (Popup)bindable;
             PropertyMap temp = new PropertyMap();
-			Tizen.NUI.Object.GetProperty(popup.swigCPtr, Popup.Property.ENTRY_ANIMATION).Get(temp);
-			return temp;
-		});
+            Tizen.NUI.Object.GetProperty(popup.swigCPtr, Popup.Property.ENTRY_ANIMATION).Get(temp);
+            return temp;
+        });
         /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty ExitAnimationProperty = BindableProperty.Create("ExitAnimation", typeof(PropertyMap), typeof(Popup), new PropertyMap(), propertyChanged: (bindable, oldValue, newValue) =>
@@ -365,12 +365,12 @@ namespace Tizen.NUI.UIComponents
             }
         },
         defaultValueCreator:(bindable) =>
-		{
-			var popup = (Popup)bindable;
+        {
+            var popup = (Popup)bindable;
             PropertyMap temp = new PropertyMap();
-			Tizen.NUI.Object.GetProperty(popup.swigCPtr, Popup.Property.EXIT_ANIMATION).Get(temp);
-			return temp;
-		});
+            Tizen.NUI.Object.GetProperty(popup.swigCPtr, Popup.Property.EXIT_ANIMATION).Get(temp);
+            return temp;
+        });
         /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty AutoHideDelayProperty = BindableProperty.Create("AutoHideDelay", typeof(int), typeof(Popup), default(int), propertyChanged: (bindable, oldValue, newValue) =>
@@ -382,12 +382,12 @@ namespace Tizen.NUI.UIComponents
             }
         },
         defaultValueCreator:(bindable) =>
-		{
-			var popup = (Popup)bindable;
+        {
+            var popup = (Popup)bindable;
             int temp = 0;
-			Tizen.NUI.Object.GetProperty(popup.swigCPtr, Popup.Property.AUTO_HIDE_DELAY).Get(out temp);
-			return temp;
-		});
+            Tizen.NUI.Object.GetProperty(popup.swigCPtr, Popup.Property.AUTO_HIDE_DELAY).Get(out temp);
+            return temp;
+        });
         /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty BackingEnabledProperty = BindableProperty.Create("BackingEnabled", typeof(bool), typeof(Popup), false, propertyChanged: (bindable, oldValue, newValue) =>
@@ -399,12 +399,12 @@ namespace Tizen.NUI.UIComponents
             }
         },
         defaultValueCreator:(bindable) =>
-		{
-			var popup = (Popup)bindable;
+        {
+            var popup = (Popup)bindable;
             bool temp = false;
-			Tizen.NUI.Object.GetProperty(popup.swigCPtr, Popup.Property.BACKING_ENABLED).Get(out temp);
-			return temp;
-		});
+            Tizen.NUI.Object.GetProperty(popup.swigCPtr, Popup.Property.BACKING_ENABLED).Get(out temp);
+            return temp;
+        });
         /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty BackingColorProperty = BindableProperty.Create("BackingColor", typeof(Vector4), typeof(Popup), Vector4.Zero, propertyChanged: (bindable, oldValue, newValue) =>
@@ -416,12 +416,12 @@ namespace Tizen.NUI.UIComponents
             }
         },
         defaultValueCreator:(bindable) =>
-		{
-			var popup = (Popup)bindable;
+        {
+            var popup = (Popup)bindable;
             Vector4 temp = new Vector4(0.0f, 0.0f, 0.0f, 0.0f);
-			Tizen.NUI.Object.GetProperty(popup.swigCPtr, Popup.Property.BACKING_COLOR).Get(temp);
-			return temp;
-		});
+            Tizen.NUI.Object.GetProperty(popup.swigCPtr, Popup.Property.BACKING_COLOR).Get(temp);
+            return temp;
+        });
         /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty PopupBackgroundImageProperty = BindableProperty.Create("PopupBackgroundImage", typeof(string), typeof(Popup), string.Empty, propertyChanged: (bindable, oldValue, newValue) =>
@@ -433,12 +433,12 @@ namespace Tizen.NUI.UIComponents
             }
         },
         defaultValueCreator:(bindable) =>
-		{
-			var popup = (Popup)bindable;
+        {
+            var popup = (Popup)bindable;
             string temp;
-			Tizen.NUI.Object.GetProperty(popup.swigCPtr, Popup.Property.POPUP_BACKGROUND_IMAGE).Get(out temp);
-			return temp;
-		});
+            Tizen.NUI.Object.GetProperty(popup.swigCPtr, Popup.Property.POPUP_BACKGROUND_IMAGE).Get(out temp);
+            return temp;
+        });
         /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty PopupBackgroundBorderProperty = BindableProperty.Create("PopupBackgroundBorder", typeof(Rectangle), typeof(Popup), new Rectangle(0,0,0,0), propertyChanged: (bindable, oldValue, newValue) =>
@@ -450,12 +450,12 @@ namespace Tizen.NUI.UIComponents
             }
         },
         defaultValueCreator:(bindable) =>
-		{
-			var popup = (Popup)bindable;
+        {
+            var popup = (Popup)bindable;
             Rectangle temp = new Rectangle(0, 0, 0, 0);
-			Tizen.NUI.Object.GetProperty(popup.swigCPtr, Popup.Property.POPUP_BACKGROUND_BORDER).Get(temp);
-			return temp;
-		});
+            Tizen.NUI.Object.GetProperty(popup.swigCPtr, Popup.Property.POPUP_BACKGROUND_BORDER).Get(temp);
+            return temp;
+        });
         /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty TailUpImageProperty = BindableProperty.Create("TailUpImage", typeof(string), typeof(Popup), string.Empty, propertyChanged: (bindable, oldValue, newValue) =>
@@ -467,12 +467,12 @@ namespace Tizen.NUI.UIComponents
             }
         },
         defaultValueCreator:(bindable) =>
-		{
-			var popup = (Popup)bindable;
+        {
+            var popup = (Popup)bindable;
             string temp;
-			Tizen.NUI.Object.GetProperty(popup.swigCPtr, Popup.Property.TAIL_UP_IMAGE).Get(out temp);
-			return temp;
-		});
+            Tizen.NUI.Object.GetProperty(popup.swigCPtr, Popup.Property.TAIL_UP_IMAGE).Get(out temp);
+            return temp;
+        });
         /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty TailDownImageProperty = BindableProperty.Create("TailDownImage", typeof(string), typeof(Popup), string.Empty, propertyChanged: (bindable, oldValue, newValue) =>
@@ -484,12 +484,12 @@ namespace Tizen.NUI.UIComponents
             }
         },
         defaultValueCreator:(bindable) =>
-		{
-			var popup = (Popup)bindable;
+        {
+            var popup = (Popup)bindable;
             string temp;
-			Tizen.NUI.Object.GetProperty(popup.swigCPtr, Popup.Property.TAIL_DOWN_IMAGE).Get(out temp);
-			return temp;
-		});
+            Tizen.NUI.Object.GetProperty(popup.swigCPtr, Popup.Property.TAIL_DOWN_IMAGE).Get(out temp);
+            return temp;
+        });
         /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty TailLeftImageProperty = BindableProperty.Create("TailLeftImage", typeof(string), typeof(Popup), string.Empty, propertyChanged: (bindable, oldValue, newValue) =>
@@ -501,12 +501,12 @@ namespace Tizen.NUI.UIComponents
             }
         },
         defaultValueCreator:(bindable) =>
-		{
-			var popup = (Popup)bindable;
+        {
+            var popup = (Popup)bindable;
             string temp;
-			Tizen.NUI.Object.GetProperty(popup.swigCPtr, Popup.Property.TAIL_LEFT_IMAGE).Get(out temp);
-			return temp;
-		});
+            Tizen.NUI.Object.GetProperty(popup.swigCPtr, Popup.Property.TAIL_LEFT_IMAGE).Get(out temp);
+            return temp;
+        });
         /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty TailRightImageProperty = BindableProperty.Create("TailRightImage", typeof(string), typeof(Popup), string.Empty, propertyChanged: (bindable, oldValue, newValue) =>
@@ -518,12 +518,12 @@ namespace Tizen.NUI.UIComponents
             }
         },
         defaultValueCreator:(bindable) =>
-		{
-			var popup = (Popup)bindable;
+        {
+            var popup = (Popup)bindable;
             string temp;
-			Tizen.NUI.Object.GetProperty(popup.swigCPtr, Popup.Property.TAIL_RIGHT_IMAGE).Get(out temp);
-			return temp;
-		});
+            Tizen.NUI.Object.GetProperty(popup.swigCPtr, Popup.Property.TAIL_RIGHT_IMAGE).Get(out temp);
+            return temp;
+        });
 
         private global::System.Runtime.InteropServices.HandleRef swigCPtr;
 

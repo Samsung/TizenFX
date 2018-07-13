@@ -302,7 +302,7 @@ namespace Tizen.NUI
             Size2D ret = new Size2D(NDalicPINVOKE.Vector2_Subtract__SWIG_1(swigCPtr), true);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
-        }  
+        }
 
         /// <summary>
         /// Determines whether the specified object is equal to the current object.

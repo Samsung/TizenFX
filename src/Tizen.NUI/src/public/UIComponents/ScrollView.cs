@@ -39,12 +39,12 @@ namespace Tizen.NUI
             }
         },
         defaultValueCreator:(bindable) =>
-		{
-			var scrollView = (ScrollView)bindable;
-			bool temp = false;
-			Tizen.NUI.Object.GetProperty(scrollView.swigCPtr, ScrollView.Property.WRAP_ENABLED).Get(out temp);
-			return temp;
-		});
+        {
+            var scrollView = (ScrollView)bindable;
+            bool temp = false;
+            Tizen.NUI.Object.GetProperty(scrollView.swigCPtr, ScrollView.Property.WRAP_ENABLED).Get(out temp);
+            return temp;
+        });
         /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty PanningEnabledProperty = BindableProperty.Create("PanningEnabled", typeof(bool), typeof(ScrollView), false, propertyChanged: (bindable, oldValue, newValue) =>
@@ -56,12 +56,12 @@ namespace Tizen.NUI
             }
         },
         defaultValueCreator:(bindable) =>
-		{
-			var scrollView = (ScrollView)bindable;
+        {
+            var scrollView = (ScrollView)bindable;
             bool temp = false;
-			Tizen.NUI.Object.GetProperty(scrollView.swigCPtr, ScrollView.Property.PANNING_ENABLED).Get(out temp);
-			return temp;
-		});
+            Tizen.NUI.Object.GetProperty(scrollView.swigCPtr, ScrollView.Property.PANNING_ENABLED).Get(out temp);
+            return temp;
+        });
         /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty AxisAutoLockEnabledProperty = BindableProperty.Create("AxisAutoLockEnabled", typeof(bool), typeof(ScrollView), false, propertyChanged: (bindable, oldValue, newValue) =>
@@ -73,12 +73,12 @@ namespace Tizen.NUI
             }
         },
         defaultValueCreator:(bindable) =>
-		{
-			var scrollView = (ScrollView)bindable;
-			bool temp = false;
-			Tizen.NUI.Object.GetProperty(scrollView.swigCPtr, ScrollView.Property.AXIS_AUTO_LOCK_ENABLED).Get(out temp);
-			return temp;
-		});
+        {
+            var scrollView = (ScrollView)bindable;
+            bool temp = false;
+            Tizen.NUI.Object.GetProperty(scrollView.swigCPtr, ScrollView.Property.AXIS_AUTO_LOCK_ENABLED).Get(out temp);
+            return temp;
+        });
         /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty WheelScrollDistanceStepProperty = BindableProperty.Create("WheelScrollDistanceStep", typeof(Vector2), typeof(ScrollView), Vector2.Zero, propertyChanged: (bindable, oldValue, newValue) =>
@@ -90,12 +90,12 @@ namespace Tizen.NUI
             }
         },
         defaultValueCreator:(bindable) =>
-		{
-			var scrollView = (ScrollView)bindable;
+        {
+            var scrollView = (ScrollView)bindable;
             Vector2 temp = new Vector2(0.0f, 0.0f);
-			Tizen.NUI.Object.GetProperty(scrollView.swigCPtr, ScrollView.Property.WHEEL_SCROLL_DISTANCE_STEP).Get(temp);
-			return temp;
-		});
+            Tizen.NUI.Object.GetProperty(scrollView.swigCPtr, ScrollView.Property.WHEEL_SCROLL_DISTANCE_STEP).Get(temp);
+            return temp;
+        });
         /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty ScrollPositionProperty = BindableProperty.Create("ScrollPosition", typeof(Vector2), typeof(ScrollView), Vector2.Zero, propertyChanged: (bindable, oldValue, newValue) =>
@@ -107,12 +107,12 @@ namespace Tizen.NUI
             }
         },
         defaultValueCreator:(bindable) =>
-		{
-			var scrollView = (ScrollView)bindable;
+        {
+            var scrollView = (ScrollView)bindable;
             Vector2 temp = new Vector2(0.0f, 0.0f);
-			Tizen.NUI.Object.GetProperty(scrollView.swigCPtr, ScrollView.Property.SCROLL_POSITION).Get(temp);
-			return temp;
-		});
+            Tizen.NUI.Object.GetProperty(scrollView.swigCPtr, ScrollView.Property.SCROLL_POSITION).Get(temp);
+            return temp;
+        });
         /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty ScrollPrePositionProperty = BindableProperty.Create("ScrollPrePosition", typeof(Vector2), typeof(ScrollView), Vector2.Zero, propertyChanged: (bindable, oldValue, newValue) =>
@@ -124,12 +124,12 @@ namespace Tizen.NUI
             }
         },
         defaultValueCreator:(bindable) =>
-		{
-			var scrollView = (ScrollView)bindable;
+        {
+            var scrollView = (ScrollView)bindable;
             Vector2 temp = new Vector2(0.0f, 0.0f);
-			Tizen.NUI.Object.GetProperty(scrollView.swigCPtr, ScrollView.Property.SCROLL_PRE_POSITION).Get(temp);
-			return temp;
-		});
+            Tizen.NUI.Object.GetProperty(scrollView.swigCPtr, ScrollView.Property.SCROLL_PRE_POSITION).Get(temp);
+            return temp;
+        });
         /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty ScrollPrePositionMaxProperty = BindableProperty.Create("ScrollPrePositionMax", typeof(Vector2), typeof(ScrollView), Vector2.Zero, propertyChanged: (bindable, oldValue, newValue) =>
@@ -141,12 +141,12 @@ namespace Tizen.NUI
             }
         },
         defaultValueCreator:(bindable) =>
-		{
-			var scrollView = (ScrollView)bindable;
+        {
+            var scrollView = (ScrollView)bindable;
             Vector2 temp = new Vector2(0.0f, 0.0f);
-			Tizen.NUI.Object.GetProperty(scrollView.swigCPtr, ScrollView.Property.SCROLL_PRE_POSITION_MAX).Get(temp);
-			return temp;
-		});
+            Tizen.NUI.Object.GetProperty(scrollView.swigCPtr, ScrollView.Property.SCROLL_PRE_POSITION_MAX).Get(temp);
+            return temp;
+        });
         /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty OvershootXProperty = BindableProperty.Create("OvershootX", typeof(float), typeof(ScrollView), default(float), propertyChanged: (bindable, oldValue, newValue) =>
@@ -158,12 +158,12 @@ namespace Tizen.NUI
             }
         },
         defaultValueCreator:(bindable) =>
-		{
-			var scrollView = (ScrollView)bindable;
+        {
+            var scrollView = (ScrollView)bindable;
             float temp = 0.0f;
-			Tizen.NUI.Object.GetProperty(scrollView.swigCPtr, ScrollView.Property.OVERSHOOT_X).Get(out temp);
-			return temp;
-		});
+            Tizen.NUI.Object.GetProperty(scrollView.swigCPtr, ScrollView.Property.OVERSHOOT_X).Get(out temp);
+            return temp;
+        });
         /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty OvershootYProperty = BindableProperty.Create("OvershootY", typeof(float), typeof(ScrollView), default(float), propertyChanged: (bindable, oldValue, newValue) =>
@@ -175,12 +175,12 @@ namespace Tizen.NUI
             }
         },
         defaultValueCreator:(bindable) =>
-		{
-			var scrollView = (ScrollView)bindable;
+        {
+            var scrollView = (ScrollView)bindable;
             float temp = 0.0f;
-			Tizen.NUI.Object.GetProperty(scrollView.swigCPtr, ScrollView.Property.OVERSHOOT_Y).Get(out temp);
-			return temp;
-		});
+            Tizen.NUI.Object.GetProperty(scrollView.swigCPtr, ScrollView.Property.OVERSHOOT_Y).Get(out temp);
+            return temp;
+        });
         /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty ScrollFinalProperty = BindableProperty.Create("ScrollFinal", typeof(Vector2), typeof(ScrollView), Vector2.Zero, propertyChanged: (bindable, oldValue, newValue) =>
@@ -192,12 +192,12 @@ namespace Tizen.NUI
             }
         },
         defaultValueCreator:(bindable) =>
-		{
-			var scrollView = (ScrollView)bindable;
+        {
+            var scrollView = (ScrollView)bindable;
             Vector2 temp = new Vector2(0.0f, 0.0f);
-			Tizen.NUI.Object.GetProperty(scrollView.swigCPtr, ScrollView.Property.SCROLL_FINAL).Get(temp);
-			return temp;
-		});
+            Tizen.NUI.Object.GetProperty(scrollView.swigCPtr, ScrollView.Property.SCROLL_FINAL).Get(temp);
+            return temp;
+        });
         /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty WrapProperty = BindableProperty.Create("Wrap", typeof(bool), typeof(ScrollView), false, propertyChanged: (bindable, oldValue, newValue) =>
@@ -209,12 +209,12 @@ namespace Tizen.NUI
             }
         },
         defaultValueCreator:(bindable) =>
-		{
-			var scrollView = (ScrollView)bindable;
+        {
+            var scrollView = (ScrollView)bindable;
             bool temp = false;
-			Tizen.NUI.Object.GetProperty(scrollView.swigCPtr, ScrollView.Property.WRAP).Get(out temp);
-			return temp;
-		});
+            Tizen.NUI.Object.GetProperty(scrollView.swigCPtr, ScrollView.Property.WRAP).Get(out temp);
+            return temp;
+        });
         /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty PanningProperty = BindableProperty.Create("Panning", typeof(bool), typeof(ScrollView), false, propertyChanged: (bindable, oldValue, newValue) =>
@@ -226,12 +226,12 @@ namespace Tizen.NUI
             }
         },
         defaultValueCreator:(bindable) =>
-		{
-			var scrollView = (ScrollView)bindable;
-			bool temp = false;
-			Tizen.NUI.Object.GetProperty(scrollView.swigCPtr, ScrollView.Property.PANNING).Get(out temp);
-			return temp;
-		});
+        {
+            var scrollView = (ScrollView)bindable;
+            bool temp = false;
+            Tizen.NUI.Object.GetProperty(scrollView.swigCPtr, ScrollView.Property.PANNING).Get(out temp);
+            return temp;
+        });
         /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty ScrollingProperty = BindableProperty.Create("Scrolling", typeof(bool), typeof(ScrollView), false, propertyChanged: (bindable, oldValue, newValue) =>
@@ -243,12 +243,12 @@ namespace Tizen.NUI
             }
         },
         defaultValueCreator:(bindable) =>
-		{
-			var scrollView = (ScrollView)bindable;
-			bool temp = false;
-			Tizen.NUI.Object.GetProperty(scrollView.swigCPtr, ScrollView.Property.SCROLLING).Get(out temp);
-			return temp;
-		});
+        {
+            var scrollView = (ScrollView)bindable;
+            bool temp = false;
+            Tizen.NUI.Object.GetProperty(scrollView.swigCPtr, ScrollView.Property.SCROLLING).Get(out temp);
+            return temp;
+        });
         /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty ScrollDomainSizeProperty = BindableProperty.Create("ScrollDomainSize", typeof(Vector2), typeof(ScrollView), Vector2.Zero, propertyChanged: (bindable, oldValue, newValue) =>
@@ -260,12 +260,12 @@ namespace Tizen.NUI
             }
         },
         defaultValueCreator:(bindable) =>
-		{
-			var scrollView = (ScrollView)bindable;
+        {
+            var scrollView = (ScrollView)bindable;
             Vector2 temp = new Vector2(0.0f, 0.0f);
-			Tizen.NUI.Object.GetProperty(scrollView.swigCPtr, ScrollView.Property.SCROLL_DOMAIN_SIZE).Get(temp);
-			return temp;
-		});
+            Tizen.NUI.Object.GetProperty(scrollView.swigCPtr, ScrollView.Property.SCROLL_DOMAIN_SIZE).Get(temp);
+            return temp;
+        });
         /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty ScrollDomainOffsetProperty = BindableProperty.Create("ScrollDomainOffset", typeof(Vector2), typeof(ScrollView), Vector2.Zero, propertyChanged: (bindable, oldValue, newValue) =>
@@ -277,12 +277,12 @@ namespace Tizen.NUI
             }
         },
         defaultValueCreator:(bindable) =>
-		{
-			var scrollView = (ScrollView)bindable;
+        {
+            var scrollView = (ScrollView)bindable;
             Vector2 temp = new Vector2(0.0f, 0.0f);
-			Tizen.NUI.Object.GetProperty(scrollView.swigCPtr, ScrollView.Property.SCROLL_DOMAIN_OFFSET).Get(temp);
-			return temp;
-		});
+            Tizen.NUI.Object.GetProperty(scrollView.swigCPtr, ScrollView.Property.SCROLL_DOMAIN_OFFSET).Get(temp);
+            return temp;
+        });
         /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty ScrollPositionDeltaProperty = BindableProperty.Create("ScrollPositionDelta", typeof(Vector2), typeof(ScrollView), Vector2.Zero, propertyChanged: (bindable, oldValue, newValue) =>
@@ -294,12 +294,12 @@ namespace Tizen.NUI
             }
         },
         defaultValueCreator:(bindable) =>
-		{
-			var scrollView = (ScrollView)bindable;
+        {
+            var scrollView = (ScrollView)bindable;
             Vector2 temp = new Vector2(0.0f, 0.0f);
-			Tizen.NUI.Object.GetProperty(scrollView.swigCPtr, ScrollView.Property.SCROLL_POSITION_DELTA).Get(temp);
-			return temp;
-		});
+            Tizen.NUI.Object.GetProperty(scrollView.swigCPtr, ScrollView.Property.SCROLL_POSITION_DELTA).Get(temp);
+            return temp;
+        });
         /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty StartPagePositionProperty = BindableProperty.Create("StartPagePosition", typeof(Vector3), typeof(ScrollView), Vector3.Zero, propertyChanged: (bindable, oldValue, newValue) =>
@@ -311,12 +311,12 @@ namespace Tizen.NUI
             }
         },
         defaultValueCreator:(bindable) =>
-		{
-			var scrollView = (ScrollView)bindable;
+        {
+            var scrollView = (ScrollView)bindable;
             Vector3 temp = new Vector3(0.0f, 0.0f, 0.0f);
-			Tizen.NUI.Object.GetProperty(scrollView.swigCPtr, ScrollView.Property.START_PAGE_POSITION).Get(temp);
-			return temp;
-		});
+            Tizen.NUI.Object.GetProperty(scrollView.swigCPtr, ScrollView.Property.START_PAGE_POSITION).Get(temp);
+            return temp;
+        });
         /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty ScrollModeProperty = BindableProperty.Create("ScrollMode", typeof(PropertyMap), typeof(ScrollView), new PropertyMap(), propertyChanged: (bindable, oldValue, newValue) =>
@@ -328,14 +328,14 @@ namespace Tizen.NUI
             }
         },
         defaultValueCreator:(bindable) =>
-		{
-			var scrollView = (ScrollView)bindable;
+        {
+            var scrollView = (ScrollView)bindable;
             PropertyValue value = Tizen.NUI.Object.GetProperty(scrollView.swigCPtr, ScrollView.Property.SCROLL_MODE );
             PropertyMap map = new PropertyMap();
             value.Get( map );
             return map;
-		});
-        
+        });
+
         private global::System.Runtime.InteropServices.HandleRef swigCPtr;
 
         internal ScrollView(global::System.IntPtr cPtr, bool cMemoryOwn) : base(NDalicPINVOKE.ScrollView_SWIGUpcast(cPtr), cMemoryOwn)
