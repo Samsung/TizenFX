@@ -69,6 +69,8 @@ namespace Tizen.Applications.RPCPort
         /// <exception cref="InvalidIDException">Thrown when not available app ID is used</exception>
         /// <exception cref="InvalidIOException">Thrown when internal IO error happens</exception>
         /// <exception cref="PermissionDeniedException">Thrown when the permission is denied</exception>
+        /// <privilege>http://tizen.org/privilege/datasharing</privilege>
+        /// <privilege>http://tizen.org/privilege/appmanager.launch</privilege>
         /// <since_tizen> 5 </since_tizen>
         protected void Connect(string appid, string port)
         {
