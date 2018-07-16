@@ -623,6 +623,79 @@ namespace Tizen.Network.WiFi
         }
 
         /// <summary>
+        /// Deletes the information of a stored access point and disconnects it when the AP is connected asyncronously.
+        /// If an AP is connected, then the connection information will be stored. This information is used when a connection to that AP is established automatically.
+        /// </summary>
+        /// <returns> A task indicating whether the disconnect method is done or not.</returns>
+        /// <remarks>
+        /// This method must be called from MainThread.
+        /// </remarks>
+        /// <since_tizen> 5 </since_tizen>
+        /// <feature>http://tizen.org/feature/network.wifi</feature>
+        /// <privilege>http://tizen.org/privilege/network.profile</privilege>
+        /// <privilege>http://tizen.org/privilege/network.get</privilege>
+        /// <exception cref="NotSupportedException">Thrown when the Wi-Fi is not supported.</exception>
+        /// <exception cref="UnauthorizedAccessException">Thrown when permission is denied.</exception>
+        /// <exception cref="ObjectDisposedException">Thrown when the object instance is disposed or released.</exception>
+        /// <exception cref="InvalidOperationException">Thrown when the method failed due to an invalid operation.</exception>
+        public Task ForgetAPAsync()
+        {
+            Log.Debug(Globals.LogTag, "ForgetAPAsync");
+            if (_disposed)
+            {
+                throw new ObjectDisposedException("Invalid AP instance (Object may have been disposed or released)");
+            }
+            TaskCompletionSource<bool> task = new TaskCompletionSource<bool>();
+            IntPtr id;
+            lock (_callback_map)
+            {
+                id = (IntPtr)_requestId++;
+                _callback_map[id] = (error, key) =>
+                {
+                    Log.Info(Globals.LogTag, "ForgetAPAsync done");
+                    if (error != (int)WiFiError.None)
+                    {
+                        Log.Error(Globals.LogTag, "Error occurs during WiFi disconnecting, " + (WiFiError)error);
+                        task.SetException(new InvalidOperationException("Error occurs during WiFi disconnecting, " + (WiFiError)error));
+                    }
+                    else
+                    {
+                        task.SetResult(true);
+                    }
+                    lock (_callback_map)
+                    {
+                        _callback_map.Remove(key);
+                    }
+                };
+            }
+
+            context.Post((x) =>
+            {
+                Log.Info(Globals.LogTag, "Interop.WiFi.ForgetAP");
+                try
+                {
+                    int ret = Interop.WiFi.ForgetAP(WiFiManagerImpl.Instance.GetSafeHandle(), _apHandle, _callback_map[id], id);
+                    if (ret != (int)WiFiError.None)
+                    {
+                        Log.Error(Globals.LogTag, "Failed to forget wifi, Error - " + (WiFiError)ret);
+                        if (ret == (int)WiFiError.InvalidParameterError)
+                        {
+                            throw new InvalidOperationException("Invalid handle");
+                        }
+                        WiFiErrorFactory.ThrowWiFiException(ret, WiFiManagerImpl.Instance.GetSafeHandle().DangerousGetHandle(), _apHandle);
+                    }
+                }
+                catch (Exception e)
+                {
+                    Log.Error(Globals.LogTag, "Exception on ForgetAPAsync\n" + e.ToString());
+                    task.SetException(e);
+                }
+            }, null);
+
+            return task.Task;
+        }
+
+        /// <summary>
         /// Update the information of a stored access point.
         /// When a AP information is changed, the change will not be applied until this method is called.
         /// </summary>
