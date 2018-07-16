@@ -381,30 +381,30 @@ namespace Tizen.NUI.Binding
                     }
                 }
 #if !NETSTANDARD1_0
-                TupleElementNamesAttribute tupleEltNames;
-                if (   property != null
-                    && part.NextPart != null
-                    && property.PropertyType.IsGenericType
-                    && (   property.PropertyType.GetGenericTypeDefinition() == typeof(ValueTuple<>)
-                        || property.PropertyType.GetGenericTypeDefinition() == typeof(ValueTuple<,>)
-                        || property.PropertyType.GetGenericTypeDefinition() == typeof(ValueTuple<,,>)
-                        || property.PropertyType.GetGenericTypeDefinition() == typeof(ValueTuple<,,,>)
-                        || property.PropertyType.GetGenericTypeDefinition() == typeof(ValueTuple<,,,,>)
-                        || property.PropertyType.GetGenericTypeDefinition() == typeof(ValueTuple<,,,,,>)
-                        || property.PropertyType.GetGenericTypeDefinition() == typeof(ValueTuple<,,,,,,>)
-                        || property.PropertyType.GetGenericTypeDefinition() == typeof(ValueTuple<,,,,,,,>))
-                    && (tupleEltNames = property.GetCustomAttribute(typeof(TupleElementNamesAttribute)) as TupleElementNamesAttribute) != null)
-                {
+                //TupleElementNamesAttribute tupleEltNames;
+                //if (property != null
+                //    && part.NextPart != null
+                //    && property.PropertyType.IsGenericType
+                //    && (property.PropertyType.GetGenericTypeDefinition() == typeof(ValueTuple<>)
+                //        || property.PropertyType.GetGenericTypeDefinition() == typeof(ValueTuple<,>)
+                //        || property.PropertyType.GetGenericTypeDefinition() == typeof(ValueTuple<,,>)
+                //        || property.PropertyType.GetGenericTypeDefinition() == typeof(ValueTuple<,,,>)
+                //        || property.PropertyType.GetGenericTypeDefinition() == typeof(ValueTuple<,,,,>)
+                //        || property.PropertyType.GetGenericTypeDefinition() == typeof(ValueTuple<,,,,,>)
+                //        || property.PropertyType.GetGenericTypeDefinition() == typeof(ValueTuple<,,,,,,>)
+                //        || property.PropertyType.GetGenericTypeDefinition() == typeof(ValueTuple<,,,,,,,>))
+                //    && (tupleEltNames = property.GetCustomAttribute(typeof(TupleElementNamesAttribute)) as TupleElementNamesAttribute) != null)
+                //{
                     //modify the nextPart to access the tuple item via the ITuple indexer
-                    var nextPart = part.NextPart;
-                    var name = nextPart.Content;
-                    var index = tupleEltNames.TransformNames.IndexOf(name);
-                    if (index >= 0)
-                    {
-                        nextPart.IsIndexer = true;
-                        nextPart.Content = index.ToString();
-                    }
-                }
+                //    var nextPart = part.NextPart;
+                //    var name = nextPart.Content;
+                //    var index = tupleEltNames.TransformNames.IndexOf(name);
+                //    if (index >= 0)
+                //    {
+                //        nextPart.IsIndexer = true;
+                //        nextPart.Content = index.ToString();
+                //    }
+                //}
 #endif
             }
 
@@ -609,7 +609,8 @@ namespace Tizen.NUI.Binding
                     }
                 }
 
-                Device.BeginInvokeOnMainThread(() => _expression.Apply());
+                _expression.Apply();
+                // Device.BeginInvokeOnMainThread(() => _expression.Apply());
             }
 
             public bool TryGetValue(object source, out object value)
