@@ -107,7 +107,7 @@ namespace Tizen.Applications.Notifications
                 using (Bundle bundle = new Bundle())
                 {
                     bundle.AddItem(replyKey, ((int)this.ParentIndex).ToString());
-                    Interop.Notification.SetExtensionData(notification.Handle, replyKey, bundle.SafeBundleHandle);
+                    Interop.Notification.SetExtentionData(notification.Handle, replyKey, bundle.SafeBundleHandle);
                 }
                 Interop.Notification.SetPlaceHolderLength(notification.Handle, this.ReplyMax);
                 Interop.Notification.SetText(notification.Handle, NotificationText.PlaceHolder, PlaceHolderText, null, -1);
