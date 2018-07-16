@@ -104,12 +104,14 @@ namespace Tizen.Applications.Notifications
                     }
                 }
 
-                Bundle bundle = new Bundle();
-                bundle.AddItem(replyKey, ((int)this.ParentIndex).ToString());
-                Interop.Notification.SetExtentionData(notification.Handle, replyKey, bundle.SafeBundleHandle);
-
+                using (Bundle bundle = new Bundle())
+                {
+                    bundle.AddItem(replyKey, ((int)this.ParentIndex).ToString());
+                    Interop.Notification.SetExtentionData(notification.Handle, replyKey, bundle.SafeBundleHandle);
+                }
                 Interop.Notification.SetPlaceHolderLength(notification.Handle, this.ReplyMax);
                 Interop.Notification.SetText(notification.Handle, NotificationText.PlaceHolder, PlaceHolderText, null, -1);
+
             }
         }
     }
