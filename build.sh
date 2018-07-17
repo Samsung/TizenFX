@@ -5,8 +5,8 @@ SCRIPT_DIR=$(dirname $SCRIPT_FILE)
 
 OUTDIR=$SCRIPT_DIR/Artifacts
 
-RETRY_CMD="$SCRIPT_DIR/tools/retry.sh"
-TIMEOUT_CMD="$SCRIPT_DIR/tools/timeout.sh"
+RETRY_CMD="$SCRIPT_DIR/tools/scripts/retry.sh"
+TIMEOUT_CMD="$SCRIPT_DIR/tools/scripts/timeout.sh"
 DOTNET_CMD="$RETRY_CMD $TIMEOUT_CMD 600 dotnet"
 
 RUN_BUILD="$DOTNET_CMD msbuild $SCRIPT_DIR/build/build.proj /nologo"
@@ -46,8 +46,8 @@ cmd_dummy_build() {
   if [ -d /nuget ]; then
     NUGET_SOURCE_OPT="/p:RestoreSources=/nuget"
   fi
+  $RUN_BUILD /t:restore $NUGET_SOURCE_OPT
   $RUN_BUILD /t:dummy $NUGET_SOURCE_OPT
-  $RUN_BUILD /t:afterdummy
 }
 
 cmd_pack() {
