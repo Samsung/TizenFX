@@ -1,5 +1,5 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
-  
+
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
     <AssemblyName>OpenTK</AssemblyName>
@@ -8,9 +8,17 @@
     <DefineConstants>TIZEN;OPENGLES;SDL2;__MOBILE__</DefineConstants>
     <NoWarn>$(NoWarn);CS3021</NoWarn>
   </PropertyGroup>
-  
+
   <ItemGroup>
     <ProjectReference Include="..\Tizen.Applications.UI\Tizen.Applications.UI.csproj" />
   </ItemGroup>
-  
+
+  <Target Name="_AfterBuild" AfterTargets="Build" Condition="'$(IsDummyBuild)' != 'True'">
+    <PropertyGroup>
+      <RewriteCmd>dotnet $(ToolsDir)bin/Generator.Rewrite/Generator.Rewrite.dll</RewriteCmd>
+      <DebugOpt Condition="'$(Configuration)' == 'Debug'">--debug</DebugOpt>
+    </PropertyGroup>
+    <Exec Command="$(RewriteCmd) --assembly $(TargetPath) --dllimport $(DebugOpt)" />
+  </Target>
+
 </Project>

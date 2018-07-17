@@ -3,13 +3,24 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.26124.0
 MinimumVisualStudioVersion = 15.0.26124.0
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ABIChecker", "ABIChecker\ABIChecker.csproj", "{CBA86009-11E4-4DCC-A3D2-BF93040FE9B0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ABIChecker", "src\ABIChecker\ABIChecker.csproj", "{CBA86009-11E4-4DCC-A3D2-BF93040FE9B0}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GenDummy", "GenDummy\GenDummy.csproj", "{1E1A1D65-0455-4F29-A97B-5343F34418B5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GenDummy", "src\GenDummy\GenDummy.csproj", "{1E1A1D65-0455-4F29-A97B-5343F34418B5}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GenDummy.Tasks", "GenDummy.Tasks\GenDummy.Tasks.csproj", "{E9C95342-979E-4ACC-BB12-C7C85F7B84B2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GenDummy.Tasks", "src\GenDummy.Tasks\GenDummy.Tasks.csproj", "{E9C95342-979E-4ACC-BB12-C7C85F7B84B2}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GenDummy.CommandLine", "GenDummy.CommandLine\GenDummy.CommandLine.csproj", "{0A8A3694-C87C-4131-ACBF-216E778142BA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GenDummy.CommandLine", "src\GenDummy.CommandLine\GenDummy.CommandLine.csproj", "{0A8A3694-C87C-4131-ACBF-216E778142BA}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Generator.Rewrite.NETCore", "src\Generator.Rewrite\Generator.Rewrite.NETCore.csproj", "{A8C3D620-CBA3-4CCE-A111-4FC68236ED4D}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "scripts", "scripts", "{E98F2935-7908-41D6-9906-D4E57DB0BB37}"
+	ProjectSection(SolutionItems) = preProject
+		scripts\add_module.sh = scripts\add_module.sh
+		build-tools.sh = build-tools.sh
+		scripts\module.csproj.template = scripts\module.csproj.template
+		scripts\retry.sh = scripts\retry.sh
+		scripts\timeout.sh = scripts\timeout.sh
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -69,6 +80,18 @@ Global
 		{0A8A3694-C87C-4131-ACBF-216E778142BA}.Release|x64.Build.0 = Release|Any CPU
 		{0A8A3694-C87C-4131-ACBF-216E778142BA}.Release|x86.ActiveCfg = Release|Any CPU
 		{0A8A3694-C87C-4131-ACBF-216E778142BA}.Release|x86.Build.0 = Release|Any CPU
+		{A8C3D620-CBA3-4CCE-A111-4FC68236ED4D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A8C3D620-CBA3-4CCE-A111-4FC68236ED4D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A8C3D620-CBA3-4CCE-A111-4FC68236ED4D}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{A8C3D620-CBA3-4CCE-A111-4FC68236ED4D}.Debug|x64.Build.0 = Debug|Any CPU
+		{A8C3D620-CBA3-4CCE-A111-4FC68236ED4D}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{A8C3D620-CBA3-4CCE-A111-4FC68236ED4D}.Debug|x86.Build.0 = Debug|Any CPU
+		{A8C3D620-CBA3-4CCE-A111-4FC68236ED4D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A8C3D620-CBA3-4CCE-A111-4FC68236ED4D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A8C3D620-CBA3-4CCE-A111-4FC68236ED4D}.Release|x64.ActiveCfg = Release|Any CPU
+		{A8C3D620-CBA3-4CCE-A111-4FC68236ED4D}.Release|x64.Build.0 = Release|Any CPU
+		{A8C3D620-CBA3-4CCE-A111-4FC68236ED4D}.Release|x86.ActiveCfg = Release|Any CPU
+		{A8C3D620-CBA3-4CCE-A111-4FC68236ED4D}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
