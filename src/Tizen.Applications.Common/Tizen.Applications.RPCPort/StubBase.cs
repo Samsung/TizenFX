@@ -33,7 +33,7 @@ namespace Tizen.Applications.RPCPort
         /// Gets port name
         /// </summary>
         /// <since_tizen> 5 </since_tizen>
-        public string PortName { get; private set; }
+        public string PortName { get; }
 
         /// <summary>
         /// Constructor for this class
@@ -139,7 +139,7 @@ namespace Tizen.Applications.RPCPort
         /// <param name="sender">The target proxy app ID</param>
         /// <param name="instance">The information of the request</param>
         /// <param name="port">Port object for reading and writing</param>
-        /// <returns></returns>
+        /// <returns>'true' to continue receiving data, otherwise 'false' to disconnect from the port</returns>
         /// <since_tizen> 5 </since_tizen>
         protected abstract bool OnReceivedEvent(string sender, string instance, Port port);
 
@@ -170,7 +170,7 @@ namespace Tizen.Applications.RPCPort
         #region IDisposable Support
         private bool disposedValue = false;
 
-        protected virtual void Dispose(bool disposing)
+        private void Dispose(bool disposing)
         {
             if (!disposedValue)
             {
