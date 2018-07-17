@@ -28,5 +28,6 @@ internal static partial class Interop
         public const string Libc = "libc.so.6";
         public const string Application = "libcapi-appfw-application.so.0";
         public const string Icuuc = "libicuuc.so";
+        public const string RpcPort = "librpc-port.so.1";
     }
 }
