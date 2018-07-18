@@ -311,18 +311,15 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Register assembly to parse control namespace.
+        /// Register the assembly to XAML.
         /// </summary>
-        /// <param name="assembly">The assembly to parse.</param>
+        /// <since_tizen> 5 </since_tizen>
         /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static void RegisterAssembly(Assembly assembly)
         {
-            if (false == XamlParser.s_assemblies.Contains(assembly))
-            {
                 XamlParser.s_assemblies.Add(assembly);
             }
-        }
 
         /// <summary>
         /// Gets the window instance.

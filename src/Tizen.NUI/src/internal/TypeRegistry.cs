@@ -88,16 +88,16 @@ namespace Tizen.NUI
             return ret;
         }
 
-        public TypeInfo GetTypeInfo(string uniqueTypeName)
+        public Tizen.NUI.TypeInfo GetTypeInfo(string uniqueTypeName)
         {
-            TypeInfo ret = new TypeInfo(NDalicPINVOKE.TypeRegistry_GetTypeInfo__SWIG_0(swigCPtr, uniqueTypeName), true);
+            Tizen.NUI.TypeInfo ret = new Tizen.NUI.TypeInfo(NDalicPINVOKE.TypeRegistry_GetTypeInfo__SWIG_0(swigCPtr, uniqueTypeName), true);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
-        internal TypeInfo GetTypeInfo(SWIGTYPE_p_std__type_info registerType)
+        internal Tizen.NUI.TypeInfo GetTypeInfo(SWIGTYPE_p_std__type_info registerType)
         {
-            TypeInfo ret = new TypeInfo(NDalicPINVOKE.TypeRegistry_GetTypeInfo__SWIG_1(swigCPtr, SWIGTYPE_p_std__type_info.getCPtr(registerType)), true);
+            Tizen.NUI.TypeInfo ret = new Tizen.NUI.TypeInfo(NDalicPINVOKE.TypeRegistry_GetTypeInfo__SWIG_1(swigCPtr, SWIGTYPE_p_std__type_info.getCPtr(registerType)), true);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }

@@ -396,9 +396,9 @@ namespace Tizen.NUI
         /// <param name="info">The type information.</param>
         /// <returns>True If get the type info.</returns>
         /// <since_tizen> 3 </since_tizen>
-        public bool GetTypeInfo(TypeInfo info)
+        public bool GetTypeInfo(Tizen.NUI.TypeInfo info)
         {
-            bool ret = NDalicPINVOKE.BaseHandle_GetTypeInfo(swigCPtr, TypeInfo.getCPtr(info));
+            bool ret = NDalicPINVOKE.BaseHandle_GetTypeInfo(swigCPtr, Tizen.NUI.TypeInfo.getCPtr(info));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
