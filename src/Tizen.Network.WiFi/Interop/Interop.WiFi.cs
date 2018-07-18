@@ -86,6 +86,8 @@ internal static partial class Interop
         internal static extern int CancelWps(SafeWiFiManagerHandle wifi);
         [DllImport(Libraries.WiFi, EntryPoint = "wifi_manager_forget_ap")]
         internal static extern int RemoveAP(SafeWiFiManagerHandle wifi, IntPtr ap);
+        [DllImport(Libraries.WiFi, EntryPoint = "wifi_manager_forget_ap_async")]
+        internal static extern int ForgetAP(SafeWiFiManagerHandle wifi, IntPtr ap, VoidCallback callback, IntPtr userData);
         [DllImport(Libraries.WiFi, EntryPoint = "wifi_manager_update_ap")]
         internal static extern int UpdateAP(SafeWiFiManagerHandle wifi, IntPtr ap);
 
