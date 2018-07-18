@@ -3157,18 +3157,32 @@ namespace Tizen.NUI.BaseComponents
         /// This does not interfere with the view's scale factor.<br />
         /// The views default depth is the minimum of width and height.<br />
         /// </summary>
+        /// <remarks>
+        /// This NUI object (Size2D) typed property can be configured by multiple cascade setting. <br />
+        /// For example, this code ( view.Size2D.Width = 100; view.Size2D.Height = 100; ) is equivalent to this ( view.Size2D = new Size2D(100, 100); ). <br />
+        /// Please note that this multi-cascade setting is especially possible for this NUI object (Size2D). <br />
+        /// This means by default others are impossible so it is recommended that NUI object typed properties are configured by their constructor with parameters. <br />
+        /// For example, this code is working fine : view.Scale = new Vector3( 2.0f, 1.5f, 0.0f); <br />
+        /// but this will not work! : view.Scale.X = 2.0f; view.Scale.Y = 1.5f; <br />
+        /// </remarks>
         /// <since_tizen> 3 </since_tizen>
         public Size2D Size2D
         {
             get
             {
-                return (Size2D)GetValue(Size2DProperty);
+                Size2D temp = (Size2D)GetValue(Size2DProperty);
+                return new Size2D(OnSize2DChanged, temp.Width, temp.Height);
             }
             set
             {
                 SetValue(Size2DProperty, value);
                 NotifyPropertyChanged();
             }
+        }
+
+        private void OnSize2DChanged(int width, int height)
+        {
+            Size2D = new Size2D(width, height);
         }
 
         /// <summary>
@@ -3206,18 +3220,32 @@ namespace Tizen.NUI.BaseComponents
         /// By default, sets the position vector between the parent origin and the pivot point (default).<br />
         /// If the position inheritance is disabled, sets the world position.<br />
         /// </summary>
+        /// <remarks>
+        /// This NUI object (Position2D) typed property can be configured by multiple cascade setting. <br />
+        /// For example, this code ( view.Position2D.X = 100; view.Position2D.Y = 100; ) is equivalent to this ( view.Position2D = new Position2D(100, 100); ). <br />
+        /// Please note that this multi-cascade setting is especially possible for this NUI object (Position2D). <br />
+        /// This means by default others are impossible so it is recommended that NUI object typed properties are configured by their constructor with parameters. <br />
+        /// For example, this code is working fine : view.Scale = new Vector3( 2.0f, 1.5f, 0.0f); <br />
+        /// but this will not work! : view.Scale.X = 2.0f; view.Scale.Y = 1.5f; <br />
+        /// </remarks>
         /// <since_tizen> 3 </since_tizen>
         public Position2D Position2D
         {
             get
             {
-                return (Position2D)GetValue(Position2DProperty);
+                Position2D temp = (Position2D)GetValue(Position2DProperty);
+                return new Position2D(OnPosition2DChanged, temp.X, temp.Y);
             }
             set
             {
                 SetValue(Position2DProperty, value);
                 NotifyPropertyChanged();
             }
+        }
+
+        private void OnPosition2DChanged(int x, int y)
+        {
+            Position2D = new Position2D(x, y);
         }
 
         /// <summary>
