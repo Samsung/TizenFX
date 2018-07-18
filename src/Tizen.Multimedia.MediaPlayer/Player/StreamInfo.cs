@@ -274,6 +274,32 @@ namespace Tizen.Multimedia
         }
 
         /// <summary>
+        /// Gets the duration in nanoseconds.
+        /// </summary>
+        /// <returns>The duration of the stream.</returns>
+        /// <remarks>
+        /// The <see cref="Multimedia.Player"/> that owns this instance must be in the <see cref="PlayerState.Ready"/>,
+        /// <see cref="PlayerState.Playing"/>, or <see cref="PlayerState.Paused"/> state.
+        /// </remarks>
+        /// <exception cref="ObjectDisposedException">
+        /// The <see cref="Multimedia.Player"/> that this instance belongs to has been disposed of.
+        /// </exception>
+        /// <exception cref="InvalidOperationException">
+        /// The <see cref="Multimedia.Player"/> that this instance belongs to is not in the valid state.
+        /// </exception>
+        /// <since_tizen> 5 </since_tizen>
+        public long GetDurationNanos()
+        {
+            Player.ValidatePlayerState(PlayerState.Ready, PlayerState.Playing, PlayerState.Paused);
+
+            NativePlayer.GetDurationNanos(Player.Handle, out var duration).
+                ThrowIfFailed(Player, "Failed to get the duration in nanoseconds");
+
+            Log.Info(PlayerLog.Tag, "get duration(nsec) : " + duration);
+            return duration;
+        }
+
+        /// <summary>
         /// Gets the properties of the audio.
         /// </summary>
         /// <returns>A <see cref="AudioStreamProperties"/> that contains the audio stream information.</returns>

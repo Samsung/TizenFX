@@ -549,15 +549,16 @@ namespace Tizen.Multimedia
             return playPosition;
         }
 
-        private void SetPlayPosition(int milliseconds, bool accurate,
+        private void SetPlayPosition(long seconds, bool accurate, bool nano,
             NativePlayer.SeekCompletedCallback cb)
         {
-            var ret = NativePlayer.SetPlayPosition(Handle, milliseconds, accurate, cb, IntPtr.Zero);
+            var ret = !nano ? NativePlayer.SetPlayPosition(Handle, (int)seconds, accurate, cb, IntPtr.Zero) :
+                NativePlayer.SetPlayPositionNanos(Handle, seconds, accurate, cb, IntPtr.Zero);
 
             //Note that we assume invalid param error is returned only when the position value is invalid.
             if (ret == PlayerErrorCode.InvalidArgument)
             {
-                throw new ArgumentOutOfRangeException(nameof(milliseconds), milliseconds,
+                throw new ArgumentOutOfRangeException(nameof(seconds), seconds,
                     "The position is not valid.");
             }
             if (ret != PlayerErrorCode.None)
@@ -595,7 +596,69 @@ namespace Tizen.Multimedia
 
             using (var cbKeeper = ObjectKeeper.Get(cb))
             {
-                SetPlayPosition(position, accurate, cb);
+                SetPlayPosition(position, accurate, false, cb);
+                if (immediateResult)
+                {
+                    taskCompletionSource.TrySetResult(true);
+                }
+
+                await taskCompletionSource.Task;
+            }
+        }
+
+
+        /// <summary>
+        /// Gets the play position in milliseconds.
+        /// </summary>
+        /// <remarks>The player must be in the <see cref="PlayerState.Ready"/>, <see cref="PlayerState.Playing"/>,
+        /// or <see cref="PlayerState.Paused"/> state.</remarks>
+        /// <exception cref="ObjectDisposedException">The player has already been disposed of.</exception>
+        /// <exception cref="InvalidOperationException">The player is not in the valid state.</exception>
+        /// <seealso cref="SetPlayPositionAsync(int, bool)"/>
+        /// <since_tizen> 5 </since_tizen>
+        public long GetPlayPositionNanos()
+        {
+            ValidatePlayerState(PlayerState.Ready, PlayerState.Paused, PlayerState.Playing);
+
+            long playPosition = 0;
+
+            NativePlayer.GetPlayPositionNanos(Handle, out playPosition).
+                ThrowIfFailed(this, "Failed to get the play position of the player");
+
+            Log.Info(PlayerLog.Tag, "get play position : " + playPosition);
+
+            return playPosition;
+        }
+
+        /// <summary>
+        /// Sets the seek position for playback, asynchronously.
+        /// </summary>
+        /// <param name="position">The value indicating a desired position in milliseconds.</param>
+        /// <param name="accurate">The value indicating whether the operation performs with accuracy.</param>
+        /// <remarks>
+        ///     <para>The player must be in the <see cref="PlayerState.Ready"/>, <see cref="PlayerState.Playing"/>,
+        ///     or <see cref="PlayerState.Paused"/> state.</para>
+        ///     <para>If the <paramref name="accurate"/> is true, the play position will be adjusted as the specified <paramref name="position"/> value,
+        ///     but this might be considerably slow. If false, the play position will be a nearest keyframe position.</para>
+        ///     </remarks>
+        /// <exception cref="ObjectDisposedException">The player has already been disposed of.</exception>
+        /// <exception cref="InvalidOperationException">The player is not in the valid state.</exception>
+        /// <exception cref="ArgumentOutOfRangeException">The specified position is not valid.</exception>
+        /// <seealso cref="GetPlayPosition"/>
+        /// <since_tizen> 5 </since_tizen>
+        public async Task SetPlayPositionAsyncNanos(long position, bool accurate)
+        {
+            ValidatePlayerState(PlayerState.Ready, PlayerState.Playing, PlayerState.Paused);
+
+            var taskCompletionSource = new TaskCompletionSource<bool>(TaskCreationOptions.RunContinuationsAsynchronously);
+
+            bool immediateResult = _source is MediaStreamSource;
+
+            NativePlayer.SeekCompletedCallback cb = _ => taskCompletionSource.TrySetResult(true);
+
+            using (var cbKeeper = ObjectKeeper.Get(cb))
+            {
+                SetPlayPosition(position, accurate, true, cb);
                 if (immediateResult)
                 {
                     taskCompletionSource.TrySetResult(true);
