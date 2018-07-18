@@ -2,7 +2,7 @@ using System.Runtime.CompilerServices;
 
 using Tizen.NUI;
 
-// Tizen.NUI namespace
+// Xamarin.Forms.Loader.dll Xamarin.Forms.Xaml.XamlLoader.Load(object, string), kzu@microsoft.com
 [assembly: XmlnsDefinition("http://tizen.org/Tizen.NUI/2018/XAML", "Tizen.NUI")]
 [assembly: XmlnsDefinition("http://tizen.org/Tizen.NUI/2018/XAML", "Tizen.NUI.BaseComponents")]
 [assembly: XmlnsDefinition("http://tizen.org/Tizen.NUI/2018/XAML", "Tizen.NUI.UIComponents")]

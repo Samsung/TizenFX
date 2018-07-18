@@ -84,7 +84,6 @@ namespace Tizen.NUI.Binding
             set { SetValue(IsClippedToBoundsProperty, value); }
         }
 
-
         public new Thickness Padding
         {
             get { return (Thickness)GetValue(PaddingElement.PaddingProperty); }

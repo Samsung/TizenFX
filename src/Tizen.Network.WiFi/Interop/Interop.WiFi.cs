@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2016 Samsung Electronics Co., Ltd All Rights Reserved
+ * Copyright (c) 2018 Samsung Electronics Co., Ltd All Rights Reserved
  *
  * Licensed under the Apache License, Version 2.0 (the License);
  * you may not use this file except in compliance with the License.
@@ -86,6 +86,8 @@ internal static partial class Interop
         internal static extern int CancelWps(SafeWiFiManagerHandle wifi);
         [DllImport(Libraries.WiFi, EntryPoint = "wifi_manager_forget_ap")]
         internal static extern int RemoveAP(SafeWiFiManagerHandle wifi, IntPtr ap);
+        [DllImport(Libraries.WiFi, EntryPoint = "wifi_manager_forget_ap_async")]
+        internal static extern int ForgetAP(SafeWiFiManagerHandle wifi, IntPtr ap, VoidCallback callback, IntPtr userData);
         [DllImport(Libraries.WiFi, EntryPoint = "wifi_manager_update_ap")]
         internal static extern int UpdateAP(SafeWiFiManagerHandle wifi, IntPtr ap);
 
@@ -128,7 +130,7 @@ internal static partial class Interop
             ////Network Information
             [DllImport(Libraries.WiFi, EntryPoint = "wifi_manager_ap_get_essid")]
             internal static extern int GetEssid(SafeWiFiAPHandle ap, out IntPtr essid);
-            [DllImport(Libraries.WiFi, EntryPoint = "wifi_manager_ap_get_raw_essid")]
+            [DllImport(Libraries.WiFi, EntryPoint = "wifi_manager_ap_get_raw_ssid")]
             internal static extern int GetRawSsid(SafeWiFiAPHandle ap, out IntPtr raw_ssid, out int length);
             [DllImport(Libraries.WiFi, EntryPoint = "wifi_manager_ap_get_bssid")]
             internal static extern int GetBssid(SafeWiFiAPHandle ap, out IntPtr bssid);

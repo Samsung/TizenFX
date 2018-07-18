@@ -4,7 +4,7 @@ using Tizen.NUI;
 using Tizen.NUI.BaseComponents;
 using System.Collections.Generic;
 
-namespace NUILayoutSample
+namespace CustomLayoutByAbsoluteLayout
 {
     static class Images
     {
@@ -219,9 +219,7 @@ namespace NUILayoutSample
             Console.WriteLine($"CustomLayoutVertical OnLayout() END");
         }
     }
-
-
-
+    
     class Example : NUIApplication
     {
         public Example() : base()
@@ -253,7 +251,6 @@ namespace NUILayoutSample
             rootLayoutView.HeightSpecificationFixed = 1000;
             rootLayoutView.Position = new Position(0, 0, 0);
             rootLayoutView.BackgroundColor = Color.Magenta;
-            window.Add(rootLayoutView);
 
             linearContainer = new View();
             linearContainer.PositionUsesPivotPoint = true;
@@ -262,12 +259,6 @@ namespace NUILayoutSample
             //linearContainer.BackgroundColor = Color.Yellow;
             linearContainer.KeyEvent += OnKeyEvent;
             linearContainer.Focusable = true;
-
-
-            rootLayoutView.Add(linearContainer);
-            //window.Add(linearContainer);
-            FocusManager.Instance.SetCurrentFocusView(linearContainer);
-            FocusManager.Instance.FocusIndicator = new View();
 
             for (int index = 0; index < MAX_CHILDREN - 3; index++)
             {
@@ -291,6 +282,11 @@ namespace NUILayoutSample
 
             rootLayout = new AbsoluteLayout();
             rootLayoutView.Layout = rootLayout;
+
+            rootLayoutView.Add(linearContainer);
+            window.Add(rootLayoutView);
+            FocusManager.Instance.SetCurrentFocusView(linearContainer);
+            FocusManager.Instance.FocusIndicator = new View();
         }
 
         int cnt1 = 1;
@@ -336,13 +332,6 @@ namespace NUILayoutSample
                 }
             }
             return true;
-        }
-
-        [STAThread]
-        static void Main(string[] args)
-        {
-            Example layoutSample = new Example();
-            layoutSample.Run(args);
         }
     }
 }
