@@ -580,7 +580,9 @@ namespace Tizen.Multimedia
         ///     but this might be considerably slow. If false, the play position will be a nearest keyframe position.</para>
         ///     </remarks>
         /// <exception cref="ObjectDisposedException">The player has already been disposed of.</exception>
-        /// <exception cref="InvalidOperationException">The player is not in the valid state.</exception>
+        /// <exception cref="InvalidOperationException">The player is not in the valid state.<br/>
+        ///     -or-<br/>
+        ///     In case of non-seekable content, the player will return error and keep playing without changing the play position.</exception>
         /// <exception cref="ArgumentOutOfRangeException">The specified position is not valid.</exception>
         /// <seealso cref="GetPlayPosition"/>
         /// <since_tizen> 3 </since_tizen>
@@ -606,15 +608,14 @@ namespace Tizen.Multimedia
             }
         }
 
-
         /// <summary>
-        /// Gets the play position in milliseconds.
+        /// Gets the play position in nanoseconds.
         /// </summary>
         /// <remarks>The player must be in the <see cref="PlayerState.Ready"/>, <see cref="PlayerState.Playing"/>,
         /// or <see cref="PlayerState.Paused"/> state.</remarks>
         /// <exception cref="ObjectDisposedException">The player has already been disposed of.</exception>
         /// <exception cref="InvalidOperationException">The player is not in the valid state.</exception>
-        /// <seealso cref="SetPlayPositionAsync(int, bool)"/>
+        /// <seealso cref="SetPlayPositionAsyncNanos(long, bool)"/>
         /// <since_tizen> 5 </since_tizen>
         public long GetPlayPositionNanos()
         {
@@ -631,9 +632,9 @@ namespace Tizen.Multimedia
         }
 
         /// <summary>
-        /// Sets the seek position for playback, asynchronously.
+        /// Sets the seek position in nanoseconds for playback, asynchronously.
         /// </summary>
-        /// <param name="position">The value indicating a desired position in milliseconds.</param>
+        /// <param name="position">The value indicating a desired position in nanoseconds.</param>
         /// <param name="accurate">The value indicating whether the operation performs with accuracy.</param>
         /// <remarks>
         ///     <para>The player must be in the <see cref="PlayerState.Ready"/>, <see cref="PlayerState.Playing"/>,
@@ -642,9 +643,11 @@ namespace Tizen.Multimedia
         ///     but this might be considerably slow. If false, the play position will be a nearest keyframe position.</para>
         ///     </remarks>
         /// <exception cref="ObjectDisposedException">The player has already been disposed of.</exception>
-        /// <exception cref="InvalidOperationException">The player is not in the valid state.</exception>
+        /// <exception cref="InvalidOperationException">The player is not in the valid state.<br/>
+        ///     -or-<br/>
+        ///     In case of non-seekable content, the player will return error and keep playing without changing the play position.</exception>
         /// <exception cref="ArgumentOutOfRangeException">The specified position is not valid.</exception>
-        /// <seealso cref="GetPlayPosition"/>
+        /// <seealso cref="GetPlayPositionNanos"/>
         /// <since_tizen> 5 </since_tizen>
         public async Task SetPlayPositionAsyncNanos(long position, bool accurate)
         {
