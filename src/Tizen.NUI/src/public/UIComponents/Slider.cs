@@ -1,5 +1,5 @@
 /*
- * Copyright(c) 2017 Samsung Electronics Co., Ltd.
+ * Copyright(c) 2018 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -41,12 +41,12 @@ namespace Tizen.NUI.UIComponents
             Console.WriteLine("Slider LowerBoundProperty changed: oldValue: " + oldValue + ", newValue: " + newValue);
         },
         defaultValueCreator:(bindable) =>
-		{
-			var slider = (Slider)bindable;
+        {
+            var slider = (Slider)bindable;
             float temp = 0.0f;
-			Tizen.NUI.Object.GetProperty(slider.swigCPtr, Slider.Property.LOWER_BOUND).Get(out temp);
-			return temp;
-		});
+            Tizen.NUI.Object.GetProperty(slider.swigCPtr, Slider.Property.LOWER_BOUND).Get(out temp);
+            return temp;
+        });
         /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty UpperBoundProperty = BindableProperty.Create("UpperBound", typeof(float), typeof(Slider), 1.0f, propertyChanged: (bindable, oldValue, newValue) => 
@@ -59,33 +59,33 @@ namespace Tizen.NUI.UIComponents
             Console.WriteLine("Slider UpperBoundProperty changed: oldValue: " + oldValue + ", newValue: " + newValue);
         },
         defaultValueCreator:(bindable) =>
-		{
-			var slider = (Slider)bindable;
+        {
+            var slider = (Slider)bindable;
             float temp = 0.0f;
-			Tizen.NUI.Object.GetProperty(slider.swigCPtr, Slider.Property.UPPER_BOUND).Get(out temp);
-			return temp;
-		});
+            Tizen.NUI.Object.GetProperty(slider.swigCPtr, Slider.Property.UPPER_BOUND).Get(out temp);
+            return temp;
+        });
         /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty ValueProperty = BindableProperty.Create("Value", typeof(float), typeof(Slider), default(float), BindingMode.TwoWay, propertyChanged: (bindable, oldValue, newValue) =>
-		{
+        {
             var slider = (Slider)bindable;
             Console.WriteLine("Slider ValueProperty Changed: oldValue: " + oldValue + ", newValue: " + newValue);
             if (newValue != null)
             {
                 Tizen.NUI.Object.SetProperty(slider.swigCPtr, Slider.Property.VALUE, new Tizen.NUI.PropertyValue((float)newValue));
             }
-		},
+        },
         defaultValueCreator:(bindable) =>
-		{
-			var slider = (Slider)bindable;
+        {
+            var slider = (Slider)bindable;
             float temp = 0.0f;
-			Tizen.NUI.Object.GetProperty(slider.swigCPtr, Slider.Property.VALUE).Get(out temp);
-			return temp;
-		});
+            Tizen.NUI.Object.GetProperty(slider.swigCPtr, Slider.Property.VALUE).Get(out temp);
+            return temp;
+        });
         /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty TrackVisualProperty = BindableProperty.Create("TrackVisual", typeof(PropertyMap), typeof(Slider), new PropertyMap(), propertyChanged: (bindable, oldValue, newValue) => 
+        public static readonly BindableProperty TrackVisualProperty = BindableProperty.Create("TrackVisual", typeof(PropertyMap), typeof(Slider), new PropertyMap(), propertyChanged: (bindable, oldValue, newValue) =>
         {
             var slider = (Slider)bindable;
             if (newValue != null)
@@ -95,15 +95,15 @@ namespace Tizen.NUI.UIComponents
             Console.WriteLine("Slider TrackVisualProperty changed: oldValue: " + oldValue + ", newValue: " + newValue);
         },
         defaultValueCreator:(bindable) =>
-		{
-			var slider = (Slider)bindable;
+        {
+            var slider = (Slider)bindable;
             PropertyMap temp = new PropertyMap();
-			Tizen.NUI.Object.GetProperty(slider.swigCPtr, Slider.Property.TRACK_VISUAL).Get(temp);
-			return temp;
-		});
+            Tizen.NUI.Object.GetProperty(slider.swigCPtr, Slider.Property.TRACK_VISUAL).Get(temp);
+            return temp;
+        });
         /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty HandleVisualProperty = BindableProperty.Create("HandleVisual", typeof(PropertyMap), typeof(Slider), new PropertyMap(), propertyChanged: (bindable, oldValue, newValue) => 
+        public static readonly BindableProperty HandleVisualProperty = BindableProperty.Create("HandleVisual", typeof(PropertyMap), typeof(Slider), new PropertyMap(), propertyChanged: (bindable, oldValue, newValue) =>
         {
             var slider = (Slider)bindable;
             if (newValue != null)
@@ -113,15 +113,15 @@ namespace Tizen.NUI.UIComponents
             Console.WriteLine("Slider HandleVisualProperty changed: oldValue: " + oldValue + ", newValue: " + newValue);
         },
         defaultValueCreator:(bindable) =>
-		{
-			var slider = (Slider)bindable;
+        {
+            var slider = (Slider)bindable;
             PropertyMap temp = new PropertyMap();
-			Tizen.NUI.Object.GetProperty(slider.swigCPtr, Slider.Property.HANDLE_VISUAL).Get(temp);
-			return temp;
-		});
+            Tizen.NUI.Object.GetProperty(slider.swigCPtr, Slider.Property.HANDLE_VISUAL).Get(temp);
+            return temp;
+        });
         /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty ProgressVisualProperty = BindableProperty.Create("ProgressVisual", typeof(PropertyMap), typeof(Slider), new PropertyMap(), propertyChanged: (bindable, oldValue, newValue) => 
+        public static readonly BindableProperty ProgressVisualProperty = BindableProperty.Create("ProgressVisual", typeof(PropertyMap), typeof(Slider), new PropertyMap(), propertyChanged: (bindable, oldValue, newValue) =>
         {
             var slider = (Slider)bindable;
             if (newValue != null)
@@ -131,15 +131,15 @@ namespace Tizen.NUI.UIComponents
             Console.WriteLine("Slider ProgressVisualProperty changed: oldValue: " + oldValue + ", newValue: " + newValue);
         },
         defaultValueCreator:(bindable) =>
-		{
-			var slider = (Slider)bindable;
+        {
+            var slider = (Slider)bindable;
             PropertyMap temp = new PropertyMap();
-			Tizen.NUI.Object.GetProperty(slider.swigCPtr, Slider.Property.PROGRESS_VISUAL).Get(temp);
-			return temp;
-		});
+            Tizen.NUI.Object.GetProperty(slider.swigCPtr, Slider.Property.PROGRESS_VISUAL).Get(temp);
+            return temp;
+        });
         /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty PopupVisualProperty = BindableProperty.Create("PopupVisual", typeof(PropertyMap), typeof(Slider), new PropertyMap(), propertyChanged: (bindable, oldValue, newValue) => 
+        public static readonly BindableProperty PopupVisualProperty = BindableProperty.Create("PopupVisual", typeof(PropertyMap), typeof(Slider), new PropertyMap(), propertyChanged: (bindable, oldValue, newValue) =>
         {
             var slider = (Slider)bindable;
             if (newValue != null)
@@ -149,15 +149,15 @@ namespace Tizen.NUI.UIComponents
             Console.WriteLine("Slider PopupVisualProperty changed: oldValue: " + oldValue + ", newValue: " + newValue);
         },
         defaultValueCreator:(bindable) =>
-		{
-			var slider = (Slider)bindable;
+        {
+            var slider = (Slider)bindable;
             PropertyMap temp = new PropertyMap();
-			Tizen.NUI.Object.GetProperty(slider.swigCPtr, Slider.Property.POPUP_VISUAL).Get(temp);
-			return temp;
-		});
+            Tizen.NUI.Object.GetProperty(slider.swigCPtr, Slider.Property.POPUP_VISUAL).Get(temp);
+            return temp;
+        });
         /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty PopupArrowVisualProperty = BindableProperty.Create("PopupArrowVisual", typeof(PropertyMap), typeof(Slider), new PropertyMap(), propertyChanged: (bindable, oldValue, newValue) => 
+        public static readonly BindableProperty PopupArrowVisualProperty = BindableProperty.Create("PopupArrowVisual", typeof(PropertyMap), typeof(Slider), new PropertyMap(), propertyChanged: (bindable, oldValue, newValue) =>
         {
             var slider = (Slider)bindable;
             if (newValue != null)
@@ -167,12 +167,12 @@ namespace Tizen.NUI.UIComponents
             Console.WriteLine("Slider PopupArrowVisualProperty changed: oldValue: " + oldValue + ", newValue: " + newValue);
         },
         defaultValueCreator:(bindable) =>
-		{
-			var slider = (Slider)bindable;
+        {
+            var slider = (Slider)bindable;
             PropertyMap temp = new PropertyMap();
-			Tizen.NUI.Object.GetProperty(slider.swigCPtr, Slider.Property.POPUP_ARROW_VISUAL).Get(temp);
-			return temp;
-		});
+            Tizen.NUI.Object.GetProperty(slider.swigCPtr, Slider.Property.POPUP_ARROW_VISUAL).Get(temp);
+            return temp;
+        });
         /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty DisabledColorProperty = BindableProperty.Create("DisabledColor", typeof(Vector4), typeof(Slider), Vector4.Zero, propertyChanged: (bindable, oldValue, newValue) => 
@@ -185,15 +185,15 @@ namespace Tizen.NUI.UIComponents
             Console.WriteLine("Slider DisabledColorProperty changed: oldValue: " + oldValue + ", newValue: " + newValue);
         },
         defaultValueCreator:(bindable) =>
-		{
-			var slider = (Slider)bindable;
+        {
+            var slider = (Slider)bindable;
             Vector4 temp = new Vector4(0.0f, 0.0f, 0.0f, 0.0f);
-			Tizen.NUI.Object.GetProperty(slider.swigCPtr, Slider.Property.DISABLED_COLOR).Get(temp);
-			return temp;
-		});
+            Tizen.NUI.Object.GetProperty(slider.swigCPtr, Slider.Property.DISABLED_COLOR).Get(temp);
+            return temp;
+        });
         /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty ValuePrecisionProperty = BindableProperty.Create("ValuePrecision", typeof(int), typeof(Slider), default(int), propertyChanged: (bindable, oldValue, newValue) => 
+        public static readonly BindableProperty ValuePrecisionProperty = BindableProperty.Create("ValuePrecision", typeof(int), typeof(Slider), default(int), propertyChanged: (bindable, oldValue, newValue) =>
         {
             var slider = (Slider)bindable;
             if (newValue != null)
@@ -203,15 +203,15 @@ namespace Tizen.NUI.UIComponents
             Console.WriteLine("Slider ValuePrecisionProperty changed: oldValue: " + oldValue + ", newValue: " + newValue);
         },
         defaultValueCreator:(bindable) =>
-		{
-			var slider = (Slider)bindable;
+        {
+            var slider = (Slider)bindable;
             int temp = 0;
-			Tizen.NUI.Object.GetProperty(slider.swigCPtr, Slider.Property.VALUE_PRECISION).Get(out temp);
-			return temp;
-		});
+            Tizen.NUI.Object.GetProperty(slider.swigCPtr, Slider.Property.VALUE_PRECISION).Get(out temp);
+            return temp;
+        });
         /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty ShowPopupProperty = BindableProperty.Create("ShowPopup", typeof(bool), typeof(Slider), false, propertyChanged: (bindable, oldValue, newValue) => 
+        public static readonly BindableProperty ShowPopupProperty = BindableProperty.Create("ShowPopup", typeof(bool), typeof(Slider), false, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var slider = (Slider)bindable;
             if (newValue != null)
@@ -221,15 +221,15 @@ namespace Tizen.NUI.UIComponents
             Console.WriteLine("Slider ShowPopupProperty changed: oldValue: " + oldValue + ", newValue: " + newValue);
         },
         defaultValueCreator:(bindable) =>
-		{
-			var slider = (Slider)bindable;
+        {
+            var slider = (Slider)bindable;
             bool temp = false;
-			Tizen.NUI.Object.GetProperty(slider.swigCPtr, Slider.Property.SHOW_POPUP).Get(out temp);
-			return temp;
-		});
+            Tizen.NUI.Object.GetProperty(slider.swigCPtr, Slider.Property.SHOW_POPUP).Get(out temp);
+            return temp;
+        });
         /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty ShowValueProperty = BindableProperty.Create("ShowValue", typeof(bool), typeof(Slider), false, propertyChanged: (bindable, oldValue, newValue) => 
+        public static readonly BindableProperty ShowValueProperty = BindableProperty.Create("ShowValue", typeof(bool), typeof(Slider), false, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var slider = (Slider)bindable;
             if (newValue != null)
@@ -239,15 +239,15 @@ namespace Tizen.NUI.UIComponents
             Console.WriteLine("Slider ShowValueProperty changed: oldValue: " + oldValue + ", newValue: " + newValue);
         },
         defaultValueCreator:(bindable) =>
-		{
-			var slider = (Slider)bindable;
+        {
+            var slider = (Slider)bindable;
             bool temp = false;
-			Tizen.NUI.Object.GetProperty(slider.swigCPtr, Slider.Property.SHOW_VALUE).Get(out temp);
-			return temp;
-		});
+            Tizen.NUI.Object.GetProperty(slider.swigCPtr, Slider.Property.SHOW_VALUE).Get(out temp);
+            return temp;
+        });
         /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty MarksProperty = BindableProperty.Create("Marks", typeof(PropertyArray), typeof(Slider), new PropertyArray(), propertyChanged: (bindable, oldValue, newValue) => 
+        public static readonly BindableProperty MarksProperty = BindableProperty.Create("Marks", typeof(PropertyArray), typeof(Slider), new PropertyArray(), propertyChanged: (bindable, oldValue, newValue) =>
         {
             var slider = (Slider)bindable;
             if (newValue != null)
@@ -257,15 +257,15 @@ namespace Tizen.NUI.UIComponents
             Console.WriteLine("Slider MarksPropertyProperty changed: oldValue: " + oldValue + ", newValue: " + newValue);
         },
         defaultValueCreator:(bindable) =>
-		{
-			var slider = (Slider)bindable;
+        {
+            var slider = (Slider)bindable;
             Tizen.NUI.PropertyArray temp = new Tizen.NUI.PropertyArray();
-			Tizen.NUI.Object.GetProperty(slider.swigCPtr, Slider.Property.MARKS).Get(temp);
-			return temp;
-		});
+            Tizen.NUI.Object.GetProperty(slider.swigCPtr, Slider.Property.MARKS).Get(temp);
+            return temp;
+        });
         /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty MarkToleranceProperty = BindableProperty.Create("MarkTolerance", typeof(float), typeof(Slider), default(float), propertyChanged: (bindable, oldValue, newValue) => 
+        public static readonly BindableProperty MarkToleranceProperty = BindableProperty.Create("MarkTolerance", typeof(float), typeof(Slider), default(float), propertyChanged: (bindable, oldValue, newValue) =>
         {
             var slider = (Slider)bindable;
             if (newValue != null)
@@ -275,12 +275,12 @@ namespace Tizen.NUI.UIComponents
             Console.WriteLine("Slider MarkToleranceProperty changed: oldValue: " + oldValue + ", newValue: " + newValue);
         },
         defaultValueCreator:(bindable) =>
-		{
-			var slider = (Slider)bindable;
+        {
+            var slider = (Slider)bindable;
             float temp = 0.0f;
-			Tizen.NUI.Object.GetProperty(slider.swigCPtr, Slider.Property.MARK_TOLERANCE).Get(out temp);
-			return temp;
-		});
+            Tizen.NUI.Object.GetProperty(slider.swigCPtr, Slider.Property.MARK_TOLERANCE).Get(out temp);
+            return temp;
+        });
         /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty SnapToMarksProperty = BindableProperty.Create("SnapToMarks", typeof(bool), typeof(Slider), false, propertyChanged: (bindable, oldValue, newValue) => 
@@ -293,12 +293,12 @@ namespace Tizen.NUI.UIComponents
             Console.WriteLine("Slider SnapToMarksPropertyProperty changed: oldValue: " + oldValue + ", newValue: " + newValue);
         },
         defaultValueCreator:(bindable) =>
-		{
-			var slider = (Slider)bindable;
+        {
+            var slider = (Slider)bindable;
             bool temp = false;
-			Tizen.NUI.Object.GetProperty(slider.swigCPtr, Slider.Property.SNAP_TO_MARKS).Get(out temp);
-			return temp;
-		});
+            Tizen.NUI.Object.GetProperty(slider.swigCPtr, Slider.Property.SNAP_TO_MARKS).Get(out temp);
+            return temp;
+        });
 
         private global::System.Runtime.InteropServices.HandleRef swigCPtr;
 

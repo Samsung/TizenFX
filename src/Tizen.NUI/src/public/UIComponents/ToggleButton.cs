@@ -1,5 +1,5 @@
 /*
- * Copyright(c) 2017 Samsung Electronics Co., Ltd.
+ * Copyright(c) 2018 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -37,12 +37,12 @@ namespace Tizen.NUI
             }
         },
         defaultValueCreator:(bindable) =>
-		{
-			var toggleButton = (ToggleButton)bindable;
+        {
+            var toggleButton = (ToggleButton)bindable;
             Tizen.NUI.PropertyArray temp = new Tizen.NUI.PropertyArray();
-			Tizen.NUI.Object.GetProperty(toggleButton.swigCPtr, ToggleButton.Property.STATE_VISUALS).Get(temp);
-			return temp;
-		});
+            Tizen.NUI.Object.GetProperty(toggleButton.swigCPtr, ToggleButton.Property.STATE_VISUALS).Get(temp);
+            return temp;
+        });
         /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty TooltipsProperty = BindableProperty.Create("Tooltips", typeof(PropertyArray), typeof(ToggleButton), new PropertyArray(), propertyChanged: (bindable, oldValue, newValue) =>
@@ -54,12 +54,12 @@ namespace Tizen.NUI
             }
         },
         defaultValueCreator:(bindable) =>
-		{
-			var toggleButton = (ToggleButton)bindable;
+        {
+            var toggleButton = (ToggleButton)bindable;
             Tizen.NUI.PropertyArray temp = new Tizen.NUI.PropertyArray();
-			Tizen.NUI.Object.GetProperty(toggleButton.swigCPtr, ToggleButton.Property.TOOLTIPS).Get(temp);
-			return temp;
-		});
+            Tizen.NUI.Object.GetProperty(toggleButton.swigCPtr, ToggleButton.Property.TOOLTIPS).Get(temp);
+            return temp;
+        });
         /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty CurrentStateIndexProperty = BindableProperty.Create("CurrentStateIndex", typeof(int), typeof(ToggleButton), default(int), propertyChanged: (bindable, oldValue, newValue) =>
@@ -71,12 +71,12 @@ namespace Tizen.NUI
             }
         },
         defaultValueCreator:(bindable) =>
-		{
-			var toggleButton = (ToggleButton)bindable;
+        {
+            var toggleButton = (ToggleButton)bindable;
             int temp = 0;
-			Tizen.NUI.Object.GetProperty(toggleButton.swigCPtr, ToggleButton.Property.CURRENT_STATE_INDEX).Get(out temp);
-			return temp;
-		});
+            Tizen.NUI.Object.GetProperty(toggleButton.swigCPtr, ToggleButton.Property.CURRENT_STATE_INDEX).Get(out temp);
+            return temp;
+        });
 
         private global::System.Runtime.InteropServices.HandleRef swigCPtr;
 

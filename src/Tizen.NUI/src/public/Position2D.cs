@@ -267,6 +267,14 @@ namespace Tizen.NUI
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
+        internal delegate void Position2DChangedCallback(int x, int y);
+        private Position2DChangedCallback callback = null;
+        internal Position2D(Position2DChangedCallback cb, int x, int y) : this(NDalicPINVOKE.new_Vector2__SWIG_1((float)x, (float)y), true)
+        {
+            callback = cb;
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
         /// <summary>
         /// The constructor.
         /// </summary>
@@ -387,6 +395,8 @@ namespace Tizen.NUI
             {
                 NDalicPINVOKE.Vector2_X_set(swigCPtr, (float)value);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+
+                callback?.Invoke(X, Y);
             }
             get
             {
@@ -406,6 +416,8 @@ namespace Tizen.NUI
             {
                 NDalicPINVOKE.Vector2_Y_set(swigCPtr, (float)value);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+
+                callback?.Invoke(X, Y);
             }
             get
             {

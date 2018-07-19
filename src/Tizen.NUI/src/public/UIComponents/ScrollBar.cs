@@ -1,5 +1,5 @@
 /*
- * Copyright(c) 2017 Samsung Electronics Co., Ltd.
+ * Copyright(c) 2018 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -106,12 +106,12 @@ namespace Tizen.NUI.UIComponents
             }
         },
         defaultValueCreator:(bindable) =>
-		{
-			var scrollBar = (ScrollBar)bindable;
+        {
+            var scrollBar = (ScrollBar)bindable;
             float temp = 0.0f;
-			Tizen.NUI.Object.GetProperty(scrollBar.swigCPtr, ScrollBar.Property.INDICATOR_FIXED_HEIGHT).Get(out temp);
-			return temp;
-		});
+            Tizen.NUI.Object.GetProperty(scrollBar.swigCPtr, ScrollBar.Property.INDICATOR_FIXED_HEIGHT).Get(out temp);
+            return temp;
+        });
         /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty IndicatorShowDurationProperty = BindableProperty.Create("IndicatorShowDuration", typeof(float), typeof(ScrollBar), default(float), propertyChanged: (bindable, oldValue, newValue) =>
@@ -123,12 +123,12 @@ namespace Tizen.NUI.UIComponents
             }
         },
         defaultValueCreator:(bindable) =>
-		{
-			var scrollBar = (ScrollBar)bindable;
+        {
+            var scrollBar = (ScrollBar)bindable;
             float temp = 0.0f;
-			Tizen.NUI.Object.GetProperty(scrollBar.swigCPtr, ScrollBar.Property.INDICATOR_SHOW_DURATION).Get(out temp);
-			return temp;
-		});
+            Tizen.NUI.Object.GetProperty(scrollBar.swigCPtr, ScrollBar.Property.INDICATOR_SHOW_DURATION).Get(out temp);
+            return temp;
+        });
         /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty IndicatorHideDurationProperty = BindableProperty.Create("IndicatorHideDuration", typeof(float), typeof(ScrollBar), default(float), propertyChanged: (bindable, oldValue, newValue) =>
@@ -140,12 +140,12 @@ namespace Tizen.NUI.UIComponents
             }
         },
         defaultValueCreator:(bindable) =>
-		{
-			var scrollBar = (ScrollBar)bindable;
+        {
+            var scrollBar = (ScrollBar)bindable;
             float temp = 0.0f;
-			Tizen.NUI.Object.GetProperty(scrollBar.swigCPtr, ScrollBar.Property.INDICATOR_HIDE_DURATION).Get(out temp);
-			return temp;
-		});
+            Tizen.NUI.Object.GetProperty(scrollBar.swigCPtr, ScrollBar.Property.INDICATOR_HIDE_DURATION).Get(out temp);
+            return temp;
+        });
         /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty ScrollPositionIntervalsProperty = BindableProperty.Create("ScrollPositionIntervals", typeof(PropertyArray), typeof(ScrollBar), new PropertyArray(), propertyChanged: (bindable, oldValue, newValue) =>
@@ -157,12 +157,12 @@ namespace Tizen.NUI.UIComponents
             }
         },
         defaultValueCreator:(bindable) =>
-		{
-			var scrollBar = (ScrollBar)bindable;
+        {
+            var scrollBar = (ScrollBar)bindable;
             Tizen.NUI.PropertyArray temp = new Tizen.NUI.PropertyArray();
-			Tizen.NUI.Object.GetProperty(scrollBar.swigCPtr, ScrollBar.Property.SCROLL_POSITION_INTERVALS).Get(temp);
-			return temp;
-		});
+            Tizen.NUI.Object.GetProperty(scrollBar.swigCPtr, ScrollBar.Property.SCROLL_POSITION_INTERVALS).Get(temp);
+            return temp;
+        });
         /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty IndicatorMinimumHeightProperty = BindableProperty.Create("IndicatorMinimumHeight", typeof(float), typeof(ScrollBar), default(float), propertyChanged: (bindable, oldValue, newValue) =>
@@ -174,12 +174,12 @@ namespace Tizen.NUI.UIComponents
             }
         },
         defaultValueCreator:(bindable) =>
-		{
-			var scrollBar = (ScrollBar)bindable;
+        {
+            var scrollBar = (ScrollBar)bindable;
             float temp = 0.0f;
-			Tizen.NUI.Object.GetProperty(scrollBar.swigCPtr, ScrollBar.Property.INDICATOR_MINIMUM_HEIGHT).Get(out temp);
-			return temp;
-		});
+            Tizen.NUI.Object.GetProperty(scrollBar.swigCPtr, ScrollBar.Property.INDICATOR_MINIMUM_HEIGHT).Get(out temp);
+            return temp;
+        });
         /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty IndicatorStartPaddingProperty = BindableProperty.Create("IndicatorStartPadding", typeof(float), typeof(ScrollBar), default(float), propertyChanged: (bindable, oldValue, newValue) =>
@@ -191,12 +191,12 @@ namespace Tizen.NUI.UIComponents
             }
         },
         defaultValueCreator:(bindable) =>
-		{
-			var scrollBar = (ScrollBar)bindable;
+        {
+            var scrollBar = (ScrollBar)bindable;
             float temp = 0.0f;
-			Tizen.NUI.Object.GetProperty(scrollBar.swigCPtr, ScrollBar.Property.INDICATOR_START_PADDING).Get(out temp);
-			return temp;
-		});
+            Tizen.NUI.Object.GetProperty(scrollBar.swigCPtr, ScrollBar.Property.INDICATOR_START_PADDING).Get(out temp);
+            return temp;
+        });
         /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty IndicatorEndPaddingProperty = BindableProperty.Create("IndicatorEndPadding", typeof(float), typeof(ScrollBar), default(float), propertyChanged: (bindable, oldValue, newValue) =>
@@ -208,12 +208,12 @@ namespace Tizen.NUI.UIComponents
             }
         },
         defaultValueCreator:(bindable) =>
-		{
-			var scrollBar = (ScrollBar)bindable;
+        {
+            var scrollBar = (ScrollBar)bindable;
             float temp = 0.0f;
-			Tizen.NUI.Object.GetProperty(scrollBar.swigCPtr, ScrollBar.Property.INDICATOR_END_PADDING).Get(out temp);
-			return temp;
-		});
+            Tizen.NUI.Object.GetProperty(scrollBar.swigCPtr, ScrollBar.Property.INDICATOR_END_PADDING).Get(out temp);
+            return temp;
+        });
 
         private global::System.Runtime.InteropServices.HandleRef swigCPtr;
 

@@ -395,7 +395,7 @@ namespace Tizen.NUI.Binding
                 //        || property.PropertyType.GetGenericTypeDefinition() == typeof(ValueTuple<,,,,,,,>))
                 //    && (tupleEltNames = property.GetCustomAttribute(typeof(TupleElementNamesAttribute)) as TupleElementNamesAttribute) != null)
                 //{
-                //    modify the nextPart to access the tuple item via the ITuple indexer
+                //    // modify the nextPart to access the tuple item via the ITuple indexer
                 //    var nextPart = part.NextPart;
                 //    var name = nextPart.Content;
                 //    var index = tupleEltNames.TransformNames.IndexOf(name);

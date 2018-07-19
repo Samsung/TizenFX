@@ -261,48 +261,52 @@ namespace Tizen.NUI
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
+
         /// <summary>
         /// Get mouse device's button value (ex: right/left button)
         /// </summary>
         /// <param name="point">The point required</param>
         /// <returns></returns>
+        /// <since_tizen> 5 </since_tizen>
         /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public MouseButtonType GetMouseButton(uint point)
+        public MouseButton GetMouseButton(uint point)
         {
             int ret = NDalicManualPINVOKE.Touch_GetMouseButton(swigCPtr, point);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return (MouseButtonType)ret;
+            return (MouseButton)ret;
         }
+
     }
 
     /// <summary>
     /// Mouse device button type
     /// </summary>
+    /// <since_tizen> 5 </since_tizen>
     /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
     [EditorBrowsable(EditorBrowsableState.Never)]
-    public enum MouseButtonType
+    public enum MouseButton
     {
         /// <summary>
         /// No mouse button event or invalid data
         /// </summary>
+        /// <since_tizen> 5 </since_tizen>
         Invalid = -1,
         /// <summary>
-        /// Left mouse button
+        /// Primary(Left) mouse button
         /// </summary>
-        LeftButton = 1,
+        /// <since_tizen> 5 </since_tizen>
+        Primary = 1,
+        /// <summary>
+        /// Secondary(Right) mouse button
+        /// </summary>
+        /// <since_tizen> 5 </since_tizen>
+        Secondary = 3,
         /// <summary>
         /// Center(Wheel) mouse button
         /// </summary>
-        CenterButton = 2,
-        /// <summary>
-        /// Right mouse button
-        /// </summary>
-        RightButton = 3,
-        /// <summary>
-        /// Reserved mouse button for different mouse devices
-        /// </summary>
-        Reserved = 4,
+        /// <since_tizen> 5 </since_tizen>
+        Tertiary = 2,
     }
 
 }
