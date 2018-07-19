@@ -7,11 +7,11 @@ namespace Tizen.NUI.Binding
 {
     /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
     [EditorBrowsable(EditorBrowsableState.Never)]
-    public sealed class Command<T> : Command 
+    public sealed class Command<T> : Command
     {
         /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public Command(Action<T> execute) 
+        public Command(Action<T> execute)
             : base(o =>
             {
                 if (IsValidParameter(o))
@@ -28,7 +28,7 @@ namespace Tizen.NUI.Binding
 
         /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public Command(Action<T> execute, Func<T, bool> canExecute) 
+        public Command(Action<T> execute, Func<T, bool> canExecute)
             : base(o =>
             {
                 if (IsValidParameter(o))

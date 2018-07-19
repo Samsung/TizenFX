@@ -63,7 +63,7 @@ namespace Tizen.NUI.Binding.Internals
         protected abstract void DisableTimer();
 
         protected abstract void EnableTimer();
-        
+
         protected void SendSignals(int timestep = -1)
         {
             long step = timestep >= 0 ? timestep : _stopwatch.ElapsedMilliseconds;

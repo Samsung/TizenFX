@@ -42,19 +42,19 @@ namespace Tizen.NUI
             // var newElement = (Element)newValue;
             // if (self.ControlTemplate == null)
             // {
-            // 	while (self.InternalChildren.Count > 0)
-            // 	{
-            // 		self.InternalChildren.RemoveAt(self.InternalChildren.Count - 1);
-            // 	}
+            //  while (self.InternalChildren.Count > 0)
+            //  {
+            //      self.InternalChildren.RemoveAt(self.InternalChildren.Count - 1);
+            //  }
 
             // 	if (newValue != null)
-            // 		self.InternalChildren.Add(newElement);
+            //      self.InternalChildren.Add(newElement);
             // }
             // else
             // {
             // 	if (newElement != null)
             // 	{
-            // 		BindableObject.SetInheritedBindingContext(newElement, bindable.BindingContext);
+            //      BindableObject.SetInheritedBindingContext(newElement, bindable.BindingContext);
             // 	}
             // }
             var self = (ContentPage)bindable;
@@ -118,7 +118,7 @@ namespace Tizen.NUI
             Root = new View();
             Root.WidthResizePolicy = ResizePolicyType.FillToParent;
             Root.HeightResizePolicy = ResizePolicyType.FillToParent;
-            
+
             win.Add(Root);
         }
 

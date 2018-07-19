@@ -84,7 +84,7 @@ namespace Tizen.NUI.Binding
             set { SetValue(IsClippedToBoundsProperty, value); }
         }
 
-        public Thickness Padding
+        public new Thickness Padding
         {
             get { return (Thickness)GetValue(PaddingElement.PaddingProperty); }
             set { SetValue(PaddingElement.PaddingProperty, value); }
@@ -113,10 +113,13 @@ namespace Tizen.NUI.Binding
             get { return _logicalChildren ?? (_logicalChildren = new ReadOnlyCollection<Element>(InternalChildren)); }
         }
 
+        /// <summary>
+        /// Raised when the layout of the Page has changed.
+        /// </summary>
         public event EventHandler LayoutChanged;
 
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public IReadOnlyList<Element> Children
+        public new IReadOnlyList<Element> Children
         {
             get { return InternalChildren; }
         }
@@ -137,7 +140,7 @@ namespace Tizen.NUI.Binding
         public static void LayoutChildIntoBoundingRegion(/*VisualElement*/BaseHandle child, Rectangle region)
         {
             //var parent = child.Parent as IFlowDirectionController;
-            bool isRightToLeft = false;
+            //bool isRightToLeft = false;
             //if (parent != null && (isRightToLeft = parent.EffectiveFlowDirection.IsRightToLeft()))
                 //region = new Rectangle(parent.Width - region.Right, region.Y, region.Width, region.Height);
 
@@ -180,7 +183,7 @@ namespace Tizen.NUI.Binding
 
         public void LowerChild(View view)
         {
-            if (!InternalChildren.Contains(view) || InternalChildren.First() == view)
+            if (!InternalChildren.Contains(view) || (InternalChildren.First() as BaseHandle) == view)
                 return;
 
             InternalChildren.Move(InternalChildren.IndexOf(view), 0);
@@ -189,7 +192,7 @@ namespace Tizen.NUI.Binding
 
         public void RaiseChild(View view)
         {
-            if (!InternalChildren.Contains(view) || InternalChildren.Last() == view)
+            if (!InternalChildren.Contains(view) || (InternalChildren.Last() as BaseHandle) == view)
                 return;
 
             InternalChildren.Move(InternalChildren.IndexOf(view), InternalChildren.Count - 1);
@@ -280,7 +283,7 @@ namespace Tizen.NUI.Binding
         internal static void LayoutChildIntoBoundingRegion(View child, Rectangle region, SizeRequest childSizeRequest)
         {
             // var parent = child.Parent as IFlowDirectionController;
-            bool isRightToLeft = false;
+            // bool isRightToLeft = false;
             // if (parent != null && (isRightToLeft = parent.EffectiveFlowDirection.IsRightToLeft()))
             // 	region = new Rectangle(parent.Width - region.Right, region.Y, region.Width, region.Height);
 
@@ -326,7 +329,7 @@ namespace Tizen.NUI.Binding
             for (var index = 0; index < count; index++)
             {
                 var v = LogicalChildrenInternal[index] as /*VisualElement*/BaseHandle;
-                // if (v != null && v.IsVisible && (!v.IsPlatformEnabled || !v.IsNativeStateConsistent))
+                if (v != null /*&& v.IsVisible && (!v.IsPlatformEnabled || !v.IsNativeStateConsistent)*/)
                     return;
             }
 
@@ -429,7 +432,7 @@ namespace Tizen.NUI.Binding
                     if (v == null)
                         continue;
 
-                    if (item == this)
+                    if ((item as BaseHandle) == this)
                         throw new InvalidOperationException("Can not add self to own child collection.");
 
                     OnInternalAdded(v);

@@ -493,7 +493,6 @@ namespace Tizen.NUI
         /// <summary>
         /// For internal use.
         /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
         internal NavigationProxy NavigationProxy
         {
             get { return Navigation as NavigationProxy; }
