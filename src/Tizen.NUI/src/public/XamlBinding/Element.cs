@@ -20,12 +20,12 @@ namespace Tizen.NUI.Binding
 
         // public static Menu GetMenu(BindableObject bindable)
         // {
-        // 	return (Menu)bindable.GetValue(MenuProperty);
+        //   return (Menu)bindable.GetValue(MenuProperty);
         // }
 
         // public static void SetMenu(BindableObject bindable, Menu menu)
         // {
-        // 	bindable.SetValue(MenuProperty, menu);
+        //   bindable.SetValue(MenuProperty, menu);
         // }
 
         internal static readonly ReadOnlyCollection<Element> EmptyChildren = new ReadOnlyCollection<Element>(new Element[0]);

@@ -499,11 +499,12 @@ namespace Tizen.NUI.BaseComponents
         /// <summary>
         /// Creates the default TableView view.
         /// </summary>
+        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public TableView() : this(NDalicPINVOKE.TableView_New(1, 1), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
-
 
         /// <summary>
         /// Creates the TableView view.

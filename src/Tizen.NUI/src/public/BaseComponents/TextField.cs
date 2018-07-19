@@ -968,7 +968,7 @@ namespace Tizen.NUI.BaseComponents
             Tizen.NUI.Object.GetProperty(textField.swigCPtr, TextField.Property.ENABLE_SHIFT_SELECTION).Get(out temp);
             return temp;
         });
-        
+
 
 
         private global::System.Runtime.InteropServices.HandleRef swigCPtr;
@@ -1409,7 +1409,6 @@ namespace Tizen.NUI.BaseComponents
             get
             {
                 return (string)GetValue(PlaceholderTextProperty);
-                
             }
             set
             {

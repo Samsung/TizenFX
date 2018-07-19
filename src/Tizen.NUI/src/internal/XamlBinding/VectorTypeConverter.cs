@@ -16,7 +16,7 @@ namespace Tizen.NUI.Binding
                 string[] parts = value.Split(',');
                 if (parts.Length == 2 )
                 {
-                    return new Vector2(Single.Parse(parts[0].Trim(), CultureInfo.InvariantCulture), 
+                    return new Vector2(Single.Parse(parts[0].Trim(), CultureInfo.InvariantCulture),
                                        Single.Parse(parts[1].Trim(), CultureInfo.InvariantCulture));
                 }
             }
@@ -34,8 +34,8 @@ namespace Tizen.NUI.Binding
                 string[] parts = value.Split(',');
                 if (parts.Length == 3 )
                 {
-                    return new Vector3(Single.Parse(parts[0].Trim(), CultureInfo.InvariantCulture), 
-                                       Single.Parse(parts[1].Trim(), CultureInfo.InvariantCulture), 
+                    return new Vector3(Single.Parse(parts[0].Trim(), CultureInfo.InvariantCulture),
+                                       Single.Parse(parts[1].Trim(), CultureInfo.InvariantCulture),
                                        Single.Parse(parts[2].Trim(), CultureInfo.InvariantCulture));
                 }
             }
@@ -53,9 +53,9 @@ namespace Tizen.NUI.Binding
                 string[] parts = value.Split(',');
                 if (parts.Length == 4 )
                 {
-                    return new Vector4(Single.Parse(parts[0].Trim(), CultureInfo.InvariantCulture), 
-                                       Single.Parse(parts[1].Trim(), CultureInfo.InvariantCulture), 
-                                       Single.Parse(parts[2].Trim(), CultureInfo.InvariantCulture), 
+                    return new Vector4(Single.Parse(parts[0].Trim(), CultureInfo.InvariantCulture),
+                                       Single.Parse(parts[1].Trim(), CultureInfo.InvariantCulture),
+                                       Single.Parse(parts[2].Trim(), CultureInfo.InvariantCulture),
                                        Single.Parse(parts[3].Trim(), CultureInfo.InvariantCulture));
                 }
             }
@@ -73,7 +73,7 @@ namespace Tizen.NUI.Binding
                 string[] parts = value.Split(',');
                 if (parts.Length == 2 )
                 {
-                    return new RelativeVector2(Single.Parse(parts[0].Trim(), CultureInfo.InvariantCulture), 
+                    return new RelativeVector2(Single.Parse(parts[0].Trim(), CultureInfo.InvariantCulture),
                                                Single.Parse(parts[1].Trim(), CultureInfo.InvariantCulture));
                 }
             }
@@ -91,8 +91,8 @@ namespace Tizen.NUI.Binding
                 string[] parts = value.Split(',');
                 if (parts.Length == 3 )
                 {
-                    return new RelativeVector3(Single.Parse(parts[0].Trim(), CultureInfo.InvariantCulture), 
-                                               Single.Parse(parts[1].Trim(), CultureInfo.InvariantCulture), 
+                    return new RelativeVector3(Single.Parse(parts[0].Trim(), CultureInfo.InvariantCulture),
+                                               Single.Parse(parts[1].Trim(), CultureInfo.InvariantCulture),
                                                Single.Parse(parts[2].Trim(), CultureInfo.InvariantCulture));
                 }
             }
@@ -110,9 +110,9 @@ namespace Tizen.NUI.Binding
                 string[] parts = value.Split(',');
                 if (parts.Length == 4 )
                 {
-                    return new RelativeVector4(Single.Parse(parts[0].Trim(), CultureInfo.InvariantCulture), 
-                                               Single.Parse(parts[1].Trim(), CultureInfo.InvariantCulture), 
-                                               Single.Parse(parts[2].Trim(), CultureInfo.InvariantCulture), 
+                    return new RelativeVector4(Single.Parse(parts[0].Trim(), CultureInfo.InvariantCulture),
+                                               Single.Parse(parts[1].Trim(), CultureInfo.InvariantCulture),
+                                               Single.Parse(parts[2].Trim(), CultureInfo.InvariantCulture),
                                                Single.Parse(parts[3].Trim(), CultureInfo.InvariantCulture));
                 }
             }

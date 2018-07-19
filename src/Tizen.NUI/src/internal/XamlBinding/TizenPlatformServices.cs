@@ -52,43 +52,43 @@ namespace Tizen.NUI.Binding
 
         // public double GetNamedSize(NamedSize size, Type targetElementType, bool useOldSizes)
         // {
-        // 	int pt;
-        // 	// Actual font size depends on the target idiom.
-        // 	switch (size)
-        // 	{
-        // 		case NamedSize.Micro:
-        // 			pt = Device.Idiom == TargetIdiom.TV || Device.Idiom == TargetIdiom.Watch ? 24 : 19;
-        // 			break;
-        // 		case NamedSize.Small:
-        // 			pt = Device.Idiom == TargetIdiom.TV ? 26 : (Device.Idiom == TargetIdiom.Watch ? 30 : 22);
-        // 			break;
-        // 		case NamedSize.Default:
-        // 		case NamedSize.Medium:
-        // 			pt = Device.Idiom == TargetIdiom.TV ? 28 : (Device.Idiom == TargetIdiom.Watch ? 32 : 25);
-        // 			break;
-        // 		case NamedSize.Large:
-        // 			pt = Device.Idiom == TargetIdiom.TV ? 84 : (Device.Idiom == TargetIdiom.Watch ? 36 : 31);
-        // 			break;
-        // 		default:
-        // 			throw new ArgumentOutOfRangeException();
-        // 	}
-        // 	return Forms.ConvertToDPFont(pt);
+        //  int pt;
+        //  // Actual font size depends on the target idiom.
+        //  switch (size)
+        //  {
+        //      case NamedSize.Micro:
+        //          pt = Device.Idiom == TargetIdiom.TV || Device.Idiom == TargetIdiom.Watch ? 24 : 19;
+        //          break;
+        //      case NamedSize.Small:
+        //          pt = Device.Idiom == TargetIdiom.TV ? 26 : (Device.Idiom == TargetIdiom.Watch ? 30 : 22);
+        //          break;
+        //      case NamedSize.Default:
+        //      case NamedSize.Medium:
+        //          pt = Device.Idiom == TargetIdiom.TV ? 28 : (Device.Idiom == TargetIdiom.Watch ? 32 : 25);
+        //          break;
+        //      case NamedSize.Large:
+        //          pt = Device.Idiom == TargetIdiom.TV ? 84 : (Device.Idiom == TargetIdiom.Watch ? 36 : 31);
+        //          break;
+        //      default:
+        //          throw new ArgumentOutOfRangeException();
+        //  }
+        //  return Forms.ConvertToDPFont(pt);
         // }
 
         // public void OpenUriAction(Uri uri)
         // {
-        // 	if (uri == null || uri.AbsoluteUri == null)
-        // 	{
-        // 		throw new ArgumentNullException(nameof(uri));
-        // 	}
-        // 	TAppControl tAppControl = new TAppControl() { Operation = "%", Uri = uri.AbsoluteUri };
-        // 	var matchedApplications = TAppControl.GetMatchedApplicationIds(tAppControl);
-        // 	if (matchedApplications.Count() > 0)
-        // 	{
-        // 		TAppControl.SendLaunchRequest(tAppControl);
-        // 		return;
-        // 	}
-        // 	throw new PlatformNotSupportedException();
+        //  if (uri == null || uri.AbsoluteUri == null)
+        //  {
+        //      throw new ArgumentNullException(nameof(uri));
+        //  }
+        //  TAppControl tAppControl = new TAppControl() { Operation = "%", Uri = uri.AbsoluteUri };
+        //  var matchedApplications = TAppControl.GetMatchedApplicationIds(tAppControl);
+        //  if (matchedApplications.Count() > 0)
+        //  {
+        //      TAppControl.SendLaunchRequest(tAppControl);
+        //      return;
+        //  }
+        //  throw new PlatformNotSupportedException();
         // }
 
         public void BeginInvokeOnMainThread(Action action)

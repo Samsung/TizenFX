@@ -417,9 +417,9 @@ namespace Tizen.NUI
         ///// </summary>
         // protected override void OnSizeAllocated(double width, double height)
         // {
-        // 	_allocatedFlag = true;
-        // 	//base.OnSizeAllocated(width, height);
-        // 	UpdateChildrenLayout();
+        //  _allocatedFlag = true;
+        //  //base.OnSizeAllocated(width, height);
+        //  UpdateChildrenLayout();
         // }
 
         /// <summary>
