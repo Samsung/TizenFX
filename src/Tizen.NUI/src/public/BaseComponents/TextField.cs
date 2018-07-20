@@ -1256,9 +1256,26 @@ namespace Tizen.NUI.BaseComponents
         public TextField() : this(NDalicPINVOKE.TextField_New(), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            this.TextChanged += (obj, e) => {
-                this.Text = this.Text;
-            };
+        }
+
+        internal override bool IsCreateByXaml
+        {
+            get
+            {
+                return base.IsCreateByXaml;
+            }
+            set
+            {
+                base.IsCreateByXaml = value;
+
+                if (value == true)
+                {
+                    this.TextChanged += (obj, e) =>
+                    {
+                        this.Text = this.Text;
+                    };
+                }
+            }
         }
 
         internal TextField(TextField handle) : this(NDalicPINVOKE.new_TextField__SWIG_1(TextField.getCPtr(handle)), true)
