@@ -148,7 +148,18 @@ namespace Tizen.NUI.Binding
             SetBinding(targetProperty, binding, false);
         }
 
-        internal bool isCreateByXaml = false;
+        private bool isCreateByXaml = false;
+        internal virtual bool IsCreateByXaml
+        {
+            get
+            {
+                return isCreateByXaml;
+            }
+            set
+            {
+                isCreateByXaml = value;
+            }
+        }
 
         /// <summary>
         /// Sets the value of the specified property.

@@ -113,7 +113,7 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public ContentPage(Window win)
         {
-            isCreateByXaml = true;
+            IsCreateByXaml = true;
 
             Root = new View();
             Root.WidthResizePolicy = ResizePolicyType.FillToParent;

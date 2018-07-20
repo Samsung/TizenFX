@@ -103,15 +103,31 @@ namespace Tizen.NUI.UIComponents
         public PushButton() : this(NDalicPINVOKE.PushButton_New(), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            this.Clicked += (sender, e) =>
+        }
+
+        internal override bool IsCreateByXaml
+        {
+            get
             {
-                ICommand command = this.Command;
-                if (command != null)
+                return base.IsCreateByXaml;
+            }
+            set
+            {
+                base.IsCreateByXaml = value;
+
+                if (value == true)
                 {
-                    command.Execute(this.CommandParameter);
+                    this.Clicked += (sender, e) =>
+                    {
+                        ICommand command = this.Command;
+                        if (command != null)
+                        {
+                            command.Execute(this.CommandParameter);
+                        }
+                        return true;
+                    };
                 }
-                return true;
-            };
+            }
         }
 
         /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
