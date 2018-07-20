@@ -1990,6 +1990,28 @@ namespace Tizen.Uix.InputMethod
         }
 
         /// <summary>
+        /// Sends the request to hide IME.
+        /// </summary>
+        /// <privilege>
+        /// http://tizen.org/privilege/ime
+        /// </privilege>
+        /// <exception cref="InvalidOperationException">
+        /// This can occur due to the following reasons:
+        /// 1) The application does not have the privilege to call this function.
+        /// 2) The IME main loop isn't started yet.
+        /// </exception>
+        /// <since_tizen> 5 </since_tizen>
+        public static void RequestHide()
+        {
+            ErrorCode error = ImeRequestHide();
+            if (error != ErrorCode.None)
+            {
+                Log.Error(LogTag, "RequestHide Failed with error " + error);
+                throw InputMethodExceptionFactory.CreateException(error);
+            }
+        }
+
+        /// <summary>
         /// This API requests the InputMethodEditor to initialize.
         /// </summary>
         /// <privilege>
