@@ -22,14 +22,227 @@ using Tizen.NUI.BaseComponents;
 
 namespace HelloWorldTest
 {
+    static class Images
+    {
+        public static string resources = Tizen.Applications.Application.Current.DirectoryInfo.Resource;
+        public static readonly string[] s_images = new string[]
+        {
+            resources + "images/gallery-1.jpg",
+            resources + "images/gallery-2.jpg",
+            resources + "images/gallery-3.jpg",
+            resources + "images/gallery-4.jpg",
+            resources + "images/image-1.jpg",
+            resources + "images/image-2.jpg",
+            resources + "images/image-3.jpg",
+        };
+    }
+
+    public class CustomLayoutHorizental : LayoutGroup
+    {
+        private static LayoutItem[] childLayouts = new LayoutItem[10];
+
+        public CustomLayoutHorizental()
+        {
+            Console.WriteLine($"CustomLayoutHorizental() constructor!");
+        }
+        protected override void OnMeasure(LayoutMeasureSpec widthMeasureSpec, LayoutMeasureSpec heightMeasureSpec)
+        {
+            Console.WriteLine($"CustomLayoutHorizental OnMeasure() START");
+
+            var accumulatedWidth = new LayoutLength(0);
+            var maxHeight = new LayoutLength(0);
+
+            // this is needed, otherwise the child's LayoutItem is garbage collected!
+            for (uint i = 0; i < ChildCount; ++i)
+            {
+                childLayouts[i] = GetChildAt(i);
+            }
+
+            // In this layout we will:
+            //  Measuring the layout with the children in a horizontal configuration, one after another
+            //  Set the required width to be the accumulated width of our children
+            //  Set the required height to be the maximum height of any of our children
+            for (uint i = 0; i < ChildCount; ++i)
+            {
+                var childLayout = childLayouts[i];
+
+                Console.WriteLine($"child count={ChildCount}, i={i}");
+                if (childLayout)
+                {
+                    Console.WriteLine($"{i} : childid = {G}");
+                    MeasureChild(childLayout, widthMeasureSpec, heightMeasureSpec);
+                    accumulatedWidth += childLayout.MeasuredWidth;
+                    maxHeight.Value = System.Math.Max(childLayout.MeasuredHeight.Value, maxHeight.Value);
+                    Console.WriteLine($"child layout is not NULL! accumulatedWidth={accumulatedWidth.Value}, i={i}");
+                }
+            }
+            // Finally, call this method to set the dimensions we would like
+            SetMeasuredDimensions(new MeasuredSize(accumulatedWidth), new MeasuredSize(maxHeight));
+            Console.WriteLine($"CustomLayoutHorizental OnMeasure() accumlated width={accumulatedWidth.Value}, maxHeight={maxHeight.Value} END");
+        }
+        protected override void OnLayout(bool changed, LayoutLength left, LayoutLength top, LayoutLength right, LayoutLength bottom)
+        {
+            Console.WriteLine($"CustomLayoutHorizental OnLayout() START");
+
+            LayoutLength childTop = new LayoutLength(0);
+            LayoutLength childLeft = new LayoutLength(0);
+
+            // We want to vertically align the children to the middle
+            var height = bottom - top;
+            var middle = height / 2;
+
+            // Horizontally align the children to the middle of the space they are given too
+            var width = right - left;
+            uint count = ChildCount;
+            Console.WriteLine($"child count={count}");
+
+            var childIncrement = 0;
+            if (count > 0)
+            {
+                childIncrement = width.Value / System.Convert.ToInt32(count);
+            }
+            var center = childIncrement / 2;
+
+            // Check layout direction
+            var view = GetOwner();
+            ViewLayoutDirectionType layoutDirection = view.LayoutDirection;
+
+            // this is needed, otherwise the child's LayoutItem is garbage collected!
+            for (uint i = 0; i < ChildCount; ++i)
+            {
+                childLayouts[i] = GetChildAt(i);
+            }
+
+            for (uint i = 0; i < count; i++)
+            {
+                uint itemIndex;
+                // If RTL, then layout the last item first
+                if (layoutDirection == ViewLayoutDirectionType.RTL)
+                {
+                    itemIndex = count - 1 - i;
+                }
+                else
+                {
+                    itemIndex = i;
+                }
+
+                var childLayout = childLayouts[itemIndex];
+                if (childLayout)
+                {
+                    var childWidth = childLayout.MeasuredWidth;
+                    var childHeight = childLayout.MeasuredHeight;
+
+                    childTop = middle - (childHeight / 2);
+
+                    var leftPosition = childLeft + center - childWidth / 2;
+
+                    childLayout.Layout(leftPosition, childTop, leftPosition + childWidth, childTop + childHeight);
+                    childLeft += childIncrement;
+
+                    Console.WriteLine($"child layout is not NULL! childWidth={childWidth.Value}, i={i}");
+                }
+            }
+            Console.WriteLine($"CustomLayoutHorizental OnLayout() END");
+        }
+    }
+
+    public class CustomLayoutVertical : LayoutGroup
+    {
+        public CustomLayoutVertical()
+        {
+            this.LayoutAnimate = true;
+        }
+
+        private static LayoutItem[] childLayouts = new LayoutItem[10];
+
+        protected override void OnMeasure(LayoutMeasureSpec widthMeasureSpec, LayoutMeasureSpec heightMeasureSpec)
+        {
+            var accumulatedHeight = new LayoutLength(0);
+            var maxWidth = new LayoutLength(0);
+
+            for (uint i = 0; i < ChildCount; ++i)
+            {
+                childLayouts[i] = GetChildAt(i);
+            }
+
+            for (uint i = 0; i < ChildCount; ++i)
+            {
+                var childLayout = childLayouts[i];
+                if (childLayout)
+                {
+                    MeasureChild(childLayout, widthMeasureSpec, heightMeasureSpec);
+                    accumulatedHeight += childLayout.MeasuredHeight;
+                    maxWidth.Value = System.Math.Max(childLayout.MeasuredWidth.Value, maxWidth.Value);
+                    Console.WriteLine($"CustomLayoutVertical child layout is not NULL! accumulatedHeight={accumulatedHeight.Value}, i={i}");
+                }
+            }
+            SetMeasuredDimensions(new MeasuredSize(maxWidth), new MeasuredSize(accumulatedHeight));
+            Console.WriteLine($"CustomLayoutVertical OnMeasure() max width={maxWidth.Value}, accumulated Height={accumulatedHeight.Value}");
+        }
+
+        protected override void OnLayout(bool changed, LayoutLength left, LayoutLength top, LayoutLength right, LayoutLength bottom)
+        {
+            LayoutLength childTop = new LayoutLength(0);
+            LayoutLength childLeft = new LayoutLength(0);
+
+            var height = bottom - top;
+            var width = right - left;
+            var middle = width / 2;
+
+            uint count = ChildCount;
+            var childIncrement = 0;
+            if (count > 0)
+            {
+                childIncrement = height.Value / System.Convert.ToInt32(count);
+            }
+            var center = childIncrement / 2;
+
+            var view = GetOwner();
+            ViewLayoutDirectionType layoutDirection = view.LayoutDirection;
+
+            for (uint i = 0; i < ChildCount; ++i)
+            {
+                childLayouts[i] = GetChildAt(i);
+            }
+
+            for (uint i = 0; i < count; i++)
+            {
+                uint itemIndex;
+                if (layoutDirection == ViewLayoutDirectionType.RTL)
+                {
+                    itemIndex = count - 1 - i;
+                }
+                else
+                {
+                    itemIndex = i;
+                }
+
+                var childLayout = childLayouts[itemIndex];
+                if (childLayout)
+                {
+                    var childWidth = childLayout.MeasuredWidth;
+                    var childHeight = childLayout.MeasuredHeight;
+
+                    childLeft = middle - (childWidth / 2);
+
+                    var topPosition = childTop + center - childHeight / 2;
+
+                    childLayout.Layout(childLeft, topPosition, childLeft + childWidth, topPosition + childHeight);
+                    childTop += childIncrement;
+
+                    Console.WriteLine($"CustomLayoutVertical child layout is not NULL! childWidth={childWidth.Value}, i={i}");
+                }
+            }
+            Console.WriteLine($"CustomLayoutVertical OnLayout() END");
+        }
+    }
     class Example : NUIApplication
     {
-        private Animation _animation;
-        private TextLabel _text;
-        private int cnt;
-        private View _view;
-        TextField textFieldPlaceholderTest;
-        TextLabel keySubclassTest;
+
+        public Example() : base()
+        {
+            Console.WriteLine("Example()!");
+        }
 
         protected override void OnCreate()
         {
@@ -37,300 +250,94 @@ namespace HelloWorldTest
             Initialize();
         }
 
-        TextLabel pixelLabel;
-        TextLabel pointLabel;
-        public void Initialize()
+        static View linearContainer;
+        const int MAX_CHILDREN = 7;
+        static ImageView[] imageViews = new ImageView[MAX_CHILDREN];
+        static CustomLayoutHorizental horizontalLayout;
+        static CustomLayoutVertical verticalLayout;
+
+        private void Initialize()
         {
+            Console.WriteLine("Initialize()!");
             Window window = Window.Instance;
-            window.BackgroundColor = Color.White;
-            window.TouchEvent += OnWindowTouched;
-            window.KeyEvent += OnWindowKeyEvent;
-            window.Resized += (obj, e) =>
+            window.BackgroundColor = Color.Green;
+
+            linearContainer = new View();
+            linearContainer.PositionUsesPivotPoint = true;
+            linearContainer.PivotPoint = PivotPoint.Center;
+            linearContainer.ParentOrigin = ParentOrigin.Center;
+            linearContainer.KeyEvent += OnKeyEvent;
+            linearContainer.Focusable = true;
+
+            for (int index = 0; index < MAX_CHILDREN - 3; index++)
             {
-                Tizen.Log.Fatal("NUI", "Height: " + e.WindowSize.Height);
-                Tizen.Log.Fatal("NUI", "Width: " + e.WindowSize.Width);
-            };
-
-            pixelLabel = new TextLabel("NUI Ubuntu Test! Click with mouse!");
-            pixelLabel.Position2D = new Position2D(10, 10);
-            pixelLabel.BackgroundColor = Color.Yellow;
-            pixelLabel.PointSize = 20;
-            pixelLabel.TextColor = Color.Blue;
-            window.Add(pixelLabel);
-
-            pointLabel = new TextLabel("Test Point Size 32.0f");
-            pointLabel.Position2D = new Position2D(10, 70);
-            pointLabel.PointSize = 32.0f;
-            window.Add(pointLabel);
-
-            Timer timer = new Timer(1000);
-
-            Task.Factory.StartNew(() =>
-            {
-                try
-                {
-                    Timer timer_in_another_thread = new Timer(1000);
-
-                    TextLabel ellipsis = new TextLabel("Ellipsis of TextLabel is enabled.");
-                    ellipsis.Size2D = new Size2D(100, 100);
-                    ellipsis.Position2D = new Position2D(10, 250);
-                    ellipsis.PointSize = 20.0f;
-                    ellipsis.Ellipsis = true;
-                    window.Add(ellipsis);
-                }
-                catch (Exception e)
-                {
-                    Tizen.Log.Fatal("NUI", $"exception caught! e={e}");
-                }
-            }).Wait();
-
-            TextField textFieldEllipsisTest = new TextField();
-            textFieldEllipsisTest.Text = "TextField Ellipsis Test, ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-            textFieldEllipsisTest.Size2D = new Size2D(200, 100);
-            textFieldEllipsisTest.Position2D = new Position2D(10, 150);
-            textFieldEllipsisTest.PointSize = 30.0f;
-            textFieldEllipsisTest.Ellipsis = false;
-            window.Add(textFieldEllipsisTest);
-
-            TextField textFieldEllipsisTest2 = new TextField();
-            textFieldEllipsisTest2.Text = "TextField Ellipsis Test, ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-            textFieldEllipsisTest2.Size2D = new Size2D(200, 100);
-            textFieldEllipsisTest2.Position2D = new Position2D(300, 150);
-            textFieldEllipsisTest2.PointSize = 30.0f;
-            textFieldEllipsisTest2.Ellipsis = true;
-            window.Add(textFieldEllipsisTest2);
-
-
-            textFieldPlaceholderTest = new TextField();
-
-            PropertyMap propertyMap = new PropertyMap();
-            propertyMap.Add("placeholderText", new PropertyValue("TextField Placeholder Test"));
-            propertyMap.Add("placeholderTextFocused", new PropertyValue("Placeholder Text Focused"));
-            propertyMap.Add("placeholderColor", new PropertyValue(Color.Blue));
-            propertyMap.Add("placeholderPointSize", new PropertyValue(20.0f));
-
-            PropertyMap fontStyleMap = new PropertyMap();
-            fontStyleMap.Add("weight", new PropertyValue("bold"));
-            fontStyleMap.Add("width", new PropertyValue("condensed"));
-            fontStyleMap.Add("slant", new PropertyValue("italic"));
-            propertyMap.Add("placeholderFontStyle", new PropertyValue(fontStyleMap));
-
-            textFieldPlaceholderTest.Size2D = new Size2D(300, 50);
-            textFieldPlaceholderTest.Position2D = new Position2D(10, 230);
-            textFieldPlaceholderTest.BackgroundColor = Color.Magenta;
-            textFieldPlaceholderTest.Placeholder = propertyMap;
-            textFieldPlaceholderTest.Focusable = true;
-            window.Add(textFieldPlaceholderTest);
-
-            keySubclassTest = new TextLabel();
-            keySubclassTest.Text = "Key Subclass Test!";
-            keySubclassTest.Size2D = new Size2D(900, 50);
-            keySubclassTest.Position2D = new Position2D(10, 300);
-            keySubclassTest.BackgroundColor = Color.Cyan;
-            keySubclassTest.PointSize = 20;
-            keySubclassTest.Focusable = true;
-            window.Add(keySubclassTest);
-
-
-            TextLabel autoScrollStopMode = new TextLabel("AutoScrollStopMode is finish-loop. PointSize=30");
-            autoScrollStopMode.Size2D = new Size2D(400, 100);
-            autoScrollStopMode.Position2D = new Position2D(10, 400);
-            autoScrollStopMode.PointSize = 30.0f;
-            autoScrollStopMode.AutoScrollStopMode = AutoScrollStopMode.Immediate;
-            autoScrollStopMode.AutoScrollLoopDelay = 3.0f;
-            autoScrollStopMode.EnableAutoScroll = true;
-            autoScrollStopMode.AutoScrollLoopCount = 0;
-            window.Add(autoScrollStopMode);
-
-            _text = new TextLabel("Hello NUI World");
-            _text.Position2D = new Position2D(10, 500);
-            _text.HorizontalAlignment = HorizontalAlignment.Center;
-            _text.PointSize = 20.0f;
-            _text.TextColor = Color.Magenta;
-            window.Add(_text);
-
-            _view = new View();
-            _view.Size2D = new Size2D(100, 100);
-            _view.SizeWidth = 50;
-            Tizen.Log.Fatal("NUI", "[1]_view SizeWidth=" + _view.SizeWidth);
-
-            _animation = new Animation
-            {
-                Duration = 2000
-            };
-            _animation.AnimateTo(_text, "Orientation", new Rotation(new Radian(new Degree(180.0f)), PositionAxis.X), 0, 500);
-            _animation.AnimateTo(_text, "Orientation", new Rotation(new Radian(new Degree(0.0f)), PositionAxis.X), 500, 1000);
-            _animation.AnimateBy(_text, "ScaleX", 3, 1000, 1500);
-            _animation.AnimateBy(_text, "ScaleY", 4.0f, 1500, 2000);
-            _animation.EndAction = Animation.EndActions.Discard;
-            _animation.Finished += AnimationFinished;
-
-            _view.SizeWidth = 50;
-            Tizen.Log.Fatal("NUI", "[2]_view SizeWidth=" + _view.SizeWidth);
-
-            TextLabelLineWrapModeTest();
-            ViewLayoutDirectionTest();
-
-            textFieldPlaceholderTest.DownFocusableView = keySubclassTest;
-            keySubclassTest.UpFocusableView = textFieldPlaceholderTest;
-            FocusManager.Instance.SetCurrentFocusView(keySubclassTest);
-        }
-
-
-        private View view1, view11, view12, view111, view121;
-        public void ViewLayoutDirectionTest()
-        {
-            view1 = new View();
-            view1.Name = "view 1";
-            view1.LayoutDirection = ViewLayoutDirectionType.RTL;
-            Window.Instance.GetDefaultLayer().Add(view1);
-            view1.LayoutDirectionChanged += View1_LayoutDirectionChanged;
-
-            view11 = new View();
-            view11.Name = "view 11";
-            view11.InheritLayoutDirection = true;
-            view1.Add(view11);
-
-            view12 = new View();
-            view12.Name = "view 12";
-            view12.LayoutDirection = ViewLayoutDirectionType.LTR;
-            view1.Add(view12);
-
-            view111 = new View();
-            view111.Name = "view 111";
-            view111.InheritLayoutDirection = true;
-            view11.Add(view111);
-
-            view121 = new View();
-            view121.Name = "view 121";
-            view121.InheritLayoutDirection = true;
-            view12.Add(view121);
-        }
-
-        private void View1_LayoutDirectionChanged(object sender, View.LayoutDirectionChangedEventArgs e)
-        {
-            Tizen.Log.Error("NUI", "View1_LayoutDirectionChanged()! e.Type=" + e.Type);
-        }
-
-        public void AnimationFinished(object sender, EventArgs e)
-        {
-            Tizen.Log.Fatal("NUI", "AnimationFinished()! cnt=" + (cnt));
-            if (_animation)
-            {
-                Tizen.Log.Fatal("NUI", "Duration= " + _animation.Duration + "EndAction= " + _animation.EndAction);
+                imageViews[index] = new ImageView(Images.s_images[index]);
+                imageViews[index].WidthSpecificationFixed = 150;
+                imageViews[index].HeightSpecificationFixed = 100;
+                linearContainer.Add(imageViews[index]);
             }
-            _view.SizeWidth = 50;
-            Tizen.Log.Fatal("NUI", "[3]_view SizeWidth=" + _view.SizeWidth);
+            for (int index = MAX_CHILDREN - 3; index < MAX_CHILDREN; index++)
+            {
+                imageViews[index] = new ImageView(Images.s_images[index]);
+                imageViews[index].WidthSpecificationFixed = 150;
+                imageViews[index].HeightSpecificationFixed = 100;
+                imageViews[index].Name = "t_image" + (index - 3);
+            }
+
+            horizontalLayout = new CustomLayoutHorizental();
+            verticalLayout = new CustomLayoutVertical();
+            horizontalLayout.LayoutAnimate = true;
+            linearContainer.Layout = horizontalLayout;
+
+            window.Add(linearContainer);
+            FocusManager.Instance.SetCurrentFocusView(linearContainer);
+            FocusManager.Instance.FocusIndicator = new View();
         }
 
-        int win_test;
-        public void OnWindowKeyEvent(object sender, Window.KeyEventArgs e)
+        int cnt1 = 1;
+        private bool OnKeyEvent(object source, View.KeyEventArgs e)
         {
-            Tizen.Log.Fatal("NUI", "e.Key.KeyPressedName=" + e.Key.KeyPressedName);
-
             if (e.Key.State == Key.StateType.Down)
             {
-                keySubclassTest.Text = $"DeviceSubClass={e.Key.DeviceSubClass}, DeviceClass={e.Key.DeviceClass}, DeviceName={e.Key.DeviceName}, KeyCode={e.Key.KeyCode}";
-
-                if (e.Key.KeyPressedName == "Up")
+                Console.WriteLine($"key pressed name={e.Key.KeyPressedName}");
+                switch (e.Key.KeyPressedName)
                 {
-                    if (_animation)
-                    {
-                        _animation.Finished += AnimationFinished;
-                        cnt++;
-                        Tizen.Log.Fatal("NUI", "AnimationFinished added!");
-                    }
-                    //pointLabel.TextColorAnimatable = Color.Blue;
-                    //pixelLabel.TextColorAnimatable = Color.Blue;
+                    case "Right":
+                        if (cnt1 < 4 && cnt1 > 0)
+                        {
+                            linearContainer.Add(imageViews[cnt1 + 3]);
+                            cnt1++;
+                        }
+                        break;
 
-                    Tizen.Log.Fatal("NUI", $"LineWrapMode 1st={ myTextLabel?.LineWrapMode} 2nd={ myTextLabel2?.LineWrapMode}");
-                }
-                else if (e.Key.KeyPressedName == "Down")
-                {
-                    if (_animation)
-                    {
-                        _animation.Finished -= AnimationFinished;
-                        cnt--;
-                        Tizen.Log.Fatal("NUI", "AnimationFinished removed!");
-                    }
-                    //pointLabel.TextColorAnimatable = Color.Red;
-                    //pixelLabel.TextColorAnimatable = Color.Red;
+                    case "Left":
+                        if (cnt1 - 1 < 4 && cnt1 - 1 > 0)
+                        {
+                            View tmp = linearContainer.FindChildByName("t_image" + (cnt1 - 1));
+                            if (tmp != null)
+                            {
+                                linearContainer.Remove(tmp);
+                                cnt1--;
+                            }
+                        }
+                        break;
 
-                    Window.Instance.SetClass($"Window.SetClass() Test #{win_test++}", "");
-                    Tizen.Log.Fatal("NUI", $"Check with enlightenment_info -topwins ! Window.SetClass() Test #{win_test}");
-                }
-                else if (e.Key.KeyPressedName == "Return")
-                {
-                    _animation.Play();
-                    Tizen.Log.Fatal("NUI", "_animation play here!");
+                    case "Up":
+                        linearContainer.Layout = verticalLayout;
+                        break;
+
+                    case "Down":
+                        linearContainer.Layout = horizontalLayout;
+                        break;
+
+                    case "Return":
+                        if (linearContainer.LayoutDirection == ViewLayoutDirectionType.LTR) { linearContainer.LayoutDirection = ViewLayoutDirectionType.RTL; }
+                        else { linearContainer.LayoutDirection = ViewLayoutDirectionType.LTR; }
+                        break;
                 }
             }
+            return true;
         }
-
-        public void OnWindowTouched(object sender, Window.TouchEventArgs e)
-        {
-            if (e.Touch.GetState(0) == PointStateType.Down)
-            {
-                _animation.Play();
-            }
-        }
-
-        private TextLabel myTextLabel;
-        private TextLabel myTextLabel2;
-        private TextEditor myTextEditor;
-        private TextEditor myTextEditor2;
-        public void TextLabelLineWrapModeTest()
-        {
-            Tizen.Log.Fatal("NUI", "WrapModeTest START!");
-            myTextLabel = new TextLabel();
-            myTextLabel.Position2D = new Position2D(10, 600);
-            myTextLabel.Size2D = new Size2D(400, 90);
-            myTextLabel.BackgroundColor = Color.Blue;
-            myTextLabel.PointSize = 20;
-            myTextLabel.TextColor = Color.White;
-            myTextLabel.MultiLine = true;
-            myTextLabel.LineWrapMode = LineWrapMode.Character;
-            myTextLabel.Text = $"[TextLabel LineWrapMode.Character] hello ABCDEFGHI is my name, it is very very long beautiful hansome awesome name.";
-            Window.Instance.GetDefaultLayer().Add(myTextLabel);
-
-            myTextLabel2 = new TextLabel();
-            myTextLabel2.Position2D = new Position2D(450, 600);
-            myTextLabel2.Size2D = new Size2D(400, 90);
-            myTextLabel2.BackgroundColor = Color.Blue;
-            myTextLabel2.PointSize = 20;
-            myTextLabel2.TextColor = Color.White;
-            myTextLabel2.MultiLine = true;
-            myTextLabel2.LineWrapMode = LineWrapMode.Word;
-            myTextLabel2.Text = $"[TextLabel LineWrapMode.Word] hello ABCDEFGHI is my name, it is very very long beautiful hansome awesome name.";
-            Window.Instance.GetDefaultLayer().Add(myTextLabel2);
-
-            Tizen.Log.Fatal("NUI", $"TextLabel LineWrapMode 1st={ myTextLabel?.LineWrapMode} 2nd={ myTextLabel2?.LineWrapMode}");
-
-            myTextEditor = new TextEditor();
-            myTextEditor.Position2D = new Position2D(10, 700);
-            myTextEditor.Size2D = new Size2D(400, 90);
-            myTextEditor.BackgroundColor = Color.Red;
-            myTextEditor.PointSize = 20;
-            myTextEditor.TextColor = Color.White;
-            //myTextEditor.MultiLine = true;
-            myTextEditor.LineWrapMode = LineWrapMode.Character;
-            myTextEditor.Text = $"[TextEditor LineWrapMode.Character] hello ABCDEFGHI is my name, it is very very long beautiful hansome awesome name.";
-            Window.Instance.GetDefaultLayer().Add(myTextEditor);
-
-            myTextEditor2 = new TextEditor();
-            myTextEditor2.Position2D = new Position2D(450, 700);
-            myTextEditor2.Size2D = new Size2D(400, 90);
-            myTextEditor2.BackgroundColor = Color.Red;
-            myTextEditor2.PointSize = 20;
-            myTextEditor2.TextColor = Color.White;
-            //myTextEditor2.MultiLine = true;
-            myTextEditor2.LineWrapMode = LineWrapMode.Word;
-            myTextEditor2.Text = $"[TextEditor LineWrapMode.Word] hello ABCDEFGHI is my name, it is very very long beautiful hansome awesome name.";
-            Window.Instance.GetDefaultLayer().Add(myTextEditor2);
-
-            Tizen.Log.Fatal("NUI", $"TextEditor LineWrapMode 1st={ myTextEditor?.LineWrapMode} 2nd={ myTextEditor2?.LineWrapMode}");
-        }
-
         [STAThread]
         static void _Main(string[] args)
         {
