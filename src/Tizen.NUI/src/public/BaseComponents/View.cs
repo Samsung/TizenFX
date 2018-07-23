@@ -1295,6 +1295,11 @@ namespace Tizen.NUI.BaseComponents
                     child.Layout = layoutItem;
                 }
 
+                if (Layout)
+                {
+                    Layout.LayoutChildren.Add(child.Layout);
+                }
+
                 NDalicPINVOKE.Actor_Add(swigCPtr, View.getCPtr(child));
                 if (NDalicPINVOKE.SWIGPendingException.Pending)
                     throw NDalicPINVOKE.SWIGPendingException.Retrieve();
@@ -1347,6 +1352,13 @@ namespace Tizen.NUI.BaseComponents
                 throw NDalicPINVOKE.SWIGPendingException.Retrieve();
 
             Children.Remove(child);
+            if (Layout)
+            {
+                if(child.Layout)
+                {
+                    Layout.LayoutChildren.Remove(child.Layout);
+                }
+            }
 
             if (ChildRemoved != null)
             {
@@ -3439,6 +3451,11 @@ namespace Tizen.NUI.BaseComponents
             set
             {
                 Tizen.NUI.NDalicManualPINVOKE.SetLayout__SWIG_1(View.getCPtr(this), LayoutItem.getCPtr(value));
+                value.LayoutChildren.Clear();
+                foreach (View view in Children)
+                {
+                    value.LayoutChildren.Add(view.Layout);
+                }
             }
         }
 

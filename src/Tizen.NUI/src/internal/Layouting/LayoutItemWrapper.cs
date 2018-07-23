@@ -15,6 +15,7 @@
  *
  */
 
+using System.Collections.Generic;
 using System.ComponentModel;
 using Tizen.NUI.BaseComponents;
 
@@ -69,6 +70,15 @@ namespace Tizen.NUI
             }
 
             base.Dispose(type);
+        }
+
+        private List<LayoutItemWrapper> _childLayouts = new List<LayoutItemWrapper>();
+        internal List<LayoutItemWrapper> LayoutChildren
+        {
+            get
+            {
+                return _childLayouts;
+            }
         }
 
         /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
