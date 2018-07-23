@@ -69,7 +69,6 @@ namespace HelloWorldTest
                 Console.WriteLine($"child count={ChildCount}, i={i}");
                 if (childLayout)
                 {
-                    Console.WriteLine($"{i} : childid = {G}");
                     MeasureChild(childLayout, widthMeasureSpec, heightMeasureSpec);
                     accumulatedWidth += childLayout.MeasuredWidth;
                     maxHeight.Value = System.Math.Max(childLayout.MeasuredHeight.Value, maxHeight.Value);
@@ -168,7 +167,7 @@ namespace HelloWorldTest
             for (uint i = 0; i < ChildCount; ++i)
             {
                 var childLayout = childLayouts[i];
-                if (childLayout)
+//                if (childLayout)
                 {
                     MeasureChild(childLayout, widthMeasureSpec, heightMeasureSpec);
                     accumulatedHeight += childLayout.MeasuredHeight;
