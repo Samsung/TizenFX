@@ -14,7 +14,7 @@ Summary:    Assemblies of Tizen .NET
 Version:    %{TIZEN_NET_RPM_VERSION}
 Release:    1
 Group:      Development/Libraries
-License:    Apache-2.0
+License:    Apache-2.0 and MIT
 URL:        https://www.tizen.org
 Source0:    %{name}-%{version}.tar.gz
 Source1:    %{name}.manifest
@@ -180,7 +180,7 @@ install -p -m 644 %{_tizenfx_bin_path}/*.nupkg %{buildroot}%{DOTNET_NUGET_SOURCE
 
 
 %files
-%license LICENSE
+%license LICENSE LICENSE.OpenTK
 
 %files nuget
 %{DOTNET_NUGET_SOURCE}/*.nupkg
