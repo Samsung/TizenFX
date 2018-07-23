@@ -245,6 +245,15 @@ internal static partial class Interop
         [DllImport(Libraries.InputMethod, EntryPoint = "ime_device_info_get_subclass")]
         internal static extern ErrorCode ImeDeviceInfoGetSubclass(IntPtr dev_info, out DeviceSubclass devSubClass);
 
+        [DllImport(Libraries.InputMethod, EntryPoint = "ime_set_floating_mode")]
+        internal static extern ErrorCode ImeSetFloatingMode(bool floating_mode);
+
+        [DllImport(Libraries.InputMethod, EntryPoint = "ime_set_floating_drag_start")]
+        internal static extern ErrorCode ImeSetFloatingDragStart();
+
+        [DllImport(Libraries.InputMethod, EntryPoint = "ime_set_floating_drag_end")]
+        internal static extern ErrorCode ImeSetFloatingDragEnd();
+
 
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         internal delegate void ImeCreateCb(IntPtr userData);
