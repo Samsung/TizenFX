@@ -1,5 +1,5 @@
 /*
- * Copyright(c) 2017 Samsung Electronics Co., Ltd.
+ * Copyright(c) 2018 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -31,6 +31,8 @@ namespace Tizen.NUI
     {
         private global::System.Runtime.InteropServices.HandleRef swigCPtr;
         private global::System.Runtime.InteropServices.HandleRef stageCPtr;
+        private global::System.Runtime.InteropServices.HandleRef rootLayoutCPtr;
+        private global::System.IntPtr rootLayoutIntPtr;
         private Layer _rootLayer;
         private string _windowTitle;
 
@@ -49,6 +51,15 @@ namespace Tizen.NUI
             if (NDalicPINVOKE.Stage_IsInstalled())
             {
                 stageCPtr = new global::System.Runtime.InteropServices.HandleRef(this, NDalicPINVOKE.Stage_GetCurrent());
+                // Create a root layout (AbsoluteLayout) that is invisible to the user but enables layouts added to the Window
+                // Enables layouts added to the Window to have a parent layout.  As parent layout is needed to store measure spec properties.
+                // Currently without these measure specs the new layout added will always be the size of the window.
+                rootLayoutIntPtr = NDalicManualPINVOKE.Window_NewRootLayout();
+                // Store HandleRef used by Add()
+                rootLayoutCPtr = new global::System.Runtime.InteropServices.HandleRef(this, rootLayoutIntPtr);
+                Layer rootLayer = GetRootLayer();
+                // Add the root layout created above to the root layer.
+                NDalicPINVOKE.Actor_Add(  Layer.getCPtr(rootLayer), rootLayoutCPtr );
             }
         }
 
@@ -597,7 +608,9 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public void Add(View view)
         {
-            GetRootLayer()?.Add(view);
+            NDalicPINVOKE.Actor_Add( rootLayoutCPtr, View.getCPtr(view) );
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            this.GetRootLayer().AddViewToLayerList(view); // Maintain the children list in the Layer
         }
 
         /// <summary>
@@ -607,7 +620,8 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public void Remove(View view)
         {
-            GetRootLayer()?.Remove(view);
+            NDalicPINVOKE.Actor_Remove( rootLayoutCPtr, View.getCPtr(view) );
+            this.GetRootLayer().RemoveViewFromLayerList(view); // Maintain the children list in the Layer
         }
 
         internal Vector2 GetSize()
@@ -728,12 +742,30 @@ namespace Tizen.NUI
             return ret;
         }
 
+        internal TouchDataSignal TouchDataSignal()
+        {
+            TouchDataSignal ret = new TouchDataSignal(NDalicPINVOKE.Actor_TouchSignal(Layer.getCPtr(GetRootLayer())), false);
+            if (NDalicPINVOKE.SWIGPendingException.Pending)
+                throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
         private StageWheelSignal WheelEventSignal()
         {
             StageWheelSignal ret = new StageWheelSignal(NDalicPINVOKE.Stage_WheelEventSignal(stageCPtr), false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
+
+
+        private WheelSignal StageWheelEventSignal()
+        {
+            WheelSignal ret = new WheelSignal(NDalicPINVOKE.Actor_WheelEventSignal(Layer.getCPtr(this.GetRootLayer())), false);
+            if (NDalicPINVOKE.SWIGPendingException.Pending)
+                throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
 
         internal VoidSignal ContextLostSignal()
         {
@@ -861,6 +893,34 @@ namespace Tizen.NUI
             return ret;
         }
 
+        /// <summary>
+        /// Sets keyboard repeat information.
+        /// </summary>
+        /// <param name="rate">The key repeat rate value in seconds</param>
+        /// <param name="delay">The key repeat delay value in seconds</param>
+        /// <returns>True if setting the keyboard repeat succeeds.</returns>
+        /// <since_tizen> 5 </since_tizen>
+        public bool SetKeyboardRepeatInfo(double rate, double delay)
+        {
+            bool ret = NDalicManualPINVOKE.SetKeyboardRepeatInfo(rate, delay);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        /// <summary>
+        /// Gets keyboard repeat information.
+        /// </summary>
+        /// <param name="rate">The key repeat rate value in seconds</param>
+        /// <param name="delay">The key repeat delay value in seconds</param>
+        /// <returns>True if setting the keyboard repeat succeeds.</returns>
+        /// <since_tizen> 5 </since_tizen>
+        public bool GetKeyboardRepeatInfo(out double rate, out double delay)
+        {
+            bool ret = NDalicManualPINVOKE.GetKeyboardRepeatInfo(out rate, out delay);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
         internal System.IntPtr GetNativeWindowHandler()
         {
             System.IntPtr ret = NDalicManualPINVOKE.GetNativeWindowHandler(HandleRef.ToIntPtr(this.swigCPtr));
@@ -965,9 +1025,11 @@ namespace Tizen.NUI
             }
         }
 
-        private event EventHandler<TouchEventArgs> _stageTouchHandler;
-        private EventCallbackDelegateType1 _stageTouchCallbackDelegate;
 
+        private event EventHandler<TouchEventArgs> _rootLayerTouchDataEventHandler;
+        [UnmanagedFunctionPointer(CallingConvention.StdCall)]
+        private delegate bool RootLayerTouchDataCallbackType(IntPtr view, IntPtr touchData);
+        private RootLayerTouchDataCallbackType _rootLayerTouchDataCallback;
         /// <summary>
         /// This event is emitted when the screen is touched and when the touch ends.<br />
         /// If there are multiple touch points, then this will be emitted when the first touch occurs and
@@ -979,39 +1041,40 @@ namespace Tizen.NUI
         {
             add
             {
-                lock (this)
+                if (_rootLayerTouchDataEventHandler == null)
                 {
-                    _stageTouchHandler += value;
-                    _stageTouchCallbackDelegate = OnStageTouch;
-                    this.TouchSignal().Connect(_stageTouchCallbackDelegate);
+                    _rootLayerTouchDataCallback = OnWindowTouch;
+                    this.TouchDataSignal().Connect(_rootLayerTouchDataCallback);
                 }
+                _rootLayerTouchDataEventHandler += value;
             }
             remove
             {
-                lock (this)
+                _rootLayerTouchDataEventHandler -= value;
+                if (_rootLayerTouchDataEventHandler == null && TouchSignal().Empty() == false)
                 {
-                    if (_stageTouchHandler != null)
-                    {
-                        this.TouchSignal().Disconnect(_stageTouchCallbackDelegate);
-                    }
-                    _stageTouchHandler -= value;
+                    this.TouchDataSignal().Disconnect(_rootLayerTouchDataCallback);
                 }
             }
         }
 
-        private void OnStageTouch(IntPtr data)
+        private bool OnWindowTouch(IntPtr view, IntPtr touchData)
         {
+            if (touchData == global::System.IntPtr.Zero)
+            {
+                NUILog.Error("touchData should not be null!");
+                return false;
+            }
+
             TouchEventArgs e = new TouchEventArgs();
 
-            if (data != null)
-            {
-                e.Touch = Tizen.NUI.Touch.GetTouchFromPtr(data);
-            }
+            e.Touch = Tizen.NUI.Touch.GetTouchFromPtr(touchData);
 
-            if (_stageTouchHandler != null)
+            if (_rootLayerTouchDataEventHandler != null)
             {
-                _stageTouchHandler(this, e);
+                _rootLayerTouchDataEventHandler(this, e);
             }
+            return false;
         }
 
         /// <summary>
@@ -1040,7 +1103,10 @@ namespace Tizen.NUI
         }
 
         private event EventHandler<WheelEventArgs> _stageWheelHandler;
-        private EventCallbackDelegateType1 _stageWheelCallbackDelegate;
+
+        [UnmanagedFunctionPointer(CallingConvention.StdCall)]
+        private delegate bool WheelEventCallbackType(IntPtr view, IntPtr wheelEvent);
+        private WheelEventCallbackType _wheelEventCallback;
 
         /// <summary>
         /// This event is emitted when the wheel event is received.
@@ -1052,34 +1118,38 @@ namespace Tizen.NUI
             {
                 if (_stageWheelHandler == null)
                 {
-                    _stageWheelCallbackDelegate = OnStageWheel;
-                    WheelEventSignal().Connect(_stageWheelCallbackDelegate);
+                    _wheelEventCallback = OnStageWheel;
+                    this.StageWheelEventSignal().Connect(_wheelEventCallback);
                 }
                 _stageWheelHandler += value;
             }
             remove
             {
                 _stageWheelHandler -= value;
-                if (_stageWheelHandler == null && WheelEventSignal().Empty() == false)
+                if (_stageWheelHandler == null && StageWheelEventSignal().Empty() == false)
                 {
-                    WheelEventSignal().Disconnect(_stageWheelCallbackDelegate);
+                    this.StageWheelEventSignal().Disconnect(_wheelEventCallback);
                 }
             }
         }
 
-        private void OnStageWheel(IntPtr data)
+        private bool OnStageWheel(IntPtr rootLayer, IntPtr wheelEvent)
         {
+            if (wheelEvent == global::System.IntPtr.Zero)
+        {
+                NUILog.Error("wheelEvent should not be null!");
+                return true;
+            }
+
             WheelEventArgs e = new WheelEventArgs();
 
-            if (data != null)
-            {
-                e.Wheel = Tizen.NUI.Wheel.GetWheelFromPtr(data);
-            }
+            e.Wheel = Tizen.NUI.Wheel.GetWheelFromPtr(wheelEvent);
 
             if (_stageWheelHandler != null)
             {
                 _stageWheelHandler(this, e);
             }
+            return true;
         }
 
         /// <summary>
@@ -1608,7 +1678,7 @@ namespace Tizen.NUI
         /// <param name="keyEvent">The key event to feed.</param>
         /// <since_tizen> 4 </since_tizen>
         [Obsolete("Please do not use! This will be deprecated! Please use FeedKey(Key keyEvent) instead!")]
-        public void FeedKeyEvent(Key keyEvent)
+        public static void FeedKeyEvent(Key keyEvent)
         {
             NDalicManualPINVOKE.Window_FeedKeyEvent(Key.getCPtr(keyEvent));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();

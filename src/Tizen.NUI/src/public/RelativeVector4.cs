@@ -15,6 +15,7 @@
  *
  */
  using System;
+ using Tizen.NUI.Binding;
 
 namespace Tizen.NUI
 {
@@ -24,6 +25,7 @@ namespace Tizen.NUI
     /// All values (x, y, and z) should be between [0, 1].
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
+    [TypeConverter(typeof(RelativeVector4TypeConverter))]
     public class RelativeVector4 : global::System.IDisposable
     {
         private global::System.Runtime.InteropServices.HandleRef swigCPtr;
@@ -315,6 +317,22 @@ namespace Tizen.NUI
             float ret = NDalicPINVOKE.Vector4_ValueOfIndex__SWIG_0(swigCPtr, index);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
+        }
+
+        /// <summary>
+        /// Determines whether the specified object is equal to the current object.
+        /// </summary>
+        /// <param name="obj">The object to compare with the current object.</param>
+        /// <returns>true if the specified object is equal to the current object; otherwise, false.</returns>
+        public override bool Equals(System.Object obj)
+        {
+            RelativeVector4 relativeVector4 = obj as RelativeVector4;
+            bool equal = false;
+            if (X == relativeVector4?.X && Y == relativeVector4?.Y && Z == relativeVector4?.Z && W == relativeVector4?.W)
+            {
+                equal = true;
+            }
+            return equal;
         }
 
         /// <summary>

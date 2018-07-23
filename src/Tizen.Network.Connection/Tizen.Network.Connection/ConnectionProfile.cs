@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2016 Samsung Electronics Co., Ltd All Rights Reserved
+ * Copyright (c) 2018 Samsung Electronics Co., Ltd All Rights Reserved
  *
  * Licensed under the Apache License, Version 2.0 (the License);
  * you may not use this file except in compliance with the License.
@@ -19,6 +19,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Runtime.InteropServices;
+using Tizen.Applications;
 
 namespace Tizen.Network.Connection
 {
@@ -35,6 +36,8 @@ namespace Tizen.Network.Connection
         private EventHandler<ProfileStateEventArgs> _ProfileStateChanged = null;
 
         private Interop.ConnectionProfile.ProfileStateChangedCallback _profileChangedCallback;
+
+        private TizenSynchronizationContext context = new TizenSynchronizationContext();
 
         internal IntPtr GetHandle()
         {
@@ -55,20 +58,40 @@ namespace Tizen.Network.Connection
             add
             {
                 Log.Debug(Globals.LogTag, "ProfileStateChanged add");
-                if (_ProfileStateChanged == null)
+                context.Post((x) =>
                 {
-                    ProfileStateChangedStart();
-                }
-                _ProfileStateChanged += value;
+                    if (_ProfileStateChanged == null)
+                    {
+                        try
+                        {
+                            ProfileStateChangedStart();
+                        } catch (Exception e)
+                        {
+                            Log.Error(Globals.LogTag, "Exception on adding ProfileStateChanged\n" + e.ToString());
+                            return;
+                        }
+                    }
+                    _ProfileStateChanged += value;
+                }, null);
             }
             remove
             {
                 Log.Debug(Globals.LogTag, "ProfileStateChanged remove");
-                _ProfileStateChanged -= value;
-                if (_ProfileStateChanged == null)
+                context.Post((x) =>
                 {
-                    ProfileStateChangedStop();
-                }
+                    _ProfileStateChanged -= value;
+                    if (_ProfileStateChanged == null)
+                    {
+                        try
+                        {
+                            ProfileStateChangedStop();
+                        }
+                        catch (Exception e)
+                        {
+                            Log.Error(Globals.LogTag, "Exception on removing ProfileStateChanged\n" + e.ToString());
+                        }
+                    }
+                }, null);
             }
         }
 
@@ -87,6 +110,7 @@ namespace Tizen.Network.Connection
             if ((ConnectionError)ret != ConnectionError.None)
             {
                 Log.Error(Globals.LogTag, "It failed to register callback for changing profile state, " + (ConnectionError)ret);
+                ConnectionErrorFactory.ThrowConnectionException(ret);
             }
         }
 
@@ -97,6 +121,7 @@ namespace Tizen.Network.Connection
             if ((ConnectionError)ret != ConnectionError.None)
             {
                 Log.Error(Globals.LogTag, "It failed to unregister callback for changing profile state, " + (ConnectionError)ret);
+                ConnectionErrorFactory.ThrowConnectionException(ret);
             }
         }
 
@@ -131,12 +156,9 @@ namespace Tizen.Network.Connection
             if (disposed)
                 return;
 
-            if (disposing)
-            {
-                // Free managed objects.
-                UnregisterEvents();
-                Destroy();
-            }
+            // Free unmanaged objects
+            UnregisterEvents();
+            Destroy();
             disposed = true;
         }
 
@@ -150,8 +172,12 @@ namespace Tizen.Network.Connection
 
         private void Destroy()
         {
-            Interop.ConnectionProfile.Destroy(ProfileHandle);
-            ProfileHandle = IntPtr.Zero;
+            int ret = Interop.ConnectionProfile.Destroy(ProfileHandle);
+            if ((ConnectionError)ret == ConnectionError.None)
+            {
+                ProfileHandle = IntPtr.Zero;
+            }
+            
         }
 
         internal void CheckDisposed()
@@ -255,7 +281,6 @@ namespace Tizen.Network.Connection
         /// <feature>http://tizen.org/feature/network.wifi</feature>
         /// <exception cref="System.NotSupportedException">Thrown when a feature is not supported.</exception>
         /// <exception cref="System.UnauthorizedAccessException">Thrown when a permission is denied.</exception>
-        /// <exception cref="System.ArgumentException">Thrown when a value is an invalid parameter.</exception>
         /// <exception cref="System.InvalidOperationException">Thrown when a profile instance is invalid or when a method fails due to an invalid operation.</exception>
         /// <exception cref="System.ObjectDisposedException">Thrown when an operation is performed on a disposed object.</exception>
         public void Refresh()
@@ -265,6 +290,10 @@ namespace Tizen.Network.Connection
             if ((ConnectionError)ret != ConnectionError.None)
             {
                 Log.Error(Globals.LogTag, "It failed to get network interface name, " + (ConnectionError)ret);
+                if ((ConnectionError)ret == ConnectionError.InvalidParameter)
+                {
+                    throw new InvalidOperationException("Invalid handle");
+                }
                 ConnectionErrorFactory.CheckFeatureUnsupportedException(ret, "http://tizen.org/feature/network.telephony " + "http://tizen.org/feature/network.wifi " + "http://tizen.org/feature/network.tethering.bluetooth " + "http://tizen.org/feature/network.ethernet");
                 ConnectionErrorFactory.CheckPermissionDeniedException(ret, "(http://tizen.org/privilege/network.get)");
                 ConnectionErrorFactory.CheckHandleNullException(ret, (ProfileHandle == IntPtr.Zero), "ProfileHandle may have been disposed or released");

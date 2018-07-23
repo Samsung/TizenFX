@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2016 Samsung Electronics Co., Ltd All Rights Reserved
+ * Copyright (c) 2018 Samsung Electronics Co., Ltd All Rights Reserved
  *
  * Licensed under the Apache License, Version 2.0 (the License);
  * you may not use this file except in compliance with the License.
@@ -80,6 +80,9 @@ namespace Tizen.Network.Connection
         /// <since_tizen> 3 </since_tizen>
         /// <param name="profile">The connection profile object.</param>
         /// <returns>A task indicates whether the ConnectProfileAsync method is done successfully or not.</returns>
+        /// <remarks>
+        /// This method must be called from MainThread.
+        /// </remarks>
         /// <privilege>http://tizen.org/privilege/network.get</privilege>
         /// <privilege>http://tizen.org/privilege/network.set</privilege>
         /// <feature>http://tizen.org/feature/network.telephony</feature>
@@ -104,6 +107,9 @@ namespace Tizen.Network.Connection
         /// <since_tizen> 3 </since_tizen>
         /// <param name="profile">The connection profile object.</param>
         /// <returns>A task indicates whether the DisconnectProfileAsync method is done successfully or not.</returns>
+        /// <remarks>
+        /// This method must be called from MainThread.
+        /// </remarks>
         /// <privilege>http://tizen.org/privilege/network.get</privilege>
         /// <privilege>http://tizen.org/privilege/network.set</privilege>
         /// <feature>http://tizen.org/feature/network.telephony</feature>
@@ -182,7 +188,6 @@ namespace Tizen.Network.Connection
         /// <feature>http://tizen.org/feature/network.ethernet</feature>
         /// <exception cref="System.NotSupportedException">Thrown when a feature is not supported.</exception>
         /// <exception cref="System.UnauthorizedAccessException">Thrown when a permission is denied.</exception>
-        /// <exception cref="System.ArgumentException">Thrown when a value is an invalid parameter.</exception>
         /// <exception cref="System.OutOfMemoryException">Thrown when memory is not enough to continue execution.</exception>
         /// <exception cref="System.InvalidOperationException">Thrown when a connection instance is invalid or when a method fails due to an invalid operation.</exception>
         public static ConnectionProfile GetCurrentProfile()
@@ -220,6 +225,9 @@ namespace Tizen.Network.Connection
         /// <param name="type">The cellular service type.</param>
         /// <param name="profile">The connection profile object.</param>
         /// <returns>A task indicates whether the SetDefaultCellularProfile method is done successfully or not.</returns>
+        /// <remarks>
+        /// This method must be called from MainThread.
+        /// </remarks>
         /// <privilege>http://tizen.org/privilege/network.get</privilege>
         /// <privilege>http://tizen.org/privilege/network.profile</privilege>
         /// <feature>http://tizen.org/feature/network.telephony</feature>

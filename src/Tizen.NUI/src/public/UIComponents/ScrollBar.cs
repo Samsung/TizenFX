@@ -1,5 +1,5 @@
 /*
- * Copyright(c) 2017 Samsung Electronics Co., Ltd.
+ * Copyright(c) 2018 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -18,6 +18,7 @@ using System;
 using System.ComponentModel;
 using System.Runtime.InteropServices;
 using Tizen.NUI.BaseComponents;
+using Tizen.NUI.Binding;
 
 namespace Tizen.NUI.UIComponents
 {
@@ -28,6 +29,192 @@ namespace Tizen.NUI.UIComponents
     /// <since_tizen> 3 </since_tizen>
     public class ScrollBar : View
     {
+        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static readonly BindableProperty ScrollDirectionProperty = BindableProperty.Create("ScrollDirection", typeof(Direction), typeof(ScrollBar), Direction.Vertical, propertyChanged: (bindable, oldValue, newValue) =>
+        {
+            var scrollBar = (ScrollBar)bindable;
+            string valueToString = "";
+            if (newValue != null)
+            {
+                switch ((Direction)newValue)
+                {
+                    case Direction.Vertical: { valueToString = "Vertical"; break; }
+                    case Direction.Horizontal: { valueToString = "Horizontal"; break; }
+                    default: { valueToString = "Vertical"; break; }
+                }
+                Tizen.NUI.Object.SetProperty(scrollBar.swigCPtr, ScrollBar.Property.SCROLL_DIRECTION, new Tizen.NUI.PropertyValue(valueToString));
+            }
+        },
+        defaultValueCreator:(bindable) =>
+        {
+            var scrollBar = (ScrollBar)bindable;
+            string temp;
+            if (Tizen.NUI.Object.GetProperty(scrollBar.swigCPtr, ScrollBar.Property.SCROLL_DIRECTION).Get(out temp) == false)
+            {
+                NUILog.Error("ScrollDirection get error!");
+            }
+
+            switch (temp)
+            {
+                case "Vertical": return Direction.Vertical;
+                case "Horizontal": return Direction.Horizontal;
+                default: return Direction.Vertical;
+            }
+        });
+        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static readonly BindableProperty IndicatorHeightPolicyProperty = BindableProperty.Create("IndicatorHeightPolicy", typeof(IndicatorHeightPolicyType), typeof(ScrollBar), IndicatorHeightPolicyType.Variable, propertyChanged: (bindable, oldValue, newValue) =>
+        {
+            var scrollBar = (ScrollBar)bindable;
+            string valueToString = "";
+            if (newValue != null)
+            {
+                switch ((IndicatorHeightPolicyType)newValue)
+                {
+                    case IndicatorHeightPolicyType.Variable:{ valueToString = "Variable"; break; }
+                    case IndicatorHeightPolicyType.Fixed: { valueToString = "Fixed"; break; }
+                    default:  { valueToString = "Variable"; break; }
+                }
+                Tizen.NUI.Object.SetProperty(scrollBar.swigCPtr, ScrollBar.Property.INDICATOR_HEIGHT_POLICY, new Tizen.NUI.PropertyValue(valueToString));
+            }
+        },
+        defaultValueCreator:(bindable) =>
+        {
+            var scrollBar = (ScrollBar)bindable;
+            string temp;
+            if (Tizen.NUI.Object.GetProperty(scrollBar.swigCPtr, ScrollBar.Property.INDICATOR_HEIGHT_POLICY).Get(out temp) == false)
+            {
+                NUILog.Error("IndicatorHeightPolicy get error!");
+            }
+
+            switch (temp)
+            {
+                case "Variable": return IndicatorHeightPolicyType.Variable;
+                case "Fixed": return IndicatorHeightPolicyType.Fixed;
+                default: return IndicatorHeightPolicyType.Variable;
+            }
+        });
+        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static readonly BindableProperty IndicatorFixedHeightProperty = BindableProperty.Create("IndicatorFixedHeight", typeof(float), typeof(ScrollBar), default(float), propertyChanged: (bindable, oldValue, newValue) =>
+        {
+            var scrollBar = (ScrollBar)bindable;
+            if (newValue != null)
+            {
+                Tizen.NUI.Object.SetProperty(scrollBar.swigCPtr, ScrollBar.Property.INDICATOR_FIXED_HEIGHT, new Tizen.NUI.PropertyValue((float)newValue));
+            }
+        },
+        defaultValueCreator:(bindable) =>
+        {
+            var scrollBar = (ScrollBar)bindable;
+            float temp = 0.0f;
+            Tizen.NUI.Object.GetProperty(scrollBar.swigCPtr, ScrollBar.Property.INDICATOR_FIXED_HEIGHT).Get(out temp);
+            return temp;
+        });
+        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static readonly BindableProperty IndicatorShowDurationProperty = BindableProperty.Create("IndicatorShowDuration", typeof(float), typeof(ScrollBar), default(float), propertyChanged: (bindable, oldValue, newValue) =>
+        {
+            var scrollBar = (ScrollBar)bindable;
+            if (newValue != null)
+            {
+                Tizen.NUI.Object.SetProperty(scrollBar.swigCPtr, ScrollBar.Property.INDICATOR_SHOW_DURATION, new Tizen.NUI.PropertyValue((float)newValue));
+            }
+        },
+        defaultValueCreator:(bindable) =>
+        {
+            var scrollBar = (ScrollBar)bindable;
+            float temp = 0.0f;
+            Tizen.NUI.Object.GetProperty(scrollBar.swigCPtr, ScrollBar.Property.INDICATOR_SHOW_DURATION).Get(out temp);
+            return temp;
+        });
+        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static readonly BindableProperty IndicatorHideDurationProperty = BindableProperty.Create("IndicatorHideDuration", typeof(float), typeof(ScrollBar), default(float), propertyChanged: (bindable, oldValue, newValue) =>
+        {
+            var scrollBar = (ScrollBar)bindable;
+            if (newValue != null)
+            {
+                Tizen.NUI.Object.SetProperty(scrollBar.swigCPtr, ScrollBar.Property.INDICATOR_HIDE_DURATION, new Tizen.NUI.PropertyValue((float)newValue));
+            }
+        },
+        defaultValueCreator:(bindable) =>
+        {
+            var scrollBar = (ScrollBar)bindable;
+            float temp = 0.0f;
+            Tizen.NUI.Object.GetProperty(scrollBar.swigCPtr, ScrollBar.Property.INDICATOR_HIDE_DURATION).Get(out temp);
+            return temp;
+        });
+        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static readonly BindableProperty ScrollPositionIntervalsProperty = BindableProperty.Create("ScrollPositionIntervals", typeof(PropertyArray), typeof(ScrollBar), new PropertyArray(), propertyChanged: (bindable, oldValue, newValue) =>
+        {
+            var scrollBar = (ScrollBar)bindable;
+            if (newValue != null)
+            {
+                Tizen.NUI.Object.SetProperty(scrollBar.swigCPtr, ScrollBar.Property.SCROLL_POSITION_INTERVALS, new Tizen.NUI.PropertyValue((PropertyArray)newValue));
+            }
+        },
+        defaultValueCreator:(bindable) =>
+        {
+            var scrollBar = (ScrollBar)bindable;
+            Tizen.NUI.PropertyArray temp = new Tizen.NUI.PropertyArray();
+            Tizen.NUI.Object.GetProperty(scrollBar.swigCPtr, ScrollBar.Property.SCROLL_POSITION_INTERVALS).Get(temp);
+            return temp;
+        });
+        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static readonly BindableProperty IndicatorMinimumHeightProperty = BindableProperty.Create("IndicatorMinimumHeight", typeof(float), typeof(ScrollBar), default(float), propertyChanged: (bindable, oldValue, newValue) =>
+        {
+            var scrollBar = (ScrollBar)bindable;
+            if (newValue != null)
+            {
+                Tizen.NUI.Object.SetProperty(scrollBar.swigCPtr, ScrollBar.Property.INDICATOR_MINIMUM_HEIGHT, new Tizen.NUI.PropertyValue((float)newValue));
+            }
+        },
+        defaultValueCreator:(bindable) =>
+        {
+            var scrollBar = (ScrollBar)bindable;
+            float temp = 0.0f;
+            Tizen.NUI.Object.GetProperty(scrollBar.swigCPtr, ScrollBar.Property.INDICATOR_MINIMUM_HEIGHT).Get(out temp);
+            return temp;
+        });
+        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static readonly BindableProperty IndicatorStartPaddingProperty = BindableProperty.Create("IndicatorStartPadding", typeof(float), typeof(ScrollBar), default(float), propertyChanged: (bindable, oldValue, newValue) =>
+        {
+            var scrollBar = (ScrollBar)bindable;
+            if (newValue != null)
+            {
+                Tizen.NUI.Object.SetProperty(scrollBar.swigCPtr, ScrollBar.Property.INDICATOR_START_PADDING, new Tizen.NUI.PropertyValue((float)newValue));
+            }
+        },
+        defaultValueCreator:(bindable) =>
+        {
+            var scrollBar = (ScrollBar)bindable;
+            float temp = 0.0f;
+            Tizen.NUI.Object.GetProperty(scrollBar.swigCPtr, ScrollBar.Property.INDICATOR_START_PADDING).Get(out temp);
+            return temp;
+        });
+        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static readonly BindableProperty IndicatorEndPaddingProperty = BindableProperty.Create("IndicatorEndPadding", typeof(float), typeof(ScrollBar), default(float), propertyChanged: (bindable, oldValue, newValue) =>
+        {
+            var scrollBar = (ScrollBar)bindable;
+            if (newValue != null)
+            {
+                Tizen.NUI.Object.SetProperty(scrollBar.swigCPtr, ScrollBar.Property.INDICATOR_END_PADDING, new Tizen.NUI.PropertyValue((float)newValue));
+            }
+        },
+        defaultValueCreator:(bindable) =>
+        {
+            var scrollBar = (ScrollBar)bindable;
+            float temp = 0.0f;
+            Tizen.NUI.Object.GetProperty(scrollBar.swigCPtr, ScrollBar.Property.INDICATOR_END_PADDING).Get(out temp);
+            return temp;
+        });
+
         private global::System.Runtime.InteropServices.HandleRef swigCPtr;
 
         internal ScrollBar(global::System.IntPtr cPtr, bool cMemoryOwn) : base(NDalicPINVOKE.ScrollBar_SWIGUpcast(cPtr), cMemoryOwn)
@@ -397,44 +584,12 @@ namespace Tizen.NUI.UIComponents
         {
             get
             {
-                string temp;
-                if (GetProperty(ScrollBar.Property.SCROLL_DIRECTION).Get(out temp) == false)
-                {
-                    NUILog.Error("ScrollDirection get error!");
-                }
 
-                switch (temp)
-                {
-                    case "Vertical":
-                        return Direction.Vertical;
-                    case "Horizontal":
-                        return Direction.Horizontal;
-                    default:
-                        return Direction.Vertical;
-                }
+                return (Direction)GetValue(ScrollDirectionProperty);
             }
             set
             {
-                string valueToString = "";
-                switch (value)
-                {
-                    case Direction.Vertical:
-                    {
-                        valueToString = "Vertical";
-                        break;
-                    }
-                    case Direction.Horizontal:
-                    {
-                        valueToString = "Horizontal";
-                        break;
-                    }
-                    default:
-                    {
-                        valueToString = "Vertical";
-                        break;
-                    }
-                }
-                SetProperty(ScrollBar.Property.SCROLL_DIRECTION, new Tizen.NUI.PropertyValue(valueToString));
+                SetValue(ScrollDirectionProperty, value);
             }
         }
 
@@ -446,44 +601,11 @@ namespace Tizen.NUI.UIComponents
         {
             get
             {
-                string temp;
-                if (GetProperty(ScrollBar.Property.INDICATOR_HEIGHT_POLICY).Get(out temp) == false)
-                {
-                    NUILog.Error("IndicatorHeightPolicy get error!");
-                }
-
-                switch (temp)
-                {
-                    case "Variable":
-                        return IndicatorHeightPolicyType.Variable;
-                    case "Fixed":
-                        return IndicatorHeightPolicyType.Fixed;
-                    default:
-                        return IndicatorHeightPolicyType.Variable;
-                }
+                return (IndicatorHeightPolicyType)GetValue(IndicatorHeightPolicyProperty);
             }
             set
             {
-                string valueToString = "";
-                switch (value)
-                {
-                    case IndicatorHeightPolicyType.Variable:
-                    {
-                        valueToString = "Variable";
-                        break;
-                    }
-                    case IndicatorHeightPolicyType.Fixed:
-                    {
-                        valueToString = "Fixed";
-                        break;
-                    }
-                    default:
-                    {
-                        valueToString = "Variable";
-                        break;
-                    }
-                }
-                SetProperty(ScrollBar.Property.INDICATOR_HEIGHT_POLICY, new Tizen.NUI.PropertyValue(valueToString));
+                SetValue(IndicatorHeightPolicyProperty, value);
             }
         }
 
@@ -495,13 +617,11 @@ namespace Tizen.NUI.UIComponents
         {
             get
             {
-                float temp = 0.0f;
-                GetProperty(ScrollBar.Property.INDICATOR_FIXED_HEIGHT).Get(out temp);
-                return temp;
+                return (float)GetValue(IndicatorFixedHeightProperty);
             }
             set
             {
-                SetProperty(ScrollBar.Property.INDICATOR_FIXED_HEIGHT, new Tizen.NUI.PropertyValue(value));
+                SetValue(IndicatorFixedHeightProperty, value);
             }
         }
 
@@ -513,13 +633,11 @@ namespace Tizen.NUI.UIComponents
         {
             get
             {
-                float temp = 0.0f;
-                GetProperty(ScrollBar.Property.INDICATOR_SHOW_DURATION).Get(out temp);
-                return temp;
+                return (float)GetValue(IndicatorShowDurationProperty);
             }
             set
             {
-                SetProperty(ScrollBar.Property.INDICATOR_SHOW_DURATION, new Tizen.NUI.PropertyValue(value));
+                SetValue(IndicatorShowDurationProperty, value);
             }
         }
 
@@ -531,13 +649,11 @@ namespace Tizen.NUI.UIComponents
         {
             get
             {
-                float temp = 0.0f;
-                GetProperty(ScrollBar.Property.INDICATOR_HIDE_DURATION).Get(out temp);
-                return temp;
+                return (float)GetValue(IndicatorHideDurationProperty);
             }
             set
             {
-                SetProperty(ScrollBar.Property.INDICATOR_HIDE_DURATION, new Tizen.NUI.PropertyValue(value));
+                SetValue(IndicatorHideDurationProperty, value);
             }
         }
 
@@ -549,13 +665,11 @@ namespace Tizen.NUI.UIComponents
         {
             get
             {
-                Tizen.NUI.PropertyArray temp = new Tizen.NUI.PropertyArray();
-                GetProperty(ScrollBar.Property.SCROLL_POSITION_INTERVALS).Get(temp);
-                return temp;
+                return (PropertyArray)GetValue(ScrollPositionIntervalsProperty);
             }
             set
             {
-                SetProperty(ScrollBar.Property.SCROLL_POSITION_INTERVALS, new Tizen.NUI.PropertyValue(value));
+                SetValue(ScrollPositionIntervalsProperty, value);
             }
         }
 
@@ -567,13 +681,11 @@ namespace Tizen.NUI.UIComponents
         {
             get
             {
-                float temp = 0.0f;
-                GetProperty(ScrollBar.Property.INDICATOR_MINIMUM_HEIGHT).Get(out temp);
-                return temp;
+                return (float)GetValue(IndicatorMinimumHeightProperty);
             }
             set
             {
-                SetProperty(ScrollBar.Property.INDICATOR_MINIMUM_HEIGHT, new Tizen.NUI.PropertyValue(value));
+                SetValue(IndicatorMinimumHeightProperty, value);
             }
         }
 
@@ -585,13 +697,11 @@ namespace Tizen.NUI.UIComponents
         {
             get
             {
-                float temp = 0.0f;
-                GetProperty(ScrollBar.Property.INDICATOR_START_PADDING).Get(out temp);
-                return temp;
+                return (float)GetValue(IndicatorStartPaddingProperty);
             }
             set
             {
-                SetProperty(ScrollBar.Property.INDICATOR_START_PADDING, new Tizen.NUI.PropertyValue(value));
+                SetValue(IndicatorStartPaddingProperty, value);
             }
         }
 
@@ -603,13 +713,11 @@ namespace Tizen.NUI.UIComponents
         {
             get
             {
-                float temp = 0.0f;
-                GetProperty(ScrollBar.Property.INDICATOR_END_PADDING).Get(out temp);
-                return temp;
+                return (float)GetValue(IndicatorEndPaddingProperty);
             }
             set
             {
-                SetProperty(ScrollBar.Property.INDICATOR_END_PADDING, new Tizen.NUI.PropertyValue(value));
+                SetValue(IndicatorEndPaddingProperty, value);
             }
         }
 

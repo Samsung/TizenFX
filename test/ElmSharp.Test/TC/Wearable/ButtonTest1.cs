@@ -30,10 +30,6 @@ namespace ElmSharp.Test.Wearable
             button.Clicked += (s, e) =>
             {
                 Log.Debug($"{button.Text} Clicked! : {button.BackgroundColor}");
-                Log.Debug($"{button.Text} Clicked! : {button.ClassName}");
-                Log.Debug($"{button.Text} Clicked! : {button.ClassName.ToLower()}");
-                Log.Debug($"{button.Text} Clicked! : {button.ClassName.ToLower().Replace("elm_", "")}");
-                Log.Debug($"{button.Text} Clicked! : {button.ClassName.ToLower().Replace("elm_", "") + "/" + "bg"}");
             };
 
             button.Pressed += (s, e) =>
