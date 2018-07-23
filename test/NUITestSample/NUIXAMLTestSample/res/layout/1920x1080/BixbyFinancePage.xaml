@@ -3,13 +3,13 @@
   xmlns="http://tizen.org/Tizen.NUI/2018/XAML"
   xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
 
-  <View BackgroundImage="/home/tengxb/GitRepo/nui-xaml/TestXaml/res/images/bixby/bg.png" Size2D="1920,1080" >
-    <ImageView Name="Finance" ResourceUrl="/home/tengxb/GitRepo/nui-xaml/TestXaml/res/images/bixby/finance_content.png" Position2D="1300,0" Size2D="620,1080" >
-      <ImageView Name="ButtonClose" Focusable="true" ResourceUrl="/home/tengxb/GitRepo/nui-xaml/TestXaml/res/images/bixby/btn_normal_bg.png"
+  <View BackgroundImage="/home/owner/apps_rw/org.tizen.example.NUIXAMLTestSample/res/images/bixby/bg.png" Size2D="1920,1080" >
+    <ImageView Name="Finance" ResourceUrl="/home/owner/apps_rw/org.tizen.example.NUIXAMLTestSample/res/images/bixby/finance_content.png" Position2D="1300,0" Size2D="620,1080" >
+      <ImageView Name="ButtonClose" Focusable="true" ResourceUrl="/home/owner/apps_rw/org.tizen.example.NUIXAMLTestSample/res/images/bixby/btn_normal_bg.png"
                  Size2D="280,63" Position2D="20,990" FocusGained="OnFocusGained" FocusLost="OnFocusLost">
         <TextLabel Text="Close" WidthResizePolicy="FillToParent" HeightResizePolicy="FillToParent" HorizontalAlignment="Center" VerticalAlignment="Center" />
       </ImageView>
-      <ImageView Name="ButtonSend" Focusable="true" ResourceUrl="/home/tengxb/GitRepo/nui-xaml/TestXaml/res/images/bixby/btn_normal_bg.png"
+      <ImageView Name="ButtonSend" Focusable="true" ResourceUrl="/home/owner/apps_rw/org.tizen.example.NUIXAMLTestSample/res/images/bixby/btn_normal_bg.png"
                  Size2D="280,63" Position2D="340,990" FocusGained="OnFocusGained" FocusLost="OnFocusLost">
         <TextLabel Text="Send to phone" WidthResizePolicy="FillToParent" HeightResizePolicy="FillToParent" HorizontalAlignment="Center" VerticalAlignment="Center" />
       </ImageView>

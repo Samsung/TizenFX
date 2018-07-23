@@ -45,7 +45,7 @@ namespace Tizen.NUI.Examples
         public override void SetFocus()
         {
             Console.WriteLine("AmbientMonoPage focused.");
-            ImageView image = Content.FindChildByName("photo") as ImageView;
+            ImageView image = Root.FindChildByName("photo") as ImageView;
             Animation animation = new Animation(2000);
             animation.AnimateTo(image, "Opacity", 1.0f);
             animation.Play();

@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<ContentPage x:Class="Tizen.NUI.Examples.AmbientMonoPage"
+  xmlns="http://tizen.org/Tizen.NUI/2018/XAML"
+  xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
+
+  <ImageView Name="photo" ResourceUrl="/home/owner/apps_rw/org.tizen.example.NUIXAMLTestSample/res/images/ambient/default/picture_m_1.jpg" Opacity="0" ParentOrigin="Center" PivotPoint="Center" PositionUsesPivotPoint="true" Size2D="1560,720" />
+  
+</ContentPage>
