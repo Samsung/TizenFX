@@ -34,6 +34,8 @@ namespace OpenTK.Platform.Tizen
 {
     internal class TizenGameCoreBackend : DefaultCoreBackend
     {
+        internal readonly static string WindowCreationEventType = "WindowCreation";
+
         private readonly SDL2.EventFilter EventFilterDelegate_GCUnsafe;
         private readonly IntPtr EventFilterDelegate;
         private bool disposed = false;
@@ -79,6 +81,12 @@ namespace OpenTK.Platform.Tizen
             if (Handlers.ContainsKey(EventType.PreCreated))
             {
                 var handler = Handlers[EventType.PreCreated] as Action;
+                handler?.Invoke();
+            }
+
+            if (Handlers.ContainsKey(WindowCreationEventType))
+            {
+                var handler = Handlers[WindowCreationEventType] as Action;
                 handler?.Invoke();
             }
 

@@ -25,6 +25,7 @@
 // THE SOFTWARE.
 //
 
+using System;
 using Tizen.Applications;
 
 namespace OpenTK.Platform.Tizen
@@ -49,20 +50,6 @@ namespace OpenTK.Platform.Tizen
         /// <since_tizen> 5 </since_tizen>
         public TizenGameApplication() : base(new TizenGameCoreBackend())
         {
-        }
-
-        /// <summary>
-        /// Overrides this method if want to handle behavior when the application is launched.
-        /// If base.OnCreated() is not called, the event 'Created' will not be emitted.
-        /// </summary>
-        /// <remarks>
-        /// The GameWindow instance is created in this method.
-        /// </remarks>
-        /// <since_tizen> 3 </since_tizen>
-        protected override void OnCreate()
-        {
-            window = new TizenGameWindow();
-            base.OnCreate();
         }
 
         /// <summary>
@@ -122,6 +109,11 @@ namespace OpenTK.Platform.Tizen
             SDL2.SDL.TizenAppInit(args.Length, args);
             SDL2.SDL.SetMainReady();
             Toolkit.Init();
+
+            // Set Create Window
+            Backend.AddEventHandler(TizenGameCoreBackend.WindowCreationEventType, () => {
+                window = new TizenGameWindow();
+            });
 
             // Configure callbacks for application events
             base.Run(args);
