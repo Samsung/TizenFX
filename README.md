@@ -1,7 +1,7 @@
 # TizenFX
 
 [![License](https://img.shields.io/badge/licence-Apache%202.0-brightgreen.svg?style=flat)](LICENSE)
-[![Build status](https://ci.appveyor.com/api/projects/status/xm8rsgl4d0a37hwx/branch/master?svg=true)](https://ci.appveyor.com/project/TizenAPI/tizenfx/branch/master)
+[![Build Status](http://13.124.0.26:8080/buildStatus/icon?job=TizenFX/API5_Build_Checker)](http://13.124.0.26:8080/job/TizenFX/job/API5_Build_Checker/)
 
 TizenFX API, which allows you to access platform-specific features not covered by the generic .NET and Xamarin.Forms features, such as system information and status, battery status, sensor date, and account and connectivity services.
 
@@ -12,10 +12,10 @@ TizenFX API, which allows you to access platform-specific features not covered b
 
 ## Branches
 
-| branch | API level | platform          | myget.org | nuget.org  |
-|--------|:---------:|-------------------|-------------|--------|
-|master  | 5         | Tizen vNext (5.0) | [![api5_myget](https://img.shields.io/tizen.myget/dotnet/vpre/Tizen.NET.API5.svg)](https://tizen.myget.org/feed/dotnet/package/nuget/Tizen.NET) | |
-|API4    | 4         | Tizen 4.0         | [![api4_myget](https://img.shields.io/tizen.myget/dotnet/vpre/Tizen.NET.API4.svg)](https://tizen.myget.org/feed/dotnet/package/nuget/Tizen.NET) | [![api4_nuget](https://img.shields.io/nuget/v/Tizen.NET.svg)](https://www.nuget.org/packages/Tizen.NET/) |
+| Branch | API Level | Target Framework | API Reference | Platform          | myget.org | nuget.org  |
+|--------|:---------:|------------------|---------------|-------------------|-----------|------------|
+|master  | 5         | tizen50 | [Link](https://samsung.github.io/TizenFX/master/) | Tizen vNext (5.0) | [![api5_myget](https://img.shields.io/tizen.myget/dotnet/vpre/Tizen.NET.API5.svg)](https://tizen.myget.org/feed/dotnet/package/nuget/Tizen.NET) | |
+|API4    | 4         | tizen40 | [Link](https://samsung.github.io/TizenFX/API4/) | Tizen 4.0         | [![api4_myget](https://img.shields.io/tizen.myget/dotnet/vpre/Tizen.NET.API4.svg)](https://tizen.myget.org/feed/dotnet/package/nuget/Tizen.NET) | [![api4_nuget](https://img.shields.io/nuget/v/Tizen.NET.svg)](https://www.nuget.org/packages/Tizen.NET/) |
 
 ### master
 The __master__ branch is the main development branch for the Tizen .NET __API Level 5__.
@@ -42,6 +42,9 @@ And, This branch is pushed to the [tizen_4.0 branch](https://git.tizen.org/cgit/
 
 
 ## Quick Start
+### Prerequisites
+Install .NET Core SDK 2.0+ : https://www.microsoft.com/net/download/
+
 ### Getting the sources
 ```bash
 git clone https://github.com/Samsung/TizenFX.git
@@ -62,21 +65,5 @@ You can download the latest binaries with TizenFX from the link below :
 |-------------------|------|
 | Tizen 4.0         | http://download.tizen.org/snapshots/tizen/4.0-unified/latest/ |
 | Tizen vNext (5.0) | http://download.tizen.org/snapshots/tizen/unified/latest/ |
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 

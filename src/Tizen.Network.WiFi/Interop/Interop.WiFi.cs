@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2016 Samsung Electronics Co., Ltd All Rights Reserved
+ * Copyright (c) 2018 Samsung Electronics Co., Ltd All Rights Reserved
  *
  * Licensed under the Apache License, Version 2.0 (the License);
  * you may not use this file except in compliance with the License.
@@ -38,10 +38,10 @@ internal static partial class Interop
         internal delegate void RssiLevelChangedCallback(int level, IntPtr userData);
 
         //capi-network-wifi-1.0.65-19.23.armv7l
-        [DllImport(Libraries.WiFi, EntryPoint = "wifi_manager_initialize")]
-        internal static extern int Initialize(out SafeWiFiManagerHandle wifi);
-        [DllImport(Libraries.WiFi, EntryPoint = "wifi_manager_deinitialize")]
-        internal static extern int Deinitialize(IntPtr wifi);
+        [DllImport(Libraries.WiFi, EntryPoint = "wifi_manager_initialize_cs")]
+        internal static extern int Initialize(int tid, out SafeWiFiManagerHandle wifi);
+        [DllImport(Libraries.WiFi, EntryPoint = "wifi_manager_deinitialize_cs")]
+        internal static extern int Deinitialize(int tid, IntPtr wifi);
 
         ////Wi-Fi Manager
         [DllImport(Libraries.WiFi, EntryPoint = "wifi_manager_activate")]
@@ -60,12 +60,16 @@ internal static partial class Interop
         internal static extern int Scan(SafeWiFiManagerHandle wifi, VoidCallback callback, IntPtr userData);
         [DllImport(Libraries.WiFi, EntryPoint = "wifi_manager_scan_specific_ap")]
         internal static extern int ScanSpecificAP(SafeWiFiManagerHandle wifi, string essid, VoidCallback callback, IntPtr userData);
+        [DllImport(Libraries.WiFi, EntryPoint = "wifi_manager_bssid_scan")]
+        internal static extern int BssidScan(SafeWiFiManagerHandle wifi, VoidCallback callback, IntPtr userData);
         [DllImport(Libraries.WiFi, EntryPoint = "wifi_manager_get_connected_ap")]
         internal static extern int GetConnectedAP(SafeWiFiManagerHandle wifi, out IntPtr ap);
         [DllImport(Libraries.WiFi, EntryPoint = "wifi_manager_foreach_found_ap")]
         internal static extern int GetForeachFoundAPs(SafeWiFiManagerHandle wifi, HandleCallback callback, IntPtr userData);
         [DllImport(Libraries.WiFi, EntryPoint = "wifi_manager_foreach_found_specific_ap")]
         internal static extern int GetForeachFoundSpecificAPs(SafeWiFiManagerHandle wifi, HandleCallback callback, IntPtr userData);
+        [DllImport(Libraries.WiFi, EntryPoint = "wifi_manager_foreach_found_bssid_ap")]
+        internal static extern int GetForeachFoundBssids(SafeWiFiManagerHandle wifi, HandleCallback callback, IntPtr userData);
         [DllImport(Libraries.WiFi, EntryPoint = "wifi_manager_connect")]
         internal static extern int Connect(SafeWiFiManagerHandle wifi, IntPtr ap, VoidCallback callback, IntPtr userData);
         [DllImport(Libraries.WiFi, EntryPoint = "wifi_manager_disconnect")]
@@ -78,8 +82,12 @@ internal static partial class Interop
         internal static extern int ConnectByWpsPbcWithoutSsid(SafeWiFiManagerHandle wifi, VoidCallback callback, IntPtr userData);
         [DllImport(Libraries.WiFi, EntryPoint = "wifi_manager_connect_by_wps_pin_without_ssid")]
         internal static extern int ConnectByWpsPinWithoutSsid(SafeWiFiManagerHandle wifi, string pin, VoidCallback callback, IntPtr userData);
+        [DllImport(Libraries.WiFi, EntryPoint = "wifi_manager_cancel_wps")]
+        internal static extern int CancelWps(SafeWiFiManagerHandle wifi);
         [DllImport(Libraries.WiFi, EntryPoint = "wifi_manager_forget_ap")]
         internal static extern int RemoveAP(SafeWiFiManagerHandle wifi, IntPtr ap);
+        [DllImport(Libraries.WiFi, EntryPoint = "wifi_manager_forget_ap_async")]
+        internal static extern int ForgetAP(SafeWiFiManagerHandle wifi, IntPtr ap, VoidCallback callback, IntPtr userData);
         [DllImport(Libraries.WiFi, EntryPoint = "wifi_manager_update_ap")]
         internal static extern int UpdateAP(SafeWiFiManagerHandle wifi, IntPtr ap);
 
@@ -105,6 +113,9 @@ internal static partial class Interop
 
         internal static class AP
         {
+            [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+            internal delegate bool FoundBssidCallback(string bssid, int rssi, int freq, IntPtr userData);
+
             [DllImport(Libraries.WiFi, EntryPoint = "wifi_manager_ap_create")]
             internal static extern int Create(SafeWiFiManagerHandle wifi, string essid, out IntPtr ap);
             [DllImport(Libraries.WiFi, EntryPoint = "wifi_manager_ap_hidden_create")]
@@ -119,8 +130,12 @@ internal static partial class Interop
             ////Network Information
             [DllImport(Libraries.WiFi, EntryPoint = "wifi_manager_ap_get_essid")]
             internal static extern int GetEssid(SafeWiFiAPHandle ap, out IntPtr essid);
+            [DllImport(Libraries.WiFi, EntryPoint = "wifi_manager_ap_get_raw_ssid")]
+            internal static extern int GetRawSsid(SafeWiFiAPHandle ap, out IntPtr raw_ssid, out int length);
             [DllImport(Libraries.WiFi, EntryPoint = "wifi_manager_ap_get_bssid")]
             internal static extern int GetBssid(SafeWiFiAPHandle ap, out IntPtr bssid);
+            [DllImport(Libraries.WiFi, EntryPoint = "wifi_manager_foreach_found_bssid")]
+            internal static extern int GetBssids(SafeWiFiAPHandle ap, FoundBssidCallback callback, IntPtr userData);
             [DllImport(Libraries.WiFi, EntryPoint = "wifi_manager_ap_get_rssi")]
             internal static extern int GetRssi(SafeWiFiAPHandle ap, out int rssi);
             [DllImport(Libraries.WiFi, EntryPoint = "wifi_manager_ap_get_rssi_level")]
@@ -143,6 +158,8 @@ internal static partial class Interop
             internal static extern int GetIPAddress(SafeWiFiAPHandle ap, int addressFamily, out IntPtr ipAddress);
             [DllImport(Libraries.WiFi, EntryPoint = "wifi_manager_ap_foreach_ipv6_address")]
             internal static extern int GetAllIPv6Addresses(SafeWiFiAPHandle ap, HandleCallback callback, IntPtr userData);
+            [DllImport(Libraries.WiFi, EntryPoint = "wifi_manager_ap_get_countrycode")]
+            internal static extern int GetCountryCode(SafeWiFiAPHandle ap, out IntPtr code);
             [DllImport(Libraries.WiFi, EntryPoint = "wifi_manager_ap_set_ip_address")]
             internal static extern int SetIPAddress(SafeWiFiAPHandle ap, int addressFamily, string ipAddress);
             [DllImport(Libraries.WiFi, EntryPoint = "wifi_manager_ap_get_subnet_mask")]

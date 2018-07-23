@@ -112,6 +112,15 @@ internal static partial class Interop
         [DllImport(Libraries.Camera, EntryPoint = "camera_attr_get_contrast_range")]
         internal static extern CameraError GetContrastRange(IntPtr handle, out int min, out int max);
 
+        [DllImport(Libraries.Camera, EntryPoint = "camera_attr_set_hue")]
+        internal static extern CameraError SetHue(IntPtr handle, int level);
+
+        [DllImport(Libraries.Camera, EntryPoint = "camera_attr_get_hue")]
+        internal static extern CameraError GetHue(IntPtr handle, out int level);
+
+        [DllImport(Libraries.Camera, EntryPoint = "camera_attr_get_hue_range")]
+        internal static extern CameraError GetHueRange(IntPtr handle, out int min, out int max);
+
         [DllImport(Libraries.Camera, EntryPoint = "camera_attr_set_whitebalance")]
         internal static extern CameraError SetWhitebalance(IntPtr handle, CameraWhiteBalance level);
 

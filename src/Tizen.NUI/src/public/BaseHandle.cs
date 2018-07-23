@@ -14,6 +14,12 @@
  * limitations under the License.
  *
  */
+using System;
+using System.ComponentModel;
+using System.Runtime.CompilerServices;
+using Tizen.NUI.Binding;
+using Tizen.NUI.Binding.Internals;
+
 namespace Tizen.NUI
 {
 
@@ -21,8 +27,27 @@ namespace Tizen.NUI
     /// BaseHandle is a handle to an internal Dali resource.
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
-    public class BaseHandle : global::System.IDisposable
+    public class BaseHandle : Element, global::System.IDisposable
     {
+        /// <summary>
+        /// Event which is occurred when a property is set
+        /// </summary>
+        /// <since_tizen> 5 </since_tizen>
+        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public event PropertyChangedEventHandler PropertySet;
+
+        internal void NotifyPropertyChanged([CallerMemberName] String propertyName = "")
+        {
+            PropertySet?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
+
+        internal static readonly BindablePropertyKey NavigationPropertyKey = BindableProperty.CreateReadOnly("Navigation", typeof(INavigation), typeof(/*VisualElement*/BaseHandle), default(INavigation));
+        /// <summary>
+        /// Backing store for the Navigation property.
+        /// </summary>
+        internal static readonly BindableProperty NavigationProperty = NavigationPropertyKey.BindableProperty;
+
         private global::System.Runtime.InteropServices.HandleRef swigCPtr;
         /// <summary>
         /// swigCMemOwn
@@ -371,9 +396,9 @@ namespace Tizen.NUI
         /// <param name="info">The type information.</param>
         /// <returns>True If get the type info.</returns>
         /// <since_tizen> 3 </since_tizen>
-        public bool GetTypeInfo(TypeInfo info)
+        public bool GetTypeInfo(Tizen.NUI.TypeInfo info)
         {
-            bool ret = NDalicPINVOKE.BaseHandle_GetTypeInfo(swigCPtr, TypeInfo.getCPtr(info));
+            bool ret = NDalicPINVOKE.BaseHandle_GetTypeInfo(swigCPtr, Tizen.NUI.TypeInfo.getCPtr(info));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -465,6 +490,39 @@ namespace Tizen.NUI
             }
         }
 
+        /// <summary>
+        /// For internal use.
+        /// </summary>
+        internal NavigationProxy NavigationProxy
+        {
+            get { return Navigation as NavigationProxy; }
+        }
+
+        /// <summary>
+        /// Gets the navigation.
+        /// </summary>
+        internal INavigation Navigation
+        {
+            get { return (INavigation)GetValue(NavigationProperty); }
+            set { SetValue(NavigationPropertyKey, value); }
+        }
+
+        /// <summary>
+        /// Contains event arguments for the FocusChangeRequested event.
+        /// </summary>
+        public class FocusRequestArgs : EventArgs
+        {
+
+            /// <summary>
+            /// Gets or sets a value that indicates the starting focus state of the element for which a focus change is requested.
+            /// </summary>
+            public bool Focus { get; set; }
+
+            /// <summary>
+            /// Gets or sets a value that indicates the ending focus state of the element for which a focus change is requested.
+            /// </summary>
+            public bool Result { get; set; }
+        }
     }
 
 }

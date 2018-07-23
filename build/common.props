@@ -6,7 +6,7 @@
     <GenerateDependencyFile>False</GenerateDependencyFile>
     <Deterministic>True</Deterministic>
     <ProduceReferenceAssembly>True</ProduceReferenceAssembly>
-    <NoWarn>$(NoWarn)</NoWarn>
+    <NoWarn Condition="'$(IsDummyBuild)' == 'True'">CS0067;CS0169;CS0414;CS0649;CS1998</NoWarn>
   </PropertyGroup>
 
   <PropertyGroup>

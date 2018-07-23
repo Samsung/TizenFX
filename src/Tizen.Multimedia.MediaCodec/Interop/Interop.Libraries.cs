@@ -14,14 +14,11 @@
  * limitations under the License.
  */
 
-namespace Tizen.Multimedia.MediaCodec
+internal static partial class Interop
 {
-    internal static partial class Interop
+    internal static partial class Libraries
     {
-        internal static partial class Libraries
-        {
-            public const string MediaCodec = "libcapi-media-codec.so.0";
-            public const string MediaTool = "libcapi-media-tool.so.0";
-        }
+        public const string MediaCodec = "libcapi-media-codec.so.0";
+        public const string MediaTool = "libcapi-media-tool.so.0";
     }
 }

@@ -15,6 +15,7 @@
  *
  */
  using System;
+ using Tizen.NUI.Binding;
 
 namespace Tizen.NUI
 {
@@ -24,6 +25,7 @@ namespace Tizen.NUI
     /// Both values (x and y) should be between [0, 1].
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
+    [TypeConverter(typeof(RelativeVector2TypeConverter))]
     public class RelativeVector2 : global::System.IDisposable
     {
         private global::System.Runtime.InteropServices.HandleRef swigCPtr;
@@ -314,6 +316,22 @@ namespace Tizen.NUI
             float ret = NDalicPINVOKE.Vector2_ValueOfIndex__SWIG_0(swigCPtr, index);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
+        }
+
+        /// <summary>
+        /// Determines whether the specified object is equal to the current object.
+        /// </summary>
+        /// <param name="obj">The object to compare with the current object.</param>
+        /// <returns>true if the specified object is equal to the current object; otherwise, false.</returns>
+        public override bool Equals(System.Object obj)
+        {
+            RelativeVector2 relativeRector2 = obj as RelativeVector2;
+            bool equal = false;
+            if (X == relativeRector2?.X && Y == relativeRector2?.Y)
+            {
+                equal = true;
+            }
+            return equal;
         }
 
         /// <summary>

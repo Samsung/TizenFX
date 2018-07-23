@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2016 Samsung Electronics Co., Ltd.
+ * Copyright (c) 2018 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -18,8 +18,11 @@
 using System;
 using System.ComponentModel;
 using System.Threading;
+using System.Reflection;
 using Tizen.Applications;
 using Tizen.Applications.CoreBackend;
+using Tizen.NUI.Binding;
+using Tizen.NUI.Xaml;
 
 namespace Tizen.NUI
 {
@@ -56,6 +59,23 @@ namespace Tizen.NUI
             Registry.Instance.SavedApplicationThread = Thread.CurrentThread;
         }
 
+        private Size2D _windowSize2D = null;
+        private Position2D _windowPosition2D = null;
+        /// <summary>
+        /// The constructor with window size and position
+        /// </summary>
+        /// <param name="windowSize">The window size</param>
+        /// <param name="windowPosition">The window position</param>
+        /// <since_tizen> 5 </since_tizen>
+        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public NUIApplication(Size2D windowSize, Position2D windowPosition) : base(new NUICoreBackend())
+        {
+            Registry.Instance.SavedApplicationThread = Thread.CurrentThread;
+            _windowSize2D = windowSize;
+            _windowPosition2D = windowPosition;
+        }
+
         /// <summary>
         /// The constructor with a stylesheet.
         /// </summary>
@@ -64,6 +84,22 @@ namespace Tizen.NUI
         public NUIApplication(string styleSheet) : base(new NUICoreBackend(styleSheet))
         {
             Registry.Instance.SavedApplicationThread = Thread.CurrentThread;
+        }
+
+        /// <summary>
+        /// The constructor with a stylesheet, window size and position
+        /// </summary>
+        /// <param name="styleSheet">The styleSheet url.</param>
+        /// <param name="windowSize">The window size</param>
+        /// <param name="windowPosition">The window position</param>
+        /// <since_tizen> 5 </since_tizen>
+        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public NUIApplication(string styleSheet, Size2D windowSize, Position2D windowPosition) : base(new NUICoreBackend(styleSheet))
+        {
+            Registry.Instance.SavedApplicationThread = Thread.CurrentThread;
+            _windowSize2D = windowSize;
+            _windowPosition2D = windowPosition;
         }
 
         /// <summary>
@@ -76,6 +112,24 @@ namespace Tizen.NUI
         {
             Registry.Instance.SavedApplicationThread = Thread.CurrentThread;
         }
+
+        /// <summary>
+        /// The constructor with a stylesheet, window mode, window size and position
+        /// </summary>
+        /// <param name="styleSheet">The styleSheet url</param>
+        /// <param name="windowMode">The windowMode</param>
+        /// <param name="windowSize">The window size</param>
+        /// <param name="windowPosition">The window position</param>
+        /// <since_tizen> 5 </since_tizen>
+        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public NUIApplication(string styleSheet, WindowMode windowMode, Size2D windowSize, Position2D windowPosition) : base(new NUICoreBackend(styleSheet, windowMode))
+        {
+            Registry.Instance.SavedApplicationThread = Thread.CurrentThread;
+            _windowSize2D = windowSize;
+            _windowPosition2D = windowPosition;
+        }
+
 
         /// <summary>
         /// Overrides this method if you want to handle behavior.
@@ -146,6 +200,14 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         protected virtual void OnPreCreate()
         {
+            if (_windowSize2D != null)
+            {
+                Window.Instance.WindowSize = _windowSize2D;
+            }
+            if (_windowPosition2D != null)
+            {
+                Window.Instance.WindowPosition = _windowPosition2D;
+            }
         }
 
         /// <summary>
@@ -169,6 +231,7 @@ namespace Tizen.NUI
         protected override void OnCreate()
         {
             base.OnCreate();
+            Device.PlatformServices = new TizenPlatformServices();
         }
 
         /// <summary>
@@ -244,6 +307,31 @@ namespace Tizen.NUI
             set
             {
                 resourceManager = value;
+            }
+        }
+
+        /// <summary>
+        /// Register the assembly to XAML.
+        /// </summary>
+        /// <since_tizen> 5 </since_tizen>
+        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static void RegisterAssembly(Assembly assembly)
+        {
+            XamlParser.s_assemblies.Add(assembly);
+        }
+
+        /// <summary>
+        /// Gets the window instance.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
+        [Obsolete("Please do not use! This will be deprecated!")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public Window Window
+        {
+            get
+            {
+                return Window.Instance;
             }
         }
     }

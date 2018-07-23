@@ -151,6 +151,9 @@ namespace ElmSharp
         /// <summary>
         /// Sets or gets the wrapping type of content text packed in the content area of Popup widget.
         /// </summary>
+        /// <remarks>
+        /// Popup need to wrap the content text, so not allowing WrapType.None.
+        /// </remarks>
         /// <since_tizen> preview </since_tizen>
         public WrapType ContentTextWrapType
         {

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2016 Samsung Electronics Co., Ltd All Rights Reserved
+ * Copyright (c) 2018 Samsung Electronics Co., Ltd All Rights Reserved
  *
  * Licensed under the Apache License, Version 2.0 (the License);
  * you may not use this file except in compliance with the License.
@@ -13,14 +13,15 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
+using static Interop;
 using System;
-using System.Threading.Tasks;
-using System.Runtime.InteropServices;
+using System.ComponentModel;
 using System.Diagnostics;
 using System.IO;
+using System.Runtime.InteropServices;
 using System.Threading;
-using static Interop;
-using System.ComponentModel;
+using System.Threading.Tasks;
 
 namespace Tizen.Multimedia
 {
@@ -39,7 +40,7 @@ namespace Tizen.Multimedia
     /// </remarks>
     public partial class Player : IDisposable, IDisplayable<PlayerErrorCode>
     {
-        private PlayerHandle _handle;
+        private readonly PlayerHandle _handle;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="Player"/> class.
@@ -51,6 +52,41 @@ namespace Tizen.Multimedia
 
             Debug.Assert(_handle != null);
 
+            Initialize();
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Player"/> class with a native handle.
+        /// The class takes care of the life cycle of the handle.
+        /// Thus, it should not be closed/destroyed in another location.
+        /// </summary>
+        /// <remarks>
+        /// This supports the product infrastructure and is not intended to be used directly from application code.
+        /// </remarks>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected Player(IntPtr handle, Action<int, string> errorHandler)
+        {
+            // This constructor is to support TV product player.
+            // Be careful with 'handle'. It must be wrapped in safe handle, first.
+            _handle = handle != IntPtr.Zero ? new PlayerHandle(handle) :
+                throw new ArgumentException("Handle is invalid.", nameof(handle));
+
+            _errorHandler = errorHandler;
+        }
+
+        private bool _initialized;
+
+        /// <summary>
+        /// This supports the product infrastructure and is not intended to be used directly from application code.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected void Initialize()
+        {
+            if (_initialized)
+            {
+                throw new InvalidOperationException("It has already been initialized.");
+            }
+
             if (Features.IsSupported(PlayerFeatures.AudioEffect))
             {
                 _audioEffect = new AudioEffect(this);
@@ -61,7 +97,11 @@ namespace Tizen.Multimedia
                 RegisterVideoFrameDecodedCallback();
             }
 
-            DisplaySettings = PlayerDisplaySettings.Create(this);
+            RegisterEvents();
+
+            _displaySettings = PlayerDisplaySettings.Create(this);
+
+            _initialized = true;
         }
 
         internal void ValidatePlayerState(params PlayerState[] desiredStates)
@@ -92,7 +132,14 @@ namespace Tizen.Multimedia
             Dispose(true);
         }
 
-        private void Dispose(bool disposing)
+        /// <summary>
+        /// Releases the unmanaged resources used by the <see cref="Player"/>.
+        /// </summary>
+        /// <param name="disposing">
+        /// true to release both managed and unmanaged resources; false to release only unmanaged resources.
+        /// </param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected virtual void Dispose(bool disposing)
         {
             if (!_disposed)
             {
@@ -247,7 +294,6 @@ namespace Tizen.Multimedia
         /// <since_tizen> 3 </since_tizen>
         protected virtual void OnPreparing()
         {
-            RegisterEvents();
         }
 
         /// <summary>
@@ -269,11 +315,9 @@ namespace Tizen.Multimedia
 
             ValidatePlayerState(PlayerState.Idle);
 
-            SetDisplay(_display).ThrowIfFailed(this, "Failed to configure display of the player");
+            OnPreparing();
 
             SetPreparing();
-
-            OnPreparing();
 
             return Task.Factory.StartNew(() =>
             {
@@ -407,6 +451,13 @@ namespace Tizen.Multimedia
         }
 
         private MediaSource _source;
+
+        /// <summary>
+        /// Determines whether MediaSource has set.
+        /// This supports the product infrastructure and is not intended to be used directly from application code.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected bool HasSource => _source != null;
 
         /// <summary>
         /// Sets a media source for the player.
@@ -570,7 +621,7 @@ namespace Tizen.Multimedia
         ///     Streaming playback.
         /// </exception>
         /// <exception cref="ArgumentOutOfRangeException">
-        ///     <paramref name="rate"/> is less than 5.0.<br/>
+        ///     <paramref name="rate"/> is less than -5.0.<br/>
         ///     -or-<br/>
         ///     <paramref name="rate"/> is greater than 5.0.<br/>
         ///     -or-<br/>
@@ -648,12 +699,20 @@ namespace Tizen.Multimedia
             return Interlocked.CompareExchange(ref _isPreparing, 1, 1) == 1;
         }
 
-        private void SetPreparing()
+        /// <summary>
+        /// This supports the product infrastructure and is not intended to be used directly from application code.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected void SetPreparing()
         {
             Interlocked.Exchange(ref _isPreparing, 1);
         }
 
-        private void ClearPreparing()
+        /// <summary>
+        /// This supports the product infrastructure and is not intended to be used directly from application code.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected void ClearPreparing()
         {
             Interlocked.Exchange(ref _isPreparing, 0);
         }

@@ -220,11 +220,6 @@ namespace Tizen.NUI
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
-        internal VisualBase(SWIGTYPE_p_Dali__Toolkit__Internal__Visual__Base impl) : this(NDalicPINVOKE.new_VisualBase__SWIG_2(SWIGTYPE_p_Dali__Toolkit__Internal__Visual__Base.getCPtr(impl)), true)
-        {
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-        }
-
     }
 
 }

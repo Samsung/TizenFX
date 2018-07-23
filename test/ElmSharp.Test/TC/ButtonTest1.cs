@@ -87,6 +87,5 @@ namespace ElmSharp.Test
             button4.Resize(500, 100);
             button4.Move(0, 600);
         }
-
     }
 }
