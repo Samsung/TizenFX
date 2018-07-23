@@ -534,6 +534,8 @@ namespace Tizen.Multimedia
         /// <exception cref="ObjectDisposedException">The player has already been disposed of.</exception>
         /// <exception cref="InvalidOperationException">The player is not in the valid state.</exception>
         /// <seealso cref="SetPlayPositionAsync(int, bool)"/>
+        /// <seealso cref="SetPlayPositionAsyncNanos(long, bool)"/>
+        /// <seealso cref="GetPlayPositionNanos"/>
         /// <since_tizen> 3 </since_tizen>
         public int GetPlayPosition()
         {
@@ -552,7 +554,7 @@ namespace Tizen.Multimedia
         private void SetPlayPosition(long seconds, bool accurate, bool nano,
             NativePlayer.SeekCompletedCallback cb)
         {
-            var ret = !nano ? NativePlayer.SetPlayPosition(Handle, (int)seconds, accurate, cb, IntPtr.Zero) :
+            var ret = !nano ? NativePlayer.SetPlayPosition(Handle, Convert.ToInt32(seconds), accurate, cb, IntPtr.Zero) :
                 NativePlayer.SetPlayPositionNanos(Handle, seconds, accurate, cb, IntPtr.Zero);
 
             //Note that we assume invalid param error is returned only when the position value is invalid.
@@ -584,7 +586,9 @@ namespace Tizen.Multimedia
         ///     -or-<br/>
         ///     In case of non-seekable content, the player will return error and keep playing without changing the play position.</exception>
         /// <exception cref="ArgumentOutOfRangeException">The specified position is not valid.</exception>
+        /// <seealso cref="SetPlayPositionAsyncNanos(long, bool)"/>
         /// <seealso cref="GetPlayPosition"/>
+        /// <seealso cref="GetPlayPositionNanos"/>
         /// <since_tizen> 3 </since_tizen>
         public async Task SetPlayPositionAsync(int position, bool accurate)
         {
@@ -615,7 +619,9 @@ namespace Tizen.Multimedia
         /// or <see cref="PlayerState.Paused"/> state.</remarks>
         /// <exception cref="ObjectDisposedException">The player has already been disposed of.</exception>
         /// <exception cref="InvalidOperationException">The player is not in the valid state.</exception>
+        /// <seealso cref="SetPlayPositionAsync(int, bool)"/>
         /// <seealso cref="SetPlayPositionAsyncNanos(long, bool)"/>
+        /// <seealso cref="GetPlayPosition"/>
         /// <since_tizen> 5 </since_tizen>
         public long GetPlayPositionNanos()
         {
@@ -647,6 +653,8 @@ namespace Tizen.Multimedia
         ///     -or-<br/>
         ///     In case of non-seekable content, the player will return error and keep playing without changing the play position.</exception>
         /// <exception cref="ArgumentOutOfRangeException">The specified position is not valid.</exception>
+        /// <seealso cref="SetPlayPositionAsync(int, bool)"/>
+        /// <seealso cref="GetPlayPosition"/>
         /// <seealso cref="GetPlayPositionNanos"/>
         /// <since_tizen> 5 </since_tizen>
         public async Task SetPlayPositionAsyncNanos(long position, bool accurate)
