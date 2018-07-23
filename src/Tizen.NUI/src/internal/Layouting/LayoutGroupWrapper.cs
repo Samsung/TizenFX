@@ -15,6 +15,7 @@
  *
  */
 
+using System;
 using System.ComponentModel;
 using Tizen.NUI.BaseComponents;
 
@@ -98,6 +99,7 @@ namespace Tizen.NUI
         {
             uint ret = LayoutPINVOKE.LayoutGroupWrapper_Add(swigCPtr, LayoutItemWrapper.getCPtr(childLayout));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            LayoutChildren.Add(childLayout);
             return ret;
         }
 
@@ -115,30 +117,24 @@ namespace Tizen.NUI
         {
             LayoutPINVOKE.LayoutGroupWrapper_Remove__SWIG_1(swigCPtr, LayoutItemWrapper.getCPtr(childLayout));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            LayoutChildren.Remove(childLayout);
         }
 
         /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public LayoutItem GetChildAt(uint index)
         {
-            global::System.IntPtr cPtr = LayoutPINVOKE.LayoutGroupWrapper_GetChildAt(swigCPtr, index);
-
-
-            global::System.Runtime.InteropServices.HandleRef CPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
-            BaseHandle basehandle = Registry.GetManagedBaseHandleFromNativePtr(CPtr.Handle);
-            NDalicPINVOKE.delete_BaseHandle(CPtr);
-            CPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
-
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-
-            return basehandle as LayoutItem;
+            if(index >= 0 && index < LayoutChildren.Count)
+            {
+                LayoutItem layoutItem = LayoutChildren[Convert.ToInt32(index)] as LayoutItem;
+                return layoutItem;
+            }
+            return null;
         }
 
         private uint GetChildCount()
         {
-            uint ret = LayoutPINVOKE.LayoutGroupWrapper_GetChildCount(swigCPtr);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
+            return Convert.ToUInt32(LayoutChildren.Count);
         }
 
         /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
