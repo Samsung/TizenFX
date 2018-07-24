@@ -21,9 +21,7 @@ using Tizen.NUI.BaseComponents;
 
 namespace Tizen.NUI
 {
-    /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
-    [EditorBrowsable(EditorBrowsableState.Never)]
-    public class LayoutGroupWrapper : LayoutItem//LayoutItemWrapper
+    internal class LayoutGroupWrapper : LayoutItem
     {
         private global::System.Runtime.InteropServices.HandleRef swigCPtr;
         internal LayoutGroupWrapperImpl layoutGroupWrapperImpl;
@@ -38,8 +36,6 @@ namespace Tizen.NUI
             return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
         }
 
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
         protected override void Dispose(DisposeTypes type)
         {
             if (disposed)
@@ -72,29 +68,21 @@ namespace Tizen.NUI
             base.Dispose(type);
         }
 
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
         public class ChildProperty
         {
             public static readonly int MARGIN_SPECIFICATION = LayoutPINVOKE.LayoutGroupWrapper_ChildProperty_MARGIN_SPECIFICATION_get();
         }
 
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
         public LayoutGroupWrapper() : this(LayoutPINVOKE.new_LayoutGroupWrapper__SWIG_0(), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
         public LayoutGroupWrapper(LayoutGroupWrapper copy) : this(LayoutPINVOKE.new_LayoutGroupWrapper__SWIG_1(LayoutGroupWrapper.getCPtr(copy)), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
         public uint Add(LayoutItemWrapper childLayout)
         {
             uint ret = LayoutPINVOKE.LayoutGroupWrapper_Add(swigCPtr, LayoutItemWrapper.getCPtr(childLayout));
@@ -103,16 +91,12 @@ namespace Tizen.NUI
             return ret;
         }
 
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
         public void Remove(uint childId)
         {
             LayoutPINVOKE.LayoutGroupWrapper_Remove__SWIG_0(swigCPtr, childId);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
         public void Remove(LayoutItemWrapper childLayout)
         {
             LayoutPINVOKE.LayoutGroupWrapper_Remove__SWIG_1(swigCPtr, LayoutItemWrapper.getCPtr(childLayout));
@@ -120,8 +104,6 @@ namespace Tizen.NUI
             LayoutChildren.Remove(childLayout);
         }
 
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
         public LayoutItem GetChildAt(uint index)
         {
             if(index >= 0 && index < LayoutChildren.Count)
@@ -137,8 +119,6 @@ namespace Tizen.NUI
             return Convert.ToUInt32(LayoutChildren.Count);
         }
 
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
         public uint ChildCount
         {
             get
@@ -147,8 +127,6 @@ namespace Tizen.NUI
             }
         }
 
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
         public LayoutItemWrapper GetChild(uint childId)
         {
             LayoutItemWrapper ret = new LayoutItemWrapper(LayoutPINVOKE.LayoutGroupWrapper_GetChild(swigCPtr, childId), true);
@@ -162,8 +140,6 @@ namespace Tizen.NUI
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly uint UNKNOWN_ID = LayoutPINVOKE.LayoutGroupWrapper_UNKNOWN_ID_get();
     }
 }
