@@ -90,7 +90,7 @@ namespace Tizen.NUI.Xaml
                         value = Activator.CreateInstance(type);
                         if (value is BindableObject)
                         {
-                            ((BindableObject)value).isCreateByXaml = true;
+                            ((BindableObject)value).IsCreateByXaml = true;
                         }
                     }
                 }
@@ -202,7 +202,7 @@ namespace Tizen.NUI.Xaml
                 object ret = Activator.CreateInstance(nodeType, arguments);
                 if (ret is BindableObject)
                 {
-                    ((BindableObject)ret).isCreateByXaml = true;
+                    ((BindableObject)ret).IsCreateByXaml = true;
                 }
                 return ret;
             }
@@ -306,7 +306,7 @@ namespace Tizen.NUI.Xaml
                 value = Activator.CreateInstance(nodeType);
                 if (value is BindableObject)
                 {
-                    ((BindableObject)value).isCreateByXaml = true;
+                    ((BindableObject)value).IsCreateByXaml = true;
                 }
             }
 

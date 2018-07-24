@@ -188,6 +188,9 @@ internal static partial class Interop
         [DllImport(Libraries.InputMethod, EntryPoint = "ime_get_main_window")]
         internal static extern IntPtr ImeGetMainWindow();
 
+        [DllImport(Libraries.InputMethod, EntryPoint = "ime_request_hide")]
+        internal static extern ErrorCode ImeRequestHide();
+
         [DllImport(Libraries.InputMethod, EntryPoint = "ime_prepare")]
         internal static extern ErrorCode ImePrepare();
 
@@ -244,6 +247,15 @@ internal static partial class Interop
 
         [DllImport(Libraries.InputMethod, EntryPoint = "ime_device_info_get_subclass")]
         internal static extern ErrorCode ImeDeviceInfoGetSubclass(IntPtr dev_info, out DeviceSubclass devSubClass);
+
+        [DllImport(Libraries.InputMethod, EntryPoint = "ime_set_floating_mode")]
+        internal static extern ErrorCode ImeSetFloatingMode(bool floating_mode);
+
+        [DllImport(Libraries.InputMethod, EntryPoint = "ime_set_floating_drag_start")]
+        internal static extern ErrorCode ImeSetFloatingDragStart();
+
+        [DllImport(Libraries.InputMethod, EntryPoint = "ime_set_floating_drag_end")]
+        internal static extern ErrorCode ImeSetFloatingDragEnd();
 
 
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
