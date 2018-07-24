@@ -551,16 +551,17 @@ namespace Tizen.Multimedia
             return playPosition;
         }
 
-        private void SetPlayPosition(long seconds, bool accurate, bool nano,
+        private void SetPlayPosition(long position, bool accurate, bool nanoseconds,
             NativePlayer.SeekCompletedCallback cb)
         {
-            var ret = !nano ? NativePlayer.SetPlayPosition(Handle, Convert.ToInt32(seconds), accurate, cb, IntPtr.Zero) :
-                NativePlayer.SetPlayPositionNanos(Handle, seconds, accurate, cb, IntPtr.Zero);
+            //Check if it is nanoseconds or milliseconds.
+            var ret = !nanoseconds ? NativePlayer.SetPlayPosition(Handle, Convert.ToInt32(position), accurate, cb, IntPtr.Zero) :
+                NativePlayer.SetPlayPositionNanos(Handle, position, accurate, cb, IntPtr.Zero);
 
             //Note that we assume invalid param error is returned only when the position value is invalid.
             if (ret == PlayerErrorCode.InvalidArgument)
             {
-                throw new ArgumentOutOfRangeException(nameof(seconds), seconds,
+                throw new ArgumentOutOfRangeException(nameof(position), position,
                     "The position is not valid.");
             }
             if (ret != PlayerErrorCode.None)
