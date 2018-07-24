@@ -25,9 +25,9 @@ namespace Tizen.NUI.Examples
 
         public AmbientDuoPage(Window win) : base (win)
         {
-            Content.BackgroundImage = "/home/tengxb/GitRepo/nui-xaml/TestXaml/res/images/ambient/photoduo_img_bg_01_no9patch.png";
+            Root.BackgroundImage = "/home/owner/apps_rw/org.tizen.example.NUIXAMLTestSample/res/images/ambient/photoduo_img_bg_01_no9patch.png";
             ClearEvent += OnClearEvent;
-            Content.Opacity = 0.0f;
+            Root.Opacity = 0.0f;
         }
 
         /// <summary>
@@ -53,13 +53,13 @@ namespace Tizen.NUI.Examples
         {
             Console.WriteLine("AmbientDuoPage focused.");
             Animation animation = new Animation(2000);
-            animation.AnimateTo(Content, "Opacity", 1.0f);
+            animation.AnimateTo(Root, "Opacity", 1.0f);
             animation.Play();
         }
 
         private void OnClearEvent(object obj, EventArgs e)
         {
-            Content.BackgroundImage = "/home/tengxb/GitRepo/nui-xaml/TestXaml/res/images/ambient/photoduo_img_bg_01_no9patch.png";
+            Root.BackgroundImage = "/home/owner/apps_rw/org.tizen.example.NUIXAMLTestSample/res/images/ambient/photoduo_img_bg_01_no9patch.png";
         }
     }
 }

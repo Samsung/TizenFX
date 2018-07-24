@@ -9,7 +9,7 @@ namespace Tizen.NUI.Sample
 {
     class Finance
     {
-        static private string imagePath = "E:\\Dali\\dali-windows-backend\\csharp-demo\\res\\images\\Ambient Screen UX Control\\";
+        static private string imagePath = "/home/owner/apps_rw/org.tizen.example.NUIXAMLTestSample/res/images/Ambient Screen UX Control/";
 
         private ImageView[] cardImages = null;
         private Vector2[] positionOfCard = null;

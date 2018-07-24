@@ -67,8 +67,8 @@ namespace Tizen.NUI.Examples
 
         public override void SetFocus()
         {
-            buttonClose = Content.FindChildByName("ButtonClose") as ImageView;
-            buttonSend = Content.FindChildByName("ButtonSend") as ImageView;
+            buttonClose = Root.FindChildByName("ButtonClose") as ImageView;
+            buttonSend = Root.FindChildByName("ButtonSend") as ImageView;
             FocusManager.Instance.FocusIndicator = new View();
             FocusManager.Instance.PreFocusChange += OnPreFocusChange;
         }
@@ -77,7 +77,7 @@ namespace Tizen.NUI.Examples
         {
             ImageView view = obj as ImageView;
             {
-                view.ResourceUrl = "/home/tengxb/GitRepo/nui-xaml/TestXaml/res/images/bixby/btn_focused_bg.png";
+                view.ResourceUrl = "/home/owner/apps_rw/org.tizen.example.NUIXAMLTestSample/res/images/bixby/btn_focused_bg.png";
                 // view.Border = new Rectangle(14,14,20,20);
             }
             view.RaiseToTop();
@@ -95,7 +95,7 @@ namespace Tizen.NUI.Examples
         {
             ImageView view = obj as ImageView;
             {
-                view.ResourceUrl = "/home/tengxb/GitRepo/nui-xaml/TestXaml/res/images/bixby/btn_normal_bg.png";
+                view.ResourceUrl = "/home/owner/apps_rw/org.tizen.example.NUIXAMLTestSample/res/images/bixby/btn_normal_bg.png";
                 // view.Border = new Rectangle(4,4,5,5);
             }
             if (scaleOutAni == null)
