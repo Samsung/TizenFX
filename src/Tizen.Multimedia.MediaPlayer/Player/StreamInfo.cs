@@ -260,7 +260,8 @@ namespace Tizen.Multimedia
         /// </exception>
         /// <exception cref="InvalidOperationException">
         /// The <see cref="Multimedia.Player"/> that this instance belongs to is not in the valid state.
-        /// </exception>
+        /// </exception>\
+        /// <seealso cref="GetDurationNanoseconds"/>
         /// <since_tizen> 3 </since_tizen>
         public int GetDuration()
         {
@@ -287,12 +288,13 @@ namespace Tizen.Multimedia
         /// <exception cref="InvalidOperationException">
         /// The <see cref="Multimedia.Player"/> that this instance belongs to is not in the valid state.
         /// </exception>
+        /// <seealso cref="GetDuration"/>
         /// <since_tizen> 5 </since_tizen>
-        public long GetDurationNanos()
+        public long GetDurationNanoseconds()
         {
             Player.ValidatePlayerState(PlayerState.Ready, PlayerState.Playing, PlayerState.Paused);
 
-            NativePlayer.GetDurationNanos(Player.Handle, out var duration).
+            NativePlayer.GetDurationNanoseconds(Player.Handle, out var duration).
                 ThrowIfFailed(Player, "Failed to get the duration in nanoseconds");
 
             Log.Info(PlayerLog.Tag, "get duration(nsec) : " + duration);

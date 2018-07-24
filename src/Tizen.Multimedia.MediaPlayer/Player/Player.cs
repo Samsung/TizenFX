@@ -534,8 +534,8 @@ namespace Tizen.Multimedia
         /// <exception cref="ObjectDisposedException">The player has already been disposed of.</exception>
         /// <exception cref="InvalidOperationException">The player is not in the valid state.</exception>
         /// <seealso cref="SetPlayPositionAsync(int, bool)"/>
-        /// <seealso cref="SetPlayPositionAsyncNanos(long, bool)"/>
-        /// <seealso cref="GetPlayPositionNanos"/>
+        /// <seealso cref="SetPlayPositionAsyncNanoseconds(long, bool)"/>
+        /// <seealso cref="GetPlayPositionNanoseconds"/>
         /// <since_tizen> 3 </since_tizen>
         public int GetPlayPosition()
         {
@@ -555,8 +555,8 @@ namespace Tizen.Multimedia
             NativePlayer.SeekCompletedCallback cb)
         {
             //Check if it is nanoseconds or milliseconds.
-            var ret = !nanoseconds ? NativePlayer.SetPlayPosition(Handle, Convert.ToInt32(position), accurate, cb, IntPtr.Zero) :
-                NativePlayer.SetPlayPositionNanos(Handle, position, accurate, cb, IntPtr.Zero);
+            var ret = !nanoseconds ? NativePlayer.SetPlayPosition(Handle, (int)position, accurate, cb, IntPtr.Zero) :
+                NativePlayer.SetPlayPositionNanoseconds(Handle, position, accurate, cb, IntPtr.Zero);
 
             //Note that we assume invalid param error is returned only when the position value is invalid.
             if (ret == PlayerErrorCode.InvalidArgument)
@@ -587,9 +587,9 @@ namespace Tizen.Multimedia
         ///     -or-<br/>
         ///     In case of non-seekable content, the player will return error and keep playing without changing the play position.</exception>
         /// <exception cref="ArgumentOutOfRangeException">The specified position is not valid.</exception>
-        /// <seealso cref="SetPlayPositionAsyncNanos(long, bool)"/>
+        /// <seealso cref="SetPlayPositionAsyncNanoseconds(long, bool)"/>
         /// <seealso cref="GetPlayPosition"/>
-        /// <seealso cref="GetPlayPositionNanos"/>
+        /// <seealso cref="GetPlayPositionNanoseconds"/>
         /// <since_tizen> 3 </since_tizen>
         public async Task SetPlayPositionAsync(int position, bool accurate)
         {
@@ -621,19 +621,17 @@ namespace Tizen.Multimedia
         /// <exception cref="ObjectDisposedException">The player has already been disposed of.</exception>
         /// <exception cref="InvalidOperationException">The player is not in the valid state.</exception>
         /// <seealso cref="SetPlayPositionAsync(int, bool)"/>
-        /// <seealso cref="SetPlayPositionAsyncNanos(long, bool)"/>
+        /// <seealso cref="SetPlayPositionAsyncNanoseconds(long, bool)"/>
         /// <seealso cref="GetPlayPosition"/>
         /// <since_tizen> 5 </since_tizen>
-        public long GetPlayPositionNanos()
+        public long GetPlayPositionNanoseconds()
         {
             ValidatePlayerState(PlayerState.Ready, PlayerState.Paused, PlayerState.Playing);
 
-            long playPosition = 0;
+            NativePlayer.GetPlayPositionNanoseconds(Handle, out long playPosition).
+                ThrowIfFailed(this, "Failed to get the play position(nsec) of the player");
 
-            NativePlayer.GetPlayPositionNanos(Handle, out playPosition).
-                ThrowIfFailed(this, "Failed to get the play position of the player");
-
-            Log.Info(PlayerLog.Tag, "get play position : " + playPosition);
+            Log.Info(PlayerLog.Tag, "get play position(nsec) : " + playPosition);
 
             return playPosition;
         }
@@ -656,9 +654,9 @@ namespace Tizen.Multimedia
         /// <exception cref="ArgumentOutOfRangeException">The specified position is not valid.</exception>
         /// <seealso cref="SetPlayPositionAsync(int, bool)"/>
         /// <seealso cref="GetPlayPosition"/>
-        /// <seealso cref="GetPlayPositionNanos"/>
+        /// <seealso cref="GetPlayPositionNanoseconds"/>
         /// <since_tizen> 5 </since_tizen>
-        public async Task SetPlayPositionAsyncNanos(long position, bool accurate)
+        public async Task SetPlayPositionAsyncNanoseconds(long position, bool accurate)
         {
             ValidatePlayerState(PlayerState.Ready, PlayerState.Playing, PlayerState.Paused);
 
