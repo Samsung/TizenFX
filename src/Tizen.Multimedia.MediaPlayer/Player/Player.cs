@@ -551,7 +551,7 @@ namespace Tizen.Multimedia
             return playPosition;
         }
 
-        private void SetPlayPosition(long position, bool accurate, bool nanoseconds,
+        private void NativeSetPlayPosition(long position, bool accurate, bool nanoseconds,
             NativePlayer.SeekCompletedCallback cb)
         {
             //Check if it is nanoseconds or milliseconds.
@@ -569,6 +569,26 @@ namespace Tizen.Multimedia
                 Log.Error(PlayerLog.Tag, "Failed to set play position, " + (PlayerError)ret);
             }
             ret.ThrowIfFailed(this, "Failed to set play position");
+        }
+
+        private async Task SetPlayPosition(long position, bool accurate, bool nanoseconds)
+        {
+            var taskCompletionSource = new TaskCompletionSource<bool>(TaskCreationOptions.RunContinuationsAsynchronously);
+
+            bool immediateResult = _source is MediaStreamSource;
+
+            NativePlayer.SeekCompletedCallback cb = _ => taskCompletionSource.TrySetResult(true);
+
+            using (var cbKeeper = ObjectKeeper.Get(cb))
+            {
+                NativeSetPlayPosition(position, accurate, nanoseconds, cb);
+                if (immediateResult)
+                {
+                    taskCompletionSource.TrySetResult(true);
+                }
+
+                await taskCompletionSource.Task;
+            }
         }
 
         /// <summary>
@@ -595,22 +615,7 @@ namespace Tizen.Multimedia
         {
             ValidatePlayerState(PlayerState.Ready, PlayerState.Playing, PlayerState.Paused);
 
-            var taskCompletionSource = new TaskCompletionSource<bool>(TaskCreationOptions.RunContinuationsAsynchronously);
-
-            bool immediateResult = _source is MediaStreamSource;
-
-            NativePlayer.SeekCompletedCallback cb = _ => taskCompletionSource.TrySetResult(true);
-
-            using (var cbKeeper = ObjectKeeper.Get(cb))
-            {
-                SetPlayPosition(position, accurate, false, cb);
-                if (immediateResult)
-                {
-                    taskCompletionSource.TrySetResult(true);
-                }
-
-                await taskCompletionSource.Task;
-            }
+            await SetPlayPosition(position, accurate, false);
         }
 
         /// <summary>
@@ -660,22 +665,7 @@ namespace Tizen.Multimedia
         {
             ValidatePlayerState(PlayerState.Ready, PlayerState.Playing, PlayerState.Paused);
 
-            var taskCompletionSource = new TaskCompletionSource<bool>(TaskCreationOptions.RunContinuationsAsynchronously);
-
-            bool immediateResult = _source is MediaStreamSource;
-
-            NativePlayer.SeekCompletedCallback cb = _ => taskCompletionSource.TrySetResult(true);
-
-            using (var cbKeeper = ObjectKeeper.Get(cb))
-            {
-                SetPlayPosition(position, accurate, true, cb);
-                if (immediateResult)
-                {
-                    taskCompletionSource.TrySetResult(true);
-                }
-
-                await taskCompletionSource.Task;
-            }
+            await SetPlayPosition(position, accurate, true);
         }
 
         /// <summary>
