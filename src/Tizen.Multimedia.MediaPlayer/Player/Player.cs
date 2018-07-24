@@ -534,7 +534,7 @@ namespace Tizen.Multimedia
         /// <exception cref="ObjectDisposedException">The player has already been disposed of.</exception>
         /// <exception cref="InvalidOperationException">The player is not in the valid state.</exception>
         /// <seealso cref="SetPlayPositionAsync(int, bool)"/>
-        /// <seealso cref="SetPlayPositionAsyncNanoseconds(long, bool)"/>
+        /// <seealso cref="SetPlayPositionNanosecondsAsync(long, bool)"/>
         /// <seealso cref="GetPlayPositionNanoseconds"/>
         /// <since_tizen> 3 </since_tizen>
         public int GetPlayPosition()
@@ -607,7 +607,7 @@ namespace Tizen.Multimedia
         ///     -or-<br/>
         ///     In case of non-seekable content, the player will return error and keep playing without changing the play position.</exception>
         /// <exception cref="ArgumentOutOfRangeException">The specified position is not valid.</exception>
-        /// <seealso cref="SetPlayPositionAsyncNanoseconds(long, bool)"/>
+        /// <seealso cref="SetPlayPositionNanosecondsAsync(long, bool)"/>
         /// <seealso cref="GetPlayPosition"/>
         /// <seealso cref="GetPlayPositionNanoseconds"/>
         /// <since_tizen> 3 </since_tizen>
@@ -626,7 +626,7 @@ namespace Tizen.Multimedia
         /// <exception cref="ObjectDisposedException">The player has already been disposed of.</exception>
         /// <exception cref="InvalidOperationException">The player is not in the valid state.</exception>
         /// <seealso cref="SetPlayPositionAsync(int, bool)"/>
-        /// <seealso cref="SetPlayPositionAsyncNanoseconds(long, bool)"/>
+        /// <seealso cref="SetPlayPositionNanosecondsAsync(long, bool)"/>
         /// <seealso cref="GetPlayPosition"/>
         /// <since_tizen> 5 </since_tizen>
         public long GetPlayPositionNanoseconds()
@@ -661,7 +661,7 @@ namespace Tizen.Multimedia
         /// <seealso cref="GetPlayPosition"/>
         /// <seealso cref="GetPlayPositionNanoseconds"/>
         /// <since_tizen> 5 </since_tizen>
-        public async Task SetPlayPositionAsyncNanoseconds(long position, bool accurate)
+        public async Task SetPlayPositionNanosecondsAsync(long position, bool accurate)
         {
             ValidatePlayerState(PlayerState.Ready, PlayerState.Playing, PlayerState.Paused);
 
