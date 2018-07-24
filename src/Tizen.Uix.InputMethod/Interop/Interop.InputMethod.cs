@@ -188,6 +188,9 @@ internal static partial class Interop
         [DllImport(Libraries.InputMethod, EntryPoint = "ime_get_main_window")]
         internal static extern IntPtr ImeGetMainWindow();
 
+        [DllImport(Libraries.InputMethod, EntryPoint = "ime_request_hide")]
+        internal static extern ErrorCode ImeRequestHide();
+
         [DllImport(Libraries.InputMethod, EntryPoint = "ime_prepare")]
         internal static extern ErrorCode ImePrepare();
 
