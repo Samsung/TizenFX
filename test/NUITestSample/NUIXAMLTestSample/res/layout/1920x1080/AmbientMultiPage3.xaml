@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<ContentPage x:Class="Tizen.NUI.Examples.AmbientMultiPage3"
+  xmlns="http://tizen.org/Tizen.NUI/2018/XAML"
+  xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
+
+  <View BackgroundImage="/home/owner/apps_rw/org.tizen.example.NUIXAMLTestSample/res/images/ambient/photoboard_img_bg_03.png" Position2D="0,0" Size2D="1920,1080" >
+  <!-- <View BackgroundImage="/home/owner/apps_rw/org.tizen.example.NUIXAMLTestSample/res/images/ambient/photoboard_img_bg_04.png" Position2D="0,0" Size2D="1920,1080" > -->
+    <ImageView Name="photo0" ResourceUrl="/home/owner/apps_rw/org.tizen.example.NUIXAMLTestSample/res/images/ambient/bg_textbox_w.png" Position2D="50,50" Size2D="440,600" />
+    <View Name="num_area" Size2D="440,160" Position2D="50,50">
+      <ImageView Name="photo11" ResourceUrl="/home/owner/apps_rw/org.tizen.example.NUIXAMLTestSample/res/images/ambient/num/num_w_2.png" Position2D="0,0" Size2D="110,160" />
+      <ImageView Name="photo12" ResourceUrl="/home/owner/apps_rw/org.tizen.example.NUIXAMLTestSample/res/images/ambient/num/num_w_0.png" Position2D="110,0" Size2D="110,160" />
+      <ImageView Name="photo13" ResourceUrl="/home/owner/apps_rw/org.tizen.example.NUIXAMLTestSample/res/images/ambient/num/num_w_th.png" Position2D="220,0" Size2D="220,160" />
+    </View>
+    <View Name="mon_area" Size2D="440,194" Position2D="50,210">
+      <ImageView Name="photo21" ResourceUrl="/home/owner/apps_rw/org.tizen.example.NUIXAMLTestSample/res/images/ambient/mon/mon_w_4.png" Position2D="0,0" Size2D="440,194" />
+    </View>
+    <View Name="year_area" Size2D="440,210" Position2D="50,424">
+      <ImageView Name="photo31" ResourceUrl="/home/owner/apps_rw/org.tizen.example.NUIXAMLTestSample/res/images/ambient/year/year_w_2.png" Position2D="0,0" Size2D="110,210" />
+      <ImageView Name="photo32" ResourceUrl="/home/owner/apps_rw/org.tizen.example.NUIXAMLTestSample/res/images/ambient/year/year_w_0.png" Position2D="110,0" Size2D="110,210" />
+      <ImageView Name="photo33" ResourceUrl="/home/owner/apps_rw/org.tizen.example.NUIXAMLTestSample/res/images/ambient/year/year_w_1.png" Position2D="220,0" Size2D="110,210" />
+      <ImageView Name="photo34" ResourceUrl="/home/owner/apps_rw/org.tizen.example.NUIXAMLTestSample/res/images/ambient/year/year_w_8.png" Position2D="330,0" Size2D="110,210" />
+    </View>
+    <ImageView Name="photo1" ResourceUrl="/home/owner/apps_rw/org.tizen.example.NUIXAMLTestSample/res/images/ambient/default/picture_01.jpg" Position2D="50,670" Size2D="440,360" />
+    
+    <ImageView Name="photo2" ResourceUrl="/home/owner/apps_rw/org.tizen.example.NUIXAMLTestSample/res/images/ambient/default/picture_00.jpg" Position2D="508,50" Size2D="900,560" />
+    <ImageView Name="photo3" ResourceUrl="/home/owner/apps_rw/org.tizen.example.NUIXAMLTestSample/res/images/ambient/default/picture_03.jpg" Position2D="508,630" Size2D="440,400" />
+    <ImageView Name="photo6" ResourceUrl="/home/owner/apps_rw/org.tizen.example.NUIXAMLTestSample/res/images/ambient/default/picture_09.jpg" Position2D="968,630" Size2D="440,400" />
+    <!--
+    <ImageView Name="photo3" ResourceUrl="/home/owner/apps_rw/org.tizen.example.NUIXAMLTestSample/res/images/ambient/default/picture_03.jpg" Position2D="508,50" Size2D="440,400" />
+    <ImageView Name="photo6" ResourceUrl="/home/owner/apps_rw/org.tizen.example.NUIXAMLTestSample/res/images/ambient/default/picture_09.jpg" Position2D="966,50" Size2D="440,400" />
+    <ImageView Name="photo2" ResourceUrl="/home/owner/apps_rw/org.tizen.example.NUIXAMLTestSample/res/images/ambient/default/picture_00.jpg" Position2D="508,470" Size2D="900,560" />
+    -->
+    <ImageView Name="photo7" ResourceUrl="/home/owner/apps_rw/org.tizen.example.NUIXAMLTestSample/res/images/ambient/default/picture_07.jpg" Position2D="1430,50" Size2D="440,440" />
+    <ImageView Name="photo8" ResourceUrl="/home/owner/apps_rw/org.tizen.example.NUIXAMLTestSample/res/images/ambient/default/picture_08.jpg" Position2D="1430,510" Size2D="440,520" />
+  </View>
+</ContentPage>

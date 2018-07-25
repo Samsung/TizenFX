@@ -29,7 +29,6 @@ namespace Tizen.NUI.BaseComponents
     /// A control which provides a single line editable text field.
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
-    [ContentProperty("Text")]
     public class TextField : View
     {
         /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.

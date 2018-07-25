@@ -1,19 +1,18 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <ContentPage x:Class="Tizen.NUI.Examples.ButtonTestPage"
   xmlns="http://tizen.org/Tizen.NUI/2018/XAML"
-  xmlns:l="clr-namespace:Tizen.NUI;assembly=Tizen.NUI"
   xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
       <PushButton PositionX="10" PositionY="10" LabelText="PushButton" ForegroundVisualPadding="40,5,22,22" LabelPadding="5,40,22,22" Togglable="true" Size2D="260, 84" Clicked="OnClicked" Pressed="OnPressed" Released="OnReleased" LabelRelativeAlignment="End" >
         <PushButton.UnselectedVisual>
           <PropertyMap>
             <KeyValue Key="Visual.Property.Type" Value="{VisualType Image}" />
-            <KeyValue Key="ImageVisualProperty.URL" Value="{x:String /home/tengxb/GitRepo/nui-xaml/TestXaml/res/images/star-highlight.png}" />
+            <KeyValue Key="ImageVisualProperty.URL" Value="{x:String /home/owner/apps_rw/org.tizen.example.NUIXAMLTestSample/res/images/star-highlight.png}" />
           </PropertyMap>
         </PushButton.UnselectedVisual>
         <PushButton.SelectedVisual>
           <PropertyMap>
             <KeyValue Key="Visual.Property.Type" Value="{VisualType Image}" />
-            <KeyValue Key="ImageVisualProperty.URL" Value="{x:String /home/tengxb/GitRepo/nui-xaml/TestXaml/res/images/star-mod.png}" />
+            <KeyValue Key="ImageVisualProperty.URL" Value="{x:String /home/owner/apps_rw/org.tizen.example.NUIXAMLTestSample/res/images/star-mod.png}" />
           </PropertyMap>
         </PushButton.SelectedVisual>
         <!-- <PushButton.DisabledSelectedVisual>
@@ -27,14 +26,14 @@
         <PushButton.UnselectedBackgroundVisual>
           <PropertyMap>
             <KeyValue Key="Visual.Property.Type" Value="{VisualType NPatch}" />
-            <KeyValue Key="NpatchImageVisualProperty.URL" Value="{x:String /home/tengxb/GitRepo/nui-xaml/TestXaml/res/images/c_basic_button_white_bg_normal.9.png}" />
+            <KeyValue Key="NpatchImageVisualProperty.URL" Value="{x:String /home/owner/apps_rw/org.tizen.example.NUIXAMLTestSample/res/images/c_basic_button_white_bg_normal.9.png}" />
             <KeyValue Key="NpatchImageVisualProperty.Border" RectangleValue="4,4,5,5" />
           </PropertyMap>
         </PushButton.UnselectedBackgroundVisual>
         <PushButton.SelectedBackgroundVisual>
           <PropertyMap>
             <KeyValue Key="Visual.Property.Type" Value="{VisualType NPatch}" />
-            <KeyValue Key="NpatchImageVisualProperty.URL" Value="{x:String /home/tengxb/GitRepo/nui-xaml/TestXaml/res/images/r_highlight_bg_focus_9patch.png}" />
+            <KeyValue Key="NpatchImageVisualProperty.URL" Value="{x:String /home/owner/apps_rw/org.tizen.example.NUIXAMLTestSample/res/images/r_highlight_bg_focus_9patch.png}" />
             <KeyValue Key="NpatchImageVisualProperty.Border" RectangleValue="14,14,20,20" />
           </PropertyMap>
         </PushButton.SelectedBackgroundVisual>
@@ -58,9 +57,9 @@
       <ToggleButton PositionX="10" PositionY="630" Size2D="50, 50" CurrentStateIndex="1">
         <ToggleButton.StateVisuals>
           <PropertyArray>
-            <KeyValue Value="{x:String /home/tengxb/GitRepo/nui-xaml/TestXaml/res/images/star-highlight.png}" />
-            <KeyValue Value="{x:String /home/tengxb/GitRepo/nui-xaml/TestXaml/res/images/star-mod.png}" />
-            <KeyValue Value="{x:String /home/tengxb/GitRepo/nui-xaml/TestXaml/res/images/star-dim.png}" />
+            <KeyValue Value="{x:String /home/owner/apps_rw/org.tizen.example.NUIXAMLTestSample/res/images/star-highlight.png}" />
+            <KeyValue Value="{x:String /home/owner/apps_rw/org.tizen.example.NUIXAMLTestSample/res/images/star-mod.png}" />
+            <KeyValue Value="{x:String /home/owner/apps_rw/org.tizen.example.NUIXAMLTestSample/res/images/star-dim.png}" />
           </PropertyArray>
         </ToggleButton.StateVisuals>
         <ToggleButton.Tooltips>

@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <ContentPage x:Class="Tizen.NUI.Examples.TableTestPage"
   xmlns="http://tizen.org/Tizen.NUI/2018/XAML"
-  xmlns:l="clr-namespace:Tizen.UI_Xaml;assembly=Tizen.UI_Xaml"
   xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
 
     <TableView BackgroundColor="Red" SizeWidth="300" SizeHeight="100" PositionX="50" PositionY="100" Rows="2" Columns="2">

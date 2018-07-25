@@ -30,7 +30,6 @@ namespace Tizen.NUI.BaseComponents
     /// Text labels are lightweight, non-editable, and do not respond to the user input.<br />
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
-    [ContentProperty("Text")]
     public class TextLabel : View
     {
         /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
