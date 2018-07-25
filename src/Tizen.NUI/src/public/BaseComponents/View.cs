@@ -476,7 +476,6 @@ namespace Tizen.NUI.BaseComponents
             Size temp = new Size(0.0f, 0.0f, 0.0f);
             Tizen.NUI.Object.GetProperty(view.swigCPtr, View.Property.SIZE).Get(temp);
             Size2D size = new Size2D((int)temp.Width, (int)temp.Height);
-            Console.WriteLine($"View Size2DProperty get width: {size.Width} height: {size.Height}");
             return size;
         });
         /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
@@ -522,7 +521,6 @@ namespace Tizen.NUI.BaseComponents
             {
                 Tizen.NUI.Object.SetProperty(view.swigCPtr, View.Property.POSITION_USES_ANCHOR_POINT, new Tizen.NUI.PropertyValue((bool)newValue));
             }
-            Console.WriteLine("View PositionUsesPivotPointProperty changed: oldValue: " + oldValue + ", newValue: " + newValue);
         },
         defaultValueCreator:(bindable) =>
         {
@@ -586,7 +584,6 @@ namespace Tizen.NUI.BaseComponents
             {
                 Tizen.NUI.Object.SetProperty(view.swigCPtr, View.Property.PARENT_ORIGIN, new Tizen.NUI.PropertyValue((Position)newValue));
             }
-            Console.WriteLine("View ParentOriginProperty changed: oldValue: " + oldValue + ", newValue: " + newValue);
         },
         defaultValueCreator:(bindable) =>
         {
@@ -605,7 +602,6 @@ namespace Tizen.NUI.BaseComponents
             {
                 Tizen.NUI.Object.SetProperty(view.swigCPtr, View.Property.ANCHOR_POINT, new Tizen.NUI.PropertyValue((Position)newValue));
             }
-            Console.WriteLine("View PivotPointProperty changed: oldValue: " + oldValue + ", newValue: " + newValue);
         },
         defaultValueCreator:(bindable) =>
         {
@@ -623,14 +619,12 @@ namespace Tizen.NUI.BaseComponents
             {
                 Tizen.NUI.Object.SetProperty(view.swigCPtr, View.Property.SIZE_WIDTH, new Tizen.NUI.PropertyValue((float)newValue));
             }
-            Console.WriteLine("View SizeWidthProperty changed: oldValue: " + oldValue + ", newValue: " + newValue);
         },
         defaultValueCreator:(bindable) =>
         {
             var view = (View)bindable;
             float temp = 0.0f;
             Tizen.NUI.Object.GetProperty(view.swigCPtr, View.Property.SIZE_WIDTH).Get(out temp);
-            Console.WriteLine($"View SizeWidthProperty get Value: {temp}");
             return temp;
         });
         /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
@@ -642,14 +636,12 @@ namespace Tizen.NUI.BaseComponents
             {
                 Tizen.NUI.Object.SetProperty(view.swigCPtr, View.Property.SIZE_HEIGHT, new Tizen.NUI.PropertyValue((float)newValue));
             }
-            Console.WriteLine("View SizeHeightProperty changed: oldValue: " + oldValue + ", newValue: " + newValue);
         },
         defaultValueCreator:(bindable) =>
         {
             var view = (View)bindable;
             float temp = 0.0f;
             Tizen.NUI.Object.GetProperty(view.swigCPtr, View.Property.SIZE_HEIGHT).Get(out temp);
-            Console.WriteLine($"View SizeHeightProperty get Value: {temp}");
             return temp;
         });
         /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
