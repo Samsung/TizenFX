@@ -36,7 +36,6 @@ namespace Tizen.NUI.UIComponents
     /// When the button is disabled, the background button and the selected visuals are replaced by their disabled visuals.<br />
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
-    [ContentProperty("LabelText")]
     public class Button : View
     {
         /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.

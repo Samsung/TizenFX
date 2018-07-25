@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <ContentPage x:Class="Tizen.NUI.Examples.ScrollBarTestPage"
   xmlns="http://tizen.org/Tizen.NUI/2018/XAML"
-  xmlns:l="clr-namespace:Tizen.UI_Xaml;assembly=Tizen.UI_Xaml"
   xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
 
       <ScrollBar BackgroundColor="Green" ScrollDirection="Horizontal" Size2D="400,80" PositionY="50" ParentOrigin="TopLeft" PivotPoint="TopLeft" PositionUsesPivotPoint="true" />
