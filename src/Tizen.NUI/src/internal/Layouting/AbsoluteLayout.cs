@@ -17,9 +17,11 @@ using System.ComponentModel;
 
 namespace Tizen.NUI
 {
-    /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
-    [EditorBrowsable(EditorBrowsableState.Never)]
-    public class AbsoluteLayout : LayoutGroupWrapper
+    /// <summary>
+    /// [Draft] This class implements a absolute layout, allowing explict positioning of children.
+    ///  Positions are from the top left of the layout and can be set using the Actor::Property::POSITION and alike.
+    /// </summary>
+    internal class AbsoluteLayout : LayoutGroupWrapper
     {
         private global::System.Runtime.InteropServices.HandleRef swigCPtr;
 
@@ -33,8 +35,6 @@ namespace Tizen.NUI
             return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
         }
 
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
         protected virtual void Dispose(DisposeTypes type)
         {
             if (disposed)
@@ -65,22 +65,32 @@ namespace Tizen.NUI
             base.Dispose(type);
         }
 
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <summary>
+        /// [Draft] Creates a AbsoluteLayout object.
+        /// </summary>
         public AbsoluteLayout() : this(LayoutPINVOKE.AbsoluteLayout_New(), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public static AbsoluteLayout DownCast(BaseHandle handle)
+        /// <summary>
+        /// [Draft] Downcasts a handle to a AbsoluteLayout handle. 
+        /// If handle points to a AbsoluteLayout, the downcast produces a valid handle. 
+        /// If not, the returned handle is left uninitialized.
+        /// </summary>
+        /// <param name="handle">handle to an object</param>
+        /// <returns>Handle to a AbsoluteLayout or an uninitialized handle</returns>
+        internal static AbsoluteLayout DownCast(BaseHandle handle)
         {
             AbsoluteLayout ret = new AbsoluteLayout(LayoutPINVOKE.AbsoluteLayout_DownCast(BaseHandle.getCPtr(handle)), true);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
+        /// <summary>
+        /// [Draft] Copy constructor
+        /// </summary>
+        /// <param name="other"></param>
         internal AbsoluteLayout(AbsoluteLayout other) : this(LayoutPINVOKE.new_AbsoluteLayout__SWIG_1(AbsoluteLayout.getCPtr(other)), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
