@@ -1,0 +1,10 @@
+<Project>
+
+	<Import Project="$(MSBuildThisFileDirectory)..\..\build\common.props" />
+  <Import Project="$(MSBuildThisFileDirectory)..\..\build\directories.props" />
+
+  <PropertyGroup>
+    <ArtifactsDirectory>$(OutputExternalDir)</ArtifactsDirectory>
+  </PropertyGroup>
+
+</Project>

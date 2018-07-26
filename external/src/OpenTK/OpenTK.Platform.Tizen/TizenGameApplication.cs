@@ -14,7 +14,6 @@
  * limitations under the License.
  */
 
-using System;
 using Tizen.Applications;
 
 namespace OpenTK.Platform.Tizen
@@ -32,6 +31,21 @@ namespace OpenTK.Platform.Tizen
         /// </summary>
         /// <since_tizen> 5 </since_tizen>
         public IGameWindow Window => window;
+
+        /// <summary>
+        /// The major version for the OpenGL GraphicsContext.
+        /// </summary>
+        public int GLMajor { get; set; } = 2;
+
+        /// <summary>
+        /// The minor version for the OpenGL GraphicsContext.
+        /// </summary>
+        public int GLMinor { get; set; } = 0;
+
+        /// <summary>
+        /// The format for graphics operations.
+        /// </summary>
+        public Graphics.GraphicsMode GraphicsMode { get; set; } = Graphics.GraphicsMode.Default;
 
         /// <summary>
         /// Initializes the TizenGameApplication class.
@@ -73,7 +87,6 @@ namespace OpenTK.Platform.Tizen
             Run(args, 0.0, 0.0);
         }
 
-
         /// <summary>
         /// Runs the UI application's main loop. The GameWindow uses the specified update rate.
         /// </summary>
@@ -100,8 +113,9 @@ namespace OpenTK.Platform.Tizen
             Toolkit.Init();
 
             // Set Create Window
-            Backend.AddEventHandler(TizenGameCoreBackend.WindowCreationEventType, () => {
-                window = new TizenGameWindow();
+            Backend.AddEventHandler(TizenGameCoreBackend.WindowCreationEventType, () =>
+            {
+                window = new TizenGameWindow(GraphicsMode, DisplayDevice.Default, GLMajor, GLMinor);
             });
 
             // Configure callbacks for application events

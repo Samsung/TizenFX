@@ -51,7 +51,7 @@ namespace OpenTK.Platform.Tizen
 
         protected override void Dispose(bool disposing)
         {
-           if (!disposed)
+            if (!disposed)
             {
                 if (disposing)
                 {

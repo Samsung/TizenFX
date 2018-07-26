@@ -10,7 +10,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Tizen.Applications.UI\Tizen.Applications.UI.csproj" />
+    <ProjectReference Include="$(ProjectSrcDir)Tizen.Applications.UI\Tizen.Applications.UI.csproj" />
   </ItemGroup>
 
   <Target Name="_AfterBuild" AfterTargets="Build" Condition="'$(IsDummyBuild)' != 'True'">
