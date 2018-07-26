@@ -1,0 +1,21 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>exe</OutputType>
+    <TargetFramework>netcoreapp2.0</TargetFramework>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <AssemblyName>Generator.Rewrite</AssemblyName>
+    <Deterministic>True</Deterministic>
+    <DefineConstants>NET_CORE</DefineConstants>
+    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+    <NoWarn>$(NoWarn);NU1605</NoWarn>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Mono.Cecil" Version="0.10.0" />
+    <PackageReference Include="CommandLineParser" Version="2.2.0" />
+  </ItemGroup>
+
+</Project>
