@@ -573,7 +573,7 @@ namespace Tizen.Network.Bluetooth
                     {
                         _characteristicValueChangedCallback = (gattHandle, characteristicValue, len, userData) =>
                         {
-                            _characteristicValueChanged?.Invoke(this, new ValueChangedEventArgs(characteristicValue));
+                            _characteristicValueChanged?.Invoke(this, new ValueChangedEventArgs(characteristicValue, len));
                         };
 
                         _impl.SetCharacteristicValueChangedEvent(_characteristicValueChangedCallback);
@@ -894,7 +894,7 @@ namespace Tizen.Network.Bluetooth
                 {
                     _writeValueRequestedCallback = (clientAddress, requestId, serverHandle, gattHandle, offset, response_needed, valueToWrite, len, userData) =>
                     {
-                        _writeValueRequested?.Invoke(this, new WriteRequestedEventArgs(Server, clientAddress, requestId, valueToWrite, offset, response_needed));
+                        _writeValueRequested?.Invoke(this, new WriteRequestedEventArgs(Server, clientAddress, requestId, valueToWrite, len, offset, response_needed));
                     };
                     Impl.SetWriteValueRequestedEventCallback(_writeValueRequestedCallback);
                 }
