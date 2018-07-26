@@ -982,8 +982,9 @@ namespace Tizen.Network.Bluetooth
     /// <since_tizen> 3 </since_tizen>
     public class ValueChangedEventArgs : EventArgs
     {
-        internal ValueChangedEventArgs(byte[] value)
+        internal ValueChangedEventArgs(byte[] value, int len)
         {
+            byte[] Value = new byte[len];
             Value = value;
         }
 
@@ -1036,11 +1037,12 @@ namespace Tizen.Network.Bluetooth
     /// <since_tizen> 3 </since_tizen>
     public class WriteRequestedEventArgs : EventArgs
     {
-        internal WriteRequestedEventArgs(BluetoothGattServer server, string clientAddress, int requestId, byte[] value, int offset, bool response_needed)
+        internal WriteRequestedEventArgs(BluetoothGattServer server, string clientAddress, int requestId, byte[] value, int len, int offset, bool response_needed)
         {
             Server = server;
             ClientAddress = clientAddress;
             RequestId = requestId;
+            byte[] Value = new byte[len];
             Value = value;
             Offset = offset;
             Response_needed = response_needed;
