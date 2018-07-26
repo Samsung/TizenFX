@@ -190,9 +190,10 @@ namespace Tizen.Multimedia.Util
             }
         }
 
+        private static Native.ThumbnailExtractCallback thumbnailExtractCallback;
         private static Native.ThumbnailExtractCallback GetCallback(TaskCompletionSource<ThumbnailExtractionResult> tcs)
         {
-            return (error, requestId, thumbWidth, thumbHeight, thumbData, dataSize, _) =>
+            return thumbnailExtractCallback = (error, requestId, thumbWidth, thumbHeight, thumbData, dataSize, _) =>
             {
                 if (error == ThumbnailExtractorError.None)
                 {
