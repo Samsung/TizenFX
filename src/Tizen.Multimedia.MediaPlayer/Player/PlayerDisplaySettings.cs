@@ -30,6 +30,7 @@ namespace Tizen.Multimedia
         /// <summary>
         /// This constructor supports the product infrastructure and is not intended to be used directly from application code.
         /// </summary>
+        /// <param name="player"> The handle for the media player </param>
         /// <since_tizen> 4 </since_tizen>
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected PlayerDisplaySettings(Player player)
