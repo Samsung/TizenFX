@@ -60,6 +60,8 @@ namespace Tizen.Multimedia
         /// The class takes care of the life cycle of the handle.
         /// Thus, it should not be closed/destroyed in another location.
         /// </summary>
+        /// <param name="handle">The handle for the media player.</param>
+        /// <param name="errorHandler">The handle for occuring error.</param>
         /// <remarks>
         /// This supports the product infrastructure and is not intended to be used directly from application code.
         /// </remarks>
@@ -209,6 +211,7 @@ namespace Tizen.Multimedia
         /// <summary>
         /// Sets the subtitle path for playback.
         /// </summary>
+        /// <param name="path">The absolute path of the subtitle file, it can be NULL in the <see cref="PlayerState.Idle"/> state.</param>
         /// <remarks>Only MicroDVD/SubViewer(*.sub), SAMI(*.smi), and SubRip(*.srt) subtitle formats are supported.
         ///     <para>The mediastorage privilege(http://tizen.org/privilege/mediastorage) must be added if any files are used to play located in the internal storage.
         ///     The externalstorage privilege(http://tizen.org/privilege/externalstorage) must be added if any files are used to play located in the external storage.</para>
@@ -529,6 +532,7 @@ namespace Tizen.Multimedia
         /// <summary>
         /// Gets the play position in milliseconds.
         /// </summary>
+        /// <returns>The current position in milliseconds.</returns>
         /// <remarks>The player must be in the <see cref="PlayerState.Ready"/>, <see cref="PlayerState.Playing"/>,
         /// or <see cref="PlayerState.Paused"/> state.</remarks>
         /// <exception cref="ObjectDisposedException">The player has already been disposed of.</exception>
@@ -596,6 +600,7 @@ namespace Tizen.Multimedia
         /// </summary>
         /// <param name="position">The value indicating a desired position in milliseconds.</param>
         /// <param name="accurate">The value indicating whether the operation performs with accuracy.</param>
+        /// <returns>A task that represents the asynchronous operation.</returns>
         /// <remarks>
         ///     <para>The player must be in the <see cref="PlayerState.Ready"/>, <see cref="PlayerState.Playing"/>,
         ///     or <see cref="PlayerState.Paused"/> state.</para>
@@ -621,6 +626,7 @@ namespace Tizen.Multimedia
         /// <summary>
         /// Gets the play position in nanoseconds.
         /// </summary>
+        /// <returns>The current position in nanoseconds.</returns>
         /// <remarks>The player must be in the <see cref="PlayerState.Ready"/>, <see cref="PlayerState.Playing"/>,
         /// or <see cref="PlayerState.Paused"/> state.</remarks>
         /// <exception cref="ObjectDisposedException">The player has already been disposed of.</exception>
@@ -646,6 +652,7 @@ namespace Tizen.Multimedia
         /// </summary>
         /// <param name="position">The value indicating a desired position in nanoseconds.</param>
         /// <param name="accurate">The value indicating whether the operation performs with accuracy.</param>
+        /// <returns>A task that represents the asynchronous operation.</returns>
         /// <remarks>
         ///     <para>The player must be in the <see cref="PlayerState.Ready"/>, <see cref="PlayerState.Playing"/>,
         ///     or <see cref="PlayerState.Paused"/> state.</para>
