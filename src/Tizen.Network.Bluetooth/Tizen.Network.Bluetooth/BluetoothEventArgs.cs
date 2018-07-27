@@ -982,16 +982,19 @@ namespace Tizen.Network.Bluetooth
     /// <since_tizen> 3 </since_tizen>
     public class ValueChangedEventArgs : EventArgs
     {
-        internal ValueChangedEventArgs(byte[] value)
+        internal ValueChangedEventArgs()
         {
-            Value = value;
         }
 
         /// <summary>
         /// The attribute value.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        public byte[] Value { get; }
+        public byte[] Value
+        {
+            get;
+            internal set;
+        }
     }
 
     /// <summary>
@@ -1036,46 +1039,64 @@ namespace Tizen.Network.Bluetooth
     /// <since_tizen> 3 </since_tizen>
     public class WriteRequestedEventArgs : EventArgs
     {
-        internal WriteRequestedEventArgs(BluetoothGattServer server, string clientAddress, int requestId, byte[] value, int offset, bool response_needed)
+        internal WriteRequestedEventArgs()
         {
-            Server = server;
-            ClientAddress = clientAddress;
-            RequestId = requestId;
-            Value = value;
-            Offset = offset;
-            Response_needed = response_needed;
         }
 
         /// <summary>
         /// The GATT server instance.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        public BluetoothGattServer Server { get; }
+        public BluetoothGattServer Server
+        {
+            get;
+            internal set;
+        }
         /// <summary>
         /// The client address.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        public string ClientAddress { get; }
+        public string ClientAddress
+        {
+            get;
+            internal set;
+        }
         /// <summary>
         /// The request identifier.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        public int RequestId { get; }
+        public int RequestId
+        {
+            get;
+            internal set;
+        }
         /// <summary>
         /// The read value.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        public byte[] Value { get; }
+        public byte[] Value
+        {
+            get;
+            internal set;
+        }
         /// <summary>
         /// The offset.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        public int Offset { get; }
+        public int Offset
+        {
+            get;
+            internal set;
+        }
         /// <summary>
         /// Indicates whether a response is required by the remote device.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        public bool Response_needed { get; }
+        public bool Response_needed
+        {
+            get;
+            internal set;
+        }
     }
 
     /// <summary>
