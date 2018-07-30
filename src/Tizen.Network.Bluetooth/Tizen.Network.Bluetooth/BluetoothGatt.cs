@@ -573,7 +573,7 @@ namespace Tizen.Network.Bluetooth
                     {
                         _characteristicValueChangedCallback = (gattHandle, characteristicValue, len, userData) =>
                         {
-                            _characteristicValueChanged?.Invoke(this, new ValueChangedEventArgs(characteristicValue));
+                            _characteristicValueChanged?.Invoke(this, new ValueChangedEventArgs(characteristicValue, len));
                         };
 
                         _impl.SetCharacteristicValueChangedEvent(_characteristicValueChangedCallback);
