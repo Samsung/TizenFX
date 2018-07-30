@@ -380,10 +380,15 @@ namespace Tizen.Multimedia
         /// Starts or resumes playback.
         /// </summary>
         /// <remarks>
-        /// The player must be in the <see cref="PlayerState.Ready"/> or <see cref="PlayerState.Paused"/> state.
+        /// Sound can be mixed with other sounds if you don't control the stream focus using <see cref="ApplyAudioStreamPolicy"/>.<br/>
+        /// Before Tizen 5.0, The player must be in the <see cref="PlayerState.Ready"/> or <see cref="PlayerState.Paused"/> state.
         /// It has no effect if the player is already in the <see cref="PlayerState.Playing"/> state.<br/>
-        /// <br/>
-        /// Sound can be mixed with other sounds if you don't control the stream focus using <see cref="ApplyAudioStreamPolicy"/>.
+        /// Since Tizen 5.0, The player must be in the <see cref="PlayerState.Ready"/>, <see cref="PlayerState.Playing"/>,
+        /// or <see cref="PlayerState.Paused"/> state.<br/>
+        /// In case of HTTP streaming playback, the player could be internally paused for buffering.
+        /// If the application calls this function during the buffering, the playback will be resumed by force
+        /// and the buffering message posting by player_buffering_cb() will be stopped.<br/>
+        /// In other cases, the player will keep playing without returning error.
         /// </remarks>
         /// <exception cref="ObjectDisposedException">The player has already been disposed of.</exception>
         /// <exception cref="InvalidOperationException">The player is not in the valid state.</exception>
@@ -392,15 +397,11 @@ namespace Tizen.Multimedia
         /// <seealso cref="Pause"/>
         /// <seealso cref="PlaybackCompleted"/>
         /// <seealso cref="ApplyAudioStreamPolicy"/>
+        /// <seealso cref="BufferingProgressChanged"/>
         /// <since_tizen> 3 </since_tizen>
         public virtual void Start()
         {
-            if (State == PlayerState.Playing)
-            {
-                Log.Warn(PlayerLog.Tag, "playing state already");
-                return;
-            }
-            ValidatePlayerState(PlayerState.Ready, PlayerState.Paused);
+            ValidatePlayerState(PlayerState.Ready, PlayerState.Paused, PlayerState.Playing);
 
             NativePlayer.Start(Handle).ThrowIfFailed(this, "Failed to start the player");
         }
