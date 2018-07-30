@@ -478,7 +478,7 @@ internal static partial class Interop
         internal delegate void BtGattServerWriteValueRequestedCallback(string clientAddress, int requestId, IntPtr serverHandle, IntPtr gattHandle, int offset, bool response_needed, byte[] value, int len, IntPtr userData);
 
         [UnmanagedFunctionPointerAttribute(CallingConvention.Cdecl)]
-        internal delegate void BtClientCharacteristicValueChangedCallback(IntPtr characteristicHandle, byte[] value, int len, IntPtr userData);
+        internal delegate void BtClientCharacteristicValueChangedCallback(IntPtr characteristicHandle, IntPtr value, int len, IntPtr userData);
 
         [UnmanagedFunctionPointerAttribute(CallingConvention.Cdecl)]
         internal delegate void BtGattServerNotificationStateChangeCallback(bool notify, IntPtr serverHandle, IntPtr characteristicHandle, IntPtr userData);
