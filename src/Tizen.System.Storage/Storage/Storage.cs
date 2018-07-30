@@ -26,7 +26,8 @@ namespace Tizen.System
     {
         private const string LogTag = "Tizen.System";
         private Interop.Storage.StorageState _state;
-        private StorageDevice _devicetype;
+        private Interop.Storage.StorageDevice _devicetype;
+	     private Interop.Storage.StorageArea _storagetype;
         private string _fstype;
         private string _fsuuid;
         private ulong _totalSpace;
@@ -37,7 +38,7 @@ namespace Tizen.System
         internal Storage(int storageID, Interop.Storage.StorageArea storageType, Interop.Storage.StorageState storagestate, string rootDirectory)
         {
             Id = storageID;
-            StorageType = (StorageArea)storageType;
+            _storagetype = storageType;
             RootDirectory = rootDirectory;
             _state = storagestate;
 
@@ -61,10 +62,10 @@ namespace Tizen.System
         internal Storage(int storageID, Interop.Storage.StorageArea storageType, Interop.Storage.StorageState storagestate, string rootDirectory, Interop.Storage.StorageDevice devicetype, string fstype, string fsuuid, bool primary, int flags)
         {
             Id = storageID;
-            StorageType = (StorageArea)storageType;
+            _storagetype = storageType;
             RootDirectory = rootDirectory;
             _state = storagestate;
-            _devicetype = (StorageDevice)devicetype;
+            _devicetype = devicetype;
             _fstype = fstype;
             _fsuuid = fsuuid;
             _primary = primary;
@@ -157,7 +158,7 @@ namespace Tizen.System
         /// The type of storage.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        public StorageArea StorageType { get; }
+        public StorageArea StorageType { get { return (StorageArea)_storagetype; } }
         /// <summary>
         /// The root directory for the storage.
         /// </summary>
@@ -198,10 +199,10 @@ namespace Tizen.System
         {
             get
             {
-                if (!information_set)
+                Interop.Storage.ErrorCode err = Interop.Storage.StorageGetTypeDev(Id, out _storagetype, out _devicetype);
+                if (err != Interop.Storage.ErrorCode.None)
                 {
-                    Log.Error(LogTag, string.Format("Doesn't know StorageDevice type."));
-                    throw new InvalidOperationException("Doesn't know StorageDevice type");
+                    Log.Warn(LogTag, string.Format("Failed to get storage device type for storage Id: {0}. err = {1}", Id, err));
                 }
                 return (StorageDevice)_devicetype;
             }
