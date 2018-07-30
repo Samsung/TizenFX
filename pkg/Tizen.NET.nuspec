@@ -13,7 +13,7 @@
     <copyright>© Samsung Electronics Co., Ltd All Rights Reserved</copyright>
     <dependencies>
       <group targetFramework="Tizen4.0">
-        <dependency id="Tizen.NET.API4" version="4.0.1.14139" />
+        <dependency id="Tizen.NET.API4" version="4.0.1.14146" />
         <dependency id="Microsoft.NETCore.Platforms" version="2.0.0" />
       </group>
       <group targetFramework="Tizen5.0">
