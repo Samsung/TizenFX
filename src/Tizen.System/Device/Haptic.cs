@@ -1,5 +1,5 @@
 /*
-* Copyright (c) 2016 Samsung Electronics Co., Ltd All Rights Reserved
+* Copyright (c) 2018 Samsung Electronics Co., Ltd All Rights Reserved
 *
 * Licensed under the Apache License, Version 2.0 (the License);
 * you may not use this file except in compliance with the License.
@@ -29,6 +29,13 @@ namespace Tizen.System
     /// <privilege>
     /// http://tizen.org/privilege/haptic
     /// </privilege>
+    /// <feature>
+    /// http://tizen.org/feature/feedback.vibration
+    /// </feature>
+    /// <exception cref="ArgumentException"> When an invalid parameter value is set.</exception>
+    /// <exception cref="UnauthorizedAccessException">If the privilege is not set.</exception>
+    /// <exception cref="InvalidOperationException">In case of any system error.</exception>
+    /// <exception creg="NotSupportedException">The required feature is not supported</exception>
     /// <example>
     /// <code>
     ///     Console.WriteLine("Total number of Vibrators are: {0}", Tizen.System.Vibrator.NumberOfVibrators);
@@ -117,6 +124,9 @@ namespace Tizen.System
         /// <since_tizen> 3 </since_tizen>
         /// <param name="duration">The play duration in milliseconds.</param>
         /// <param name="feedback">The amount of the intensity variation (0 ~ 100).</param>
+        /// <feature>
+        /// http://tizen.org/feature/feedback.vibration
+        /// </feature>
         /// <exception cref="ArgumentException"> When an invalid parameter value is set.</exception>
         /// <exception cref="UnauthorizedAccessException">If the privilege is not set.</exception>
         /// <exception cref="InvalidOperationException">In case of any system error.</exception>
@@ -158,6 +168,9 @@ namespace Tizen.System
         /// This function can be used to stop all the effects started by Vibrate().
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        /// <feature>
+        /// http://tizen.org/feature/feedback.vibration
+        /// </feature>
         /// <exception cref="ArgumentException"> In case an invalid vibrator instance is used.</exception>
         /// <exception cref="UnauthorizedAccessException">If the privilege is not set.</exception>
         /// <exception cref="InvalidOperationException">In case of any system error.</exception>

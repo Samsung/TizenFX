@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2016 Samsung Electronics Co., Ltd All Rights Reserved
+ * Copyright (c) 2018 Samsung Electronics Co., Ltd All Rights Reserved
  *
  * Licensed under the Apache License, Version 2.0 (the License);
  * you may not use this file except in compliance with the License.
@@ -54,9 +54,38 @@ namespace Tizen.Network.WiFi
                     else
                     {
                         _essid = Marshal.PtrToStringAnsi(strPtr);
+                        Interop.Libc.Free(strPtr);
                     }
                 }
                 return _essid;
+            }
+        }
+
+        /// <summary>
+        /// The raw Service Set Identifier (SSID).
+        /// </summary>
+        /// <since_tizen> 5 </since_tizen>
+        /// <value>Raw SSID of the Wi-Fi.</value>
+        public byte[] RawSsid
+        {
+            get
+            {
+                IntPtr ptr;
+                byte[] rawSsid;
+                int length;
+                int ret = Interop.WiFi.AP.GetRawSsid(_apHandle, out ptr, out length);
+                if (ret != (int)WiFiError.None || length == 0)
+                {
+                    Log.Error(Globals.LogTag, "Failed to get raw essid, Error - " + (WiFiError)ret);
+                    rawSsid = null;
+                }
+                else
+                {
+                    rawSsid = new byte[length];
+                    Marshal.Copy(ptr, rawSsid, 0, length);
+                    Interop.Libc.Free(ptr);
+                }
+                return rawSsid;
             }
         }
 
@@ -69,14 +98,19 @@ namespace Tizen.Network.WiFi
         {
             get
             {
+                string bssid;
                 IntPtr strPtr;
                 int ret = Interop.WiFi.AP.GetBssid(_apHandle, out strPtr);
                 if (ret != (int)WiFiError.None)
                 {
                     Log.Error(Globals.LogTag, "Failed to get bssid, Error - " + (WiFiError)ret);
-                    return "";
+                    bssid = "";
                 }
-                return Marshal.PtrToStringAnsi(strPtr);
+                else
+                {
+                    bssid = Marshal.PtrToStringAnsi(strPtr);
+                }
+                return bssid;
             }
         }
 
@@ -118,14 +152,19 @@ namespace Tizen.Network.WiFi
         {
             get
             {
+                string proxy;
                 IntPtr strPtr;
                 int ret = Interop.WiFi.AP.GetProxyAddress(_apHandle, (int)AddressFamily.IPv4, out strPtr);
                 if (ret != (int)WiFiError.None)
                 {
                     Log.Error(Globals.LogTag, "Failed to get proxy address, Error - " + (WiFiError)ret);
-                    return "";
+                    proxy = "";
                 }
-                return Marshal.PtrToStringAnsi(strPtr);
+                else
+                {
+                    proxy = Marshal.PtrToStringAnsi(strPtr);
+                }
+                return proxy;
             }
             set
             {
@@ -306,13 +345,38 @@ namespace Tizen.Network.WiFi
         }
 
         /// <summary>
+        /// The raw country code
+        /// </summary>
+        /// <since_tizen> 5 </since_tizen>
+        /// <value>Represents the raw country code of the Wi-Fi.</value>
+        public string CountryCode
+        {
+            get
+            {
+                string code;
+                IntPtr strPtr;
+                int ret = Interop.WiFi.AP.GetCountryCode(_apHandle, out strPtr);
+                if (ret != (int)WiFiError.None)
+                {
+                    Log.Error(Globals.LogTag, "Failed to get country code, Error - " + (WiFiError)ret);
+                    code = "";
+                }
+                else
+                {
+                    code = Marshal.PtrToStringAnsi(strPtr);
+                    Interop.Libc.Free(strPtr);
+                }
+                return code;
+            }
+        }
+
+        /// <summary>
         /// Gets all IPv6 addresses of the access point.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <returns>A list of IPv6 addresses of the access point.</returns>
         /// <feature>http://tizen.org/feature/network.wifi</feature>
         /// <exception cref="NotSupportedException">Thrown when the Wi-Fi is not supported.</exception>
-        /// <exception cref="ArgumentException">Thrown when the method failed due to an invalid parameter.</exception>
         /// <exception cref="InvalidOperationException">Thrown when the method failed due to an invalid operation.</exception>
         public IEnumerable<System.Net.IPAddress> GetAllIPv6Addresses()
         {
@@ -336,10 +400,50 @@ namespace Tizen.Network.WiFi
             if (ret != (int)WiFiError.None)
             {
                 Log.Error(Globals.LogTag, "Failed to get all IPv6 addresses, Error - " + (WiFiError)ret);
+                if (ret == (int)WiFiError.InvalidParameterError)
+                {
+                    throw new InvalidOperationException("Invalid handle");
+                }
                 WiFiErrorFactory.ThrowWiFiException(ret, _apHandle.DangerousGetHandle());
             }
 
             return ipList;
+        }
+
+        /// <summary>
+        /// Gets the Bssid list
+        /// </summary>
+        /// <since_tizen> 5 </since_tizen>
+        /// <returns>A list of BSSIDs of access points with the same SSID as that of this access point.</returns>
+        /// <feature>http://tizen.org/feature/network.wifi</feature>
+        /// <exception cref="NotSupportedException">Thrown when the Wi-Fi is not supported.</exception>
+        /// <exception cref="InvalidOperationException">Thrown when the method failed due to an invalid operation.</exception>
+        public IEnumerable<string> GetBssids()
+        {
+            Log.Debug(Globals.LogTag, "GetBssids");
+            List<string> bssidList = new List<string>();
+            Interop.WiFi.AP.FoundBssidCallback callback = (string bssid, int rssi, int freq, IntPtr userData) =>
+            {
+                if (string.IsNullOrEmpty(bssid))
+                {
+                    bssidList.Add(bssid);
+                    return true;
+                }
+                return false;
+            };
+
+            int ret = Interop.WiFi.AP.GetBssids(_apHandle, callback, IntPtr.Zero);
+            if (ret != (int)WiFiError.None)
+            {
+                Log.Error(Globals.LogTag, "Failed to get BSSIDs, Error - " + (WiFiError)ret);
+                if (ret == (int)WiFiError.InvalidParameterError)
+                {
+                    throw new InvalidOperationException("Invalid handle");
+                }
+                WiFiErrorFactory.ThrowWiFiException(ret, _apHandle.DangerousGetHandle());
+            }
+
+            return bssidList;
         }
 
         internal WiFiNetwork(Interop.WiFi.SafeWiFiAPHandle apHandle)
@@ -353,8 +457,12 @@ namespace Tizen.Network.WiFi
             if (ret != (int)WiFiError.None)
             {
                 Log.Error(Globals.LogTag, "Failed to get essid, Error - " + (WiFiError)ret);
+                _essid = "";
             }
-            _essid = Marshal.PtrToStringAnsi(strPtr);
+            else
+            {
+                _essid = Marshal.PtrToStringAnsi(strPtr);
+            }
         }
     } //WiFiNetworkInformation
 }

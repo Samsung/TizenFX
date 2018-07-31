@@ -1,5 +1,5 @@
 /*
- * Copyright(c) 2017 Samsung Electronics Co., Ltd.
+ * Copyright(c) 2018 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -15,6 +15,8 @@
  *
  */
 
+using System;
+using System.ComponentModel;
 using System.Reflection;
 using Tizen.NUI.BaseComponents;
 
@@ -204,12 +206,26 @@ namespace Tizen.NUI
             return ret;
         }
 
+        /// <summary>
+        /// [Obsolete("Please do not use! this will be deprecated")]
+        /// </summary>
+        /// Please do not use! this will be deprecated!
+        /// <since_tizen> 5 </since_tizen>
+        [Obsolete("Please do not use! this will be deprecated.")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public void AccessibilityActivate()
         {
             NDalicPINVOKE.ViewImpl_AccessibilityActivate(swigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
+        /// <summary>
+        /// [Obsolete("Please do not use! this will be deprecated")]
+        /// </summary>
+        /// Please do not use! this will be deprecated!
+        /// <since_tizen> 5 </since_tizen>
+        [Obsolete("Please do not use! this will be deprecated.")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public void KeyboardEnter()
         {
             NDalicPINVOKE.ViewImpl_KeyboardEnter(swigCPtr);
@@ -237,6 +253,13 @@ namespace Tizen.NUI
             return ret;
         }
 
+        /// <summary>
+        /// [Obsolete("Please do not use! this will be deprecated")]
+        /// </summary>
+        /// Please do not use! this will be deprecated!
+        /// <since_tizen> 5 </since_tizen>
+        [Obsolete("Please do not use! this will be deprecated.")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public bool EmitKeyEventSignal(Key arg0)
         {
             bool ret = NDalicPINVOKE.ViewImpl_EmitKeyEventSignal(swigCPtr, Key.getCPtr(arg0));

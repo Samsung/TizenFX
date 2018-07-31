@@ -14,6 +14,8 @@
  * limitations under the License.
  *
  */
+using System;
+using Tizen.NUI.Binding;
 
 namespace Tizen.NUI
 {
@@ -22,6 +24,7 @@ namespace Tizen.NUI
     /// A three-dimensional vector.
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
+    [TypeConverter(typeof(Vector3TypeConverter))]
     public class Vector3 : global::System.IDisposable
     {
         private global::System.Runtime.InteropServices.HandleRef swigCPtr;
@@ -528,6 +531,22 @@ namespace Tizen.NUI
             Vector3 ret = new Vector3(NDalicPINVOKE.Vector3_Cross(swigCPtr, Vector3.getCPtr(other)), true);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
+        }
+
+        /// <summary>
+        /// Determines whether the specified object is equal to the current object.
+        /// </summary>
+        /// <param name="obj">The object to compare with the current object.</param>
+        /// <returns>true if the specified object is equal to the current object; otherwise, false.</returns>
+        public override bool Equals(System.Object obj)
+        {
+            Vector3 vector3 = obj as Vector3;
+            bool equal = false;
+            if (X == vector3?.X && Y == vector3?.Y && Z == vector3?.Z)
+            {
+                equal = true;
+            }
+            return equal;
         }
 
         /// <summary>

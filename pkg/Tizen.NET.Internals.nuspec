@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd">
   <metadata>
     <id>Tizen.NET.Internals</id>
-    <version>$version$</version>
+    <version>$fxversion$</version>
     <authors>Samsung Electronics</authors>
     <owners>Samsung Electronics</owners>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>

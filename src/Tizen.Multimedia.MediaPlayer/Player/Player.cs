@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2016 Samsung Electronics Co., Ltd All Rights Reserved
+ * Copyright (c) 2018 Samsung Electronics Co., Ltd All Rights Reserved
  *
  * Licensed under the Apache License, Version 2.0 (the License);
  * you may not use this file except in compliance with the License.
@@ -13,14 +13,15 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
+using static Interop;
 using System;
-using System.Threading.Tasks;
-using System.Runtime.InteropServices;
+using System.ComponentModel;
 using System.Diagnostics;
 using System.IO;
+using System.Runtime.InteropServices;
 using System.Threading;
-using static Interop;
-using System.ComponentModel;
+using System.Threading.Tasks;
 
 namespace Tizen.Multimedia
 {
@@ -39,7 +40,7 @@ namespace Tizen.Multimedia
     /// </remarks>
     public partial class Player : IDisposable, IDisplayable<PlayerErrorCode>
     {
-        private PlayerHandle _handle;
+        private readonly PlayerHandle _handle;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="Player"/> class.
@@ -51,6 +52,43 @@ namespace Tizen.Multimedia
 
             Debug.Assert(_handle != null);
 
+            Initialize();
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Player"/> class with a native handle.
+        /// The class takes care of the life cycle of the handle.
+        /// Thus, it should not be closed/destroyed in another location.
+        /// </summary>
+        /// <param name="handle">The handle for the media player.</param>
+        /// <param name="errorHandler">The handle for occuring error.</param>
+        /// <remarks>
+        /// This supports the product infrastructure and is not intended to be used directly from application code.
+        /// </remarks>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected Player(IntPtr handle, Action<int, string> errorHandler)
+        {
+            // This constructor is to support TV product player.
+            // Be careful with 'handle'. It must be wrapped in safe handle, first.
+            _handle = handle != IntPtr.Zero ? new PlayerHandle(handle) :
+                throw new ArgumentException("Handle is invalid.", nameof(handle));
+
+            _errorHandler = errorHandler;
+        }
+
+        private bool _initialized;
+
+        /// <summary>
+        /// This supports the product infrastructure and is not intended to be used directly from application code.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected void Initialize()
+        {
+            if (_initialized)
+            {
+                throw new InvalidOperationException("It has already been initialized.");
+            }
+
             if (Features.IsSupported(PlayerFeatures.AudioEffect))
             {
                 _audioEffect = new AudioEffect(this);
@@ -61,7 +99,11 @@ namespace Tizen.Multimedia
                 RegisterVideoFrameDecodedCallback();
             }
 
-            DisplaySettings = PlayerDisplaySettings.Create(this);
+            RegisterEvents();
+
+            _displaySettings = PlayerDisplaySettings.Create(this);
+
+            _initialized = true;
         }
 
         internal void ValidatePlayerState(params PlayerState[] desiredStates)
@@ -92,7 +134,14 @@ namespace Tizen.Multimedia
             Dispose(true);
         }
 
-        private void Dispose(bool disposing)
+        /// <summary>
+        /// Releases the unmanaged resources used by the <see cref="Player"/>.
+        /// </summary>
+        /// <param name="disposing">
+        /// true to release both managed and unmanaged resources; false to release only unmanaged resources.
+        /// </param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected virtual void Dispose(bool disposing)
         {
             if (!_disposed)
             {
@@ -162,6 +211,7 @@ namespace Tizen.Multimedia
         /// <summary>
         /// Sets the subtitle path for playback.
         /// </summary>
+        /// <param name="path">The absolute path of the subtitle file, it can be NULL in the <see cref="PlayerState.Idle"/> state.</param>
         /// <remarks>Only MicroDVD/SubViewer(*.sub), SAMI(*.smi), and SubRip(*.srt) subtitle formats are supported.
         ///     <para>The mediastorage privilege(http://tizen.org/privilege/mediastorage) must be added if any files are used to play located in the internal storage.
         ///     The externalstorage privilege(http://tizen.org/privilege/externalstorage) must be added if any files are used to play located in the external storage.</para>
@@ -247,7 +297,6 @@ namespace Tizen.Multimedia
         /// <since_tizen> 3 </since_tizen>
         protected virtual void OnPreparing()
         {
-            RegisterEvents();
         }
 
         /// <summary>
@@ -269,11 +318,9 @@ namespace Tizen.Multimedia
 
             ValidatePlayerState(PlayerState.Idle);
 
-            SetDisplay(_display).ThrowIfFailed(this, "Failed to configure display of the player");
+            OnPreparing();
 
             SetPreparing();
-
-            OnPreparing();
 
             return Task.Factory.StartNew(() =>
             {
@@ -409,6 +456,13 @@ namespace Tizen.Multimedia
         private MediaSource _source;
 
         /// <summary>
+        /// Determines whether MediaSource has set.
+        /// This supports the product infrastructure and is not intended to be used directly from application code.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected bool HasSource => _source != null;
+
+        /// <summary>
         /// Sets a media source for the player.
         /// </summary>
         /// <param name="source">A <see cref="MediaSource"/> that specifies the source for playback.</param>
@@ -478,11 +532,14 @@ namespace Tizen.Multimedia
         /// <summary>
         /// Gets the play position in milliseconds.
         /// </summary>
+        /// <returns>The current position in milliseconds.</returns>
         /// <remarks>The player must be in the <see cref="PlayerState.Ready"/>, <see cref="PlayerState.Playing"/>,
         /// or <see cref="PlayerState.Paused"/> state.</remarks>
         /// <exception cref="ObjectDisposedException">The player has already been disposed of.</exception>
         /// <exception cref="InvalidOperationException">The player is not in the valid state.</exception>
         /// <seealso cref="SetPlayPositionAsync(int, bool)"/>
+        /// <seealso cref="SetPlayPositionNanosecondsAsync(long, bool)"/>
+        /// <seealso cref="GetPlayPositionNanoseconds"/>
         /// <since_tizen> 3 </since_tizen>
         public int GetPlayPosition()
         {
@@ -498,15 +555,17 @@ namespace Tizen.Multimedia
             return playPosition;
         }
 
-        private void SetPlayPosition(int milliseconds, bool accurate,
+        private void NativeSetPlayPosition(long position, bool accurate, bool nanoseconds,
             NativePlayer.SeekCompletedCallback cb)
         {
-            var ret = NativePlayer.SetPlayPosition(Handle, milliseconds, accurate, cb, IntPtr.Zero);
+            //Check if it is nanoseconds or milliseconds.
+            var ret = !nanoseconds ? NativePlayer.SetPlayPosition(Handle, (int)position, accurate, cb, IntPtr.Zero) :
+                NativePlayer.SetPlayPositionNanoseconds(Handle, position, accurate, cb, IntPtr.Zero);
 
             //Note that we assume invalid param error is returned only when the position value is invalid.
             if (ret == PlayerErrorCode.InvalidArgument)
             {
-                throw new ArgumentOutOfRangeException(nameof(milliseconds), milliseconds,
+                throw new ArgumentOutOfRangeException(nameof(position), position,
                     "The position is not valid.");
             }
             if (ret != PlayerErrorCode.None)
@@ -516,26 +575,8 @@ namespace Tizen.Multimedia
             ret.ThrowIfFailed(this, "Failed to set play position");
         }
 
-        /// <summary>
-        /// Sets the seek position for playback, asynchronously.
-        /// </summary>
-        /// <param name="position">The value indicating a desired position in milliseconds.</param>
-        /// <param name="accurate">The value indicating whether the operation performs with accuracy.</param>
-        /// <remarks>
-        ///     <para>The player must be in the <see cref="PlayerState.Ready"/>, <see cref="PlayerState.Playing"/>,
-        ///     or <see cref="PlayerState.Paused"/> state.</para>
-        ///     <para>If the <paramref name="accurate"/> is true, the play position will be adjusted as the specified <paramref name="position"/> value,
-        ///     but this might be considerably slow. If false, the play position will be a nearest keyframe position.</para>
-        ///     </remarks>
-        /// <exception cref="ObjectDisposedException">The player has already been disposed of.</exception>
-        /// <exception cref="InvalidOperationException">The player is not in the valid state.</exception>
-        /// <exception cref="ArgumentOutOfRangeException">The specified position is not valid.</exception>
-        /// <seealso cref="GetPlayPosition"/>
-        /// <since_tizen> 3 </since_tizen>
-        public async Task SetPlayPositionAsync(int position, bool accurate)
+        private async Task SetPlayPosition(long position, bool accurate, bool nanoseconds)
         {
-            ValidatePlayerState(PlayerState.Ready, PlayerState.Playing, PlayerState.Paused);
-
             var taskCompletionSource = new TaskCompletionSource<bool>(TaskCreationOptions.RunContinuationsAsynchronously);
 
             bool immediateResult = _source is MediaStreamSource;
@@ -544,7 +585,7 @@ namespace Tizen.Multimedia
 
             using (var cbKeeper = ObjectKeeper.Get(cb))
             {
-                SetPlayPosition(position, accurate, cb);
+                NativeSetPlayPosition(position, accurate, nanoseconds, cb);
                 if (immediateResult)
                 {
                     taskCompletionSource.TrySetResult(true);
@@ -552,6 +593,86 @@ namespace Tizen.Multimedia
 
                 await taskCompletionSource.Task;
             }
+        }
+
+        /// <summary>
+        /// Sets the seek position for playback, asynchronously.
+        /// </summary>
+        /// <param name="position">The value indicating a desired position in milliseconds.</param>
+        /// <param name="accurate">The value indicating whether the operation performs with accuracy.</param>
+        /// <returns>A task that represents the asynchronous operation.</returns>
+        /// <remarks>
+        ///     <para>The player must be in the <see cref="PlayerState.Ready"/>, <see cref="PlayerState.Playing"/>,
+        ///     or <see cref="PlayerState.Paused"/> state.</para>
+        ///     <para>If the <paramref name="accurate"/> is true, the play position will be adjusted as the specified <paramref name="position"/> value,
+        ///     but this might be considerably slow. If false, the play position will be a nearest keyframe position.</para>
+        ///     </remarks>
+        /// <exception cref="ObjectDisposedException">The player has already been disposed of.</exception>
+        /// <exception cref="InvalidOperationException">The player is not in the valid state.<br/>
+        ///     -or-<br/>
+        ///     In case of non-seekable content, the player will return error and keep playing without changing the play position.</exception>
+        /// <exception cref="ArgumentOutOfRangeException">The specified position is not valid.</exception>
+        /// <seealso cref="SetPlayPositionNanosecondsAsync(long, bool)"/>
+        /// <seealso cref="GetPlayPosition"/>
+        /// <seealso cref="GetPlayPositionNanoseconds"/>
+        /// <since_tizen> 3 </since_tizen>
+        public async Task SetPlayPositionAsync(int position, bool accurate)
+        {
+            ValidatePlayerState(PlayerState.Ready, PlayerState.Playing, PlayerState.Paused);
+
+            await SetPlayPosition(position, accurate, false);
+        }
+
+        /// <summary>
+        /// Gets the play position in nanoseconds.
+        /// </summary>
+        /// <returns>The current position in nanoseconds.</returns>
+        /// <remarks>The player must be in the <see cref="PlayerState.Ready"/>, <see cref="PlayerState.Playing"/>,
+        /// or <see cref="PlayerState.Paused"/> state.</remarks>
+        /// <exception cref="ObjectDisposedException">The player has already been disposed of.</exception>
+        /// <exception cref="InvalidOperationException">The player is not in the valid state.</exception>
+        /// <seealso cref="SetPlayPositionAsync(int, bool)"/>
+        /// <seealso cref="SetPlayPositionNanosecondsAsync(long, bool)"/>
+        /// <seealso cref="GetPlayPosition"/>
+        /// <since_tizen> 5 </since_tizen>
+        public long GetPlayPositionNanoseconds()
+        {
+            ValidatePlayerState(PlayerState.Ready, PlayerState.Paused, PlayerState.Playing);
+
+            NativePlayer.GetPlayPositionNanoseconds(Handle, out long playPosition).
+                ThrowIfFailed(this, "Failed to get the play position(nsec) of the player");
+
+            Log.Info(PlayerLog.Tag, "get play position(nsec) : " + playPosition);
+
+            return playPosition;
+        }
+
+        /// <summary>
+        /// Sets the seek position in nanoseconds for playback, asynchronously.
+        /// </summary>
+        /// <param name="position">The value indicating a desired position in nanoseconds.</param>
+        /// <param name="accurate">The value indicating whether the operation performs with accuracy.</param>
+        /// <returns>A task that represents the asynchronous operation.</returns>
+        /// <remarks>
+        ///     <para>The player must be in the <see cref="PlayerState.Ready"/>, <see cref="PlayerState.Playing"/>,
+        ///     or <see cref="PlayerState.Paused"/> state.</para>
+        ///     <para>If the <paramref name="accurate"/> is true, the play position will be adjusted as the specified <paramref name="position"/> value,
+        ///     but this might be considerably slow. If false, the play position will be a nearest keyframe position.</para>
+        ///     </remarks>
+        /// <exception cref="ObjectDisposedException">The player has already been disposed of.</exception>
+        /// <exception cref="InvalidOperationException">The player is not in the valid state.<br/>
+        ///     -or-<br/>
+        ///     In case of non-seekable content, the player will return error and keep playing without changing the play position.</exception>
+        /// <exception cref="ArgumentOutOfRangeException">The specified position is not valid.</exception>
+        /// <seealso cref="SetPlayPositionAsync(int, bool)"/>
+        /// <seealso cref="GetPlayPosition"/>
+        /// <seealso cref="GetPlayPositionNanoseconds"/>
+        /// <since_tizen> 5 </since_tizen>
+        public async Task SetPlayPositionNanosecondsAsync(long position, bool accurate)
+        {
+            ValidatePlayerState(PlayerState.Ready, PlayerState.Playing, PlayerState.Paused);
+
+            await SetPlayPosition(position, accurate, true);
         }
 
         /// <summary>
@@ -570,7 +691,7 @@ namespace Tizen.Multimedia
         ///     Streaming playback.
         /// </exception>
         /// <exception cref="ArgumentOutOfRangeException">
-        ///     <paramref name="rate"/> is less than 5.0.<br/>
+        ///     <paramref name="rate"/> is less than -5.0.<br/>
         ///     -or-<br/>
         ///     <paramref name="rate"/> is greater than 5.0.<br/>
         ///     -or-<br/>
@@ -648,12 +769,20 @@ namespace Tizen.Multimedia
             return Interlocked.CompareExchange(ref _isPreparing, 1, 1) == 1;
         }
 
-        private void SetPreparing()
+        /// <summary>
+        /// This supports the product infrastructure and is not intended to be used directly from application code.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected void SetPreparing()
         {
             Interlocked.Exchange(ref _isPreparing, 1);
         }
 
-        private void ClearPreparing()
+        /// <summary>
+        /// This supports the product infrastructure and is not intended to be used directly from application code.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected void ClearPreparing()
         {
             Interlocked.Exchange(ref _isPreparing, 0);
         }

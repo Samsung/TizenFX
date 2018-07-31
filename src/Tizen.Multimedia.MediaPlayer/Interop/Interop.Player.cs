@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2016 Samsung Electronics Co., Ltd All Rights Reserved
+ * Copyright (c) 2018 Samsung Electronics Co., Ltd All Rights Reserved
  *
  * Licensed under the Apache License, Version 2.0 (the License);
  * you may not use this file except in compliance with the License.
@@ -60,6 +60,9 @@ internal static partial class Interop
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         internal delegate void SeekCompletedCallback(IntPtr userData);
 
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+        internal delegate bool AdaptiveVariantCallback(int bandwidth, int width, int height, IntPtr userData);
+
         [DllImport(Libraries.Player, EntryPoint = "player_create")]
         internal static extern PlayerErrorCode Create(out PlayerHandle player);
 
@@ -96,6 +99,12 @@ internal static partial class Interop
         [DllImport(Libraries.Player, EntryPoint = "player_get_volume")]
         internal static extern PlayerErrorCode GetVolume(IntPtr player, out float left, out float right);
 
+        [DllImport(Libraries.Player, EntryPoint = "player_set_replaygain_enabled")]
+        internal static extern PlayerErrorCode SetReplayGain(IntPtr player, bool enabled);
+
+        [DllImport(Libraries.Player, EntryPoint = "player_is_replaygain_enabled")]
+        internal static extern PlayerErrorCode IsReplayGain(IntPtr player, out bool enabled);
+
         [DllImport(Libraries.Player, EntryPoint = "player_set_sound_stream_info")]
         internal static extern PlayerErrorCode SetAudioPolicyInfo(IntPtr player, AudioStreamPolicyHandle streamInfo);
 
@@ -110,6 +119,13 @@ internal static partial class Interop
 
         [DllImport(Libraries.Player, EntryPoint = "player_set_play_position")]
         internal static extern PlayerErrorCode SetPlayPosition(IntPtr player, int millisecond,
+            bool accurate, SeekCompletedCallback cb, IntPtr userData = default(IntPtr));
+
+        [DllImport(Libraries.Player, EntryPoint = "player_get_play_position_nsec")]
+        internal static extern PlayerErrorCode GetPlayPositionNanoseconds(IntPtr player, out long nanoseconds);
+
+        [DllImport(Libraries.Player, EntryPoint = "player_set_play_position_nsec")]
+        internal static extern PlayerErrorCode SetPlayPositionNanoseconds(IntPtr player, long nanoseconds,
             bool accurate, SeekCompletedCallback cb, IntPtr userData = default(IntPtr));
 
         [DllImport(Libraries.Player, EntryPoint = "player_set_mute")]
@@ -164,6 +180,12 @@ internal static partial class Interop
 
         [DllImport(Libraries.Player, EntryPoint = "player_get_streaming_download_progress")]
         internal static extern PlayerErrorCode GetStreamingDownloadProgress(IntPtr player, out int start, out int current);
+
+        [DllImport(Libraries.Player, EntryPoint = "player_set_streaming_buffering_time")]
+        internal static extern PlayerErrorCode SetStreamingBufferingTime(IntPtr player, int bufferingTime, int reBufferingTime);
+
+        [DllImport(Libraries.Player, EntryPoint = "player_get_streaming_buffering_time")]
+        internal static extern PlayerErrorCode GetStreamingBufferingTime(IntPtr player, out int bufferingTime, out int reBufferingTime);
 
         [DllImport(Libraries.Player, EntryPoint = "player_set_buffering_cb")]
         internal static extern PlayerErrorCode SetBufferingCb(IntPtr player,
@@ -228,6 +250,9 @@ internal static partial class Interop
         [DllImport(Libraries.Player, EntryPoint = "player_get_duration")]
         internal static extern PlayerErrorCode GetDuration(IntPtr player, out int duration);
 
+        [DllImport(Libraries.Player, EntryPoint = "player_get_duration_nsec")]
+        internal static extern PlayerErrorCode GetDurationNanoseconds(IntPtr player, out long duration);
+
         [DllImport(Libraries.Player, EntryPoint = "player_set_subtitle_path")]
         internal static extern PlayerErrorCode SetSubtitlePath(IntPtr player, string path);
 
@@ -261,12 +286,62 @@ internal static partial class Interop
         [DllImport(Libraries.Player, EntryPoint = "player_get_track_language_code")]
         internal static extern PlayerErrorCode GetTrackLanguageCode(IntPtr player, StreamType type,
             int index, out IntPtr code);
+
+        [DllImport(Libraries.Player, EntryPoint = "player_set_audio_only")]
+        internal static extern PlayerErrorCode SetAudioOnly(IntPtr player, bool audioOnly);
+
+        [DllImport(Libraries.Player, EntryPoint = "player_is_audio_only")]
+        internal static extern PlayerErrorCode IsAudioOnly(IntPtr player, out bool audioOnly);
+
+        [DllImport(Libraries.Player, EntryPoint = "player_360_is_content_spherical")]
+        internal static extern PlayerErrorCode IsSphericalContent(IntPtr player, out bool isspherical);
+
+        [DllImport(Libraries.Player, EntryPoint = "player_360_set_enabled")]
+        internal static extern PlayerErrorCode SetSphericalMode(IntPtr player, bool enabled);
+
+        [DllImport(Libraries.Player, EntryPoint = "player_360_is_enabled")]
+        internal static extern PlayerErrorCode IsSphericalMode(IntPtr player, out bool enabled);
+
+        [DllImport(Libraries.Player, EntryPoint = "player_360_set_direction_of_view")]
+        internal static extern PlayerErrorCode SetDirectionOfView(IntPtr player, float yaw, float pitch);
+
+        [DllImport(Libraries.Player, EntryPoint = "player_360_get_direction_of_view")]
+        internal static extern PlayerErrorCode GetDirectionOfView(IntPtr player, out float yaw, out float pitch);
+
+        [DllImport(Libraries.Player, EntryPoint = "player_360_set_zoom")]
+        internal static extern PlayerErrorCode SetZoom(IntPtr player, float level);
+
+        [DllImport(Libraries.Player, EntryPoint = "player_360_get_zoom")]
+        internal static extern PlayerErrorCode GetZoom(IntPtr player, out float level);
+
+        [DllImport(Libraries.Player, EntryPoint = "player_360_set_field_of_view")]
+        internal static extern PlayerErrorCode SetFieldOfView(IntPtr player, int horizontalDegrees, int verticalDegrees);
+
+        [DllImport(Libraries.Player, EntryPoint = "player_360_get_field_of_view")]
+        internal static extern PlayerErrorCode GetFieldOfView(IntPtr player, out int horizontalDegrees, out int verticalDegrees);
+
+        [DllImport(Libraries.Player, EntryPoint = "player_360_set_zoom_with_field_of_view")]
+        internal static extern PlayerErrorCode SetZoomWithFieldOfView(IntPtr player, float level, int horizontalDegrees, int verticalDegrees);
+
+        [DllImport(Libraries.Player, EntryPoint = "player_foreach_adaptive_variant")]
+        internal static extern PlayerErrorCode ForeachAdaptiveVariants(IntPtr player, AdaptiveVariantCallback callback, IntPtr userData);
+
+        [DllImport(Libraries.Player, EntryPoint = "player_set_max_adaptive_variant_limit")]
+        internal static extern PlayerErrorCode SetMaxLimit(IntPtr player, int bandwidth, int width, int height);
+
+        [DllImport(Libraries.Player, EntryPoint = "player_get_max_adaptive_variant_limit")]
+        internal static extern PlayerErrorCode GetMaxLimit(IntPtr player, out int bandwidth, out int width, out int height);
     }
 
     internal class PlayerHandle : SafeHandle
     {
         protected PlayerHandle() : base(IntPtr.Zero, true)
         {
+        }
+
+        internal PlayerHandle(IntPtr rawHandle) : this()
+        {
+            handle = rawHandle;
         }
 
         public override bool IsInvalid => handle == IntPtr.Zero;

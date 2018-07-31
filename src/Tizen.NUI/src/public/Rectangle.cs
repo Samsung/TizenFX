@@ -14,6 +14,8 @@
  * limitations under the License.
  *
  */
+ using System;
+ using Tizen.NUI.Binding;
 
 namespace Tizen.NUI
 {
@@ -22,6 +24,7 @@ namespace Tizen.NUI
     /// The Rectangle class.
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
+    [TypeConverter(typeof(RectangleTypeConverter))]
     public class Rectangle : global::System.IDisposable
     {
         private global::System.Runtime.InteropServices.HandleRef swigCPtr;

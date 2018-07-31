@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<AppDetailPage x:Class="Tizen.NUI.Examples.AppDetailPage"
+  xmlns="http://tizen.org/Tizen.NUI/2018/XAML"
+  xmlns:l="clr-namespace:Tizen.UI_Xaml;assembly=Tizen.UI_Xaml"
+  xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
+
+    <View Name="UpperArea" SizeWidth="1920" SizeHeight="780" ParentOrigin="TopLeft" PivotPoint="TopLeft" PositionUsesPivotPoint="true">
+        <ImageView ResourceUrl="/home/owner/apps_rw/org.tizen.example.NUIXAMLTestSample/res/images/weather.png" SizeWidth="346" SizeHeight="350"
+                   PositionX="81" PositionY="81" ParentOrigin="TopLeft" PivotPoint="TopLeft" PositionUsesPivotPoint="true"/>
+        <TextLabel Text="The Weather Network" PointSize="60" PositionX="487" PositionY="100" SizeHeight="102" ParentOrigin="TopLeft" PivotPoint="TopLeft" PositionUsesPivotPoint="true"/>
+        <TextLabel Text="Information | The Weather Network | " PointSize="28" PositionX="487" PositionY="204" SizeWidth="670" SizeHeight="44" ParentOrigin="TopLeft" PivotPoint="TopLeft" PositionUsesPivotPoint="true"/>
+        <ImageView ResourceUrl="/home/owner/apps_rw/org.tizen.example.NUIXAMLTestSample/res/images/r_icon_xs_star.png" PositionX="1160" PositionY="213" SizeWidth="26" SizeHeight="26" ParentOrigin="TopLeft" PivotPoint="TopLeft" PositionUsesPivotPoint="true" />
+        <ImageView ResourceUrl="/home/owner/apps_rw/org.tizen.example.NUIXAMLTestSample/res/images/r_icon_xs_star.png" PositionX="1188" PositionY="213" SizeWidth="26" SizeHeight="26" ParentOrigin="TopLeft" PivotPoint="TopLeft" PositionUsesPivotPoint="true" />
+        <ImageView ResourceUrl="/home/owner/apps_rw/org.tizen.example.NUIXAMLTestSample/res/images/r_icon_xs_star.png" PositionX="1216" PositionY="213" SizeWidth="26" SizeHeight="26" ParentOrigin="TopLeft" PivotPoint="TopLeft" PositionUsesPivotPoint="true" />
+        <ImageView ResourceUrl="/home/owner/apps_rw/org.tizen.example.NUIXAMLTestSample/res/images/r_icon_xs_star.png" Opacity="0.3" PositionX="1244" PositionY="213" SizeWidth="26" SizeHeight="26" ParentOrigin="TopLeft" PivotPoint="TopLeft" PositionUsesPivotPoint="true" />
+        <ImageView ResourceUrl="/home/owner/apps_rw/org.tizen.example.NUIXAMLTestSample/res/images/r_icon_xs_star.png" Opacity="0.3" PositionX="1272" PositionY="213" SizeWidth="26" SizeHeight="26" ParentOrigin="TopLeft" PivotPoint="TopLeft" PositionUsesPivotPoint="true" />
+        <TextLabel Text="Check the permissions by selecting More in the information area. By selecting Install, you agree to grant those permissions to this app."
+                   PointSize="16" PositionX="487" PositionY="250" SizeHeight="34" ParentOrigin="TopLeft" PivotPoint="TopLeft" PositionUsesPivotPoint="true"/>
+        <ImageView Name="DetailButton" ResourceUrl="/home/owner/apps_rw/org.tizen.example.NUIXAMLTestSample/res/images/c_basic_button_white_bg_normal.9.png" Border="4,4,5,5"  Focusable="true" FocusGained="OnFocusGained" FocusLost="OnFocusLost" PositionX="487" PositionY="320" SizeWidth="260" SizeHeight="84" ParentOrigin="TopLeft" PivotPoint="Center">
+            <TextLabel Name="ButtonLabel" Text="Install" PointSize="25" HorizontalAlignment="Center" VerticalAlignment="Center" WidthResizePolicy="FillToParent" HeightResizePolicy="FillToParent" />
+        </ImageView>
+        <TextLabel Text="Rated:All ages | Price:In-App Purchases | Size:11.74MB(Available 3.17GB)" PointSize="20" PositionX="81" PositionY="487" SizeHeight="38"
+                   ParentOrigin="TopLeft" PivotPoint="TopLeft" PositionUsesPivotPoint="true"/>
+        <TextLabel Text="Updated:2018/03/06 | Latest Version:3.0.15 | Language:English" PointSize="20" PositionX="81" PositionY="525" SizeHeight="38"
+                   ParentOrigin="TopLeft" PivotPoint="TopLeft" PositionUsesPivotPoint="true"/>
+        <TextLabel Text="The Weather Network app provides you with on-demand acess to the weather information you need with a click of you TV remote. Scroll through our forecasts to view conditions for the next 14 days. View radar maps to track coming storms. Stay information with notification of active warnings in your area. The app is loaded with features that will become an integral part of planning your ..."
+                   SizeWidth="1320" MultiLine="true" PointSize="20" PositionX="81" PositionY="601" SizeHeight="114"
+                   ParentOrigin="TopLeft" PivotPoint="TopLeft" PositionUsesPivotPoint="true"/>
+    </View>
+    <View Name="BottomArea" BackgroundColor="0,0,0,0.05" SizeWidth="1920" SizeHeight="332" ParentOrigin="TopLeft" PivotPoint="TopLeft" PositionY="748"  PositionUsesPivotPoint="true">
+        <TextLabel Text="ScreenShots" PointSize="25" SizeWidth="300" SizeHeight="50" PositionX="81" PositionY="0" />
+        <TableView Name="ListTable" Focusable="true" SizeWidth="1758" SizeHeight="200" PositionX="81" Rows="1" Columns="5" CellPadding="6,0" ParentOrigin="CenterLeft" PivotPoint="CenterLeft"  PositionUsesPivotPoint="true">
+            <ImageView Name="listItem1" ResourceUrl="/home/owner/apps_rw/org.tizen.example.NUIXAMLTestSample/res/images/weather_ss1.png" CellIndex="0,0" Focusable="true" FocusGained="OnFocusGained" FocusLost="OnFocusLost" WidthResizePolicy="FillToParent" HeightResizePolicy="FillToParent" PivotPoint="CenterLeft"/>
+            <ImageView Name="listItem2" ResourceUrl="/home/owner/apps_rw/org.tizen.example.NUIXAMLTestSample/res/images/weather_ss2.png" CellIndex="0,1" Focusable="true" FocusGained="OnFocusGained" FocusLost="OnFocusLost" WidthResizePolicy="FillToParent" HeightResizePolicy="FillToParent"/>
+            <ImageView Name="listItem3" ResourceUrl="/home/owner/apps_rw/org.tizen.example.NUIXAMLTestSample/res/images/weather_ss3.png" CellIndex="0,2" Focusable="true" FocusGained="OnFocusGained" FocusLost="OnFocusLost" WidthResizePolicy="FillToParent" HeightResizePolicy="FillToParent"/>
+            <ImageView Name="listItem4" ResourceUrl="/home/owner/apps_rw/org.tizen.example.NUIXAMLTestSample/res/images/weather_ss2.png" CellIndex="0,3" Focusable="true" FocusGained="OnFocusGained" FocusLost="OnFocusLost" WidthResizePolicy="FillToParent" HeightResizePolicy="FillToParent"/>
+            <ImageView Name="listItem5" ResourceUrl="/home/owner/apps_rw/org.tizen.example.NUIXAMLTestSample/res/images/weather_ss1.png" CellIndex="0,4" Focusable="true" FocusGained="OnFocusGained" FocusLost="OnFocusLost" WidthResizePolicy="FillToParent" HeightResizePolicy="FillToParent"/>
+        </TableView>
+    </View>
+</AppDetailPage>

@@ -1,10 +1,11 @@
 ElmSharp.dll                                       #common #mobile #mobile-emul #tv #ivi #wearable
 ElmSharp.Wearable.dll                              #wearable
+OpenTK.dll                                         #mobile #mobile-emul #tv #wearable
 res/maps_marker_pin_48.png                         #mobile #mobile-emul #tv #wearable
 res/maps_marker_pin_72.png                         #mobile #mobile-emul #tv #wearable
 res/maps_marker_sticker_48.png                     #mobile #mobile-emul #tv #wearable
 res/maps_marker_sticker_72.png                     #mobile #mobile-emul #tv #wearable
-Tizen.Account.AccountManager.dll                   #mobile #mobile-emul #ivi #wearable
+Tizen.Account.AccountManager.dll                   #mobile #mobile-emul #tv #ivi #wearable
 Tizen.Account.FidoClient.dll                       #mobile #mobile-emul #wearable
 Tizen.Account.OAuth2.dll                           #mobile #mobile-emul #ivi #wearable
 Tizen.Account.SyncManager.dll                      #mobile #mobile-emul #wearable
