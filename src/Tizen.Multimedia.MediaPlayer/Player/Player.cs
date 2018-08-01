@@ -387,7 +387,7 @@ namespace Tizen.Multimedia
         /// or <see cref="PlayerState.Paused"/> state.<br/>
         /// In case of HTTP streaming playback, the player could be internally paused for buffering.
         /// If the application calls this function during the buffering, the playback will be resumed by force
-        /// and the buffering message posting by player_buffering_cb() will be stopped.<br/>
+        /// and the buffering message posting by <see cref="BufferingProgressChanged"/> will be stopped.<br/>
         /// In other cases, the player will keep playing without returning error.
         /// </remarks>
         /// <exception cref="ObjectDisposedException">The player has already been disposed of.</exception>
