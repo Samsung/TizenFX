@@ -381,14 +381,14 @@ namespace Tizen.Multimedia
         /// </summary>
         /// <remarks>
         /// Sound can be mixed with other sounds if you don't control the stream focus using <see cref="ApplyAudioStreamPolicy"/>.<br/>
-        /// Before Tizen 5.0, The player must be in the <see cref="PlayerState.Ready"/> or <see cref="PlayerState.Paused"/> state.
-        /// It has no effect if the player is already in the <see cref="PlayerState.Playing"/> state.<br/>
-        /// Since Tizen 5.0, The player must be in the <see cref="PlayerState.Ready"/>, <see cref="PlayerState.Playing"/>,
-        /// or <see cref="PlayerState.Paused"/> state.<br/>
-        /// In case of HTTP streaming playback, the player could be internally paused for buffering.
-        /// If the application calls this function during the buffering, the playback will be resumed by force
-        /// and the buffering message posting by <see cref="BufferingProgressChanged"/> will be stopped.<br/>
-        /// In other cases, the player will keep playing without returning error.
+        ///      <para>Before Tizen 5.0, The player must be in the <see cref="PlayerState.Ready"/> or <see cref="PlayerState.Paused"/> state.
+        ///      It has no effect if the player is already in the <see cref="PlayerState.Playing"/> state.</para>
+        ///      <para>Since Tizen 5.0, The player must be in the <see cref="PlayerState.Ready"/>, <see cref="PlayerState.Playing"/>,
+        ///      or <see cref="PlayerState.Paused"/> state.<br/>
+        ///      In case of HTTP streaming playback, the player could be internally paused for buffering.
+        ///      If the application calls this function during the buffering, the playback will be resumed by force
+        ///      and the buffering message posting by <see cref="BufferingProgressChanged"/> will be stopped.<br/>
+        ///      In other cases, the player will keep playing without returning error.</para>
         /// </remarks>
         /// <exception cref="ObjectDisposedException">The player has already been disposed of.</exception>
         /// <exception cref="InvalidOperationException">The player is not in the valid state.</exception>
