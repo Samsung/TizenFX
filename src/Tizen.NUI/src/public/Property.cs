@@ -1872,13 +1872,11 @@ namespace Tizen.NUI
                 {
                     KeyInt = (int)value;
                 }
-                if (value is string)
+                else if (value is string)
                 {
                     KeyString = value.ToString();
                 }
-
-
-                if (value.GetType().Equals(typeof(int)) || value.GetType().Equals(typeof(Int32)))
+                else if (value.GetType().Equals(typeof(int)) || value.GetType().Equals(typeof(Int32)))
                 {
                     KeyInt = (int)value;
                 }
@@ -1886,7 +1884,6 @@ namespace Tizen.NUI
                 {
                     KeyString = value.ToString();
                 }
-                KeyInt = (int)value;
             }
         }
 
