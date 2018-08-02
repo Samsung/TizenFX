@@ -3188,6 +3188,8 @@ namespace Tizen.NUI.BaseComponents
             set
             {
                 SetValue(Size2DProperty, value);
+                SetProperty(LayoutItemWrapper.ChildProperty.WIDTH_SPECIFICATION, new Tizen.NUI.PropertyValue(value.Width));
+                SetProperty(LayoutItemWrapper.ChildProperty.HEIGHT_SPECIFICATION, new Tizen.NUI.PropertyValue(value.Height));
                 NotifyPropertyChanged();
             }
         }
@@ -5154,6 +5156,13 @@ namespace Tizen.NUI.BaseComponents
             }
             set
             {
+                if (Layout != null)
+                {
+                    // Note: it only works if minimum size is >= than natural size.
+                    // To force the size it should be done through the width&height spec or Size2D.
+                    Layout.MinimumWidth = new Tizen.NUI.LayoutLength(value.Width);
+                    Layout.MinimumHeight = new Tizen.NUI.LayoutLength(value.Height);
+                }
                 SetValue(MinimumSizeProperty, value);
                 NotifyPropertyChanged();
             }
@@ -5171,6 +5180,8 @@ namespace Tizen.NUI.BaseComponents
             }
             set
             {
+                // We don't have Layout.Maximum(Width|Height) so we cannot apply it to layout.
+                // MATCH_PARENT spec + parent container size can be used to limit
                 SetValue(MaximumSizeProperty, value);
                 NotifyPropertyChanged();
             }

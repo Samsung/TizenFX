@@ -25,7 +25,8 @@ namespace Tizen.NUI
     {
         //from dali_1.3.23 : NUI internal API version 501
         //from dali_1.3.28 : NUI internal API version 502
-        public const int nuiAPIVer = 502;
+        //from dali_1.3.34 : NUI internal API version 503
+        public const int nuiAPIVer = 503;
         public const int reservedVer1 = 0;
         public const int reservedVer2 = 0;
 
