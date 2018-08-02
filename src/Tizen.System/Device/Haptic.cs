@@ -138,7 +138,7 @@ namespace Tizen.System
         ///     {
         ///         vibrator.Vibrate(2000, 70);
         ///     }
-        ///     Catch(Exception e)
+        ///     catch(Exception e)
         ///     {
         ///     }
         /// </code>
@@ -182,7 +182,7 @@ namespace Tizen.System
         ///     {
         ///         vibrator.Stop();
         ///     }
-        ///     Catch(Exception e)
+        ///     catch(Exception e)
         ///     {
         ///     }
         /// </code>
