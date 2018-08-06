@@ -116,6 +116,13 @@ namespace Tizen.Network.Connection
         /// <since_tizen> 4 </since_tizen>
         /// <value>Server address of the DHCP.</value>
         System.Net.IPAddress DhcpServerAddress { get; }
+
+        /// <summary>
+        /// The DHCP lease duration. It is only supported for the IPV4 address family.
+        /// </summary>
+        /// <since_tizen> 5 </since_tizen>
+        /// <value>Lease duration of the DHCP.</value>
+        int DhcpLeaseDuration { get; }
     }
 
     internal class ConnectionAddressInformation : IAddressInformation
@@ -378,6 +385,21 @@ namespace Tizen.Network.Connection
                 {
                     return System.Net.IPAddress.Parse(dhcpServer);
                 }
+            }
+        }
+
+        public int DhcpLeaseDuration
+        {
+            get
+            {
+                int leaseDuration;
+                int ret = Interop.ConnectionProfile.GetDhcpLeaseDuration(_profileHandle, _family, out leaseDuration);
+                if ((ConnectionError)ret != ConnectionError.None)
+                {
+                    Log.Error(Globals.LogTag, "It failed to get the DHCP lease duration, " + (ConnectionError)ret);
+                    leaseDuration = 0;
+                }
+                return leaseDuration;
             }
         }
     }
