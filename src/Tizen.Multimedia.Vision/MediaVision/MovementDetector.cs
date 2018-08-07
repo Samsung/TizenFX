@@ -49,17 +49,12 @@ namespace Tizen.Multimedia.Vision
         /// <since_tizen> 4 </since_tizen>
         public event EventHandler<MovementDetectedEventArgs> Detected;
 
-        internal override void OnEventDetected(IntPtr trigger, IntPtr source, int streamId,
-            IntPtr result, IntPtr _)
+        private void RegisterEvent()
         {
-            try
+            _eventDetectedCallback = (IntPtr trigger, IntPtr source, int streamId, IntPtr result, IntPtr _) =>
             {
                 Detected?.Invoke(this, CreateMovementDetectedEventArgs(result));
-            }
-            catch (Exception e)
-            {
-                MultimediaLog.Error(MediaVisionLog.Tag, "Failed to invoke Recognized event.", e);
-            }
+            };
         }
 
         private static Rectangle[] RetrieveAreas(IntPtr result)
@@ -113,6 +108,7 @@ namespace Tizen.Multimedia.Vision
         /// <since_tizen> 4 </since_tizen>
         public void AddSource(SurveillanceSource source, MovementDetectionConfiguration config)
         {
+            RegisterEvent();
             InvokeAddSource(source, config);
         }
 
