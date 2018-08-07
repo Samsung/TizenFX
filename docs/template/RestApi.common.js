@@ -22,14 +22,14 @@ exports.transform = function (model) {
             child.description = child.description || ''; // set to empty incase mustache looks up
             child.footer = child.footer || ''; // set to empty incase mustache looks up
             child.remarks = child.remarks || ''; // set to empty incase mustache looks up
-			//TIZEN
-			child.sinceTizen = child.sinceTizen || ''; 
-			child.precondition = child.precondition || ''; 
-			child.postcondition = child.postcondition || ''; 
-			child.feature = child.feature || ''; 
-			child.privlevel = child.privlevel || ''; 
-			child.privilege = child.privilege || ''; 
-			//
+            //TIZEN
+            child.sinceTizen = child.sinceTizen || ''; 
+            child.precondition = child.precondition || ''; 
+            child.postcondition = child.postcondition || ''; 
+            child.feature = child.feature || ''; 
+            child.privlevel = child.privlevel || ''; 
+            child.privilege = child.privilege || ''; 
+            //
             child.htmlId = common.getHtmlId(child.uid);
 
             formatExample(child.responses);

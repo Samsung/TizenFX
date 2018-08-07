@@ -1,7 +1,3 @@
-.sideaffix > div.contribution > ul > li > a.feedback-icon {
-  padding-left: 2em;
-  background: url(../images/Feedback.gif) no-repeat 0.3em 0.5em / 1.5em 1.5em;
-}
 h5.sinceTizen, h5.privlevel {
   display: inline-block;
 }
