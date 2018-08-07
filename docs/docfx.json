@@ -55,7 +55,8 @@
     "dest": "../Artifacts/docs",
     "xrefService": [ "https://xref.docs.microsoft.com/query?uid={uid}" ],
     "template": [
-      "template/tizen"
+      "default",
+      "./template"
     ],
     "postProcessors": ["ExtractSearchIndex"],
     "noLangKeyword": false,
