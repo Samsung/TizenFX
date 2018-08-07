@@ -5,11 +5,6 @@
     {{^_disableContribution}}
     <div class="contribution">
       <ul class="nav">
-	{{#_tizenFeedback}}
-	<li>
-	  <a href="{{_tizenFeedback}}" class="contribution-link feedback-icon">Share Your Feedback</a>
-	</li>
-        {{/_tizenFeedback}}
         {{#docurl}}
         <li>
           <a href="{{docurl}}" class="contribution-link">{{__global.improveThisDoc}}</a>
