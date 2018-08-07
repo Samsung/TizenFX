@@ -1,6 +1,6 @@
 {{!Copyright (c) Microsoft. All rights reserved. Licensed under the MIT license. See LICENSE file in the project root for full license information.}}
 
-{{>partials/class.header}}
+{{>partials/uref/class.header}}
 {{#children}}
 <h3 id="{{id}}">{{>partials/classSubtitle}}</h3>
 {{#children}}
@@ -24,7 +24,7 @@
 <h5 class="decalaration">{{__global.declaration}}</h5>
 {{#syntax}}
 <div class="codewrapper">
-  <pre><code class="lang-{{_lang}} hljs">{{syntax.content.0.value}}</code></pre>
+  <pre><code class="lang-{{syntax.content.0.lang}} hljs">{{syntax.content.0.value}}</code></pre>
 </div>
 {{#parameters.0}}
 <h5 class="parameters">{{__global.parameters}}</h5>
@@ -41,8 +41,11 @@
 {{#parameters}}
     <tr>
       <td>{{{type.specName.0.value}}}</td>
-      <td><span class="parametername">{{{id}}}</span></td>
-      <td>{{{description}}}</td>
+      <td><em>{{{id}}}</em></td>
+      <td>
+        {{{description}}}
+        {{>partials/uref/parameters}}
+      </td>
     </tr>
 {{/parameters}}
 {{#parameters.0}}
@@ -60,8 +63,8 @@
   </thead>
   <tbody>
     <tr>
-      <td>{{{type.specName.0.value}}}</td>
-      <td>{{{description}}}</td>
+      <td>{{{value.type.0.specName.0.value}}}</td>
+      <td>{{{value.description}}}</td>
     </tr>
   </tbody>
 </table>
@@ -79,7 +82,7 @@
 {{/typeParameters.0}}
 {{#typeParameters}}
     <tr>
-      <td><span class="parametername">{{{id}}}</span></td>
+      <td><em>{{{id}}}</em></td>
       <td>{{{description}}}</td>
     </tr>
 {{/typeParameters}}
@@ -98,8 +101,8 @@
   </thead>
   <tbody>
     <tr>
-      <td>{{{type.specName.0.value}}}</td>
-      <td>{{{description}}}</td>
+      <td>{{{value.type.0.specName.0.value}}}</td>
+      <td>{{{value.description}}}</td>
     </tr>
   </tbody>
 </table>
@@ -115,8 +118,8 @@
   </thead>
   <tbody>
     <tr>
-      <td>{{{type.specName.0.value}}}</td>
-      <td>{{{description}}}</td>
+      <td>{{{value.type.0.specName.0.value}}}</td>
+      <td>{{{value.description}}}</td>
     </tr>
   </tbody>
 </table>
@@ -141,38 +144,23 @@
 {{/syntax}}
 {{#overridden}}
 <h5 class="overrides">{{__global.overrides}}</h5>
-<div><xref uid="{{uid}}" altProperty="fullName" displayProperty="nameWithType"/></div>
+<div><xref href="{{uid}}" altProperty="fullName" displayProperty="nameWithType"/></div>
 {{/overridden}}
+{{#implements.0}}
+<h5 class="implements">{{__global.implements}}</h5>
+{{/implements.0}}
+{{#implements}}
+  {{#definition}}
+    <div><xref href="{{definition}}" altProperty="fullName" displayProperty="nameWithType"/></div>
+  {{/definition}}
+  {{^definition}}
+    <div><xref href="{{uid}}" altProperty="fullName" displayProperty="nameWithType"/></div>
+  {{/definition}}
+{{/implements}}
 {{#remarks}}
 <h5 id="{{id}}_remarks">{{__global.remarks}}</h5>
 <div class="markdown level1 remarks">{{{remarks}}}</div>
 {{/remarks}}
-
-{{#sinceTizen}}
-<h5 id="{{id}}_sinceTizen" class="sinceTizen">{{__global.sinceTizen}}</h5>
-<span class="level1 sinceTizen">{{{sinceTizen}}}</span>
-{{/sinceTizen}}
-{{#pre}}
-<h5 id="{{id}}_pre" class="preconditions">{{__global.pre}}</h5>
-<div class="markdown level1 preconditions">{{{pre}}}</div>
-{{/pre}}
-{{#post}}
-<h5 id="{{id}}_post" class="postconditions">{{__global.post}}</h5>
-<div class="markdown level1 postconditions">{{{post}}}</div>
-{{/post}}
-{{#privlevel}}
-<h5 id="{{id}}_privlevel" class="privlevel">{{__global.privlevel}}</h5>
-<span class="markdown level1 privlevel">{{{privlevel}}}</span>
-{{/privlevel}}
-{{#privilege}}
-<h5 id="{{id}}_privilege" class="privilege">{{__global.privilege}}</h5>
-<div class="markdown level1 privilege">{{{privilege}}}</div>
-{{/privilege}}
-{{#feature}}
-<h5 id="{{id}}_feature" class="feature">{{__global.feature}}</h5>
-<div class="markdown level1 feature">{{{feature}}}</div>
-{{/feature}}
-
 {{#example.0}}
 <h5 id="{{id}}_examples">{{__global.examples}}</h5>
 {{/example.0}}
@@ -190,12 +178,12 @@
   </thead>
   <tbody>
 {{/exceptions.0}}
-{{#exceptions}}
+{{#exceptions.0.value}}
     <tr>
       <td>{{{type.specName.0.value}}}</td>
       <td>{{{description}}}</td>
     </tr>
-{{/exceptions}}
+{{/exceptions.0.value}}
 {{#exceptions.0}}
   </tbody>
 </table>
@@ -217,29 +205,16 @@
 {{/seealso.0}}
 {{/children}}
 {{/children}}
-{{#implements.0}}
-<h3 id="implements">{{__global.implements}}</h3>
-{{/implements.0}}
-{{#implements}}
-<div>
-  {{#definition}}
-    <xref uid="{{definition}}" altProperty="fullName" displayProperty="nameWithType"/>
-  {{/definition}}
-  {{^definition}}
-    <xref uid="{{uid}}" altProperty="fullName" displayProperty="nameWithType"/>
-  {{/definition}}
-</div>
-{{/implements}}
 {{#extensionMethods.0}}
 <h3 id="extensionmethods">{{__global.extensionMethods}}</h3>
 {{/extensionMethods.0}}
 {{#extensionMethods}}
 <div>
   {{#definition}}
-    <xref uid="{{definition}}" altProperty="fullName" displayProperty="nameWithType"/>
+    <xref href="{{definition}}" altProperty="fullName" displayProperty="nameWithType"/>
   {{/definition}}
   {{^definition}}
-    <xref uid="{{uid}}" altProperty="fullName" displayProperty="nameWithType"/>
+    <xref href="{{uid}}" altProperty="fullName" displayProperty="nameWithType"/>
   {{/definition}}
 </div>
 {{/extensionMethods}}
