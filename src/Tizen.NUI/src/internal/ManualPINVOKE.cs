@@ -1712,13 +1712,13 @@ namespace Tizen.NUI
             }
         }
 
-        [global::System.Runtime.InteropServices.DllImport(Graphics.GlesCSharpBinder, EntryPoint = "CSharp_Dali_SetKeyboardRepeatInfo")]
-        public static extern bool SetKeyboardRepeatInfo_gl(double rate, double delay);
+        [global::System.Runtime.InteropServices.DllImport(Graphics.GlesCSharpBinder, EntryPoint = "CSharp_Dali_Keyboard_SetRepeatInfo")]
+        public static extern bool SetKeyboardRepeatInfo_gl(float rate, float delay);
 
-        [global::System.Runtime.InteropServices.DllImport(Graphics.VulkanCSharpBinder, EntryPoint = "CSharp_Dali_SetKeyboardRepeatInfo")]
-        public static extern bool SetKeyboardRepeatInfo_vulkan(double rate, double delay);
+        [global::System.Runtime.InteropServices.DllImport(Graphics.VulkanCSharpBinder, EntryPoint = "CSharp_Dali_Keyboard_SetRepeatInfo")]
+        public static extern bool SetKeyboardRepeatInfo_vulkan(float rate, float delay);
 
-        public static bool SetKeyboardRepeatInfo(double rate, double delay)
+        public static bool SetKeyboardRepeatInfo(float rate, float delay)
         {
             if (Tizen.NUI.Graphics.Backend == Tizen.NUI.Graphics.BackendType.Vulkan)
             {
@@ -1730,13 +1730,13 @@ namespace Tizen.NUI
             }
         }
 
-        [global::System.Runtime.InteropServices.DllImport(Graphics.GlesCSharpBinder, EntryPoint = "CSharp_Dali_GetKeyboardRepeatInfo")]
-        public static extern bool GetKeyboardRepeatInfo_gl(out double rate, out double delay);
+        [global::System.Runtime.InteropServices.DllImport(Graphics.GlesCSharpBinder, EntryPoint = "CSharp_Dali_Keyboard_GetRepeatInfo")]
+        public static extern bool GetKeyboardRepeatInfo_gl(out float rate, out float delay);
 
-        [global::System.Runtime.InteropServices.DllImport(Graphics.VulkanCSharpBinder, EntryPoint = "CSharp_Dali_GetKeyboardRepeatInfo")]
-        public static extern bool GetKeyboardRepeatInfo_vulkan(out double rate, out double delay);
+        [global::System.Runtime.InteropServices.DllImport(Graphics.VulkanCSharpBinder, EntryPoint = "CSharp_Dali_Keyboard_GetRepeatInfo")]
+        public static extern bool GetKeyboardRepeatInfo_vulkan(out float rate, out float delay);
 
-        public static bool GetKeyboardRepeatInfo(out double rate, out double delay)
+        public static bool GetKeyboardRepeatInfo(out float rate, out float delay)
         {
             if (Tizen.NUI.Graphics.Backend == Tizen.NUI.Graphics.BackendType.Vulkan)
             {
