@@ -1,4 +1,4 @@
-﻿/*
+/*
  * Copyright (c) 2016 Samsung Electronics Co., Ltd All Rights Reserved
  *
  * Licensed under the Apache License, Version 2.0 (the License);
@@ -163,6 +163,7 @@ namespace Tizen.Multimedia
         /// Occurs when the state of an audio device changes.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        [Obsolete("Deprecated since API level 5. Please use the DeviceRunningStateChanged property instead.")]
         public static event EventHandler<AudioDeviceStateChangedEventArgs> DeviceStateChanged
         {
             add
@@ -216,6 +217,80 @@ namespace Tizen.Multimedia
         {
             Interop.AudioDevice.RemoveDeviceStateChangedCallback(_deviceStateChangedCallbackId).
                 ThrowIfError("Failed to remove device state changed event");
+        }
+        #endregion
+
+        #region DeviceRunningStateChanged event
+        private static int _deviceRunningStateChangedCallbackId = -1;
+
+        private static Interop.AudioDevice.RunningStateChangedCallback _audioDeviceRunningStateChangedCallback;
+        private static EventHandler<AudioDeviceRunningStateChangedEventArgs> _audioDeviceRunningStateChanged;
+        private static readonly object _audioDeviceRunningStateLock = new object();
+
+        /// <summary>
+        /// Occurs when the running state of an audio device changes.
+        /// </summary>
+        /// <remarks>
+        /// <see cref="DeviceStateChanged"/> is invoked when AudioDevice is connected but,<br/>
+        /// <see cref="DeviceRunningStateChanged"/> event is invoked once when audio stream started actually to running on device.<br/>
+        /// If it is invoked once and audio stream is still running on device, it will not invoked any more even if more audio stream is activated,<br/>
+        /// until all streams are stoped and another stream is reactivated.
+        /// </remarks>
+        /// <since_tizen> 5 </since_tizen>
+        public static event EventHandler<AudioDeviceRunningStateChangedEventArgs> DeviceRunningStateChanged
+        {
+            add
+            {
+                if (value == null)
+                {
+                    return;
+                }
+
+                lock (_audioDeviceRunningStateLock)
+                {
+                    if (_audioDeviceRunningStateChanged == null)
+                    {
+                        RegisterDeviceRunningStateChangedEvent();
+                    }
+                    _audioDeviceRunningStateChanged += value;
+                }
+            }
+            remove
+            {
+                if (value == null)
+                {
+                    return;
+                }
+
+                lock (_audioDeviceRunningStateLock)
+                {
+                    _audioDeviceRunningStateChanged -= value;
+
+                    if (_audioDeviceRunningStateChanged == null)
+                    {
+                        UnregisterDeviceRunningStateChangedEvent();
+                    }
+                }
+            }
+        }
+
+        private static void RegisterDeviceRunningStateChangedEvent()
+        {
+            _audioDeviceRunningStateChangedCallback = (device, isRunning, _) =>
+            {
+                _audioDeviceRunningStateChanged?.Invoke(null,
+                    new AudioDeviceRunningStateChangedEventArgs(new AudioDevice(device), isRunning));
+            };
+
+            Interop.AudioDevice.AddDeviceRunningStateChangedCallback(AudioDeviceOptions.All,
+                _audioDeviceRunningStateChangedCallback, IntPtr.Zero, out _deviceRunningStateChangedCallbackId).
+                ThrowIfError("Failed to add device running state changed event");
+        }
+
+        private static void UnregisterDeviceRunningStateChangedEvent()
+        {
+            Interop.AudioDevice.RemoveDeviceRunningStateChangedCallback(_deviceRunningStateChangedCallbackId).
+                ThrowIfError("Failed to remove device running state changed event");
         }
         #endregion
     }
