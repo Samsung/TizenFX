@@ -192,8 +192,9 @@ namespace OpenTK
                 this.isSingleThreaded = isSingleThreaded;
                 glContext = new GraphicsContext(mode == null ? GraphicsMode.Default : mode, WindowInfo, major, minor, flags);
                 glContext.MakeCurrent(WindowInfo);
+#if !TIZEN
                 (glContext as IGraphicsContextInternal).LoadAll();
-
+#endif
                 VSync = VSyncMode.On;
 
                 //glWindow.WindowInfoChanged += delegate(object sender, EventArgs e) { OnWindowInfoChangedInternal(e); };
