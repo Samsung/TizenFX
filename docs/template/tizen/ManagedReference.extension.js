@@ -23,9 +23,5 @@ exports.preTransform = function (model) {
  * This method will be called at the end of exports.transform in ManagedReference.html.primary.js
  */
 exports.postTransform = function (model) {
-  if (model.source)
-    model._tizenFeedback = model._newIssueUrl + "?labels=docs&title=" + model.uid + " " + model.type + "&body=Source: " + model.source.path + " / [page](" + model._baseUrl + model._path + ")";
-  else if (model.type === "namespace")
-    model._tizenFeedback = model._newIssueUrl + "?labels=docs&title=" + model.uid + " " + model.type + "&body=On [page](" + model._baseUrl + model._path + ")";
   return model;
 }
