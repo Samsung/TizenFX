@@ -21,13 +21,13 @@ using System.Collections.Generic;
 using System.Threading;
 using Tizen.Applications;
 using Tizen.Applications.RPCPort;
-namespace RPCPort
+namespace RpcPort
 {
-namespace message
+namespace Message
 {
     namespace Proxy
     {
-        public class message : ProxyBase
+        internal class message : ProxyBase
         {
             public event EventHandler Connected;
             public event EventHandler Disconnected;

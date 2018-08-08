@@ -7,12 +7,28 @@ using System.Collections;
 using Tizen;
 using System.Threading.Tasks;
 using Tizen.Applications;
-using RPCPort.message.Proxy;
+using RpcPort.Message.Proxy;
 using Tizen.Applications.Messages;
 
-namespace Tizen.nlp
+/*
+* Copyright (c) 2018 Samsung Electronics Co., Ltd All Rights Reserved
+*
+* Licensed under the Apache License, Version 2.0 (the License);
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+* http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an AS IS BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+
+namespace Tizen.Nlp
 {
-    public class NLTK_Class
+    public class NltkClass
     {
         public event EventHandler OnMsgRecieved;
         private message _msg;
@@ -64,13 +80,13 @@ namespace Tizen.nlp
 
         }
 
-        //example call for pos_tag of nltk , and return an element of tuple under an element of list 
+        //example call for pos_tag of nltk , and return an element of tuple under an element of list
         public void PosTag(string str)
         {
             MakeRequest("pos_tag", str);
         }
 
-        //example call for ne_chunk of nltk , but because the ne_chunk return Tree struct ,so far ,we only convert it to List ,and return an element of tuple under an element of list 
+        //example call for ne_chunk of nltk , but because the ne_chunk return Tree struct ,so far ,we only convert it to List ,and return an element of tuple under an element of list
         public void NeChunk(string str)
         {
             MakeRequest("ne_chunk", str);
@@ -87,7 +103,7 @@ namespace Tizen.nlp
             MakeRequest("lemmatize", str);
         }
 
-        //example call for word_tokenize of nltk , and return an element of list 
+        //example call for word_tokenize of nltk , and return an element of list
         public void WordTokenize(string str)
         {
             MakeRequest("word_tokenize", str);
