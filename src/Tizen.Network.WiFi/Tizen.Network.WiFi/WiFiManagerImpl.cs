@@ -124,6 +124,21 @@ namespace Tizen.Network.WiFi
             }
         }
 
+        internal WiFiScanState ScanState
+        {
+            get
+            {
+                int state;
+                int ret = Interop.WiFi.GetScanState(GetSafeHandle(), out state);
+                if (ret != (int)WiFiError.None)
+                {
+                    Log.Error(Globals.LogTag, "Failed to get scan state, Error - " + (WiFiError)ret);
+                    return WiFiScanState.NotScanning;
+                }
+                return (WiFiScanState)state;
+            }
+        }
+
         internal static WiFiManagerImpl Instance
         {
             get

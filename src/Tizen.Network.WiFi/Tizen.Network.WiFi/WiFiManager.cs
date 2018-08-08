@@ -129,6 +129,19 @@ namespace Tizen.Network.WiFi
         }
 
         /// <summary>
+        /// The Wi-Fi scan state.
+        /// </summary>
+        /// <since_tizen> 5 </since_tizen>
+        /// <value>Represents the scan state of the Wi-Fi.</value>
+        static public WiFiScanState ScanState
+        {
+            get
+            {
+                return WiFiManagerImpl.Instance.ScanState;
+            }
+        }
+
+        /// <summary>
         /// DeviceStateChanged is raised when the device state is changed.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
@@ -198,6 +211,23 @@ namespace Tizen.Network.WiFi
             remove
             {
                 WiFiManagerImpl.Instance.BackgroundScanFinished -= value;
+            }
+        }
+
+        /// <summary>
+        /// ScanStateChanged is raised when the scan state is changed.
+        /// </summary>
+        /// <since_tizen> 5 </since_tizen>
+        /// <feature>http://tizen.org/feature/network.wifi</feature>
+        static public event EventHandler<ScanStateChangedEventArgs> ScanStateChanged
+        {
+            add
+            {
+                WiFiManagerImpl.Instance.ScanStateChanged += value;
+            }
+            remove
+            {
+                WiFiManagerImpl.Instance.ScanStateChanged -= value;
             }
         }
 
