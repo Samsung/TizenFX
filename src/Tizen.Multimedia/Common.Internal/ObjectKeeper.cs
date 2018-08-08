@@ -40,6 +40,7 @@ namespace Tizen.Multimedia
             {
                 Target = obj;
                 _handle = GCHandle.Alloc(obj);
+                Tizen.Log.Info("Tizen.Multimedia", "GCHandle is allocated.");
             }
 
             ~ObjectKeeperImpl()
@@ -63,6 +64,7 @@ namespace Tizen.Multimedia
             {
                 Dispose(true);
                 GC.SuppressFinalize(this);
+                Tizen.Log.Warn("Tizen.Multimedia", "GCHandle is disposed.");
             }
 
             public T Target
