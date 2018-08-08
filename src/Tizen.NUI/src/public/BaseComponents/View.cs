@@ -1160,18 +1160,12 @@ namespace Tizen.NUI.BaseComponents
         defaultValueCreator:(bindable) =>
         {
             var view = (View)bindable;
-            string temp;
+            int temp = 0;
             if (Tizen.NUI.Object.GetProperty(view.swigCPtr, View.Property.CLIPPING_MODE).Get(out temp) == false)
             {
                 NUILog.Error("ClippingMode get error!");
             }
-            switch (temp)
-            {
-                case "DISABLED": return ClippingModeType.Disabled;
-                case "CLIP_CHILDREN": return ClippingModeType.ClipChildren;
-                case "CLIP_TO_BOUNDING_BOX": return ClippingModeType.ClipToBoundingBox;
-                default: return ClippingModeType.Disabled;
-            }
+            return (ClippingModeType)temp;
         });
         /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
