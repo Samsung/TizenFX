@@ -46,13 +46,11 @@ namespace Tizen.Network.WiFi
         private event EventHandler<DeviceStateChangedEventArgs> _deviceStateChanged;
         private event EventHandler<ConnectionStateChangedEventArgs> _connectionStateChanged;
         private event EventHandler<RssiLevelChangedEventArgs> _rssiLevelChanged;
-        private event EventHandler<ScanStateChangedEventArgs> _scanStateChanged;
         private event EventHandler _backgroundScanFinished;
 
         private Interop.WiFi.DeviceStateChangedCallback _deviceChangedCallback;
         private Interop.WiFi.ConnectionStateChangedCallback _connectionChangedCallback;
         private Interop.WiFi.RssiLevelChangedCallback _rssiChangedCallback;
-        private Interop.WiFi.ScanStateChangedCallback _scanChangedCallback;
         private Interop.WiFi.VoidCallback _backgroundScanFinishedCallback;
 
         internal event EventHandler<DeviceStateChangedEventArgs> DeviceStateChanged
@@ -177,47 +175,6 @@ namespace Tizen.Network.WiFi
             }
         }
 
-        internal event EventHandler<ScanStateChangedEventArgs> ScanStateChanged
-        {
-            add
-            {
-                context.Post((x) =>
-                {
-                    if (_scanStateChanged == null)
-                    {
-                        try
-                        {
-                            RegisterScanStateChangedEvent();
-                        }
-                        catch (Exception e)
-                        {
-                            Log.Error(Globals.LogTag, "Exception on adding ScanStateChanged\n" + e.ToString());
-                            return;
-                        }
-                    }
-                    _scanStateChanged += value;
-                }, null);
-            }
-            remove
-            {
-                context.Post((x) =>
-                {
-                    _scanStateChanged -= value;
-                    if (_scanStateChanged == null)
-                    {
-                        try
-                        {
-                            UnregisterScanStateChangedEvent();
-                        }
-                        catch (Exception e)
-                        {
-                            Log.Error(Globals.LogTag, "Exception on removing ScanStateChanged\n" + e.ToString());
-                        }
-                    }
-                }, null);
-            }
-        }
-
         internal event EventHandler BackgroundScanFinished
         {
             add
@@ -299,7 +256,7 @@ namespace Tizen.Network.WiFi
             int ret = Interop.WiFi.SetConnectionStateChangedCallback(GetSafeHandle(), _connectionChangedCallback, IntPtr.Zero);
             if (ret != (int)WiFiError.None)
             {
-                Log.Error(Globals.LogTag, "Failed to set connection state changed callback, Error - " + (WiFiError)ret);
+                Log.Error(Globals.LogTag, "Failed to set copnnection state changed callback, Error - " + (WiFiError)ret);
             }
         }
 
@@ -334,30 +291,6 @@ namespace Tizen.Network.WiFi
             if (ret != (int)WiFiError.None)
             {
                 Log.Error(Globals.LogTag, "Failed to unset rssi level changed callback, Error - " + (WiFiError)ret);
-            }
-        }
-
-        private void RegisterScanStateChangedEvent()
-        {
-            _scanChangedCallback = (int scanState, IntPtr userData) =>
-            {
-                WiFiScanState state = (WiFiScanState)scanState;
-                ScanStateChangedEventArgs e = new ScanStateChangedEventArgs(state);
-                _scanStateChanged.SafeInvoke(null, e);
-            };
-            int ret = Interop.WiFi.SetScanStateChangedCallback(GetSafeHandle(), _scanChangedCallback, IntPtr.Zero);
-            if (ret != (int)WiFiError.None)
-            {
-                Log.Error(Globals.LogTag, "Failed to set scan state changed callback, Error - " + (WiFiError)ret);
-            }
-        }
-
-        private void UnregisterScanStateChangedEvent()
-        {
-            int ret = Interop.WiFi.UnsetScanStateChangedCallback(GetSafeHandle());
-            if (ret != (int)WiFiError.None)
-            {
-                Log.Error(Globals.LogTag, "Failed to unset scan state changed callback, Error - " + (WiFiError)ret);
             }
         }
 

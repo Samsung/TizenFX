@@ -195,22 +195,4 @@ namespace Tizen.Network.WiFi
         /// <since_tizen> 3 </since_tizen>
         Md5 = 5
     }
-
-    /// <summary>
-    /// Enumeration for the Wi-Fi scanning state.
-    /// </summary>
-    /// <since_tizen> 5 </since_tizen>
-    public enum WiFiScanState
-    {
-        /// <summary>
-        /// Scan is not running.
-        /// </summary>
-        /// <since_tizen> 5 </since_tizen>
-        NotScanning = 0,
-        /// <summary>
-        /// Scan is running.
-        /// </summary>
-        /// <since_tizen> 5 </since_tizen>
-        Scanning = 1
-    }
 }
