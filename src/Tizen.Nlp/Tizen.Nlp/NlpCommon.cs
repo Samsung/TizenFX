@@ -8,7 +8,7 @@ using Tizen;
 using System.Threading.Tasks;
 using Tizen.Applications;
 using RpcPort.Message.Proxy;
-using Tizen.Applications.Messages;
+using Tizen.Applications.RPCPort;
 
 /*
 * Copyright (c) 2018 Samsung Electronics Co., Ltd All Rights Reserved
