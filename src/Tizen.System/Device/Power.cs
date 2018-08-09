@@ -69,7 +69,6 @@ namespace Tizen.System
         /// <exception cref="ArgumentException">When an invalid parameter value is set.</exception>
         /// <exception cref="UnauthorizedAccessException">If the privilege is not set.</exception>
         /// <exception cref="InvalidOperationException">In case of any system error.</exception>
-        [Obsolete("Please do not use! this will be deprecated! Please use RequestLock instead!")]
         public static void RequestCpuLock(int timeout)
         {
             DeviceError res = (DeviceError)Interop.Device.DevicePowerRequestLock(Interop.Device.PowerLock.Cpu, timeout);
@@ -84,7 +83,6 @@ namespace Tizen.System
         /// <since_tizen> 3 </since_tizen>
         /// <exception cref="UnauthorizedAccessException">If the privilege is not set.</exception>
         /// <exception cref="InvalidOperationException">In case of any system error.</exception>
-        [Obsolete("Please do not use! this will be deprecated! Please use ReleaseLock instead!")]
         public static void ReleaseCpuLock()
         {
             DeviceError res = (DeviceError)Interop.Device.DevicePowerReleaseLock(Interop.Device.PowerLock.Cpu);
