@@ -55,7 +55,7 @@ namespace Tizen.Multimedia
                 if (!disposedValue)
                 {
                     _handle.Free();
-
+                    Log.Info("Tizen.Multimedia", "handle is freed. (disposing value : " + disposing + ")");
                     disposedValue = true;
                 }
             }
@@ -64,7 +64,6 @@ namespace Tizen.Multimedia
             {
                 Dispose(true);
                 GC.SuppressFinalize(this);
-                Log.Info("Tizen.Multimedia", "GCHandle is disposed.");
             }
 
             public T Target
