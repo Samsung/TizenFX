@@ -1267,6 +1267,12 @@ namespace Tizen.NUI.BaseComponents
         /// <since_tizen> 4 </since_tizen>
         public override void Add(View child)
         {
+            if (null == child)
+            {
+                Tizen.Log.Fatal("NUI", "Child is null");
+                return;
+            }
+
             Container oldParent = child.Parent;
             if (oldParent != this)
             {
