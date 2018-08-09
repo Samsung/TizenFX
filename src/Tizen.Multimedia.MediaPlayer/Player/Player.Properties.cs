@@ -35,7 +35,7 @@ namespace Tizen.Multimedia
         /// </summary>
         /// <param name="preBufferMillisecond">A duration of buffering data that must be prerolled to start playback.</param>
         /// <param name="reBufferMillisecond">A duration of buffering data that must be prerolled to resume playback
-        /// if player enters pause state for buffering.</param>
+        /// if player is paused for buffering internally.</param>
         /// <since_tizen> 5 </since_tizen>
         public PlayerBufferingTime(int preBufferMillisecond, int reBufferMillisecond)
         {

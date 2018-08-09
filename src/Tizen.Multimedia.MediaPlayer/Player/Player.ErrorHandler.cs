@@ -31,6 +31,8 @@ namespace Tizen.Multimedia
         /// <summary>
         /// This method supports the product infrastructure and is not intended to be used directly from application code.
         /// </summary>
+        /// <param name="errorCode">The error code according to the exception.</param>
+        /// <param name="message">The error message to show user.</param>
         /// <since_tizen> 4 </since_tizen>
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected static Exception GetException(int errorCode, string message) =>

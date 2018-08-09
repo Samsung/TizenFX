@@ -60,6 +60,8 @@ namespace Tizen.Multimedia
         /// The class takes care of the life cycle of the handle.
         /// Thus, it should not be closed/destroyed in another location.
         /// </summary>
+        /// <param name="handle">The handle for the media player.</param>
+        /// <param name="errorHandler">The handle for occuring error.</param>
         /// <remarks>
         /// This supports the product infrastructure and is not intended to be used directly from application code.
         /// </remarks>
@@ -209,6 +211,7 @@ namespace Tizen.Multimedia
         /// <summary>
         /// Sets the subtitle path for playback.
         /// </summary>
+        /// <param name="path">The absolute path of the subtitle file, it can be NULL in the <see cref="PlayerState.Idle"/> state.</param>
         /// <remarks>Only MicroDVD/SubViewer(*.sub), SAMI(*.smi), and SubRip(*.srt) subtitle formats are supported.
         ///     <para>The mediastorage privilege(http://tizen.org/privilege/mediastorage) must be added if any files are used to play located in the internal storage.
         ///     The externalstorage privilege(http://tizen.org/privilege/externalstorage) must be added if any files are used to play located in the external storage.</para>
@@ -377,10 +380,15 @@ namespace Tizen.Multimedia
         /// Starts or resumes playback.
         /// </summary>
         /// <remarks>
-        /// The player must be in the <see cref="PlayerState.Ready"/> or <see cref="PlayerState.Paused"/> state.
-        /// It has no effect if the player is already in the <see cref="PlayerState.Playing"/> state.<br/>
-        /// <br/>
-        /// Sound can be mixed with other sounds if you don't control the stream focus using <see cref="ApplyAudioStreamPolicy"/>.
+        /// Sound can be mixed with other sounds if you don't control the stream focus using <see cref="ApplyAudioStreamPolicy"/>.<br/>
+        ///      <para>Before Tizen 5.0, The player must be in the <see cref="PlayerState.Ready"/> or <see cref="PlayerState.Paused"/> state.
+        ///      It has no effect if the player is already in the <see cref="PlayerState.Playing"/> state.</para>
+        ///      <para>Since Tizen 5.0, The player must be in the <see cref="PlayerState.Ready"/>, <see cref="PlayerState.Playing"/>,
+        ///      or <see cref="PlayerState.Paused"/> state.<br/>
+        ///      In case of HTTP streaming playback, the player could be internally paused for buffering.
+        ///      If the application calls this function during the buffering, the playback will be resumed by force
+        ///      and the buffering message posting by <see cref="BufferingProgressChanged"/> will be stopped.<br/>
+        ///      In other cases, the player will keep playing without returning error.</para>
         /// </remarks>
         /// <exception cref="ObjectDisposedException">The player has already been disposed of.</exception>
         /// <exception cref="InvalidOperationException">The player is not in the valid state.</exception>
@@ -389,15 +397,11 @@ namespace Tizen.Multimedia
         /// <seealso cref="Pause"/>
         /// <seealso cref="PlaybackCompleted"/>
         /// <seealso cref="ApplyAudioStreamPolicy"/>
+        /// <seealso cref="BufferingProgressChanged"/>
         /// <since_tizen> 3 </since_tizen>
         public virtual void Start()
         {
-            if (State == PlayerState.Playing)
-            {
-                Log.Warn(PlayerLog.Tag, "playing state already");
-                return;
-            }
-            ValidatePlayerState(PlayerState.Ready, PlayerState.Paused);
+            ValidatePlayerState(PlayerState.Ready, PlayerState.Paused, PlayerState.Playing);
 
             NativePlayer.Start(Handle).ThrowIfFailed(this, "Failed to start the player");
         }
@@ -529,11 +533,14 @@ namespace Tizen.Multimedia
         /// <summary>
         /// Gets the play position in milliseconds.
         /// </summary>
+        /// <returns>The current position in milliseconds.</returns>
         /// <remarks>The player must be in the <see cref="PlayerState.Ready"/>, <see cref="PlayerState.Playing"/>,
         /// or <see cref="PlayerState.Paused"/> state.</remarks>
         /// <exception cref="ObjectDisposedException">The player has already been disposed of.</exception>
         /// <exception cref="InvalidOperationException">The player is not in the valid state.</exception>
         /// <seealso cref="SetPlayPositionAsync(int, bool)"/>
+        /// <seealso cref="SetPlayPositionNanosecondsAsync(long, bool)"/>
+        /// <seealso cref="GetPlayPositionNanoseconds"/>
         /// <since_tizen> 3 </since_tizen>
         public int GetPlayPosition()
         {
@@ -549,15 +556,17 @@ namespace Tizen.Multimedia
             return playPosition;
         }
 
-        private void SetPlayPosition(int milliseconds, bool accurate,
+        private void NativeSetPlayPosition(long position, bool accurate, bool nanoseconds,
             NativePlayer.SeekCompletedCallback cb)
         {
-            var ret = NativePlayer.SetPlayPosition(Handle, milliseconds, accurate, cb, IntPtr.Zero);
+            //Check if it is nanoseconds or milliseconds.
+            var ret = !nanoseconds ? NativePlayer.SetPlayPosition(Handle, (int)position, accurate, cb, IntPtr.Zero) :
+                NativePlayer.SetPlayPositionNanoseconds(Handle, position, accurate, cb, IntPtr.Zero);
 
             //Note that we assume invalid param error is returned only when the position value is invalid.
             if (ret == PlayerErrorCode.InvalidArgument)
             {
-                throw new ArgumentOutOfRangeException(nameof(milliseconds), milliseconds,
+                throw new ArgumentOutOfRangeException(nameof(position), position,
                     "The position is not valid.");
             }
             if (ret != PlayerErrorCode.None)
@@ -567,26 +576,8 @@ namespace Tizen.Multimedia
             ret.ThrowIfFailed(this, "Failed to set play position");
         }
 
-        /// <summary>
-        /// Sets the seek position for playback, asynchronously.
-        /// </summary>
-        /// <param name="position">The value indicating a desired position in milliseconds.</param>
-        /// <param name="accurate">The value indicating whether the operation performs with accuracy.</param>
-        /// <remarks>
-        ///     <para>The player must be in the <see cref="PlayerState.Ready"/>, <see cref="PlayerState.Playing"/>,
-        ///     or <see cref="PlayerState.Paused"/> state.</para>
-        ///     <para>If the <paramref name="accurate"/> is true, the play position will be adjusted as the specified <paramref name="position"/> value,
-        ///     but this might be considerably slow. If false, the play position will be a nearest keyframe position.</para>
-        ///     </remarks>
-        /// <exception cref="ObjectDisposedException">The player has already been disposed of.</exception>
-        /// <exception cref="InvalidOperationException">The player is not in the valid state.</exception>
-        /// <exception cref="ArgumentOutOfRangeException">The specified position is not valid.</exception>
-        /// <seealso cref="GetPlayPosition"/>
-        /// <since_tizen> 3 </since_tizen>
-        public async Task SetPlayPositionAsync(int position, bool accurate)
+        private async Task SetPlayPosition(long position, bool accurate, bool nanoseconds)
         {
-            ValidatePlayerState(PlayerState.Ready, PlayerState.Playing, PlayerState.Paused);
-
             var taskCompletionSource = new TaskCompletionSource<bool>(TaskCreationOptions.RunContinuationsAsynchronously);
 
             bool immediateResult = _source is MediaStreamSource;
@@ -595,7 +586,7 @@ namespace Tizen.Multimedia
 
             using (var cbKeeper = ObjectKeeper.Get(cb))
             {
-                SetPlayPosition(position, accurate, cb);
+                NativeSetPlayPosition(position, accurate, nanoseconds, cb);
                 if (immediateResult)
                 {
                     taskCompletionSource.TrySetResult(true);
@@ -603,6 +594,86 @@ namespace Tizen.Multimedia
 
                 await taskCompletionSource.Task;
             }
+        }
+
+        /// <summary>
+        /// Sets the seek position for playback, asynchronously.
+        /// </summary>
+        /// <param name="position">The value indicating a desired position in milliseconds.</param>
+        /// <param name="accurate">The value indicating whether the operation performs with accuracy.</param>
+        /// <returns>A task that represents the asynchronous operation.</returns>
+        /// <remarks>
+        ///     <para>The player must be in the <see cref="PlayerState.Ready"/>, <see cref="PlayerState.Playing"/>,
+        ///     or <see cref="PlayerState.Paused"/> state.</para>
+        ///     <para>If the <paramref name="accurate"/> is true, the play position will be adjusted as the specified <paramref name="position"/> value,
+        ///     but this might be considerably slow. If false, the play position will be a nearest keyframe position.</para>
+        ///     </remarks>
+        /// <exception cref="ObjectDisposedException">The player has already been disposed of.</exception>
+        /// <exception cref="InvalidOperationException">The player is not in the valid state.<br/>
+        ///     -or-<br/>
+        ///     In case of non-seekable content, the player will return error and keep playing without changing the play position.</exception>
+        /// <exception cref="ArgumentOutOfRangeException">The specified position is not valid.</exception>
+        /// <seealso cref="SetPlayPositionNanosecondsAsync(long, bool)"/>
+        /// <seealso cref="GetPlayPosition"/>
+        /// <seealso cref="GetPlayPositionNanoseconds"/>
+        /// <since_tizen> 3 </since_tizen>
+        public async Task SetPlayPositionAsync(int position, bool accurate)
+        {
+            ValidatePlayerState(PlayerState.Ready, PlayerState.Playing, PlayerState.Paused);
+
+            await SetPlayPosition(position, accurate, false);
+        }
+
+        /// <summary>
+        /// Gets the play position in nanoseconds.
+        /// </summary>
+        /// <returns>The current position in nanoseconds.</returns>
+        /// <remarks>The player must be in the <see cref="PlayerState.Ready"/>, <see cref="PlayerState.Playing"/>,
+        /// or <see cref="PlayerState.Paused"/> state.</remarks>
+        /// <exception cref="ObjectDisposedException">The player has already been disposed of.</exception>
+        /// <exception cref="InvalidOperationException">The player is not in the valid state.</exception>
+        /// <seealso cref="SetPlayPositionAsync(int, bool)"/>
+        /// <seealso cref="SetPlayPositionNanosecondsAsync(long, bool)"/>
+        /// <seealso cref="GetPlayPosition"/>
+        /// <since_tizen> 5 </since_tizen>
+        public long GetPlayPositionNanoseconds()
+        {
+            ValidatePlayerState(PlayerState.Ready, PlayerState.Paused, PlayerState.Playing);
+
+            NativePlayer.GetPlayPositionNanoseconds(Handle, out long playPosition).
+                ThrowIfFailed(this, "Failed to get the play position(nsec) of the player");
+
+            Log.Info(PlayerLog.Tag, "get play position(nsec) : " + playPosition);
+
+            return playPosition;
+        }
+
+        /// <summary>
+        /// Sets the seek position in nanoseconds for playback, asynchronously.
+        /// </summary>
+        /// <param name="position">The value indicating a desired position in nanoseconds.</param>
+        /// <param name="accurate">The value indicating whether the operation performs with accuracy.</param>
+        /// <returns>A task that represents the asynchronous operation.</returns>
+        /// <remarks>
+        ///     <para>The player must be in the <see cref="PlayerState.Ready"/>, <see cref="PlayerState.Playing"/>,
+        ///     or <see cref="PlayerState.Paused"/> state.</para>
+        ///     <para>If the <paramref name="accurate"/> is true, the play position will be adjusted as the specified <paramref name="position"/> value,
+        ///     but this might be considerably slow. If false, the play position will be a nearest keyframe position.</para>
+        ///     </remarks>
+        /// <exception cref="ObjectDisposedException">The player has already been disposed of.</exception>
+        /// <exception cref="InvalidOperationException">The player is not in the valid state.<br/>
+        ///     -or-<br/>
+        ///     In case of non-seekable content, the player will return error and keep playing without changing the play position.</exception>
+        /// <exception cref="ArgumentOutOfRangeException">The specified position is not valid.</exception>
+        /// <seealso cref="SetPlayPositionAsync(int, bool)"/>
+        /// <seealso cref="GetPlayPosition"/>
+        /// <seealso cref="GetPlayPositionNanoseconds"/>
+        /// <since_tizen> 5 </since_tizen>
+        public async Task SetPlayPositionNanosecondsAsync(long position, bool accurate)
+        {
+            ValidatePlayerState(PlayerState.Ready, PlayerState.Playing, PlayerState.Paused);
+
+            await SetPlayPosition(position, accurate, true);
         }
 
         /// <summary>

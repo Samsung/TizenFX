@@ -14,10 +14,10 @@ find $SOURCE_DIR -type d -name "bin" -prune -exec rm -r "{}" \;
 find $SOURCE_DIR -type d -name "obj" -prune -exec rm -r "{}" \;
 
 # Build and publish
-dotnet publish -c $CONF src/Tools.sln
+dotnet publish -c $CONF Tools.sln
 
 # Install
-APPS="GenDummy.Tasks ABIChecker"
+APPS="GenDummy.Tasks ABIChecker Generator.Rewrite"
 
 for x in $APPS; do
   mkdir -p $BINARY_DIR/$x

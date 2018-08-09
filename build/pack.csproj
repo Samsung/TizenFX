@@ -14,7 +14,7 @@
     <IncludeBuildOutput>false</IncludeBuildOutput>
     <NoPackageAnalysis>true</NoPackageAnalysis>
     <NuspecBasePath>$(ProjectRootDir)</NuspecBasePath>
-    <NuspecProperties>$(NuspecProperties);version=$(Version)</NuspecProperties>
+    <NuspecProperties>$(NuspecProperties);fxversion=$(Version)</NuspecProperties>
     <PackageOutputPath>$(OutputBaseDir)</PackageOutputPath>
   </PropertyGroup>
 

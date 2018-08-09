@@ -65,6 +65,7 @@ namespace Tizen.Multimedia
         /// <summary>
         /// Gets the language code for the specified index, or null if the language is undefined.
         /// </summary>
+        /// <param name="index">The index of track.</param>
         /// <returns>The number of tracks.</returns>
         /// <remarks>
         ///     <para>The <see cref="Player"/> that owns this instance must be in the <see cref="PlayerState.Ready"/>,

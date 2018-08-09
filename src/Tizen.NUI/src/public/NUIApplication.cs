@@ -130,6 +130,22 @@ namespace Tizen.NUI
             _windowPosition2D = windowPosition;
         }
 
+        /// <summary>
+        /// Internal constructor with Graphics Backend Type
+        /// </summary>
+        /// <param name="backend"></param>
+        /// <param name="windowMode"></param>
+        /// <param name="windowSize"></param>
+        /// <param name="windowPosition"></param>
+        /// <param name="styleSheet"></param>
+        internal NUIApplication(Graphics.BackendType backend, WindowMode windowMode = WindowMode.Opaque, Size2D windowSize = null, Position2D windowPosition = null, string styleSheet = "") : base(new NUICoreBackend(styleSheet, windowMode))
+        {
+            //windowMode and styleSheet will be added later. currenlty it's not working as expected.
+            Graphics.Backend = backend;
+            if (windowSize != null) { _windowSize2D = windowSize; }
+            if (windowPosition != null) { _windowPosition2D = windowPosition; }
+            Registry.Instance.SavedApplicationThread = Thread.CurrentThread;
+        }
 
         /// <summary>
         /// Overrides this method if you want to handle behavior.
@@ -335,4 +351,20 @@ namespace Tizen.NUI
             }
         }
     }
+
+    /// <summary>
+    /// Graphics BackendType
+    /// </summary>
+    internal class Graphics
+    {
+        public enum BackendType
+        {
+            Gles,
+            Vulkan
+        }
+        public static BackendType Backend = BackendType.Gles;
+        internal const string GlesCSharpBinder = "libdali-csharp-binder.so";
+        internal const string VulkanCSharpBinder = "libdali-csharp-binder-vk.so";
+    }
+
 }
