@@ -19,6 +19,7 @@ namespace Tizen.NUI
 {
 
     using System;
+    using System.ComponentModel;
     using System.Runtime.InteropServices;
     using Tizen.NUI.BaseComponents;
 
@@ -569,6 +570,12 @@ namespace Tizen.NUI
             }
         }
         private string[] _properties = null;
+
+        /// <summary>
+        /// Gets or sets the properties of the animation.
+        /// </summary>
+        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public string[] Properties
         {
             get
@@ -582,6 +589,12 @@ namespace Tizen.NUI
         }
 
         private string[] _destValue = null;
+
+        /// <summary>
+        /// Gets or sets the destination value for each property of the animation.
+        /// </summary>
+        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public string[] DestValue
         {
             get
@@ -595,6 +608,12 @@ namespace Tizen.NUI
         }
 
         private int[] _startTime = null;
+
+        /// <summary>
+        /// Gets or sets the start time for each property of the animation.
+        /// </summary>
+        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public int[] StartTime
         {
             get
@@ -608,6 +627,12 @@ namespace Tizen.NUI
         }
 
         private int[] _endTime = null;
+
+        /// <summary>
+        /// Gets or sets the end time for each property of the animation.
+        /// </summary>
+        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public int[] EndTime
         {
             get
@@ -620,8 +645,15 @@ namespace Tizen.NUI
             }
         }
 
+        /// <summary>
+        /// Animates one or more properties to a destination value.<br />
+        /// </summary>
+        /// <param name="target">The target object to animate.</param>
+        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public void PlayAnimateTo(View target)
         {
+            Clear();
             if (_properties.Length == _destValue.Length && _startTime.Length == _endTime.Length && _properties.Length == _startTime.Length)
             {
                 int length = _properties.Length;
@@ -672,7 +704,7 @@ namespace Tizen.NUI
             {
                 //If there's a [TypeConverter], use it
                 object converter = getConverter?.Invoke();
-                var xfTypeConverter = converter as TypeConverter;
+                var xfTypeConverter = converter as Tizen.NUI.Binding.TypeConverter;
                 if (xfTypeConverter != null)
                     return value = xfTypeConverter.ConvertFromInvariantString(str);
                 var converterType = converter?.GetType();
@@ -758,7 +790,7 @@ namespace Tizen.NUI
         internal string GetTypeConverterTypeName(IEnumerable<CustomAttributeData> attributes)
         {
             var converterAttribute =
-                attributes.FirstOrDefault(cad => TypeConverterAttribute.TypeConvertersType.Contains(cad.AttributeType.FullName));
+                attributes.FirstOrDefault(cad => Tizen.NUI.Binding.TypeConverterAttribute.TypeConvertersType.Contains(cad.AttributeType.FullName));
             if (converterAttribute == null)
                 return null;
             if (converterAttribute.ConstructorArguments[0].ArgumentType == typeof(string))
