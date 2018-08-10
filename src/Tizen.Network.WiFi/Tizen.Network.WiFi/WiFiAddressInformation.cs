@@ -26,6 +26,9 @@ namespace Tizen.Network.WiFi
         private Interop.WiFi.SafeWiFiAPHandle _handle;
         private AddressFamily _family;
 
+        private const string DefaultIPv4 = "0.0.0.0";
+        private const string DefaultIPv6 = "::";
+
         internal WiFiAddressInformation(Interop.WiFi.SafeWiFiAPHandle handle, AddressFamily family)
         {
             _handle = handle;
@@ -38,16 +41,7 @@ namespace Tizen.Network.WiFi
             {
                 IntPtr addrPtr;
                 int ret = Interop.WiFi.AP.GetDnsAddress(_handle, 1, (int)_family, out addrPtr);
-                if (ret != (int)WiFiError.None)
-                {
-                    Log.Error(Globals.LogTag, "Failed to get first dns address, Error - " + (WiFiError)ret);
-                    return System.Net.IPAddress.Parse("0.0.0.0");
-                }
-                string addrStr = Marshal.PtrToStringAnsi(addrPtr);
-                Interop.Libc.Free(addrPtr);
-                if (addrStr == null || addrStr.Length == 0)
-                    return System.Net.IPAddress.Parse("0.0.0.0");
-                return System.Net.IPAddress.Parse(addrStr);
+                return ParseIPAddress(ret, addrPtr);
             }
             set
             {
@@ -66,17 +60,8 @@ namespace Tizen.Network.WiFi
             {
                 IntPtr addrPtr;
                 int ret = Interop.WiFi.AP.GetDnsAddress(_handle, 2, (int)_family, out addrPtr);
-                if (ret != (int)WiFiError.None)
-                {
-                    Log.Error(Globals.LogTag, "Failed to get second dns address, Error - " + (WiFiError)ret);
-                    return System.Net.IPAddress.Parse("0.0.0.0");
-                }
-                string addrStr = Marshal.PtrToStringAnsi(addrPtr);
-                Interop.Libc.Free(addrPtr);
-                if (addrStr == null || addrStr.Length == 0)
-                    return System.Net.IPAddress.Parse("0.0.0.0");
-                return System.Net.IPAddress.Parse(addrStr);
-            }
+                return ParseIPAddress(ret, addrPtr);
+           }
             set
             {
                 int ret = Interop.WiFi.AP.SetDnsAddress(_handle, 2, (int)_family, value.ToString());
@@ -94,16 +79,7 @@ namespace Tizen.Network.WiFi
             {
                 IntPtr addrPtr;
                 int ret = Interop.WiFi.AP.GetGatewayAddress(_handle, (int)_family, out addrPtr);
-                if (ret != (int)WiFiError.None)
-                {
-                    Log.Error(Globals.LogTag, "Failed to get gateway address, Error - " + (WiFiError)ret);
-                    return System.Net.IPAddress.Parse("0.0.0.0");
-                }
-                string addrStr = Marshal.PtrToStringAnsi(addrPtr);
-                Interop.Libc.Free(addrPtr);
-                if (addrStr == null || addrStr.Length == 0)
-                    return System.Net.IPAddress.Parse("0.0.0.0");
-                return System.Net.IPAddress.Parse(addrStr);
+                return ParseIPAddress(ret, addrPtr);
             }
             set
             {
@@ -122,16 +98,7 @@ namespace Tizen.Network.WiFi
             {
                 IntPtr addrPtr;
                 int ret = Interop.WiFi.AP.GetSubnetMask(_handle, (int)_family, out addrPtr);
-                if (ret != (int)WiFiError.None)
-                {
-                    Log.Error(Globals.LogTag, "Failed to get subnet mask, Error - " + (WiFiError)ret);
-                    return System.Net.IPAddress.Parse("0.0.0.0");
-                }
-                string addrStr = Marshal.PtrToStringAnsi(addrPtr);
-                Interop.Libc.Free(addrPtr);
-                if (addrStr == null || addrStr.Length == 0)
-                    return System.Net.IPAddress.Parse("0.0.0.0");
-                return System.Net.IPAddress.Parse(addrStr);
+                return ParseIPAddress(ret, addrPtr);
             }
             set
             {
@@ -150,16 +117,7 @@ namespace Tizen.Network.WiFi
             {
                 IntPtr addrPtr;
                 int ret = Interop.WiFi.AP.GetIPAddress(_handle, (int)_family, out addrPtr);
-                if (ret != (int)WiFiError.None)
-                {
-                    Log.Error(Globals.LogTag, "Failed to get ip address, Error - " + (WiFiError)ret);
-                    return System.Net.IPAddress.Parse("0.0.0.0");
-                }
-                string addrStr = Marshal.PtrToStringAnsi(addrPtr);
-                Interop.Libc.Free(addrPtr);
-                if (addrStr == null || addrStr.Length == 0)
-                    return System.Net.IPAddress.Parse("0.0.0.0");
-                return System.Net.IPAddress.Parse(addrStr);
+                return ParseIPAddress(ret, addrPtr);
             }
             set
             {
@@ -252,20 +210,38 @@ namespace Tizen.Network.WiFi
             get
             {
                 string dhcpServer;
-                int ret = Interop.WiFi.AP.GetDhcpServerAddress(_handle, AddressFamily.IPv4, out dhcpServer);
-                if (ret != (int)WiFiError.None)
+                int ret = Interop.WiFi.AP.GetDhcpServerAddress(_handle, _family, out dhcpServer);
+                if (ret != (int)WiFiError.None || dhcpServer == null || dhcpServer.Length == 0)
                 {
                     Log.Error(Globals.LogTag, "Failed to get DHCP server address, Error - " + (WiFiError)ret);
-                }
-
-                if (dhcpServer == null || dhcpServer.Length == 0)
-                {
-                    return IPAddress.Parse("0.0.0.0");
+                    return DefaultIPAddress();
                 }
 
                 return IPAddress.Parse(dhcpServer);
             }
         }
 
+        private System.Net.IPAddress ParseIPAddress(int ret, IntPtr addrPtr)
+        {
+            if (ret != (int)WiFiError.None)
+            {
+                Log.Error(Globals.LogTag, "Failed to get address, Error - " + (WiFiError)ret);
+                return DefaultIPAddress();
+            }
+
+            string addr = Marshal.PtrToStringAnsi(addrPtr);
+            if (addr == null || addr.Length == 0)
+                return DefaultIPAddress();
+            Interop.Libc.Free(addrPtr);
+            return System.Net.IPAddress.Parse(addr);
+        }
+
+        private System.Net.IPAddress DefaultIPAddress()
+        {
+            if (_family == AddressFamily.IPv4)
+                return System.Net.IPAddress.Parse(DefaultIPv4);
+            else
+                return System.Net.IPAddress.Parse(DefaultIPv6);
+        }
     }
 }

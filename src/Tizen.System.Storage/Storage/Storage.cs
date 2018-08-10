@@ -305,7 +305,7 @@ namespace Tizen.System
         /// <summary>
         /// The available storage size in bytes.
         /// </summary>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 5 </since_tizen>
         public ulong AvailableSpace
         {
             get
