@@ -239,12 +239,12 @@ namespace Tizen.Content.MediaContent
             {
                 Interop.Playlist.GetPlaylistFromDb(playlistId, out handle).ThrowIfError("Failed to query");
 
-                if (handle == IntPtr.Zero)
-                {
-                    throw new RecordNotFoundException("No matching playlist exists.");
-                }
-
                 Interop.Playlist.ExportToFile(handle, path).ThrowIfError("Failed to export");
+            }
+            catch (ArgumentException)
+            {
+                // Native FW returns ArgumentException when there's no matched record.
+                throw new RecordNotFoundException("No matching playlist exists.");
             }
             finally
             {
@@ -381,12 +381,12 @@ namespace Tizen.Content.MediaContent
             {
                 Interop.Playlist.GetPlaylistFromDb(playlistId, out handle).ThrowIfError("Failed to query");
 
-                if (handle == IntPtr.Zero)
-                {
-                    return null;
-                }
-
                 return new Playlist(handle);
+            }
+            catch (ArgumentException)
+            {
+                // Native FW returns ArgumentException when there's no matched record.
+                return null;
             }
             finally
             {

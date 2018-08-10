@@ -148,7 +148,7 @@ namespace Tizen.Network.WiFi
 
         private void createHandle(string id, bool hidden)
         {
-            int ret = -1;
+            int ret;
             if (id == null)
             {
                 throw new ArgumentNullException("Essid is null");
@@ -271,7 +271,7 @@ namespace Tizen.Network.WiFi
                 }
                 catch (Exception e)
                 {
-                    Log.Error(Globals.LogTag, "Exception on ConnectAsync\n" + e.ToString());
+                    Log.Error(Globals.LogTag, "Exception on ConnectAsync\n" + e);
                     task.SetException(e);
                 }
             }, null);
@@ -372,7 +372,7 @@ namespace Tizen.Network.WiFi
                 }
                 catch (Exception e)
                 {
-                    Log.Error(Globals.LogTag, "Exception on ConnectWpsAsync\n" + e.ToString());
+                    Log.Error(Globals.LogTag, "Exception on ConnectWpsAsync\n" + e);
                     wpsTask.SetException(e);
                     Log.Info(Globals.LogTag, "Remove task for ConnectWpsAsync");
                     _wpsTaskMap.Remove(_apHandle);
@@ -470,7 +470,7 @@ namespace Tizen.Network.WiFi
                 }
                 catch (Exception e)
                 {
-                    Log.Error(Globals.LogTag, "Exception on ConnectWpsWithoutSsidAsync\n" + e.ToString());
+                    Log.Error(Globals.LogTag, "Exception on ConnectWpsWithoutSsidAsync\n" + e);
                     wpsWithoutSsidTask.SetException(e);
                     wpsWithoutSsidTask = null;
                     Log.Info(Globals.LogTag, "task is null");
@@ -582,7 +582,7 @@ namespace Tizen.Network.WiFi
                 }
                 catch (Exception e)
                 {
-                    Log.Error(Globals.LogTag, "Exception on Disconnect\n" + e.ToString());
+                    Log.Error(Globals.LogTag, "Exception on Disconnect\n" + e);
                     task.SetException(e);
                 }
             }, null);
@@ -687,7 +687,7 @@ namespace Tizen.Network.WiFi
                 }
                 catch (Exception e)
                 {
-                    Log.Error(Globals.LogTag, "Exception on ForgetAPAsync\n" + e.ToString());
+                    Log.Error(Globals.LogTag, "Exception on ForgetAPAsync\n" + e);
                     task.SetException(e);
                 }
             }, null);
@@ -722,7 +722,7 @@ namespace Tizen.Network.WiFi
                 WiFiErrorFactory.ThrowWiFiException(ret, WiFiManagerImpl.Instance.GetSafeHandle().DangerousGetHandle(), _apHandle);
             }
         }
-   }
+  }
 
     /// <summary>
     /// An abstract class which is used to represent the WPS information of the access point.

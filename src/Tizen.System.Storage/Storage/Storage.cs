@@ -27,7 +27,7 @@ namespace Tizen.System
         private const string LogTag = "Tizen.System";
         private Interop.Storage.StorageState _state;
         private Interop.Storage.StorageDevice _devicetype;
-	     private Interop.Storage.StorageArea _storagetype;
+        private Interop.Storage.StorageArea _storagetype;
         private string _fstype;
         private string _fsuuid;
         private ulong _totalSpace;
@@ -281,10 +281,32 @@ namespace Tizen.System
         }
 
         /// <summary>
-        /// The available storage size in bytes.
+        /// [Obsolete("Please do not use! this will be deprecated")]
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        /// Please do not use! this will be deprecated!
+        /// Instead please use AvailableSpace.
+        [Obsolete("Please do not use! This will be deprecated! Please use AvailableSpace instead!")]
         public ulong AvaliableSpace
+        {
+            get
+            {
+                ulong available;
+                Interop.Storage.ErrorCode err = Interop.Storage.StorageGetAvailableSpace(Id, out available);
+                if (err != Interop.Storage.ErrorCode.None)
+                {
+                    Log.Warn(LogTag, string.Format("Failed to get available storage stace for storage Id: {0}. err = {1}", Id, err));
+                }
+
+                return available;
+            }
+        }
+
+        /// <summary>
+        /// The available storage size in bytes.
+        /// </summary>
+        /// <since_tizen> 5 </since_tizen>
+        public ulong AvailableSpace
         {
             get
             {

@@ -87,7 +87,7 @@ internal static partial class Interop
         [DllImport(Libraries.Connection, EntryPoint = "connection_set_ip_address_changed_cb")]
         public static extern int SetIPAddressChangedCallback(IntPtr handle, ConnectionAddressChangedCallback callback, IntPtr userData);
 
-        [DllImport(Libraries.Connection, EntryPoint = "connection_set_ethernet_cable_state_chaged_cb")]
+        [DllImport(Libraries.Connection, EntryPoint = "connection_set_ethernet_cable_state_changed_cb")]
         public static extern int SetEthernetCableStateChagedCallback(IntPtr handle, EthernetCableStateChangedCallback callback, IntPtr userData);
 
         [DllImport(Libraries.Connection, EntryPoint = "connection_set_proxy_address_changed_cb")]
@@ -99,7 +99,7 @@ internal static partial class Interop
         [DllImport(Libraries.Connection, EntryPoint = "connection_unset_ip_address_changed_cb")]
         public static extern int UnsetIPAddressChangedCallback(IntPtr handle);
 
-        [DllImport(Libraries.Connection, EntryPoint = "connection_unset_ethernet_cable_state_chaged_cb")]
+        [DllImport(Libraries.Connection, EntryPoint = "connection_unset_ethernet_cable_state_changed_cb")]
         public static extern int UnsetEthernetCableStateChagedCallback(IntPtr handle);
 
         [DllImport(Libraries.Connection, EntryPoint = "connection_unset_proxy_address_changed_cb")]
