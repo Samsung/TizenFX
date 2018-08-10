@@ -90,7 +90,7 @@ namespace ElmSharp
         internal static GenListItemEventArgs CreateFromSmartEvent(IntPtr data, IntPtr obj, IntPtr info)
         {
             GenListItem item = ItemObject.GetItemByHandle(info) as GenListItem;
-            return new GenListItemEventArgs() { Item = item };
+            return new GenListItemEventArgs { Item = item };
         }
     }
 
@@ -168,7 +168,7 @@ namespace ElmSharp
         /// Creates and initializes a new instance of the GenList class.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
-        protected GenList() : base()
+        protected GenList()
         {
         }
 

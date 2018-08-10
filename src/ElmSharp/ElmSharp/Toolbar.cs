@@ -123,7 +123,7 @@ namespace ElmSharp
         internal static ToolbarItemEventArgs CreateFromSmartEvent(IntPtr data, IntPtr obj, IntPtr info)
         {
             ToolbarItem item = ItemObject.GetItemByHandle(info) as ToolbarItem;
-            return new ToolbarItemEventArgs() { Item = item };
+            return new ToolbarItemEventArgs { Item = item };
         }
     }
 

@@ -36,7 +36,6 @@ internal static partial class Interop
             CubicBezier
         }
 
-        internal delegate void EcoreCallback(IntPtr data);
         internal delegate bool EcoreTaskCallback(IntPtr data);
         internal delegate bool EcoreEventCallback(IntPtr data, int type, IntPtr evt);
         internal delegate bool EcoreTimelineCallback(IntPtr data, double pos);
