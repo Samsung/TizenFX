@@ -210,15 +210,11 @@ namespace Tizen.Network.WiFi
             get
             {
                 string dhcpServer;
-                int ret = Interop.WiFi.AP.GetDhcpServerAddress(_handle, AddressFamily.IPv4, out dhcpServer);
-                if (ret != (int)WiFiError.None)
+                int ret = Interop.WiFi.AP.GetDhcpServerAddress(_handle, _family, out dhcpServer);
+                if (ret != (int)WiFiError.None || dhcpServer == null || dhcpServer.Length == 0)
                 {
                     Log.Error(Globals.LogTag, "Failed to get DHCP server address, Error - " + (WiFiError)ret);
-                }
-
-                if (dhcpServer == null || dhcpServer.Length == 0)
-                {
-                    return IPAddress.Parse("0.0.0.0");
+                    return DefaultIPAddress();
                 }
 
                 return IPAddress.Parse(dhcpServer);
