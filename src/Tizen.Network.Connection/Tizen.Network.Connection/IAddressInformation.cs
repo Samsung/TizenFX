@@ -137,21 +137,7 @@ namespace Tizen.Network.Connection
             {
                 IntPtr Value;
                 int ret = Interop.ConnectionProfile.GetDnsAddress(_profileHandle, 1, (int)_family, out Value);
-                if ((ConnectionError)ret != ConnectionError.None)
-                {
-                    Log.Error(Globals.LogTag, "It failed to get dns1 address, " + (ConnectionError)ret);
-                }
-                string result = Marshal.PtrToStringAnsi(Value);
-                Interop.Libc.Free(Value);
-                if (result == null || result.Length == 0)
-                {
-                    if (_family == AddressFamily.IPv4)
-                        return System.Net.IPAddress.Parse(DefaultIPv4);
-                    else
-                        return System.Net.IPAddress.Parse(DefaultIPv6);
-                }
-
-                return System.Net.IPAddress.Parse(result);
+                return ParseIPAddress(ret, Value);
             }
 
             set
@@ -172,22 +158,8 @@ namespace Tizen.Network.Connection
             {
                 IntPtr Value;
                 int ret = Interop.ConnectionProfile.GetDnsAddress(_profileHandle, 2, (int)_family, out Value);
-                if ((ConnectionError)ret != ConnectionError.None)
-                {
-                    Log.Error(Globals.LogTag, "It failed to get dns2 address, " + (ConnectionError)ret);
-                }
-                string result = Marshal.PtrToStringAnsi(Value);
-                Interop.Libc.Free(Value);
-                if (result == null || result.Length == 0)
-                {
-                    if (_family == AddressFamily.IPv4)
-                        return System.Net.IPAddress.Parse(DefaultIPv4);
-                    else
-                        return System.Net.IPAddress.Parse(DefaultIPv6);
-                }
-                return System.Net.IPAddress.Parse(result);
+                return ParseIPAddress(ret, Value);
             }
-
             set
             {
                 int ret = Interop.ConnectionProfile.SetDnsAddress(_profileHandle, 2, (int)_family, value.ToString());
@@ -207,20 +179,7 @@ namespace Tizen.Network.Connection
             {
                 IntPtr Value;
                 int ret = Interop.ConnectionProfile.GetGatewayAddress(_profileHandle, (int)_family, out Value);
-                if ((ConnectionError)ret != ConnectionError.None)
-                {
-                    Log.Error(Globals.LogTag, "It failed to get gateway, " + (ConnectionError)ret);
-                }
-                string result = Marshal.PtrToStringAnsi(Value);
-                Interop.Libc.Free(Value);
-                if (result == null || result.Length == 0)
-                {
-                    if (_family == AddressFamily.IPv4)
-                        return System.Net.IPAddress.Parse(DefaultIPv4);
-                    else
-                        return System.Net.IPAddress.Parse(DefaultIPv6);
-                }
-                return System.Net.IPAddress.Parse(result);
+                return ParseIPAddress(ret, Value);
             }
 
             set
@@ -243,20 +202,7 @@ namespace Tizen.Network.Connection
             {
                 IntPtr Value;
                 int ret = Interop.ConnectionProfile.GetSubnetMask(_profileHandle, (int)_family, out Value);
-                if ((ConnectionError)ret != ConnectionError.None)
-                {
-                    Log.Error(Globals.LogTag, "It failed to get subnet mask, " + (ConnectionError)ret);
-                }
-                string result = Marshal.PtrToStringAnsi(Value);
-                Interop.Libc.Free(Value);
-                if (result == null || result.Length == 0)
-                {
-                    if (_family == AddressFamily.IPv4)
-                        return System.Net.IPAddress.Parse(DefaultIPv4);
-                    else
-                        return System.Net.IPAddress.Parse(DefaultIPv6);
-                }
-                return System.Net.IPAddress.Parse(result);
+                return ParseIPAddress(ret, Value);
             }
 
             set
@@ -279,20 +225,7 @@ namespace Tizen.Network.Connection
             {
                 IntPtr Value;
                 int ret = Interop.ConnectionProfile.GetIPAddress(_profileHandle, (int)_family, out Value);
-                if ((ConnectionError)ret != ConnectionError.None)
-                {
-                    Log.Error(Globals.LogTag, "It failed to get ip, " + (ConnectionError)ret);
-                }
-                string result = Marshal.PtrToStringAnsi(Value);
-                Interop.Libc.Free(Value);
-                if (result == null || result.Length == 0)
-                {
-                    if (_family == AddressFamily.IPv4)
-                        return System.Net.IPAddress.Parse(DefaultIPv4);
-                    else
-                        return System.Net.IPAddress.Parse(DefaultIPv6);
-                }
-                return System.Net.IPAddress.Parse(result);
+                return ParseIPAddress(ret, Value);
             }
 
             set
@@ -392,26 +325,37 @@ namespace Tizen.Network.Connection
             {
                 string dhcpServer;
                 int ret = Interop.ConnectionProfile.GetDhcpServerAddress(_profileHandle, _family, out dhcpServer);
-                if ((ConnectionError)ret != ConnectionError.None)
+                if ((ConnectionError)ret != ConnectionError.None || 
+                        dhcpServer == null || dhcpServer.Length == 0)
                 {
                     Log.Error(Globals.LogTag, "It failed to get the DHCP server address, " + (ConnectionError)ret);
+                    return DefaultIPAddress();
                 }
-
-                if (dhcpServer == null || dhcpServer.Length == 0)
-                {
-                    {
-                        if (_family == AddressFamily.IPv4)
-                            return System.Net.IPAddress.Parse(DefaultIPv4);
-                        else
-                            return System.Net.IPAddress.Parse(DefaultIPv6);
-                    }
-                }
-
-                else
-                {
-                    return System.Net.IPAddress.Parse(dhcpServer);
-                }
+                return System.Net.IPAddress.Parse(dhcpServer);
             }
+        }
+
+        private System.Net.IPAddress ParseIPAddress(int ret, IntPtr addrPtr)
+        {
+            if (ret != (int)ConnectionError.None)
+            {
+                Log.Error(Globals.LogTag, "Failed to get address, Error - " + (ConnectionError)ret);
+                return DefaultIPAddress();
+            }
+
+            string addr = Marshal.PtrToStringAnsi(addrPtr);
+            if (addr == null || addr.Length == 0)
+                return DefaultIPAddress();
+            Interop.Libc.Free(addrPtr);
+            return System.Net.IPAddress.Parse(addr);
+        }
+
+        private System.Net.IPAddress DefaultIPAddress()
+        {
+            if (_family == AddressFamily.IPv4)
+                return System.Net.IPAddress.Parse(DefaultIPv4);
+            else
+                return System.Net.IPAddress.Parse(DefaultIPv6);
         }
     }
 }
