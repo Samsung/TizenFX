@@ -122,6 +122,8 @@ namespace Tizen.Network.Connection
     {
         private IntPtr _profileHandle;
         private AddressFamily _family;
+        private const String DefaultIPv4 = "0.0.0.0";
+        private const String DefaultIPv6 = "::";
 
         internal ConnectionAddressInformation(IntPtr handle, AddressFamily family)
         {
@@ -142,7 +144,13 @@ namespace Tizen.Network.Connection
                 string result = Marshal.PtrToStringAnsi(Value);
                 Interop.Libc.Free(Value);
                 if (result == null || result.Length == 0)
-                    return System.Net.IPAddress.Parse("0.0.0.0");
+                {
+                    if (_family == AddressFamily.IPv4)
+                        return System.Net.IPAddress.Parse(DefaultIPv4);
+                    else
+                        return System.Net.IPAddress.Parse(DefaultIPv6);
+                }
+
                 return System.Net.IPAddress.Parse(result);
             }
 
@@ -171,7 +179,12 @@ namespace Tizen.Network.Connection
                 string result = Marshal.PtrToStringAnsi(Value);
                 Interop.Libc.Free(Value);
                 if (result == null || result.Length == 0)
-                    return System.Net.IPAddress.Parse("0.0.0.0");
+                {
+                    if (_family == AddressFamily.IPv4)
+                        return System.Net.IPAddress.Parse(DefaultIPv4);
+                    else
+                        return System.Net.IPAddress.Parse(DefaultIPv6);
+                }
                 return System.Net.IPAddress.Parse(result);
             }
 
@@ -201,7 +214,12 @@ namespace Tizen.Network.Connection
                 string result = Marshal.PtrToStringAnsi(Value);
                 Interop.Libc.Free(Value);
                 if (result == null || result.Length == 0)
-                    return System.Net.IPAddress.Parse("0.0.0.0");
+                {
+                    if (_family == AddressFamily.IPv4)
+                        return System.Net.IPAddress.Parse(DefaultIPv4);
+                    else
+                        return System.Net.IPAddress.Parse(DefaultIPv6);
+                }
                 return System.Net.IPAddress.Parse(result);
             }
 
@@ -232,7 +250,12 @@ namespace Tizen.Network.Connection
                 string result = Marshal.PtrToStringAnsi(Value);
                 Interop.Libc.Free(Value);
                 if (result == null || result.Length == 0)
-                    return System.Net.IPAddress.Parse("0.0.0.0");
+                {
+                    if (_family == AddressFamily.IPv4)
+                        return System.Net.IPAddress.Parse(DefaultIPv4);
+                    else
+                        return System.Net.IPAddress.Parse(DefaultIPv6);
+                }
                 return System.Net.IPAddress.Parse(result);
             }
 
@@ -263,7 +286,12 @@ namespace Tizen.Network.Connection
                 string result = Marshal.PtrToStringAnsi(Value);
                 Interop.Libc.Free(Value);
                 if (result == null || result.Length == 0)
-                    return System.Net.IPAddress.Parse("0.0.0.0");
+                {
+                    if (_family == AddressFamily.IPv4)
+                        return System.Net.IPAddress.Parse(DefaultIPv4);
+                    else
+                        return System.Net.IPAddress.Parse(DefaultIPv6);
+                }
                 return System.Net.IPAddress.Parse(result);
             }
 
@@ -371,7 +399,12 @@ namespace Tizen.Network.Connection
 
                 if (dhcpServer == null || dhcpServer.Length == 0)
                 {
-                    return System.Net.IPAddress.Parse("0.0.0.0");
+                    {
+                        if (_family == AddressFamily.IPv4)
+                            return System.Net.IPAddress.Parse(DefaultIPv4);
+                        else
+                            return System.Net.IPAddress.Parse(DefaultIPv6);
+                    }
                 }
 
                 else
