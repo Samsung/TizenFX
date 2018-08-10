@@ -128,7 +128,6 @@ namespace ElmSharp
             {
                 return Color.Default.A;
             }
-            
             set
             {
                 Console.WriteLine("ColorSelector instance doesn't support to set Opacity.");
