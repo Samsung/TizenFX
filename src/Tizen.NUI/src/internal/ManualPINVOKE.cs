@@ -10214,20 +10214,20 @@ namespace Tizen.NUI
         }
 
         [global::System.Runtime.InteropServices.DllImport(Graphics.GlesCSharpBinder, EntryPoint = "CSharp_Dali_FontClient_CreateBitmap__SWIG_0")]
-        public static extern void FontClient_CreateBitmap__SWIG_0_gl(global::System.Runtime.InteropServices.HandleRef jarg1, uint jarg2, uint jarg3, global::System.Runtime.InteropServices.HandleRef jarg4, int jarg5);
+        public static extern void FontClient_CreateBitmap__SWIG_0_gl(global::System.Runtime.InteropServices.HandleRef jarg1, uint jarg2, uint jarg3, bool jarg4, bool jarg5, global::System.Runtime.InteropServices.HandleRef jarg6, int jarg7);
 
         [global::System.Runtime.InteropServices.DllImport(Graphics.VulkanCSharpBinder, EntryPoint = "CSharp_Dali_FontClient_CreateBitmap__SWIG_0")]
-        public static extern void FontClient_CreateBitmap__SWIG_0_vulkan(global::System.Runtime.InteropServices.HandleRef jarg1, uint jarg2, uint jarg3, global::System.Runtime.InteropServices.HandleRef jarg4, int jarg5);
+        public static extern void FontClient_CreateBitmap__SWIG_0_vulkan(global::System.Runtime.InteropServices.HandleRef jarg1, uint jarg2, uint jarg3, bool jarg4, bool jarg5, global::System.Runtime.InteropServices.HandleRef jarg6, int jarg7);
 
-        public static void FontClient_CreateBitmap__SWIG_0(global::System.Runtime.InteropServices.HandleRef jarg1, uint jarg2, uint jarg3, global::System.Runtime.InteropServices.HandleRef jarg4, int jarg5)
+        public static void FontClient_CreateBitmap__SWIG_0(global::System.Runtime.InteropServices.HandleRef jarg1, uint jarg2, uint jarg3, bool jarg4, bool jarg5, global::System.Runtime.InteropServices.HandleRef jarg6, int jarg7)
         {
             if (Tizen.NUI.Graphics.Backend == Tizen.NUI.Graphics.BackendType.Vulkan)
             {
-                FontClient_CreateBitmap__SWIG_0_vulkan(jarg1, jarg2, jarg3, jarg4, jarg5);
+                FontClient_CreateBitmap__SWIG_0_vulkan(jarg1, jarg2, jarg3, jarg4, jarg5, jarg6, jarg7);
             }
             else
             {
-                FontClient_CreateBitmap__SWIG_0_gl(jarg1, jarg2, jarg3, jarg4, jarg5);
+                FontClient_CreateBitmap__SWIG_0_gl(jarg1, jarg2, jarg3, jarg4, jarg5, jarg6, jarg7);
             }
         }
 
