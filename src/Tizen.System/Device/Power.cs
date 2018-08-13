@@ -55,8 +55,7 @@ namespace Tizen.System
     public static class Power
     {
         /// <summary>
-        /// Locks the CPU for a specified time.
-        /// After the given timeout (in milliseconds), unlock the given lock state automatically.
+        /// [Obsolete("Please do not use! this will be deprecated")]
         /// </summary>
         /// <remarks>
         /// If the process dies, then every lock will be removed.
@@ -69,6 +68,9 @@ namespace Tizen.System
         /// <exception cref="ArgumentException">When an invalid parameter value is set.</exception>
         /// <exception cref="UnauthorizedAccessException">If the privilege is not set.</exception>
         /// <exception cref="InvalidOperationException">In case of any system error.</exception>
+        /// Please do not use! This will be deprecated!
+        /// Please use RequestLock instead!
+        [Obsolete("Please do not use! This will be deprecated! Please use RequestLock instead!")]
         public static void RequestCpuLock(int timeout)
         {
             DeviceError res = (DeviceError)Interop.Device.DevicePowerRequestLock(Interop.Device.PowerLock.Cpu, timeout);
@@ -78,11 +80,14 @@ namespace Tizen.System
             }
         }
         /// <summary>
-        /// Release the CPU lock state.
+        /// [Obsolete("Please do not use! this will be deprecated")]
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <exception cref="UnauthorizedAccessException">If the privilege is not set.</exception>
         /// <exception cref="InvalidOperationException">In case of any system error.</exception>
+        /// Please do not use! This will be deprecated!
+        /// Please use ReleaseLock instead!
+        [Obsolete("Please do not use! This will be deprecated! Please use ReleaseLock instead!")]
         public static void ReleaseCpuLock()
         {
             DeviceError res = (DeviceError)Interop.Device.DevicePowerReleaseLock(Interop.Device.PowerLock.Cpu);
