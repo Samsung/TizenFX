@@ -1,15 +1,3 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading;
-using System.Collections;
-using Tizen;
-using System.Threading.Tasks;
-using Tizen.Applications;
-using RpcPort.Message.Proxy;
-using Tizen.Applications.RPCPort;
-
 /*
 * Copyright (c) 2018 Samsung Electronics Co., Ltd All Rights Reserved
 *
@@ -26,15 +14,35 @@ using Tizen.Applications.RPCPort;
 * limitations under the License.
 */
 
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading;
+using System.Collections;
+using Tizen;
+using System.Threading.Tasks;
+using Tizen.Applications;
+using RpcPort.Message.Proxy;
+using Tizen.Applications.RPCPort;
+
 namespace Tizen.Nlp
 {
+    
+    /// <summary>
+    /// This class contains the methods and inner class related to the NLP processing.
+    /// </summary>
+    /// <since_tizen> 5 </since_tizen>
     public class NltkClass
     {
+        /// <summary>
+        /// An EventHandler to expose to external to recieve data from remote Nlp service  .
+        /// </summary>
         public event EventHandler OnMsgRecieved;
         private message _msg;
         private message.notify_cb _noti = new message.notify_cb();
-        string TAG = null;
-        public enum Methods { word_tokenize, pos_tag, ne_chunk, lemmatize, lang_detect}
+        private string TAG = null;
+
         private void MakeRequest(string cmd, string info)
         {
             Bundle b = new Bundle();
@@ -52,17 +60,25 @@ namespace Tizen.Nlp
             OnMsgRecieved(sender, e);
             Log.Debug(TAG, "done");
         }
-        public void Init(string service_id, string client_id)
+
+        /// <summary>
+        /// An init session to connect remote tidl service with 2 input parameters.
+        /// </summary>
+        /// <param name="ServiceId">remote nlp service id.</param>
+        /// <param name="ClientId">local nlp client app id.</param>
+        /// <returns></returns>
+        /// <since_tizen> 5 </since_tizen>
+        public void Init(string ServiceId, string ClientId)
         {
-            TAG = client_id;
+            TAG = ClientId;
             Log.Debug(TAG, "msg construct started");
-            _msg = new message(service_id);
+            _msg = new message(ServiceId);
             Log.Debug(TAG, "msg construct success");
             _noti.Received += OnReceived;
             Log.Debug(TAG, "notify callback be assigned");
             _msg.Connected += (sender, e) => {
                 Log.Debug(TAG, "start to register");
-                _msg.coregister(client_id, _noti);
+                _msg.coregister(ClientId, _noti);
                 Log.Debug(TAG, "connected callback be called");
             };
             Log.Debug(TAG, "start to connect");
@@ -70,7 +86,10 @@ namespace Tizen.Nlp
             Log.Debug(TAG, "wait to callback of onConnected");
         }
 
-
+        /// <summary>
+        /// An release session to disconnect remote tidl service.
+        /// </summary>
+        /// <since_tizen> 5 </since_tizen>
         public void Release()
         {
             _noti.Received -= OnReceived;
@@ -80,40 +99,75 @@ namespace Tizen.Nlp
 
         }
 
-        //example call for pos_tag of nltk , and return an element of tuple under an element of list
-        public void PosTag(string str)
+        /// <summary>
+        /// Send Pos of Tag request to remote tidl service with 1 input parameters.
+        /// </summary>
+        /// <param name="info">A sentence need to be processed.</param>
+        /// <returns></returns>
+        /// <since_tizen> 5 </since_tizen>
+        public void PosTag(string info)
         {
-            MakeRequest("pos_tag", str);
+            MakeRequest("pos_tag", info);
         }
 
-        //example call for ne_chunk of nltk , but because the ne_chunk return Tree struct ,so far ,we only convert it to List ,and return an element of tuple under an element of list
-        public void NeChunk(string str)
+        /// <summary>
+        /// Send Named Entity recognition request to remote tidl service with 1 input parameters.
+        /// </summary>
+        /// <param name="info">A sentence need to be processed.</param>
+        /// <returns></returns>
+        /// <since_tizen> 5 </since_tizen>
+        public void NeChunk(string info)
         {
-            MakeRequest("ne_chunk", str);
+            MakeRequest("ne_chunk", info);
         }
 
-        //example call for langdetect of langdetect , and return a string about language
-        public void LangDetect(string str)
+        /// <summary>
+        /// Send language detect request to remote tidl service with 1 input parameters.
+        /// </summary>
+        /// <param name="info">A sentence need to be processed.</param>
+        /// <returns></returns>
+        /// <since_tizen> 5 </since_tizen>
+        public void LangDetect(string info)
         {
-            MakeRequest("langdetect", str);
+            MakeRequest("langdetect", info);
         }
 
-        public void Lemmatize(string str)
+        /// <summary>
+        /// Send Lemmatize request to remote tidl service with 1 input parameters.
+        /// </summary>
+        /// <param name="info">A sentence need to be processed.</param>
+        /// <returns></returns>
+        /// <since_tizen> 5 </since_tizen>
+        public void Lemmatize(string info)
         {
-            MakeRequest("lemmatize", str);
+            MakeRequest("lemmatize", info);
         }
 
-        //example call for word_tokenize of nltk , and return an element of list
-        public void WordTokenize(string str)
+        /// <summary>
+        /// Send word tokenize request to remote tidl service with 1 input parameters.
+        /// </summary>
+        /// <param name="info">A sentence need to be processed.</param>
+        /// <returns></returns>
+        /// <since_tizen> 5 </since_tizen>
+        public void WordTokenize(string info)
         {
-            MakeRequest("word_tokenize", str);
+            MakeRequest("word_tokenize", info);
         }
 
     }
 
+    /// <summary>
+    /// This custom class extend from EventArgs to obtain Bundle object.
+    /// </summary>
+    /// <since_tizen> 5 </since_tizen>
     public class  CustomEventArg : EventArgs
     {
-
+        /// <summary>
+        /// An Bundle type to carry an array struct return from tidl service.
+        /// To check which nlp command be return by  msg.GetItem("command") 
+        /// To get value by  msg.GetItem("return_tag") and cast the value to string []
+        /// To get value by  msg.GetItem("return_token") and cast the value to string []
+        /// </summary>
         public Bundle msg;
 
     }
