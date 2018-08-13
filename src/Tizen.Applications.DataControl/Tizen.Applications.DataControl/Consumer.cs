@@ -193,7 +193,7 @@ namespace Tizen.Applications.DataControl
                     Log.Error(LogTag, $"reqId {reqId.ToString()}, error : {error}");
                 }
 
-                if (valueList !=null)
+                if (valueList != IntPtr.Zero)
                 {
                     string[] stringArray;
                     IntPtrToStringArray(valueList, valueCount, out stringArray);
