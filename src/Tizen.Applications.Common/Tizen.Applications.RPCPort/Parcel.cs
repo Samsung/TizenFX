@@ -59,6 +59,8 @@ namespace Tizen.Applications.RPCPort
         /// <since_tizen> 5 </since_tizen>
         public void Send(Port p)
         {
+            if (p == null)
+                throw new InvalidIOException();
             var r = Interop.LibRPCPort.Parcel.Send(_handle, p.Handle);
             if (r != Interop.LibRPCPort.ErrorCode.None)
                 throw new InvalidIOException();
