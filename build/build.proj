@@ -12,7 +12,6 @@
     <ProjectToBuild Include="$(ProjectSrcDir)\$(Project)\$(Project).csproj" Condition="'$(Project)' != ''" />
     <ProjectToBuild Include="$(ProjectSrcDir)**\*.csproj" Condition="'$(Project)' == ''" />
     <ProjectToBuild Include="$(InternalProjectSrcDir)**\*.csproj" Condition="'$(Project)' == ''" />
-    <ProjectToBuild Include="$(ExternalProjectSrcDir)**\*.csproj" Condition="'$(Project)' == ''" />
   </ItemGroup>
 
   <!-- Nuspec files to pack -->
@@ -31,7 +30,6 @@
     <ItemGroup>
       <ProjectIntermediateAllFiles Include="$(ProjectSrcDir)**\obj\*" />
       <ProjectIntermediateAllFiles Include="$(InternalProjectSrcDir)**\obj\*" />
-      <ProjectIntermediateAllFiles Include="$(ExternalProjectSrcDir)**\obj\*" />
       <ProjectIntermediateDir Include="@(ProjectIntermediateAllFiles->'%(RootDir)%(Directory)'->Distinct())" />
     </ItemGroup>
 

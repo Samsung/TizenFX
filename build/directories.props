@@ -6,7 +6,6 @@
 
     <ProjectSrcDir>$(ProjectRootDir)src\</ProjectSrcDir>
     <InternalProjectSrcDir>$(ProjectRootDir)\internals\src\</InternalProjectSrcDir>
-    <ExternalProjectSrcDir>$(ProjectRootDir)\externals\src\</ExternalProjectSrcDir>
 
     <ToolsDir>$(ProjectRootDir)tools\</ToolsDir>
     <GenDummyDir>$(ToolsDir)GenDummy\</GenDummyDir>
