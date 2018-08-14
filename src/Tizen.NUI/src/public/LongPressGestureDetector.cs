@@ -1,5 +1,5 @@
 /*
- * Copyright(c) 2017 Samsung Electronics Co., Ltd.
+ * Copyright(c) 2018 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,15 +14,22 @@
  * limitations under the License.
  *
  */
+using System;
+using System.Runtime.InteropServices;
+using Tizen.NUI.BaseComponents;
+using System.ComponentModel;
 
 namespace Tizen.NUI
 {
-
-    using System;
-    using System.Runtime.InteropServices;
-    using Tizen.NUI.BaseComponents;
-
-    internal class LongPressGestureDetector : GestureDetector
+    /// <summary>
+    /// This class emits a signals when a long press gesture occurs that meets the requirements set by the application.<br />
+    /// For any valid long press, two signals will be emitted:<br />
+    /// - First identifying the beginning (state = Started) i.e. when fingers held down for the required time.<br />
+    /// - Second identifying the ending (state = Finished) i.e. when fingers are released.<br />
+    /// </summary>
+    /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+    [EditorBrowsable(EditorBrowsableState.Never)]
+    public class LongPressGestureDetector : GestureDetector
     {
         private global::System.Runtime.InteropServices.HandleRef swigCPtr;
 
@@ -36,6 +43,12 @@ namespace Tizen.NUI
             return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
         }
 
+        /// <summary>
+        /// Dispose.
+        /// </summary>
+        /// <param name="type">The dispose type</param>
+        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         protected override void Dispose(DisposeTypes type)
         {
             if (disposed)
@@ -68,14 +81,23 @@ namespace Tizen.NUI
             base.Dispose(type);
         }
 
-
-        /// <since_tizen> 3 </since_tizen>
+        /// <summary>
+        /// Event arguments that passed via the LongPressGestureEvent signal.
+        /// </summary>
+        /// <since_tizen> 5 </since_tizen>
+        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public class DetectedEventArgs : EventArgs
         {
             private View _view;
             private LongPressGesture _longPressGesture;
 
-            /// <since_tizen> 3 </since_tizen>
+            /// <summary>
+            /// View - the attached view.
+            /// </summary>
+            /// <since_tizen> 5 </since_tizen>
+            /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+            [EditorBrowsable(EditorBrowsableState.Never)]
             public View View
             {
                 get
@@ -88,7 +110,12 @@ namespace Tizen.NUI
                 }
             }
 
-            /// <since_tizen> 3 </since_tizen>
+            /// <summary>
+            /// The LongPressGesture.
+            /// </summary>
+            /// <since_tizen> 5 </since_tizen>
+            /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+            [EditorBrowsable(EditorBrowsableState.Never)]
             public LongPressGesture LongPressGesture
             {
                 get
@@ -107,7 +134,11 @@ namespace Tizen.NUI
         private DaliEventHandler<object, DetectedEventArgs> _longPressGestureEventHandler;
         private DetectedCallbackDelegate _longPressGestureCallbackDelegate;
 
-
+        /// <summary>
+        /// This signal is emitted when the specified long press is detected on the attached view.
+        /// </summary>
+        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public event DaliEventHandler<object, DetectedEventArgs> Detected
         {
             add
@@ -155,61 +186,108 @@ namespace Tizen.NUI
 
         }
 
-
-        public static LongPressGestureDetector GetLongPressGestureDetectorFromPtr(global::System.IntPtr cPtr)
+        internal static LongPressGestureDetector GetLongPressGestureDetectorFromPtr(global::System.IntPtr cPtr)
         {
             LongPressGestureDetector ret = new LongPressGestureDetector(cPtr, false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
-
+        /// <summary>
+        /// Constructor.
+        /// </summary>
+        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public LongPressGestureDetector() : this(NDalicPINVOKE.LongPressGestureDetector_New__SWIG_0(), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
 
         }
+
+        /// <summary>
+        /// Creates an initialized LongPressGestureDetector with the number of touches required.<br />
+        /// A long press gesture will be emitted from this detector if the number of fingers touching the screen is equal to the touches required.<br />
+        /// </summary>
+        /// <param name="touchesRequired">The number of touches required</param>
+        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public LongPressGestureDetector(uint touchesRequired) : this(NDalicPINVOKE.LongPressGestureDetector_New__SWIG_1(touchesRequired), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
 
         }
+
+        /// <summary>
+        /// Creates an initialized LongPressGestureDetector with the minimum and maximum number of touches required.<br />
+        /// A long press gesture will be emitted from this detector if the number of fingers touching the screen falls between the minimum and maximum touches set.<br />
+        /// </summary>
+        /// <param name="minTouches">The minimum number of touches required</param>
+        /// <param name="maxTouches">The maximum number of touches required</param>
+        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public LongPressGestureDetector(uint minTouches, uint maxTouches) : this(NDalicPINVOKE.LongPressGestureDetector_New__SWIG_2(minTouches, maxTouches), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
 
         }
-        public new static LongPressGestureDetector DownCast(BaseHandle handle)
+
+        internal new static LongPressGestureDetector DownCast(BaseHandle handle)
         {
             LongPressGestureDetector ret =  Registry.GetManagedBaseHandleFromNativePtr(handle) as LongPressGestureDetector;
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
+        /// <summary>
+        /// The copy constructor.
+        /// </summary>
+        /// <param name="handle">A reference to the copied handle</param>
+        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public LongPressGestureDetector(LongPressGestureDetector handle) : this(NDalicPINVOKE.new_LongPressGestureDetector__SWIG_1(LongPressGestureDetector.getCPtr(handle)), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
-        public LongPressGestureDetector Assign(LongPressGestureDetector rhs)
+        internal LongPressGestureDetector Assign(LongPressGestureDetector rhs)
         {
             LongPressGestureDetector ret = new LongPressGestureDetector(NDalicPINVOKE.LongPressGestureDetector_Assign(swigCPtr, LongPressGestureDetector.getCPtr(rhs)), false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
+        /// <summary>
+        /// Sets the number of touches required.<br />
+        /// The number of touches corresponds to the number of fingers a user has on the screen. The default is 1.<br />
+        /// </summary>
+        /// <param name="touches">Touches required</param>
+        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public void SetTouchesRequired(uint touches)
         {
             NDalicPINVOKE.LongPressGestureDetector_SetTouchesRequired__SWIG_0(swigCPtr, touches);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
+        /// <summary>
+        /// Sets the minimum and maximum touches required.
+        /// </summary>
+        /// <param name="minTouches">Minimum Touches required</param>
+        /// <param name="maxTouches">Maximum Touches required</param>
+        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public void SetTouchesRequired(uint minTouches, uint maxTouches)
         {
             NDalicPINVOKE.LongPressGestureDetector_SetTouchesRequired__SWIG_1(swigCPtr, minTouches, maxTouches);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
+        /// <summary>
+        /// Retrieves the minimum number of touches required.
+        /// </summary>
+        /// <returns>The minimum number of touches required.</returns>
+        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public uint GetMinimumTouchesRequired()
         {
             uint ret = NDalicPINVOKE.LongPressGestureDetector_GetMinimumTouchesRequired(swigCPtr);
@@ -217,6 +295,12 @@ namespace Tizen.NUI
             return ret;
         }
 
+        /// <summary>
+        /// Retrieves the maximum number of touches required.
+        /// </summary>
+        /// <returns>The maximum number of touches required.</returns>
+        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public uint GetMaximumTouchesRequired()
         {
             uint ret = NDalicPINVOKE.LongPressGestureDetector_GetMaximumTouchesRequired(swigCPtr);
