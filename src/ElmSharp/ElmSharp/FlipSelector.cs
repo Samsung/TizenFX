@@ -158,7 +158,7 @@ namespace ElmSharp
         /// <since_tizen> preview </since_tizen>
         public void Remove(FlipSelectorItem item)
         {
-            if (item as FlipSelectorItem != null)
+            if (item != null)
                 item.Delete();
         }
 
