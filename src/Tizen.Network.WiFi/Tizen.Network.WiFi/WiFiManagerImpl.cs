@@ -158,7 +158,11 @@ namespace Tizen.Network.WiFi
             int tid = Thread.CurrentThread.ManagedThreadId;
             Log.Info(Globals.LogTag, "PInvoke wifi_manager_initialize");
             int ret = Interop.WiFi.Initialize(tid, out handle);
-            CheckReturnValue(ret, "Initialize", PrivilegeNetworkGet);
+            if (ret != (int)WiFiError.None)
+            {
+                Log.Error(Globals.LogTag, "Initialize Fail, Error - " + (WiFiError)ret);
+                WiFiErrorFactory.ThrowWiFiException(ret, PrivilegeNetworkGet);
+            }
             handle.SetTID(tid);
             return handle;
         }
