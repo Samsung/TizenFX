@@ -15,20 +15,12 @@
 */
 
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading;
-using System.Collections;
-using Tizen;
-using System.Threading.Tasks;
 using Tizen.Applications;
-using RpcPort.Message.Proxy;
-using Tizen.Applications.RPCPort;
+using Tizen.Nlp;
 
 namespace Tizen.Nlp
 {
-    
+
     /// <summary>
     /// This class contains the methods and inner class related to the NLP processing.
     /// </summary>
@@ -39,51 +31,52 @@ namespace Tizen.Nlp
         /// An EventHandler to expose to external to recieve data from remote Nlp service  .
         /// </summary>
         public event EventHandler OnMsgRecieved;
-        private message _msg;
-        private message.notify_cb _noti = new message.notify_cb();
-        private string TAG = null;
+        private Message _msg;
+        private readonly Message.NotifyCb _noti = new Message.NotifyCb();
+        private string _tag;
 
         private void MakeRequest(string cmd, string info)
         {
             Bundle b = new Bundle();
             b.AddItem("command", cmd);
             b.AddItem("info", info);
-            _msg.send(b);
+            _msg.Send(b);
         }
 
         private void OnReceived(string sender, Bundle msg)
         {
-            Log.Debug(TAG, "OnReceived ++");
+            Log.Debug(_tag, "OnReceived ++");
             CustomEventArg e = new CustomEventArg();
-            e.msg = new Bundle();
-            e.msg = msg;
+            e.Msg = new Bundle();
+            e.Msg = msg;
             OnMsgRecieved(sender, e);
-            Log.Debug(TAG, "done");
+            Log.Debug(_tag, "done");
         }
 
         /// <summary>
         /// An init session to connect remote tidl service with 2 input parameters.
         /// </summary>
-        /// <param name="ServiceId">remote nlp service id.</param>
-        /// <param name="ClientId">local nlp client app id.</param>
+        /// <param name="serviceId">remote nlp service id.</param>
+        /// <param name="clientId">local nlp client app id.</param>
         /// <returns></returns>
         /// <since_tizen> 5 </since_tizen>
-        public void Init(string ServiceId, string ClientId)
+        public void Init(string serviceId, string clientId)
         {
-            TAG = ClientId;
-            Log.Debug(TAG, "msg construct started");
-            _msg = new message(ServiceId);
-            Log.Debug(TAG, "msg construct success");
+            _tag = clientId;
+            Log.Debug(_tag, "msg construct started");
+            _msg = new Message(serviceId);
+            Log.Debug(_tag, "msg construct success");
             _noti.Received += OnReceived;
-            Log.Debug(TAG, "notify callback be assigned");
-            _msg.Connected += (sender, e) => {
-                Log.Debug(TAG, "start to register");
-                _msg.coregister(ClientId, _noti);
-                Log.Debug(TAG, "connected callback be called");
+            Log.Debug(_tag, "notify callback be assigned");
+            _msg.Connected += (sender, e) =>
+            {
+                Log.Debug(_tag, "start to register");
+                _msg.CoRegister(clientId, _noti);
+                Log.Debug(_tag, "connected callback be called");
             };
-            Log.Debug(TAG, "start to connect");
+            Log.Debug(_tag, "start to connect");
             _msg.Connect();
-            Log.Debug(TAG, "wait to callback of onConnected");
+            Log.Debug(_tag, "wait to callback of onConnected");
         }
 
         /// <summary>
@@ -93,7 +86,7 @@ namespace Tizen.Nlp
         public void Release()
         {
             _noti.Received -= OnReceived;
-            _msg.unregister();
+            _msg.UnRegister();
             _msg.Dispose();
             _msg = null;
 
@@ -160,15 +153,23 @@ namespace Tizen.Nlp
     /// This custom class extend from EventArgs to obtain Bundle object.
     /// </summary>
     /// <since_tizen> 5 </since_tizen>
-    public class  CustomEventArg : EventArgs
+    public class CustomEventArg : EventArgs
     {
         /// <summary>
         /// An Bundle type to carry an array struct return from tidl service.
-        /// To check which nlp command be return by  msg.GetItem("command") 
+        /// To check which nlp command be return by  msg.GetItem("command")
         /// To get value by  msg.GetItem("return_tag") and cast the value to string []
         /// To get value by  msg.GetItem("return_token") and cast the value to string []
         /// </summary>
-        public Bundle msg;
+        internal Bundle _msg;
+        /// <summary>
+        /// Use get method  to avoid the _msg be modified directlly.
+        /// </summary>
+        public Bundle Msg
+        {
+            get => _msg;
 
+            set => _msg = value;
+        }
     }
 }
