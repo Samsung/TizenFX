@@ -25,12 +25,12 @@ namespace Tizen.Nlp
     /// This class contains the methods and inner class related to the NLP processing.
     /// </summary>
     /// <since_tizen> 5 </since_tizen>
-    public class NltkClass
+    public class NlpClass
     {
         /// <summary>
         /// An EventHandler to expose to external to recieve data from remote Nlp service  .
         /// </summary>
-        public event EventHandler OnMsgRecieved;
+        public event EventHandler OnMessageReceived;
         private Message _msg;
         private readonly Message.NotifyCb _noti = new Message.NotifyCb();
         private string _tag;
@@ -46,10 +46,10 @@ namespace Tizen.Nlp
         private void OnReceived(string sender, Bundle msg)
         {
             Log.Debug(_tag, "OnReceived ++");
-            CustomEventArg e = new CustomEventArg();
+            MessageReceivedEventArgs e = new MessageReceivedEventArgs();
             e.Msg = new Bundle();
             e.Msg = msg;
-            OnMsgRecieved(sender, e);
+            OnMessageReceived(sender, e);
             Log.Debug(_tag, "done");
         }
 
@@ -147,29 +147,5 @@ namespace Tizen.Nlp
             MakeRequest("word_tokenize", info);
         }
 
-    }
-
-    /// <summary>
-    /// This custom class extend from EventArgs to obtain Bundle object.
-    /// </summary>
-    /// <since_tizen> 5 </since_tizen>
-    public class CustomEventArg : EventArgs
-    {
-        /// <summary>
-        /// An Bundle type to carry an array struct return from tidl service.
-        /// To check which nlp command be return by  msg.GetItem("command")
-        /// To get value by  msg.GetItem("return_tag") and cast the value to string []
-        /// To get value by  msg.GetItem("return_token") and cast the value to string []
-        /// </summary>
-        internal Bundle _msg;
-        /// <summary>
-        /// Use get method  to avoid the _msg be modified directlly.
-        /// </summary>
-        public Bundle Msg
-        {
-            get => _msg;
-
-            set => _msg = value;
-        }
     }
 }
