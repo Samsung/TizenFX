@@ -181,22 +181,16 @@ namespace Tizen.Multimedia
         ///     <para>The event handler will be executed on an internal thread.</para>
         ///     <para>The <see cref="VideoFrameDecodedEventArgs.Packet"/> in event args should be disposed after use.</para>
         /// </remarks>
-        /// <feature>http://tizen.org/feature/multimedia.raw_video</feature>
-        /// <exception cref="NotSupportedException">The required feature is not supported.</exception>
         /// <seealso cref="VideoFrameDecodedEventArgs.Packet"/>
         /// <since_tizen> 3 </since_tizen>
         public event EventHandler<VideoFrameDecodedEventArgs> VideoFrameDecoded
         {
             add
             {
-                ValidationUtil.ValidateFeatureSupported(PlayerFeatures.RawVideo);
-
                 _videoFrameDecoded += value;
             }
             remove
             {
-                ValidationUtil.ValidateFeatureSupported(PlayerFeatures.RawVideo);
-
                 _videoFrameDecoded -= value;
             }
         }
