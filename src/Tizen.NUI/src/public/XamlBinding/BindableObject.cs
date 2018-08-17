@@ -102,7 +102,9 @@ namespace Tizen.NUI.Binding
         /// </summary>
         /// <param name="property">The BindableProperty for which to get the value.</param>
         /// <returns>The value that is contained the BindableProperty</returns>
-        internal object GetValue(BindableProperty property)
+        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public object GetValue(BindableProperty property)
         {
             if (property == null)
                 throw new ArgumentNullException("property");
@@ -166,7 +168,9 @@ namespace Tizen.NUI.Binding
         /// </summary>
         /// <param name="property">The BindableProperty on which to assign a value.</param>
         /// <param name="value">The value to set.</param>
-        internal void SetValue(BindableProperty property, object value)
+        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void SetValue(BindableProperty property, object value)
         {
             if (true == isCreateByXaml)
             {
@@ -202,7 +206,9 @@ namespace Tizen.NUI.Binding
         /// </summary>
         /// <param name="propertyKey">The BindablePropertyKey on which to assign a value.</param>
         /// <param name="value">The value to set.</param>
-        internal void SetValue(BindablePropertyKey propertyKey, object value)
+        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void SetValue(BindablePropertyKey propertyKey, object value)
         {
             if (propertyKey == null)
                 throw new ArgumentNullException("propertyKey");
