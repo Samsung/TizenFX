@@ -26,6 +26,7 @@ namespace Tizen.Multimedia.Remoting
         private Native.MetadataUpdatedCallback _metadataUpdatedCallback;
         private Native.ShuffleModeUpdatedCallback _shufflemodeUpdatedCallback;
         private Native.RepeatModeUpdatedCallback _repeatmodeUpdatedCallback;
+        private Native.CommandCompletedCallback _commandCompletedCallback;
 
         /// <summary>
         /// Occurs when a server is started.
@@ -117,6 +118,17 @@ namespace Tizen.Multimedia.Remoting
 
             Native.SetRepeatModeUpdatedCb(Handle, _repeatmodeUpdatedCallback).
                 ThrowIfError("Failed to init RepeatModeUpdated event.");
+        }
+
+        private void RegisterCommandCompletedEvent()
+        {
+            _commandCompletedCallback = (serverName, requestId, result, bundle, _) =>
+            {
+                GetController(serverName)?.RaiseCommandCompletedEvent(requestId, result, bundle);
+            };
+
+            Native.SetCommandCompletedCb(Handle, _commandCompletedCallback).
+                ThrowIfError("Failed to init CommandCompleted event.");
         }
     }
 }

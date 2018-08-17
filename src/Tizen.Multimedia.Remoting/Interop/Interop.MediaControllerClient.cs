@@ -1,4 +1,4 @@
-﻿/*
+/*
  * Copyright (c) 2016 Samsung Electronics Co., Ltd All Rights Reserved
  *
  * Licensed under the Apache License, Version 2.0 (the License);
@@ -16,6 +16,7 @@
 
 using System;
 using System.Runtime.InteropServices;
+using Tizen.Applications;
 using Tizen.Multimedia.Remoting;
 
 internal static partial class Interop
@@ -33,7 +34,7 @@ internal static partial class Interop
         internal delegate void MetadataUpdatedCallback(string serverName, IntPtr metadata, IntPtr userData);
 
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-        internal delegate void ShuffleModeUpdatedCallback(string serverName, MediaControllerShuffleMode shuffleMode,
+        internal delegate void ShuffleModeUpdatedCallback(string serverName, NativeShuffleMode shuffleMode,
             IntPtr userData);
 
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
@@ -41,6 +42,10 @@ internal static partial class Interop
 
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         internal delegate bool ActivatedServerCallback(string serverName, IntPtr userData);
+
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+        internal delegate void CommandCompletedCallback(string serverName, string requestId, int result,
+            SafeBundleHandle bundleHandle, IntPtr userData);
 
         [DllImport(Libraries.MediaController, EntryPoint = "mc_client_create")]
         internal static extern MediaControllerError Create(out MediaControllerClientHandle handle);
@@ -83,8 +88,15 @@ internal static partial class Interop
         [DllImport(Libraries.MediaController, EntryPoint = "mc_client_unset_repeat_mode_update_cb")]
         internal static extern MediaControllerError UnsetRepeatModeUpdatedCb(MediaControllerClientHandle handle);
 
+        [DllImport(Libraries.MediaController, EntryPoint = "mc_client_set_cmd_reply_received_cb")]
+        internal static extern MediaControllerError SetCommandCompletedCb(MediaControllerClientHandle handle,
+            CommandCompletedCallback callback, IntPtr userData = default(IntPtr));
+
+        [DllImport(Libraries.MediaController, EntryPoint = "mc_client_unset_cmd_reply_received_cb")]
+        internal static extern MediaControllerError UnsetCommandCompletedCb(MediaControllerClientHandle handle);
+
         [DllImport(Libraries.MediaController, EntryPoint = "mc_client_get_playback_state")]
-        internal static extern MediaControllerError GetPlaybackState(IntPtr playback, out MediaControllerPlaybackCode state);
+        internal static extern MediaControllerError GetPlaybackState(IntPtr playback, out MediaControllerPlaybackNativeState state);
 
         [DllImport(Libraries.MediaController, EntryPoint = "mc_client_get_playback_position")]
         internal static extern MediaControllerError GetPlaybackPosition(IntPtr playback, out ulong position);
@@ -128,7 +140,7 @@ internal static partial class Interop
 
         [DllImport(Libraries.MediaController, EntryPoint = "mc_client_get_server_shuffle_mode")]
         internal static extern MediaControllerError GetServerShuffleMode(MediaControllerClientHandle handle,
-            string serverName, out MediaControllerShuffleMode mode);
+            string serverName, out NativeShuffleMode mode);
 
         [DllImport(Libraries.MediaController, EntryPoint = "mc_client_get_server_repeat_mode")]
         internal static extern MediaControllerError GetServerRepeatMode(MediaControllerClientHandle handle,
@@ -136,7 +148,32 @@ internal static partial class Interop
 
         [DllImport(Libraries.MediaController, EntryPoint = "mc_client_send_playback_state_command")]
         internal static extern MediaControllerError SendPlaybackStateCommand(MediaControllerClientHandle handle,
-            string serverName, MediaControllerPlaybackCode command);
+            string serverName, MediaControllerPlaybackNativeAction command);
+
+        [DllImport(Libraries.MediaController, EntryPoint = "mc_client_send_custom_cmd")]
+        internal static extern MediaControllerError SendCustomCommand(MediaControllerClientHandle handle,
+            string serverName, string command, SafeBundleHandle bundleHandle, out string requestId);
+
+        [DllImport(Libraries.MediaController, EntryPoint = "mc_client_send_playback_action_cmd")]
+        internal static extern MediaControllerError SendPlaybackActionCommand(MediaControllerClientHandle handle,
+            string serverName, MediaControllerPlaybackNativeAction action, out string requestId);
+
+        [DllImport(Libraries.MediaController, EntryPoint = "mc_client_send_playback_position_cmd")]
+        internal static extern MediaControllerError SendPlaybackPositionCommand(MediaControllerClientHandle handle,
+            string serverName, ulong playbackPosition, out string requestId);
+
+        [DllImport(Libraries.MediaController, EntryPoint = "mc_client_send_shuffle_mode_cmd")]
+        internal static extern MediaControllerError SendShuffleModeCommand(MediaControllerClientHandle handle,
+            string serverName, NativeShuffleMode mode, out string requestId);
+
+        [DllImport(Libraries.MediaController, EntryPoint = "mc_client_send_repeat_mode_cmd")]
+        internal static extern MediaControllerError SendRepeatModeCommand(MediaControllerClientHandle handle,
+            string serverName, NativeRepeatMode mode, out string requestId);
+
+        [DllImport(Libraries.MediaController, EntryPoint = "mc_client_send_playlist_cmd")]
+        internal static extern MediaControllerError SendPlaylistCommand(MediaControllerClientHandle handle,
+            string serverName, string playlistName, string index, MediaControllerPlaybackNativeAction mode,
+            ulong position, out string requestId);
 
         [DllImport(Libraries.MediaController, EntryPoint = "mc_client_foreach_server")]
         internal static extern MediaControllerError ForeachActivatedServer(MediaControllerClientHandle handle,

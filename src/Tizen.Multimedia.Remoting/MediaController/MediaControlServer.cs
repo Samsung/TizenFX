@@ -15,6 +15,7 @@
  */
 
 using System;
+using Tizen.Applications;
 using Native = Interop.MediaControllerServer;
 
 namespace Tizen.Multimedia.Remoting
@@ -25,7 +26,7 @@ namespace Tizen.Multimedia.Remoting
     /// <seealso cref="MediaControllerManager"/>
     /// <seealso cref="MediaController"/>
     /// <since_tizen> 4 </since_tizen>
-    public static class MediaControlServer
+    public static partial class MediaControlServer
     {
         private static IntPtr _handle = IntPtr.Zero;
         private static bool? _isRunning;
@@ -103,6 +104,13 @@ namespace Tizen.Multimedia.Remoting
             try
             {
                 RegisterPlaybackCommandReceivedEvent();
+                RegisterPlaybackActionCommandReceivedEvent();
+                RegisterPlaybackPositionCommandReceivedEvent();
+                RegisterPlaylistCommandReceivedEvent();
+                RegisterShuffleModeCommandReceivedEvent();
+                RegisterRepeatModeCommandReceivedEvent();
+                RegisterCustomCommandReceivedEvent();
+
                 _isRunning = true;
             }
             catch
@@ -175,7 +183,7 @@ namespace Tizen.Multimedia.Remoting
                 throw new ArgumentOutOfRangeException(nameof(position), position, "position can't be less than zero.");
             }
 
-            Native.SetPlaybackState(Handle, state.ToCode()).ThrowIfError("Failed to set playback state.");
+            Native.SetPlaybackState(Handle, state.ToNativeState()).ThrowIfError("Failed to set playback state.");
 
             Native.SetPlaybackPosition(Handle, (ulong)position).ThrowIfError("Failed to set playback position.");
 
@@ -232,7 +240,7 @@ namespace Tizen.Multimedia.Remoting
         /// <since_tizen> 4 </since_tizen>
         public static void SetShuffleModeEnabled(bool enabled)
         {
-            Native.UpdateShuffleMode(Handle, enabled ? MediaControllerShuffleMode.On : MediaControllerShuffleMode.Off).
+            Native.UpdateShuffleMode(Handle, enabled ? NativeShuffleMode.On : NativeShuffleMode.Off).
                 ThrowIfError("Failed to set shuffle mode.");
         }
 
@@ -255,21 +263,33 @@ namespace Tizen.Multimedia.Remoting
         }
 
         /// <summary>
-        /// Occurs when a client sends playback command.
+        /// Sends back the result of the requested command to the client.
         /// </summary>
-        /// <since_tizen> 4 </since_tizen>
-        public static event EventHandler<PlaybackCommandReceivedEventArgs> PlaybackCommandReceived;
-
-        private static Native.PlaybackStateCommandReceivedCallback _playbackCommandCallback;
-
-        private static void RegisterPlaybackCommandReceivedEvent()
+        /// <param name="clientAppId">The application id of client that sent command.</param>
+        /// <param name="requestId">The request id of command.</param>
+        /// <param name="result">The result of command.</param>
+        /// <param name="bundle"></param>
+        /// <exception cref="InvalidOperationException">
+        ///     The server is not running .<br/>
+        ///     -or-<br/>
+        ///     An internal error occurs.
+        /// </exception>
+        /// <exception cref="ArgumentNullException">
+        /// <paramref name="clientAppId"/> or <paramref name="requestId"/> is not set.
+        /// </exception>
+        /// <since_tizen> 5 </since_tizen>
+        public static void SendCommandReply(string clientAppId, string requestId, int result, Bundle bundle)
         {
-            _playbackCommandCallback = (clientName, playbackCode, _) =>
+            if (clientAppId == null)
             {
-                PlaybackCommandReceived?.Invoke(null, new PlaybackCommandReceivedEventArgs(clientName, playbackCode.ToCommand()));
-            };
-            Native.SetPlaybackStateCmdRecvCb(Handle, _playbackCommandCallback).
-                ThrowIfError("Failed to init PlaybackStateCommandReceived event."); ;
+                throw new ArgumentNullException("clientAppId is not set.");
+            }
+            if (requestId == null)
+            {
+                throw new ArgumentNullException("requestId is not set.");
+            }
+
+            Native.SendCommandReply(Handle, clientAppId, requestId, result, bundle.SafeBundleHandle);
         }
     }
 }

@@ -15,7 +15,9 @@
  */
 
 using System;
+using System.Collections.Generic;
 using System.Diagnostics;
+using Tizen.Applications;
 using Native = Interop.MediaControllerClient;
 
 namespace Tizen.Multimedia.Remoting
@@ -157,9 +159,9 @@ namespace Tizen.Multimedia.Remoting
         /// <since_tizen> 4 </since_tizen>
         public event EventHandler<ShuffleModeUpdatedEventArgs> ShuffleModeUpdated;
 
-        internal void RaiseShuffleModeUpdatedEvent(MediaControllerShuffleMode mode)
+        internal void RaiseShuffleModeUpdatedEvent(NativeShuffleMode mode)
         {
-            ShuffleModeUpdated?.Invoke(this, new ShuffleModeUpdatedEventArgs(mode == MediaControllerShuffleMode.On));
+            ShuffleModeUpdated?.Invoke(this, new ShuffleModeUpdatedEventArgs(mode == NativeShuffleMode.On));
         }
 
         /// <summary>
@@ -171,6 +173,20 @@ namespace Tizen.Multimedia.Remoting
         internal void RaiseRepeatModeUpdatedEvent(MediaControlRepeatMode mode)
         {
             RepeatModeUpdated?.Invoke(this, new RepeatModeUpdatedEventArgs(mode));
+        }
+
+        /// <summary>
+        /// Occurs when the command is completed.
+        /// </summary>
+        /// <remarks>
+        /// User can match the command and this event using <see cref="CommandCompletedEventArgs.RequestId"/> field.
+        /// </remarks>
+        /// <since_tizen> 5 </since_tizen>
+        public event EventHandler<CommandCompletedEventArgs> CommandCompleted;
+
+        internal void RaiseCommandCompletedEvent(string requestId, int result, SafeBundleHandle bundleHandle)
+        {
+            CommandCompleted?.Invoke(this, new CommandCompletedEventArgs(requestId, result, bundleHandle));
         }
 
         /// <summary>
@@ -296,7 +312,7 @@ namespace Tizen.Multimedia.Remoting
             Native.GetServerShuffleMode(Manager.Handle, ServerAppId, out var shuffleMode).
                 ThrowIfError("Failed to get shuffle mode state.");
 
-            return shuffleMode == MediaControllerShuffleMode.On;
+            return shuffleMode == NativeShuffleMode.On;
         }
 
         /// <summary>
@@ -322,7 +338,8 @@ namespace Tizen.Multimedia.Remoting
         }
 
         /// <summary>
-        /// Sends playback command to the server.</summary>
+        /// Sends playback command to the server.
+        /// </summary>
         /// <param name="command">A playback command.</param>
         /// <exception cref="InvalidOperationException">
         ///     The server has already been stopped.<br/>
@@ -333,14 +350,183 @@ namespace Tizen.Multimedia.Remoting
         /// <exception cref="ObjectDisposedException">The <see cref="MediaControllerManager"/> has already been disposed of.</exception>
         /// <seealso cref="MediaControlServer.PlaybackCommandReceived"/>
         /// <since_tizen> 4 </since_tizen>
+        [Obsolete("Please do not use! This will be deprecated. Please use SendCommand instead.")]
         public void SendPlaybackCommand(MediaControlPlaybackCommand command)
         {
             ThrowIfStopped();
 
             ValidationUtil.ValidateEnum(typeof(MediaControlPlaybackCommand), command, nameof(command));
 
-            Native.SendPlaybackStateCommand(Manager.Handle, ServerAppId, command.ToCode()).
+            Native.SendPlaybackStateCommand(Manager.Handle, ServerAppId, command.ToNativeAction()).
                 ThrowIfError("Failed to send command.");
+        }
+
+        /// <summary>
+        /// Sends playback command to the server.
+        /// </summary>
+        /// <param name="playbackCommand">A playback command.</param>
+        /// <exception cref="InvalidOperationException">
+        ///     The server has already been stopped.<br/>
+        ///     -or-<br/>
+        ///     An internal error occurs.
+        /// </exception>
+        /// <exception cref="ArgumentException"><paramref name="playbackCommand"/> is not valid.</exception>
+        /// <exception cref="ObjectDisposedException">The <see cref="MediaControllerManager"/> has already been disposed of.</exception>
+        /// <seealso cref="CommandCompleted"/>
+        /// <since_tizen> 5 </since_tizen>
+        public string SendCommand(MediaControlPlaybackCommand playbackCommand)
+        {
+            ThrowIfStopped();
+
+            ValidationUtil.ValidateEnum(typeof(MediaControlPlaybackCommand), playbackCommand, nameof(playbackCommand));
+
+            Native.SendPlaybackActionCommand(Manager.Handle, ServerAppId, playbackCommand.ToNativeAction(), out string requestId).
+                ThrowIfError("Failed to send playback command.");
+
+            return requestId;
+        }
+
+        /// <summary>
+        /// Sends repeat mode command to the server.
+        /// </summary>
+        /// <param name="playbackCommand">The repeat mode to send to media controller server.</param>
+        /// <param name="playlistName"></param>
+        /// <param name="index"></param>
+        /// <param name="position"></param>
+        /// <exception cref="InvalidOperationException">
+        ///     The server has already been stopped.<br/>
+        ///     -or-<br/>
+        ///     An internal error occurs.
+        /// </exception>
+        /// <exception cref="ArgumentException"><paramref name="playbackCommand"/> is not valid.</exception>
+        /// <exception cref="ObjectDisposedException">The <see cref="MediaControllerManager"/> has already been disposed of.</exception>
+        /// <seealso cref="CommandCompleted"/>
+        /// <since_tizen> 5 </since_tizen>
+        public string SendCommand(MediaControlPlaybackCommand playbackCommand, string playlistName, string index, ulong position)
+        {
+            ThrowIfStopped();
+
+            ValidationUtil.ValidateEnum(typeof(MediaControlPlaybackCommand), playbackCommand, nameof(playbackCommand));
+
+            if (playlistName == null)
+            {
+                throw new ArgumentNullException("Playlist is not set.");
+            }
+            if (index == null)
+            {
+                throw new ArgumentNullException("Index is not set.");
+            }
+
+            Native.SendPlaylistCommand(Manager.Handle, ServerAppId, playlistName, index, playbackCommand.ToNativeAction(),
+                position, out string requestId).ThrowIfError("Failed to send playlist command.");
+
+            return requestId;
+        }
+
+        /// <summary>
+        /// Sends playback position command to the server.
+        /// </summary>
+        /// <param name="playbackPosition">The position of the playback in milliseconds to send to media controller server.</param>
+        /// <exception cref="InvalidOperationException">
+        ///     The server has already been stopped.<br/>
+        ///     -or-<br/>
+        ///     An internal error occurs.
+        /// </exception>
+        /// <exception cref="ArgumentException"><paramref name="playbackPosition"/> is not valid.</exception>
+        /// <exception cref="ObjectDisposedException">The <see cref="MediaControllerManager"/> has already been disposed of.</exception>
+        /// <seealso cref="CommandCompleted"/>
+        /// <since_tizen> 5 </since_tizen>
+        public string SendCommand(ulong playbackPosition)
+        {
+            ThrowIfStopped();
+
+            Native.SendPlaybackPositionCommand(Manager.Handle, ServerAppId, playbackPosition, out string requestId).
+                ThrowIfError("Failed to send playback position command.");
+
+            return requestId;
+        }
+
+        /// <summary>
+        /// Sends shuffle mode command to the server.
+        /// </summary>
+        /// <param name="shuffleMode">The shuffle mode to send to media controller server.</param>
+        /// <exception cref="InvalidOperationException">
+        ///     The server has already been stopped.<br/>
+        ///     -or-<br/>
+        ///     An internal error occurs.
+        /// </exception>
+        /// <exception cref="ArgumentException"><paramref name="shuffleMode"/> is not valid.</exception>
+        /// <exception cref="ObjectDisposedException">The <see cref="MediaControllerManager"/> has already been disposed of.</exception>
+        /// <seealso cref="CommandCompleted"/>
+        /// <since_tizen> 5 </since_tizen>
+        public string SendCommand(MediaControlShuffleMode shuffleMode)
+        {
+            ThrowIfStopped();
+
+            ValidationUtil.ValidateEnum(typeof(MediaControlShuffleMode), shuffleMode, nameof(shuffleMode));
+
+            Native.SendShuffleModeCommand(Manager.Handle, ServerAppId, shuffleMode.ToNative(), out string requestId).
+                ThrowIfError("Failed to send playback shuffle command.");
+
+            return requestId;
+        }
+
+        /// <summary>
+        /// Sends repeat mode command to the server.
+        /// </summary>
+        /// <param name="repeatMode">The repeat mode to send to media controller server.</param>
+        /// <exception cref="InvalidOperationException">
+        ///     The server has already been stopped.<br/>
+        ///     -or-<br/>
+        ///     An internal error occurs.
+        /// </exception>
+        /// <exception cref="ArgumentException"><paramref name="repeatMode"/> is not valid.</exception>
+        /// <exception cref="ObjectDisposedException">The <see cref="MediaControllerManager"/> has already been disposed of.</exception>
+        /// <seealso cref="CommandCompleted"/>
+        /// <since_tizen> 5 </since_tizen>
+        public string SendCommand(MediaControlRepeatMode repeatMode)
+        {
+            ThrowIfStopped();
+
+            ValidationUtil.ValidateEnum(typeof(MediaControlRepeatMode), repeatMode, nameof(repeatMode));
+
+            Native.SendRepeatModeCommand(Manager.Handle, ServerAppId, repeatMode.ToNative(), out string requestId).
+                ThrowIfError("Failed to send playback repeat command.");
+
+            return requestId;
+        }
+
+        /// <summary>
+        /// Sends custom command to the server.
+        /// </summary>
+        /// <param name="customCommand">A custom command.</param>
+        /// <param name="bundle">The extra data.</param>
+        /// <returns>
+        /// The request ID for each command. The same value will be delivered for matching command and event pair,<br/>
+        /// when <see cref="CommandCompleted"/> event is occurred.
+        /// </returns>
+        /// <exception cref="InvalidOperationException">
+        ///     The server has already been stopped.<br/>
+        ///     -or-<br/>
+        ///     An internal error occurs.
+        /// </exception>
+        /// <exception cref="ArgumentNullException"><paramref name="customCommand"/> is not set.</exception>
+        /// <exception cref="ObjectDisposedException">The <see cref="MediaControllerManager"/> has already been disposed of.</exception>
+        /// <seealso cref="CommandCompleted"/>
+        /// <since_tizen> 5 </since_tizen>
+        public string SendCommand(string customCommand, Bundle bundle = null)
+        {
+            ThrowIfStopped();
+
+            if (customCommand == null)
+            {
+                throw new ArgumentNullException("Custom command is not set.");
+            }
+
+            Native.SendCustomCommand(Manager.Handle, ServerAppId, customCommand, bundle.SafeBundleHandle, out string requestId).
+                ThrowIfError("Failed to send custom command.");
+
+            return requestId;
         }
     }
 }

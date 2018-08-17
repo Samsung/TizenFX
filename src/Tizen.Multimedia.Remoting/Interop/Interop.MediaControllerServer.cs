@@ -16,6 +16,7 @@
 
 using System;
 using System.Runtime.InteropServices;
+using Tizen.Applications;
 using Tizen.Multimedia.Remoting;
 
 internal static partial class Interop
@@ -24,7 +25,33 @@ internal static partial class Interop
     {
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         internal delegate void PlaybackStateCommandReceivedCallback(string clientName,
-            MediaControllerPlaybackCode state, IntPtr userData);
+            MediaControllerPlaybackNativeAction nativeAction, IntPtr userData);
+
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+        internal delegate void PlaybackActionCommandReceivedCallback(string clientName,
+            string requestId, MediaControllerPlaybackNativeAction nativeAction, IntPtr userData);
+
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+        internal delegate void PlaybackPositionCommandReceivedCallback(string clientName,
+            string requestId, ulong playbackPosition, IntPtr userData);
+
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+        internal delegate void PlaylistCommandReceivedCallback(string clientName,
+            string requestId, string playlistName, string index, MediaControllerPlaybackNativeAction nativeAction,
+            ulong playbackPosition, IntPtr userData);
+
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+        internal delegate void ShuffleModeCommandReceivedCallback(string clientName,
+            string requestId, NativeShuffleMode shuffleMode, IntPtr userData);
+
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+        internal delegate void RepeatModeCommandReceivedCallback(string clientName,
+            string requestId, NativeRepeatMode repeatMode, IntPtr userData);
+
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+        internal delegate void CustomCommandReceivedCallback(string clientName,
+            string requestId, string customCommand, SafeBundleHandle bundleHandle, IntPtr userData);
+
 
         [DllImport(Libraries.MediaController, EntryPoint = "mc_server_create")]
         internal static extern MediaControllerError Create(out IntPtr handle);
@@ -34,7 +61,7 @@ internal static partial class Interop
 
         [DllImport(Libraries.MediaController, EntryPoint = "mc_server_set_playback_state")]
         internal static extern MediaControllerError SetPlaybackState(IntPtr handle,
-            MediaControllerPlaybackCode state);
+            MediaControllerPlaybackNativeState state);
 
         [DllImport(Libraries.MediaController, EntryPoint = "mc_server_set_playback_position")]
         internal static extern MediaControllerError SetPlaybackPosition(IntPtr handle, ulong position);
@@ -51,7 +78,7 @@ internal static partial class Interop
 
         [DllImport(Libraries.MediaController, EntryPoint = "mc_server_update_shuffle_mode")]
         internal static extern MediaControllerError UpdateShuffleMode(IntPtr handle,
-            MediaControllerShuffleMode mode);
+            NativeShuffleMode mode);
 
         [DllImport(Libraries.MediaController, EntryPoint = "mc_server_update_repeat_mode")]
         internal static extern MediaControllerError UpdateRepeatMode(IntPtr handle, NativeRepeatMode mode);
@@ -62,6 +89,56 @@ internal static partial class Interop
 
         [DllImport(Libraries.MediaController, EntryPoint = "mc_server_unset_playback_state_command_received_cb")]
         internal static extern MediaControllerError UnsetPlaybackStateCmdRecvCb(IntPtr handle);
+
+
+
+        [DllImport(Libraries.MediaController, EntryPoint = "mc_server_set_playback_action_cmd_received_cb")]
+        internal static extern MediaControllerError SetPlaybackActionCommandReceivedCb(IntPtr handle,
+            PlaybackActionCommandReceivedCallback callback, IntPtr userData = default(IntPtr));
+
+        [DllImport(Libraries.MediaController, EntryPoint = "mc_server_unset_playback_action_cmd_received_cb")]
+        internal static extern MediaControllerError UnsetPlaybackActionCommandReceivedCb(IntPtr handle);
+
+        [DllImport(Libraries.MediaController, EntryPoint = "mc_server_set_playback_position_cmd_received_cb")]
+        internal static extern MediaControllerError SetPlaybackPosotionCommandReceivedCb(IntPtr handle,
+            PlaybackPositionCommandReceivedCallback callback, IntPtr userData = default(IntPtr));
+
+        [DllImport(Libraries.MediaController, EntryPoint = "mc_server_unset_playback_position_cmd_received_cb")]
+        internal static extern MediaControllerError UnsetPlaybackPositionCommandReceivedCb(IntPtr handle);
+
+        [DllImport(Libraries.MediaController, EntryPoint = "mc_server_set_playlist_cmd_received_cb")]
+        internal static extern MediaControllerError SetPlaylistCommandReceivedCb(IntPtr handle,
+            PlaylistCommandReceivedCallback callback, IntPtr userData = default(IntPtr));
+
+        [DllImport(Libraries.MediaController, EntryPoint = "mc_server_unset_playlist_cmd_received_cb")]
+        internal static extern MediaControllerError UnsetPlaylistCommandReceivedCb(IntPtr handle);
+
+        [DllImport(Libraries.MediaController, EntryPoint = "mc_server_set_shuffle_mode_cmd_received_cb")]
+        internal static extern MediaControllerError SetShuffleModeCommandReceivedCb(IntPtr handle,
+            ShuffleModeCommandReceivedCallback callback, IntPtr userData = default(IntPtr));
+
+        [DllImport(Libraries.MediaController, EntryPoint = "mc_server_unset_shuffle_mode_cmd_received_cb")]
+        internal static extern MediaControllerError UnsetShuffleModeCommandReceivedCb(IntPtr handle);
+
+
+
+        [DllImport(Libraries.MediaController, EntryPoint = "mc_server_set_repeat_mode_cmd_received_cb")]
+        internal static extern MediaControllerError SetRepeatModeCommandReceivedCb(IntPtr handle,
+            RepeatModeCommandReceivedCallback callback, IntPtr userData = default(IntPtr));
+
+        [DllImport(Libraries.MediaController, EntryPoint = "mc_server_unset_repeat_mode_cmd_received_cb")]
+        internal static extern MediaControllerError UnsetRepeatModeCommandReceivedCb(IntPtr handle);
+
+        [DllImport(Libraries.MediaController, EntryPoint = "mc_server_set_custom_cmd_received_cb")]
+        internal static extern MediaControllerError SetCustomCommandReceivedCb(IntPtr handle,
+            CustomCommandReceivedCallback callback, IntPtr userData = default(IntPtr));
+
+        [DllImport(Libraries.MediaController, EntryPoint = "mc_server_unset_custom_cmd_received_cb")]
+        internal static extern MediaControllerError UnsetCustomCommandReceivedCb(IntPtr handle);
+
+        [DllImport(Libraries.MediaController, EntryPoint = "mc_server_send_cmd_reply")]
+        internal static extern MediaControllerError SendCommandReply(IntPtr handle,
+            string appId, string requestID, int result, SafeBundleHandle bundleHandle);
 
         [DllImport(Libraries.MediaController, EntryPoint = "mc_db_connect")]
         internal static extern MediaControllerError ConnectDb(out IntPtr dbHandle);
