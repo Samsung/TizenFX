@@ -47,6 +47,7 @@ internal static partial class Interop
         internal delegate void CommandCompletedCallback(string serverName, string requestId, int result,
             SafeBundleHandle bundleHandle, IntPtr userData);
 
+
         [DllImport(Libraries.MediaController, EntryPoint = "mc_client_create")]
         internal static extern MediaControllerError Create(out MediaControllerClientHandle handle);
 

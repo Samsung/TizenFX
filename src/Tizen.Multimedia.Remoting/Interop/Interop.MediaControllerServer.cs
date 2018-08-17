@@ -90,8 +90,6 @@ internal static partial class Interop
         [DllImport(Libraries.MediaController, EntryPoint = "mc_server_unset_playback_state_command_received_cb")]
         internal static extern MediaControllerError UnsetPlaybackStateCmdRecvCb(IntPtr handle);
 
-
-
         [DllImport(Libraries.MediaController, EntryPoint = "mc_server_set_playback_action_cmd_received_cb")]
         internal static extern MediaControllerError SetPlaybackActionCommandReceivedCb(IntPtr handle,
             PlaybackActionCommandReceivedCallback callback, IntPtr userData = default(IntPtr));
@@ -119,8 +117,6 @@ internal static partial class Interop
 
         [DllImport(Libraries.MediaController, EntryPoint = "mc_server_unset_shuffle_mode_cmd_received_cb")]
         internal static extern MediaControllerError UnsetShuffleModeCommandReceivedCb(IntPtr handle);
-
-
 
         [DllImport(Libraries.MediaController, EntryPoint = "mc_server_set_repeat_mode_cmd_received_cb")]
         internal static extern MediaControllerError SetRepeatModeCommandReceivedCb(IntPtr handle,
