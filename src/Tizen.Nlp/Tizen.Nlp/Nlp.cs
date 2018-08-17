@@ -24,7 +24,7 @@ namespace Tizen.Nlp
     /// This class contains the methods and inner class related to the NLP processing.
     /// </summary>
     /// <since_tizen> 5 </since_tizen>
-    public class NlpHandle
+    public class Nlp
     {
         /// <summary>
         /// An EventHandler to expose to external to recieve data from remote Nlp service  .
@@ -34,11 +34,12 @@ namespace Tizen.Nlp
         private readonly Message.NotifyCb _noti = new Message.NotifyCb();
         private string _tag;
 
-        private void MakeRequest(string cmd, string info)
+
+        private void MakeRequest(string cmd, string sentence)
         {
             Bundle b = new Bundle();
             b.AddItem("command", cmd);
-            b.AddItem("info", info);
+            b.AddItem("info", sentence);
             _msg.Send(b);
         }
 
@@ -52,13 +53,13 @@ namespace Tizen.Nlp
         }
 
         /// <summary>
-        /// An init session to connect remote tidl service with 2 input parameters.
+        /// An construct method  to connect remote tidl service with 2 input parameters.
         /// </summary>
         /// <param name="serviceId">remote nlp service id.</param>
         /// <param name="clientId">local nlp client app id.</param>
         /// <returns></returns>
         /// <since_tizen> 5 </since_tizen>
-        public void Init(string serviceId, string clientId)
+        public Nlp(string serviceId, string clientId)
         {
             _tag = clientId;
             Log.Debug(_tag, "msg construct started");
@@ -93,56 +94,56 @@ namespace Tizen.Nlp
         /// <summary>
         /// Send Pos of Tag request to remote tidl service with 1 input parameters.
         /// </summary>
-        /// <param name="info">A sentence need to be processed.</param>
+        /// <param name="sentence">A sentence need to be processed.</param>
         /// <returns></returns>
         /// <since_tizen> 5 </since_tizen>
-        public void PosTag(string info)
+        public void PosTag(string sentence)
         {
-            MakeRequest("pos_tag", info);
+            MakeRequest("pos_tag", sentence);
         }
 
         /// <summary>
         /// Send Named Entity recognition request to remote tidl service with 1 input parameters.
         /// </summary>
-        /// <param name="info">A sentence need to be processed.</param>
+        /// <param name="sentence">A sentence need to be processed.</param>
         /// <returns></returns>
         /// <since_tizen> 5 </since_tizen>
-        public void NeChunk(string info)
+        public void NeChunk(string sentence)
         {
-            MakeRequest("ne_chunk", info);
+            MakeRequest("ne_chunk", sentence);
         }
 
         /// <summary>
         /// Send language detect request to remote tidl service with 1 input parameters.
         /// </summary>
-        /// <param name="info">A sentence need to be processed.</param>
+        /// <param name="sentence">A sentence need to be processed.</param>
         /// <returns></returns>
         /// <since_tizen> 5 </since_tizen>
-        public void LanguageDetect(string info)
+        public void LanguageDetect(string sentence)
         {
-            MakeRequest("langdetect", info);
+            MakeRequest("langdetect", sentence);
         }
 
         /// <summary>
         /// Send Lemmatize request to remote tidl service with 1 input parameters.
         /// </summary>
-        /// <param name="info">A sentence need to be processed.</param>
+        /// <param name="sentence">A sentence need to be processed.</param>
         /// <returns></returns>
         /// <since_tizen> 5 </since_tizen>
-        public void Lemmatize(string info)
+        public void Lemmatize(string sentence)
         {
-            MakeRequest("lemmatize", info);
+            MakeRequest("lemmatize", sentence);
         }
 
         /// <summary>
         /// Send word tokenize request to remote tidl service with 1 input parameters.
         /// </summary>
-        /// <param name="info">A sentence need to be processed.</param>
+        /// <param name="sentence">A sentence need to be processed.</param>
         /// <returns></returns>
         /// <since_tizen> 5 </since_tizen>
-        public void WordTokenize(string info)
+        public void WordTokenize(string sentence)
         {
-            MakeRequest("word_tokenize", info);
+            MakeRequest("word_tokenize", sentence);
         }
 
     }
