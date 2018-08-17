@@ -1283,7 +1283,7 @@ namespace Tizen.NUI.BaseComponents
                     oldParent.Remove(child);
                 }
 
-                if (layoutSet = true && child.Layout == null) // Only give children a layout if parent an explict container
+                if (true == layoutSet && null == child.Layout) // Only give children a layout if parent an explict container
                 {
                     LayoutItem layoutItem = new LayoutItem();
                     child.Layout = layoutItem;
