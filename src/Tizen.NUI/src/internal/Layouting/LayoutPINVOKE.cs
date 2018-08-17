@@ -4538,5 +4538,179 @@ namespace Tizen.NUI
             }
         }
 
+        // Grid Layout
+
+        // GridLayout_SWIGUpcast
+        [global::System.Runtime.InteropServices.DllImport(Graphics.GlesCSharpBinder,
+                                                          EntryPoint="CSharp_Dali_GridLayout_SWIGUpcast")]
+        public static extern global::System.IntPtr GridLayout_SWIGUpcast_gl(global::System.IntPtr jarg1);
+
+        [global::System.Runtime.InteropServices.DllImport(Graphics.VulkanCSharpBinder,
+                                                          EntryPoint="CSharp_Dali_GridLayoutt_SWIGUpcast")]
+
+        public static extern global::System.IntPtr GridLayout_SWIGUpcast_vulkan(global::System.IntPtr jarg1);
+
+
+        public static global::System.IntPtr GridLayout_SWIGUpcast(global::System.IntPtr jarg1)
+        {
+            if (Tizen.NUI.Graphics.Backend == Tizen.NUI.Graphics.BackendType.Vulkan)
+            {
+                return GridLayout_SWIGUpcast_vulkan(jarg1);
+            }
+            else
+            {
+                return GridLayout_SWIGUpcast_gl(jarg1);
+            }
+        }
+
+        // GridLayout_New
+        [global::System.Runtime.InteropServices.DllImport(Graphics.GlesCSharpBinder,
+                                                          EntryPoint="CSharp_Dali_GridLayout_New")]
+        public static extern global::System.IntPtr GridLayout_New_gl();
+
+        [global::System.Runtime.InteropServices.DllImport(Graphics.VulkanCSharpBinder,
+                                                          EntryPoint="CSharp_Dali_GridLayout_New")]
+        public static extern global::System.IntPtr GridLayout_New_vulkan();
+
+        public static global::System.IntPtr GridLayout_New()
+        {
+            if (Tizen.NUI.Graphics.Backend == Tizen.NUI.Graphics.BackendType.Vulkan)
+            {
+                return GridLayout_New_vulkan();
+            }
+            else
+            {
+                return GridLayout_New_gl();
+            }
+        }
+
+        // delete_GridLayout
+        [global::System.Runtime.InteropServices.DllImport(Graphics.GlesCSharpBinder,
+                                                          EntryPoint="CSharp_Dali_GridLayout_delete")]
+        public static extern void delete_GridLayout_gl(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+        [global::System.Runtime.InteropServices.DllImport(Graphics.VulkanCSharpBinder,
+                                                          EntryPoint="CSharp_Dali_GridLayout_delete")]
+        public static extern void delete_GridLayout_vulkan(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+        public static void delete_GridLayout(global::System.Runtime.InteropServices.HandleRef jarg1)
+        {
+            if (Tizen.NUI.Graphics.Backend == Tizen.NUI.Graphics.BackendType.Vulkan)
+            {
+                delete_GridLayout_vulkan(jarg1);
+            }
+            else
+            {
+                delete_GridLayout_gl(jarg1);
+            }
+        }
+
+        // GridLayout_Downcast
+        [global::System.Runtime.InteropServices.DllImport(Graphics.GlesCSharpBinder,
+                                                          EntryPoint="CSharp_Dali_GridLayout_DownCast")]
+        public static extern global::System.IntPtr GridLayout_DownCast_gl(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+        [global::System.Runtime.InteropServices.DllImport(Graphics.VulkanCSharpBinder,
+                                                          EntryPoint="CSharp_Dali_GridLayout_DownCast")]
+        public static extern global::System.IntPtr GridLayout_DownCast_vulkan(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+        public static global::System.IntPtr GridLayout_DownCast(global::System.Runtime.InteropServices.HandleRef jarg1)
+        {
+            if (Tizen.NUI.Graphics.Backend == Tizen.NUI.Graphics.BackendType.Vulkan)
+            {
+                return GridLayout_DownCast_vulkan(jarg1);
+            }
+            else
+            {
+                return GridLayout_DownCast_gl(jarg1);
+            }
+        }
+
+        // new_GridLayout_SWIG_1
+        [global::System.Runtime.InteropServices.DllImport(Graphics.GlesCSharpBinder,
+                                                          EntryPoint="CSharp_Dali_new_GridLayout_SWIG_1")]
+        public static extern global::System.IntPtr new_GridLayout_SWIG_1_gl(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+        [global::System.Runtime.InteropServices.DllImport(Graphics.VulkanCSharpBinder,
+                                                          EntryPoint="CSharp_Dali_new_GridLayout_SWIG_1")]
+        public static extern global::System.IntPtr new_GridLayout_SWIG_1_vulkan(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+        public static global::System.IntPtr new_GridLayout_SWIG_1(global::System.Runtime.InteropServices.HandleRef jarg1)
+        {
+            if (Tizen.NUI.Graphics.Backend == Tizen.NUI.Graphics.BackendType.Vulkan)
+            {
+                return new_GridLayout_SWIG_1_vulkan(jarg1);
+            }
+            else
+            {
+                return new_GridLayout_SWIG_1_gl(jarg1);
+            }
+        }
+
+        // GridLayout_Assign
+        [global::System.Runtime.InteropServices.DllImport(Graphics.GlesCSharpBinder,
+                                                          EntryPoint="CSharp_Dali_GridLayout_GridLayout_Assign")]
+        public static extern global::System.IntPtr GridLayout_Assign_gl(global::System.Runtime.InteropServices.HandleRef jarg1,
+                                                                        global::System.Runtime.InteropServices.HandleRef jarg2);
+
+        [global::System.Runtime.InteropServices.DllImport(Graphics.VulkanCSharpBinder,
+                                                          EntryPoint="CSharp_Dali_GridLayout_GridLayout_Assign")]
+        public static extern global::System.IntPtr GridLayout_Assign_vulkan(global::System.Runtime.InteropServices.HandleRef jarg1,
+                                                                            global::System.Runtime.InteropServices.HandleRef jarg2);
+
+        public static global::System.IntPtr GridLayout_Assign(global::System.Runtime.InteropServices.HandleRef jarg1,
+                                                              global::System.Runtime.InteropServices.HandleRef jarg2)
+        {
+            if (Tizen.NUI.Graphics.Backend == Tizen.NUI.Graphics.BackendType.Vulkan)
+            {
+                return GridLayout_Assign_vulkan(jarg1,jarg2);
+            }
+            else
+            {
+                return GridLayout_Assign_gl(jarg1,jarg2);
+            }
+        }
+
+        // GridLayout_SetColumns
+        [global::System.Runtime.InteropServices.DllImport(Graphics.GlesCSharpBinder,
+                                                          EntryPoint="CSharp_Dali_GridLayout_SetColumns")]
+        public static extern void GridLayout_SetColumns_gl(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2);
+
+        [global::System.Runtime.InteropServices.DllImport(Graphics.VulkanCSharpBinder,
+                                                          EntryPoint="CSharp_Dali_GridLayout_SetColumns")]
+        public static extern void GridLayout_SetColumns_vulkan(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2);
+
+        public static void GridLayout_SetColumns(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2)
+        {
+            if (Tizen.NUI.Graphics.Backend == Tizen.NUI.Graphics.BackendType.Vulkan)
+            {
+                GridLayout_SetColumns_vulkan( jarg1, jarg2);
+            }
+            else
+            {
+                GridLayout_SetColumns_gl(jarg1, jarg2);
+            }
+        }
+
+        // GridLayout_GetColumns
+        [global::System.Runtime.InteropServices.DllImport(Graphics.GlesCSharpBinder,
+                                                          EntryPoint="CSharp_Dali_GridLayout__GetColumns")]
+        public static extern int GridLayout_GetColumns_gl(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+        [global::System.Runtime.InteropServices.DllImport(Graphics.VulkanCSharpBinder,
+                                                          EntryPoint="CSharp_Dali_GridLayout_GetColumns")]
+        public static extern int GridLayout_GetColumns_vulkan(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+        public static int GridLayout_GetColumns(global::System.Runtime.InteropServices.HandleRef jarg1)
+        {
+            if (Tizen.NUI.Graphics.Backend == Tizen.NUI.Graphics.BackendType.Vulkan)
+            {
+                return GridLayout_GetColumns_vulkan(jarg1);
+            }
+            else
+            {
+                return GridLayout_GetColumns_gl(jarg1);
+            }
+        }
     }
 }

@@ -38,7 +38,6 @@ namespace Tizen.NUI.UIComponents
             {
                 Tizen.NUI.Object.SetProperty(slider.swigCPtr, Slider.Property.LOWER_BOUND, new Tizen.NUI.PropertyValue((float)newValue));
             }
-            Console.WriteLine("Slider LowerBoundProperty changed: oldValue: " + oldValue + ", newValue: " + newValue);
         },
         defaultValueCreator:(bindable) =>
         {
@@ -56,7 +55,6 @@ namespace Tizen.NUI.UIComponents
             {
                 Tizen.NUI.Object.SetProperty(slider.swigCPtr, Slider.Property.UPPER_BOUND, new Tizen.NUI.PropertyValue((float)newValue));
             }
-            Console.WriteLine("Slider UpperBoundProperty changed: oldValue: " + oldValue + ", newValue: " + newValue);
         },
         defaultValueCreator:(bindable) =>
         {
@@ -70,7 +68,6 @@ namespace Tizen.NUI.UIComponents
         public static readonly BindableProperty ValueProperty = BindableProperty.Create("Value", typeof(float), typeof(Slider), default(float), BindingMode.TwoWay, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var slider = (Slider)bindable;
-            Console.WriteLine("Slider ValueProperty Changed: oldValue: " + oldValue + ", newValue: " + newValue);
             if (newValue != null)
             {
                 Tizen.NUI.Object.SetProperty(slider.swigCPtr, Slider.Property.VALUE, new Tizen.NUI.PropertyValue((float)newValue));
@@ -92,7 +89,6 @@ namespace Tizen.NUI.UIComponents
             {
                 Tizen.NUI.Object.SetProperty(slider.swigCPtr, Slider.Property.TRACK_VISUAL, new Tizen.NUI.PropertyValue((PropertyMap)newValue));
             }
-            Console.WriteLine("Slider TrackVisualProperty changed: oldValue: " + oldValue + ", newValue: " + newValue);
         },
         defaultValueCreator:(bindable) =>
         {
@@ -110,7 +106,6 @@ namespace Tizen.NUI.UIComponents
             {
                 Tizen.NUI.Object.SetProperty(slider.swigCPtr, Slider.Property.HANDLE_VISUAL, new Tizen.NUI.PropertyValue((PropertyMap)newValue));
             }
-            Console.WriteLine("Slider HandleVisualProperty changed: oldValue: " + oldValue + ", newValue: " + newValue);
         },
         defaultValueCreator:(bindable) =>
         {
@@ -128,7 +123,6 @@ namespace Tizen.NUI.UIComponents
             {
                 Tizen.NUI.Object.SetProperty(slider.swigCPtr, Slider.Property.PROGRESS_VISUAL, new Tizen.NUI.PropertyValue((PropertyMap)newValue));
             }
-            Console.WriteLine("Slider ProgressVisualProperty changed: oldValue: " + oldValue + ", newValue: " + newValue);
         },
         defaultValueCreator:(bindable) =>
         {
@@ -146,7 +140,6 @@ namespace Tizen.NUI.UIComponents
             {
                 Tizen.NUI.Object.SetProperty(slider.swigCPtr, Slider.Property.POPUP_VISUAL, new Tizen.NUI.PropertyValue((PropertyMap)newValue));
             }
-            Console.WriteLine("Slider PopupVisualProperty changed: oldValue: " + oldValue + ", newValue: " + newValue);
         },
         defaultValueCreator:(bindable) =>
         {
@@ -164,7 +157,6 @@ namespace Tizen.NUI.UIComponents
             {
                 Tizen.NUI.Object.SetProperty(slider.swigCPtr, Slider.Property.POPUP_ARROW_VISUAL, new Tizen.NUI.PropertyValue((PropertyMap)newValue));
             }
-            Console.WriteLine("Slider PopupArrowVisualProperty changed: oldValue: " + oldValue + ", newValue: " + newValue);
         },
         defaultValueCreator:(bindable) =>
         {
@@ -182,7 +174,6 @@ namespace Tizen.NUI.UIComponents
             {
                 Tizen.NUI.Object.SetProperty(slider.swigCPtr, Slider.Property.DISABLED_COLOR, new Tizen.NUI.PropertyValue((Vector4)newValue));
             }
-            Console.WriteLine("Slider DisabledColorProperty changed: oldValue: " + oldValue + ", newValue: " + newValue);
         },
         defaultValueCreator:(bindable) =>
         {
@@ -200,7 +191,6 @@ namespace Tizen.NUI.UIComponents
             {
                 Tizen.NUI.Object.SetProperty(slider.swigCPtr, Slider.Property.VALUE_PRECISION, new Tizen.NUI.PropertyValue((int)newValue));
             }
-            Console.WriteLine("Slider ValuePrecisionProperty changed: oldValue: " + oldValue + ", newValue: " + newValue);
         },
         defaultValueCreator:(bindable) =>
         {
@@ -218,7 +208,6 @@ namespace Tizen.NUI.UIComponents
             {
                 Tizen.NUI.Object.SetProperty(slider.swigCPtr, Slider.Property.SHOW_POPUP, new Tizen.NUI.PropertyValue((bool)newValue));
             }
-            Console.WriteLine("Slider ShowPopupProperty changed: oldValue: " + oldValue + ", newValue: " + newValue);
         },
         defaultValueCreator:(bindable) =>
         {
@@ -236,7 +225,6 @@ namespace Tizen.NUI.UIComponents
             {
                 Tizen.NUI.Object.SetProperty(slider.swigCPtr, Slider.Property.SHOW_VALUE, new Tizen.NUI.PropertyValue((bool)newValue));
             }
-            Console.WriteLine("Slider ShowValueProperty changed: oldValue: " + oldValue + ", newValue: " + newValue);
         },
         defaultValueCreator:(bindable) =>
         {
@@ -254,7 +242,6 @@ namespace Tizen.NUI.UIComponents
             {
                 Tizen.NUI.Object.SetProperty(slider.swigCPtr, Slider.Property.MARKS, new Tizen.NUI.PropertyValue((PropertyArray)newValue));
             }
-            Console.WriteLine("Slider MarksPropertyProperty changed: oldValue: " + oldValue + ", newValue: " + newValue);
         },
         defaultValueCreator:(bindable) =>
         {
@@ -272,7 +259,6 @@ namespace Tizen.NUI.UIComponents
             {
                 Tizen.NUI.Object.SetProperty(slider.swigCPtr, Slider.Property.MARK_TOLERANCE, new Tizen.NUI.PropertyValue((float)newValue));
             }
-            Console.WriteLine("Slider MarkToleranceProperty changed: oldValue: " + oldValue + ", newValue: " + newValue);
         },
         defaultValueCreator:(bindable) =>
         {
@@ -290,7 +276,6 @@ namespace Tizen.NUI.UIComponents
             {
                 Tizen.NUI.Object.SetProperty(slider.swigCPtr, Slider.Property.SNAP_TO_MARKS, new Tizen.NUI.PropertyValue((bool)newValue));
             }
-            Console.WriteLine("Slider SnapToMarksPropertyProperty changed: oldValue: " + oldValue + ", newValue: " + newValue);
         },
         defaultValueCreator:(bindable) =>
         {
