@@ -289,7 +289,7 @@ namespace Tizen.Multimedia.Remoting
                 throw new ArgumentNullException("requestId is not set.");
             }
 
-            Native.SendCommandReply(Handle, clientAppId, requestId, result, bundle.SafeBundleHandle);
+            Native.SendCommandReply(Handle, clientAppId, requestId, result, bundle?.SafeBundleHandle);
         }
     }
 }

@@ -514,7 +514,7 @@ namespace Tizen.Multimedia.Remoting
         /// <exception cref="ObjectDisposedException">The <see cref="MediaControllerManager"/> has already been disposed of.</exception>
         /// <seealso cref="CommandCompleted"/>
         /// <since_tizen> 5 </since_tizen>
-        public string SendCommand(string customCommand, Bundle bundle = null)
+        public string SendCommand(string customCommand, Bundle bundle)
         {
             ThrowIfStopped();
 
@@ -523,10 +523,32 @@ namespace Tizen.Multimedia.Remoting
                 throw new ArgumentNullException("Custom command is not set.");
             }
 
-            Native.SendCustomCommand(Manager.Handle, ServerAppId, customCommand, bundle.SafeBundleHandle, out string requestId).
+            Native.SendCustomCommand(Manager.Handle, ServerAppId, customCommand, bundle?.SafeBundleHandle, out string requestId).
                 ThrowIfError("Failed to send custom command.");
 
             return requestId;
+        }
+
+        /// <summary>
+        /// Sends custom command to the server.
+        /// </summary>
+        /// <param name="customCommand">A custom command.</param>
+        /// <returns>
+        /// The request ID for each command. The same value will be delivered for matching command and event pair,<br/>
+        /// when <see cref="CommandCompleted"/> event is occurred.
+        /// </returns>
+        /// <exception cref="InvalidOperationException">
+        ///     The server has already been stopped.<br/>
+        ///     -or-<br/>
+        ///     An internal error occurs.
+        /// </exception>
+        /// <exception cref="ArgumentNullException"><paramref name="customCommand"/> is not set.</exception>
+        /// <exception cref="ObjectDisposedException">The <see cref="MediaControllerManager"/> has already been disposed of.</exception>
+        /// <seealso cref="CommandCompleted"/>
+        /// <since_tizen> 5 </since_tizen>
+        public string SendCommand(string customCommand)
+        {
+            return SendCommand(customCommand, null);
         }
     }
 }
