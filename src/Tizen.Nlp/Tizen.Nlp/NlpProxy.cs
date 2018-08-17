@@ -28,7 +28,7 @@ namespace Tizen.Nlp
         public event EventHandler Rejected;
 
         private bool _online;
-        private readonly string _appId;
+        private readonly string _appId = null;
         private readonly Object _lock = new Object();
         private readonly List<CallbackBase> _delegateList = new List<CallbackBase>();
 
@@ -37,7 +37,7 @@ namespace Tizen.Nlp
             internal int Id;
             internal int SeqId;
             internal bool Once;
-            private static volatile int _seqNum;
+            private static volatile int _seqNum = 0;
 
             public string Tag => Id.ToString() + "::" + SeqId.ToString();
 

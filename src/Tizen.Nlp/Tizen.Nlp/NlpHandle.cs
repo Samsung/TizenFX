@@ -16,7 +16,6 @@
 
 using System;
 using Tizen.Applications;
-using Tizen.Nlp;
 
 namespace Tizen.Nlp
 {
@@ -25,12 +24,12 @@ namespace Tizen.Nlp
     /// This class contains the methods and inner class related to the NLP processing.
     /// </summary>
     /// <since_tizen> 5 </since_tizen>
-    public class NlpClass
+    public class NlpHandle
     {
         /// <summary>
         /// An EventHandler to expose to external to recieve data from remote Nlp service  .
         /// </summary>
-        public event EventHandler OnMessageReceived;
+        public event EventHandler<MessageReceivedEventArgs> MessageReceived;
         private Message _msg;
         private readonly Message.NotifyCb _noti = new Message.NotifyCb();
         private string _tag;
@@ -47,9 +46,8 @@ namespace Tizen.Nlp
         {
             Log.Debug(_tag, "OnReceived ++");
             MessageReceivedEventArgs e = new MessageReceivedEventArgs();
-            e.Msg = new Bundle();
-            e.Msg = msg;
-            OnMessageReceived(sender, e);
+            e.Message = msg;
+            MessageReceived?.Invoke(this, e);
             Log.Debug(_tag, "done");
         }
 
@@ -120,7 +118,7 @@ namespace Tizen.Nlp
         /// <param name="info">A sentence need to be processed.</param>
         /// <returns></returns>
         /// <since_tizen> 5 </since_tizen>
-        public void LangDetect(string info)
+        public void LanguageDetect(string info)
         {
             MakeRequest("langdetect", info);
         }
