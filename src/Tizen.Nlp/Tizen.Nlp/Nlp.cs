@@ -27,9 +27,16 @@ namespace Tizen.Nlp
     public class Nlp
     {
         /// <summary>
-        /// An EventHandler to expose to external to recieve data from remote Nlp service  .
+        /// An EventHandler to expose recieve data to external from remote Nlp service  .
         /// </summary>
-        public event EventHandler<MessageReceivedEventArgs> MessageReceived;
+        /// <remarks>
+        /// if this succeeds, the bundle object contain Key/Pari about Nlp  will be received.
+        /// and you can use GetItem() with the Key "command" as param to judge which NLP process be done ,
+        /// e.g "word_tokenize, ne_chunk etc.."
+        /// to use GetItem() with the Key "return_tag" to obtain an array contains tags
+        /// to use GetItem() with the Key "return_token" to obtain an array contains tokens
+        /// </remarks>
+        public event EventHandler<MessageReceivedEventArgs> NlpResultReceived;
         private Message _msg;
         private readonly Message.NotifyCb _noti = new Message.NotifyCb();
         private string _tag;
@@ -43,12 +50,12 @@ namespace Tizen.Nlp
             _msg.Send(b);
         }
 
-        private void OnReceived(string sender, Bundle msg)
+        private void ResultReceived(string sender, Bundle msg)
         {
             Log.Debug(_tag, "OnReceived ++");
             MessageReceivedEventArgs e = new MessageReceivedEventArgs();
             e.Message = msg;
-            MessageReceived?.Invoke(this, e);
+            NlpResultReceived?.Invoke(this, e);
             Log.Debug(_tag, "done");
         }
 
@@ -65,13 +72,21 @@ namespace Tizen.Nlp
             Log.Debug(_tag, "msg construct started");
             _msg = new Message(serviceId);
             Log.Debug(_tag, "msg construct success");
-            _noti.Received += OnReceived;
+            _noti.Received += ResultReceived;
             Log.Debug(_tag, "notify callback be assigned");
             _msg.Connected += (sender, e) =>
             {
                 Log.Debug(_tag, "start to register");
                 _msg.CoRegister(clientId, _noti);
                 Log.Debug(_tag, "connected callback be called");
+            };
+            _msg.Rejected += (sender, e) =>
+            {
+                Log.Debug(_tag, "rejected callback be called");
+            };
+            _msg.Disconnected += (sender, e) =>
+            {
+                Log.Debug(_tag, "disconnected callback be called");
             };
             Log.Debug(_tag, "start to connect");
             _msg.Connect();
@@ -84,7 +99,7 @@ namespace Tizen.Nlp
         /// <since_tizen> 5 </since_tizen>
         public void Release()
         {
-            _noti.Received -= OnReceived;
+            _noti.Received -= ResultReceived;
             _msg.UnRegister();
             _msg.Dispose();
             _msg = null;
@@ -108,7 +123,7 @@ namespace Tizen.Nlp
         /// <param name="sentence">A sentence need to be processed.</param>
         /// <returns></returns>
         /// <since_tizen> 5 </since_tizen>
-        public void NeChunk(string sentence)
+        public void NamedEntityRecognition(string sentence)
         {
             MakeRequest("ne_chunk", sentence);
         }
