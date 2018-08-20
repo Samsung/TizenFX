@@ -1,4 +1,4 @@
-﻿/*
+/*
  * Copyright (c) 2016 Samsung Electronics Co., Ltd All Rights Reserved
  *
  * Licensed under the Apache License, Version 2.0 (the License);
@@ -28,6 +28,7 @@ namespace Tizen.Multimedia
         private readonly int _id;
         private readonly AudioDeviceType _type;
         private readonly AudioDeviceIoDirection _ioDirection;
+        private readonly IntPtr _deviceHandle;
 
         internal AudioDevice(IntPtr deviceHandle)
         {
@@ -44,6 +45,8 @@ namespace Tizen.Multimedia
 
             ret = Interop.AudioDevice.GetDeviceIoDirection(deviceHandle, out _ioDirection);
             MultimediaDebug.AssertNoError(ret);
+
+            _deviceHandle = deviceHandle;
         }
 
         /// <summary>
@@ -79,6 +82,7 @@ namespace Tizen.Multimedia
         /// </summary>
         /// <value>The <see cref="AudioDeviceState"/> of the device.</value>
         /// <since_tizen> 3 </since_tizen>
+        [Obsolete("Deprecated since API level 5. Please use the IsRunning property instead.")]
         public AudioDeviceState State
         {
             get
@@ -87,6 +91,22 @@ namespace Tizen.Multimedia
                     ThrowIfError("Failed to get the state of the device");
 
                 return state;
+            }
+        }
+
+        /// <summary>
+        /// Gets the running state of the device.
+        /// </summary>
+        /// <value>true if the audio stream of device is running actually; otherwise, false.</value>
+        /// <since_tizen> 5 </since_tizen>
+        public bool IsRunning
+        {
+            get
+            {
+                Interop.AudioDevice.GetDeviceRunning(_deviceHandle, out bool isRunning).
+                    ThrowIfError("Failed to get the running state of the device");
+
+                return isRunning;
             }
         }
 
