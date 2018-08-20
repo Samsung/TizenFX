@@ -216,7 +216,6 @@ namespace Tizen.Multimedia
                 ValidateNotDisposed();
 
                 int ret = Interop.MediaPacket.GetDts(_handle, out var value);
-
                 MultimediaDebug.AssertNoError(ret);
 
                 return value;
@@ -227,7 +226,6 @@ namespace Tizen.Multimedia
                 ValidateNotLocked();
 
                 int ret = Interop.MediaPacket.SetDts(_handle, value);
-
                 MultimediaDebug.AssertNoError(ret);
             }
         }
@@ -245,7 +243,6 @@ namespace Tizen.Multimedia
                 ValidateNotDisposed();
 
                 int ret = Interop.MediaPacket.IsEncoded(_handle, out var value);
-
                 MultimediaDebug.AssertNoError(ret);
 
                 return value;
@@ -257,6 +254,9 @@ namespace Tizen.Multimedia
         /// </summary>
         /// <exception cref="ArgumentException">The specified value to set is invalid.</exception>
         /// <exception cref="ObjectDisposedException">The MediaPacket has already been disposed of.</exception>
+        /// <exception cref="InvalidOperationException">
+        ///     The MediaPacket is not in the writable state, which means it is being used by another module.
+        /// </exception>
         /// <since_tizen> 5 </since_tizen>
         public Rotation Rotation
         {
@@ -265,10 +265,11 @@ namespace Tizen.Multimedia
                 ValidateNotDisposed();
 
                 int ret = Interop.MediaPacket.GetRotation(_handle, out var value);
-
                 MultimediaDebug.AssertNoError(ret);
 
-                return (value < RotationFlip.HorizontalFlip) ? (Rotation)value : Rotation.Rotate0;
+                var rotation = value < RotationFlip.HorizontalFlip ? (Rotation)value : Rotation.Rotate0;
+
+                return rotation;
             }
             set
             {
@@ -277,7 +278,6 @@ namespace Tizen.Multimedia
                 ValidationUtil.ValidateEnum(typeof(Rotation), value, nameof(value));
 
                 int ret = Interop.MediaPacket.SetRotation(_handle, (RotationFlip)value);
-
                 MultimediaDebug.AssertNoError(ret);
             }
         }
@@ -290,6 +290,9 @@ namespace Tizen.Multimedia
         /// </remarks>
         /// <exception cref="ArgumentException">The specified value to set is invalid.</exception>
         /// <exception cref="ObjectDisposedException">The MediaPacket has already been disposed of.</exception>
+        /// <exception cref="InvalidOperationException">
+        ///     The MediaPacket is not in the writable state, which means it is being used by another module.
+        /// </exception>
         /// <since_tizen> 5 </since_tizen>
         public Flips Flip
         {
@@ -298,7 +301,6 @@ namespace Tizen.Multimedia
                 ValidateNotDisposed();
 
                 int ret = Interop.MediaPacket.GetRotation(_handle, out var value);
-
                 MultimediaDebug.AssertNoError(ret);
 
                 var flip = (value < RotationFlip.HorizontalFlip) ? Flips.None :
@@ -320,7 +322,6 @@ namespace Tizen.Multimedia
                 var flip = value == Flips.Horizontal ? RotationFlip.HorizontalFlip : RotationFlip.VerticalFlip;
 
                 int ret = Interop.MediaPacket.SetRotation(_handle, flip);
-
                 MultimediaDebug.AssertNoError(ret);
             }
         }
