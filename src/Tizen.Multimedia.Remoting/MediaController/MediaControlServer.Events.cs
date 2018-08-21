@@ -33,7 +33,7 @@ namespace Tizen.Multimedia.Remoting
         /// Occurs when a client sends playback command.
         /// </summary>
         /// <since_tizen> 4 </since_tizen>
-        [Obsolete("Please do not use! This will be deprecated. Please use SendCommand instead.")]
+        [Obsolete("Please do not use! This will be deprecated. Please use PlaybackActionCommandReceived instead.")]
         public static event EventHandler<PlaybackCommandReceivedEventArgs> PlaybackCommandReceived;
 
         /// <summary>
