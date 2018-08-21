@@ -240,7 +240,7 @@ namespace Tizen.Multimedia.Remoting
         /// <summary>
         /// Sends playback command to the server.
         /// </summary>
-        /// <param name="playbackCommand">A playback command.</param>
+        /// <param name="playbackCommand">A <see cref="MediaControlPlaybackCommand"/>.</param>
         /// <exception cref="InvalidOperationException">
         ///     The server has already been stopped.<br/>
         ///     -or-<br/>
@@ -263,12 +263,12 @@ namespace Tizen.Multimedia.Remoting
         }
 
         /// <summary>
-        /// Sends repeat mode command to the server.
+        /// Sends playlist command to the server.
         /// </summary>
-        /// <param name="playbackCommand">The repeat mode to send to media controller server.</param>
-        /// <param name="playlistName"></param>
-        /// <param name="index"></param>
-        /// <param name="position"></param>
+        /// <param name="playbackCommand">A <see cref="MediaControlPlaybackCommand"/>.</param>
+        /// <param name="playlistName">The playlist name of the server.</param>
+        /// <param name="index">The index of the media in playlist.</param>
+        /// <param name="position">The position of the playback in milliseconds.</param>
         /// <exception cref="InvalidOperationException">
         ///     The server has already been stopped.<br/>
         ///     -or-<br/>
@@ -302,7 +302,7 @@ namespace Tizen.Multimedia.Remoting
         /// <summary>
         /// Sends playback position command to the server.
         /// </summary>
-        /// <param name="playbackPosition">The position of the playback in milliseconds to send to media controller server.</param>
+        /// <param name="playbackPosition">The position of the playback in milliseconds.</param>
         /// <exception cref="InvalidOperationException">
         ///     The server has already been stopped.<br/>
         ///     -or-<br/>
@@ -325,7 +325,7 @@ namespace Tizen.Multimedia.Remoting
         /// <summary>
         /// Sends shuffle mode command to the server.
         /// </summary>
-        /// <param name="shuffleMode">The shuffle mode to send to media controller server.</param>
+        /// <param name="shuffleMode">The <see cref="MediaControlShuffleMode"/>.</param>
         /// <exception cref="InvalidOperationException">
         ///     The server has already been stopped.<br/>
         ///     -or-<br/>
@@ -350,7 +350,7 @@ namespace Tizen.Multimedia.Remoting
         /// <summary>
         /// Sends repeat mode command to the server.
         /// </summary>
-        /// <param name="repeatMode">The repeat mode to send to media controller server.</param>
+        /// <param name="repeatMode">The <see cref="MediaControlRepeatMode"/>.</param>
         /// <exception cref="InvalidOperationException">
         ///     The server has already been stopped.<br/>
         ///     -or-<br/>
@@ -375,7 +375,7 @@ namespace Tizen.Multimedia.Remoting
         /// <summary>
         /// Sends custom command to the server.
         /// </summary>
-        /// <param name="customCommand">A custom command.</param>
+        /// <param name="customCommand">A predefined custom command between client and server.</param>
         /// <param name="bundle">The extra data.</param>
         /// <returns>
         /// The request ID for each command. The same value will be delivered for matching command and event pair,<br/>
@@ -406,7 +406,7 @@ namespace Tizen.Multimedia.Remoting
         }
 
         /// <summary>
-        /// Sends custom command to the server.
+        /// Sends custom command to the server without extra data.
         /// </summary>
         /// <param name="customCommand">A custom command.</param>
         /// <returns>
