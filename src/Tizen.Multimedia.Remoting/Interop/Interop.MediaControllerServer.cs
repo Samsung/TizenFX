@@ -25,11 +25,11 @@ internal static partial class Interop
     {
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         internal delegate void PlaybackStateCommandReceivedCallback(string clientName,
-            MediaControllerPlaybackNativeAction nativeAction, IntPtr userData);
+            MediaControllerNativePlaybackAction nativeAction, IntPtr userData);
 
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         internal delegate void PlaybackActionCommandReceivedCallback(string clientName,
-            string requestId, MediaControllerPlaybackNativeAction nativeAction, IntPtr userData);
+            string requestId, MediaControllerNativePlaybackAction nativeAction, IntPtr userData);
 
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         internal delegate void PlaybackPositionCommandReceivedCallback(string clientName,
@@ -37,16 +37,16 @@ internal static partial class Interop
 
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         internal delegate void PlaylistCommandReceivedCallback(string clientName,
-            string requestId, string playlistName, string index, MediaControllerPlaybackNativeAction nativeAction,
+            string requestId, string playlistName, string index, MediaControllerNativePlaybackAction nativeAction,
             ulong playbackPosition, IntPtr userData);
 
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         internal delegate void ShuffleModeCommandReceivedCallback(string clientName,
-            string requestId, NativeShuffleMode shuffleMode, IntPtr userData);
+            string requestId, MediaControllerNativeShuffleMode shuffleMode, IntPtr userData);
 
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         internal delegate void RepeatModeCommandReceivedCallback(string clientName,
-            string requestId, NativeRepeatMode repeatMode, IntPtr userData);
+            string requestId, MediaControllerNativeRepeatMode repeatMode, IntPtr userData);
 
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         internal delegate void CustomCommandReceivedCallback(string clientName,
@@ -61,7 +61,7 @@ internal static partial class Interop
 
         [DllImport(Libraries.MediaController, EntryPoint = "mc_server_set_playback_state")]
         internal static extern MediaControllerError SetPlaybackState(IntPtr handle,
-            MediaControllerPlaybackNativeState state);
+            MediaControllerNativePlaybackState state);
 
         [DllImport(Libraries.MediaController, EntryPoint = "mc_server_set_playback_position")]
         internal static extern MediaControllerError SetPlaybackPosition(IntPtr handle, ulong position);
@@ -71,17 +71,17 @@ internal static partial class Interop
 
         [DllImport(Libraries.MediaController, EntryPoint = "mc_server_set_metadata")]
         internal static extern MediaControllerError SetMetadata(IntPtr handle,
-            MediaControllerAttribute attribute, string value);
+            MediaControllerNativeAttribute attribute, string value);
 
         [DllImport(Libraries.MediaController, EntryPoint = "mc_server_update_metadata")]
         internal static extern MediaControllerError UpdateMetadata(IntPtr handle);
 
         [DllImport(Libraries.MediaController, EntryPoint = "mc_server_update_shuffle_mode")]
         internal static extern MediaControllerError UpdateShuffleMode(IntPtr handle,
-            NativeShuffleMode mode);
+            MediaControllerNativeShuffleMode mode);
 
         [DllImport(Libraries.MediaController, EntryPoint = "mc_server_update_repeat_mode")]
-        internal static extern MediaControllerError UpdateRepeatMode(IntPtr handle, NativeRepeatMode mode);
+        internal static extern MediaControllerError UpdateRepeatMode(IntPtr handle, MediaControllerNativeRepeatMode mode);
 
         [DllImport(Libraries.MediaController, EntryPoint = "mc_server_set_playback_state_command_received_cb")]
         internal static extern MediaControllerError SetPlaybackStateCmdRecvCb(IntPtr handle,

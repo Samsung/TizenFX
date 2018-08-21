@@ -49,14 +49,14 @@ namespace Tizen.Multimedia.Remoting
             RegisterRepeatModeUpdatedEvent();
         }
 
-        private void RaiseServerChangedEvent(MediaControllerServerState state, MediaController controller)
+        private void RaiseServerChangedEvent(MediaControllerNativeServerState state, MediaController controller)
         {
             if (controller == null)
             {
                 return;
             }
 
-            if (state == MediaControllerServerState.Activated)
+            if (state == MediaControllerNativeServerState.Activated)
             {
                 ServerStarted?.Invoke(this, new MediaControlServerStartedEventArgs(controller));
             }

@@ -21,105 +21,105 @@ namespace Tizen.Multimedia.Remoting
 {
     internal static class EnumExtensions
     {
-        internal static MediaControlPlaybackState ToState(this MediaControllerPlaybackNativeState nativeState)
+        internal static MediaControlPlaybackState ToPublic(this MediaControllerNativePlaybackState nativeState)
         {
             switch (nativeState)
             {
-                case MediaControllerPlaybackNativeState.None: return MediaControlPlaybackState.None;
-                case MediaControllerPlaybackNativeState.Play: return MediaControlPlaybackState.Playing;
-                case MediaControllerPlaybackNativeState.Pause: return MediaControlPlaybackState.Paused;
-                case MediaControllerPlaybackNativeState.Stop: return MediaControlPlaybackState.Stopped;
-                case MediaControllerPlaybackNativeState.Next:
-                case MediaControllerPlaybackNativeState.MovingToNext: return MediaControlPlaybackState.MovingToNext;
-                case MediaControllerPlaybackNativeState.Prev:
-                case MediaControllerPlaybackNativeState.MovingToPrev: return MediaControlPlaybackState.MovingToPrevious;
-                case MediaControllerPlaybackNativeState.FastForward:
-                case MediaControllerPlaybackNativeState.FastForwarding: return MediaControlPlaybackState.FastForwarding;
-                case MediaControllerPlaybackNativeState.Rewind:
-                case MediaControllerPlaybackNativeState.Rewinding: return MediaControlPlaybackState.Rewinding;
+                case MediaControllerNativePlaybackState.None: return MediaControlPlaybackState.None;
+                case MediaControllerNativePlaybackState.Play: return MediaControlPlaybackState.Playing;
+                case MediaControllerNativePlaybackState.Pause: return MediaControlPlaybackState.Paused;
+                case MediaControllerNativePlaybackState.Stop: return MediaControlPlaybackState.Stopped;
+                case MediaControllerNativePlaybackState.Next:
+                case MediaControllerNativePlaybackState.MovingToNext: return MediaControlPlaybackState.MovingToNext;
+                case MediaControllerNativePlaybackState.Prev:
+                case MediaControllerNativePlaybackState.MovingToPrev: return MediaControlPlaybackState.MovingToPrevious;
+                case MediaControllerNativePlaybackState.FastForward:
+                case MediaControllerNativePlaybackState.FastForwarding: return MediaControlPlaybackState.FastForwarding;
+                case MediaControllerNativePlaybackState.Rewind:
+                case MediaControllerNativePlaybackState.Rewinding: return MediaControlPlaybackState.Rewinding;
             }
 
             Debug.Fail($"Not supported code for playback state{nativeState}.");
             return MediaControlPlaybackState.None;
         }
 
-        internal static MediaControllerPlaybackNativeState ToNativeState(this MediaControlPlaybackState state)
+        internal static MediaControllerNativePlaybackState ToNative(this MediaControlPlaybackState state)
         {
             switch (state)
             {
-                case MediaControlPlaybackState.Playing: return MediaControllerPlaybackNativeState.Play;
-                case MediaControlPlaybackState.Paused: return MediaControllerPlaybackNativeState.Pause;
-                case MediaControlPlaybackState.Stopped: return MediaControllerPlaybackNativeState.Stop;
-                case MediaControlPlaybackState.MovingToNext: return MediaControllerPlaybackNativeState.MovingToNext;
-                case MediaControlPlaybackState.MovingToPrevious: return MediaControllerPlaybackNativeState.MovingToPrev;
-                case MediaControlPlaybackState.FastForwarding: return MediaControllerPlaybackNativeState.FastForwarding;
-                case MediaControlPlaybackState.Rewinding: return MediaControllerPlaybackNativeState.Rewinding;
+                case MediaControlPlaybackState.Playing: return MediaControllerNativePlaybackState.Play;
+                case MediaControlPlaybackState.Paused: return MediaControllerNativePlaybackState.Pause;
+                case MediaControlPlaybackState.Stopped: return MediaControllerNativePlaybackState.Stop;
+                case MediaControlPlaybackState.MovingToNext: return MediaControllerNativePlaybackState.MovingToNext;
+                case MediaControlPlaybackState.MovingToPrevious: return MediaControllerNativePlaybackState.MovingToPrev;
+                case MediaControlPlaybackState.FastForwarding: return MediaControllerNativePlaybackState.FastForwarding;
+                case MediaControlPlaybackState.Rewinding: return MediaControllerNativePlaybackState.Rewinding;
             }
-            return MediaControllerPlaybackNativeState.None;
+            return MediaControllerNativePlaybackState.None;
         }
 
-        internal static MediaControlPlaybackCommand ToCommand(this MediaControllerPlaybackNativeAction nativeAction)
+        internal static MediaControlPlaybackCommand ToPublic(this MediaControllerNativePlaybackAction nativeAction)
         {
             switch (nativeAction)
             {
-                case MediaControllerPlaybackNativeAction.Play: return MediaControlPlaybackCommand.Play;
-                case MediaControllerPlaybackNativeAction.Pause: return MediaControlPlaybackCommand.Pause;
-                case MediaControllerPlaybackNativeAction.Stop: return MediaControlPlaybackCommand.Stop;
-                case MediaControllerPlaybackNativeAction.Next: return MediaControlPlaybackCommand.Next;
-                case MediaControllerPlaybackNativeAction.Prev: return MediaControlPlaybackCommand.Previous;
-                case MediaControllerPlaybackNativeAction.FastForward: return MediaControlPlaybackCommand.FastForward;
-                case MediaControllerPlaybackNativeAction.Rewind: return MediaControlPlaybackCommand.Rewind;
-                case MediaControllerPlaybackNativeAction.Toggle: return MediaControlPlaybackCommand.Toggle;
+                case MediaControllerNativePlaybackAction.Play: return MediaControlPlaybackCommand.Play;
+                case MediaControllerNativePlaybackAction.Pause: return MediaControlPlaybackCommand.Pause;
+                case MediaControllerNativePlaybackAction.Stop: return MediaControlPlaybackCommand.Stop;
+                case MediaControllerNativePlaybackAction.Next: return MediaControlPlaybackCommand.Next;
+                case MediaControllerNativePlaybackAction.Prev: return MediaControlPlaybackCommand.Previous;
+                case MediaControllerNativePlaybackAction.FastForward: return MediaControlPlaybackCommand.FastForward;
+                case MediaControllerNativePlaybackAction.Rewind: return MediaControlPlaybackCommand.Rewind;
+                case MediaControllerNativePlaybackAction.Toggle: return MediaControlPlaybackCommand.Toggle;
             }
 
             Debug.Fail($"Not supported code for playback command{nativeAction}.");
             return MediaControlPlaybackCommand.Play;
         }
 
-        internal static MediaControllerPlaybackNativeAction ToNativeAction(this MediaControlPlaybackCommand command)
+        internal static MediaControllerNativePlaybackAction ToNative(this MediaControlPlaybackCommand command)
         {
             switch (command)
             {
-                case MediaControlPlaybackCommand.Play: return MediaControllerPlaybackNativeAction.Play;
-                case MediaControlPlaybackCommand.Pause: return MediaControllerPlaybackNativeAction.Pause;
-                case MediaControlPlaybackCommand.Stop: return MediaControllerPlaybackNativeAction.Stop;
-                case MediaControlPlaybackCommand.Next: return MediaControllerPlaybackNativeAction.Next;
-                case MediaControlPlaybackCommand.Previous: return MediaControllerPlaybackNativeAction.Prev;
-                case MediaControlPlaybackCommand.FastForward: return MediaControllerPlaybackNativeAction.FastForward;
-                case MediaControlPlaybackCommand.Rewind: return MediaControllerPlaybackNativeAction.Rewind;
-                case MediaControlPlaybackCommand.Toggle: return MediaControllerPlaybackNativeAction.Toggle;
+                case MediaControlPlaybackCommand.Play: return MediaControllerNativePlaybackAction.Play;
+                case MediaControlPlaybackCommand.Pause: return MediaControllerNativePlaybackAction.Pause;
+                case MediaControlPlaybackCommand.Stop: return MediaControllerNativePlaybackAction.Stop;
+                case MediaControlPlaybackCommand.Next: return MediaControllerNativePlaybackAction.Next;
+                case MediaControlPlaybackCommand.Previous: return MediaControllerNativePlaybackAction.Prev;
+                case MediaControlPlaybackCommand.FastForward: return MediaControllerNativePlaybackAction.FastForward;
+                case MediaControlPlaybackCommand.Rewind: return MediaControllerNativePlaybackAction.Rewind;
+                case MediaControlPlaybackCommand.Toggle: return MediaControllerNativePlaybackAction.Toggle;
             }
-            return MediaControllerPlaybackNativeAction.Play;
+            return MediaControllerNativePlaybackAction.Play;
         }
 
-        internal static NativeRepeatMode ToNative(this MediaControlRepeatMode mode)
+        internal static MediaControllerNativeRepeatMode ToNative(this MediaControlRepeatMode mode)
         {
             Debug.Assert(Enum.IsDefined(typeof(MediaControlRepeatMode), mode));
 
-            return mode == MediaControlRepeatMode.Off ? NativeRepeatMode.On :
-                (mode == MediaControlRepeatMode.On ? NativeRepeatMode.Off : NativeRepeatMode.OneMedia);
+            return mode == MediaControlRepeatMode.Off ? MediaControllerNativeRepeatMode.On :
+                (mode == MediaControlRepeatMode.On ? MediaControllerNativeRepeatMode.Off : MediaControllerNativeRepeatMode.OneMedia);
         }
 
-        internal static MediaControlRepeatMode ToPublic(this NativeRepeatMode mode)
+        internal static MediaControlRepeatMode ToPublic(this MediaControllerNativeRepeatMode mode)
         {
-            Debug.Assert(Enum.IsDefined(typeof(NativeRepeatMode), mode));
+            Debug.Assert(Enum.IsDefined(typeof(MediaControllerNativeRepeatMode), mode));
 
-            return mode == NativeRepeatMode.Off ? MediaControlRepeatMode.On :
-                (mode == NativeRepeatMode.On ? MediaControlRepeatMode.Off : MediaControlRepeatMode.OneMedia);
+            return mode == MediaControllerNativeRepeatMode.Off ? MediaControlRepeatMode.On :
+                (mode == MediaControllerNativeRepeatMode.On ? MediaControlRepeatMode.Off : MediaControlRepeatMode.OneMedia);
         }
 
-        internal static NativeShuffleMode ToNative(this MediaControlShuffleMode mode)
+        internal static MediaControllerNativeShuffleMode ToNative(this MediaControlShuffleMode mode)
         {
             Debug.Assert(Enum.IsDefined(typeof(MediaControlShuffleMode), mode));
 
-            return mode == MediaControlShuffleMode.Off ? NativeShuffleMode.On : NativeShuffleMode.Off;
+            return mode == MediaControlShuffleMode.Off ? MediaControllerNativeShuffleMode.On : MediaControllerNativeShuffleMode.Off;
         }
 
-        internal static MediaControlShuffleMode ToPublic(this NativeShuffleMode mode)
+        internal static MediaControlShuffleMode ToPublic(this MediaControllerNativeShuffleMode mode)
         {
-            Debug.Assert(Enum.IsDefined(typeof(NativeShuffleMode), mode));
+            Debug.Assert(Enum.IsDefined(typeof(MediaControllerNativeShuffleMode), mode));
 
-            return mode == NativeShuffleMode.Off ? MediaControlShuffleMode.On : MediaControlShuffleMode.Off;
+            return mode == MediaControllerNativeShuffleMode.Off ? MediaControlShuffleMode.On : MediaControlShuffleMode.Off;
         }
     }
 }

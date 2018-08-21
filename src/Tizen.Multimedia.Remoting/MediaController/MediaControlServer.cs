@@ -183,14 +183,14 @@ namespace Tizen.Multimedia.Remoting
                 throw new ArgumentOutOfRangeException(nameof(position), position, "position can't be less than zero.");
             }
 
-            Native.SetPlaybackState(Handle, state.ToNativeState()).ThrowIfError("Failed to set playback state.");
+            Native.SetPlaybackState(Handle, state.ToNative()).ThrowIfError("Failed to set playback state.");
 
             Native.SetPlaybackPosition(Handle, (ulong)position).ThrowIfError("Failed to set playback position.");
 
             Native.UpdatePlayback(Handle).ThrowIfError("Failed to set playback.");
         }
 
-        private static void SetMetadata(MediaControllerAttribute attribute, string value)
+        private static void SetMetadata(MediaControllerNativeAttribute attribute, string value)
         {
             Native.SetMetadata(Handle, attribute, value).ThrowIfError($"Failed to set metadata({attribute}).");
         }
@@ -213,17 +213,17 @@ namespace Tizen.Multimedia.Remoting
                 throw new ArgumentNullException(nameof(metadata));
             }
 
-            SetMetadata(MediaControllerAttribute.Title, metadata.Title);
-            SetMetadata(MediaControllerAttribute.Artist, metadata.Artist);
-            SetMetadata(MediaControllerAttribute.Album, metadata.Album);
-            SetMetadata(MediaControllerAttribute.Author, metadata.Author);
-            SetMetadata(MediaControllerAttribute.Genre, metadata.Genre);
-            SetMetadata(MediaControllerAttribute.Duration, metadata.Duration);
-            SetMetadata(MediaControllerAttribute.Date, metadata.Date);
-            SetMetadata(MediaControllerAttribute.Copyright, metadata.Copyright);
-            SetMetadata(MediaControllerAttribute.Description, metadata.Description);
-            SetMetadata(MediaControllerAttribute.TrackNumber, metadata.TrackNumber);
-            SetMetadata(MediaControllerAttribute.Picture, metadata.AlbumArtPath);
+            SetMetadata(MediaControllerNativeAttribute.Title, metadata.Title);
+            SetMetadata(MediaControllerNativeAttribute.Artist, metadata.Artist);
+            SetMetadata(MediaControllerNativeAttribute.Album, metadata.Album);
+            SetMetadata(MediaControllerNativeAttribute.Author, metadata.Author);
+            SetMetadata(MediaControllerNativeAttribute.Genre, metadata.Genre);
+            SetMetadata(MediaControllerNativeAttribute.Duration, metadata.Duration);
+            SetMetadata(MediaControllerNativeAttribute.Date, metadata.Date);
+            SetMetadata(MediaControllerNativeAttribute.Copyright, metadata.Copyright);
+            SetMetadata(MediaControllerNativeAttribute.Description, metadata.Description);
+            SetMetadata(MediaControllerNativeAttribute.TrackNumber, metadata.TrackNumber);
+            SetMetadata(MediaControllerNativeAttribute.Picture, metadata.AlbumArtPath);
 
             Native.UpdateMetadata(Handle).ThrowIfError("Failed to set metadata.");
         }
@@ -240,7 +240,7 @@ namespace Tizen.Multimedia.Remoting
         /// <since_tizen> 4 </since_tizen>
         public static void SetShuffleModeEnabled(bool enabled)
         {
-            Native.UpdateShuffleMode(Handle, enabled ? NativeShuffleMode.On : NativeShuffleMode.Off).
+            Native.UpdateShuffleMode(Handle, enabled ? MediaControllerNativeShuffleMode.On : MediaControllerNativeShuffleMode.Off).
                 ThrowIfError("Failed to set shuffle mode.");
         }
 

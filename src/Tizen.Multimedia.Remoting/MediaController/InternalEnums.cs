@@ -16,7 +16,7 @@
 
 namespace Tizen.Multimedia.Remoting
 {
-    internal enum MediaControllerPlaybackNativeState
+    internal enum MediaControllerNativePlaybackState
     {
         None,
         Play,
@@ -32,7 +32,7 @@ namespace Tizen.Multimedia.Remoting
         Rewinding       // Since 4.0
     }
 
-    internal enum MediaControllerPlaybackNativeAction
+    internal enum MediaControllerNativePlaybackAction
     {
         Play,
         Pause,
@@ -44,27 +44,27 @@ namespace Tizen.Multimedia.Remoting
         Toggle
     }
 
-    internal enum MediaControllerServerState
+    internal enum MediaControllerNativeServerState
     {
         None,
         Activated,
         Deactivated,
     }
 
-    internal enum NativeShuffleMode
+    internal enum MediaControllerNativeShuffleMode
     {
         On,
         Off,
     }
 
-    internal enum NativeRepeatMode
+    internal enum MediaControllerNativeRepeatMode
     {
         On,
         Off,
         OneMedia
     }
 
-    internal enum MediaControllerAttribute
+    internal enum MediaControllerNativeAttribute
     {
         Title,
         Artist,

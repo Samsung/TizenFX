@@ -26,7 +26,7 @@ namespace Tizen.Multimedia.Remoting
     /// Provides a means to to send commands to and handle events from media control server.
     /// </summary>
     /// <since_tizen> 4 </since_tizen>
-    public class MediaController
+    public partial class MediaController
     {
         internal MediaController(MediaControllerManager manager, string serverAppId)
         {
@@ -66,130 +66,6 @@ namespace Tizen.Multimedia.Remoting
         }
 
         /// <summary>
-        /// Occurs when the server is stopped.
-        /// </summary>
-        /// <since_tizen> 4 </since_tizen>
-        public event EventHandler ServerStopped;
-
-        internal void RaiseStoppedEvent()
-        {
-            IsStopped = true;
-            ServerStopped?.Invoke(this, EventArgs.Empty);
-        }
-
-        /// <summary>
-        /// Occurs when the playback state is updated.
-        /// </summary>
-        /// <since_tizen> 4 </since_tizen>
-        public event EventHandler<PlaybackStateUpdatedEventArgs> PlaybackStateUpdated;
-
-        private PlaybackStateUpdatedEventArgs CreatePlaybackUpdatedEventArgs(IntPtr playbackHandle)
-        {
-            try
-            {
-                Native.GetPlaybackState(playbackHandle, out var playbackCode).ThrowIfError("Failed to get state.");
-
-                Native.GetPlaybackPosition(playbackHandle, out var position).ThrowIfError("Failed to get position.");
-
-                return new PlaybackStateUpdatedEventArgs(playbackCode.ToState(), (long)position);
-            }
-            catch (Exception e)
-            {
-                Log.Error(GetType().FullName, e.ToString());
-            }
-            return null;
-        }
-
-        internal void RaisePlaybackUpdatedEvent(IntPtr playbackHandle)
-        {
-            var eventHandler = PlaybackStateUpdated;
-
-            if (eventHandler == null)
-            {
-                return;
-            }
-
-            var args = CreatePlaybackUpdatedEventArgs(playbackHandle);
-
-            if (args != null)
-            {
-                eventHandler.Invoke(this, args);
-            }
-        }
-
-        /// <summary>
-        /// Occurs when the metadata is updated.
-        /// </summary>
-        /// <since_tizen> 4 </since_tizen>
-        public event EventHandler<MetadataUpdatedEventArgs> MetadataUpdated;
-
-        private MetadataUpdatedEventArgs CreateMetadataUpdatedEventArgs(IntPtr metadataHandle)
-        {
-            try
-            {
-                return new MetadataUpdatedEventArgs(new MediaControlMetadata(metadataHandle));
-            }
-            catch (Exception e)
-            {
-                Log.Error(GetType().FullName, e.ToString());
-            }
-            return null;
-        }
-
-        internal void RaiseMetadataUpdatedEvent(IntPtr metadataHandle)
-        {
-            var eventHandler = MetadataUpdated;
-
-            if (eventHandler == null)
-            {
-                return;
-            }
-
-            var args = CreateMetadataUpdatedEventArgs(metadataHandle);
-
-            if (args != null)
-            {
-                eventHandler.Invoke(this, args);
-            }
-        }
-
-        /// <summary>
-        /// Occurs when the shuffle mode is updated.
-        /// </summary>
-        /// <since_tizen> 4 </since_tizen>
-        public event EventHandler<ShuffleModeUpdatedEventArgs> ShuffleModeUpdated;
-
-        internal void RaiseShuffleModeUpdatedEvent(NativeShuffleMode mode)
-        {
-            ShuffleModeUpdated?.Invoke(this, new ShuffleModeUpdatedEventArgs(mode == NativeShuffleMode.On));
-        }
-
-        /// <summary>
-        /// Occurs when the repeat mode is updated.
-        /// </summary>
-        /// <since_tizen> 4 </since_tizen>
-        public event EventHandler<RepeatModeUpdatedEventArgs> RepeatModeUpdated;
-
-        internal void RaiseRepeatModeUpdatedEvent(MediaControlRepeatMode mode)
-        {
-            RepeatModeUpdated?.Invoke(this, new RepeatModeUpdatedEventArgs(mode));
-        }
-
-        /// <summary>
-        /// Occurs when the command is completed.
-        /// </summary>
-        /// <remarks>
-        /// User can match the command and this event using <see cref="CommandCompletedEventArgs.RequestId"/> field.
-        /// </remarks>
-        /// <since_tizen> 5 </since_tizen>
-        public event EventHandler<CommandCompletedEventArgs> CommandCompleted;
-
-        internal void RaiseCommandCompletedEvent(string requestId, int result, SafeBundleHandle bundleHandle)
-        {
-            CommandCompleted?.Invoke(this, new CommandCompletedEventArgs(requestId, result, bundleHandle));
-        }
-
-        /// <summary>
         /// Returns the playback state set by the server.
         /// </summary>
         /// <returns>The playback state.</returns>
@@ -213,7 +89,7 @@ namespace Tizen.Multimedia.Remoting
 
                 Native.GetPlaybackState(playbackHandle, out var playbackCode).ThrowIfError("Failed to get state.");
 
-                return playbackCode.ToState();
+                return playbackCode.ToPublic();
             }
             finally
             {
@@ -312,7 +188,7 @@ namespace Tizen.Multimedia.Remoting
             Native.GetServerShuffleMode(Manager.Handle, ServerAppId, out var shuffleMode).
                 ThrowIfError("Failed to get shuffle mode state.");
 
-            return shuffleMode == NativeShuffleMode.On;
+            return shuffleMode == MediaControllerNativeShuffleMode.On;
         }
 
         /// <summary>
@@ -357,7 +233,7 @@ namespace Tizen.Multimedia.Remoting
 
             ValidationUtil.ValidateEnum(typeof(MediaControlPlaybackCommand), command, nameof(command));
 
-            Native.SendPlaybackStateCommand(Manager.Handle, ServerAppId, command.ToNativeAction()).
+            Native.SendPlaybackStateCommand(Manager.Handle, ServerAppId, command.ToNative()).
                 ThrowIfError("Failed to send command.");
         }
 
@@ -380,7 +256,7 @@ namespace Tizen.Multimedia.Remoting
 
             ValidationUtil.ValidateEnum(typeof(MediaControlPlaybackCommand), playbackCommand, nameof(playbackCommand));
 
-            Native.SendPlaybackActionCommand(Manager.Handle, ServerAppId, playbackCommand.ToNativeAction(), out string requestId).
+            Native.SendPlaybackActionCommand(Manager.Handle, ServerAppId, playbackCommand.ToNative(), out string requestId).
                 ThrowIfError("Failed to send playback command.");
 
             return requestId;
@@ -417,7 +293,7 @@ namespace Tizen.Multimedia.Remoting
                 throw new ArgumentNullException("Index is not set.");
             }
 
-            Native.SendPlaylistCommand(Manager.Handle, ServerAppId, playlistName, index, playbackCommand.ToNativeAction(),
+            Native.SendPlaylistCommand(Manager.Handle, ServerAppId, playlistName, index, playbackCommand.ToNative(),
                 position, out string requestId).ThrowIfError("Failed to send playlist command.");
 
             return requestId;

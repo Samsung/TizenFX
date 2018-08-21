@@ -76,7 +76,7 @@ namespace Tizen.Multimedia.Remoting
         {
             _playbackCommandCallback = (clientName, playbackCode, _) =>
             {
-                PlaybackCommandReceived?.Invoke(null, new PlaybackCommandReceivedEventArgs(clientName, playbackCode.ToCommand()));
+                PlaybackCommandReceived?.Invoke(null, new PlaybackCommandReceivedEventArgs(clientName, playbackCode.ToPublic()));
             };
             Native.SetPlaybackStateCmdRecvCb(Handle, _playbackCommandCallback).
                 ThrowIfError("Failed to init PlaybackStateCommandReceived event.");
@@ -86,7 +86,7 @@ namespace Tizen.Multimedia.Remoting
         {
             _playbackActionCommandCallback = (clientName, requestId, playbackCommand, _) =>
             {
-                PlaybackActionCommandReceived?.Invoke(null, new PlaybackActionCommandReceivedEventArgs(clientName, requestId, playbackCommand.ToCommand()));
+                PlaybackActionCommandReceived?.Invoke(null, new PlaybackActionCommandReceivedEventArgs(clientName, requestId, playbackCommand.ToPublic()));
             };
             Native.SetPlaybackActionCommandReceivedCb(Handle, _playbackActionCommandCallback).
                 ThrowIfError("Failed to init PlaybackActionCommandReceived event.");
@@ -106,7 +106,7 @@ namespace Tizen.Multimedia.Remoting
         {
             _playlistCommandCallback = (clientName, requestId, playlist, index, command, playbackPosition, _) =>
             {
-                PlaylistCommandReceived?.Invoke(null, new PlaylistCommandReceivedEventArgs(clientName, requestId, playlist, index, command.ToCommand(), playbackPosition));
+                PlaylistCommandReceived?.Invoke(null, new PlaylistCommandReceivedEventArgs(clientName, requestId, playlist, index, command.ToPublic(), playbackPosition));
             };
             Native.SetPlaylistCommandReceivedCb(Handle, _playlistCommandCallback).
                 ThrowIfError("Failed to init PlaylistCommandReceived event.");
