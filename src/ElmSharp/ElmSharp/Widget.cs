@@ -328,7 +328,7 @@ namespace ElmSharp
         /// <since_tizen> preview </since_tizen>
         public void SetNextFocusObject(EvasObject next, FocusDirection direction)
         {
-            Interop.Elementary.elm_object_focus_next_object_set(RealHandle, next.RealHandle, (int)direction);
+            Interop.Elementary.elm_object_focus_next_object_set(RealHandle, next?.RealHandle ?? IntPtr.Zero, (int)direction);
         }
 
         /// <summary>
