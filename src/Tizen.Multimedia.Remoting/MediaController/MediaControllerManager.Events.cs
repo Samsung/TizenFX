@@ -47,6 +47,7 @@ namespace Tizen.Multimedia.Remoting
             RegisterMetadataUpdatedEvent();
             RegisterShuffleModeUpdatedEvent();
             RegisterRepeatModeUpdatedEvent();
+            RegisterCommandCompletedEvent();
         }
 
         private void RaiseServerChangedEvent(MediaControllerNativeServerState state, MediaController controller)
