@@ -15,6 +15,7 @@
 */
 
 using System;
+using System.Collections.Generic;
 using Tizen.Applications;
 
 namespace Tizen.Nlp
@@ -31,6 +32,6 @@ namespace Tizen.Nlp
         /// To get value by  msg.GetItem("return_tag") and cast the value to string []
         /// To get value by  msg.GetItem("return_token") and cast the value to string []
         /// </summary>
-        public Bundle Message { get; set; }
+        public Dictionary<string, string[]> Message { get; set; }
     }
 }
