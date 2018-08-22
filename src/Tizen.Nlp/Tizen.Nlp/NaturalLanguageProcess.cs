@@ -151,7 +151,6 @@ namespace Tizen.Nlp
         /// <summary>
         /// An construct method  to connect remote tidl service.
         /// </summary>
-        /// <returns></returns>
         /// <since_tizen> 5 </since_tizen>
         public NaturalLanguageProcess()
         {
