@@ -29,6 +29,10 @@ namespace Tizen.Multimedia
             [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
             internal delegate void StateChangedCallback(IntPtr device, AudioDeviceState changedState, IntPtr userData);
 
+            [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+            internal delegate void RunningChangedCallback(IntPtr device, bool isRunning, IntPtr userData);
+
+
             [DllImport(Libraries.SoundManager, EntryPoint = "sound_manager_get_device_list")]
             internal static extern AudioManagerError GetDeviceList(AudioDeviceOptions deviceMask, out IntPtr deviceList);
 
@@ -53,6 +57,9 @@ namespace Tizen.Multimedia
             [DllImport(Libraries.SoundManager, EntryPoint = "sound_manager_get_device_state_by_id")]
             internal static extern AudioManagerError GetDeviceState(int deviceId, out AudioDeviceState state);
 
+            [DllImport(Libraries.SoundManager, EntryPoint = "sound_manager_is_device_running")]
+            internal static extern AudioManagerError IsDeviceRunning(IntPtr device, out bool isRunning);
+
             [DllImport(Libraries.SoundManager, EntryPoint = "sound_manager_add_device_connection_changed_cb")]
             internal static extern AudioManagerError AddDeviceConnectionChangedCallback(
                 AudioDeviceOptions deviceMask, ConnectionChangedCallback callback, IntPtr userData, out int id);
@@ -66,6 +73,13 @@ namespace Tizen.Multimedia
 
             [DllImport(Libraries.SoundManager, EntryPoint = "sound_manager_remove_device_state_changed_cb")]
             internal static extern AudioManagerError RemoveDeviceStateChangedCallback(int id);
+
+            [DllImport(Libraries.SoundManager, EntryPoint = "sound_manager_add_device_running_changed_cb")]
+            internal static extern AudioManagerError AddDeviceRunningChangedCallback(AudioDeviceOptions deviceMask,
+                RunningChangedCallback callback, IntPtr userData, out int id);
+
+            [DllImport(Libraries.SoundManager, EntryPoint = "sound_manager_remove_device_running_changed_cb")]
+            internal static extern AudioManagerError RemoveDeviceRunningChangedCallback(int id);
         }
     }
 }
