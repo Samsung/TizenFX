@@ -532,6 +532,12 @@ namespace Tizen.NUI
         protected float? _opacity = null;
 
         /// <summary>
+        /// The FittingMode of the visual.
+        /// </summary>
+        /// <since_tizen> 5 </since_tizen>
+        protected VisualFittingModeType? _visualFittingMode = null;
+
+        /// <summary>
         /// The map for visual.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
@@ -606,6 +612,21 @@ namespace Tizen.NUI
             }
         }
 
+        /// <summary>
+        /// The fitting mode of the visual.
+        /// The default is defined by the type of visual (if it's suitable to be stretched or not).
+        /// </summary>
+        /// <since_tizen> 5 </since_tizen>
+        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public VisualFittingModeType VisualFittingMode
+        {
+            set
+            {
+                _visualFittingMode = value;
+                UpdateVisual();
+            }
+        }
     }
 
     /// <summary>
@@ -640,6 +661,7 @@ namespace Tizen.NUI
         private ReleasePolicyType? _releasePolicy = null;
         private LoadPolicyType? _loadPolicy = null;
         private bool? _orientationCorrection = true;
+        private bool? _atlasing = false;
 
         /// <summary>
         /// Gets or sets the URL of the image.<br />
@@ -989,6 +1011,25 @@ namespace Tizen.NUI
             }
         }
 
+        /// <summary>
+        /// Whether to use the texture atlas.
+        /// Optional. By default atlasing is off.
+        /// </summary>
+        /// <since_tizen> 5 </since_tizen>
+        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public bool Atlasing
+        {
+            get
+            {
+                return _atlasing ?? (false);
+            }
+            set
+            {
+                _atlasing = value;
+                UpdateVisual();
+            }
+        }
 
         /// <summary>
         /// Compose the out visual map.
@@ -1022,6 +1063,8 @@ namespace Tizen.NUI
                 if (_releasePolicy != null) { _outputVisualMap.Add( ImageVisualProperty.ReleasePolicy , new PropertyValue((int)_releasePolicy)); }
                 if (_loadPolicy != null) { _outputVisualMap.Add( ImageVisualProperty.LoadPolicy, new PropertyValue((int)_loadPolicy)); }
                 if (_orientationCorrection != null) { _outputVisualMap.Add( ImageVisualProperty.OrientationCorrection, new PropertyValue((bool)_orientationCorrection)); }
+                if (_atlasing != null) { _outputVisualMap.Add( ImageVisualProperty.Atlasing, new PropertyValue((bool)_atlasing)); }
+                if (_visualFittingMode != null) { _outputVisualMap.Add((int)Visual.Property.VisualFittingMode, new PropertyValue((int)_visualFittingMode)); }
             }
         }
     }
@@ -1049,6 +1092,10 @@ namespace Tizen.NUI
         private string _verticalAlignment = null;
         private Color _textColor = null;
         private bool? _enableMarkup = null;
+        private PropertyMap _shadow = null;
+        private PropertyMap _underline = null;
+        private PropertyMap _outline = null;
+        private PropertyMap _background = null;
 
         /// <summary>
         /// Gets or sets the text to display in the UTF-8 format.<br />
@@ -1280,6 +1327,82 @@ namespace Tizen.NUI
         }
 
         /// <summary>
+        /// Gets or sets the shadow parameters.
+        /// </summary>
+        /// <since_tizen> 5 </since_tizen>
+        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public PropertyMap Shadow
+        {
+            get
+            {
+                return _shadow;
+            }
+            set
+            {
+                _shadow = value;
+                UpdateVisual();
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the Underline parameters.
+        /// </summary>
+        /// <since_tizen> 5 </since_tizen>
+        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public PropertyMap Underline
+        {
+            get
+            {
+                return _underline;
+            }
+            set
+            {
+                _underline = value;
+                UpdateVisual();
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the Outline parameters.
+        /// </summary>
+        /// <since_tizen> 5 </since_tizen>
+        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public PropertyMap Outline
+        {
+            get
+            {
+                return _outline;
+            }
+            set
+            {
+                _outline = value;
+                UpdateVisual();
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the Background parameters.
+        /// </summary>
+        /// <since_tizen> 5 </since_tizen>
+        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public PropertyMap Background
+        {
+            get
+            {
+                return _background;
+            }
+            set
+            {
+                _background = value;
+                UpdateVisual();
+            }
+        }
+
+        /// <summary>
         /// Compose the out visual map.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
@@ -1302,6 +1425,10 @@ namespace Tizen.NUI
                 if (_premultipliedAlpha != null) { _outputVisualMap.Add((int)Visual.Property.PremultipliedAlpha, new PropertyValue((bool)_premultipliedAlpha)); }
                 if (_mixColor != null) { _outputVisualMap.Add((int)Visual.Property.MixColor, new PropertyValue(_mixColor)); }
                 if (_opacity != null) { _outputVisualMap.Add((int)Visual.Property.Opacity, new PropertyValue((float)_opacity)); }
+                if (_shadow != null) { _outputVisualMap.Add(TextVisualProperty.Shadow, new PropertyValue(_shadow)); }
+                if (_underline != null) { _outputVisualMap.Add(TextVisualProperty.Underline, new PropertyValue(_underline)); }
+                if (_outline != null) { _outputVisualMap.Add(TextVisualProperty.Outline, new PropertyValue(_outline)); }
+                if (_background != null) { _outputVisualMap.Add(TextVisualProperty.Background, new PropertyValue(_background)); }
             }
         }
     }
@@ -1415,6 +1542,7 @@ namespace Tizen.NUI
         }
 
         private Color _mixColorForColorVisual = null;
+        private bool? _renderIfTransparent = false;
 
         /// <summary>
         /// Gets or sets the solid color required.<br />
@@ -1435,6 +1563,26 @@ namespace Tizen.NUI
         }
 
         /// <summary>
+        /// Gets or sets whether to render if the MixColor is transparent.
+        /// By default it's false, i.e. ColorVisual will not render if the MIX_COLOR is transparent.
+        /// </summary>
+        /// <since_tizen> 5 </since_tizen>
+        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public bool RenderIfTransparent
+        {
+            get
+            {
+                return _renderIfTransparent ?? (false);
+            }
+            set
+            {
+                _renderIfTransparent = value;
+                UpdateVisual();
+            }
+        }
+
+        /// <summary>
         /// Compose the out visual map.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
@@ -1448,6 +1596,7 @@ namespace Tizen.NUI
                 if (_shader != null) { _outputVisualMap.Add((int)Visual.Property.Shader, new PropertyValue(_shader)); }
                 if (_premultipliedAlpha != null) { _outputVisualMap.Add((int)Visual.Property.PremultipliedAlpha, new PropertyValue((bool)_premultipliedAlpha)); }
                 if (_opacity != null) { _outputVisualMap.Add((int)Visual.Property.Opacity, new PropertyValue((float)_opacity)); }
+                if (_renderIfTransparent != null) { _outputVisualMap.Add(ColorVisualProperty.RenderIfTransparent, new PropertyValue((bool)_renderIfTransparent)); }
             }
         }
     }
