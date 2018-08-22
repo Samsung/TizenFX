@@ -103,7 +103,7 @@ namespace Tizen.Multimedia
         {
             get
             {
-                Interop.AudioDevice.GetDeviceRunning(_deviceHandle, out bool isRunning).
+                Interop.AudioDevice.IsDeviceRunning(_deviceHandle, out bool isRunning).
                     ThrowIfError("Failed to get the running state of the device");
 
                 return isRunning;
