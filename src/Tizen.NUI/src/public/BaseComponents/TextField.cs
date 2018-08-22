@@ -1025,6 +1025,8 @@ namespace Tizen.NUI.BaseComponents
                 if (swigCMemOwn)
                 {
                     swigCMemOwn = false;
+                    // In order to speed up IME hide, temporarily add
+                    GetInputMethodContext()?.DestroyContext();
                     NDalicPINVOKE.delete_TextField(swigCPtr);
                 }
                 swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
