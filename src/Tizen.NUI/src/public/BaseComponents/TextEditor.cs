@@ -955,7 +955,7 @@ namespace Tizen.NUI.BaseComponents
             //You should not access any managed member here except static instance.
             //because the execution order of Finalizes is non-deterministic.
 
-            if (this != null && _textEditorTextChangedCallbackDelegate != null)
+            if (this.HasBody() && _textEditorTextChangedCallbackDelegate != null)
             {
                 TextChangedSignal().Disconnect(_textEditorTextChangedCallbackDelegate);
             }
@@ -1121,7 +1121,7 @@ namespace Tizen.NUI.BaseComponents
         {
             ScrollStateChangedEventArgs e = new ScrollStateChangedEventArgs();
 
-            if (textEditor != null)
+            if (textEditor != global::System.IntPtr.Zero)
             {
                 // Populate all members of "e" (ScrollStateChangedEventArgs) with real data
                 e.TextEditor = Registry.GetManagedBaseHandleFromNativePtr(textEditor) as TextEditor;
