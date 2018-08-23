@@ -172,6 +172,8 @@ internal static partial class Interop
             internal static extern int SetGatewayAddress(SafeWiFiAPHandle ap, int addressFamily, string gatewayAddress);
             [DllImport(Libraries.WiFi, EntryPoint = "wifi_manager_ap_get_dhcp_server_address")]
             internal static extern int GetDhcpServerAddress(SafeWiFiAPHandle ap, AddressFamily addressFamily, out string dhcpServer);
+            [DllImport(Libraries.WiFi, EntryPoint = "wifi_manager_ap_get_dhcp_lease_duration")]
+            internal static extern int GetDhcpLeaseDuration(SafeWiFiAPHandle ap, AddressFamily addressFamily, out int dhcpLeaseDuration);
             [DllImport(Libraries.WiFi, EntryPoint = "wifi_manager_ap_get_proxy_address")]
             internal static extern int GetProxyAddress(SafeWiFiAPHandle ap, int addressFamily, out IntPtr proxyAddress);
             [DllImport(Libraries.WiFi, EntryPoint = "wifi_manager_ap_set_proxy_address")]

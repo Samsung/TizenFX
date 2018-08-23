@@ -221,6 +221,26 @@ namespace Tizen.Network.WiFi
             }
         }
 
+        /// <summary>
+        /// DHCP lease duration. It is only supported for IPv4 address family.
+        /// </summary>
+        /// <value>Represents DHCP lease duration.</value>
+        public int  DhcpLeaseDuration
+        {
+            get
+            {
+                int leaseDuration;
+                int ret = Interop.WiFi.AP.GetDhcpLeaseDuration(_handle, AddressFamily.IPv4, out leaseDuration);
+                if (ret != (int)WiFiError.None)
+                {
+                    Log.Error(Globals.LogTag, "Failed to get DHCP lease duration, Error - " + (WiFiError)ret);
+                    return 0;
+                }
+
+                return leaseDuration;
+            }
+        }
+
         private System.Net.IPAddress ParseIPAddress(int ret, IntPtr addrPtr)
         {
             if (ret != (int)WiFiError.None)
