@@ -114,7 +114,6 @@ namespace Tizen.System
         /// </param>
         /// <exception cref="ArgumentException">When an invalid parameter value is set.</exception>
         /// <exception cref="UnauthorizedAccessException">If the privilege is not set.</exception>
-        /// <exception cref="NotSupportedException">If power lock is not supported.</exception>
         /// <exception cref="InvalidOperationException">In case of any system error.</exception>
         /// <example>
         /// <code>
@@ -138,7 +137,6 @@ namespace Tizen.System
         /// </param>
         /// <exception cref="ArgumentException">When an invalid parameter value is set.</exception>
         /// <exception cref="UnauthorizedAccessException">If the privilege is not set.</exception>
-        /// <exception cref="NotSupportedException">If power lock is not supported.</exception>
         /// <exception cref="InvalidOperationException">In case of any system error.</exception>
         /// <example>
         /// <code>
