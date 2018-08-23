@@ -14,9 +14,7 @@
 * limitations under the License.
 */
 
-using System;
 using System.Collections.Generic;
-using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
 using Tizen.Applications;
 
@@ -29,79 +27,74 @@ namespace Tizen.Nlp
     /// <since_tizen> 5 </since_tizen>
     public class NaturalLanguageProcess
     {
-        /// <summary>
-        /// An EventHandler to receive data after wordtokenize processing.
-        /// </summary>
-        /// <remarks>
-        /// if this succeeds, the object contain Key/Pari about Nlp will be received.
-        /// and you can use TryGetValue() with the Key "token" or "tag" to get a array of string for access,
-        /// </remarks>
-        public event EventHandler<MessageReceivedEventArgs> WordTokenizeResultReceived;
-        /// <summary>
-        /// An EventHandler to recieve data after the pos of tag processing.
-        /// </summary>
-        /// <remarks>
-        /// if this succeeds, the object contain Key/Pari about Nlp will be received.
-        /// and you can use TryGetValue() with the Key "token" or "tag" to get a array of string for access,
-        /// </remarks>
-        public event EventHandler<MessageReceivedEventArgs> PosTagResultReceived;
-        /// <summary>
-        /// An EventHandler to recieve data after named entity recognition processing.
-        /// </summary>
-        /// <remarks>
-        /// if this succeeds, the object contain Key/Pari about Nlp will be received.
-        /// and you can use TryGetValue() with the Key "token" or "tag" to get a array of string for access,
-        /// </remarks>
-        public event EventHandler<MessageReceivedEventArgs> NamedEntityRecognitionResultReceived;
-        /// <summary>
-        /// An EventHandler to recieve data after lemmatize processing.
-        /// </summary>
-        /// <remarks>
-        /// if this succeeds, the object contain Key/Pari about Nlp will be received.
-        /// and you can use TryGetValue() with the Key "token" or "tag" to get a array of string for access,
-        /// </remarks>
-        public event EventHandler<MessageReceivedEventArgs> LemmatizeResultReceived;
-        /// <summary>
-        /// An EventHandler to recieve data after language detect processing.
-        /// </summary>
-        /// <remarks>
-        /// if this succeeds, the object contain Key/Pari about Nlp will be received.
-        /// and you can use TryGetValue() with the Key "token" or "tag" to get a array of string for access,
-        /// </remarks>
-        public event EventHandler<MessageReceivedEventArgs> LanguageDetectResultReceived;
         private Message _msg;
         private readonly Message.NotifyCb _noti = new Message.NotifyCb();
-        private string _tag;
-        private const string SERVICE_ID = "org.tizen.nlp.service";
+        private readonly string _tag;
+        private const string ServiceId = "org.tizen.nlp.service";
+        private delegate bool LangDetectAsync(MessageReceivedEventArgs e);
+        private delegate bool WordTokenizeAsync(MessageReceivedEventArgs e);
+        private delegate bool PostagAsync(MessageReceivedEventArgs e);
+        private delegate bool NamedEntityRecognitionAsync(MessageReceivedEventArgs e);
+        private delegate bool LemmatizeAsync(MessageReceivedEventArgs e);
 
         /// <summary>
-        /// The enum type of the message be sent.
+        /// This class contains result of language detected.
         /// </summary>
-        public enum ProcessResult
+        /// <since_tizen> 5 </since_tizen>
+        public class LanguageDetectedResult
         {
-            /// <summary>
-            ///  Unsuccess
-            /// </summary>
-            ProcessError = -1,
-            /// <summary>
-            /// Success
-            /// </summary>
-            ProcessSuccess = 0
+            public string Language { get; set; }
         }
 
-        private ProcessResult MakeRequest(string cmd, string sentence)
+        /// <summary>
+        /// This class contains result of word tokenized.
+        /// </summary>
+        /// <since_tizen> 5 </since_tizen>
+        public class WordTokenizeResult
+        {
+            public IList<string> Tokens { get; set; }
+        }
+
+        /// <summary>
+        /// This class contains result of named entity recognition.
+        /// </summary>
+        /// <since_tizen> 5 </since_tizen>
+        public class NamedEntityRecognitionResult
+        {
+            public IList<string> Tokens { get; set; }
+            public IList<string> Tags { get; set; }
+        }
+
+        /// <summary>
+        /// This class contains result of lemmatized.
+        /// </summary>
+        /// <since_tizen> 5 </since_tizen>
+        public class LemmatizeResult
+        {
+            public string ActualWords { get; set; }
+        }
+
+        /// <summary>
+        /// This class contains result of position tagged .
+        /// </summary>
+        /// <since_tizen> 5 </since_tizen>
+        public class PosTagResult
+        {
+            public IList<string> Tokens { get; set; }
+            public IList<string> Tags { get; set; }
+        }
+
+        private LangDetectAsync _langdetectasync;
+        private WordTokenizeAsync _wordtokenizeasync;
+        private PostagAsync _postagasync;
+        private LemmatizeAsync _Lemmatizeasync;
+        private NamedEntityRecognitionAsync _namedentityrecognitionasyncasync;
+        private void MakeRequest(string cmd, string sentence)
         {
             Bundle b = new Bundle();
             b.AddItem("command", cmd);
             b.AddItem("info", sentence);
-            if (_msg.Send(b) != 0)
-            {
-                return ProcessResult.ProcessError;
-            }
-            else
-            {
-                return ProcessResult.ProcessSuccess;
-            }
+            _msg.Send(b);
         }
 
         private void ResultReceived(string sender, Bundle msg)
@@ -113,33 +106,33 @@ namespace Tizen.Nlp
             {
                 result.Add("token", (string[])msg.GetItem("return_token"));
                 e.Message = result;
-                WordTokenizeResultReceived?.Invoke(this, e);
+                _wordtokenizeasync?.Invoke(e);
             }
             else if (msg.GetItem("command").Equals("pos_tag"))
             {
                 result.Add("token", (string[])msg.GetItem("return_token"));
                 result.Add("tag", (string[])msg.GetItem("return_tag"));
                 e.Message = result;
-                PosTagResultReceived?.Invoke(this, e);
+                _postagasync?.Invoke(e);
             }
             else if (msg.GetItem("command").Equals("ne_chunk"))
             {
                 result.Add("token", (string[])msg.GetItem("return_token"));
                 result.Add("tag", (string[])msg.GetItem("return_tag"));
                 e.Message = result;
-                NamedEntityRecognitionResultReceived?.Invoke(this, e);
+                _namedentityrecognitionasyncasync?.Invoke(e);
             }
             else if (msg.GetItem("command").Equals("lemmatize"))
             {
                 result.Add("token", (string[])msg.GetItem("return_token"));
                 e.Message = result;
-                LemmatizeResultReceived?.Invoke(this, e);
+                _Lemmatizeasync?.Invoke(e);
             }
             else if (msg.GetItem("command").Equals("langdetect"))
             {
                 result.Add("token", (string[])msg.GetItem("return_token"));
                 e.Message = result;
-                LanguageDetectResultReceived?.Invoke(this, e);
+                _langdetectasync.Invoke(e);
             }
             else
             {
@@ -156,7 +149,7 @@ namespace Tizen.Nlp
         {
             _tag = Application.Current.ApplicationInfo.ApplicationId;
             Log.Debug(_tag, "msg construct started");
-            _msg = new Message(SERVICE_ID);
+            _msg = new Message(ServiceId);
             Log.Debug(_tag, "msg construct success");
             _noti.Received += ResultReceived;
             Log.Debug(_tag, "notify callback be assigned");
@@ -196,33 +189,67 @@ namespace Tizen.Nlp
         /// Send Pos of Tag request to remote tidl service with one parameters.
         /// </summary>
         /// <param name="sentence">A sentence need to be processed.</param>
-        /// <returns>ProcessResult</returns>
+        /// <returns>PosTagResult</returns>
         /// <since_tizen> 5 </since_tizen>
-        public ProcessResult PosTag(string sentence)
+        public Task<PosTagResult> PosTagAsyncTask(string sentence)
         {
-            return MakeRequest("pos_tag", sentence);
+            MakeRequest("pos_tag", sentence);
+            var task = new TaskCompletionSource<PosTagResult>();
+            _postagasync = (e) =>
+            {
+                PosTagResult pr = new PosTagResult();
+                e.Message.TryGetValue("token", out string[] tokens);
+                e.Message.TryGetValue("tag", out string[] tags);
+                pr.Tokens = tokens;
+                pr.Tags = tags;
+                task.SetResult(pr);
+                return true;
+            };
+            return task.Task;
         }
 
         /// <summary>
         /// Send Named Entity recognition request to remote tidl service with one parameters.
         /// </summary>
         /// <param name="sentence">A sentence need to be processed.</param>
-        /// <returns>ProcessResult</returns>
+        /// <returns>NamedEntityRecognitionResult</returns>
         /// <since_tizen> 5 </since_tizen>
-        public ProcessResult NamedEntityRecognition(string sentence)
+        public Task<NamedEntityRecognitionResult> NamedEntityRecognitionAsyncTask(string sentence)
         {
-            return MakeRequest("ne_chunk", sentence);
+            MakeRequest("ne_chunk", sentence);
+            var task = new TaskCompletionSource<NamedEntityRecognitionResult>();
+            _namedentityrecognitionasyncasync = (e) =>
+            {
+                NamedEntityRecognitionResult nr = new NamedEntityRecognitionResult();
+                e.Message.TryGetValue("token", out string[] tokens);
+                e.Message.TryGetValue("tag", out string[] tags);
+                nr.Tokens = tokens;
+                nr.Tags = tags;
+                task.SetResult(nr);
+                return true;
+            };
+            return task.Task;
         }
 
         /// <summary>
         /// Send language detect request to remote tidl service with one parameters.
         /// </summary>
         /// <param name="sentence">A sentence need to be processed.</param>
-        /// <returns>ProcessResult</returns>
+        /// <returns>LanguageDetectedResult</returns>
         /// <since_tizen> 5 </since_tizen>
-        public ProcessResult LanguageDetect(string sentence)
+        public Task<LanguageDetectedResult> LanguageDetectAsyncTask(string sentence)
         {
-            return MakeRequest("langdetect", sentence);
+            MakeRequest("langdetect", sentence);
+            var task = new TaskCompletionSource<LanguageDetectedResult>();
+            _langdetectasync = (e) =>
+            {
+                LanguageDetectedResult lr = new LanguageDetectedResult();
+                e.Message.TryGetValue("token", out string[] lang);
+                if (lang != null) lr.Language = lang[0];
+                task.SetResult(lr);
+                return true;
+            };
+            return task.Task;
         }
 
         /// <summary>
@@ -231,9 +258,19 @@ namespace Tizen.Nlp
         /// <param name="sentence">A sentence need to be processed.</param>
         /// <returns>ProcessResult</returns>
         /// <since_tizen> 5 </since_tizen>
-        public ProcessResult Lemmatize(string sentence)
+        public Task<LemmatizeResult> LemmatizeaAsyncTask(string sentence)
         {
-            return MakeRequest("lemmatize", sentence);
+            MakeRequest("lemmatize", sentence);
+            var task = new TaskCompletionSource<LemmatizeResult>();
+            _Lemmatizeasync = (e) =>
+            {
+                LemmatizeResult mr = new LemmatizeResult();
+                e.Message.TryGetValue("token", out string[] tokens);
+                if (tokens != null) mr.ActualWords = tokens[0];
+                task.SetResult(mr);
+                return true;
+            };
+            return task.Task;
         }
 
         /// <summary>
@@ -242,9 +279,19 @@ namespace Tizen.Nlp
         /// <param name="sentence">A sentence need to be processed.</param>
         /// <returns>ProcessResult</returns>
         /// <since_tizen> 5 </since_tizen>
-        public ProcessResult WordTokenize(string sentence)
+        public Task<WordTokenizeResult> WordTokenizeAsyncTask(string sentence)
         {
-            return MakeRequest("word_tokenize", sentence);
+            MakeRequest("word_tokenize", sentence);
+            var task = new TaskCompletionSource<WordTokenizeResult>();
+            _wordtokenizeasync = (e) =>
+            {
+                WordTokenizeResult wr = new WordTokenizeResult();
+                e.Message.TryGetValue("token", out string[] tokens);
+                wr.Tokens = tokens;
+                task.SetResult(wr);
+                return true;
+            };
+            return task.Task;
         }
 
     }
