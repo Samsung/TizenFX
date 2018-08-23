@@ -135,7 +135,6 @@ namespace Tizen.Multimedia
             return Id == rhs.Id;
         }
 
-
         /// <summary>
         /// Gets the hash code for this instance of <see cref="AudioDevice"/>.
         /// </summary>
