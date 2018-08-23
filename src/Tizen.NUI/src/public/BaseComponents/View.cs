@@ -1221,6 +1221,8 @@ namespace Tizen.NUI.BaseComponents
 
         private global::System.Runtime.InteropServices.HandleRef swigCPtr;
 
+        private bool layoutSet = false; // Flag to indicate if SetLayout was called or View was automatically given a Layout
+
         internal View(global::System.IntPtr cPtr, bool cMemoryOwn) : base(NDalicPINVOKE.View_SWIGUpcast(cPtr), cMemoryOwn)
         {
             swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
@@ -1281,7 +1283,7 @@ namespace Tizen.NUI.BaseComponents
                     oldParent.Remove(child);
                 }
 
-                if (child.Layout == null)
+                if (layoutSet == true && child.Layout == null) // Only give children a layout if parent an explicit container
                 {
                     LayoutItem layoutItem = new LayoutItem();
                     child.Layout = layoutItem;
@@ -3443,6 +3445,7 @@ namespace Tizen.NUI.BaseComponents
             {
                 Tizen.NUI.NDalicManualPINVOKE.SetLayout__SWIG_1(View.getCPtr(this), LayoutItem.getCPtr(value));
                 value.LayoutChildren.Clear();
+                layoutSet = true;
                 foreach (View view in Children)
                 {
                     value.LayoutChildren.Add(view.Layout);
