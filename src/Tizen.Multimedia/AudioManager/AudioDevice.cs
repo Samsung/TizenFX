@@ -116,7 +116,7 @@ namespace Tizen.Multimedia
         /// <returns>A string that represents the current object.</returns>
         /// <since_tizen> 4 </since_tizen>
         public override string ToString() =>
-            $"Id={Id}, Name={Name}, Type={Type}, IoDirection={IoDirection}, State={State}";
+            $"Id={Id}, Name={Name}, Type={Type}, IoDirection={IoDirection}, IsRunning={IsRunning}";
 
         /// <summary>
         /// Compares an object to an instance of <see cref="AudioDevice"/> for equality.
