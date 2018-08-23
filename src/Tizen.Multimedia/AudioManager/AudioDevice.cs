@@ -16,6 +16,8 @@
 
 using System;
 using System.Runtime.InteropServices;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace Tizen.Multimedia
 {
@@ -28,6 +30,7 @@ namespace Tizen.Multimedia
         private readonly int _id;
         private readonly AudioDeviceType _type;
         private readonly AudioDeviceIoDirection _ioDirection;
+        private const string Tag = "Tizen.Multimedia.AudioDevice";
 
         internal AudioDevice(IntPtr deviceHandle)
         {
@@ -104,6 +107,131 @@ namespace Tizen.Multimedia
                     ThrowIfError("Failed to get the running state of the device");
 
                 return isRunning;
+			}
+        }
+
+        /// <summary>
+        /// Gets the device's supported sample formats.
+        /// </summary>
+        /// <returns>An IEnumerable&lt;AudioSampleFormat&gt; that contains supported sample formats.</returns>
+        /// <remarks>
+        /// This device should be <see cref="AudioDeviceType.UsbAudio"/> type and <see cref="AudioDeviceIoDirection.Output"/> direction.
+        /// </remarks>
+        /// <exception cref="ArgumentException">This device is not valid or is disconnected.</exception>
+        /// <exception cref="InvalidOperationException">This device is not <see cref="AudioDeviceType.UsbAudio"/> type or is not <see cref="AudioDeviceIoDirection.Output"/> direction.</exception>
+        /// <since_tizen> 5 </since_tizen>
+        public IEnumerable<AudioSampleFormat> GetSupportedSampleFormats()
+        {
+            IntPtr formats;
+            uint numOfElems;
+
+            Interop.AudioDevice.GetSupportedSampleFormats(_id, out formats, out numOfElems).
+                ThrowIfError("Failed to get supported sample formats");
+
+            return RetrieveFormats();
+
+            IEnumerable<AudioSampleFormat> RetrieveFormats()
+            {
+                int[] formatsRes = new int[numOfElems];
+
+                Marshal.Copy(formats, formatsRes, 0, (int)numOfElems);
+                Interop.Libc.Free(formats);
+
+                IEnumerable<AudioSampleFormat> res = formatsRes.OfType<AudioSampleFormat>();
+                foreach (AudioSampleFormat f in res)
+                {
+                    Log.Debug(Tag, $"supported sample format:{f}");
+                }
+
+                return res;
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the device's sample format.
+        /// </summary>
+        /// <value>The <see cref="AudioSampleFormat"/> of the device.</value>
+        /// <remarks>
+        /// This device should be <see cref="AudioDeviceType.UsbAudio"/> type and <see cref="AudioDeviceIoDirection.Output"/> direction.
+        /// <exception cref="ArgumentException">This device is not valid or is disconnected.</exception>
+        /// <exception cref="InvalidOperationException">This device is not <see cref="AudioDeviceType.UsbAudio"/> type or is not <see cref="AudioDeviceIoDirection.Output"/> direction.</exception>
+        /// </remarks>
+        /// <since_tizen> 5 </since_tizen>
+        public AudioSampleFormat SampleFormat
+        {
+            get
+            {
+                Interop.AudioDevice.GetSampleFormat(_id, out AudioSampleFormat format).
+                    ThrowIfError("Failed to get sample format of the device");
+
+                return format;
+            }
+            set
+            {
+                Interop.AudioDevice.SetSampleFormat(_id, value).
+                    ThrowIfError("Failed to set sample format of the device");
+            }
+        }
+
+        /// <summary>
+        /// Gets the device's supported sample rates.
+        /// </summary>
+        /// <returns>An IEnumerable&lt;uint&gt; that contains supported sample rates.</returns>
+        /// <remarks>
+        /// This device should be <see cref="AudioDeviceType.UsbAudio"/> type and <see cref="AudioDeviceIoDirection.Output"/> direction.
+        /// <exception cref="ArgumentException">This device is not valid or is disconnected.</exception>
+        /// <exception cref="InvalidOperationException">This device is not <see cref="AudioDeviceType.UsbAudio"/> type or is not <see cref="AudioDeviceIoDirection.Output"/> direction.</exception>
+        /// </remarks>
+        /// <since_tizen> 5 </since_tizen>
+        public IEnumerable<uint> GetSupportedSampleRates()
+        {
+            IntPtr rates;
+            uint numOfElems;
+
+            Interop.AudioDevice.GetSupportedSampleRates(_id, out rates, out numOfElems).
+                ThrowIfError("Failed to get supported sample formats");
+
+            return RetrieveRates();
+
+            IEnumerable<uint> RetrieveRates()
+            {
+                int[] ratesRes = new int[numOfElems];
+
+                Marshal.Copy(rates, ratesRes, 0, (int)numOfElems);
+                Interop.Libc.Free(rates);
+
+                IEnumerable<uint> res = ratesRes.OfType<uint>();
+                foreach (uint r in res)
+                {
+                    Log.Debug(Tag, $"supported sample rate:{r}");
+                }
+
+                return res;
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the device's sample rate.
+        /// </summary>
+        /// <remarks>
+        /// This device should be <see cref="AudioDeviceType.UsbAudio"/> type and <see cref="AudioDeviceIoDirection.Output"/> direction.
+        /// </remarks>
+        /// <exception cref="ArgumentException">This device is not valid or is disconnected.</exception>
+        /// <exception cref="InvalidOperationException">This device is not <see cref="AudioDeviceType.UsbAudio"/> type or is not <see cref="AudioDeviceIoDirection.Output"/> direction.</exception>
+        /// <since_tizen> 5 </since_tizen>
+        public uint SampleRate
+        {
+            get
+            {
+                Interop.AudioDevice.GetSampleRate(_id, out uint rate).
+                    ThrowIfError("Failed to get sample rate of the device");
+
+                return rate;
+            }
+            set
+            {
+                Interop.AudioDevice.SetSampleRate(_id, value).
+                    ThrowIfError("Failed to set sample rate of the device");
             }
         }
 
