@@ -22752,6 +22752,42 @@ namespace Tizen.NUI
             }
         }
 
+        [global::System.Runtime.InteropServices.DllImport(Graphics.GlesCSharpBinder, EntryPoint = "CSharp_Dali_Stage_SetRenderingBehavior")]
+        public static extern void Stage_SetRenderingBehavior_gl(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2);
+
+        [global::System.Runtime.InteropServices.DllImport(Graphics.VulkanCSharpBinder, EntryPoint = "CSharp_Dali_Stage_SetRenderingBehavior")]
+        public static extern void Stage_SetRenderingBehavior_vulkan(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2);
+
+        public static void Stage_SetRenderingBehavior(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2)
+        {
+            if (Tizen.NUI.Graphics.Backend == Tizen.NUI.Graphics.BackendType.Vulkan)
+            {
+                Stage_SetRenderingBehavior_vulkan(jarg1, jarg2);
+            }
+            else
+            {
+                Stage_SetRenderingBehavior_gl(jarg1, jarg2);
+            }
+        }
+
+        [global::System.Runtime.InteropServices.DllImport(Graphics.GlesCSharpBinder, EntryPoint = "CSharp_Dali_Stage_GetRenderingBehavior")]
+        public static extern int Stage_GetRenderingBehavior_gl(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+        [global::System.Runtime.InteropServices.DllImport(Graphics.VulkanCSharpBinder, EntryPoint = "CSharp_Dali_Stage_GetRenderingBehavior")]
+        public static extern int Stage_GetRenderingBehavior_vulkan(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+        public static int Stage_GetRenderingBehavior(global::System.Runtime.InteropServices.HandleRef jarg1)
+        {
+            if (Tizen.NUI.Graphics.Backend == Tizen.NUI.Graphics.BackendType.Vulkan)
+            {
+                return Stage_GetRenderingBehavior_vulkan(jarg1);
+            }
+            else
+            {
+                return Stage_GetRenderingBehavior_gl(jarg1);
+            }
+        }
+
         [global::System.Runtime.InteropServices.DllImport(Graphics.GlesCSharpBinder, EntryPoint = "CSharp_Dali_Stage_KeyEventSignal")]
         public static extern global::System.IntPtr Stage_KeyEventSignal_gl(global::System.Runtime.InteropServices.HandleRef jarg1);
 

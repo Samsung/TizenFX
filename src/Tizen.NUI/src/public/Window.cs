@@ -442,6 +442,22 @@ namespace Tizen.NUI
             }
         }
 
+        /// <summary>
+        /// The rendering behavior of a Window.
+        /// </summary>
+        /// <since_tizen> 5 </since_tizen>
+        public RenderingBehaviorType RenderingBehavior
+        {
+            get
+            {
+                return GetRenderingBehavior();
+            }
+            set
+            {
+                SetRenderingBehavior(value);
+            }
+        }
+
         internal WindowFocusSignalType WindowFocusChangedSignal()
         {
             WindowFocusSignalType ret = new WindowFocusSignalType(NDalicPINVOKE.FocusChangedSignal(swigCPtr), false);
@@ -719,6 +735,20 @@ namespace Tizen.NUI
         {
             NDalicPINVOKE.Stage_KeepRendering(stageCPtr, durationSeconds);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        internal void SetRenderingBehavior(RenderingBehaviorType renderingBehavior)
+        {
+            NDalicPINVOKE.Stage_SetRenderingBehavior(stageCPtr, (int)renderingBehavior);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        internal RenderingBehaviorType GetRenderingBehavior()
+        {
+            RenderingBehaviorType ret = (RenderingBehaviorType)NDalicPINVOKE.Stage_GetRenderingBehavior(swigCPtr);
+            if (NDalicPINVOKE.SWIGPendingException.Pending)
+                throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
         }
 
         internal KeyEventSignal KeyEventSignal()
