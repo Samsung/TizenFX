@@ -1275,12 +1275,16 @@ namespace Tizen.NUI.BaseComponents
                 return;
             }
 
-            Container oldParent = child.Parent;
+            Container oldParent = child.GetParent();
             if (oldParent != this)
             {
                 if (oldParent != null)
                 {
                     oldParent.Remove(child);
+                }
+                else
+                {
+                    child.InternalParent = this;
                 }
 
                 if (layoutSet == true && child.Layout == null) // Only give children a layout if parent an explicit container
@@ -1346,6 +1350,8 @@ namespace Tizen.NUI.BaseComponents
                 throw NDalicPINVOKE.SWIGPendingException.Retrieve();
 
             Children.Remove(child);
+            child.InternalParent = null;
+
             if (Layout)
             {
                 if(child.Layout)
@@ -1398,17 +1404,7 @@ namespace Tizen.NUI.BaseComponents
         /// <since_tizen> 4 </since_tizen>
         public override Container GetParent()
         {
-            //to fix memory leak issue, match the handle count with native side.
-            IntPtr cPtr = NDalicPINVOKE.Actor_GetParent(swigCPtr);
-            HandleRef CPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
-            BaseHandle basehandle = Registry.GetManagedBaseHandleFromNativePtr(CPtr.Handle);
-            NDalicPINVOKE.delete_BaseHandle(CPtr);
-            CPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
-
-            if (NDalicPINVOKE.SWIGPendingException.Pending)
-                throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-
-            return basehandle as Container;
+            return this.InternalParent as Container;
         }
 
         internal bool IsTopLevelView()
@@ -2457,26 +2453,16 @@ namespace Tizen.NUI.BaseComponents
             PageDown
         }
 
-        protected void InitXamlResource()
-        {
-            if (null != Application.Current)
-            {
-                Application.AddResourceChangedCallback(this, OnResourcesChanged);
-            }
-        }
-
         /// <summary>
         /// Creates a new instance of a view.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public View() : this(NDalicPINVOKE.View_New(), true)
         {
-            InitXamlResource();
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
         internal View(View uiControl) : this(NDalicPINVOKE.new_View__SWIG_1(View.getCPtr(uiControl)), true)
         {
-            InitXamlResource();
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
