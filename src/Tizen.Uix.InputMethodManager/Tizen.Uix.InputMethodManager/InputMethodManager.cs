@@ -170,8 +170,8 @@ namespace Tizen.Uix.InputMethodManager
         /// </privilege>
         /// <exception cref="InvalidOperationException">
         /// This exception can occur if:
-        /// 1) The application does not have the privilege to call this function.
-        /// 2) Operation failed.
+        /// 1. The application does not have the privilege to call this function.
+        /// 2. The operation failed.
         /// </exception>
         /// <since_tizen> 5 </since_tizen>
         public static void PrelaunchIME()
