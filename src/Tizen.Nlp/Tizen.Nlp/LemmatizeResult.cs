@@ -1,4 +1,4 @@
-/*
+﻿/*
 * Copyright (c) 2018 Samsung Electronics Co., Ltd All Rights Reserved
 *
 * Licensed under the Apache License, Version 2.0 (the License);
@@ -16,26 +16,20 @@
 
 using System;
 using System.Collections.Generic;
+using System.Text;
 
 namespace Tizen.Nlp
 {
     /// <summary>
-    /// This custom class extend from EventArgs to obtain Bundle object.
+    /// This class contains result of lemmatized.
     /// </summary>
     /// <since_tizen> 5 </since_tizen>
-    public class MessageReceivedEventArgs : EventArgs
+    public class LemmatizeResult
     {
         /// <summary>
-        /// An Bundle type to carry an array struct return from tidl service.
-        /// To check which nlp command be return by  msg.GetItem("command")
-        /// To get value by  msg.GetItem("return_tag") and cast the value to string []
-        /// To get value by  msg.GetItem("return_token") and cast the value to string []
+        /// The whole sentence.
         /// </summary>
-        public Dictionary<string, string[]> Message { get; set; }
-
-        /// <summary>
-        /// An id about nlp request
-        /// </summary>
-        public int RequestId { get; set; }
+        /// <since_tizen> 5 </since_tizen>
+        public string ActualWords { get; set; }
     }
 }

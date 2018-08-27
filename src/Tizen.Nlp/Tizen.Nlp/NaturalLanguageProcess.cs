@@ -22,7 +22,7 @@ namespace Tizen.Nlp
 {
 
     /// <summary>
-    /// This class contains the methods and inner class related to the NLP processing.
+    /// This class contains the methods in the NLP processing.
     /// </summary>
     /// <since_tizen> 5 </since_tizen>
     public class NaturalLanguageProcess
@@ -31,69 +31,28 @@ namespace Tizen.Nlp
         private readonly Message.NotifyCb _noti = new Message.NotifyCb();
         private readonly string _tag;
         private const string ServiceId = "org.tizen.nlp.service";
-        private delegate bool LangDetectAsync(MessageReceivedEventArgs e);
-        private delegate bool WordTokenizeAsync(MessageReceivedEventArgs e);
-        private delegate bool PostagAsync(MessageReceivedEventArgs e);
-        private delegate bool NamedEntityRecognitionAsync(MessageReceivedEventArgs e);
-        private delegate bool LemmatizeAsync(MessageReceivedEventArgs e);
+        private delegate bool LangDetectCallback(MessageReceivedEventArgs e);
+        private delegate bool WordTokenizeCallback(MessageReceivedEventArgs e);
+        private delegate bool PostagCallback(MessageReceivedEventArgs e);
+        private delegate bool NamedEntityRecognitionCallback(MessageReceivedEventArgs e);
+        private delegate bool LemmatizeCallback(MessageReceivedEventArgs e);
+        private int _requestIdPos = 0;
+        private int _requestIdLang = 0;
+        private int _requestIdNeChunk = 0;
+        private int _requestIdWordTokenize = 0;
+        private int _requestIdLemmatize = 0;
+        private readonly Dictionary<int, PostagCallback> _mapsPosTag = new Dictionary<int, PostagCallback>();
+        private readonly Dictionary<int, LangDetectCallback> _mapsLangDetect = new Dictionary<int, LangDetectCallback>();
+        private readonly Dictionary<int, WordTokenizeCallback> _mapsWordTokenize = new Dictionary<int, WordTokenizeCallback>();
+        private readonly Dictionary<int, NamedEntityRecognitionCallback> _mapsNamedEntity = new Dictionary<int, NamedEntityRecognitionCallback>();
+        private readonly Dictionary<int, LemmatizeCallback> _mapsLemmatize = new Dictionary<int, LemmatizeCallback>();
 
-        /// <summary>
-        /// This class contains result of language detected.
-        /// </summary>
-        /// <since_tizen> 5 </since_tizen>
-        public class LanguageDetectedResult
-        {
-            public string Language { get; set; }
-        }
-
-        /// <summary>
-        /// This class contains result of word tokenized.
-        /// </summary>
-        /// <since_tizen> 5 </since_tizen>
-        public class WordTokenizeResult
-        {
-            public IList<string> Tokens { get; set; }
-        }
-
-        /// <summary>
-        /// This class contains result of named entity recognition.
-        /// </summary>
-        /// <since_tizen> 5 </since_tizen>
-        public class NamedEntityRecognitionResult
-        {
-            public IList<string> Tokens { get; set; }
-            public IList<string> Tags { get; set; }
-        }
-
-        /// <summary>
-        /// This class contains result of lemmatized.
-        /// </summary>
-        /// <since_tizen> 5 </since_tizen>
-        public class LemmatizeResult
-        {
-            public string ActualWords { get; set; }
-        }
-
-        /// <summary>
-        /// This class contains result of position tagged .
-        /// </summary>
-        /// <since_tizen> 5 </since_tizen>
-        public class PosTagResult
-        {
-            public IList<string> Tokens { get; set; }
-            public IList<string> Tags { get; set; }
-        }
-
-        private LangDetectAsync _langdetectasync;
-        private WordTokenizeAsync _wordtokenizeasync;
-        private PostagAsync _postagasync;
-        private LemmatizeAsync _Lemmatizeasync;
-        private NamedEntityRecognitionAsync _namedentityrecognitionasyncasync;
-        private void MakeRequest(string cmd, string sentence)
+        private void MakeRequest(string cmd, string sentence, int requestid)
         {
             Bundle b = new Bundle();
             b.AddItem("command", cmd);
             b.AddItem("info", sentence);
+            b.AddItem("request_id", requestid.ToString());
             _msg.Send(b);
         }
 
@@ -101,38 +60,50 @@ namespace Tizen.Nlp
         {
             Log.Debug(_tag, "OnReceived ++");
             MessageReceivedEventArgs e = new MessageReceivedEventArgs();
+            int requestid;
             Dictionary<string, string[]> result = new Dictionary<string, string[]>();
             if (msg.GetItem("command").Equals("word_tokenize"))
             {
                 result.Add("token", (string[])msg.GetItem("return_token"));
+                e.RequestId = int.Parse((string)msg.GetItem("request_id"));
+                requestid = int.Parse((string)msg.GetItem("request_id"));
+                e.RequestId = requestid;
                 e.Message = result;
-                _wordtokenizeasync?.Invoke(e);
+                _mapsWordTokenize[requestid]?.Invoke(e);
             }
             else if (msg.GetItem("command").Equals("pos_tag"))
             {
                 result.Add("token", (string[])msg.GetItem("return_token"));
                 result.Add("tag", (string[])msg.GetItem("return_tag"));
+                requestid = int.Parse((string)msg.GetItem("request_id"));
+                e.RequestId = requestid;
                 e.Message = result;
-                _postagasync?.Invoke(e);
+                _mapsPosTag[requestid]?.Invoke(e);
             }
             else if (msg.GetItem("command").Equals("ne_chunk"))
             {
                 result.Add("token", (string[])msg.GetItem("return_token"));
                 result.Add("tag", (string[])msg.GetItem("return_tag"));
+                requestid = int.Parse((string)msg.GetItem("request_id"));
+                e.RequestId = requestid;
                 e.Message = result;
-                _namedentityrecognitionasyncasync?.Invoke(e);
+                _mapsNamedEntity[requestid]?.Invoke(e);
             }
             else if (msg.GetItem("command").Equals("lemmatize"))
             {
                 result.Add("token", (string[])msg.GetItem("return_token"));
+                requestid = int.Parse((string)msg.GetItem("request_id"));
+                e.RequestId = requestid;
                 e.Message = result;
-                _Lemmatizeasync?.Invoke(e);
+                _mapsLemmatize[requestid]?.Invoke(e);
             }
             else if (msg.GetItem("command").Equals("langdetect"))
             {
                 result.Add("token", (string[])msg.GetItem("return_token"));
+                requestid = int.Parse((string)msg.GetItem("request_id"));
+                e.RequestId = requestid;
                 e.Message = result;
-                _langdetectasync.Invoke(e);
+                _mapsLangDetect[requestid]?.Invoke(e);
             }
             else
             {
@@ -191,20 +162,22 @@ namespace Tizen.Nlp
         /// <param name="sentence">A sentence need to be processed.</param>
         /// <returns>PosTagResult</returns>
         /// <since_tizen> 5 </since_tizen>
-        public Task<PosTagResult> PosTagAsyncTask(string sentence)
+        public Task<PosTagResult> PosTagAsync(string sentence)
         {
-            MakeRequest("pos_tag", sentence);
+            int id = _requestIdPos++;
+            MakeRequest("pos_tag", sentence, id);
             var task = new TaskCompletionSource<PosTagResult>();
-            _postagasync = (e) =>
-            {
-                PosTagResult pr = new PosTagResult();
-                e.Message.TryGetValue("token", out string[] tokens);
-                e.Message.TryGetValue("tag", out string[] tags);
-                pr.Tokens = tokens;
-                pr.Tags = tags;
-                task.SetResult(pr);
-                return true;
-            };
+            _mapsPosTag[id] = (e) =>
+                {
+                    PosTagResult pr = new PosTagResult();
+                    e.Message.TryGetValue("token", out string[] tokens);
+                    e.Message.TryGetValue("tag", out string[] tags);
+                    pr.Tokens = tokens;
+                    pr.Tags = tags;
+                    task.SetResult(pr);
+                    _mapsPosTag.Remove(e.RequestId);
+                    return true;
+                };
             return task.Task;
         }
 
@@ -214,11 +187,12 @@ namespace Tizen.Nlp
         /// <param name="sentence">A sentence need to be processed.</param>
         /// <returns>NamedEntityRecognitionResult</returns>
         /// <since_tizen> 5 </since_tizen>
-        public Task<NamedEntityRecognitionResult> NamedEntityRecognitionAsyncTask(string sentence)
+        public Task<NamedEntityRecognitionResult> NamedEntityRecognitionAsync(string sentence)
         {
-            MakeRequest("ne_chunk", sentence);
+            int id = _requestIdNeChunk++;
+            MakeRequest("ne_chunk", sentence, id);
             var task = new TaskCompletionSource<NamedEntityRecognitionResult>();
-            _namedentityrecognitionasyncasync = (e) =>
+            _mapsNamedEntity[id] = (e) =>
             {
                 NamedEntityRecognitionResult nr = new NamedEntityRecognitionResult();
                 e.Message.TryGetValue("token", out string[] tokens);
@@ -226,6 +200,7 @@ namespace Tizen.Nlp
                 nr.Tokens = tokens;
                 nr.Tags = tags;
                 task.SetResult(nr);
+                _mapsPosTag.Remove(e.RequestId);
                 return true;
             };
             return task.Task;
@@ -237,16 +212,18 @@ namespace Tizen.Nlp
         /// <param name="sentence">A sentence need to be processed.</param>
         /// <returns>LanguageDetectedResult</returns>
         /// <since_tizen> 5 </since_tizen>
-        public Task<LanguageDetectedResult> LanguageDetectAsyncTask(string sentence)
+        public Task<LanguageDetectedResult> LanguageDetectAsync(string sentence)
         {
-            MakeRequest("langdetect", sentence);
+            int id = _requestIdLang++;
+            MakeRequest("langdetect", sentence, id);
             var task = new TaskCompletionSource<LanguageDetectedResult>();
-            _langdetectasync = (e) =>
+            _mapsLangDetect[id] = (e) =>
             {
                 LanguageDetectedResult lr = new LanguageDetectedResult();
                 e.Message.TryGetValue("token", out string[] lang);
                 if (lang != null) lr.Language = lang[0];
                 task.SetResult(lr);
+                _mapsPosTag.Remove(e.RequestId);
                 return true;
             };
             return task.Task;
@@ -258,16 +235,18 @@ namespace Tizen.Nlp
         /// <param name="sentence">A sentence need to be processed.</param>
         /// <returns>ProcessResult</returns>
         /// <since_tizen> 5 </since_tizen>
-        public Task<LemmatizeResult> LemmatizeaAsyncTask(string sentence)
+        public Task<LemmatizeResult> LemmatizeaAsync(string sentence)
         {
-            MakeRequest("lemmatize", sentence);
+            int id = _requestIdLemmatize++;
+            MakeRequest("lemmatize", sentence, id);
             var task = new TaskCompletionSource<LemmatizeResult>();
-            _Lemmatizeasync = (e) =>
+            _mapsLemmatize[id] = (e) =>
             {
                 LemmatizeResult mr = new LemmatizeResult();
                 e.Message.TryGetValue("token", out string[] tokens);
                 if (tokens != null) mr.ActualWords = tokens[0];
                 task.SetResult(mr);
+                _mapsPosTag.Remove(e.RequestId);
                 return true;
             };
             return task.Task;
@@ -279,16 +258,18 @@ namespace Tizen.Nlp
         /// <param name="sentence">A sentence need to be processed.</param>
         /// <returns>ProcessResult</returns>
         /// <since_tizen> 5 </since_tizen>
-        public Task<WordTokenizeResult> WordTokenizeAsyncTask(string sentence)
+        public Task<WordTokenizeResult> WordTokenizeAsync(string sentence)
         {
-            MakeRequest("word_tokenize", sentence);
+            int id = _requestIdWordTokenize++;
+            MakeRequest("word_tokenize", sentence, id);
             var task = new TaskCompletionSource<WordTokenizeResult>();
-            _wordtokenizeasync = (e) =>
+            _mapsWordTokenize[id] = (e) =>
             {
                 WordTokenizeResult wr = new WordTokenizeResult();
                 e.Message.TryGetValue("token", out string[] tokens);
                 wr.Tokens = tokens;
                 task.SetResult(wr);
+                _mapsPosTag.Remove(e.RequestId);
                 return true;
             };
             return task.Task;
