@@ -93,8 +93,7 @@ namespace Tizen.Nlp
             }
             else
             {
-                Log.Debug(_tag, "disconnected from service");
-                throw new NotConnectedSocketException();
+                throw new NotConnectedSocketException("disconnected from service");
             }
         }
 
@@ -175,8 +174,7 @@ namespace Tizen.Nlp
         {
             if (_isConnected)
             {
-                Log.Debug(_tag, "message already connected");
-                throw new Exception();
+                throw new NotConnectedSocketException("message already connected");
             }
             TaskCompletionSource<bool> tcs = new TaskCompletionSource<bool>();
             _msg = new Message(ServiceId);
@@ -196,8 +194,7 @@ namespace Tizen.Nlp
             };
             _msg.Rejected += (sender, e) =>
             {
-                Log.Debug(_tag, "invalid id cause exception");
-                tcs.SetException(new InvalidIDException());
+                tcs.SetException(new InvalidIDException("invalid id cause exception"));
             };
             _msg.Connect();
             return tcs.Task;
@@ -209,6 +206,7 @@ namespace Tizen.Nlp
         /// <since_tizen> 5 </since_tizen>
         public void Close()
         {
+            if (isConnected) return;
             _noti.Received -= ResultReceived;
             _msg.UnRegister();
             _msg.Dispose();
