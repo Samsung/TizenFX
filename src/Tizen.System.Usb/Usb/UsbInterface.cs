@@ -100,7 +100,7 @@ namespace Tizen.System.Usb
         /// <feature>http://tizen.org/feature/usb.host</feature>
         /// <exception cref="NotSupportedException">The required feature is not supported.</exception>
         /// <exception cref="InvalidOperationException">
-        /// Throws exception if device is disconnected or not opened for operation.
+        /// Throws exception if the device is disconnected or not opened for operation.
         /// </exception>
         /// <since_tizen> 5 </since_tizen>
         public string InterfaceString
@@ -116,7 +116,7 @@ namespace Tizen.System.Usb
         /// <summary>
         /// Claims the interface on a device. The interface must be claimed first to perform I/O operations.
         /// </summary>
-        /// <param name="force">Set to true to auto detach the kernel driver, false otherwise.</param>
+        /// <param name="force">Set to <c> true </c> to auto detach the kernel driver, otherwise <c> false </c>.</param>
         /// <feature>http://tizen.org/feature/usb.host</feature>
         /// <exception cref="NotSupportedException">The required feature is not supported.</exception>
         /// <exception cref="InvalidOperationException">
@@ -143,8 +143,8 @@ namespace Tizen.System.Usb
         /// </summary>
         /// <feature>http://tizen.org/feature/usb.host</feature>
         /// <exception cref="NotSupportedException">The required feature is not supported.</exception>
-        /// <exception cref="InvalidOperationException">Throws exception if device is disconnected or not opened for operation.</exception>
-        /// <exception cref="UnauthorizedAccessException">Throws exception if user has insufficient permission on device.</exception>
+        /// <exception cref="InvalidOperationException">Throws exception if the device is disconnected or not opened for operation.</exception>
+        /// <exception cref="UnauthorizedAccessException">Throws exception if user has insufficient permission on the device.</exception>
         /// <since_tizen> 4 </since_tizen>
         public void Release()
         {
