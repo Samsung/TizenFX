@@ -59,18 +59,13 @@ namespace Tizen.NUI
         /// <since_tizen> 4 </since_tizen>
         public override void Add(View child)
         {
-            Container oldParent = child.GetParent();
+            Container oldParent = child.Parent;
             if (oldParent != this)
             {
                 if (oldParent != null)
                 {
                     oldParent.Remove(child);
                 }
-                else
-                {
-                    child.InternalParent = this;
-                }
-
                 NDalicPINVOKE.Actor_Add( rootLayoutCPtr , View.getCPtr(child));
                 if (NDalicPINVOKE.SWIGPendingException.Pending)
                     throw NDalicPINVOKE.SWIGPendingException.Retrieve();
@@ -91,7 +86,6 @@ namespace Tizen.NUI
                 throw NDalicPINVOKE.SWIGPendingException.Retrieve();
 
             Children.Remove(child);
-            child.InternalParent = null;
         }
 
         /// <summary>
@@ -278,8 +272,14 @@ namespace Tizen.NUI
 
                 if (currentIdx >= 0 && currentIdx < parentChildren.Count - 1)
                 {
-                    var upper = parentChildren[currentIdx + 1];
-                    RaiseAbove(upper);
+                    RaiseAbove(parentChildren[currentIdx + 1]);
+
+                    Layer temp = parentChildren[currentIdx + 1];
+                    parentChildren[currentIdx + 1] = this;
+                    parentChildren[currentIdx] = temp;
+
+                    NDalicPINVOKE.Layer_Raise(swigCPtr);
+                    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
                 }
             }
         }
@@ -297,8 +297,14 @@ namespace Tizen.NUI
 
                 if (currentIdx > 0 && currentIdx < parentChildren.Count)
                 {
-                    var low = parentChildren[currentIdx - 1];
-                    LowerBelow(low);
+                    LowerBelow(parentChildren[currentIdx - 1]);
+
+                    Layer temp = parentChildren[currentIdx - 1];
+                    parentChildren[currentIdx - 1] = this;
+                    parentChildren[currentIdx] = temp;
+
+                    NDalicPINVOKE.Layer_Lower(swigCPtr);
+                    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
                 }
             }
         }
@@ -324,7 +330,7 @@ namespace Tizen.NUI
                     parentChildren.Remove(this);
                     parentChildren.Insert(targetIndex, this);
 
-                    NDalicPINVOKE.Layer_MoveAbove(swigCPtr, Layer.getCPtr(target));
+                    NDalicPINVOKE.Layer_RaiseAbove(swigCPtr, Layer.getCPtr(target));
                     if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
                 }
             }
@@ -353,7 +359,7 @@ namespace Tizen.NUI
                     parentChildren.Remove(this);
                     parentChildren.Insert(targetIndex, this);
 
-                    NDalicPINVOKE.Layer_MoveBelow(swigCPtr, Layer.getCPtr(target));
+                    NDalicPINVOKE.Layer_LowerBelow(swigCPtr, Layer.getCPtr(target));
                     if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
                 }
             }
