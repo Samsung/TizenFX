@@ -23,7 +23,7 @@ namespace Tizen.Nlp
     /// This custom class extend from EventArgs to obtain Bundle object.
     /// </summary>
     /// <since_tizen> 5 </since_tizen>
-    public class MessageReceivedEventArgs : EventArgs
+    internal class MessageReceivedEventArgs : EventArgs
     {
         /// <summary>
         /// An Bundle type to carry an array struct return from tidl service.

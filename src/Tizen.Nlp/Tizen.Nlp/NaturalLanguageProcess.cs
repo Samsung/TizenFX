@@ -14,9 +14,15 @@
 * limitations under the License.
 */
 
+using System;
 using System.Collections.Generic;
+using System.Dynamic;
+using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
 using Tizen.Applications;
+using Tizen.Applications.RPCPort;
+
 
 namespace Tizen.Nlp
 {
@@ -31,29 +37,63 @@ namespace Tizen.Nlp
         private readonly Message.NotifyCb _noti = new Message.NotifyCb();
         private readonly string _tag;
         private const string ServiceId = "org.tizen.nlp.service";
+
         private delegate bool LangDetectCallback(MessageReceivedEventArgs e);
+
+        private bool _isConnected = false;
+
         private delegate bool WordTokenizeCallback(MessageReceivedEventArgs e);
+
         private delegate bool PostagCallback(MessageReceivedEventArgs e);
+
         private delegate bool NamedEntityRecognitionCallback(MessageReceivedEventArgs e);
+
         private delegate bool LemmatizeCallback(MessageReceivedEventArgs e);
+
         private int _requestIdPos = 0;
         private int _requestIdLang = 0;
         private int _requestIdNeChunk = 0;
         private int _requestIdWordTokenize = 0;
         private int _requestIdLemmatize = 0;
         private readonly Dictionary<int, PostagCallback> _mapsPosTag = new Dictionary<int, PostagCallback>();
-        private readonly Dictionary<int, LangDetectCallback> _mapsLangDetect = new Dictionary<int, LangDetectCallback>();
-        private readonly Dictionary<int, WordTokenizeCallback> _mapsWordTokenize = new Dictionary<int, WordTokenizeCallback>();
-        private readonly Dictionary<int, NamedEntityRecognitionCallback> _mapsNamedEntity = new Dictionary<int, NamedEntityRecognitionCallback>();
+
+        /// <summary>
+        /// An delegate method about service disconnected .
+        /// </summary>
+        /// <since_tizen> 5 </since_tizen>
+        public delegate bool DisconnectedCallback(EventArgs e);
+
+        /// <summary>
+        /// An delegate handle to expose to user
+        /// </summary>
+        /// <since_tizen> 5 </since_tizen>
+        public DisconnectedCallback DisconnectEvent { get; set; }
+
+        private readonly Dictionary<int, LangDetectCallback>
+            _mapsLangDetect = new Dictionary<int, LangDetectCallback>();
+
+        private readonly Dictionary<int, WordTokenizeCallback> _mapsWordTokenize =
+            new Dictionary<int, WordTokenizeCallback>();
+
+        private readonly Dictionary<int, NamedEntityRecognitionCallback> _mapsNamedEntity =
+            new Dictionary<int, NamedEntityRecognitionCallback>();
+
         private readonly Dictionary<int, LemmatizeCallback> _mapsLemmatize = new Dictionary<int, LemmatizeCallback>();
 
         private void MakeRequest(string cmd, string sentence, int requestid)
         {
-            Bundle b = new Bundle();
-            b.AddItem("command", cmd);
-            b.AddItem("info", sentence);
-            b.AddItem("request_id", requestid.ToString());
-            _msg.Send(b);
+            if (_isConnected)
+            {
+                Bundle b = new Bundle();
+                b.AddItem("command", cmd);
+                b.AddItem("info", sentence);
+                b.AddItem("request_id", requestid.ToString());
+                _msg.Send(b);
+            }
+            else
+            {
+                throw new NotConnectedSocketException();
+            }
         }
 
         private void ResultReceived(string sender, Bundle msg)
@@ -69,7 +109,11 @@ namespace Tizen.Nlp
                 requestid = int.Parse((string)msg.GetItem("request_id"));
                 e.RequestId = requestid;
                 e.Message = result;
-                _mapsWordTokenize[requestid]?.Invoke(e);
+                if (_mapsWordTokenize.ContainsKey(requestid))
+                {
+                    _mapsWordTokenize[requestid]?.Invoke(e);
+                    _mapsWordTokenize.Remove(requestid);
+                }
             }
             else if (msg.GetItem("command").Equals("pos_tag"))
             {
@@ -78,7 +122,11 @@ namespace Tizen.Nlp
                 requestid = int.Parse((string)msg.GetItem("request_id"));
                 e.RequestId = requestid;
                 e.Message = result;
-                _mapsPosTag[requestid]?.Invoke(e);
+                if (_mapsPosTag.ContainsKey(requestid))
+                {
+                    _mapsPosTag[requestid]?.Invoke(e);
+                    _mapsPosTag.Remove(requestid);
+                }
             }
             else if (msg.GetItem("command").Equals("ne_chunk"))
             {
@@ -87,7 +135,11 @@ namespace Tizen.Nlp
                 requestid = int.Parse((string)msg.GetItem("request_id"));
                 e.RequestId = requestid;
                 e.Message = result;
-                _mapsNamedEntity[requestid]?.Invoke(e);
+                if (_mapsNamedEntity.ContainsKey(requestid))
+                {
+                    _mapsNamedEntity[requestid]?.Invoke(e);
+                    _mapsNamedEntity.Remove(requestid);
+                }
             }
             else if (msg.GetItem("command").Equals("lemmatize"))
             {
@@ -95,7 +147,11 @@ namespace Tizen.Nlp
                 requestid = int.Parse((string)msg.GetItem("request_id"));
                 e.RequestId = requestid;
                 e.Message = result;
-                _mapsLemmatize[requestid]?.Invoke(e);
+                if (_mapsLemmatize.ContainsKey(requestid))
+                {
+                    _mapsLemmatize[requestid]?.Invoke(e);
+                    _mapsLemmatize.Remove(requestid);
+                }
             }
             else if (msg.GetItem("command").Equals("langdetect"))
             {
@@ -103,17 +159,22 @@ namespace Tizen.Nlp
                 requestid = int.Parse((string)msg.GetItem("request_id"));
                 e.RequestId = requestid;
                 e.Message = result;
-                _mapsLangDetect[requestid]?.Invoke(e);
+                if (_mapsLangDetect.ContainsKey(requestid))
+                {
+                    _mapsLangDetect[requestid]?.Invoke(e);
+                    _mapsLangDetect.Remove(requestid);
+                }
             }
             else
             {
                 return;
             }
+
             Log.Debug(_tag, "done");
         }
 
         /// <summary>
-        /// An construct method  to connect remote tidl service.
+        /// An construct method  to init local env of NLP .
         /// </summary>
         /// <since_tizen> 5 </since_tizen>
         public NaturalLanguageProcess()
@@ -121,39 +182,86 @@ namespace Tizen.Nlp
             _tag = Application.Current.ApplicationInfo.ApplicationId;
             Log.Debug(_tag, "msg construct started");
             _msg = new Message(ServiceId);
+            _msg.Disconnected += (s, e) =>
+            {
+                _isConnected = false;
+                DisconnectEvent?.Invoke(e);
+            };
             Log.Debug(_tag, "msg construct success");
             _noti.Received += ResultReceived;
             Log.Debug(_tag, "notify callback be assigned");
+            Log.Debug(_tag, "start to connect");
+            Log.Debug(_tag, "wait to callback of onConnected");
+        }
+
+
+        /// <summary>
+        /// An async method  to connect remote service.
+        /// </summary>
+        /// <since_tizen> 5 </since_tizen>
+        /// <exception cref="InvalidIDException">Thrown when the connect is rejected.</exception>
+        public Task Connect()
+        {
+            TaskCompletionSource<bool> tcs = new TaskCompletionSource<bool>();
             _msg.Connected += (sender, e) =>
             {
                 Log.Debug(_tag, "start to register");
                 _msg.CoRegister(Application.Current.ApplicationInfo.ApplicationId, _noti);
                 Log.Debug(_tag, "connected callback be called");
+                tcs.SetResult(true);
+                _isConnected = true;
             };
-            _msg.Rejected += (sender, e) =>
-            {
-                Log.Debug(_tag, "rejected callback be called");
-            };
-            _msg.Disconnected += (sender, e) =>
-            {
-                Log.Debug(_tag, "disconnected callback be called");
-            };
-            Log.Debug(_tag, "start to connect");
+            _msg.Rejected += (sender, e) => { tcs.SetException(new InvalidIDException()); };
             _msg.Connect();
-            Log.Debug(_tag, "wait to callback of onConnected");
+            return tcs.Task;
         }
 
-        /// <summary>
-        /// An release session to disconnect remote tidl service.
-        /// </summary>
-        /// <since_tizen> 5 </since_tizen>
-        public void Release()
+        private void Close()
         {
             _noti.Received -= ResultReceived;
             _msg.UnRegister();
             _msg.Dispose();
+            _isConnected = false;
             _msg = null;
+        }
 
+
+        private void MapClear()
+        {
+            foreach (var key in _mapsWordTokenize.Keys.ToList())
+            {
+                _mapsWordTokenize[key] = null;
+            }
+
+            foreach (var key in _mapsPosTag.Keys.ToList())
+            {
+                _mapsPosTag[key] = null;
+            }
+
+            foreach (var key in _mapsNamedEntity.Keys.ToList())
+            {
+                _mapsNamedEntity[key] = null;
+            }
+
+            foreach (var key in _mapsLemmatize.Keys.ToList())
+            {
+                _mapsLemmatize[key] = null;
+            }
+
+            foreach (var key in _mapsLangDetect.Keys.ToList())
+            {
+                _mapsLangDetect[key] = null;
+            }
+        }
+
+        /// <summary>
+        /// A method to release resource of library
+        /// </summary>
+        /// <since_tizen> 5 </since_tizen>
+        public void Dispose()
+        {
+            Close();
+            MapClear();
         }
 
         /// <summary>
@@ -168,16 +276,15 @@ namespace Tizen.Nlp
             MakeRequest("pos_tag", sentence, id);
             var task = new TaskCompletionSource<PosTagResult>();
             _mapsPosTag[id] = (e) =>
-                {
-                    PosTagResult pr = new PosTagResult();
-                    e.Message.TryGetValue("token", out string[] tokens);
-                    e.Message.TryGetValue("tag", out string[] tags);
-                    pr.Tokens = tokens;
-                    pr.Tags = tags;
-                    task.SetResult(pr);
-                    _mapsPosTag.Remove(e.RequestId);
-                    return true;
-                };
+            {
+                PosTagResult pr = new PosTagResult();
+                e.Message.TryGetValue("token", out string[] tokens);
+                e.Message.TryGetValue("tag", out string[] tags);
+                pr.Tokens = tokens;
+                pr.Tags = tags;
+                task.SetResult(pr);
+                return true;
+            };
             return task.Task;
         }
 
@@ -200,7 +307,6 @@ namespace Tizen.Nlp
                 nr.Tokens = tokens;
                 nr.Tags = tags;
                 task.SetResult(nr);
-                _mapsPosTag.Remove(e.RequestId);
                 return true;
             };
             return task.Task;
@@ -223,7 +329,6 @@ namespace Tizen.Nlp
                 e.Message.TryGetValue("token", out string[] lang);
                 if (lang != null) lr.Language = lang[0];
                 task.SetResult(lr);
-                _mapsPosTag.Remove(e.RequestId);
                 return true;
             };
             return task.Task;
@@ -246,7 +351,6 @@ namespace Tizen.Nlp
                 e.Message.TryGetValue("token", out string[] tokens);
                 if (tokens != null) mr.ActualWords = tokens[0];
                 task.SetResult(mr);
-                _mapsPosTag.Remove(e.RequestId);
                 return true;
             };
             return task.Task;
@@ -269,11 +373,9 @@ namespace Tizen.Nlp
                 e.Message.TryGetValue("token", out string[] tokens);
                 wr.Tokens = tokens;
                 task.SetResult(wr);
-                _mapsPosTag.Remove(e.RequestId);
                 return true;
             };
             return task.Task;
         }
-
     }
 }
