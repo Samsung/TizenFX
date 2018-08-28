@@ -45,18 +45,18 @@
         <OpenTKOutputFiles Include="$(OpenTKOutputDirectory)OpenTK.xml" />
         <OpenTKOutputFiles Include="$(OpenTKOutputDirectory)OpenTK.pdb" />
     </ItemGroup>
-    <Copy SourceFiles="@(OpenTKOutputFiles)" DestinationFolder="$(OutputExternalDir)" />    
+    <Copy SourceFiles="@(OpenTKOutputFiles)" DestinationFolder="$(OutputExternalDir)" />
 </Target>
 
 <Target Name="PackOpenTK">
     <MSBuild Projects="$(OpenTKProject)" Targets="Pack" Properties="Configuration=$(Configuration);NoBuild=True" />
     <ItemGroup>
-        <OpenTKOutputFiles Include="$(OpenTKProjectDirectory)bin\$(Configuration)\OpenTK.Tizen.*.nupkg" />
+        <OpenTKOutputPackFiles Include="$(OpenTKProjectDirectory)bin\$(Configuration)\OpenTK.Tizen.*.nupkg" />
     </ItemGroup>
-    <Copy SourceFiles="@(OpenTKOutputFiles)" DestinationFolder="$(OutputBaseDir)" />
+    <Copy SourceFiles="@(OpenTKOutputPackFiles)" DestinationFolder="$(OutputBaseDir)" />
 </Target>
 
-<Target Name="Build" 
+<Target Name="Build"
         DependsOnTargets="BuildTools;BuildOpenTK;PackOpenTK"
         Condition="Exists('$(OpenTKProjectDirectory)')">
 </Target>
