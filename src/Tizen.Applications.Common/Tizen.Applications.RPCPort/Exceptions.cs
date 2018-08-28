@@ -19,37 +19,37 @@ using System;
 namespace Tizen.Applications.RPCPort
 {
     /// <summary>
-    /// Exception class for invalid IO
+    /// Exception class for invalid IO.
     /// </summary>
     /// <since_tizen> 5 </since_tizen>
     public class InvalidIOException : InvalidOperationException { }
 
     /// <summary>
-    /// Exception class for invalid ID
+    /// Exception class for invalid ID.
     /// </summary>
     /// <since_tizen> 5 </since_tizen>
     public class InvalidIDException : InvalidOperationException { }
 
     /// <summary>
-    /// Exception class for permission denied
+    /// Exception class for permission denied.
     /// </summary>
     /// <since_tizen> 5 </since_tizen>
     public class PermissionDeniedException : InvalidOperationException { }
 
     /// <summary>
-    /// Exception class for invalid protocol
+    /// Exception class for invalid protocol.
     /// </summary>
     /// <since_tizen> 5 </since_tizen>
     public class InvalidProtocolException : InvalidOperationException { }
 
     /// <summary>
-    /// Exception class which will be thrown when not connected socket is used
+    /// Exception class which will be thrown when not connected socket is used.
     /// </summary>
     /// <since_tizen> 5 </since_tizen>
     public class NotConnectedSocketException : InvalidOperationException { }
 
     /// <summary>
-    /// Exception class which will be thrown when invalid callback object is used
+    /// Exception class, which is thrown when an invalid callback object is used.
     /// </summary>
     /// <since_tizen> 5 </since_tizen>
     public class InvalidCallbackException : InvalidOperationException { }

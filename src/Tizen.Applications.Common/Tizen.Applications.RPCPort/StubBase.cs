@@ -19,7 +19,7 @@ using System;
 namespace Tizen.Applications.RPCPort
 {
     /// <summary>
-    /// Abstract class for making a stub class for RPC
+    /// Abstract class for creating a stub class for RPC.
     /// </summary>
     /// <since_tizen> 5 </since_tizen>
     public abstract class StubBase : IDisposable
@@ -30,16 +30,16 @@ namespace Tizen.Applications.RPCPort
         private IntPtr _stub;
 
         /// <summary>
-        /// Gets port name
+        /// Gets port name.
         /// </summary>
         /// <since_tizen> 5 </since_tizen>
         public string PortName { get; }
 
         /// <summary>
-        /// Constructor for this class
+        /// Constructor for this class.
         /// </summary>
-        /// <param name="portName">The name of the port which want to listen</param>
-        /// <exception cref="InvalidIOException">Thrown when internal IO error happens</exception>
+        /// <param name="portName">The name of the port that wants to listen.</param>
+        /// <exception cref="InvalidIOException">Thrown when an internal IO error occurs.</exception>
         /// <since_tizen> 5 </since_tizen>
         public StubBase(string portName)
         {
@@ -55,9 +55,9 @@ namespace Tizen.Applications.RPCPort
         }
 
         /// <summary>
-        /// Listens to the requests for connections
+        /// Listens to the requests for connections.
         /// </summary>
-        /// <exception cref="InvalidIOException">Thrown when internal IO error happens</exception>
+        /// <exception cref="InvalidIOException">Thrown when an internal IO error occurs.</exception>
         /// <since_tizen> 5 </since_tizen>
         protected void Listen()
         {
@@ -71,10 +71,10 @@ namespace Tizen.Applications.RPCPort
         }
 
         /// <summary>
-        /// Adds a privilege to the stub
+        /// Adds a privilege to the stub.
         /// </summary>
-        /// <param name="privilege">The privilege to access this stub</param>
-        /// <exception cref="ArgumentNullException">Thrown when the privilege is null</exception>
+        /// <param name="privilege">The privilege to access this stub.</param>
+        /// <exception cref="ArgumentNullException">Thrown when the privilege is null.</exception>
         /// <since_tizen> 5 </since_tizen>
         protected void AddPrivilege(string privilege)
         {
@@ -84,9 +84,9 @@ namespace Tizen.Applications.RPCPort
         }
 
         /// <summary>
-        /// Sets trusted to the stub
+        /// Sets a trusted proxy to the stub.
         /// </summary>
-        /// <param name="trusted">Whether stub allows only trusted proxy or not</param>
+        /// <param name="trusted">Whether stub allows only trusted proxy or not.</param>
         /// <since_tizen> 5 </since_tizen>
         protected void SetTrusted(bool trusted)
         {
@@ -94,13 +94,13 @@ namespace Tizen.Applications.RPCPort
         }
 
         /// <summary>
-        /// Gets s port
+        /// Gets s port.
         /// </summary>
-        /// <param name="t">The type of port</param>
-        /// <param name="instance">The ID of the instance which is connected</param>
-        /// <returns>Port object</returns>
-        /// <exception cref="InvalidIDException">Thrown when invalid instance was used</exception>
-        /// <exception cref="InvalidIOException">Thrown when internal IO error happens</exception>
+        /// <param name="t">The type of port.</param>
+        /// <param name="instance">The ID of the instance, which is connected.</param>
+        /// <returns>Port object.</returns>
+        /// <exception cref="InvalidIDException">Thrown when invalid instance is used.</exception>
+        /// <exception cref="InvalidIOException">Thrown when an internal IO error occurs.</exception>
         /// <since_tizen> 5 </since_tizen>
         protected Port GetPort(Port.Type t, string instance)
         {
@@ -118,33 +118,33 @@ namespace Tizen.Applications.RPCPort
         }
 
         /// <summary>
-        /// Abstract method for receiving connected event
+        /// Abstract method for receiving connected event.
         /// </summary>
-        /// <param name="sender">The target proxy app ID</param>
-        /// <param name="instance">The information of the request</param>
+        /// <param name="sender">The target proxy app ID.</param>
+        /// <param name="instance">The information about the request.</param>
         /// <since_tizen> 5 </since_tizen>
         protected abstract void OnConnectedEvent(string sender, string instance);
 
         /// <summary>
-        /// Abstract method for receiving disconnected event
+        /// Abstract method for receiving disconnected event.
         /// </summary>
-        /// <param name="sender">The target proxy app ID</param>
-        /// <param name="instance">The information of the request</param>
+        /// <param name="sender">The target proxy app ID.</param>
+        /// <param name="instance">The information about the request.</param>
         /// <since_tizen> 5 </since_tizen>
         protected abstract void OnDisconnectedEvent(string sender, string instance);
 
         /// <summary>
-        /// Abstract method called when the stub received data from proxy
+        /// Abstract method called when the stub receives data from proxy.
         /// </summary>
-        /// <param name="sender">The target proxy app ID</param>
-        /// <param name="instance">The information of the request</param>
-        /// <param name="port">Port object for reading and writing</param>
-        /// <returns>'true' to continue receiving data, otherwise 'false' to disconnect from the port</returns>
+        /// <param name="sender">The target proxy app ID.</param>
+        /// <param name="instance">The information about the request.</param>
+        /// <param name="port">Port object for reading and writing.</param>
+        /// <returns><c>true</c> to continue receiving data, otherwise <c>false</c> to disconnect from the port.</returns>
         /// <since_tizen> 5 </since_tizen>
         protected abstract bool OnReceivedEvent(string sender, string instance, Port port);
 
         /// <summary>
-        /// Abstract method called right before disposing object
+        /// Abstract method called immediately before disposing an object.
         /// </summary>
         /// <since_tizen> 5 </since_tizen>
         protected abstract void OnTerminatedEvent();
@@ -189,7 +189,7 @@ namespace Tizen.Applications.RPCPort
         }
 
         /// <summary>
-        /// Finalizer of the class StubBase
+        /// Finalizer of the class StubBase.
         /// </summary>
         ~StubBase()
         {
@@ -197,7 +197,7 @@ namespace Tizen.Applications.RPCPort
         }
 
         /// <summary>
-        /// Release all resources used by the class StubBase
+        /// Release all the resources used by the class StubBase.
         /// </summary>
         public void Dispose()
         {
