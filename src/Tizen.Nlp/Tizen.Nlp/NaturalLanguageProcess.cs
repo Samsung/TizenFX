@@ -93,7 +93,7 @@ namespace Tizen.Nlp
             }
             else
             {
-                throw new NotConnectedSocketException("disconnected from service");
+                throw new InvalidOperationException("disconnected from service");
             }
         }
 
@@ -169,12 +169,12 @@ namespace Tizen.Nlp
         /// An async method  to connect remote service.
         /// </summary>
         /// <since_tizen> 5 </since_tizen>
-        /// <exception cref="InvalidIDException">Thrown when the connect is rejected.</exception>
+        /// <exception cref="InvalidOperationException">Thrown when the connect is rejected.</exception>
         public Task Connect()
         {
             if (_isConnected)
             {
-                throw new NotConnectedSocketException("message already connected");
+                throw new InvalidOperationException("message already connected");
             }
             TaskCompletionSource<bool> tcs = new TaskCompletionSource<bool>();
             _msg = new Message(ServiceId);
@@ -194,7 +194,7 @@ namespace Tizen.Nlp
             };
             _msg.Rejected += (sender, e) =>
             {
-                tcs.SetException(new InvalidIDException("invalid id cause exception"));
+                tcs.SetException(new InvalidOperationException("invalid id cause exception"));
             };
             _msg.Connect();
             return tcs.Task;
@@ -206,7 +206,7 @@ namespace Tizen.Nlp
         /// <since_tizen> 5 </since_tizen>
         public void Close()
         {
-            if (_isConnected) return;
+            if (!_isConnected) return;
             _noti.Received -= ResultReceived;
             _msg.UnRegister();
             _msg.Dispose();
