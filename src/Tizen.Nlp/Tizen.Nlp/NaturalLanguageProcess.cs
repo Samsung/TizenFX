@@ -206,7 +206,7 @@ namespace Tizen.Nlp
         /// <since_tizen> 5 </since_tizen>
         public void Close()
         {
-            if (isConnected) return;
+            if (_isConnected) return;
             _noti.Received -= ResultReceived;
             _msg.UnRegister();
             _msg.Dispose();
