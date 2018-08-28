@@ -1275,16 +1275,12 @@ namespace Tizen.NUI.BaseComponents
                 return;
             }
 
-            Container oldParent = child.GetParent();
+            Container oldParent = child.Parent;
             if (oldParent != this)
             {
                 if (oldParent != null)
                 {
                     oldParent.Remove(child);
-                }
-                else
-                {
-                    child.InternalParent = this;
                 }
 
                 if (layoutSet == true && child.Layout == null) // Only give children a layout if parent an explicit container
@@ -1350,8 +1346,6 @@ namespace Tizen.NUI.BaseComponents
                 throw NDalicPINVOKE.SWIGPendingException.Retrieve();
 
             Children.Remove(child);
-            child.InternalParent = null;
-
             if (Layout)
             {
                 if(child.Layout)
@@ -1404,7 +1398,17 @@ namespace Tizen.NUI.BaseComponents
         /// <since_tizen> 4 </since_tizen>
         public override Container GetParent()
         {
-            return this.InternalParent as Container;
+            //to fix memory leak issue, match the handle count with native side.
+            IntPtr cPtr = NDalicPINVOKE.Actor_GetParent(swigCPtr);
+            HandleRef CPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
+            BaseHandle basehandle = Registry.GetManagedBaseHandleFromNativePtr(CPtr.Handle);
+            NDalicPINVOKE.delete_BaseHandle(CPtr);
+            CPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
+
+            if (NDalicPINVOKE.SWIGPendingException.Pending)
+                throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+
+            return basehandle as Container;
         }
 
         internal bool IsTopLevelView()
