@@ -37,6 +37,7 @@ namespace Tizen.Nlp
         private readonly Message.NotifyCb _noti = new Message.NotifyCb();
         private readonly string _tag;
         private const string ServiceId = "org.tizen.nlp.service";
+        private bool disposed = false;
 
         private delegate bool LangDetectCallback(MessageReceivedEventArgs e);
 
@@ -61,13 +62,13 @@ namespace Tizen.Nlp
         /// An delegate method about service disconnected .
         /// </summary>
         /// <since_tizen> 5 </since_tizen>
-        public delegate bool DisconnectedCallback(EventArgs e);
+        public delegate bool DisconnectedHandler(EventArgs e);
 
         /// <summary>
         /// An delegate handle to expose to user
         /// </summary>
         /// <since_tizen> 5 </since_tizen>
-        public DisconnectedCallback DisconnectEvent { get; set; }
+        public DisconnectedHandler Disconnected { get; set; }
 
         private readonly Dictionary<int, LangDetectCallback>
             _mapsLangDetect = new Dictionary<int, LangDetectCallback>();
@@ -92,6 +93,7 @@ namespace Tizen.Nlp
             }
             else
             {
+                Log.Debug(_tag, "disconnected from service");
                 throw new NotConnectedSocketException();
             }
         }
@@ -106,7 +108,6 @@ namespace Tizen.Nlp
             e.RequestId = requestid = int.Parse((string)msg.GetItem("request_id"));
             if (msg.GetItem("command").Equals("word_tokenize"))
             {
-                e.RequestId = requestid;
                 e.Message = result;
                 if (_mapsWordTokenize.ContainsKey(requestid))
                 {
@@ -117,7 +118,6 @@ namespace Tizen.Nlp
             else if (msg.GetItem("command").Equals("pos_tag"))
             {
                 result.Add("tag", (string[])msg.GetItem("return_tag"));
-                e.RequestId = requestid;
                 e.Message = result;
                 if (_mapsPosTag.ContainsKey(requestid))
                 {
@@ -137,7 +137,6 @@ namespace Tizen.Nlp
             }
             else if (msg.GetItem("command").Equals("lemmatize"))
             {
-                requestid = int.Parse((string)msg.GetItem("request_id"));
                 e.Message = result;
                 if (_mapsLemmatize.ContainsKey(requestid))
                 {
@@ -154,11 +153,6 @@ namespace Tizen.Nlp
                     _mapsLangDetect.Remove(requestid);
                 }
             }
-            else
-            {
-                return;
-            }
-
             Log.Debug(_tag, "done");
         }
 
@@ -169,18 +163,6 @@ namespace Tizen.Nlp
         public NaturalLanguageProcess()
         {
             _tag = Application.Current.ApplicationInfo.ApplicationId;
-            Log.Debug(_tag, "msg construct started");
-            _msg = new Message(ServiceId);
-            _msg.Disconnected += (s, e) =>
-            {
-                _isConnected = false;
-                DisconnectEvent?.Invoke(e);
-            };
-            Log.Debug(_tag, "msg construct success");
-            _noti.Received += ResultReceived;
-            Log.Debug(_tag, "notify callback be assigned");
-            Log.Debug(_tag, "start to connect");
-            Log.Debug(_tag, "wait to callback of onConnected");
         }
 
 
@@ -191,7 +173,19 @@ namespace Tizen.Nlp
         /// <exception cref="InvalidIDException">Thrown when the connect is rejected.</exception>
         public Task Connect()
         {
+            if (_isConnected)
+            {
+                Log.Debug(_tag, "message already connected");
+                throw new Exception();
+            }
             TaskCompletionSource<bool> tcs = new TaskCompletionSource<bool>();
+            _msg = new Message(ServiceId);
+            _noti.Received += ResultReceived;
+            _msg.Disconnected += (s, e) =>
+            {
+                _isConnected = false;
+                Disconnected?.Invoke(e);
+            };
             _msg.Connected += (sender, e) =>
             {
                 Log.Debug(_tag, "start to register");
@@ -200,12 +194,20 @@ namespace Tizen.Nlp
                 tcs.SetResult(true);
                 _isConnected = true;
             };
-            _msg.Rejected += (sender, e) => { tcs.SetException(new InvalidIDException()); };
+            _msg.Rejected += (sender, e) =>
+            {
+                Log.Debug(_tag, "invalid id cause exception");
+                tcs.SetException(new InvalidIDException());
+            };
             _msg.Connect();
             return tcs.Task;
         }
 
-        private void Close()
+        /// <summary>
+        /// A method to close message connection
+        /// </summary>
+        /// <since_tizen> 5 </since_tizen>
+        public void Close()
         {
             _noti.Received -= ResultReceived;
             _msg.UnRegister();
@@ -249,8 +251,16 @@ namespace Tizen.Nlp
         /// <since_tizen> 5 </since_tizen>
         public void Dispose()
         {
+            Dispose(true);
+            GC.SuppressFinalize(this);
+        }
+
+        private void Dispose(bool disposing)
+        {
+            if (disposed) return;
             Close();
             MapClear();
+            disposed = true;
         }
 
         /// <summary>
