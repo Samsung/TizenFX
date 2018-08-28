@@ -102,11 +102,10 @@ namespace Tizen.Nlp
             MessageReceivedEventArgs e = new MessageReceivedEventArgs();
             int requestid;
             Dictionary<string, string[]> result = new Dictionary<string, string[]>();
+            result.Add("token", (string[])msg.GetItem("return_token"));
+            e.RequestId = requestid = int.Parse((string)msg.GetItem("request_id"));
             if (msg.GetItem("command").Equals("word_tokenize"))
             {
-                result.Add("token", (string[])msg.GetItem("return_token"));
-                e.RequestId = int.Parse((string)msg.GetItem("request_id"));
-                requestid = int.Parse((string)msg.GetItem("request_id"));
                 e.RequestId = requestid;
                 e.Message = result;
                 if (_mapsWordTokenize.ContainsKey(requestid))
@@ -117,9 +116,7 @@ namespace Tizen.Nlp
             }
             else if (msg.GetItem("command").Equals("pos_tag"))
             {
-                result.Add("token", (string[])msg.GetItem("return_token"));
                 result.Add("tag", (string[])msg.GetItem("return_tag"));
-                requestid = int.Parse((string)msg.GetItem("request_id"));
                 e.RequestId = requestid;
                 e.Message = result;
                 if (_mapsPosTag.ContainsKey(requestid))
@@ -130,10 +127,7 @@ namespace Tizen.Nlp
             }
             else if (msg.GetItem("command").Equals("ne_chunk"))
             {
-                result.Add("token", (string[])msg.GetItem("return_token"));
                 result.Add("tag", (string[])msg.GetItem("return_tag"));
-                requestid = int.Parse((string)msg.GetItem("request_id"));
-                e.RequestId = requestid;
                 e.Message = result;
                 if (_mapsNamedEntity.ContainsKey(requestid))
                 {
@@ -143,9 +137,7 @@ namespace Tizen.Nlp
             }
             else if (msg.GetItem("command").Equals("lemmatize"))
             {
-                result.Add("token", (string[])msg.GetItem("return_token"));
                 requestid = int.Parse((string)msg.GetItem("request_id"));
-                e.RequestId = requestid;
                 e.Message = result;
                 if (_mapsLemmatize.ContainsKey(requestid))
                 {
@@ -155,9 +147,6 @@ namespace Tizen.Nlp
             }
             else if (msg.GetItem("command").Equals("langdetect"))
             {
-                result.Add("token", (string[])msg.GetItem("return_token"));
-                requestid = int.Parse((string)msg.GetItem("request_id"));
-                e.RequestId = requestid;
                 e.Message = result;
                 if (_mapsLangDetect.ContainsKey(requestid))
                 {
@@ -349,7 +338,7 @@ namespace Tizen.Nlp
             {
                 LemmatizeResult mr = new LemmatizeResult();
                 e.Message.TryGetValue("token", out string[] tokens);
-                if (tokens != null) mr.ActualWords = tokens[0];
+                if (tokens != null) mr.ActualWord = tokens[0];
                 task.SetResult(mr);
                 return true;
             };

@@ -30,6 +30,6 @@ namespace Tizen.Nlp
         /// The whole sentence.
         /// </summary>
         /// <since_tizen> 5 </since_tizen>
-        public string ActualWords { get; set; }
+        public string ActualWord { get; set; }
     }
 }
