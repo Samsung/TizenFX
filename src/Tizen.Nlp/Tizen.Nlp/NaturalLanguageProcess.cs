@@ -34,7 +34,7 @@ namespace Tizen.Nlp
     public class NaturalLanguageProcess
     {
         private Message _msg;
-        private readonly Message.NotifyCb _noti = new Message.NotifyCb();
+        private Message.NotifyCb _noti = new Message.NotifyCb();
         private readonly string _tag;
         private const string ServiceId = "org.tizen.nlp.service";
         private bool disposed = false;
@@ -43,7 +43,15 @@ namespace Tizen.Nlp
 
         private bool _isConnected = false;
 
+        private bool _isConnecting = false;
+
         private delegate bool WordTokenizeCallback(MessageReceivedEventArgs e);
+
+        /// <summary>
+        /// A connection status change event
+        /// </summary>
+        /// <since_tizen> 5 </since_tizen>
+        public event EventHandler Disconnected;
 
         private delegate bool PostagCallback(MessageReceivedEventArgs e);
 
@@ -57,18 +65,6 @@ namespace Tizen.Nlp
         private int _requestIdWordTokenize = 0;
         private int _requestIdLemmatize = 0;
         private readonly Dictionary<int, PostagCallback> _mapsPosTag = new Dictionary<int, PostagCallback>();
-
-        /// <summary>
-        /// An delegate method about service disconnected .
-        /// </summary>
-        /// <since_tizen> 5 </since_tizen>
-        public delegate bool DisconnectedHandler(EventArgs e);
-
-        /// <summary>
-        /// An delegate handle to expose to user
-        /// </summary>
-        /// <since_tizen> 5 </since_tizen>
-        public DisconnectedHandler Disconnected { get; set; }
 
         private readonly Dictionary<int, LangDetectCallback>
             _mapsLangDetect = new Dictionary<int, LangDetectCallback>();
@@ -99,7 +95,7 @@ namespace Tizen.Nlp
 
         private void ResultReceived(string sender, Bundle msg)
         {
-            Log.Debug(_tag, "OnReceived ++");
+            Log.Debug(_tag, "OnReceived ");
             MessageReceivedEventArgs e = new MessageReceivedEventArgs();
             int requestid;
             Dictionary<string, string[]> result = new Dictionary<string, string[]>();
@@ -152,7 +148,6 @@ namespace Tizen.Nlp
                     _mapsLangDetect.Remove(requestid);
                 }
             }
-            Log.Debug(_tag, "done");
         }
 
         /// <summary>
@@ -162,6 +157,7 @@ namespace Tizen.Nlp
         public NaturalLanguageProcess()
         {
             _tag = Application.Current.ApplicationInfo.ApplicationId;
+            _noti.Received += ResultReceived;
         }
 
 
@@ -176,21 +172,31 @@ namespace Tizen.Nlp
             {
                 throw new InvalidOperationException("message already connected");
             }
+
+            if (_isConnecting)
+            {
+                throw new InvalidOperationException("message is connecting");
+            }
+            else
+            {
+                _isConnecting = true;
+            }
+
             TaskCompletionSource<bool> tcs = new TaskCompletionSource<bool>();
             _msg = new Message(ServiceId);
-            _noti.Received += ResultReceived;
             _msg.Disconnected += (s, e) =>
             {
                 _isConnected = false;
-                Disconnected?.Invoke(e);
+                _isConnecting = false;
+                Disconnected?.Invoke(this, e);
             };
             _msg.Connected += (sender, e) =>
             {
                 Log.Debug(_tag, "start to register");
                 _msg.CoRegister(Application.Current.ApplicationInfo.ApplicationId, _noti);
-                Log.Debug(_tag, "connected callback be called");
                 tcs.SetResult(true);
                 _isConnected = true;
+                _isConnecting = false;
             };
             _msg.Rejected += (sender, e) =>
             {
@@ -207,40 +213,21 @@ namespace Tizen.Nlp
         public void Close()
         {
             if (!_isConnected) return;
-            _noti.Received -= ResultReceived;
             _msg.UnRegister();
             _msg.Dispose();
             _isConnected = false;
             _msg = null;
+            _isConnecting = false;
         }
 
 
         private void MapClear()
         {
-            foreach (var key in _mapsWordTokenize.Keys.ToList())
-            {
-                _mapsWordTokenize[key] = null;
-            }
-
-            foreach (var key in _mapsPosTag.Keys.ToList())
-            {
-                _mapsPosTag[key] = null;
-            }
-
-            foreach (var key in _mapsNamedEntity.Keys.ToList())
-            {
-                _mapsNamedEntity[key] = null;
-            }
-
-            foreach (var key in _mapsLemmatize.Keys.ToList())
-            {
-                _mapsLemmatize[key] = null;
-            }
-
-            foreach (var key in _mapsLangDetect.Keys.ToList())
-            {
-                _mapsLangDetect[key] = null;
-            }
+            _mapsWordTokenize.Clear();
+            _mapsPosTag.Clear();
+            _mapsNamedEntity.Clear();
+            _mapsLemmatize.Clear();
+            _mapsLangDetect.Clear();
         }
 
         /// <summary>
@@ -253,10 +240,17 @@ namespace Tizen.Nlp
             GC.SuppressFinalize(this);
         }
 
-        private void Dispose(bool disposing)
+        protected virtual void Dispose(bool disposing)
         {
-            if (disposed) return;
-            Close();
+            if (disposed)
+                return;
+
+            if (disposing)
+            {
+                Close();
+                _noti.Received -= ResultReceived;
+                _noti = null;
+            }
             MapClear();
             disposed = true;
         }
