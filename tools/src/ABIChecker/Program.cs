@@ -36,15 +36,16 @@ namespace Checker_ABI
                 return 0;
             }
 
-            var tester = new ABITester(options.BasePath, options.PrPath, options.IsFile);
-            var bResult = tester.CheckABI();
+            var abiChecker = new ABIChecker(options.BasePath, options.PrPath, options.IsFile);
+            var result = abiChecker.CheckABI();
             Console.WriteLine("=====================");
-            Console.WriteLine($"ABI CHECK : {bResult}");
+            Console.WriteLine($"ABI CHECK : {((result & ABIChecker.ABITestResult.ACRRequired) == ABIChecker.ABITestResult.ACRRequired ? "Fail" : "Pass")}");
             Console.WriteLine("=====================");
 
             Console.WriteLine("=========ABI CHECK END=========");
+            Console.WriteLine("Return : " + (int)result);
 
-            return bResult ? 0 : 1;
+            return (int)result;
         }
 
         public static void LabelingTest()

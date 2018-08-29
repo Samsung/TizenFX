@@ -46,78 +46,72 @@ namespace Checker_ABI
             return true;
         }
 
-        public IList<MemberInfo> CompareClassTypeToList(Type originalType, Type comparedType)
+        public IList<MemberInfo> CompareClassTypes(Type originalType, Type targetType)
         {
-            if (originalType.ToString() != comparedType.ToString())
+            if (originalType.ToString() != targetType.ToString())
             {
                 throw new ArgumentException("The full name of type is different. ABI check is only possible if name is the same.");
             }
 
             IList<MemberInfo> diffrentMemberList = new List<MemberInfo>();
             var originalMembers = originalType.GetMembers(s_PublicOnlyFlags).ToList();
-            var comparedMembers = comparedType.GetMembers(s_PublicOnlyFlags).ToList();
+            var targetMembers = targetType.GetMembers(s_PublicOnlyFlags).ToList();
 
             for (int i = originalMembers.Count-1; i >= 0; i--)
             {
-                bool bResult = false;
-                for (int j = comparedMembers.Count-1; j >= 0; j--)
+                for (int j = targetMembers.Count-1; j >= 0; j--)
                 {
-                     if (originalMembers[i].ToString() == comparedMembers[j].ToString())
+                    if (originalMembers[i].ToString() == targetMembers[j].ToString())
                     {
-                        if (originalMembers[i] is MethodInfo first && comparedMembers[j] is MethodInfo last)
+                        if (originalMembers[i] is MethodInfo originalMember && targetMembers[j] is MethodInfo targetMamber)
                         {
-                            if (first.GetBaseDefinition().DeclaringType.ToString() != last.GetBaseDefinition().DeclaringType.ToString())
+                            if (originalMember.GetBaseDefinition().DeclaringType.ToString() != targetMamber.GetBaseDefinition().DeclaringType.ToString())
                             {
                                 continue;
                             }
                         }
-
-                        bResult = true;
                         originalMembers.RemoveAt(i);
-                        comparedMembers.RemoveAt(j);
+                        targetMembers.RemoveAt(j);
                         break;
                     }
                 }
-
-                if (!bResult)
-                {
-                    diffrentMemberList.Add(originalMembers[i]);
-                }
             }
 
-            if (comparedMembers.Count > 0)
+            foreach (var item in originalMembers)
             {
-                foreach (var item in originalMembers)
-                    diffrentMemberList.Add(item);
+                Console.WriteLine($"!! Missing API: {item.DeclaringType}::{item.ToString()}");
+                diffrentMemberList.Add(item);
+            }
 
-                foreach (var item in comparedMembers)
-                    diffrentMemberList.Add(item);
+            foreach (var item in targetMembers)
+            {
+                Console.WriteLine($"!! Added API: {item.DeclaringType}::{item.ToString()}");
+                diffrentMemberList.Add(item);
             }
 
             return diffrentMemberList;
         }
 
-        public IList<MemberInfo> CheckAssemblyToList(Assembly baseAssembly, Assembly latestAssembly)
+        public IList<MemberInfo> CheckAssemblyFile(Assembly baseAssembly, Assembly targetAssembly)
         {
-            var baseInfos = baseAssembly.GetTypes().Where(b => b.IsPublic).ToList();
-            var lastInfos = latestAssembly.GetTypes().Where(b => b.IsPublic).ToList();
+            var basePublicTypes = baseAssembly.GetTypes().Where(b => b.IsPublic).ToList();
+            var targetPublicTypes = targetAssembly.GetTypes().Where(b => b.IsPublic).ToList();
             var diffrentMemberList = new List<MemberInfo>();
 
-            for (int i = 0; i < baseInfos.Count; i++)
+            for (int i = 0; i < basePublicTypes.Count; i++)
             {
-                for (int j = 0; j < lastInfos.Count; j++)
+                for (int j = 0; j < targetPublicTypes.Count; j++)
                 {
-                    if (baseInfos[i].ToString() == lastInfos[j].ToString())
+                    if (basePublicTypes[i].ToString() == targetPublicTypes[j].ToString())
                     {
-                        var result = CompareClassTypeToList(baseInfos[i], lastInfos[j]);
+                        var differentMembers = CompareClassTypes(basePublicTypes[i], targetPublicTypes[j]);
 
-                        if (result?.Count > 0)
+                        if (differentMembers?.Count > 0)
                         {
-                            Console.WriteLine($"ABI BREAK!! {baseInfos[i]} : Diffrent Member Count : {result.Count}");
-                            foreach (var item in result)
+                            Console.WriteLine($"==> {basePublicTypes[i]}, Diffrent Member Count : {differentMembers.Count}");
+                            foreach (var member in differentMembers)
                             {
-                                diffrentMemberList.Add(item);
-                                Console.WriteLine($"ABI BREAK!! {item.DeclaringType}::{item}");
+                                diffrentMemberList.Add(member);
                             }
                         }
                     }

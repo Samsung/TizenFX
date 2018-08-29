@@ -1,42 +1,70 @@
 using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Reflection;
 
 namespace Checker_ABI
 {
-    public class ABITester
+    public class ABIChecker
     {
         AssemblyChecker _checker = new AssemblyChecker();
         string _basePath;
-        string _latestPath;
+        string _targetPath;
         bool _isFile;
 
-        public ABITester(string basePath, string latestPath, bool isFile)
+        [Flags]
+        public enum ABITestResult
+        {
+            None = 0,
+            InternalAPIChanged = 1 << 0,
+            ACRRequired = 1 << 1
+        }
+
+        public ABIChecker(string basePath, string targetPath, bool isFile)
         {
             _basePath = basePath;
-            _latestPath = latestPath;
+            _targetPath = targetPath;
             _isFile = isFile;
         }
 
-        public bool CheckABI()
+        public ABITestResult CheckABI()
         {
             if (!_isFile)
             {
-                return InternalDirectoryCheck();
+                return CheckDirectory();
             }
             else
             {
-                var result = _checker.CheckAssemblyToList(Assembly.LoadFrom(_basePath), Assembly.LoadFile(_latestPath));
-                var bResult = result.Count > 0 ? false : true;
-                Console.WriteLine($"{_basePath} : {(bResult ? "PASS" : "FAIL")}");
-                return bResult;
+                var changedAPIList = _checker.CheckAssemblyFile(Assembly.LoadFrom(_basePath), Assembly.LoadFile(_targetPath));
+                var internalAPIList = new List<MemberInfo>();
+                for (int i = changedAPIList.Count - 1; i >= 0; i--)
+                {
+                    if (changedAPIList[i].GetCustomAttribute<System.ComponentModel.EditorBrowsableAttribute>()?.State == System.ComponentModel.EditorBrowsableState.Never)
+                    {
+                        Console.WriteLine($"  Internal API changed: {changedAPIList[i].DeclaringType}::{changedAPIList[i].ToString()}");
+                        internalAPIList.Add(changedAPIList[i]);
+                        changedAPIList.Remove(changedAPIList[i]);
+                    }
+                }
+                ABITestResult result = ABITestResult.None;
+                if (changedAPIList.Count > 0)
+                {
+                    result |= ABITestResult.ACRRequired;
+                }
+                if (internalAPIList.Count > 0)
+                {
+                    result |= ABITestResult.InternalAPIChanged;
+                }
+
+                Console.WriteLine($"{_basePath} : {((result & ABITestResult.ACRRequired) == ABITestResult.ACRRequired ? "FAIL" : "PASS")}");
+                return result;
             }
         }
 
-        bool InternalDirectoryCheck()
+        ABITestResult CheckDirectory()
         {
             DirectoryInfo baseDirectoryInfo = new DirectoryInfo(_basePath);
-            DirectoryInfo targetDirectoryInfo = new DirectoryInfo(_latestPath);
+            DirectoryInfo targetDirectoryInfo = new DirectoryInfo(_targetPath);
 
             if (!baseDirectoryInfo.Exists || !targetDirectoryInfo.Exists)
             {
@@ -49,21 +77,40 @@ namespace Checker_ABI
             Console.WriteLine($"File Count : {baseDllFiles.Length} == {targetDllFiles.Length}");
 
             int num = 1;
-            int errCount = 0;
+            ABITestResult directoryResult = ABITestResult.None;
 
             foreach (var baseFile in baseDllFiles)
             {
-                foreach (var latestFile in targetDllFiles)
+                foreach (var targetFile in targetDllFiles)
                 {
-                    if (baseFile.Name == latestFile.Name)
+                    if (baseFile.Name == targetFile.Name)
                     {
+                        var fileResult = ABITestResult.None;
                         try
                         {
-                            var result = _checker.CheckAssemblyToList(Assembly.LoadFrom(baseFile.FullName), Assembly.LoadFile(latestFile.FullName));
-                            bool bResult = result.Count > 0 ? false : true;
-                            Console.WriteLine($"{num++}. {baseFile.ToString()} : {(bResult ? "PASS" : "FAIL")}");
+                            var changedAPIList = _checker.CheckAssemblyFile(Assembly.LoadFrom(baseFile.FullName), Assembly.LoadFile(targetFile.FullName));
+                            var internalAPIList = new List<MemberInfo>();
+                            for (int i = changedAPIList.Count - 1; i >= 0; i--)
+                            {
+                                if (changedAPIList[i].GetCustomAttribute<System.ComponentModel.EditorBrowsableAttribute>()?.State == System.ComponentModel.EditorBrowsableState.Never)
+                                {
+                                    Console.WriteLine($"  Internal API changed: {changedAPIList[i].DeclaringType}::{changedAPIList[i].ToString()}");
+                                    internalAPIList.Add(changedAPIList[i]);
+                                    changedAPIList.Remove(changedAPIList[i]);
+                                }
+                            }
 
-                            if (!bResult) errCount++;
+                            if (changedAPIList.Count > 0)
+                            {
+                                fileResult |= ABITestResult.ACRRequired;
+                            }
+                            if (internalAPIList.Count > 0)
+                            {
+                                fileResult |= ABITestResult.InternalAPIChanged;
+                            }
+                            directoryResult |= fileResult;
+                            Console.WriteLine($"{num++}. {baseFile.ToString()} : {((fileResult & ABITestResult.ACRRequired) == ABITestResult.ACRRequired ? "FAIL" : "PASS")}");
+
                         }
                         catch (Exception)
                         {
@@ -72,7 +119,7 @@ namespace Checker_ABI
                     }
                 }
             }
-            return errCount > 0 ? false : true;
+            return directoryResult;
         }
     }
 }
