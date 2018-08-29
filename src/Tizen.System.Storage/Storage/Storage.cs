@@ -227,7 +227,7 @@ namespace Tizen.System
         }
 
         /// <summary>
-        /// The uuid of the file system.
+        /// The UUID of the file system.
         /// </summary>
         /// <since_tizen> 5 </since_tizen>
         /// <exception cref="InvalidOperationException">Thrown when Fsuuid is not initialized.</exception>
