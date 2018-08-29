@@ -119,5 +119,18 @@ namespace Checker_ABI
             }
             return diffrentMemberList;
         }
+
+        public IList<MemberInfo> CheckAssemblyFile(Assembly assembly)
+        {
+            var publicTypes = assembly.GetTypes().Where(b => b.IsPublic).ToList();
+            var diffrentMemberList = new List<MemberInfo>();
+
+            foreach (var type in publicTypes)
+            {
+                diffrentMemberList = diffrentMemberList.Concat(type.GetMembers(s_PublicOnlyFlags)).ToList();
+            }
+
+            return diffrentMemberList;
+        }
     }
 }
