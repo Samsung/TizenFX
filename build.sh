@@ -11,6 +11,8 @@ DOTNET_CMD="$RETRY_CMD $TIMEOUT_CMD 600 dotnet"
 
 RUN_BUILD="$DOTNET_CMD msbuild $SCRIPT_DIR/build/build.proj /nologo"
 
+VERSION_PREFIX=5.0.0
+
 usage() {
   echo "Usage: $0 [command] [args]"
   echo "Commands:"
@@ -21,10 +23,6 @@ usage() {
   echo "    pack [version]     Make a NuGet package with build artifacts"
   echo "    clean              Clean all artifacts"
 }
-
-
-CI_VERSION_PREFIX=5.0.0
-CI_VERSION=$CI_VERSION_PREFIX.$((10000+$(git rev-list --count HEAD)))
 
 cmd_build() {
   if [ -z "$1" ]; then
@@ -68,7 +66,7 @@ cmd_ext_build() {
 cmd_pack() {
   VERSION=$1
   if [ -z "$VERSION" ]; then
-    VERSION=$CI_VERSION
+    VERSION=$VERSION_PREFIX.$((10000+$(git rev-list --count HEAD)))
   fi
 
   $RUN_BUILD /t:pack /p:Version=$VERSION
