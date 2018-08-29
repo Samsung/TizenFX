@@ -10,17 +10,33 @@
     <OpenTKProjectDirectory>$(MSBuildThisFileDirectory)opentk\src\OpenTK\</OpenTKProjectDirectory>
     <BindProjectDirectory>$(MSBuildThisFileDirectory)opentk\src\Generator.Bind\</BindProjectDirectory>
     <RewriteProjectDirectory>$(MSBuildThisFileDirectory)opentk\src\Generator.Rewrite\</RewriteProjectDirectory>
+
+    <OpenTKProject>$(OpenTKProjectDirectory)OpenTK.Tizen.csproj</OpenTKProject>
+    <BindProject>$(BindProjectDirectory)Generator.Bind.NETCore.csproj</BindProject>
+    <RewriteProject>$(RewriteProjectDirectory)Generator.Rewrite.NETCore.csproj</RewriteProject>
+
+    <OpenTKOutputDirectory>$(OpenTKProjectDirectory)bin\$(Configuration)\</OpenTKOutputDirectory>
+    <BindOutputDirectory>$(BindProjectDirectory)bin\$(Configuration)\</BindOutputDirectory>
+    <RewriteOutputDirectory>$(RewriteProjectDirectory)bin\$(Configuration)\</RewriteOutputDirectory>
 </PropertyGroup>
 
 <PropertyGroup>
-    <OpenTKProject>$(OpenTKProjectDirectory)OpenTK.Tizen.csproj</OpenTKProject>
-    <BindCmd>dotnet $(BindProjectDirectory)bin/$(Configuration)/netcoreapp2.0/Bind.dll</BindCmd>
+    <BindCmd>dotnet $(BindOutputDirectory)/netcoreapp2.0/Bind.dll</BindCmd>
 </PropertyGroup>
+
+<Target Name="CleanOpenTK">
+    <ItemGroup>
+        <DirToRemove Include="$(OpenTKOutputDirectory)" />
+        <DirToRemove Include="$(BindOutputDirectory)" />
+        <DirToRemove Include="$(RewriteOutputDirectory)" />
+    </ItemGroup>
+    <RemoveDir Directories="@(DirToRemove)" />
+</Target>
 
 <Target Name="BuildTools">
     <ItemGroup>
-        <ProjectsToBuild Include="$(BindProjectDirectory)Generator.Bind.NETCore.csproj" />
-        <ProjectsToBuild Include="$(RewriteProjectDirectory)Generator.Rewrite.NETCore.csproj" />
+        <ProjectsToBuild Include="$(BindProject)" />
+        <ProjectsToBuild Include="$(RewriteProject)" />
     </ItemGroup>
     <MSBuild Projects="@(ProjectsToBuild)" Targets="Restore"
              Properties="Configuration=$(Configuration);RestoreSources=$(RestoreSources)" />
@@ -37,13 +53,10 @@
     <MSBuild Projects="$(OpenTKProject)" Targets="Build" Properties="Configuration=$(Configuration)" />
 
     <!-- Copy outputs to Artifacts -->
-    <PropertyGroup>
-        <OpenTKOutputDirectory>$(OpenTKProjectDirectory)bin\$(Configuration)\netstandard2.0\</OpenTKOutputDirectory>
-    </PropertyGroup>
     <ItemGroup>
-        <OpenTKOutputFiles Include="$(OpenTKOutputDirectory)OpenTK.dll" />
-        <OpenTKOutputFiles Include="$(OpenTKOutputDirectory)OpenTK.xml" />
-        <OpenTKOutputFiles Include="$(OpenTKOutputDirectory)OpenTK.pdb" />
+        <OpenTKOutputFiles Include="$(OpenTKOutputDirectory)netstandard2.0/OpenTK.dll" />
+        <OpenTKOutputFiles Include="$(OpenTKOutputDirectory)netstandard2.0/OpenTK.xml" />
+        <OpenTKOutputFiles Include="$(OpenTKOutputDirectory)netstandard2.0/OpenTK.pdb" />
     </ItemGroup>
     <Copy SourceFiles="@(OpenTKOutputFiles)" DestinationFolder="$(OutputExternalDir)" />
 </Target>
@@ -51,13 +64,13 @@
 <Target Name="PackOpenTK">
     <MSBuild Projects="$(OpenTKProject)" Targets="Pack" Properties="Configuration=$(Configuration);NoBuild=True" />
     <ItemGroup>
-        <OpenTKOutputPackFiles Include="$(OpenTKProjectDirectory)bin\$(Configuration)\OpenTK.Tizen.*.nupkg" />
+        <OpenTKOutputPackFiles Include="$(OpenTKOutputDirectory)OpenTK.Tizen.*.nupkg" />
     </ItemGroup>
     <Copy SourceFiles="@(OpenTKOutputPackFiles)" DestinationFolder="$(OutputBaseDir)" />
 </Target>
 
 <Target Name="Build"
-        DependsOnTargets="BuildTools;BuildOpenTK;PackOpenTK"
+        DependsOnTargets="CleanOpenTK;BuildTools;BuildOpenTK;PackOpenTK"
         Condition="Exists('$(OpenTKProjectDirectory)')">
 </Target>
 
