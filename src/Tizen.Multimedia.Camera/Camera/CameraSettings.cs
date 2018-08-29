@@ -240,7 +240,7 @@ namespace Tizen.Multimedia
         /// <since_tizen> 5 </since_tizen>
         /// <remarks>
         /// If HueRange returns null, it means that hue feature is not supported.
-        /// It can be checked also with <seec cref="CameraCapabilities.IsHueSupported"/>.
+        /// It can be checked also with <see cref="CameraCapabilities.IsHueSupported"/>.
         /// </remarks>
         /// <seealso cref="Hue"/>
         public Range? HueRange
