@@ -23,17 +23,17 @@ namespace Tizen.System
     public enum StorageDevice
     {
         /// <summary>
-        /// External sd card device
+        /// External SD Card device.
         /// </summary>
         /// <since_tizen> 5 </since_tizen>
         ExternalSDCard = Interop.Storage.StorageDevice.ExternalSDCard,
         /// <summary>
-        /// External usb mass storage
+        /// External USB mass storage.
         /// </summary>
         /// <since_tizen> 5 </since_tizen>
         ExternalUSBMassStorage = Interop.Storage.StorageDevice.ExternalUSBMassStorage,
         /// <summary>
-        /// Extended internal storage
+        /// Extended internal storage.
         /// </summary>
         /// <since_tizen> 5 </since_tizen>
         ExtendedInternalStorage = Interop.Storage.StorageDevice.ExtendedInternalStorage,

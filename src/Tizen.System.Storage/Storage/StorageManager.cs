@@ -82,10 +82,10 @@ namespace Tizen.System
         }
 
         /// <summary>
-        /// Registers an eventhandler for state chages of specific storage type
+        /// Registers an eventhandler for state changes of specific storage type.
         /// </summary>
-        /// <param name="type">Storage type</param>
-        /// <param name="handler">An eventhandler to register</param>
+        /// <param name="type">The type of the storage.</param>
+        /// <param name="handler">An eventhandler to register.</param>
         /// <since_tizen> 5 </since_tizen>
         public static void SetChangedEvent(StorageArea type, EventHandler handler)
         {
@@ -109,10 +109,10 @@ namespace Tizen.System
         }
 
         /// <summary>
-        /// Unregisters an eventhandler for state chages of specific storage type
+        /// Unregisters an eventhandler for state changes of specific storage type.
         /// </summary>
-        /// <param name="type">Storage type</param>
-        /// <param name="handler">An eventhandler to unregister</param>
+        /// <param name="type">The type of the storage.</param>
+        /// <param name="handler">An eventhandler to unregister.</param>
         /// <since_tizen> 5 </since_tizen>
         public static void UnsetChangedEvent(StorageArea type, EventHandler handler)
         {
