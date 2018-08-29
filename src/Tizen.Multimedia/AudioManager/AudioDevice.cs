@@ -28,7 +28,6 @@ namespace Tizen.Multimedia
         private readonly int _id;
         private readonly AudioDeviceType _type;
         private readonly AudioDeviceIoDirection _ioDirection;
-        private readonly IntPtr _deviceHandle;
 
         internal AudioDevice(IntPtr deviceHandle)
         {
@@ -45,8 +44,6 @@ namespace Tizen.Multimedia
 
             ret = Interop.AudioDevice.GetDeviceIoDirection(deviceHandle, out _ioDirection);
             MultimediaDebug.AssertNoError(ret);
-
-            _deviceHandle = deviceHandle;
         }
 
         /// <summary>
