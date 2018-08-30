@@ -1282,10 +1282,7 @@ namespace Tizen.NUI.BaseComponents
                 {
                     oldParent.Remove(child);
                 }
-                else
-                {
-                    child.InternalParent = this;
-                }
+                child.InternalParent = this;
 
                 if (layoutSet == true && child.Layout == null) // Only give children a layout if parent an explicit container
                 {
@@ -1453,6 +1450,11 @@ namespace Tizen.NUI.BaseComponents
                 swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
             }
 
+            foreach (View view in Children)
+            {
+                view.InternalParent = null;
+            }
+            
             base.Dispose(type);
 
         }
