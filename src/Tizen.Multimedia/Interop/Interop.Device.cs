@@ -57,8 +57,8 @@ namespace Tizen.Multimedia
             [DllImport(Libraries.SoundManager, EntryPoint = "sound_manager_get_device_state_by_id")]
             internal static extern AudioManagerError GetDeviceState(int deviceId, out AudioDeviceState state);
 
-            [DllImport(Libraries.SoundManager, EntryPoint = "sound_manager_is_device_running")]
-            internal static extern AudioManagerError IsDeviceRunning(IntPtr device, out bool isRunning);
+            [DllImport(Libraries.SoundManager, EntryPoint = "sound_manager_is_device_running_by_id")]
+            internal static extern AudioManagerError IsDeviceRunning(int deviceId, out bool isRunning);
 
             [DllImport(Libraries.SoundManager, EntryPoint = "sound_manager_add_device_connection_changed_cb")]
             internal static extern AudioManagerError AddDeviceConnectionChangedCallback(

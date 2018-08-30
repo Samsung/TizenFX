@@ -16,6 +16,7 @@
 
 using System;
 using System.Collections.Concurrent;
+using System.Collections.Generic;
 using System.Threading;
 
 namespace Tizen.Applications
@@ -29,7 +30,8 @@ namespace Tizen.Applications
     {
         private readonly Interop.Glib.GSourceFunc _wrapperHandler;
         private readonly Object _transactionLock = new Object();
-        private readonly ConcurrentDictionary<int, Action> _handlerMap = new ConcurrentDictionary<int, Action>();
+        private readonly ConcurrentDictionary<int, KeyValuePair<Action,uint>> _handlerMap
+            = new ConcurrentDictionary<int, KeyValuePair<Action, uint>>();
         private int _transactionId = 0;
 
         /// <summary>
@@ -39,6 +41,18 @@ namespace Tizen.Applications
         public TizenSynchronizationContext()
         {
             _wrapperHandler = new Interop.Glib.GSourceFunc(Handler);
+        }
+
+        /// <summary>
+        /// Finalizer to clean up the native source
+        /// </summary>
+        ~TizenSynchronizationContext()
+        {
+            foreach (var s in _handlerMap.Values)
+            {
+                if (s.Value > 0)
+                    Interop.Glib.RemoveSource(s.Value);
+            }
         }
 
         /// <summary>
@@ -114,8 +128,8 @@ namespace Tizen.Applications
             {
                 id = _transactionId++;
             }
-            _handlerMap.TryAdd(id, action);
-            Interop.Glib.IdleAdd(_wrapperHandler, (IntPtr)id);
+            _handlerMap.TryAdd(id, new KeyValuePair<Action,uint>(action,
+                Interop.Glib.IdleAdd(_wrapperHandler, (IntPtr)id)));
         }
 
         private bool Handler(IntPtr userData)
@@ -123,9 +137,8 @@ namespace Tizen.Applications
             int key = (int)userData;
             if (_handlerMap.ContainsKey(key))
             {
-                Action action;
-                _handlerMap.TryRemove(key, out action);
-                action?.Invoke();
+                _handlerMap.TryRemove(key, out var p);
+                p.Key?.Invoke();
             }
             return false;
         }
