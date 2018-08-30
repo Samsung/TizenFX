@@ -79,13 +79,13 @@ namespace Checker_ABI
 
             foreach (var item in originalMembers)
             {
-                Console.WriteLine($"!! Missing API: {item.DeclaringType}::{item.ToString()}");
+                Console.WriteLine($"  !! Missing API: {item.DeclaringType}::{item.ToString()}");
                 diffrentMemberList.Add(item);
             }
 
             foreach (var item in targetMembers)
             {
-                Console.WriteLine($"!! Added API: {item.DeclaringType}::{item.ToString()}");
+                Console.WriteLine($"  !! Added API: {item.DeclaringType}::{item.ToString()}");
                 diffrentMemberList.Add(item);
             }
 
@@ -108,7 +108,7 @@ namespace Checker_ABI
 
                         if (differentMembers?.Count > 0)
                         {
-                            Console.WriteLine($"==> {basePublicTypes[i]}, Diffrent Member Count : {differentMembers.Count}");
+                            Console.WriteLine($"  ==> {basePublicTypes[i]}, Diffrent Member Count : {differentMembers.Count}");
                             foreach (var member in differentMembers)
                             {
                                 diffrentMemberList.Add(member);

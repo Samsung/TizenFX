@@ -106,43 +106,31 @@ namespace Checker_ABI
             return result;
         }
 
-        ABITestResult CheckFile(string baseFile, string targetFile)
-        {
-            var changedAPIList = _checker.CheckAssemblyFile(Assembly.LoadFile(baseFile), Assembly.LoadFile(targetFile));
-            var internalAPIList = new List<MemberInfo>();
-            for (int i = changedAPIList.Count - 1; i >= 0; i--)
-            {
-                if (changedAPIList[i].GetCustomAttribute<System.ComponentModel.EditorBrowsableAttribute>()?.State == System.ComponentModel.EditorBrowsableState.Never)
-                {
-                    Console.WriteLine($"  Internal API changed: {changedAPIList[i].DeclaringType}::{changedAPIList[i].ToString()}");
-                    internalAPIList.Add(changedAPIList[i]);
-                    changedAPIList.Remove(changedAPIList[i]);
-                }
-            }
-            ABITestResult result = ABITestResult.None;
-            if (changedAPIList.Count > 0)
-            {
-                result |= ABITestResult.ACRRequired;
-            }
-            if (internalAPIList.Count > 0)
-            {
-                result |= ABITestResult.InternalAPIChanged;
-            }
-
-            return result;
-        }
-
         ABITestResult CheckFile(string file)
         {
+            return CheckFile(file, string.Empty);
+        }
+
+        ABITestResult CheckFile(string baseFile, string targetFile)
+        {
             ABITestResult result = ABITestResult.None;
+            IList<MemberInfo> changedAPIList;
             try
             {
-                var changedAPIList = _checker.CheckAssemblyFile(Assembly.LoadFile(file));
+                if (targetFile == string.Empty)
+                {
+                    changedAPIList = _checker.CheckAssemblyFile(Assembly.LoadFrom(baseFile));
+                }
+                else
+                {
+                    changedAPIList = _checker.CheckAssemblyFile(Assembly.LoadFrom(baseFile), Assembly.LoadFile(targetFile));
+                }
                 var internalAPIList = new List<MemberInfo>();
                 for (int i = changedAPIList.Count - 1; i >= 0; i--)
                 {
                     if (changedAPIList[i].GetCustomAttribute<System.ComponentModel.EditorBrowsableAttribute>()?.State == System.ComponentModel.EditorBrowsableState.Never)
                     {
+                        Console.WriteLine($"  Internal API changed: {changedAPIList[i].DeclaringType}::{changedAPIList[i].ToString()}");
                         internalAPIList.Add(changedAPIList[i]);
                         changedAPIList.Remove(changedAPIList[i]);
                     }
