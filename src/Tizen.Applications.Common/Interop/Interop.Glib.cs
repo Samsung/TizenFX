@@ -28,6 +28,6 @@ internal static partial class Interop
         internal static extern uint IdleAdd(GSourceFunc d, IntPtr data);
 
         [DllImport(Libraries.Glib, EntryPoint = "g_source_remove", CallingConvention = CallingConvention.Cdecl)]
-        internal static extern bool RemoveSource(uint soruce);
+        internal static extern bool RemoveSource(uint source);
     }
 }
