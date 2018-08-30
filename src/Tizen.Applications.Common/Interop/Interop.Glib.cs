@@ -26,5 +26,8 @@ internal static partial class Interop
 
         [DllImport(Libraries.Glib, EntryPoint = "g_idle_add", CallingConvention = CallingConvention.Cdecl)]
         internal static extern uint IdleAdd(GSourceFunc d, IntPtr data);
+
+        [DllImport(Libraries.Glib, EntryPoint = "g_source_remove", CallingConvention = CallingConvention.Cdecl)]
+        internal static extern bool RemoveSource(uint soruce);
     }
 }

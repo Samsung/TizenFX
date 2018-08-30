@@ -31,6 +31,7 @@ namespace Tizen.Applications
         private readonly Object _transactionLock = new Object();
         private readonly ConcurrentDictionary<int, Action> _handlerMap = new ConcurrentDictionary<int, Action>();
         private int _transactionId = 0;
+        private uint _source = 0;
 
         /// <summary>
         /// Initializes a new instance of the TizenSynchronizationContext class.
@@ -39,6 +40,15 @@ namespace Tizen.Applications
         public TizenSynchronizationContext()
         {
             _wrapperHandler = new Interop.Glib.GSourceFunc(Handler);
+        }
+
+        /// <summary>
+        /// Finalizer to clean up the native source
+        /// </summary>
+        ~TizenSynchronizationContext()
+        {
+            if (_source > 0)
+                Interop.Glib.RemoveSource(_source);
         }
 
         /// <summary>
@@ -115,7 +125,7 @@ namespace Tizen.Applications
                 id = _transactionId++;
             }
             _handlerMap.TryAdd(id, action);
-            Interop.Glib.IdleAdd(_wrapperHandler, (IntPtr)id);
+            _source = Interop.Glib.IdleAdd(_wrapperHandler, (IntPtr)id);
         }
 
         private bool Handler(IntPtr userData)
