@@ -35,35 +35,17 @@ namespace Tizen.Nlp
     {
         private Message _msg;
         private Message.NotifyCb _noti = new Message.NotifyCb();
-        private readonly string _tag;
         private const string ServiceId = "org.tizen.nlp.service";
+        private const string LogTag = "tizen.nlp.client";
         private bool disposed = false;
-
-        private delegate bool LangDetectCallback(MessageReceivedEventArgs e);
-
-        private bool _isConnected = false;
-
-        private bool _isConnecting = false;
-
-        private delegate bool WordTokenizeCallback(MessageReceivedEventArgs e);
-
-        /// <summary>
-        /// A connection status change event
-        /// </summary>
-        /// <since_tizen> 5 </since_tizen>
-        public event EventHandler Disconnected;
-
-        private delegate bool PostagCallback(MessageReceivedEventArgs e);
-
-        private delegate bool NamedEntityRecognitionCallback(MessageReceivedEventArgs e);
-
-        private delegate bool LemmatizeCallback(MessageReceivedEventArgs e);
-
         private int _requestIdPos = 0;
         private int _requestIdLang = 0;
         private int _requestIdNeChunk = 0;
         private int _requestIdWordTokenize = 0;
         private int _requestIdLemmatize = 0;
+        private Task _connectionTask;
+        private ConnectedState _connectionState = ConnectedState.Disconnected;
+
         private readonly Dictionary<int, PostagCallback> _mapsPosTag = new Dictionary<int, PostagCallback>();
 
         private readonly Dictionary<int, LangDetectCallback>
@@ -77,25 +59,63 @@ namespace Tizen.Nlp
 
         private readonly Dictionary<int, LemmatizeCallback> _mapsLemmatize = new Dictionary<int, LemmatizeCallback>();
 
+        /// <summary>
+        /// An construct method  to init local env of NLP .
+        /// </summary>
+        /// <since_tizen> 5 </since_tizen>
+        public NaturalLanguageProcess()
+        {
+            _noti.Received += ResultReceived;
+        }
+
+        private delegate bool LangDetectCallback(MessageReceivedEventArgs e);
+
+        private delegate bool WordTokenizeCallback(MessageReceivedEventArgs e);
+
+        private delegate bool PostagCallback(MessageReceivedEventArgs e);
+
+        private delegate bool NamedEntityRecognitionCallback(MessageReceivedEventArgs e);
+
+        private delegate bool LemmatizeCallback(MessageReceivedEventArgs e);
+
+        /// <summary>
+        /// A connection status change event
+        /// </summary>
+        /// <since_tizen> 5 </since_tizen>
+        public event EventHandler Disconnected;
+        private enum ConnectedState
+        {
+            Disconnected,
+            Connecting,
+            Connected
+        }
+
         private void MakeRequest(string cmd, string sentence, int requestid)
         {
-            if (_isConnected)
+            if (_connectionState == ConnectedState.Connected)
             {
-                Bundle b = new Bundle();
-                b.AddItem("command", cmd);
-                b.AddItem("info", sentence);
-                b.AddItem("request_id", requestid.ToString());
-                _msg.Send(b);
+                using (Bundle b = new Bundle())
+                {
+                    b.AddItem("command", cmd);
+                    b.AddItem("info", sentence);
+                    b.AddItem("request_id", requestid.ToString());
+                    _msg.Send(b);
+                    b.Dispose();
+                }
+            }
+            else if (_connectionState == ConnectedState.Connecting)
+            {
+                throw new InvalidOperationException("natural language service is connecting");
             }
             else
             {
-                throw new InvalidOperationException("disconnected from service");
+                throw new InvalidOperationException("disconnected from natural language service");
             }
         }
 
         private void ResultReceived(string sender, Bundle msg)
         {
-            Log.Debug(_tag, "OnReceived ");
+            Log.Debug(LogTag, "OnReceived ");
             MessageReceivedEventArgs e = new MessageReceivedEventArgs();
             int requestid;
             Dictionary<string, string[]> result = new Dictionary<string, string[]>();
@@ -151,59 +171,46 @@ namespace Tizen.Nlp
         }
 
         /// <summary>
-        /// An construct method  to init local env of NLP .
-        /// </summary>
-        /// <since_tizen> 5 </since_tizen>
-        public NaturalLanguageProcess()
-        {
-            _tag = Application.Current.ApplicationInfo.ApplicationId;
-            _noti.Received += ResultReceived;
-        }
-
-
-        /// <summary>
         /// An async method  to connect remote service.
         /// </summary>
         /// <since_tizen> 5 </since_tizen>
         /// <exception cref="InvalidOperationException">Thrown when the connect is rejected.</exception>
         public Task Connect()
         {
-            if (_isConnected)
+            if (_connectionState == ConnectedState.Connected)
             {
-                throw new InvalidOperationException("message already connected");
+                return Task.CompletedTask;
             }
-
-            if (_isConnecting)
+            else if (_connectionState == ConnectedState.Connecting)
             {
-                throw new InvalidOperationException("message is connecting");
+
+                return _connectionTask;
             }
             else
             {
-                _isConnecting = true;
+                _connectionState = ConnectedState.Connecting;
+                TaskCompletionSource<bool> tcs = new TaskCompletionSource<bool>();
+                _msg = new Message(ServiceId);
+                _msg.Disconnected += (s, e) =>
+                {
+                    _connectionState = ConnectedState.Disconnected;
+                    Disconnected?.Invoke(this, e);
+                };
+                _msg.Connected += (sender, e) =>
+                {
+                    Log.Debug(LogTag, "start to register");
+                    _msg.CoRegister(Application.Current.ApplicationInfo.ApplicationId, _noti);
+                    tcs.SetResult(true);
+                    _connectionState = ConnectedState.Connected;
+                };
+                _msg.Rejected += (sender, e) =>
+                {
+                    _connectionState = ConnectedState.Disconnected;
+                    tcs.SetException(new InvalidOperationException("invalid id cause exception"));
+                };
+                _msg.Connect();
+                return _connectionTask = tcs.Task;
             }
-
-            TaskCompletionSource<bool> tcs = new TaskCompletionSource<bool>();
-            _msg = new Message(ServiceId);
-            _msg.Disconnected += (s, e) =>
-            {
-                _isConnected = false;
-                _isConnecting = false;
-                Disconnected?.Invoke(this, e);
-            };
-            _msg.Connected += (sender, e) =>
-            {
-                Log.Debug(_tag, "start to register");
-                _msg.CoRegister(Application.Current.ApplicationInfo.ApplicationId, _noti);
-                tcs.SetResult(true);
-                _isConnected = true;
-                _isConnecting = false;
-            };
-            _msg.Rejected += (sender, e) =>
-            {
-                tcs.SetException(new InvalidOperationException("invalid id cause exception"));
-            };
-            _msg.Connect();
-            return tcs.Task;
         }
 
         /// <summary>
@@ -212,12 +219,13 @@ namespace Tizen.Nlp
         /// <since_tizen> 5 </since_tizen>
         public void Close()
         {
-            if (!_isConnected) return;
+            if (_connectionState == ConnectedState.Disconnected) return;
             _msg.UnRegister();
             _msg.Dispose();
-            _isConnected = false;
             _msg = null;
-            _isConnecting = false;
+            _connectionState = ConnectedState.Disconnected;
+            _connectionTask.Dispose();
+            _connectionTask = null;
         }
 
 
@@ -250,8 +258,8 @@ namespace Tizen.Nlp
                 Close();
                 _noti.Received -= ResultReceived;
                 _noti = null;
+                MapClear();
             }
-            MapClear();
             disposed = true;
         }
 
