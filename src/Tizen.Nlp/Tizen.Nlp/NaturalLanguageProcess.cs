@@ -186,31 +186,28 @@ namespace Tizen.Nlp
 
                 return _connectionTask;
             }
-            else
+            _connectionState = ConnectedState.Connecting;
+            TaskCompletionSource<bool> tcs = new TaskCompletionSource<bool>();
+            _msg = new Message(ServiceId);
+            _msg.Disconnected += (s, e) =>
             {
-                _connectionState = ConnectedState.Connecting;
-                TaskCompletionSource<bool> tcs = new TaskCompletionSource<bool>();
-                _msg = new Message(ServiceId);
-                _msg.Disconnected += (s, e) =>
-                {
-                    _connectionState = ConnectedState.Disconnected;
-                    Disconnected?.Invoke(this, e);
-                };
-                _msg.Connected += (sender, e) =>
-                {
-                    Log.Debug(LogTag, "start to register");
-                    _msg.CoRegister(Application.Current.ApplicationInfo.ApplicationId, _noti);
-                    tcs.SetResult(true);
-                    _connectionState = ConnectedState.Connected;
-                };
-                _msg.Rejected += (sender, e) =>
-                {
-                    _connectionState = ConnectedState.Disconnected;
-                    tcs.SetException(new InvalidOperationException("invalid id cause exception"));
-                };
-                _msg.Connect();
-                return _connectionTask = tcs.Task;
-            }
+                _connectionState = ConnectedState.Disconnected;
+                Disconnected?.Invoke(this, e);
+            };
+            _msg.Connected += (sender, e) =>
+            {
+                Log.Debug(LogTag, "start to register");
+                _msg.CoRegister(Application.Current.ApplicationInfo.ApplicationId, _noti);
+                tcs.SetResult(true);
+                _connectionState = ConnectedState.Connected;
+            };
+            _msg.Rejected += (sender, e) =>
+            {
+                _connectionState = ConnectedState.Disconnected;
+                tcs.SetException(new InvalidOperationException("invalid id cause exception"));
+            };
+            _msg.Connect();
+            return _connectionTask = tcs.Task;
         }
 
         /// <summary>
