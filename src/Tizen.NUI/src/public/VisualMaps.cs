@@ -614,7 +614,7 @@ namespace Tizen.NUI
 
         /// <summary>
         /// The fitting mode of the visual.
-        /// The default is defined by the type of visual (if it's suitable to be stretched or not).
+        /// The default is defined by the type of visual (if it is suitable to be stretched or not).
         /// </summary>
         /// <since_tizen> 5 </since_tizen>
         /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
@@ -701,7 +701,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Overlays the auxiliary iamge on top of an NPatch image.
+        /// Overlays the auxiliary image on top of an NPatch image.
         /// The resulting visual image will be at least as large as the smallest possible n-patch or the auxiliary image, whichever is larger.
         /// </summary>
         /// <since_tizen> 5 </since_tizen>
@@ -955,8 +955,8 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Get or set the Image Visual release policy<br />
-        /// It decides if a texture should be released from the cache or kept to reduce loading time <br />
+        /// Gets or sets the Image Visual release policy.<br/>
+        /// It decides if a texture should be released from the cache or kept to reduce the loading time.<br/>
         /// </summary>
         /// <since_tizen> 5 </since_tizen>
         public ReleasePolicyType ReleasePolicy
@@ -974,8 +974,8 @@ namespace Tizen.NUI
 
 
         /// <summary>
-        /// Get or set the Image Visual image loading policy<br />
-        /// It decides if a texture should be loaded immediately after source set or only after visual is added to window <br />
+        /// Gets or sets the Image Visual image loading policy.<br />
+        /// It decides if a texture should be loaded immediately after source set or only after the visual is added to the window.<br />
         /// </summary>
         /// <since_tizen> 5 </since_tizen>
         public LoadPolicyType LoadPolicy
@@ -992,7 +992,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Get or set whether to automatically correct the orientation based on exif data.<br />
+        /// Gets or sets whether to automatically correct the orientation based on the Exchangeable Image File (EXIF) data.<br />
         /// If not specified, the default is true.<br />
         /// For JPEG images only.<br />
         /// Optional.
@@ -1012,7 +1012,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Whether to use the texture atlas.
+        /// Whether to use the texture atlas or not.
         /// Optional. By default atlasing is off.
         /// </summary>
         /// <since_tizen> 5 </since_tizen>
@@ -1346,7 +1346,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Gets or sets the Underline parameters.
+        /// Gets or sets the underline parameters.
         /// </summary>
         /// <since_tizen> 5 </since_tizen>
         /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
@@ -1365,7 +1365,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Gets or sets the Outline parameters.
+        /// Gets or sets the outline parameters.
         /// </summary>
         /// <since_tizen> 5 </since_tizen>
         /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
@@ -1384,7 +1384,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Gets or sets the Background parameters.
+        /// Gets or sets the background parameters.
         /// </summary>
         /// <since_tizen> 5 </since_tizen>
         /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
@@ -1564,7 +1564,7 @@ namespace Tizen.NUI
 
         /// <summary>
         /// Gets or sets whether to render if the MixColor is transparent.
-        /// By default it's false, i.e. ColorVisual will not render if the MIX_COLOR is transparent.
+        /// By default it is false, which means that the ColorVisual will not render if the MIX_COLOR is transparent.
         /// </summary>
         /// <since_tizen> 5 </since_tizen>
         /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
@@ -2563,8 +2563,8 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Gets and Sets the number of times the AnimatedImageVisual will be looped.
-        /// Default -1. if less than 0, loop unlimited. else, loop loopCount times.
+        /// Gets and sets the number of times the AnimatedImageVisual will be looped.
+        /// The default is -1. If the number is less than 0 then it loops unlimited,otherwise loop loopCount times.
         /// </summary>
         /// <since_tizen> 5 </since_tizen>
         public float LoopCount

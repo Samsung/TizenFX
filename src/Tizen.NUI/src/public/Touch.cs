@@ -263,9 +263,9 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Get mouse device's button value (ex: right/left button)
+        /// Get mouse device's button value (for example, right or left button)
         /// </summary>
-        /// <param name="point">The point required</param>
+        /// <param name="point">The point required.</param>
         /// <returns></returns>
         /// <since_tizen> 5 </since_tizen>
         /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
@@ -280,7 +280,7 @@ namespace Tizen.NUI
     }
 
     /// <summary>
-    /// Mouse device button type
+    /// Mouse device button type.
     /// </summary>
     /// <since_tizen> 5 </since_tizen>
     /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
@@ -288,22 +288,22 @@ namespace Tizen.NUI
     public enum MouseButton
     {
         /// <summary>
-        /// No mouse button event or invalid data
+        /// No mouse button event or invalid data.
         /// </summary>
         /// <since_tizen> 5 </since_tizen>
         Invalid = -1,
         /// <summary>
-        /// Primary(Left) mouse button
+        /// Primary(Left) mouse button.
         /// </summary>
         /// <since_tizen> 5 </since_tizen>
         Primary = 1,
         /// <summary>
-        /// Secondary(Right) mouse button
+        /// Secondary(Right) mouse button.
         /// </summary>
         /// <since_tizen> 5 </since_tizen>
         Secondary = 3,
         /// <summary>
-        /// Center(Wheel) mouse button
+        /// Center(Wheel) mouse button.
         /// </summary>
         /// <since_tizen> 5 </since_tizen>
         Tertiary = 2,
