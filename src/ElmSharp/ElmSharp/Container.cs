@@ -36,7 +36,7 @@ namespace ElmSharp
         /// <param name="parent">The parent is a given object, which will be attached by the Container
         /// as a child. It's <see cref="EvasObject"/> type.</param>
         /// <since_tizen> preview </since_tizen>
-        public Container(EvasObject parent) : base(parent)
+        protected Container(EvasObject parent) : base(parent)
         {
         }
 
@@ -44,7 +44,7 @@ namespace ElmSharp
         /// Creates and initializes a new instance of the Container class.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
-        protected Container() : base()
+        protected Container()
         {
         }
 

@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<MediaHubPage x:Class="Tizen.NUI.Examples.MediaHubPage"
+  xmlns="http://tizen.org/Tizen.NUI/2018/XAML"
+  xmlns:l="clr-namespace:Tizen.UI_Xaml;assembly=Tizen.UI_Xaml"
+  xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
+
+    <View Name="MainTitleArea" PositionX="0" PositionY="0" BackgroundImage="/home/owner/apps_rw/org.tizen.example.NUIXAMLTestSample/res/images/mc_title_bg.png" SizeWidth="1920" SizeHeight="120" ParentOrigin="TopLeft" PivotPoint="TopLeft" PositionUsesPivotPoint="true">
+        <TextLabel Name="MainTitle" Text="DataTraveler 2.0" PointSize="50" TextColor="White" PositionX="30" ParentOrigin="CenterLeft" PivotPoint="CenterLeft" PositionUsesPivotPoint="true" />
+    </View>
+    <View Name="SubTitleArea" PositionX="0" PositionY="120" BackgroundImage="/home/owner/apps_rw/org.tizen.example.NUIXAMLTestSample/res/images/mc_shadow_titlebar.png" SizeWidth="1920" SizeHeight="78" ParentOrigin="TopLeft" PivotPoint="TopLeft" PositionUsesPivotPoint="true">
+        <TextLabel Name="SubTitle" Text="DataTraveler 2.0" PointSize="30" TextColor="White" PositionX="40" ParentOrigin="CenterLeft" PivotPoint="CenterLeft" PositionUsesPivotPoint="true" />
+    </View>
+    <View Name="ContentArea" PositionX="0" PositionY="198" SizeWidth="1920" SizeHeight="882" ParentOrigin="TopLeft" PivotPoint="TopLeft" PositionUsesPivotPoint="true">
+        <TableView Name="ContentTable" Focusable="true" SizeWidth="1820" SizeHeight="600" PositionX="50" PositionY="50" Rows="2" Columns="8" CellPadding="4.75,12">
+            <View Focusable="true" FocusGained="OnFocusGained" FocusLost="OnFocusLost" BackgroundColor="White" CellIndex="0,0" WidthResizePolicy="FillToParent" HeightResizePolicy="FillToParent">
+                <ImageView ResourceUrl="/home/owner/apps_rw/org.tizen.example.NUIXAMLTestSample/res/images/mc_folder.png" SizeWidth="218" SizeHeight="226" ParentOrigin="TopCenter" PivotPoint="TopCenter" PositionUsesPivotPoint="true"/>
+                <TextLabel Text="Text" SizeWidth="218" SizeHeight="50" HorizontalAlignment="Center" VerticalAlignment="Center" ParentOrigin="BottomCenter" PivotPoint="BottomCenter" PositionUsesPivotPoint="true" />
+            </View>
+            <View Focusable="true" FocusGained="OnFocusGained" FocusLost="OnFocusLost" BackgroundColor="White" CellIndex="0,1" WidthResizePolicy="FillToParent" HeightResizePolicy="FillToParent">
+                <ImageView ResourceUrl="/home/owner/apps_rw/org.tizen.example.NUIXAMLTestSample/res/images/mc_folder.png" SizeWidth="218" SizeHeight="226" ParentOrigin="TopCenter" PivotPoint="TopCenter" PositionUsesPivotPoint="true"/>
+                <TextLabel Text="Text" SizeWidth="218" SizeHeight="50" HorizontalAlignment="Center" VerticalAlignment="Center" ParentOrigin="BottomCenter" PivotPoint="BottomCenter" PositionUsesPivotPoint="true" />
+            </View>
+            <View Focusable="true" FocusGained="OnFocusGained" FocusLost="OnFocusLost" BackgroundColor="White" CellIndex="0,2" WidthResizePolicy="FillToParent" HeightResizePolicy="FillToParent">
+                <ImageView ResourceUrl="/home/owner/apps_rw/org.tizen.example.NUIXAMLTestSample/res/images/mc_folder.png" SizeWidth="218" SizeHeight="226" ParentOrigin="TopCenter" PivotPoint="TopCenter" PositionUsesPivotPoint="true"/>
+                <TextLabel Text="Text" SizeWidth="218" SizeHeight="50" HorizontalAlignment="Center" VerticalAlignment="Center" ParentOrigin="BottomCenter" PivotPoint="BottomCenter" PositionUsesPivotPoint="true" />
+            </View>
+            <View Focusable="true" FocusGained="OnFocusGained" FocusLost="OnFocusLost" BackgroundColor="White" CellIndex="0,3" WidthResizePolicy="FillToParent" HeightResizePolicy="FillToParent">
+                <ImageView ResourceUrl="/home/owner/apps_rw/org.tizen.example.NUIXAMLTestSample/res/images/mc_folder.png" SizeWidth="218" SizeHeight="226" ParentOrigin="TopCenter" PivotPoint="TopCenter" PositionUsesPivotPoint="true"/>
+                <TextLabel Text="Text" SizeWidth="218" SizeHeight="50" HorizontalAlignment="Center" VerticalAlignment="Center" ParentOrigin="BottomCenter" PivotPoint="BottomCenter" PositionUsesPivotPoint="true" />
+            </View>
+            <View Focusable="true" FocusGained="OnFocusGained" FocusLost="OnFocusLost" BackgroundColor="White" CellIndex="0,4" WidthResizePolicy="FillToParent" HeightResizePolicy="FillToParent">
+                <ImageView ResourceUrl="/home/owner/apps_rw/org.tizen.example.NUIXAMLTestSample/res/images/mc_folder.png" SizeWidth="218" SizeHeight="226" ParentOrigin="TopCenter" PivotPoint="TopCenter" PositionUsesPivotPoint="true"/>
+                <TextLabel Text="Text" SizeWidth="218" SizeHeight="50" HorizontalAlignment="Center" VerticalAlignment="Center" ParentOrigin="BottomCenter" PivotPoint="BottomCenter" PositionUsesPivotPoint="true" />
+            </View>
+            <View Focusable="true" FocusGained="OnFocusGained" FocusLost="OnFocusLost" BackgroundColor="White" CellIndex="0,5" WidthResizePolicy="FillToParent" HeightResizePolicy="FillToParent">
+                <ImageView ResourceUrl="/home/owner/apps_rw/org.tizen.example.NUIXAMLTestSample/res/images/mc_folder.png" SizeWidth="218" SizeHeight="226" ParentOrigin="TopCenter" PivotPoint="TopCenter" PositionUsesPivotPoint="true"/>
+                <TextLabel Text="Text" SizeWidth="218" SizeHeight="50" HorizontalAlignment="Center" VerticalAlignment="Center"  ParentOrigin="BottomCenter" PivotPoint="BottomCenter" PositionUsesPivotPoint="true" />
+            </View>
+            <View Focusable="true" FocusGained="OnFocusGained" FocusLost="OnFocusLost" BackgroundColor="White" CellIndex="0,6" WidthResizePolicy="FillToParent" HeightResizePolicy="FillToParent">
+                <ImageView ResourceUrl="/home/owner/apps_rw/org.tizen.example.NUIXAMLTestSample/res/images/mc_folder.png" SizeWidth="218" SizeHeight="226" ParentOrigin="TopCenter" PivotPoint="TopCenter" PositionUsesPivotPoint="true"/>
+                <TextLabel Text="Text" SizeWidth="218" SizeHeight="50" HorizontalAlignment="Center" VerticalAlignment="Center" ParentOrigin="BottomCenter" PivotPoint="BottomCenter" PositionUsesPivotPoint="true" />
+            </View>
+            <View Focusable="true" FocusGained="OnFocusGained" FocusLost="OnFocusLost" BackgroundColor="White" CellIndex="0,7" WidthResizePolicy="FillToParent" HeightResizePolicy="FillToParent">
+                <ImageView ResourceUrl="/home/owner/apps_rw/org.tizen.example.NUIXAMLTestSample/res/images/mc_folder.png" SizeWidth="218" SizeHeight="226" ParentOrigin="TopCenter" PivotPoint="TopCenter" PositionUsesPivotPoint="true"/>
+                <TextLabel Text="Text" SizeWidth="218" SizeHeight="50" HorizontalAlignment="Center" VerticalAlignment="Center" ParentOrigin="BottomCenter" PivotPoint="BottomCenter" PositionUsesPivotPoint="true" />
+            </View>
+            <View Focusable="true" FocusGained="OnFocusGained" FocusLost="OnFocusLost" BackgroundColor="White" CellIndex="1,0" WidthResizePolicy="FillToParent" HeightResizePolicy="FillToParent">
+                <ImageView ResourceUrl="/home/owner/apps_rw/org.tizen.example.NUIXAMLTestSample/res/images/mc_folder.png" SizeWidth="218" SizeHeight="226" ParentOrigin="TopCenter" PivotPoint="TopCenter" PositionUsesPivotPoint="true"/>
+                <TextLabel Text="Text" SizeWidth="218" SizeHeight="50" HorizontalAlignment="Center" VerticalAlignment="Center" ParentOrigin="BottomCenter" PivotPoint="BottomCenter" PositionUsesPivotPoint="true" />
+            </View>
+            <View Focusable="true" FocusGained="OnFocusGained" FocusLost="OnFocusLost" BackgroundColor="White" CellIndex="1,1" WidthResizePolicy="FillToParent" HeightResizePolicy="FillToParent">
+                <ImageView ResourceUrl="/home/owner/apps_rw/org.tizen.example.NUIXAMLTestSample/res/images/mc_folder.png" SizeWidth="218" SizeHeight="226" ParentOrigin="TopCenter" PivotPoint="TopCenter" PositionUsesPivotPoint="true"/>
+                <TextLabel Text="Text" SizeWidth="218" SizeHeight="50" HorizontalAlignment="Center" VerticalAlignment="Center" ParentOrigin="BottomCenter" PivotPoint="BottomCenter" PositionUsesPivotPoint="true" />
+            </View>
+            <View Focusable="true" FocusGained="OnFocusGained" FocusLost="OnFocusLost" BackgroundColor="White" CellIndex="1,2" WidthResizePolicy="FillToParent" HeightResizePolicy="FillToParent">
+                <ImageView ResourceUrl="/home/owner/apps_rw/org.tizen.example.NUIXAMLTestSample/res/images/mc_folder.png" SizeWidth="218" SizeHeight="226" ParentOrigin="TopCenter" PivotPoint="TopCenter" PositionUsesPivotPoint="true"/>
+                <TextLabel Text="Text" SizeWidth="218" SizeHeight="50" HorizontalAlignment="Center" VerticalAlignment="Center" ParentOrigin="BottomCenter" PivotPoint="BottomCenter" PositionUsesPivotPoint="true" />
+            </View>
+            <View Focusable="true" FocusGained="OnFocusGained" FocusLost="OnFocusLost" BackgroundColor="White" CellIndex="1,3" WidthResizePolicy="FillToParent" HeightResizePolicy="FillToParent">
+                <ImageView ResourceUrl="/home/owner/apps_rw/org.tizen.example.NUIXAMLTestSample/res/images/mc_folder.png" SizeWidth="218" SizeHeight="226" ParentOrigin="TopCenter" PivotPoint="TopCenter" PositionUsesPivotPoint="true"/>
+                <TextLabel Text="Text" SizeWidth="218" SizeHeight="50" HorizontalAlignment="Center" VerticalAlignment="Center" ParentOrigin="BottomCenter" PivotPoint="BottomCenter" PositionUsesPivotPoint="true" />
+            </View>
+            <View Focusable="true" FocusGained="OnFocusGained" FocusLost="OnFocusLost" BackgroundColor="White" CellIndex="1,4" WidthResizePolicy="FillToParent" HeightResizePolicy="FillToParent">
+                <ImageView ResourceUrl="/home/owner/apps_rw/org.tizen.example.NUIXAMLTestSample/res/images/mc_folder.png" SizeWidth="218" SizeHeight="226" ParentOrigin="TopCenter" PivotPoint="TopCenter" PositionUsesPivotPoint="true"/>
+                <TextLabel Text="Text" SizeWidth="218" SizeHeight="50" HorizontalAlignment="Center" VerticalAlignment="Center" ParentOrigin="BottomCenter" PivotPoint="BottomCenter" PositionUsesPivotPoint="true" />
+            </View>
+            <View Focusable="true" FocusGained="OnFocusGained" FocusLost="OnFocusLost" BackgroundColor="White" CellIndex="1,5" WidthResizePolicy="FillToParent" HeightResizePolicy="FillToParent">
+                <ImageView ResourceUrl="/home/owner/apps_rw/org.tizen.example.NUIXAMLTestSample/res/images/mc_folder.png" SizeWidth="218" SizeHeight="226" ParentOrigin="TopCenter" PivotPoint="TopCenter" PositionUsesPivotPoint="true"/>
+                <TextLabel Text="Text" SizeWidth="218" SizeHeight="50" HorizontalAlignment="Center" VerticalAlignment="Center" ParentOrigin="BottomCenter" PivotPoint="BottomCenter" PositionUsesPivotPoint="true" />
+            </View>
+            <View Focusable="true" FocusGained="OnFocusGained" FocusLost="OnFocusLost" BackgroundColor="White" CellIndex="1,6" WidthResizePolicy="FillToParent" HeightResizePolicy="FillToParent">
+                <ImageView ResourceUrl="/home/owner/apps_rw/org.tizen.example.NUIXAMLTestSample/res/images/mc_folder.png" SizeWidth="218" SizeHeight="226" ParentOrigin="TopCenter" PivotPoint="TopCenter" PositionUsesPivotPoint="true"/>
+                <TextLabel Text="Text" SizeWidth="218" SizeHeight="50" HorizontalAlignment="Center" VerticalAlignment="Center" ParentOrigin="BottomCenter" PivotPoint="BottomCenter" PositionUsesPivotPoint="true" />
+            </View>
+            <View Focusable="true" FocusGained="OnFocusGained" FocusLost="OnFocusLost" BackgroundColor="White" CellIndex="1,7" WidthResizePolicy="FillToParent" HeightResizePolicy="FillToParent">
+                <ImageView ResourceUrl="/home/owner/apps_rw/org.tizen.example.NUIXAMLTestSample/res/images/mc_folder.png" SizeWidth="218" SizeHeight="226" ParentOrigin="TopCenter" PivotPoint="TopCenter" PositionUsesPivotPoint="true"/>
+                <TextLabel Text="Text" SizeWidth="218" SizeHeight="50" HorizontalAlignment="Center" VerticalAlignment="Center" ParentOrigin="BottomCenter" PivotPoint="BottomCenter" PositionUsesPivotPoint="true" />
+            </View>
+
+        </TableView>
+
+
+        <TableView Name="OptionList" Focusable="true" SizeWidth="1110" SizeHeight="80" PositionX="770" PositionY="760" Rows="1" Columns="3" CellPadding="15, 0">
+            <ImageView Name="Options1" CellIndex="0,0" Focusable="true" FocusGained="OnOptionsFocusGained" FocusLost="OnOptionsFocusLost" ResourceUrl="/home/owner/apps_rw/org.tizen.example.NUIXAMLTestSample/res/images/c_basic_button_white_bg_normal.9.png" Border="4,4,5,5" WidthResizePolicy="FillToParent" HeightResizePolicy="FillToParent" >
+                <TextLabel Text="Filter By:All" PointSize="25" HorizontalAlignment="Center" VerticalAlignment="Center" ParentOrigin="Center" PivotPoint="Center" PositionUsesPivotPoint="true" />
+            </ImageView>
+            <ImageView Name="Options2" CellIndex="0,1" Focusable="true" FocusGained="OnOptionsFocusGained" FocusLost="OnOptionsFocusLost" ResourceUrl="/home/owner/apps_rw/org.tizen.example.NUIXAMLTestSample/res/images/c_basic_button_white_bg_normal.9.png" Border="4,4,5,5" WidthResizePolicy="FillToParent" HeightResizePolicy="FillToParent" >
+                <TextLabel Text="Sort By:Title" PointSize="25" HorizontalAlignment="Center" VerticalAlignment="Center" ParentOrigin="Center" PivotPoint="Center" PositionUsesPivotPoint="true" />
+            </ImageView>
+            <ImageView Name="Options3" CellIndex="0,2" Focusable="true" FocusGained="OnOptionsFocusGained" FocusLost="OnOptionsFocusLost" ResourceUrl="/home/owner/apps_rw/org.tizen.example.NUIXAMLTestSample/res/images/c_basic_button_white_bg_normal.9.png" Border="4,4,5,5" WidthResizePolicy="FillToParent" HeightResizePolicy="FillToParent" >
+                <TextLabel Text="Options" PointSize="25" HorizontalAlignment="Center" VerticalAlignment="Center" ParentOrigin="Center" PivotPoint="Center" PositionUsesPivotPoint="true" />
+            </ImageView>
+        </TableView>
+    </View>
+
+</MediaHubPage>

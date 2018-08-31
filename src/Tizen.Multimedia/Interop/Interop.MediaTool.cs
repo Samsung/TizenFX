@@ -88,6 +88,12 @@ namespace Tizen.Multimedia
 
             [DllImport(Libraries.MediaTool, EntryPoint = "media_packet_get_extra")]
             internal static extern int GetExtra(IntPtr handle, out IntPtr value);
+
+            [DllImport(Libraries.MediaTool, EntryPoint = "media_packet_set_rotate_method")]
+            internal static extern int SetRotation(IntPtr handle, RotationFlip rotationFlip);
+
+            [DllImport(Libraries.MediaTool, EntryPoint = "media_packet_get_rotate_method")]
+            internal static extern int GetRotation(IntPtr handle, out RotationFlip rotationFlip);
         }
 
         internal static class MediaFormat

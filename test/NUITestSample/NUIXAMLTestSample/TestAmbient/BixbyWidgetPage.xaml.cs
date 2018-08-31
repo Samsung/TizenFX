@@ -33,7 +33,7 @@ namespace Tizen.NUI.Examples
 
         public override void SetFocus()
         {
-            widget = Content.FindChildByName("Widget") as ImageView;
+            widget = Root.FindChildByName("Widget") as ImageView;
             Animation animation = new Animation(2000);
             animation.AnimateTo(widget, "Opacity", 1.0f);
             animation.Play();

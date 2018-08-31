@@ -268,4 +268,20 @@ namespace Tizen.NUI
 
 
     }
+
+    /// <summary>
+    /// Graphics BackendType
+    /// </summary>
+    /// InhouseAPI, this could be opend in NextTizen
+    public class Graphics
+    {
+        public enum BackendType
+        {
+            Gles,
+            Vulkan
+        }
+        public static BackendType Backend = BackendType.Gles;
+        internal const string GlesCSharpBinder = "libdali-csharp-binder.so";
+        internal const string VulkanCSharpBinder = "libdali-csharp-binder-vk.so";
+    }
 }

@@ -66,7 +66,7 @@ namespace Tizen.Network.WiFi
                             RegisterDeviceStateChangedEvent();
                         } catch (Exception e)
                         {
-                            Log.Error(Globals.LogTag, "Exception on adding DeviceStateChanged\n" + e.ToString());
+                            Log.Error(Globals.LogTag, "Exception on adding DeviceStateChanged\n" + e);
                             return;
                         }
                     }
@@ -86,7 +86,7 @@ namespace Tizen.Network.WiFi
                         }
                         catch (Exception e)
                         {
-                            Log.Error(Globals.LogTag, "Exception on removing DeviceStateChanged\n" + e.ToString());
+                            Log.Error(Globals.LogTag, "Exception on removing DeviceStateChanged\n" + e);
                         }
                     }
                 }, null);
@@ -107,7 +107,7 @@ namespace Tizen.Network.WiFi
                         }
                         catch (Exception e)
                         {
-                            Log.Error(Globals.LogTag, "Exception on adding ConnectionStateChanged\n" + e.ToString());
+                            Log.Error(Globals.LogTag, "Exception on adding ConnectionStateChanged\n" + e);
                             return;
                         }
                     }
@@ -127,7 +127,7 @@ namespace Tizen.Network.WiFi
                         }
                         catch (Exception e)
                         {
-                            Log.Error(Globals.LogTag, "Exception on removing ConnectionStateChanged\n" + e.ToString());
+                            Log.Error(Globals.LogTag, "Exception on removing ConnectionStateChanged\n" + e);
                         }
                     }
                 }, null);
@@ -148,7 +148,7 @@ namespace Tizen.Network.WiFi
                         }
                         catch (Exception e)
                         {
-                            Log.Error(Globals.LogTag, "Exception on adding RssiLevelChanged\n" + e.ToString());
+                            Log.Error(Globals.LogTag, "Exception on adding RssiLevelChanged\n" + e);
                             return;
                         }
                     }
@@ -168,7 +168,7 @@ namespace Tizen.Network.WiFi
                         }
                         catch (Exception e)
                         {
-                            Log.Error(Globals.LogTag, "Exception on removing RssiLevelChanged\n" + e.ToString());
+                            Log.Error(Globals.LogTag, "Exception on removing RssiLevelChanged\n" + e);
                         }
                     }
                 }, null);
@@ -189,7 +189,7 @@ namespace Tizen.Network.WiFi
                         }
                         catch (Exception e)
                         {
-                            Log.Error(Globals.LogTag, "Exception on adding BackgroundScanFinished\n" + e.ToString());
+                            Log.Error(Globals.LogTag, "Exception on adding BackgroundScanFinished\n" + e);
                             return;
                         }
                     }
@@ -209,7 +209,7 @@ namespace Tizen.Network.WiFi
                         }
                         catch (Exception e)
                         {
-                            Log.Error(Globals.LogTag, "Exception on removing BackgroundScanFinished\n" + e.ToString());
+                            Log.Error(Globals.LogTag, "Exception on removing BackgroundScanFinished\n" + e);
                         }
                     }
                 }, null);

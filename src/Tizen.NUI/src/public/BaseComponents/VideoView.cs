@@ -25,7 +25,6 @@ namespace Tizen.NUI.BaseComponents
     /// VideoView is a control for video playback and display.
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
-    [ContentProperty("ResourceUrl")]
     public class VideoView : View
     {
         /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.

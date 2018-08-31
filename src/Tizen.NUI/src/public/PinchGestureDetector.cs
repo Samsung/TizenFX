@@ -1,5 +1,5 @@
 /*
- * Copyright(c) 2017 Samsung Electronics Co., Ltd.
+ * Copyright(c) 2018 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,16 +14,19 @@
  * limitations under the License.
  *
  */
+using System;
+using System.Runtime.InteropServices;
+using Tizen.NUI.BaseComponents;
+using System.ComponentModel;
 
 namespace Tizen.NUI
 {
-
-    using System;
-    using System.Runtime.InteropServices;
-    using Tizen.NUI.BaseComponents;
-
-
-    internal class PinchGestureDetector : GestureDetector
+    /// <summary>
+    /// It tries to detect when the user moves two touch points towards or away from each other.
+    /// </summary>
+    /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+    [EditorBrowsable(EditorBrowsableState.Never)]
+    public class PinchGestureDetector : GestureDetector
     {
         private global::System.Runtime.InteropServices.HandleRef swigCPtr;
 
@@ -37,7 +40,12 @@ namespace Tizen.NUI
             return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
         }
 
-
+        /// <summary>
+        /// Dispose.
+        /// </summary>
+        /// <param name="type">The dispose type</param>
+        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         protected override void Dispose(DisposeTypes type)
         {
             if (disposed)
@@ -71,14 +79,23 @@ namespace Tizen.NUI
             base.Dispose(type);
         }
 
-
-        /// <since_tizen> 3 </since_tizen>
+        /// <summary>
+        /// Event arguments that passed via the PinchGestureEvent signal.
+        /// </summary>
+        /// <since_tizen> 5 </since_tizen>
+        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public class DetectedEventArgs : EventArgs
         {
             private View _view;
             private PinchGesture _pinchGesture;
 
-            /// <since_tizen> 3 </since_tizen>
+            /// <summary>
+            /// The attached view.
+            /// </summary>
+            /// <since_tizen> 5 </since_tizen>
+            /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+            [EditorBrowsable(EditorBrowsableState.Never)]
             public View View
             {
                 get
@@ -91,7 +108,12 @@ namespace Tizen.NUI
                 }
             }
 
-            /// <since_tizen> 3 </since_tizen>
+            /// <summary>
+            /// The PinchGesture.
+            /// </summary>
+            /// <since_tizen> 5 </since_tizen>
+            /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+            [EditorBrowsable(EditorBrowsableState.Never)]
             public PinchGesture PinchGesture
             {
                 get
@@ -110,7 +132,11 @@ namespace Tizen.NUI
         private DaliEventHandler<object, DetectedEventArgs> _pinchGestureEventHandler;
         private DetectedCallbackDelegate _pinchGestureCallbackDelegate;
 
-
+        /// <summary>
+        /// This signal is emitted when the specified pinch is detected on the attached view.
+        /// </summary>
+        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public event DaliEventHandler<object, DetectedEventArgs> Detected
         {
             add
@@ -159,32 +185,43 @@ namespace Tizen.NUI
         }
 
 
-        public static PinchGestureDetector GetPinchGestureDetectorFromPtr(global::System.IntPtr cPtr)
+        internal static PinchGestureDetector GetPinchGestureDetectorFromPtr(global::System.IntPtr cPtr)
         {
             PinchGestureDetector ret = new PinchGestureDetector(cPtr, false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
-
+        /// <summary>
+        /// Creates an initialized PinchGestureDetector.
+        /// </summary>
+        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public PinchGestureDetector() : this(NDalicPINVOKE.PinchGestureDetector_New(), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
 
         }
-        public new static PinchGestureDetector DownCast(BaseHandle handle)
+
+        internal new static PinchGestureDetector DownCast(BaseHandle handle)
         {
             PinchGestureDetector ret =  Registry.GetManagedBaseHandleFromNativePtr(handle) as PinchGestureDetector;
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
+        /// <summary>
+        /// The copy constructor.
+        /// </summary>
+        /// <param name="handle">A reference to the copied handle</param>
+        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public PinchGestureDetector(PinchGestureDetector handle) : this(NDalicPINVOKE.new_PinchGestureDetector__SWIG_1(PinchGestureDetector.getCPtr(handle)), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
-        public PinchGestureDetector Assign(PinchGestureDetector rhs)
+        internal PinchGestureDetector Assign(PinchGestureDetector rhs)
         {
             PinchGestureDetector ret = new PinchGestureDetector(NDalicPINVOKE.PinchGestureDetector_Assign(swigCPtr, PinchGestureDetector.getCPtr(rhs)), false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();

@@ -1,0 +1,10 @@
+h5.sinceTizen, h5.privlevel {
+  display: inline-block;
+}
+h5.sinceTizen:after, h5.privlevel:after {
+  content: ": ";
+}
+span.sinceTizen:after, span.privlevel:after {
+  white-space: pre;
+  content: "\A";
+}

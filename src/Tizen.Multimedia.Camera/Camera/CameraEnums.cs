@@ -229,7 +229,12 @@ namespace Tizen.Multimedia
         /// <summary>
         /// Encoded pixel format : H264.
         /// </summary>
-        H264 = 15
+        H264 = 15,
+        /// <summary>
+        /// Depth pixel format
+        /// </summary>
+        /// <since_tizen> 5 </since_tizen>
+        Invz
     }
 
     /// <summary>
@@ -905,6 +910,11 @@ namespace Tizen.Multimedia
         /// <summary>
         /// Encoded plane data.
         /// </summary>
-        EncodedPlane
+        EncodedPlane,
+        /// <summary>
+        /// Depth plane data.
+        /// </summary>
+        /// <since_tizen> 5 </since_tizen>
+        DepthPlane
     }
 }

@@ -34,7 +34,7 @@ namespace Tizen.NUI.Examples
 
         public AppDetailPage(Window win) : base (win)
         {
-            Content.BackgroundImage = "/home/tengxb/GitRepo/nui-xaml/TestXaml/res/images/store_default_bg_01.png";
+            Root.BackgroundImage = "/home/owner/apps_rw/org.tizen.example.NUIXAMLTestSample/res/images/store_default_bg_01.png";
         }
 
         /// <summary>
@@ -150,7 +150,7 @@ namespace Tizen.NUI.Examples
             ImageView view = obj as ImageView;
             if (view.Name == "DetailButton")
             {
-                view.ResourceUrl = "/home/tengxb/GitRepo/nui-xaml/TestXaml/res/images/r_highlight_bg_focus_9patch.png";
+                view.ResourceUrl = "/home/owner/apps_rw/org.tizen.example.NUIXAMLTestSample/res/images/r_highlight_bg_focus_9patch.png";
                 view.Border = new Rectangle(14,14,20,20);
             }
             view.RaiseToTop();
@@ -169,7 +169,7 @@ namespace Tizen.NUI.Examples
             ImageView view = obj as ImageView;
             if (view.Name == "DetailButton")
             {
-                view.ResourceUrl = "/home/tengxb/GitRepo/nui-xaml/TestXaml/res/images/c_basic_button_white_bg_normal.9.png";
+                view.ResourceUrl = "/home/owner/apps_rw/org.tizen.example.NUIXAMLTestSample/res/images/c_basic_button_white_bg_normal.9.png";
                 view.Border = new Rectangle(4,4,5,5);
             }
             if (scaleOutAni == null)

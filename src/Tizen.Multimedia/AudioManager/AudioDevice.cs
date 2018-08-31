@@ -1,4 +1,4 @@
-﻿/*
+/*
  * Copyright (c) 2016 Samsung Electronics Co., Ltd All Rights Reserved
  *
  * Licensed under the Apache License, Version 2.0 (the License);
@@ -79,6 +79,7 @@ namespace Tizen.Multimedia
         /// </summary>
         /// <value>The <see cref="AudioDeviceState"/> of the device.</value>
         /// <since_tizen> 3 </since_tizen>
+        [Obsolete("Deprecated since API level 5. Please use the IsRunning property instead.")]
         public AudioDeviceState State
         {
             get
@@ -91,12 +92,28 @@ namespace Tizen.Multimedia
         }
 
         /// <summary>
+        /// Gets the running state of the device.
+        /// </summary>
+        /// <value>true if the audio stream of device is running actually; otherwise, false.</value>
+        /// <since_tizen> 5 </since_tizen>
+        public bool IsRunning
+        {
+            get
+            {
+                Interop.AudioDevice.IsDeviceRunning(_id, out bool isRunning).
+                    ThrowIfError("Failed to get the running state of the device");
+
+                return isRunning;
+            }
+        }
+
+        /// <summary>
         /// Returns a string that represents the current object.
         /// </summary>
         /// <returns>A string that represents the current object.</returns>
         /// <since_tizen> 4 </since_tizen>
         public override string ToString() =>
-            $"Id={Id}, Name={Name}, Type={Type}, IoDirection={IoDirection}, State={State}";
+            $"Id={Id}, Name={Name}, Type={Type}, IoDirection={IoDirection}, IsRunning={IsRunning}";
 
         /// <summary>
         /// Compares an object to an instance of <see cref="AudioDevice"/> for equality.

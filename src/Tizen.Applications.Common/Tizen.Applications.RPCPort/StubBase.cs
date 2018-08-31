@@ -181,7 +181,7 @@ namespace Tizen.Applications.RPCPort
                 OnTerminatedEvent();
 
                 if (_stub != IntPtr.Zero)
-                    Interop.LibRPCPort.Proxy.Destroy(_stub);
+                    Interop.LibRPCPort.Stub.Destroy(_stub);
                 _stub = IntPtr.Zero;
 
                 disposedValue = true;

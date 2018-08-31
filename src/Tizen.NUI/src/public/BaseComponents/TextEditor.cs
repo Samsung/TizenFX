@@ -30,7 +30,6 @@ namespace Tizen.NUI.BaseComponents
     /// A control which provides a multi-line editable text editor.
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
-    [ContentProperty("Text")]
     public class TextEditor : View
     {
         /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
@@ -956,7 +955,7 @@ namespace Tizen.NUI.BaseComponents
             //You should not access any managed member here except static instance.
             //because the execution order of Finalizes is non-deterministic.
 
-            if (this != null && _textEditorTextChangedCallbackDelegate != null)
+            if (this.HasBody() && _textEditorTextChangedCallbackDelegate != null)
             {
                 TextChangedSignal().Disconnect(_textEditorTextChangedCallbackDelegate);
             }
@@ -966,6 +965,8 @@ namespace Tizen.NUI.BaseComponents
                 if (swigCMemOwn)
                 {
                     swigCMemOwn = false;
+                    // In order to speed up IME hide, temporarily add
+                    GetInputMethodContext()?.DestroyContext();
                     NDalicPINVOKE.delete_TextEditor(swigCPtr);
                 }
                 swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
@@ -1122,7 +1123,7 @@ namespace Tizen.NUI.BaseComponents
         {
             ScrollStateChangedEventArgs e = new ScrollStateChangedEventArgs();
 
-            if (textEditor != null)
+            if (textEditor != global::System.IntPtr.Zero)
             {
                 // Populate all members of "e" (ScrollStateChangedEventArgs) with real data
                 e.TextEditor = Registry.GetManagedBaseHandleFromNativePtr(textEditor) as TextEditor;
