@@ -36,7 +36,7 @@ namespace Checker_ABI
             }
             else
             {
-                var result = CheckFile(_basePath, _targetPath);
+                var result = CheckFile(new FileInfo(_basePath).FullName, new FileInfo(_targetPath).FullName);
                 Console.WriteLine($"File check result: {((result & ABITestResult.ACRRequired) == ABITestResult.ACRRequired ? "FAIL" : "PASS")}");
                 return result;
             }

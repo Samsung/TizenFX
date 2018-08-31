@@ -1,8 +1,0 @@
-{
-  "profiles": {
-    "Checker_ABI": {
-      "commandName": "Project",
-      "commandLineArgs": "-p c:/base/bin/public -b c:/target/bin/public"
-    }
-  }
-}

@@ -9,43 +9,6 @@ namespace Checker_ABI
     {
         private const BindingFlags s_PublicOnlyFlags = BindingFlags.Public | BindingFlags.Instance | BindingFlags.DeclaredOnly | BindingFlags.Static;
 
-        public bool TypeValidate(Type originalType, Type comparedType)
-        {
-            var originalMembers = originalType.GetMembers(s_PublicOnlyFlags);
-            var comparedMembers = comparedType.GetMembers(s_PublicOnlyFlags);
-
-            // Compare Number of public Methods
-            MethodInfo[] originalMethods = originalType.GetMethods(s_PublicOnlyFlags);
-            MethodInfo[] comparedMethods = comparedType.GetMethods(s_PublicOnlyFlags);
-
-            if (comparedMethods.Length != originalMethods.Length)
-                return false;
-
-            // Compare Number of public Properties
-            PropertyInfo[] originalProperties = originalType.GetProperties(s_PublicOnlyFlags);
-            PropertyInfo[] comparedProperties = comparedType.GetProperties(s_PublicOnlyFlags);
-
-            if (comparedProperties.Length != originalProperties.Length)
-                return false;
-
-            // Compare number of public fields
-            FieldInfo[] originalFields = originalType.GetFields(s_PublicOnlyFlags);
-            FieldInfo[] comparedToFields = comparedType.GetFields(s_PublicOnlyFlags);
-
-            if (comparedToFields.Length != originalFields.Length)
-                return false;
-
-
-            // Compare number of public events
-            EventInfo[] originalEvents = originalType.GetEvents(s_PublicOnlyFlags);
-            EventInfo[] comparedToEvents = comparedType.GetEvents(s_PublicOnlyFlags);
-
-            if (originalEvents.Length != comparedToEvents.Length)
-                return false;
-
-            return true;
-        }
-
         public IList<MemberInfo> CompareClassTypes(Type originalType, Type targetType)
         {
             if (originalType.ToString() != targetType.ToString())
