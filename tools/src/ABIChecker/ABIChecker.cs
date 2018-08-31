@@ -58,7 +58,7 @@ namespace Checker_ABI
             Console.WriteLine($"File Count : {baseDllFiles.Length} == {targetDllFiles.Length}");
 
             ABITestResult directoryResult = ABITestResult.None;
-            directoryResult |= CheckChagedModule(baseDllFiles, targetDllFiles);
+            directoryResult |= CheckChangedModule(baseDllFiles, targetDllFiles);
             Console.WriteLine($"Module Check : {directoryResult.ToString()}");
             Console.WriteLine("---------------------------------");
 
@@ -85,7 +85,7 @@ namespace Checker_ABI
             return directoryResult;
         }
 
-        ABITestResult CheckChagedModule(FileInfo[] baseDllFiles, FileInfo[] targetDllFiles)
+        ABITestResult CheckChangedModule(FileInfo[] baseDllFiles, FileInfo[] targetDllFiles)
         {
             var result = ABITestResult.None;
 
