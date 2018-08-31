@@ -43,7 +43,7 @@ namespace Tizen.Applications.RPCPort
     public class InvalidProtocolException : InvalidOperationException { }
 
     /// <summary>
-    /// Exception class which will be thrown when not connected socket is used.
+    /// Exception class, which is thrown when a non connected socket is used.
     /// </summary>
     /// <since_tizen> 5 </since_tizen>
     public class NotConnectedSocketException : InvalidOperationException { }
