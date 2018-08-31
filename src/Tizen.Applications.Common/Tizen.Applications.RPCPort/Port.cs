@@ -19,23 +19,23 @@ using System;
 namespace Tizen.Applications.RPCPort
 {
     /// <summary>
-    /// The class for communicating each other between proxy and stub
+    /// The class that proxy and stub can use to communicate with each other.
     /// </summary>
     /// <since_tizen> 5 </since_tizen>
     public class Port
     {
         /// <summary>
-        /// Enumeration for RPC port types
+        /// Enumeration for RPC port types.
         /// </summary>
         public enum Type
         {
             /// <summary>
-            /// Main channel to communicate
+            /// Main channel to communicate.
             /// </summary>
             Main,
 
             /// <summary>
-            /// Sub channel for callbacks
+            /// Sub channel for callbacks.
             /// </summary>
             Callback
         }
