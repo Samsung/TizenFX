@@ -32,8 +32,6 @@ namespace Tizen.NUI
         /// <param name="cMemoryOwn"> flag to indicate if memory is owned.</param>
         internal GridLayout(global::System.IntPtr cPtr, bool cMemoryOwn) : base(LayoutPINVOKE.GridLayout_SWIGUpcast(cPtr), cMemoryOwn)
         {
-                        System.Console.WriteLine("GridLayout\n");
-
             swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
         }
 
