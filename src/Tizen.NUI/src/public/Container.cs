@@ -30,6 +30,7 @@ namespace Tizen.NUI
     {
 
         private List<View> _childViews = new List<View>();
+        internal BaseHandle InternalParent;
 
         /// <summary>
         /// List of children of Container.

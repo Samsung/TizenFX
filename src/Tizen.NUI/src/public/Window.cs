@@ -611,6 +611,7 @@ namespace Tizen.NUI
             NDalicPINVOKE.Actor_Add( rootLayoutCPtr, View.getCPtr(view) );
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             this.GetRootLayer().AddViewToLayerList(view); // Maintain the children list in the Layer
+            view.InternalParent = this.GetRootLayer();
         }
 
         /// <summary>
@@ -622,6 +623,7 @@ namespace Tizen.NUI
         {
             NDalicPINVOKE.Actor_Remove( rootLayoutCPtr, View.getCPtr(view) );
             this.GetRootLayer().RemoveViewFromLayerList(view); // Maintain the children list in the Layer
+            view.InternalParent = null;
         }
 
         internal Vector2 GetSize()
@@ -900,7 +902,7 @@ namespace Tizen.NUI
         /// <param name="delay">The key repeat delay value in seconds</param>
         /// <returns>True if setting the keyboard repeat succeeds.</returns>
         /// <since_tizen> 5 </since_tizen>
-        public bool SetKeyboardRepeatInfo(double rate, double delay)
+        public bool SetKeyboardRepeatInfo(float rate, float delay)
         {
             bool ret = NDalicManualPINVOKE.SetKeyboardRepeatInfo(rate, delay);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
@@ -914,7 +916,7 @@ namespace Tizen.NUI
         /// <param name="delay">The key repeat delay value in seconds</param>
         /// <returns>True if setting the keyboard repeat succeeds.</returns>
         /// <since_tizen> 5 </since_tizen>
-        public bool GetKeyboardRepeatInfo(out double rate, out double delay)
+        public bool GetKeyboardRepeatInfo(out float rate, out float delay)
         {
             bool ret = NDalicManualPINVOKE.GetKeyboardRepeatInfo(out rate, out delay);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();

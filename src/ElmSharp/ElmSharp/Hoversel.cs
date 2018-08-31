@@ -33,7 +33,7 @@ namespace ElmSharp
         internal static HoverselItemEventArgs CreateFromSmartEvent(IntPtr data, IntPtr obj, IntPtr info)
         {
             HoverselItem item = ItemObject.GetItemByHandle(info) as HoverselItem;
-            return new HoverselItemEventArgs() { Item = item };
+            return new HoverselItemEventArgs { Item = item };
         }
     }
 

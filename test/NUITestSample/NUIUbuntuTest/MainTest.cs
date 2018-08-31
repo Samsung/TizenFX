@@ -8,6 +8,7 @@ namespace NUI.Ubuntu.Test.Examples
         [STAThread]
         static void Main(string[] args)
         {
+            Console.WriteLine("-------------Start NUI Ubuntu Test--------------\n");
             new HelloWorldTest.Example().Run(args);
             //new ControlDashboard.Example().Run(args);
             //new DatePickerTest.Example().Run(args);
