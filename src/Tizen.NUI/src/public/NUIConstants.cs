@@ -2739,4 +2739,20 @@ namespace Tizen.NUI
         VectorGlyph
     }
 
+    /// <summary>
+    /// Enumeration for Setting the rendering behavior of a Window.
+    /// </summary>
+    /// <since_tizen> 5 </since_tizen>
+    public enum RenderingBehaviorType
+    {
+        /// <summary>
+        /// Default. Only renders if required.
+        /// </summary>
+        IfRequired,
+        /// <summary>
+        /// Renders continuously.
+        /// </summary>
+        Continuously
+    }
+
 }
