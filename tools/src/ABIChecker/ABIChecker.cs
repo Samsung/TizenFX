@@ -69,16 +69,9 @@ namespace Checker_ABI
                 {
                     if (baseFile.Name == targetFile.Name)
                     {
-                        try
-                        {
-                            var fileResult = CheckFile(baseFile.FullName, targetFile.FullName);
-                            Console.WriteLine($"{count++}. {baseFile.ToString()} : {((fileResult & ABITestResult.ACRRequired) == ABITestResult.ACRRequired ? "FAIL" : "PASS")}");
-                            directoryResult |= fileResult;
-                        }
-                        catch (Exception)
-                        {
-                            continue;
-                        }
+                        var fileResult = CheckFile(baseFile.FullName, targetFile.FullName);
+                        Console.WriteLine($"{count++}. {baseFile.ToString()} : {((fileResult & ABITestResult.ACRRequired) == ABITestResult.ACRRequired ? "FAIL" : "PASS")}");
+                        directoryResult |= fileResult;
                     }
                 }
             }

@@ -7,7 +7,7 @@ namespace Checker_ABI
 {
     internal class AssemblyChecker
     {
-        private const BindingFlags s_PublicOnlyFlags = BindingFlags.Public | BindingFlags.Instance | BindingFlags.DeclaredOnly | BindingFlags.Static;
+        private const BindingFlags PublicOnlyFlags = BindingFlags.Public | BindingFlags.Instance | BindingFlags.DeclaredOnly | BindingFlags.Static;
 
         public IList<MemberInfo> CompareClassTypes(Type originalType, Type targetType)
         {
@@ -16,9 +16,8 @@ namespace Checker_ABI
                 throw new ArgumentException("The full name of type is different. ABI check is only possible if name is the same.");
             }
 
-            IList<MemberInfo> diffrentMemberList = new List<MemberInfo>();
-            var originalMembers = originalType.GetMembers(s_PublicOnlyFlags).ToList();
-            var targetMembers = targetType.GetMembers(s_PublicOnlyFlags).ToList();
+            var originalMembers = originalType.GetMembers(PublicOnlyFlags).ToList();
+            var targetMembers = targetType.GetMembers(PublicOnlyFlags).ToList();
 
             for (int i = originalMembers.Count-1; i >= 0; i--)
             {
@@ -40,6 +39,7 @@ namespace Checker_ABI
                 }
             }
 
+            IList<MemberInfo> diffrentMemberList = new List<MemberInfo>();
             foreach (var item in originalMembers)
             {
                 Console.WriteLine($"  !! Missing API: {item.DeclaringType}::{item.ToString()}");
@@ -90,7 +90,7 @@ namespace Checker_ABI
 
             foreach (var type in publicTypes)
             {
-                diffrentMemberList = diffrentMemberList.Concat(type.GetMembers(s_PublicOnlyFlags)).ToList();
+                diffrentMemberList = diffrentMemberList.Concat(type.GetMembers(PublicOnlyFlags)).ToList();
             }
 
             return diffrentMemberList;
