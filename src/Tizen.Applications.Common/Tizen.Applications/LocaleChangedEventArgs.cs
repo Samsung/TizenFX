@@ -36,7 +36,7 @@ namespace Tizen.Applications
         }
 
         /// <summary>
-        /// The property to get the intformation of the Locale
+        /// The property to get the information of the Locale
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public string Locale { get; private set; }
