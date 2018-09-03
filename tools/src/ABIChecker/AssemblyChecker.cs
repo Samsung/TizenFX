@@ -32,6 +32,12 @@ namespace Checker_ABI
                                 continue;
                             }
                         }
+                        if (originalMembers[i].GetCustomAttribute<System.ComponentModel.EditorBrowsableAttribute>()?.State
+                            != targetMembers[j].GetCustomAttribute<System.ComponentModel.EditorBrowsableAttribute>()?.State)
+                        {
+
+                            continue;
+                        }
                         originalMembers.RemoveAt(i);
                         targetMembers.RemoveAt(j);
                         break;
