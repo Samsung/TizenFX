@@ -46,6 +46,7 @@ namespace UIControlSample
         private void Initialize()
         {
             Window.Instance.BackgroundColor = Color.Black;
+            Window.Instance.KeyEvent += OnKeyEvent;
 
             guide = new TextLabel();
             guide.HorizontalAlignment = HorizontalAlignment.Center;
@@ -67,6 +68,14 @@ namespace UIControlSample
             activityIndicator = new ActivityIndicator();
             activityIndicator.Position = new Position(896, 476, 0);
             Window.Instance.GetDefaultLayer().Add(activityIndicator);
+        }
+
+        public void OnKeyEvent(object sender, Window.KeyEventArgs e)
+        {
+            if(e.Key.State == Key.StateType.Down && (e.Key.KeyPressedName == "XF86Back" || e.Key.KeyPressedName == "Escape"))
+            {
+//                Exit();
+            }
         }
 
         /// <summary>
