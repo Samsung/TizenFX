@@ -571,8 +571,10 @@ namespace UIControlSample
         /// <param name="e">event</param>
         private void InstanceKey(object sender, Window.KeyEventArgs e)
         {
+            Console.WriteLine("InstanceKey : " + e.Key.KeyPressedName.ToString() + "\n");
             if (e.Key.State == Key.StateType.Up)
             {
+                Console.WriteLine("Key Up\n");
                 if (e.Key.KeyPressedName == "XF86Back")
                 {
                     Tizen.Log.Fatal("UISample", "keyCode: " + e.Key.KeyCode.ToString());
@@ -587,6 +589,12 @@ namespace UIControlSample
                     {
                         this.Exit();
                     }
+                }
+                else if(e.Key.KeyPressedName == "Escape")
+                {
+                    Console.WriteLine("Kill process\n");
+                    currentSample.Deactivate();
+                    this.Activate();
                 }
             }
         }

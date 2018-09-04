@@ -25,7 +25,7 @@ using static Interop;
 namespace Tizen.Multimedia
 {
     /// <summary>
-    /// Represents properties for streaming buffering time
+    /// Represents properties for streaming buffering time.
     /// </summary>
     /// <since_tizen> 5 </since_tizen>
     public struct PlayerBufferingTime
@@ -44,7 +44,7 @@ namespace Tizen.Multimedia
         }
 
         /// <summary>
-        /// Gets or sets the duration of buffering data that must be prerolled to start playback
+        /// Gets or sets the duration of buffering data that must be prerolled to start playback.
         /// </summary>
         /// <since_tizen> 5 </since_tizen>
         public int PreBufferMillisecond
@@ -527,7 +527,7 @@ namespace Tizen.Multimedia
         /// Gets or sets the player's replaygain state.
         /// </summary>
         /// <value>If the replaygain status is true, replaygain is applied (if contents has a replaygain tag);
-        /// otherwise, the replaygain isn't affected by tag and properties.</value>
+        /// otherwise, the replaygain is not affected by tag and properties.</value>
         /// <exception cref="ObjectDisposedException">The player has already been disposed of.</exception>
         /// <exception cref="InvalidOperationException">The player is not in the valid state.</exception>
         /// <since_tizen> 5 </since_tizen>

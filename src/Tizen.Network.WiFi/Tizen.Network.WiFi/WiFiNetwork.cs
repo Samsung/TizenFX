@@ -65,7 +65,7 @@ namespace Tizen.Network.WiFi
         /// The raw Service Set Identifier (SSID).
         /// </summary>
         /// <since_tizen> 5 </since_tizen>
-        /// <value>Raw SSID of the Wi-Fi.</value>
+        /// <value>Represents the raw SSID of the Wi-Fi.</value>
         public byte[] RawSsid
         {
             get
@@ -345,7 +345,7 @@ namespace Tizen.Network.WiFi
         }
 
         /// <summary>
-        /// The raw country code
+        /// The raw country code.
         /// </summary>
         /// <since_tizen> 5 </since_tizen>
         /// <value>Represents the raw country code of the Wi-Fi.</value>
@@ -411,7 +411,7 @@ namespace Tizen.Network.WiFi
         }
 
         /// <summary>
-        /// Gets the Bssid list
+        /// Gets the Bssid list.
         /// </summary>
         /// <since_tizen> 5 </since_tizen>
         /// <returns>A list of BSSIDs of access points with the same SSID as that of this access point.</returns>

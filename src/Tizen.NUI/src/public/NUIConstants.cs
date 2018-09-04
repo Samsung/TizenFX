@@ -651,18 +651,18 @@ namespace Tizen.NUI
     }
 
     /// <summary>
-    /// Specifies the Release Policy types <br />
-    /// Decides if the image should be cached in different conditions
+    /// Specifies the release policy types.<br />
+    /// Decides if the image should be cached in different conditions.
     /// </summary>
     /// <since_tizen> 5 </since_tizen>
     public enum ReleasePolicyType
     {
       /// <summary>
-      /// Image is released when visual detached from scene
+      /// Image is released when visual detached from scene.
       /// </summary>
       Detached = 0,
       /// <summary>
-      /// Image is only released when visual is destroyed
+      /// Image is only released when visual is destroyed.
       /// </summary>
       Destroyed,
       /// <summary>
@@ -672,8 +672,8 @@ namespace Tizen.NUI
     }
 
     /// <summary>
-    /// Specifies the Load Policy types <br />
-    /// Decides when the image texture should be loaded
+    /// Specifies the load policy types.<br />
+    /// Decides when the image texture should be loaded.
     /// </summary>
     /// <since_tizen> 5 </since_tizen>
     public enum LoadPolicyType
@@ -809,7 +809,7 @@ namespace Tizen.NUI
     }
 
     /// <summary>
-    /// The values of this enum determine how the visual should be fit to the view.
+    /// The values of this enum determines how the visual should fit into the view.
     /// </summary>
     /// <since_tizen> 5 </since_tizen>
     /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
@@ -964,7 +964,7 @@ namespace Tizen.NUI
             /// </summary>
             Text,
             /// <summary>
-            /// Renders an n-patch image.
+            /// Renders an NPatch image.
             /// </summary>
             NPatch,
             /// <summary>
@@ -1299,23 +1299,23 @@ namespace Tizen.NUI
         /// <since_tizen> 4 </since_tizen>
         public static readonly int FrameDelay = NDalic.IMAGE_VISUAL_FRAME_DELAY;
         /// <summary>
-        /// The number of times the AnimatedImageVisual will be looped
-        /// Default -1. if less than 0, loop unlimited. else, loop loopCount times.
+        /// The number of times the AnimatedImageVisual will be looped.
+        /// The default is -1. If the value is less than 0, loop unlimited. Otherwise, loop loopCount times.
         /// </summary>
         /// <since_tizen> 5 </since_tizen>
         public static readonly int LoopCount = NDalic.IMAGE_VISUAL_LOOP_COUNT;
         /// <summary>
-        /// The policy to determine when an image should no longer be cached
+        /// The policy to determine when an image should no longer be cached.
         /// </summary>
         /// <since_tizen> 5 </since_tizen>
         public static readonly int ReleasePolicy = NDalic.IMAGE_VISUAL_RELEASE_POLICY;
         /// <summary>
-        /// The policy to determine when an image should be loaded
+        /// The policy to determine when an image should be loaded.
         /// </summary>
         /// <since_tizen> 5 </since_tizen>
         public static readonly int LoadPolicy = NDalic.IMAGE_VISUAL_LOAD_POLICY;
         /// <summary>
-        /// Determines if image orientation should be corrected so the image displays as it was intended
+        /// Determines if image orientation should be corrected so that the image displays as it was intended.
         /// </summary>
         /// <since_tizen> 5 </since_tizen>
         public static readonly int OrientationCorrection = NDalic.IMAGE_VISUAL_ORIENTATION_CORRECTION;
@@ -2484,7 +2484,7 @@ namespace Tizen.NUI
     }
 
     /// <summary>
-    /// An enum of text direction.
+    /// An enum of text directions.
     /// </summary>
     /// <since_tizen> 5 </since_tizen>
     public enum TextDirection
@@ -2503,7 +2503,7 @@ namespace Tizen.NUI
     }
 
     /// <summary>
-    /// An enum of vertical line alignment.
+    /// An enum of vertical line alignments.
     /// </summary>
     /// <since_tizen> 5 </since_tizen>
     public enum VerticalLineAlignment
@@ -2722,7 +2722,7 @@ namespace Tizen.NUI
     }
 
     /// <summary>
-    /// Enumeration type for the glyph type
+    /// Enumeration type for the glyph type.
     /// </summary>
     /// <since_tizen> 5 </since_tizen>
     public enum GlyphType
@@ -2737,6 +2737,22 @@ namespace Tizen.NUI
         /// </summary>
         /// <since_tizen> 5 </since_tizen>
         VectorGlyph
+    }
+
+    /// <summary>
+    /// Enumeration for Setting the rendering behavior of a Window.
+    /// </summary>
+    /// <since_tizen> 5 </since_tizen>
+    public enum RenderingBehaviorType
+    {
+        /// <summary>
+        /// Default. Only renders if required.
+        /// </summary>
+        IfRequired,
+        /// <summary>
+        /// Renders continuously.
+        /// </summary>
+        Continuously
     }
 
 }

@@ -140,13 +140,13 @@ namespace Tizen.NUI
         {
             StyleChangedEventArgs e = new StyleChangedEventArgs();
 
-            // Populate all members of "e" (StyleChangedEventArgs) with real data
+            // Populate all members of "e" (StyleChangedEventArgs) with real data.
             e.StyleManager = Registry.GetManagedBaseHandleFromNativePtr(styleManager) as StyleManager;
             e.StyleChange = styleChange;
 
             if (_styleManagerStyleChangedEventHandler != null)
             {
-                //here we send all data to user event handlers
+                //Here we send all data to user event handlers.
                 _styleManagerStyleChangedEventHandler(this, e);
             }
         }

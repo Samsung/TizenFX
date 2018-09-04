@@ -21,7 +21,7 @@ using static Interop;
 namespace Tizen.Multimedia
 {
     /// <summary>
-    /// Represents properties for the spherical video direction of view
+    /// Represents properties for the spherical video direction of view.
     /// </summary>
     /// <since_tizen> 5 </since_tizen>
     public struct DirectionOfView
@@ -74,7 +74,7 @@ namespace Tizen.Multimedia
     }
 
     /// <summary>
-    /// Represents properties for the spherical video field of view
+    /// Represents properties for the spherical video field of view.
     /// </summary>
     /// <since_tizen> 5 </since_tizen>
     public struct FieldOfView

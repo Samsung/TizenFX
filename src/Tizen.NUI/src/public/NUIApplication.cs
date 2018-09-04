@@ -62,10 +62,10 @@ namespace Tizen.NUI
         private Size2D _windowSize2D = null;
         private Position2D _windowPosition2D = null;
         /// <summary>
-        /// The constructor with window size and position
+        /// The constructor with window size and position.
         /// </summary>
-        /// <param name="windowSize">The window size</param>
-        /// <param name="windowPosition">The window position</param>
+        /// <param name="windowSize">The window size.</param>
+        /// <param name="windowPosition">The window position.</param>
         /// <since_tizen> 5 </since_tizen>
         /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
@@ -87,11 +87,11 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// The constructor with a stylesheet, window size and position
+        /// The constructor with a stylesheet, window size, and position.
         /// </summary>
-        /// <param name="styleSheet">The styleSheet url.</param>
-        /// <param name="windowSize">The window size</param>
-        /// <param name="windowPosition">The window position</param>
+        /// <param name="styleSheet">The styleSheet URL.</param>
+        /// <param name="windowSize">The window size.</param>
+        /// <param name="windowPosition">The window position.</param>
         /// <since_tizen> 5 </since_tizen>
         /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
@@ -114,12 +114,12 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// The constructor with a stylesheet, window mode, window size and position
+        /// The constructor with a stylesheet, window mode, window size, and position.
         /// </summary>
-        /// <param name="styleSheet">The styleSheet url</param>
-        /// <param name="windowMode">The windowMode</param>
-        /// <param name="windowSize">The window size</param>
-        /// <param name="windowPosition">The window position</param>
+        /// <param name="styleSheet">The styleSheet URL.</param>
+        /// <param name="windowMode">The windowMode.</param>
+        /// <param name="windowSize">The window size.</param>
+        /// <param name="windowPosition">The window position.</param>
         /// <since_tizen> 5 </since_tizen>
         /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]

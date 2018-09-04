@@ -39,7 +39,7 @@ namespace Tizen.Multimedia
         /// </summary>
         /// <seealso cref="SampleRate"/>
         /// <since_tizen> 3 </since_tizen>
-        public static readonly int MaxSampleRate = 48000;
+        public static readonly int MaxSampleRate = 192000;
 
         internal IntPtr _handle = IntPtr.Zero;
 
@@ -321,7 +321,7 @@ namespace Tizen.Multimedia
         /// <summary>
         /// Initializes a new instance of the AudioCapture class with the specified sample rate, channel, and sampleType.
         /// </summary>
-        /// <param name="sampleRate">The audio sample rate (8000 ~ 48000Hz).</param>
+        /// <param name="sampleRate">The audio sample rate (8000 ~ 192000Hz).</param>
         /// <param name="channel">The audio channel type.</param>
         /// <param name="sampleType">The audio sample type.</param>
         /// <exception cref="ArgumentOutOfRangeException">
@@ -386,7 +386,7 @@ namespace Tizen.Multimedia
         /// <summary>
         /// Initializes a new instance of the AsyncAudioCapture class with the specified sample rate, channel and sampleType.
         /// </summary>
-        /// <param name="sampleRate">The audio sample rate (8000 ~ 48000Hz).</param>
+        /// <param name="sampleRate">The audio sample rate (8000 ~ 192000Hz).</param>
         /// <param name="channel">The audio channel type.</param>
         /// <param name="sampleType">The audio sample type.</param>
         /// <exception cref="ArgumentOutOfRangeException">

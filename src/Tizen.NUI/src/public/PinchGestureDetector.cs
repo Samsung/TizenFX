@@ -63,7 +63,7 @@ namespace Tizen.NUI
 
             //Release your own unmanaged resources here.
             //You should not access any managed member here except static instance.
-            //because the execution order of Finalizes is non-deterministic.
+            //Because the execution order of Finalizes is non-deterministic.
 
 
             if (swigCPtr.Handle != global::System.IntPtr.Zero)
@@ -172,13 +172,13 @@ namespace Tizen.NUI
         {
             DetectedEventArgs e = new DetectedEventArgs();
 
-            // Populate all members of "e" (DetectedEventArgs) with real data
+            // Populate all members of "e" (DetectedEventArgs) with real data.
             e.View = Registry.GetManagedBaseHandleFromNativePtr(actor) as View;
             e.PinchGesture = Tizen.NUI.PinchGesture.GetPinchGestureFromPtr(pinchGesture);
 
             if (_pinchGestureEventHandler != null)
             {
-                //here we send all data to user event handlers
+                //Here we send all data to user event handlers.
                 _pinchGestureEventHandler(this, e);
             }
 

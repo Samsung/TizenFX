@@ -22,7 +22,7 @@ using static Interop;
 namespace Tizen.Multimedia
 {
     /// <summary>
-    /// Represents properties for the variant information
+    /// Represents properties for the variant information.
     /// </summary>
     /// <since_tizen> 5 </since_tizen>
     public struct VariantInfo
@@ -42,7 +42,7 @@ namespace Tizen.Multimedia
         }
 
         /// <summary>
-        /// Gets or sets the maximum limit of the available bandwidth. (-1 = no limit)
+        /// Gets or sets the maximum limit of the available bandwidth. (-1 = no limit).
         /// </summary>
         /// <since_tizen> 5 </since_tizen>
         public int Bandwidth
@@ -52,7 +52,7 @@ namespace Tizen.Multimedia
         }
 
         /// <summary>
-        /// Gets or sets the maximum limit of the available width. (-1 = no limit)
+        /// Gets or sets the maximum limit of the available width. (-1 = no limit).
         /// </summary>
         /// <since_tizen> 5 </since_tizen>
         public int Width
@@ -62,7 +62,7 @@ namespace Tizen.Multimedia
         }
 
         /// <summary>
-        /// Gets or sets the maximum limit of the available height. (-1 = no limit)
+        /// Gets or sets the maximum limit of the available height. (-1 = no limit).
         /// </summary>
         /// <since_tizen> 5 </since_tizen>
         public int Height

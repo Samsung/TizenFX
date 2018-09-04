@@ -93,7 +93,7 @@ namespace Tizen.NUI
             private LongPressGesture _longPressGesture;
 
             /// <summary>
-            /// View - the attached view.
+            /// View the attached view.
             /// </summary>
             /// <since_tizen> 5 </since_tizen>
             /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
@@ -145,7 +145,7 @@ namespace Tizen.NUI
             {
                 lock (this)
                 {
-                    // Restricted to only one listener
+                    // Restricted to only one listener.
                     if (_longPressGestureEventHandler == null)
                     {
                         _longPressGestureEventHandler += value;
@@ -174,13 +174,13 @@ namespace Tizen.NUI
         {
             DetectedEventArgs e = new DetectedEventArgs();
 
-            // Populate all members of "e" (LongPressGestureEventArgs) with real data
+            // Populate all members of "e" (LongPressGestureEventArgs) with real data.
             e.View = Registry.GetManagedBaseHandleFromNativePtr(actor) as View;
             e.LongPressGesture = Tizen.NUI.LongPressGesture.GetLongPressGestureFromPtr(longPressGesture);
 
             if (_longPressGestureEventHandler != null)
             {
-                //here we send all data to user event handlers
+                //Here we send all data to user event handlers.
                 _longPressGestureEventHandler(this, e);
             }
 
@@ -208,7 +208,7 @@ namespace Tizen.NUI
         /// Creates an initialized LongPressGestureDetector with the number of touches required.<br />
         /// A long press gesture will be emitted from this detector if the number of fingers touching the screen is equal to the touches required.<br />
         /// </summary>
-        /// <param name="touchesRequired">The number of touches required</param>
+        /// <param name="touchesRequired">The number of touches required.</param>
         /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public LongPressGestureDetector(uint touchesRequired) : this(NDalicPINVOKE.LongPressGestureDetector_New__SWIG_1(touchesRequired), true)
@@ -221,8 +221,8 @@ namespace Tizen.NUI
         /// Creates an initialized LongPressGestureDetector with the minimum and maximum number of touches required.<br />
         /// A long press gesture will be emitted from this detector if the number of fingers touching the screen falls between the minimum and maximum touches set.<br />
         /// </summary>
-        /// <param name="minTouches">The minimum number of touches required</param>
-        /// <param name="maxTouches">The maximum number of touches required</param>
+        /// <param name="minTouches">The minimum number of touches required.</param>
+        /// <param name="maxTouches">The maximum number of touches required.</param>
         /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public LongPressGestureDetector(uint minTouches, uint maxTouches) : this(NDalicPINVOKE.LongPressGestureDetector_New__SWIG_2(minTouches, maxTouches), true)
@@ -258,7 +258,7 @@ namespace Tizen.NUI
 
         /// <summary>
         /// Sets the number of touches required.<br />
-        /// The number of touches corresponds to the number of fingers a user has on the screen. The default is 1.<br />
+        /// The number of touches corresponds to the number of fingers a user has on the screen. The default value is 1.<br />
         /// </summary>
         /// <param name="touches">Touches required</param>
         /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
@@ -272,8 +272,8 @@ namespace Tizen.NUI
         /// <summary>
         /// Sets the minimum and maximum touches required.
         /// </summary>
-        /// <param name="minTouches">Minimum Touches required</param>
-        /// <param name="maxTouches">Maximum Touches required</param>
+        /// <param name="minTouches">Minimum touches required.</param>
+        /// <param name="maxTouches">Maximum touches required.</param>
         /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void SetTouchesRequired(uint minTouches, uint maxTouches)
