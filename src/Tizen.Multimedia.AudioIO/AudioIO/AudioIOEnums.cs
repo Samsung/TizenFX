@@ -89,6 +89,16 @@ namespace Tizen.Multimedia
         /// <summary>
         /// Signed 16-bit audio samples.
         /// </summary>
-        S16Le
+        S16Le,
+        /// <summary>
+        /// Signed 24-bit audio samples.
+        /// </summary>
+        /// <since_tizen> 5 </since_tizen>
+        S24Le,
+        /// <summary>
+        /// Signed 24-bit (packed in 32-bit) audio samples.
+        /// </summary>
+        /// <since_tizen> 5 </since_tizen>
+        S24LePacked
     }
 }
