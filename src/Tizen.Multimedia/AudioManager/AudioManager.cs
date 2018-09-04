@@ -227,12 +227,12 @@ namespace Tizen.Multimedia
         private static readonly object _audioDeviceRunningLock = new object();
 
         /// <summary>
-        /// Occurs when the audio stream started actually to running on device.
+        /// Occurs when the audio stream started actually to run on the device.
         /// </summary>
         /// <remarks>
-        /// If this event is invoked once and audio stream is still running on device,<br/>
-        /// it will not invoked any more even if more audio stream runs again,<br/>
-        /// until all streams are stoped and another stream runs again.
+        /// If this event is invoked once and the audio stream is still running on the device,<br/>
+        /// this event will not be invoked anymore, even if there are more audio streams to run.<br/>
+        /// This event is invoked only when all streams are stopped and a new stream starts to run.
         /// </remarks>
         /// <exception cref="InvalidOperationException">
         /// AudioManager failed to communicate internally or allocate memory.

@@ -19,7 +19,7 @@ using System;
 namespace Tizen.Applications.RPCPort
 {
     /// <summary>
-    /// Abstract class for making a proxy class for RPC
+    /// Abstract class for creating a proxy class for RPC.
     /// </summary>
     /// <since_tizen> 5 </since_tizen>
     public abstract class ProxyBase : IDisposable
@@ -31,21 +31,21 @@ namespace Tizen.Applications.RPCPort
         private IntPtr _proxy;
 
         /// <summary>
-        /// Gets Port object
+        /// Gets Port object.
         /// </summary>
         /// <since_tizen> 5 </since_tizen>
         protected Port Port { get; private set; }
 
         /// <summary>
-        /// Gets Port object for asynchronous events
+        /// Gets Port object for asynchronous events.
         /// </summary>
         /// <since_tizen> 5 </since_tizen>
         protected Port CallbackPort { get; private set; }
 
         /// <summary>
-        /// Constructor for this class
+        /// Constructor for this class.
         /// </summary>
-        /// <exception cref="InvalidIOException">Thrown when internal IO error happens</exception>
+        /// <exception cref="InvalidIOException">Thrown when internal IO error occurs.</exception>
         /// <since_tizen> 5 </since_tizen>
         public ProxyBase()
         {
@@ -62,13 +62,13 @@ namespace Tizen.Applications.RPCPort
         }
 
         /// <summary>
-        /// Connects to port
+        /// Connects to port.
         /// </summary>
-        /// <param name="appid">The target stub app ID</param>
-        /// <param name="port">The name of rpc port</param>
-        /// <exception cref="InvalidIDException">Thrown when not available app ID is used</exception>
-        /// <exception cref="InvalidIOException">Thrown when internal IO error happens</exception>
-        /// <exception cref="PermissionDeniedException">Thrown when the permission is denied</exception>
+        /// <param name="appid">The target stub app ID.</param>
+        /// <param name="port">The name of the RPC port.</param>
+        /// <exception cref="InvalidIDException">Thrown when not available app ID is used.</exception>
+        /// <exception cref="InvalidIOException">Thrown when an internal IO error occurs.</exception>
+        /// <exception cref="PermissionDeniedException">Thrown when the permission is denied.</exception>
         /// <privilege>http://tizen.org/privilege/datasharing</privilege>
         /// <privilege>http://tizen.org/privilege/appmanager.launch</privilege>
         /// <since_tizen> 5 </since_tizen>
@@ -87,11 +87,11 @@ namespace Tizen.Applications.RPCPort
         }
 
         /// <summary>
-        /// Gets a port
+        /// Gets a port.
         /// </summary>
-        /// <param name="t">The type of port</param>
-        /// <returns>Port object</returns>
-        /// <exception cref="InvalidIOException">Thrown when internal IO error happens</exception>
+        /// <param name="t">The type of port.</param>
+        /// <returns>Port object.</returns>
+        /// <exception cref="InvalidIOException">Thrown when an internal IO error occurs.</exception>
         /// <since_tizen> 5 </since_tizen>
         protected Port GetPort(Port.Type t)
         {
@@ -108,35 +108,35 @@ namespace Tizen.Applications.RPCPort
         }
 
         /// <summary>
-        /// Abstract method for receiving connected event
+        /// Abstract method for receiving connected event.
         /// </summary>
-        /// <param name="endPoint">The target stub app ID</param>
-        /// <param name="portName">The name of the port</param>
-        /// <param name="port">Port object for reading and writing</param>
+        /// <param name="endPoint">The target stub app ID.</param>
+        /// <param name="portName">The name of the RPC port.</param>
+        /// <param name="port">Port object for reading and writing.</param>
         /// <since_tizen> 5 </since_tizen>
         protected abstract void OnConnectedEvent(string endPoint, string portName, Port port);
 
         /// <summary>
-        /// Abstract method for receiving disconnected event
+        /// Abstract method for receiving disconnected event.
         /// </summary>
-        /// <param name="endPoint">The target stub app ID</param>
-        /// <param name="portName">The name of the port</param>
+        /// <param name="endPoint">The target stub app ID.</param>
+        /// <param name="portName">The name of the port.</param>
         /// <since_tizen> 5 </since_tizen>
         protected abstract void OnDisconnectedEvent(string endPoint, string portName);
 
         /// <summary>
-        /// Abstract method called when the proxy received data from stub
+        /// Abstract method called when the proxy receives data from stub.
         /// </summary>
-        /// <param name="endPoint">The target stub app ID</param>
-        /// <param name="portName">The name of the port</param>
+        /// <param name="endPoint">The target stub app ID.</param>
+        /// <param name="portName">The name of the RPC port.</param>
         /// <since_tizen> 5 </since_tizen>
         protected abstract void OnReceivedEvent(string endPoint, string portName);
 
         /// <summary>
-        /// Abstract method for receiving rejected event
+        /// Abstract method for receiving rejected event.
         /// </summary>
-        /// <param name="endPoint">The target stub app ID</param>
-        /// <param name="portName">The name of the port</param>
+        /// <param name="endPoint">The target stub app ID.</param>
+        /// <param name="portName">The name of the RPC port.</param>
         /// <since_tizen> 5 </since_tizen>
         protected abstract void OnRejectedEvent(string endPoint, string portName);
 
@@ -183,7 +183,7 @@ namespace Tizen.Applications.RPCPort
         }
 
         /// <summary>
-        /// Finalizer of the class ProxyBase
+        /// Finalizer of the class ProxyBase.
         /// </summary>
         ~ProxyBase()
         {
@@ -191,7 +191,7 @@ namespace Tizen.Applications.RPCPort
         }
 
         /// <summary>
-        /// Release all resources used by the class ProxyBase
+        /// Release all resources used by the class ProxyBase.
         /// </summary>
         /// <since_tizen> 5 </since_tizen>
         public void Dispose()

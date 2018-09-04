@@ -30,12 +30,12 @@ namespace Tizen.System
         /// <since_tizen> 5 </since_tizen>
         Cpu = Interop.Device.PowerLock.Cpu,
         /// <summary>
-        /// Display normal lock
+        /// Display the normal lock.
         /// </summary>
         /// <since_tizen> 5 </since_tizen>
         DisplayNormal = Interop.Device.PowerLock.DisplayNormal,
         /// <summary>
-        /// Display dim lock
+        /// Display the dim lock.
         /// </summary>
         /// <since_tizen> 5 </since_tizen>
         DisplayDim = Interop.Device.PowerLock.DisplayDim,
@@ -106,7 +106,7 @@ namespace Tizen.System
         /// </remarks>
         /// <since_tizen> 5 </since_tizen>
         /// <param name="type">
-        /// The power type to request lock
+        /// The power type to request lock.
         /// </param>
         /// <param name="timeout">
         /// The positive number in milliseconds or 0 for the permanent lock.
@@ -133,7 +133,7 @@ namespace Tizen.System
         /// </summary>
         /// <since_tizen> 5 </since_tizen>
         /// <param name="type">
-        /// The power type to request lock
+        /// The power type to request lock.
         /// </param>
         /// <exception cref="ArgumentException">When an invalid parameter value is set.</exception>
         /// <exception cref="UnauthorizedAccessException">If the privilege is not set.</exception>

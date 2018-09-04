@@ -22,7 +22,7 @@ using System.ComponentModel;
 namespace Tizen.NUI
 {
     /// <summary>
-    /// Specifically manages the input method framework which enables the virtual or hardware keyboards.
+    /// Specifically manages the input method framework (IMF) that enables the virtual or hardware keyboards.
     /// </summary>
     /// <since_tizen> 5 </since_tizen>
     public class InputMethodContext : BaseHandle
@@ -57,7 +57,7 @@ namespace Tizen.NUI
 
             if (type == DisposeTypes.Explicit)
             {
-                //Called by User
+                //Called by User.
                 //Release your own managed resources here.
                 //You should release all of your own disposable objects here.
 
@@ -65,7 +65,7 @@ namespace Tizen.NUI
 
             //Release your own unmanaged resources here.
             //You should not access any managed member here except static instance.
-            //because the execution order of Finalizes is non-deterministic.
+            //Because the execution order of Finalizes is non-deterministic.
 
             if (_keyboardTypeChangedEventCallback != null)
             {
@@ -109,10 +109,10 @@ namespace Tizen.NUI
                 return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, IntPtr.Zero) : obj.swigCPtr;
             }
 
-            //A Flag to check who called Dispose(). (By User or DisposeQueue)
+            //A flag to check who called Dispose(). (By User or DisposeQueue)
             private bool isDisposeQueued = false;
             /// <summary>
-            /// A Flat to check if it is already disposed.
+            /// A flag to check if it is already disposed.
             /// </summary>
             /// <since_tizen> 5 </since_tizen>
             protected bool disposed = false;
@@ -166,7 +166,7 @@ namespace Tizen.NUI
 
                 if (type == DisposeTypes.Explicit)
                 {
-                    //Called by User
+                    //Called by User.
                     //Release your own managed resources here.
                     //You should release all of your own disposable objects here.
 
@@ -328,7 +328,7 @@ namespace Tizen.NUI
             //A Flag to check who called Dispose(). (By User or DisposeQueue)
             private bool isDisposeQueued = false;
             /// <summary>
-            /// A Flat to check if it is already disposed.
+            /// A Flag to check if it is already disposed.
             /// </summary>
             /// <since_tizen> 5 </since_tizen>
             protected bool disposed = false;
@@ -383,7 +383,7 @@ namespace Tizen.NUI
 
                 if (type == DisposeTypes.Explicit)
                 {
-                    //Called by User
+                    //Called by User.
                     //Release your own managed resources here.
                     //You should release all of your own disposable objects here.
 
@@ -391,7 +391,7 @@ namespace Tizen.NUI
 
                 //Release your own unmanaged resources here.
                 //You should not access any managed member here except static instance.
-                //because the execution order of Finalizes is non-deterministic.
+                //Because the execution order of Finalizes is non-deterministic.
 
                 if (swigCPtr.Handle != IntPtr.Zero)
                 {
@@ -455,7 +455,7 @@ namespace Tizen.NUI
             }
 
             /// <summary>
-            /// The current text string.
+            /// The current cursor position.
             /// </summary>
             /// <since_tizen> 5 </since_tizen>
             public int CursorPosition
@@ -493,7 +493,7 @@ namespace Tizen.NUI
             }
 
             /// <summary>
-            /// Flags if preedit reset is required.
+            /// Flags if the pre-edit reset is required.
             /// </summary>
             /// <since_tizen> 5 </since_tizen>
             public bool PreeditResetRequired
@@ -514,7 +514,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Destroy the context of the IMF.<br/>
+        /// Destroys the context of the IMF.<br/>
         /// </summary>
         /// <since_tizen> 5 </since_tizen>
         public void DestroyContext()
@@ -524,7 +524,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Destroy the context of the IMF.<br/>
+        /// Destroys the context of the IMF.<br/>
         /// </summary>
         /// <since_tizen> 5 </since_tizen>
         /// Please do not use! This will be deprecated, instead please USE Tizen.NUI.InputMethodContext.Instance.DestroyContext()!
@@ -562,8 +562,8 @@ namespace Tizen.NUI
 
         /// <summary>
         /// Activates the IMF.<br/>
-        /// It means that the text editing is started somewhere.<br/>
-        /// If the hardware keyboard isn't connected, then it will show the virtual keyboard.
+        /// It means that the text editing has started.<br/>
+        /// If the hardware keyboard is not connected, then it shows the virtual keyboard.
         /// </summary>
         /// <since_tizen> 5 </since_tizen>
         public void Activate()
@@ -574,7 +574,7 @@ namespace Tizen.NUI
 
         /// <summary>
         /// Deactivates the IMF.<br/>
-        /// It means that the text editing is finished somewhere.
+        /// It means that the text editing is complete.
         /// </summary>
         /// <since_tizen> 5 </since_tizen>
         public void Deactivate()
@@ -584,8 +584,8 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Gets the restoration status which controls if the keyboard is restored after the focus is lost and then regained.<br/>
-        /// If true, then the keyboard will be restored (activated) after focus is regained.
+        /// Gets the restoration status, which controls if the keyboard is restored after the focus is lost and then regained.<br/>
+        /// If true, then the keyboard will be restored (activated) after the focus is regained.
         /// </summary>
         /// <returns>The restoration status.</returns>
         /// <since_tizen> 5 </since_tizen>
@@ -599,7 +599,7 @@ namespace Tizen.NUI
         /// <summary>
         /// Sets the status whether the IMF has to restore the keyboard after losing focus.
         /// </summary>
-        /// <param name="toggle">True means that keyboard should be restored after the focus is lost and regained.</param>
+        /// <param name="toggle">True means that keyboard must be restored after the focus is lost and regained.</param>
         /// <since_tizen> 5 </since_tizen>
         public void SetRestoreAfterFocusLost(bool toggle)
         {
@@ -608,7 +608,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Sends a message reset to the preedit state or the IMF module.
+        /// Sends a message reset to the pre-edit state or the IMF module.
         /// </summary>
         /// <since_tizen> 5 </since_tizen>
         public new void Reset()
@@ -618,7 +618,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Notifies the IMF context that the cursor position has changed, required for features like auto-capitalization.
+        /// Notifies the IMF context that the cursor position has changed, required for features such as auto-capitalization.
         /// </summary>
         /// <since_tizen> 5 </since_tizen>
         public void NotifyCursorPosition()
@@ -685,7 +685,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Returns the text direction of the keyboard's current input language.
+        /// Returns the text direction of the current input language of the keyboard.
         /// </summary>
         /// <returns>The direction of the text.</returns>
         /// <since_tizen> 5 </since_tizen>
@@ -701,9 +701,9 @@ namespace Tizen.NUI
         /// The position is relative to whether the keyboard is visible or not.<br/>
         /// If the keyboard is not visible, then the position will be off the screen.<br/>
         /// If the keyboard is not being shown when this method is called, the keyboard is partially setup (IMFContext) to get/>
-        /// the values then taken down. So ideally, GetInputMethodArea() should be called after Show().
+        /// the values then taken down. So ideally, GetInputMethodArea() must be called after Show().
         /// </summary>
-        /// <returns>Rectangle which is keyboard panel x, y, width, height.</returns>
+        /// <returns>Rectangle which is keyboard panel x, y, width, and height.</returns>
         /// <since_tizen> 5 </since_tizen>
         public Rectangle GetInputMethodArea()
         {
@@ -719,7 +719,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Sets up the input-panel specific data.
+        /// Sets up the input panel specific data.
         /// </summary>
         /// <param name="text">The specific data to be set to the input panel.</param>
         /// <since_tizen> 5 </since_tizen>
@@ -754,7 +754,7 @@ namespace Tizen.NUI
 
         /// <summary>
         /// Sets the return key on the input panel to be visible or invisible.<br/>
-        /// The default is true.
+        /// The default value is true.
         /// </summary>
         /// <param name="visible">True if the return key is visible (enabled), false otherwise.</param>
         /// <since_tizen> 5 </since_tizen>
@@ -810,7 +810,7 @@ namespace Tizen.NUI
 
         /// <summary>
         /// Gets the current language locale of the input panel.<br/>
-        /// For example, en_US, en_GB, en_PH, fr_FR, ...
+        /// For example, en_US, en_GB, en_PH, fr_FR, and so on.
         /// </summary>
         /// <returns>The current language locale of the input panel.</returns>
         /// <since_tizen> 5 </since_tizen>
@@ -835,7 +835,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Gets/Sets whether the IM context allow to use the text prediction.
+        /// Gets or sets whether the IM context allows to use the text prediction.
         /// </summary>
         /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
@@ -923,7 +923,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// InputMethodContext event received event arguments.
+        /// InputMethodContext event receives event arguments.
         /// </summary>
         /// <since_tizen> 5 </since_tizen>
         public class EventReceivedEventArgs : EventArgs
@@ -939,7 +939,7 @@ namespace Tizen.NUI
             }
 
             /// <summary>
-            /// EventData
+            /// EventData.
             /// </summary>
             /// <since_tizen> 5 </since_tizen>
             public EventData EventData
@@ -1023,7 +1023,7 @@ namespace Tizen.NUI
         public class StatusChangedEventArgs : EventArgs
         {
             /// <summary>
-            /// InputMethodContext status
+            /// InputMethodContext status.
             /// </summary>
             /// <since_tizen> 5 </since_tizen>
             public bool StatusChanged
@@ -1084,7 +1084,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// InputMethodContext resized event.
+        /// InputMethodContext resized event arguments.
         /// </summary>
         /// <since_tizen> 5 </since_tizen>
         public class ResizedEventArgs : EventArgs
@@ -1150,13 +1150,13 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// InputMethodContext language changed event args.
+        /// InputMethodContext language changed event arguments.
         /// </summary>
         /// <since_tizen> 5 </since_tizen>
         public class LanguageChangedEventArgs : EventArgs
         {
             /// <summary>
-            /// language changed.
+            /// Language changed.
             /// </summary>
             /// <since_tizen> 5 </since_tizen>
             public int LanguageChanged
@@ -1222,7 +1222,7 @@ namespace Tizen.NUI
         public class KeyboardTypeChangedEventArgs : EventArgs
         {
             /// <summary>
-            /// InputMethodContext keyboard type
+            /// InputMethodContext keyboard type.
             /// </summary>
             /// <since_tizen> 5 </since_tizen>
             public KeyboardType KeyboardType
@@ -1310,7 +1310,7 @@ namespace Tizen.NUI
             /// <since_tizen> 5 </since_tizen>
             Void,
             /// <summary>
-            /// Pre-Edit changed.
+            /// Pre-edit changed.
             /// </summary>
             /// <since_tizen> 5 </since_tizen>
             Preedit,

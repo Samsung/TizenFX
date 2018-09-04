@@ -1,5 +1,5 @@
-/*
- * Copyright (c) 2016 Samsung Electronics Co., Ltd All Rights Reserved
+﻿/*
+ * Copyright (c) 2018 Samsung Electronics Co., Ltd All Rights Reserved
  *
  * Licensed under the Apache License, Version 2.0 (the License);
  * you may not use this file except in compliance with the License.
@@ -14,25 +14,14 @@
  * limitations under the License.
  */
 
-using System;
- 
-namespace Tizen.Multimedia
-{
-    /// <summary>
-    /// Specifies the audio device states.
-    /// </summary>
-    /// <since_tizen> 3 </since_tizen>
-    [Obsolete("Deprecated since API level 5.")]
-    public enum AudioDeviceState
-    {
-        /// <summary>
-        /// Deactivated state.
-        /// </summary>
-        Deactivated,
+using Microsoft.CodeAnalysis.CSharp.Syntax;
 
-        /// <summary>
-        /// Activated state.
-        /// </summary>
-        Activated
+namespace GenDummy.Processors
+{
+    public interface IProcessor
+    {
+        BlockSyntax DummyBlock { get; set; }
+
+        MemberDeclarationSyntax Process(MemberDeclarationSyntax member);
     }
 }
