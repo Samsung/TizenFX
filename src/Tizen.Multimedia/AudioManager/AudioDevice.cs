@@ -236,6 +236,60 @@ namespace Tizen.Multimedia
         }
 
         /// <summary>
+        /// Gets or sets the device's 'avoid resampling' property.
+        /// </summary>
+        /// <remarks>
+        /// This device should be <see cref="AudioDeviceType.UsbAudio"/> type and <see cref="AudioDeviceIoDirection.Output"/> direction.
+        /// This property is not enabled as default. With this enabled, this device will use the first stream's original sample format
+        /// and rate without resampling if supported.
+        /// </remarks>
+        /// <exception cref="ArgumentException">This device is not valid or is disconnected.</exception>
+        /// <exception cref="InvalidOperationException">This device is not <see cref="AudioDeviceType.UsbAudio"/> type or is not <see cref="AudioDeviceIoDirection.Output"/> direction.</exception>
+        /// <since_tizen> 5 </since_tizen>
+        public bool AvoidResampling
+        {
+            get
+            {
+                Interop.AudioDevice.GetAvoidResampling(_id, out bool enabled).
+                    ThrowIfError("Failed to get avoid-resampling property of the device");
+
+                return enabled;
+            }
+            set
+            {
+                Interop.AudioDevice.SetAvoidResampling(_id, value).
+                    ThrowIfError("Failed to set avoid-resampling property of the device");
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the restriction of stream type only for media.
+        /// </summary>
+        /// <remarks>
+        /// This device should be <see cref="AudioDeviceType.UsbAudio"/> type and <see cref="AudioDeviceIoDirection.Output"/> direction.
+        ///	This property is not enabled as default. With this enabled, no other stream types except <see cref="AudioStreamType.Media"/>
+        ///	are not allowed to this device.
+        /// </remarks>
+        /// <exception cref="ArgumentException">This device is not valid or is disconnected.</exception>
+        /// <exception cref="InvalidOperationException">This device is not <see cref="AudioDeviceType.UsbAudio"/> type or is not <see cref="AudioDeviceIoDirection.Output"/> direction.</exception>
+        /// <since_tizen> 5 </since_tizen>
+        public bool MediaStreamOnly
+        {
+            get
+            {
+                Interop.AudioDevice.GetMediaStreamOnly(_id, out bool enabled).
+                    ThrowIfError("Failed to get media-stream-only property of the device");
+
+                return enabled;
+            }
+            set
+            {
+                Interop.AudioDevice.SetMediaStreamOnly(_id, value).
+                    ThrowIfError("Failed to set media-stream-only property of the device");
+            }
+        }
+
+        /// <summary>
         /// Returns a string that represents the current object.
         /// </summary>
         /// <returns>A string that represents the current object.</returns>

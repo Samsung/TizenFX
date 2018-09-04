@@ -78,6 +78,18 @@ namespace Tizen.Multimedia
             [DllImport(Libraries.SoundManager, EntryPoint = "sound_manager_get_sample_rate_by_id")]
             internal static extern AudioManagerError GetSampleRate(int deviceId, out uint rate);
 
+            [DllImport(Libraries.SoundManager, EntryPoint = "sound_manager_set_avoid_resampling_by_id")]
+            internal static extern AudioManagerError SetAvoidResampling(int deviceId, bool enable);
+
+            [DllImport(Libraries.SoundManager, EntryPoint = "sound_manager_get_avoid_resampling_by_id")]
+            internal static extern AudioManagerError GetAvoidResampling(int deviceId, out bool enabled);
+
+            [DllImport(Libraries.SoundManager, EntryPoint = "sound_manager_set_media_stream_only_by_id")]
+            internal static extern AudioManagerError SetMediaStreamOnly(int deviceId, bool enable);
+
+            [DllImport(Libraries.SoundManager, EntryPoint = "sound_manager_get_media_stream_only_by_id")]
+            internal static extern AudioManagerError GetMediaStreamOnly(int deviceId, out bool enabled);
+
             [DllImport(Libraries.SoundManager, EntryPoint = "sound_manager_add_device_connection_changed_cb")]
             internal static extern AudioManagerError AddDeviceConnectionChangedCallback(
                 AudioDeviceOptions deviceMask, ConnectionChangedCallback callback, IntPtr userData, out int id);
