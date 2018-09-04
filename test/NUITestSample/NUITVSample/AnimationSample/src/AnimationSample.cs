@@ -264,7 +264,7 @@ namespace AnimationSample
                 }
                 else
                 {
-                    return 34.0f;
+                    return 25.0f;
                 }
             }
         }
@@ -282,7 +282,7 @@ namespace AnimationSample
                 }
                 else
                 {
-                    return 65.0f;
+                    return 45.0f;
                 }
             }
         }
