@@ -1239,7 +1239,7 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        /// Event argument passed through ChildAdded event
+        /// Event argument passed through the ChildAdded event.
         /// </summary>
         /// <since_tizen> 5 </since_tizen>
         /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
@@ -1247,14 +1247,14 @@ namespace Tizen.NUI.BaseComponents
         public class ChildAddedEventArgs : EventArgs
         {
             /// <summary>
-            /// Added child View at moment
+            /// Added child view at moment.
             /// </summary>
             /// <since_tizen> 5 </since_tizen>
             public View Added { get; set; }
         }
 
         /// <summary>
-        /// Event when a child is added
+        /// Event when a child is added.
         /// </summary>
         /// <since_tizen> 5 </since_tizen>
         /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
@@ -1312,7 +1312,7 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        /// Event argument passed through ChildRemoved event
+        /// Event argument passed through the ChildRemoved event.
         /// </summary>
         /// <since_tizen> 5 </since_tizen>
         /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
@@ -1320,14 +1320,14 @@ namespace Tizen.NUI.BaseComponents
         public class ChildRemovedEventArgs : EventArgs
         {
             /// <summary>
-            /// Removed child View at moment
+            /// Removed child view at moment.
             /// </summary>
             /// <since_tizen> 5 </since_tizen>
             public View Removed { get; set; }
         }
 
         /// <summary>
-        /// Event when a child is removed
+        /// Event when a child is removed.
         /// </summary>
         /// <since_tizen> 5 </since_tizen>
         /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
@@ -3687,10 +3687,10 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        /// Gets the parent layer of this view.If a view has no parent, this method does nothing.
+        /// Gets the parent layer of this view.If a view has no parent, this method does not do anything.
         /// </summary>
         /// <pre>The view has been initialized. </pre>
-        /// <returns>the parent layer of view </returns>
+        /// <returns>The parent layer of view </returns>
         /// <since_tizen> 5 </since_tizen>
         public Layer GetLayer()
         {
@@ -5392,10 +5392,10 @@ namespace Tizen.NUI.BaseComponents
 
         /// <summary>
         /// Perform an action on a visual registered to this view. <br />
-        /// Visuals will have actions, this API is used to perform one of these actions with the given attributes.
+        /// Visuals will have actions. This API is used to perform one of these actions with the given attributes.
         /// </summary>
         /// <param name="propertyIndexOfVisual">The Property index of the visual.</param>
-        /// <param name="propertyIndexOfActionId">The action to perform.  See Visual to find supported actions.</param>
+        /// <param name="propertyIndexOfActionId">The action to perform. See Visual to find the supported actions.</param>
         /// <param name="attributes">Optional attributes for the action.</param>
         /// <since_tizen> 5 </since_tizen>
         public void DoAction(int propertyIndexOfVisual, int propertyIndexOfActionId, PropertyValue attributes)
