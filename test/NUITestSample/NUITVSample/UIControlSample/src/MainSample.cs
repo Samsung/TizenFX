@@ -45,7 +45,7 @@ namespace UIControlSample
             "ActivityIndicatorSample",
         };
 
-        private Vector3 TABLE_RELATIVE_SIZE = new Vector3(0.95f, 0.9f, 0.8f);
+        private Vector3 TABLE_RELATIVE_SIZE = new Vector3(0.95f, 0.8f, 0.9f);
         const int BUTTON_PRESS_ANIMATION_TIME = 350;
         private IExample currentSample;
         private ScrollView scrollView;
@@ -318,6 +318,7 @@ namespace UIControlSample
             // according to the screen resolution and dpi.
             ushort margin = 2;
             float tileParentMultiplier = 1.0f / EXAMPLES_PER_ROW;
+            Console.WriteLine("mTotalPage : " + mTotalPages +"\n");
             for (int t = 0; t < mTotalPages; t++)
             {
                 // Create Table

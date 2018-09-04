@@ -61,7 +61,7 @@ namespace FlexContainerSample
                 }
                 else
                 {
-                    return 26.0f;
+                    return 20.0f;
                 }
             }
         }
@@ -79,7 +79,7 @@ namespace FlexContainerSample
                 }
                 else
                 {
-                    return 30.0f;
+                    return 25.0f;
                 }
             }
         }
@@ -97,7 +97,7 @@ namespace FlexContainerSample
                 }
                 else
                 {
-                    return 65.0f;
+                    return 45.0f;
                 }
             }
         }
