@@ -2293,7 +2293,7 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        /// Enables Text selection using Shift key.
+        /// Enables selection of the text using the Shift key.
         /// </summary>
         /// <since_tizen> 5 </since_tizen>
         /// This will be released at Tizen.NET API Level 5, so currently this would be used as inhouse API.

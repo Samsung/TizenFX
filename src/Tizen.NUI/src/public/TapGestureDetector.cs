@@ -81,7 +81,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Event arguments that passed via the TapGestureEvent signal.
+        /// Event arguments that are passed via the TapGestureEvent signal.
         /// </summary>
         /// <since_tizen> 5 </since_tizen>
         /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.

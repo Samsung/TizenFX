@@ -54,7 +54,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Dispose
+        /// Dispose.
         /// </summary>
         /// <param name="type">Dispose Type</param>
         /// <since_tizen> 3 </since_tizen>
@@ -527,7 +527,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Destroy the context of the IMF.<br/>
+        /// Destroys the context of the IMF.<br/>
         /// </summary>
         /// <since_tizen> 5 </since_tizen>
         public void DestroyContext()
