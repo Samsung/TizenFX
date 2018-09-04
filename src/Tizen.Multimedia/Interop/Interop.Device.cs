@@ -61,7 +61,7 @@ namespace Tizen.Multimedia
             internal static extern AudioManagerError IsDeviceRunning(int deviceId, out bool isRunning);
 
             [DllImport(Libraries.SoundManager, EntryPoint = "sound_manager_get_supported_sample_formats_by_id")]
-            internal static extern AudioManagerError GetSupportedSampleFormats(int deviceId, out IntPtr formats, out uint numOfElems);
+            internal static extern AudioManagerError GetSupportedSampleFormats(int deviceId, out IntPtr formats, out uint numberOfElements);
 
             [DllImport(Libraries.SoundManager, EntryPoint = "sound_manager_set_sample_format_by_id")]
             internal static extern AudioManagerError SetSampleFormat(int deviceId, AudioSampleFormat format);
@@ -70,7 +70,7 @@ namespace Tizen.Multimedia
             internal static extern AudioManagerError GetSampleFormat(int deviceId, out AudioSampleFormat format);
 
             [DllImport(Libraries.SoundManager, EntryPoint = "sound_manager_get_supported_sample_rates_by_id")]
-            internal static extern AudioManagerError GetSupportedSampleRates(int deviceId, out IntPtr rates, out uint numOfElems);
+            internal static extern AudioManagerError GetSupportedSampleRates(int deviceId, out IntPtr rates, out uint numberOfElements);
 
             [DllImport(Libraries.SoundManager, EntryPoint = "sound_manager_set_sample_rate_by_id")]
             internal static extern AudioManagerError SetSampleRate(int deviceId, uint rate);

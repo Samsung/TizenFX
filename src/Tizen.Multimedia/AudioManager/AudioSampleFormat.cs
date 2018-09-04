@@ -16,6 +16,10 @@
 
 namespace Tizen.Multimedia
 {
+    /// <summary>
+    /// Specifies the audio sample formats.
+    /// </summary>
+    /// <since_tizen> 5 </since_tizen>
     public enum AudioSampleFormat
     {
         /// <summary>
@@ -26,16 +30,16 @@ namespace Tizen.Multimedia
         /// <summary>
         /// Signed 16 bit samples.
         /// </summary>
-        S16_LE,
+        S16LE,
 
         /// <summary>
         /// Signed 24 bit samples.
         /// </summary>
-        S24_LE,
+        S24LE,
 
         /// <summary>
         /// Signed 24 bit(packed in 32 bit) samples.
         /// </summary>
-        S24_32_LE,
+        S24PackedIn32LE,
     }
 }

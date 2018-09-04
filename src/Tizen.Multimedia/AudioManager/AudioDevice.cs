@@ -122,33 +122,30 @@ namespace Tizen.Multimedia
         /// <since_tizen> 5 </since_tizen>
         public IEnumerable<AudioSampleFormat> GetSupportedSampleFormats()
         {
-            IntPtr formats;
-            uint numOfElems;
-
-            Interop.AudioDevice.GetSupportedSampleFormats(_id, out formats, out numOfElems).
+            Interop.AudioDevice.GetSupportedSampleFormats(_id, out IntPtr formats, out uint numberOfElements).
                 ThrowIfError("Failed to get supported sample formats");
 
             return RetrieveFormats();
 
             IEnumerable<AudioSampleFormat> RetrieveFormats()
             {
-                int[] formatsRes = new int[numOfElems];
+                int[] formatsResult = new int[numberOfElements];
 
-                Marshal.Copy(formats, formatsRes, 0, (int)numOfElems);
+                Marshal.Copy(formats, formatsResult, 0, (int)numberOfElements);
                 Interop.Libc.Free(formats);
 
-                IEnumerable<AudioSampleFormat> res = formatsRes.OfType<AudioSampleFormat>();
-                foreach (AudioSampleFormat f in res)
+                IEnumerable<AudioSampleFormat> result = formatsResult.OfType<AudioSampleFormat>();
+                foreach (AudioSampleFormat f in result)
                 {
                     Log.Debug(Tag, $"supported sample format:{f}");
                 }
 
-                return res;
+                return result;
             }
         }
 
         /// <summary>
-        /// Gets or sets the device's sample format.
+        /// Sets the device's sample format.
         /// </summary>
         /// <value>The <see cref="AudioSampleFormat"/> of the device.</value>
         /// <remarks>
@@ -157,20 +154,28 @@ namespace Tizen.Multimedia
         /// <exception cref="InvalidOperationException">This device is not <see cref="AudioDeviceType.UsbAudio"/> type or is not <see cref="AudioDeviceIoDirection.Output"/> direction.</exception>
         /// </remarks>
         /// <since_tizen> 5 </since_tizen>
-        public AudioSampleFormat SampleFormat
+        public void SetSampleFormat(AudioSampleFormat format)
         {
-            get
-            {
-                Interop.AudioDevice.GetSampleFormat(_id, out AudioSampleFormat format).
-                    ThrowIfError("Failed to get sample format of the device");
-
-                return format;
-            }
-            set
-            {
-                Interop.AudioDevice.SetSampleFormat(_id, value).
+            Interop.AudioDevice.SetSampleFormat(_id, format).
                     ThrowIfError("Failed to set sample format of the device");
-            }
+        }
+
+        /// <summary>
+        /// Gets the device's sample format.
+        /// </summary>
+        /// <value>The <see cref="AudioSampleFormat"/> of the device.</value>
+        /// <remarks>
+        /// This device should be <see cref="AudioDeviceType.UsbAudio"/> type and <see cref="AudioDeviceIoDirection.Output"/> direction.
+        /// <exception cref="ArgumentException">This device is not valid or is disconnected.</exception>
+        /// <exception cref="InvalidOperationException">This device is not <see cref="AudioDeviceType.UsbAudio"/> type or is not <see cref="AudioDeviceIoDirection.Output"/> direction.</exception>
+        /// </remarks>
+        /// <since_tizen> 5 </since_tizen>
+        public AudioSampleFormat GetSampleFormat()
+        {
+            Interop.AudioDevice.GetSampleFormat(_id, out AudioSampleFormat format).
+                ThrowIfError("Failed to get sample format of the device");
+
+            return format;
         }
 
         /// <summary>
@@ -185,33 +190,30 @@ namespace Tizen.Multimedia
         /// <since_tizen> 5 </since_tizen>
         public IEnumerable<uint> GetSupportedSampleRates()
         {
-            IntPtr rates;
-            uint numOfElems;
-
-            Interop.AudioDevice.GetSupportedSampleRates(_id, out rates, out numOfElems).
+            Interop.AudioDevice.GetSupportedSampleRates(_id, out IntPtr rates, out uint numberOfElements).
                 ThrowIfError("Failed to get supported sample formats");
 
             return RetrieveRates();
 
             IEnumerable<uint> RetrieveRates()
             {
-                int[] ratesRes = new int[numOfElems];
+                int[] ratesResult = new int[numberOfElements];
 
-                Marshal.Copy(rates, ratesRes, 0, (int)numOfElems);
+                Marshal.Copy(rates, ratesResult, 0, (int)numberOfElements);
                 Interop.Libc.Free(rates);
 
-                IEnumerable<uint> res = ratesRes.OfType<uint>();
-                foreach (uint r in res)
+                IEnumerable<uint> result = ratesResult.OfType<uint>();
+                foreach (uint r in result)
                 {
                     Log.Debug(Tag, $"supported sample rate:{r}");
                 }
 
-                return res;
+                return result;
             }
         }
 
         /// <summary>
-        /// Gets or sets the device's sample rate.
+        /// Sets the device's sample rate.
         /// </summary>
         /// <remarks>
         /// This device should be <see cref="AudioDeviceType.UsbAudio"/> type and <see cref="AudioDeviceIoDirection.Output"/> direction.
@@ -219,24 +221,31 @@ namespace Tizen.Multimedia
         /// <exception cref="ArgumentException">This device is not valid or is disconnected.</exception>
         /// <exception cref="InvalidOperationException">This device is not <see cref="AudioDeviceType.UsbAudio"/> type or is not <see cref="AudioDeviceIoDirection.Output"/> direction.</exception>
         /// <since_tizen> 5 </since_tizen>
-        public uint SampleRate
+        public void SetSampleRate(uint rate)
         {
-            get
-            {
-                Interop.AudioDevice.GetSampleRate(_id, out uint rate).
-                    ThrowIfError("Failed to get sample rate of the device");
-
-                return rate;
-            }
-            set
-            {
-                Interop.AudioDevice.SetSampleRate(_id, value).
-                    ThrowIfError("Failed to set sample rate of the device");
-            }
+            Interop.AudioDevice.SetSampleRate(_id, rate).
+                ThrowIfError("Failed to set sample rate of the device");
         }
 
         /// <summary>
-        /// Gets or sets the device's 'avoid resampling' property.
+        /// Gets the device's sample rate.
+        /// </summary>
+        /// <remarks>
+        /// This device should be <see cref="AudioDeviceType.UsbAudio"/> type and <see cref="AudioDeviceIoDirection.Output"/> direction.
+        /// </remarks>
+        /// <exception cref="ArgumentException">This device is not valid or is disconnected.</exception>
+        /// <exception cref="InvalidOperationException">This device is not <see cref="AudioDeviceType.UsbAudio"/> type or is not <see cref="AudioDeviceIoDirection.Output"/> direction.</exception>
+        /// <since_tizen> 5 </since_tizen>
+        public uint GetSampleRate()
+        {
+            Interop.AudioDevice.GetSampleRate(_id, out uint rate).
+                ThrowIfError("Failed to get sample rate of the device");
+
+            return rate;
+        }
+
+        /// <summary>
+        /// Sets the device's 'avoid resampling' property.
         /// </summary>
         /// <remarks>
         /// This device should be <see cref="AudioDeviceType.UsbAudio"/> type and <see cref="AudioDeviceIoDirection.Output"/> direction.
@@ -246,24 +255,34 @@ namespace Tizen.Multimedia
         /// <exception cref="ArgumentException">This device is not valid or is disconnected.</exception>
         /// <exception cref="InvalidOperationException">This device is not <see cref="AudioDeviceType.UsbAudio"/> type or is not <see cref="AudioDeviceIoDirection.Output"/> direction.</exception>
         /// <since_tizen> 5 </since_tizen>
-        public bool AvoidResampling
+        public void SetAvoidResampling(bool enable)
         {
-            get
-            {
-                Interop.AudioDevice.GetAvoidResampling(_id, out bool enabled).
-                    ThrowIfError("Failed to get avoid-resampling property of the device");
+            Interop.AudioDevice.SetAvoidResampling(_id, enable).
+                ThrowIfError("Failed to set avoid-resampling property of the device");
 
-                return enabled;
-            }
-            set
-            {
-                Interop.AudioDevice.SetAvoidResampling(_id, value).
-                    ThrowIfError("Failed to set avoid-resampling property of the device");
-            }
         }
 
         /// <summary>
-        /// Gets or sets the restriction of stream type only for media.
+        /// Gets the device's 'avoid resampling' property.
+        /// </summary>
+        /// <remarks>
+        /// This device should be <see cref="AudioDeviceType.UsbAudio"/> type and <see cref="AudioDeviceIoDirection.Output"/> direction.
+        /// This property is not enabled as default. With this enabled, this device will use the first stream's original sample format
+        /// and rate without resampling if supported.
+        /// </remarks>
+        /// <exception cref="ArgumentException">This device is not valid or is disconnected.</exception>
+        /// <exception cref="InvalidOperationException">This device is not <see cref="AudioDeviceType.UsbAudio"/> type or is not <see cref="AudioDeviceIoDirection.Output"/> direction.</exception>
+        /// <since_tizen> 5 </since_tizen>
+        public bool GetAvoidResampling()
+        {
+            Interop.AudioDevice.GetAvoidResampling(_id, out bool enabled).
+                ThrowIfError("Failed to get avoid-resampling property of the device");
+
+            return enabled;
+        }
+
+        /// <summary>
+        /// Sets the restriction of stream type only for media.
         /// </summary>
         /// <remarks>
         /// This device should be <see cref="AudioDeviceType.UsbAudio"/> type and <see cref="AudioDeviceIoDirection.Output"/> direction.
@@ -273,20 +292,29 @@ namespace Tizen.Multimedia
         /// <exception cref="ArgumentException">This device is not valid or is disconnected.</exception>
         /// <exception cref="InvalidOperationException">This device is not <see cref="AudioDeviceType.UsbAudio"/> type or is not <see cref="AudioDeviceIoDirection.Output"/> direction.</exception>
         /// <since_tizen> 5 </since_tizen>
-        public bool MediaStreamOnly
+        public void SetMediaStreamOnly(bool enable)
         {
-            get
-            {
-                Interop.AudioDevice.GetMediaStreamOnly(_id, out bool enabled).
-                    ThrowIfError("Failed to get media-stream-only property of the device");
+            Interop.AudioDevice.SetMediaStreamOnly(_id, enable).
+                ThrowIfError("Failed to set media-stream-only property of the device");
+        }
 
-                return enabled;
-            }
-            set
-            {
-                Interop.AudioDevice.SetMediaStreamOnly(_id, value).
-                    ThrowIfError("Failed to set media-stream-only property of the device");
-            }
+        /// <summary>
+        /// Gets the restriction of stream type only for media.
+        /// </summary>
+        /// <remarks>
+        /// This device should be <see cref="AudioDeviceType.UsbAudio"/> type and <see cref="AudioDeviceIoDirection.Output"/> direction.
+        ///	This property is not enabled as default. With this enabled, no other stream types except <see cref="AudioStreamType.Media"/>
+        ///	are not allowed to this device.
+        /// </remarks>
+        /// <exception cref="ArgumentException">This device is not valid or is disconnected.</exception>
+        /// <exception cref="InvalidOperationException">This device is not <see cref="AudioDeviceType.UsbAudio"/> type or is not <see cref="AudioDeviceIoDirection.Output"/> direction.</exception>
+        /// <since_tizen> 5 </since_tizen>
+        public bool GetMediaStreamOnly()
+        {
+            Interop.AudioDevice.GetMediaStreamOnly(_id, out bool enabled).
+                ThrowIfError("Failed to get media-stream-only property of the device");
+
+            return enabled;
         }
 
         /// <summary>
