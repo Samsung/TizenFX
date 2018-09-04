@@ -203,7 +203,7 @@ namespace Tizen.Multimedia
             NativePlayer.GetStreamingDownloadProgress(Handle, out start, out current).
                 ThrowIfFailed(this, "Failed to get download progress");
 
-            Log.Info(PlayerLog.Tag, "get download progress : " + start + ", " + current);
+            Log.Info(PlayerLog.Tag, $"get download progress : {start}, {current}");
 
             return new DownloadProgress(start, current);
         }
@@ -551,7 +551,7 @@ namespace Tizen.Multimedia
             NativePlayer.GetPlayPosition(Handle, out playPosition).
                 ThrowIfFailed(this, "Failed to get the play position of the player");
 
-            Log.Info(PlayerLog.Tag, "get play position : " + playPosition);
+            Log.Info(PlayerLog.Tag, $"get play position : {playPosition}");
 
             return playPosition;
         }
@@ -643,7 +643,7 @@ namespace Tizen.Multimedia
             NativePlayer.GetPlayPositionNanoseconds(Handle, out long playPosition).
                 ThrowIfFailed(this, "Failed to get the play position(nsec) of the player");
 
-            Log.Info(PlayerLog.Tag, "get play position(nsec) : " + playPosition);
+            Log.Info(PlayerLog.Tag, $"get play position(nsec) : {playPosition}");
 
             return playPosition;
         }
@@ -758,6 +758,97 @@ namespace Tizen.Multimedia
             }
 
             ret.ThrowIfFailed(this, "Failed to set the audio stream policy to the player");
+        }
+
+        /// <summary>
+        /// Set the relative ROI (Region Of Interest) area as a decimal fraction based on the video source.
+        /// It can be regarded as zooming operation because the specified video area will be rendered to fit to the display.
+        /// </summary>
+        /// <param name="scaleX">The ratio expressed as a decimal of x coordinate to the video width. (x/video width)
+        /// x coordinate means the base point located lower-left corner of the video area. valid range is [0, 1].</param>
+        /// <param name="scaleY">The ratio expressed as a decimal of y coordinate to the video height. (y/video height)
+        /// y coordinate means the base point located lower-left corner of the video area. valid range is [0, 1].</param>
+        /// <param name="scaleWidth">The ratio expressed as a decimal of ROI width to the video width. (ROI width/video width)
+        /// valid range is (0, 1].</param>
+        /// <param name="scaleHeight">The ratio expressed as a decimal of ROI height to the video height. (ROI height/video height)
+        /// valid range is (0, 1].</param>
+        /// <remarks>
+        /// This function requires the ratio of the each coordinate and size to the video resolution size
+        /// to guarantee of showing the same area for the dynamic resolution video content.
+        /// This function have to be called after setting <seealso cref="Display"/>
+        /// </remarks>
+        /// <exception cref="ObjectDisposedException">The player has already been disposed of.</exception>
+        /// <exception cref="InvalidOperationException">
+        ///     Operation failed; internal error.
+        ///     -or-<br/>
+        ///     The <see cref="PlayerDisplayType"/> is not set to <see cref="PlayerDisplayType.Overlay"/>.
+        ///     </exception>
+        /// <exception cref="ArgumentOutOfRangeException">
+        ///     <paramref name="scaleX"/> is less than 0.0 or greater than 1.0.<br/>
+        ///     -or-<br/>
+        ///     <paramref name="scaleY"/> is less than 0.0 or greater than 1.0.<br/>
+        ///     -or-<br/>
+        ///     <paramref name="scaleWidth"/> is less than or equal to 0.0 or greater than 1.0.<br/>
+        ///     -or-<br/>
+        ///     <paramref name="scaleHeight"/> is less than or equal to 0.0 or greater than 1.0.
+        /// </exception>
+        /// <seealso cref="PlayerDisplayType"/>
+        /// <seealso cref="Display"/>
+        /// <seealso cref="PlayerDisplaySettings.Mode"/>
+        /// <seealso cref="StreamInfo.GetVideoProperties"/>
+        /// <seealso cref="GetVideoRoi"/>
+        /// <since_tizen> 5 </since_tizen>
+        public void SetVideoRoi(double scaleX, double scaleY, double scaleWidth, double scaleHeight)
+        {
+            ValidateNotDisposed();
+
+            if (scaleX < 0 || scaleX > 1)
+            {
+                throw new ArgumentOutOfRangeException(nameof(scaleX), scaleX, "Valid range is 0 to 1.0");
+            }
+            if (scaleY < 0 || scaleY > 1)
+            {
+                throw new ArgumentOutOfRangeException(nameof(scaleY), scaleY, "Valid range is 0 to 1.0");
+            }
+            if (scaleWidth <= 0 || scaleWidth > 1)
+            {
+                throw new ArgumentOutOfRangeException(nameof(scaleWidth), scaleWidth, "Valid range is 0 to 1.0 (except 0.0)");
+            }
+            if (scaleHeight <= 0 || scaleHeight > 1)
+            {
+                throw new ArgumentOutOfRangeException(nameof(scaleHeight), scaleHeight, "Valid range is 0 to 1.0 (except 0.0)");
+            }
+
+            NativePlayer.SetVideoRoi(Handle, scaleX, scaleY, scaleWidth, scaleHeight).ThrowIfFailed(this, "Failed to set the video roi area.");
+        }
+
+        /// <summary>
+        /// Get the relative ROI (Region Of Interest) area as a decimal fraction based on the video source.
+        /// </summary>
+        /// <param name="scaleX">The ratio expressed as a decimal of x coordinate to the video width. (x/video width)
+        /// x coordinate means the base point located lower-left corner of the video area.</param>
+        /// <param name="scaleY">The ratio expressed as a decimal of y coordinate to the video height. (y/video height)
+        /// y coordinate means the base point located lower-left corner of the video area</param>
+        /// <param name="scaleWidth">The ratio expressed as a decimal of ROI width to the video width. (ROI width/video width)</param>
+        /// <param name="scaleHeight">The ratio expressed as a decimal of ROI height to the video height. (ROI height/video height)</param>
+        /// <remarks>The specified ROI area is valid only with <see cref="PlayerDisplayType.Overlay"/>.</remarks>
+        /// <exception cref="ObjectDisposedException">The player has already been disposed of.</exception>
+        /// <exception cref="InvalidOperationException">
+        ///     Operation failed; internal error.
+        ///     -or-<br/>
+        ///     The <see cref="PlayerDisplayType"/> is not set to <see cref="PlayerDisplayType.Overlay"/>.
+        ///     </exception>
+        /// <seealso cref="PlayerDisplayType"/>
+        /// <seealso cref="Display"/>
+        /// <seealso cref="StreamInfo.GetVideoProperties"/>
+        /// <seealso cref="SetVideoRoi"/>
+        /// <since_tizen> 5 </since_tizen>
+        public void GetVideoRoi(out double scaleX, out double scaleY, out double scaleWidth, out double scaleHeight)
+        {
+            ValidateNotDisposed();
+
+            NativePlayer.GetVideoRoi(Handle, out scaleX, out scaleY,
+                out scaleWidth, out scaleHeight).ThrowIfFailed(this, "Failed to get the video roi area");
         }
         #endregion
 
