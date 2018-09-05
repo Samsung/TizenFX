@@ -5339,10 +5339,12 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        /// Gets or sets the Margin for use in layout.
-        /// Note : Margin property is supported by Layout algorithms and containers.
-        ///        Please Set Layout if you want to use Margin property.
+        /// Gets or sets the Margin for use in layout.   
         /// </summary>
+        /// <remarks>
+        /// Margin property is supported by Layout algorithms and containers.
+        /// Please Set Layout if you want to use Margin property.
+        /// </remarks>
         /// <since_tizen> 4 </since_tizen>
         public Extents Margin
         {
