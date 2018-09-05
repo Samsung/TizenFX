@@ -200,14 +200,6 @@ namespace Tizen.Multimedia
                 get;
                 set;
             }
-
-            /// <summary>
-            /// Returns a string that represents the current object.
-            /// </summary>
-            /// <returns>A string that represents the current object.</returns>
-            /// <since_tizen> 5 </since_tizen>
-            public override string ToString() =>
-                $"ScaleX={ ScaleX.ToString() }, ScaleY={ ScaleY.ToString() }, ScaleWidth={ ScaleWidth.ToString() }, ScaleHeight={ ScaleHeight.ToString() }";
         }
         #endregion
 
