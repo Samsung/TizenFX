@@ -4,7 +4,8 @@
 
   <!-- Build Properties -->
   <PropertyGroup>
-    <Configuration>Release</Configuration>
+    <Configuration Condition="'$(Configuration)' == ''">Release</Configuration>
+    <BuildWithAnalyzer Condition="'$(BuildWithAnalyzer)' == ''">False</BuildWithAnalyzer>
   </PropertyGroup>
 
   <!-- Projects to build -->
@@ -50,7 +51,7 @@
   <Target Name="Restore">
 
     <MSBuild Projects="@(ProjectToBuild)"
-             Properties="Configuration=$(Configuration);RestoreSources=$(RestoreSources)"
+             Properties="Configuration=$(Configuration);RestoreSources=$(RestoreSources);BuildWithAnalyzer=$(BuildWithAnalyzer)"
              BuildInParallel="false"
              Targets="Restore" />
 
@@ -64,7 +65,7 @@
   <Target Name="Build">
 
     <MSBuild Projects="@(ProjectToBuild)"
-             Properties="Configuration=$(Configuration)"
+             Properties="Configuration=$(Configuration);BuildWithAnalyzer=$(BuildWithAnalyzer)"
              BuildInParallel="true"
              UseResultsCache="true"
              Targets="Rebuild" />
