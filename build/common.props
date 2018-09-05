@@ -17,4 +17,11 @@
 
   <Import Project="$(MSBuildThisFileDirectory)version.props" />
 
+  <ItemGroup Condition="'$(BuildWithAnalyzer)' == 'True'">
+    <PackageReference Include="Microsoft.NetCore.Analyzers" Version="2.6.1">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
+    </PackageReference>
+  </ItemGroup>
+
 </Project>
