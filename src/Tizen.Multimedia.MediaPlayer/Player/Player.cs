@@ -122,87 +122,6 @@ namespace Tizen.Multimedia
                 $"Current State : { curState }, Valid State : { string.Join(", ", desiredStates) }.");
         }
 
-        #region VideoRoi struct
-        /// <summary>
-        /// Represents properties for the relative ROI area based on video size
-        /// </summary>
-        /// <since_tizen> 5 </since_tizen>
-        public struct RelativeRectangleArea
-        {
-            /// <summary>
-            /// Initializes a new instance of the struct with the specified field of view for the spherical video.
-            /// </summary>
-            /// <param name="scaleX">The ratio expressed as a decimal of x coordinate to the video width. (x/video width)
-            /// x coordinate means the base point located lower-left corner of the video area.</param>
-            /// <remarks>
-            /// Valid range is 0.0 to 1.0. Default value is 0.
-            /// </remarks>
-            /// <param name="scaleY">The ratio expressed as a decimal of y coordinate to the video height. (y/video height)
-            /// y coordinate means the base point located lower-left corner of the video area</param>
-            /// <remarks>
-            /// Valid range is 0.0 to 1.0. Default value is 0.
-            /// </remarks>
-            /// <param name="scaleWidth">The ratio expressed as a decimal of ROI width to the video width. (ROI width/video width)</param>
-            /// <remarks>
-            /// Valid range is greater than 0.0 to 1.0. Default value is 1.
-            /// </remarks>
-            /// <param name="scaleHeight">The ratio expressed as a decimal of ROI height to the video height. (ROI height/video height)</param>
-            /// <remarks>
-            /// Valid range is greater than 0.0 to 1.0. Default value is 1.
-            /// </remarks>
-            /// <since_tizen> 5 </since_tizen>
-            public RelativeRectangleArea(double scaleX, double scaleY, double scaleWidth, double scaleHeight)
-            {
-                ScaleX = scaleX;
-                ScaleY = scaleY;
-                ScaleWidth = scaleWidth;
-                ScaleHeight = scaleHeight;
-
-                Tizen.Log.Debug(PlayerLog.Tag, $"scaleX={scaleX}, scaleY={scaleY}, scaleWidth={scaleWidth}, scaleHeight={scaleHeight}");
-            }
-
-            /// <summary>
-            /// Gets or sets the ScaleX.
-            /// </summary>
-            /// <since_tizen> 5 </since_tizen>
-            public double ScaleX
-            {
-                get;
-                set;
-            }
-
-            /// <summary>
-            /// Gets or sets the ScaleY.
-            /// </summary>
-            /// <since_tizen> 5 </since_tizen>
-            public double ScaleY
-            {
-                get;
-                set;
-            }
-
-            /// <summary>
-            /// Gets or sets the ScaleWidth.
-            /// </summary>
-            /// <since_tizen> 5 </since_tizen>
-            public double ScaleWidth
-            {
-                get;
-                set;
-            }
-
-            /// <summary>
-            /// Gets or sets the ScaleHeight.
-            /// </summary>
-            /// <since_tizen> 5 </since_tizen>
-            public double ScaleHeight
-            {
-                get;
-                set;
-            }
-        }
-        #endregion
-
         #region Dispose support
         private bool _disposed;
 
@@ -845,18 +764,11 @@ namespace Tizen.Multimedia
         /// Set the relative ROI (Region Of Interest) area as a decimal fraction based on the video source.
         /// It can be regarded as zooming operation because the specified video area will be rendered to fit to the display.
         /// </summary>
-        /// <param name="scaleX">The ratio expressed as a decimal of x coordinate to the video width. (x/video width)
-        /// x coordinate means the base point located lower-left corner of the video area. valid range is [0, 1].</param>
-        /// <param name="scaleY">The ratio expressed as a decimal of y coordinate to the video height. (y/video height)
-        /// y coordinate means the base point located lower-left corner of the video area. valid range is [0, 1].</param>
-        /// <param name="scaleWidth">The ratio expressed as a decimal of ROI width to the video width. (ROI width/video width)
-        /// valid range is (0, 1].</param>
-        /// <param name="scaleHeight">The ratio expressed as a decimal of ROI height to the video height. (ROI height/video height)
-        /// valid range is (0, 1].</param>
+        /// <param name="scaleRectangle">The containing the ROI area information.</param>
         /// <remarks>
         /// This function requires the ratio of the each coordinate and size to the video resolution size
         /// to guarantee of showing the same area for the dynamic resolution video content.
-        /// This function have to be called after setting <seealso cref="Display"/>
+        /// This function have to be called after setting <see cref="Display"/>
         /// </remarks>
         /// <exception cref="ObjectDisposedException">The player has already been disposed of.</exception>
         /// <exception cref="InvalidOperationException">
@@ -865,66 +777,64 @@ namespace Tizen.Multimedia
         ///     The <see cref="PlayerDisplayType"/> is not set to <see cref="PlayerDisplayType.Overlay"/>.
         ///     </exception>
         /// <exception cref="ArgumentOutOfRangeException">
-        ///     <paramref name="scaleX"/> is less than 0.0 or greater than 1.0.<br/>
+        ///     <paramref name="scaleRectangle.ScaleX"/> is less than 0.0 or greater than 1.0.<br/>
         ///     -or-<br/>
-        ///     <paramref name="scaleY"/> is less than 0.0 or greater than 1.0.<br/>
+        ///     <paramref name="scaleRectangle.ScaleY"/> is less than 0.0 or greater than 1.0.<br/>
         ///     -or-<br/>
-        ///     <paramref name="scaleWidth"/> is less than or equal to 0.0 or greater than 1.0.<br/>
+        ///     <paramref name="scaleRectangle.ScaleWidth"/> is less than or equal to 0.0 or greater than 1.0.<br/>
         ///     -or-<br/>
-        ///     <paramref name="scaleHeight"/> is less than or equal to 0.0 or greater than 1.0.
+        ///     <paramref name="scaleRectangle.ScaleHeight"/> is less than or equal to 0.0 or greater than 1.0.
         /// </exception>
+        /// <seealso cref="ScaleRectangle"/>
         /// <seealso cref="Display"/>
-        /// <seealso cref="PlayerDisplaySettings.Mode"/>
         /// <seealso cref="StreamInfo.GetVideoProperties"/>
         /// <seealso cref="GetVideoRoi"/>
         /// <since_tizen> 5 </since_tizen>
-        public void SetVideoRoi(double scaleX, double scaleY, double scaleWidth, double scaleHeight)
+        public void SetVideoRoi(ScaleRectangle scaleRectangle)
         {
             ValidateNotDisposed();
 
-            if (scaleX < 0 || scaleX > 1)
+            if (scaleRectangle.ScaleX < 0 || scaleRectangle.ScaleX > 1)
             {
-                throw new ArgumentOutOfRangeException(nameof(scaleX), scaleX, "Valid range is 0 to 1.0");
+                throw new ArgumentOutOfRangeException(nameof(scaleRectangle.ScaleX), scaleRectangle.ScaleX, "Valid range is 0 to 1.0");
             }
-            if (scaleY < 0 || scaleY > 1)
+            if (scaleRectangle.ScaleY < 0 || scaleRectangle.ScaleY > 1)
             {
-                throw new ArgumentOutOfRangeException(nameof(scaleY), scaleY, "Valid range is 0 to 1.0");
+                throw new ArgumentOutOfRangeException(nameof(scaleRectangle.ScaleY), scaleRectangle.ScaleY, "Valid range is 0 to 1.0");
             }
-            if (scaleWidth <= 0 || scaleWidth > 1)
+            if (scaleRectangle.ScaleWidth <= 0 || scaleRectangle.ScaleWidth > 1)
             {
-                throw new ArgumentOutOfRangeException(nameof(scaleWidth), scaleWidth, "Valid range is 0 to 1.0 (except 0.0)");
+                throw new ArgumentOutOfRangeException(nameof(scaleRectangle.ScaleWidth), scaleRectangle.ScaleWidth, "Valid range is 0 to 1.0 (except 0.0)");
             }
-            if (scaleHeight <= 0 || scaleHeight > 1)
+            if (scaleRectangle.ScaleHeight <= 0 || scaleRectangle.ScaleHeight > 1)
             {
-                throw new ArgumentOutOfRangeException(nameof(scaleHeight), scaleHeight, "Valid range is 0 to 1.0 (except 0.0)");
+                throw new ArgumentOutOfRangeException(nameof(scaleRectangle.ScaleHeight), scaleRectangle.ScaleHeight, "Valid range is 0 to 1.0 (except 0.0)");
             }
 
-            NativePlayer.SetVideoRoi(Handle, scaleX, scaleY, scaleWidth, scaleHeight).ThrowIfFailed(this, "Failed to set the video roi area.");
+            NativePlayer.SetVideoRoi(Handle, scaleRectangle.ScaleX, scaleRectangle.ScaleY, scaleRectangle.ScaleWidth, scaleRectangle.ScaleHeight).ThrowIfFailed(this, "Failed to set the video roi area.");
         }
 
         /// <summary>
         /// Get the relative ROI (Region Of Interest) area as a decimal fraction based on the video source.
         /// </summary>
-        /// <returns>The <see cref="RelativeRectangleArea"/> containing the ROI area information.</returns>
-        /// <remarks>The specified ROI area is valid only with <see cref="PlayerDisplayType.Overlay"/>.</remarks>
+        /// <returns>The <see cref="ScaleRectangle"/> containing the ROI area information.</returns>
+        /// <remarks>The specified ROI area is valid only in <see cref="PlayerDisplayType.Overlay"/>.</remarks>
         /// <exception cref="ObjectDisposedException">The player has already been disposed of.</exception>
         /// <exception cref="InvalidOperationException">
         ///     Operation failed; internal error.
-        ///     -or-<br/>
-        ///     The <see cref="PlayerDisplayType"/> is not set to <see cref="PlayerDisplayType.Overlay"/>.
         ///     </exception>
         /// <seealso cref="Display"/>
         /// <seealso cref="StreamInfo.GetVideoProperties"/>
         /// <seealso cref="SetVideoRoi"/>
         /// <since_tizen> 5 </since_tizen>
-        public RelativeRectangleArea GetVideoRoi()
+        public ScaleRectangle GetVideoRoi()
         {
             ValidateNotDisposed();
 
             NativePlayer.GetVideoRoi(Handle, out var scaleX, out var scaleY,
                 out var scaleWidth, out var scaleHeight).ThrowIfFailed(this, "Failed to get the video roi area");
 
-            return new RelativeRectangleArea(scaleX, scaleY, scaleWidth, scaleHeight);
+            return new ScaleRectangle(scaleX, scaleY, scaleWidth, scaleHeight);
         }
         #endregion
 
