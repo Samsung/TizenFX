@@ -47,7 +47,7 @@ namespace Tizen.Multimedia
             ScaleWidth = scaleWidth;
             ScaleHeight = scaleHeight;
 
-            Tizen.Log.Debug(PlayerLog.Tag, $"scaleX={scaleX}, scaleY={scaleY}, scaleWidth={scaleWidth}, scaleHeight={scaleHeight}");
+            Log.Debug(PlayerLog.Tag, $"scaleX={scaleX}, scaleY={scaleY}, scaleWidth={scaleWidth}, scaleHeight={scaleHeight}");
         }
 
         /// <summary>
@@ -89,13 +89,5 @@ namespace Tizen.Multimedia
             get;
             set;
         }
-
-        /// <summary>
-        /// Returns a string that represents the current object.
-        /// </summary>
-        /// <returns>A string that represents the current object.</returns>
-        /// <since_tizen> 5 </since_tizen>
-        public override string ToString() =>
-            $"ScaleX={ ScaleX.ToString() }, ScaleY={ ScaleY.ToString() }, ScaleWidth={ ScaleWidth.ToString() }, ScaleHeight={ ScaleHeight.ToString() }";
     }
 }
