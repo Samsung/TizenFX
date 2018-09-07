@@ -64,6 +64,12 @@ namespace Tizen.NUI
             base.Dispose(type);
         }
 
+        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public class ChildProperty
+        {
+            public static readonly int WEIGHT = LayoutPINVOKE.LinearLayout_ChildProperty_WEIGHT_get();
+        }
         public LinearLayout() : this(LayoutPINVOKE.LinearLayout_New(), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
@@ -115,6 +121,19 @@ namespace Tizen.NUI
             return ret;
         }
 
+        internal void SetAlignment(LinearLayout.Alignment alignment)
+        {
+            LayoutPINVOKE.LinearLayout_SetAlignment(swigCPtr, (uint)alignment);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        internal LinearLayout.Alignment GetAlignment()
+        {
+            LinearLayout.Alignment ret = (LinearLayout.Alignment)LayoutPINVOKE.LinearLayout_GetAlignment(swigCPtr);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
         internal enum PropertyRange
         {
             CHILD_PROPERTY_START_INDEX = PropertyRanges.CHILD_PROPERTY_REGISTRATION_START_INDEX,
@@ -152,7 +171,22 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// [Draft] Enumeration for the direction in which the content is laid out   */
+        /// [Draft] Get/Set the alignment in the layout
+        /// </summary>
+        public LinearLayout.Alignment LinearAlignment
+        {
+            get
+            {
+                return GetAlignment();
+            }
+            set
+            {
+                SetAlignment(value);
+            }
+        }
+
+        /// <summary>
+        /// [Draft] Enumeration for the direction in which the content is laid out
         /// </summary>
         public enum Orientation
         {
@@ -164,6 +198,37 @@ namespace Tizen.NUI
             /// Vertical (column)
             /// </summary>
             Vertical
+        }
+
+        /// <summary>
+        /// [Draft] Enumeration for the alignment of the linear layout items
+        /// </summary>
+        public enum Alignment
+        {
+            /// <summary>
+            /// At the left/right edge of the container (maps to LTR/RTL direction for horizontal orientation)
+            /// </summary>
+            Begin              = 0x1,
+            /// <summary>
+            /// At the right/left edge of the container (maps to LTR/RTL direction for horizontal orientation)
+            /// </summary>
+            End                = 0x2,
+            /// <summary>
+            /// At the horizontal center of the container
+            /// </summary>
+            CenterHorizontal   = 0x4,
+            /// <summary>
+            /// At the top edge of the container
+            /// </summary>
+            Top                = 0x8,
+            /// <summary>
+            /// At the bottom edge of the container
+            /// </summary>
+            Bottom             = 0x10,
+            /// <summary>
+            /// At the vertical center of the container
+            /// </summary>
+            CenterVertical     = 0x20
         }
 
     }
