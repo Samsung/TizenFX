@@ -241,7 +241,7 @@ namespace Tizen.Multimedia.Remoting
         public CustomCommand(string command)
             : base(MediaControlCommand.Custom)
         {
-            Command = command ?? throw new ArgumentNullException("Custom command is not set."); ;
+            Command = command ?? throw new ArgumentNullException("Custom command is not set.");
         }
 
         /// <summary>

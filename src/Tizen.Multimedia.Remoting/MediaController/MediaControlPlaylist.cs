@@ -26,13 +26,17 @@ namespace Tizen.Multimedia.Remoting
     /// <since_tizen> 5 </since_tizen>
     public abstract class Playlist
     {
-        internal Playlist() { }
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Playlist"/> class.
+        /// </summary>
+        /// <since_tizen> 5 </since_tizen>
+        protected Playlist() { }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="Playlist"/> class.
         /// </summary>
         /// <since_tizen> 5 </since_tizen>
-        internal Playlist(string name, string index, ulong position)
+        protected Playlist(string name, string index, ulong position)
         {
             Index = index ?? throw new ArgumentNullException("Playlist index is not valid to convert number.");
             if (!Int32.TryParse(index, out int result))
