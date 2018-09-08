@@ -278,7 +278,7 @@ namespace Tizen.Multimedia.Remoting
         /// <paramref name="clientAppId"/> or <paramref name="requestId"/> is not set.
         /// </exception>
         /// <since_tizen> 5 </since_tizen>
-        public static void SendCommandReply(string clientAppId, string requestId, int result, Bundle bundle)
+        public static void Response(string clientAppId, string requestId, int result, Bundle bundle)
         {
             if (clientAppId == null)
             {

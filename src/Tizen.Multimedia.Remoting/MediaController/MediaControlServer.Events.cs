@@ -78,7 +78,7 @@ namespace Tizen.Multimedia.Remoting
             {
                 PlaybackCommandReceived?.Invoke(null, new PlaybackCommandReceivedEventArgs(clientName, playbackCode.ToPublic()));
             };
-            Native.SetPlaybackStateCmdRecvCb(Handle, _playbackCommandCallback).
+            Native.SetPlaybackStateCommandReceivedCb(Handle, _playbackCommandCallback).
                 ThrowIfError("Failed to init PlaybackStateCommandReceived event.");
         }
 

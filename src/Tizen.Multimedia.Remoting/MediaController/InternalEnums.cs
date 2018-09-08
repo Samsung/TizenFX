@@ -78,4 +78,15 @@ namespace Tizen.Multimedia.Remoting
         TrackNumber,
         Picture,
     }
+
+    internal enum MediaControlCommand
+    {
+        Custom,
+        CustomExtra,
+        Playback,
+        PlaybackPosition,
+        Playlist,
+        RepeatMode,
+        ShuffleMode,
+    }
 }
