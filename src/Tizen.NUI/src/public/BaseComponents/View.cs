@@ -1285,8 +1285,15 @@ namespace Tizen.NUI.BaseComponents
 
                 if (true == layoutSet && null == child.Layout) // Only give children a layout if parent an explict container
                 {
-                    LayoutItem layoutItem = new LayoutItem();
-                    child.Layout = layoutItem;
+                    if( child.GetType() == typeof(View) ||  true == child.LayoutingRequired )
+                    {
+                        child.Layout = new LayoutGroup();
+
+                    }
+                    else
+                    {
+                        child.Layout = new LayoutItem();
+                    }
                 }
 
                 if (Layout)
@@ -3452,6 +3459,25 @@ namespace Tizen.NUI.BaseComponents
                 {
                     value.LayoutChildren.Add(view.Layout);
                 }
+            }
+        }
+
+        /// <summary>
+        /// Set that layouting is required on this View. It will automatically receive a Layout.
+        /// </summary>
+        /// <remarks>
+        /// </remarks>
+        internal bool LayoutingRequired
+        {
+            get
+            {
+                bool result = Tizen.NUI.NDalicManualPINVOKE.View_IsLayoutingRequired(View.getCPtr(this));
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                return result;
+            }
+            set
+            {
+                Tizen.NUI.NDalicManualPINVOKE.View_SetLayoutingRequired(View.getCPtr(this), value);
             }
         }
 

@@ -7474,6 +7474,42 @@ namespace Tizen.NUI
         }
 
 
+        [global::System.Runtime.InteropServices.DllImport(Graphics.GlesCSharpBinder, EntryPoint = "CSharp_Dali_SetLayoutingRequired")]
+        public static extern void View_SetLayoutingRequired_gl(global::System.Runtime.InteropServices.HandleRef jarg1, bool jarg2);
+
+        [global::System.Runtime.InteropServices.DllImport(Graphics.VulkanCSharpBinder, EntryPoint = "CSharp_Dali_SetLayoutingRequired")]
+        public static extern void View_SetLayoutRequired_vulkan(global::System.Runtime.InteropServices.HandleRef jarg1, bool jarg2);
+
+        public static void View_SetLayoutingRequired(global::System.Runtime.InteropServices.HandleRef jarg1, bool jarg2)
+        {
+            if (Tizen.NUI.Graphics.Backend == Tizen.NUI.Graphics.BackendType.Vulkan)
+            {
+                View_SetLayoutRequired_vulkan(jarg1, jarg2);
+            }
+            else
+            {
+                View_SetLayoutingRequired_gl(jarg1, jarg2);
+            }
+        }
+
+        [global::System.Runtime.InteropServices.DllImport(Graphics.GlesCSharpBinder, EntryPoint = "CSharp_Dali_View_IsLayoutingRequired")]
+        public static extern bool View_IsLayoutingRequired_gl(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+        [global::System.Runtime.InteropServices.DllImport(Graphics.VulkanCSharpBinder, EntryPoint = "CSharp_Dali_View_IsLayoutingRequired")]
+        public static extern bool View_IsLayoutingRequired_vulkan(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+        public static bool View_IsLayoutingRequired(global::System.Runtime.InteropServices.HandleRef jarg1)
+        {
+            if (Tizen.NUI.Graphics.Backend == Tizen.NUI.Graphics.BackendType.Vulkan)
+            {
+                return View_IsLayoutingRequired_vulkan(jarg1);
+            }
+            else
+            {
+                return View_IsLayoutingRequired_gl(jarg1);
+            }
+        }
+
         [global::System.Runtime.InteropServices.DllImport(Graphics.GlesCSharpBinder, EntryPoint = "CSharp_Dali_new_ViewLayoutDirectionSignal")]
         public static extern global::System.IntPtr new_ViewLayoutDirectionChangedSignal_gl();
 
