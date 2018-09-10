@@ -3371,14 +3371,7 @@ namespace Tizen.NUI.BaseComponents
         /// <remarks>
         /// Deriving classes stipulate the natural size and by default a view has a zero natural size.
         /// </remarks>
-        /// /// Please do not use! this will be deprecated!
-        /// Instead please use NaturalSize2D.
-        /// <since_tizen> 3 </since_tizen>
-        [Obsolete("Please do not use! This will be deprecated! Please use NaturalSize2D instead! " +
-            "Like: " +
-            "TextLabel label = new TextLabel(\"Hello World!\"); " +
-            "Size2D size = label.NaturalSize2D;")]
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 5 </since_tizen>
         public Vector3 NaturalSize
         {
             get
@@ -5246,14 +5239,18 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        /// [Obsolete("Please do not use! this will be deprecated")]
+        /// Sets the size of a view for the width, the height and the depth.<br />
+        /// Geometry can be scaled to fit within this area.<br />
+        /// This does not interfere with the view's scale factor.<br />
+        /// The views default depth is the minimum of width and height.<br />
         /// </summary>
-        /// <since_tizen> 3 </since_tizen>
-        [Obsolete("Please do not use! This will be deprecated! Please use Size2D instead! " +
-            "Like: " +
-            "View view = new View(); " +
-            "view.Size2D = new Size2D(100, 100);")]
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <remarks>
+        /// Please note that multi-cascade setting is not possible for this NUI object. <br />
+        /// It is recommended that NUI object typed properties are configured by their constructor with parameters. <br />
+        /// For example, this code is working fine : view.Size = new Size( 1.0f, 1.0f, 0.0f); <br />
+        /// but this will not work! : view.Size.Width = 2.0f; view.Size.Height = 2.0f; <br />
+        /// </remarks>
+        /// <since_tizen> 5 </since_tizen>
         public Size Size
         {
             get
