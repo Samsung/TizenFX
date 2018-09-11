@@ -331,6 +331,12 @@ internal static partial class Interop
 
         [DllImport(Libraries.Player, EntryPoint = "player_get_max_adaptive_variant_limit")]
         internal static extern PlayerErrorCode GetMaxLimit(IntPtr player, out int bandwidth, out int width, out int height);
+
+        [DllImport(Libraries.Player, EntryPoint = "player_set_video_roi_area")]
+        internal static extern PlayerErrorCode SetVideoRoi(IntPtr player, double scaleX, double scaleY, double scaleWidth, double scaleHeight);
+
+        [DllImport(Libraries.Player, EntryPoint = "player_get_video_roi_area")]
+        internal static extern PlayerErrorCode GetVideoRoi(IntPtr player, out double scaleX, out double scaleY, out double scaleWidth, out double scaleHeight);
     }
 
     internal class PlayerHandle : SafeHandle
