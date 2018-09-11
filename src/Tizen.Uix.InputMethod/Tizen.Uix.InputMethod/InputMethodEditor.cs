@@ -1997,8 +1997,8 @@ namespace Tizen.Uix.InputMethod
         /// </privilege>
         /// <exception cref="InvalidOperationException">
         /// This can occur due to the following reasons:
-        /// 1. The application does not have the privilege to call this function.
-        /// 2. The IME main loop has not yet started.
+        /// 1) The application does not have the privilege to call this function.
+        /// 2) The IME main loop has not yet started.
         /// </exception>
         /// <since_tizen> 5 </since_tizen>
         public static void RequestHide()
@@ -2073,11 +2073,11 @@ namespace Tizen.Uix.InputMethod
         /// <privilege>
         /// http://tizen.org/privilege/ime
         /// </privilege>
-        /// <param name="floating_mode">true to set the floating mode to on and false to set it to off.</param>
+        /// <param name="floating_mode"><c>true</c> to set the floating mode to on and <c>false</c> to set it to off.</param>
         /// <exception cref="InvalidOperationException">
         /// This can occur due to the following reasons:
-        /// 1. The application does not have the privilege to call this function.
-        /// 2. The IME main loop has not yet started.
+        /// 1) The application does not have the privilege to call this function.
+        /// 2) The IME main loop has not yet started.
         /// </exception>
         /// <since_tizen> 5 </since_tizen>
         public static void SetFloatingMode(bool floating_mode)
@@ -2101,8 +2101,8 @@ namespace Tizen.Uix.InputMethod
         /// </remarks>
         /// <exception cref="InvalidOperationException">
         /// This can occur due to the following reasons:
-        /// 1. The application does not have the privilege to call this function.
-        /// 2. The IME main loop has not yet started.
+        /// 1) The application does not have the privilege to call this function.
+        /// 2) The IME main loop has not yet started.
         /// </exception>
         /// <since_tizen> 5 </since_tizen>
         public static void SetFloatingDragStart()
@@ -2126,8 +2126,8 @@ namespace Tizen.Uix.InputMethod
         /// </remarks>
         /// <exception cref="InvalidOperationException">
         /// This can occur due to the following reasons:
-        /// 1. The application does not have the privilege to call this function.
-        /// 2. The IME main loop has not yet started.
+        /// 1) The application does not have the privilege to call this function.
+        /// 2) The IME main loop has not yet started.
         /// </exception>
         /// <since_tizen> 5 </since_tizen>
         public static void SetFloatingDragEnd()
