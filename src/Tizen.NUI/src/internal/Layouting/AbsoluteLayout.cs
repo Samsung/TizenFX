@@ -18,7 +18,7 @@ using System.ComponentModel;
 namespace Tizen.NUI
 {
     /// <summary>
-    /// [Draft] This class implements a absolute layout, allowing explict positioning of children.
+    /// [Draft] This class implements a absolute layout, allowing explicit positioning of children.
     ///  Positions are from the top left of the layout and can be set using the Actor::Property::POSITION and alike.
     /// </summary>
     internal class AbsoluteLayout : LayoutGroupWrapper
@@ -74,8 +74,8 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// [Draft] Downcasts a handle to a AbsoluteLayout handle. 
-        /// If handle points to a AbsoluteLayout, the downcast produces a valid handle. 
+        /// [Draft] Downcasts a handle to a AbsoluteLayout handle.
+        /// If handle points to a AbsoluteLayout, the downcast produces a valid handle.
         /// If not, the returned handle is left uninitialized.
         /// </summary>
         /// <param name="handle">handle to an object</param>
