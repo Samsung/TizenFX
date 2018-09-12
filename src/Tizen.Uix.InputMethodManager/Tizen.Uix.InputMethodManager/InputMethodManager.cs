@@ -163,7 +163,7 @@ namespace Tizen.Uix.InputMethodManager
 
         /// <summary>
         /// Requests to pre-launch the IME.
-        /// The developers can use this function to launch IME in On-demand mode.
+        /// The developers can use this function to launch the IME in on-demand mode.
         /// </summary>
         /// <privilege>
         /// http://tizen.org/privilege/imemanager
