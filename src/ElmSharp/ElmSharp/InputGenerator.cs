@@ -25,14 +25,6 @@ namespace ElmSharp
     public enum InputDeviceType
     {
         /// <summary>
-        /// None.
-        /// </summary>
-        /// <remarks>
-        /// Deprecated since 3.0.
-        /// </remarks>
-        None = 0,
-
-        /// <summary>
         /// Touch Screen device.
         /// </summary>
         TouchScreen = (1 << 0),
@@ -49,22 +41,6 @@ namespace ElmSharp
         /// Since 3.0.
         /// </remarks>
         Pointer = (1 << 2),
-
-        /// <summary>
-        /// Both of touch screen and keyboard device.
-        /// </summary>
-        /// <remarks>
-        /// Deprecated since 3.0. Check all enumerations using OR operand instead.
-        /// </remarks>
-        All = (TouchScreen | Keyboard),
-
-        /// <summary>
-        /// Max.
-        /// </summary>
-        /// <remarks>
-        /// Deprecated since 3.0.
-        /// </remarks>
-        Max = (1 << 10),
     }
 
     /// <summary>
@@ -96,17 +72,9 @@ namespace ElmSharp
     public enum InputTouchType
     {
         /// <summary>
-        /// None.
-        /// </summary>
-        /// <remarks>
-        /// Deprecated since 3.0.
-        /// </remarks>
-        None,
-
-        /// <summary>
         /// Finger press. It is same a behavior put your finger on touch screen.
         /// </summary>
-        Begin,
+        Begin = 1,
 
         /// <summary>
         /// Finger move. It is same a behavior move your finger on touch screen.
@@ -117,14 +85,6 @@ namespace ElmSharp
         /// Finger release. It is same a behavior release your finger on touch screen.
         /// </summary>
         End,
-
-        /// <summary>
-        /// Max.
-        /// </summary>
-        /// <remarks>
-        /// Deprecated since 3.0.
-        /// </remarks>
-        Max = 10,
     }
 
     /// <summary>
