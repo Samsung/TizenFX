@@ -134,13 +134,12 @@ namespace Tizen.Multimedia
                 Marshal.Copy(formats, formatsResult, 0, (int)numberOfElements);
                 Interop.Libc.Free(formats);
 
-                IEnumerable<AudioSampleFormat> result = formatsResult.OfType<AudioSampleFormat>();
-                foreach (AudioSampleFormat f in result)
+                foreach (int f in formatsResult)
                 {
                     Log.Debug(Tag, $"supported sample format:{f}");
                 }
 
-                return result;
+                return formatsResult.Cast<AudioSampleFormat>();
             }
         }
 
@@ -178,6 +177,42 @@ namespace Tizen.Multimedia
             return format;
         }
 
+        private uint ConvertCoreRateValToUint(int value)
+        {
+            switch (value)
+            {
+                case 0: return 8000;
+                case 1: return 16000;
+                case 2: return 22050;
+                case 3: return 44100;
+                case 4: return 48000;
+                case 5: return 88200;
+                case 6: return 96000;
+                case 7: return 192000;
+                default:
+                    Log.Error(Tag, $"unknown value from core:{value}");
+                    return 0;
+            }
+        }
+
+        private uint ConvertRateToCoreValue(uint rate)
+        {
+            switch (rate)
+            {
+                case 8000: return 0;
+                case 16000: return 1;
+                case 22050: return 2;
+                case 44100: return 3;
+                case 48000: return 4;
+                case 88200: return 5;
+                case 96000: return 6;
+                case 192000: return 7;
+                default:
+                    Log.Error(Tag, $"not supported rate:{rate}");
+                    return 0;
+            }
+        }
+
         /// <summary>
         /// Gets the device's supported sample rates.
         /// </summary>
@@ -198,17 +233,18 @@ namespace Tizen.Multimedia
             IEnumerable<uint> RetrieveRates()
             {
                 int[] ratesResult = new int[numberOfElements];
+                uint[] convertedRates = new uint[numberOfElements];
 
                 Marshal.Copy(rates, ratesResult, 0, (int)numberOfElements);
                 Interop.Libc.Free(rates);
 
-                IEnumerable<uint> result = ratesResult.OfType<uint>();
-                foreach (uint r in result)
+                for (int i = 0; i < ratesResult.Length; i++)
                 {
-                    Log.Debug(Tag, $"supported sample rate:{r}");
+                    convertedRates[i] = ConvertCoreRateValToUint(ratesResult[i]);
+                    Log.Debug(Tag, $"supported sample rate:{convertedRates[i]}");
                 }
 
-                return result;
+                return convertedRates;
             }
         }
 
@@ -223,7 +259,7 @@ namespace Tizen.Multimedia
         /// <since_tizen> 5 </since_tizen>
         public void SetSampleRate(uint rate)
         {
-            Interop.AudioDevice.SetSampleRate(_id, rate).
+            Interop.AudioDevice.SetSampleRate(_id, ConvertRateToCoreValue(rate)).
                 ThrowIfError("Failed to set sample rate of the device");
         }
 
@@ -241,7 +277,7 @@ namespace Tizen.Multimedia
             Interop.AudioDevice.GetSampleRate(_id, out uint rate).
                 ThrowIfError("Failed to get sample rate of the device");
 
-            return rate;
+            return ConvertCoreRateValToUint((int)rate);
         }
 
         /// <summary>
