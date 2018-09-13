@@ -223,19 +223,6 @@ namespace Tizen.Multimedia.Remoting
         }
     }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
     /// <summary>
     /// Provides a means to to send shuffle mode commands.
     /// </summary>

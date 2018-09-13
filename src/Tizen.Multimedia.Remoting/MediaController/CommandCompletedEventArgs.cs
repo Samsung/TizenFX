@@ -23,7 +23,7 @@ namespace Tizen.Multimedia.Remoting
     /// Provides data for the <see cref="MediaController.CommandCompleted"/> event.
     /// </summary>
     /// <since_tizen> 5 </since_tizen>
-    public class CommandCompletedEventArgs : EventArgs
+    internal class CommandCompletedEventArgs : EventArgs
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="CommandCompletedEventArgs"/> class.
@@ -31,7 +31,7 @@ namespace Tizen.Multimedia.Remoting
         /// <param name="requestId">The request id for each command.</param>
         /// <param name="result">The result of commands.</param>
         /// <since_tizen> 5 </since_tizen>
-        public CommandCompletedEventArgs(string requestId, int result)
+        internal CommandCompletedEventArgs(string requestId, int result)
         {
             RequestId = requestId;
             Result = result;
@@ -44,7 +44,7 @@ namespace Tizen.Multimedia.Remoting
         /// <param name="result">The result of commands.</param>
         /// <param name="bundle">The extra data.</param>
         /// <since_tizen> 5 </since_tizen>
-        public CommandCompletedEventArgs(string requestId, int result, Bundle bundle)
+        internal CommandCompletedEventArgs(string requestId, int result, Bundle bundle)
             : this(requestId, result)
         {
             Bundle = bundle;
@@ -54,18 +54,18 @@ namespace Tizen.Multimedia.Remoting
         /// Gets the request Id.
         /// </summary>
         /// <since_tizen> 5 </since_tizen>
-        public string RequestId { get; }
+        internal string RequestId { get; }
 
         /// <summary>
         /// Gets the result code for matched commands.
         /// </summary>
         /// <since_tizen> 5 </since_tizen>
-        public int Result { get; }
+        internal int Result { get; }
 
         /// <summary>
         /// Gets the extra data.
         /// </summary>
         /// <since_tizen> 5 </since_tizen>
-        public Bundle Bundle { get; }
+        internal Bundle Bundle { get; }
     }
 }
