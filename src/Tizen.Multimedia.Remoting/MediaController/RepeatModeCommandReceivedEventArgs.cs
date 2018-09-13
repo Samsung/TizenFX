@@ -27,41 +27,17 @@ namespace Tizen.Multimedia.Remoting
         /// <summary>
         /// Initializes a new instance of the <see cref="RepeatModeCommandReceivedEventArgs"/> class.
         /// </summary>
-        /// <param name="clientAppId">The client application id.</param>
-        /// <param name="requestId">The request id of the media controller client.</param>
-        /// <param name="mode">The playback repeat mode.</param>
-        /// <exception cref="ArgumentNullException">
-        /// <paramref name="clientAppId"/> or <paramref name="requestId"/> is null.
-        /// </exception>
-        /// <exception cref="ArgumentException"><paramref name="mode"/> is invalid.</exception>
+        /// <param name="command">The playback position command.</param>
         /// <since_tizen> 5 </since_tizen>
-        public RepeatModeCommandReceivedEventArgs(string clientAppId, string requestId, MediaControlRepeatMode mode)
+        public RepeatModeCommandReceivedEventArgs(Command command)
         {
-            ValidationUtil.ValidateEnum(typeof(MediaControlRepeatMode), mode, nameof(mode));
-
-            ClientAppId = clientAppId ?? throw new ArgumentNullException(nameof(clientAppId));
-            RequestID = requestId ?? throw new ArgumentNullException(nameof(requestId));
-            Mode = mode;
+            Command = command as RepeatModeCommand;
         }
 
         /// <summary>
-        /// Gets the application id of the client that sent command.
-        /// </summary>
-        /// <value>The client application id.</value>
-        /// <since_tizen> 5 </since_tizen>
-        public string ClientAppId { get; }
-
-        /// <summary>
-        /// Gets the reqeust id
+        /// Gets the <see cref="RepeatModeCommand"/>.
         /// </summary>
         /// <since_tizen> 5 </since_tizen>
-        public string RequestID { get; }
-
-        /// <summary>
-        /// Gets the playback repeat mode.
-        /// </summary>
-        /// <value>The <see cref="MediaControlRepeatMode"/>.</value>
-        /// <since_tizen> 5 </since_tizen>
-        public MediaControlRepeatMode Mode { get; }
+        public RepeatModeCommand Command;
     }
 }

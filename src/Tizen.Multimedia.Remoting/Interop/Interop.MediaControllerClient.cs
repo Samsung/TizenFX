@@ -31,9 +31,6 @@ internal static partial class Interop
         internal delegate void PlaybackUpdatedCallback(string serverName, IntPtr playback, IntPtr userData);
 
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-        internal delegate void MetadataUpdatedCallback(string serverName, IntPtr metadata, IntPtr userData);
-
-        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         internal delegate void ShuffleModeUpdatedCallback(string serverName, MediaControllerNativeShuffleMode shuffleMode,
             IntPtr userData);
 
@@ -45,7 +42,7 @@ internal static partial class Interop
 
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         internal delegate void CommandCompletedCallback(string serverName, string requestId, int result,
-            SafeBundleHandle bundleHandle, IntPtr userData);
+            IntPtr bundleHandle, IntPtr userData);
 
 
         [DllImport(Libraries.MediaController, EntryPoint = "mc_client_create")]
@@ -54,39 +51,32 @@ internal static partial class Interop
         [DllImport(Libraries.MediaController, EntryPoint = "mc_client_destroy")]
         internal static extern MediaControllerError Destroy(IntPtr handle);
 
-        [DllImport(Libraries.MediaController, EntryPoint = "mc_client_set_server_update_cb")]
+        [DllImport(Libraries.MediaController, EntryPoint = "mc_client_set_server_updated_cb")]
         internal static extern MediaControllerError SetServerUpdatedCb(MediaControllerClientHandle handle,
             ServerUpdatedCallback callback, IntPtr userData = default(IntPtr));
 
-        [DllImport(Libraries.MediaController, EntryPoint = "mc_client_unset_server_update_cb")]
+        [DllImport(Libraries.MediaController, EntryPoint = "mc_client_unset_server_updated_cb")]
         internal static extern MediaControllerError UnsetServerUpdatedCb(MediaControllerClientHandle handle);
 
-        [DllImport(Libraries.MediaController, EntryPoint = "mc_client_set_playback_update_cb")]
+        [DllImport(Libraries.MediaController, EntryPoint = "mc_client_set_playback_updated_cb")]
         internal static extern MediaControllerError SetPlaybackUpdatedCb(MediaControllerClientHandle handle,
             PlaybackUpdatedCallback callback, IntPtr userData = default(IntPtr));
 
-        [DllImport(Libraries.MediaController, EntryPoint = "mc_client_unset_playback_update_cb")]
+        [DllImport(Libraries.MediaController, EntryPoint = "mc_client_unset_playback_updated_cb")]
         internal static extern MediaControllerError UnsetPlaybackUpdatedCb(MediaControllerClientHandle handle);
 
-        [DllImport(Libraries.MediaController, EntryPoint = "mc_client_set_metadata_update_cb")]
-        internal static extern MediaControllerError SetMetadataUpdatedCb(MediaControllerClientHandle handle,
-            MetadataUpdatedCallback callback, IntPtr userData = default(IntPtr));
-
-        [DllImport(Libraries.MediaController, EntryPoint = "mc_client_unset_metadata_update_cb")]
-        internal static extern MediaControllerError UnsetMetadataUpdatedCb(MediaControllerClientHandle handle);
-
-        [DllImport(Libraries.MediaController, EntryPoint = "mc_client_set_shuffle_mode_update_cb")]
+        [DllImport(Libraries.MediaController, EntryPoint = "mc_client_set_shuffle_mode_updated_cb")]
         internal static extern MediaControllerError SetShuffleModeUpdatedCb(MediaControllerClientHandle handle,
             ShuffleModeUpdatedCallback callback, IntPtr userData = default(IntPtr));
 
-        [DllImport(Libraries.MediaController, EntryPoint = "mc_client_unset_shuffle_mode_update_cb")]
+        [DllImport(Libraries.MediaController, EntryPoint = "mc_client_unset_shuffle_mode_updated_cb")]
         internal static extern MediaControllerError UnsetShuffleModeUpdatedCb(MediaControllerClientHandle handle);
 
-        [DllImport(Libraries.MediaController, EntryPoint = "mc_client_set_repeat_mode_update_cb")]
+        [DllImport(Libraries.MediaController, EntryPoint = "mc_client_set_repeat_mode_updated_cb")]
         internal static extern MediaControllerError SetRepeatModeUpdatedCb(MediaControllerClientHandle handle,
             RepeatModeUpdatedCallback callback, IntPtr userData = default(IntPtr));
 
-        [DllImport(Libraries.MediaController, EntryPoint = "mc_client_unset_repeat_mode_update_cb")]
+        [DllImport(Libraries.MediaController, EntryPoint = "mc_client_unset_repeat_mode_updated_cb")]
         internal static extern MediaControllerError UnsetRepeatModeUpdatedCb(MediaControllerClientHandle handle);
 
         [DllImport(Libraries.MediaController, EntryPoint = "mc_client_set_cmd_reply_received_cb")]
@@ -105,28 +95,6 @@ internal static partial class Interop
         [DllImport(Libraries.MediaController, EntryPoint = "mc_client_destroy_playback")]
         internal static extern MediaControllerError DestroyPlayback(IntPtr playback);
 
-        [DllImport(Libraries.MediaController, EntryPoint = "mc_client_get_metadata")]
-        private static extern MediaControllerError GetMetadata(IntPtr metadata, MediaControllerNativeAttribute attribute,
-            out IntPtr value);
-
-        internal static string GetMetadata(IntPtr handle, MediaControllerNativeAttribute attr)
-        {
-            IntPtr valuePtr = IntPtr.Zero;
-
-            try
-            {
-                GetMetadata(handle, attr, out valuePtr).ThrowIfError($"Failed to get value for {attr}.");
-                return Marshal.PtrToStringAnsi(valuePtr);
-            }
-            finally
-            {
-                Tizen.Multimedia.LibcSupport.Free(valuePtr);
-            }
-        }
-
-        [DllImport(Libraries.MediaController, EntryPoint = "mc_client_destroy_metadata")]
-        internal static extern MediaControllerError DestroyMetadata(IntPtr metadata);
-
         [DllImport(Libraries.MediaController, EntryPoint = "mc_client_get_latest_server_info")]
         internal static extern MediaControllerError GetLatestServer(MediaControllerClientHandle handle,
             out IntPtr serverName, out MediaControllerNativeServerState serverState);
@@ -134,10 +102,6 @@ internal static partial class Interop
         [DllImport(Libraries.MediaController, EntryPoint = "mc_client_get_server_playback_info")]
         internal static extern MediaControllerError GetServerPlayback(MediaControllerClientHandle handle,
             string serverName, out IntPtr playback);
-
-        [DllImport(Libraries.MediaController, EntryPoint = "mc_client_get_server_metadata")]
-        internal static extern MediaControllerError GetServerMetadata(MediaControllerClientHandle handle,
-            string serverName, out IntPtr metadata);
 
         [DllImport(Libraries.MediaController, EntryPoint = "mc_client_get_server_shuffle_mode")]
         internal static extern MediaControllerError GetServerShuffleMode(MediaControllerClientHandle handle,
@@ -152,8 +116,12 @@ internal static partial class Interop
             string serverName, MediaControllerNativePlaybackAction command);
 
         [DllImport(Libraries.MediaController, EntryPoint = "mc_client_send_custom_cmd")]
-        internal static extern MediaControllerError SendCustomCommand(MediaControllerClientHandle handle,
+        internal static extern MediaControllerError SendCustomCommandBundle(MediaControllerClientHandle handle,
             string serverName, string command, SafeBundleHandle bundleHandle, out string requestId);
+
+        [DllImport(Libraries.MediaController, EntryPoint = "mc_client_send_custom_cmd")]
+        internal static extern MediaControllerError SendCustomCommand(MediaControllerClientHandle handle,
+            string serverName, string command, IntPtr bundleHandle, out string requestId);
 
         [DllImport(Libraries.MediaController, EntryPoint = "mc_client_send_playback_action_cmd")]
         internal static extern MediaControllerError SendPlaybackActionCommand(MediaControllerClientHandle handle,

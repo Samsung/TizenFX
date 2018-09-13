@@ -107,19 +107,5 @@ namespace Tizen.Multimedia.Remoting
             return mode == MediaControllerNativeRepeatMode.Off ? MediaControlRepeatMode.On :
                 (mode == MediaControllerNativeRepeatMode.On ? MediaControlRepeatMode.Off : MediaControlRepeatMode.OneMedia);
         }
-
-        internal static MediaControllerNativeShuffleMode ToNative(this MediaControlShuffleMode mode)
-        {
-            Debug.Assert(Enum.IsDefined(typeof(MediaControlShuffleMode), mode));
-
-            return mode == MediaControlShuffleMode.Off ? MediaControllerNativeShuffleMode.On : MediaControllerNativeShuffleMode.Off;
-        }
-
-        internal static MediaControlShuffleMode ToPublic(this MediaControllerNativeShuffleMode mode)
-        {
-            Debug.Assert(Enum.IsDefined(typeof(MediaControllerNativeShuffleMode), mode));
-
-            return mode == MediaControllerNativeShuffleMode.Off ? MediaControlShuffleMode.On : MediaControlShuffleMode.Off;
-        }
     }
 }

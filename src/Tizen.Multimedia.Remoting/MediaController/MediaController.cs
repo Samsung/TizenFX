@@ -15,9 +15,11 @@
  */
 
 using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.Threading.Tasks;
 using Native = Interop.MediaControllerClient;
+using NativePlaylist = Interop.MediaControllerPlaylist;
 
 namespace Tizen.Multimedia.Remoting
 {
@@ -154,7 +156,7 @@ namespace Tizen.Multimedia.Remoting
 
             try
             {
-                Native.GetServerMetadata(Manager.Handle, ServerAppId, out metadataHandle).
+                NativePlaylist.GetServerMetadata(Manager.Handle, ServerAppId, out metadataHandle).
                     ThrowIfError("Failed to get metadata.");
 
                 return new MediaControlMetadata(metadataHandle);
@@ -163,7 +165,66 @@ namespace Tizen.Multimedia.Remoting
             {
                 if (metadataHandle != IntPtr.Zero)
                 {
-                    Native.DestroyMetadata(metadataHandle);
+                    NativePlaylist.DestroyMetadata(metadataHandle);
+                }
+            }
+        }
+
+        /// <summary>
+        /// Returns the all playlists.
+        /// </summary>
+        /// <returns><see cref="MediaControlPlaylist"/></returns>
+        /// <exception cref="InvalidOperationException">
+        ///     The server has already been stopped.<br/>
+        ///     -or-<br/>
+        ///     An internal error occurs.
+        /// </exception>
+        /// <exception cref="ObjectDisposedException">The <see cref="MediaControllerManager"/> has already been disposed of.</exception>
+        /// <since_tizen> 5 </since_tizen>
+        public IEnumerable<MediaControlPlaylist> GetPlaylists()
+        {
+            ThrowIfStopped();
+
+            List<MediaControlPlaylist> playlists = null;
+
+            NativePlaylist.PlaylistCallback playlistCallback = (handle, _) =>
+            {
+                playlists.Add(new MediaControlPlaylist(handle));
+            };
+            NativePlaylist.ForeachServerPlaylist(Manager.Handle, ServerAppId, playlistCallback, IntPtr.Zero)
+                .ThrowIfError("Failed to get playlist."); ;
+
+            return playlists;
+        }
+
+        /// <summary>
+        /// Returns the index of current playing media.
+        /// </summary>
+        /// <returns>The index of current playing media.</returns>
+        /// <exception cref="InvalidOperationException">
+        ///     The server has already been stopped.<br/>
+        ///     -or-<br/>
+        ///     An internal error occurs.
+        /// </exception>
+        /// <exception cref="ObjectDisposedException">The <see cref="MediaControllerManager"/> has already been disposed of.</exception>
+        /// <since_tizen> 5 </since_tizen>
+        public string GetIndexOfCurrentPlayingMedia()
+        {
+            ThrowIfStopped();
+
+            IntPtr playbackHandle = IntPtr.Zero;
+
+            try
+            {
+                Native.GetServerPlayback(Manager.Handle, ServerAppId, out playbackHandle).ThrowIfError("Failed to get playback.");
+
+                return NativePlaylist.GetPlaylistIndex(playbackHandle);
+            }
+            finally
+            {
+                if (playbackHandle != IntPtr.Zero)
+                {
+                    Native.DestroyPlayback(playbackHandle);
                 }
             }
         }
@@ -213,30 +274,6 @@ namespace Tizen.Multimedia.Remoting
         }
 
         /// <summary>
-        /// Sends playback command to the server.
-        /// </summary>
-        /// <param name="command">A playback command.</param>
-        /// <exception cref="InvalidOperationException">
-        ///     The server has already been stopped.<br/>
-        ///     -or-<br/>
-        ///     An internal error occurs.
-        /// </exception>
-        /// <exception cref="ArgumentException"><paramref name="command"/> is not valid.</exception>
-        /// <exception cref="ObjectDisposedException">The <see cref="MediaControllerManager"/> has already been disposed of.</exception>
-        /// <seealso cref="MediaControlServer.PlaybackCommandReceived"/>
-        /// <since_tizen> 4 </since_tizen>
-        [Obsolete("Please do not use! This will be deprecated. Please use SendCommand instead.")]
-        public void SendPlaybackCommand(MediaControlPlaybackCommand command)
-        {
-            ThrowIfStopped();
-
-            ValidationUtil.ValidateEnum(typeof(MediaControlPlaybackCommand), command, nameof(command));
-
-            Native.SendPlaybackStateCommand(Manager.Handle, ServerAppId, command.ToNative()).
-                ThrowIfError("Failed to send command.");
-        }
-
-        /// <summary>
         /// Requests command to the server.
         /// </summary>
         /// <remarks>
@@ -254,13 +291,59 @@ namespace Tizen.Multimedia.Remoting
         /// <returns>The request ID for <paramref name="command"/>.
         /// User have to keep it and can match it later with request ID of <see cref="CommandCompleted"/> event.</returns>
         /// <since_tizen> 5 </since_tizen>
-        public string Request(Command command)
+        public async Task<int> RequestAsync(Command command)
         {
             ThrowIfStopped();
 
-            command.SetReceiver(Manager.Handle, ServerAppId);
+            command.SetServerInfo(Manager.Handle, ServerAppId);
 
-            return command.Send();
+            var tcs = new TaskCompletionSource<int>();
+            string reqeustId = null;
+
+            EventHandler<CommandCompletedEventArgs> eventHandler = (s, e) =>
+            {
+                if (e.RequestId == reqeustId)
+                {
+                    tcs.TrySetResult(e.Result);
+                }
+            };
+
+            try
+            {
+                CommandCompleted += eventHandler;
+
+                reqeustId = command.Request();
+
+                return await tcs.Task;
+            }
+            finally
+            {
+                CommandCompleted -= eventHandler;
+            }
+        }
+
+        /// <summary>
+        /// Sends playback command to the server.
+        /// </summary>
+        /// <param name="command">A playback command.</param>
+        /// <exception cref="InvalidOperationException">
+        ///     The server has already been stopped.<br/>
+        ///     -or-<br/>
+        ///     An internal error occurs.
+        /// </exception>
+        /// <exception cref="ArgumentException"><paramref name="command"/> is not valid.</exception>
+        /// <exception cref="ObjectDisposedException">The <see cref="MediaControllerManager"/> has already been disposed of.</exception>
+        /// <seealso cref="MediaControlServer.PlaybackCommandReceived"/>
+        /// <since_tizen> 4 </since_tizen>
+        [Obsolete("Please do not use! This will be deprecated. Please use Request instead.")]
+        public void SendPlaybackCommand(MediaControlPlaybackCommand command)
+        {
+            ThrowIfStopped();
+
+            ValidationUtil.ValidateEnum(typeof(MediaControlPlaybackCommand), command, nameof(command));
+
+            Native.SendPlaybackStateCommand(Manager.Handle, ServerAppId, command.ToNative()).
+                ThrowIfError("Failed to send command.");
         }
     }
 }

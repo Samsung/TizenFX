@@ -30,22 +30,30 @@ namespace Tizen.Multimedia.Remoting
         /// </summary>
         /// <param name="requestId">The request id for each command.</param>
         /// <param name="result">The result of commands.</param>
-        /// <param name="bundleHandle">The extra data.</param>
         /// <since_tizen> 5 </since_tizen>
-        public CommandCompletedEventArgs(string requestId, int result, SafeBundleHandle bundleHandle)
+        public CommandCompletedEventArgs(string requestId, int result)
         {
             RequestId = requestId;
             Result = result;
+        }
 
-            if (bundleHandle != null)
-            {
-                Bundle = new Bundle(bundleHandle);
-            }
+        /// <summary>
+        /// Initializes a new instance of the <see cref="CommandCompletedEventArgs"/> class with extra data.
+        /// </summary>
+        /// <param name="requestId">The request id for each command.</param>
+        /// <param name="result">The result of commands.</param>
+        /// <param name="bundle">The extra data.</param>
+        /// <since_tizen> 5 </since_tizen>
+        public CommandCompletedEventArgs(string requestId, int result, Bundle bundle)
+            : this(requestId, result)
+        {
+            Bundle = bundle;
         }
 
         /// <summary>
         /// Gets the request Id.
         /// </summary>
+        /// <since_tizen> 5 </since_tizen>
         public string RequestId { get; }
 
         /// <summary>

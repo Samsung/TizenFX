@@ -15,8 +15,6 @@
  */
 
 using System;
-using System.Collections.Generic;
-using System.Diagnostics;
 using Tizen.Applications;
 using Native = Interop.MediaControllerClient;
 
@@ -139,17 +137,35 @@ namespace Tizen.Multimedia.Remoting
         }
 
         /// <summary>
+        /// Occurs when the playlist is updated.
+        /// </summary>
+        /// <since_tizen> 5 </since_tizen>
+        public event EventHandler<PlaylistUpdatedEventArgs> PlaylistUpdated;
+
+        internal void RaisePlaylistUpdatedEvent(MediaControlPlaylistMode mode, string name)
+        {
+            PlaylistUpdated?.Invoke(this, new PlaylistUpdatedEventArgs(mode, name));
+        }
+
+        /// <summary>
         /// Occurs when the command is completed.
         /// </summary>
         /// <remarks>
         /// User can match the command and this event using <see cref="CommandCompletedEventArgs.RequestId"/> field.
         /// </remarks>
         /// <since_tizen> 5 </since_tizen>
-        public event EventHandler<CommandCompletedEventArgs> CommandCompleted;
+        internal event EventHandler<CommandCompletedEventArgs> CommandCompleted;
 
-        internal void RaiseCommandCompletedEvent(string requestId, int result, SafeBundleHandle bundleHandle)
+        internal void RaiseCommandCompletedEvent(string requestId, int result, IntPtr bundleHandle)
         {
-            CommandCompleted?.Invoke(this, new CommandCompletedEventArgs(requestId, result, bundleHandle));
+            if (bundleHandle != IntPtr.Zero)
+            {
+                CommandCompleted?.Invoke(this, new CommandCompletedEventArgs(requestId, result, new Bundle(new SafeBundleHandle(bundleHandle, true))));
+            }
+            else
+            {
+                CommandCompleted?.Invoke(this, new CommandCompletedEventArgs(requestId, result));
+            }
         }
     }
 }

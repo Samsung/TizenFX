@@ -16,7 +16,9 @@
 
 using System;
 using System.Collections.Generic;
-using Native = Interop.MediaControllerClient;
+using NativeClient = Interop.MediaControllerClient;
+using NativeServer = Interop.MediaControllerServer;
+using NativePlaylist = Interop.MediaControllerPlaylist;
 
 namespace Tizen.Multimedia.Remoting
 {
@@ -24,97 +26,245 @@ namespace Tizen.Multimedia.Remoting
     /// Represents playlist for media control.
     /// </summary>
     /// <since_tizen> 5 </since_tizen>
-    public abstract class Playlist
+    public class MediaControlPlaylist : IDisposable
     {
-        /// <summary>
-        /// Initializes a new instance of the <see cref="Playlist"/> class.
-        /// </summary>
-        /// <since_tizen> 5 </since_tizen>
-        protected Playlist() { }
+        private IntPtr _handle;
+        private string _name;
+        private Dictionary<string, MediaControlMetadata> _metadata;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="Playlist"/> class.
+        /// Initializes a new instance of the <see cref="MediaControlPlaylist"/> class by server side.
         /// </summary>
-        /// <since_tizen> 5 </since_tizen>
-        protected Playlist(string name, string index, ulong position)
+        /// <param name="name">The name of this playlist.</param>
+        internal MediaControlPlaylist(string name)
         {
-            Index = index ?? throw new ArgumentNullException("Playlist index is not valid to convert number.");
-            if (!Int32.TryParse(index, out int result))
+            if (name == null)
             {
-                throw new ArgumentException("Playlist index is not vaild to convert to number.");
+                throw new ArgumentNullException("The playlist name is not set.");
             }
 
-            Name = name ?? throw new ArgumentNullException("Playlist name is not set.");
-            Position = position;
+            NativePlaylist.CreatePlaylist(name, out IntPtr handle).ThrowIfError("Failed to create playlist");
+
+            _name = name;
         }
 
         /// <summary>
-        /// Gets or sets the index of the media in the playist.
+        /// Initializes a new instance of the <see cref="MediaControlPlaylist"/> class with the playlist handle that created already.
         /// </summary>
-        /// <since_tizen> 5 </since_tizen>
-        public string Index { get; protected set; }
-
-        /// <summary>
-        /// Gets or sets the name of playist.
-        /// </summary>
-        /// <since_tizen> 5 </since_tizen>
-        public string Name { get; protected set; }
-
-        /// <summary>
-        /// Gets or sets the playing position of the media indicated by <see cref="Index"/>.
-        /// </summary>
-        /// <since_tizen> 5 </since_tizen>
-        public ulong Position { get; protected set; }
-
-        /// <summary>
-        /// Gets the total number of media in the playlist.
-        /// </summary>
-        /// <since_tizen> 5 </since_tizen>
-        public virtual int TotalCount { get; } = 1;
-
-        /// <summary>
-        /// Creates an object of the MediaControlPlaylist with the specified name, index, position.
-        /// </summary>
-        /// <param name="name"></param>
-        /// <param name="index"></param>
-        /// <param name="position"></param>
-        /// <returns>A <see cref="MediaControlSimplePlaylist"/> instance.</returns>
-        /// <exception cref="ArgumentException"><paramref name="index"/> cannot be converted to number.</exception>
-        /// <exception cref="ArgumentNullException">
-        /// <paramref name="name"/> or <paramref name="index"/> is not set.
-        /// </exception>
-        /// <since_tizen> 5 </since_tizen>
-        public static MediaControlSimplePlaylist Create(string name, string index, ulong position)
+        /// <param name="handle">The handle of playlist.</param>
+        internal MediaControlPlaylist(IntPtr handle)
         {
-            return new MediaControlSimplePlaylist(name, index, position);
+            if (handle == IntPtr.Zero)
+            {
+                throw new ArgumentNullException("The handle is not set.");
+            }
+
+            // handle will be destroyed in Native FW side.
+            _name = NativePlaylist.GetPlaylistName(handle);
+
+            UpdateMetadata(handle);
         }
 
         /// <summary>
-        /// Creates an object of the MediaControlPlaylist with the specified name, index.
+        /// Finalizes an instance of the <see cref="MediaControlPlaylist"/> class.
         /// </summary>
-        /// <param name="name"></param>
-        /// <param name="index"></param>
-        /// <returns>A <see cref="MediaControlSimplePlaylist"/> instance.</returns>
-        /// <exception cref="ArgumentException"><paramref name="index"/> cannot be converted to number.</exception>
-        /// <exception cref="ArgumentNullException">
-        /// <paramref name="name"/> or <paramref name="index"/> is not set.
-        /// </exception>
         /// <since_tizen> 5 </since_tizen>
-        public static MediaControlSimplePlaylist Create(string name, string index)
+        ~MediaControlPlaylist()
         {
-            return new MediaControlSimplePlaylist(name, index, 0);
+            Dispose(false);
         }
-    }
 
+        internal IntPtr Handle
+        {
+            get
+            {
+                if (_handle == null)
+                {
+                    _handle = MediaControlServer.GetPlaylistHandle(Name);
+                }
+                return _handle;
+            }
+            set
+            {
+                _handle = value;
+            }
+        }
 
-    /// <summary>
-    /// Represents simple playlist for media control.
-    /// </summary>
-    /// <since_tizen> 5 </since_tizen>
-    public class MediaControlSimplePlaylist : Playlist
-    {
-        internal MediaControlSimplePlaylist(string name, string index, ulong position)
-            : base(name, index, position)
-        { }
+        /// <summary>
+        /// Gets or sets the name of playlist.
+        /// </summary>
+        /// <since_tizen> 5 </since_tizen>
+        public string Name
+        {
+            get
+            {
+                return _name;
+            }
+            set
+            {
+                NativePlaylist.SetPlaylistName(Handle, value).ThrowIfError("Failed to set playlist name.");
+                _name = value;
+            }
+        }
+
+        /// <summary>
+        /// Gets the total number of media in this playlist.
+        /// </summary>
+        public int TotalCount
+        {
+            get
+            {
+                return _metadata != null ? _metadata.Count : 0;
+            }
+        }
+
+        private void UpdateMetadata(IntPtr handle)
+        {
+            NativePlaylist.PlaylistItemCallback playlistItemCallback = (index, metadataHandle, _) =>
+            {
+                _metadata.Add(index, new MediaControlMetadata(metadataHandle));
+                return true;
+            };
+            NativePlaylist.ForeachPlaylistItem(handle, playlistItemCallback, IntPtr.Zero).
+                ThrowIfError("Failed to retrieve playlist item.");
+        }
+
+        /// <summary>
+        /// Gets the playlist index and metadata pair.
+        /// </summary>
+        /// <returns>The dictionary set of index and <see cref="MediaControlMetadata"/> pair.</returns>
+        public Dictionary<string, MediaControlMetadata> GetMetadata()
+        {
+            if (_metadata == null)
+            {
+                UpdateMetadata(Handle);
+            }
+
+            return _metadata;
+        }
+
+        /// <summary>
+        /// Gets the metadata by index.
+        /// </summary>
+        /// <param name="index"></param>
+        /// <returns>A <see cref="MediaControlMetadata"/> instance.</returns>
+        public MediaControlMetadata GetMetadata(string index)
+        {
+            if (_metadata == null)
+            {
+                UpdateMetadata(Handle);
+            }
+
+            if (_metadata.TryGetValue(index, out MediaControlMetadata metadata))
+            {
+                return metadata;
+            }
+
+            return null;
+        }
+
+        /// <summary>
+        /// Sets the metadata to the playlist.
+        /// </summary>
+        /// <param name="metadata"></param>
+        /// <since_tizen> 5 </since_tizen>
+        public void AddMetadata(Dictionary<string, MediaControlMetadata> metadata)
+        {
+            foreach (var data in metadata)
+            {
+                AddMetadata(data.Key, data.Value);
+            }
+
+            MediaControlServer.SavePlaylist(Handle);
+        }
+
+        /// <summary>
+        /// Sets the metadata to the playlist.
+        /// </summary>
+        /// <param name="index"></param>
+        /// <param name="metadata"></param>
+        /// <since_tizen> 5 </since_tizen>
+        public void AddMetadata(string index, MediaControlMetadata metadata)
+        {
+            AddItemToPlaylist(index, metadata);
+            _metadata.Add(index, metadata);
+
+            MediaControlServer.SavePlaylist(Handle);
+        }
+
+        private void AddItemToPlaylist(string index, MediaControlMetadata metadata)
+        {
+            void AddMetadataToNative(string idx, MediaControllerNativeAttribute attribute, string value)
+            {
+                // This API doesn't save playlist to the storage. So we need to call MediaControlServer.SavePlaylist()
+                // after all items are updated.
+                NativePlaylist.UpdatePlaylist(Handle, idx, attribute, value)
+                    .ThrowIfError("Failed to update playlist");
+            }
+
+            AddMetadataToNative(index, MediaControllerNativeAttribute.Album, metadata.Album);
+            AddMetadataToNative(index, MediaControllerNativeAttribute.Artist, metadata.Artist);
+            AddMetadataToNative(index, MediaControllerNativeAttribute.Author, metadata.Author);
+            AddMetadataToNative(index, MediaControllerNativeAttribute.Copyright, metadata.Copyright);
+            AddMetadataToNative(index, MediaControllerNativeAttribute.Date, metadata.Date);
+            AddMetadataToNative(index, MediaControllerNativeAttribute.Description, metadata.Description);
+            AddMetadataToNative(index, MediaControllerNativeAttribute.Duration, metadata.Duration);
+            AddMetadataToNative(index, MediaControllerNativeAttribute.Genre, metadata.Genre);
+            AddMetadataToNative(index, MediaControllerNativeAttribute.Picture, metadata.AlbumArtPath);
+            AddMetadataToNative(index, MediaControllerNativeAttribute.Title, metadata.Title);
+            AddMetadataToNative(index, MediaControllerNativeAttribute.TrackNumber, metadata.TrackNumber);
+        }
+
+        /// <summary>
+        /// Update the playlist by lastest info.
+        /// </summary>
+        /// <since_tizen> 5 </since_tizen>
+        public void Update()
+        {
+            // Update the name of playlist.
+            _name = NativePlaylist.GetPlaylistName(Handle);
+
+            // Update metadata.
+            UpdateMetadata(Handle);
+        }
+
+        internal void Destroy()
+        {
+            NativePlaylist.DestroyPlaylist(Handle).ThrowIfError("Failed to delete playlist");
+        }
+
+        #region Dispose support
+        private bool _disposed;
+
+        /// <summary>
+        /// Releases the unmanaged resources used by the MediaControlPlaylist.
+        /// </summary>
+        /// <since_tizen> 5 </since_tizen>
+        public void Dispose()
+        {
+            Dispose(true);
+        }
+
+        /// <summary>
+        /// Releases the resources used by the Recorder.
+        /// </summary>
+        /// <param name="disposing">
+        /// true to release both managed and unmanaged resources; false to release only unmanaged resources.
+        /// </param>
+        /// <since_tizen> 3 </since_tizen>
+        protected virtual void Dispose(bool disposing)
+        {
+            if (!_disposed)
+            {
+                if (_handle != null)
+                {
+                    Destroy();
+                    _handle = IntPtr.Zero;
+                }
+
+                _disposed = true;
+            }
+        }
+        #endregion Dispose support
     }
 }

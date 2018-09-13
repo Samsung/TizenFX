@@ -50,7 +50,10 @@ internal static partial class Interop
 
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         internal delegate void CustomCommandReceivedCallback(string clientName,
-            string requestId, string customCommand, SafeBundleHandle bundleHandle, IntPtr userData);
+            string requestId, string customCommand, IntPtr bundleHandle, IntPtr userData);
+
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+        internal delegate void PlaylistCallback(IntPtr handle, IntPtr userData);
 
 
         [DllImport(Libraries.MediaController, EntryPoint = "mc_server_create")]
@@ -133,8 +136,12 @@ internal static partial class Interop
         internal static extern MediaControllerError UnsetCustomCommandReceivedCb(IntPtr handle);
 
         [DllImport(Libraries.MediaController, EntryPoint = "mc_server_send_cmd_reply")]
-        internal static extern MediaControllerError SendCommandReply(IntPtr handle,
+        internal static extern MediaControllerError SendCommandReplyBundle(IntPtr handle,
             string appId, string requestID, int result, SafeBundleHandle bundleHandle);
+
+        [DllImport(Libraries.MediaController, EntryPoint = "mc_server_send_cmd_reply")]
+        internal static extern MediaControllerError SendCommandReply(IntPtr handle,
+            string appId, string requestID, int result, IntPtr bundleHandle);
 
         [DllImport(Libraries.MediaController, EntryPoint = "mc_db_connect")]
         internal static extern MediaControllerError ConnectDb(out IntPtr dbHandle);
@@ -144,5 +151,28 @@ internal static partial class Interop
 
         [DllImport(Libraries.MediaController, EntryPoint = "mc_db_check_server_table_exist")]
         internal static extern MediaControllerError CheckServerExist(IntPtr dbHandle, string appId, out bool value);
+
+        [DllImport(Libraries.MediaController, EntryPoint = "mc_server_create_playlist")]
+        internal static extern MediaControllerError CreatePlaylist(IntPtr handle, string name, out IntPtr playlist);
+
+        [DllImport(Libraries.MediaController, EntryPoint = "mc_server_delete_playlist")]
+        internal static extern MediaControllerError DeletePlaylist(IntPtr handle, IntPtr playlist);
+
+        [DllImport(Libraries.MediaController, EntryPoint = "mc_server_foreach_playlist")]
+        internal static extern MediaControllerError ForeachPlaylist(IntPtr handle, PlaylistCallback callback, IntPtr userData);
+
+        [DllImport(Libraries.MediaController, EntryPoint = "mc_server_set_playlist_item_index")]
+        internal static extern MediaControllerError SetIndexOfCurrentPlayingMedia(IntPtr handle, string index);
+
+        [DllImport(Libraries.MediaController, EntryPoint = "mc_server_add_item_to_playlist")]
+        internal static extern MediaControllerError AddItemToPlaylist(IntPtr handle,
+            IntPtr playlist, string index, MediaControllerNativeAttribute attribute, string value);
+
+        [DllImport(Libraries.MediaController, EntryPoint = "mc_server_update_playlist_done")]
+        internal static extern MediaControllerError SavePlaylist(IntPtr handle, IntPtr playlist);
+
+        // Playlist API. but this need to server handle so have to be here.
+        [DllImport(Libraries.MediaController, EntryPoint = "mc_server_get_playlist")]
+        internal static extern MediaControllerError GetPlaylistHandle(IntPtr handle, string name, out IntPtr playbackHandle);
     }
 }

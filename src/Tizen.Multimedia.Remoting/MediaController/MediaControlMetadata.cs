@@ -16,7 +16,7 @@
 
 using System;
 using System.Diagnostics;
-using Native = Interop.MediaControllerClient;
+using Native = Interop.MediaControllerPlaylist;
 
 namespace Tizen.Multimedia.Remoting
 {

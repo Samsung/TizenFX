@@ -14,30 +14,22 @@
  * limitations under the License.
  */
 
-using System;
-
 namespace Tizen.Multimedia.Remoting
 {
     /// <summary>
-    /// Provides data for the <see cref="MediaControlServer.ShuffleModeCommandReceived"/> event.
+    /// Specifies the playlist mode.
     /// </summary>
     /// <since_tizen> 5 </since_tizen>
-    public class ShuffleModeCommandReceivedEventArgs : EventArgs
+    public enum MediaControlPlaylistMode
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="ShuffleModeCommandReceivedEventArgs"/> class.
+        /// Playlist is created or update.
         /// </summary>
-        /// <param name="command">The playback position command.</param>
-        /// <since_tizen> 5 </since_tizen>
-        public ShuffleModeCommandReceivedEventArgs(Command command)
-        {
-            Command = command as ShuffleModeCommand;
-        }
+        Updated,
 
         /// <summary>
-        /// Gets the <see cref="ShuffleModeCommand"/>.
+        /// Playlist is removed.
         /// </summary>
-        /// <since_tizen> 5 </since_tizen>
-        public ShuffleModeCommand Command;
+        Removed,
     }
 }

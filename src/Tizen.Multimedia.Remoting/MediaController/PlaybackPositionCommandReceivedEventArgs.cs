@@ -27,37 +27,17 @@ namespace Tizen.Multimedia.Remoting
         /// <summary>
         /// Initializes a new instance of the <see cref="PlaybackPositionCommandReceivedEventArgs"/> class.
         /// </summary>
-        /// <param name="clientAppId">The client application id.</param>
-        /// <param name="requestId">The request id of the media controller client.</param>
-        /// <param name="playbackPosition">The playback position.</param>
-        /// <exception cref="ArgumentNullException">
-        /// <paramref name="clientAppId"/> or <paramref name="requestId"/> is null.
-        /// </exception>
+        /// <param name="command">The playback position command.</param>
         /// <since_tizen> 5 </since_tizen>
-        public PlaybackPositionCommandReceivedEventArgs(string clientAppId, string requestId, ulong playbackPosition)
+        public PlaybackPositionCommandReceivedEventArgs(Command command)
         {
-            ClientAppId = clientAppId ?? throw new ArgumentNullException(nameof(clientAppId));
-            RequestID = requestId ?? throw new ArgumentNullException(nameof(requestId));
-            Position = playbackPosition;
+            Command = command as PlaybackPositionCommand;
         }
 
         /// <summary>
-        /// Gets the application id of the client that sent command.
-        /// </summary>
-        /// <value>The client application id.</value>
-        /// <since_tizen> 5 </since_tizen>
-        public string ClientAppId { get; }
-
-        /// <summary>
-        /// Gets the reqeust id
+        /// Gets the <see cref="PlaybackPositionCommand"/>.
         /// </summary>
         /// <since_tizen> 5 </since_tizen>
-        public string RequestID { get; }
-
-        /// <summary>
-        /// Gets the playback position.
-        /// </summary>
-        /// <since_tizen> 5 </since_tizen>
-        public ulong Position { get; }
+        public PlaybackPositionCommand Command { get; }
     }
 }

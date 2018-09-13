@@ -27,65 +27,18 @@ namespace Tizen.Multimedia.Remoting
         /// <summary>
         /// Initializes a new instance of the <see cref="PlaylistCommandReceivedEventArgs"/> class.
         /// </summary>
-        /// <param name="clientAppId">The client application id.</param>
-        /// <param name="requestId">The request id of the media controller client.</param>
-        /// <param name="playlist">The playback position.</param>
-        /// <param name="index">The index of the media in playlist.</param>
-        /// <param name="command">The playback command.</param>
-        /// <param name="playbackPosition">The playback position.</param>
-        /// <exception cref="ArgumentNullException">
-        /// <paramref name="clientAppId"/> or <paramref name="requestId"/> is null.
-        /// </exception>
+        /// <param name="command">The playback position command.</param>
         /// <since_tizen> 5 </since_tizen>
-        public PlaylistCommandReceivedEventArgs(string clientAppId, string requestId, string playlist, string index,
-            MediaControlPlaybackCommand command, ulong playbackPosition)
+        public PlaylistCommandReceivedEventArgs(Command command)
         {
-            ValidationUtil.ValidateEnum(typeof(MediaControlPlaybackCommand), command, nameof(command));
-
-            ClientAppId = clientAppId ?? throw new ArgumentNullException(nameof(clientAppId));
-            RequestID = requestId ?? throw new ArgumentNullException(nameof(requestId));
-            Playlist = playlist ?? throw new ArgumentNullException(nameof(playlist));
-            Index = index ?? throw new ArgumentNullException(nameof(index));
-            Command = command;
-            Position = playbackPosition;
+            Command = command as PlaylistCommand;
         }
 
         /// <summary>
-        /// Gets the application id of the client that sent command.
+        /// Gets the <see cref="PlaylistCommand"/>.
         /// </summary>
-        /// <value>The client application id.</value>
+        /// <seealso cref="PlaylistCommand"/>
         /// <since_tizen> 5 </since_tizen>
-        public string ClientAppId { get; }
-
-        /// <summary>
-        /// Gets the reqeust id
-        /// </summary>
-        /// <since_tizen> 5 </since_tizen>
-        public string RequestID { get; }
-
-        /// <summary>
-        /// Gets the playlist.
-        /// </summary>
-        /// <since_tizen> 5 </since_tizen>
-        public string Playlist { get; }
-
-        /// <summary>
-        /// Gets the index.
-        /// </summary>
-        /// <since_tizen> 5 </since_tizen>
-        public string Index { get; }
-
-        /// <summary>
-        /// Gets the command.
-        /// </summary>
-        /// <value>The <see cref="MediaControlPlaybackCommand"/>.</value>
-        /// <since_tizen> 5 </since_tizen>
-        public MediaControlPlaybackCommand Command { get; }
-
-        /// <summary>
-        /// Gets the playback position.
-        /// </summary>
-        /// <since_tizen> 5 </since_tizen>
-        public ulong Position { get; }
+        public PlaylistCommand Command { get; }
     }
 }

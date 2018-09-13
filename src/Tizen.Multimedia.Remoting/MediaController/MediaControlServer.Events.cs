@@ -14,6 +14,7 @@
  * limitations under the License.
  */
 
+using Tizen.Applications;
 using System;
 using Native = Interop.MediaControllerServer;
 
@@ -86,7 +87,10 @@ namespace Tizen.Multimedia.Remoting
         {
             _playbackActionCommandCallback = (clientName, requestId, playbackCommand, _) =>
             {
-                PlaybackActionCommandReceived?.Invoke(null, new PlaybackActionCommandReceivedEventArgs(clientName, requestId, playbackCommand.ToPublic()));
+                var command = new PlaybackCommand(playbackCommand.ToPublic());
+                command.SetClientInfo(clientName, requestId);
+
+                PlaybackActionCommandReceived?.Invoke(null, new PlaybackActionCommandReceivedEventArgs(command));
             };
             Native.SetPlaybackActionCommandReceivedCb(Handle, _playbackActionCommandCallback).
                 ThrowIfError("Failed to init PlaybackActionCommandReceived event.");
@@ -96,7 +100,10 @@ namespace Tizen.Multimedia.Remoting
         {
             _playbackPositionCommandCallback = (clientName, requestId, playbackPosition, _) =>
             {
-                PlaybackPositionCommandReceived?.Invoke(null, new PlaybackPositionCommandReceivedEventArgs(clientName, requestId, playbackPosition));
+                var command = new PlaybackPositionCommand(playbackPosition);
+                command.SetClientInfo(clientName, requestId);
+
+                PlaybackPositionCommandReceived?.Invoke(null, new PlaybackPositionCommandReceivedEventArgs(command));
             };
             Native.SetPlaybackPosotionCommandReceivedCb(Handle, _playbackPositionCommandCallback).
                 ThrowIfError("Failed to init PlaybackPositionCommandReceived event.");
@@ -104,9 +111,12 @@ namespace Tizen.Multimedia.Remoting
 
         private static void RegisterPlaylistCommandReceivedEvent()
         {
-            _playlistCommandCallback = (clientName, requestId, playlist, index, command, playbackPosition, _) =>
+            _playlistCommandCallback = (clientName, requestId, playlistName, index, playbackCommand, playbackPosition, _) =>
             {
-                PlaylistCommandReceived?.Invoke(null, new PlaylistCommandReceivedEventArgs(clientName, requestId, playlist, index, command.ToPublic(), playbackPosition));
+                var command = new PlaylistCommand(playbackCommand.ToPublic(), playlistName, index, playbackPosition);
+                command.SetClientInfo(clientName, requestId);
+
+                PlaylistCommandReceived?.Invoke(null, new PlaylistCommandReceivedEventArgs(command));
             };
             Native.SetPlaylistCommandReceivedCb(Handle, _playlistCommandCallback).
                 ThrowIfError("Failed to init PlaylistCommandReceived event.");
@@ -116,7 +126,10 @@ namespace Tizen.Multimedia.Remoting
         {
             _shuffleModeCommandCallback = (clientName, requestId, mode, _) =>
             {
-                ShuffleModeCommandReceived?.Invoke(null, new ShuffleModeCommandReceivedEventArgs(clientName, requestId, mode.ToPublic()));
+                var command = new ShuffleModeCommand(mode == MediaControllerNativeShuffleMode.On ? true : false);
+                command.SetClientInfo(clientName, requestId);
+
+                ShuffleModeCommandReceived?.Invoke(null, new ShuffleModeCommandReceivedEventArgs(command));
             };
             Native.SetShuffleModeCommandReceivedCb(Handle, _shuffleModeCommandCallback).
                 ThrowIfError("Failed to init ShuffleModeCommandReceived event.");
@@ -126,7 +139,10 @@ namespace Tizen.Multimedia.Remoting
         {
             _repeatModeCommandCallback = (clientName, requestId, mode, _) =>
             {
-                RepeatModeCommandReceived?.Invoke(null, new RepeatModeCommandReceivedEventArgs(clientName, requestId, mode.ToPublic()));
+                var command = new RepeatModeCommand(mode.ToPublic());
+                command.SetClientInfo(clientName, requestId);
+
+                RepeatModeCommandReceived?.Invoke(null, new RepeatModeCommandReceivedEventArgs(command));
             };
             Native.SetRepeatModeCommandReceivedCb(Handle, _repeatModeCommandCallback).
                 ThrowIfError("Failed to init RepeatModeCommandReceived event.");
@@ -134,9 +150,21 @@ namespace Tizen.Multimedia.Remoting
 
         private static void RegisterCustomCommandReceivedEvent()
         {
-            _customCommandCallback = (clientName, requestId, command, bundleHandle, _) =>
+            _customCommandCallback = (clientName, requestId, customCommand, bundleHandle, _) =>
             {
-                CustomCommandReceived?.Invoke(null, new CustomCommandReceivedEventArgs(clientName, requestId, command, bundleHandle));
+                CustomCommand command = null;
+                if (bundleHandle != IntPtr.Zero)
+                {
+                    command = new CustomCommand(customCommand, new Bundle(new SafeBundleHandle(bundleHandle, true)));
+                }
+                else
+                {
+                    command = new CustomCommand(customCommand);
+                }
+
+                command.SetClientInfo(clientName, requestId);
+
+                CustomCommandReceived?.Invoke(null, new CustomCommandReceivedEventArgs(command));
             };
             Native.SetCustomCommandReceivedCb(Handle, _customCommandCallback).
                 ThrowIfError("Failed to init CustomCommandReceived event.");

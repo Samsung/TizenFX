@@ -28,49 +28,17 @@ namespace Tizen.Multimedia.Remoting
         /// <summary>
         /// Initializes a new instance of the <see cref="CustomCommandReceivedEventArgs"/> class.
         /// </summary>
-        /// <param name="clientAppId">The client application id.</param>
-        /// <param name="requestId">The request id of the media controller client.</param>
-        /// <param name="command">The playback custom command.</param>
-        /// <param name="bundleHandle">The extra data.</param>
-        /// <exception cref="ArgumentNullException">
-        /// <paramref name="clientAppId"/> or <paramref name="requestId"/> or <paramref name="command"/> is null.
-        /// </exception>
+        /// <param name="command">The playback position command.</param>
         /// <since_tizen> 5 </since_tizen>
-        public CustomCommandReceivedEventArgs(string clientAppId, string requestId, string command, SafeBundleHandle bundleHandle)
+        public CustomCommandReceivedEventArgs(Command command)
         {
-            ClientAppId = clientAppId ?? throw new ArgumentNullException(nameof(clientAppId));
-            RequestID = requestId ?? throw new ArgumentNullException(nameof(requestId));
-            Command = command ?? throw new ArgumentNullException(nameof(command));
-
-            if (bundleHandle != null)
-            {
-                Bundle = new Bundle(bundleHandle);
-            }
+            Command = command as CustomCommand;
         }
 
         /// <summary>
-        /// Gets the application id of the client that sent command.
-        /// </summary>
-        /// <value>The client application id.</value>
-        /// <since_tizen> 5 </since_tizen>
-        public string ClientAppId { get; }
-
-        /// <summary>
-        /// Gets the reqeust id
+        /// Gets the <see cref="CustomCommand"/>.
         /// </summary>
         /// <since_tizen> 5 </since_tizen>
-        public string RequestID { get; }
-
-        /// <summary>
-        /// Gets the custom command.
-        /// </summary>
-        /// <since_tizen> 5 </since_tizen>
-        public string Command { get; }
-
-        /// <summary>
-        /// Gets the extra data.
-        /// </summary>
-        /// <since_tizen> 5 </since_tizen>
-        public Bundle Bundle { get; }
+        public CustomCommand Command { get; }
     }
 }

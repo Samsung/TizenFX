@@ -16,8 +16,9 @@
 
 using Tizen.Applications;
 using System;
-using Native = Interop.MediaControllerClient;
-using NativeHandle = Interop.MediaControllerClientHandle;
+using NativeClient = Interop.MediaControllerClient;
+using NativeServer = Interop.MediaControllerServer;
+using NativeClientHandle = Interop.MediaControllerClientHandle;
 
 namespace Tizen.Multimedia.Remoting
 {
@@ -27,24 +28,62 @@ namespace Tizen.Multimedia.Remoting
     /// <since_tizen> 5 </since_tizen>
     public abstract class Command
     {
-        internal NativeHandle _receiverHandle;
-        internal string _serverId;
+        private string _requestId;
 
-        internal Command(MediaControlCommand type)
+        internal NativeClientHandle _clientHandle;
+
+        private string _clientId;
+
+        /// <summary>
+        /// The server id.
+        /// </summary>
+        /// <since_tizen> 5 </since_tizen>
+        protected string _serverId;
+
+        /// <summary>
+        /// Initializes a <see cref="Command"/> base class.
+        /// </summary>
+        protected Command() { }
+
+        internal abstract string Request();
+
+        internal void Response(IntPtr handle, int result, Bundle bundle)
         {
-            Type = type;
+            if (bundle != null)
+            {
+                NativeServer.SendCommandReplyBundle(handle, _clientId, _requestId, result, bundle.SafeBundleHandle)
+                    .ThrowIfError("Failed to response command.");
+            }
+            else
+            {
+                NativeServer.SendCommandReply(handle, _clientId, _requestId, result, IntPtr.Zero)
+                    .ThrowIfError("Failed to response command.");
+            }
         }
 
-        internal MediaControlCommand Type { get; }
-
-        internal abstract string Send();
-
-        internal void SetReceiver(NativeHandle receiverHandle, string serverId)
+        /// <summary>
+        /// Sets the server information.
+        /// </summary>
+        /// <param name="clientrHandle">The client handle.</param>
+        /// <param name="serverId">The server Id that receives command.</param>
+        internal void SetServerInfo(NativeClientHandle clientrHandle, string serverId)
         {
-            _receiverHandle = receiverHandle;
             _serverId = serverId;
+            _clientHandle = clientrHandle;
+        }
+
+        /// <summary>
+        /// Sets the client information.
+        /// </summary>
+        /// <param name="clientId">The client Id that will be received response.</param>
+        /// <param name="requestId">The request Id for each command.</param>
+        internal void SetClientInfo(string clientId, string requestId)
+        {
+            _clientId = clientId;
+            _requestId = requestId;
         }
     }
+
 
     /// <summary>
     /// Provides a means to send playback command to media control server.
@@ -54,18 +93,69 @@ namespace Tizen.Multimedia.Remoting
         /// <summary>
         /// Initializes a new instance of the <see cref="PlaybackCommand"/> class.
         /// </summary>
-        /// <param name="command">A <see cref="MediaControlPlaybackCommand"/>.</param>
+        /// <param name="action">A <see cref="MediaControlPlaybackCommand"/>.</param>
         /// <since_tizen> 5 </since_tizen>
-        public PlaybackCommand(MediaControlPlaybackCommand command)
-            : base(MediaControlCommand.Playback)
+        public PlaybackCommand(MediaControlPlaybackCommand action)
         {
-            Command = command;
+            Action = action;
         }
 
         /// <summary>
+        /// Gets the playback action.
+        /// </summary>
+        /// <since_tizen> 5 </since_tizen>
+        public MediaControlPlaybackCommand Action { get; }
+
+        internal override string Request()
+        {
+            ValidationUtil.ValidateEnum(typeof(MediaControlPlaybackCommand), Action, nameof(MediaControlPlaybackCommand));
+
+            NativeClient.SendPlaybackActionCommand(_clientHandle, _serverId, Action.ToNative(), out string requestId)
+                .ThrowIfError("Failed to send playback command.");
+
+            return requestId;
+        }
+    }
+
+    /// <summary>
+    /// Provides a means to send playback command to order specific time position.
+    /// </summary>
+    public sealed class PlaybackPositionCommand : Command
+    {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="PlaybackPositionCommand"/> class.
+        /// </summary>
+        /// <param name="position">The playback position in milliseconds.</param>
+        /// <since_tizen> 5 </since_tizen>
+        public PlaybackPositionCommand(ulong position)
+        {
+            Position = position;
+        }
+
+        /// <summary>
+        /// Gets the position to play.
+        /// </summary>
+        /// <since_tizen> 5 </since_tizen>
+        public ulong Position { get; }
+
+        internal override string Request()
+        {
+            NativeClient.SendPlaybackPositionCommand(_clientHandle, _serverId, Position, out string requestId)
+                .ThrowIfError("Failed to send playback position command.");
+
+            return requestId;
+        }
+    }
+
+    /// <summary>
+    /// Provides a means to send playback command with playlist information.
+    /// </summary>
+    public sealed class PlaylistCommand : Command
+    {
+        /// <summary>
         /// Initializes a new instance of the <see cref="PlaybackCommand"/> class.
         /// </summary>
-        /// <param name="command">A <see cref="MediaControlPlaybackCommand"/>.</param>
+        /// <param name="action">A <see cref="MediaControlPlaybackCommand"/>.</param>
         /// <param name="playlistName">The playlist name of the server.</param>
         /// <param name="index">The index of the media in the playlist.</param>
         /// <param name="position">The playback position in milliseconds.</param>
@@ -74,24 +164,18 @@ namespace Tizen.Multimedia.Remoting
         /// <paramref name="playlistName"/> or <paramref name="index"/> is not vailed.
         /// </exception>
         /// <since_tizen> 5 </since_tizen>
-        public PlaybackCommand(MediaControlPlaybackCommand command, string playlistName, string index, ulong position)
-            : base(MediaControlCommand.Playlist)
+        public PlaylistCommand(MediaControlPlaybackCommand action, string playlistName, string index, ulong position)
         {
-            PlaylistIndex = index ?? throw new ArgumentNullException("Playlist index is not set.");
-            if (!Int32.TryParse(PlaylistIndex, out int result))
-            {
-                throw new ArgumentException("Playlist index is not vaild to convert to number.");
-            }
-
-            PlaylistName = playlistName ?? throw new ArgumentNullException("Playlist name is not set.");
-            Command = command;
+            Action = action;
+            Index = index ?? throw new ArgumentNullException("Playlist index is not set.");
+            Name = playlistName ?? throw new ArgumentNullException("Playlist name is not set.");
             Position = position;
         }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="PlaybackCommand"/> class.
         /// </summary>
-        /// <param name="command">A <see cref="MediaControlPlaybackCommand"/>.</param>
+        /// <param name="action">A <see cref="MediaControlPlaybackCommand"/>.</param>
         /// <param name="playlistName">The playlist name of the server.</param>
         /// <param name="index">The index of the media in the playlist.</param>
         /// <exception cref="ArgumentException"><paramref name="index"/> cannot be converted to number.</exception>
@@ -99,72 +183,57 @@ namespace Tizen.Multimedia.Remoting
         /// <paramref name="playlistName"/> or <paramref name="index"/> is not set.
         /// </exception>
         /// <since_tizen> 5 </since_tizen>
-        public PlaybackCommand(MediaControlPlaybackCommand command, string playlistName, string index)
-            : this(command, playlistName, index, 0)
+        public PlaylistCommand(MediaControlPlaybackCommand action, string playlistName, string index)
+            : this(action, playlistName, index, 0)
         {
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="PlaybackCommand"/> class.
+        /// Gets the playback action.
         /// </summary>
-        /// <param name="command">A <see cref="MediaControlPlaybackCommand"/>.</param>
-        /// <param name="playlist">A <see cref="Playlist"/>.</param>
-        /// <exception cref="ArgumentException"><see cref="Playlist.Index"/> cannot be converted to number.</exception>
-        /// <exception cref="ArgumentNullException">
-        /// <see cref="Playlist.Index"/> or <see cref="Playlist.Name"/> is not set.
-        /// </exception>
         /// <since_tizen> 5 </since_tizen>
-        public PlaybackCommand(MediaControlPlaybackCommand command, Playlist playlist)
-            : this(command, playlist.Name, playlist.Index, playlist.Position)
-        {
-        }
+        public MediaControlPlaybackCommand Action { get; }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="PlaybackCommand"/> class.
+        /// Gets the position to play.
         /// </summary>
-        /// <param name="position">The playback position in milliseconds.</param>
         /// <since_tizen> 5 </since_tizen>
-        public PlaybackCommand(ulong position)
-            : base(MediaControlCommand.PlaybackPosition)
+        public ulong Position { get; }
+
+        /// <summary>
+        /// Gets the index of playlist.
+        /// </summary>
+        /// <since_tizen> 5 </since_tizen>
+        public string Index { get; }
+
+        /// <summary>
+        /// Gets the name of playlist.
+        /// </summary>
+        /// <since_tizen> 5 </since_tizen>
+        public string Name { get; }
+
+        internal override string Request()
         {
-            Position = position;
-        }
+            ValidationUtil.ValidateEnum(typeof(MediaControlPlaybackCommand), Action, nameof(MediaControlPlaybackCommand));
 
-        private MediaControlPlaybackCommand Command { get; }
-
-        private string PlaylistIndex { get; }
-
-        private string PlaylistName { get; }
-
-        private ulong Position { get; } = default(ulong);
-
-        internal override string Send()
-        {
-            ValidationUtil.ValidateEnum(typeof(MediaControlPlaybackCommand), Command, nameof(MediaControlPlaybackCommand));
-
-            string requestId = null;
-
-            switch (Type)
-            {
-                case MediaControlCommand.Playback:
-                    Native.SendPlaybackActionCommand(_receiverHandle, _serverId, Command.ToNative(), out requestId)
-                        .ThrowIfError("Failed to send playback command.");
-
-                    break;
-                case MediaControlCommand.PlaybackPosition:
-                    Native.SendPlaybackPositionCommand(_receiverHandle, _serverId, Position, out requestId)
-                        .ThrowIfError("Failed to send playback position command.");
-
-                    break;
-                case MediaControlCommand.Playlist:
-                    Native.SendPlaylistCommand(_receiverHandle, _serverId, PlaylistName, PlaylistIndex, Command.ToNative(),
-                        Position, out requestId).ThrowIfError("Failed to send playlist command.");
-                    break;
-            }
+            NativeClient.SendPlaylistCommand(_clientHandle, _serverId, Name, Index, Action.ToNative(),
+                Position, out string requestId).ThrowIfError("Failed to send playlist command.");
 
             return requestId;
         }
     }
+
+
+
+
+
+
+
+
+
+
+
+
 
 
     /// <summary>
@@ -176,21 +245,23 @@ namespace Tizen.Multimedia.Remoting
         /// <summary>
         /// Initializes a new instance of the <see cref="ShuffleModeCommand"/> class.
         /// </summary>
-        /// <param name="mode">The <see cref="MediaControlRepeatMode"/>.</param>
+        /// <param name="enabled">A shuffle mode.</param>
         /// <since_tizen> 5 </since_tizen>
-        public ShuffleModeCommand(MediaControlShuffleMode mode)
-            : base(MediaControlCommand.ShuffleMode)
+        public ShuffleModeCommand(bool enabled)
         {
-            Mode = mode;
+            Enabled = enabled;
         }
 
-        private MediaControlShuffleMode Mode { get; }
+        /// <summary>
+        /// Gets a value indicating whether the shuffle mode is enabled.
+        /// </summary>
+        public bool Enabled { get; }
 
-        internal override string Send()
+        internal override string Request()
         {
-            ValidationUtil.ValidateEnum(typeof(MediaControlShuffleMode), Mode, nameof(MediaControlShuffleMode));
+            var mode = Enabled ? MediaControllerNativeShuffleMode.On : MediaControllerNativeShuffleMode.Off;
 
-            Native.SendShuffleModeCommand(_receiverHandle, _serverId, Mode.ToNative(), out string requestId).
+            NativeClient.SendShuffleModeCommand(_clientHandle, _serverId, mode, out string requestId).
                 ThrowIfError("Failed to send playback shuffle command.");
 
             return requestId;
@@ -209,18 +280,21 @@ namespace Tizen.Multimedia.Remoting
         /// <param name="mode">The <see cref="MediaControlRepeatMode"/>.</param>
         /// <since_tizen> 5 </since_tizen>
         public RepeatModeCommand(MediaControlRepeatMode mode)
-            : base(MediaControlCommand.RepeatMode)
         {
             Mode = mode;
         }
 
-        private MediaControlRepeatMode Mode { get; }
+        /// <summary>
+        /// Gets the repeat mode.
+        /// </summary>
+        /// <since_tizen> 5 </since_tizen>
+        public MediaControlRepeatMode Mode { get; }
 
-        internal override string Send()
+        internal override string Request()
         {
             ValidationUtil.ValidateEnum(typeof(MediaControlRepeatMode), Mode, nameof(MediaControlRepeatMode));
 
-            Native.SendRepeatModeCommand(_receiverHandle, _serverId, Mode.ToNative(), out string requestId).
+            NativeClient.SendRepeatModeCommand(_clientHandle, _serverId, Mode.ToNative(), out string requestId).
                 ThrowIfError("Failed to send playback repeat command.");
 
             return requestId;
@@ -236,34 +310,51 @@ namespace Tizen.Multimedia.Remoting
         /// <summary>
         /// Initializes a new instance of the <see cref="CustomCommand"/> class.
         /// </summary>
-        /// <param name="command">A predefined custom command.</param>
+        /// <param name="action">A predefined custom command.</param>
         /// <since_tizen> 5 </since_tizen>
-        public CustomCommand(string command)
-            : base(MediaControlCommand.Custom)
+        public CustomCommand(string action)
         {
-            Command = command ?? throw new ArgumentNullException("Custom command is not set.");
+            Action = action ?? throw new ArgumentNullException("Custom command is not set.");
         }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="CustomCommand"/> class.
         /// </summary>
-        /// <param name="command">A predefined custom command.</param>
+        /// <param name="action">A predefined custom command.</param>
         /// <param name="bundle">The extra data for custom command.</param>
         /// <since_tizen> 5 </since_tizen>
-        public CustomCommand(string command, Bundle bundle)
-            : this(command)
+        public CustomCommand(string action, Bundle bundle)
+            : this(action)
         {
             Bundle = bundle;
         }
 
-        private string Command { get; }
+        ///<summary>
+        /// Gets the custom action.
+        /// </summary>
+        /// <since_tizen> 5 </since_tizen>
+        public string Action { get; }
 
-        private Bundle Bundle { get; }
+        /// <summary>
+        /// Gets the extra data.
+        /// </summary>
+        /// <since_tizen> 5 </since_tizen>
+        public Bundle Bundle { get; }
 
-        internal override string Send()
+        internal override string Request()
         {
-            Native.SendCustomCommand(_receiverHandle, _serverId, Command, Bundle?.SafeBundleHandle, out string requestId).
-                ThrowIfError("Failed to send custom command.");
+            string requestId = null;
+
+            if (Bundle != null)
+            {
+                NativeClient.SendCustomCommandBundle(_clientHandle, _serverId, Action, Bundle.SafeBundleHandle, out requestId).
+                    ThrowIfError("Failed to send custom command.");
+            }
+            else
+            {
+                NativeClient.SendCustomCommand(_clientHandle, _serverId, Action, IntPtr.Zero, out requestId).
+                    ThrowIfError("Failed to send custom command.");
+            }
 
             return requestId;
         }

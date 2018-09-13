@@ -15,6 +15,7 @@
  */
 
 using System;
+using System.Collections.Generic;
 using Tizen.Applications;
 using Native = Interop.MediaControllerServer;
 
@@ -263,33 +264,84 @@ namespace Tizen.Multimedia.Remoting
         }
 
         /// <summary>
-        /// Sends back the result of the requested command to the client.
+        /// Sets the index of current playling media.
         /// </summary>
-        /// <param name="clientAppId">The application id of client that sent command.</param>
-        /// <param name="requestId">The request id of command.</param>
-        /// <param name="result">The result of command.</param>
-        /// <param name="bundle"></param>
+        /// <param name="index">The index of current playling media.</param>
+        /// <exception cref="ArgumentNullException"><paramref name="index"/> is null.</exception>
         /// <exception cref="InvalidOperationException">
         ///     The server is not running .<br/>
         ///     -or-<br/>
         ///     An internal error occurs.
         /// </exception>
-        /// <exception cref="ArgumentNullException">
-        /// <paramref name="clientAppId"/> or <paramref name="requestId"/> is not set.
+        /// <since_tizen> 5 </since_tizen>
+        public static void SetIndexOfCurrentPlayingMedia(string index)
+        {
+            Native.SetIndexOfCurrentPlayingMedia(Handle, index)
+                .ThrowIfError("Failed to set the index of current playing media");
+        }
+
+        /// <summary>
+        /// Delete playlist.
+        /// </summary>
+        /// <param name="playlist">The name of playlist.</param>
+        /// <exception cref="InvalidOperationException">
+        ///     The server is not running .<br/>
+        ///     -or-<br/>
+        ///     An internal error occurs.
         /// </exception>
         /// <since_tizen> 5 </since_tizen>
-        public static void Response(string clientAppId, string requestId, int result, Bundle bundle)
+        public static void RemovePlaylist(MediaControlPlaylist playlist)
         {
-            if (clientAppId == null)
-            {
-                throw new ArgumentNullException("clientAppId is not set.");
-            }
-            if (requestId == null)
-            {
-                throw new ArgumentNullException("requestId is not set.");
-            }
+            Native.DeletePlaylist(Handle, playlist.Handle);
+            playlist.Dispose();
+        }
 
-            Native.SendCommandReply(Handle, clientAppId, requestId, result, bundle?.SafeBundleHandle);
+        // Saves the playlist to the persistent storage.
+        internal static void SavePlaylist(IntPtr playlistHandle)
+        {
+            Native.SavePlaylist(Handle, playlistHandle).ThrowIfError("Failed to save playlist");
+        }
+
+        // Gets the playlist handle by name.
+        internal static IntPtr GetPlaylistHandle(string name)
+        {
+            Native.GetPlaylistHandle(Handle, name, out IntPtr playlistHandle)
+                .ThrowIfError("Failed to get playlist handle by name");
+
+            return playlistHandle;
+        }
+
+        /// <summary>
+        /// Sends the result of each command.
+        /// </summary>
+        /// <param name="command">The command that return to client.</param>
+        /// <param name="result">The result of <paramref name="command"/>.</param>
+        /// <param name="bundle">The extra data.</param>
+        /// <exception cref="InvalidOperationException">
+        ///     The server is not running .<br/>
+        ///     -or-<br/>
+        ///     An internal error occurs.
+        /// </exception>
+        /// <since_tizen> 5 </since_tizen>
+        public static void Response(Command command, int result, Bundle bundle)
+        {
+            command.Response(Handle, result, bundle);
+        }
+
+        /// <summary>
+        /// Sends the result of each command.
+        /// </summary>
+        /// <param name="command">The command that return to client.</param>
+        /// <param name="result">The result of <paramref name="command"/>.</param>
+        /// <exception cref="InvalidOperationException">
+        ///     The server is not running .<br/>
+        ///     -or-<br/>
+        ///     An internal error occurs.
+        /// </exception>
+        /// <since_tizen> 5 </since_tizen>
+        public static void Response(Command command, int result)
+        {
+            command.Response(Handle, result, null);
         }
     }
 }
