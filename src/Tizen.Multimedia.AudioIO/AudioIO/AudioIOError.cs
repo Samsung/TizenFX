@@ -74,7 +74,7 @@ namespace Tizen.Multimedia
                     throw new InvalidOperationException(errorMessage);
 
                 default:
-                    throw new Exception("Unknown error : " + errorCode);
+                    throw new InvalidOperationException($"{message} : Unknown error({errorCode.ToString()}).");
             }
         }
     }
