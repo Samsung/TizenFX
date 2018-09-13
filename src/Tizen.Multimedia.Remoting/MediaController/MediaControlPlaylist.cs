@@ -29,7 +29,7 @@ namespace Tizen.Multimedia.Remoting
     public class MediaControlPlaylist : IDisposable
     {
         private IntPtr _handle;
-        private Dictionary<string, MediaControlMetadata> _metadata;
+        private Dictionary<string, MediaControlMetadata> _metadata = null;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="MediaControlPlaylist"/> class by server side.
