@@ -35,7 +35,7 @@ namespace Tizen.Applications
         }
 
         /// <summary>
-        /// The property to get the intformation of the LowBatteryStatus
+        /// The property to get the information of the LowBatteryStatus
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public LowBatteryStatus LowBatteryStatus { get; private set; }
