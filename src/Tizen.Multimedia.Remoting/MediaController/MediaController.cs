@@ -279,7 +279,7 @@ namespace Tizen.Multimedia.Remoting
         /// <remarks>
         /// The client can request the server to execute <see cref="PlaybackCommand"/> or <see cref="ShuffleModeCommand"/> or
         /// <see cref="RepeatModeCommand"/> or <see cref="CustomCommand"/>, <br/>
-        /// and then, the client receive the result of each request(command) by <see cref="CommandCompleted"/> event.
+        /// and then, the client receive the result of each request(command).
         /// </remarks>
         /// <param name="command">A <see cref="Command"/> class.</param>
         /// <exception cref="InvalidOperationException">
@@ -288,8 +288,7 @@ namespace Tizen.Multimedia.Remoting
         ///     An internal error occurs.
         /// </exception>
         /// <exception cref="ObjectDisposedException">The <see cref="MediaControllerManager"/> has already been disposed of.</exception>
-        /// <returns>The request ID for <paramref name="command"/>.
-        /// User have to keep it and can match it later with request ID of <see cref="CommandCompleted"/> event.</returns>
+        /// <returns>The request ID for <paramref name="command"/>.</returns>
         /// <since_tizen> 5 </since_tizen>
         public async Task<int> RequestAsync(Command command)
         {

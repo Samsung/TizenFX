@@ -264,9 +264,9 @@ namespace Tizen.Multimedia.Remoting
         }
 
         /// <summary>
-        /// Sets the index of current playling media.
+        /// Sets the index of current playing media.
         /// </summary>
-        /// <param name="index">The index of current playling media.</param>
+        /// <param name="index">The index of current playing media.</param>
         /// <exception cref="ArgumentNullException"><paramref name="index"/> is null.</exception>
         /// <exception cref="InvalidOperationException">
         ///     The server is not running .<br/>
