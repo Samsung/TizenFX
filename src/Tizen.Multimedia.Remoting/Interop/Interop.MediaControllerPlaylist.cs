@@ -119,8 +119,9 @@ internal static partial class Interop
         [DllImport(Libraries.MediaController, EntryPoint = "mc_playlist_get_name")]
         private static extern MediaControllerError GetPlaylistName(IntPtr handle, out IntPtr name);
 
-        [DllImport(Libraries.MediaController, EntryPoint = "mc_playlist_set_name")]
-        internal static extern MediaControllerError SetPlaylistName(IntPtr handle, string name);
+        // It will be added next commit. Native Fw is not ready yet.
+        //[DllImport(Libraries.MediaController, EntryPoint = "mc_playlist_set_name")]
+        //internal static extern MediaControllerError SetPlaylistName(IntPtr handle, string name);
 
         internal static string GetPlaylistName(IntPtr handle)
         {

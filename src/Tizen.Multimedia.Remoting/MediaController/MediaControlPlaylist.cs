@@ -29,7 +29,6 @@ namespace Tizen.Multimedia.Remoting
     public class MediaControlPlaylist : IDisposable
     {
         private IntPtr _handle;
-        private string _name;
         private Dictionary<string, MediaControlMetadata> _metadata;
 
         /// <summary>
@@ -45,7 +44,7 @@ namespace Tizen.Multimedia.Remoting
 
             NativePlaylist.CreatePlaylist(name, out IntPtr handle).ThrowIfError("Failed to create playlist");
 
-            _name = name;
+            Name = name;
 
             UpdateMetadata(handle);
         }
@@ -62,7 +61,7 @@ namespace Tizen.Multimedia.Remoting
             }
 
             // handle will be destroyed in Native FW side.
-            _name = NativePlaylist.GetPlaylistName(handle);
+            Name = NativePlaylist.GetPlaylistName(handle);
 
             UpdateMetadata(handle);
         }
@@ -96,18 +95,7 @@ namespace Tizen.Multimedia.Remoting
         /// Gets or sets the name of playlist.
         /// </summary>
         /// <since_tizen> 5 </since_tizen>
-        public string Name
-        {
-            get
-            {
-                return _name;
-            }
-            set
-            {
-                NativePlaylist.SetPlaylistName(Handle, value).ThrowIfError("Failed to set playlist name.");
-                _name = value;
-            }
-        }
+        public string Name { get; private set; }
 
         /// <summary>
         /// Gets the total number of media in this playlist.
@@ -224,7 +212,7 @@ namespace Tizen.Multimedia.Remoting
         public void Update()
         {
             // Update the name of playlist.
-            _name = NativePlaylist.GetPlaylistName(Handle);
+            Name = NativePlaylist.GetPlaylistName(Handle);
 
             // Update metadata.
             UpdateMetadata(Handle);
