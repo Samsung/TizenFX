@@ -192,7 +192,7 @@ namespace Tizen.Multimedia.Remoting
                 playlists.Add(new MediaControlPlaylist(handle));
             };
             NativePlaylist.ForeachServerPlaylist(Manager.Handle, ServerAppId, playlistCallback, IntPtr.Zero)
-                .ThrowIfError("Failed to get playlist."); ;
+                .ThrowIfError("Failed to get playlist.");
 
             return playlists;
         }
@@ -314,7 +314,7 @@ namespace Tizen.Multimedia.Remoting
 
                 reqeustId = command.Request();
 
-                return await tcs.Task;
+                return await tcs.Task.ConfigureAwait(false);
             }
             finally
             {

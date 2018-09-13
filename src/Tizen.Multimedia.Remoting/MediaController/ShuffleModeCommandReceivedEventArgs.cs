@@ -38,6 +38,6 @@ namespace Tizen.Multimedia.Remoting
         /// Gets the <see cref="ShuffleModeCommand"/>.
         /// </summary>
         /// <since_tizen> 5 </since_tizen>
-        public ShuffleModeCommand Command;
+        public ShuffleModeCommand Command { get; }
     }
 }

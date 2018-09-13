@@ -38,6 +38,6 @@ namespace Tizen.Multimedia.Remoting
         /// Gets the <see cref="RepeatModeCommand"/>.
         /// </summary>
         /// <since_tizen> 5 </since_tizen>
-        public RepeatModeCommand Command;
+        public RepeatModeCommand Command { get; }
     }
 }

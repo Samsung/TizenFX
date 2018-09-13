@@ -46,6 +46,8 @@ namespace Tizen.Multimedia.Remoting
             NativePlaylist.CreatePlaylist(name, out IntPtr handle).ThrowIfError("Failed to create playlist");
 
             _name = name;
+
+            UpdateMetadata(handle);
         }
 
         /// <summary>
@@ -78,7 +80,7 @@ namespace Tizen.Multimedia.Remoting
         {
             get
             {
-                if (_handle == null)
+                if (_handle == IntPtr.Zero)
                 {
                     _handle = MediaControlServer.GetPlaylistHandle(Name);
                 }
@@ -256,7 +258,7 @@ namespace Tizen.Multimedia.Remoting
         {
             if (!_disposed)
             {
-                if (_handle != null)
+                if (_handle != IntPtr.Zero)
                 {
                     Destroy();
                     _handle = IntPtr.Zero;
