@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2016 Samsung Electronics Co., Ltd All Rights Reserved
+ * Copyright (c) 2018 Samsung Electronics Co., Ltd All Rights Reserved
  *
  * Licensed under the Apache License, Version 2.0 (the License);
  * you may not use this file except in compliance with the License.
@@ -17,25 +17,19 @@
 namespace Tizen.Multimedia.Remoting
 {
     /// <summary>
-    /// Specifies the repeat mode.
+    /// Specifies the playlist mode.
     /// </summary>
-    /// <since_tizen> 4 </since_tizen>
-    public enum MediaControlRepeatMode
+    /// <since_tizen> 5 </since_tizen>
+    public enum MediaControlPlaylistMode
     {
         /// <summary>
-        /// Off.
+        /// Playlist is created or update.
         /// </summary>
-        Off,
+        Updated,
 
         /// <summary>
-        /// On.
+        /// Playlist is removed.
         /// </summary>
-        On,
-
-        /// <summary>
-        /// One media.
-        /// </summary>
-        /// <since_tizen> 5 </since_tizen>
-        OneMedia
+        Removed,
     }
 }

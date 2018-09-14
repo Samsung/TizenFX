@@ -15,6 +15,8 @@
  */
 
 using System;
+using System.Collections.Generic;
+using Tizen.Applications;
 using Native = Interop.MediaControllerServer;
 
 namespace Tizen.Multimedia.Remoting
@@ -25,7 +27,7 @@ namespace Tizen.Multimedia.Remoting
     /// <seealso cref="MediaControllerManager"/>
     /// <seealso cref="MediaController"/>
     /// <since_tizen> 4 </since_tizen>
-    public static class MediaControlServer
+    public static partial class MediaControlServer
     {
         private static IntPtr _handle = IntPtr.Zero;
         private static bool? _isRunning;
@@ -103,6 +105,13 @@ namespace Tizen.Multimedia.Remoting
             try
             {
                 RegisterPlaybackCommandReceivedEvent();
+                RegisterPlaybackActionCommandReceivedEvent();
+                RegisterPlaybackPositionCommandReceivedEvent();
+                RegisterPlaylistCommandReceivedEvent();
+                RegisterShuffleModeCommandReceivedEvent();
+                RegisterRepeatModeCommandReceivedEvent();
+                RegisterCustomCommandReceivedEvent();
+
                 _isRunning = true;
             }
             catch
@@ -175,14 +184,14 @@ namespace Tizen.Multimedia.Remoting
                 throw new ArgumentOutOfRangeException(nameof(position), position, "position can't be less than zero.");
             }
 
-            Native.SetPlaybackState(Handle, state.ToCode()).ThrowIfError("Failed to set playback state.");
+            Native.SetPlaybackState(Handle, state.ToNative()).ThrowIfError("Failed to set playback state.");
 
             Native.SetPlaybackPosition(Handle, (ulong)position).ThrowIfError("Failed to set playback position.");
 
             Native.UpdatePlayback(Handle).ThrowIfError("Failed to set playback.");
         }
 
-        private static void SetMetadata(MediaControllerAttribute attribute, string value)
+        private static void SetMetadata(MediaControllerNativeAttribute attribute, string value)
         {
             Native.SetMetadata(Handle, attribute, value).ThrowIfError($"Failed to set metadata({attribute}).");
         }
@@ -205,17 +214,17 @@ namespace Tizen.Multimedia.Remoting
                 throw new ArgumentNullException(nameof(metadata));
             }
 
-            SetMetadata(MediaControllerAttribute.Title, metadata.Title);
-            SetMetadata(MediaControllerAttribute.Artist, metadata.Artist);
-            SetMetadata(MediaControllerAttribute.Album, metadata.Album);
-            SetMetadata(MediaControllerAttribute.Author, metadata.Author);
-            SetMetadata(MediaControllerAttribute.Genre, metadata.Genre);
-            SetMetadata(MediaControllerAttribute.Duration, metadata.Duration);
-            SetMetadata(MediaControllerAttribute.Date, metadata.Date);
-            SetMetadata(MediaControllerAttribute.Copyright, metadata.Copyright);
-            SetMetadata(MediaControllerAttribute.Description, metadata.Description);
-            SetMetadata(MediaControllerAttribute.TrackNumber, metadata.TrackNumber);
-            SetMetadata(MediaControllerAttribute.Picture, metadata.AlbumArtPath);
+            SetMetadata(MediaControllerNativeAttribute.Title, metadata.Title);
+            SetMetadata(MediaControllerNativeAttribute.Artist, metadata.Artist);
+            SetMetadata(MediaControllerNativeAttribute.Album, metadata.Album);
+            SetMetadata(MediaControllerNativeAttribute.Author, metadata.Author);
+            SetMetadata(MediaControllerNativeAttribute.Genre, metadata.Genre);
+            SetMetadata(MediaControllerNativeAttribute.Duration, metadata.Duration);
+            SetMetadata(MediaControllerNativeAttribute.Date, metadata.Date);
+            SetMetadata(MediaControllerNativeAttribute.Copyright, metadata.Copyright);
+            SetMetadata(MediaControllerNativeAttribute.Description, metadata.Description);
+            SetMetadata(MediaControllerNativeAttribute.TrackNumber, metadata.TrackNumber);
+            SetMetadata(MediaControllerNativeAttribute.Picture, metadata.AlbumArtPath);
 
             Native.UpdateMetadata(Handle).ThrowIfError("Failed to set metadata.");
         }
@@ -232,7 +241,7 @@ namespace Tizen.Multimedia.Remoting
         /// <since_tizen> 4 </since_tizen>
         public static void SetShuffleModeEnabled(bool enabled)
         {
-            Native.UpdateShuffleMode(Handle, enabled ? MediaControllerShuffleMode.On : MediaControllerShuffleMode.Off).
+            Native.UpdateShuffleMode(Handle, enabled ? MediaControllerNativeShuffleMode.On : MediaControllerNativeShuffleMode.Off).
                 ThrowIfError("Failed to set shuffle mode.");
         }
 
@@ -255,21 +264,84 @@ namespace Tizen.Multimedia.Remoting
         }
 
         /// <summary>
-        /// Occurs when a client sends playback command.
+        /// Sets the index of current playing media.
         /// </summary>
-        /// <since_tizen> 4 </since_tizen>
-        public static event EventHandler<PlaybackCommandReceivedEventArgs> PlaybackCommandReceived;
-
-        private static Native.PlaybackStateCommandReceivedCallback _playbackCommandCallback;
-
-        private static void RegisterPlaybackCommandReceivedEvent()
+        /// <param name="index">The index of current playing media.</param>
+        /// <exception cref="ArgumentNullException"><paramref name="index"/> is null.</exception>
+        /// <exception cref="InvalidOperationException">
+        ///     The server is not running .<br/>
+        ///     -or-<br/>
+        ///     An internal error occurs.
+        /// </exception>
+        /// <since_tizen> 5 </since_tizen>
+        public static void SetIndexOfCurrentPlayingMedia(string index)
         {
-            _playbackCommandCallback = (clientName, playbackCode, _) =>
-            {
-                PlaybackCommandReceived?.Invoke(null, new PlaybackCommandReceivedEventArgs(clientName, playbackCode.ToCommand()));
-            };
-            Native.SetPlaybackStateCmdRecvCb(Handle, _playbackCommandCallback).
-                ThrowIfError("Failed to init PlaybackStateCommandReceived event."); ;
+            Native.SetIndexOfCurrentPlayingMedia(Handle, index)
+                .ThrowIfError("Failed to set the index of current playing media");
+        }
+
+        /// <summary>
+        /// Delete playlist.
+        /// </summary>
+        /// <param name="playlist">The name of playlist.</param>
+        /// <exception cref="InvalidOperationException">
+        ///     The server is not running .<br/>
+        ///     -or-<br/>
+        ///     An internal error occurs.
+        /// </exception>
+        /// <since_tizen> 5 </since_tizen>
+        public static void RemovePlaylist(MediaControlPlaylist playlist)
+        {
+            Native.DeletePlaylist(Handle, playlist.Handle);
+            playlist.Dispose();
+        }
+
+        // Saves the playlist to the persistent storage.
+        internal static void SavePlaylist(IntPtr playlistHandle)
+        {
+            Native.SavePlaylist(Handle, playlistHandle).ThrowIfError("Failed to save playlist");
+        }
+
+        // Gets the playlist handle by name.
+        internal static IntPtr GetPlaylistHandle(string name)
+        {
+            Native.GetPlaylistHandle(Handle, name, out IntPtr playlistHandle)
+                .ThrowIfError("Failed to get playlist handle by name");
+
+            return playlistHandle;
+        }
+
+        /// <summary>
+        /// Sends the result of each command.
+        /// </summary>
+        /// <param name="command">The command that return to client.</param>
+        /// <param name="result">The result of <paramref name="command"/>.</param>
+        /// <param name="bundle">The extra data.</param>
+        /// <exception cref="InvalidOperationException">
+        ///     The server is not running .<br/>
+        ///     -or-<br/>
+        ///     An internal error occurs.
+        /// </exception>
+        /// <since_tizen> 5 </since_tizen>
+        public static void Response(Command command, int result, Bundle bundle)
+        {
+            command.Response(Handle, result, bundle);
+        }
+
+        /// <summary>
+        /// Sends the result of each command.
+        /// </summary>
+        /// <param name="command">The command that return to client.</param>
+        /// <param name="result">The result of <paramref name="command"/>.</param>
+        /// <exception cref="InvalidOperationException">
+        ///     The server is not running .<br/>
+        ///     -or-<br/>
+        ///     An internal error occurs.
+        /// </exception>
+        /// <since_tizen> 5 </since_tizen>
+        public static void Response(Command command, int result)
+        {
+            command.Response(Handle, result, null);
         }
     }
 }
