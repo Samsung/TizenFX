@@ -287,7 +287,6 @@ namespace Tizen.Multimedia.Remoting
         ///     -or-<br/>
         ///     An internal error occurs.
         /// </exception>
-        /// <exception cref="OutOfMemoryException">The server failed to allocate memory.</exception>
         /// <exception cref="ObjectDisposedException">The <see cref="MediaControllerManager"/> has already been disposed of.</exception>
         /// <since_tizen> 5 </since_tizen>
         public async Task RequestAsync(Command command)

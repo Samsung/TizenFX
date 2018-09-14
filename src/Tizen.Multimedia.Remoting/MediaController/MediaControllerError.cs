@@ -46,9 +46,8 @@ namespace Tizen.Multimedia.Remoting
                 case MediaControllerError.InvalidParameter:
                     throw new ArgumentException(msg);
 
+                // User should not throw System.OutOfMemoryException itself.
                 case MediaControllerError.OutOfMemory:
-                    throw new OutOfMemoryException(msg);
-
                 case MediaControllerError.InvalidOperation:
                     throw new InvalidOperationException(msg);
 
