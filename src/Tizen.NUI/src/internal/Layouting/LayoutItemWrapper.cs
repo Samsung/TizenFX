@@ -17,6 +17,7 @@
 
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Runtime.InteropServices;
 using Tizen.NUI.BaseComponents;
 
 namespace Tizen.NUI
@@ -28,8 +29,11 @@ namespace Tizen.NUI
 
         internal LayoutItemWrapper(global::System.IntPtr cPtr, bool cMemoryOwn) : base(LayoutPINVOKE.LayoutItemWrapper_SWIGUpcast(cPtr), cMemoryOwn)
         {
+            System.IntPtr wrapperImpe_CPtr = LayoutPINVOKE.LayoutItemWrapper_GetImplementation(cPtr);
+            layoutItemWrapperImpl = new LayoutItemWrapperImpl(wrapperImpe_CPtr, true);
             swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
         }
+
 
         internal static global::System.Runtime.InteropServices.HandleRef getCPtr(LayoutItemWrapper obj)
         {
