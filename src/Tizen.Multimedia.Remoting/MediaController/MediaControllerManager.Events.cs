@@ -29,6 +29,9 @@ namespace Tizen.Multimedia.Remoting
         private Native.CommandCompletedCallback _commandCompletedCallback;
         private NativePlaylist.MetadataUpdatedCallback _metadataUpdatedCallback;
         private NativePlaylist.PlaylistUpdatedCallback _playlistUpdatedCallback;
+        private Native.PlaybackCapabilityUpdatedCallback _playbackCapabilityUpdatedCallback;
+        private Native.ShuffleCapabilityUpdatedCallback _shuffleModeCapabilityUpdatedCallback;
+        private Native.RepeatCapabilityUpdatedCallback _repeatModeCapabilityUpdatedCallback;
 
         /// <summary>
         /// Occurs when a server is started.
@@ -50,6 +53,9 @@ namespace Tizen.Multimedia.Remoting
             RegisterShuffleModeUpdatedEvent();
             RegisterRepeatModeUpdatedEvent();
             RegisterCommandCompletedEvent();
+            RegisterPlaybackCapabilitiesEvent();
+            RegisterRepeatModeCapabilitiesEvent();
+            RegisterShuffleModeCapabilitiesEvent();
         }
 
         private void RaiseServerChangedEvent(MediaControllerNativeServerState state, MediaController controller)
@@ -82,9 +88,9 @@ namespace Tizen.Multimedia.Remoting
 
         private void RegisterPlaybackUpdatedEvent()
         {
-            _playbackUpdatedCallback = (serverName, playback, _) =>
+            _playbackUpdatedCallback = (serverName, playbackHandle, _) =>
             {
-                GetController(serverName)?.RaisePlaybackUpdatedEvent(playback);
+                GetController(serverName)?.RaisePlaybackUpdatedEvent(playbackHandle);
             };
 
             Native.SetPlaybackUpdatedCb(Handle, _playbackUpdatedCallback).ThrowIfError("Failed to init PlaybackUpdated event.");
@@ -125,9 +131,9 @@ namespace Tizen.Multimedia.Remoting
 
         private void RegisterPlaylistUpdatedEvent()
         {
-            _playlistUpdatedCallback = (serverName, playlistMode, name, handle, _) =>
+            _playlistUpdatedCallback = (serverName, playlistMode, name, playlistHandle, _) =>
             {
-                GetController(serverName)?.RaisePlaylistUpdatedEvent(playlistMode, name);
+                GetController(serverName)?.RaisePlaylistUpdatedEvent(playlistMode, name, playlistHandle);
             };
 
             NativePlaylist.SetPlaylistModeUpdatedCb(Handle, _playlistUpdatedCallback).
@@ -145,6 +151,39 @@ namespace Tizen.Multimedia.Remoting
 
             Native.SetCommandCompletedCb(Handle, _commandCompletedCallback).
                 ThrowIfError("Failed to init CommandCompleted event.");
+        }
+
+        private void RegisterPlaybackCapabilitiesEvent()
+        {
+            _playbackCapabilityUpdatedCallback = (serverName, playbackCapaHandle, _) =>
+            {
+                GetController(serverName)?.RaisePlaybackCapabilityUpdatedEvent(playbackCapaHandle);
+            };
+
+            Native.SetPlaybackCapabilityUpdatedCb(Handle, _playbackCapabilityUpdatedCallback).
+                ThrowIfError("Failed to init PlaylistUpdated event.");
+        }
+
+        private void RegisterRepeatModeCapabilitiesEvent()
+        {
+            _repeatModeCapabilityUpdatedCallback = (serverName, support, _) =>
+            {
+                GetController(serverName)?.RaiseRepeatModeCapabilityUpdatedEvent(support);
+            };
+
+            Native.SetRepeatCapabilityUpdatedCb(Handle, _repeatModeCapabilityUpdatedCallback).
+                ThrowIfError("Failed to init RepeatModeCapabilityUpdated event.");
+        }
+
+        private void RegisterShuffleModeCapabilitiesEvent()
+        {
+            _shuffleModeCapabilityUpdatedCallback = (serverName, support, _) =>
+            {
+                GetController(serverName)?.RaiseShuffleModeCapabilityUpdatedEvent(support);
+            };
+
+            Native.SetShuffleCapabilityUpdatedCb(Handle, _shuffleModeCapabilityUpdatedCallback).
+                ThrowIfError("Failed to init ShuffleModeCapabilityUpdated event.");
         }
     }
 }

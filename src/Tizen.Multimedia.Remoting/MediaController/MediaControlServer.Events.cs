@@ -29,6 +29,7 @@ namespace Tizen.Multimedia.Remoting
         private static Native.ShuffleModeCommandReceivedCallback _shuffleModeCommandCallback;
         private static Native.RepeatModeCommandReceivedCallback _repeatModeCommandCallback;
         private static Native.CustomCommandReceivedCallback _customCommandCallback;
+        private static Native.EventCompletedCallback _eventCompletedCallback;
 
         /// <summary>
         /// Occurs when a client sends playback command.
@@ -72,6 +73,12 @@ namespace Tizen.Multimedia.Remoting
         /// </summary>
         /// <since_tizen> 5 </since_tizen>
         public static event EventHandler<CustomCommandReceivedEventArgs> CustomCommandReceived;
+
+        /// <summary>
+        /// Occurs when a client sends custom command.
+        /// </summary>
+        /// <since_tizen> 5 </since_tizen>
+        internal static event EventHandler<EventCompletedEventArgs> EventCompleted;
 
         private static void RegisterPlaybackCommandReceivedEvent()
         {
@@ -168,6 +175,23 @@ namespace Tizen.Multimedia.Remoting
             };
             Native.SetCustomCommandReceivedCb(Handle, _customCommandCallback).
                 ThrowIfError("Failed to init CustomCommandReceived event.");
+        }
+
+        private static void RegisterEventCompletedEvent()
+        {
+            _eventCompletedCallback = (clientName, requestId, result, bundleHandle, _) =>
+            {
+                if (bundleHandle != IntPtr.Zero)
+                {
+                    EventCompleted?.Invoke(null, new EventCompletedEventArgs(requestId, result, new Bundle(new SafeBundleHandle(bundleHandle, true))));
+                }
+                else
+                {
+                    EventCompleted?.Invoke(null, new EventCompletedEventArgs(requestId, result));
+                }
+            };
+            Native.SetEventReceivedCb(Handle, _eventCompletedCallback).
+                ThrowIfError("Failed to init RegisterEventCompletedEvent.");
         }
     }
 }

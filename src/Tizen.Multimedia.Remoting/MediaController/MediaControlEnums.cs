@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2016 Samsung Electronics Co., Ltd All Rights Reserved
+ * Copyright (c) 2018 Samsung Electronics Co., Ltd All Rights Reserved
  *
  * Licensed under the Apache License, Version 2.0 (the License);
  * you may not use this file except in compliance with the License.
@@ -19,6 +19,197 @@ using System.Diagnostics;
 
 namespace Tizen.Multimedia.Remoting
 {
+    /// <summary>
+    /// Specifies the playlist mode.
+    /// </summary>
+    /// <since_tizen> 5 </since_tizen>
+    public enum MediaControlPlaylistMode
+    {
+        /// <summary>
+        /// Playlist is created or update.
+        /// </summary>
+        Updated,
+
+        /// <summary>
+        /// Playlist is removed.
+        /// </summary>
+        Removed,
+    }
+
+    /// <summary>
+    /// Specifies the repeat mode.
+    /// </summary>
+    /// <since_tizen> 4 </since_tizen>
+    public enum MediaControlRepeatMode
+    {
+        /// <summary>
+        /// Off.
+        /// </summary>
+        Off,
+
+        /// <summary>
+        /// On.
+        /// </summary>
+        On,
+
+        /// <summary>
+        /// One media.
+        /// </summary>
+        /// <since_tizen> 5 </since_tizen>
+        OneMedia
+    }
+
+    /// <summary>
+    /// Specifies playback commands.
+    /// </summary>
+    /// <since_tizen> 4 </since_tizen>
+    public enum MediaControlPlaybackCommand
+    {
+        /// <summary>
+        /// Play.
+        /// </summary>
+        Play,
+
+        /// <summary>
+        /// Pause.
+        /// </summary>
+        Pause,
+
+        /// <summary>
+        /// Stop.
+        /// </summary>
+        Stop,
+
+        /// <summary>
+        /// Skip to next.
+        /// </summary>
+        Next,
+
+        /// <summary>
+        /// Skip to previous.
+        /// </summary>
+        Previous,
+
+        /// <summary>
+        /// Fast forward.
+        /// </summary>
+        FastForward,
+
+        /// <summary>
+        /// Rewind.
+        /// </summary>
+        Rewind,
+
+        /// <summary>
+        /// Toggle play/pause.
+        /// </summary>
+        /// <since_tizen> 5 </since_tizen>
+        Toggle,
+    }
+
+    /// <summary>
+    /// Specifies playback states.
+    /// </summary>
+    /// <since_tizen> 4 </since_tizen>
+    public enum MediaControlPlaybackState
+    {
+        /// <summary>
+        /// Unknown; no state is set.
+        /// </summary>
+        None,
+
+        /// <summary>
+        /// Playing.
+        /// </summary>
+        Playing,
+
+        /// <summary>
+        /// Paused.
+        /// </summary>
+        Paused,
+
+        /// <summary>
+        /// Stopped.
+        /// </summary>
+        Stopped,
+
+        /// <summary>
+        /// Fast forwarding.
+        /// </summary>
+        FastForwarding,
+
+        /// <summary>
+        /// Rewinding.
+        /// </summary>
+        Rewinding,
+
+        /// <summary>
+        /// Skipping to the next item.
+        /// </summary>
+        /// <since_tizen> 5 </since_tizen>
+        MovingToNext,
+
+        /// <summary>
+        /// Skipping to the previous item.
+        /// </summary>
+        /// <since_tizen> 5 </since_tizen>
+        MovingToPrevious,
+    }
+
+    /// <summary>
+    /// Specifies the support type of media control capability.
+    /// </summary>
+    /// <since_tizen> 5 </since_tizen>
+    public enum MediaControlCapabilitySupport
+    {
+        /// <summary>
+        /// Supported.
+        /// </summary>
+        Supported,
+
+        /// <summary>
+        /// Not supported.
+        /// </summary>
+        NotSupported,
+
+        /// <summary>
+        /// There's no support info in server.
+        /// </summary>
+        NotDecided
+    }
+
+    /// <summary>
+    /// Specifies the content type.
+    /// </summary>
+    /// <since_tizen> 5 </since_tizen>
+    public enum MediaControlContentType
+    {
+        /// <summary>
+        /// Image type.
+        /// </summary>
+        Image,
+
+        /// <summary>
+        /// Video type.
+        /// </summary>
+        Video,
+
+        /// <summary>
+        /// Music type.
+        /// </summary>
+        Music,
+
+        /// <summary>
+        /// Other type.
+        /// </summary>
+        Other,
+
+        /// <summary>
+        /// There's no content type info in server.
+        /// </summary>
+        NotDecided
+    }
+
     internal static class EnumExtensions
     {
         internal static MediaControlPlaybackState ToPublic(this MediaControllerNativePlaybackState nativeState)

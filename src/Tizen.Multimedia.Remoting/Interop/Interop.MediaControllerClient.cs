@@ -44,6 +44,9 @@ internal static partial class Interop
         internal delegate void CommandCompletedCallback(string serverName, string requestId, MediaControllerError result,
             IntPtr bundleHandle, IntPtr userData);
 
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+        internal delegate void CustomEventReceivedCallback(string serverName, string requestId, string customEvent, IntPtr bundleHandle, IntPtr userData);
+
 
         [DllImport(Libraries.MediaController, EntryPoint = "mc_client_create")]
         internal static extern MediaControllerError Create(out MediaControllerClientHandle handle);
@@ -85,6 +88,13 @@ internal static partial class Interop
 
         [DllImport(Libraries.MediaController, EntryPoint = "mc_client_unset_cmd_reply_received_cb")]
         internal static extern MediaControllerError UnsetCommandCompletedCb(MediaControllerClientHandle handle);
+
+        [DllImport(Libraries.MediaController, EntryPoint = "mc_client_set_custom_event_received_cb")]
+        internal static extern MediaControllerError SetCustomEventCb(MediaControllerClientHandle handle,
+            CustomEventReceivedCallback callback, IntPtr userData = default(IntPtr));
+
+        [DllImport(Libraries.MediaController, EntryPoint = "mc_client_unset_custom_event_received_cb")]
+        internal static extern MediaControllerError UnsetCustomEventCb(MediaControllerClientHandle handle);
 
         [DllImport(Libraries.MediaController, EntryPoint = "mc_client_get_playback_state")]
         internal static extern MediaControllerError GetPlaybackState(IntPtr playback, out MediaControllerNativePlaybackState state);
@@ -144,9 +154,83 @@ internal static partial class Interop
             string serverName, string playlistName, string index, MediaControllerNativePlaybackAction mode,
             ulong position, out string requestId);
 
+        [DllImport(Libraries.MediaController, EntryPoint = "mc_client_send_event_reply")]
+        internal static extern MediaControllerError SendCustomEventReply(MediaControllerClientHandle handle,
+            string serverName, string requestId, int result, IntPtr bundleHandle);
+        [DllImport(Libraries.MediaController, EntryPoint = "mc_client_send_event_reply")]
+        internal static extern MediaControllerError SendCustomEventReplyBundle(MediaControllerClientHandle handle,
+            string serverName, string requestId, int result, SafeBundleHandle bundleHandle);
+
+
         [DllImport(Libraries.MediaController, EntryPoint = "mc_client_foreach_server")]
         internal static extern MediaControllerError ForeachActivatedServer(MediaControllerClientHandle handle,
             ActivatedServerCallback callback, IntPtr userData);
+
+        #region Capability
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+        internal delegate void PlaybackCapabilityUpdatedCallback(string serverName, IntPtr capaHandle,
+            IntPtr userData = default(IntPtr));
+
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+        internal delegate void ShuffleCapabilityUpdatedCallback(string serverName, MediaControlCapabilitySupport support,
+            IntPtr userData = default(IntPtr));
+
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+        internal delegate void RepeatCapabilityUpdatedCallback(string serverName, MediaControlCapabilitySupport support,
+            IntPtr userData = default(IntPtr));
+
+
+        [DllImport(Libraries.MediaController, EntryPoint = "mc_client_get_playback_content_type")]
+        internal static extern MediaControllerError GetPlaybackContentType(IntPtr playbackHandle,
+            out MediaControlContentType type);
+
+        [DllImport(Libraries.MediaController, EntryPoint = "mc_client_get_server_icon")]
+        internal static extern MediaControllerError GetServerIcon(MediaControllerClientHandle clientHandle,
+            string serverName, out string uri);
+
+        [DllImport(Libraries.MediaController, EntryPoint = "mc_client_get_server_playback_ability")]
+        internal static extern MediaControllerError GetPlaybackCapabilityHandle(MediaControllerClientHandle clientHandle,
+            string serverName, out IntPtr capaHandle);
+
+        [DllImport(Libraries.MediaController, EntryPoint = "mc_client_get_server_shuffle_ability_support")]
+        internal static extern MediaControllerError GetShuffleCapability(MediaControllerClientHandle clientHandle,
+            string serverName, out MediaControlCapabilitySupport type);
+
+        [DllImport(Libraries.MediaController, EntryPoint = "mc_client_get_server_repeat_ability_support")]
+        internal static extern MediaControllerError GetRepeatCapability(MediaControllerClientHandle clientHandle,
+            string serverName, out MediaControlCapabilitySupport type);
+
+        [DllImport(Libraries.MediaController, EntryPoint = "mc_client_set_playback_ability_updated_cb")]
+        internal static extern MediaControllerError SetPlaybackCapabilityUpdatedCb(MediaControllerClientHandle clientHandle,
+            PlaybackCapabilityUpdatedCallback callback, IntPtr userData = default(IntPtr));
+
+        [DllImport(Libraries.MediaController, EntryPoint = "mc_client_unset_playback_ability_updated_cb")]
+        internal static extern MediaControllerError UnsetPlaybackCapabilityUpdatedCb(MediaControllerClientHandle clientHandle);
+
+        [DllImport(Libraries.MediaController, EntryPoint = "mc_client_set_shuffle_ability_updated_cb")]
+        internal static extern MediaControllerError SetShuffleCapabilityUpdatedCb(MediaControllerClientHandle clientHandle,
+            ShuffleCapabilityUpdatedCallback callback, IntPtr userData = default(IntPtr));
+
+        [DllImport(Libraries.MediaController, EntryPoint = "mc_client_unset_shuffle_ability_updated_cb")]
+        internal static extern MediaControllerError UnsetShuffleCapabilityUpdatedCb(MediaControllerClientHandle clientHandle);
+
+        [DllImport(Libraries.MediaController, EntryPoint = "mc_client_set_repeat_ability_updated_cb")]
+        internal static extern MediaControllerError SetRepeatCapabilityUpdatedCb(MediaControllerClientHandle clientHandle,
+            RepeatCapabilityUpdatedCallback callback, IntPtr userData = default(IntPtr));
+
+        [DllImport(Libraries.MediaController, EntryPoint = "mc_client_unset_repeat_ability_updated_cb")]
+        internal static extern MediaControllerError UnsetRepeatCapabilityUpdatedCb(MediaControllerClientHandle clientHandle);
+
+        [DllImport(Libraries.MediaController, EntryPoint = "mc_playback_ability_clone")]
+        internal static extern MediaControllerError CloneCapability(IntPtr capaSrcHandle, out IntPtr capaDstHandle);
+
+        [DllImport(Libraries.MediaController, EntryPoint = "mc_playback_ability_destroy")]
+        internal static extern MediaControllerError DestroyCapability(IntPtr capaHandle);
+
+        [DllImport(Libraries.MediaController, EntryPoint = "mc_playback_action_is_supported")]
+        internal static extern MediaControllerError IsCapabilitySupported(IntPtr capaHandle,
+            MediaControllerNativePlaybackAction action, out MediaControlCapabilitySupport support);
+        #endregion Capability
     }
 
     internal class MediaControllerClientHandle : SafeHandle

@@ -14,53 +14,32 @@
  * limitations under the License.
  */
 
+using System;
+using System.Collections.Generic;
+using Native = Interop.MediaControllerClient;
+
 namespace Tizen.Multimedia.Remoting
 {
     /// <summary>
-    /// Specifies playback commands.
+    /// Provides data for the <see cref="MediaController.ShuffleModeCapabilityUpdated"/> event.
     /// </summary>
-    /// <since_tizen> 4 </since_tizen>
-    public enum MediaControlPlaybackCommand
+    /// <since_tizen> 5 </since_tizen>
+    public class ShuffleModeCapabilityUpdatedEventArgs : EventArgs
     {
         /// <summary>
-        /// Play.
+        /// Initializes a new instance of the <see cref="ShuffleModeCapabilityUpdatedEventArgs"/> class.
         /// </summary>
-        Play,
+        /// <param name="support">The shuffle mode capabilities.</param>
+        /// <since_tizen> 5 </since_tizen>
+        public ShuffleModeCapabilityUpdatedEventArgs(MediaControlCapabilitySupport support)
+        {
+            Support = support;
+        }
 
         /// <summary>
-        /// Pause.
-        /// </summary>
-        Pause,
-
-        /// <summary>
-        /// Stop.
-        /// </summary>
-        Stop,
-
-        /// <summary>
-        /// Skip to next.
-        /// </summary>
-        Next,
-
-        /// <summary>
-        /// Skip to previous.
-        /// </summary>
-        Previous,
-
-        /// <summary>
-        /// Fast forward.
-        /// </summary>
-        FastForward,
-
-        /// <summary>
-        /// Rewind.
-        /// </summary>
-        Rewind,
-
-        /// <summary>
-        /// Toggle play/pause.
+        /// Gets the value whether the shuffle mode is supported or not.
         /// </summary>
         /// <since_tizen> 5 </since_tizen>
-        Toggle,
+        public MediaControlCapabilitySupport Support { get; }
     }
 }

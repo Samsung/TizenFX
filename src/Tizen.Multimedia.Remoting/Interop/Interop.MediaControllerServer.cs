@@ -53,7 +53,14 @@ internal static partial class Interop
             string requestId, string customCommand, IntPtr bundleHandle, IntPtr userData);
 
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-        internal delegate void PlaylistCallback(IntPtr handle, IntPtr userData);
+        internal delegate bool PlaylistCallback(IntPtr handle, IntPtr userData);
+
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+        internal delegate bool ActivatedClientCallback(string clientName, IntPtr userData);
+
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+        internal delegate void EventCompletedCallback(string clientName, string requestId, MediaControllerError result, IntPtr bundleHandle,
+            IntPtr userData = default(IntPtr));
 
 
         [DllImport(Libraries.MediaController, EntryPoint = "mc_server_create")]
@@ -174,5 +181,49 @@ internal static partial class Interop
         // Playlist API. but this need to server handle so have to be here.
         [DllImport(Libraries.MediaController, EntryPoint = "mc_server_get_playlist")]
         internal static extern MediaControllerError GetPlaylistHandle(IntPtr handle, string name, out IntPtr playbackHandle);
+
+        [DllImport(Libraries.MediaController, EntryPoint = "mc_server_foreach_client")]
+        internal static extern MediaControllerError ForeachActivatedClient(IntPtr handle, ActivatedClientCallback callback,
+            IntPtr userData = default(IntPtr));
+
+        [DllImport(Libraries.MediaController, EntryPoint = "mc_server_send_custom_event")]
+        internal static extern MediaControllerError SendCustomEvent(IntPtr handle, string appId, string customEvent,
+            IntPtr bundle, out string requestId);
+
+        [DllImport(Libraries.MediaController, EntryPoint = "mc_server_send_custom_event")]
+        internal static extern MediaControllerError SendCustomEventBundle(IntPtr handle, string appId, string customEvent,
+            SafeBundleHandle bundle, out string requestId);
+
+        [DllImport(Libraries.MediaController, EntryPoint = "mc_server_set_event_reply_received_cb")]
+        internal static extern MediaControllerError SetEventReceivedCb(IntPtr handle, EventCompletedCallback callback,
+            IntPtr userData = default(IntPtr));
+
+        [DllImport(Libraries.MediaController, EntryPoint = "mc_server_unset_event_reply_received_cb")]
+        internal static extern MediaControllerError UnsetEventReceivedCb(IntPtr handle);
+
+
+        #region Capability
+        [DllImport(Libraries.MediaController, EntryPoint = "mc_server_set_playback_content_type")]
+        internal static extern MediaControllerError SetPlaybackContentType(IntPtr serverHandle,
+            MediaControlContentType type);
+
+        [DllImport(Libraries.MediaController, EntryPoint = "mc_server_set_icon")]
+        internal static extern MediaControllerError SetIconPath(IntPtr serverHandle, string uri);
+
+        [DllImport(Libraries.MediaController, EntryPoint = "mc_server_set_playback_ability")]
+        internal static extern MediaControllerError SetPlaybackCapability(IntPtr serverHandle,
+            MediaControllerNativePlaybackAction action, MediaControlCapabilitySupport support);
+
+        [DllImport(Libraries.MediaController, EntryPoint = "mc_server_update_playback_ability")]
+        internal static extern MediaControllerError SaveAndNotifyPlaybackCapabilityUpdated(IntPtr serverHandle);
+
+        [DllImport(Libraries.MediaController, EntryPoint = "mc_server_set_shuffle_ability")]
+        internal static extern MediaControllerError SetShuffleModeCapability(IntPtr serverHandle,
+            MediaControlCapabilitySupport support);
+
+        [DllImport(Libraries.MediaController, EntryPoint = "mc_server_set_repeat_ability")]
+        internal static extern MediaControllerError SetRepeatModeCapability(IntPtr serverHandle,
+            MediaControlCapabilitySupport support);
+        #endregion Capability
     }
 }
