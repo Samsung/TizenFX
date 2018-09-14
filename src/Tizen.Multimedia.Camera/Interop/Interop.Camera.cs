@@ -262,6 +262,13 @@ internal static partial class Interop
             internal uint DataLength;
         }
 
+        [StructLayout(LayoutKind.Sequential)]
+        internal struct RgbPlaneStruct
+        {
+            internal IntPtr Data;
+            internal uint DataLength;
+        }
+
         [StructLayout(LayoutKind.Explicit)]
         internal struct PreviewPlaneStruct
         {
@@ -275,6 +282,8 @@ internal static partial class Interop
             internal EncodedPlaneStruct EncodedPlane;
             [FieldOffsetAttribute(0)]
             internal DepthPlaneStruct DepthPlane;
+            [FieldOffsetAttribute(0)]
+            internal RgbPlaneStruct RgbPlane;
         }
 
         [StructLayout(LayoutKind.Sequential)]

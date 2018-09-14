@@ -14,25 +14,24 @@
  * limitations under the License.
  */
 
-using System;
-using System.Diagnostics;
-using System.Linq;
-
 namespace Tizen.Multimedia
 {
-    internal static class AudioIOUtil
+    /// <summary>
+    /// Specifies the audio channels.
+    /// </summary>
+    /// <seealso cref="AudioCapture"/>
+    /// <seealso cref="AsyncAudioCapture"/>
+    /// <seealso cref="AudioPlayback"/>
+    /// <since_tizen> 3 </since_tizen>
+    public enum AudioChannel
     {
-        internal static void ValidateState(AudioIOState curState, params AudioIOState[] desiredStates)
-        {
-            Debug.Assert(desiredStates.Length > 0);
-
-            if (desiredStates.Contains(curState))
-            {
-                return;
-            }
-
-            throw new InvalidOperationException($"The audio is not in a valid state. " +
-                $"Current State : { curState }, Valid State : { string.Join(", ", desiredStates) }.");
-        }
+        /// <summary>
+        /// Mono.
+        /// </summary>
+        Mono = 0x80,
+        /// <summary>
+        /// Stereo.
+        /// </summary>
+        Stereo
     }
 }

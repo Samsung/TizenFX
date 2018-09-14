@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2016 Samsung Electronics Co., Ltd All Rights Reserved
+ * Copyright (c) 2018 Samsung Electronics Co., Ltd All Rights Reserved
  *
  * Licensed under the Apache License, Version 2.0 (the License);
  * you may not use this file except in compliance with the License.
@@ -14,28 +14,31 @@
  * limitations under the License.
  */
 
+using System;
+using Tizen.Applications;
+
 namespace Tizen.Multimedia.Remoting
 {
     /// <summary>
-    /// Specifies the repeat mode.
+    /// Provides data for the <see cref="MediaControlServer.CustomCommandReceived"/> event.
     /// </summary>
-    /// <since_tizen> 4 </since_tizen>
-    public enum MediaControlRepeatMode
+    /// <since_tizen> 5 </since_tizen>
+    public class CustomCommandReceivedEventArgs : EventArgs
     {
         /// <summary>
-        /// Off.
+        /// Initializes a new instance of the <see cref="CustomCommandReceivedEventArgs"/> class.
         /// </summary>
-        Off,
+        /// <param name="command">The playback position command.</param>
+        /// <since_tizen> 5 </since_tizen>
+        public CustomCommandReceivedEventArgs(CustomCommand command)
+        {
+            Command = command;
+        }
 
         /// <summary>
-        /// On.
-        /// </summary>
-        On,
-
-        /// <summary>
-        /// One media.
+        /// Gets the <see cref="CustomCommand"/>.
         /// </summary>
         /// <since_tizen> 5 </since_tizen>
-        OneMedia
+        public CustomCommand Command { get; }
     }
 }

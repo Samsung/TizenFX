@@ -14,53 +14,27 @@
  * limitations under the License.
  */
 
-namespace Tizen.Multimedia.Remoting
+namespace Tizen.Multimedia
 {
     /// <summary>
-    /// Specifies playback commands.
+    /// Specifies the states for the <see cref="AudioPlayback"/>, <see cref="AudioCapture"/>, and <see cref="AsyncAudioCapture"/>.
     /// </summary>
-    /// <since_tizen> 4 </since_tizen>
-    public enum MediaControlPlaybackCommand
+    /// <since_tizen> 3 </since_tizen>
+    public enum AudioIOState
     {
         /// <summary>
-        /// Play.
+        /// Not prepared.
         /// </summary>
-        Play,
+        Idle = 0,
 
         /// <summary>
-        /// Pause.
+        /// The stream is running.
         /// </summary>
-        Pause,
+        Running = 1,
 
         /// <summary>
-        /// Stop.
+        /// The stream is paused.
         /// </summary>
-        Stop,
-
-        /// <summary>
-        /// Skip to next.
-        /// </summary>
-        Next,
-
-        /// <summary>
-        /// Skip to previous.
-        /// </summary>
-        Previous,
-
-        /// <summary>
-        /// Fast forward.
-        /// </summary>
-        FastForward,
-
-        /// <summary>
-        /// Rewind.
-        /// </summary>
-        Rewind,
-
-        /// <summary>
-        /// Toggle play/pause.
-        /// </summary>
-        /// <since_tizen> 5 </since_tizen>
-        Toggle,
+        Paused = 2
     }
 }

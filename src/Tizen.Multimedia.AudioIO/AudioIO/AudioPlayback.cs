@@ -60,9 +60,8 @@ namespace Tizen.Multimedia
                 BufferAvailable?.Invoke(this, new AudioPlaybackBufferAvailableEventArgs((int)bytes));
             };
 
-            AudioIOUtil.ThrowIfError(
-                AudioOutput.SetStreamChangedCallback(_handle, _streamCallback, IntPtr.Zero),
-                $"Failed to create {nameof(AudioPlayback)}");
+            AudioOutput.SetStreamChangedCallback(_handle, _streamCallback, IntPtr.Zero)
+                .ThrowIfFailed("Failed to set stream changed callback.");
         }
 
         /// <summary>
@@ -83,9 +82,8 @@ namespace Tizen.Multimedia
                     new AudioIOStateChangedEventArgs((AudioIOState)previous, _state, byPolicy));
             };
 
-            AudioIOUtil.ThrowIfError(
-                AudioOutput.SetStateChangedCallback(_handle, _stateChangedCallback, IntPtr.Zero),
-                $"Failed to create {nameof(AudioPlayback)}");
+            AudioOutput.SetStateChangedCallback(_handle, _stateChangedCallback, IntPtr.Zero)
+                .ThrowIfFailed("Failed to set state changed callback.");
         }
         #endregion
 
@@ -121,9 +119,8 @@ namespace Tizen.Multimedia
             Channel = channel;
             SampleType = sampleType;
 
-            AudioIOUtil.ThrowIfError(
-                AudioOutput.Create(SampleRate, (int)Channel, (int)SampleType, out _handle),
-                $"Failed to create {nameof(AudioPlayback)}");
+            AudioOutput.Create(SampleRate, (int)Channel, (int)SampleType, out _handle)
+                .ThrowIfFailed("Failed to create instance.");
 
             RegisterStreamCallback();
             RegisterStateChangedCallback();
@@ -228,9 +225,8 @@ namespace Tizen.Multimedia
             {
                 ValidateNotDisposed();
 
-                int audioType = 0;
-                int ret = AudioOutput.GetSoundType(_handle, out audioType);
-                MultimediaDebug.AssertNoError(ret);
+                var ret = AudioOutput.GetSoundType(_handle, out int audioType);
+                MultimediaDebug.AssertNoError((int)ret);
 
                 return (AudioStreamType)audioType;
             }
@@ -243,7 +239,9 @@ namespace Tizen.Multimedia
         /// <since_tizen> 3 </since_tizen>
         public int GetBufferSize()
         {
-            AudioIOUtil.ThrowIfError(AudioOutput.GetBufferSize(_handle, out var size));
+            AudioOutput.GetBufferSize(_handle, out var size)
+                .ThrowIfFailed("Failed to get buffer size.");
+
             return size;
         }
 
@@ -258,9 +256,8 @@ namespace Tizen.Multimedia
         {
             ValidateState(AudioIOState.Running, AudioIOState.Paused);
 
-            int ret = AudioOutput.Drain(_handle);
-
-            MultimediaDebug.AssertNoError(ret);
+            var ret = AudioOutput.Drain(_handle);
+            MultimediaDebug.AssertNoError((int)ret);
         }
 
         /// <summary>
@@ -287,11 +284,10 @@ namespace Tizen.Multimedia
                 throw new ArgumentException("buffer has no data.(the Length is zero.)", nameof(buffer));
             }
 
-            int ret = AudioOutput.Write(_handle, buffer, (uint)buffer.Length);
+            var ret = AudioOutput.Write(_handle, buffer, (uint)buffer.Length);
+            ret.ThrowIfFailed("Failed to write buffer.");
 
-            AudioIOUtil.ThrowIfError(ret, "Failed to write buffer");
-
-            return ret;
+            return (int)ret;
         }
 
         /// <summary>
@@ -312,8 +308,7 @@ namespace Tizen.Multimedia
         {
             ValidateState(AudioIOState.Idle);
 
-            AudioIOUtil.ThrowIfError(AudioOutput.Prepare(_handle),
-                $"Failed to prepare the {nameof(AudioPlayback)}");
+            AudioOutput.Prepare(_handle).ThrowIfFailed("Failed to prepare.");
         }
 
         /// <summary>
@@ -331,8 +326,7 @@ namespace Tizen.Multimedia
         {
             ValidateState(AudioIOState.Running, AudioIOState.Paused);
 
-            AudioIOUtil.ThrowIfError(AudioOutput.Unprepare(_handle),
-                $"Failed to unprepare the {nameof(AudioPlayback)}");
+            AudioOutput.Unprepare(_handle).ThrowIfFailed("Failed to unprepare");
         }
 
         /// <summary>
@@ -355,7 +349,7 @@ namespace Tizen.Multimedia
             }
             ValidateState(AudioIOState.Running);
 
-            AudioIOUtil.ThrowIfError(AudioOutput.Pause(_handle));
+            AudioOutput.Pause(_handle).ThrowIfFailed("Failed to pause.");
         }
 
         /// <summary>
@@ -378,7 +372,7 @@ namespace Tizen.Multimedia
             }
             ValidateState(AudioIOState.Paused);
 
-            AudioIOUtil.ThrowIfError(AudioOutput.Resume(_handle));
+            AudioOutput.Resume(_handle).ThrowIfFailed("Failed to resume.");
         }
 
         /// <summary>
@@ -391,9 +385,8 @@ namespace Tizen.Multimedia
         {
             ValidateState(AudioIOState.Running, AudioIOState.Paused);
 
-            int ret = AudioOutput.Flush(_handle);
-
-            MultimediaDebug.AssertNoError(ret);
+            var ret = AudioOutput.Flush(_handle);
+            MultimediaDebug.AssertNoError((int)ret);
         }
 
         /// <summary>
@@ -418,7 +411,8 @@ namespace Tizen.Multimedia
 
             ValidateNotDisposed();
 
-            AudioIOUtil.ThrowIfError(AudioOutput.SetStreamInfo(_handle, streamPolicy.Handle));
+            AudioOutput.SetStreamInfo(_handle, streamPolicy.Handle)
+                .ThrowIfFailed("Failed to apply stream policy.");
         }
     }
 }

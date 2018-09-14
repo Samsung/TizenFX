@@ -60,8 +60,8 @@ namespace Tizen.Multimedia
             Channel = channel;
             SampleType = sampleType;
 
-            AudioIOUtil.ThrowIfError(
-                AudioInput.Create(SampleRate, (int)Channel, (int)SampleType, out _handle));
+            AudioInput.Create(SampleRate, (int)Channel, (int)SampleType, out _handle)
+                .ThrowIfFailed("Failed to create audio capture instance.");
 
             RegisterStateChangedCallback();
         }
@@ -92,8 +92,8 @@ namespace Tizen.Multimedia
                     new AudioIOStateChangedEventArgs((AudioIOState)previous, _state, byPolicy));
             };
 
-            AudioIOUtil.ThrowIfError(
-                AudioInput.SetStateChangedCallback(_handle, _stateChangedCallback, IntPtr.Zero));
+            AudioInput.SetStateChangedCallback(_handle, _stateChangedCallback, IntPtr.Zero)
+                .ThrowIfFailed("Failed to set state changed callback.");
         }
 
         #region Dispose support
@@ -185,7 +185,9 @@ namespace Tizen.Multimedia
         {
             ValidateNotDisposed();
 
-            AudioIOUtil.ThrowIfError(AudioInput.GetBufferSize(_handle, out var size));
+            AudioInput.GetBufferSize(_handle, out var size)
+                .ThrowIfFailed("Failed to get buffer size.");
+
             return size;
         }
 
@@ -204,8 +206,7 @@ namespace Tizen.Multimedia
         {
             ValidateState(AudioIOState.Idle);
 
-            AudioIOUtil.ThrowIfError(AudioInput.Prepare(_handle),
-                "Failed to prepare the AudioCapture");
+            AudioInput.Prepare(_handle).ThrowIfFailed("Failed to prepare the AudioCapture");
         }
 
         /// <summary>
@@ -223,8 +224,7 @@ namespace Tizen.Multimedia
         {
             ValidateState(AudioIOState.Running, AudioIOState.Paused);
 
-            AudioIOUtil.ThrowIfError(AudioInput.Unprepare(_handle),
-                "Failed to unprepare the AudioCapture");
+            AudioInput.Unprepare(_handle).ThrowIfFailed("Failed to unprepare the AudioCapture");
         }
 
         /// <summary>
@@ -246,7 +246,7 @@ namespace Tizen.Multimedia
             }
             ValidateState(AudioIOState.Running);
 
-            AudioIOUtil.ThrowIfError(AudioInput.Pause(_handle));
+            AudioInput.Pause(_handle).ThrowIfFailed("Failed to pause.");
         }
         /// <summary>
         /// Resumes buffering audio data from the device.
@@ -267,7 +267,7 @@ namespace Tizen.Multimedia
             }
             ValidateState(AudioIOState.Paused);
 
-            AudioIOUtil.ThrowIfError(AudioInput.Resume(_handle));
+            AudioInput.Resume(_handle).ThrowIfFailed("Failed to resume.");
         }
 
         /// <summary>
@@ -280,9 +280,8 @@ namespace Tizen.Multimedia
         {
             ValidateState(AudioIOState.Running, AudioIOState.Paused);
 
-            int ret = AudioInput.Flush(_handle);
-
-            MultimediaDebug.AssertNoError(ret);
+            var ret = AudioInput.Flush(_handle);
+            MultimediaDebug.AssertNoError((int)ret);
         }
 
         /// <summary>
@@ -307,7 +306,8 @@ namespace Tizen.Multimedia
 
             ValidateNotDisposed();
 
-            AudioIOUtil.ThrowIfError(AudioInput.SetStreamInfo(_handle, streamPolicy.Handle));
+            AudioInput.SetStreamInfo(_handle, streamPolicy.Handle)
+                .ThrowIfFailed("Failed to apply stream policy.");
         }
     }
 
@@ -362,8 +362,7 @@ namespace Tizen.Multimedia
 
             byte[] buffer = new byte[count];
 
-            AudioIOUtil.ThrowIfError(AudioInput.Read(_handle, buffer, count),
-                "Failed to read");
+            AudioInput.Read(_handle, buffer, count).ThrowIfFailed("Failed to read.");
 
             return buffer;
         }
@@ -407,9 +406,8 @@ namespace Tizen.Multimedia
         {
             _streamCallback = (IntPtr handle, uint length, IntPtr _) => { OnInputDataAvailable(handle, length); };
 
-            AudioIOUtil.ThrowIfError(
-                AudioInput.SetStreamCallback(_handle, _streamCallback, IntPtr.Zero),
-                $"Failed to initialize a { nameof(AsyncAudioCapture) }");
+            AudioInput.SetStreamCallback(_handle, _streamCallback, IntPtr.Zero)
+                .ThrowIfFailed("Failed to create instance.");
         }
 
         private AudioStreamCallback _streamCallback;
@@ -421,10 +419,9 @@ namespace Tizen.Multimedia
                 return;
             }
 
-            IntPtr ptr = IntPtr.Zero;
             try
             {
-                AudioIOUtil.ThrowIfError(AudioInput.Peek(_handle, out ptr, ref length));
+                AudioInput.Peek(_handle, out IntPtr ptr, ref length).ThrowIfFailed("Failed to peek.");
 
                 byte[] buffer = new byte[length];
                 Marshal.Copy(ptr, buffer, 0, (int)length);

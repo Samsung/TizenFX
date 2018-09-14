@@ -14,54 +14,31 @@
  * limitations under the License.
  */
 
-namespace Tizen.Multimedia.Remoting
+namespace Tizen.Multimedia
 {
     /// <summary>
-    /// Specifies playback states.
+    /// Specifies the audio sample types.
     /// </summary>
-    /// <since_tizen> 4 </since_tizen>
-    public enum MediaControlPlaybackState
+    /// <since_tizen> 3 </since_tizen>
+    public enum AudioSampleType
     {
         /// <summary>
-        /// Unknown; no state is set.
+        /// Unsigned 8-bit audio samples.
         /// </summary>
-        None,
-
+        U8 = 0x70,
         /// <summary>
-        /// Playing.
+        /// Signed 16-bit audio samples.
         /// </summary>
-        Playing,
-
+        S16Le,
         /// <summary>
-        /// Paused.
-        /// </summary>
-        Paused,
-
-        /// <summary>
-        /// Stopped.
-        /// </summary>
-        Stopped,
-
-        /// <summary>
-        /// Fast forwarding.
-        /// </summary>
-        FastForwarding,
-
-        /// <summary>
-        /// Rewinding.
-        /// </summary>
-        Rewinding,
-
-        /// <summary>
-        /// Skipping to the next item.
+        /// Signed 24-bit audio samples.
         /// </summary>
         /// <since_tizen> 5 </since_tizen>
-        MovingToNext,
-
+        S24Le,
         /// <summary>
-        /// Skipping to the previous item.
+        /// Signed 24-bit (packed in 32-bit) audio samples.
         /// </summary>
         /// <since_tizen> 5 </since_tizen>
-        MovingToPrevious,
+        S24LePacked
     }
 }
