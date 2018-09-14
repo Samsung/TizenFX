@@ -14,25 +14,31 @@
  * limitations under the License.
  */
 
-using System;
-using System.Diagnostics;
-using System.Linq;
-
 namespace Tizen.Multimedia
 {
-    internal static class AudioIOUtil
+    /// <summary>
+    /// Specifies the audio sample types.
+    /// </summary>
+    /// <since_tizen> 3 </since_tizen>
+    public enum AudioSampleType
     {
-        internal static void ValidateState(AudioIOState curState, params AudioIOState[] desiredStates)
-        {
-            Debug.Assert(desiredStates.Length > 0);
-
-            if (desiredStates.Contains(curState))
-            {
-                return;
-            }
-
-            throw new InvalidOperationException($"The audio is not in a valid state. " +
-                $"Current State : { curState }, Valid State : { string.Join(", ", desiredStates) }.");
-        }
+        /// <summary>
+        /// Unsigned 8-bit audio samples.
+        /// </summary>
+        U8 = 0x70,
+        /// <summary>
+        /// Signed 16-bit audio samples.
+        /// </summary>
+        S16Le,
+        /// <summary>
+        /// Signed 24-bit audio samples.
+        /// </summary>
+        /// <since_tizen> 5 </since_tizen>
+        S24Le,
+        /// <summary>
+        /// Signed 24-bit (packed in 32-bit) audio samples.
+        /// </summary>
+        /// <since_tizen> 5 </since_tizen>
+        S24LePacked
     }
 }
