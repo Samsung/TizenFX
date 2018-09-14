@@ -50,8 +50,6 @@ namespace Tizen.Multimedia
             switch(errorCode)
             {
                 case AudioIOError.OutOfMemory:
-                    throw new OutOfMemoryException(errorMessage);
-
                 case AudioIOError.InvalidParameter:
                     throw new ArgumentException(errorMessage);
 
