@@ -28,6 +28,7 @@ namespace Tizen.Security
     {
         private const string LogTag = "Tizen.Privilege";
         private static Interop.PrivacyPrivilegeManager.RequestResponseCallback s_requestResponseCb;
+        private static IDictionary<string, WeakReference<ResponseContext>> s_responseWeakMap = new Dictionary<string, WeakReference<ResponseContext>>();
         private static IDictionary<string, ResponseContext> s_responseMap = new Dictionary<string, ResponseContext>();
 
         static PrivacyPrivilegeManager()
@@ -36,7 +37,19 @@ namespace Tizen.Security
             {
                 try
                 {
-                    s_responseMap[privilege].FireEvent((CallCause)cause, (RequestResult) result);
+                    if (s_responseWeakMap.TryGetValue(privilege, out WeakReference<ResponseContext> weakRef))
+                    {
+                        if (weakRef.TryGetTarget(out ResponseContext context))
+                        {
+                            context.FireEvent((CallCause)cause, (RequestResult)result);
+                            return;
+                        }
+                        else
+                        {
+                            s_responseWeakMap.Remove(privilege);
+                        }
+                    }
+                    Log.Error(LogTag, "No listener");
                 }
                 catch (Exception e)
                 {
@@ -173,11 +186,12 @@ namespace Tizen.Security
         /// <since_tizen> 4 </since_tizen>
         public static WeakReference<ResponseContext> GetResponseContext(string privilege)
         {
-            if (!s_responseMap.ContainsKey(privilege))
+            if (!(s_responseWeakMap.TryGetValue(privilege, out WeakReference<ResponseContext> weakRef) && weakRef.TryGetTarget(out ResponseContext context)))
             {
-                s_responseMap[privilege] = new ResponseContext(privilege);
+                context = new ResponseContext(privilege);
+                s_responseWeakMap[privilege] = new WeakReference<ResponseContext>(context);
             }
-            return new WeakReference<ResponseContext>(s_responseMap[privilege]);
+            return s_responseWeakMap[privilege];
         }
 
         /// <summary>
@@ -202,6 +216,13 @@ namespace Tizen.Security
             {
                 add
                 {
+                    if (_ResponseFetched == null)
+                    {
+                        if (!s_responseMap.ContainsKey(_privilege))
+                        {
+                            s_responseMap[_privilege] = this;
+                        }
+                    }
                     _ResponseFetched += value;
                 }
 
@@ -210,7 +231,10 @@ namespace Tizen.Security
                     _ResponseFetched -= value;
                     if (_ResponseFetched == null)
                     {
-                        s_responseMap.Remove(_privilege);
+                        if (s_responseMap.ContainsKey(_privilege))
+                        {
+                            s_responseMap.Remove(_privilege);
+                        }
                     }
                 }
             }
