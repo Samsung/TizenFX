@@ -29,9 +29,9 @@ namespace Tizen.Multimedia.Remoting
         /// </summary>
         /// <param name="command">The playback position command.</param>
         /// <since_tizen> 5 </since_tizen>
-        public RepeatModeCommandReceivedEventArgs(Command command)
+        public RepeatModeCommandReceivedEventArgs(RepeatModeCommand command)
         {
-            Command = command as RepeatModeCommand;
+            Command = command;
         }
 
         /// <summary>

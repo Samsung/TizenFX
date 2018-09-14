@@ -41,7 +41,7 @@ internal static partial class Interop
         internal delegate bool ActivatedServerCallback(string serverName, IntPtr userData);
 
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-        internal delegate void CommandCompletedCallback(string serverName, string requestId, int result,
+        internal delegate void CommandCompletedCallback(string serverName, string requestId, MediaControllerError result,
             IntPtr bundleHandle, IntPtr userData);
 
 

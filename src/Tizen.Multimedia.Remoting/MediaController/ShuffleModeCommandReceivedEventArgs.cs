@@ -29,9 +29,9 @@ namespace Tizen.Multimedia.Remoting
         /// </summary>
         /// <param name="command">The playback position command.</param>
         /// <since_tizen> 5 </since_tizen>
-        public ShuffleModeCommandReceivedEventArgs(Command command)
+        public ShuffleModeCommandReceivedEventArgs(ShuffleModeCommand command)
         {
-            Command = command as ShuffleModeCommand;
+            Command = command;
         }
 
         /// <summary>

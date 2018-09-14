@@ -287,16 +287,16 @@ namespace Tizen.Multimedia.Remoting
         ///     -or-<br/>
         ///     An internal error occurs.
         /// </exception>
+        /// <exception cref="OutOfMemoryException">The server failed to allocate memory.</exception>
         /// <exception cref="ObjectDisposedException">The <see cref="MediaControllerManager"/> has already been disposed of.</exception>
-        /// <returns>The request ID for <paramref name="command"/>.</returns>
         /// <since_tizen> 5 </since_tizen>
-        public async Task<int> RequestAsync(Command command)
+        public async Task RequestAsync(Command command)
         {
             ThrowIfStopped();
 
             command.SetServerInfo(Manager.Handle, ServerAppId);
 
-            var tcs = new TaskCompletionSource<int>();
+            var tcs = new TaskCompletionSource<MediaControllerError>();
             string reqeustId = null;
 
             EventHandler<CommandCompletedEventArgs> eventHandler = (s, e) =>
@@ -313,7 +313,7 @@ namespace Tizen.Multimedia.Remoting
 
                 reqeustId = command.Request();
 
-                return await tcs.Task.ConfigureAwait(false);
+                (await tcs.Task).ThrowIfError("Failed to request command");
             }
             finally
             {
