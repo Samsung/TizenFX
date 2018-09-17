@@ -4538,6 +4538,96 @@ namespace Tizen.NUI
             }
         }
 
+        [global::System.Runtime.InteropServices.DllImport(Graphics.GlesCSharpBinder, EntryPoint = "CSharp_Dali_LinearLayout_SetAlignment")]
+        public static extern void LinearLayout_SetAlignment_gl(global::System.Runtime.InteropServices.HandleRef jarg1, uint jarg2);
+
+        [global::System.Runtime.InteropServices.DllImport(Graphics.VulkanCSharpBinder, EntryPoint = "CSharp_Dali_LinearLayout_SetAlignment")]
+        public static extern void LinearLayout_SetAlignment_vulkan(global::System.Runtime.InteropServices.HandleRef jarg1, uint jarg2);
+
+        public static void LinearLayout_SetAlignment(global::System.Runtime.InteropServices.HandleRef jarg1, uint jarg2)
+        {
+            if (Tizen.NUI.Graphics.Backend == Tizen.NUI.Graphics.BackendType.Vulkan)
+            {
+                LinearLayout_SetAlignment_vulkan(jarg1, jarg2);
+            }
+            else
+            {
+                LinearLayout_SetAlignment_gl(jarg1, jarg2);
+            }
+        }
+
+        [global::System.Runtime.InteropServices.DllImport(Graphics.GlesCSharpBinder, EntryPoint = "CSharp_Dali_LinearLayout_GetAlignment")]
+        public static extern uint LinearLayout_GetAlignment_gl(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+        [global::System.Runtime.InteropServices.DllImport(Graphics.VulkanCSharpBinder, EntryPoint = "CSharp_Dali_LinearLayout_GetAlignment")]
+        public static extern uint LinearLayout_GetAlignment_vulkan(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+        public static uint LinearLayout_GetAlignment(global::System.Runtime.InteropServices.HandleRef jarg1)
+        {
+            if (Tizen.NUI.Graphics.Backend == Tizen.NUI.Graphics.BackendType.Vulkan)
+            {
+                return LinearLayout_GetAlignment_vulkan(jarg1);
+            }
+            else
+            {
+                return LinearLayout_GetAlignment_gl(jarg1);
+            }
+        }
+
+        [global::System.Runtime.InteropServices.DllImport(Graphics.GlesCSharpBinder, EntryPoint = "CSharp_Dali_LinearLayout_ChildProperty_WEIGHT_get")]
+        public static extern int LinearLayout_ChildProperty_WEIGHT_get_gl();
+
+        [global::System.Runtime.InteropServices.DllImport(Graphics.VulkanCSharpBinder, EntryPoint = "CSharp_Dali_LinearLayout_ChildProperty_WEIGHT_get")]
+        public static extern int LinearLayout_ChildProperty_WEIGHT_get_vulkan();
+
+        public static int LinearLayout_ChildProperty_WEIGHT_get()
+        {
+            if (Tizen.NUI.Graphics.Backend == Tizen.NUI.Graphics.BackendType.Vulkan)
+            {
+                return LinearLayout_ChildProperty_WEIGHT_get_vulkan();
+            }
+            else
+            {
+                return LinearLayout_ChildProperty_WEIGHT_get_gl();
+            }
+        }
+
+        [global::System.Runtime.InteropServices.DllImport(Graphics.GlesCSharpBinder, EntryPoint = "CSharp_Dali_new_LinearLayout_ChildProperty")]
+        public static extern global::System.IntPtr new_LinearLayout_ChildProperty_gl();
+
+        [global::System.Runtime.InteropServices.DllImport(Graphics.VulkanCSharpBinder, EntryPoint = "CSharp_Dali_new_LinearLayout_ChildProperty")]
+        public static extern global::System.IntPtr new_LinearLayout_ChildProperty_vulkan();
+
+        public static global::System.IntPtr new_LinearLayout_ChildProperty()
+        {
+            if (Tizen.NUI.Graphics.Backend == Tizen.NUI.Graphics.BackendType.Vulkan)
+            {
+                return new_LinearLayout_ChildProperty_vulkan();
+            }
+            else
+            {
+                return new_LinearLayout_ChildProperty_gl();
+            }
+        }
+
+        [global::System.Runtime.InteropServices.DllImport(Graphics.GlesCSharpBinder, EntryPoint = "CSharp_Dali_delete_LinearLayout_ChildProperty")]
+        public static extern void delete_LinearLayout_ChildProperty_gl(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+        [global::System.Runtime.InteropServices.DllImport(Graphics.VulkanCSharpBinder, EntryPoint = "CSharp_Dali_delete_LinearLayout_ChildProperty")]
+        public static extern void delete_LinearLayout_ChildProperty_vulkan(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+        public static void delete_LinearLayout_ChildProperty(global::System.Runtime.InteropServices.HandleRef jarg1)
+        {
+            if (Tizen.NUI.Graphics.Backend == Tizen.NUI.Graphics.BackendType.Vulkan)
+            {
+                delete_LinearLayout_ChildProperty_vulkan(jarg1);
+            }
+            else
+            {
+                delete_LinearLayout_ChildProperty_gl(jarg1);
+            }
+        }
+
         // Grid Layout
 
         // GridLayout_SWIGUpcast
