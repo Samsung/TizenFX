@@ -1286,8 +1286,15 @@ namespace Tizen.NUI.BaseComponents
 
                 if (layoutSet == true && child.Layout == null) // Only give children a layout if parent an explicit container
                 {
-                    LayoutItem layoutItem = new LayoutItem();
-                    child.Layout = layoutItem;
+                    if( child.GetType() == typeof(View) ||  true == child.LayoutingRequired )
+                    {
+                        child.Layout = new LayoutGroup();
+
+                    }
+                    else
+                    {
+                        child.Layout = new LayoutItem();
+                    }
                 }
 
                 if (Layout)
@@ -3170,6 +3177,8 @@ namespace Tizen.NUI.BaseComponents
             set
             {
                 SetValue(Size2DProperty, value);
+                // Set Specification so when layouts measure this View it matches the value set here.
+                // All Views are currently Layouts.
                 SetProperty(LayoutItemWrapper.ChildProperty.WIDTH_SPECIFICATION, new Tizen.NUI.PropertyValue(value.Width));
                 SetProperty(LayoutItemWrapper.ChildProperty.HEIGHT_SPECIFICATION, new Tizen.NUI.PropertyValue(value.Height));
                 NotifyPropertyChanged();
@@ -3431,6 +3440,25 @@ namespace Tizen.NUI.BaseComponents
                 {
                     value.LayoutChildren.Add(view.Layout);
                 }
+            }
+        }
+
+        /// <summary>
+        /// Set that layouting is required on this View. It will automatically receive a Layout.
+        /// </summary>
+        /// <remarks>
+        /// </remarks>
+        internal bool LayoutingRequired
+        {
+            get
+            {
+                bool result = Tizen.NUI.NDalicManualPINVOKE.View_IsLayoutingRequired(View.getCPtr(this));
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                return result;
+            }
+            set
+            {
+                Tizen.NUI.NDalicManualPINVOKE.View_SetLayoutingRequired(View.getCPtr(this), value);
             }
         }
 
