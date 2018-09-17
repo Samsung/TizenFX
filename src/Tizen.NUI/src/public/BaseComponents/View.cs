@@ -394,6 +394,23 @@ namespace Tizen.NUI.BaseComponents
         });
         /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
+        public static readonly BindableProperty WeightProperty = BindableProperty.Create("Weight", typeof(float), typeof(View), default(float), propertyChanged: (bindable, oldValue, newValue) =>
+        {
+            var view = (View)bindable;
+            if (newValue != null)
+            {
+                Tizen.NUI.Object.SetProperty(view.swigCPtr, LinearLayout.ChildProperty.WEIGHT, new Tizen.NUI.PropertyValue((float)newValue));
+            }
+        },
+        defaultValueCreator:(bindable) =>
+        {
+            var view = (View)bindable;
+            float temp = 0.0f;
+            Tizen.NUI.Object.GetProperty(view.swigCPtr, LinearLayout.ChildProperty.WEIGHT).Get(out temp);
+            return temp;
+        });
+        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty LeftFocusableViewProperty = BindableProperty.Create("LeftFocusableView", typeof(View), typeof(View), default(View), propertyChanged: (bindable, oldValue, newValue) =>
         {
             var view = (View)bindable;
@@ -1286,8 +1303,15 @@ namespace Tizen.NUI.BaseComponents
 
                 if (layoutSet == true && child.Layout == null) // Only give children a layout if parent an explicit container
                 {
-                    LayoutItem layoutItem = new LayoutItem();
-                    child.Layout = layoutItem;
+                    if( child.GetType() == typeof(View) ||  true == child.LayoutingRequired )
+                    {
+                        child.Layout = new LayoutGroup();
+
+                    }
+                    else
+                    {
+                        child.Layout = new LayoutItem();
+                    }
                 }
 
                 if (Layout)
@@ -3170,6 +3194,8 @@ namespace Tizen.NUI.BaseComponents
             set
             {
                 SetValue(Size2DProperty, value);
+                // Set Specification so when layouts measure this View it matches the value set here.
+                // All Views are currently Layouts.
                 SetProperty(LayoutItemWrapper.ChildProperty.WIDTH_SPECIFICATION, new Tizen.NUI.PropertyValue(value.Width));
                 SetProperty(LayoutItemWrapper.ChildProperty.HEIGHT_SPECIFICATION, new Tizen.NUI.PropertyValue(value.Height));
                 NotifyPropertyChanged();
@@ -3431,6 +3457,25 @@ namespace Tizen.NUI.BaseComponents
                 {
                     value.LayoutChildren.Add(view.Layout);
                 }
+            }
+        }
+
+        /// <summary>
+        /// Set that layouting is required on this View. It will automatically receive a Layout.
+        /// </summary>
+        /// <remarks>
+        /// </remarks>
+        internal bool LayoutingRequired
+        {
+            get
+            {
+                bool result = Tizen.NUI.NDalicManualPINVOKE.View_IsLayoutingRequired(View.getCPtr(this));
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                return result;
+            }
+            set
+            {
+                Tizen.NUI.NDalicManualPINVOKE.View_SetLayoutingRequired(View.getCPtr(this), value);
             }
         }
 
@@ -5484,6 +5529,19 @@ namespace Tizen.NUI.BaseComponents
             set
             {
                 SetProperty(LayoutItemWrapper.ChildProperty.HEIGHT_SPECIFICATION, new Tizen.NUI.PropertyValue((int)value));
+            }
+        }
+
+        internal float Weight
+        {
+            get
+            {
+                return (float)GetValue(WeightProperty);
+            }
+            set
+            {
+                SetValue(WeightProperty, value);
+                NotifyPropertyChanged();
             }
         }
 
