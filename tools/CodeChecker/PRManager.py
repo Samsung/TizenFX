@@ -13,7 +13,7 @@ class PRManager:
 
         self.lineNumberToPositionMap = {}
         self.fileDiffHunkPairs = {}
-    
+
         for file in self.changedFiles:
             _patchLines = file.patch.split("\n")
             self._CreatePositionMap(file, _patchLines)
@@ -34,14 +34,24 @@ class PRManager:
             if line[0] == "@":
                 line = line[line.find("+")+1:]
                 lineNumber = int(line[:line.find(",")])
-                continue     
+                continue
             elif line[0] == "-":
                 continue
             self.lineNumberToPositionMap[file][lineNumber] = position
             lineNumber += 1
 
+    def _CheckComment(self, file, position, body):
+        _comments = self.pr.get_comments();
+        for comment in _comments:
+            if (comment.path == file and comment.position == position and comment.body == body):
+                # Comment already exists
+                return False
+        return True
+
     def CreateReviewComment(self, file, lineNumber, body):
-        self.pr.create_review_comment(body, self.latestCommit, file.filename, self.lineNumberToPositionMap[file][lineNumber])
+        _position = self.lineNumberToPositionMap[file][lineNumber]
+        if self._CheckComment(file.filename, _position, body):
+            self.pr.create_review_comment(body, self.latestCommit, file.filename, _position)
 
 if __name__ == "__main__":
     pr = 9
