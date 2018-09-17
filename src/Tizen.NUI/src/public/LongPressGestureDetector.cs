@@ -258,7 +258,7 @@ namespace Tizen.NUI
 
         /// <summary>
         /// Sets the number of touches required.<br />
-        /// The number of touches corresponds to the number of fingers a user has on the screen. The default value is 1.<br />
+        /// The number of touches corresponds to the number of fingers a user has on the screen. The default is 1.<br />
         /// </summary>
         /// <param name="touches">Touches required</param>
         /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.

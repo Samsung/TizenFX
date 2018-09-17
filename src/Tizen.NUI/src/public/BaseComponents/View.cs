@@ -1286,8 +1286,15 @@ namespace Tizen.NUI.BaseComponents
 
                 if (layoutSet == true && child.Layout == null) // Only give children a layout if parent an explicit container
                 {
-                    LayoutItem layoutItem = new LayoutItem();
-                    child.Layout = layoutItem;
+                    if( child.GetType() == typeof(View) ||  true == child.LayoutingRequired )
+                    {
+                        child.Layout = new LayoutGroup();
+
+                    }
+                    else
+                    {
+                        child.Layout = new LayoutItem();
+                    }
                 }
 
                 if (Layout)
@@ -3170,6 +3177,8 @@ namespace Tizen.NUI.BaseComponents
             set
             {
                 SetValue(Size2DProperty, value);
+                // Set Specification so when layouts measure this View it matches the value set here.
+                // All Views are currently Layouts.
                 SetProperty(LayoutItemWrapper.ChildProperty.WIDTH_SPECIFICATION, new Tizen.NUI.PropertyValue(value.Width));
                 SetProperty(LayoutItemWrapper.ChildProperty.HEIGHT_SPECIFICATION, new Tizen.NUI.PropertyValue(value.Height));
                 NotifyPropertyChanged();
@@ -3371,14 +3380,7 @@ namespace Tizen.NUI.BaseComponents
         /// <remarks>
         /// Deriving classes stipulate the natural size and by default a view has a zero natural size.
         /// </remarks>
-        /// /// Please do not use! this will be deprecated!
-        /// Instead please use NaturalSize2D.
-        /// <since_tizen> 3 </since_tizen>
-        [Obsolete("Please do not use! This will be deprecated! Please use NaturalSize2D instead! " +
-            "Like: " +
-            "TextLabel label = new TextLabel(\"Hello World!\"); " +
-            "Size2D size = label.NaturalSize2D;")]
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 5 </since_tizen>
         public Vector3 NaturalSize
         {
             get
@@ -3438,6 +3440,25 @@ namespace Tizen.NUI.BaseComponents
                 {
                     value.LayoutChildren.Add(view.Layout);
                 }
+            }
+        }
+
+        /// <summary>
+        /// Set that layouting is required on this View. It will automatically receive a Layout.
+        /// </summary>
+        /// <remarks>
+        /// </remarks>
+        internal bool LayoutingRequired
+        {
+            get
+            {
+                bool result = Tizen.NUI.NDalicManualPINVOKE.View_IsLayoutingRequired(View.getCPtr(this));
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                return result;
+            }
+            set
+            {
+                Tizen.NUI.NDalicManualPINVOKE.View_SetLayoutingRequired(View.getCPtr(this), value);
             }
         }
 
@@ -5246,14 +5267,18 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        /// [Obsolete("Please do not use! this will be deprecated")]
+        /// Sets the size of a view for the width, the height and the depth.<br />
+        /// Geometry can be scaled to fit within this area.<br />
+        /// This does not interfere with the view's scale factor.<br />
+        /// The views default depth is the minimum of width and height.<br />
         /// </summary>
-        /// <since_tizen> 3 </since_tizen>
-        [Obsolete("Please do not use! This will be deprecated! Please use Size2D instead! " +
-            "Like: " +
-            "View view = new View(); " +
-            "view.Size2D = new Size2D(100, 100);")]
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <remarks>
+        /// Please note that multi-cascade setting is not possible for this NUI object. <br />
+        /// It is recommended that NUI object typed properties are configured by their constructor with parameters. <br />
+        /// For example, this code is working fine : view.Size = new Size( 1.0f, 1.0f, 0.0f); <br />
+        /// but this will not work! : view.Size.Width = 2.0f; view.Size.Height = 2.0f; <br />
+        /// </remarks>
+        /// <since_tizen> 5 </since_tizen>
         public Size Size
         {
             get
@@ -5341,6 +5366,10 @@ namespace Tizen.NUI.BaseComponents
         /// <summary>
         /// Gets or sets the Margin for use in layout.
         /// </summary>
+        /// <remarks>
+        /// Margin property is supported by Layout algorithms and containers.
+        /// Please Set Layout if you want to use Margin property.
+        /// </remarks>
         /// <since_tizen> 4 </since_tizen>
         public Extents Margin
         {

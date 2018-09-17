@@ -31,5 +31,11 @@ namespace Tizen.Multimedia.Remoting
         /// On.
         /// </summary>
         On,
+
+        /// <summary>
+        /// One media.
+        /// </summary>
+        /// <since_tizen> 5 </since_tizen>
+        OneMedia
     }
 }

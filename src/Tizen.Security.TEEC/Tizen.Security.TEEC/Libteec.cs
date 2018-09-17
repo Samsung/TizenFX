@@ -753,6 +753,20 @@ namespace Tizen.Security.TEEC
 
     };
 
+    static internal class TeeFeature
+    {
+        private static string name = "http://tizen.org/feature/security.tee";
+        public static bool IsEnabled() {
+            /* FIXME - System.Information does not provide a Try-less variant of GetValue */
+            if (!Tizen.System.Information.TryGetValue(name, out bool enabled)) {
+                unchecked {
+                    Interop.CheckNThrowException((int)Interop.LibteecError.Generic, "Failed to query for TEE feature");
+                }
+            }
+            return enabled;
+        }
+    }
+
     /// <summary>
     /// This type denotes a TEE Context, the main logical container linking a Client Application with a particular TEE.
     /// </summary>
@@ -778,12 +792,17 @@ namespace Tizen.Security.TEEC
         /// <exception cref="InvalidOperationException">The operation is invalid.</exception>
         public Context(string name)
         {
+            if (!TeeFeature.IsEnabled())
+                unchecked {
+                    Interop.CheckNThrowException((int)Interop.LibteecError.NotSupported, string.Format("InitializeContext('{0}')", name));
+                }
+
             context_imp = Marshal.AllocHGlobal(Marshal.SizeOf<Interop.TEEC_Context>());
             if (name != null && name.Length == 0)
                 name = null;
             try {
                 int ret = Interop.Libteec.InitializeContext(name, context_imp);
-                Interop.CheckNThrowException(ret, string.Format("InititalizeContext('{0}')", name));
+                Interop.CheckNThrowException(ret, string.Format("InitializeContext('{0}')", name));
                 initialized = true;
             }
             catch (global::System.DllNotFoundException e)
