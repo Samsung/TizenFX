@@ -113,6 +113,7 @@ namespace Tizen.Multimedia.Remoting
                 RegisterRepeatModeCommandReceivedEvent();
                 RegisterCustomCommandReceivedEvent();
                 RegisterEventCompletedEvent();
+                RegisterSearchCommandReceivedEvent();
 
                 _isRunning = true;
             }

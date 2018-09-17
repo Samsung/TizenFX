@@ -210,6 +210,38 @@ namespace Tizen.Multimedia.Remoting
         NotDecided
     }
 
+    /// <summary>
+    /// Specifies the search category.
+    /// </summary>
+    /// <since_tizen> 5 </since_tizen>
+    public enum MediaControlSearchCategory
+    {
+        /// <summary>
+        /// Search by content title.
+        /// </summary>
+        Title = 1,
+
+        /// <summary>
+        /// Search by content artist.
+        /// </summary>
+        Artist,
+
+        /// <summary>
+        /// Search by content album.
+        /// </summary>
+        Album,
+
+        /// <summary>
+        /// Search by content genre.
+        /// </summary>
+        Genre,
+
+        /// <summary>
+        /// Search by TPO(Time Place Occasion).
+        /// </summary>
+        Tpo
+    }
+
     internal static class EnumExtensions
     {
         internal static MediaControlPlaybackState ToPublic(this MediaControllerNativePlaybackState nativeState)
@@ -283,6 +315,14 @@ namespace Tizen.Multimedia.Remoting
             return MediaControllerNativePlaybackAction.Play;
         }
 
+        internal static MediaControlRepeatMode ToPublic(this MediaControllerNativeRepeatMode mode)
+        {
+            Debug.Assert(Enum.IsDefined(typeof(MediaControllerNativeRepeatMode), mode));
+
+            return mode == MediaControllerNativeRepeatMode.Off ? MediaControlRepeatMode.On :
+                (mode == MediaControllerNativeRepeatMode.On ? MediaControlRepeatMode.Off : MediaControlRepeatMode.OneMedia);
+        }
+
         internal static MediaControllerNativeRepeatMode ToNative(this MediaControlRepeatMode mode)
         {
             Debug.Assert(Enum.IsDefined(typeof(MediaControlRepeatMode), mode));
@@ -291,12 +331,45 @@ namespace Tizen.Multimedia.Remoting
                 (mode == MediaControlRepeatMode.On ? MediaControllerNativeRepeatMode.Off : MediaControllerNativeRepeatMode.OneMedia);
         }
 
-        internal static MediaControlRepeatMode ToPublic(this MediaControllerNativeRepeatMode mode)
-        {
-            Debug.Assert(Enum.IsDefined(typeof(MediaControllerNativeRepeatMode), mode));
 
-            return mode == MediaControllerNativeRepeatMode.Off ? MediaControlRepeatMode.On :
-                (mode == MediaControllerNativeRepeatMode.On ? MediaControlRepeatMode.Off : MediaControlRepeatMode.OneMedia);
+
+
+        internal static MediaControlSearchCategory ToPublic(this MediaControlNativeSearchCategory category)
+        {
+            var publicCategory = MediaControlSearchCategory.Title;
+
+            switch (category)
+            {
+                case MediaControlNativeSearchCategory.Title: publicCategory = MediaControlSearchCategory.Title; break;
+                case MediaControlNativeSearchCategory.Artist: publicCategory = MediaControlSearchCategory.Artist; break;
+                case MediaControlNativeSearchCategory.Album: publicCategory = MediaControlSearchCategory.Album; break;
+                case MediaControlNativeSearchCategory.Genre: publicCategory = MediaControlSearchCategory.Genre; break;
+                case MediaControlNativeSearchCategory.Tpo: publicCategory = MediaControlSearchCategory.Tpo; break;
+                default:
+                    Debug.Fail($"Not supported code for search category {category}.");
+                    break;
+            }
+
+            return publicCategory;
+        }
+
+        internal static MediaControlNativeSearchCategory ToNative(this MediaControlSearchCategory category)
+        {
+            var nativeCategory = MediaControlNativeSearchCategory.Title;
+
+            switch (category)
+            {
+                case MediaControlSearchCategory.Title: nativeCategory = MediaControlNativeSearchCategory.Title; break;
+                case MediaControlSearchCategory.Artist: nativeCategory = MediaControlNativeSearchCategory.Artist; break;
+                case MediaControlSearchCategory.Album: nativeCategory = MediaControlNativeSearchCategory.Album; break;
+                case MediaControlSearchCategory.Genre: nativeCategory = MediaControlNativeSearchCategory.Genre; break;
+                case MediaControlSearchCategory.Tpo: nativeCategory = MediaControlNativeSearchCategory.Tpo; break;
+                default:
+                    Debug.Fail($"Not supported code for search category {category}.");
+                    break;
+            }
+
+            return nativeCategory;
         }
     }
 }

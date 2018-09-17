@@ -154,6 +154,10 @@ internal static partial class Interop
             string serverName, string playlistName, string index, MediaControllerNativePlaybackAction mode,
             ulong position, out string requestId);
 
+        [DllImport(Libraries.MediaController, EntryPoint = "mc_client_send_search_cmd")]
+        internal static extern MediaControllerError SendSearchCommand(MediaControllerClientHandle handle,
+            string serverName, IntPtr searchHandle, out string requestId);
+
         [DllImport(Libraries.MediaController, EntryPoint = "mc_client_send_event_reply")]
         internal static extern MediaControllerError SendCustomEventReply(MediaControllerClientHandle handle,
             string serverName, string requestId, int result, IntPtr bundleHandle);
@@ -165,6 +169,9 @@ internal static partial class Interop
         [DllImport(Libraries.MediaController, EntryPoint = "mc_client_foreach_server")]
         internal static extern MediaControllerError ForeachActivatedServer(MediaControllerClientHandle handle,
             ActivatedServerCallback callback, IntPtr userData);
+
+        [DllImport(Libraries.MediaController, EntryPoint = "mc_client_get_age_rating")]
+        internal static extern MediaControllerError GetAgeRating(IntPtr playbackHandle, out int rating);
 
         #region Capability
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
@@ -231,6 +238,22 @@ internal static partial class Interop
         internal static extern MediaControllerError IsCapabilitySupported(IntPtr capaHandle,
             MediaControllerNativePlaybackAction action, out MediaControlCapabilitySupport support);
         #endregion Capability
+
+        #region Search
+        [DllImport(Libraries.MediaController, EntryPoint = "mc_search_create")]
+        internal static extern MediaControllerError CreateSearchHandle(out IntPtr searchHandle);
+
+        [DllImport(Libraries.MediaController, EntryPoint = "mc_search_set_condition")]
+        internal static extern MediaControllerError SetSearchCondition(IntPtr searchHandle,
+            MediaControlContentType type, MediaControlNativeSearchCategory category, string keyword, IntPtr bundle);
+
+        [DllImport(Libraries.MediaController, EntryPoint = "mc_search_set_condition")]
+        internal static extern MediaControllerError SetSearchConditionBundle(IntPtr searchHandle,
+            MediaControlContentType type, MediaControlNativeSearchCategory category, string keyword, SafeBundleHandle bundle);
+
+        [DllImport(Libraries.MediaController, EntryPoint = "mc_search_destroy")]
+        internal static extern MediaControllerError DestroySearchHandle(IntPtr searchHandle);
+        #endregion Search
     }
 
     internal class MediaControllerClientHandle : SafeHandle

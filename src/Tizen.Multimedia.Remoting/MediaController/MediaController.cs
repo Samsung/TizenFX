@@ -393,10 +393,46 @@ namespace Tizen.Multimedia.Remoting
         /// <since_tizen> 5 </since_tizen>
         public string GetIconPath()
         {
+            ThrowIfStopped();
+
             Native.GetServerIcon(Manager.Handle, ServerAppId, out string uri).
                 ThrowIfError("Failed to get icon path.");
 
             return uri;
+        }
+
+        /// <summary>
+        /// Gets the age rating of current playing media.
+        /// </summary>
+        /// <returns>The Age rating of current playing media. The range is 0 to 19, inclusive.</returns>
+        /// <exception cref="InvalidOperationException">
+        ///     The server has already been stopped.<br/>
+        ///     -or-<br/>
+        ///     An internal error occurs.
+        /// </exception>
+        /// <exception cref="ObjectDisposedException">The <see cref="MediaControllerManager"/> has already been disposed of.</exception>
+        /// <since_tizen> 5 </since_tizen>
+        public int GetAgeRatingOfCurrentPlayingMedia()
+        {
+            ThrowIfStopped();
+
+            IntPtr playbackHandle = IntPtr.Zero;
+
+            try
+            {
+                Native.GetServerPlayback(Manager.Handle, ServerAppId, out playbackHandle).ThrowIfError("Failed to get playback.");
+
+                Native.GetAgeRating(playbackHandle, out int ageRating).ThrowIfError("Failed to get age rating.");
+
+                return ageRating;
+            }
+            finally
+            {
+                if (playbackHandle != IntPtr.Zero)
+                {
+                    Native.DestroyPlayback(playbackHandle);
+                }
+            }
         }
 
         /// <summary>

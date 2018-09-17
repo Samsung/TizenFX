@@ -16,6 +16,7 @@
 
 using Tizen.Applications;
 using System;
+using System.Collections.Generic;
 using Native = Interop.MediaControllerServer;
 
 namespace Tizen.Multimedia.Remoting
@@ -29,6 +30,7 @@ namespace Tizen.Multimedia.Remoting
         private static Native.ShuffleModeCommandReceivedCallback _shuffleModeCommandCallback;
         private static Native.RepeatModeCommandReceivedCallback _repeatModeCommandCallback;
         private static Native.CustomCommandReceivedCallback _customCommandCallback;
+        private static Native.SearchCommandReceivedCallback _searchCommandCallback;
         private static Native.EventCompletedCallback _eventCompletedCallback;
 
         /// <summary>
@@ -73,6 +75,12 @@ namespace Tizen.Multimedia.Remoting
         /// </summary>
         /// <since_tizen> 5 </since_tizen>
         public static event EventHandler<CustomCommandReceivedEventArgs> CustomCommandReceived;
+
+        /// <summary>
+        /// Occurs when a client sends search command.
+        /// </summary>
+        /// <since_tizen> 5 </since_tizen>
+        public static event EventHandler<SearchCommandReceivedEventArgs> SearchCommandReceived;
 
         /// <summary>
         /// Occurs when a client sends custom command.
@@ -175,6 +183,42 @@ namespace Tizen.Multimedia.Remoting
             };
             Native.SetCustomCommandReceivedCb(Handle, _customCommandCallback).
                 ThrowIfError("Failed to init CustomCommandReceived event.");
+        }
+        
+        private static SearchCommand CreateSearchCommandReceivedEventArgs(IntPtr searchHandle)
+        {
+            List<MediaControlSearchCondition> searchConditions = null;
+
+            Native.SearchItemCallback searchItemCallback = (type, category, keyword, bundleHandle, _) =>
+            {
+                Bundle bundle = null;
+                if (bundleHandle != IntPtr.Zero)
+                {
+                    bundle = new Bundle(new SafeBundleHandle(bundleHandle, true));
+                }
+
+                searchConditions.Add(new MediaControlSearchCondition(type, category, keyword, bundle));
+
+                return true;
+            };
+            Native.ForeachSearchCondition(searchHandle, searchItemCallback).
+                ThrowIfError("Failed to get search items.");
+
+            return new SearchCommand(searchConditions, searchHandle);
+        }
+
+        private static void RegisterSearchCommandReceivedEvent()
+        {
+            _searchCommandCallback = (clientName, requestId, searchHandle, _) =>
+            {
+                var command = CreateSearchCommandReceivedEventArgs(searchHandle);
+
+                command.SetClientInfo(clientName, requestId);
+
+                SearchCommandReceived?.Invoke(null, new SearchCommandReceivedEventArgs(command));
+            };
+            Native.SetSearchCommandReceivedCb(Handle, _searchCommandCallback).
+                ThrowIfError("Failed to init SearchCommandReceived event.");
         }
 
         private static void RegisterEventCompletedEvent()

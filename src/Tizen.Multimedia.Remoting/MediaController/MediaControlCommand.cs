@@ -16,6 +16,7 @@
 
 using Tizen.Applications;
 using System;
+using System.Collections.Generic;
 using NativeClient = Interop.MediaControllerClient;
 using NativeServer = Interop.MediaControllerServer;
 using NativeClientHandle = Interop.MediaControllerClientHandle;
@@ -28,11 +29,17 @@ namespace Tizen.Multimedia.Remoting
     /// <since_tizen> 5 </since_tizen>
     public abstract class Command
     {
-        private string _requestId;
+        /// <summary>
+        /// The request id for each command.
+        /// </summary>
+        protected string _requestId;
 
         internal NativeClientHandle _clientHandle;
 
-        private string _clientId;
+        /// <summary>
+        /// The client id.
+        /// </summary>
+        protected string _clientId;
 
         /// <summary>
         /// The server id.
@@ -47,7 +54,7 @@ namespace Tizen.Multimedia.Remoting
 
         internal abstract string Request();
 
-        internal void Response(IntPtr handle, int result, Bundle bundle)
+        internal virtual void Response(IntPtr handle, int result, Bundle bundle)
         {
             if (bundle != null)
             {
@@ -344,6 +351,171 @@ namespace Tizen.Multimedia.Remoting
             }
 
             return requestId;
+        }
+    }
+
+    /// <summary>
+    /// Provides a means to to send search commands.
+    /// </summary>
+    /// <since_tizen> 5 </since_tizen>
+    public sealed class SearchCommand : Command
+    {
+        private IntPtr _searchHandle;
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="SearchCommand"/> class.
+        /// </summary>
+        /// <remarks>User can search maximum 20 items once.</remarks>
+        /// <exception cref="ArgumentException">
+        ///     <paramref name="conditions"/> is greater than maximum value(20).<br/>
+        ///     -or-<br/>
+        ///     <paramref name="conditions"/> is less than 1.
+        /// </exception>
+        /// <param name="conditions">The set of <see cref="MediaControlSearchCondition"/>.</param>
+        public SearchCommand(List<MediaControlSearchCondition> conditions)
+        {
+            if (conditions.Count <= 0)
+            {
+                throw new ArgumentException("Search condition is not set.");
+            }
+            if (conditions.Count > 20)
+            {
+                throw new ArgumentException("So many search items.");
+            }
+
+            NativeClient.CreateSearchHandle(out _searchHandle).ThrowIfError("Failed to create search handle.");
+
+            try
+            {
+                foreach (var condition in conditions)
+                {
+                    if (condition.Bundle != null)
+                    {
+                        NativeClient.SetSearchConditionBundle(_searchHandle, condition.ContentType,
+                            condition.Category == 0 ? MediaControlNativeSearchCategory.NoCategory : condition.Category.ToNative(),
+                            condition.Keyword, condition.Bundle.SafeBundleHandle).
+                            ThrowIfError("Failed to set search condition.");
+                    }
+                    else
+                    {
+                        NativeClient.SetSearchCondition(_searchHandle, condition.ContentType,
+                            condition.Category == 0 ? MediaControlNativeSearchCategory.NoCategory : condition.Category.ToNative(),
+                            condition.Keyword, IntPtr.Zero).
+                            ThrowIfError("Failed to set search condition.");
+                    }
+                }
+            }
+            catch
+            {
+                if (_searchHandle != IntPtr.Zero)
+                {
+                    NativeClient.DestroySearchHandle(_searchHandle).ThrowIfError("Failed to destroy search handle");
+                }
+            }
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="SearchCommand"/> class.
+        /// </summary>
+        /// <param name="condition">The set of <see cref="MediaControlSearchCondition"/>.</param>
+        public SearchCommand(MediaControlSearchCondition condition)
+        {
+            NativeClient.CreateSearchHandle(out _searchHandle).ThrowIfError("Failed to create search handle.");
+
+            try
+            {   
+                if (condition.Bundle != null)
+                {
+                    NativeClient.SetSearchConditionBundle(_searchHandle, condition.ContentType,
+                        condition.Category == 0 ? MediaControlNativeSearchCategory.NoCategory : condition.Category.ToNative(),
+                        condition.Keyword, condition.Bundle.SafeBundleHandle).
+                        ThrowIfError("Failed to set search condition.");
+                }
+                else
+                {
+                    NativeClient.SetSearchCondition(_searchHandle, condition.ContentType,
+                        condition.Category == 0 ? MediaControlNativeSearchCategory.NoCategory : condition.Category.ToNative(),
+                        condition.Keyword, IntPtr.Zero).
+                        ThrowIfError("Failed to set search condition.");
+                }
+            }
+            catch
+            {
+                if (_searchHandle != IntPtr.Zero)
+                {
+                    NativeClient.DestroySearchHandle(_searchHandle).ThrowIfError("Failed to destroy search handle");
+                }
+            }
+        }
+
+        internal SearchCommand(List<MediaControlSearchCondition> conditions, IntPtr searchHandle)
+        {
+            _searchHandle = searchHandle;
+
+            try
+            {
+                foreach (var condition in conditions)
+                {
+                    if (condition.Bundle != null)
+                    {
+                        NativeClient.SetSearchConditionBundle(_searchHandle, condition.ContentType,
+                            condition.Category == 0 ? MediaControlNativeSearchCategory.NoCategory : condition.Category.ToNative(),
+                            condition.Keyword, condition.Bundle.SafeBundleHandle).
+                            ThrowIfError("Failed to set search condition.");
+                    }
+                    else
+                    {
+                        NativeClient.SetSearchCondition(_searchHandle, condition.ContentType,
+                            condition.Category == 0 ? MediaControlNativeSearchCategory.NoCategory : condition.Category.ToNative(),
+                            condition.Keyword, IntPtr.Zero).
+                            ThrowIfError("Failed to set search condition.");
+                    }
+                }
+            }
+            catch
+            {
+                if (_searchHandle != IntPtr.Zero)
+                {
+                    NativeClient.DestroySearchHandle(_searchHandle).ThrowIfError("Failed to destroy search handle");
+                }
+            }
+        }
+
+        internal override string Request()
+        {
+            NativeClient.SendSearchCommand(_clientHandle, _serverId, _searchHandle, out string requestId).
+                ThrowIfError("Failed to send search command.");
+
+            if (_searchHandle != IntPtr.Zero)
+            {
+                NativeClient.DestroySearchHandle(_searchHandle).ThrowIfError("Failed to destroy search handle");
+            }
+
+            return requestId;
+        }
+
+        internal override void Response(IntPtr handle, int result, Bundle bundle)
+        {
+            try
+            {
+                if (bundle != null)
+                {
+                    NativeServer.SendCommandReplyBundle(handle, _clientId, _requestId, result, bundle.SafeBundleHandle)
+                        .ThrowIfError("Failed to response command.");
+                }
+                else
+                {
+                    NativeServer.SendCommandReply(handle, _clientId, _requestId, result, IntPtr.Zero)
+                        .ThrowIfError("Failed to response command.");
+                }
+            }
+            finally
+            {
+                if (_searchHandle != IntPtr.Zero)
+                {
+                    NativeClient.DestroySearchHandle(_searchHandle).ThrowIfError("Failed to destroy search handle");
+                }
+            }
         }
     }
 }
