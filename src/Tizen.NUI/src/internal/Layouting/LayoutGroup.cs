@@ -84,8 +84,40 @@ namespace Tizen.NUI
         /// <param name="heightMeasureSpec">vertical space requirements as imposed by the parent.</param>
         protected virtual void OnMeasure(LayoutMeasureSpec widthMeasureSpec, LayoutMeasureSpec heightMeasureSpec)
         {
-            SetMeasuredDimensions(new MeasuredSize(LayoutItemWrapperImpl.GetDefaultSize(layoutItemWrapperImpl.GetSuggestedMinimumWidth(), widthMeasureSpec)),
-                                   new MeasuredSize(LayoutItemWrapperImpl.GetDefaultSize(layoutItemWrapperImpl.GetSuggestedMinimumHeight(), heightMeasureSpec)));
+            int width = widthMeasureSpec.Size;
+            int height = heightMeasureSpec.Size;
+
+            LayoutLength childWidth  = new LayoutLength( 0 );
+            LayoutLength childHeight =  new LayoutLength( 0 );
+
+            LayoutLength measuredWidth = childWidth;
+            LayoutLength measuredHeight = childHeight;
+
+            for( uint i = 0; i < ChildCount; ++i )
+            {
+                var childLayout = GetChildAt( i );
+                var view = GetOwner();
+                string ownerName = view.Name;
+                if( childLayout )
+                {
+                    MeasureChild( childLayout, widthMeasureSpec, heightMeasureSpec );
+                    childWidth = childLayout.MeasuredWidth;
+                    childHeight = childLayout.MeasuredHeight;
+                    // Layout takes size of largest width and height dimension of children
+                    measuredWidth.Value = System.Math.Max( measuredWidth.Value, childWidth.Value );
+                    measuredHeight.Value = System.Math.Max( measuredHeight.Value, childHeight.Value );
+                }
+            }
+
+            if( 0 == ChildCount )
+            {
+                // Must be a leaf as has no children
+                measuredWidth = GetDefaultSize( SuggestedMinimumWidth, widthMeasureSpec );
+                measuredHeight = GetDefaultSize( SuggestedMinimumHeight, heightMeasureSpec );
+            }
+
+            SetMeasuredDimensions( new MeasuredSize( measuredWidth ),
+                                    new MeasuredSize( measuredHeight ) );
         }
 
         /// <summary>

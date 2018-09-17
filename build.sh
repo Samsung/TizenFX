@@ -32,8 +32,9 @@ cmd_build() {
   if [ -d /nuget ]; then
     NUGET_SOURCE_OPT="/p:RestoreSources=/nuget"
   fi
-  $RUN_BUILD /t:restore /p:Project=$1 $NUGET_SOURCE_OPT
-  $RUN_BUILD /t:build /p:Project=$1
+  PROJECT=$1; shift
+  $RUN_BUILD /t:restore /p:Project=$PROJECT $NUGET_SOURCE_OPT $@
+  $RUN_BUILD /t:build /p:Project=$PROJECT $@
 }
 
 cmd_full_build() {
@@ -41,8 +42,8 @@ cmd_full_build() {
     NUGET_SOURCE_OPT="/p:RestoreSources=/nuget"
   fi
   $RUN_BUILD /t:clean
-  $RUN_BUILD /t:restore $NUGET_SOURCE_OPT
-  $RUN_BUILD /t:build
+  $RUN_BUILD /t:restore $NUGET_SOURCE_OPT $@
+  $RUN_BUILD /t:build $@
 }
 
 cmd_dummy_build() {

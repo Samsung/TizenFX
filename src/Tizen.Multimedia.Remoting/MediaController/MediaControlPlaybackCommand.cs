@@ -56,5 +56,11 @@ namespace Tizen.Multimedia.Remoting
         /// Rewind.
         /// </summary>
         Rewind,
+
+        /// <summary>
+        /// Toggle play/pause.
+        /// </summary>
+        /// <since_tizen> 5 </since_tizen>
+        Toggle,
     }
 }

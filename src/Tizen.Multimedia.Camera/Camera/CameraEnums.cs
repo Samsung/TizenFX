@@ -915,6 +915,11 @@ namespace Tizen.Multimedia
         /// Depth plane data.
         /// </summary>
         /// <since_tizen> 5 </since_tizen>
-        DepthPlane
+        DepthPlane,
+        /// <summary>
+        /// Rgb plane data.
+        /// </summary>
+        /// <since_tizen> 5 </since_tizen>
+        RgbPlane
     }
 }

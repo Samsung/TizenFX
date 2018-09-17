@@ -147,13 +147,13 @@ namespace Tizen.Multimedia.Remoting
 
         #region Locking operations
 
-        private MediaController HandleServerUpdated(string serverName, MediaControllerServerState state)
+        private MediaController HandleServerUpdated(string serverName, MediaControllerNativeServerState state)
         {
             try
             {
                 _lock.EnterWriteLock();
 
-                if (state == MediaControllerServerState.Activated)
+                if (state == MediaControllerNativeServerState.Activated)
                 {
                     return HandleActivation(serverName);
                 }
