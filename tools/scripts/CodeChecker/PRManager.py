@@ -1,7 +1,8 @@
+import os
 from github import Github
 
 gitHubRepo = "Samsung/TizenFX"
-token = "[TOKEN]"
+token = os.environ['TizenAPI-Bot-Token']
 
 class PRManager:
     def __init__(self, prNumber):
