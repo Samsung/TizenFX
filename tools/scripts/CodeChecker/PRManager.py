@@ -15,9 +15,11 @@ class PRManager:
         self.fileDiffHunkPairs = {}
 
         for file in self.changedFiles:
+            if file.patch is None:
+                continue
             _patchLines = file.patch.split("\n")
             self._CreatePositionMap(file, _patchLines)
-            _patchLines[:] = [line for line in _patchLines if "@@" in line]
+            _patchLines[:] = [line for line in _patchLines if "@@ " in line]
             _diffLines = []
             for hunkline in _patchLines:
                 hunkline = hunkline[2:]
