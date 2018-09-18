@@ -173,7 +173,7 @@ namespace Tizen.Multimedia.Remoting
         /// <summary>
         /// Returns the all playlists.
         /// </summary>
-        /// <returns><see cref="MediaControlPlaylist"/></returns>
+        /// <returns>The set of <see cref="MediaControlPlaylist"/>.</returns>
         /// <exception cref="InvalidOperationException">
         ///     The server has already been stopped.<br/>
         ///     -or-<br/>
@@ -194,7 +194,7 @@ namespace Tizen.Multimedia.Remoting
             NativePlaylist.ForeachServerPlaylist(Manager.Handle, ServerAppId, playlistCallback, IntPtr.Zero)
                 .ThrowIfError("Failed to get playlist.");
 
-            return playlists;
+            return playlists.AsReadOnly();
         }
 
         /// <summary>
@@ -219,6 +219,41 @@ namespace Tizen.Multimedia.Remoting
                 Native.GetServerPlayback(Manager.Handle, ServerAppId, out playbackHandle).ThrowIfError("Failed to get playback.");
 
                 return NativePlaylist.GetPlaylistIndex(playbackHandle);
+            }
+            finally
+            {
+                if (playbackHandle != IntPtr.Zero)
+                {
+                    Native.DestroyPlayback(playbackHandle);
+                }
+            }
+        }
+
+        /// <summary>
+        /// Returns the playlist name of current playing media.
+        /// </summary>
+        /// <returns>The playlist name.</returns>
+        /// <exception cref="InvalidOperationException">
+        ///     The server has already been stopped.<br/>
+        ///     -or-<br/>
+        ///     An internal error occurs.
+        /// </exception>
+        /// <exception cref="ObjectDisposedException">The <see cref="MediaControllerManager"/> has already been disposed of.</exception>
+        /// <since_tizen> 5 </since_tizen>
+        public string GetPlaylistNameOfCurrentPlayingMedia()
+        {
+            ThrowIfStopped();
+
+            IntPtr playbackHandle = IntPtr.Zero;
+
+            try
+            {
+                Native.GetServerPlayback(Manager.Handle, ServerAppId, out playbackHandle).ThrowIfError("Failed to get playback.");
+
+                (string, string) playbackInfo = NativePlaylist.GetPlaylistInfo(playbackHandle);
+
+                return playbackInfo.Item1;
+
             }
             finally
             {
@@ -282,6 +317,7 @@ namespace Tizen.Multimedia.Remoting
         /// and then, the client receive the result of each request(command).
         /// </remarks>
         /// <param name="command">A <see cref="Command"/> class.</param>
+        /// <returns>A task that represents the asynchronous operation.</returns>
         /// <exception cref="InvalidOperationException">
         ///     The server has already been stopped.<br/>
         ///     -or-<br/>
@@ -381,9 +417,9 @@ namespace Tizen.Multimedia.Remoting
         }
 
         /// <summary>
-        /// Gets the icon uri.
+        /// Gets the icon path.
         /// </summary>
-        /// <returns>The icon uri.</returns>
+        /// <returns>The icon path.</returns>
         /// <exception cref="InvalidOperationException">
         ///     The server has already been stopped.<br/>
         ///     -or-<br/>
@@ -481,6 +517,7 @@ namespace Tizen.Multimedia.Remoting
         /// <summary>
         /// Gets the value whether <paramref name="action"/> is supported or not.
         /// </summary>
+        /// <param name="action">A playback command.</param>
         /// <returns>A <see cref="MediaControlCapabilitySupport"/>.</returns>
         /// <exception cref="InvalidOperationException">
         ///     The server has already been stopped.<br/>

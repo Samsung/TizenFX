@@ -381,16 +381,17 @@ namespace Tizen.Multimedia.Remoting
         /// and then, the server receive the result of each request(command).
         /// </remarks>
         /// <param name="events">A <see cref="Event"/> class.</param>
-        /// <param name="clentId">The client Id to send event.</param>
+        /// <param name="clientId">The client Id to send event.</param>
+        /// <returns>A task that represents the asynchronous operation.</returns>
         /// <exception cref="InvalidOperationException">
         ///     The server has already been stopped.<br/>
         ///     -or-<br/>
         ///     An internal error occurs.
         /// </exception>
         /// <since_tizen> 5 </since_tizen>
-        public static async Task RequestAsync(Event events, string clentId)
+        public static async Task RequestAsync(Event events, string clientId)
         {
-            events.SetRequestInformation(clentId);
+            events.SetRequestInformation(clientId);
 
             var tcs = new TaskCompletionSource<MediaControllerError>();
             string reqeustId = null;

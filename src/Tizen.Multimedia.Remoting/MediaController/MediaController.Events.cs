@@ -169,6 +169,10 @@ namespace Tizen.Multimedia.Remoting
             }
         }
 
+        /// <summary>
+        /// Occurs when the playback capabilities are updated.
+        /// </summary>
+        /// <since_tizen> 5 </since_tizen>
         public event EventHandler<PlaybackCapabilityUpdatedEventArgs> PlaybackCapabilityUpdated;
 
         private PlaybackCapabilityUpdatedEventArgs CreatePlaybackCapabilityUpdatedEventArgs(IntPtr playbackCapaHandle)
@@ -208,6 +212,10 @@ namespace Tizen.Multimedia.Remoting
             }
         }
 
+        /// <summary>
+        /// Occurs when the repeat mode capabilities are updated.
+        /// </summary>
+        /// <since_tizen> 5 </since_tizen>
         public event EventHandler<RepeatModeCapabilityUpdatedEventArgs> RepeatModeCapabilityUpdated;
 
         internal void RaiseRepeatModeCapabilityUpdatedEvent(MediaControlCapabilitySupport support)
@@ -215,6 +223,10 @@ namespace Tizen.Multimedia.Remoting
             RepeatModeCapabilityUpdated?.Invoke(this, new RepeatModeCapabilityUpdatedEventArgs(support));
         }
 
+        /// <summary>
+        /// Occurs when the shuffle mode capabilities are updated.
+        /// </summary>
+        /// <since_tizen> 5 </since_tizen>
         public event EventHandler<ShuffleModeCapabilityUpdatedEventArgs> ShuffleModeCapabilityUpdated;
 
         internal void RaiseShuffleModeCapabilityUpdatedEvent(MediaControlCapabilitySupport support)
