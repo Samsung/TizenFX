@@ -13,6 +13,8 @@ if __name__ == "__main__":
     pr = PRManager(sys.argv[1], int(sys.argv[2]))
     warningsInFile = []
     for file in pr.changedFiles:
+        if file.patch is None:
+            continue
         warningsInFile = [warning for warning in logs.warnings if file.filename.endswith(warning[logs.FILE])]
 
         for diffLine in pr.fileDiffHunkPairs[file]:
