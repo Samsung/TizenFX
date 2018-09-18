@@ -19,5 +19,6 @@ if __name__ == "__main__":
             for warning in warningsInFile:
                 if (diffLine[0]) <= warning[BuildLog.LINE_NUMBER] and warning[BuildLog.LINE_NUMBER] <= (diffLine[0] + diffLine[1]):
                     print("{}, Warning on line {}! -> ".format(file.filename, warning[BuildLog.LINE_NUMBER]) + warning[BuildLog.MESSAGE])
-                    pr.CreateReviewComment(file, warning[BuildLog.LINE_NUMBER], warning[BuildLog.MESSAGE])
+                    _warningMessage = warning[BuildLog.WARNING_CODE] + ":" +warning[BuildLog.MESSAGE]
+                    pr.CreateReviewComment(file, warning[BuildLog.LINE_NUMBER], _warningMessage)
 
