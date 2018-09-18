@@ -29,16 +29,18 @@ namespace Tizen.Multimedia.Remoting
     /// <since_tizen> 5 </since_tizen>
     public abstract class Command
     {
+        internal NativeClientHandle _clientHandle;
+
         /// <summary>
         /// The request id for each command.
         /// </summary>
-        protected string _requestId;
-
-        internal NativeClientHandle _clientHandle;
+        /// <since_tizen> 5 </since_tizen>
+        protected string RequestId { get; private set; }
 
         /// <summary>
         /// The client id.
         /// </summary>
+        /// <since_tizen> 5 </since_tizen>
         protected string ClientId { get; private set; }
 
         /// <summary>
@@ -58,12 +60,12 @@ namespace Tizen.Multimedia.Remoting
         {
             if (bundle != null)
             {
-                NativeServer.SendCommandReplyBundle(handle, ClientId, _requestId, result, bundle.SafeBundleHandle)
+                NativeServer.SendCommandReplyBundle(handle, ClientId, RequestId, result, bundle.SafeBundleHandle)
                     .ThrowIfError("Failed to response command.");
             }
             else
             {
-                NativeServer.SendCommandReply(handle, ClientId, _requestId, result, IntPtr.Zero)
+                NativeServer.SendCommandReply(handle, ClientId, RequestId, result, IntPtr.Zero)
                     .ThrowIfError("Failed to response command.");
             }
         }
@@ -87,7 +89,7 @@ namespace Tizen.Multimedia.Remoting
         internal void SetResponseInformation(string clientId, string requestId)
         {
             ClientId = clientId;
-            _requestId = requestId;
+            RequestId = requestId;
         }
     }
 
@@ -500,12 +502,12 @@ namespace Tizen.Multimedia.Remoting
             {
                 if (bundle != null)
                 {
-                    NativeServer.SendCommandReplyBundle(handle, ClientId, _requestId, result, bundle.SafeBundleHandle)
+                    NativeServer.SendCommandReplyBundle(handle, ClientId, RequestId, result, bundle.SafeBundleHandle)
                         .ThrowIfError("Failed to response command.");
                 }
                 else
                 {
-                    NativeServer.SendCommandReply(handle, ClientId, _requestId, result, IntPtr.Zero)
+                    NativeServer.SendCommandReply(handle, ClientId, RequestId, result, IntPtr.Zero)
                         .ThrowIfError("Failed to response command.");
                 }
             }
