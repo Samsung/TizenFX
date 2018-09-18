@@ -198,8 +198,8 @@ namespace Tizen.Nlp
             {
                 Log.Debug(LogTag, "start to register");
                 _msg.CoRegister(Application.Current.ApplicationInfo.ApplicationId, _noti);
-                tcs.SetResult(true);
                 _connectionState = ConnectedState.Connected;
+                tcs.SetResult(true);
             };
             _msg.Rejected += (sender, e) =>
             {
