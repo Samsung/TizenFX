@@ -119,7 +119,7 @@ internal static partial class Interop
         [DllImport(Libraries.MediaController, EntryPoint = "mc_client_get_playlist_item_info")]
         internal static extern MediaControllerError GetPlaylistInfo(IntPtr playbackHandle, out IntPtr playlistName, out IntPtr index);
 
-        internal static (string, string) GetPlaylistInfo(IntPtr playbackHandle)
+        internal static string GetPlaylistInfo(IntPtr playbackHandle)
         {
             IntPtr playlistName = IntPtr.Zero;
             IntPtr index = IntPtr.Zero;
@@ -127,7 +127,7 @@ internal static partial class Interop
             try
             {
                 GetPlaylistInfo(playbackHandle, out playlistName, out index).ThrowIfError($"Failed to get playlist info.");
-                return (Marshal.PtrToStringAnsi(playlistName), Marshal.PtrToStringAnsi(index));
+                return Marshal.PtrToStringAnsi(playlistName);
             }
             finally
             {

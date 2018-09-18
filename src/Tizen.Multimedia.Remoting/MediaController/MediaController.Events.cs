@@ -145,7 +145,7 @@ namespace Tizen.Multimedia.Remoting
 
         internal void RaisePlaylistUpdatedEvent(MediaControlPlaylistMode mode, string name, IntPtr playlistHandle)
         {
-            PlaylistUpdated?.Invoke(this, new PlaylistUpdatedEventArgs(mode, name));
+            PlaylistUpdated?.Invoke(this, new PlaylistUpdatedEventArgs(mode, name, new MediaControlPlaylist(playlistHandle)));
         }
 
         /// <summary>
@@ -232,6 +232,17 @@ namespace Tizen.Multimedia.Remoting
         internal void RaiseShuffleModeCapabilityUpdatedEvent(MediaControlCapabilitySupport support)
         {
             ShuffleModeCapabilityUpdated?.Invoke(this, new ShuffleModeCapabilityUpdatedEventArgs(support));
+        }
+
+        /// <summary>
+        /// Occurs when a server sends custom event.
+        /// </summary>
+        /// <since_tizen> 5 </since_tizen>
+        public event EventHandler<CustomEventReceivedEventArgs> CustomEventReceived;
+
+        internal void RaiseCustomEventReceivedEvent(CustomEvent events)
+        {
+            CustomEventReceived?.Invoke(this, new CustomEventReceivedEventArgs(events));
         }
     }
 }

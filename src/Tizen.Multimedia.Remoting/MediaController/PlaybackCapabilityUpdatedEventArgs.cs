@@ -34,7 +34,7 @@ namespace Tizen.Multimedia.Remoting
         /// <since_tizen> 5 </since_tizen>
         public PlaybackCapabilityUpdatedEventArgs(Dictionary<MediaControlPlaybackCommand, MediaControlCapabilitySupport> support)
         {
-            Support = support ?? throw new ArgumentNullException("Playback capabilities is null.");
+            Support = support ?? throw new ArgumentNullException(nameof(support));
         }
 
         /// <summary>

@@ -15,9 +15,11 @@
  */
 
 using System;
+using System.Linq;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Threading.Tasks;
+using Tizen.Applications;
 using Native = Interop.MediaControllerClient;
 using NativePlaylist = Interop.MediaControllerPlaylist;
 
@@ -198,6 +200,47 @@ namespace Tizen.Multimedia.Remoting
         }
 
         /// <summary>
+        /// Returns the playlist name of current playing media.
+        /// </summary>
+        /// <returns>The playlist name.</returns>
+        /// <exception cref="InvalidOperationException">
+        ///     The server has already been stopped.<br/>
+        ///     -or-<br/>
+        ///     An internal error occurs.
+        /// </exception>
+        /// <exception cref="ObjectDisposedException">The <see cref="MediaControllerManager"/> has already been disposed of.</exception>
+        /// <since_tizen> 5 </since_tizen>
+        public MediaControlPlaylist GetPlaylistOfCurrentPlayingMedia()
+        {
+            ThrowIfStopped();
+
+            IntPtr playbackHandle = IntPtr.Zero;
+            string name = null;
+
+            // Get the playlist name of current playing media.
+            try
+            {
+                Native.GetServerPlayback(Manager.Handle, ServerAppId, out playbackHandle).ThrowIfError("Failed to get playback.");
+
+                name = NativePlaylist.GetPlaylistIndex(playbackHandle);
+            }
+            finally
+            {
+                if (playbackHandle != IntPtr.Zero)
+                {
+                    Native.DestroyPlayback(playbackHandle).ThrowIfError("Failed to destroy playback handle.");
+                }
+            }
+
+            var playlist = from list in GetPlaylists()
+                           where list.Name == name
+                           select list;
+
+            // There's no playlist with same name.
+            return playlist.FirstOrDefault();
+        }
+
+        /// <summary>
         /// Returns the index of current playing media.
         /// </summary>
         /// <returns>The index of current playing media.</returns>
@@ -224,42 +267,7 @@ namespace Tizen.Multimedia.Remoting
             {
                 if (playbackHandle != IntPtr.Zero)
                 {
-                    Native.DestroyPlayback(playbackHandle);
-                }
-            }
-        }
-
-        /// <summary>
-        /// Returns the playlist name of current playing media.
-        /// </summary>
-        /// <returns>The playlist name.</returns>
-        /// <exception cref="InvalidOperationException">
-        ///     The server has already been stopped.<br/>
-        ///     -or-<br/>
-        ///     An internal error occurs.
-        /// </exception>
-        /// <exception cref="ObjectDisposedException">The <see cref="MediaControllerManager"/> has already been disposed of.</exception>
-        /// <since_tizen> 5 </since_tizen>
-        public string GetPlaylistNameOfCurrentPlayingMedia()
-        {
-            ThrowIfStopped();
-
-            IntPtr playbackHandle = IntPtr.Zero;
-
-            try
-            {
-                Native.GetServerPlayback(Manager.Handle, ServerAppId, out playbackHandle).ThrowIfError("Failed to get playback.");
-
-                (string, string) playbackInfo = NativePlaylist.GetPlaylistInfo(playbackHandle);
-
-                return playbackInfo.Item1;
-
-            }
-            finally
-            {
-                if (playbackHandle != IntPtr.Zero)
-                {
-                    Native.DestroyPlayback(playbackHandle);
+                    Native.DestroyPlayback(playbackHandle).ThrowIfError("Failed to destroy playback handle.");
                 }
             }
         }
@@ -329,7 +337,7 @@ namespace Tizen.Multimedia.Remoting
         {
             ThrowIfStopped();
 
-            command.SetServerInfo(Manager.Handle, ServerAppId);
+            command.SetRequestInformation(Manager.Handle, ServerAppId);
 
             var tcs = new TaskCompletionSource<MediaControllerError>();
             string reqeustId = null;
@@ -354,6 +362,23 @@ namespace Tizen.Multimedia.Remoting
             {
                 CommandCompleted -= eventHandler;
             }
+        }
+
+        /// <summary>
+        /// Sends the result of each command.
+        /// </summary>
+        /// <param name="events">The command that return to client.</param>
+        /// <param name="result">The result of <paramref name="events"/>.</param>
+        /// <param name="bundle">The extra data.</param>
+        /// <exception cref="InvalidOperationException">
+        ///     The server is not running .<br/>
+        ///     -or-<br/>
+        ///     An internal error occurs.
+        /// </exception>
+        /// <since_tizen> 5 </since_tizen>
+        public void Response(MediaControlEvent events, int result, Bundle bundle)
+        {
+            events.Response(Manager.Handle, result, bundle);
         }
 
         /// <summary>

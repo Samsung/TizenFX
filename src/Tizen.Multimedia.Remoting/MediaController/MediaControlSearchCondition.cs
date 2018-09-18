@@ -52,7 +52,7 @@ namespace Tizen.Multimedia.Remoting
             ValidationUtil.ValidateEnum(typeof(MediaControlContentType), type, nameof(type));
 
             ContentType = type;
-            Keyword = keyword ?? throw new ArgumentNullException("keyword is null.");
+            Keyword = keyword ?? throw new ArgumentNullException(nameof(keyword));
             Bundle = bundle ?? null;
         }
 

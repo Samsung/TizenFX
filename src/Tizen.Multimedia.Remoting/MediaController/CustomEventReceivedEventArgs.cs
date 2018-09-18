@@ -19,25 +19,25 @@ using System;
 namespace Tizen.Multimedia.Remoting
 {
     /// <summary>
-    /// Provides data for the <see cref="SearchCommandReceivedEventArgs"/> event.
+    /// Provides data for the <see cref="CustomEventReceivedEventArgs"/> event.
     /// </summary>
     /// <since_tizen> 5 </since_tizen>
-    public class SearchCommandReceivedEventArgs : EventArgs
+    public class CustomEventReceivedEventArgs : EventArgs
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="SearchCommandReceivedEventArgs"/> class.
+        /// Initializes a new instance of the <see cref="CustomEventReceivedEventArgs"/> class.
         /// </summary>
-        /// <param name="command">The search command.</param>
+        /// <param name="events">The custom event.</param>
         /// <since_tizen> 5 </since_tizen>
-        public SearchCommandReceivedEventArgs(SearchCommand command)
+        public CustomEventReceivedEventArgs(CustomEvent events)
         {
-            Command = command;
+            Event = events;
         }
 
         /// <summary>
-        /// Gets the <see cref="SearchCommand"/>.
+        /// Gets the <see cref="CustomEvent"/>.
         /// </summary>
         /// <since_tizen> 5 </since_tizen>
-        public SearchCommand Command { get; }
+        public CustomEvent Event { get; }
     }
 }

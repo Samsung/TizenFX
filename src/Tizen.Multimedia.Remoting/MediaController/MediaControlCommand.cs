@@ -39,13 +39,13 @@ namespace Tizen.Multimedia.Remoting
         /// <summary>
         /// The client id.
         /// </summary>
-        protected string _clientId;
+        protected string ClientId { get; private set; }
 
         /// <summary>
         /// The server id.
         /// </summary>
         /// <since_tizen> 5 </since_tizen>
-        protected string _serverId;
+        protected string ServerId { get; private set; }
 
         /// <summary>
         /// Initializes a <see cref="Command"/> base class.
@@ -58,12 +58,12 @@ namespace Tizen.Multimedia.Remoting
         {
             if (bundle != null)
             {
-                NativeServer.SendCommandReplyBundle(handle, _clientId, _requestId, result, bundle.SafeBundleHandle)
+                NativeServer.SendCommandReplyBundle(handle, ClientId, _requestId, result, bundle.SafeBundleHandle)
                     .ThrowIfError("Failed to response command.");
             }
             else
             {
-                NativeServer.SendCommandReply(handle, _clientId, _requestId, result, IntPtr.Zero)
+                NativeServer.SendCommandReply(handle, ClientId, _requestId, result, IntPtr.Zero)
                     .ThrowIfError("Failed to response command.");
             }
         }
@@ -73,9 +73,9 @@ namespace Tizen.Multimedia.Remoting
         /// </summary>
         /// <param name="clientrHandle">The client handle.</param>
         /// <param name="serverId">The server Id that receives command.</param>
-        internal void SetServerInfo(NativeClientHandle clientrHandle, string serverId)
+        internal void SetRequestInformation(NativeClientHandle clientrHandle, string serverId)
         {
-            _serverId = serverId;
+            ServerId = serverId;
             _clientHandle = clientrHandle;
         }
 
@@ -84,9 +84,9 @@ namespace Tizen.Multimedia.Remoting
         /// </summary>
         /// <param name="clientId">The client Id that will be received response.</param>
         /// <param name="requestId">The request Id for each command.</param>
-        internal void SetClientInfo(string clientId, string requestId)
+        internal void SetResponseInformation(string clientId, string requestId)
         {
-            _clientId = clientId;
+            ClientId = clientId;
             _requestId = requestId;
         }
     }
@@ -117,7 +117,7 @@ namespace Tizen.Multimedia.Remoting
         {
             ValidationUtil.ValidateEnum(typeof(MediaControlPlaybackCommand), Action, nameof(MediaControlPlaybackCommand));
 
-            NativeClient.SendPlaybackActionCommand(_clientHandle, _serverId, Action.ToNative(), out string requestId)
+            NativeClient.SendPlaybackActionCommand(_clientHandle, ServerId, Action.ToNative(), out string requestId)
                 .ThrowIfError("Failed to send playback command.");
 
             return requestId;
@@ -147,7 +147,7 @@ namespace Tizen.Multimedia.Remoting
 
         internal override string Request()
         {
-            NativeClient.SendPlaybackPositionCommand(_clientHandle, _serverId, Position, out string requestId)
+            NativeClient.SendPlaybackPositionCommand(_clientHandle, ServerId, Position, out string requestId)
                 .ThrowIfError("Failed to send playback position command.");
 
             return requestId;
@@ -223,7 +223,7 @@ namespace Tizen.Multimedia.Remoting
         {
             ValidationUtil.ValidateEnum(typeof(MediaControlPlaybackCommand), Action, nameof(MediaControlPlaybackCommand));
 
-            NativeClient.SendPlaylistCommand(_clientHandle, _serverId, Name, Index, Action.ToNative(),
+            NativeClient.SendPlaylistCommand(_clientHandle, ServerId, Name, Index, Action.ToNative(),
                 Position, out string requestId).ThrowIfError("Failed to send playlist command.");
 
             return requestId;
@@ -255,7 +255,7 @@ namespace Tizen.Multimedia.Remoting
         {
             var mode = Enabled ? MediaControllerNativeShuffleMode.On : MediaControllerNativeShuffleMode.Off;
 
-            NativeClient.SendShuffleModeCommand(_clientHandle, _serverId, mode, out string requestId).
+            NativeClient.SendShuffleModeCommand(_clientHandle, ServerId, mode, out string requestId).
                 ThrowIfError("Failed to send playback shuffle command.");
 
             return requestId;
@@ -288,7 +288,7 @@ namespace Tizen.Multimedia.Remoting
         {
             ValidationUtil.ValidateEnum(typeof(MediaControlRepeatMode), Mode, nameof(MediaControlRepeatMode));
 
-            NativeClient.SendRepeatModeCommand(_clientHandle, _serverId, Mode.ToNative(), out string requestId).
+            NativeClient.SendRepeatModeCommand(_clientHandle, ServerId, Mode.ToNative(), out string requestId).
                 ThrowIfError("Failed to send playback repeat command.");
 
             return requestId;
@@ -341,12 +341,12 @@ namespace Tizen.Multimedia.Remoting
 
             if (Bundle != null)
             {
-                NativeClient.SendCustomCommandBundle(_clientHandle, _serverId, Action, Bundle.SafeBundleHandle, out requestId).
+                NativeClient.SendCustomCommandBundle(_clientHandle, ServerId, Action, Bundle.SafeBundleHandle, out requestId).
                     ThrowIfError("Failed to send custom command.");
             }
             else
             {
-                NativeClient.SendCustomCommand(_clientHandle, _serverId, Action, IntPtr.Zero, out requestId).
+                NativeClient.SendCustomCommand(_clientHandle, ServerId, Action, IntPtr.Zero, out requestId).
                     ThrowIfError("Failed to send custom command.");
             }
 
@@ -483,7 +483,7 @@ namespace Tizen.Multimedia.Remoting
 
         internal override string Request()
         {
-            NativeClient.SendSearchCommand(_clientHandle, _serverId, _searchHandle, out string requestId).
+            NativeClient.SendSearchCommand(_clientHandle, ServerId, _searchHandle, out string requestId).
                 ThrowIfError("Failed to send search command.");
 
             if (_searchHandle != IntPtr.Zero)
@@ -500,12 +500,12 @@ namespace Tizen.Multimedia.Remoting
             {
                 if (bundle != null)
                 {
-                    NativeServer.SendCommandReplyBundle(handle, _clientId, _requestId, result, bundle.SafeBundleHandle)
+                    NativeServer.SendCommandReplyBundle(handle, ClientId, _requestId, result, bundle.SafeBundleHandle)
                         .ThrowIfError("Failed to response command.");
                 }
                 else
                 {
-                    NativeServer.SendCommandReply(handle, _clientId, _requestId, result, IntPtr.Zero)
+                    NativeServer.SendCommandReply(handle, ClientId, _requestId, result, IntPtr.Zero)
                         .ThrowIfError("Failed to response command.");
                 }
             }

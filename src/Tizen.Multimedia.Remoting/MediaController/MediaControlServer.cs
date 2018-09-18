@@ -341,6 +341,51 @@ namespace Tizen.Multimedia.Remoting
         }
 
         /// <summary>
+        /// Requests event to the client.
+        /// </summary>
+        /// <remarks>
+        /// The client can request the event to execute <see cref="CustomEvent"/>, <br/>
+        /// and then, the server receive the result of each request(command).
+        /// </remarks>
+        /// <param name="events">A <see cref="MediaControlEvent"/> class.</param>
+        /// <param name="clientId">The client Id to send event.</param>
+        /// <returns>A task that represents the asynchronous operation.</returns>
+        /// <exception cref="InvalidOperationException">
+        ///     The server has already been stopped.<br/>
+        ///     -or-<br/>
+        ///     An internal error occurs.
+        /// </exception>
+        /// <since_tizen> 5 </since_tizen>
+        public static async Task RequestAsync(MediaControlEvent events, string clientId)
+        {
+            events.SetRequestInformation(clientId);
+
+            var tcs = new TaskCompletionSource<MediaControllerError>();
+            string reqeustId = null;
+
+            EventHandler<EventCompletedEventArgs> eventHandler = (s, e) =>
+            {
+                if (e.RequestId == reqeustId)
+                {
+                    tcs.TrySetResult(e.Result);
+                }
+            };
+
+            try
+            {
+                EventCompleted += eventHandler;
+
+                reqeustId = events.Request(Handle);
+
+                (await tcs.Task).ThrowIfError("Failed to request event.");
+            }
+            finally
+            {
+                EventCompleted -= eventHandler;
+            }
+        }
+
+        /// <summary>
         /// Sends the result of each command.
         /// </summary>
         /// <param name="command">The command that return to client.</param>
@@ -373,51 +418,6 @@ namespace Tizen.Multimedia.Remoting
             command.Response(Handle, result, null);
         }
 
-        /// <summary>
-        /// Requests event to the client.
-        /// </summary>
-        /// <remarks>
-        /// The client can request the event to execute <see cref="CustomEvent"/>, <br/>
-        /// and then, the server receive the result of each request(command).
-        /// </remarks>
-        /// <param name="events">A <see cref="Event"/> class.</param>
-        /// <param name="clientId">The client Id to send event.</param>
-        /// <returns>A task that represents the asynchronous operation.</returns>
-        /// <exception cref="InvalidOperationException">
-        ///     The server has already been stopped.<br/>
-        ///     -or-<br/>
-        ///     An internal error occurs.
-        /// </exception>
-        /// <since_tizen> 5 </since_tizen>
-        public static async Task RequestAsync(Event events, string clientId)
-        {
-            events.SetRequestInformation(clientId);
-
-            var tcs = new TaskCompletionSource<MediaControllerError>();
-            string reqeustId = null;
-
-            EventHandler<EventCompletedEventArgs> eventHandler = (s, e) =>
-            {
-                if (e.RequestId == reqeustId)
-                {
-                    tcs.TrySetResult(e.Result);
-                }
-            };
-
-            try
-            {
-                EventCompleted += eventHandler;
-
-                reqeustId = events.Request(Handle);
-
-                (await tcs.Task).ThrowIfError("Failed to request event.");
-            }
-            finally
-            {
-                EventCompleted -= eventHandler;
-            }
-        }
-
         #region Capabilities
         /// <summary>
         /// Sets the content type of latest played media.
@@ -440,22 +440,22 @@ namespace Tizen.Multimedia.Remoting
         /// <summary>
         /// Sets the path of icon.
         /// </summary>
-        /// <param name="uri">The path of icon.</param>
+        /// <param name="path">The path of icon.</param>
         /// <exception cref="InvalidOperationException">
         ///     The server is not running .<br/>
         ///     -or-<br/>
         ///     An internal error occurs.
         /// </exception>
-        /// <exception cref="ArgumentNullException"><paramref name="uri"/> is invalid.</exception>
+        /// <exception cref="ArgumentNullException"><paramref name="path"/> is invalid.</exception>
         /// <since_tizen> 5 </since_tizen>
-        public static void SetIconPath(string uri)
+        public static void SetIconPath(string path)
         {
-            if (uri == null)
+            if (path == null)
             {
-                throw new ArgumentNullException("The uri is null.");
+                throw new ArgumentNullException(nameof(path));
             }
 
-            Native.SetIconPath(Handle, uri).ThrowIfError("Failed to set uri path.");
+            Native.SetIconPath(Handle, path).ThrowIfError("Failed to set uri path.");
         }
 
         /// <summary>
@@ -533,7 +533,7 @@ namespace Tizen.Multimedia.Remoting
         ///     -or-<br/>
         ///     An internal error occurs.
         /// </exception>
-        /// <exception cref="ArgumentException"><paramref name="type"/> is invalid.</exception>
+        /// <exception cref="ArgumentException"><paramref name="support"/> is invalid.</exception>
         /// <since_tizen> 5 </since_tizen>
         public static void SetRepeatModeCapability(MediaControlCapabilitySupport support)
         {

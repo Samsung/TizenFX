@@ -103,7 +103,7 @@ namespace Tizen.Multimedia.Remoting
             _playbackActionCommandCallback = (clientName, requestId, playbackCommand, _) =>
             {
                 var command = new PlaybackCommand(playbackCommand.ToPublic());
-                command.SetClientInfo(clientName, requestId);
+                command.SetResponseInformation(clientName, requestId);
 
                 PlaybackActionCommandReceived?.Invoke(null, new PlaybackActionCommandReceivedEventArgs(command));
             };
@@ -116,7 +116,7 @@ namespace Tizen.Multimedia.Remoting
             _playbackPositionCommandCallback = (clientName, requestId, playbackPosition, _) =>
             {
                 var command = new PlaybackPositionCommand(playbackPosition);
-                command.SetClientInfo(clientName, requestId);
+                command.SetResponseInformation(clientName, requestId);
 
                 PlaybackPositionCommandReceived?.Invoke(null, new PlaybackPositionCommandReceivedEventArgs(command));
             };
@@ -129,7 +129,7 @@ namespace Tizen.Multimedia.Remoting
             _playlistCommandCallback = (clientName, requestId, playlistName, index, playbackCommand, playbackPosition, _) =>
             {
                 var command = new PlaylistCommand(playbackCommand.ToPublic(), playlistName, index, playbackPosition);
-                command.SetClientInfo(clientName, requestId);
+                command.SetResponseInformation(clientName, requestId);
 
                 PlaylistCommandReceived?.Invoke(null, new PlaylistCommandReceivedEventArgs(command));
             };
@@ -142,7 +142,7 @@ namespace Tizen.Multimedia.Remoting
             _shuffleModeCommandCallback = (clientName, requestId, mode, _) =>
             {
                 var command = new ShuffleModeCommand(mode == MediaControllerNativeShuffleMode.On ? true : false);
-                command.SetClientInfo(clientName, requestId);
+                command.SetResponseInformation(clientName, requestId);
 
                 ShuffleModeCommandReceived?.Invoke(null, new ShuffleModeCommandReceivedEventArgs(command));
             };
@@ -155,7 +155,7 @@ namespace Tizen.Multimedia.Remoting
             _repeatModeCommandCallback = (clientName, requestId, mode, _) =>
             {
                 var command = new RepeatModeCommand(mode.ToPublic());
-                command.SetClientInfo(clientName, requestId);
+                command.SetResponseInformation(clientName, requestId);
 
                 RepeatModeCommandReceived?.Invoke(null, new RepeatModeCommandReceivedEventArgs(command));
             };
@@ -177,7 +177,7 @@ namespace Tizen.Multimedia.Remoting
                     command = new CustomCommand(customCommand);
                 }
 
-                command.SetClientInfo(clientName, requestId);
+                command.SetResponseInformation(clientName, requestId);
 
                 CustomCommandReceived?.Invoke(null, new CustomCommandReceivedEventArgs(command));
             };
@@ -213,7 +213,7 @@ namespace Tizen.Multimedia.Remoting
             {
                 var command = CreateSearchCommandReceivedEventArgs(searchHandle);
 
-                command.SetClientInfo(clientName, requestId);
+                command.SetResponseInformation(clientName, requestId);
 
                 SearchCommandReceived?.Invoke(null, new SearchCommandReceivedEventArgs(command));
             };

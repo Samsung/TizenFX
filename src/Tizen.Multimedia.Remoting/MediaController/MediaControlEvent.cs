@@ -26,41 +26,39 @@ namespace Tizen.Multimedia.Remoting
     /// Provides a means to send command to media control client.
     /// </summary>
     /// <since_tizen> 5 </since_tizen>
-    public abstract class Event
+    public abstract class MediaControlEvent
     {
         private string _requestId;
-
-        internal NativeClientHandle _clientHandle;
 
         /// <summary>
         /// The client id.
         /// </summary>
         /// <since_tizen> 5 </since_tizen>
-        protected string _clientId;
+        protected string ClientId { get; private set;}
 
         /// <summary>
         /// The server id.
         /// </summary>
         /// <since_tizen> 5 </since_tizen>
-        protected string _serverId;
+        protected string ServerId { get; private set; }
 
         /// <summary>
-        /// Initializes a <see cref="Event"/> base class.
+        /// Initializes a <see cref="MediaControlEvent"/> base class.
         /// </summary>
-        protected Event() { }
+        protected MediaControlEvent() { }
 
         internal abstract string Request(IntPtr serverHandle);
 
-        internal void Response(IntPtr handle, int result, Bundle bundle)
+        internal void Response(NativeClientHandle clientHandle, int result, Bundle bundle)
         {
             if (bundle != null)
             {
-                NativeClient.SendCustomEventReplyBundle(_clientHandle, _serverId, _requestId, result, bundle.SafeBundleHandle)
+                NativeClient.SendCustomEventReplyBundle(clientHandle, ServerId, _requestId, result, bundle.SafeBundleHandle)
                     .ThrowIfError("Failed to response event.");
             }
             else
             {
-                NativeClient.SendCustomEventReply(_clientHandle, _serverId, _requestId, result, IntPtr.Zero)
+                NativeClient.SendCustomEventReply(clientHandle, ServerId, _requestId, result, IntPtr.Zero)
                     .ThrowIfError("Failed to repose event.");
             }
         }
@@ -71,17 +69,15 @@ namespace Tizen.Multimedia.Remoting
         /// <param name="clientId">The client ID.</param>
         internal void SetRequestInformation(string clientId)
         {
-            _clientId = clientId;
+            ClientId = clientId;
         }
 
         /// <summary>
         /// Sets the information that needed to response event.
         /// </summary>
-        /// <param name="clientrHandle">The client handle.</param>
         /// <param name="requestId">The request Id for each command.</param>
-        internal void SetResponseInformation(NativeClientHandle clientrHandle, string requestId)
+        internal void SetResponseInformation(string requestId)
         {
-            _clientHandle = clientrHandle;
             _requestId = requestId;
         }
     }
@@ -90,7 +86,7 @@ namespace Tizen.Multimedia.Remoting
     /// Provides a means to to send custom event.
     /// </summary>
     /// <since_tizen> 5 </since_tizen>
-    public sealed class CustomEvent : Event
+    public sealed class CustomEvent : MediaControlEvent
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="CustomEvent"/> class.
@@ -99,7 +95,7 @@ namespace Tizen.Multimedia.Remoting
         /// <since_tizen> 5 </since_tizen>
         public CustomEvent(string customEvent)
         {
-            Event = customEvent ?? throw new ArgumentNullException("Custom event is not set.");
+            Event = customEvent ?? throw new ArgumentNullException(nameof(customEvent));
         }
 
         /// <summary>
@@ -132,12 +128,12 @@ namespace Tizen.Multimedia.Remoting
 
             if (Bundle != null)
             {
-                NativeServer.SendCustomEventBundle(serverHandle, _clientId, Event,  Bundle.SafeBundleHandle, out requestId)
+                NativeServer.SendCustomEventBundle(serverHandle, ClientId, Event,  Bundle.SafeBundleHandle, out requestId)
                     .ThrowIfError("Failed to send costom event.");
             }
             else
             {
-                NativeServer.SendCustomEvent(serverHandle, _clientId, Event, IntPtr.Zero, out requestId)
+                NativeServer.SendCustomEvent(serverHandle, ClientId, Event, IntPtr.Zero, out requestId)
                     .ThrowIfError("Failed to send costom event.");
             }
 

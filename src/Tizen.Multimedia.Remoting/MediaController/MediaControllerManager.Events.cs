@@ -15,6 +15,7 @@
  */
 
 using System;
+using Tizen.Applications;
 using Native = Interop.MediaControllerClient;
 using NativePlaylist = Interop.MediaControllerPlaylist;
 
@@ -32,6 +33,7 @@ namespace Tizen.Multimedia.Remoting
         private Native.PlaybackCapabilityUpdatedCallback _playbackCapabilityUpdatedCallback;
         private Native.ShuffleCapabilityUpdatedCallback _shuffleModeCapabilityUpdatedCallback;
         private Native.RepeatCapabilityUpdatedCallback _repeatModeCapabilityUpdatedCallback;
+        private Native.CustomEventReceivedCallback _customEventReceivedCallback;
 
         /// <summary>
         /// Occurs when a server is started.
@@ -56,6 +58,7 @@ namespace Tizen.Multimedia.Remoting
             RegisterPlaybackCapabilitiesEvent();
             RegisterRepeatModeCapabilitiesEvent();
             RegisterShuffleModeCapabilitiesEvent();
+            RegisterCustomEventReceivedEvent();
         }
 
         private void RaiseServerChangedEvent(MediaControllerNativeServerState state, MediaController controller)
@@ -184,6 +187,29 @@ namespace Tizen.Multimedia.Remoting
 
             Native.SetShuffleCapabilityUpdatedCb(Handle, _shuffleModeCapabilityUpdatedCallback).
                 ThrowIfError("Failed to init ShuffleModeCapabilityUpdated event.");
+        }
+
+        private void RegisterCustomEventReceivedEvent()
+        {
+            _customEventReceivedCallback = (serverName, requestId, customEvent, bundleHandle, _) =>
+            {
+                CustomEvent events = null;
+                if (bundleHandle != IntPtr.Zero)
+                {
+                    events = new CustomEvent(customEvent, new Bundle(new SafeBundleHandle(bundleHandle, true)));
+                }
+                else
+                {
+                    events = new CustomEvent(customEvent);
+                }
+
+                events.SetResponseInformation(requestId);
+
+                GetController(serverName)?.RaiseCustomEventReceivedEvent(events);
+            };
+
+            Native.SetCustomEventCb(Handle, _customEventReceivedCallback).
+                ThrowIfError("Failed to init CustomEventReceived event.");
         }
     }
 }
