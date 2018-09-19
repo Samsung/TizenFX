@@ -16,6 +16,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using Tizen.Applications;
 using Native = Interop.MediaControllerServer;
 
@@ -111,6 +112,8 @@ namespace Tizen.Multimedia.Remoting
                 RegisterShuffleModeCommandReceivedEvent();
                 RegisterRepeatModeCommandReceivedEvent();
                 RegisterCustomCommandReceivedEvent();
+                RegisterCommandCompletedEvent();
+                RegisterSearchCommandReceivedEvent();
 
                 _isRunning = true;
             }
@@ -312,6 +315,77 @@ namespace Tizen.Multimedia.Remoting
         }
 
         /// <summary>
+        /// Gets the active clients.
+        /// </summary>
+        /// <exception cref="InvalidOperationException">
+        ///     The server is not running .<br/>
+        ///     -or-<br/>
+        ///     An internal error occurs.
+        /// </exception>
+        /// <returns>the activated client ids.</returns>
+        /// <since_tizen> 5 </since_tizen>
+        public static IEnumerable<string> GetActivatedClients()
+        {
+            var clientIds = new List<string>();
+
+            Native.ActivatedClientCallback activatedClientCallback = (name, _) =>
+            {
+                clientIds.Add(name);
+                return true;
+            };
+
+            Native.ForeachActivatedClient(Handle, activatedClientCallback).
+                ThrowIfError("Failed to get activated client.");
+
+            return clientIds.AsReadOnly();
+        }
+
+        /// <summary>
+        /// Requests commands to the client.
+        /// </summary>
+        /// <remarks>
+        /// The client can request the command to execute <see cref="Command"/>, <br/>
+        /// and then, the server receive the result of each request(command).
+        /// </remarks>
+        /// <param name="command">A <see cref="Command"/> class.</param>
+        /// <param name="clientId">The client Id to send command.</param>
+        /// <returns>A task that represents the asynchronous operation.</returns>
+        /// <exception cref="InvalidOperationException">
+        ///     The server has already been stopped.<br/>
+        ///     -or-<br/>
+        ///     An internal error occurs.
+        /// </exception>
+        /// <since_tizen> 5 </since_tizen>
+        public static async Task RequestAsync(Command command, string clientId)
+        {
+            command.SetRequestInformation(clientId);
+
+            var tcs = new TaskCompletionSource<MediaControllerError>();
+            string reqeustId = null;
+
+            EventHandler<CommandCompletedEventArgs> eventHandler = (s, e) =>
+            {
+                if (e.RequestId == reqeustId)
+                {
+                    tcs.TrySetResult(e.Result);
+                }
+            };
+
+            try
+            {
+                CommandCompleted += eventHandler;
+
+                reqeustId = command.Request(Handle);
+
+                (await tcs.Task).ThrowIfError("Failed to request event.");
+            }
+            finally
+            {
+                CommandCompleted -= eventHandler;
+            }
+        }
+
+        /// <summary>
         /// Sends the result of each command.
         /// </summary>
         /// <param name="command">The command that return to client.</param>
@@ -343,5 +417,130 @@ namespace Tizen.Multimedia.Remoting
         {
             command.Response(Handle, result, null);
         }
+
+        #region Capabilities
+        /// <summary>
+        /// Sets the content type of latest played media.
+        /// </summary>
+        /// <param name="type">A value indicating the content type of the latest played media.</param>
+        /// <exception cref="InvalidOperationException">
+        ///     The server is not running .<br/>
+        ///     -or-<br/>
+        ///     An internal error occurs.
+        /// </exception>
+        /// <exception cref="ArgumentException"><paramref name="type"/> is invalid.</exception>
+        /// <since_tizen> 5 </since_tizen>
+        public static void SetPlaybackContentType(MediaControlContentType type)
+        {
+            ValidationUtil.ValidateEnum(typeof(MediaControlContentType), type, nameof(type));
+
+            Native.SetPlaybackContentType(Handle, type).ThrowIfError("Failed to set playback content type.");
+        }
+
+        /// <summary>
+        /// Sets the path of icon.
+        /// </summary>
+        /// <param name="path">The path of icon.</param>
+        /// <exception cref="InvalidOperationException">
+        ///     The server is not running .<br/>
+        ///     -or-<br/>
+        ///     An internal error occurs.
+        /// </exception>
+        /// <exception cref="ArgumentNullException"><paramref name="path"/> is invalid.</exception>
+        /// <since_tizen> 5 </since_tizen>
+        public static void SetIconPath(string path)
+        {
+            if (path == null)
+            {
+                throw new ArgumentNullException(nameof(path));
+            }
+
+            Native.SetIconPath(Handle, path).ThrowIfError("Failed to set uri path.");
+        }
+
+        /// <summary>
+        /// Sets the capabilities by <see cref="MediaControlPlaybackCommand"/>.
+        /// </summary>
+        /// <param name="capabilities">The set of <see cref="MediaControlPlaybackCommand"/> and <see cref="MediaControlCapabilitySupport"/>.</param>
+        /// <exception cref="InvalidOperationException">
+        ///     The server is not running .<br/>
+        ///     -or-<br/>
+        ///     An internal error occurs.
+        /// </exception>
+        /// <exception cref="ArgumentException"><paramref name="capabilities"/> is invalid.</exception>
+        /// <since_tizen> 5 </since_tizen>
+        public static void SetPlaybackCapability(Dictionary<MediaControlPlaybackCommand, MediaControlCapabilitySupport> capabilities)
+        {
+            foreach (var pair in capabilities)
+            {
+                ValidationUtil.ValidateEnum(typeof(MediaControlPlaybackCommand), pair.Key, nameof(pair.Key));
+                ValidationUtil.ValidateEnum(typeof(MediaControlCapabilitySupport), pair.Value, nameof(pair.Value));
+
+                SetPlaybackCapability(pair.Key, pair.Value);
+                Native.SetPlaybackCapability(Handle, pair.Key.ToNative(), pair.Value).
+                    ThrowIfError("Failed to set playback capability.");
+            }
+
+            Native.SaveAndNotifyPlaybackCapabilityUpdated(Handle).ThrowIfError("Failed to update playback capability.");
+        }
+
+        /// <summary>
+        /// Sets the capabilities by <see cref="MediaControlPlaybackCommand"/>.
+        /// </summary>
+        /// <param name="action">A playback command.</param>
+        /// <param name="support">A value indicating whether the <paramref name="action"/> is supported or not.</param>
+        /// <exception cref="InvalidOperationException">
+        ///     The server is not running .<br/>
+        ///     -or-<br/>
+        ///     An internal error occurs.
+        /// </exception>
+        /// <exception cref="ArgumentException"><paramref name="action"/> or <paramref name="support"/> is invalid.</exception>
+        /// <since_tizen> 5 </since_tizen>
+        public static void SetPlaybackCapability(MediaControlPlaybackCommand action, MediaControlCapabilitySupport support)
+        {
+            ValidationUtil.ValidateEnum(typeof(MediaControlPlaybackCommand), action, nameof(action));
+            ValidationUtil.ValidateEnum(typeof(MediaControlCapabilitySupport), support, nameof(support));
+
+            Native.SetPlaybackCapability(Handle, action.ToNative(), support).ThrowIfError("Failed to set playback capability.");
+
+            Native.SaveAndNotifyPlaybackCapabilityUpdated(Handle).ThrowIfError("Failed to update playback capability.");
+        }
+
+        /// <summary>
+        /// Sets the <see cref="MediaControlCapabilitySupport"/> indicating shuffle mode is supported or not.
+        /// </summary>
+        /// <param name="support">A value indicating whether the shuffle mode is supported or not.</param>
+        /// <exception cref="InvalidOperationException">
+        ///     The server is not running .<br/>
+        ///     -or-<br/>
+        ///     An internal error occurs.
+        /// </exception>
+        /// <exception cref="ArgumentException"><paramref name="support"/> is invalid.</exception>
+        /// <since_tizen> 5 </since_tizen>
+        public static void SetShuffleModeCapability(MediaControlCapabilitySupport support)
+        {
+            ValidationUtil.ValidateEnum(typeof(MediaControlCapabilitySupport), support, nameof(support));
+
+            Native.SetShuffleModeCapability(Handle, support).ThrowIfError("Failed to set shuffle mode capability.");
+        }
+
+        /// <summary>
+        /// Sets the content type of latest played media.
+        /// </summary>
+        /// <param name="support">A value indicating whether the <see cref="MediaControlRepeatMode"/> is supported or not.</param>
+        /// <exception cref="InvalidOperationException">
+        ///     The server is not running .<br/>
+        ///     -or-<br/>
+        ///     An internal error occurs.
+        /// </exception>
+        /// <exception cref="ArgumentException"><paramref name="support"/> is invalid.</exception>
+        /// <since_tizen> 5 </since_tizen>
+        public static void SetRepeatModeCapability(MediaControlCapabilitySupport support)
+        {
+            ValidationUtil.ValidateEnum(typeof(MediaControlCapabilitySupport), support, nameof(support));
+
+            Native.SetRepeatModeCapability(Handle, support).ThrowIfError("Failed to set shuffle mode capability.");
+        }
+        #endregion Capabilities
     }
 }

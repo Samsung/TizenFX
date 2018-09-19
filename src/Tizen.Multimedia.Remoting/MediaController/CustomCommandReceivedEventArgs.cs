@@ -15,12 +15,12 @@
  */
 
 using System;
-using Tizen.Applications;
 
 namespace Tizen.Multimedia.Remoting
 {
     /// <summary>
-    /// Provides data for the <see cref="MediaControlServer.CustomCommandReceived"/> event.
+    /// Provides data for the <see cref="MediaControlServer.CustomCommandReceived"/> or
+    /// <see cref="MediaController.CustomCommandReceived"/> event.
     /// </summary>
     /// <since_tizen> 5 </since_tizen>
     public class CustomCommandReceivedEventArgs : EventArgs
