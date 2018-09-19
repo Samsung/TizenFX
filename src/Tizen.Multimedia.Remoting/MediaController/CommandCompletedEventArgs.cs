@@ -20,7 +20,8 @@ using Tizen.Applications;
 namespace Tizen.Multimedia.Remoting
 {
     /// <summary>
-    /// Provides data for the <see cref="MediaController.CommandCompleted"/> event.
+    /// Provides data for the <see cref="MediaController.CommandCompleted"/> or
+    /// <see cref="MediaControlServer.CommandCompleted"/>event.
     /// </summary>
     /// <since_tizen> 5 </since_tizen>
     internal class CommandCompletedEventArgs : EventArgs

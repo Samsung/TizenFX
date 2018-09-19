@@ -15,6 +15,7 @@
  */
 
 using System;
+using System.Collections.Generic;
 using Tizen.Applications;
 using Native = Interop.MediaControllerClient;
 
@@ -142,9 +143,9 @@ namespace Tizen.Multimedia.Remoting
         /// <since_tizen> 5 </since_tizen>
         public event EventHandler<PlaylistUpdatedEventArgs> PlaylistUpdated;
 
-        internal void RaisePlaylistUpdatedEvent(MediaControlPlaylistMode mode, string name)
+        internal void RaisePlaylistUpdatedEvent(MediaControlPlaylistMode mode, string name, IntPtr playlistHandle)
         {
-            PlaylistUpdated?.Invoke(this, new PlaylistUpdatedEventArgs(mode, name));
+            PlaylistUpdated?.Invoke(this, new PlaylistUpdatedEventArgs(mode, name, new MediaControlPlaylist(playlistHandle)));
         }
 
         /// <summary>
@@ -166,6 +167,82 @@ namespace Tizen.Multimedia.Remoting
             {
                 CommandCompleted?.Invoke(this, new CommandCompletedEventArgs(requestId, result));
             }
+        }
+
+        /// <summary>
+        /// Occurs when the playback capabilities are updated.
+        /// </summary>
+        /// <since_tizen> 5 </since_tizen>
+        public event EventHandler<PlaybackCapabilityUpdatedEventArgs> PlaybackCapabilityUpdated;
+
+        private PlaybackCapabilityUpdatedEventArgs CreatePlaybackCapabilityUpdatedEventArgs(IntPtr playbackCapaHandle)
+        {
+            var capabilities = new Dictionary<MediaControlPlaybackCommand, MediaControlCapabilitySupport>();
+            try
+            {
+                foreach (MediaControllerNativePlaybackAction action in Enum.GetValues(typeof(MediaControllerNativePlaybackAction)))
+                {
+                    Native.IsCapabilitySupported(playbackCapaHandle, action, out MediaControlCapabilitySupport support);
+                    capabilities.Add(action.ToPublic(), support);
+                }
+
+                return new PlaybackCapabilityUpdatedEventArgs(capabilities);
+            }
+            catch (Exception e)
+            {
+                Log.Error(GetType().FullName, e.ToString());
+            }
+            return null;
+        }
+
+        internal void RaisePlaybackCapabilityUpdatedEvent(IntPtr playbackCapaHandle)
+        {
+            var eventHandler = PlaybackCapabilityUpdated;
+
+            if (eventHandler == null)
+            {
+                return;
+            }
+
+            var args = CreatePlaybackCapabilityUpdatedEventArgs(playbackCapaHandle);
+
+            if (args != null)
+            {
+                eventHandler.Invoke(this, args);
+            }
+        }
+
+        /// <summary>
+        /// Occurs when the repeat mode capabilities are updated.
+        /// </summary>
+        /// <since_tizen> 5 </since_tizen>
+        public event EventHandler<RepeatModeCapabilityUpdatedEventArgs> RepeatModeCapabilityUpdated;
+
+        internal void RaiseRepeatModeCapabilityUpdatedEvent(MediaControlCapabilitySupport support)
+        {
+            RepeatModeCapabilityUpdated?.Invoke(this, new RepeatModeCapabilityUpdatedEventArgs(support));
+        }
+
+        /// <summary>
+        /// Occurs when the shuffle mode capabilities are updated.
+        /// </summary>
+        /// <since_tizen> 5 </since_tizen>
+        public event EventHandler<ShuffleModeCapabilityUpdatedEventArgs> ShuffleModeCapabilityUpdated;
+
+        internal void RaiseShuffleModeCapabilityUpdatedEvent(MediaControlCapabilitySupport support)
+        {
+            ShuffleModeCapabilityUpdated?.Invoke(this, new ShuffleModeCapabilityUpdatedEventArgs(support));
+        }
+
+        /// <summary>
+        /// Occurs when a server sends custom event.
+        /// </summary>
+        /// <since_tizen> 5 </since_tizen>
+        public event EventHandler<CustomCommandReceivedEventArgs> CustomCommandReceived;
+
+        internal void RaiseCustomCommandReceivedEvent(CustomCommand command)
+        {
+            CustomCommandReceived?.Invoke(this, new CustomCommandReceivedEventArgs(command));
         }
     }
 }

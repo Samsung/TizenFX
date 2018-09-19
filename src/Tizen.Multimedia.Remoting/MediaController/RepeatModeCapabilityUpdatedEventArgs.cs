@@ -14,54 +14,32 @@
  * limitations under the License.
  */
 
+using System;
+using System.Collections.Generic;
+using Native = Interop.MediaControllerClient;
+
 namespace Tizen.Multimedia.Remoting
 {
     /// <summary>
-    /// Specifies playback states.
+    /// Provides data for the <see cref="MediaController.RepeatModeCapabilityUpdated"/> event.
     /// </summary>
-    /// <since_tizen> 4 </since_tizen>
-    public enum MediaControlPlaybackState
+    /// <since_tizen> 5 </since_tizen>
+    public class RepeatModeCapabilityUpdatedEventArgs : EventArgs
     {
         /// <summary>
-        /// Unknown; no state is set.
+        /// Initializes a new instance of the <see cref="RepeatModeCapabilityUpdatedEventArgs"/> class.
         /// </summary>
-        None,
+        /// <param name="support">The repeat mode capabilities.</param>
+        /// <since_tizen> 5 </since_tizen>
+        public RepeatModeCapabilityUpdatedEventArgs(MediaControlCapabilitySupport support)
+        {
+            Support = support;
+        }
 
         /// <summary>
-        /// Playing.
-        /// </summary>
-        Playing,
-
-        /// <summary>
-        /// Paused.
-        /// </summary>
-        Paused,
-
-        /// <summary>
-        /// Stopped.
-        /// </summary>
-        Stopped,
-
-        /// <summary>
-        /// Fast forwarding.
-        /// </summary>
-        FastForwarding,
-
-        /// <summary>
-        /// Rewinding.
-        /// </summary>
-        Rewinding,
-
-        /// <summary>
-        /// Skipping to the next item.
+        /// Gets the value whether the repeat mode is supported or not.
         /// </summary>
         /// <since_tizen> 5 </since_tizen>
-        MovingToNext,
-
-        /// <summary>
-        /// Skipping to the previous item.
-        /// </summary>
-        /// <since_tizen> 5 </since_tizen>
-        MovingToPrevious,
+        public MediaControlCapabilitySupport Support { get; }
     }
 }

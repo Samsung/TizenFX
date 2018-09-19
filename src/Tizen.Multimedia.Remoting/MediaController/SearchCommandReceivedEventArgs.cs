@@ -14,22 +14,30 @@
  * limitations under the License.
  */
 
+using System;
+
 namespace Tizen.Multimedia.Remoting
 {
     /// <summary>
-    /// Specifies the playlist mode.
+    /// Provides data for the <see cref="SearchCommandReceivedEventArgs"/> event.
     /// </summary>
     /// <since_tizen> 5 </since_tizen>
-    public enum MediaControlPlaylistMode
+    public class SearchCommandReceivedEventArgs : EventArgs
     {
         /// <summary>
-        /// Playlist is created or update.
+        /// Initializes a new instance of the <see cref="SearchCommandReceivedEventArgs"/> class.
         /// </summary>
-        Updated,
+        /// <param name="command">The search command.</param>
+        /// <since_tizen> 5 </since_tizen>
+        public SearchCommandReceivedEventArgs(SearchCommand command)
+        {
+            Command = command;
+        }
 
         /// <summary>
-        /// Playlist is removed.
+        /// Gets the <see cref="SearchCommand"/>.
         /// </summary>
-        Removed,
+        /// <since_tizen> 5 </since_tizen>
+        public SearchCommand Command { get; }
     }
 }

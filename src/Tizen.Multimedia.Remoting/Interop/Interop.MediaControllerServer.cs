@@ -53,7 +53,22 @@ internal static partial class Interop
             string requestId, string customCommand, IntPtr bundleHandle, IntPtr userData);
 
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-        internal delegate void PlaylistCallback(IntPtr handle, IntPtr userData);
+        internal delegate bool PlaylistCallback(IntPtr handle, IntPtr userData);
+
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+        internal delegate bool ActivatedClientCallback(string clientName, IntPtr userData);
+
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+        internal delegate void CommandCompletedCallback(string clientName, string requestId, MediaControllerError result, IntPtr bundleHandle,
+            IntPtr userData = default(IntPtr));
+
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+        internal delegate void SearchCommandReceivedCallback(string clientName, string requestId, IntPtr searchHandle,
+            IntPtr userData = default(IntPtr));
+
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+        internal delegate bool SearchItemCallback(MediaControlContentType type, MediaControlSearchCategory category,
+            string keyword, IntPtr bundleHandle, IntPtr userData = default(IntPtr));
 
 
         [DllImport(Libraries.MediaController, EntryPoint = "mc_server_create")]
@@ -135,6 +150,13 @@ internal static partial class Interop
         [DllImport(Libraries.MediaController, EntryPoint = "mc_server_unset_custom_cmd_received_cb")]
         internal static extern MediaControllerError UnsetCustomCommandReceivedCb(IntPtr handle);
 
+        [DllImport(Libraries.MediaController, EntryPoint = "mc_server_set_search_cmd_received_cb")]
+        internal static extern MediaControllerError SetSearchCommandReceivedCb(IntPtr handle,
+            SearchCommandReceivedCallback callback, IntPtr userData = default(IntPtr));
+
+        [DllImport(Libraries.MediaController, EntryPoint = "mc_server_unset_search_cmd_received_cb")]
+        internal static extern MediaControllerError UnsetSearchCommandReceivedCb(IntPtr handle);
+
         [DllImport(Libraries.MediaController, EntryPoint = "mc_server_send_cmd_reply")]
         internal static extern MediaControllerError SendCommandReplyBundle(IntPtr handle,
             string appId, string requestID, int result, SafeBundleHandle bundleHandle);
@@ -174,5 +196,65 @@ internal static partial class Interop
         // Playlist API. but this need to server handle so have to be here.
         [DllImport(Libraries.MediaController, EntryPoint = "mc_server_get_playlist")]
         internal static extern MediaControllerError GetPlaylistHandle(IntPtr handle, string name, out IntPtr playbackHandle);
+
+        [DllImport(Libraries.MediaController, EntryPoint = "mc_server_foreach_client")]
+        internal static extern MediaControllerError ForeachActivatedClient(IntPtr handle, ActivatedClientCallback callback,
+            IntPtr userData = default(IntPtr));
+
+        [DllImport(Libraries.MediaController, EntryPoint = "mc_server_send_custom_event")]
+        internal static extern MediaControllerError SendCustomEvent(IntPtr handle, string appId, string customEvent,
+            IntPtr bundle, out string requestId);
+
+        [DllImport(Libraries.MediaController, EntryPoint = "mc_server_send_custom_event")]
+        internal static extern MediaControllerError SendCustomEventBundle(IntPtr handle, string appId, string customEvent,
+            SafeBundleHandle bundle, out string requestId);
+
+        [DllImport(Libraries.MediaController, EntryPoint = "mc_server_set_event_reply_received_cb")]
+        internal static extern MediaControllerError SetEventReceivedCb(IntPtr handle, CommandCompletedCallback callback,
+            IntPtr userData = default(IntPtr));
+
+        [DllImport(Libraries.MediaController, EntryPoint = "mc_server_unset_event_reply_received_cb")]
+        internal static extern MediaControllerError UnsetEventReceivedCb(IntPtr handle);
+
+        [DllImport(Libraries.MediaController, EntryPoint = "mc_server_set_content_age_rating")]
+        internal static extern MediaControllerError SetAgeRating(IntPtr handle, int rating);
+
+
+        #region Capability
+        [DllImport(Libraries.MediaController, EntryPoint = "mc_server_set_playback_content_type")]
+        internal static extern MediaControllerError SetPlaybackContentType(IntPtr serverHandle,
+            MediaControlContentType type);
+
+        [DllImport(Libraries.MediaController, EntryPoint = "mc_server_set_icon")]
+        internal static extern MediaControllerError SetIconPath(IntPtr serverHandle, string uri);
+
+        [DllImport(Libraries.MediaController, EntryPoint = "mc_server_set_playback_ability")]
+        internal static extern MediaControllerError SetPlaybackCapability(IntPtr serverHandle,
+            MediaControllerNativePlaybackAction action, MediaControlCapabilitySupport support);
+
+        [DllImport(Libraries.MediaController, EntryPoint = "mc_server_update_playback_ability")]
+        internal static extern MediaControllerError SaveAndNotifyPlaybackCapabilityUpdated(IntPtr serverHandle);
+
+        [DllImport(Libraries.MediaController, EntryPoint = "mc_server_set_shuffle_ability")]
+        internal static extern MediaControllerError SetShuffleModeCapability(IntPtr serverHandle,
+            MediaControlCapabilitySupport support);
+
+        [DllImport(Libraries.MediaController, EntryPoint = "mc_server_set_repeat_ability")]
+        internal static extern MediaControllerError SetRepeatModeCapability(IntPtr serverHandle,
+            MediaControlCapabilitySupport support);
+        #endregion Capability
+
+        #region Search
+        [DllImport(Libraries.MediaController, EntryPoint = "mc_search_foreach")]
+        internal static extern MediaControllerError ForeachSearchCondition(IntPtr serverHandle,
+            SearchItemCallback callback, IntPtr userData = default(IntPtr));
+
+        [DllImport(Libraries.MediaController, EntryPoint = "mc_search_clone")]
+        internal static extern MediaControllerError CloneSearchHandle(IntPtr srcHandle, out IntPtr dstHandle);
+
+        [DllImport(Libraries.MediaController, EntryPoint = "mc_search_destroy")]
+        internal static extern MediaControllerError DestroySearchHandle(IntPtr searchHandle);
+
+        #endregion Search
     }
 }
