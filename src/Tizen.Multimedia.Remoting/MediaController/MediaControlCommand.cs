@@ -433,9 +433,9 @@ namespace Tizen.Multimedia.Remoting
         /// <remarks>User can search maximum 20 items once.</remarks>
         /// <exception cref="ArgumentNullException"><paramref name="conditions"/> is not set.</exception>
         /// <exception cref="ArgumentException">
-        ///     <paramref name="conditions"/> is greater than maximum value(20).<br/>
+        ///     <paramref name="conditions.Count"/> is greater than maximum value(20).<br/>
         ///     -or-<br/>
-        ///     <paramref name="conditions"/> is less than 1.
+        ///     <paramref name="conditions.Count"/> is less than 1.
         /// </exception>
         /// <exception cref="InvalidOperationException">An internal error occurs.</exception>
         /// <param name="conditions">The set of <see cref="MediaControlSearchCondition"/>.</param>
@@ -448,7 +448,9 @@ namespace Tizen.Multimedia.Remoting
             }
             if (conditions.Count <= 0 || conditions.Count > 20)
             {
-                throw new ArgumentException(nameof(conditions));
+                var errMessage = $"Invalid number of search conditions. : {conditions.Count}. " +
+                    $"Valid range is 1 ~ 20.";
+                throw new ArgumentException(errMessage);
             }
 
             NativeClient.CreateSearchHandle(out _searchHandle).ThrowIfError("Failed to create search handle.");
