@@ -745,7 +745,7 @@ namespace Tizen.NUI
 
         internal RenderingBehaviorType GetRenderingBehavior()
         {
-            RenderingBehaviorType ret = (RenderingBehaviorType)NDalicPINVOKE.Stage_GetRenderingBehavior(swigCPtr);
+            RenderingBehaviorType ret = (RenderingBehaviorType)NDalicPINVOKE.Stage_GetRenderingBehavior(stageCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending)
                 throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
