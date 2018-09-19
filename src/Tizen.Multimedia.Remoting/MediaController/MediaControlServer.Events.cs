@@ -31,7 +31,7 @@ namespace Tizen.Multimedia.Remoting
         private static Native.RepeatModeCommandReceivedCallback _repeatModeCommandCallback;
         private static Native.CustomCommandReceivedCallback _customCommandCallback;
         private static Native.SearchCommandReceivedCallback _searchCommandCallback;
-        private static Native.EventCompletedCallback _eventCompletedCallback;
+        private static Native.CommandCompletedCallback _commandCompletedCallback;
 
         /// <summary>
         /// Occurs when a client sends playback command.
@@ -86,7 +86,7 @@ namespace Tizen.Multimedia.Remoting
         /// Occurs when a client sends custom command.
         /// </summary>
         /// <since_tizen> 5 </since_tizen>
-        internal static event EventHandler<EventCompletedEventArgs> EventCompleted;
+        internal static event EventHandler<CommandCompletedEventArgs> CommandCompleted;
 
         private static void RegisterPlaybackCommandReceivedEvent()
         {
@@ -187,7 +187,7 @@ namespace Tizen.Multimedia.Remoting
         
         private static SearchCommand CreateSearchCommandReceivedEventArgs(IntPtr searchHandle)
         {
-            List<MediaControlSearchCondition> searchConditions = null;
+            var searchConditions = new List<MediaControlSearchCondition>();
 
             Native.SearchItemCallback searchItemCallback = (type, category, keyword, bundleHandle, _) =>
             {
@@ -221,20 +221,20 @@ namespace Tizen.Multimedia.Remoting
                 ThrowIfError("Failed to init SearchCommandReceived event.");
         }
 
-        private static void RegisterEventCompletedEvent()
+        private static void RegisterCommandCompletedEvent()
         {
-            _eventCompletedCallback = (clientName, requestId, result, bundleHandle, _) =>
+            _commandCompletedCallback = (clientName, requestId, result, bundleHandle, _) =>
             {
                 if (bundleHandle != IntPtr.Zero)
                 {
-                    EventCompleted?.Invoke(null, new EventCompletedEventArgs(requestId, result, new Bundle(new SafeBundleHandle(bundleHandle, true))));
+                    CommandCompleted?.Invoke(null, new CommandCompletedEventArgs(requestId, result, new Bundle(new SafeBundleHandle(bundleHandle, true))));
                 }
                 else
                 {
-                    EventCompleted?.Invoke(null, new EventCompletedEventArgs(requestId, result));
+                    CommandCompleted?.Invoke(null, new CommandCompletedEventArgs(requestId, result));
                 }
             };
-            Native.SetEventReceivedCb(Handle, _eventCompletedCallback).
+            Native.SetEventReceivedCb(Handle, _commandCompletedCallback).
                 ThrowIfError("Failed to init RegisterEventCompletedEvent.");
         }
     }

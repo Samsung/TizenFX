@@ -33,7 +33,7 @@ namespace Tizen.Multimedia.Remoting
         private Native.PlaybackCapabilityUpdatedCallback _playbackCapabilityUpdatedCallback;
         private Native.ShuffleCapabilityUpdatedCallback _shuffleModeCapabilityUpdatedCallback;
         private Native.RepeatCapabilityUpdatedCallback _repeatModeCapabilityUpdatedCallback;
-        private Native.CustomEventReceivedCallback _customEventReceivedCallback;
+        private Native.CustomCommandReceivedCallback _customCommandReceivedCallback;
 
         /// <summary>
         /// Occurs when a server is started.
@@ -58,7 +58,7 @@ namespace Tizen.Multimedia.Remoting
             RegisterPlaybackCapabilitiesEvent();
             RegisterRepeatModeCapabilitiesEvent();
             RegisterShuffleModeCapabilitiesEvent();
-            RegisterCustomEventReceivedEvent();
+            RegisterCustomCommandReceivedEvent();
         }
 
         private void RaiseServerChangedEvent(MediaControllerNativeServerState state, MediaController controller)
@@ -189,27 +189,27 @@ namespace Tizen.Multimedia.Remoting
                 ThrowIfError("Failed to init ShuffleModeCapabilityUpdated event.");
         }
 
-        private void RegisterCustomEventReceivedEvent()
+        private void RegisterCustomCommandReceivedEvent()
         {
-            _customEventReceivedCallback = (serverName, requestId, customEvent, bundleHandle, _) =>
+            _customCommandReceivedCallback = (serverName, requestId, customEvent, bundleHandle, _) =>
             {
-                CustomEvent events = null;
+                CustomCommand command = null;
                 if (bundleHandle != IntPtr.Zero)
                 {
-                    events = new CustomEvent(customEvent, new Bundle(new SafeBundleHandle(bundleHandle, true)));
+                    command = new CustomCommand(customEvent, new Bundle(new SafeBundleHandle(bundleHandle, true)));
                 }
                 else
                 {
-                    events = new CustomEvent(customEvent);
+                    command = new CustomCommand(customEvent);
                 }
 
-                events.SetResponseInformation(requestId);
+                command.SetResponseInformation(serverName, requestId);
 
-                GetController(serverName)?.RaiseCustomEventReceivedEvent(events);
+                GetController(serverName)?.RaiseCustomCommandReceivedEvent(command);
             };
 
-            Native.SetCustomEventCb(Handle, _customEventReceivedCallback).
-                ThrowIfError("Failed to init CustomEventReceived event.");
+            Native.SetCustomEventCb(Handle, _customCommandReceivedCallback).
+                ThrowIfError("Failed to init CustomCommandReceived event.");
         }
     }
 }

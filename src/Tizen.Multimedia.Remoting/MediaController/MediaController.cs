@@ -187,7 +187,7 @@ namespace Tizen.Multimedia.Remoting
         {
             ThrowIfStopped();
 
-            List<MediaControlPlaylist> playlists = null;
+            var playlists = new List<MediaControlPlaylist>();
 
             NativePlaylist.PlaylistCallback playlistCallback = (handle, _) =>
             {
@@ -232,12 +232,7 @@ namespace Tizen.Multimedia.Remoting
                 }
             }
 
-            var playlist = from list in GetPlaylists()
-                           where list.Name == name
-                           select list;
-
-            // There's no playlist with same name.
-            return playlist.FirstOrDefault();
+            return GetPlaylists().FirstOrDefault(playlist => playlist.Name == name);
         }
 
         /// <summary>
@@ -337,7 +332,7 @@ namespace Tizen.Multimedia.Remoting
         {
             ThrowIfStopped();
 
-            command.SetRequestInformation(Manager.Handle, ServerAppId);
+            command.SetRequestInformation(ServerAppId);
 
             var tcs = new TaskCompletionSource<MediaControllerError>();
             string reqeustId = null;
@@ -354,7 +349,7 @@ namespace Tizen.Multimedia.Remoting
             {
                 CommandCompleted += eventHandler;
 
-                reqeustId = command.Request();
+                reqeustId = command.Request(Manager.Handle);
 
                 (await tcs.Task).ThrowIfError("Failed to request command");
             }
@@ -367,8 +362,8 @@ namespace Tizen.Multimedia.Remoting
         /// <summary>
         /// Sends the result of each command.
         /// </summary>
-        /// <param name="events">The command that return to client.</param>
-        /// <param name="result">The result of <paramref name="events"/>.</param>
+        /// <param name="command">The command that return to client.</param>
+        /// <param name="result">The result of <paramref name="command"/>.</param>
         /// <param name="bundle">The extra data.</param>
         /// <exception cref="InvalidOperationException">
         ///     The server is not running .<br/>
@@ -376,9 +371,25 @@ namespace Tizen.Multimedia.Remoting
         ///     An internal error occurs.
         /// </exception>
         /// <since_tizen> 5 </since_tizen>
-        public void Response(MediaControlEvent events, int result, Bundle bundle)
+        public void Response(Command command, int result, Bundle bundle)
         {
-            events.Response(Manager.Handle, result, bundle);
+            command.Response(Manager.Handle, result, bundle);
+        }
+
+        /// <summary>
+        /// Sends the result of each command.
+        /// </summary>
+        /// <param name="command">The command that return to client.</param>
+        /// <param name="result">The result of <paramref name="command"/>.</param>
+        /// <exception cref="InvalidOperationException">
+        ///     The server is not running .<br/>
+        ///     -or-<br/>
+        ///     An internal error occurs.
+        /// </exception>
+        /// <since_tizen> 5 </since_tizen>
+        public void Response(Command command, int result)
+        {
+            command.Response(Manager.Handle, result, null);
         }
 
         /// <summary>
@@ -515,7 +526,7 @@ namespace Tizen.Multimedia.Remoting
 
             IntPtr playbackCapaHandle = IntPtr.Zero;
 
-            Dictionary<MediaControlPlaybackCommand, MediaControlCapabilitySupport> playbackCapabilities = null;
+            var playbackCapabilities = new Dictionary<MediaControlPlaybackCommand, MediaControlCapabilitySupport>();
 
             try
             {

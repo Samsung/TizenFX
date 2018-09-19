@@ -45,7 +45,7 @@ internal static partial class Interop
             IntPtr bundleHandle, IntPtr userData);
 
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-        internal delegate void CustomEventReceivedCallback(string serverName, string requestId, string customEvent, IntPtr bundleHandle, IntPtr userData);
+        internal delegate void CustomCommandReceivedCallback(string serverName, string requestId, string customEvent, IntPtr bundleHandle, IntPtr userData);
 
 
         [DllImport(Libraries.MediaController, EntryPoint = "mc_client_create")]
@@ -91,7 +91,7 @@ internal static partial class Interop
 
         [DllImport(Libraries.MediaController, EntryPoint = "mc_client_set_custom_event_received_cb")]
         internal static extern MediaControllerError SetCustomEventCb(MediaControllerClientHandle handle,
-            CustomEventReceivedCallback callback, IntPtr userData = default(IntPtr));
+            CustomCommandReceivedCallback callback, IntPtr userData = default(IntPtr));
 
         [DllImport(Libraries.MediaController, EntryPoint = "mc_client_unset_custom_event_received_cb")]
         internal static extern MediaControllerError UnsetCustomEventCb(MediaControllerClientHandle handle);
@@ -245,11 +245,11 @@ internal static partial class Interop
 
         [DllImport(Libraries.MediaController, EntryPoint = "mc_search_set_condition")]
         internal static extern MediaControllerError SetSearchCondition(IntPtr searchHandle,
-            MediaControlContentType type, MediaControlNativeSearchCategory category, string keyword, IntPtr bundle);
+            MediaControlContentType type, MediaControlSearchCategory category, string keyword, IntPtr bundle);
 
         [DllImport(Libraries.MediaController, EntryPoint = "mc_search_set_condition")]
         internal static extern MediaControllerError SetSearchConditionBundle(IntPtr searchHandle,
-            MediaControlContentType type, MediaControlNativeSearchCategory category, string keyword, SafeBundleHandle bundle);
+            MediaControlContentType type, MediaControlSearchCategory category, string keyword, SafeBundleHandle bundle);
 
         [DllImport(Libraries.MediaController, EntryPoint = "mc_search_destroy")]
         internal static extern MediaControllerError DestroySearchHandle(IntPtr searchHandle);

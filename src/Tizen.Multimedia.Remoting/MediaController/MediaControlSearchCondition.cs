@@ -45,15 +45,16 @@ namespace Tizen.Multimedia.Remoting
         /// <summary>
         /// Initializes a new instance of the <see cref="MediaControlSearchCondition"/> class.
         /// </summary>
-        /// <remarks><see cref="MediaControlSearchCategory"/> will be set 'ALL'.</remarks>
+        /// <remarks>The <see cref="MediaControlSearchCategory"/> will be set internally by <see cref="MediaControlSearchCategory.All"/>.</remarks>
         /// <since_tizen> 5 </since_tizen>
         public MediaControlSearchCondition(MediaControlContentType type, string keyword, Bundle bundle)
         {
             ValidationUtil.ValidateEnum(typeof(MediaControlContentType), type, nameof(type));
 
+            Category = MediaControlSearchCategory.All;
             ContentType = type;
             Keyword = keyword ?? throw new ArgumentNullException(nameof(keyword));
-            Bundle = bundle ?? null;
+            Bundle = bundle;
         }
 
         /// <summary>
@@ -66,7 +67,7 @@ namespace Tizen.Multimedia.Remoting
         /// Gets the search category.
         /// </summary>
         /// <since_tizen> 5 </since_tizen>
-        public MediaControlSearchCategory Category { get; } = 0;
+        public MediaControlSearchCategory Category { get; }
 
         /// <summary>
         /// Gets the search keyword.

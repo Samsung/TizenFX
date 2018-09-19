@@ -59,7 +59,7 @@ internal static partial class Interop
         internal delegate bool ActivatedClientCallback(string clientName, IntPtr userData);
 
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-        internal delegate void EventCompletedCallback(string clientName, string requestId, MediaControllerError result, IntPtr bundleHandle,
+        internal delegate void CommandCompletedCallback(string clientName, string requestId, MediaControllerError result, IntPtr bundleHandle,
             IntPtr userData = default(IntPtr));
 
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
@@ -210,7 +210,7 @@ internal static partial class Interop
             SafeBundleHandle bundle, out string requestId);
 
         [DllImport(Libraries.MediaController, EntryPoint = "mc_server_set_event_reply_received_cb")]
-        internal static extern MediaControllerError SetEventReceivedCb(IntPtr handle, EventCompletedCallback callback,
+        internal static extern MediaControllerError SetEventReceivedCb(IntPtr handle, CommandCompletedCallback callback,
             IntPtr userData = default(IntPtr));
 
         [DllImport(Libraries.MediaController, EntryPoint = "mc_server_unset_event_reply_received_cb")]

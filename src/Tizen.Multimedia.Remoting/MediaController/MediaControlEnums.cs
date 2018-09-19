@@ -217,9 +217,14 @@ namespace Tizen.Multimedia.Remoting
     public enum MediaControlSearchCategory
     {
         /// <summary>
+        /// Search by all category.
+        /// </summary>
+        All,
+
+        /// <summary>
         /// Search by content title.
         /// </summary>
-        Title = 1,
+        Title,
 
         /// <summary>
         /// Search by content artist.
@@ -329,47 +334,6 @@ namespace Tizen.Multimedia.Remoting
 
             return mode == MediaControlRepeatMode.Off ? MediaControllerNativeRepeatMode.On :
                 (mode == MediaControlRepeatMode.On ? MediaControllerNativeRepeatMode.Off : MediaControllerNativeRepeatMode.OneMedia);
-        }
-
-
-
-
-        internal static MediaControlSearchCategory ToPublic(this MediaControlNativeSearchCategory category)
-        {
-            var publicCategory = MediaControlSearchCategory.Title;
-
-            switch (category)
-            {
-                case MediaControlNativeSearchCategory.Title: publicCategory = MediaControlSearchCategory.Title; break;
-                case MediaControlNativeSearchCategory.Artist: publicCategory = MediaControlSearchCategory.Artist; break;
-                case MediaControlNativeSearchCategory.Album: publicCategory = MediaControlSearchCategory.Album; break;
-                case MediaControlNativeSearchCategory.Genre: publicCategory = MediaControlSearchCategory.Genre; break;
-                case MediaControlNativeSearchCategory.Tpo: publicCategory = MediaControlSearchCategory.Tpo; break;
-                default:
-                    Debug.Fail($"Not supported code for search category {category}.");
-                    break;
-            }
-
-            return publicCategory;
-        }
-
-        internal static MediaControlNativeSearchCategory ToNative(this MediaControlSearchCategory category)
-        {
-            var nativeCategory = MediaControlNativeSearchCategory.Title;
-
-            switch (category)
-            {
-                case MediaControlSearchCategory.Title: nativeCategory = MediaControlNativeSearchCategory.Title; break;
-                case MediaControlSearchCategory.Artist: nativeCategory = MediaControlNativeSearchCategory.Artist; break;
-                case MediaControlSearchCategory.Album: nativeCategory = MediaControlNativeSearchCategory.Album; break;
-                case MediaControlSearchCategory.Genre: nativeCategory = MediaControlNativeSearchCategory.Genre; break;
-                case MediaControlSearchCategory.Tpo: nativeCategory = MediaControlNativeSearchCategory.Tpo; break;
-                default:
-                    Debug.Fail($"Not supported code for search category {category}.");
-                    break;
-            }
-
-            return nativeCategory;
         }
     }
 }

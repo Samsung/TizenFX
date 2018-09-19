@@ -238,11 +238,11 @@ namespace Tizen.Multimedia.Remoting
         /// Occurs when a server sends custom event.
         /// </summary>
         /// <since_tizen> 5 </since_tizen>
-        public event EventHandler<CustomEventReceivedEventArgs> CustomEventReceived;
+        public event EventHandler<CustomCommandReceivedEventArgs> CustomCommandReceived;
 
-        internal void RaiseCustomEventReceivedEvent(CustomEvent events)
+        internal void RaiseCustomCommandReceivedEvent(CustomCommand command)
         {
-            CustomEventReceived?.Invoke(this, new CustomEventReceivedEventArgs(events));
+            CustomCommandReceived?.Invoke(this, new CustomCommandReceivedEventArgs(command));
         }
     }
 }

@@ -112,7 +112,7 @@ namespace Tizen.Multimedia.Remoting
                 RegisterShuffleModeCommandReceivedEvent();
                 RegisterRepeatModeCommandReceivedEvent();
                 RegisterCustomCommandReceivedEvent();
-                RegisterEventCompletedEvent();
+                RegisterCommandCompletedEvent();
                 RegisterSearchCommandReceivedEvent();
 
                 _isRunning = true;
@@ -326,7 +326,7 @@ namespace Tizen.Multimedia.Remoting
         /// <since_tizen> 5 </since_tizen>
         public static IEnumerable<string> GetActivatedClients()
         {
-            List<string> clientIds = null;
+            var clientIds = new List<string>();
 
             Native.ActivatedClientCallback activatedClientCallback = (name, _) =>
             {
@@ -341,14 +341,14 @@ namespace Tizen.Multimedia.Remoting
         }
 
         /// <summary>
-        /// Requests event to the client.
+        /// Requests commands to the client.
         /// </summary>
         /// <remarks>
-        /// The client can request the event to execute <see cref="CustomEvent"/>, <br/>
+        /// The client can request the command to execute <see cref="Command"/>, <br/>
         /// and then, the server receive the result of each request(command).
         /// </remarks>
-        /// <param name="events">A <see cref="MediaControlEvent"/> class.</param>
-        /// <param name="clientId">The client Id to send event.</param>
+        /// <param name="command">A <see cref="Command"/> class.</param>
+        /// <param name="clientId">The client Id to send command.</param>
         /// <returns>A task that represents the asynchronous operation.</returns>
         /// <exception cref="InvalidOperationException">
         ///     The server has already been stopped.<br/>
@@ -356,14 +356,14 @@ namespace Tizen.Multimedia.Remoting
         ///     An internal error occurs.
         /// </exception>
         /// <since_tizen> 5 </since_tizen>
-        public static async Task RequestAsync(MediaControlEvent events, string clientId)
+        public static async Task RequestAsync(Command command, string clientId)
         {
-            events.SetRequestInformation(clientId);
+            command.SetRequestInformation(clientId);
 
             var tcs = new TaskCompletionSource<MediaControllerError>();
             string reqeustId = null;
 
-            EventHandler<EventCompletedEventArgs> eventHandler = (s, e) =>
+            EventHandler<CommandCompletedEventArgs> eventHandler = (s, e) =>
             {
                 if (e.RequestId == reqeustId)
                 {
@@ -373,15 +373,15 @@ namespace Tizen.Multimedia.Remoting
 
             try
             {
-                EventCompleted += eventHandler;
+                CommandCompleted += eventHandler;
 
-                reqeustId = events.Request(Handle);
+                reqeustId = command.Request(Handle);
 
                 (await tcs.Task).ThrowIfError("Failed to request event.");
             }
             finally
             {
-                EventCompleted -= eventHandler;
+                CommandCompleted -= eventHandler;
             }
         }
 

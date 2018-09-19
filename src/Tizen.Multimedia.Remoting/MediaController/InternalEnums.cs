@@ -78,14 +78,4 @@ namespace Tizen.Multimedia.Remoting
         TrackNumber,
         Picture,
     }
-
-    internal enum MediaControlNativeSearchCategory
-    {
-        NoCategory, // Search all
-        Title,
-        Artist,
-        Album,
-        Genre,
-        Tpo
-    }
 }
