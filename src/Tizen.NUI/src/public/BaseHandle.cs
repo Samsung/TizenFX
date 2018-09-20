@@ -33,8 +33,6 @@ namespace Tizen.NUI
         /// Event which is occurred when a property is set
         /// </summary>
         /// <since_tizen> 5 </since_tizen>
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
         public event PropertyChangedEventHandler PropertySet;
 
         internal void NotifyPropertyChanged([CallerMemberName] String propertyName = "")

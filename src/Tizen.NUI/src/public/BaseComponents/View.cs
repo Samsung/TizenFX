@@ -1259,8 +1259,6 @@ namespace Tizen.NUI.BaseComponents
         /// Event argument passed through ChildAdded event
         /// </summary>
         /// <since_tizen> 5 </since_tizen>
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
         public class ChildAddedEventArgs : EventArgs
         {
             /// <summary>
@@ -1274,8 +1272,6 @@ namespace Tizen.NUI.BaseComponents
         /// Event when a child is added
         /// </summary>
         /// <since_tizen> 5 </since_tizen>
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
         public new event EventHandler<ChildAddedEventArgs> ChildAdded;
 
         // From Container Base class
@@ -1338,8 +1334,6 @@ namespace Tizen.NUI.BaseComponents
         /// Event argument passed through ChildRemoved event
         /// </summary>
         /// <since_tizen> 5 </since_tizen>
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
         public class ChildRemovedEventArgs : EventArgs
         {
             /// <summary>
@@ -1353,8 +1347,6 @@ namespace Tizen.NUI.BaseComponents
         /// Event when a child is removed
         /// </summary>
         /// <since_tizen> 5 </since_tizen>
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
         public new event EventHandler<ChildRemovedEventArgs> ChildRemoved;
 
 
