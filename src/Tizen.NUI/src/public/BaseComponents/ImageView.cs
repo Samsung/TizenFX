@@ -36,7 +36,13 @@ namespace Tizen.NUI.BaseComponents
             var imageView = (ImageView)bindable;
             if (newValue != null)
             {
-                imageView._url = (newValue == null? "" : (string)newValue);
+                string url = (string)newValue;
+                if (imageView.IsCreateByXaml && url.Contains("*Resource*"))
+                {
+                    string resource = Tizen.Applications.Application.Current.DirectoryInfo.Resource;
+                    url = url.Replace("*Resource*", resource);
+                }
+                imageView._url = url;
                 imageView.UpdateImage();
             }
         },
@@ -53,9 +59,44 @@ namespace Tizen.NUI.BaseComponents
             var imageView = (ImageView)bindable;
             if (newValue != null)
             {
+                PropertyMap map = (PropertyMap)newValue;
+                if (imageView.IsCreateByXaml)
+                {
+                    string url = "", alphaMaskURL="", auxiliaryImageURL = "";
+                    string resource = Tizen.Applications.Application.Current.DirectoryInfo.Resource;
+                    PropertyValue urlValue = map.Find(NDalic.IMAGE_VISUAL_URL);
+                    bool ret = false;
+                    if (urlValue != null) ret = urlValue.Get(out url);
+                    PropertyMap mmap = new PropertyMap();
+                    if (ret && url.Contains("*Resource*"))
+                    {
+                        url = url.Replace("*Resource*", resource);
+                        mmap.Insert(NDalic.IMAGE_VISUAL_URL, new PropertyValue(url));
+                    }
+
+                    ret = false;
+                    PropertyValue alphaMaskUrlValue = map.Find(NDalic.IMAGE_VISUAL_ALPHA_MASK_URL);
+                    if (alphaMaskUrlValue != null) ret = alphaMaskUrlValue.Get(out alphaMaskURL);
+                    if (ret && alphaMaskURL.Contains("*Resource*"))
+                    {
+                        alphaMaskURL = alphaMaskURL.Replace("*Resource*", resource);
+                        mmap.Insert(NDalic.IMAGE_VISUAL_URL, new PropertyValue(alphaMaskURL));
+                    }
+
+                    ret = false;
+                    PropertyValue auxiliaryImageURLValue  = map.Find(NDalic.IMAGE_VISUAL_AUXILIARY_IMAGE_URL);
+                    if (auxiliaryImageURLValue != null) ret = auxiliaryImageURLValue.Get(out auxiliaryImageURL);
+                    if (ret && auxiliaryImageURL.Contains("*Resource*"))
+                    {
+                        auxiliaryImageURL = auxiliaryImageURL.Replace("*Resource*", resource);
+                        mmap.Insert(NDalic.IMAGE_VISUAL_AUXILIARY_IMAGE_URL, new PropertyValue(auxiliaryImageURL));
+                    }
+
+                    map.Merge(mmap);
+                }
                 if (imageView._border == null)
                 {
-                    Tizen.NUI.Object.SetProperty(imageView.swigCPtr, ImageView.Property.IMAGE, new Tizen.NUI.PropertyValue((PropertyMap)newValue));
+                    Tizen.NUI.Object.SetProperty(imageView.swigCPtr, ImageView.Property.IMAGE, new Tizen.NUI.PropertyValue(map));
                 }
             }
         },
