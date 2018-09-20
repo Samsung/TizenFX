@@ -91,7 +91,7 @@ namespace Tizen.NUI.BaseComponents
                         auxiliaryImageURL = auxiliaryImageURL.Replace("*Resource*", resource);
                         mmap.Insert(NDalic.IMAGE_VISUAL_AUXILIARY_IMAGE_URL, new PropertyValue(auxiliaryImageURL));
                     }
-                    
+
                     map.Merge(mmap);
                 }
                 if (imageView._border == null)
