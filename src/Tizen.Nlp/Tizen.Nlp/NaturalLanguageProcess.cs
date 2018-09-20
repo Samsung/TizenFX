@@ -160,6 +160,7 @@ namespace Tizen.Nlp
         /// An async method  to connect remote service.
         /// </summary>
         /// <since_tizen> 5 </since_tizen>
+        /// <returns>A task representing the asynchronous connect operation.</returns>
         /// <exception cref="InvalidOperationException">Thrown when the connect is rejected.</exception>
         public Task Connect()
         {
