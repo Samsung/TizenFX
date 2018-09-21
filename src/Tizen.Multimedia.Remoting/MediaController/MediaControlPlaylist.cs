@@ -45,6 +45,7 @@ namespace Tizen.Multimedia.Remoting
             NativePlaylist.CreatePlaylist(name, out IntPtr handle).ThrowIfError("Failed to create playlist");
 
             Name = name;
+            _handle = handle;
         }
 
         /// <summary>
