@@ -26,8 +26,12 @@ namespace Tizen.NUI
     /// </summary>
     internal class LayoutItem : LayoutItemWrapper
     {
+        //It is called by LayoutGroupWrapper constructor.
         internal LayoutItem(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn)
         {
+            System.IntPtr wrapperImpe_CPtr = LayoutPINVOKE.LayoutItemWrapper_GetImplementation(cPtr);
+            layoutItemWrapperImpl = new LayoutItemWrapperImpl(wrapperImpe_CPtr, true);
+            LayoutItemInitialize(layoutItemWrapperImpl);
         }
 
         public LayoutItem() : base(new LayoutItemWrapperImpl())

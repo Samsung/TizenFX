@@ -1568,6 +1568,24 @@ namespace Tizen.NUI
             }
         }
 
+        [global::System.Runtime.InteropServices.DllImport(Graphics.GlesCSharpBinder, EntryPoint = "CSharp_Dali_LayoutItemWrapper_GetImplementation")]
+        public static extern global::System.IntPtr LayoutItemWrapper_GetImplementation_gl(global::System.IntPtr jarg1);
+
+        [global::System.Runtime.InteropServices.DllImport(Graphics.VulkanCSharpBinder, EntryPoint = "CSharp_Dali_LayoutItemWrapper_GetImplementation")]
+        public static extern global::System.IntPtr LayoutItemWrapper_GetImplementation_vulkan(global::System.IntPtr jarg1);
+
+        public static global::System.IntPtr LayoutItemWrapper_GetImplementation(global::System.IntPtr jarg1)
+        {
+            if (Tizen.NUI.Graphics.Backend == Tizen.NUI.Graphics.BackendType.Vulkan)
+            {
+                return LayoutItemWrapper_GetImplementation_vulkan(jarg1);
+            }
+            else
+            {
+                return LayoutItemWrapper_GetImplementation_gl(jarg1); ;
+            }
+        }
+
         [global::System.Runtime.InteropServices.DllImport(Graphics.GlesCSharpBinder, EntryPoint = "CSharp_Dali_LayoutItemWrapperImpl_GetOwner")]
         public static extern global::System.IntPtr LayoutItemWrapperImpl_GetOwner_gl(global::System.Runtime.InteropServices.HandleRef jarg1);
 
