@@ -330,8 +330,6 @@ namespace Tizen.NUI
         /// Register the assembly to XAML.
         /// </summary>
         /// <since_tizen> 5 </since_tizen>
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
         public static void RegisterAssembly(Assembly assembly)
         {
             XamlParser.s_assemblies.Add(assembly);
