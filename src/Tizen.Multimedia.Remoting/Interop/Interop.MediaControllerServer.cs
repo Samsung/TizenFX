@@ -245,7 +245,7 @@ internal static partial class Interop
         #endregion Capability
 
         #region Search
-        [DllImport(Libraries.MediaController, EntryPoint = "mc_search_foreach")]
+        [DllImport(Libraries.MediaController, EntryPoint = "mc_search_foreach_condition")]
         internal static extern MediaControllerError ForeachSearchCondition(IntPtr serverHandle,
             SearchItemCallback callback, IntPtr userData = default(IntPtr));
 

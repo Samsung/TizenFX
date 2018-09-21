@@ -92,6 +92,7 @@ namespace Tizen.Multimedia.Remoting
         {
             try
             {
+
                 if (bundle != null)
                 {
                     NativeServer.SendCommandReplyBundle(serverHandle, ReceiverId, _requestId, result, bundle.SafeBundleHandle)
@@ -518,47 +519,25 @@ namespace Tizen.Multimedia.Remoting
             }
         }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="SearchCommand"/> class by server side.
+        /// </summary>
         internal SearchCommand(List<MediaControlSearchCondition> conditions, IntPtr searchHandle)
         {
             _searchHandle = searchHandle;
-
-            try
-            {
-                foreach (var condition in conditions)
-                {
-                    if (condition.Bundle != null)
-                    {
-                        NativeClient.SetSearchConditionBundle(_searchHandle, condition.ContentType, condition.Category,
-                            condition.Keyword, condition.Bundle.SafeBundleHandle).
-                            ThrowIfError("Failed to set search condition.");
-                    }
-                    else
-                    {
-                        NativeClient.SetSearchCondition(_searchHandle, condition.ContentType, condition.Category,
-                            condition.Keyword, IntPtr.Zero).
-                            ThrowIfError("Failed to set search condition.");
-                    }
-                }
-            }
-            catch
-            {
-                if (_searchHandle != IntPtr.Zero)
-                {
-                    NativeClient.DestroySearchHandle(_searchHandle).ThrowIfError("Failed to destroy search handle");
-                }
-                throw;
-            }
+            Conditions = conditions;
         }
+
+        /// <summary>
+        /// Gets or sets the search conditions.
+        /// </summary>
+        /// <since_tizen> 5 </since_tizen>
+        public IEnumerable<MediaControlSearchCondition> Conditions { get; private set; }
 
         internal override string Request(NativeClientHandle clientHandle)
         {
             NativeClient.SendSearchCommand(clientHandle, ReceiverId, _searchHandle, out string requestId).
                 ThrowIfError("Failed to send search command.");
-
-            if (_searchHandle != IntPtr.Zero)
-            {
-                NativeClient.DestroySearchHandle(_searchHandle).ThrowIfError("Failed to destroy search handle");
-            }
 
             return requestId;
         }
@@ -570,11 +549,6 @@ namespace Tizen.Multimedia.Remoting
         protected override void OnResponseCompleted()
         {
             base.OnResponseCompleted();
-
-            if (_searchHandle != IntPtr.Zero)
-            {
-                NativeClient.DestroySearchHandle(_searchHandle).ThrowIfError("Failed to destroy search handle");
-            }
         }
     }
 }
