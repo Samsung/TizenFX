@@ -22,6 +22,7 @@ namespace Tizen.Multimedia.Remoting
     /// Provides data for the <see cref="MediaControlServer.PlaybackCommandReceived"/> event.
     /// </summary>
     /// <since_tizen> 4 </since_tizen>
+    [Obsolete("Please do not use! This will be deprecated. Please use PlaybackActionCommandReceived instead.")]
     public class PlaybackCommandReceivedEventArgs : EventArgs
     {
         /// <summary>

@@ -36,7 +36,7 @@ namespace ElmSharp
         internal static GenGridItemEventArgs CreateFromSmartEvent(IntPtr data, IntPtr obj, IntPtr info)
         {
             GenGridItem item = ItemObject.GetItemByHandle(info) as GenGridItem;
-            return new GenGridItemEventArgs() { Item = item };
+            return new GenGridItemEventArgs { Item = item };
         }
     }
 

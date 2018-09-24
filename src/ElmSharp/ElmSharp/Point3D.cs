@@ -43,7 +43,7 @@ namespace ElmSharp
         public int Z;
 
         /// <summary>
-        /// A human-readable representation of <see cref="T:Tizen.UI.Point3D"/>.
+        /// A human-readable representation of <see cref="Point3D"/>.
         /// </summary>
         /// <returns>The string is formatted as "{{X={0} Y={1} Z={2}}}".</returns>
         /// <since_tizen> preview </since_tizen>
@@ -97,11 +97,11 @@ namespace ElmSharp
         }
 
         /// <summary>
-        /// Whether both <see cref="T:Tizen.UI.Point3D"/>s are equal.
+        /// Whether both <see cref="Point3D"/>s are equal.
         /// </summary>
-        /// <param name="p1">A <see cref="T:Tizen.UI.Point3D"/> on the left hand side.</param>
-        /// <param name="p2">A <see cref="T:Tizen.UI.Point3D"/> on the right hand side.</param>
-        /// <returns>True if both <see cref="T:Tizen.UI.Point3D"/>s have equal values.</returns>
+        /// <param name="p1">A <see cref="Point3D"/> on the left hand side.</param>
+        /// <param name="p2">A <see cref="Point3D"/> on the right hand side.</param>
+        /// <returns>True if both <see cref="Point3D"/>s have equal values.</returns>
         /// <since_tizen> preview </since_tizen>
         public static bool operator ==(Point3D p1, Point3D p2)
         {
@@ -109,11 +109,11 @@ namespace ElmSharp
         }
 
         /// <summary>
-        /// Whether both <see cref="T:Tizen.UI.Point3D"/>s are not equal.
+        /// Whether both <see cref="Point3D"/>s are not equal.
         /// </summary>
-        /// <param name="p1">A <see cref="T:Tizen.UI.Point3D"/> on the left hand side.</param>
-        /// <param name="p2">A <see cref="T:Tizen.UI.Point3D"/> on the right hand side.</param>
-        /// <returns>True if both <see cref="T:Tizen.UI.Point3D"/>s do not have equal values.</returns>
+        /// <param name="p1">A <see cref="Point3D"/> on the left hand side.</param>
+        /// <param name="p2">A <see cref="Point3D"/> on the right hand side.</param>
+        /// <returns>True if both <see cref="Point3D"/>s do not have equal values.</returns>
         /// <since_tizen> preview </since_tizen>
         public static bool operator !=(Point3D p1, Point3D p2)
         {

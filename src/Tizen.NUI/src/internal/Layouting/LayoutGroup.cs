@@ -96,8 +96,10 @@ namespace Tizen.NUI
             for( uint i = 0; i < ChildCount; ++i )
             {
                 var childLayout = GetChildAt( i );
+
                 var view = GetOwner();
                 string ownerName = view.Name;
+
                 if( childLayout )
                 {
                     MeasureChild( childLayout, widthMeasureSpec, heightMeasureSpec );

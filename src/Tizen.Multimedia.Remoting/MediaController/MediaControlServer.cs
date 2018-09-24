@@ -15,6 +15,9 @@
  */
 
 using System;
+using System.Collections.Generic;
+using System.Threading.Tasks;
+using Tizen.Applications;
 using Native = Interop.MediaControllerServer;
 
 namespace Tizen.Multimedia.Remoting
@@ -25,7 +28,7 @@ namespace Tizen.Multimedia.Remoting
     /// <seealso cref="MediaControllerManager"/>
     /// <seealso cref="MediaController"/>
     /// <since_tizen> 4 </since_tizen>
-    public static class MediaControlServer
+    public static partial class MediaControlServer
     {
         private static IntPtr _handle = IntPtr.Zero;
         private static bool? _isRunning;
@@ -103,6 +106,15 @@ namespace Tizen.Multimedia.Remoting
             try
             {
                 RegisterPlaybackCommandReceivedEvent();
+                RegisterPlaybackActionCommandReceivedEvent();
+                RegisterPlaybackPositionCommandReceivedEvent();
+                RegisterPlaylistCommandReceivedEvent();
+                RegisterShuffleModeCommandReceivedEvent();
+                RegisterRepeatModeCommandReceivedEvent();
+                RegisterCustomCommandReceivedEvent();
+                RegisterCommandCompletedEvent();
+                RegisterSearchCommandReceivedEvent();
+
                 _isRunning = true;
             }
             catch
@@ -175,14 +187,14 @@ namespace Tizen.Multimedia.Remoting
                 throw new ArgumentOutOfRangeException(nameof(position), position, "position can't be less than zero.");
             }
 
-            Native.SetPlaybackState(Handle, state.ToCode()).ThrowIfError("Failed to set playback state.");
+            Native.SetPlaybackState(Handle, state.ToNative()).ThrowIfError("Failed to set playback state.");
 
             Native.SetPlaybackPosition(Handle, (ulong)position).ThrowIfError("Failed to set playback position.");
 
             Native.UpdatePlayback(Handle).ThrowIfError("Failed to set playback.");
         }
 
-        private static void SetMetadata(MediaControllerAttribute attribute, string value)
+        private static void SetMetadata(MediaControllerNativeAttribute attribute, string value)
         {
             Native.SetMetadata(Handle, attribute, value).ThrowIfError($"Failed to set metadata({attribute}).");
         }
@@ -205,17 +217,17 @@ namespace Tizen.Multimedia.Remoting
                 throw new ArgumentNullException(nameof(metadata));
             }
 
-            SetMetadata(MediaControllerAttribute.Title, metadata.Title);
-            SetMetadata(MediaControllerAttribute.Artist, metadata.Artist);
-            SetMetadata(MediaControllerAttribute.Album, metadata.Album);
-            SetMetadata(MediaControllerAttribute.Author, metadata.Author);
-            SetMetadata(MediaControllerAttribute.Genre, metadata.Genre);
-            SetMetadata(MediaControllerAttribute.Duration, metadata.Duration);
-            SetMetadata(MediaControllerAttribute.Date, metadata.Date);
-            SetMetadata(MediaControllerAttribute.Copyright, metadata.Copyright);
-            SetMetadata(MediaControllerAttribute.Description, metadata.Description);
-            SetMetadata(MediaControllerAttribute.TrackNumber, metadata.TrackNumber);
-            SetMetadata(MediaControllerAttribute.Picture, metadata.AlbumArtPath);
+            SetMetadata(MediaControllerNativeAttribute.Title, metadata.Title);
+            SetMetadata(MediaControllerNativeAttribute.Artist, metadata.Artist);
+            SetMetadata(MediaControllerNativeAttribute.Album, metadata.Album);
+            SetMetadata(MediaControllerNativeAttribute.Author, metadata.Author);
+            SetMetadata(MediaControllerNativeAttribute.Genre, metadata.Genre);
+            SetMetadata(MediaControllerNativeAttribute.Duration, metadata.Duration);
+            SetMetadata(MediaControllerNativeAttribute.Date, metadata.Date);
+            SetMetadata(MediaControllerNativeAttribute.Copyright, metadata.Copyright);
+            SetMetadata(MediaControllerNativeAttribute.Description, metadata.Description);
+            SetMetadata(MediaControllerNativeAttribute.TrackNumber, metadata.TrackNumber);
+            SetMetadata(MediaControllerNativeAttribute.Picture, metadata.AlbumArtPath);
 
             Native.UpdateMetadata(Handle).ThrowIfError("Failed to set metadata.");
         }
@@ -232,7 +244,7 @@ namespace Tizen.Multimedia.Remoting
         /// <since_tizen> 4 </since_tizen>
         public static void SetShuffleModeEnabled(bool enabled)
         {
-            Native.UpdateShuffleMode(Handle, enabled ? MediaControllerShuffleMode.On : MediaControllerShuffleMode.Off).
+            Native.UpdateShuffleMode(Handle, enabled ? MediaControllerNativeShuffleMode.On : MediaControllerNativeShuffleMode.Off).
                 ThrowIfError("Failed to set shuffle mode.");
         }
 
@@ -255,21 +267,280 @@ namespace Tizen.Multimedia.Remoting
         }
 
         /// <summary>
-        /// Occurs when a client sends playback command.
+        /// Sets the index of current playing media.
         /// </summary>
-        /// <since_tizen> 4 </since_tizen>
-        public static event EventHandler<PlaybackCommandReceivedEventArgs> PlaybackCommandReceived;
-
-        private static Native.PlaybackStateCommandReceivedCallback _playbackCommandCallback;
-
-        private static void RegisterPlaybackCommandReceivedEvent()
+        /// <param name="index">The index of current playing media.</param>
+        /// <exception cref="ArgumentNullException"><paramref name="index"/> is null.</exception>
+        /// <exception cref="InvalidOperationException">
+        ///     The server is not running .<br/>
+        ///     -or-<br/>
+        ///     An internal error occurs.
+        /// </exception>
+        /// <since_tizen> 5 </since_tizen>
+        public static void SetIndexOfCurrentPlayingMedia(string index)
         {
-            _playbackCommandCallback = (clientName, playbackCode, _) =>
-            {
-                PlaybackCommandReceived?.Invoke(null, new PlaybackCommandReceivedEventArgs(clientName, playbackCode.ToCommand()));
-            };
-            Native.SetPlaybackStateCmdRecvCb(Handle, _playbackCommandCallback).
-                ThrowIfError("Failed to init PlaybackStateCommandReceived event."); ;
+            Native.SetIndexOfCurrentPlayingMedia(Handle, index)
+                .ThrowIfError("Failed to set the index of current playing media");
         }
+
+        /// <summary>
+        /// Delete playlist.
+        /// </summary>
+        /// <param name="playlist">The name of playlist.</param>
+        /// <exception cref="InvalidOperationException">
+        ///     The server is not running .<br/>
+        ///     -or-<br/>
+        ///     An internal error occurs.
+        /// </exception>
+        /// <since_tizen> 5 </since_tizen>
+        public static void RemovePlaylist(MediaControlPlaylist playlist)
+        {
+            Native.DeletePlaylist(Handle, playlist.Handle);
+            playlist.Dispose();
+        }
+
+        // Saves the playlist to the persistent storage.
+        internal static void SavePlaylist(IntPtr playlistHandle)
+        {
+            Native.SavePlaylist(Handle, playlistHandle).ThrowIfError("Failed to save playlist");
+        }
+
+        // Gets the playlist handle by name.
+        internal static IntPtr GetPlaylistHandle(string name)
+        {
+            Native.GetPlaylistHandle(Handle, name, out IntPtr playlistHandle)
+                .ThrowIfError("Failed to get playlist handle by name");
+
+            return playlistHandle;
+        }
+
+        /// <summary>
+        /// Gets the active clients.
+        /// </summary>
+        /// <exception cref="InvalidOperationException">
+        ///     The server is not running .<br/>
+        ///     -or-<br/>
+        ///     An internal error occurs.
+        /// </exception>
+        /// <returns>the activated client ids.</returns>
+        /// <since_tizen> 5 </since_tizen>
+        public static IEnumerable<string> GetActivatedClients()
+        {
+            var clientIds = new List<string>();
+
+            Native.ActivatedClientCallback activatedClientCallback = (name, _) =>
+            {
+                clientIds.Add(name);
+                return true;
+            };
+
+            Native.ForeachActivatedClient(Handle, activatedClientCallback).
+                ThrowIfError("Failed to get activated client.");
+
+            return clientIds.AsReadOnly();
+        }
+
+        /// <summary>
+        /// Requests commands to the client.
+        /// </summary>
+        /// <remarks>
+        /// The client can request the command to execute <see cref="Command"/>, <br/>
+        /// and then, the server receive the result of each request(command).
+        /// </remarks>
+        /// <param name="command">A <see cref="Command"/> class.</param>
+        /// <param name="clientId">The client Id to send command.</param>
+        /// <returns>A task that represents the asynchronous operation.</returns>
+        /// <exception cref="InvalidOperationException">
+        ///     The server has already been stopped.<br/>
+        ///     -or-<br/>
+        ///     An internal error occurs.
+        /// </exception>
+        /// <since_tizen> 5 </since_tizen>
+        public static async Task RequestAsync(Command command, string clientId)
+        {
+            command.SetRequestInformation(clientId);
+
+            var tcs = new TaskCompletionSource<MediaControllerError>();
+            string reqeustId = null;
+
+            EventHandler<CommandCompletedEventArgs> eventHandler = (s, e) =>
+            {
+                if (e.RequestId == reqeustId)
+                {
+                    tcs.TrySetResult(e.Result);
+                }
+            };
+
+            try
+            {
+                CommandCompleted += eventHandler;
+
+                reqeustId = command.Request(Handle);
+
+                (await tcs.Task).ThrowIfError("Failed to request event.");
+            }
+            finally
+            {
+                CommandCompleted -= eventHandler;
+            }
+        }
+
+        /// <summary>
+        /// Sends the result of each command.
+        /// </summary>
+        /// <param name="command">The command that return to client.</param>
+        /// <param name="result">The result of <paramref name="command"/>.</param>
+        /// <param name="bundle">The extra data.</param>
+        /// <exception cref="InvalidOperationException">
+        ///     The server is not running .<br/>
+        ///     -or-<br/>
+        ///     An internal error occurs.
+        /// </exception>
+        /// <since_tizen> 5 </since_tizen>
+        public static void Response(Command command, int result, Bundle bundle)
+        {
+            command.Response(Handle, result, bundle);
+        }
+
+        /// <summary>
+        /// Sends the result of each command.
+        /// </summary>
+        /// <param name="command">The command that return to client.</param>
+        /// <param name="result">The result of <paramref name="command"/>.</param>
+        /// <exception cref="InvalidOperationException">
+        ///     The server is not running .<br/>
+        ///     -or-<br/>
+        ///     An internal error occurs.
+        /// </exception>
+        /// <since_tizen> 5 </since_tizen>
+        public static void Response(Command command, int result)
+        {
+            command.Response(Handle, result, null);
+        }
+
+        #region Capabilities
+        /// <summary>
+        /// Sets the content type of latest played media.
+        /// </summary>
+        /// <param name="type">A value indicating the content type of the latest played media.</param>
+        /// <exception cref="InvalidOperationException">
+        ///     The server is not running .<br/>
+        ///     -or-<br/>
+        ///     An internal error occurs.
+        /// </exception>
+        /// <exception cref="ArgumentException"><paramref name="type"/> is invalid.</exception>
+        /// <since_tizen> 5 </since_tizen>
+        public static void SetPlaybackContentType(MediaControlContentType type)
+        {
+            ValidationUtil.ValidateEnum(typeof(MediaControlContentType), type, nameof(type));
+
+            Native.SetPlaybackContentType(Handle, type).ThrowIfError("Failed to set playback content type.");
+        }
+
+        /// <summary>
+        /// Sets the path of icon.
+        /// </summary>
+        /// <param name="path">The path of icon.</param>
+        /// <exception cref="InvalidOperationException">
+        ///     The server is not running .<br/>
+        ///     -or-<br/>
+        ///     An internal error occurs.
+        /// </exception>
+        /// <exception cref="ArgumentNullException"><paramref name="path"/> is invalid.</exception>
+        /// <since_tizen> 5 </since_tizen>
+        public static void SetIconPath(string path)
+        {
+            if (path == null)
+            {
+                throw new ArgumentNullException(nameof(path));
+            }
+
+            Native.SetIconPath(Handle, path).ThrowIfError("Failed to set uri path.");
+        }
+
+        /// <summary>
+        /// Sets the capabilities by <see cref="MediaControlPlaybackCommand"/>.
+        /// </summary>
+        /// <param name="capabilities">The set of <see cref="MediaControlPlaybackCommand"/> and <see cref="MediaControlCapabilitySupport"/>.</param>
+        /// <exception cref="InvalidOperationException">
+        ///     The server is not running .<br/>
+        ///     -or-<br/>
+        ///     An internal error occurs.
+        /// </exception>
+        /// <exception cref="ArgumentException"><paramref name="capabilities"/> is invalid.</exception>
+        /// <since_tizen> 5 </since_tizen>
+        public static void SetPlaybackCapability(Dictionary<MediaControlPlaybackCommand, MediaControlCapabilitySupport> capabilities)
+        {
+            foreach (var pair in capabilities)
+            {
+                ValidationUtil.ValidateEnum(typeof(MediaControlPlaybackCommand), pair.Key, nameof(pair.Key));
+                ValidationUtil.ValidateEnum(typeof(MediaControlCapabilitySupport), pair.Value, nameof(pair.Value));
+
+                SetPlaybackCapability(pair.Key, pair.Value);
+                Native.SetPlaybackCapability(Handle, pair.Key.ToNative(), pair.Value).
+                    ThrowIfError("Failed to set playback capability.");
+            }
+
+            Native.SaveAndNotifyPlaybackCapabilityUpdated(Handle).ThrowIfError("Failed to update playback capability.");
+        }
+
+        /// <summary>
+        /// Sets the capabilities by <see cref="MediaControlPlaybackCommand"/>.
+        /// </summary>
+        /// <param name="action">A playback command.</param>
+        /// <param name="support">A value indicating whether the <paramref name="action"/> is supported or not.</param>
+        /// <exception cref="InvalidOperationException">
+        ///     The server is not running .<br/>
+        ///     -or-<br/>
+        ///     An internal error occurs.
+        /// </exception>
+        /// <exception cref="ArgumentException"><paramref name="action"/> or <paramref name="support"/> is invalid.</exception>
+        /// <since_tizen> 5 </since_tizen>
+        public static void SetPlaybackCapability(MediaControlPlaybackCommand action, MediaControlCapabilitySupport support)
+        {
+            ValidationUtil.ValidateEnum(typeof(MediaControlPlaybackCommand), action, nameof(action));
+            ValidationUtil.ValidateEnum(typeof(MediaControlCapabilitySupport), support, nameof(support));
+
+            Native.SetPlaybackCapability(Handle, action.ToNative(), support).ThrowIfError("Failed to set playback capability.");
+
+            Native.SaveAndNotifyPlaybackCapabilityUpdated(Handle).ThrowIfError("Failed to update playback capability.");
+        }
+
+        /// <summary>
+        /// Sets the <see cref="MediaControlCapabilitySupport"/> indicating shuffle mode is supported or not.
+        /// </summary>
+        /// <param name="support">A value indicating whether the shuffle mode is supported or not.</param>
+        /// <exception cref="InvalidOperationException">
+        ///     The server is not running .<br/>
+        ///     -or-<br/>
+        ///     An internal error occurs.
+        /// </exception>
+        /// <exception cref="ArgumentException"><paramref name="support"/> is invalid.</exception>
+        /// <since_tizen> 5 </since_tizen>
+        public static void SetShuffleModeCapability(MediaControlCapabilitySupport support)
+        {
+            ValidationUtil.ValidateEnum(typeof(MediaControlCapabilitySupport), support, nameof(support));
+
+            Native.SetShuffleModeCapability(Handle, support).ThrowIfError("Failed to set shuffle mode capability.");
+        }
+
+        /// <summary>
+        /// Sets the content type of latest played media.
+        /// </summary>
+        /// <param name="support">A value indicating whether the <see cref="MediaControlRepeatMode"/> is supported or not.</param>
+        /// <exception cref="InvalidOperationException">
+        ///     The server is not running .<br/>
+        ///     -or-<br/>
+        ///     An internal error occurs.
+        /// </exception>
+        /// <exception cref="ArgumentException"><paramref name="support"/> is invalid.</exception>
+        /// <since_tizen> 5 </since_tizen>
+        public static void SetRepeatModeCapability(MediaControlCapabilitySupport support)
+        {
+            ValidationUtil.ValidateEnum(typeof(MediaControlCapabilitySupport), support, nameof(support));
+
+            Native.SetRepeatModeCapability(Handle, support).ThrowIfError("Failed to set shuffle mode capability.");
+        }
+        #endregion Capabilities
     }
 }

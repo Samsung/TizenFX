@@ -19,12 +19,6 @@ internal static partial class Interop
     internal static partial class Libraries
     {
         public const string Connection = "libcapi-network-connection.so.1";
-        public const string WiFi = "libcapi-network-wifi.so.1";
-        public const string Bluetooth = "libcapi-network-bluetooth.so.0";
-        public const string Smartcard = "libcapi-network-smartcard.so.0";
-        public const string Nfc = "libcapi-network-nfc.so.0";
-        public const string WiFiDirect = "libwifi-direct.so.1";
-        public const string Glib = "libglib-2.0.so.0";
         public const string Libc = "libc.so.6";
     }
 }

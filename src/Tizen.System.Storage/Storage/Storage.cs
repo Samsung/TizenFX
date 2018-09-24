@@ -191,7 +191,7 @@ namespace Tizen.System
         }
 
         /// <summary>
-        /// The StorageDevice
+        /// The StorageDevice.
         /// </summary>
         /// <since_tizen> 5 </since_tizen>
         /// <exception cref="InvalidOperationException">Thrown when DeviceType is not initialized.</exception>
@@ -209,7 +209,7 @@ namespace Tizen.System
         }
 
         /// <summary>
-        /// The type of file system
+        /// The type of file system.
         /// </summary>
         /// <since_tizen> 5 </since_tizen>
         /// <exception cref="InvalidOperationException">Thrown when Fstype is not initialized.</exception>
@@ -227,7 +227,7 @@ namespace Tizen.System
         }
 
         /// <summary>
-        /// The uuid of the file system
+        /// The UUID of the file system.
         /// </summary>
         /// <since_tizen> 5 </since_tizen>
         /// <exception cref="InvalidOperationException">Thrown when Fsuuid is not initialized.</exception>
@@ -245,10 +245,10 @@ namespace Tizen.System
         }
 
         /// <summary>
-        /// Information about whether this is primary partition
+        /// Information whether this is a primary partition.
         /// </summary>
         /// <since_tizen> 5 </since_tizen>
-        /// <exception cref="InvalidOperationException">Thrown when Primary is not initialized.</exception>
+        /// <exception cref="InvalidOperationException">Thrown when primary is not initialized.</exception>
         public bool Primary
         {
             get
@@ -263,10 +263,10 @@ namespace Tizen.System
         }
 
         /// <summary>
-        /// The flags for the storage status
+        /// The flags for the storage status.
         /// </summary>
         /// <since_tizen> 5 </since_tizen>
-        /// <exception cref="InvalidOperationException">Thrown when Flags is not initialized.</exception>
+        /// <exception cref="InvalidOperationException">Thrown when flags are not initialized.</exception>
         public int Flags
         {
             get
@@ -305,7 +305,7 @@ namespace Tizen.System
         /// <summary>
         /// The available storage size in bytes.
         /// </summary>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 5 </since_tizen>
         public ulong AvailableSpace
         {
             get

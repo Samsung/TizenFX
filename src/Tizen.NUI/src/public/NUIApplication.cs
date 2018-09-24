@@ -62,10 +62,10 @@ namespace Tizen.NUI
         private Size2D _windowSize2D = null;
         private Position2D _windowPosition2D = null;
         /// <summary>
-        /// The constructor with window size and position
+        /// The constructor with window size and position.
         /// </summary>
-        /// <param name="windowSize">The window size</param>
-        /// <param name="windowPosition">The window position</param>
+        /// <param name="windowSize">The window size.</param>
+        /// <param name="windowPosition">The window position.</param>
         /// <since_tizen> 5 </since_tizen>
         /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
@@ -87,11 +87,11 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// The constructor with a stylesheet, window size and position
+        /// The constructor with a stylesheet, window size, and position.
         /// </summary>
-        /// <param name="styleSheet">The styleSheet url.</param>
-        /// <param name="windowSize">The window size</param>
-        /// <param name="windowPosition">The window position</param>
+        /// <param name="styleSheet">The styleSheet URL.</param>
+        /// <param name="windowSize">The window size.</param>
+        /// <param name="windowPosition">The window position.</param>
         /// <since_tizen> 5 </since_tizen>
         /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
@@ -114,12 +114,12 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// The constructor with a stylesheet, window mode, window size and position
+        /// The constructor with a stylesheet, window mode, window size, and position.
         /// </summary>
-        /// <param name="styleSheet">The styleSheet url</param>
-        /// <param name="windowMode">The windowMode</param>
-        /// <param name="windowSize">The window size</param>
-        /// <param name="windowPosition">The window position</param>
+        /// <param name="styleSheet">The styleSheet URL.</param>
+        /// <param name="windowMode">The windowMode.</param>
+        /// <param name="windowSize">The window size.</param>
+        /// <param name="windowPosition">The window position.</param>
         /// <since_tizen> 5 </since_tizen>
         /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
@@ -131,14 +131,16 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Internal constructor with Graphics Backend Type
+        /// Internal inhouse constructor with Graphics Backend Type
         /// </summary>
         /// <param name="backend"></param>
         /// <param name="windowMode"></param>
         /// <param name="windowSize"></param>
         /// <param name="windowPosition"></param>
         /// <param name="styleSheet"></param>
-        internal NUIApplication(Graphics.BackendType backend, WindowMode windowMode = WindowMode.Opaque, Size2D windowSize = null, Position2D windowPosition = null, string styleSheet = "") : base(new NUICoreBackend(styleSheet, windowMode))
+        /// InhouseAPI, this could be opend in NextTizen
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public NUIApplication(Graphics.BackendType backend, WindowMode windowMode = WindowMode.Opaque, Size2D windowSize = null, Position2D windowPosition = null, string styleSheet = "") : base(new NUICoreBackend(styleSheet, windowMode))
         {
             //windowMode and styleSheet will be added later. currenlty it's not working as expected.
             Graphics.Backend = backend;
@@ -353,7 +355,9 @@ namespace Tizen.NUI
     /// <summary>
     /// Graphics BackendType
     /// </summary>
-    internal class Graphics
+    /// InhouseAPI, this could be opend in NextTizen
+    [EditorBrowsable(EditorBrowsableState.Never)]
+    public class Graphics
     {
         public enum BackendType
         {

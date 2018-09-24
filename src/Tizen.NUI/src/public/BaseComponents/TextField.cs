@@ -1008,7 +1008,7 @@ namespace Tizen.NUI.BaseComponents
             //Release your own unmanaged resources here.
             //You should not access any managed member here except static instance.
             //because the execution order of Finalizes is non-deterministic.
-            if (this != null)
+            if (this.HasBody())
             {
                 if (_textFieldMaxLengthReachedCallbackDelegate != null)
                 {
@@ -1026,7 +1026,8 @@ namespace Tizen.NUI.BaseComponents
                 if (swigCMemOwn)
                 {
                     swigCMemOwn = false;
-                    inputMethodCotext?.Dispose();
+                    // In order to speed up IME hide, temporarily add
+                    GetInputMethodContext()?.DestroyContext();
                     NDalicPINVOKE.delete_TextField(swigCPtr);
                 }
                 swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
@@ -2298,7 +2299,7 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        /// Enables Text selection using Shift key.
+        /// Enables selection of the text using the Shift key.
         /// </summary>
         /// <since_tizen> 5 </since_tizen>
         /// This will be released at Tizen.NET API Level 5, so currently this would be used as inhouse API.

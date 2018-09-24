@@ -207,6 +207,9 @@ internal static partial class Interop
         [DllImport(Libraries.Connection, EntryPoint = "connection_profile_get_dhcp_server_address")]
         public static extern int GetDhcpServerAddress(IntPtr profileHandle, AddressFamily family, out string dhcpServerAddress);
 
+        [DllImport(Libraries.Connection, EntryPoint = "connection_profile_get_dhcp_lease_duration")]
+        public static extern int GetDhcpLeaseDuration(IntPtr profileHandle, AddressFamily family, out int dhcpLeaseDuration);
+
         [DllImport(Libraries.Connection, EntryPoint = "connection_profile_refresh")]
         public static extern int Refresh(IntPtr profileHandle);
 

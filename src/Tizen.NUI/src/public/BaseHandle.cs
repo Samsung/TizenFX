@@ -30,7 +30,7 @@ namespace Tizen.NUI
     public class BaseHandle : Element, global::System.IDisposable
     {
         /// <summary>
-        /// Event which is occurred when a property is set
+        /// Event when a property is set.
         /// </summary>
         /// <since_tizen> 5 </since_tizen>
         public event PropertyChangedEventHandler PropertySet;
@@ -333,7 +333,7 @@ namespace Tizen.NUI
         /// <summary>
         /// Gets the the hash code of this baseHandle.
         /// </summary>
-        /// <returns>The Hash Code.</returns>
+        /// <returns>The hash code.</returns>
         /// <since_tizen> 5 </since_tizen>
         public override int GetHashCode()
         {

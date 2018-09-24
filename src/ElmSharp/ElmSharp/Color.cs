@@ -184,12 +184,6 @@ namespace ElmSharp
         /// <since_tizen> preview </since_tizen>
         public static bool operator ==(Color a, Color b)
         {
-            if (ReferenceEquals(a, b))
-                return true;
-
-            if ((object)a == null || (object)b == null)
-                return false;
-
             return EqualsInner(a, b);
         }
 
@@ -232,20 +226,20 @@ namespace ElmSharp
         /// <since_tizen> preview </since_tizen>
         public static Color FromHex(string hex)
         {
-            hex = hex.Replace("#", "");
-            switch (hex.Length)
+            string ret = hex.Replace("#", "");
+            switch (ret.Length)
             {
                 case 3: //#rgb => ffrrggbb
-                    hex = string.Format("ff{0}{1}{2}{3}{4}{5}", hex[0], hex[0], hex[1], hex[1], hex[2], hex[2]);
+                    ret = string.Format("ff{0}{1}{2}{3}{4}{5}", ret[0], ret[0], ret[1], ret[1], ret[2], ret[2]);
                     break;
                 case 4: //#argb => aarrggbb
-                    hex = string.Format("{0}{1}{2}{3}{4}{5}{6}{7}", hex[0], hex[0], hex[1], hex[1], hex[2], hex[2], hex[3], hex[3]);
+                    ret = string.Format("{0}{1}{2}{3}{4}{5}{6}{7}", ret[0], ret[0], ret[1], ret[1], ret[2], ret[2], ret[3], ret[3]);
                     break;
                 case 6: //#rrggbb => ffrrggbb
-                    hex = string.Format("ff{0}", hex);
+                    ret = string.Format("ff{0}", ret);
                     break;
             }
-            return FromUint(Convert.ToUInt32(hex.Replace("#", ""), 16));
+            return FromUint(Convert.ToUInt32(ret.Replace("#", ""), 16));
         }
 
         /// <summary>

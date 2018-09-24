@@ -1,0 +1,17 @@
+<Project>
+
+  <ItemGroup >
+    <PackageReference Include="Microsoft.CodeAnalysis.FxCopAnalyzers" Version="2.6.1">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
+    </PackageReference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Include="$(MSBuildThisFileDirectory)GlobalSuppressions.cs">
+      <Link>_TizenFX_GlobalSuppressions.cs</Link>
+      <Visible>False</Visible>
+    </Compile>
+  </ItemGroup>
+
+</Project>

@@ -352,7 +352,7 @@ namespace ElmSharp
             return s_globalId++;
         }
 
-        class SignalData
+        class SignalData : IEquatable<SignalData>
         {
             public string Emission { get; set; }
             public string Source { get; set; }
@@ -365,22 +365,17 @@ namespace ElmSharp
                 Func = func;
             }
 
-            /// <summary>
-            /// Indicates whether this instance and a specified object are equal.
-            /// </summary>
-            /// <param name="obj">The object to compare with the current instance.</param>
-            /// <returns>
-            /// true if the object and this instance are of the same type and represent the same value,
-            /// otherwise false.
-            /// </returns>
-            public override bool Equals(object obj)
+            public override bool Equals(object other)
             {
-                SignalData s = obj as SignalData;
-                if (s == null)
+                return Equals(other as SignalData);
+            }
+
+            public bool Equals(SignalData other) {
+                if (other == null)
                 {
                     return false;
                 }
-                return (Emission == s.Emission) && (Source == s.Source) && (Func == s.Func);
+                return (Emission == other.Emission) && (Source == other.Source) && (Func == other.Func);
             }
 
             public override int GetHashCode()
@@ -396,11 +391,7 @@ namespace ElmSharp
         {
             IntPtr _trackHandle = IntPtr.Zero;
 
-            /// <summary>
-            /// Creates and initializes a new instance of the ItemEvasObject class.
-            /// </summary>
-            /// <param name="parent">IntPtr</param>
-            public ItemEvasObject(IntPtr parent) : base()
+            public ItemEvasObject(IntPtr parent)
             {
                 _trackHandle = Interop.Elementary.elm_object_item_track(parent);
                 if (_trackHandle != IntPtr.Zero)
@@ -409,11 +400,6 @@ namespace ElmSharp
                 }
             }
 
-            /// <summary>
-            /// Creates a widget handle.
-            /// </summary>
-            /// <param name="parent">Parent EvasObject.</param>
-            /// <returns>Handle IntPtr.</returns>
             protected override IntPtr CreateHandle(EvasObject parent)
             {
                 return _trackHandle;

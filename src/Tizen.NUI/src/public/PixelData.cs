@@ -21,7 +21,7 @@ namespace Tizen.NUI
     /// <summary>
     ///  The PixelData object holds a pixel buffer.<br />
     ///  The PixelData takes over the ownership of the pixel buffer.<br />
-    ///  The buffer memory must NOT be released outside of this class, instead,
+    ///  The buffer memory must not be released outside of this class, instead,
     ///  the PixelData object will release it automatically when the reference count falls to zero.
     /// </summary>
     /// Please DO NOT use! This will be deprecated!
@@ -59,7 +59,7 @@ namespace Tizen.NUI
 
             if (type == DisposeTypes.Explicit)
             {
-                //Called by User
+                //Called by User.
                 //Release your own managed resources here.
                 //You should release all of your own disposable objects here.
 
@@ -67,7 +67,7 @@ namespace Tizen.NUI
 
             //Release your own unmanaged resources here.
             //You should not access any managed member here except static instance.
-            //because the execution order of Finalizes is non-deterministic.
+            //Because the execution order of Finalizes is non-deterministic.
 
 
             if (swigCPtr.Handle != global::System.IntPtr.Zero)
@@ -144,7 +144,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Enumeration for Function to release the pixel buffer.
+        /// Enumeration for function to release the pixel buffer.
         /// </summary>
         /// <since_tizen> 5 </since_tizen>
         /// This will be released at Tizen.NET API Level 5, so currently this would be used as inhouse API.

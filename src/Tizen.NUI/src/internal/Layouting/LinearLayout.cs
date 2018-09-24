@@ -64,11 +64,9 @@ namespace Tizen.NUI
             base.Dispose(type);
         }
 
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public class ChildProperty
+        internal static class ChildProperty
         {
-            public static readonly int WEIGHT = LayoutPINVOKE.LinearLayout_ChildProperty_WEIGHT_get();
+            internal static readonly int WEIGHT = LayoutPINVOKE.LinearLayout_ChildProperty_WEIGHT_get();
         }
         public LinearLayout() : this(LayoutPINVOKE.LinearLayout_New(), true)
         {

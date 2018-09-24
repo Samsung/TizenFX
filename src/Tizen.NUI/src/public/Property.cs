@@ -1792,7 +1792,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Retrieves a Rotation value.
+        /// Retrieves a rotation value.
         /// </summary>
         /// <param name="quaternionValue">On return, a rotation value.</param>
         /// <returns>Returns true if the value is successfully retrieved, false if the type is not convertible.</returns>

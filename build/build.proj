@@ -4,7 +4,8 @@
 
   <!-- Build Properties -->
   <PropertyGroup>
-    <Configuration>Release</Configuration>
+    <Configuration Condition="'$(Configuration)' == ''">Release</Configuration>
+    <BuildWithAnalyzer Condition="'$(BuildWithAnalyzer)' == ''">False</BuildWithAnalyzer>
   </PropertyGroup>
 
   <!-- Projects to build -->
@@ -12,7 +13,6 @@
     <ProjectToBuild Include="$(ProjectSrcDir)\$(Project)\$(Project).csproj" Condition="'$(Project)' != ''" />
     <ProjectToBuild Include="$(ProjectSrcDir)**\*.csproj" Condition="'$(Project)' == ''" />
     <ProjectToBuild Include="$(InternalProjectSrcDir)**\*.csproj" Condition="'$(Project)' == ''" />
-    <ProjectToBuild Include="$(ExternalProjectSrcDir)**\*.csproj" Condition="'$(Project)' == ''" />
   </ItemGroup>
 
   <!-- Nuspec files to pack -->
@@ -31,7 +31,6 @@
     <ItemGroup>
       <ProjectIntermediateAllFiles Include="$(ProjectSrcDir)**\obj\*" />
       <ProjectIntermediateAllFiles Include="$(InternalProjectSrcDir)**\obj\*" />
-      <ProjectIntermediateAllFiles Include="$(ExternalProjectSrcDir)**\obj\*" />
       <ProjectIntermediateDir Include="@(ProjectIntermediateAllFiles->'%(RootDir)%(Directory)'->Distinct())" />
     </ItemGroup>
 
@@ -52,7 +51,7 @@
   <Target Name="Restore">
 
     <MSBuild Projects="@(ProjectToBuild)"
-             Properties="Configuration=$(Configuration);RestoreSources=$(RestoreSources)"
+             Properties="Configuration=$(Configuration);RestoreSources=$(RestoreSources);BuildWithAnalyzer=$(BuildWithAnalyzer)"
              BuildInParallel="false"
              Targets="Restore" />
 
@@ -66,7 +65,7 @@
   <Target Name="Build">
 
     <MSBuild Projects="@(ProjectToBuild)"
-             Properties="Configuration=$(Configuration)"
+             Properties="Configuration=$(Configuration);BuildWithAnalyzer=$(BuildWithAnalyzer)"
              BuildInParallel="true"
              UseResultsCache="true"
              Targets="Rebuild" />

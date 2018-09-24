@@ -220,7 +220,11 @@ namespace Tizen.Applications.Messages
 
                     if (_remotePortRegistered == null)
                     {
-                        RemoveRegistrationCallback();
+                        int ret = RemoveRegistrationCallback();
+                        if (ret != (int)MessagePortError.None)
+                        {
+                            MessagePortErrorFactory.ThrowException(ret);
+                        }
                     }
                 }
             }
@@ -257,28 +261,35 @@ namespace Tizen.Applications.Messages
             return ret;
         }
 
-        private void RemoveRegistrationCallback()
+        private int RemoveRegistrationCallback()
         {
-            if (_watcherIdForRegistered != -1 && _watcherIdForUnRegistered != -1)
+            int _retRegistered = (int)MessagePortError.None;
+            int _retUnRegistered = (int)MessagePortError.None;
+            if (_watcherIdForRegistered != -1)
             {
-                int ret = Interop.MessagePort.RemoveRegistrationCallback(_watcherIdForRegistered);
+                _retRegistered = Interop.MessagePort.RemoveRegistrationCallback(_watcherIdForRegistered);
 
-                if (ret != (int)MessagePortError.None)
+                if (_retRegistered == (int)MessagePortError.None)
                 {
-                    MessagePortErrorFactory.ThrowException(ret);
+                    _watcherIdForRegistered = -1;
                 }
-
-                _watcherIdForRegistered = -1;
-
-                ret = Interop.MessagePort.RemoveRegistrationCallback(_watcherIdForUnRegistered);
-
-                if (ret != (int)MessagePortError.None)
-                {
-                    MessagePortErrorFactory.ThrowException(ret);
-                }
-
-                _watcherIdForUnRegistered = -1;
             }
+
+            if (_watcherIdForUnRegistered != -1)
+            {
+                _retUnRegistered = Interop.MessagePort.RemoveRegistrationCallback(_watcherIdForUnRegistered);
+
+                if (_retUnRegistered == (int)MessagePortError.None)
+                {
+                    _watcherIdForUnRegistered = -1;
+                }
+            }
+
+            if (_retRegistered != (int)MessagePortError.None ||
+                _retUnRegistered != (int)MessagePortError.None)
+                return (int)MessagePortError.InvalidOperation;
+
+            return (int)MessagePortError.None;
         }
 
         /// <summary>

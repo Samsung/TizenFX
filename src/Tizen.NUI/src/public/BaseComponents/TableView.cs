@@ -366,7 +366,7 @@ namespace Tizen.NUI.BaseComponents
             }
 
             /// <summary>
-            /// The index of a row.
+            /// The index or position of a row.
             /// </summary>
             /// <since_tizen> 5 </since_tizen>
             public uint RowIndex
@@ -402,7 +402,7 @@ namespace Tizen.NUI.BaseComponents
             }
 
             /// <summary>
-            /// The index of a column.
+            /// The index or position of a column.
             /// </summary>
             /// <since_tizen> 5 </since_tizen>
             public uint ColumnIndex

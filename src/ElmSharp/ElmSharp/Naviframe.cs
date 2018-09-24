@@ -278,7 +278,7 @@ namespace ElmSharp
             if (item == null)
                 return;
             _itemStack.Remove(item);
-            Popped?.Invoke(this, new NaviframeEventArgs() { Content = item.Content });
+            Popped?.Invoke(this, new NaviframeEventArgs { Content = item.Content });
         }
     }
 }

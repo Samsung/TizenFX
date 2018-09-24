@@ -1256,20 +1256,20 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        /// Event argument passed through ChildAdded event
+        /// Event argument passed through the ChildAdded event.
         /// </summary>
         /// <since_tizen> 5 </since_tizen>
         public class ChildAddedEventArgs : EventArgs
         {
             /// <summary>
-            /// Added child View at moment
+            /// Added child view at moment.
             /// </summary>
             /// <since_tizen> 5 </since_tizen>
             public View Added { get; set; }
         }
 
         /// <summary>
-        /// Event when a child is added
+        /// Event when a child is added.
         /// </summary>
         /// <since_tizen> 5 </since_tizen>
         public new event EventHandler<ChildAddedEventArgs> ChildAdded;
@@ -1288,15 +1288,16 @@ namespace Tizen.NUI.BaseComponents
                 return;
             }
 
-            Container oldParent = child.Parent;
+            Container oldParent = child.GetParent();
             if (oldParent != this)
             {
                 if (oldParent != null)
                 {
                     oldParent.Remove(child);
                 }
+                child.InternalParent = this;
 
-                if (true == layoutSet && null == child.Layout) // Only give children a layout if parent an explict container
+                if (layoutSet == true && child.Layout == null) // Only give children a layout if parent an explicit container
                 {
                     if( child.GetType() == typeof(View) ||  true == child.LayoutingRequired )
                     {
@@ -1331,20 +1332,20 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        /// Event argument passed through ChildRemoved event
+        /// Event argument passed through the ChildRemoved event.
         /// </summary>
         /// <since_tizen> 5 </since_tizen>
         public class ChildRemovedEventArgs : EventArgs
         {
             /// <summary>
-            /// Removed child View at moment
+            /// Removed child view at moment.
             /// </summary>
             /// <since_tizen> 5 </since_tizen>
             public View Removed { get; set; }
         }
 
         /// <summary>
-        /// Event when a child is removed
+        /// Event when a child is removed.
         /// </summary>
         /// <since_tizen> 5 </since_tizen>
         public new event EventHandler<ChildRemovedEventArgs> ChildRemoved;
@@ -1362,6 +1363,8 @@ namespace Tizen.NUI.BaseComponents
                 throw NDalicPINVOKE.SWIGPendingException.Retrieve();
 
             Children.Remove(child);
+            child.InternalParent = null;
+
             if (Layout)
             {
                 if(child.Layout)
@@ -1414,17 +1417,7 @@ namespace Tizen.NUI.BaseComponents
         /// <since_tizen> 4 </since_tizen>
         public override Container GetParent()
         {
-            //to fix memory leak issue, match the handle count with native side.
-            IntPtr cPtr = NDalicPINVOKE.Actor_GetParent(swigCPtr);
-            HandleRef CPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
-            BaseHandle basehandle = Registry.GetManagedBaseHandleFromNativePtr(CPtr.Handle);
-            NDalicPINVOKE.delete_BaseHandle(CPtr);
-            CPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
-
-            if (NDalicPINVOKE.SWIGPendingException.Pending)
-                throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-
-            return basehandle as Container;
+            return this.InternalParent as Container;
         }
 
         internal bool IsTopLevelView()
@@ -1473,6 +1466,11 @@ namespace Tizen.NUI.BaseComponents
                 swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
             }
 
+            foreach (View view in Children)
+            {
+                view.InternalParent = null;
+            }
+            
             base.Dispose(type);
 
         }
@@ -2473,26 +2471,16 @@ namespace Tizen.NUI.BaseComponents
             PageDown
         }
 
-        protected void InitXamlResource()
-        {
-            if (null != Application.Current)
-            {
-                Application.AddResourceChangedCallback(this, OnResourcesChanged);
-            }
-        }
-
         /// <summary>
         /// Creates a new instance of a view.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public View() : this(NDalicPINVOKE.View_New(), true)
         {
-            InitXamlResource();
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
         internal View(View uiControl) : this(NDalicPINVOKE.new_View__SWIG_1(View.getCPtr(uiControl)), true)
         {
-            InitXamlResource();
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
@@ -3401,14 +3389,7 @@ namespace Tizen.NUI.BaseComponents
         /// <remarks>
         /// Deriving classes stipulate the natural size and by default a view has a zero natural size.
         /// </remarks>
-        /// /// Please do not use! this will be deprecated!
-        /// Instead please use NaturalSize2D.
-        /// <since_tizen> 3 </since_tizen>
-        [Obsolete("Please do not use! This will be deprecated! Please use NaturalSize2D instead! " +
-            "Like: " +
-            "TextLabel label = new TextLabel(\"Hello World!\"); " +
-            "Size2D size = label.NaturalSize2D;")]
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 5 </since_tizen>
         public Vector3 NaturalSize
         {
             get
@@ -3736,10 +3717,10 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        /// Gets the parent layer of this view.If a view has no parent, this method does nothing.
+        /// Gets the parent layer of this view.If a view has no parent, this method does not do anything.
         /// </summary>
         /// <pre>The view has been initialized. </pre>
-        /// <returns>the parent layer of view </returns>
+        /// <returns>The parent layer of view </returns>
         /// <since_tizen> 5 </since_tizen>
         public Layer GetLayer()
         {
@@ -5295,14 +5276,18 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        /// [Obsolete("Please do not use! this will be deprecated")]
+        /// Sets the size of a view for the width, the height and the depth.<br />
+        /// Geometry can be scaled to fit within this area.<br />
+        /// This does not interfere with the view's scale factor.<br />
+        /// The views default depth is the minimum of width and height.<br />
         /// </summary>
-        /// <since_tizen> 3 </since_tizen>
-        [Obsolete("Please do not use! This will be deprecated! Please use Size2D instead! " +
-            "Like: " +
-            "View view = new View(); " +
-            "view.Size2D = new Size2D(100, 100);")]
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <remarks>
+        /// Please note that multi-cascade setting is not possible for this NUI object. <br />
+        /// It is recommended that NUI object typed properties are configured by their constructor with parameters. <br />
+        /// For example, this code is working fine : view.Size = new Size( 1.0f, 1.0f, 0.0f); <br />
+        /// but this will not work! : view.Size.Width = 2.0f; view.Size.Height = 2.0f; <br />
+        /// </remarks>
+        /// <since_tizen> 5 </since_tizen>
         public Size Size
         {
             get
@@ -5390,6 +5375,10 @@ namespace Tizen.NUI.BaseComponents
         /// <summary>
         /// Gets or sets the Margin for use in layout.
         /// </summary>
+        /// <remarks>
+        /// Margin property is supported by Layout algorithms and containers.
+        /// Please Set Layout if you want to use Margin property.
+        /// </remarks>
         /// <since_tizen> 4 </since_tizen>
         public Extents Margin
         {
@@ -5441,10 +5430,10 @@ namespace Tizen.NUI.BaseComponents
 
         /// <summary>
         /// Perform an action on a visual registered to this view. <br />
-        /// Visuals will have actions, this API is used to perform one of these actions with the given attributes.
+        /// Visuals will have actions. This API is used to perform one of these actions with the given attributes.
         /// </summary>
         /// <param name="propertyIndexOfVisual">The Property index of the visual.</param>
-        /// <param name="propertyIndexOfActionId">The action to perform.  See Visual to find supported actions.</param>
+        /// <param name="propertyIndexOfActionId">The action to perform. See Visual to find the supported actions.</param>
         /// <param name="attributes">Optional attributes for the action.</param>
         /// <since_tizen> 5 </since_tizen>
         public void DoAction(int propertyIndexOfVisual, int propertyIndexOfActionId, PropertyValue attributes)

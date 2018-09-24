@@ -5,8 +5,7 @@
     <ProjectRootDir>$(MSBuildThisFileDirectory)..\</ProjectRootDir>
 
     <ProjectSrcDir>$(ProjectRootDir)src\</ProjectSrcDir>
-    <InternalProjectSrcDir>$(ProjectRootDir)\internal\src\</InternalProjectSrcDir>
-    <ExternalProjectSrcDir>$(ProjectRootDir)\external\src\</ExternalProjectSrcDir>
+    <InternalProjectSrcDir>$(ProjectRootDir)\internals\src\</InternalProjectSrcDir>
 
     <ToolsDir>$(ProjectRootDir)tools\</ToolsDir>
     <GenDummyDir>$(ToolsDir)GenDummy\</GenDummyDir>

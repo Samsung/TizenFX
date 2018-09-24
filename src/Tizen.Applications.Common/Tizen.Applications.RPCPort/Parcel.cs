@@ -19,7 +19,7 @@ using System;
 namespace Tizen.Applications.RPCPort
 {
     /// <summary>
-    /// The class for helping marshalling and unmarshalling for RPC
+    /// The class that helps to perform marshalling and unmarshalling for RPC.
     /// </summary>
     /// <since_tizen> 5 </since_tizen>
     public class Parcel : IDisposable
@@ -27,9 +27,9 @@ namespace Tizen.Applications.RPCPort
         private IntPtr _handle;
 
         /// <summary>
-        /// Constructor for this class
+        /// Constructor for this class.
         /// </summary>
-        /// <exception cref="InvalidIOException">Thrown when internal IO error happens</exception>
+        /// <exception cref="InvalidIOException">Thrown when an internal IO error occurs.</exception>
         /// <since_tizen> 5 </since_tizen>
         public Parcel()
         {
@@ -39,35 +39,39 @@ namespace Tizen.Applications.RPCPort
         }
 
         /// <summary>
-        /// Constructor with Port object
+        /// Constructor with port object.
         /// </summary>
-        /// <param name="port">Port object</param>
-        /// <exception cref="InvalidIOException">Thrown when internal IO error happens</exception>
+        /// <param name="port">Port object.</param>
+        /// <exception cref="InvalidIOException">Thrown when an internal IO error occurs.</exception>
         /// <since_tizen> 5 </since_tizen>
         public Parcel(Port port)
         {
+            if (port == null)
+                throw new InvalidIOException();
             var r = Interop.LibRPCPort.Parcel.CreateFromPort(out _handle, port.Handle);
             if (r != Interop.LibRPCPort.ErrorCode.None)
                 throw new InvalidIOException();
         }
 
         /// <summary>
-        /// Sends parcel data through the port
+        /// Sends parcel data through the port.
         /// </summary>
-        /// <param name="p">The RPC port object for writing data</param>
-        /// <exception cref="InvalidIOException">Thrown when internal IO error happens</exception>
+        /// <param name="p">The RPC port object for writing data.</param>
+        /// <exception cref="InvalidIOException">Thrown when an internal IO error occurs.</exception>
         /// <since_tizen> 5 </since_tizen>
         public void Send(Port p)
         {
+            if (p == null)
+                throw new InvalidIOException();
             var r = Interop.LibRPCPort.Parcel.Send(_handle, p.Handle);
             if (r != Interop.LibRPCPort.ErrorCode.None)
                 throw new InvalidIOException();
         }
 
         /// <summary>
-        /// Writes 'byte' type value into Parcel object
+        /// Writes a byte value into parcel object.
         /// </summary>
-        /// <param name="b">'byte' type data</param>
+        /// <param name="b">byte data.</param>
         /// <since_tizen> 5 </since_tizen>
         public void WriteByte(byte b)
         {
@@ -75,9 +79,9 @@ namespace Tizen.Applications.RPCPort
         }
 
         /// <summary>
-        /// Writes 'short' type value into Parcel object
+        /// Writes a short value into parcel object.
         /// </summary>
-        /// <param name="b">'short' type data</param>
+        /// <param name="b">short data.</param>
         /// <since_tizen> 5 </since_tizen>
         public void WriteShort(short b)
         {
@@ -85,9 +89,9 @@ namespace Tizen.Applications.RPCPort
         }
 
         /// <summary>
-        /// Writes 'int' type value into Parcel object
+        /// Writes an int value into parcel object.
         /// </summary>
-        /// <param name="b">'int' type data</param>
+        /// <param name="b">int data.</param>
         /// <since_tizen> 5 </since_tizen>
         public void WriteInt(int b)
         {
@@ -95,9 +99,9 @@ namespace Tizen.Applications.RPCPort
         }
 
         /// <summary>
-        /// Writes a Long type value into Parcel handle
+        /// Writes a long value into parcel object.
         /// </summary>
-        /// <param name="b">'long' type data</param>
+        /// <param name="b">long data.</param>
         /// <since_tizen> 5 </since_tizen>
         public void WriteLong(long b)
         {
@@ -105,9 +109,9 @@ namespace Tizen.Applications.RPCPort
         }
 
         /// <summary>
-        /// Writes a 'float' type value into Parcel handle
+        /// Writes a float value into parcel object.
         /// </summary>
-        /// <param name="b">'float' type data</param>
+        /// <param name="b">float data.</param>
         /// <since_tizen> 5 </since_tizen>
         public void WriteFloat(float b)
         {
@@ -115,9 +119,9 @@ namespace Tizen.Applications.RPCPort
         }
 
         /// <summary>
-        /// Writes a 'double' type value into Parcel handle
+        /// Writes a double value into parcel object.
         /// </summary>
-        /// <param name="b">'double' type data</param>
+        /// <param name="b">double data.</param>
         /// <since_tizen> 5 </since_tizen>
         public void WriteDouble(double b)
         {
@@ -125,9 +129,9 @@ namespace Tizen.Applications.RPCPort
         }
 
         /// <summary>
-        /// Writes a 'string' type value into Parcel handle
+        /// Writes a string value into parcel object.
         /// </summary>
-        /// <param name="b">'string' type data</param>
+        /// <param name="b">string data.</param>
         /// <since_tizen> 5 </since_tizen>
         public void WriteString(string b)
         {
@@ -135,9 +139,9 @@ namespace Tizen.Applications.RPCPort
         }
 
         /// <summary>
-        /// Writes a 'bool' type value into Parcel handle
+        /// Writes a bool value into parcel object.
         /// </summary>
-        /// <param name="b">'bool' type data</param>
+        /// <param name="b">bool data.</param>
         /// <since_tizen> 5 </since_tizen>
         public void WriteBool(bool b)
         {
@@ -145,9 +149,9 @@ namespace Tizen.Applications.RPCPort
         }
 
         /// <summary>
-        /// Writes a 'Bundle' type value into Parcel handle
+        /// Writes a Bundle data into parcel object.
         /// </summary>
-        /// <param name="b">'Bundle' type data</param>
+        /// <param name="b">Bundle data.</param>
         /// <since_tizen> 5 </since_tizen>
         public void WriteBundle(Bundle b)
         {
@@ -155,9 +159,9 @@ namespace Tizen.Applications.RPCPort
         }
 
         /// <summary>
-        /// Writes a count for array into Parcel object
+        /// Writes a count of an array into parcel object.
         /// </summary>
-        /// <param name="cnt">Array count</param>
+        /// <param name="cnt">Array count.</param>
         /// <since_tizen> 5 </since_tizen>
         public void WriteArrayCount(int cnt)
         {
@@ -165,9 +169,9 @@ namespace Tizen.Applications.RPCPort
         }
 
         /// <summary>
-        /// Reads 'byte' type value from Parcel object
+        /// Reads a byte value from parcel object.
         /// </summary>
-        /// <returns>'byte' type data</returns>
+        /// <returns>byte data.</returns>
         /// <since_tizen> 5 </since_tizen>
         public byte ReadByte()
         {
@@ -176,9 +180,9 @@ namespace Tizen.Applications.RPCPort
         }
 
         /// <summary>
-        /// Reads 'short' type value from Parcel object
+        /// Reads a short value from parcel object.
         /// </summary>
-        /// <returns>'short' type data</returns>
+        /// <returns>short data.</returns>
         /// <since_tizen> 5 </since_tizen>
         public short ReadShort()
         {
@@ -187,9 +191,9 @@ namespace Tizen.Applications.RPCPort
         }
 
         /// <summary>
-        /// Reads 'int' type value from Parcel object
+        /// Reads an int value from parcel object.
         /// </summary>
-        /// <returns>'int' type data</returns>
+        /// <returns>int data.</returns>
         /// <since_tizen> 5 </since_tizen>
         public int ReadInt()
         {
@@ -198,9 +202,9 @@ namespace Tizen.Applications.RPCPort
         }
 
         /// <summary>
-        /// Reads 'long' type value from Parcel object
+        /// Reads a long value from parcel object.
         /// </summary>
-        /// <returns>'long' type data</returns>
+        /// <returns>long data.</returns>
         /// <since_tizen> 5 </since_tizen>
         public long ReadLong()
         {
@@ -209,9 +213,9 @@ namespace Tizen.Applications.RPCPort
         }
 
         /// <summary>
-        /// Reads 'float' type value from Parcel object
+        /// Reads a float value from parcel object.
         /// </summary>
-        /// <returns>'float' type data</returns>
+        /// <returns>float data.</returns>
         /// <since_tizen> 5 </since_tizen>
         public float ReadFloat()
         {
@@ -220,9 +224,9 @@ namespace Tizen.Applications.RPCPort
         }
 
         /// <summary>
-        /// Reads 'double' type value from Parcel object
+        /// Reads a double value from parcel object.
         /// </summary>
-        /// <returns>'double' type data</returns>
+        /// <returns>double data.</returns>
         /// <since_tizen> 5 </since_tizen>
         public double ReadDouble()
         {
@@ -231,9 +235,9 @@ namespace Tizen.Applications.RPCPort
         }
 
         /// <summary>
-        /// Reads 'string' type value from Parcel object
+        /// Reads a string value from parcel object.
         /// </summary>
-        /// <returns>'string' type data</returns>
+        /// <returns>string data.</returns>
         /// <since_tizen> 5 </since_tizen>
         public string ReadString()
         {
@@ -242,9 +246,9 @@ namespace Tizen.Applications.RPCPort
         }
 
         /// <summary>
-        /// Reads 'bool' type value from Parcel object
+        /// Reads a bool value from parcel object.
         /// </summary>
-        /// <returns>'bool' type data</returns>
+        /// <returns>bool data.</returns>
         /// <since_tizen> 5 </since_tizen>
         public bool ReadBool()
         {
@@ -253,9 +257,9 @@ namespace Tizen.Applications.RPCPort
         }
 
         /// <summary>
-        /// Reads 'Bundle' type value from Parcel object
+        /// Reads a Bundle value from parcel object.
         /// </summary>
-        /// <returns>'Bundle' type data</returns>
+        /// <returns>Bundle data.</returns>
         /// <since_tizen> 5 </since_tizen>
         public Bundle ReadBundle()
         {
@@ -265,9 +269,9 @@ namespace Tizen.Applications.RPCPort
         }
 
         /// <summary>
-        /// Reads a count for array from Parcel object
+        /// Reads a count of an array from parcel object.
         /// </summary>
-        /// <returns>Array count</returns>
+        /// <returns>Array count.</returns>
         /// <since_tizen> 5 </since_tizen>
         public int ReadArrayCount()
         {
@@ -276,9 +280,9 @@ namespace Tizen.Applications.RPCPort
         }
 
         /// <summary>
-        /// Writes bytes into Parcel object
+        /// Writes bytes into parcel object.
         /// </summary>
-        /// <param name="bytes">Array of bytes</param>
+        /// <param name="bytes">Array of bytes.</param>
         /// <since_tizen> 5 </since_tizen>
         public void Write(byte[] bytes)
         {
@@ -286,10 +290,10 @@ namespace Tizen.Applications.RPCPort
         }
 
         /// <summary>
-        /// Reads bytes from Parcel object
+        /// Reads bytes from parcel object.
         /// </summary>
-        /// <param name="size">Bytes to read</param>
-        /// <returns>Array of bytes</returns>
+        /// <param name="size">Bytes to read.</param>
+        /// <returns>Array of bytes.</returns>
         /// <since_tizen> 5 </since_tizen>
         public byte[] Read(int size)
         {
@@ -320,7 +324,7 @@ namespace Tizen.Applications.RPCPort
         }
 
         /// <summary>
-        /// Finalizer of the class Parcel
+        /// Finalizer of the class Parcel.
         /// </summary>
         ~Parcel()
         {
@@ -328,7 +332,7 @@ namespace Tizen.Applications.RPCPort
         }
 
         /// <summary>
-        /// Release all resources used by the class Parcel
+        /// Release all the resources used by the class Parcel.
         /// </summary>
         /// <since_tizen> 5 </since_tizen>
         public void Dispose()

@@ -360,7 +360,6 @@ namespace Tizen.NUI.BaseComponents
         /// <since_tizen> 3 </since_tizen>
         public ImageView() : this(NDalicPINVOKE.ImageView_New__SWIG_0(), true)
         {
-            base.InitXamlResource();
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
@@ -442,7 +441,7 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        /// Force reloading of the image, all visuals using this image will get the latest one.
+        /// Forcefully reloads the image. All the visuals using this image will reload to the latest image.
         /// </summary>
         /// <since_tizen> 5 </since_tizen>        
         public void Reload()
@@ -451,7 +450,7 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        /// Play the animated GIF. This is also Default playback mode.
+        /// Plays the animated GIF. This is also the default playback mode.
         /// </summary>
         /// <since_tizen> 5 </since_tizen>
         public void Play()
@@ -460,7 +459,7 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        /// Pause the animated GIF.
+        /// Pauses the animated GIF.
         /// </summary>
         /// <since_tizen> 5 </since_tizen>
         public void Pause()
@@ -469,7 +468,7 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        /// Stop the animated GIF.
+        /// Stops the animated GIF.
         /// </summary>
         /// <since_tizen> 5 </since_tizen>
         public void Stop()
@@ -648,7 +647,7 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        /// Gets or sets whether to correct orientation of image automatically.<br />
+        /// Gets or sets whether to automatically correct the orientation of an image.<br />
         /// </summary>
         /// <since_tizen> 5 </since_tizen>
         public bool OrientationCorrection
@@ -666,7 +665,7 @@ namespace Tizen.NUI.BaseComponents
 
 
         /// <summary>
-        /// Get the loading state of the visual resource.
+        /// Gets the loading state of the visual resource.
         /// </summary>
         /// <since_tizen> 5 </since_tizen>
         public ImageView.LoadingStatusType LoadingStatus
