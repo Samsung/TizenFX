@@ -34,6 +34,7 @@ namespace Tizen.Applications.DataControl
         private const string LogTag = "Tizen.Applications.DataControl";
         private bool _disposed = false;
         private static Mutex _lock = new Mutex();
+        private static Mutex _requestLock = new Mutex();
         private Interop.DataControl.DataChangeCallback _dataChangeCallback;
         private Interop.DataControl.AddCallbackResultCallback _addCallbackResultCallback;
 
@@ -48,9 +49,9 @@ namespace Tizen.Applications.DataControl
             private static void InsertResponse(int reqId, IntPtr provider, long insertedRowId, bool providerResult, string error, IntPtr userData)
             {
                 Log.Debug(LogTag, $"InsertResponse {reqId.ToString()}");
-                if (!_reqConsumerDictionary.ContainsKey(reqId))
+                Consumer consumer = null;
+                if (!UnregisterReqId(reqId, ref consumer))
                 {
-                    Log.Error(LogTag, $"Invalid reqId {reqId.ToString()}");
                     return;
                 }
 
@@ -59,18 +60,17 @@ namespace Tizen.Applications.DataControl
                     Log.Error(LogTag, $"reqId {reqId.ToString()}, error : {error}, rowID : {insertedRowId.ToString()}");
                 }
 
-                Consumer consumer = _reqConsumerDictionary[reqId];
                 consumer.OnInsertResult(new InsertResult(insertedRowId, providerResult));
-                _reqConsumerDictionary.Remove(reqId);
             }
 
             private static void BulkInsertResponse(int reqId, IntPtr provider, IntPtr bulkResults, bool providerResult, string error, IntPtr userData)
             {
-                BulkResultData brd;
                 Log.Debug(LogTag, $"BulkInsertResponse {reqId.ToString()}");
-                if (!_reqConsumerDictionary.ContainsKey(reqId))
+
+                BulkResultData brd;
+                Consumer consumer = null;
+                if (!UnregisterReqId(reqId, ref consumer))
                 {
-                    Log.Error(LogTag, $"Invalid reqId {reqId.ToString()}");
                     return;
                 }
 
@@ -89,18 +89,17 @@ namespace Tizen.Applications.DataControl
                     Log.Error(LogTag, $"reqId {reqId.ToString()}, bulkResults is null");
                 }
 
-                Consumer consumer = _reqConsumerDictionary[reqId];
                 consumer.OnBulkInsertResult(new BulkInsertResult(brd, providerResult));
-                _reqConsumerDictionary.Remove(reqId);
             }
 
             private static void SelectResponse(int reqId, IntPtr provider, IntPtr cursor, bool providerResult, string error, IntPtr userData)
             {
-                MatrixCursor dmc;
                 Log.Debug(LogTag, $"SelectResponse {reqId.ToString()}");
-                if (!_reqConsumerDictionary.ContainsKey(reqId))
+
+                MatrixCursor dmc;
+                Consumer consumer = null;
+                if (!UnregisterReqId(reqId, ref consumer))
                 {
-                    Log.Error(LogTag, $"Invalid reqId {reqId.ToString()}");
                     return;
                 }
 
@@ -126,16 +125,15 @@ namespace Tizen.Applications.DataControl
                     dmc = new MatrixCursor();
                     Log.Error(LogTag, $"reqId {reqId.ToString()}, cursor is null");
                 }
-                Consumer consumer = _reqConsumerDictionary[reqId];
+
                 consumer.OnSelectResult(new SelectResult(dmc, providerResult));
-                _reqConsumerDictionary.Remove(reqId);
             }
 
             private static void UpdateResponse(int reqId, IntPtr provider, bool providerResult, string error, IntPtr userData)
             {
-                if (!_reqConsumerDictionary.ContainsKey(reqId))
+                Consumer consumer = null;
+                if (!UnregisterReqId(reqId, ref consumer))
                 {
-                    Log.Error(LogTag, $"Invalid reqId {reqId.ToString()}");
                     return;
                 }
 
@@ -144,16 +142,14 @@ namespace Tizen.Applications.DataControl
                     Log.Error(LogTag, $"reqId {reqId.ToString()}, error : {error}");
                 }
 
-                Consumer consumer = _reqConsumerDictionary[reqId];
                 consumer.OnUpdateResult(new UpdateResult(providerResult));
-                _reqConsumerDictionary.Remove(reqId);
             }
 
             private static void DeleteResponse(int reqId, IntPtr provider, bool providerResult, string error, IntPtr userData)
             {
-                if (!_reqConsumerDictionary.ContainsKey(reqId))
+                Consumer consumer = null;
+                if (!UnregisterReqId(reqId, ref consumer))
                 {
-                    Log.Error(LogTag, $"Invalid reqId {reqId.ToString()}");
                     return;
                 }
 
@@ -162,9 +158,7 @@ namespace Tizen.Applications.DataControl
                     Log.Error(LogTag, $"reqId {reqId.ToString()}, error : {error}");
                 }
 
-                Consumer consumer = _reqConsumerDictionary[reqId];
                 consumer.OnDeleteResult(new DeleteResult(providerResult));
-                _reqConsumerDictionary.Remove(reqId);
             }
 
             static void IntPtrToStringArray(IntPtr unmanagedArray, int size, out string[] managedArray)
@@ -180,11 +174,12 @@ namespace Tizen.Applications.DataControl
 
             private static void MapGetResponse(int reqId, IntPtr provider, IntPtr valueList, int valueCount, bool providerResult, string error, IntPtr userData)
             {
-                MapGetResult mgr;
                 Log.Debug(LogTag, $"MapGetResponse {reqId.ToString()}");
-                if (!_reqConsumerDictionary.ContainsKey(reqId))
+
+                MapGetResult mgr;
+                Consumer consumer = null;
+                if (!UnregisterReqId(reqId, ref consumer))
                 {
-                    Log.Error(LogTag, $"Invalid reqId {reqId.ToString()}");
                     return;
                 }
 
@@ -205,18 +200,17 @@ namespace Tizen.Applications.DataControl
                     Log.Error(LogTag, $"reqId {reqId.ToString()}, valueList is null");
                 }
 
-                Consumer consumer = _reqConsumerDictionary[reqId];
                 consumer.OnMapGetResult(mgr);
-                _reqConsumerDictionary.Remove(reqId);
             }
 
             private static void MapBulkAddResponse(int reqId, IntPtr provider, IntPtr bulkResults, bool providerResult, string error, IntPtr userData)
             {
-                BulkResultData brd;
                 Log.Debug(LogTag, $"MapBulkAddResponse {reqId.ToString()}");
-                if (!_reqConsumerDictionary.ContainsKey(reqId))
+
+                BulkResultData brd;
+                Consumer consumer = null;
+                if (!UnregisterReqId(reqId, ref consumer))
                 {
-                    Log.Error(LogTag, $"Invalid reqId {reqId.ToString()}");
                     return;
                 }
 
@@ -235,17 +229,16 @@ namespace Tizen.Applications.DataControl
                     Log.Error(LogTag, $"reqId {reqId.ToString()}, bulkResults is null");
                 }
 
-                Consumer consumer = _reqConsumerDictionary[reqId];
                 consumer.OnMapBulkAddResult(new MapBulkAddResult(brd, providerResult));
-                _reqConsumerDictionary.Remove(reqId);
             }
 
             private static void MapAddResponse(int reqId, IntPtr provider, bool providerResult, string error, IntPtr userData)
             {
                 Log.Debug(LogTag, $"MapAddResponse {reqId.ToString()}");
-                if (!_reqConsumerDictionary.ContainsKey(reqId))
+
+                Consumer consumer = null;
+                if (!UnregisterReqId(reqId, ref consumer))
                 {
-                    Log.Error(LogTag, $"Invalid reqId {reqId.ToString()}");
                     return;
                 }
 
@@ -254,17 +247,16 @@ namespace Tizen.Applications.DataControl
                     Log.Error(LogTag, $"reqId {reqId.ToString()}, error : {error}");
                 }
 
-                Consumer consumer = _reqConsumerDictionary[reqId];
                 consumer.OnMapAddResult(new MapAddResult(providerResult));
-                _reqConsumerDictionary.Remove(reqId);
             }
 
             private static void MapSetResponse(int reqId, IntPtr provider, bool providerResult, string error, IntPtr userData)
             {
                 Log.Debug(LogTag, $"MapSetResponse {reqId.ToString()}");
-                if (!_reqConsumerDictionary.ContainsKey(reqId))
+
+                Consumer consumer = null;
+                if (!UnregisterReqId(reqId, ref consumer))
                 {
-                    Log.Error(LogTag, $"Invalid reqId {reqId.ToString()}");
                     return;
                 }
 
@@ -273,16 +265,14 @@ namespace Tizen.Applications.DataControl
                     Log.Error(LogTag, $"reqId {reqId.ToString()}, error : {error}");
                 }
 
-                Consumer consumer = _reqConsumerDictionary[reqId];
                 consumer.OnMapSetResult(new MapSetResult(providerResult));
-                _reqConsumerDictionary.Remove(reqId);
             }
 
             private static void MapRemoveResponse(int reqId, IntPtr provider, bool providerResult, string error, IntPtr userData)
             {
-                if (!_reqConsumerDictionary.ContainsKey(reqId))
+                Consumer consumer = null;
+                if (!UnregisterReqId(reqId, ref consumer))
                 {
-                    Log.Error(LogTag, $"Invalid reqId {reqId.ToString()}");
                     return;
                 }
 
@@ -291,9 +281,7 @@ namespace Tizen.Applications.DataControl
                     Log.Error(LogTag, $"reqId {reqId.ToString()}, error : {error}");
                 }
 
-                Consumer consumer = _reqConsumerDictionary[reqId];
                 consumer.OnMapRemoveResult(new MapRemoveResult(providerResult));
-                _reqConsumerDictionary.Remove(reqId);
             }
 
             private static MatrixCursor CloneCursor(CloneCursorCore coreCursor)
@@ -348,9 +336,25 @@ namespace Tizen.Applications.DataControl
 
             internal static void RegisterReqId(int reqId, Consumer consumer)
             {
-                _lock.WaitOne();
+                _requestLock.WaitOne();
                 _reqConsumerDictionary.Add(reqId, consumer);
-                _lock.ReleaseMutex();
+                _requestLock.ReleaseMutex();
+            }
+
+            internal static bool UnregisterReqId(int reqId, ref Consumer consumer)
+            {
+                _requestLock.WaitOne();
+                if (!_reqConsumerDictionary.ContainsKey(reqId))
+                {
+                    Log.Error(LogTag, $"Invalid reqId {reqId.ToString()}");
+                    _requestLock.ReleaseMutex();
+                    return false;
+                }
+
+                consumer = _reqConsumerDictionary[reqId];
+                _reqConsumerDictionary.Remove(reqId);
+                _requestLock.ReleaseMutex();
+                return true;
             }
 
             internal static void RegisterCallback(Interop.DataControl.SafeDataControlHandle handle, string providerId)
