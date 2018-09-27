@@ -175,6 +175,7 @@ namespace Tizen.Multimedia.Remoting
         /// <summary>
         /// There's no support info in server.
         /// </summary>
+        /// <remarks>User should not set this value directly.</remarks>
         NotDecided
     }
 

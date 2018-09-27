@@ -186,6 +186,9 @@ internal static partial class Interop
         [DllImport(Libraries.MediaController, EntryPoint = "mc_server_set_playlist_item_index")]
         internal static extern MediaControllerError SetIndexOfCurrentPlayingMedia(IntPtr handle, string index);
 
+        [DllImport(Libraries.MediaController, EntryPoint = "mc_server_set_playlist_item_info")]
+        internal static extern MediaControllerError SetInfoOfCurrentPlayingMedia(IntPtr handle, string name, string index);
+
         [DllImport(Libraries.MediaController, EntryPoint = "mc_server_add_item_to_playlist")]
         internal static extern MediaControllerError AddItemToPlaylist(IntPtr handle,
             IntPtr playlist, string index, MediaControllerNativeAttribute attribute, string value);

@@ -531,6 +531,7 @@ namespace Tizen.Multimedia.Remoting
         /// <summary>
         /// Gets or sets the search conditions.
         /// </summary>
+        /// <remarks>This property is used by MediaControlServer.</remarks>
         /// <since_tizen> 5 </since_tizen>
         public IEnumerable<MediaControlSearchCondition> Conditions { get; private set; }
 

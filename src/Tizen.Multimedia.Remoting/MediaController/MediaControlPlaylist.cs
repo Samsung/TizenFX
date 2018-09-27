@@ -46,6 +46,8 @@ namespace Tizen.Multimedia.Remoting
 
             Name = name;
             _handle = handle;
+
+            MediaControlServer.SavePlaylist(handle);
         }
 
         /// <summary>
@@ -148,7 +150,7 @@ namespace Tizen.Multimedia.Remoting
         /// <summary>
         /// Gets the metadata by index.
         /// </summary>
-        /// <param name="index"></param>
+        /// <param name="index">The index of media in the playlist.</param>
         /// <returns>A <see cref="MediaControlMetadata"/> instance.</returns>
         public MediaControlMetadata GetMetadata(string index)
         {
@@ -168,7 +170,7 @@ namespace Tizen.Multimedia.Remoting
         /// <summary>
         /// Sets the metadata to the playlist.
         /// </summary>
-        /// <param name="metadata"></param>
+        /// <param name="metadata">The metadata of media.</param>
         /// <since_tizen> 5 </since_tizen>
         public void AddMetadata(Dictionary<string, MediaControlMetadata> metadata)
         {
@@ -183,8 +185,8 @@ namespace Tizen.Multimedia.Remoting
         /// <summary>
         /// Sets the metadata to the playlist.
         /// </summary>
-        /// <param name="index"></param>
-        /// <param name="metadata"></param>
+        /// <param name="index">The index of media in the playlist.</param>
+        /// <param name="metadata">The metadata of media.</param>
         /// <since_tizen> 5 </since_tizen>
         public void AddMetadata(string index, MediaControlMetadata metadata)
         {
