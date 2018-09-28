@@ -812,21 +812,15 @@ namespace Tizen.NUI
     /// The values of this enum determine how the visual should fit into the view.
     /// </summary>
     /// <since_tizen> 5 </since_tizen>
-    /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
-    [EditorBrowsable(EditorBrowsableState.Never)]
     public enum VisualFittingModeType
     {
         /// <summary>
         /// The visual should be scaled to fit, preserving aspect ratio.
         /// </summary>
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
         FitKeepAspectRatio,
         /// <summary>
         /// The visual should be stretched to fill, not preserving aspect ratio.
         /// </summary>
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
         Fill
     }
 
@@ -1017,8 +1011,6 @@ namespace Tizen.NUI
             /// The fitting mode of the visual.
             /// </summary>
             /// <since_tizen> 5 </since_tizen>
-            /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
-            [EditorBrowsable(EditorBrowsableState.Never)]
             public static readonly int VisualFittingMode = NDalic.VISUAL_PROPERTY_MIX_COLOR + 2;
         }
 
@@ -1147,8 +1139,6 @@ namespace Tizen.NUI
         /// Whether to render if the MixColor is transparent.
         /// </summary>
         /// <since_tizen> 5 </since_tizen>
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly int RenderIfTransparent = NDalic.COLOR_VISUAL_MIX_COLOR + 1;
     }
 
@@ -1270,8 +1260,6 @@ namespace Tizen.NUI
         /// Whether to use the texture atlas.
         /// </summary>
         /// <since_tizen> 5 </since_tizen>
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly int Atlasing = NDalic.IMAGE_VISUAL_BORDER + 1;
         /// <summary>
         /// The scale factor to apply to the content image before masking.
@@ -1497,29 +1485,21 @@ namespace Tizen.NUI
         /// The shadow parameters.
         /// </summary>
         /// <since_tizen> 5 </since_tizen>
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly int Shadow = NDalic.TEXT_VISUAL_ENABLE_MARKUP + 1;
         /// <summary>
         /// The default underline parameters.
         /// </summary>
         /// <since_tizen> 5 </since_tizen>
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly int Underline = NDalic.TEXT_VISUAL_ENABLE_MARKUP + 2;
         /// <summary>
         /// The default outline parameters.
         /// </summary>
         /// <since_tizen> 5 </since_tizen>
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly int Outline = NDalic.TEXT_VISUAL_ENABLE_MARKUP + 3;
         /// <summary>
         /// The default text background parameters.
         /// </summary>
         /// <since_tizen> 5 </since_tizen>
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly int Background = NDalic.TEXT_VISUAL_ENABLE_MARKUP + 4;
     }
 
