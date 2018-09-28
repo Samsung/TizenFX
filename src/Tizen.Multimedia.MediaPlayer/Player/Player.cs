@@ -836,6 +836,18 @@ namespace Tizen.Multimedia
 
             return new ScaleRectangle(scaleX, scaleY, scaleWidth, scaleHeight);
         }
+
+        /// <summary>
+        /// This supports the product infrastructure and is not intended to be used directly from application code.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected MediaPacket GetMediaPacket(IntPtr handle)
+        {
+            MediaPacket mediaPacket = handle != IntPtr.Zero ? MediaPacket.From(handle) :
+                throw new ArgumentException("MediaPacket handle is invalid.", nameof(handle));
+
+            return mediaPacket;
+        }
         #endregion
 
         #region Preparing state
