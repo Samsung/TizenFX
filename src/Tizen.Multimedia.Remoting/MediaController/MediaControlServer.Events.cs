@@ -192,6 +192,7 @@ namespace Tizen.Multimedia.Remoting
             Native.SearchItemCallback searchItemCallback = (type, category, keyword, bundleHandle, _) =>
             {
                 Bundle bundle = null;
+
                 if (bundleHandle != IntPtr.Zero)
                 {
                     bundle = new Bundle(new SafeBundleHandle(bundleHandle, true));
@@ -201,6 +202,7 @@ namespace Tizen.Multimedia.Remoting
 
                 return true;
             };
+
             Native.ForeachSearchCondition(searchHandle, searchItemCallback).
                 ThrowIfError("Failed to get search items.");
 
