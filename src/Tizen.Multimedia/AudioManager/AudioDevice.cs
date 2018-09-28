@@ -117,8 +117,7 @@ namespace Tizen.Multimedia
         /// <remarks>
         /// This device should be <see cref="AudioDeviceType.UsbAudio"/> type and <see cref="AudioDeviceIoDirection.Output"/> direction.
         /// </remarks>
-        /// <exception cref="ArgumentException">This device is not valid or is disconnected.</exception>
-        /// <exception cref="InvalidOperationException">This device is not <see cref="AudioDeviceType.UsbAudio"/> type or is not <see cref="AudioDeviceIoDirection.Output"/> direction.</exception>
+        /// <exception cref="InvalidOperationException">This device is not valid or is disconnected.</exception>
         /// <since_tizen> 5 </since_tizen>
         public IEnumerable<AudioSampleFormat> GetSupportedSampleFormats()
         {
@@ -146,12 +145,11 @@ namespace Tizen.Multimedia
         /// <summary>
         /// Sets the device's sample format.
         /// </summary>
-        /// <value>The <see cref="AudioSampleFormat"/> of the device.</value>
+        /// <param name="format">The <see cref="AudioSampleFormat"/> to set to the device.</param>
         /// <remarks>
         /// This device should be <see cref="AudioDeviceType.UsbAudio"/> type and <see cref="AudioDeviceIoDirection.Output"/> direction.
-        /// <exception cref="ArgumentException">This device is not valid or is disconnected.</exception>
-        /// <exception cref="InvalidOperationException">This device is not <see cref="AudioDeviceType.UsbAudio"/> type or is not <see cref="AudioDeviceIoDirection.Output"/> direction.</exception>
         /// </remarks>
+        /// <exception cref="InvalidOperationException">This device is not valid or is disconnected.</exception>
         /// <since_tizen> 5 </since_tizen>
         public void SetSampleFormat(AudioSampleFormat format)
         {
@@ -162,12 +160,11 @@ namespace Tizen.Multimedia
         /// <summary>
         /// Gets the device's sample format.
         /// </summary>
-        /// <value>The <see cref="AudioSampleFormat"/> of the device.</value>
+        /// <returns>The <see cref="AudioSampleFormat"/> of the device.</returns>
         /// <remarks>
         /// This device should be <see cref="AudioDeviceType.UsbAudio"/> type and <see cref="AudioDeviceIoDirection.Output"/> direction.
-        /// <exception cref="ArgumentException">This device is not valid or is disconnected.</exception>
-        /// <exception cref="InvalidOperationException">This device is not <see cref="AudioDeviceType.UsbAudio"/> type or is not <see cref="AudioDeviceIoDirection.Output"/> direction.</exception>
         /// </remarks>
+        /// <exception cref="InvalidOperationException">This device is not valid or is disconnected.</exception>
         /// <since_tizen> 5 </since_tizen>
         public AudioSampleFormat GetSampleFormat()
         {
@@ -219,9 +216,8 @@ namespace Tizen.Multimedia
         /// <returns>An IEnumerable&lt;uint&gt; that contains supported sample rates.</returns>
         /// <remarks>
         /// This device should be <see cref="AudioDeviceType.UsbAudio"/> type and <see cref="AudioDeviceIoDirection.Output"/> direction.
-        /// <exception cref="ArgumentException">This device is not valid or is disconnected.</exception>
-        /// <exception cref="InvalidOperationException">This device is not <see cref="AudioDeviceType.UsbAudio"/> type or is not <see cref="AudioDeviceIoDirection.Output"/> direction.</exception>
         /// </remarks>
+        /// <exception cref="InvalidOperationException">This device is not valid or is disconnected.</exception>
         /// <since_tizen> 5 </since_tizen>
         public IEnumerable<uint> GetSupportedSampleRates()
         {
@@ -251,11 +247,11 @@ namespace Tizen.Multimedia
         /// <summary>
         /// Sets the device's sample rate.
         /// </summary>
+        /// <param name="rate">The sample rate to set to the device.</param>
         /// <remarks>
         /// This device should be <see cref="AudioDeviceType.UsbAudio"/> type and <see cref="AudioDeviceIoDirection.Output"/> direction.
         /// </remarks>
-        /// <exception cref="ArgumentException">This device is not valid or is disconnected.</exception>
-        /// <exception cref="InvalidOperationException">This device is not <see cref="AudioDeviceType.UsbAudio"/> type or is not <see cref="AudioDeviceIoDirection.Output"/> direction.</exception>
+        /// <exception cref="InvalidOperationException">This device is not valid or is disconnected.</exception>
         /// <since_tizen> 5 </since_tizen>
         public void SetSampleRate(uint rate)
         {
@@ -266,11 +262,11 @@ namespace Tizen.Multimedia
         /// <summary>
         /// Gets the device's sample rate.
         /// </summary>
+        /// <returns>The sample rate of the device.</returns>
         /// <remarks>
         /// This device should be <see cref="AudioDeviceType.UsbAudio"/> type and <see cref="AudioDeviceIoDirection.Output"/> direction.
         /// </remarks>
-        /// <exception cref="ArgumentException">This device is not valid or is disconnected.</exception>
-        /// <exception cref="InvalidOperationException">This device is not <see cref="AudioDeviceType.UsbAudio"/> type or is not <see cref="AudioDeviceIoDirection.Output"/> direction.</exception>
+        /// <exception cref="InvalidOperationException">This device is not valid or is disconnected.</exception>
         /// <since_tizen> 5 </since_tizen>
         public uint GetSampleRate()
         {
@@ -283,13 +279,13 @@ namespace Tizen.Multimedia
         /// <summary>
         /// Sets the device's 'avoid resampling' property.
         /// </summary>
+        /// <param name="enable">The 'avoid resampling' value to set to the device.</param>
         /// <remarks>
         /// This device should be <see cref="AudioDeviceType.UsbAudio"/> type and <see cref="AudioDeviceIoDirection.Output"/> direction.
         /// This property is not enabled as default. With this enabled, this device will use the first stream's original sample format
         /// and rate without resampling if supported.
         /// </remarks>
-        /// <exception cref="ArgumentException">This device is not valid or is disconnected.</exception>
-        /// <exception cref="InvalidOperationException">This device is not <see cref="AudioDeviceType.UsbAudio"/> type or is not <see cref="AudioDeviceIoDirection.Output"/> direction.</exception>
+        /// <exception cref="InvalidOperationException">This device is not valid or is disconnected.</exception>
         /// <since_tizen> 5 </since_tizen>
         public void SetAvoidResampling(bool enable)
         {
@@ -301,13 +297,13 @@ namespace Tizen.Multimedia
         /// <summary>
         /// Gets the device's 'avoid resampling' property.
         /// </summary>
+        /// <returns>The 'avoid resampling' property of the device.</returns>
         /// <remarks>
         /// This device should be <see cref="AudioDeviceType.UsbAudio"/> type and <see cref="AudioDeviceIoDirection.Output"/> direction.
         /// This property is not enabled as default. With this enabled, this device will use the first stream's original sample format
         /// and rate without resampling if supported.
         /// </remarks>
-        /// <exception cref="ArgumentException">This device is not valid or is disconnected.</exception>
-        /// <exception cref="InvalidOperationException">This device is not <see cref="AudioDeviceType.UsbAudio"/> type or is not <see cref="AudioDeviceIoDirection.Output"/> direction.</exception>
+        /// <exception cref="InvalidOperationException">This device is not valid or is disconnected.</exception>
         /// <since_tizen> 5 </since_tizen>
         public bool GetAvoidResampling()
         {
@@ -320,13 +316,13 @@ namespace Tizen.Multimedia
         /// <summary>
         /// Sets the restriction of stream type only for media.
         /// </summary>
+        /// <param name="enable">The 'media stream only' value to set to the device.</param>
         /// <remarks>
         /// This device should be <see cref="AudioDeviceType.UsbAudio"/> type and <see cref="AudioDeviceIoDirection.Output"/> direction.
         ///	This property is not enabled as default. With this enabled, no other stream types except <see cref="AudioStreamType.Media"/>
         ///	are not allowed to this device.
         /// </remarks>
-        /// <exception cref="ArgumentException">This device is not valid or is disconnected.</exception>
-        /// <exception cref="InvalidOperationException">This device is not <see cref="AudioDeviceType.UsbAudio"/> type or is not <see cref="AudioDeviceIoDirection.Output"/> direction.</exception>
+        /// <exception cref="InvalidOperationException">This device is not valid or is disconnected.</exception>
         /// <since_tizen> 5 </since_tizen>
         public void SetMediaStreamOnly(bool enable)
         {
@@ -337,13 +333,13 @@ namespace Tizen.Multimedia
         /// <summary>
         /// Gets the restriction of stream type only for media.
         /// </summary>
+        /// <returns>The 'media stream only' property of the device.</returns>
         /// <remarks>
         /// This device should be <see cref="AudioDeviceType.UsbAudio"/> type and <see cref="AudioDeviceIoDirection.Output"/> direction.
         ///	This property is not enabled as default. With this enabled, no other stream types except <see cref="AudioStreamType.Media"/>
         ///	are not allowed to this device.
         /// </remarks>
-        /// <exception cref="ArgumentException">This device is not valid or is disconnected.</exception>
-        /// <exception cref="InvalidOperationException">This device is not <see cref="AudioDeviceType.UsbAudio"/> type or is not <see cref="AudioDeviceIoDirection.Output"/> direction.</exception>
+        /// <exception cref="InvalidOperationException">This device is not valid or is disconnected.</exception>
         /// <since_tizen> 5 </since_tizen>
         public bool GetMediaStreamOnly()
         {
