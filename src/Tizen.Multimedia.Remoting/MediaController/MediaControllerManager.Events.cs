@@ -54,6 +54,7 @@ namespace Tizen.Multimedia.Remoting
             RegisterMetadataUpdatedEvent();
             RegisterShuffleModeUpdatedEvent();
             RegisterRepeatModeUpdatedEvent();
+            RegisterPlaylistUpdatedEvent();
             RegisterCommandCompletedEvent();
             RegisterPlaybackCapabilitiesEvent();
             RegisterRepeatModeCapabilitiesEvent();
@@ -164,7 +165,7 @@ namespace Tizen.Multimedia.Remoting
             };
 
             Native.SetPlaybackCapabilityUpdatedCb(Handle, _playbackCapabilityUpdatedCallback).
-                ThrowIfError("Failed to init PlaylistUpdated event.");
+                ThrowIfError("Failed to init PlaybackCapabilityUpdated event.");
         }
 
         private void RegisterRepeatModeCapabilitiesEvent()

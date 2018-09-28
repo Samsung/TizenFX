@@ -215,14 +215,15 @@ namespace Tizen.Multimedia.Remoting
             ThrowIfStopped();
 
             IntPtr playbackHandle = IntPtr.Zero;
-            string name = null;
 
             // Get the playlist name of current playing media.
             try
             {
                 Native.GetServerPlayback(Manager.Handle, ServerAppId, out playbackHandle).ThrowIfError("Failed to get playback.");
 
-                name = NativePlaylist.GetPlaylistIndex(playbackHandle);
+                var (name, index) = NativePlaylist.GetPlaylistInfo(playbackHandle);
+
+                return GetPlaylists().FirstOrDefault(playlist => playlist.Name == name);
             }
             finally
             {
@@ -231,8 +232,6 @@ namespace Tizen.Multimedia.Remoting
                     Native.DestroyPlayback(playbackHandle).ThrowIfError("Failed to destroy playback handle.");
                 }
             }
-
-            return GetPlaylists().FirstOrDefault(playlist => playlist.Name == name);
         }
 
         /// <summary>
@@ -256,7 +255,8 @@ namespace Tizen.Multimedia.Remoting
             {
                 Native.GetServerPlayback(Manager.Handle, ServerAppId, out playbackHandle).ThrowIfError("Failed to get playback.");
 
-                return NativePlaylist.GetPlaylistIndex(playbackHandle);
+                var (name, index) = NativePlaylist.GetPlaylistInfo(playbackHandle);
+                return index;
             }
             finally
             {
@@ -562,7 +562,7 @@ namespace Tizen.Multimedia.Remoting
         /// </exception>
         /// <exception cref="ObjectDisposedException">The <see cref="MediaControllerManager"/> has already been disposed of.</exception>
         /// <since_tizen> 5 </since_tizen>
-        public MediaControlCapabilitySupport GetPlaybackCapabilities(MediaControlPlaybackCommand action)
+        public MediaControlCapabilitySupport GetPlaybackCapability(MediaControlPlaybackCommand action)
         {
             ThrowIfStopped();
 

@@ -32,6 +32,10 @@ namespace Tizen.Multimedia.Remoting
         /// <summary>
         /// Initializes a new instance of the <see cref="MediaControlSearchCondition"/> class.
         /// </summary>
+        /// <param name="type">The search type.</param>
+        /// <param name="category">The search category.</param>
+        /// <param name="keyword">The search keyword.</param>
+        /// <param name="bundle">The extra data.</param>
         /// <since_tizen> 5 </since_tizen>
         public MediaControlSearchCondition(MediaControlContentType type, MediaControlSearchCategory category,
             string keyword, Bundle bundle)
@@ -46,6 +50,9 @@ namespace Tizen.Multimedia.Remoting
         /// Initializes a new instance of the <see cref="MediaControlSearchCondition"/> class.
         /// </summary>
         /// <remarks>The <see cref="MediaControlSearchCategory"/> will be set internally by <see cref="MediaControlSearchCategory.All"/>.</remarks>
+        /// <param name="type" > The search type.</param>
+        /// <param name="keyword">The search keyword.</param>
+        /// <param name="bundle">The extra data.</param>
         /// <since_tizen> 5 </since_tizen>
         public MediaControlSearchCondition(MediaControlContentType type, string keyword, Bundle bundle)
         {
