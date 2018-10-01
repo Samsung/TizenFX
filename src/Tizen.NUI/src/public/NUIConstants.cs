@@ -809,7 +809,7 @@ namespace Tizen.NUI
     }
 
     /// <summary>
-    /// The values of this enum determines how the visual should fit into the view.
+    /// The values of this enum determine how the visual should fit into the view.
     /// </summary>
     /// <since_tizen> 5 </since_tizen>
     public enum VisualFittingModeType

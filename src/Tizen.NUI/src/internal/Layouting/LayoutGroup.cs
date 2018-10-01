@@ -84,6 +84,9 @@ namespace Tizen.NUI
         /// <param name="heightMeasureSpec">vertical space requirements as imposed by the parent.</param>
         protected virtual void OnMeasure(LayoutMeasureSpec widthMeasureSpec, LayoutMeasureSpec heightMeasureSpec)
         {
+            int width = widthMeasureSpec.Size;
+            int height = heightMeasureSpec.Size;
+
             LayoutLength childWidth  = new LayoutLength( 0 );
             LayoutLength childHeight =  new LayoutLength( 0 );
 
@@ -93,6 +96,10 @@ namespace Tizen.NUI
             for( uint i = 0; i < ChildCount; ++i )
             {
                 var childLayout = GetChildAt( i );
+
+                var view = GetOwner();
+                string ownerName = view.Name;
+
                 if( childLayout )
                 {
                     MeasureChild( childLayout, widthMeasureSpec, heightMeasureSpec );
