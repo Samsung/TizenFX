@@ -320,7 +320,7 @@ namespace Tizen.Multimedia.Remoting
         /// and then, the client receive the result of each request(command).
         /// </remarks>
         /// <param name="command">A <see cref="Command"/> class.</param>
-        /// <returns>A task that represents the asynchronous operation.</returns>
+        /// <returns><see cref="Bundle"/> represents the extra data from server and it can be null.</returns>
         /// <exception cref="InvalidOperationException">
         ///     The server has already been stopped.<br/>
         ///     -or-<br/>
@@ -328,7 +328,7 @@ namespace Tizen.Multimedia.Remoting
         /// </exception>
         /// <exception cref="ObjectDisposedException">The <see cref="MediaControllerManager"/> has already been disposed of.</exception>
         /// <since_tizen> 5 </since_tizen>
-        public async Task RequestAsync(Command command)
+        public async Task<Bundle> RequestAsync(Command command)
         {
             ThrowIfStopped();
 
@@ -336,11 +336,13 @@ namespace Tizen.Multimedia.Remoting
 
             var tcs = new TaskCompletionSource<MediaControllerError>();
             string reqeustId = null;
+            Bundle bundle = null;
 
             EventHandler<CommandCompletedEventArgs> eventHandler = (s, e) =>
             {
                 if (e.RequestId == reqeustId)
                 {
+                    bundle = e.Bundle;
                     tcs.TrySetResult(e.Result);
                 }
             };
@@ -352,6 +354,8 @@ namespace Tizen.Multimedia.Remoting
                 reqeustId = command.Request(Manager.Handle);
 
                 (await tcs.Task).ThrowIfError("Failed to request command");
+
+                return bundle;
             }
             finally
             {

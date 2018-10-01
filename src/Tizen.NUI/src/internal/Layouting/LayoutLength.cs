@@ -295,13 +295,6 @@ namespace Tizen.NUI
             return ret;
         }
 
-        public float ConvertToFloat()
-        {
-            float ret = LayoutPINVOKE.LayoutLength_ConvertToFloat(swigCPtr);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
-        }
-
         public int Value
         {
             set

@@ -388,24 +388,26 @@ namespace Tizen.Multimedia.Remoting
         /// </remarks>
         /// <param name="command">A <see cref="Command"/> class.</param>
         /// <param name="clientId">The client Id to send command.</param>
-        /// <returns>A task that represents the asynchronous operation.</returns>
+        /// <returns><see cref="Bundle"/> represents the extra data from client and it can be null.</returns>
         /// <exception cref="InvalidOperationException">
         ///     The server has already been stopped.<br/>
         ///     -or-<br/>
         ///     An internal error occurs.
         /// </exception>
         /// <since_tizen> 5 </since_tizen>
-        public static async Task RequestAsync(Command command, string clientId)
+        public static async Task<Bundle> RequestAsync(Command command, string clientId)
         {
             command.SetRequestInformation(clientId);
 
             var tcs = new TaskCompletionSource<MediaControllerError>();
             string reqeustId = null;
+            Bundle bundle = null;
 
             EventHandler<CommandCompletedEventArgs> eventHandler = (s, e) =>
             {
                 if (e.RequestId == reqeustId)
                 {
+                    bundle = e.Bundle;
                     tcs.TrySetResult(e.Result);
                 }
             };
@@ -417,6 +419,8 @@ namespace Tizen.Multimedia.Remoting
                 reqeustId = command.Request(Handle);
 
                 (await tcs.Task).ThrowIfError("Failed to request event.");
+
+                return bundle;
             }
             finally
             {
