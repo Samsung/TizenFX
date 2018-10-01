@@ -1582,7 +1582,7 @@ namespace Tizen.NUI
             }
             else
             {
-                return LayoutItemWrapper_GetImplementation_gl(jarg1); ;
+                return LayoutItemWrapper_GetImplementation_gl(jarg1);
             }
         }
 
