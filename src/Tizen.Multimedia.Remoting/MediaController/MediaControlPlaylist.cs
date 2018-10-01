@@ -118,7 +118,7 @@ namespace Tizen.Multimedia.Remoting
         {
             get
             {
-                return _metadata != null ? _metadata.Count : 0;
+                return _metadata?.Count ?? 0;
             }
         }
 
@@ -139,7 +139,7 @@ namespace Tizen.Multimedia.Remoting
         /// <returns>The dictionary set of index and <see cref="MediaControlMetadata"/> pair.</returns>
         public Dictionary<string, MediaControlMetadata> GetMetadata()
         {
-            if (_metadata == null)
+            if (TotalCount == 0)
             {
                 UpdateMetadata(Handle);
             }
@@ -151,10 +151,16 @@ namespace Tizen.Multimedia.Remoting
         /// Gets the metadata by index.
         /// </summary>
         /// <param name="index">The index of media in the playlist.</param>
+        /// <exception cref="ArgumentNullException"><paramref name="index"/> is null.</exception>
         /// <returns>A <see cref="MediaControlMetadata"/> instance.</returns>
         public MediaControlMetadata GetMetadata(string index)
         {
-            if (_metadata == null)
+            if (index == null)
+            {
+                throw new ArgumentNullException(nameof(index));
+            }
+
+            if (TotalCount == 0)
             {
                 UpdateMetadata(Handle);
             }
@@ -171,9 +177,15 @@ namespace Tizen.Multimedia.Remoting
         /// Sets the metadata to the playlist.
         /// </summary>
         /// <param name="metadata">The metadata of media.</param>
+        /// <exception cref="ArgumentNullException"><paramref name="metadata"/> is null.</exception>
         /// <since_tizen> 5 </since_tizen>
         public void AddMetadata(Dictionary<string, MediaControlMetadata> metadata)
         {
+            if (metadata == null)
+            {
+                throw new ArgumentNullException(nameof(metadata));
+            }
+
             foreach (var data in metadata)
             {
                 AddMetadata(data.Key, data.Value);
@@ -187,9 +199,21 @@ namespace Tizen.Multimedia.Remoting
         /// </summary>
         /// <param name="index">The index of media in the playlist.</param>
         /// <param name="metadata">The metadata of media.</param>
+        /// <exception cref="ArgumentNullException">
+        /// <paramref name="index"/> or <paramref name="metadata"/> is null.
+        /// </exception>
         /// <since_tizen> 5 </since_tizen>
         public void AddMetadata(string index, MediaControlMetadata metadata)
         {
+            if (index == null)
+            {
+                throw new ArgumentNullException(nameof(index));
+            }
+            if (metadata == null)
+            {
+                throw new ArgumentNullException(nameof(metadata));
+            }
+
             AddItemToPlaylist(index, metadata);
             _metadata.Add(index, metadata);
 
