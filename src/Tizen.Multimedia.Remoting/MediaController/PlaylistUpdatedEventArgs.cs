@@ -31,14 +31,17 @@ namespace Tizen.Multimedia.Remoting
         /// <param name="name">A value indicating the playlist name.</param>
         /// <param name="playlist">A value indicating the playlist.</param>
         /// <exception cref="ArgumentException"><paramref name="mode"/> is invalid.</exception>
+        /// <exception cref="ArgumentNullException">
+        /// <paramref name="name"/> or <paramref name="playlist"/> is null.
+        /// </exception>
         /// <since_tizen> 5 </since_tizen>
         public PlaylistUpdatedEventArgs(MediaControlPlaylistMode mode, string name, MediaControlPlaylist playlist)
         {
             ValidationUtil.ValidateEnum(typeof(MediaControlPlaylistMode), mode, nameof(mode));
 
             Mode = mode;
-            Name = name;
-            Playlist = playlist;
+            Name = name ?? throw new ArgumentNullException(nameof(name));
+            Playlist = playlist ?? throw new ArgumentNullException(nameof(playlist));
         }
 
         /// <summary>

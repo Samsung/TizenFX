@@ -31,10 +31,14 @@ namespace Tizen.Multimedia.Remoting
         /// </summary>
         /// <param name="requestId">The request id for each command.</param>
         /// <param name="result">The result of commands.</param>
+        /// <exception cref="ArgumentException"><paramref name="result"/> is not vailid.</exception>
+        /// <exception cref="ArgumentNullException"><paramref name="requestId"/> is null.</exception>
         /// <since_tizen> 5 </since_tizen>
         internal CommandCompletedEventArgs(string requestId, MediaControllerError result)
         {
-            RequestId = requestId;
+            ValidationUtil.ValidateEnum(typeof(MediaControllerError), result, nameof(result));
+
+            RequestId = requestId ?? throw new ArgumentNullException(nameof(requestId));
             Result = result;
         }
 
