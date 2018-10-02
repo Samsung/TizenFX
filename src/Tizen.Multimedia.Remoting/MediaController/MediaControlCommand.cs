@@ -49,7 +49,7 @@ namespace Tizen.Multimedia.Remoting
         /// <param name="receiverId">The receiver Id that receives command.</param>
         internal void SetRequestInformation(string receiverId)
         {
-            ReceiverId = receiverId;
+            ReceiverId = receiverId ?? throw new ArgumentNullException(nameof(receiverId));
         }
 
         /// <summary>
@@ -59,8 +59,8 @@ namespace Tizen.Multimedia.Remoting
         /// <param name="requestId">The request Id for each command.</param>
         internal void SetResponseInformation(string receiverId, string requestId)
         {
-            ReceiverId = receiverId;
-            _requestId = requestId;
+            ReceiverId = receiverId ?? throw new ArgumentNullException(nameof(receiverId)); ;
+            _requestId = requestId ?? throw new ArgumentNullException(nameof(requestId)); ;
         }
 
         /// <summary>
