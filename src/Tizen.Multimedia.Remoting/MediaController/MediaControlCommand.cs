@@ -92,7 +92,6 @@ namespace Tizen.Multimedia.Remoting
         {
             try
             {
-
                 if (bundle != null)
                 {
                     NativeServer.SendCommandReplyBundle(serverHandle, ReceiverId, _requestId, result, bundle.SafeBundleHandle)
@@ -103,6 +102,10 @@ namespace Tizen.Multimedia.Remoting
                     NativeServer.SendCommandReply(serverHandle, ReceiverId, _requestId, result, IntPtr.Zero)
                         .ThrowIfError("Failed to response command.");
                 }
+            }
+            catch (ArgumentException)
+            {
+                throw new InvalidOperationException("Server is not running");
             }
             finally
             {
@@ -128,8 +131,12 @@ namespace Tizen.Multimedia.Remoting
                 else
                 {
                     NativeClient.SendCustomEventReply(clientHandle, ReceiverId, _requestId, result, IntPtr.Zero)
-                        .ThrowIfError("Failed to repose event.");
+                        .ThrowIfError("Failed to response event.");
                 }
+            }
+            catch (ArgumentException)
+            {
+                throw new InvalidOperationException("Server is not running");
             }
             finally
             {
