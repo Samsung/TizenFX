@@ -326,6 +326,7 @@ namespace Tizen.Multimedia.Remoting
         /// Delete playlist.
         /// </summary>
         /// <param name="playlist">The name of playlist.</param>
+        /// <exception cref="ArgumentNullException"><paramref name="playlist"/> is null.</exception>
         /// <exception cref="InvalidOperationException">
         ///     The server is not running .<br/>
         ///     -or-<br/>
