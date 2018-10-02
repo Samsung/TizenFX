@@ -5537,6 +5537,35 @@ namespace Tizen.NUI.BaseComponents
             }
         }
 
+        private bool _backgroundImageSynchronosLoading = false;
+        internal bool BackgroundImageSynchronosLoading
+        {
+            get
+            {
+                return _backgroundImageSynchronosLoading;
+            }
+            set
+            {
+                if (value != _backgroundImageSynchronosLoading)
+                {
+                    string bgUrl = "";
+                    PropertyMap bgMap = this.Background;
+                    int visualType = 0;
+                    bgMap.Find(Visual.Property.Type)?.Get(out visualType);
+                    if (visualType == (int)Visual.Type.Image)
+                    {
+                        bgMap.Find(ImageVisualProperty.URL)?.Get(out bgUrl);
+                    }
+                    if (bgUrl.Length != 0)
+                    {
+                        _backgroundImageSynchronosLoading = value;
+                        bgMap.Add("synchronousLoading", new PropertyValue(_backgroundImageSynchronosLoading));
+                        this.Background = bgMap;
+                    }
+                }
+            }
+        }
+
     }
 
     /// <summary>

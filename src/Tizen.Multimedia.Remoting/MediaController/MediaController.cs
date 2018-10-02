@@ -321,6 +321,7 @@ namespace Tizen.Multimedia.Remoting
         /// </remarks>
         /// <param name="command">A <see cref="Command"/> class.</param>
         /// <returns><see cref="Bundle"/> represents the extra data from server and it can be null.</returns>
+        /// <exception cref="ArgumentNullException"><paramref name="command"/> is null.</exception>
         /// <exception cref="InvalidOperationException">
         ///     The server has already been stopped.<br/>
         ///     -or-<br/>
@@ -330,6 +331,11 @@ namespace Tizen.Multimedia.Remoting
         /// <since_tizen> 5 </since_tizen>
         public async Task<Bundle> RequestAsync(Command command)
         {
+            if (command == null)
+            {
+                throw new ArgumentNullException(nameof(command));
+            }
+
             ThrowIfStopped();
 
             command.SetRequestInformation(ServerAppId);
@@ -369,6 +375,7 @@ namespace Tizen.Multimedia.Remoting
         /// <param name="command">The command that return to client.</param>
         /// <param name="result">The result of <paramref name="command"/>.</param>
         /// <param name="bundle">The extra data.</param>
+        /// <exception cref="ArgumentNullException"><paramref name="command"/> is null.</exception>
         /// <exception cref="InvalidOperationException">
         ///     The server is not running .<br/>
         ///     -or-<br/>
@@ -377,6 +384,11 @@ namespace Tizen.Multimedia.Remoting
         /// <since_tizen> 5 </since_tizen>
         public void Response(Command command, int result, Bundle bundle)
         {
+            if (command == null)
+            {
+                throw new ArgumentNullException(nameof(command));
+            }
+
             command.Response(Manager.Handle, result, bundle);
         }
 
@@ -385,6 +397,7 @@ namespace Tizen.Multimedia.Remoting
         /// </summary>
         /// <param name="command">The command that return to client.</param>
         /// <param name="result">The result of <paramref name="command"/>.</param>
+        /// <exception cref="ArgumentNullException"><paramref name="command"/> is null.</exception>
         /// <exception cref="InvalidOperationException">
         ///     The server is not running .<br/>
         ///     -or-<br/>
@@ -393,6 +406,11 @@ namespace Tizen.Multimedia.Remoting
         /// <since_tizen> 5 </since_tizen>
         public void Response(Command command, int result)
         {
+            if (command == null)
+            {
+                throw new ArgumentNullException(nameof(command));
+            }
+
             command.Response(Manager.Handle, result, null);
         }
 
@@ -559,6 +577,7 @@ namespace Tizen.Multimedia.Remoting
         /// </summary>
         /// <param name="action">A playback command.</param>
         /// <returns>A <see cref="MediaControlCapabilitySupport"/>.</returns>
+        /// <exception cref="ArgumentException"><paramref name="action"/> is not valid.</exception>
         /// <exception cref="InvalidOperationException">
         ///     The server has already been stopped.<br/>
         ///     -or-<br/>
@@ -569,6 +588,8 @@ namespace Tizen.Multimedia.Remoting
         public MediaControlCapabilitySupport GetPlaybackCapability(MediaControlPlaybackCommand action)
         {
             ThrowIfStopped();
+
+            ValidationUtil.ValidateEnum(typeof(MediaControlPlaybackCommand), action, nameof(action));
 
             IntPtr playbackCapaHandle = IntPtr.Zero;
 
