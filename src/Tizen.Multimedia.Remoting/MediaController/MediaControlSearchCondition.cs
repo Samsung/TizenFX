@@ -36,6 +36,10 @@ namespace Tizen.Multimedia.Remoting
         /// <param name="category">The search category.</param>
         /// <param name="keyword">The search keyword.</param>
         /// <param name="bundle">The extra data.</param>
+        /// <exception cref="ArgumentException">
+        /// <paramref name="type"/> or <paramref name="category"/> is not valid.
+        /// </exception>
+        /// <exception cref="ArgumentNullException"><paramref name="keyword"/> is null.</exception>
         /// <since_tizen> 5 </since_tizen>
         public MediaControlSearchCondition(MediaControlContentType type, MediaControlSearchCategory category,
             string keyword, Bundle bundle)
@@ -53,6 +57,8 @@ namespace Tizen.Multimedia.Remoting
         /// <param name="type" > The search type.</param>
         /// <param name="keyword">The search keyword.</param>
         /// <param name="bundle">The extra data.</param>
+        /// <exception cref="ArgumentException"><paramref name="type"/> is not valid.</exception>
+        /// <exception cref="ArgumentNullException"><paramref name="keyword"/> is null.</exception>
         /// <since_tizen> 5 </since_tizen>
         public MediaControlSearchCondition(MediaControlContentType type, string keyword, Bundle bundle)
         {
