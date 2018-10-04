@@ -38,7 +38,7 @@ The following NuGet packages are published to [Tizen MyGet Gallery](https://tize
 * Tizen.NET.API4-4.0.1.#####
 * Tizen.NET.Internals-4.0.1.#####
 
-And, This branch is pushed to the [tizen_4.0 branch](https://git.tizen.org/cgit/platform/core/csapi/tizenfx/?h=tizen_4.0) in the tizen gerrit and submmited for the Tizen 4.0 platform.
+And, This branch is pushed to the [tizen_4.0 branch](https://git.tizen.org/cgit/platform/core/csapi/tizenfx/?h=tizen_4.0) in the tizen gerrit and submitted for the Tizen 4.0 platform.
 
 
 
