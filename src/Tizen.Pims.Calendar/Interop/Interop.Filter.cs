@@ -35,7 +35,7 @@ internal static partial class Interop
         [DllImport(Libraries.Calendar, EntryPoint = "calendar_filter_add_lli")]
             internal static extern int AddLong(IntPtr filterHandle, uint propertyId, IntegerMatchType match, long value);
         [DllImport(Libraries.Calendar, EntryPoint = "calendar_filter_add_caltime")]
-            internal static extern int AddCalendarTime(IntPtr filterHandle, uint propertyId, IntegerMatchType match, Interop.Record.DateTime value);
+            internal static extern int AddCalendarTime(IntPtr filterHandle, uint propertyId, IntegerMatchType match, IntPtr value);
         [DllImport(Libraries.Calendar, EntryPoint = "calendar_filter_add_filter")]
             internal static extern int AddFilter(IntPtr parentFilterHandle, IntPtr childFilterHandle);
         [DllImport(Libraries.Calendar, EntryPoint = "calendar_filter_add_operator")]

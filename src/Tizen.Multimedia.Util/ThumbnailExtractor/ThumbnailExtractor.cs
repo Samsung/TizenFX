@@ -175,12 +175,16 @@ namespace Tizen.Multimedia.Util
 
                 try
                 {
-                    Native.Extract(handle, GetCallback(tcs), IntPtr.Zero, out id)
-                        .ThrowIfError("Failed to extract.");
-
-                    using (RegisterCancellationToken(tcs, cancellationToken, handle, Marshal.PtrToStringAnsi(id)))
+                    var cb = GetCallback(tcs);
+                    using (var cbKeeper = ObjectKeeper.Get(cb))
                     {
-                        return await tcs.Task;
+                        Native.Extract(handle, cb, IntPtr.Zero, out id)
+                            .ThrowIfError("Failed to extract.");
+
+                        using (RegisterCancellationToken(tcs, cancellationToken, handle, Marshal.PtrToStringAnsi(id)))
+                        {
+                            return await tcs.Task;
+                        }
                     }
                 }
                 finally
