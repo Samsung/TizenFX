@@ -737,6 +737,69 @@ namespace Tizen.NUI.BaseComponents
         private bool? _borderOnly = null;
         private string _url = null;
         private bool? _orientationCorrection = null;
+
+
+        internal class ResourceLoadedEventArgs : EventArgs
+        {
+            private ResourceLoadingStatusType status = ResourceLoadingStatusType.Invalid;
+            public ResourceLoadingStatusType Status
+            {
+                get
+                {
+                    return status;
+                }
+                set
+                {
+                    status = value;
+                }
+            }
+        }
+
+        private EventHandler<ResourceLoadedEventArgs> _resourceLoadedEventHandler;
+        [UnmanagedFunctionPointer(CallingConvention.StdCall)]
+        private delegate void _resourceLoadedCallbackType(IntPtr view);
+        private _resourceLoadedCallbackType _resourceLoadedCallback;
+
+        internal event EventHandler<ResourceLoadedEventArgs> ResourceLoaded
+        {
+            add
+            {
+                if (_resourceLoadedEventHandler == null)
+                {
+                    _resourceLoadedCallback = OnResourceLoaded;
+                    this.ResourceReadySignal(this).Connect(_resourceLoadedCallback);
+                }
+
+                _resourceLoadedEventHandler += value;
+            }
+            remove
+            {
+                _resourceLoadedEventHandler -= value;
+
+                if (_resourceLoadedEventHandler == null && this.ResourceReadySignal(this).Empty() == false)
+                {
+                    this.ResourceReadySignal(this).Disconnect(_resourceLoadedCallback);
+                }
+            }
+        }
+
+        private void OnResourceLoaded(IntPtr view)
+        {
+            ResourceLoadedEventArgs e = new ResourceLoadedEventArgs();
+            e.Status = (ResourceLoadingStatusType)NDalicManualPINVOKE.View_GetVisualResourceStatus(this.swigCPtr, Property.IMAGE);
+
+            if (_resourceLoadedEventHandler != null)
+            {
+                _resourceLoadedEventHandler(this, e);
+            }
+        }
+
+        internal ResourceLoadingStatusType GetResourceStatus()
+        {
+            return (ResourceLoadingStatusType)NDalicManualPINVOKE.View_GetVisualResourceStatus(this.swigCPtr, Property.IMAGE);
+        }
+
+
     }
 
 }

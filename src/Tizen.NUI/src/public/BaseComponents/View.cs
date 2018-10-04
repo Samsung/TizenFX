@@ -1563,6 +1563,11 @@ namespace Tizen.NUI.BaseComponents
                 this.KeyInputFocusGainedSignal().Disconnect(_keyInputFocusGainedCallback);
             }
 
+            if (_backgroundResourceLoadedCallback != null)
+            {
+                this.ResourcesLoadedSignal().Disconnect(_backgroundResourceLoadedCallback);
+            }
+
             // BaseHandle CPtr is used in Registry and there is danger of deletion if we keep using it here.
             // Restore current CPtr.
             swigCPtr = currentCPtr;
@@ -5537,6 +5542,96 @@ namespace Tizen.NUI.BaseComponents
             }
         }
 
+        private bool _backgroundImageSynchronosLoading = false;
+        internal bool BackgroundImageSynchronosLoading
+        {
+            get
+            {
+                return _backgroundImageSynchronosLoading;
+            }
+            set
+            {
+                if (value != _backgroundImageSynchronosLoading)
+                {
+                    string bgUrl = "";
+                    PropertyMap bgMap = this.Background;
+                    int visualType = 0;
+                    bgMap.Find(Visual.Property.Type)?.Get(out visualType);
+                    if (visualType == (int)Visual.Type.Image)
+                    {
+                        bgMap.Find(ImageVisualProperty.URL)?.Get(out bgUrl);
+                    }
+                    if (bgUrl.Length != 0)
+                    {
+                        _backgroundImageSynchronosLoading = value;
+                        bgMap.Add("synchronousLoading", new PropertyValue(_backgroundImageSynchronosLoading));
+                        this.Background = bgMap;
+                    }
+                }
+            }
+        }
+
+        internal class BackgroundResourceLoadedEventArgs : EventArgs
+        {
+            private ResourceLoadingStatusType status = ResourceLoadingStatusType.Invalid;
+            public ResourceLoadingStatusType Status
+            {
+                get
+                {
+                    return status;
+                }
+                set
+                {
+                    status = value;
+                }
+            }
+        }
+
+        private EventHandler<BackgroundResourceLoadedEventArgs> _backgroundResourceLoadedEventHandler;
+        [UnmanagedFunctionPointer(CallingConvention.StdCall)]
+        private delegate void _backgroundResourceLoadedCallbackType(IntPtr view);
+        private _backgroundResourceLoadedCallbackType _backgroundResourceLoadedCallback;
+
+        internal event EventHandler<BackgroundResourceLoadedEventArgs> BackgroundResourceLoaded
+        {
+            add
+            {
+                if (_backgroundResourceLoadedEventHandler == null)
+                {
+                    _backgroundResourceLoadedCallback = OnBackgroundResourceLoaded;
+                    this.ResourcesLoadedSignal().Connect(_backgroundResourceLoadedCallback);
+                }
+
+                _backgroundResourceLoadedEventHandler += value;
+            }
+            remove
+            {
+                _backgroundResourceLoadedEventHandler -= value;
+
+                if (_backgroundResourceLoadedEventHandler == null && ResourcesLoadedSignal().Empty() == false)
+                {
+                    this.ResourcesLoadedSignal().Disconnect(_backgroundResourceLoadedCallback);
+                }
+            }
+        }
+
+        private void OnBackgroundResourceLoaded(IntPtr view)
+        {
+            BackgroundResourceLoadedEventArgs e = new BackgroundResourceLoadedEventArgs();
+            e.Status = (ResourceLoadingStatusType)NDalicManualPINVOKE.View_GetVisualResourceStatus(this.swigCPtr, Property.BACKGROUND);
+            
+            if (_backgroundResourceLoadedEventHandler != null)
+            {
+                _backgroundResourceLoadedEventHandler(this, e);
+            }
+        }
+
+        internal ResourceLoadingStatusType GetBackgroundResourceStatus()
+        {
+            return (ResourceLoadingStatusType)NDalicManualPINVOKE.View_GetVisualResourceStatus(this.swigCPtr, Property.BACKGROUND);
+        }
+
+
     }
 
     /// <summary>
@@ -5567,6 +5662,14 @@ namespace Tizen.NUI.BaseComponents
         /// Constant which indicates parent should take the smallest size possible to wrap it's children with their desired size
         /// </summary>
         WrapContent = -2,
+    }
+
+    internal enum ResourceLoadingStatusType
+    {
+        Invalid = -1,
+        Preparing = 0,
+        Ready,
+        Failed,
     }
 
 }

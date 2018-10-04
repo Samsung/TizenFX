@@ -1,4 +1,4 @@
-/*
+﻿/*
  * Copyright (c) 2018 Samsung Electronics Co., Ltd All Rights Reserved
  *
  * Licensed under the Apache License, Version 2.0 (the License);
@@ -14,34 +14,32 @@
  * limitations under the License.
  */
 
-using System;
-
 namespace Tizen.Multimedia
 {
     /// <summary>
-    /// Provides data for the <see cref="AudioManager.DeviceRunningChanged"/> event.
+    /// Specifies the audio sample formats.
     /// </summary>
     /// <since_tizen> 5 </since_tizen>
-    public class AudioDeviceRunningChangedEventArgs : EventArgs
+    public enum AudioSampleFormat
     {
-        internal AudioDeviceRunningChangedEventArgs(AudioDevice device, bool isRunning)
-        {
-            Device = device;
-            IsRunning = isRunning;
-        }
+        /// <summary>
+        /// Unsigned 8 bit samples.
+        /// </summary>
+        U8,
 
         /// <summary>
-        /// Gets the device.
+        /// Signed 16 bit samples.
         /// </summary>
-        /// <value>The <see cref="AudioDevice"/>.</value>
-        /// <since_tizen> 5 </since_tizen>
-        public AudioDevice Device { get; }
+        S16LE,
 
         /// <summary>
-        /// Gets the running state of the device.
+        /// Signed 24 bit samples.
         /// </summary>
-        /// <value>true if the audio stream of device is running actually; otherwise, false.</value>
-        /// <since_tizen> 5 </since_tizen>
-        public bool IsRunning { get; }
+        S24LE,
+
+        /// <summary>
+        /// Signed 24 bit(packed in 32 bit) samples.
+        /// </summary>
+        S24PackedIn32LE,
     }
 }

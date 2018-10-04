@@ -49,7 +49,7 @@ namespace Tizen.Multimedia.Remoting
         /// <param name="receiverId">The receiver Id that receives command.</param>
         internal void SetRequestInformation(string receiverId)
         {
-            ReceiverId = receiverId;
+            ReceiverId = receiverId ?? throw new ArgumentNullException(nameof(receiverId));
         }
 
         /// <summary>
@@ -59,8 +59,8 @@ namespace Tizen.Multimedia.Remoting
         /// <param name="requestId">The request Id for each command.</param>
         internal void SetResponseInformation(string receiverId, string requestId)
         {
-            ReceiverId = receiverId;
-            _requestId = requestId;
+            ReceiverId = receiverId ?? throw new ArgumentNullException(nameof(receiverId)); ;
+            _requestId = requestId ?? throw new ArgumentNullException(nameof(requestId)); ;
         }
 
         /// <summary>
@@ -92,7 +92,6 @@ namespace Tizen.Multimedia.Remoting
         {
             try
             {
-
                 if (bundle != null)
                 {
                     NativeServer.SendCommandReplyBundle(serverHandle, ReceiverId, _requestId, result, bundle.SafeBundleHandle)
@@ -103,6 +102,10 @@ namespace Tizen.Multimedia.Remoting
                     NativeServer.SendCommandReply(serverHandle, ReceiverId, _requestId, result, IntPtr.Zero)
                         .ThrowIfError("Failed to response command.");
                 }
+            }
+            catch (ArgumentException)
+            {
+                throw new InvalidOperationException("Server is not running");
             }
             finally
             {
@@ -128,8 +131,12 @@ namespace Tizen.Multimedia.Remoting
                 else
                 {
                     NativeClient.SendCustomEventReply(clientHandle, ReceiverId, _requestId, result, IntPtr.Zero)
-                        .ThrowIfError("Failed to repose event.");
+                        .ThrowIfError("Failed to response event.");
                 }
+            }
+            catch (ArgumentException)
+            {
+                throw new InvalidOperationException("Server is not running");
             }
             finally
             {
