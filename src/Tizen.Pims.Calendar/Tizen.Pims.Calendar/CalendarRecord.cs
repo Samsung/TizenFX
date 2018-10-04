@@ -156,41 +156,46 @@ namespace Tizen.Pims.Calendar
         }
 #endregion
 
-        internal static Interop.Record.DateTime ConvertCalendarTimeToStruct(CalendarTime value)
+        internal static IntPtr ConvertCalendarTimeToStruct(CalendarTime value)
         {
-            Interop.Record.DateTime time = new Interop.Record.DateTime();
-            time.type = value._type;
+            Console.WriteLine("convert calendar");
+            IntPtr caltime = Interop.Record.CreateCalTime();
+            Interop.Record.SetCalTimeType(caltime, value._type);
 
             if ((int)CalendarTime.Type.Utc == value._type)
             {
                 DateTime epoch = new DateTime(1970, 1, 1, 0, 0, 0);
-                time.utime = (value.UtcTime.Ticks - epoch.Ticks) / 10000000;
+                Interop.Record.SetCalTimeUtime(caltime, (value.UtcTime.Ticks - epoch.Ticks) / 10_000_000);
+                //Log.Debug(Globals.LogTag, "Sameer local time is if:" + Interop.Record.GetCalTimeLocalMonth(caltime) + "," + Interop.Record.GetCalTimeLocalMday(caltime) + "," + Interop.Record.GetCalTimeLocalHour(caltime) + "," + Interop.Record.GetCalTimeLocalMinute(caltime));
+
             }
             else
             {
-                time.local.year = value.LocalTime.Year;
-                time.local.month = value.LocalTime.Month;
-                time.local.mday = value.LocalTime.Day;
-                time.local.hour = value.LocalTime.Hour;
-                time.local.minute = value.LocalTime.Minute;
-                time.local.second = value.LocalTime.Second;
+                Interop.Record.SetCalTimeLocalYear(caltime, value.LocalTime.Year);
+                Interop.Record.SetCalTimeLocalMonth(caltime, value.LocalTime.Month);
+                Interop.Record.SetCalTimeLocalMday(caltime, value.LocalTime.Day);
+                Interop.Record.SetCalTimeLocalHour(caltime, value.LocalTime.Hour);
+                Interop.Record.SetCalTimeLocalMinute(caltime, value.LocalTime.Minute);
+                Interop.Record.SetCalTimeLocalSecond(caltime, value.LocalTime.Second);
+                //Log.Debug(Globals.LogTag, "Sameer local time is:" + Interop.Record.GetCalTimeLocalHour(caltime) + "," + Interop.Record.GetCalTimeLocalMinute(caltime));
             }
-            return time;
+            return caltime;
         }
 
-        internal static CalendarTime ConvertIntPtrToCalendarTime(Interop.Record.DateTime time)
+        internal static CalendarTime ConvertIntPtrToCalendarTime(IntPtr caltime)
         {
             CalendarTime value;
-            if ((int)CalendarTime.Type.Utc == time.type)
+            if ((int)CalendarTime.Type.Utc == Interop.Record.GetCalTimeType(caltime))
             {
                 DateTime epoch = new DateTime(1970, 1, 1, 0, 0, 0);
-                value = new CalendarTime(time.utime * 10000000 + epoch.Ticks);
+                value = new CalendarTime(Interop.Record.GetCalTimeUtime(caltime) * 10_000_000 + epoch.Ticks);
             }
             else
             {
-                value = new CalendarTime(time.local.year, time.local.month, time.local.mday, time.local.hour, time.local.minute, time.local.second);
+                value = new CalendarTime(Interop.Record.GetCalTimeLocalYear(caltime), Interop.Record.GetCalTimeLocalMonth(caltime), Interop.Record.GetCalTimeLocalMday(caltime),
+                    Interop.Record.GetCalTimeLocalHour(caltime), Interop.Record.GetCalTimeLocalMinute(caltime), Interop.Record.GetCalTimeLocalSecond(caltime));
             }
-            value._type = time.type;
+            value._type = Interop.Record.GetCalTimeType(caltime);
             return value;
         }
 
@@ -290,8 +295,8 @@ namespace Tizen.Pims.Calendar
             }
             else if (typeof(T) == typeof(CalendarTime))
             {
-                Interop.Record.DateTime time;
-                int error = Interop.Record.GetCalendarTime(_recordHandle, propertyId, out time);
+                IntPtr time;
+                int error = Interop.Record.GetCalTime(_recordHandle, propertyId, out time);
                 if (CalendarError.None != (CalendarError)error)
                 {
                     Log.Error(Globals.LogTag, "Get CalendarTime Failed [" + error + "]" + String.Format("{0:X}", propertyId));
@@ -362,8 +367,10 @@ namespace Tizen.Pims.Calendar
             else if (typeof(T) == typeof(CalendarTime))
             {
                 CalendarTime time = (CalendarTime)Convert.ChangeType(value, typeof(CalendarTime));
-                Interop.Record.DateTime val = ConvertCalendarTimeToStruct(time);
-                int error = Interop.Record.SetCalendarTime(_recordHandle, propertyId, val);
+                //Interop.Record.DateTime val = ConvertCalendarTimeToStruct(time);
+                IntPtr val = ConvertCalendarTimeToStruct(time);
+                //int error = Interop.Record.SetCalendarTime(_recordHandle, propertyId, val);
+                int error = Interop.Record.SetCalTime(_recordHandle, propertyId, val);
                 if (CalendarError.None != (CalendarError)error)
                 {
                     Log.Error(Globals.LogTag, "Set CalendarTime Failed [" + error + "]" + String.Format("{0:X}", propertyId));
