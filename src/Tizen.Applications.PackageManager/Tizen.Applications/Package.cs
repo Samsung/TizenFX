@@ -45,6 +45,9 @@ namespace Tizen.Applications
         private List<string> _privileges;
         private int _installedTime;
 
+        private Dictionary<IntPtr, Interop.PackageManager.PackageManagerSizeInfoCallback> _packageManagerSizeInfoCallbackDict = new Dictionary<IntPtr, Interop.PackageManager.PackageManagerSizeInfoCallback>();
+        private int _callbackId = 0;
+
         private Package(string pkgId)
         {
             _id = pkgId;
@@ -204,9 +207,21 @@ namespace Tizen.Applications
                     var pkgSizeInfo = PackageSizeInformation.GetPackageSizeInformation(sizeInfoHandle);
                     tcs.TrySetResult(pkgSizeInfo);
                 }
+
+                lock (_packageManagerSizeInfoCallbackDict)
+                {
+                    _packageManagerSizeInfoCallbackDict.Remove(userData);
+                }
             };
 
-            Interop.PackageManager.ErrorCode err = Interop.PackageManager.PackageManagerGetSizeInfo(Id, sizeInfoCb, IntPtr.Zero);
+            IntPtr callbackId;
+            lock (_packageManagerSizeInfoCallbackDict)
+            {
+                callbackId = (IntPtr)_callbackId++;
+                _packageManagerSizeInfoCallbackDict[callbackId] = sizeInfoCb;
+            }
+
+            Interop.PackageManager.ErrorCode err = Interop.PackageManager.PackageManagerGetSizeInfo(Id, sizeInfoCb, callbackId);
             if (err != Interop.PackageManager.ErrorCode.None)
             {
                 tcs.TrySetException(PackageManagerErrorFactory.GetException(err, "Failed to get total package size info of " + Id));
