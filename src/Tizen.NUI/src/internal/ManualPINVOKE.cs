@@ -1713,7 +1713,7 @@ namespace Tizen.NUI
         public static extern bool FontClient_GetGlyphMetrics__SWIG_1(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2, uint jarg3, int jarg4);
 
         [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint="CSharp_Dali_FontClient_CreateBitmap__SWIG_0")]
-        public static extern void FontClient_CreateBitmap__SWIG_0(global::System.Runtime.InteropServices.HandleRef jarg1, uint jarg2, uint jarg3, global::System.Runtime.InteropServices.HandleRef jarg4, int jarg5);
+        public static extern void FontClient_CreateBitmap__SWIG_0(global::System.Runtime.InteropServices.HandleRef jarg1, uint jarg2, uint jarg3, bool jarg4, bool jarg5, global::System.Runtime.InteropServices.HandleRef jarg6, int jarg7);
 
         [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint="CSharp_Dali_FontClient_CreateBitmap__SWIG_1")]
         public static extern global::System.IntPtr FontClient_CreateBitmap__SWIG_1(global::System.Runtime.InteropServices.HandleRef jarg1, uint jarg2, uint jarg3, int jarg4);

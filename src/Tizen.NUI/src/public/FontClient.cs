@@ -521,9 +521,9 @@ namespace Tizen.NUI
             return ret;
         }
 
-        internal void CreateBitmap(uint fontId, uint glyphIndex, FontClient.GlyphBufferData data, int outlineWidth)
+        internal void CreateBitmap(uint fontId, uint glyphIndex, bool softwareItalic, bool softwareBold, FontClient.GlyphBufferData data, int outlineWidth)
         {
-            NDalicManualPINVOKE.FontClient_CreateBitmap__SWIG_0(swigCPtr, fontId, glyphIndex, FontClient.GlyphBufferData.getCPtr(data), outlineWidth);
+            NDalicManualPINVOKE.FontClient_CreateBitmap__SWIG_0(swigCPtr, fontId, glyphIndex, softwareItalic, softwareBold, FontClient.GlyphBufferData.getCPtr(data), outlineWidth);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
