@@ -157,7 +157,7 @@ namespace Tizen.NUI.Binding
             switch (e.Action)
             {
                 case NotifyCollectionChangedAction.Add:
-                    if (e.NewStartingIndex == -1 || e.NewItems.Count > 1)
+                    if (e.NewStartingIndex == -1 || e.NewItems?.Count > 1)
                         goto case NotifyCollectionChangedAction.Reset;
 
                     var newItem = e.NewItems[0] as TRestrict;
@@ -168,7 +168,7 @@ namespace Tizen.NUI.Binding
                     handler(this, new NotifyCollectionChangedEventArgs(NotifyCollectionChangedAction.Add, e.NewItems, outerIndex));
                     break;
                 case NotifyCollectionChangedAction.Move:
-                    if (e.NewStartingIndex == -1 || e.OldStartingIndex == -1 || e.NewItems.Count > 1)
+                    if (e.NewStartingIndex == -1 || e.OldStartingIndex == -1 || e.NewItems?.Count > 1)
                         goto case NotifyCollectionChangedAction.Reset;
 
                     var movedItem = e.NewItems[0] as TRestrict;
