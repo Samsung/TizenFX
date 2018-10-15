@@ -3,7 +3,6 @@
 %define TIZEN_NET_API_VERSION 5
 %define TIZEN_NET_RPM_VERSION 5.0.0.999+nui504
 %define TIZEN_NET_NUGET_VERSION 5.0.0.99999
-%define TIZEN_NET_INTERNAL_NUGET_VERSION 5.0.0.999
 
 %define DOTNET_ASSEMBLY_PATH /usr/share/dotnet.tizen/framework
 %define DOTNET_ASSEMBLY_DUMMY_PATH %{DOTNET_ASSEMBLY_PATH}/ref
@@ -148,7 +147,7 @@ rm -fr %{_tizenfx_bin_path}
 export DOTNET_SKIP_FIRST_TIME_EXPERIENCE=true
 ./build.sh --full
 ./build.sh --dummy
-./build.sh --pack %{TIZEN_NET_NUGET_VERSION} %{TIZEN_NET_INTERNAL_NUGET_VERSION}
+./build.sh --pack %{TIZEN_NET_NUGET_VERSION}
 
 %install
 mkdir -p %{buildroot}%{DOTNET_ASSEMBLY_PATH}
@@ -163,8 +162,6 @@ install -p -m 644 %{_tizenfx_bin_path}/bin/internal/*.dll %{buildroot}%{DOTNET_A
 # Install Debug Symbols
 install -p -m 644 %{_tizenfx_bin_path}/bin/public/*.pdb %{buildroot}%{DOTNET_ASSEMBLY_PATH}
 install -p -m 644 %{_tizenfx_bin_path}/bin/internal/*.pdb %{buildroot}%{DOTNET_ASSEMBLY_PATH}
-[ -d %{_tizenfx_bin_path}/bin/external ] \
-  && install -p -m 644 %{_tizenfx_bin_path}/bin/external/*.pdb %{buildroot}%{DOTNET_ASSEMBLY_PATH}
 
 # Install Resource files
 [ -d %{_tizenfx_bin_path}/bin/public/res ] \
@@ -197,6 +194,7 @@ install -p -m 644 %{_tizenfx_bin_path}/*.nupkg %{buildroot}%{DOTNET_NUGET_SOURCE
 %attr(644,root,root) %{DOTNET_ASSEMBLY_RES_PATH}/*
 
 %files debug
+%manifest %{name}.manifest
 %attr(644,root,root) %{DOTNET_ASSEMBLY_PATH}/*.pdb
 
 %files common -f common.filelist
