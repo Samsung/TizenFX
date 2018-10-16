@@ -30,6 +30,7 @@ namespace Tizen.Applications.WatchfaceComplication
         /// <param name="defaultProviderId">The complication's default provider ID.</param>
         /// <param name="defaultType">The complication's default type.</param>
         /// <exception cref="ArgumentException">Thrown when editableId is invalid.</exception>
+        /// <exception cref="InvalidOperationException">Thrown when the method failed due to invalid operation.</exception>
         /// <example>
         /// <code>
         ///
@@ -123,9 +124,6 @@ namespace Tizen.Applications.WatchfaceComplication
                 }
                 return curIdx;
             }
-            set
-            {
-            }
         }
 
         /// <summary>
@@ -164,13 +162,17 @@ namespace Tizen.Applications.WatchfaceComplication
         {
             get
             {
-                return null;
+                string editableName = "";
+                Interop.WatchfaceComplication.GetEditableName(_handle, out editableName);
+                return editableName;
             }
         }
 
         /// <summary>
         /// Gets the editable's current data.
         /// </summary>
+        /// <exception cref="ArgumentException">Thrown when editableId is invalid.</exception>
+        /// <exception cref="InvalidOperationException">Thrown when the method failed due to invalid operation.</exception>
         /// <example>
         /// <code>
         /// MyComplication comp = new MyComplication();
@@ -205,6 +207,8 @@ namespace Tizen.Applications.WatchfaceComplication
         /// <summary>
         /// Sends the complication update requests.
         /// </summary>
+        /// <exception cref="ArgumentException">Thrown when editableId is invalid.</exception>
+        /// <exception cref="InvalidOperationException">Thrown when the method failed due to invalid operation.</exception>
         /// <example>
         /// <code>
         /// MyComplication comp = new MyComplication();
@@ -226,6 +230,7 @@ namespace Tizen.Applications.WatchfaceComplication
         /// Gets the complication data type.
         /// </summary>
         /// <exception cref="ArgumentException">Thrown when editableId is invalid.</exception>
+        /// <exception cref="InvalidOperationException">Thrown when the method failed due to invalid operation.</exception>
         /// <example>
         /// <code>
         /// ComplicationType type = comp.GetType(dupData);
@@ -236,7 +241,9 @@ namespace Tizen.Applications.WatchfaceComplication
         {
             ComplicationType type;
 
-            Interop.WatchfaceComplication.GetDataType(data.SafeBundleHandle, out type);
+            ComplicationError err = Interop.WatchfaceComplication.GetDataType(data.SafeBundleHandle, out type);
+            if (err != ComplicationError.None)
+                ErrorFactory.ThrowException(err, "fail to get current index");
             return type;
         }
 
@@ -245,6 +252,7 @@ namespace Tizen.Applications.WatchfaceComplication
         /// </summary>
         /// <param name="data">The data from OnComplicationUpdate callback.</param>
         /// <exception cref="ArgumentException">Thrown when data is invalid.</exception>
+        /// <exception cref="InvalidOperationException">Thrown when the method failed due to invalid operation.</exception>
         /// <example>
         /// <code>
         ///
@@ -272,7 +280,9 @@ namespace Tizen.Applications.WatchfaceComplication
         {
             string shortText;
 
-            Interop.WatchfaceComplication.GetShortText(data.SafeBundleHandle, out shortText);
+            ComplicationError err = Interop.WatchfaceComplication.GetShortText(data.SafeBundleHandle, out shortText);
+            if (err != ComplicationError.None)
+                ErrorFactory.ThrowException(err, "fail to get current index");
             return shortText;
         }
 
@@ -281,6 +291,7 @@ namespace Tizen.Applications.WatchfaceComplication
         /// </summary>
         /// <param name="data">The data from OnComplicationUpdate callback.</param>
         /// <exception cref="ArgumentException">Thrown when data is invalid.</exception>
+        /// <exception cref="InvalidOperationException">Thrown when the method failed due to invalid operation.</exception>
         /// <example>
         /// <code>
         ///
@@ -308,7 +319,9 @@ namespace Tizen.Applications.WatchfaceComplication
         {
             string longText;
 
-            Interop.WatchfaceComplication.GetLongText(data.SafeBundleHandle, out longText);
+            ComplicationError err = Interop.WatchfaceComplication.GetLongText(data.SafeBundleHandle, out longText);
+            if (err != ComplicationError.None)
+                ErrorFactory.ThrowException(err, "fail to get current index");
             return longText;
         }
 
@@ -317,6 +330,7 @@ namespace Tizen.Applications.WatchfaceComplication
         /// </summary>
         /// <param name="data">The data from OnComplicationUpdate callback.</param>
         /// <exception cref="ArgumentException">Thrown when data is invalid.</exception>
+        /// <exception cref="InvalidOperationException">Thrown when the method failed due to invalid operation.</exception>
         /// <example>
         /// <code>
         ///
@@ -344,7 +358,9 @@ namespace Tizen.Applications.WatchfaceComplication
         {
             string title;
 
-            Interop.WatchfaceComplication.GetTitle(data.SafeBundleHandle, out title);
+            ComplicationError err = Interop.WatchfaceComplication.GetTitle(data.SafeBundleHandle, out title);
+            if (err != ComplicationError.None)
+                ErrorFactory.ThrowException(err, "fail to get current index");
             return title;
         }
 
@@ -353,6 +369,7 @@ namespace Tizen.Applications.WatchfaceComplication
         /// </summary>
         /// <param name="data">The data from OnComplicationUpdate callback.</param>
         /// <exception cref="ArgumentException">Thrown when data is invalid.</exception>
+        /// <exception cref="InvalidOperationException">Thrown when the method failed due to invalid operation.</exception>
         /// <example>
         /// <code>
         ///
@@ -380,7 +397,9 @@ namespace Tizen.Applications.WatchfaceComplication
         {
             long timestamp;
 
-            Interop.WatchfaceComplication.GetTimestamp(data.SafeBundleHandle, out timestamp);
+            ComplicationError err = Interop.WatchfaceComplication.GetTimestamp(data.SafeBundleHandle, out timestamp);
+            if (err != ComplicationError.None)
+                ErrorFactory.ThrowException(err, "fail to get current index");
             return timestamp;
         }
 
@@ -389,6 +408,7 @@ namespace Tizen.Applications.WatchfaceComplication
         /// </summary>
         /// <param name="data">The data from OnComplicationUpdate callback.</param>
         /// <exception cref="ArgumentException">Thrown when data is invalid.</exception>
+        /// <exception cref="InvalidOperationException">Thrown when the method failed due to invalid operation.</exception>
         /// <example>
         /// <code>
         ///
@@ -416,7 +436,9 @@ namespace Tizen.Applications.WatchfaceComplication
         {
             string imagePath;
 
-            Interop.WatchfaceComplication.GetImagePath(data.SafeBundleHandle, out imagePath);
+            ComplicationError err = Interop.WatchfaceComplication.GetImagePath(data.SafeBundleHandle, out imagePath);
+            if (err != ComplicationError.None)
+                ErrorFactory.ThrowException(err, "fail to get current index");
             return imagePath;
         }
 
@@ -425,6 +447,7 @@ namespace Tizen.Applications.WatchfaceComplication
         /// </summary>
         /// <param name="data">The data from OnComplicationUpdate callback.</param>
         /// <exception cref="ArgumentException">Thrown when data is invalid.</exception>
+        /// <exception cref="InvalidOperationException">Thrown when the method failed due to invalid operation.</exception>
         /// <example>
         /// <code>
         ///
@@ -452,7 +475,9 @@ namespace Tizen.Applications.WatchfaceComplication
         {
             double curVal, minVal, maxVal;
 
-            Interop.WatchfaceComplication.GetRangedValue(data.SafeBundleHandle, out curVal, out minVal, out maxVal);
+            ComplicationError err = Interop.WatchfaceComplication.GetRangedValue(data.SafeBundleHandle, out curVal, out minVal, out maxVal);
+            if (err != ComplicationError.None)
+                ErrorFactory.ThrowException(err, "fail to get current index");
             return curVal;
         }
 
@@ -461,6 +486,7 @@ namespace Tizen.Applications.WatchfaceComplication
         /// </summary>
         /// <param name="data">The data from OnComplicationUpdate callback.</param>
         /// <exception cref="ArgumentException">Thrown when data is invalid.</exception>
+        /// <exception cref="InvalidOperationException">Thrown when the method failed due to invalid operation.</exception>
         /// <example>
         /// <code>
         ///
@@ -488,7 +514,9 @@ namespace Tizen.Applications.WatchfaceComplication
         {
             double curVal, minVal, maxVal;
 
-            Interop.WatchfaceComplication.GetRangedValue(data.SafeBundleHandle, out curVal, out minVal, out maxVal);
+            ComplicationError err = Interop.WatchfaceComplication.GetRangedValue(data.SafeBundleHandle, out curVal, out minVal, out maxVal);
+            if (err != ComplicationError.None)
+                ErrorFactory.ThrowException(err, "fail to get current index");
             return minVal;
         }
 
@@ -497,6 +525,7 @@ namespace Tizen.Applications.WatchfaceComplication
         /// </summary>
         /// <param name="data">The data from OnComplicationUpdate callback.</param>
         /// <exception cref="ArgumentException">Thrown when data is invalid.</exception>
+        /// <exception cref="InvalidOperationException">Thrown when the method failed due to invalid operation.</exception>
         /// <example>
         /// <code>
         ///
@@ -524,7 +553,9 @@ namespace Tizen.Applications.WatchfaceComplication
         {
             double curVal, minVal, maxVal;
 
-            Interop.WatchfaceComplication.GetRangedValue(data.SafeBundleHandle, out curVal, out minVal, out maxVal);
+            ComplicationError err = Interop.WatchfaceComplication.GetRangedValue(data.SafeBundleHandle, out curVal, out minVal, out maxVal);
+            if (err != ComplicationError.None)
+                ErrorFactory.ThrowException(err, "fail to get current index");
             return maxVal;
         }
 
@@ -533,6 +564,7 @@ namespace Tizen.Applications.WatchfaceComplication
         /// </summary>
         /// <param name="data">The data from OnComplicationUpdate callback.</param>
         /// <exception cref="ArgumentException">Thrown when data is invalid.</exception>
+        /// <exception cref="InvalidOperationException">Thrown when the method failed due to invalid operation.</exception>
         /// <example>
         /// <code>
         ///
@@ -560,7 +592,9 @@ namespace Tizen.Applications.WatchfaceComplication
         {
             string iconPath;
 
-            Interop.WatchfaceComplication.GetIconPath(data.SafeBundleHandle, out iconPath);
+            ComplicationError err = Interop.WatchfaceComplication.GetIconPath(data.SafeBundleHandle, out iconPath);
+            if (err != ComplicationError.None)
+                ErrorFactory.ThrowException(err, "fail to get current index");
             return iconPath;
         }
 
@@ -569,6 +603,7 @@ namespace Tizen.Applications.WatchfaceComplication
         /// </summary>
         /// <param name="data">The data from OnComplicationUpdate callback.</param>
         /// <exception cref="ArgumentException">Thrown when data is invalid.</exception>
+        /// <exception cref="InvalidOperationException">Thrown when the method failed due to invalid operation.</exception>
         /// <example>
         /// <code>
         ///
@@ -592,11 +627,13 @@ namespace Tizen.Applications.WatchfaceComplication
         /// </code>
         /// </example>
         /// <since_tizen> 5 </since_tizen>
-        public string GetExtraData(Bundle data)
+        public static string GetExtraData(Bundle data)
         {
             string extraData;
 
-            Interop.WatchfaceComplication.GetIconPath(data.SafeBundleHandle, out extraData);
+            ComplicationError err = Interop.WatchfaceComplication.GetIconPath(data.SafeBundleHandle, out extraData);
+            if (err != ComplicationError.None)
+                ErrorFactory.ThrowException(err, "fail to get current index");
             return extraData;
         }
 
@@ -616,9 +653,9 @@ namespace Tizen.Applications.WatchfaceComplication
         /// </summary>
         /// <param name="providerId">The updated provider's ID.</param>
         /// <param name="type">The updated type.</param>
-        /// <param name="error">The occured error.</param>
+        /// <param name="errorReason">The occured error.</param>
         /// <since_tizen> 5 </since_tizen>
-        protected virtual void OnComplicationError(string providerId, ComplicationType type, ComplicationError error)
+        protected virtual void OnComplicationError(string providerId, ComplicationType type, ComplicationError errorReason)
         {
         }
     }

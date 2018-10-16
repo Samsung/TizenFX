@@ -23,7 +23,8 @@ namespace Tizen.Applications.WatchfaceComplication
         /// <param name="candidates">The candidates list.</param>
         /// <param name="currentDataIndex">The current selected candidate index.</param>
         /// <param name="editableName">The design element name.</param>
-        /// <exception cref="ArgumentException">Thrown when some parameter are invalid.</exception>
+        /// <exception cref="ArgumentException">Thrown when e is invalid.</exception>
+        /// <exception cref="InvalidOperationException">Thrown when the method failed due to invalid operation.</exception>
         /// <example>
         /// <code>
         /// public class ColorDesign : DesignElement
@@ -135,10 +136,11 @@ namespace Tizen.Applications.WatchfaceComplication
             {
                 return _currentDataIndex;
             }
-            set
-            {
-                _currentDataIndex = value;
-            }
+        }
+
+        internal void SetCurrentDataIndex(int idx)
+        {
+            _currentDataIndex = idx;
         }
 
         /// <summary>

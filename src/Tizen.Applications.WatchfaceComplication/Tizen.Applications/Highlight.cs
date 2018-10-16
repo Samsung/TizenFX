@@ -15,7 +15,13 @@ namespace Tizen.Applications.WatchfaceComplication
         /// <summary>
         /// Initializes the Highlight class.
         /// </summary>
+        /// <param name="type">The highlight shape type.</param>
+        /// <param name="x">The highlight geometry x.</param>
+        /// <param name="y">The highlight geometry y.</param>
+        /// <param name="w">The highlight geometry w.</param>
+        /// <param name="h">The highlight geometry h.</param>
         /// <exception cref="ArgumentException">Thrown when some parameter are invalid.</exception>
+        /// <exception cref="InvalidOperationException">Thrown when the method failed due to invalid operation.</exception>
         /// <since_tizen> 5 </since_tizen>
         public Highlight(ShapeType type, int x, int y, int w, int h)
         {
@@ -27,12 +33,17 @@ namespace Tizen.Applications.WatchfaceComplication
             ret = Interop.WatchfaceComplication.SetHighlightGeometry(_raw, x, y, w, h);
             if (ret != ComplicationError.None)
             {
-                ErrorFactory.ThrowException(ret, "Fail to set Highlight");
+                ErrorFactory.ThrowException(ret, "Fail to set Highlight geometry");
+            }
+            ret = Interop.WatchfaceComplication.SetHighlightShapeType(_raw, type);
+            if (ret != ComplicationError.None)
+            {
+                ErrorFactory.ThrowException(ret, "Fail to set Highlight type");
             }
         }
 
         /// <summary>
-        /// Sets geometry's x, y, w, h value.
+        /// Sets highlight's x, y, w, h value.
         /// </summary>
         /// <param name="x">The editable geometry offset x.</param>
         /// <param name="y">The editable geometry offset y.</param>
@@ -42,6 +53,16 @@ namespace Tizen.Applications.WatchfaceComplication
         public ComplicationError SetGeometry(int x, int y, int w, int h)
         {
             return Interop.WatchfaceComplication.SetHighlightGeometry(_raw, x, y, w, h);
+        }
+
+        /// <summary>
+        /// Sets highlight's shape type value.
+        /// </summary>
+        /// <param name="type">The editable shape type.</param>
+        /// <since_tizen> 5 </since_tizen>
+        public ComplicationError SetType(ShapeType type)
+        {
+            return Interop.WatchfaceComplication.SetHighlightShapeType(_raw, type);
         }
 
         /// <summary>
@@ -63,6 +84,8 @@ namespace Tizen.Applications.WatchfaceComplication
         /// <summary>
         /// The x coordinate.
         /// </summary>
+        /// <exception cref="ArgumentException">Thrown when some parameter are invalid.</exception>
+        /// <exception cref="InvalidOperationException">Thrown when the method failed due to invalid operation.</exception>
         /// <since_tizen> 5 </since_tizen>
         public int X
         {
@@ -85,6 +108,8 @@ namespace Tizen.Applications.WatchfaceComplication
         /// <summary>
         /// The y coordinate.
         /// </summary>
+        /// <exception cref="ArgumentException">Thrown when some parameter are invalid.</exception>
+        /// <exception cref="InvalidOperationException">Thrown when the method failed due to invalid operation.</exception>
         /// <since_tizen> 5 </since_tizen>
         public int Y
         {
@@ -107,6 +132,8 @@ namespace Tizen.Applications.WatchfaceComplication
         /// <summary>
         /// The width of editable.
         /// </summary>
+        /// <exception cref="ArgumentException">Thrown when some parameter are invalid.</exception>
+        /// <exception cref="InvalidOperationException">Thrown when the method failed due to invalid operation.</exception>
         /// <since_tizen> 5 </since_tizen>
         public int W
         {
@@ -129,6 +156,8 @@ namespace Tizen.Applications.WatchfaceComplication
         /// <summary>
         /// The height of editable.
         /// </summary>
+        /// <exception cref="ArgumentException">Thrown when some parameter are invalid.</exception>
+        /// <exception cref="InvalidOperationException">Thrown when the method failed due to invalid operation.</exception>
         /// <since_tizen> 5 </since_tizen>
         public int H
         {
@@ -145,6 +174,26 @@ namespace Tizen.Applications.WatchfaceComplication
                     ErrorFactory.ThrowException(ret, "Fail to get Highlight");
                 }
                 return h;
+            }
+        }
+
+        /// <summary>
+        /// The shape of editable.
+        /// </summary>
+        /// <exception cref="ArgumentException">Thrown when some parameter are invalid.</exception>
+        /// <exception cref="InvalidOperationException">Thrown when the method failed due to invalid operation.</exception>
+        /// <since_tizen> 5 </since_tizen>
+        public ShapeType ShapeType
+        {
+            get
+            {
+                ShapeType type;
+                ComplicationError ret = Interop.WatchfaceComplication.GetHighlightShapeType(_raw, out type);
+                if (ret != ComplicationError.None)
+                {
+                    ErrorFactory.ThrowException(ret, "Fail to get Highlight");
+                }
+                return type;
             }
         }
     }

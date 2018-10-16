@@ -28,6 +28,7 @@ namespace Tizen.Applications.WatchfaceComplication
         /// </summary>
         /// <param name="providerId">The id of the complication provider.</param>
         /// <exception cref="ArgumentException">Thrown when providerId is invalid.</exception>
+        /// <exception cref="InvalidOperationException">Thrown when the method failed due to invalid operation.</exception>
         /// <example>
         /// <code>
         /// public class MyComplicationProvider : ComplicationProvider
@@ -45,7 +46,9 @@ namespace Tizen.Applications.WatchfaceComplication
         /// <since_tizen> 5 </since_tizen>
         protected ComplicationProvider(string providerId)
         {
-            Interop.WatchfaceComplication.AddUpdateRequestedCallback(providerId, DataUpdateRequested, IntPtr.Zero);
+            ComplicationError err = Interop.WatchfaceComplication.AddUpdateRequestedCallback(providerId, DataUpdateRequested, IntPtr.Zero);
+            if (err != ComplicationError.None)
+                ErrorFactory.ThrowException(err, "fail to create provider");
             _providerId = providerId;
         }
 
@@ -369,7 +372,7 @@ namespace Tizen.Applications.WatchfaceComplication
         /// <param name="updatedProviderId">The updated provider ID.</param>
         /// <exception cref="ArgumentException">Thrown when updatedProviderId is invalid.</exception>
         /// <since_tizen> 5 </since_tizen>
-        public void NotifyUpdate(string updatedProviderId)
+        public static void NotifyUpdate(string updatedProviderId)
         {
             ComplicationError err = Interop.WatchfaceComplication.NotifyUpdate(updatedProviderId);
             if (err != ComplicationError.None)
@@ -521,7 +524,7 @@ namespace Tizen.Applications.WatchfaceComplication
         /// <since_tizen> 5 </since_tizen>
         public bool IsDataValid(ComplicationType type)
         {
-            bool isValid;
+            bool isValid = false;
             Bundle shared = new Bundle();
             SetComplicationData(shared, type);
             ComplicationError err = Interop.WatchfaceComplication.ProviderSharedDataIsValid(shared.SafeBundleHandle.DangerousGetHandle(), out isValid);

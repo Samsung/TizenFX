@@ -73,6 +73,8 @@ namespace Tizen.Applications.WatchfaceComplication
         /// Gets complication's setup context.
         /// </summary>
         /// <param name="recvAppCtrl">The appcontrol received event args.</param>
+        /// <exception cref="ArgumentException">Thrown when e is invalid.</exception>
+        /// <exception cref="InvalidOperationException">Thrown when the method failed due to invalid operation.</exception>
         /// <example>
         /// <code>
         /// protected override void OnAppControlReceived(AppControlReceivedEventArgs e)

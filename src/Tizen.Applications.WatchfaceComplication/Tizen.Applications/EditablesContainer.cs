@@ -19,6 +19,7 @@ namespace Tizen.Applications.WatchfaceComplication
         /// Initializes the EditablesContainer class.
         /// </summary>
         /// <exception cref="ArgumentException">Thrown when some parameter are invalid.</exception>
+        /// <exception cref="InvalidOperationException">Thrown when the method failed due to invalid operation.</exception>
         /// <since_tizen> 5 </since_tizen>
         protected EditablesContainer()
         {
@@ -39,7 +40,7 @@ namespace Tizen.Applications.WatchfaceComplication
         /// <summary>
         /// Adds the DesignElement to edit list.
         /// </summary>
-        /// <exception cref="ArgumentException">Thrown when some parameter are invalid.</exception>
+        /// <exception cref="InvalidOperationException">Thrown when the method failed due to invalid operation.</exception>
         /// <since_tizen> 5 </since_tizen>
         public void Add(DesignElement de, int editableId, Highlight hi)
         {
@@ -55,7 +56,7 @@ namespace Tizen.Applications.WatchfaceComplication
         /// <summary>
         /// Adds the Complication to edit list.
         /// </summary>
-        /// <exception cref="ArgumentException">Thrown when some parameter are invalid.</exception>
+        /// <exception cref="InvalidOperationException">Thrown when the method failed due to invalid operation.</exception>
         /// <since_tizen> 5 </since_tizen>
         public void Add(Complication comp, int editableId, Highlight hi)
         {
@@ -71,7 +72,7 @@ namespace Tizen.Applications.WatchfaceComplication
         /// <summary>
         /// Removes the editable from edit list.
         /// </summary>
-        /// <exception cref="ArgumentException">Thrown when some parameter are invalid.</exception>
+        /// <exception cref="InvalidOperationException">Thrown when the method failed due to invalid operation.</exception>
         /// <example>
         /// <code>
         /// if (myContainer.IsExist(_colorEditId)
@@ -98,6 +99,8 @@ namespace Tizen.Applications.WatchfaceComplication
                     return;
                 }
             }
+
+            ErrorFactory.ThrowException(ComplicationError.NotExist, "invalid editable ID");
         }
 
         internal IEditable GetEditable(int editableId)
@@ -154,25 +157,24 @@ namespace Tizen.Applications.WatchfaceComplication
             if (err != ComplicationError.None)
                 ErrorFactory.ThrowException(err, "fail to get current index");
 
-            IEditable ed = GetEditable(editableId);
-            if (ed == null)
-                ErrorFactory.ThrowException(ComplicationError.InvalidParam, "invalid editable id (" + editableId + ")");
-
             int currentIdx;
             err = Interop.WatchfaceComplication.GetCurrentIdx(handle, out currentIdx);
             if (err != ComplicationError.None)
                 ErrorFactory.ThrowException(err, "fail to get current index");
-            ed.CurrentDataIndex = currentIdx;
 
             DesignElement de = GetDesignElement(editableId);
             if (de != null)
-                de.NotifyUpdate(selectedIdx, (State)state);
+            {
+                de.SetCurrentDataIndex(currentIdx);
+                de.NotifyUpdate(currentIdx, (State)state);
+            }
         }
 
         /// <summary>
         /// Requests edit to editor appliation.
         /// </summary>
         /// <exception cref="ArgumentException">Thrown when some parameter are invalid.</exception>
+        /// <exception cref="InvalidOperationException">Thrown when the method failed due to invalid operation.</exception>
         /// <example>
         /// <code>
         /// public class MyContainer : EditablesContainer {
@@ -181,13 +183,13 @@ namespace Tizen.Applications.WatchfaceComplication
         ///     }
         ///     protected override void OnEditReady(string editorId)
         ///     {
-        ///         this.RequestEdit(editorId);
+        ///         this.RequestEdit();
         ///     }
         /// }
         /// </code>
         /// </example>
         /// <since_tizen> 5 </since_tizen>
-        public void RequestEdit(string editorId)
+        public void RequestEdit()
         {
             Log.Debug(_logTag, "request edit");
             ComplicationError ret;
@@ -248,14 +250,13 @@ namespace Tizen.Applications.WatchfaceComplication
         /// This API loads editable's last current data which is updated by editor application.
         /// </remarks>
         /// <param name="editableId">The id of the editable.</param>
-        /// <exception cref="System.ArgumentException">Thrown when editableId is invalid.</exception>
         /// <example>
         /// <code>
         /// internal void InitEditables()
         /// {
         ///     _container = new MyContainer();
         ///     Highlight hi = new Highlight(ShapeType.Circle, 0, 0, 10, 10);
-        ///     Bundle curData = _container.LoadCurrentData(_colorEditId);
+        ///     Bundle curData = EditablesContainer.LoadCurrentData(_colorEditId);
         ///     List&lt;Bundle&gt; candidatesList = new List&lt;Bundle&gt;();
         ///     int curIdx = 0;
         ///     int i = 0;
@@ -278,7 +279,7 @@ namespace Tizen.Applications.WatchfaceComplication
         /// </code>
         /// </example>
         /// <since_tizen> 5 </since_tizen>
-        public Bundle LoadCurrentData(int editableId)
+        public static Bundle LoadCurrentData(int editableId)
         {
             SafeBundleHandle handle;
             ComplicationError err = Interop.WatchfaceComplication.LoadCurrentData(editableId, out handle);
