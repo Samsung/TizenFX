@@ -52,7 +52,7 @@ namespace Tizen.Messaging.Push
             // Empty
         }
 
-        private IntPtr _connection;
+        private static IntPtr _connection;
 
         internal void PushServiceConnect(string pushAppId)
         {
