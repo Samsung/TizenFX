@@ -1282,6 +1282,8 @@ namespace Tizen.NUI.BaseComponents
         /// <since_tizen> 4 </since_tizen>
         public override void Add(View child)
         {
+            Log.Info("NUI", "Add child:" + child.Name + " to " + Name + "\n");
+
             if (null == child)
             {
                 Tizen.Log.Fatal("NUI", "Child is null");
@@ -1297,15 +1299,22 @@ namespace Tizen.NUI.BaseComponents
                 }
                 child.InternalParent = this;
 
-                if (layoutSet == true && child.Layout == null) // Only give children a layout if parent an explicit container
+                // layoutSet flag is true when the View became a layout using the SetLayout API,
+                if (true == layoutSet && null == child.Layout) // Only give children a layout if parent an explicit container
                 {
+                    Log.Info("NUI", "Add child Parent[" + Name + "] Layout set\n");
+                    // If child is a View or explicitly set to require layouting then set child as a LayoutGroup.
+                    // If the child is derived from a View then it may be a legacy or existing container hence will do layouting itself.
                     if( child.GetType() == typeof(View) ||  true == child.LayoutingRequired )
                     {
+                        Log.Info("NUI", "Add child Creating LayoutGroup\n");
                         child.Layout = new LayoutGroup();
-
                     }
                     else
                     {
+                        // Adding child as a leaf, layouting will not propogate past this child.
+                        // Legacy containers will be a LayoutItems too and layout their children how they wish.
+                        Log.Info("NUI", "Add child Creating LayoutItem for " + child.Name + "\n");
                         child.Layout = new LayoutItem();
                     }
                 }
@@ -1470,7 +1479,7 @@ namespace Tizen.NUI.BaseComponents
             {
                 view.InternalParent = null;
             }
-            
+
             base.Dispose(type);
 
         }
