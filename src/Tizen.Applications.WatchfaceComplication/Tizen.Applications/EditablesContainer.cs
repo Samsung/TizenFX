@@ -12,20 +12,15 @@ namespace Tizen.Applications.WatchfaceComplication
         internal IList<DesignElement> _deList = new List<DesignElement>();
         internal IList<Complication> _compList = new List<Complication>();
         internal IntPtr _container = IntPtr.Zero;
-        private Interop.WatchfaceComplication.EditableUpdatedCallback _editableUpdatedCallback;
+        private Interop.WatchfaceComplication.EditableUpdateRequestedCallback _editableUpdatedCallback;
         private static string _logTag = "WatchfaceComplication";
 
         /// <summary>
         /// Initializes the EditablesContainer class.
         /// </summary>
         /// <exception cref="ArgumentException">Thrown when some parameter are invalid.</exception>
-        /// <example>
-        /// <code>
-        ///
-        /// </code>
-        /// </example>
         /// <since_tizen> 5 </since_tizen>
-        public EditablesContainer()
+        protected EditablesContainer()
         {
             ComplicationError err = Interop.WatchfaceComplication.AddEditReadyCallback(EditReady, IntPtr.Zero);
             if (err != ComplicationError.None)
@@ -45,20 +40,15 @@ namespace Tizen.Applications.WatchfaceComplication
         /// Adds the DesignElement to edit list.
         /// </summary>
         /// <exception cref="ArgumentException">Thrown when some parameter are invalid.</exception>
-        /// <example>
-        /// <code>
-        ///
-        /// </code>
-        /// </example>
         /// <since_tizen> 5 </since_tizen>
-        public void Add(DesignElement de, int editableId, Geometry geo)
+        public void Add(DesignElement de, int editableId, Highlight hi)
         {
             if (IsExist(editableId))
                 ErrorFactory.ThrowException(ComplicationError.ExistID);
 
             IEditable e = de;
             e.EditableId = editableId;
-            e.Geometry = geo;
+            e.Highlight = hi;
             _deList.Add(de);
         }
 
@@ -66,20 +56,15 @@ namespace Tizen.Applications.WatchfaceComplication
         /// Adds the Complication to edit list.
         /// </summary>
         /// <exception cref="ArgumentException">Thrown when some parameter are invalid.</exception>
-        /// <example>
-        /// <code>
-        ///
-        /// </code>
-        /// </example>
         /// <since_tizen> 5 </since_tizen>
-        public void Add(Complication comp, int editableId, Geometry geo)
+        public void Add(Complication comp, int editableId, Highlight hi)
         {
             if (IsExist(editableId))
                 ErrorFactory.ThrowException(ComplicationError.ExistID);
 
             IEditable e = comp;
             e.EditableId = editableId;
-            e.Geometry = geo;
+            e.Highlight = hi;
             _compList.Add(comp);
         }
 
@@ -89,12 +74,30 @@ namespace Tizen.Applications.WatchfaceComplication
         /// <exception cref="ArgumentException">Thrown when some parameter are invalid.</exception>
         /// <example>
         /// <code>
-        ///
+        /// if (myContainer.IsExist(_colorEditId)
+        ///     myContainer.Remove(_colorEditId);
         /// </code>
         /// </example>
         /// <since_tizen> 5 </since_tizen>
         public void Remove(int editableId)
         {
+            foreach (DesignElement de in _deList)
+            {
+                if (((IEditable)de).EditableId == editableId)
+                {
+                    _deList.Remove(de);
+                    return;
+                }
+            }
+
+            foreach (Complication comp in _compList)
+            {
+                if (((IEditable)comp).EditableId == editableId)
+                {
+                    _compList.Remove(comp);
+                    return;
+                }
+            }
         }
 
         internal IEditable GetEditable(int editableId)
@@ -130,11 +133,6 @@ namespace Tizen.Applications.WatchfaceComplication
         /// Checks the editable with editableId is already exists in edit list.
         /// </summary>
         /// <param name="editableId">The target editable Id.</param>
-        /// <example>
-        /// <code>
-        ///
-        /// </code>
-        /// </example>
         /// <returns>true if the editable is already exists in edit list, ortherwise false</returns>
         /// <since_tizen> 5 </since_tizen>
         public bool IsExist(int editableId)
@@ -153,10 +151,17 @@ namespace Tizen.Applications.WatchfaceComplication
         {
             int editableId;
             ComplicationError err = Interop.WatchfaceComplication.GetEditableId(handle, out editableId);
+            if (err != ComplicationError.None)
+                ErrorFactory.ThrowException(err, "fail to get current index");
+
             IEditable ed = GetEditable(editableId);
+            if (ed == null)
+                ErrorFactory.ThrowException(ComplicationError.InvalidParam, "invalid editable id (" + editableId + ")");
 
             int currentIdx;
             err = Interop.WatchfaceComplication.GetCurrentIdx(handle, out currentIdx);
+            if (err != ComplicationError.None)
+                ErrorFactory.ThrowException(err, "fail to get current index");
             ed.CurrentDataIndex = currentIdx;
 
             DesignElement de = GetDesignElement(editableId);
@@ -170,7 +175,15 @@ namespace Tizen.Applications.WatchfaceComplication
         /// <exception cref="ArgumentException">Thrown when some parameter are invalid.</exception>
         /// <example>
         /// <code>
-        ///
+        /// public class MyContainer : EditablesContainer {
+        ///     public MyContainer() : base()
+        ///     {
+        ///     }
+        ///     protected override void OnEditReady(string editorId)
+        ///     {
+        ///         this.RequestEdit(editorId);
+        ///     }
+        /// }
         /// </code>
         /// </example>
         /// <since_tizen> 5 </since_tizen>
@@ -186,17 +199,17 @@ namespace Tizen.Applications.WatchfaceComplication
             }
 
             if (_editableUpdatedCallback == null)
-                _editableUpdatedCallback = new Interop.WatchfaceComplication.EditableUpdatedCallback(EditableUpdatedCallback);
+                _editableUpdatedCallback = new Interop.WatchfaceComplication.EditableUpdateRequestedCallback(EditableUpdatedCallback);
 
             foreach (Complication comp in _compList)
             {
                 IEditable e = comp;
-                if (e.Geometry == null || e.Geometry.Raw == IntPtr.Zero)
+                if (e.Highlight == null || e.Highlight.Raw == IntPtr.Zero)
                 {
                     Log.Warn(_logTag, "geometry is null");
                     continue;
                 }
-                Interop.WatchfaceComplication.AddComplication(_container, e.EditableId, comp.Raw, e.Geometry.Raw);
+                Interop.WatchfaceComplication.AddComplication(_container, e.EditableId, comp.Raw, e.Highlight.Raw);
             }
 
             foreach (DesignElement de in _deList)
@@ -208,7 +221,7 @@ namespace Tizen.Applications.WatchfaceComplication
                 {
                     Interop.WatchfaceComplication.AddCandidatesListItem(candidates, b.SafeBundleHandle);
                 }
-                Interop.WatchfaceComplication.AddDesignElement(_container, e.EditableId, e.CurrentDataIndex, candidates, e.Geometry.Raw, e.Name);
+                Interop.WatchfaceComplication.AddDesignElement(_container, e.EditableId, e.CurrentDataIndex, candidates, e.Highlight.Raw, e.Name);
                 Log.Debug(_logTag, "Add design element done :" + e.Name);
             }
 
@@ -238,7 +251,30 @@ namespace Tizen.Applications.WatchfaceComplication
         /// <exception cref="System.ArgumentException">Thrown when editableId is invalid.</exception>
         /// <example>
         /// <code>
-        ///
+        /// internal void InitEditables()
+        /// {
+        ///     _container = new MyContainer();
+        ///     Highlight hi = new Highlight(ShapeType.Circle, 0, 0, 10, 10);
+        ///     Bundle curData = _container.LoadCurrentData(_colorEditId);
+        ///     List&lt;Bundle&gt; candidatesList = new List&lt;Bundle&gt;();
+        ///     int curIdx = 0;
+        ///     int i = 0;
+        ///     foreach (string str in _colorArr)
+        ///     {
+        ///         Bundle data = new Bundle();
+        ///         data.AddItem(_colorKey, str);
+        ///         candidatesList.Add(data);
+        ///         if (curData != null &amp;&amp; curData.GetItem(_colorKey) != null
+        ///             &amp;&amp; curData.GetItem(_colorKey).Equals(str))
+        ///         {
+        ///             curIdx = i;
+        ///         }
+        ///         i++;
+        ///    }
+        ///    ColorDesign colorEdit = new ColorDesign(candidatesList, curIdx, "COLOR", _complicationBtn);
+        ///    hi.SetGeometry(0, 40, 10, 10);
+        ///    _container.Add(colorEdit, _colorEditId, hi);
+        /// }
         /// </code>
         /// </example>
         /// <since_tizen> 5 </since_tizen>

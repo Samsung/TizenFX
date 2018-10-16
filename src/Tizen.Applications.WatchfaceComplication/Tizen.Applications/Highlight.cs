@@ -5,43 +5,51 @@ using System.Text;
 namespace Tizen.Applications.WatchfaceComplication
 {
     /// <summary>
-    /// Represents the Geometry class for the editable.
+    /// Represents the Highlight class for the editable.
     /// </summary>
     /// <since_tizen> 5 </since_tizen>
-    public class Geometry
+    public class Highlight
     {
         private IntPtr _raw = IntPtr.Zero;
 
         /// <summary>
-        /// Initializes the Geometry class.
+        /// Initializes the Highlight class.
         /// </summary>
         /// <exception cref="ArgumentException">Thrown when some parameter are invalid.</exception>
-        /// <example>
-        /// <code>
-        ///
-        /// </code>
-        /// </example>
         /// <since_tizen> 5 </since_tizen>
-        public Geometry(int x, int y, int w, int h)
+        public Highlight(ShapeType type, int x, int y, int w, int h)
         {
-            ComplicationError ret = Interop.WatchfaceComplication.CreateGeometry(out _raw);
+            ComplicationError ret = Interop.WatchfaceComplication.CreateHighlight(out _raw);
             if (ret != ComplicationError.None)
             {
-                ErrorFactory.ThrowException(ret, "Fail to create geometry");
+                ErrorFactory.ThrowException(ret, "Fail to create Highlight");
             }
-            ret = Interop.WatchfaceComplication.SetGeometry(_raw, x, y, w, h);
+            ret = Interop.WatchfaceComplication.SetHighlightGeometry(_raw, x, y, w, h);
             if (ret != ComplicationError.None)
             {
-                ErrorFactory.ThrowException(ret, "Fail to set geometry");
+                ErrorFactory.ThrowException(ret, "Fail to set Highlight");
             }
         }
 
         /// <summary>
-        /// Destructor of the Geometry class.
+        /// Sets geometry's x, y, w, h value.
         /// </summary>
-        ~Geometry()
+        /// <param name="x">The editable geometry offset x.</param>
+        /// <param name="y">The editable geometry offset y.</param>
+        /// <param name="w">The editable geometry width.</param>
+        /// <param name="h">The editable geometry height.</param>
+        /// <since_tizen> 5 </since_tizen>
+        public ComplicationError SetGeometry(int x, int y, int w, int h)
         {
-            Interop.WatchfaceComplication.DestroyGeometry(_raw);
+            return Interop.WatchfaceComplication.SetHighlightGeometry(_raw, x, y, w, h);
+        }
+
+        /// <summary>
+        /// Destructor of the Highlight class.
+        /// </summary>
+        ~Highlight()
+        {
+            Interop.WatchfaceComplication.DestroyHighlight(_raw);
         }
 
         internal IntPtr Raw
@@ -65,10 +73,10 @@ namespace Tizen.Applications.WatchfaceComplication
                 int w;
                 int h;
 
-                ComplicationError ret = Interop.WatchfaceComplication.GetGeometry(_raw, out x, out y, out w, out h);
+                ComplicationError ret = Interop.WatchfaceComplication.GetHighlightGeometry(_raw, out x, out y, out w, out h);
                 if (ret != ComplicationError.None)
                 {
-                    ErrorFactory.ThrowException(ret, "Fail to get geometry");
+                    ErrorFactory.ThrowException(ret, "Fail to get Highlight");
                 }
                 return x;
             }
@@ -87,10 +95,10 @@ namespace Tizen.Applications.WatchfaceComplication
                 int w;
                 int h;
 
-                ComplicationError ret = Interop.WatchfaceComplication.GetGeometry(_raw, out x, out y, out w, out h);
+                ComplicationError ret = Interop.WatchfaceComplication.GetHighlightGeometry(_raw, out x, out y, out w, out h);
                 if (ret != ComplicationError.None)
                 {
-                    ErrorFactory.ThrowException(ret, "Fail to get geometry");
+                    ErrorFactory.ThrowException(ret, "Fail to get Highlight");
                 }
                 return y;
             }
@@ -109,10 +117,10 @@ namespace Tizen.Applications.WatchfaceComplication
                 int w;
                 int h;
 
-                ComplicationError ret = Interop.WatchfaceComplication.GetGeometry(_raw, out x, out y, out w, out h);
+                ComplicationError ret = Interop.WatchfaceComplication.GetHighlightGeometry(_raw, out x, out y, out w, out h);
                 if (ret != ComplicationError.None)
                 {
-                    ErrorFactory.ThrowException(ret, "Fail to get geometry");
+                    ErrorFactory.ThrowException(ret, "Fail to get Highlight");
                 }
                 return w;
             }
@@ -131,10 +139,10 @@ namespace Tizen.Applications.WatchfaceComplication
                 int w;
                 int h;
 
-                ComplicationError ret = Interop.WatchfaceComplication.GetGeometry(_raw, out x, out y, out w, out h);
+                ComplicationError ret = Interop.WatchfaceComplication.GetHighlightGeometry(_raw, out x, out y, out w, out h);
                 if (ret != ComplicationError.None)
                 {
-                    ErrorFactory.ThrowException(ret, "Fail to get geometry");
+                    ErrorFactory.ThrowException(ret, "Fail to get Highlight");
                 }
                 return h;
             }

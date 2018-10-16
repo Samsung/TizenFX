@@ -21,6 +21,7 @@ namespace Tizen.Applications.WatchfaceComplication
         private double _maxValue;
         private string _iconPath;
         private string _extraData;
+        private const string LogTag = "WatchfaceComplication";
 
         /// <summary>
         /// Initializes the ComplicationProvider class.
@@ -29,11 +30,20 @@ namespace Tizen.Applications.WatchfaceComplication
         /// <exception cref="ArgumentException">Thrown when providerId is invalid.</exception>
         /// <example>
         /// <code>
-        ///
+        /// public class MyComplicationProvider : ComplicationProvider
+        /// {
+        ///     public MyComplicationProvider(string providerId)
+        ///      : base(providerId)
+        ///     {
+        ///     }
+        ///     protected override void OnDataUpdateRequested(string reqestAppId, ComplicationType type, Bundle contextData)
+        ///     {
+        ///     }
+        /// }
         /// </code>
         /// </example>
         /// <since_tizen> 5 </since_tizen>
-        public ComplicationProvider(string providerId)
+        protected ComplicationProvider(string providerId)
         {
             Interop.WatchfaceComplication.AddUpdateRequestedCallback(providerId, DataUpdateRequested, IntPtr.Zero);
             _providerId = providerId;
@@ -51,51 +61,56 @@ namespace Tizen.Applications.WatchfaceComplication
             }
         }
 
+        internal ComplicationError SetComplicationData(Bundle b, ComplicationType type)
+        {
+            ComplicationError err = ComplicationError.None;
+            switch (type)
+            {
+                case ComplicationType.ShortText:
+                    err = Interop.WatchfaceComplication.ProviderSetShortText(b.SafeBundleHandle.DangerousGetHandle(), _shortText);
+                    err = Interop.WatchfaceComplication.ProviderSetIconPath(b.SafeBundleHandle.DangerousGetHandle(), _iconPath);
+                    err = Interop.WatchfaceComplication.ProviderSetTitle(b.SafeBundleHandle.DangerousGetHandle(), _title);
+                    err = Interop.WatchfaceComplication.ProviderSetExtraData(b.SafeBundleHandle.DangerousGetHandle(), _extraData);
+                    break;
+                case ComplicationType.LongText:
+                    err = Interop.WatchfaceComplication.ProviderSetLongText(b.SafeBundleHandle.DangerousGetHandle(), _longText);
+                    err = Interop.WatchfaceComplication.ProviderSetIconPath(b.SafeBundleHandle.DangerousGetHandle(), _iconPath);
+                    err = Interop.WatchfaceComplication.ProviderSetTitle(b.SafeBundleHandle.DangerousGetHandle(), _title);
+                    err = Interop.WatchfaceComplication.ProviderSetExtraData(b.SafeBundleHandle.DangerousGetHandle(), _extraData);
+                    break;
+                case ComplicationType.RangedValue:
+                    err = Interop.WatchfaceComplication.ProviderSetLongText(b.SafeBundleHandle.DangerousGetHandle(), _shortText);
+                    err = Interop.WatchfaceComplication.ProviderSetIconPath(b.SafeBundleHandle.DangerousGetHandle(), _iconPath);
+                    err = Interop.WatchfaceComplication.ProviderSetTitle(b.SafeBundleHandle.DangerousGetHandle(), _title);
+                    err = Interop.WatchfaceComplication.ProviderSetRangedValue(b.SafeBundleHandle.DangerousGetHandle(), _currentValue, _minValue, _maxValue);
+                    err = Interop.WatchfaceComplication.ProviderSetExtraData(b.SafeBundleHandle.DangerousGetHandle(), _extraData);
+                    break;
+                case ComplicationType.Time:
+                    err = Interop.WatchfaceComplication.ProviderSetTimestamp(b.SafeBundleHandle.DangerousGetHandle(), _timestamp);
+                    err = Interop.WatchfaceComplication.ProviderSetIconPath(b.SafeBundleHandle.DangerousGetHandle(), _iconPath);
+                    err = Interop.WatchfaceComplication.ProviderSetExtraData(b.SafeBundleHandle.DangerousGetHandle(), _extraData);
+                    break;
+                case ComplicationType.Icon:
+                    err = Interop.WatchfaceComplication.ProviderSetIconPath(b.SafeBundleHandle.DangerousGetHandle(), _iconPath);
+                    err = Interop.WatchfaceComplication.ProviderSetExtraData(b.SafeBundleHandle.DangerousGetHandle(), _extraData);
+                    break;
+                case ComplicationType.Image:
+                    err = Interop.WatchfaceComplication.ProviderSetImagePath(b.SafeBundleHandle.DangerousGetHandle(), _imagePath);
+                    err = Interop.WatchfaceComplication.ProviderSetExtraData(b.SafeBundleHandle.DangerousGetHandle(), _extraData);
+                    break;
+            }
+            return err;
+        }
 
         private void DataUpdateRequested(string providerId, string reqAppId, ComplicationType type,
             IntPtr context, IntPtr sharedData, IntPtr userData)
         {
-            OnDataUpdateRequested(reqAppId, type, new Bundle(new SafeBundleHandle(context, false)));
-            ComplicationError err;
-
-            err = Interop.WatchfaceComplication.ProviderSetType(sharedData, type);
-            switch (type)
-            {
-                case ComplicationType.ShortText:
-                    err = Interop.WatchfaceComplication.ProviderSetShortText(sharedData, _shortText);
-                    err = Interop.WatchfaceComplication.ProviderSetIconPath(sharedData, _iconPath);
-                    err = Interop.WatchfaceComplication.ProviderSetTitle(sharedData, _title);
-                    err = Interop.WatchfaceComplication.ProviderSetExtraData(sharedData, _extraData);
-                    break;
-                case ComplicationType.LongText:
-                    err = Interop.WatchfaceComplication.ProviderSetLongText(sharedData, _longText);
-                    err = Interop.WatchfaceComplication.ProviderSetIconPath(sharedData, _iconPath);
-                    err = Interop.WatchfaceComplication.ProviderSetTitle(sharedData, _title);
-                    err = Interop.WatchfaceComplication.ProviderSetExtraData(sharedData, _extraData);
-                    break;
-                case ComplicationType.RangedValue:
-                    err = Interop.WatchfaceComplication.ProviderSetLongText(sharedData, _shortText);
-                    err = Interop.WatchfaceComplication.ProviderSetIconPath(sharedData, _iconPath);
-                    err = Interop.WatchfaceComplication.ProviderSetTitle(sharedData, _title);
-                    err = Interop.WatchfaceComplication.ProviderSetRangedValue(sharedData, _currentValue, _minValue, _maxValue);
-                    err = Interop.WatchfaceComplication.ProviderSetExtraData(sharedData, _extraData);
-                    break;
-                case ComplicationType.Time:
-                    err = Interop.WatchfaceComplication.ProviderSetTimestamp(sharedData, _timestamp);
-                    err = Interop.WatchfaceComplication.ProviderSetIconPath(sharedData, _iconPath);
-                    err = Interop.WatchfaceComplication.ProviderSetExtraData(sharedData, _extraData);
-                    break;
-                case ComplicationType.Icon:
-                    err = Interop.WatchfaceComplication.ProviderSetIconPath(sharedData, _iconPath);
-                    err = Interop.WatchfaceComplication.ProviderSetExtraData(sharedData, _extraData);
-                    break;
-                case ComplicationType.Image:
-                    err = Interop.WatchfaceComplication.ProviderSetImagePath(sharedData, _imagePath);
-                    err = Interop.WatchfaceComplication.ProviderSetExtraData(sharedData, _extraData);
-                    break;
-            }
+            Bundle shared = new Bundle(new SafeBundleHandle(context, false));
+            OnDataUpdateRequested(reqAppId, type, shared);
+            ComplicationError err = SetComplicationData(shared, type);
+            if (err != ComplicationError.None)
+                Log.Error(LogTag, "Set complication data error : " + err);
         }
-
 
         /// <summary>
         /// Overrides this method to handle the behavior when the complication data update request event comes from watchface complication.
@@ -115,7 +130,21 @@ namespace Tizen.Applications.WatchfaceComplication
         /// <param name="title">The title.</param>
         /// <example>
         /// <code>
-        ///
+        /// public class MyComplicationProvider : ComplicationProvider
+        /// {
+        ///     public MyComplicationProvider(string providerId)
+        ///      : base(providerId)
+        ///     {
+        ///     }
+        ///     protected override void OnDataUpdateRequested(string reqestAppId, ComplicationType type, Bundle contextData)
+        ///     {
+        ///         if (type == ComplicationType.ShortText)
+        ///         {
+        ///             this.SetTitle("Title");
+        ///             this.SetShortText("csharp short text");
+        ///         }
+        ///     }
+        /// }
         /// </code>
         /// </example>
         /// <since_tizen> 5 </since_tizen>
@@ -130,7 +159,21 @@ namespace Tizen.Applications.WatchfaceComplication
         /// <param name="shortText">The short text.</param>
         /// <example>
         /// <code>
-        ///
+        /// public class MyComplicationProvider : ComplicationProvider
+        /// {
+        ///     public MyComplicationProvider(string providerId)
+        ///      : base(providerId)
+        ///     {
+        ///     }
+        ///     protected override void OnDataUpdateRequested(string reqestAppId, ComplicationType type, Bundle contextData)
+        ///     {
+        ///         if (type == ComplicationType.ShortText)
+        ///         {
+        ///             this.SetTitle("Title");
+        ///             this.SetShortText("csharp short text");
+        ///         }
+        ///     }
+        /// }
         /// </code>
         /// </example>
         /// <since_tizen> 5 </since_tizen>
@@ -145,7 +188,21 @@ namespace Tizen.Applications.WatchfaceComplication
         /// <param name="longText">The long text.</param>
         /// <example>
         /// <code>
-        ///
+        /// public class MyComplicationProvider : ComplicationProvider
+        /// {
+        ///     public MyComplicationProvider(string providerId)
+        ///      : base(providerId)
+        ///     {
+        ///     }
+        ///     protected override void OnDataUpdateRequested(string reqestAppId, ComplicationType type, Bundle contextData)
+        ///     {
+        ///         if (type == ComplicationType.ShortText)
+        ///         {
+        ///             this.SetTitle("Title");
+        ///             this.SetLongText("csharp long text");
+        ///         }
+        ///     }
+        /// }
         /// </code>
         /// </example>
         /// <since_tizen> 5 </since_tizen>
@@ -158,10 +215,25 @@ namespace Tizen.Applications.WatchfaceComplication
         /// Sets the timestamp of complication data.
         /// </summary>
         /// <param name="timestamp">The timestamp.</param>
-        /// <exception cref="ArgumentException">Thrown when timestamp is invalid.</exception>
         /// <example>
         /// <code>
-        ///
+        /// public class MyComplicationProvider : ComplicationProvider
+        /// {
+        ///     public MyComplicationProvider(string providerId)
+        ///      : base(providerId)
+        ///     {
+        ///     }
+        ///     protected override void OnDataUpdateRequested(string reqestAppId, ComplicationType type, Bundle contextData)
+        ///     {
+        ///         if (type == ComplicationType.Time)
+        ///         {
+        ///             DateTime epoch = new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc);
+        ///             long ms = (long)(DateTime.UtcNow - epoch).TotalMilliseconds;
+        ///             long result = ms / 1000;
+        ///             this.SetTimestamp(result);
+        ///         }
+        ///     }
+        /// }
         /// </code>
         /// </example>
         /// <since_tizen> 5 </since_tizen>
@@ -176,7 +248,20 @@ namespace Tizen.Applications.WatchfaceComplication
         /// <param name="imagePath">The image path.</param>
         /// <example>
         /// <code>
-        ///
+        /// public class MyComplicationProvider : ComplicationProvider
+        /// {
+        ///     public MyComplicationProvider(string providerId)
+        ///      : base(providerId)
+        ///     {
+        ///     }
+        ///     protected override void OnDataUpdateRequested(string reqestAppId, ComplicationType type, Bundle contextData)
+        ///     {
+        ///         if (type == ComplicationType.Image)
+        ///         {
+        ///             this.SetImagePath("image path");
+        ///         }
+        ///     }
+        /// }
         /// </code>
         /// </example>
         /// <since_tizen> 5 </since_tizen>
@@ -194,12 +279,28 @@ namespace Tizen.Applications.WatchfaceComplication
         /// <exception cref="ArgumentException">Thrown when value is invalid.</exception>
         /// <example>
         /// <code>
-        ///
+        /// public class MyComplicationProvider : ComplicationProvider
+        /// {
+        ///     public MyComplicationProvider(string providerId)
+        ///      : base(providerId)
+        ///     {
+        ///     }
+        ///     protected override void OnDataUpdateRequested(string reqestAppId, ComplicationType type, Bundle contextData)
+        ///     {
+        ///         if (type == ComplicationType.RangedValue)
+        ///         {
+        ///             this.SetRangedValue(30, 0, 100);
+        ///         }
+        ///     }
+        /// }
         /// </code>
         /// </example>
         /// <since_tizen> 5 </since_tizen>
         public void SetRangedValue(double currentValue, double minValue, double maxValue)
         {
+            if (minValue > maxValue || currentValue < minValue || currentValue > maxValue)
+                ErrorFactory.ThrowException(ComplicationError.InvalidParam,
+                    "invaild ranged value (" + currentValue + "," + minValue + "," + maxValue + ")");
             _currentValue = currentValue;
             _minValue = minValue;
             _maxValue = maxValue;
@@ -211,7 +312,20 @@ namespace Tizen.Applications.WatchfaceComplication
         /// <param name="iconPath">The icon path.</param>
         /// <example>
         /// <code>
-        ///
+        /// public class MyComplicationProvider : ComplicationProvider
+        /// {
+        ///     public MyComplicationProvider(string providerId)
+        ///      : base(providerId)
+        ///     {
+        ///     }
+        ///     protected override void OnDataUpdateRequested(string reqestAppId, ComplicationType type, Bundle contextData)
+        ///     {
+        ///         if (type == ComplicationType.Icon)
+        ///         {
+        ///             this.SetIconPath("icon path");
+        ///         }
+        ///     }
+        /// }
         /// </code>
         /// </example>
         /// <since_tizen> 5 </since_tizen>
@@ -226,7 +340,21 @@ namespace Tizen.Applications.WatchfaceComplication
         /// <param name="extraData">The extra data.</param>
         /// <example>
         /// <code>
-        ///
+        /// public class MyComplicationProvider : ComplicationProvider
+        /// {
+        ///     public MyComplicationProvider(string providerId)
+        ///      : base(providerId)
+        ///     {
+        ///     }
+        ///     protected override void OnDataUpdateRequested(string reqestAppId, ComplicationType type, Bundle contextData)
+        ///     {
+        ///         if (type == ComplicationType.Icon)
+        ///         {
+        ///             this.SetIconPath("icon path");
+        ///             this.SetExtraData("extra data");
+        ///         }
+        ///     }
+        /// }
         /// </code>
         /// </example>
         /// <since_tizen> 5 </since_tizen>
@@ -240,11 +368,6 @@ namespace Tizen.Applications.WatchfaceComplication
         /// </summary>
         /// <param name="updatedProviderId">The updated provider ID.</param>
         /// <exception cref="ArgumentException">Thrown when updatedProviderId is invalid.</exception>
-        /// <example>
-        /// <code>
-        ///
-        /// </code>
-        /// </example>
         /// <since_tizen> 5 </since_tizen>
         public void NotifyUpdate(string updatedProviderId)
         {
@@ -254,67 +377,157 @@ namespace Tizen.Applications.WatchfaceComplication
         }
 
         /// <summary>
-        /// Checks the provider application is launched by touch launch operation.
+        /// Gets the received event type.
         /// </summary>
-        /// <param name="e">The appcontrol received event args.</param>
+        /// <param name="recvAppCtrl">The appcontrol received event args.</param>
+        /// <exception cref="ArgumentException">Thrown when e is invalid.</exception>
+        /// <exception cref="InvalidOperationException">Thrown when the method failed due to invalid operation.</exception>
         /// <example>
         /// <code>
-        ///
+        /// protected override void OnAppControlReceived(AppControlReceivedEventArgs e)
+        /// {
+        ///     EventType type = ComplicationProvider.GetEventType(e.ReceivedAppControl);
+        ///     if (type == EventType.EventDoubleTap)
+        ///     {
+        ///         // do something
+        ///     }
+        ///     base.OnAppControlReceived(e);
+        /// }
         /// </code>
         /// </example>
-        /// <returns>true if the provider is launched by touch launch operation, ortherwise false</returns>
+        /// <returns>Complication event type</returns>
         /// <since_tizen> 5 </since_tizen>
-        static bool IsTouchLaunch(AppControlReceivedEventArgs e)
+        public static EventType GetEventType(ReceivedAppControl recvAppCtrl)
         {
-            return false;
+            EventType type;
+            ComplicationError err = Interop.WatchfaceComplication.GetEventType(recvAppCtrl.SafeAppControlHandle, out type);
+            if (err != ComplicationError.None)
+                ErrorFactory.ThrowException(err, "fail to get event");
+            return type;
         }
 
         /// <summary>
-        /// Gets the target provider id of touch launch operation.
+        /// Gets the received event target provider ID.
         /// </summary>
-        /// <param name="e">The appcontrol received event args.</param>
+        /// <param name="recvAppCtrl">The appcontrol received event args.</param>
+        /// <exception cref="ArgumentException">Thrown when e is invalid.</exception>
+        /// <exception cref="InvalidOperationException">Thrown when the method failed due to invalid operation.</exception>
         /// <example>
         /// <code>
-        ///
+        /// protected override void OnAppControlReceived(AppControlReceivedEventArgs e)
+        /// {
+        ///     string providerId = ComplicationProvider.GetEventProviderId(e.ReceivedAppControl);
+        ///     base.OnAppControlReceived(e);
+        /// }
         /// </code>
         /// </example>
-        /// <returns>Provider id</returns>
+        /// <returns>Event target provider ID</returns>
         /// <since_tizen> 5 </since_tizen>
-        static string GetTouchLaunchProviderId(AppControlReceivedEventArgs e)
+        public static string GetEventProviderId(ReceivedAppControl recvAppCtrl)
         {
-            return "";
+            string providerId = string.Empty;
+            ComplicationError err = Interop.WatchfaceComplication.GetEventProviderId(recvAppCtrl.SafeAppControlHandle, out providerId);
+            if (err != ComplicationError.None && err != ComplicationError.NoData)
+                ErrorFactory.ThrowException(err, "fail to get event");
+            return providerId;
         }
 
         /// <summary>
-        /// Gets the target complication type of touch launch operation.
+        /// Gets the received event target complication type.
         /// </summary>
-        /// <param name="e">The appcontrol received event args.</param>
+        /// <param name="recvAppCtrl">The appcontrol received event args.</param>
+        /// <exception cref="ArgumentException">Thrown when e is invalid.</exception>
+        /// <exception cref="InvalidOperationException">Thrown when the method failed due to invalid operation.</exception>
         /// <example>
         /// <code>
-        ///
+        /// protected override void OnAppControlReceived(AppControlReceivedEventArgs e)
+        /// {
+        ///     ComplicationType type = ComplicationProvider.GetEventComplicationType(e.ReceivedAppControl);
+        ///     base.OnAppControlReceived(e);
+        /// }
         /// </code>
         /// </example>
-        /// <returns>Complication type</returns>
+        /// <returns>Event target complication type</returns>
         /// <since_tizen> 5 </since_tizen>
-        static ComplicationType GetTouchLaunchComplicationType(AppControlReceivedEventArgs e)
+        public static ComplicationType GetEventComplicationType(ReceivedAppControl recvAppCtrl)
         {
-            return ComplicationType.ShortText;
+            ComplicationType type = ComplicationType.NoData;
+            ComplicationError err = Interop.WatchfaceComplication.GetEventComplicationType(recvAppCtrl.SafeAppControlHandle, out type);
+            if (err != ComplicationError.None && err != ComplicationError.NoData)
+                ErrorFactory.ThrowException(err, "fail to get complication type");
+            return type;
         }
 
         /// <summary>
-        /// Gets the target complication's context of touch launch operation.
+        /// Gets the received event target complication context.
         /// </summary>
         /// <param name="e">The appcontrol received event args.</param>
+        /// <exception cref="ArgumentException">Thrown when e is invalid.</exception>
+        /// <exception cref="InvalidOperationException">Thrown when the method failed due to invalid operation.</exception>
         /// <example>
         /// <code>
-        ///
+        /// protected override void OnAppControlReceived(AppControlReceivedEventArgs e)
+        /// {
+        ///     Bundle context = ComplicationProvider.GetEventContext(e.ReceivedAppControl);
+        ///     base.OnAppControlReceived(e);
+        /// }
         /// </code>
         /// </example>
-        /// <returns>Context data</returns>
+        /// <returns>Event target complication context</returns>
         /// <since_tizen> 5 </since_tizen>
-        static Bundle GetTouchLaunchContext(AppControlReceivedEventArgs e)
+        public static Bundle GetEventContext(AppControlReceivedEventArgs e)
         {
-            return null;
+            SafeBundleHandle bHandle;
+            ComplicationError err = Interop.WatchfaceComplication.GetEventContext(e.ReceivedAppControl.SafeAppControlHandle, out bHandle);
+            if (err != ComplicationError.None)
+            {
+                if (err == ComplicationError.NoData)
+                    return null;
+                ErrorFactory.ThrowException(err, "fail to get complication context");
+            }
+
+            return new Bundle(bHandle);
+        }
+
+        /// <summary>
+        /// Checks the provider's complication data is valid.
+        /// </summary>
+        /// <param name="type">The complication type to check.</param>
+        /// <exception cref="ArgumentException">Thrown when e is invalid.</exception>
+        /// <exception cref="InvalidOperationException">Thrown when the method failed due to invalid operation.</exception>
+        /// <example>
+        /// <code>
+        /// public class MyComplicationProvider : ComplicationProvider
+        /// {
+        ///     public MyComplicationProvider(string providerId)
+        ///      : base(providerId)
+        ///     {
+        ///     }
+        ///     protected override void OnDataUpdateRequested(string reqestAppId, ComplicationType type, Bundle contextData)
+        ///     {
+        ///         if (type == ComplicationType.Icon)
+        ///         {
+        ///             this.SetIconPath("icon path");
+        ///             this.SetExtraData("extra data");
+        ///         }
+        ///         bool isValid = this.IsDataValid(type);
+        ///         if (!isValid)
+        ///             Log.Error("test", "Invalid data, cannot send data to complication");
+        ///     }
+        /// }
+        /// </code>
+        /// </example>
+        /// <returns>true if complication data is valid</returns>
+        /// <since_tizen> 5 </since_tizen>
+        public bool IsDataValid(ComplicationType type)
+        {
+            bool isValid;
+            Bundle shared = new Bundle();
+            SetComplicationData(shared, type);
+            ComplicationError err = Interop.WatchfaceComplication.ProviderSharedDataIsValid(shared.SafeBundleHandle.DangerousGetHandle(), out isValid);
+            if (err != ComplicationError.None)
+                ErrorFactory.ThrowException(err, "fail to get complication context");
+            return isValid;
         }
     }
 }

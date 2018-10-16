@@ -1,17 +1,13 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
-    <Version>1.0.0</Version>
-    <Description>Watchface Complication</Description>
-    <PackageProjectUrl>https://www.tizen.org/</PackageProjectUrl>
-    <PackageLicenseUrl>https://www.apache.org/licenses/LICENSE-2.0</PackageLicenseUrl>
-    <PackageIconUrl>https://developer.tizen.org/sites/default/files/images/tizen-pinwheel-on-light-rgb_64_64.png</PackageIconUrl>
-    </PropertyGroup>
+  </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="Tizen.NET" Version="4.0.0" />
+    <ProjectReference Include="..\Tizen\Tizen.csproj" />
+	  <ProjectReference Include="..\Tizen.Applications.Common\Tizen.Applications.Common.csproj" />
+    <ProjectReference Include="..\Tizen.Log\Tizen.Log.csproj" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Tizen.Applications\Interop\" />
   </ItemGroup>
-
 </Project>

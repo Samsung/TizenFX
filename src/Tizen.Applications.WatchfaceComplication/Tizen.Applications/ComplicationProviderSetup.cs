@@ -11,34 +11,62 @@ namespace Tizen.Applications.WatchfaceComplication
     public static class ComplicationProviderSetup
     {
         /// <summary>
-        /// Checks the provider setup application is launched by editor.
+        /// Gets the received event target complication type.
         /// </summary>
         /// <param name="recvAppCtrl">The appcontrol received event args.</param>
+        /// <exception cref="ArgumentException">Thrown when e is invalid.</exception>
+        /// <exception cref="InvalidOperationException">Thrown when the method failed due to invalid operation.</exception>
         /// <example>
         /// <code>
-        ///
+        /// protected override void OnAppControlReceived(AppControlReceivedEventArgs e)
+        /// {
+        ///     if (ComplicationProviderSetup.IsEditing(e.ReceivedAppControl))
+        ///     {
+        ///         // do something
+        ///     }
+        ///     base.OnAppControlReceived(e);
+        /// }
         /// </code>
         /// </example>
-        /// <returns>true if the provider is launched by touch launch operation, ortherwise false</returns>
+        /// <returns>Event target complication type</returns>
         /// <since_tizen> 5 </since_tizen>
         public static bool IsEditing(ReceivedAppControl recvAppCtrl)
         {
-            return false;
+            bool isEditing = false;
+            ComplicationError err = Interop.WatchfaceComplication.IsSetupEditing(recvAppCtrl.SafeAppControlHandle, out isEditing);
+            if (err != ComplicationError.None)
+                ErrorFactory.ThrowException(err, "fail to check editing");
+            return isEditing;
         }
 
         /// <summary>
-        /// Sends setup information to the editor.
+        /// Replies the setup context to the editor
         /// </summary>
         /// <param name="recvAppCtrl">The appcontrol received event args.</param>
-        /// <param name="context">The setup information.</param>
+        /// <param name="context">The context created by complication setup app.</param>
+        /// <exception cref="ArgumentException">Thrown when e is invalid.</exception>
+        /// <exception cref="InvalidOperationException">Thrown when the method failed due to invalid operation.</exception>
         /// <example>
         /// <code>
-        ///
+        /// protected override void OnAppControlReceived(AppControlReceivedEventArgs e)
+        /// {
+        ///     if (ComplicationProviderSetup.IsEditing(e.ReceivedAppControl))
+        ///     {
+        ///         Bundle context = ComplicationProviderSetup.GetContext(e.ReceivedAppControl);
+        ///         context.AddItem("TEST_KEY", "NEW CONTEXT");
+        ///         ComplicationProviderSetup.ReplyToEditor(e.ReceivedAppControl, context);
+        ///     }
+        ///     base.OnAppControlReceived(e);
+        /// }
         /// </code>
         /// </example>
+        /// <returns>Event target complication type</returns>
         /// <since_tizen> 5 </since_tizen>
         public static void ReplyToEditor(ReceivedAppControl recvAppCtrl, Bundle context)
         {
+            ComplicationError err = Interop.WatchfaceComplication.SetupReplyToEditor(recvAppCtrl.SafeAppControlHandle, context.SafeBundleHandle);
+            if (err != ComplicationError.None)
+                ErrorFactory.ThrowException(err, "fail to check editing");
         }
 
         /// <summary>
@@ -47,14 +75,30 @@ namespace Tizen.Applications.WatchfaceComplication
         /// <param name="recvAppCtrl">The appcontrol received event args.</param>
         /// <example>
         /// <code>
-        ///
+        /// protected override void OnAppControlReceived(AppControlReceivedEventArgs e)
+        /// {
+        ///     if (ComplicationProviderSetup.IsEditing(e.ReceivedAppControl))
+        ///     {
+        ///         Bundle context = ComplicationProviderSetup.GetContext(e.ReceivedAppControl);
+        ///         context.AddItem("TEST_KEY", "NEW CONTEXT");
+        ///         ComplicationProviderSetup.ReplyToEditor(e.ReceivedAppControl, context);
+        ///     }
+        ///     base.OnAppControlReceived(e);
+        /// }
         /// </code>
         /// </example>
         /// <returns>Setup context</returns>
         /// <since_tizen> 5 </since_tizen>
         public static Bundle GetContext(ReceivedAppControl recvAppCtrl)
         {
-            return null;
+            SafeBundleHandle context;
+            ComplicationError err = Interop.WatchfaceComplication.GetSetupContext(recvAppCtrl.SafeAppControlHandle, out context);
+            if (err != ComplicationError.None)
+                ErrorFactory.ThrowException(err, "fail to check editing");
+            if (context == null)
+                return null;
+
+            return new Bundle(context);
         }
     }
 }

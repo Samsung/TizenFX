@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using Tizen.Applications.WatchfaceComplication;
+using System.Linq;
 
 namespace Tizen.Applications.WatchfaceComplication
 {
@@ -13,7 +13,7 @@ namespace Tizen.Applications.WatchfaceComplication
 
         private IEnumerable<Bundle> _candidates;
         private int _currentDataIndex;
-        private Geometry _geometry;
+        private Highlight _highlight;
         private string _editableName;
         private int _editableId;
 
@@ -26,16 +26,41 @@ namespace Tizen.Applications.WatchfaceComplication
         /// <exception cref="ArgumentException">Thrown when some parameter are invalid.</exception>
         /// <example>
         /// <code>
-        ///
+        /// public class ColorDesign : DesignElement
+        /// {
+        ///     private Button _layout;
+        ///     private static string _colorKey = "TEST_COLOR";
+        ///     public ColorDesign(IEnumerable candidates, int curDataIdx, string editableName, Button layout)
+        ///         : base(candidates, curDataIdx, editableName)
+        ///     {
+        ///         _layout = layout;
+        ///     }
+        ///     protected override void OnDesignUpdated(int selectedIdx, State state)
+        ///     {
+        ///         int idx = 0;
+        ///         string color = "";
+        ///         foreach (Bundle candidate in this.Candidates)
+        ///         {
+        ///             if (idx++ != selectedIdx)
+        ///                 continue;
+        ///             color = candidate.GetItem(_colorKey);
+        ///             break;
+        ///         }
+        ///         Log.Warn(_logTag, "Color : " + color);
+        ///         if (color.Equals("YELLOW"))
+        ///         {
+        ///             _layout.BackgroundColor = Color.Yellow;
+        ///         }
+        ///    }
+        /// }
         /// </code>
         /// </example>
         /// <since_tizen> 5 </since_tizen>
-        public DesignElement(IEnumerable<Bundle> candidates, int currentDataIndex, string editableName)
+        protected DesignElement(IEnumerable<Bundle> candidates, int currentDataIndex, string editableName)
         {
             if (candidates == null || currentDataIndex < 0)
                 ErrorFactory.ThrowException(ComplicationError.InvalidParam);
-            IList<Bundle> candidatesList = (IList<Bundle>)candidates.GetEnumerator();
-
+            List<Bundle> candidatesList = candidates.ToList();
             if (candidatesList.Count < currentDataIndex)
                 ErrorFactory.ThrowException(ComplicationError.InvalidParam);
 
@@ -88,15 +113,15 @@ namespace Tizen.Applications.WatchfaceComplication
         /// The information of Editable geometry.
         /// </summary>
         /// <since_tizen> 5 </since_tizen>
-        Geometry IEditable.Geometry
+        Highlight IEditable.Highlight
         {
             get
             {
-                return _geometry;
+                return _highlight;
             }
             set
             {
-                _geometry = value;
+                _highlight = value;
             }
         }
 

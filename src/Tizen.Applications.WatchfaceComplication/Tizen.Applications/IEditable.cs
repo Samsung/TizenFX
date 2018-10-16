@@ -27,7 +27,7 @@ namespace Tizen.Applications.WatchfaceComplication
         /// The information about editable's geomatry.
         /// </summary>
         /// <since_tizen> 5 </since_tizen>
-        Geometry Geometry { get; set; }
+        Highlight Highlight { get; set; }
 
         /// <summary>
         /// The information about editable's current data index.
