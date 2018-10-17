@@ -22,39 +22,18 @@ using Tizen;
 
 namespace Tizen.Messaging.Push
 {
-    internal class PushImpl
+    internal static class PushImpl
     {
         private static readonly object _lock = new object();
-        private static PushImpl _instance;
         private static Interop.PushClient.VoidStateChangedCallback stateDelegate = null;
         private static Interop.PushClient.VoidNotifyCallback notifyDelegate = null;
         private static Interop.PushClient.VoidResultCallback registerResult = null;
         private static Interop.PushClient.VoidResultCallback unregisterResult = null;
 
-        internal static PushImpl Instance
-        {
-            get
-            {
-                lock (_lock)
-                {
-                    if (_instance == null)
-                    {
-                        Log.Info(Interop.PushClient.LogTag, "Creating New Instance");
-                        _instance = new PushImpl();
-                    }
-                    return _instance;
-                }
-            }
-        }
 
-        internal PushImpl()
-        {
-            // Empty
-        }
+        private static IntPtr _connection;
 
-        private IntPtr _connection;
-
-        internal void PushServiceConnect(string pushAppId)
+        internal static void PushServiceConnect(string pushAppId)
         {
             stateDelegate = (int state, string err, IntPtr userData) =>
             {
@@ -149,13 +128,13 @@ namespace Tizen.Messaging.Push
             }
         }
 
-        internal void PushServiceDisconnect()
+        internal static void PushServiceDisconnect()
         {
             Interop.PushClient.ServiceDisconnect(_connection);
             Log.Info(Interop.PushClient.LogTag, "PushServiceDisconnect Completed");
         }
 
-        internal async Task<ServerResponse> PushServerRegister()
+        internal static Task<ServerResponse> PushServerRegister()
         {
             Log.Info(Interop.PushClient.LogTag, "Register Called");
             var task = new TaskCompletionSource<ServerResponse>();
@@ -163,7 +142,7 @@ namespace Tizen.Messaging.Push
             {
                 Log.Error(Interop.PushClient.LogTag, "Register callback was already registered with same callback");
                 task.SetException(PushExceptionFactory.CreateResponseException(Interop.PushClient.ServiceError.OpearationFailed));
-                return await task.Task;
+                return task.Task;
             }
 
             registerResult = (Interop.PushClient.Result regResult, IntPtr msgPtr, IntPtr userData) =>
@@ -208,10 +187,10 @@ namespace Tizen.Messaging.Push
                     registerResult = null;
                 }
             }
-            return await task.Task;
+            return task.Task;
         }
 
-        internal async Task<ServerResponse> PushServerUnregister()
+        internal static Task<ServerResponse> PushServerUnregister()
         {
             var task = new TaskCompletionSource<ServerResponse>();
             unregisterResult = (Interop.PushClient.Result regResult, IntPtr msgPtr, IntPtr userData) =>
@@ -244,10 +223,10 @@ namespace Tizen.Messaging.Push
             {
                 task.SetException(PushExceptionFactory.CreateResponseException(result));
             }
-            return await task.Task;
+            return task.Task;
         }
 
-        internal string GetRegistrationId()
+        internal static string GetRegistrationId()
         {
             string regID = "";
             Interop.PushClient.ServiceError result = Interop.PushClient.GetRegistrationId(_connection, out regID);
@@ -259,7 +238,7 @@ namespace Tizen.Messaging.Push
             return regID;
         }
 
-        internal void GetUnreadNotifications()
+        internal static void GetUnreadNotifications()
         {
             Interop.PushClient.ServiceError result = Interop.PushClient.RequestUnreadNotification(_connection);
             if (result != Interop.PushClient.ServiceError.None)
@@ -268,13 +247,5 @@ namespace Tizen.Messaging.Push
             }
         }
 
-        internal static void Reset()
-        {
-            lock (_lock)
-            {
-                Log.Info(Interop.PushClient.LogTag, "Making _instance as null");
-                _instance = null;
-            }
-        }
     }
 }
