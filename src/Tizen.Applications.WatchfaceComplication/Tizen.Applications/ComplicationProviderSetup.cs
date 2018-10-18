@@ -11,11 +11,12 @@ namespace Tizen.Applications.WatchfaceComplication
     public static class ComplicationProviderSetup
     {
         /// <summary>
-        /// Gets the received event target complication type.
+        /// Gets the received appctrl containing inforamtion about edit.
         /// </summary>
         /// <param name="recvAppCtrl">The appcontrol received event args.</param>
         /// <exception cref="ArgumentException">Thrown when e is invalid.</exception>
         /// <exception cref="InvalidOperationException">Thrown when the method failed due to invalid operation.</exception>
+        /// <exception cref="NotSupportedException">Thrown when the watchface complication is not supported.</exception>
         /// <example>
         /// <code>
         /// protected override void OnAppControlReceived(AppControlReceivedEventArgs e)
@@ -46,6 +47,7 @@ namespace Tizen.Applications.WatchfaceComplication
         /// <param name="context">The context created by complication setup app.</param>
         /// <exception cref="ArgumentException">Thrown when e is invalid.</exception>
         /// <exception cref="InvalidOperationException">Thrown when the method failed due to invalid operation.</exception>
+        /// <exception cref="NotSupportedException">Thrown when the watchface complication is not supported.</exception>
         /// <example>
         /// <code>
         /// protected override void OnAppControlReceived(AppControlReceivedEventArgs e)
@@ -75,6 +77,7 @@ namespace Tizen.Applications.WatchfaceComplication
         /// <param name="recvAppCtrl">The appcontrol received event args.</param>
         /// <exception cref="ArgumentException">Thrown when e is invalid.</exception>
         /// <exception cref="InvalidOperationException">Thrown when the method failed due to invalid operation.</exception>
+        /// <exception cref="NotSupportedException">Thrown when the watchface complication is not supported.</exception>
         /// <example>
         /// <code>
         /// protected override void OnAppControlReceived(AppControlReceivedEventArgs e)

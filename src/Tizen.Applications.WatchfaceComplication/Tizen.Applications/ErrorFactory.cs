@@ -18,7 +18,6 @@ namespace Tizen.Applications.WatchfaceComplication
                 case ComplicationError.OutOfMemory:
                 case ComplicationError.IO:
                 case ComplicationError.NoData:
-                case ComplicationError.NotSupported:
                 case ComplicationError.DB:
                 case ComplicationError.DBus:
                 case ComplicationError.EditNotReady:
@@ -32,6 +31,9 @@ namespace Tizen.Applications.WatchfaceComplication
                 case ComplicationError.PermissionDeny:
                     Log.Error(LogTag, "Permission denied : " + errorMessage);
                     throw new UnauthorizedAccessException(string.IsNullOrEmpty(errorMessage) ? "Permission denied" : "Permission denied : " + errorMessage);
+                case ComplicationError.NotSupported:
+                    Log.Error(LogTag, "Not supported : " + errorMessage);
+                    throw new NotSupportedException(string.IsNullOrEmpty(errorMessage) ? "Not supported" : "Not supported : " + errorMessage);
                 default:
                     Log.Error(LogTag, $"Unknown error : {errorMessage} - {errorCode}");
                     throw new InvalidOperationException(string.IsNullOrEmpty(errorMessage) ? "Unknown error : " + errorCode.ToString() :

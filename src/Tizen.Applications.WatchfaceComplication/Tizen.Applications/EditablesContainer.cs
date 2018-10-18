@@ -20,6 +20,7 @@ namespace Tizen.Applications.WatchfaceComplication
         /// </summary>
         /// <exception cref="ArgumentException">Thrown when some parameter are invalid.</exception>
         /// <exception cref="InvalidOperationException">Thrown when the method failed due to invalid operation.</exception>
+        /// <exception cref="NotSupportedException">Thrown when the watchface complication is not supported.</exception>
         /// <since_tizen> 5 </since_tizen>
         protected EditablesContainer()
         {
@@ -173,6 +174,7 @@ namespace Tizen.Applications.WatchfaceComplication
         /// </summary>
         /// <exception cref="ArgumentException">Thrown when some parameter are invalid.</exception>
         /// <exception cref="InvalidOperationException">Thrown when the method failed due to invalid operation.</exception>
+        /// <exception cref="NotSupportedException">Thrown when the watchface complication is not supported.</exception>
         /// <example>
         /// <code>
         /// public class MyContainer : EditablesContainer {

@@ -25,6 +25,7 @@ namespace Tizen.Applications.WatchfaceComplication
         /// <param name="editableName">The design element name.</param>
         /// <exception cref="ArgumentException">Thrown when e is invalid.</exception>
         /// <exception cref="InvalidOperationException">Thrown when the method failed due to invalid operation.</exception>
+        /// <exception cref="NotSupportedException">Thrown when the watchface complication is not supported.</exception>
         /// <example>
         /// <code>
         /// public class ColorDesign : DesignElement

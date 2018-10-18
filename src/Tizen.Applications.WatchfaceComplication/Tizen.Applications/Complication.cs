@@ -33,6 +33,7 @@ namespace Tizen.Applications.WatchfaceComplication
         /// <param name="defaultType">The complication's default type.</param>
         /// <exception cref="ArgumentException">Thrown when editableId is invalid.</exception>
         /// <exception cref="InvalidOperationException">Thrown when the method failed due to invalid operation.</exception>
+        /// <exception cref="NotSupportedException">Thrown when the watchface complication is not supported.</exception>
         /// <example>
         /// <code>
         ///
@@ -634,6 +635,7 @@ namespace Tizen.Applications.WatchfaceComplication
         /// </summary>
         /// <param name="data">The data from OnComplicationUpdate callback.</param>
         /// <exception cref="ArgumentException">Thrown when data is invalid.</exception>
+        /// <exception cref="InvalidOperationException">Thrown when the method failed due to invalid operation.</exception>
         /// <exception cref="InvalidOperationException">Thrown when the method failed due to invalid operation.</exception>
         /// <example>
         /// <code>

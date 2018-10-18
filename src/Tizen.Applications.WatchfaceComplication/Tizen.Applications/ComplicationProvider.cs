@@ -378,6 +378,7 @@ namespace Tizen.Applications.WatchfaceComplication
         /// Emits the update event for complications.
         /// </summary>
         /// <exception cref="ArgumentException">Thrown when updatedProviderId is invalid.</exception>
+        /// <exception cref="NotSupportedException">Thrown when the watchface complication is not supported.</exception>
         /// <since_tizen> 5 </since_tizen>
         public void NotifyUpdate()
         {
@@ -392,6 +393,7 @@ namespace Tizen.Applications.WatchfaceComplication
         /// <param name="recvAppCtrl">The appcontrol received event args.</param>
         /// <exception cref="ArgumentException">Thrown when e is invalid.</exception>
         /// <exception cref="InvalidOperationException">Thrown when the method failed due to invalid operation.</exception>
+        /// <exception cref="NotSupportedException">Thrown when the watchface complication is not supported.</exception>
         /// <example>
         /// <code>
         /// protected override void OnAppControlReceived(AppControlReceivedEventArgs e)
@@ -422,6 +424,7 @@ namespace Tizen.Applications.WatchfaceComplication
         /// <param name="recvAppCtrl">The appcontrol received event args.</param>
         /// <exception cref="ArgumentException">Thrown when e is invalid.</exception>
         /// <exception cref="InvalidOperationException">Thrown when the method failed due to invalid operation.</exception>
+        /// <exception cref="NotSupportedException">Thrown when the watchface complication is not supported.</exception>
         /// <example>
         /// <code>
         /// protected override void OnAppControlReceived(AppControlReceivedEventArgs e)
@@ -448,6 +451,7 @@ namespace Tizen.Applications.WatchfaceComplication
         /// <param name="recvAppCtrl">The appcontrol received event args.</param>
         /// <exception cref="ArgumentException">Thrown when e is invalid.</exception>
         /// <exception cref="InvalidOperationException">Thrown when the method failed due to invalid operation.</exception>
+        /// <exception cref="NotSupportedException">Thrown when the watchface complication is not supported.</exception>
         /// <example>
         /// <code>
         /// protected override void OnAppControlReceived(AppControlReceivedEventArgs e)
@@ -474,6 +478,7 @@ namespace Tizen.Applications.WatchfaceComplication
         /// <param name="e">The appcontrol received event args.</param>
         /// <exception cref="ArgumentException">Thrown when e is invalid.</exception>
         /// <exception cref="InvalidOperationException">Thrown when the method failed due to invalid operation.</exception>
+        /// <exception cref="NotSupportedException">Thrown when the watchface complication is not supported.</exception>
         /// <example>
         /// <code>
         /// protected override void OnAppControlReceived(AppControlReceivedEventArgs e)
@@ -505,6 +510,7 @@ namespace Tizen.Applications.WatchfaceComplication
         /// <param name="type">The complication type to check.</param>
         /// <exception cref="ArgumentException">Thrown when e is invalid.</exception>
         /// <exception cref="InvalidOperationException">Thrown when the method failed due to invalid operation.</exception>
+        /// <exception cref="NotSupportedException">Thrown when the watchface complication is not supported.</exception>
         /// <example>
         /// <code>
         /// public class MyComplicationProvider : ComplicationProvider
