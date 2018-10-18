@@ -12,9 +12,10 @@ namespace Tizen.Applications.WatchfaceComplication
     public abstract class Complication : IEditable, IDisposable
     {
         private int _complicationId;
-        private int _supportTypes;
+        private ComplicationType _supportTypes;
         private string _defaultProviderId;
         private ComplicationType _defaultType;
+        private EventType _supportEvents;
         private Highlight _highlight;
         private IntPtr _handle;
         private Interop.WatchfaceComplication.ComplicationUpdatedCallback _updatedCallback;
@@ -52,14 +53,15 @@ namespace Tizen.Applications.WatchfaceComplication
         /// </code>
         /// </example>
         /// <since_tizen> 5 </since_tizen>
-        protected Complication(int complicationId, int supportTypes, int supportEvents, string defaultProviderId, ComplicationType defaultType)
+        protected Complication(int complicationId, ComplicationType supportTypes, EventType supportEvents, string defaultProviderId, ComplicationType defaultType)
         {
             _complicationId = complicationId;
             _supportTypes = supportTypes;
+            _supportEvents = supportEvents;
             _defaultProviderId = defaultProviderId;
             _defaultType = defaultType;
 
-            ComplicationError ret = Interop.WatchfaceComplication.CreateComplication(complicationId, defaultProviderId, defaultType, supportTypes, supportEvents, out _handle);
+            ComplicationError ret = Interop.WatchfaceComplication.CreateComplication(complicationId, defaultProviderId, defaultType, (int)supportTypes, (int)supportEvents, out _handle);
             if (ret != ComplicationError.None)
             {
                 ErrorFactory.ThrowException(ret, "Fail to create complication");
@@ -93,11 +95,23 @@ namespace Tizen.Applications.WatchfaceComplication
         /// Gets the support types.
         /// </summary>
         /// <since_tizen> 5 </since_tizen>
-        public int SupportTypes
+        public ComplicationType SupportTypes
         {
             get
             {
                 return _supportTypes;
+            }
+        }
+
+        /// <summary>
+        /// Gets the support types.
+        /// </summary>
+        /// <since_tizen> 5 </since_tizen>
+        public EventType SupportEvents
+        {
+            get
+            {
+                return _supportEvents;
             }
         }
 

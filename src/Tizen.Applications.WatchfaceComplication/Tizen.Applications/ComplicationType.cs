@@ -8,6 +8,7 @@ namespace Tizen.Applications.WatchfaceComplication
     /// Enumeration for the complication type.
     /// </summary>
     /// <since_tizen> 5 </since_tizen>
+    [Flags]
     public enum ComplicationType
     {
         /// <summary>
