@@ -64,42 +64,45 @@ namespace Tizen.Applications.WatchfaceComplication
             }
         }
 
-        internal ComplicationError SetComplicationData(Bundle b, ComplicationType type)
+        internal ComplicationError SetComplicationData(IntPtr b, ComplicationType type)
         {
             ComplicationError err = ComplicationError.None;
+            err = Interop.WatchfaceComplication.ProviderSetDataType(b, type);
+            if (err != ComplicationError.None)
+                return err;
             switch (type)
             {
                 case ComplicationType.ShortText:
-                    err = Interop.WatchfaceComplication.ProviderSetShortText(b.SafeBundleHandle.DangerousGetHandle(), _shortText);
-                    err = Interop.WatchfaceComplication.ProviderSetIconPath(b.SafeBundleHandle.DangerousGetHandle(), _iconPath);
-                    err = Interop.WatchfaceComplication.ProviderSetTitle(b.SafeBundleHandle.DangerousGetHandle(), _title);
-                    err = Interop.WatchfaceComplication.ProviderSetExtraData(b.SafeBundleHandle.DangerousGetHandle(), _extraData);
+                    err = Interop.WatchfaceComplication.ProviderSetShortText(b, _shortText);
+                    Interop.WatchfaceComplication.ProviderSetIconPath(b, _iconPath);
+                    Interop.WatchfaceComplication.ProviderSetTitle(b, _title);
+                    Interop.WatchfaceComplication.ProviderSetExtraData(b, _extraData);
                     break;
                 case ComplicationType.LongText:
-                    err = Interop.WatchfaceComplication.ProviderSetLongText(b.SafeBundleHandle.DangerousGetHandle(), _longText);
-                    err = Interop.WatchfaceComplication.ProviderSetIconPath(b.SafeBundleHandle.DangerousGetHandle(), _iconPath);
-                    err = Interop.WatchfaceComplication.ProviderSetTitle(b.SafeBundleHandle.DangerousGetHandle(), _title);
-                    err = Interop.WatchfaceComplication.ProviderSetExtraData(b.SafeBundleHandle.DangerousGetHandle(), _extraData);
+                    err = Interop.WatchfaceComplication.ProviderSetLongText(b, _longText);
+                    Interop.WatchfaceComplication.ProviderSetIconPath(b, _iconPath);
+                    Interop.WatchfaceComplication.ProviderSetTitle(b, _title);
+                    Interop.WatchfaceComplication.ProviderSetExtraData(b, _extraData);
                     break;
                 case ComplicationType.RangedValue:
-                    err = Interop.WatchfaceComplication.ProviderSetLongText(b.SafeBundleHandle.DangerousGetHandle(), _shortText);
-                    err = Interop.WatchfaceComplication.ProviderSetIconPath(b.SafeBundleHandle.DangerousGetHandle(), _iconPath);
-                    err = Interop.WatchfaceComplication.ProviderSetTitle(b.SafeBundleHandle.DangerousGetHandle(), _title);
-                    err = Interop.WatchfaceComplication.ProviderSetRangedValue(b.SafeBundleHandle.DangerousGetHandle(), _currentValue, _minValue, _maxValue);
-                    err = Interop.WatchfaceComplication.ProviderSetExtraData(b.SafeBundleHandle.DangerousGetHandle(), _extraData);
+                    Interop.WatchfaceComplication.ProviderSetLongText(b, _shortText);
+                    Interop.WatchfaceComplication.ProviderSetIconPath(b, _iconPath);
+                    Interop.WatchfaceComplication.ProviderSetTitle(b, _title);
+                    err = Interop.WatchfaceComplication.ProviderSetRangedValue(b, _currentValue, _minValue, _maxValue);
+                    Interop.WatchfaceComplication.ProviderSetExtraData(b, _extraData);
                     break;
                 case ComplicationType.Time:
-                    err = Interop.WatchfaceComplication.ProviderSetTimestamp(b.SafeBundleHandle.DangerousGetHandle(), _timestamp);
-                    err = Interop.WatchfaceComplication.ProviderSetIconPath(b.SafeBundleHandle.DangerousGetHandle(), _iconPath);
-                    err = Interop.WatchfaceComplication.ProviderSetExtraData(b.SafeBundleHandle.DangerousGetHandle(), _extraData);
+                    err = Interop.WatchfaceComplication.ProviderSetTimestamp(b, _timestamp);
+                    Interop.WatchfaceComplication.ProviderSetIconPath(b, _iconPath);
+                    Interop.WatchfaceComplication.ProviderSetExtraData(b, _extraData);
                     break;
                 case ComplicationType.Icon:
-                    err = Interop.WatchfaceComplication.ProviderSetIconPath(b.SafeBundleHandle.DangerousGetHandle(), _iconPath);
-                    err = Interop.WatchfaceComplication.ProviderSetExtraData(b.SafeBundleHandle.DangerousGetHandle(), _extraData);
+                    err = Interop.WatchfaceComplication.ProviderSetIconPath(b, _iconPath);
+                    Interop.WatchfaceComplication.ProviderSetExtraData(b, _extraData);
                     break;
                 case ComplicationType.Image:
-                    err = Interop.WatchfaceComplication.ProviderSetImagePath(b.SafeBundleHandle.DangerousGetHandle(), _imagePath);
-                    err = Interop.WatchfaceComplication.ProviderSetExtraData(b.SafeBundleHandle.DangerousGetHandle(), _extraData);
+                    err = Interop.WatchfaceComplication.ProviderSetImagePath(b, _imagePath);
+                    Interop.WatchfaceComplication.ProviderSetExtraData(b, _extraData);
                     break;
             }
             return err;
@@ -108,9 +111,9 @@ namespace Tizen.Applications.WatchfaceComplication
         private void DataUpdateRequested(string providerId, string reqAppId, ComplicationType type,
             IntPtr context, IntPtr sharedData, IntPtr userData)
         {
-            Bundle shared = new Bundle(new SafeBundleHandle(context, false));
-            OnDataUpdateRequested(reqAppId, type, shared);
-            ComplicationError err = SetComplicationData(shared, type);
+            Bundle bContext = new Bundle(new SafeBundleHandle(context, false));
+            OnDataUpdateRequested(reqAppId, type, bContext);
+            ComplicationError err = SetComplicationData(sharedData, type);
             if (err != ComplicationError.None)
                 Log.Error(LogTag, "Set complication data error : " + err);
         }
@@ -526,7 +529,7 @@ namespace Tizen.Applications.WatchfaceComplication
         {
             bool isValid = false;
             Bundle shared = new Bundle();
-            SetComplicationData(shared, type);
+            SetComplicationData(shared.SafeBundleHandle.DangerousGetHandle(), type);
             ComplicationError err = Interop.WatchfaceComplication.ProviderSharedDataIsValid(shared.SafeBundleHandle.DangerousGetHandle(), out isValid);
             if (err != ComplicationError.None)
                 ErrorFactory.ThrowException(err, "fail to get complication context");

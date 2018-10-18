@@ -177,6 +177,9 @@ internal static partial class Interop
         [DllImport(Libraries.ComplicationProvider, EntryPoint = "watchface_complication_provider_remove_update_requested_cb")]
         internal static extern ComplicationError RemoveUpdateRequestedCallback(string providerId, UpdateRequestedCallback callback);
 
+        [DllImport(Libraries.ComplicationProvider, EntryPoint = "watchface_complication_provider_data_set_type")]
+        internal static extern ComplicationError ProviderSetDataType(IntPtr sharedData, ComplicationType type);
+
         [DllImport(Libraries.ComplicationProvider, EntryPoint = "watchface_complication_provider_data_set_title")]
         internal static extern ComplicationError ProviderSetTitle(IntPtr sharedData, string title);
 
