@@ -11,6 +11,11 @@ namespace Tizen.Applications.WatchfaceComplication
     public class Highlight
     {
         private IntPtr _raw = IntPtr.Zero;
+        private int _x;
+        private int _y;
+        private int _w;
+        private int _h;
+        private ShapeType _type;
 
         /// <summary>
         /// Initializes the Highlight class.
@@ -25,44 +30,11 @@ namespace Tizen.Applications.WatchfaceComplication
         /// <since_tizen> 5 </since_tizen>
         public Highlight(ShapeType type, int x, int y, int w, int h)
         {
-            ComplicationError ret = Interop.WatchfaceComplication.CreateHighlight(out _raw);
-            if (ret != ComplicationError.None)
-            {
-                ErrorFactory.ThrowException(ret, "Fail to create Highlight");
-            }
-            ret = Interop.WatchfaceComplication.SetHighlightGeometry(_raw, x, y, w, h);
-            if (ret != ComplicationError.None)
-            {
-                ErrorFactory.ThrowException(ret, "Fail to set Highlight geometry");
-            }
-            ret = Interop.WatchfaceComplication.SetHighlightShapeType(_raw, type);
-            if (ret != ComplicationError.None)
-            {
-                ErrorFactory.ThrowException(ret, "Fail to set Highlight type");
-            }
-        }
-
-        /// <summary>
-        /// Sets highlight's x, y, w, h value.
-        /// </summary>
-        /// <param name="x">The editable geometry offset x.</param>
-        /// <param name="y">The editable geometry offset y.</param>
-        /// <param name="w">The editable geometry width.</param>
-        /// <param name="h">The editable geometry height.</param>
-        /// <since_tizen> 5 </since_tizen>
-        public ComplicationError SetGeometry(int x, int y, int w, int h)
-        {
-            return Interop.WatchfaceComplication.SetHighlightGeometry(_raw, x, y, w, h);
-        }
-
-        /// <summary>
-        /// Sets highlight's shape type value.
-        /// </summary>
-        /// <param name="type">The editable shape type.</param>
-        /// <since_tizen> 5 </since_tizen>
-        public ComplicationError SetType(ShapeType type)
-        {
-            return Interop.WatchfaceComplication.SetHighlightShapeType(_raw, type);
+            _type = type;
+            _x = x;
+            _y = y;
+            _w = w;
+            _h = h;
         }
 
         /// <summary>
@@ -77,6 +49,26 @@ namespace Tizen.Applications.WatchfaceComplication
         {
             get
             {
+                ComplicationError ret;
+                if (_raw == IntPtr.Zero)
+                {
+                    ret = Interop.WatchfaceComplication.CreateHighlight(out _raw);
+                    if (ret != ComplicationError.None)
+                    {
+                        ErrorFactory.ThrowException(ret, "Fail to create Highlight");
+                    }
+                }
+
+                ret = Interop.WatchfaceComplication.SetHighlightGeometry(_raw, _x, _y, _w, _h);
+                if (ret != ComplicationError.None)
+                {
+                    ErrorFactory.ThrowException(ret, "Fail to set Highlight geometry");
+                }
+                ret = Interop.WatchfaceComplication.SetHighlightShapeType(_raw, _type);
+                if (ret != ComplicationError.None)
+                {
+                    ErrorFactory.ThrowException(ret, "Fail to set Highlight type");
+                }
                 return _raw;
             }
         }
@@ -91,17 +83,11 @@ namespace Tizen.Applications.WatchfaceComplication
         {
             get
             {
-                int x;
-                int y;
-                int w;
-                int h;
-
-                ComplicationError ret = Interop.WatchfaceComplication.GetHighlightGeometry(_raw, out x, out y, out w, out h);
-                if (ret != ComplicationError.None)
-                {
-                    ErrorFactory.ThrowException(ret, "Fail to get Highlight");
-                }
-                return x;
+                return _x;
+            }
+            set
+            {
+                _x = value;
             }
         }
 
@@ -115,17 +101,11 @@ namespace Tizen.Applications.WatchfaceComplication
         {
             get
             {
-                int x;
-                int y;
-                int w;
-                int h;
-
-                ComplicationError ret = Interop.WatchfaceComplication.GetHighlightGeometry(_raw, out x, out y, out w, out h);
-                if (ret != ComplicationError.None)
-                {
-                    ErrorFactory.ThrowException(ret, "Fail to get Highlight");
-                }
-                return y;
+                return _y;
+            }
+            set
+            {
+                _y = value;
             }
         }
 
@@ -139,17 +119,11 @@ namespace Tizen.Applications.WatchfaceComplication
         {
             get
             {
-                int x;
-                int y;
-                int w;
-                int h;
-
-                ComplicationError ret = Interop.WatchfaceComplication.GetHighlightGeometry(_raw, out x, out y, out w, out h);
-                if (ret != ComplicationError.None)
-                {
-                    ErrorFactory.ThrowException(ret, "Fail to get Highlight");
-                }
-                return w;
+                return _w;
+            }
+            set
+            {
+                _w = value;
             }
         }
 
@@ -163,17 +137,11 @@ namespace Tizen.Applications.WatchfaceComplication
         {
             get
             {
-                int x;
-                int y;
-                int w;
-                int h;
-
-                ComplicationError ret = Interop.WatchfaceComplication.GetHighlightGeometry(_raw, out x, out y, out w, out h);
-                if (ret != ComplicationError.None)
-                {
-                    ErrorFactory.ThrowException(ret, "Fail to get Highlight");
-                }
-                return h;
+                return _h;
+            }
+            set
+            {
+                _h = value;
             }
         }
 
@@ -187,13 +155,7 @@ namespace Tizen.Applications.WatchfaceComplication
         {
             get
             {
-                ShapeType type;
-                ComplicationError ret = Interop.WatchfaceComplication.GetHighlightShapeType(_raw, out type);
-                if (ret != ComplicationError.None)
-                {
-                    ErrorFactory.ThrowException(ret, "Fail to get Highlight");
-                }
-                return type;
+                return _type;
             }
         }
     }
