@@ -17,7 +17,7 @@ namespace Tizen.Applications.WatchfaceComplication
         private ComplicationType _defaultType;
         private EventType _supportEvents;
         private Highlight _highlight;
-        private IntPtr _handle;
+        internal IntPtr _handle;
         private Interop.WatchfaceComplication.ComplicationUpdatedCallback _updatedCallback;
         private Interop.WatchfaceComplication.ComplicationErrorCallback _errorCallback;
         private int _editableId;
@@ -81,14 +81,6 @@ namespace Tizen.Applications.WatchfaceComplication
         ~Complication()
         {
             Dispose(false);
-        }
-
-        internal IntPtr Raw
-        {
-            get
-            {
-                return _handle;
-            }
         }
 
         /// <summary>

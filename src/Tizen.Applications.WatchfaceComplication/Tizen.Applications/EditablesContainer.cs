@@ -211,7 +211,7 @@ namespace Tizen.Applications.WatchfaceComplication
                     Log.Warn(_logTag, "geometry is null");
                     continue;
                 }
-                Interop.WatchfaceComplication.AddComplication(_container, e.EditableId, comp.Raw, e.Highlight.Raw);
+                Interop.WatchfaceComplication.AddComplication(_container, e.EditableId, comp._handle, e.Highlight.Raw);
             }
 
             foreach (DesignElement de in _deList)
