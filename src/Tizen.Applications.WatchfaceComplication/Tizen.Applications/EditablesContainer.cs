@@ -42,14 +42,13 @@ namespace Tizen.Applications.WatchfaceComplication
         /// </summary>
         /// <exception cref="InvalidOperationException">Thrown when the method failed due to invalid operation.</exception>
         /// <since_tizen> 5 </since_tizen>
-        public void Add(DesignElement de, int editableId, Highlight hi)
+        public void Add(DesignElement de, int editableId)
         {
             if (IsExist(editableId))
                 ErrorFactory.ThrowException(ComplicationError.ExistID);
 
             IEditable e = de;
             e.EditableId = editableId;
-            e.Highlight = hi;
             _deList.Add(de);
         }
 
@@ -58,14 +57,13 @@ namespace Tizen.Applications.WatchfaceComplication
         /// </summary>
         /// <exception cref="InvalidOperationException">Thrown when the method failed due to invalid operation.</exception>
         /// <since_tizen> 5 </since_tizen>
-        public void Add(Complication comp, int editableId, Highlight hi)
+        public void Add(Complication comp, int editableId)
         {
             if (IsExist(editableId))
                 ErrorFactory.ThrowException(ComplicationError.ExistID);
 
             IEditable e = comp;
             e.EditableId = editableId;
-            e.Highlight = hi;
             _compList.Add(comp);
         }
 
@@ -206,12 +204,10 @@ namespace Tizen.Applications.WatchfaceComplication
             foreach (Complication comp in _compList)
             {
                 IEditable e = comp;
-                if (e.Highlight == null || e.Highlight.Raw == IntPtr.Zero)
-                {
-                    Log.Warn(_logTag, "geometry is null");
-                    continue;
-                }
-                Interop.WatchfaceComplication.AddComplication(_container, e.EditableId, comp._handle, e.Highlight.Raw);
+                IntPtr hi = IntPtr.Zero;
+                if (e.Highlight != null && e.Highlight.Raw != IntPtr.Zero)
+                    hi = e.Highlight.Raw;
+                Interop.WatchfaceComplication.AddComplication(_container, e.EditableId, comp._handle, hi);
             }
 
             foreach (DesignElement de in _deList)
@@ -223,7 +219,11 @@ namespace Tizen.Applications.WatchfaceComplication
                 {
                     Interop.WatchfaceComplication.AddCandidatesListItem(candidates, b.SafeBundleHandle);
                 }
-                Interop.WatchfaceComplication.AddDesignElement(_container, e.EditableId, e.CurrentDataIndex, candidates, e.Highlight.Raw, e.Name);
+
+                IntPtr hi = IntPtr.Zero;
+                if (e.Highlight != null && e.Highlight.Raw != IntPtr.Zero)
+                    hi = e.Highlight.Raw;
+                Interop.WatchfaceComplication.AddDesignElement(_container, e.EditableId, e.CurrentDataIndex, candidates, hi, e.Name);
                 Log.Debug(_logTag, "Add design element done :" + e.Name);
             }
 
@@ -252,7 +252,6 @@ namespace Tizen.Applications.WatchfaceComplication
         /// internal void InitEditables()
         /// {
         ///     _container = new MyContainer();
-        ///     Highlight hi = new Highlight(ShapeType.Circle, 0, 0, 10, 10);
         ///     Bundle curData = EditablesContainer.LoadCurrentData(_colorEditId);
         ///     List&lt;Bundle&gt; candidatesList = new List&lt;Bundle&gt;();
         ///     int curIdx = 0;
@@ -270,8 +269,8 @@ namespace Tizen.Applications.WatchfaceComplication
         ///         i++;
         ///    }
         ///    ColorDesign colorEdit = new ColorDesign(candidatesList, curIdx, "COLOR", _complicationBtn);
-        ///    hi.SetGeometry(0, 40, 10, 10);
-        ///    _container.Add(colorEdit, _colorEditId, hi);
+        ///    colorEdit.Highlight = new Highlight(ShapeType.Circle, 0, 40, 10, 10);
+        ///    _container.Add(colorEdit, _colorEditId);
         /// }
         /// </code>
         /// </example>

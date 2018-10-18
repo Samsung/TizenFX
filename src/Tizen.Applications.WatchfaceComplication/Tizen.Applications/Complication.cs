@@ -124,6 +124,22 @@ namespace Tizen.Applications.WatchfaceComplication
         }
 
         /// <summary>
+        /// The information of complication geometry.
+        /// </summary>
+        /// <since_tizen> 5 </since_tizen>
+        public Highlight Highlight
+        {
+            get
+            {
+                return _highlight;
+            }
+            set
+            {
+                _highlight = value;
+            }
+        }
+
+        /// <summary>
         /// The information of editable's current data index.
         /// </summary>
         /// <since_tizen> 5 </since_tizen>
