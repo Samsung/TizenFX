@@ -9,7 +9,7 @@ namespace Tizen.Applications.WatchfaceComplication
     /// Represents the Complication class for the watch application which using watchface complication.
     /// </summary>
     /// <since_tizen> 5 </since_tizen>
-    public abstract class Complication : IEditable
+    public abstract class Complication : IEditable, IDisposable
     {
         private int _complicationId;
         private int _supportTypes;
@@ -20,6 +20,7 @@ namespace Tizen.Applications.WatchfaceComplication
         private Interop.WatchfaceComplication.ComplicationUpdatedCallback _updatedCallback;
         private Interop.WatchfaceComplication.ComplicationErrorCallback _errorCallback;
         private int _editableId;
+        private bool _disposed = false;
 
         /// <summary>
         /// Initializes the Complication class.
@@ -70,6 +71,14 @@ namespace Tizen.Applications.WatchfaceComplication
             {
                 ErrorFactory.ThrowException(ret, "Fail to add update callback");
             }
+        }
+
+        /// <summary>
+        /// Destructor of the complication class.
+        /// </summary>
+        ~Complication()
+        {
+            Dispose(false);
         }
 
         internal IntPtr Raw
@@ -657,6 +666,33 @@ namespace Tizen.Applications.WatchfaceComplication
         /// <since_tizen> 5 </since_tizen>
         protected virtual void OnComplicationError(string providerId, ComplicationType type, ComplicationError errorReason)
         {
+        }
+
+        /// <summary>
+        /// Releases the unmanaged resources used by the Complication class specifying whether to perform a normal dispose operation.
+        /// </summary>
+        /// <param name="disposing">true for a normal dispose operation; false to finalize the handle.</param>
+        /// <since_tizen> 3 </since_tizen>
+        protected virtual void Dispose(bool disposing)
+        {
+            if (!_disposed)
+            {
+                if (disposing)
+                {
+                    Interop.WatchfaceComplication.Destroy(_handle);
+                }
+                Interop.WatchfaceComplication.RemoveUpdatedCallback(_handle, _updatedCallback);
+                _disposed = true;
+            }
+        }
+
+        /// <summary>
+        /// Releases all resources used by the Complication class.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
+        public void Dispose()
+        {
+            Dispose(true);
         }
     }
 }

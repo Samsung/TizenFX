@@ -53,6 +53,14 @@ namespace Tizen.Applications.WatchfaceComplication
         }
 
         /// <summary>
+        /// Destructor of the provider class.
+        /// </summary>
+        ~ComplicationProvider()
+        {
+            Interop.WatchfaceComplication.RemoveUpdateRequestedCallback(_providerId, DataUpdateRequested);
+        }
+
+        /// <summary>
         /// Gets the provider ID.
         /// </summary>
         /// <since_tizen> 5 </since_tizen>
@@ -456,7 +464,7 @@ namespace Tizen.Applications.WatchfaceComplication
         /// <since_tizen> 5 </since_tizen>
         public static ComplicationType GetEventComplicationType(ReceivedAppControl recvAppCtrl)
         {
-            ComplicationType type = ComplicationType.NoData;
+            ComplicationType type;
             ComplicationError err = Interop.WatchfaceComplication.GetEventComplicationType(recvAppCtrl.SafeAppControlHandle, out type);
             if (err != ComplicationError.None && err != ComplicationError.NoData)
                 ErrorFactory.ThrowException(err, "fail to get complication type");
