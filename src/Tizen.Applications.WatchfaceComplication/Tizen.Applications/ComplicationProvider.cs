@@ -372,12 +372,11 @@ namespace Tizen.Applications.WatchfaceComplication
         /// <summary>
         /// Emits the update event for complications.
         /// </summary>
-        /// <param name="updatedProviderId">The updated provider ID.</param>
         /// <exception cref="ArgumentException">Thrown when updatedProviderId is invalid.</exception>
         /// <since_tizen> 5 </since_tizen>
-        public static void NotifyUpdate(string updatedProviderId)
+        public void NotifyUpdate()
         {
-            ComplicationError err = Interop.WatchfaceComplication.NotifyUpdate(updatedProviderId);
+            ComplicationError err = Interop.WatchfaceComplication.NotifyUpdate(_providerId);
             if (err != ComplicationError.None)
                 ErrorFactory.ThrowException(err, "fail to notify");
         }
