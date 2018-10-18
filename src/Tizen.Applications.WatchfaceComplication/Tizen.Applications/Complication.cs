@@ -12,10 +12,10 @@ namespace Tizen.Applications.WatchfaceComplication
     public abstract class Complication : IEditable, IDisposable
     {
         private int _complicationId;
-        private ComplicationType _supportTypes;
+        private ComplicationTypes _supportTypes;
         private string _defaultProviderId;
-        private ComplicationType _defaultType;
-        private EventType _supportEvents;
+        private ComplicationTypes _defaultType;
+        private EventTypes _supportEvents;
         private Highlight _highlight;
         internal IntPtr _handle;
         private Interop.WatchfaceComplication.ComplicationUpdatedCallback _updatedCallback;
@@ -40,21 +40,21 @@ namespace Tizen.Applications.WatchfaceComplication
         /// public class MyComplication : Complication
         /// {
         ///    public MyComplication(int complicationId, int supportTypes, int supportEvents, string defaultProviderId,
-        ///        ComplicationType defaultType)
+        ///        ComplicationTypes defaultType)
         ///        : base(complicationId, supportTypes, supportEvents, defaultProviderId, defaultType)
         ///    {
         ///    }
-        ///    protected override void OnComplicationUpdated(string providerId, ComplicationType type, Bundle data)
+        ///    protected override void OnComplicationUpdated(string providerId, ComplicationTypes type, Bundle data)
         ///    {
         ///    }
         /// }
-        /// _complication = new MyComplication(_complicationId, (int)(ComplicationType.ShortText | ComplicationType.Image),
-        ///       (int) EventType.EventNone, _complicationProviderId, ComplicationType.ShortText, _complicationBtn);
+        /// _complication = new MyComplication(_complicationId, (int)(ComplicationTypes.ShortText | ComplicationTypes.Image),
+        ///       (int) EventTypes.EventNone, _complicationProviderId, ComplicationTypes.ShortText, _complicationBtn);
         ///
         /// </code>
         /// </example>
         /// <since_tizen> 5 </since_tizen>
-        protected Complication(int complicationId, ComplicationType supportTypes, EventType supportEvents, string defaultProviderId, ComplicationType defaultType)
+        protected Complication(int complicationId, ComplicationTypes supportTypes, EventTypes supportEvents, string defaultProviderId, ComplicationTypes defaultType)
         {
             _complicationId = complicationId;
             _supportTypes = supportTypes;
@@ -88,7 +88,7 @@ namespace Tizen.Applications.WatchfaceComplication
         /// Gets the support types.
         /// </summary>
         /// <since_tizen> 5 </since_tizen>
-        public ComplicationType SupportTypes
+        public ComplicationTypes SupportTypes
         {
             get
             {
@@ -100,7 +100,7 @@ namespace Tizen.Applications.WatchfaceComplication
         /// Gets the support types.
         /// </summary>
         /// <since_tizen> 5 </since_tizen>
-        public EventType SupportEvents
+        public EventTypes SupportEvents
         {
             get
             {
@@ -223,14 +223,14 @@ namespace Tizen.Applications.WatchfaceComplication
         }
 
         private void ComplicationUpdatedCallback(int complicationId,
-            string providerId, ComplicationType type, IntPtr data, IntPtr userData)
+            string providerId, ComplicationTypes type, IntPtr data, IntPtr userData)
         {
             if (_complicationId == complicationId)
                 OnComplicationUpdated(providerId, type, new Bundle(new SafeBundleHandle(data, false)));
         }
 
         private void ComplicationErrorCallback(int complicationId,
-            string providerId, ComplicationType type, ComplicationError error, IntPtr userData)
+            string providerId, ComplicationTypes type, ComplicationError error, IntPtr userData)
         {
             if (_complicationId == complicationId)
                 OnComplicationError(providerId, type, error);
@@ -265,13 +265,13 @@ namespace Tizen.Applications.WatchfaceComplication
         /// <exception cref="InvalidOperationException">Thrown when the method failed due to invalid operation.</exception>
         /// <example>
         /// <code>
-        /// ComplicationType type = Complication.GetType(dupData);
+        /// ComplicationTypes type = Complication.GetType(dupData);
         /// </code>
         /// </example>
         /// <since_tizen> 5 </since_tizen>
-        public static ComplicationType GetType(Bundle data)
+        public static ComplicationTypes GetType(Bundle data)
         {
-            ComplicationType type;
+            ComplicationTypes type;
 
             ComplicationError err = Interop.WatchfaceComplication.GetDataType(data.SafeBundleHandle, out type);
             if (err != ComplicationError.None)
@@ -291,13 +291,13 @@ namespace Tizen.Applications.WatchfaceComplication
         /// public class MyComplication : Complication
         /// {
         ///    public MyComplication(int complicationId, int supportTypes, int supportEvents, string defaultProviderId,
-        ///        ComplicationType defaultType)
+        ///        ComplicationTypes defaultType)
         ///        : base(complicationId, supportTypes, supportEvents, defaultProviderId, defaultType)
         ///    {
         ///    }
-        ///    protected override void OnComplicationUpdated(string providerId, ComplicationType type, Bundle data)
+        ///    protected override void OnComplicationUpdated(string providerId, ComplicationTypes type, Bundle data)
         ///    {
-        ///        if (type == ComplicationType.ShortText)
+        ///        if (type == ComplicationTypes.ShortText)
         ///        {
         ///            string shortText = Complication.GetShortText(data);
         ///            layout.Text = shortText;
@@ -330,13 +330,13 @@ namespace Tizen.Applications.WatchfaceComplication
         /// public class MyComplication : Complication
         /// {
         ///    public MyComplication(int complicationId, int supportTypes, int supportEvents, string defaultProviderId,
-        ///        ComplicationType defaultType)
+        ///        ComplicationTypes defaultType)
         ///        : base(complicationId, supportTypes, supportEvents, defaultProviderId, defaultType)
         ///    {
         ///    }
-        ///    protected override void OnComplicationUpdated(string providerId, ComplicationType type, Bundle data)
+        ///    protected override void OnComplicationUpdated(string providerId, ComplicationTypes type, Bundle data)
         ///    {
-        ///        if (type == ComplicationType.LongText)
+        ///        if (type == ComplicationTypes.LongText)
         ///        {
         ///            string longText = Complication.GetLongText(data);
         ///            layout.Text = longText;
@@ -369,13 +369,13 @@ namespace Tizen.Applications.WatchfaceComplication
         /// public class MyComplication : Complication
         /// {
         ///    public MyComplication(int complicationId, int supportTypes, int supportEvents, string defaultProviderId,
-        ///        ComplicationType defaultType)
+        ///        ComplicationTypes defaultType)
         ///        : base(complicationId, supportTypes, supportEvents, defaultProviderId, defaultType)
         ///    {
         ///    }
-        ///    protected override void OnComplicationUpdated(string providerId, ComplicationType type, Bundle data)
+        ///    protected override void OnComplicationUpdated(string providerId, ComplicationTypes type, Bundle data)
         ///    {
-        ///        if (type == ComplicationType.ShortText)
+        ///        if (type == ComplicationTypes.ShortText)
         ///        {
         ///            string title = Complication.GetTitle(data);
         ///            layout.Text = title;
@@ -408,13 +408,13 @@ namespace Tizen.Applications.WatchfaceComplication
         /// public class MyComplication : Complication
         /// {
         ///    public MyComplication(int complicationId, int supportTypes, int supportEvents, string defaultProviderId,
-        ///        ComplicationType defaultType)
+        ///        ComplicationTypes defaultType)
         ///        : base(complicationId, supportTypes, supportEvents, defaultProviderId, defaultType)
         ///    {
         ///    }
-        ///    protected override void OnComplicationUpdated(string providerId, ComplicationType type, Bundle data)
+        ///    protected override void OnComplicationUpdated(string providerId, ComplicationTypes type, Bundle data)
         ///    {
-        ///        if (type == ComplicationType.Time)
+        ///        if (type == ComplicationTypes.Time)
         ///        {
         ///            long time = Complication.GetTimestamp(data);
         ///            layout.Text = time;
@@ -447,13 +447,13 @@ namespace Tizen.Applications.WatchfaceComplication
         /// public class MyComplication : Complication
         /// {
         ///    public MyComplication(int complicationId, int supportTypes, int supportEvents, string defaultProviderId,
-        ///        ComplicationType defaultType)
+        ///        ComplicationTypes defaultType)
         ///        : base(complicationId, supportTypes, supportEvents, defaultProviderId, defaultType)
         ///    {
         ///    }
-        ///    protected override void OnComplicationUpdated(string providerId, ComplicationType type, Bundle data)
+        ///    protected override void OnComplicationUpdated(string providerId, ComplicationTypes type, Bundle data)
         ///    {
-        ///        if (type == ComplicationType.Image)
+        ///        if (type == ComplicationTypes.Image)
         ///        {
         ///            string imagePath = Complication.GetImagePath(data);
         ///            layout.Text = imagePath;
@@ -486,13 +486,13 @@ namespace Tizen.Applications.WatchfaceComplication
         /// public class MyComplication : Complication
         /// {
         ///    public MyComplication(int complicationId, int supportTypes, int supportEvents, string defaultProviderId,
-        ///        ComplicationType defaultType)
+        ///        ComplicationTypes defaultType)
         ///        : base(complicationId, supportTypes, supportEvents, defaultProviderId, defaultType)
         ///    {
         ///    }
-        ///    protected override void OnComplicationUpdated(string providerId, ComplicationType type, Bundle data)
+        ///    protected override void OnComplicationUpdated(string providerId, ComplicationTypes type, Bundle data)
         ///    {
-        ///        if (type == ComplicationType.RangedValue)
+        ///        if (type == ComplicationTypes.RangedValue)
         ///        {
         ///            double currentValue = Complication.GetCurrentValueOfRange(data);
         ///            layout.Text = currentValue;
@@ -525,13 +525,13 @@ namespace Tizen.Applications.WatchfaceComplication
         /// public class MyComplication : Complication
         /// {
         ///    public MyComplication(int complicationId, int supportTypes, int supportEvents, string defaultProviderId,
-        ///        ComplicationType defaultType)
+        ///        ComplicationTypes defaultType)
         ///        : base(complicationId, supportTypes, supportEvents, defaultProviderId, defaultType)
         ///    {
         ///    }
-        ///    protected override void OnComplicationUpdated(string providerId, ComplicationType type, Bundle data)
+        ///    protected override void OnComplicationUpdated(string providerId, ComplicationTypes type, Bundle data)
         ///    {
-        ///        if (type == ComplicationType.RangedValue)
+        ///        if (type == ComplicationTypes.RangedValue)
         ///        {
         ///            double currentValue = Complication.GetMinValueOfRange(data);
         ///            layout.Text = currentValue;
@@ -564,13 +564,13 @@ namespace Tizen.Applications.WatchfaceComplication
         /// public class MyComplication : Complication
         /// {
         ///    public MyComplication(int complicationId, int supportTypes, int supportEvents, string defaultProviderId,
-        ///        ComplicationType defaultType)
+        ///        ComplicationTypes defaultType)
         ///        : base(complicationId, supportTypes, supportEvents, defaultProviderId, defaultType)
         ///    {
         ///    }
-        ///    protected override void OnComplicationUpdated(string providerId, ComplicationType type, Bundle data)
+        ///    protected override void OnComplicationUpdated(string providerId, ComplicationTypes type, Bundle data)
         ///    {
-        ///        if (type == ComplicationType.RangedValue)
+        ///        if (type == ComplicationTypes.RangedValue)
         ///        {
         ///            double maxValue = Complication.GetMaxValueOfRange(data);
         ///            layout.Text = maxValue;
@@ -603,13 +603,13 @@ namespace Tizen.Applications.WatchfaceComplication
         /// public class MyComplication : Complication
         /// {
         ///    public MyComplication(int complicationId, int supportTypes, int supportEvents, string defaultProviderId,
-        ///        ComplicationType defaultType)
+        ///        ComplicationTypes defaultType)
         ///        : base(complicationId, supportTypes, supportEvents, defaultProviderId, defaultType)
         ///    {
         ///    }
-        ///    protected override void OnComplicationUpdated(string providerId, ComplicationType type, Bundle data)
+        ///    protected override void OnComplicationUpdated(string providerId, ComplicationTypes type, Bundle data)
         ///    {
-        ///        if (type == ComplicationType.Icon)
+        ///        if (type == ComplicationTypes.Icon)
         ///        {
         ///            string iconPath = Complication.GetIconPath(data);
         ///            layout.Text = iconPath;
@@ -643,13 +643,13 @@ namespace Tizen.Applications.WatchfaceComplication
         /// public class MyComplication : Complication
         /// {
         ///    public MyComplication(int complicationId, int supportTypes, int supportEvents, string defaultProviderId,
-        ///        ComplicationType defaultType)
+        ///        ComplicationTypes defaultType)
         ///        : base(complicationId, supportTypes, supportEvents, defaultProviderId, defaultType)
         ///    {
         ///    }
-        ///    protected override void OnComplicationUpdated(string providerId, ComplicationType type, Bundle data)
+        ///    protected override void OnComplicationUpdated(string providerId, ComplicationTypes type, Bundle data)
         ///    {
-        ///        if (type == ComplicationType.Icon)
+        ///        if (type == ComplicationTypes.Icon)
         ///        {
         ///            string extraData = Complication.GetExtraData(data);
         ///            layout.Text = extraData;
@@ -677,7 +677,7 @@ namespace Tizen.Applications.WatchfaceComplication
         /// <param name="type">The updated type.</param>
         /// <param name="data">The updated data.</param>
         /// <since_tizen> 5 </since_tizen>
-        protected abstract void OnComplicationUpdated(string providerId, ComplicationType type, Bundle data);
+        protected abstract void OnComplicationUpdated(string providerId, ComplicationTypes type, Bundle data);
 
         /// <summary>
         /// Overrides this method to handle the behavior when the complication error occurs.
@@ -686,7 +686,7 @@ namespace Tizen.Applications.WatchfaceComplication
         /// <param name="type">The updated type.</param>
         /// <param name="errorReason">The occured error.</param>
         /// <since_tizen> 5 </since_tizen>
-        protected virtual void OnComplicationError(string providerId, ComplicationType type, ComplicationError errorReason)
+        protected virtual void OnComplicationError(string providerId, ComplicationTypes type, ComplicationError errorReason)
         {
         }
 

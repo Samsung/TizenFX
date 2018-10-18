@@ -49,7 +49,7 @@ internal static partial class Interop
 
         [DllImport(Libraries.Complication, EntryPoint = "watchface_complication_create")]
         internal static extern ComplicationError CreateComplication(int complicationId,
-            string defaultProviderId, ComplicationType defaultType, int supportTypes, int supportEventTypes, out IntPtr handle);
+            string defaultProviderId, ComplicationTypes defaultType, int supportTypes, int supportEventTypes, out IntPtr handle);
 
         [DllImport(Libraries.Complication, EntryPoint = "watchface_complication_destroy")]
         internal static extern ComplicationError Destroy(IntPtr handle);
@@ -58,7 +58,7 @@ internal static partial class Interop
         internal static extern ComplicationError GetCurrentProviderId(IntPtr handle, out string curProviderId);
 
         [DllImport(Libraries.Complication, EntryPoint = "watchface_complication_get_current_type")]
-        internal static extern ComplicationError GetCurrentType(IntPtr handle, out ComplicationType type);
+        internal static extern ComplicationError GetCurrentType(IntPtr handle, out ComplicationTypes type);
 
         [DllImport(Libraries.Complication, EntryPoint = "watchface_complication_add_updated_cb")]
         internal static extern ComplicationError AddUpdatedCallback(IntPtr handle, ComplicationUpdatedCallback callback, ComplicationErrorCallback errCallback, IntPtr userData);
@@ -70,7 +70,7 @@ internal static partial class Interop
         internal static extern ComplicationError SendUpdateRequest(IntPtr handle);
 
         [DllImport(Libraries.Complication, EntryPoint = "watchface_complication_data_get_type")]
-        internal static extern ComplicationError GetDataType(SafeBundleHandle handle, out ComplicationType type);
+        internal static extern ComplicationError GetDataType(SafeBundleHandle handle, out ComplicationTypes type);
 
         [DllImport(Libraries.Complication, EntryPoint = "watchface_complication_data_get_short_text")]
         internal static extern ComplicationError GetShortText(SafeBundleHandle handle, out string shortText);
@@ -100,7 +100,7 @@ internal static partial class Interop
         internal static extern ComplicationError GetScreenReaderText(SafeBundleHandle handle, out string screenReaderText);
 
         [DllImport(Libraries.Complication, EntryPoint = "watchface_complication_transfer_event")]
-        internal static extern ComplicationError TransferEvent(IntPtr handle, EventType e);
+        internal static extern ComplicationError TransferEvent(IntPtr handle, EventTypes e);
 
         [DllImport(Libraries.Complication, EntryPoint = "watchface_complication_allowed_list_create")]
         internal static extern ComplicationError CreateAllowedList(out IntPtr allowedList);
@@ -178,7 +178,7 @@ internal static partial class Interop
         internal static extern ComplicationError RemoveUpdateRequestedCallback(string providerId, UpdateRequestedCallback callback);
 
         [DllImport(Libraries.ComplicationProvider, EntryPoint = "watchface_complication_provider_data_set_type")]
-        internal static extern ComplicationError ProviderSetDataType(IntPtr sharedData, ComplicationType type);
+        internal static extern ComplicationError ProviderSetDataType(IntPtr sharedData, ComplicationTypes type);
 
         [DllImport(Libraries.ComplicationProvider, EntryPoint = "watchface_complication_provider_data_set_title")]
         internal static extern ComplicationError ProviderSetTitle(IntPtr sharedData, string title);
@@ -214,13 +214,13 @@ internal static partial class Interop
         internal static extern ComplicationError NotifyUpdate(string updatedProviderId);
 
         [DllImport(Libraries.ComplicationProvider, EntryPoint = "watchface_complication_provider_event_get_type")]
-        internal static extern ComplicationError GetEventType(SafeAppControlHandle handle, out EventType type);
+        internal static extern ComplicationError GetEventType(SafeAppControlHandle handle, out EventTypes type);
 
         [DllImport(Libraries.ComplicationProvider, EntryPoint = "watchface_complication_provider_event_get_provider_id")]
         internal static extern ComplicationError GetEventProviderId(SafeAppControlHandle handle, out string providerId);
 
         [DllImport(Libraries.ComplicationProvider, EntryPoint = "watchface_complication_provider_event_get_complication_type")]
-        internal static extern ComplicationError GetEventComplicationType(SafeAppControlHandle handle, out ComplicationType type);
+        internal static extern ComplicationError GetEventComplicationType(SafeAppControlHandle handle, out ComplicationTypes type);
 
         [DllImport(Libraries.ComplicationProvider, EntryPoint = "watchface_complication_provider_event_get_context")]
         internal static extern ComplicationError GetEventContext(SafeAppControlHandle handle, out SafeBundleHandle context);
@@ -238,16 +238,16 @@ internal static partial class Interop
         internal delegate void EditReadyCallback(IntPtr handle, string editorAppId, IntPtr userData);
 
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-        internal delegate void UpdateRequestedCallback(string providerId, string reqAppId, ComplicationType type,
+        internal delegate void UpdateRequestedCallback(string providerId, string reqAppId, ComplicationTypes type,
             IntPtr context, IntPtr sharedData, IntPtr userData);
 
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         internal delegate void ComplicationUpdatedCallback(int complicationId,
-            string providerId, ComplicationType type, IntPtr data, IntPtr userData);
+            string providerId, ComplicationTypes type, IntPtr data, IntPtr userData);
 
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         internal delegate void ComplicationErrorCallback(int complicationId,
-            string providerId, ComplicationType type, ComplicationError error, IntPtr userData);
+            string providerId, ComplicationTypes type, ComplicationError error, IntPtr userData);
 
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         internal delegate void EditableUpdateRequestedCallback(IntPtr handle, int selectedIdx,
