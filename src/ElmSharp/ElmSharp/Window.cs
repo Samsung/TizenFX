@@ -989,11 +989,11 @@ namespace ElmSharp
         {
             get
             {
-                return Interop.Elementary.elm_win_urgent_get(Handle);
+                return Interop.Elementary.elm_win_withdrawn_get(Handle);
             }
             set
             {
-                Interop.Elementary.elm_win_urgent_set(Handle, value);
+                Interop.Elementary.elm_win_withdrawn_set(Handle, value);
             }
         }
 
