@@ -49,7 +49,7 @@ namespace Tizen.Multimedia.Remoting
         /// <param name="receiverId">The receiver Id that receives command.</param>
         internal void SetRequestInformation(string receiverId)
         {
-            ReceiverId = receiverId;
+            ReceiverId = receiverId ?? throw new ArgumentNullException(nameof(receiverId));
         }
 
         /// <summary>
@@ -59,8 +59,8 @@ namespace Tizen.Multimedia.Remoting
         /// <param name="requestId">The request Id for each command.</param>
         internal void SetResponseInformation(string receiverId, string requestId)
         {
-            ReceiverId = receiverId;
-            _requestId = requestId;
+            ReceiverId = receiverId ?? throw new ArgumentNullException(nameof(receiverId)); ;
+            _requestId = requestId ?? throw new ArgumentNullException(nameof(requestId)); ;
         }
 
         /// <summary>
@@ -103,6 +103,10 @@ namespace Tizen.Multimedia.Remoting
                         .ThrowIfError("Failed to response command.");
                 }
             }
+            catch (ArgumentException)
+            {
+                throw new InvalidOperationException("Server is not running");
+            }
             finally
             {
                 OnResponseCompleted();
@@ -127,8 +131,12 @@ namespace Tizen.Multimedia.Remoting
                 else
                 {
                     NativeClient.SendCustomEventReply(clientHandle, ReceiverId, _requestId, result, IntPtr.Zero)
-                        .ThrowIfError("Failed to repose event.");
+                        .ThrowIfError("Failed to response event.");
                 }
+            }
+            catch (ArgumentException)
+            {
+                throw new InvalidOperationException("Server is not running");
             }
             finally
             {
@@ -147,9 +155,12 @@ namespace Tizen.Multimedia.Remoting
         /// Initializes a new instance of the <see cref="PlaybackCommand"/> class.
         /// </summary>
         /// <param name="action">A <see cref="MediaControlPlaybackCommand"/>.</param>
+        /// <exception cref="ArgumentException"><paramref name="action"/> is not valid.</exception>
         /// <since_tizen> 5 </since_tizen>
         public PlaybackCommand(MediaControlPlaybackCommand action)
         {
+            ValidationUtil.ValidateEnum(typeof(MediaControlPlaybackCommand), action, nameof(action));
+
             Action = action;
         }
 
@@ -161,7 +172,7 @@ namespace Tizen.Multimedia.Remoting
 
         internal override string Request(NativeClientHandle clientHandle)
         {
-            ValidationUtil.ValidateEnum(typeof(MediaControlPlaybackCommand), Action, nameof(MediaControlPlaybackCommand));
+            ValidationUtil.ValidateEnum(typeof(MediaControlPlaybackCommand), Action, nameof(Action));
 
             NativeClient.SendPlaybackActionCommand(clientHandle, ReceiverId, Action.ToNative(), out string requestId)
                 .ThrowIfError("Failed to send playback command.");
@@ -212,13 +223,15 @@ namespace Tizen.Multimedia.Remoting
         /// <param name="playlistName">The playlist name of the server.</param>
         /// <param name="index">The index of the media in the playlist.</param>
         /// <param name="position">The playback position in milliseconds.</param>
-        /// <exception cref="ArgumentException"><paramref name="index"/> cannot be converted to number.</exception>
+        /// <exception cref="ArgumentException"><paramref name="action"/>is not valid.</exception>
         /// <exception cref="ArgumentNullException">
-        /// <paramref name="playlistName"/> or <paramref name="index"/> is not vailed.
+        /// <paramref name="playlistName"/> or <paramref name="index"/> is null.
         /// </exception>
         /// <since_tizen> 5 </since_tizen>
         public PlaylistCommand(MediaControlPlaybackCommand action, string playlistName, string index, ulong position)
         {
+            ValidationUtil.ValidateEnum(typeof(MediaControlPlaybackCommand), action, nameof(action));
+
             Action = action;
             Index = index ?? throw new ArgumentNullException(nameof(index));
             Name = playlistName ?? throw new ArgumentNullException(nameof(playlistName));
@@ -231,7 +244,6 @@ namespace Tizen.Multimedia.Remoting
         /// <param name="action">A <see cref="MediaControlPlaybackCommand"/>.</param>
         /// <param name="playlistName">The playlist name of the server.</param>
         /// <param name="index">The index of the media in the playlist.</param>
-        /// <exception cref="ArgumentException"><paramref name="index"/> cannot be converted to number.</exception>
         /// <exception cref="ArgumentNullException">
         /// <paramref name="playlistName"/> or <paramref name="index"/> is null.
         /// </exception>
@@ -267,7 +279,7 @@ namespace Tizen.Multimedia.Remoting
 
         internal override string Request(NativeClientHandle clientHandle)
         {
-            ValidationUtil.ValidateEnum(typeof(MediaControlPlaybackCommand), Action, nameof(MediaControlPlaybackCommand));
+            ValidationUtil.ValidateEnum(typeof(MediaControlPlaybackCommand), Action, nameof(Action));
 
             NativeClient.SendPlaylistCommand(clientHandle, ReceiverId, Name, Index, Action.ToNative(),
                 Position, out string requestId).ThrowIfError("Failed to send playlist command.");
@@ -318,9 +330,12 @@ namespace Tizen.Multimedia.Remoting
         /// Initializes a new instance of the <see cref="RepeatModeCommand"/> class.
         /// </summary>
         /// <param name="mode">The <see cref="MediaControlRepeatMode"/>.</param>
+        /// <exception cref="ArgumentException"><paramref name="mode"/> is not vailid.</exception>
         /// <since_tizen> 5 </since_tizen>
         public RepeatModeCommand(MediaControlRepeatMode mode)
         {
+            ValidationUtil.ValidateEnum(typeof(MediaControlRepeatMode), mode, nameof(mode));
+
             Mode = mode;
         }
 
@@ -332,7 +347,7 @@ namespace Tizen.Multimedia.Remoting
 
         internal override string Request(NativeClientHandle clientHandle)
         {
-            ValidationUtil.ValidateEnum(typeof(MediaControlRepeatMode), Mode, nameof(MediaControlRepeatMode));
+            ValidationUtil.ValidateEnum(typeof(MediaControlRepeatMode), Mode, nameof(Mode));
 
             NativeClient.SendRepeatModeCommand(clientHandle, ReceiverId, Mode.ToNative(), out string requestId).
                 ThrowIfError("Failed to send playback repeat command.");
@@ -486,11 +501,17 @@ namespace Tizen.Multimedia.Remoting
         /// <summary>
         /// Initializes a new instance of the <see cref="SearchCommand"/> class.
         /// </summary>
+        /// <exception cref="ArgumentNullException"><paramref name="condition"/> is not set.</exception>
         /// <exception cref="InvalidOperationException">An internal error occurs.</exception>
         /// <param name="condition">The set of <see cref="MediaControlSearchCondition"/>.</param>
         /// <since_tizen> 5 </since_tizen>
         public SearchCommand(MediaControlSearchCondition condition)
         {
+            if (condition == null)
+            {
+                throw new ArgumentNullException(nameof(condition));
+            }
+
             NativeClient.CreateSearchHandle(out _searchHandle).ThrowIfError("Failed to create search handle.");
 
             try
@@ -518,47 +539,26 @@ namespace Tizen.Multimedia.Remoting
             }
         }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="SearchCommand"/> class by server side.
+        /// </summary>
         internal SearchCommand(List<MediaControlSearchCondition> conditions, IntPtr searchHandle)
         {
             _searchHandle = searchHandle;
-
-            try
-            {
-                foreach (var condition in conditions)
-                {
-                    if (condition.Bundle != null)
-                    {
-                        NativeClient.SetSearchConditionBundle(_searchHandle, condition.ContentType, condition.Category,
-                            condition.Keyword, condition.Bundle.SafeBundleHandle).
-                            ThrowIfError("Failed to set search condition.");
-                    }
-                    else
-                    {
-                        NativeClient.SetSearchCondition(_searchHandle, condition.ContentType, condition.Category,
-                            condition.Keyword, IntPtr.Zero).
-                            ThrowIfError("Failed to set search condition.");
-                    }
-                }
-            }
-            catch
-            {
-                if (_searchHandle != IntPtr.Zero)
-                {
-                    NativeClient.DestroySearchHandle(_searchHandle).ThrowIfError("Failed to destroy search handle");
-                }
-                throw;
-            }
+            Conditions = conditions;
         }
+
+        /// <summary>
+        /// Gets or sets the search conditions.
+        /// </summary>
+        /// <remarks>This property is used by MediaControlServer.</remarks>
+        /// <since_tizen> 5 </since_tizen>
+        public IEnumerable<MediaControlSearchCondition> Conditions { get; private set; }
 
         internal override string Request(NativeClientHandle clientHandle)
         {
             NativeClient.SendSearchCommand(clientHandle, ReceiverId, _searchHandle, out string requestId).
                 ThrowIfError("Failed to send search command.");
-
-            if (_searchHandle != IntPtr.Zero)
-            {
-                NativeClient.DestroySearchHandle(_searchHandle).ThrowIfError("Failed to destroy search handle");
-            }
 
             return requestId;
         }
@@ -570,11 +570,6 @@ namespace Tizen.Multimedia.Remoting
         protected override void OnResponseCompleted()
         {
             base.OnResponseCompleted();
-
-            if (_searchHandle != IntPtr.Zero)
-            {
-                NativeClient.DestroySearchHandle(_searchHandle).ThrowIfError("Failed to destroy search handle");
-            }
         }
     }
 }

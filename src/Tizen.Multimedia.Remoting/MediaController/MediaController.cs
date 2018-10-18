@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2016 Samsung Electronics Co., Ltd All Rights Reserved
+ * Copyright (c) 2018 Samsung Electronics Co., Ltd All Rights Reserved
  *
  * Licensed under the Apache License, Version 2.0 (the License);
  * you may not use this file except in compliance with the License.
@@ -215,14 +215,15 @@ namespace Tizen.Multimedia.Remoting
             ThrowIfStopped();
 
             IntPtr playbackHandle = IntPtr.Zero;
-            string name = null;
 
             // Get the playlist name of current playing media.
             try
             {
                 Native.GetServerPlayback(Manager.Handle, ServerAppId, out playbackHandle).ThrowIfError("Failed to get playback.");
 
-                name = NativePlaylist.GetPlaylistIndex(playbackHandle);
+                var (name, index) = NativePlaylist.GetPlaylistInfo(playbackHandle);
+
+                return GetPlaylists().FirstOrDefault(playlist => playlist.Name == name);
             }
             finally
             {
@@ -231,8 +232,6 @@ namespace Tizen.Multimedia.Remoting
                     Native.DestroyPlayback(playbackHandle).ThrowIfError("Failed to destroy playback handle.");
                 }
             }
-
-            return GetPlaylists().FirstOrDefault(playlist => playlist.Name == name);
         }
 
         /// <summary>
@@ -256,7 +255,8 @@ namespace Tizen.Multimedia.Remoting
             {
                 Native.GetServerPlayback(Manager.Handle, ServerAppId, out playbackHandle).ThrowIfError("Failed to get playback.");
 
-                return NativePlaylist.GetPlaylistIndex(playbackHandle);
+                var (name, index) = NativePlaylist.GetPlaylistInfo(playbackHandle);
+                return index;
             }
             finally
             {
@@ -320,7 +320,8 @@ namespace Tizen.Multimedia.Remoting
         /// and then, the client receive the result of each request(command).
         /// </remarks>
         /// <param name="command">A <see cref="Command"/> class.</param>
-        /// <returns>A task that represents the asynchronous operation.</returns>
+        /// <returns><see cref="Bundle"/> represents the extra data from server and it can be null.</returns>
+        /// <exception cref="ArgumentNullException"><paramref name="command"/> is null.</exception>
         /// <exception cref="InvalidOperationException">
         ///     The server has already been stopped.<br/>
         ///     -or-<br/>
@@ -328,19 +329,26 @@ namespace Tizen.Multimedia.Remoting
         /// </exception>
         /// <exception cref="ObjectDisposedException">The <see cref="MediaControllerManager"/> has already been disposed of.</exception>
         /// <since_tizen> 5 </since_tizen>
-        public async Task RequestAsync(Command command)
+        public async Task<Bundle> RequestAsync(Command command)
         {
+            if (command == null)
+            {
+                throw new ArgumentNullException(nameof(command));
+            }
+
             ThrowIfStopped();
 
             command.SetRequestInformation(ServerAppId);
 
             var tcs = new TaskCompletionSource<MediaControllerError>();
             string reqeustId = null;
+            Bundle bundle = null;
 
             EventHandler<CommandCompletedEventArgs> eventHandler = (s, e) =>
             {
                 if (e.RequestId == reqeustId)
                 {
+                    bundle = e.Bundle;
                     tcs.TrySetResult(e.Result);
                 }
             };
@@ -352,6 +360,8 @@ namespace Tizen.Multimedia.Remoting
                 reqeustId = command.Request(Manager.Handle);
 
                 (await tcs.Task).ThrowIfError("Failed to request command");
+
+                return bundle;
             }
             finally
             {
@@ -365,6 +375,7 @@ namespace Tizen.Multimedia.Remoting
         /// <param name="command">The command that return to client.</param>
         /// <param name="result">The result of <paramref name="command"/>.</param>
         /// <param name="bundle">The extra data.</param>
+        /// <exception cref="ArgumentNullException"><paramref name="command"/> is null.</exception>
         /// <exception cref="InvalidOperationException">
         ///     The server is not running .<br/>
         ///     -or-<br/>
@@ -373,6 +384,11 @@ namespace Tizen.Multimedia.Remoting
         /// <since_tizen> 5 </since_tizen>
         public void Response(Command command, int result, Bundle bundle)
         {
+            if (command == null)
+            {
+                throw new ArgumentNullException(nameof(command));
+            }
+
             command.Response(Manager.Handle, result, bundle);
         }
 
@@ -381,6 +397,7 @@ namespace Tizen.Multimedia.Remoting
         /// </summary>
         /// <param name="command">The command that return to client.</param>
         /// <param name="result">The result of <paramref name="command"/>.</param>
+        /// <exception cref="ArgumentNullException"><paramref name="command"/> is null.</exception>
         /// <exception cref="InvalidOperationException">
         ///     The server is not running .<br/>
         ///     -or-<br/>
@@ -389,6 +406,11 @@ namespace Tizen.Multimedia.Remoting
         /// <since_tizen> 5 </since_tizen>
         public void Response(Command command, int result)
         {
+            if (command == null)
+            {
+                throw new ArgumentNullException(nameof(command));
+            }
+
             command.Response(Manager.Handle, result, null);
         }
 
@@ -555,6 +577,7 @@ namespace Tizen.Multimedia.Remoting
         /// </summary>
         /// <param name="action">A playback command.</param>
         /// <returns>A <see cref="MediaControlCapabilitySupport"/>.</returns>
+        /// <exception cref="ArgumentException"><paramref name="action"/> is not valid.</exception>
         /// <exception cref="InvalidOperationException">
         ///     The server has already been stopped.<br/>
         ///     -or-<br/>
@@ -562,9 +585,11 @@ namespace Tizen.Multimedia.Remoting
         /// </exception>
         /// <exception cref="ObjectDisposedException">The <see cref="MediaControllerManager"/> has already been disposed of.</exception>
         /// <since_tizen> 5 </since_tizen>
-        public MediaControlCapabilitySupport GetPlaybackCapabilities(MediaControlPlaybackCommand action)
+        public MediaControlCapabilitySupport GetPlaybackCapability(MediaControlPlaybackCommand action)
         {
             ThrowIfStopped();
+
+            ValidationUtil.ValidateEnum(typeof(MediaControlPlaybackCommand), action, nameof(action));
 
             IntPtr playbackCapaHandle = IntPtr.Zero;
 

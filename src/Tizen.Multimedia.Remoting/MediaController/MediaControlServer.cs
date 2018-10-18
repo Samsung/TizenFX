@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2016 Samsung Electronics Co., Ltd All Rights Reserved
+ * Copyright (c) 2018 Samsung Electronics Co., Ltd All Rights Reserved
  *
  * Licensed under the Apache License, Version 2.0 (the License);
  * you may not use this file except in compliance with the License.
@@ -277,16 +277,56 @@ namespace Tizen.Multimedia.Remoting
         ///     An internal error occurs.
         /// </exception>
         /// <since_tizen> 5 </since_tizen>
+        [Obsolete("Please do not use! This will be deprecated. Please use SetInfoOfCurrentPlayingMedia instead.")]
         public static void SetIndexOfCurrentPlayingMedia(string index)
         {
+            if (index == null)
+            {
+                throw new ArgumentNullException(nameof(index));
+            }
+
             Native.SetIndexOfCurrentPlayingMedia(Handle, index)
                 .ThrowIfError("Failed to set the index of current playing media");
+
+            Native.UpdatePlayback(Handle).ThrowIfError("Failed to set playback.");
+        }
+
+        /// <summary>
+        /// Sets the playlist name and index of current playing media.
+        /// </summary>
+        /// <param name="playlistName">The playlist name of current playing media.</param>
+        /// <param name="index">The index of current playing media.</param>
+        /// <exception cref="ArgumentNullException">
+        /// <paramref name="playlistName"/> or <paramref name="index"/> is null.
+        /// </exception>
+        /// <exception cref="InvalidOperationException">
+        ///     The server is not running .<br/>
+        ///     -or-<br/>
+        ///     An internal error occurs.
+        /// </exception>
+        /// <since_tizen> 5 </since_tizen>
+        public static void SetInfoOfCurrentPlayingMedia(string playlistName, string index)
+        {
+            if (playlistName == null)
+            {
+                throw new ArgumentNullException(nameof(playlistName));
+            }
+            if (index == null)
+            {
+                throw new ArgumentNullException(nameof(index));
+            }
+
+            Native.SetInfoOfCurrentPlayingMedia(Handle, playlistName, index)
+                .ThrowIfError("Failed to set the playlist name and index of current playing media");
+
+            Native.UpdatePlayback(Handle).ThrowIfError("Failed to set playback.");
         }
 
         /// <summary>
         /// Delete playlist.
         /// </summary>
         /// <param name="playlist">The name of playlist.</param>
+        /// <exception cref="ArgumentNullException"><paramref name="playlist"/> is null.</exception>
         /// <exception cref="InvalidOperationException">
         ///     The server is not running .<br/>
         ///     -or-<br/>
@@ -295,6 +335,11 @@ namespace Tizen.Multimedia.Remoting
         /// <since_tizen> 5 </since_tizen>
         public static void RemovePlaylist(MediaControlPlaylist playlist)
         {
+            if (playlist == null)
+            {
+                throw new ArgumentNullException(nameof(playlist));
+            }
+
             Native.DeletePlaylist(Handle, playlist.Handle);
             playlist.Dispose();
         }
@@ -349,24 +394,38 @@ namespace Tizen.Multimedia.Remoting
         /// </remarks>
         /// <param name="command">A <see cref="Command"/> class.</param>
         /// <param name="clientId">The client Id to send command.</param>
-        /// <returns>A task that represents the asynchronous operation.</returns>
+        /// <returns><see cref="Bundle"/> represents the extra data from client and it can be null.</returns>
+        /// <exception cref="ArgumentNullException">
+        /// <paramref name="command"/> or <paramref name="clientId"/> is null.
+        /// </exception>
         /// <exception cref="InvalidOperationException">
         ///     The server has already been stopped.<br/>
         ///     -or-<br/>
         ///     An internal error occurs.
         /// </exception>
         /// <since_tizen> 5 </since_tizen>
-        public static async Task RequestAsync(Command command, string clientId)
+        public static async Task<Bundle> RequestAsync(Command command, string clientId)
         {
+            if (command == null)
+            {
+                throw new ArgumentNullException(nameof(command));
+            }
+            if (clientId == null)
+            {
+                throw new ArgumentNullException(nameof(clientId));
+            }
+
             command.SetRequestInformation(clientId);
 
             var tcs = new TaskCompletionSource<MediaControllerError>();
             string reqeustId = null;
+            Bundle bundle = null;
 
             EventHandler<CommandCompletedEventArgs> eventHandler = (s, e) =>
             {
                 if (e.RequestId == reqeustId)
                 {
+                    bundle = e.Bundle;
                     tcs.TrySetResult(e.Result);
                 }
             };
@@ -378,6 +437,8 @@ namespace Tizen.Multimedia.Remoting
                 reqeustId = command.Request(Handle);
 
                 (await tcs.Task).ThrowIfError("Failed to request event.");
+
+                return bundle;
             }
             finally
             {
@@ -391,6 +452,7 @@ namespace Tizen.Multimedia.Remoting
         /// <param name="command">The command that return to client.</param>
         /// <param name="result">The result of <paramref name="command"/>.</param>
         /// <param name="bundle">The extra data.</param>
+        /// <exception cref="ArgumentNullException"><paramref name="command"/> is null.</exception>
         /// <exception cref="InvalidOperationException">
         ///     The server is not running .<br/>
         ///     -or-<br/>
@@ -399,6 +461,11 @@ namespace Tizen.Multimedia.Remoting
         /// <since_tizen> 5 </since_tizen>
         public static void Response(Command command, int result, Bundle bundle)
         {
+            if (command == null)
+            {
+                throw new ArgumentNullException(nameof(command));
+            }
+
             command.Response(Handle, result, bundle);
         }
 
@@ -407,6 +474,7 @@ namespace Tizen.Multimedia.Remoting
         /// </summary>
         /// <param name="command">The command that return to client.</param>
         /// <param name="result">The result of <paramref name="command"/>.</param>
+        /// <exception cref="ArgumentNullException"><paramref name="command"/> is null.</exception>
         /// <exception cref="InvalidOperationException">
         ///     The server is not running .<br/>
         ///     -or-<br/>
@@ -415,6 +483,11 @@ namespace Tizen.Multimedia.Remoting
         /// <since_tizen> 5 </since_tizen>
         public static void Response(Command command, int result)
         {
+            if (command == null)
+            {
+                throw new ArgumentNullException(nameof(command));
+            }
+
             command.Response(Handle, result, null);
         }
 
@@ -435,6 +508,8 @@ namespace Tizen.Multimedia.Remoting
             ValidationUtil.ValidateEnum(typeof(MediaControlContentType), type, nameof(type));
 
             Native.SetPlaybackContentType(Handle, type).ThrowIfError("Failed to set playback content type.");
+
+            Native.UpdatePlayback(Handle).ThrowIfError("Failed to set playback.");
         }
 
         /// <summary>
@@ -469,7 +544,7 @@ namespace Tizen.Multimedia.Remoting
         /// </exception>
         /// <exception cref="ArgumentException"><paramref name="capabilities"/> is invalid.</exception>
         /// <since_tizen> 5 </since_tizen>
-        public static void SetPlaybackCapability(Dictionary<MediaControlPlaybackCommand, MediaControlCapabilitySupport> capabilities)
+        public static void SetPlaybackCapabilities(Dictionary<MediaControlPlaybackCommand, MediaControlCapabilitySupport> capabilities)
         {
             foreach (var pair in capabilities)
             {
@@ -542,5 +617,31 @@ namespace Tizen.Multimedia.Remoting
             Native.SetRepeatModeCapability(Handle, support).ThrowIfError("Failed to set shuffle mode capability.");
         }
         #endregion Capabilities
+
+        /// <summary>
+        /// Sets the age rating of latest played media.
+        /// </summary>
+        /// <param name="ageRating">
+        /// The Age rating of latest played media. The valid range is 0 to 19, inclusive.
+        /// Especially, 0 means that media is suitable for all ages.
+        /// </param>
+        /// <exception cref="ArgumentOutOfRangeException">The specified <paramref name="ageRating"/> is not valid.</exception>
+        /// <exception cref="InvalidOperationException">
+        ///     The server is not running .<br/>
+        ///     -or-<br/>
+        ///     An internal error occurs.
+        /// </exception>
+        /// <since_tizen> 5 </since_tizen>
+        public static void SetAgeRating(int ageRating)
+        {
+            if (ageRating < 0 || ageRating > 19)
+            {
+                throw new ArgumentOutOfRangeException(nameof(ageRating));
+            }
+
+            Native.SetAgeRating(Handle, ageRating).ThrowIfError("Failed to set age rating.");
+
+            Native.UpdatePlayback(Handle).ThrowIfError("Failed to set playback.");
+        }
     }
 }

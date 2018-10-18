@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2016 Samsung Electronics Co., Ltd All Rights Reserved
+ * Copyright (c) 2018 Samsung Electronics Co., Ltd All Rights Reserved
  *
  * Licensed under the Apache License, Version 2.0 (the License);
  * you may not use this file except in compliance with the License.
@@ -293,7 +293,14 @@ namespace ElmSharp
         /// <since_tizen> preview </since_tizen>
         public void SetFocus(bool isFocus)
         {
-            Interop.Elementary.elm_object_focus_set(RealHandle, isFocus);
+            if (isFocus)
+            {
+                Interop.Elementary.elm_object_focus_set(RealHandle, isFocus);
+            }
+            else
+            {
+                Interop.Elementary.elm_object_focused_clear(RealHandle);
+            }
         }
 
         /// <summary>

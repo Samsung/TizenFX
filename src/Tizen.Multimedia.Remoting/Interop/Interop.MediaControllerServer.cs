@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2016 Samsung Electronics Co., Ltd All Rights Reserved
+ * Copyright (c) 2018 Samsung Electronics Co., Ltd All Rights Reserved
  *
  * Licensed under the Apache License, Version 2.0 (the License);
  * you may not use this file except in compliance with the License.
@@ -186,6 +186,9 @@ internal static partial class Interop
         [DllImport(Libraries.MediaController, EntryPoint = "mc_server_set_playlist_item_index")]
         internal static extern MediaControllerError SetIndexOfCurrentPlayingMedia(IntPtr handle, string index);
 
+        [DllImport(Libraries.MediaController, EntryPoint = "mc_server_set_playlist_item_info")]
+        internal static extern MediaControllerError SetInfoOfCurrentPlayingMedia(IntPtr handle, string name, string index);
+
         [DllImport(Libraries.MediaController, EntryPoint = "mc_server_add_item_to_playlist")]
         internal static extern MediaControllerError AddItemToPlaylist(IntPtr handle,
             IntPtr playlist, string index, MediaControllerNativeAttribute attribute, string value);
@@ -245,7 +248,7 @@ internal static partial class Interop
         #endregion Capability
 
         #region Search
-        [DllImport(Libraries.MediaController, EntryPoint = "mc_search_foreach")]
+        [DllImport(Libraries.MediaController, EntryPoint = "mc_search_foreach_condition")]
         internal static extern MediaControllerError ForeachSearchCondition(IntPtr serverHandle,
             SearchItemCallback callback, IntPtr userData = default(IntPtr));
 

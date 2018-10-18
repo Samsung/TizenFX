@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2016 Samsung Electronics Co., Ltd All Rights Reserved
+ * Copyright (c) 2018 Samsung Electronics Co., Ltd All Rights Reserved
  *
  * Licensed under the Apache License, Version 2.0 (the License);
  * you may not use this file except in compliance with the License.
@@ -35,7 +35,7 @@ internal static partial class Interop
         [DllImport(Libraries.Calendar, EntryPoint = "calendar_filter_add_lli")]
             internal static extern int AddLong(IntPtr filterHandle, uint propertyId, IntegerMatchType match, long value);
         [DllImport(Libraries.Calendar, EntryPoint = "calendar_filter_add_caltime")]
-            internal static extern int AddCalendarTime(IntPtr filterHandle, uint propertyId, IntegerMatchType match, Interop.Record.DateTime value);
+            internal static extern int AddCalendarTime(IntPtr filterHandle, uint propertyId, IntegerMatchType match, IntPtr value);
         [DllImport(Libraries.Calendar, EntryPoint = "calendar_filter_add_filter")]
             internal static extern int AddFilter(IntPtr parentFilterHandle, IntPtr childFilterHandle);
         [DllImport(Libraries.Calendar, EntryPoint = "calendar_filter_add_operator")]

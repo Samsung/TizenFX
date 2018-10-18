@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2016 Samsung Electronics Co., Ltd All Rights Reserved
+ * Copyright (c) 2018 Samsung Electronics Co., Ltd All Rights Reserved
  *
  * Licensed under the Apache License, Version 2.0 (the License);
  * you may not use this file except in compliance with the License.
@@ -54,6 +54,7 @@ namespace Tizen.Multimedia.Remoting
             RegisterMetadataUpdatedEvent();
             RegisterShuffleModeUpdatedEvent();
             RegisterRepeatModeUpdatedEvent();
+            RegisterPlaylistUpdatedEvent();
             RegisterCommandCompletedEvent();
             RegisterPlaybackCapabilitiesEvent();
             RegisterRepeatModeCapabilitiesEvent();
@@ -164,7 +165,7 @@ namespace Tizen.Multimedia.Remoting
             };
 
             Native.SetPlaybackCapabilityUpdatedCb(Handle, _playbackCapabilityUpdatedCallback).
-                ThrowIfError("Failed to init PlaylistUpdated event.");
+                ThrowIfError("Failed to init PlaybackCapabilityUpdated event.");
         }
 
         private void RegisterRepeatModeCapabilitiesEvent()

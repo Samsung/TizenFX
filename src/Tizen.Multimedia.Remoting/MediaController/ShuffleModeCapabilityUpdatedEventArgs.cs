@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2016 Samsung Electronics Co., Ltd All Rights Reserved
+ * Copyright (c) 2018 Samsung Electronics Co., Ltd All Rights Reserved
  *
  * Licensed under the Apache License, Version 2.0 (the License);
  * you may not use this file except in compliance with the License.
@@ -30,9 +30,12 @@ namespace Tizen.Multimedia.Remoting
         /// Initializes a new instance of the <see cref="ShuffleModeCapabilityUpdatedEventArgs"/> class.
         /// </summary>
         /// <param name="support">The shuffle mode capabilities.</param>
+        /// <exception cref="ArgumentException"><paramref name="support"/> is not vaild.</exception>
         /// <since_tizen> 5 </since_tizen>
         public ShuffleModeCapabilityUpdatedEventArgs(MediaControlCapabilitySupport support)
         {
+            ValidationUtil.ValidateEnum(typeof(MediaControlCapabilitySupport), support, nameof(support));
+
             Support = support;
         }
 
