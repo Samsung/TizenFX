@@ -135,243 +135,165 @@ namespace Tizen.Applications.WatchfaceComplication
         /// <since_tizen> 5 </since_tizen>
         protected abstract void OnDataUpdateRequested(string reqestAppId, ComplicationTypes type, Bundle contextData);
 
+
         /// <summary>
-        /// Sets the title of complication data.
+        /// The information about the title of complication data.
         /// </summary>
-        /// <param name="title">The title.</param>
-        /// <example>
-        /// <code>
-        /// public class MyComplicationProvider : ComplicationProvider
-        /// {
-        ///     public MyComplicationProvider(string providerId)
-        ///      : base(providerId)
-        ///     {
-        ///     }
-        ///     protected override void OnDataUpdateRequested(string reqestAppId, ComplicationTypes type, Bundle contextData)
-        ///     {
-        ///         if (type == ComplicationTypes.ShortText)
-        ///         {
-        ///             this.SetTitle("Title");
-        ///             this.SetShortText("csharp short text");
-        ///         }
-        ///     }
-        /// }
-        /// </code>
-        /// </example>
         /// <since_tizen> 5 </since_tizen>
-        public void SetTitle(string title)
+        public string Title
         {
-            _title = title;
+            get
+            {
+                return _title;
+            }
+            set
+            {
+                _title = value;
+            }
         }
 
         /// <summary>
-        /// Sets the short text of complication data.
+        /// The information about the short text of complication data.
         /// </summary>
-        /// <param name="shortText">The short text.</param>
-        /// <example>
-        /// <code>
-        /// public class MyComplicationProvider : ComplicationProvider
-        /// {
-        ///     public MyComplicationProvider(string providerId)
-        ///      : base(providerId)
-        ///     {
-        ///     }
-        ///     protected override void OnDataUpdateRequested(string reqestAppId, ComplicationTypes type, Bundle contextData)
-        ///     {
-        ///         if (type == ComplicationTypes.ShortText)
-        ///         {
-        ///             this.SetTitle("Title");
-        ///             this.SetShortText("csharp short text");
-        ///         }
-        ///     }
-        /// }
-        /// </code>
-        /// </example>
         /// <since_tizen> 5 </since_tizen>
-        public void SetShortText(string shortText)
+        public string ShortText
         {
-            _shortText = shortText;
+            get
+            {
+                return _shortText;
+            }
+            set
+            {
+                _shortText = value;
+            }
         }
 
         /// <summary>
-        /// Sets the long text of complication data.
+        /// The information about the long text of complication data.
         /// </summary>
-        /// <param name="longText">The long text.</param>
-        /// <example>
-        /// <code>
-        /// public class MyComplicationProvider : ComplicationProvider
-        /// {
-        ///     public MyComplicationProvider(string providerId)
-        ///      : base(providerId)
-        ///     {
-        ///     }
-        ///     protected override void OnDataUpdateRequested(string reqestAppId, ComplicationTypes type, Bundle contextData)
-        ///     {
-        ///         if (type == ComplicationTypes.ShortText)
-        ///         {
-        ///             this.SetTitle("Title");
-        ///             this.SetLongText("csharp long text");
-        ///         }
-        ///     }
-        /// }
-        /// </code>
-        /// </example>
         /// <since_tizen> 5 </since_tizen>
-        public void SetLongText(string longText)
+        public string LongText
         {
-            _longText = longText;
+            get
+            {
+                return _longText;
+            }
+            set
+            {
+                _longText = value;
+            }
         }
 
         /// <summary>
-        /// Sets the timestamp of complication data.
+        /// The information about the timestamp of complication data.
         /// </summary>
-        /// <param name="timestamp">The timestamp.</param>
-        /// <example>
-        /// <code>
-        /// public class MyComplicationProvider : ComplicationProvider
-        /// {
-        ///     public MyComplicationProvider(string providerId)
-        ///      : base(providerId)
-        ///     {
-        ///     }
-        ///     protected override void OnDataUpdateRequested(string reqestAppId, ComplicationTypes type, Bundle contextData)
-        ///     {
-        ///         if (type == ComplicationTypes.Time)
-        ///         {
-        ///             DateTime epoch = new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc);
-        ///             long ms = (long)(DateTime.UtcNow - epoch).TotalMilliseconds;
-        ///             long result = ms / 1000;
-        ///             this.SetTimestamp(result);
-        ///         }
-        ///     }
-        /// }
-        /// </code>
-        /// </example>
         /// <since_tizen> 5 </since_tizen>
-        public void SetTimestamp(long timestamp)
+        public long Timestamp
         {
-            _timestamp = timestamp;
+            get
+            {
+                return _timestamp;
+            }
+            set
+            {
+                _timestamp = value;
+            }
         }
 
         /// <summary>
-        /// Sets the image path of complication data.
+        /// The information about the image path of complication data.
         /// </summary>
-        /// <param name="imagePath">The image path.</param>
-        /// <example>
-        /// <code>
-        /// public class MyComplicationProvider : ComplicationProvider
-        /// {
-        ///     public MyComplicationProvider(string providerId)
-        ///      : base(providerId)
-        ///     {
-        ///     }
-        ///     protected override void OnDataUpdateRequested(string reqestAppId, ComplicationTypes type, Bundle contextData)
-        ///     {
-        ///         if (type == ComplicationTypes.Image)
-        ///         {
-        ///             this.SetImagePath("image path");
-        ///         }
-        ///     }
-        /// }
-        /// </code>
-        /// </example>
         /// <since_tizen> 5 </since_tizen>
-        public void SetImagePath(string imagePath)
+        public string ImagePath
         {
-            _imagePath = imagePath;
+            get
+            {
+                return _imagePath;
+            }
+            set
+            {
+                _imagePath = value;
+            }
         }
 
         /// <summary>
-        /// Sets the ranged value of complication data.
+        /// The information about the current range value of complication data.
         /// </summary>
-        /// <param name="currentValue">The current value of ranged value.</param>
-        /// <param name="minValue">The min value of ranged value.</param>
-        /// <param name="maxValue">The max value of ranged value.</param>
-        /// <exception cref="ArgumentException">Thrown when value is invalid.</exception>
-        /// <example>
-        /// <code>
-        /// public class MyComplicationProvider : ComplicationProvider
-        /// {
-        ///     public MyComplicationProvider(string providerId)
-        ///      : base(providerId)
-        ///     {
-        ///     }
-        ///     protected override void OnDataUpdateRequested(string reqestAppId, ComplicationTypes type, Bundle contextData)
-        ///     {
-        ///         if (type == ComplicationTypes.RangedValue)
-        ///         {
-        ///             this.SetRangedValue(30, 0, 100);
-        ///         }
-        ///     }
-        /// }
-        /// </code>
-        /// </example>
         /// <since_tizen> 5 </since_tizen>
-        public void SetRangedValue(double currentValue, double minValue, double maxValue)
+        public double RangeCurrent
         {
-            if (minValue > maxValue || currentValue < minValue || currentValue > maxValue)
-                ErrorFactory.ThrowException(ComplicationError.InvalidParam,
-                    "invaild ranged value (" + currentValue + "," + minValue + "," + maxValue + ")");
-            _currentValue = currentValue;
-            _minValue = minValue;
-            _maxValue = maxValue;
+            get
+            {
+                return _currentValue;
+            }
+            set
+            {
+                _currentValue = value;
+            }
         }
 
         /// <summary>
-        /// Sets the icon path of complication data.
+        /// The information about the min range value of complication data.
         /// </summary>
-        /// <param name="iconPath">The icon path.</param>
-        /// <example>
-        /// <code>
-        /// public class MyComplicationProvider : ComplicationProvider
-        /// {
-        ///     public MyComplicationProvider(string providerId)
-        ///      : base(providerId)
-        ///     {
-        ///     }
-        ///     protected override void OnDataUpdateRequested(string reqestAppId, ComplicationTypes type, Bundle contextData)
-        ///     {
-        ///         if (type == ComplicationTypes.Icon)
-        ///         {
-        ///             this.SetIconPath("icon path");
-        ///         }
-        ///     }
-        /// }
-        /// </code>
-        /// </example>
         /// <since_tizen> 5 </since_tizen>
-        public void SetIconPath(string iconPath)
+        public double RangeMin
         {
-            _iconPath = iconPath;
+            get
+            {
+                return _minValue;
+            }
+            set
+            {
+                _minValue = value;
+            }
         }
 
         /// <summary>
-        /// Sets the extra data of complication data.
+        /// The information about the max range value of complication data.
         /// </summary>
-        /// <param name="extraData">The extra data.</param>
-        /// <example>
-        /// <code>
-        /// public class MyComplicationProvider : ComplicationProvider
-        /// {
-        ///     public MyComplicationProvider(string providerId)
-        ///      : base(providerId)
-        ///     {
-        ///     }
-        ///     protected override void OnDataUpdateRequested(string reqestAppId, ComplicationTypes type, Bundle contextData)
-        ///     {
-        ///         if (type == ComplicationTypes.Icon)
-        ///         {
-        ///             this.SetIconPath("icon path");
-        ///             this.SetExtraData("extra data");
-        ///         }
-        ///     }
-        /// }
-        /// </code>
-        /// </example>
         /// <since_tizen> 5 </since_tizen>
-        public void SetExtraData(string extraData)
+        public double RangeMax
         {
-            _extraData = extraData;
+            get
+            {
+                return _maxValue;
+            }
+            set
+            {
+                _maxValue = value;
+            }
+        }
+
+        /// <summary>
+        /// The information about the icon path of complication data.
+        /// </summary>
+        /// <since_tizen> 5 </since_tizen>
+        public string IconPath
+        {
+            get
+            {
+                return _iconPath;
+            }
+            set
+            {
+                _iconPath = value;
+            }
+        }
+
+        /// <summary>
+        /// The information about the extra data of complication data.
+        /// </summary>
+        /// <since_tizen> 5 </since_tizen>
+        public string ExtraData
+        {
+            get
+            {
+                return _extraData;
+            }
+            set
+            {
+                _extraData = value;
+            }
         }
 
         /// <summary>
