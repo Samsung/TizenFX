@@ -9,14 +9,21 @@ internal static partial class Interop
 {
     internal static partial class WatchfaceComplication
     {
-        internal enum NativeResultType : int
+        internal enum ErrorType : int
         {
-            Success = Tizen.Internals.Errors.ErrorCode.None,
+            None = Tizen.Internals.Errors.ErrorCode.None,
             OutOfMemory = Tizen.Internals.Errors.ErrorCode.OutOfMemory,
-            IoError = Tizen.Internals.Errors.ErrorCode.IoError,
-            InvalidParameter = Tizen.Internals.Errors.ErrorCode.InvalidParameter,
-            PermissionDenied = Tizen.Internals.Errors.ErrorCode.PermissionDenied,
-            MaxExceed = -0x01190000 | 0x01,
+            InvalidParam = Tizen.Internals.Errors.ErrorCode.InvalidParameter,
+            IO = Tizen.Internals.Errors.ErrorCode.IoError,
+            NoData = Tizen.Internals.Errors.ErrorCode.NoData,
+            PermissionDeny = Tizen.Internals.Errors.ErrorCode.PermissionDenied,
+            NotSupported = Tizen.Internals.Errors.ErrorCode.NotSupported,
+            DB = -0x02FC0000 | 0x1,
+            DBus = -0x02FC0000 | 0x2,
+            EditNotReady = -0x02FC0000 | 0x3,
+            ExistID = -0x02FC0000 | 0x4,
+            NotExist = -0x02FC0000 | 0x5,
+            NotAvailable = -0x02FC0000 | 0x6
         }
 
         [DllImport(Libraries.Complication, EntryPoint = "watchface_editable_highlight_create")]

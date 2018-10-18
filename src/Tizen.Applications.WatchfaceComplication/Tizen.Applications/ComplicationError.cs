@@ -10,61 +10,66 @@
         /// Error none.
         /// </summary>
         /// <since_tizen> 5 </since_tizen>
-        None = Tizen.Internals.Errors.ErrorCode.None,
+        None = Interop.WatchfaceComplication.ErrorType.None,
         /// <summary>
         /// Out of memory error.
         /// </summary>
         /// <since_tizen> 5 </since_tizen>
-        OutOfMemory = Tizen.Internals.Errors.ErrorCode.OutOfMemory,
+        OutOfMemory = Interop.WatchfaceComplication.ErrorType.OutOfMemory,
         /// <summary>
         /// Invalid parameter error.
         /// </summary>
         /// <since_tizen> 5 </since_tizen>
-        InvalidParam = Tizen.Internals.Errors.ErrorCode.InvalidParameter,
+        InvalidParam = Interop.WatchfaceComplication.ErrorType.InvalidParam,
         /// <summary>
         /// IO error.
         /// </summary>
         /// <since_tizen> 5 </since_tizen>
-        IO = Tizen.Internals.Errors.ErrorCode.IoError,
+        IO = Interop.WatchfaceComplication.ErrorType.IO,
         /// <summary>
         /// No data error.
         /// </summary>
         /// <since_tizen> 5 </since_tizen>
-        NoData = Tizen.Internals.Errors.ErrorCode.NoData,
+        NoData = Interop.WatchfaceComplication.ErrorType.NoData,
         /// <summary>
         /// Permission deny error.
         /// </summary>
         /// <since_tizen> 5 </since_tizen>
-        PermissionDeny = Tizen.Internals.Errors.ErrorCode.PermissionDenied,
+        PermissionDeny = Interop.WatchfaceComplication.ErrorType.PermissionDeny,
         /// <summary>
         /// The complication API is not supported error.
         /// </summary>
         /// <since_tizen> 5 </since_tizen>
-        NotSupported = Tizen.Internals.Errors.ErrorCode.NotSupported,
+        NotSupported = Interop.WatchfaceComplication.ErrorType.NotSupported,
         /// <summary>
         /// DB operation error.
         /// </summary>
         /// <since_tizen> 5 </since_tizen>
-        DB = -0x02FC0000 | 0x1,
+        DB = Interop.WatchfaceComplication.ErrorType.DB,
         /// <summary>
         /// DBus operation error.
         /// </summary>
         /// <since_tizen> 5 </since_tizen>
-        DBus = -0x02FC0000 | 0x2,
+        DBus = Interop.WatchfaceComplication.ErrorType.DBus,
         /// <summary>
         /// The editor is not ready for editing error.
         /// </summary>
         /// <since_tizen> 5 </since_tizen>
-        EditNotReady = -0x02FC0000 | 0x3,
+        EditNotReady = Interop.WatchfaceComplication.ErrorType.EditNotReady,
         /// <summary>
         /// Already exist ID error.
         /// </summary>
         /// <since_tizen> 5 </since_tizen>
-        ExistID = -0x02FC0000 | 0x4,
+        ExistID = Interop.WatchfaceComplication.ErrorType.ExistID,
         /// <summary>
         /// Not exist error.
         /// </summary>
         /// <since_tizen> 5 </since_tizen>
-        NotExist = -0x02FC0000 | 0x5
+        NotExist = Interop.WatchfaceComplication.ErrorType.NotExist,
+        /// <summary>
+        /// Not available error.
+        /// </summary>
+        /// <since_tizen> 5 </since_tizen>
+        NotAvailable = Interop.WatchfaceComplication.ErrorType.NotAvailable
     }
 }
