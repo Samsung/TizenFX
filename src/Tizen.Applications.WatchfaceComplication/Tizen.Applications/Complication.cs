@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using Tizen.Applications;
 
 
@@ -255,6 +256,34 @@ namespace Tizen.Applications.WatchfaceComplication
             {
                 ErrorFactory.ThrowException(ret, "Fail to get current idx");
             }
+            return ret;
+        }
+
+        /// <summary>
+        /// Applys specific allowed provider id, support types list for complication
+        /// </summary>
+        /// <exception cref="ArgumentException">Thrown when editableId is invalid.</exception>
+        /// <exception cref="InvalidOperationException">Thrown when the method failed due to invalid operation.</exception>
+        /// <example>
+        /// <code>
+        /// List&lt;(string providerId, ComplicationTypes t)&gt; allowedList = new List&lt;(string providerId, ComplicationTypes t)&gt;();
+        /// allowedList.Add(("org.tizen.ComplicationProviderCsharp/battery", ComplicationTypes.ShortText));
+        /// allowedList.Add(("org.tizen.ComplicationProviderCsharp/air", ComplicationTypes.ShortText));
+        /// ComplicationError err = _complication.ApplyAllowedList(allowedList);
+        /// </code>
+        /// </example>
+        /// <since_tizen> 5 </since_tizen>
+        public ComplicationError ApplyAllowedList(IEnumerable<(string providerId, ComplicationTypes supportTypes)> allowedList)
+        {
+            IntPtr listRaw;
+            Interop.WatchfaceComplication.CreateAllowedList(out listRaw);
+            List<(string providerId, ComplicationTypes supportTypes)> list = allowedList.ToList();
+            foreach (var item in list)
+            {
+                Interop.WatchfaceComplication.AddAllowedList(listRaw, item.providerId, (int)item.supportTypes);
+            }
+            ComplicationError ret = Interop.WatchfaceComplication.ApplyAllowedList(_handle, listRaw);
+            Interop.WatchfaceComplication.DestroyAllowedList(listRaw);
             return ret;
         }
 
