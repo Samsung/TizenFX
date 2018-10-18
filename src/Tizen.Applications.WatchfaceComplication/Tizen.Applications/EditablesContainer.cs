@@ -7,12 +7,13 @@ namespace Tizen.Applications.WatchfaceComplication
     /// Represents the EditablesContainer class for the watch application.
     /// </summary>
     /// <since_tizen> 5 </since_tizen>
-    public abstract class EditablesContainer
+    public abstract class EditablesContainer : IDisposable
     {
         internal IList<DesignElement> _deList = new List<DesignElement>();
         internal IList<Complication> _compList = new List<Complication>();
         internal IntPtr _container = IntPtr.Zero;
         private Interop.WatchfaceComplication.EditableUpdateRequestedCallback _editableUpdatedCallback;
+        private bool _disposed = false;
         private static string _logTag = "WatchfaceComplication";
 
         /// <summary>
@@ -35,7 +36,7 @@ namespace Tizen.Applications.WatchfaceComplication
         /// </summary>
         ~EditablesContainer()
         {
-            Interop.WatchfaceComplication.RemoveEditReadyCallback(EditReady);
+            Dispose(false);
         }
 
         /// <summary>
@@ -288,6 +289,30 @@ namespace Tizen.Applications.WatchfaceComplication
                 return new Bundle(handle);
 
             return null;
+        }
+
+        /// <summary>
+        /// Releases the unmanaged resources used by the EditablesContainer class specifying whether to perform a normal dispose operation.
+        /// </summary>
+        /// <param name="disposing">true for a normal dispose operation; false to finalize the handle.</param>
+        /// <since_tizen> 3 </since_tizen>
+        protected virtual void Dispose(bool disposing)
+        {
+            if (!_disposed)
+            {
+                Interop.WatchfaceComplication.RemoveEditReadyCallback(EditReady);
+                _disposed = true;
+            }
+        }
+
+        /// <summary>
+        /// Releases all resources used by the EditablesContainer class.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
+        public void Dispose()
+        {
+            Dispose(true);
+            GC.SuppressFinalize(this);
         }
     };
 }

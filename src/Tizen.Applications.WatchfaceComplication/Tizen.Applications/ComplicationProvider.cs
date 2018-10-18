@@ -8,7 +8,7 @@ namespace Tizen.Applications.WatchfaceComplication
     /// Represents the ComplicationProvider class for the complication provider service application.
     /// </summary>
     /// <since_tizen> 5 </since_tizen>
-    public abstract class ComplicationProvider
+    public abstract class ComplicationProvider : IDisposable
     {
         private string _providerId;
         private string _title;
@@ -21,6 +21,7 @@ namespace Tizen.Applications.WatchfaceComplication
         private double _maxValue;
         private string _iconPath;
         private string _extraData;
+        private bool _disposed = false;
         private const string LogTag = "WatchfaceComplication";
 
         /// <summary>
@@ -57,7 +58,7 @@ namespace Tizen.Applications.WatchfaceComplication
         /// </summary>
         ~ComplicationProvider()
         {
-            Interop.WatchfaceComplication.RemoveUpdateRequestedCallback(_providerId, DataUpdateRequested);
+            Dispose(false);
         }
 
         /// <summary>
@@ -466,6 +467,30 @@ namespace Tizen.Applications.WatchfaceComplication
             if (err != ComplicationError.None)
                 ErrorFactory.ThrowException(err, "fail to get complication context");
             return isValid;
+        }
+
+        /// <summary>
+        /// Releases the unmanaged resources used by the ComplicationProvider class specifying whether to perform a normal dispose operation.
+        /// </summary>
+        /// <param name="disposing">true for a normal dispose operation; false to finalize the handle.</param>
+        /// <since_tizen> 3 </since_tizen>
+        protected virtual void Dispose(bool disposing)
+        {
+            if (!_disposed)
+            {
+                Interop.WatchfaceComplication.RemoveUpdateRequestedCallback(_providerId, DataUpdateRequested);
+                _disposed = true;
+            }
+        }
+
+        /// <summary>
+        /// Releases all resources used by the ComplicationProvider class.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
+        public void Dispose()
+        {
+            Dispose(true);
+            GC.SuppressFinalize(this);
         }
     }
 }
