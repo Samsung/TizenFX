@@ -725,6 +725,7 @@ namespace Tizen.Applications.WatchfaceComplication
         public void Dispose()
         {
             Dispose(true);
+            GC.SuppressFinalize(this);
         }
     }
 }
