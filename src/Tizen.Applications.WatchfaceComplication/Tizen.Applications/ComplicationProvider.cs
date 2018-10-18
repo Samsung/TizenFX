@@ -133,10 +133,7 @@ namespace Tizen.Applications.WatchfaceComplication
         /// <param name="type">The requested type.</param>
         /// <param name="contextData">The complication's context which is set by complication setup application.</param>
         /// <since_tizen> 5 </since_tizen>
-        protected virtual void OnDataUpdateRequested(string reqestAppId, ComplicationType type, Bundle contextData)
-        {
-
-        }
+        protected abstract void OnDataUpdateRequested(string reqestAppId, ComplicationType type, Bundle contextData);
 
         /// <summary>
         /// Sets the title of complication data.

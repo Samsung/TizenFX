@@ -171,8 +171,6 @@ namespace Tizen.Applications.WatchfaceComplication
         /// <param name="selectedIdx">The selected candidate index.</param>
         /// <param name="state">The update state.</param>
         /// <since_tizen> 5 </since_tizen>
-        protected virtual void OnDesignUpdated(int selectedIdx, State state)
-        {
-        }
+        protected abstract void OnDesignUpdated(int selectedIdx, State state);
     }
 }

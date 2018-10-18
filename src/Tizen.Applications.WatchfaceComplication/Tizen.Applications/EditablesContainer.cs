@@ -238,10 +238,7 @@ namespace Tizen.Applications.WatchfaceComplication
         /// Overrides this method if you want to handle the behavior when the editor is ready to edit.
         /// </summary>
         /// <since_tizen> 5 </since_tizen>
-        protected virtual void OnEditReady(string editorId)
-        {
-
-        }
+        protected abstract void OnEditReady(string editorId);
 
         /// <summary>
         /// Loads the editable's current data.

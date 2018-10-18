@@ -52,7 +52,7 @@ namespace Tizen.Applications.WatchfaceComplication
         /// </code>
         /// </example>
         /// <since_tizen> 5 </since_tizen>
-        public Complication(int complicationId, int supportTypes, int supportEvents, string defaultProviderId, ComplicationType defaultType)
+        protected Complication(int complicationId, int supportTypes, int supportEvents, string defaultProviderId, ComplicationType defaultType)
         {
             _complicationId = complicationId;
             _supportTypes = supportTypes;
@@ -242,11 +242,11 @@ namespace Tizen.Applications.WatchfaceComplication
         /// <exception cref="InvalidOperationException">Thrown when the method failed due to invalid operation.</exception>
         /// <example>
         /// <code>
-        /// ComplicationType type = comp.GetType(dupData);
+        /// ComplicationType type = Complication.GetType(dupData);
         /// </code>
         /// </example>
         /// <since_tizen> 5 </since_tizen>
-        public ComplicationType GetType(Bundle data)
+        public static ComplicationType GetType(Bundle data)
         {
             ComplicationType type;
 
@@ -276,7 +276,7 @@ namespace Tizen.Applications.WatchfaceComplication
         ///    {
         ///        if (type == ComplicationType.ShortText)
         ///        {
-        ///            string shortText = this.GetShortText(data);
+        ///            string shortText = Complication.GetShortText(data);
         ///            layout.Text = shortText;
         ///        }
         ///    }
@@ -285,7 +285,7 @@ namespace Tizen.Applications.WatchfaceComplication
         /// </code>
         /// </example>
         /// <since_tizen> 5 </since_tizen>
-        public string GetShortText(Bundle data)
+        public static string GetShortText(Bundle data)
         {
             string shortText;
 
@@ -315,7 +315,7 @@ namespace Tizen.Applications.WatchfaceComplication
         ///    {
         ///        if (type == ComplicationType.LongText)
         ///        {
-        ///            string longText = this.GetLongText(data);
+        ///            string longText = Complication.GetLongText(data);
         ///            layout.Text = longText;
         ///        }
         ///    }
@@ -324,7 +324,7 @@ namespace Tizen.Applications.WatchfaceComplication
         /// </code>
         /// </example>
         /// <since_tizen> 5 </since_tizen>
-        public string GetLongText(Bundle data)
+        public static string GetLongText(Bundle data)
         {
             string longText;
 
@@ -354,7 +354,7 @@ namespace Tizen.Applications.WatchfaceComplication
         ///    {
         ///        if (type == ComplicationType.ShortText)
         ///        {
-        ///            string title = this.GetTitle(data);
+        ///            string title = Complication.GetTitle(data);
         ///            layout.Text = title;
         ///        }
         ///    }
@@ -363,7 +363,7 @@ namespace Tizen.Applications.WatchfaceComplication
         /// </code>
         /// </example>
         /// <since_tizen> 5 </since_tizen>
-        public string GetTitle(Bundle data)
+        public static string GetTitle(Bundle data)
         {
             string title;
 
@@ -393,7 +393,7 @@ namespace Tizen.Applications.WatchfaceComplication
         ///    {
         ///        if (type == ComplicationType.Time)
         ///        {
-        ///            long time = this.GetTime(data);
+        ///            long time = Complication.GetTimestamp(data);
         ///            layout.Text = time;
         ///        }
         ///    }
@@ -402,7 +402,7 @@ namespace Tizen.Applications.WatchfaceComplication
         /// </code>
         /// </example>
         /// <since_tizen> 5 </since_tizen>
-        public long GetTimestamp(Bundle data)
+        public static long GetTimestamp(Bundle data)
         {
             long timestamp;
 
@@ -432,7 +432,7 @@ namespace Tizen.Applications.WatchfaceComplication
         ///    {
         ///        if (type == ComplicationType.Image)
         ///        {
-        ///            string imagePath = this.GetImagePath(data);
+        ///            string imagePath = Complication.GetImagePath(data);
         ///            layout.Text = imagePath;
         ///        }
         ///    }
@@ -441,7 +441,7 @@ namespace Tizen.Applications.WatchfaceComplication
         /// </code>
         /// </example>
         /// <since_tizen> 5 </since_tizen>
-        public string GetImagePath(Bundle data)
+        public static string GetImagePath(Bundle data)
         {
             string imagePath;
 
@@ -471,7 +471,7 @@ namespace Tizen.Applications.WatchfaceComplication
         ///    {
         ///        if (type == ComplicationType.RangedValue)
         ///        {
-        ///            double currentValue = this.GetCurrentValueOfRange(data);
+        ///            double currentValue = Complication.GetCurrentValueOfRange(data);
         ///            layout.Text = currentValue;
         ///        }
         ///    }
@@ -480,7 +480,7 @@ namespace Tizen.Applications.WatchfaceComplication
         /// </code>
         /// </example>
         /// <since_tizen> 5 </since_tizen>
-        public double GetCurrentValueOfRange(Bundle data)
+        public static double GetCurrentValueOfRange(Bundle data)
         {
             double curVal, minVal, maxVal;
 
@@ -510,7 +510,7 @@ namespace Tizen.Applications.WatchfaceComplication
         ///    {
         ///        if (type == ComplicationType.RangedValue)
         ///        {
-        ///            double currentValue = this.GetCurrentValueOfRange(data);
+        ///            double currentValue = Complication.GetMinValueOfRange(data);
         ///            layout.Text = currentValue;
         ///        }
         ///    }
@@ -519,7 +519,7 @@ namespace Tizen.Applications.WatchfaceComplication
         /// </code>
         /// </example>
         /// <since_tizen> 5 </since_tizen>
-        public double GetMinValueOfRange(Bundle data)
+        public static double GetMinValueOfRange(Bundle data)
         {
             double curVal, minVal, maxVal;
 
@@ -549,7 +549,7 @@ namespace Tizen.Applications.WatchfaceComplication
         ///    {
         ///        if (type == ComplicationType.RangedValue)
         ///        {
-        ///            double maxValue = this.GetMaxValueOfRange(data);
+        ///            double maxValue = Complication.GetMaxValueOfRange(data);
         ///            layout.Text = maxValue;
         ///        }
         ///    }
@@ -558,7 +558,7 @@ namespace Tizen.Applications.WatchfaceComplication
         /// </code>
         /// </example>
         /// <since_tizen> 5 </since_tizen>
-        public double GetMaxValueOfRange(Bundle data)
+        public static double GetMaxValueOfRange(Bundle data)
         {
             double curVal, minVal, maxVal;
 
@@ -588,7 +588,7 @@ namespace Tizen.Applications.WatchfaceComplication
         ///    {
         ///        if (type == ComplicationType.Icon)
         ///        {
-        ///            string iconPath = this.GetIconPath(data);
+        ///            string iconPath = Complication.GetIconPath(data);
         ///            layout.Text = iconPath;
         ///        }
         ///    }
@@ -597,7 +597,7 @@ namespace Tizen.Applications.WatchfaceComplication
         /// </code>
         /// </example>
         /// <since_tizen> 5 </since_tizen>
-        public string GetIconPath(Bundle data)
+        public static string GetIconPath(Bundle data)
         {
             string iconPath;
 
@@ -627,7 +627,7 @@ namespace Tizen.Applications.WatchfaceComplication
         ///    {
         ///        if (type == ComplicationType.Icon)
         ///        {
-        ///            string extraData = this.GetExtraData(data);
+        ///            string extraData = Complication.GetExtraData(data);
         ///            layout.Text = extraData;
         ///        }
         ///    }
@@ -653,9 +653,7 @@ namespace Tizen.Applications.WatchfaceComplication
         /// <param name="type">The updated type.</param>
         /// <param name="data">The updated data.</param>
         /// <since_tizen> 5 </since_tizen>
-        protected virtual void OnComplicationUpdated(string providerId, ComplicationType type, Bundle data)
-        {
-        }
+        protected abstract void OnComplicationUpdated(string providerId, ComplicationType type, Bundle data);
 
         /// <summary>
         /// Overrides this method to handle the behavior when the complication error occurs.
