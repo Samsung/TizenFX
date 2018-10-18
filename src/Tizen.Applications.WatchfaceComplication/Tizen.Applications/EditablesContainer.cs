@@ -245,6 +245,9 @@ namespace Tizen.Applications.WatchfaceComplication
         /// <summary>
         /// Loads the editable's current data.
         /// </summary>
+        /// <exception cref="ArgumentException">Thrown when some parameter are invalid.</exception>
+        /// <exception cref="InvalidOperationException">Thrown when the method failed due to invalid operation.</exception>
+        /// <exception cref="NotSupportedException">Thrown when the watchface complication is not supported.</exception>
         /// <remarks>
         /// This API loads editable's last current data which is updated by editor application.
         /// </remarks>

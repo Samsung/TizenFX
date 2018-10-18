@@ -263,6 +263,7 @@ namespace Tizen.Applications.WatchfaceComplication
         /// </summary>
         /// <exception cref="ArgumentException">Thrown when editableId is invalid.</exception>
         /// <exception cref="InvalidOperationException">Thrown when the method failed due to invalid operation.</exception>
+        /// <exception cref="NotSupportedException">Thrown when the watchface complication is not supported.</exception>
         /// <example>
         /// <code>
         /// ComplicationTypes type = Complication.GetType(dupData);
@@ -285,6 +286,7 @@ namespace Tizen.Applications.WatchfaceComplication
         /// <param name="data">The data from OnComplicationUpdate callback.</param>
         /// <exception cref="ArgumentException">Thrown when data is invalid.</exception>
         /// <exception cref="InvalidOperationException">Thrown when the method failed due to invalid operation.</exception>
+        /// <exception cref="NotSupportedException">Thrown when the watchface complication is not supported.</exception>
         /// <example>
         /// <code>
         ///
@@ -324,6 +326,7 @@ namespace Tizen.Applications.WatchfaceComplication
         /// <param name="data">The data from OnComplicationUpdate callback.</param>
         /// <exception cref="ArgumentException">Thrown when data is invalid.</exception>
         /// <exception cref="InvalidOperationException">Thrown when the method failed due to invalid operation.</exception>
+        /// <exception cref="NotSupportedException">Thrown when the watchface complication is not supported.</exception>
         /// <example>
         /// <code>
         ///
@@ -363,6 +366,7 @@ namespace Tizen.Applications.WatchfaceComplication
         /// <param name="data">The data from OnComplicationUpdate callback.</param>
         /// <exception cref="ArgumentException">Thrown when data is invalid.</exception>
         /// <exception cref="InvalidOperationException">Thrown when the method failed due to invalid operation.</exception>
+        /// <exception cref="NotSupportedException">Thrown when the watchface complication is not supported.</exception>
         /// <example>
         /// <code>
         ///
@@ -402,6 +406,7 @@ namespace Tizen.Applications.WatchfaceComplication
         /// <param name="data">The data from OnComplicationUpdate callback.</param>
         /// <exception cref="ArgumentException">Thrown when data is invalid.</exception>
         /// <exception cref="InvalidOperationException">Thrown when the method failed due to invalid operation.</exception>
+        /// <exception cref="NotSupportedException">Thrown when the watchface complication is not supported.</exception>
         /// <example>
         /// <code>
         ///
@@ -441,6 +446,7 @@ namespace Tizen.Applications.WatchfaceComplication
         /// <param name="data">The data from OnComplicationUpdate callback.</param>
         /// <exception cref="ArgumentException">Thrown when data is invalid.</exception>
         /// <exception cref="InvalidOperationException">Thrown when the method failed due to invalid operation.</exception>
+        /// <exception cref="NotSupportedException">Thrown when the watchface complication is not supported.</exception>
         /// <example>
         /// <code>
         ///
@@ -480,6 +486,7 @@ namespace Tizen.Applications.WatchfaceComplication
         /// <param name="data">The data from OnComplicationUpdate callback.</param>
         /// <exception cref="ArgumentException">Thrown when data is invalid.</exception>
         /// <exception cref="InvalidOperationException">Thrown when the method failed due to invalid operation.</exception>
+        /// <exception cref="NotSupportedException">Thrown when the watchface complication is not supported.</exception>
         /// <example>
         /// <code>
         ///
@@ -519,6 +526,7 @@ namespace Tizen.Applications.WatchfaceComplication
         /// <param name="data">The data from OnComplicationUpdate callback.</param>
         /// <exception cref="ArgumentException">Thrown when data is invalid.</exception>
         /// <exception cref="InvalidOperationException">Thrown when the method failed due to invalid operation.</exception>
+        /// <exception cref="NotSupportedException">Thrown when the watchface complication is not supported.</exception>
         /// <example>
         /// <code>
         ///
@@ -558,6 +566,7 @@ namespace Tizen.Applications.WatchfaceComplication
         /// <param name="data">The data from OnComplicationUpdate callback.</param>
         /// <exception cref="ArgumentException">Thrown when data is invalid.</exception>
         /// <exception cref="InvalidOperationException">Thrown when the method failed due to invalid operation.</exception>
+        /// <exception cref="NotSupportedException">Thrown when the watchface complication is not supported.</exception>
         /// <example>
         /// <code>
         ///
@@ -597,6 +606,7 @@ namespace Tizen.Applications.WatchfaceComplication
         /// <param name="data">The data from OnComplicationUpdate callback.</param>
         /// <exception cref="ArgumentException">Thrown when data is invalid.</exception>
         /// <exception cref="InvalidOperationException">Thrown when the method failed due to invalid operation.</exception>
+        /// <exception cref="NotSupportedException">Thrown when the watchface complication is not supported.</exception>
         /// <example>
         /// <code>
         ///
@@ -636,7 +646,7 @@ namespace Tizen.Applications.WatchfaceComplication
         /// <param name="data">The data from OnComplicationUpdate callback.</param>
         /// <exception cref="ArgumentException">Thrown when data is invalid.</exception>
         /// <exception cref="InvalidOperationException">Thrown when the method failed due to invalid operation.</exception>
-        /// <exception cref="InvalidOperationException">Thrown when the method failed due to invalid operation.</exception>
+        /// <exception cref="NotSupportedException">Thrown when the watchface complication is not supported.</exception>
         /// <example>
         /// <code>
         ///
