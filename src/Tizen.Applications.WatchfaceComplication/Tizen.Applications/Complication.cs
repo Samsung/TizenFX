@@ -35,6 +35,7 @@ namespace Tizen.Applications.WatchfaceComplication
         /// <exception cref="ArgumentException">Thrown when editableId is invalid.</exception>
         /// <exception cref="InvalidOperationException">Thrown when the method failed due to invalid operation.</exception>
         /// <exception cref="NotSupportedException">Thrown when the watchface complication is not supported.</exception>
+        /// <exception cref="UnauthorizedAccessException">Thrown when the application does not have privilege to access this method.</exception>
         /// <example>
         /// <code>
         ///
@@ -242,6 +243,7 @@ namespace Tizen.Applications.WatchfaceComplication
         /// </summary>
         /// <exception cref="ArgumentException">Thrown when editableId is invalid.</exception>
         /// <exception cref="InvalidOperationException">Thrown when the method failed due to invalid operation.</exception>
+        /// <exception cref="UnauthorizedAccessException">Thrown when the application does not have privilege to access this method.</exception>
         /// <example>
         /// <code>
         /// MyComplication comp = new MyComplication();
@@ -284,6 +286,27 @@ namespace Tizen.Applications.WatchfaceComplication
             }
             ComplicationError ret = Interop.WatchfaceComplication.ApplyAllowedList(_handle, listRaw);
             Interop.WatchfaceComplication.DestroyAllowedList(listRaw);
+            return ret;
+        }
+
+        /// <summary>
+        /// Transfers event to the provider.
+        /// </summary>
+        /// <exception cref="UnauthorizedAccessException">Thrown when the application does not have privilege to access this method.</exception>
+        /// <exception cref="ArgumentException">Thrown when editableId is invalid.</exception>
+        /// <exception cref="InvalidOperationException">Thrown when the method failed due to invalid operation.</exception>
+        /// <example>
+        /// <code>
+        /// void OnButtonClicked()
+        /// {
+        ///     comp.TransferEvent(EventTypes.EventTap);
+        /// }
+        /// </code>
+        /// </example>
+        /// <since_tizen> 5 </since_tizen>
+        public ComplicationError TransferEvent(EventTypes eventType)
+        {
+            ComplicationError ret = Interop.WatchfaceComplication.TransferEvent(_handle, eventType);
             return ret;
         }
 
