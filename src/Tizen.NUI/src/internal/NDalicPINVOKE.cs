@@ -68593,41 +68593,6 @@ namespace Tizen.NUI
             }
         }
 
-        [global::System.Runtime.InteropServices.DllImport(Graphics.GlesCSharpBinder, EntryPoint = "CSharp_Dali_SetMaxTextureSize")]
-        public static extern void SetMaxTextureSize_gl(uint jarg1);
-
-        [global::System.Runtime.InteropServices.DllImport(Graphics.VulkanCSharpBinder, EntryPoint = "CSharp_Dali_SetMaxTextureSize")]
-        public static extern void SetMaxTextureSize_vulkan(uint jarg1);
-
-        public static void SetMaxTextureSize(uint jarg1)
-        {
-            if (Tizen.NUI.Graphics.Backend == Tizen.NUI.Graphics.BackendType.Vulkan)
-            {
-                SetMaxTextureSize_vulkan(jarg1);
-            }
-            else
-            {
-                SetMaxTextureSize_gl(jarg1);
-            }
-        }
-
-        [global::System.Runtime.InteropServices.DllImport(Graphics.GlesCSharpBinder, EntryPoint = "CSharp_Dali_GetMaxTextureSize")]
-        public static extern uint GetMaxTextureSize_gl();
-
-        [global::System.Runtime.InteropServices.DllImport(Graphics.VulkanCSharpBinder, EntryPoint = "CSharp_Dali_GetMaxTextureSize")]
-        public static extern uint GetMaxTextureSize_vulkan();
-
-        public static uint GetMaxTextureSize()
-        {
-            if (Tizen.NUI.Graphics.Backend == Tizen.NUI.Graphics.BackendType.Vulkan)
-            {
-                return GetMaxTextureSize_vulkan();
-            }
-            else
-            {
-                return GetMaxTextureSize_gl();
-            }
-        }
 
     }
 }
