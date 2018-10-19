@@ -256,7 +256,7 @@ namespace Tizen.Applications.WatchfaceComplication
             ComplicationError ret = Interop.WatchfaceComplication.SendUpdateRequest(_handle);
             if (ret != ComplicationError.None)
             {
-                ErrorFactory.ThrowException(ret, "Fail to get current idx");
+                ErrorFactory.ThrowException(ret, "Fail to get send request");
             }
             return ret;
         }
@@ -328,7 +328,7 @@ namespace Tizen.Applications.WatchfaceComplication
 
             ComplicationError err = Interop.WatchfaceComplication.GetDataType(data.SafeBundleHandle, out type);
             if (err != ComplicationError.None)
-                ErrorFactory.ThrowException(err, "fail to get current index");
+                ErrorFactory.ThrowException(err, "fail to get data type");
             return type;
         }
 
@@ -368,7 +368,7 @@ namespace Tizen.Applications.WatchfaceComplication
 
             ComplicationError err = Interop.WatchfaceComplication.GetShortText(data.SafeBundleHandle, out shortText);
             if (err != ComplicationError.None)
-                ErrorFactory.ThrowException(err, "fail to get current index");
+                ErrorFactory.ThrowException(err, "fail to get short text");
             return shortText;
         }
 
@@ -408,7 +408,7 @@ namespace Tizen.Applications.WatchfaceComplication
 
             ComplicationError err = Interop.WatchfaceComplication.GetLongText(data.SafeBundleHandle, out longText);
             if (err != ComplicationError.None)
-                ErrorFactory.ThrowException(err, "fail to get current index");
+                ErrorFactory.ThrowException(err, "fail to get long text");
             return longText;
         }
 
@@ -448,7 +448,7 @@ namespace Tizen.Applications.WatchfaceComplication
 
             ComplicationError err = Interop.WatchfaceComplication.GetTitle(data.SafeBundleHandle, out title);
             if (err != ComplicationError.None)
-                ErrorFactory.ThrowException(err, "fail to get current index");
+                ErrorFactory.ThrowException(err, "fail to get title");
             return title;
         }
 
@@ -488,7 +488,7 @@ namespace Tizen.Applications.WatchfaceComplication
 
             ComplicationError err = Interop.WatchfaceComplication.GetTimestamp(data.SafeBundleHandle, out timestamp);
             if (err != ComplicationError.None)
-                ErrorFactory.ThrowException(err, "fail to get current index");
+                ErrorFactory.ThrowException(err, "fail to get timestamp");
             return timestamp;
         }
 
@@ -528,7 +528,7 @@ namespace Tizen.Applications.WatchfaceComplication
 
             ComplicationError err = Interop.WatchfaceComplication.GetImagePath(data.SafeBundleHandle, out imagePath);
             if (err != ComplicationError.None)
-                ErrorFactory.ThrowException(err, "fail to get current index");
+                ErrorFactory.ThrowException(err, "fail to get image path");
             return imagePath;
         }
 
@@ -568,7 +568,7 @@ namespace Tizen.Applications.WatchfaceComplication
 
             ComplicationError err = Interop.WatchfaceComplication.GetRangedValue(data.SafeBundleHandle, out curVal, out minVal, out maxVal);
             if (err != ComplicationError.None)
-                ErrorFactory.ThrowException(err, "fail to get current index");
+                ErrorFactory.ThrowException(err, "fail to get value");
             return curVal;
         }
 
@@ -608,7 +608,7 @@ namespace Tizen.Applications.WatchfaceComplication
 
             ComplicationError err = Interop.WatchfaceComplication.GetRangedValue(data.SafeBundleHandle, out curVal, out minVal, out maxVal);
             if (err != ComplicationError.None)
-                ErrorFactory.ThrowException(err, "fail to get current index");
+                ErrorFactory.ThrowException(err, "fail to get value");
             return minVal;
         }
 
@@ -648,7 +648,7 @@ namespace Tizen.Applications.WatchfaceComplication
 
             ComplicationError err = Interop.WatchfaceComplication.GetRangedValue(data.SafeBundleHandle, out curVal, out minVal, out maxVal);
             if (err != ComplicationError.None)
-                ErrorFactory.ThrowException(err, "fail to get current index");
+                ErrorFactory.ThrowException(err, "fail to get value");
             return maxVal;
         }
 
@@ -688,7 +688,7 @@ namespace Tizen.Applications.WatchfaceComplication
 
             ComplicationError err = Interop.WatchfaceComplication.GetIconPath(data.SafeBundleHandle, out iconPath);
             if (err != ComplicationError.None)
-                ErrorFactory.ThrowException(err, "fail to get current index");
+                ErrorFactory.ThrowException(err, "fail to get icon path");
             return iconPath;
         }
 
@@ -726,10 +726,50 @@ namespace Tizen.Applications.WatchfaceComplication
         {
             string extraData;
 
-            ComplicationError err = Interop.WatchfaceComplication.GetIconPath(data.SafeBundleHandle, out extraData);
+            ComplicationError err = Interop.WatchfaceComplication.GetExtraData(data.SafeBundleHandle, out extraData);
             if (err != ComplicationError.None)
-                ErrorFactory.ThrowException(err, "fail to get current index");
+                ErrorFactory.ThrowException(err, "fail to get extra data");
             return extraData;
+        }
+
+        /// <summary>
+        /// Gets the screen reader text.
+        /// </summary>
+        /// <param name="data">The data from OnComplicationUpdate callback.</param>
+        /// <exception cref="ArgumentException">Thrown when data is invalid.</exception>
+        /// <exception cref="InvalidOperationException">Thrown when the method failed due to invalid operation.</exception>
+        /// <exception cref="NotSupportedException">Thrown when the watchface complication is not supported.</exception>
+        /// <example>
+        /// <code>
+        ///
+        /// public class MyComplication : Complication
+        /// {
+        ///    public MyComplication(int complicationId, int supportTypes, int supportEvents, string defaultProviderId,
+        ///        ComplicationTypes defaultType)
+        ///        : base(complicationId, supportTypes, supportEvents, defaultProviderId, defaultType)
+        ///    {
+        ///    }
+        ///    protected override void OnComplicationUpdated(string providerId, ComplicationTypes type, Bundle data)
+        ///    {
+        ///        if (type == ComplicationTypes.LongText)
+        ///        {
+        ///            string screenReaderText = Complication.GetScreenReaderText(data);
+        ///            layout.Text = screenReaderText;
+        ///        }
+        ///    }
+        /// }
+        ///
+        /// </code>
+        /// </example>
+        /// <since_tizen> 5 </since_tizen>
+        public static string GetScreenReaderText(Bundle data)
+        {
+            string screenReaderText;
+
+            ComplicationError err = Interop.WatchfaceComplication.GetScreenReaderText(data.SafeBundleHandle, out screenReaderText);
+            if (err != ComplicationError.None)
+                ErrorFactory.ThrowException(err, "fail to get text");
+            return screenReaderText;
         }
 
         /// <summary>

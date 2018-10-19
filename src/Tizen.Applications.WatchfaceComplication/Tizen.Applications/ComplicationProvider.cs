@@ -21,6 +21,7 @@ namespace Tizen.Applications.WatchfaceComplication
         private double _maxValue;
         private string _iconPath;
         private string _extraData;
+        private string _screenReaderText;
         private bool _disposed = false;
         private const string LogTag = "WatchfaceComplication";
 
@@ -114,6 +115,7 @@ namespace Tizen.Applications.WatchfaceComplication
                     Interop.WatchfaceComplication.ProviderSetExtraData(b, _extraData);
                     break;
             }
+            Interop.WatchfaceComplication.ProviderSetScreenReaderText(b, _screenReaderText);
             return err;
         }
 
@@ -298,8 +300,25 @@ namespace Tizen.Applications.WatchfaceComplication
         }
 
         /// <summary>
+        /// The information about the screen reader text of complication data.
+        /// </summary>
+        /// <since_tizen> 5 </since_tizen>
+        public string ScreenReaderText
+        {
+            get
+            {
+                return _screenReaderText;
+            }
+            set
+            {
+                _screenReaderText = value;
+            }
+        }
+
+        /// <summary>
         /// Emits the update event for complications.
         /// </summary>
+        /// <exception cref="UnauthorizedAccessException">Thrown when the application does not have privilege to access this method.</exception>
         /// <exception cref="ArgumentException">Thrown when updatedProviderId is invalid.</exception>
         /// <exception cref="NotSupportedException">Thrown when the watchface complication is not supported.</exception>
         /// <since_tizen> 5 </since_tizen>
