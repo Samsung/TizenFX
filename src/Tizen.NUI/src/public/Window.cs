@@ -390,6 +390,7 @@ namespace Tizen.NUI
         /// FocusChanged event.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public event EventHandler<FocusChangedEventArgs> FocusChanged
         {
             add
@@ -1069,6 +1070,7 @@ namespace Tizen.NUI
         /// An interrupted event will also be emitted (if it occurs).<br />
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public event EventHandler<TouchEventArgs> TouchEvent
         {
             add
@@ -1144,6 +1146,7 @@ namespace Tizen.NUI
         /// This event is emitted when the wheel event is received.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public event EventHandler<WheelEventArgs> WheelEvent
         {
             add
@@ -1216,6 +1219,7 @@ namespace Tizen.NUI
         /// This event is emitted when the key event is received.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public event EventHandler<KeyEventArgs> KeyEvent
         {
             add

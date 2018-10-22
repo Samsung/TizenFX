@@ -538,6 +538,7 @@ namespace Tizen.NUI.UIComponents
         /// An event emitted when the sliding is finished.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public event EventHandlerWithReturnType<object, SlidingFinishedEventArgs, bool> SlidingFinished
         {
             add
@@ -580,6 +581,7 @@ namespace Tizen.NUI.UIComponents
         /// An event emitted when the slider handle reaches a mark.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public event EventHandlerWithReturnType<object, MarkReachedEventArgs, bool> MarkReached
         {
             add

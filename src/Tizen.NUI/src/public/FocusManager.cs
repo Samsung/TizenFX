@@ -305,6 +305,7 @@ namespace Tizen.NUI
         /// If not, the application has to set the new focus.<br />
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public event EventHandler<FocusGroupChangedEventArgs> FocusGroupChanged
         {
             add

@@ -1233,6 +1233,7 @@ namespace Tizen.NUI
         /// ImfManager keyboard type changed.
         /// </summary>
         /// <since_tizen> 4 </since_tizen>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public event EventHandler<KeyboardTypeChangedEventArgs> KeyboardTypeChanged
         {
             add

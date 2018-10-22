@@ -426,6 +426,7 @@ namespace Tizen.NUI
         ///  position, scale, rotation for the snap or flick).
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public event DaliEventHandler<object, SnapStartedEventArgs> SnapStarted
         {
             add
@@ -1358,6 +1359,7 @@ namespace Tizen.NUI
         /// </summary>
         /// <param name="effect">The effect to apply to scroll view.</param>
         /// <since_tizen> 3 </since_tizen>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public void ApplyEffect(ScrollViewEffect effect)
         {
             NDalicPINVOKE.ScrollView_ApplyEffect(swigCPtr, ScrollViewEffect.getCPtr(effect));
@@ -1369,6 +1371,7 @@ namespace Tizen.NUI
         /// </summary>
         /// <param name="effect">The effect to remove.</param>
         /// <since_tizen> 3 </since_tizen>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public void RemoveEffect(ScrollViewEffect effect)
         {
             NDalicPINVOKE.ScrollView_RemoveEffect(swigCPtr, ScrollViewEffect.getCPtr(effect));

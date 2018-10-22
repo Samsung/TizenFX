@@ -14,10 +14,10 @@
  * limitations under the License.
  *
  */
+using System.ComponentModel;
 
 namespace Tizen.NUI
 {
-
     /// <summary>
     /// TypeInfo class for instantiation of registered types and introspection of their actions and signals.
     /// </summary>
@@ -77,6 +77,7 @@ namespace Tizen.NUI
         /// Creates TypeInfo object.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        [EditorBrowsable(EditorBrowsableState.Never)]        
         public TypeInfo() : this(NDalicPINVOKE.new_TypeInfo__SWIG_0(), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
@@ -87,6 +88,7 @@ namespace Tizen.NUI
         /// </summary>
         /// <param name="handle">This copy constructor is required for (smart) pointer semantics.</param>
         /// <since_tizen> 3 </since_tizen>
+        [EditorBrowsable(EditorBrowsableState.Never)]        
         public TypeInfo(TypeInfo handle) : this(NDalicPINVOKE.new_TypeInfo__SWIG_1(TypeInfo.getCPtr(handle)), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
@@ -97,6 +99,7 @@ namespace Tizen.NUI
         /// </summary>
         /// <returns>The string name.</returns>
         /// <since_tizen> 3 </since_tizen>
+        [EditorBrowsable(EditorBrowsableState.Never)]        
         public string GetName()
         {
             string ret = NDalicPINVOKE.TypeInfo_GetName(swigCPtr);
@@ -109,6 +112,7 @@ namespace Tizen.NUI
         /// </summary>
         /// <returns>The string name.</returns>
         /// <since_tizen> 3 </since_tizen>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public string GetBaseName()
         {
             string ret = NDalicPINVOKE.TypeInfo_GetBaseName(swigCPtr);
@@ -121,6 +125,7 @@ namespace Tizen.NUI
         /// </summary>
         /// <returns>The BaseHandle for the newly created object.</returns>
         /// <since_tizen> 3 </since_tizen>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public BaseHandle CreateInstance()
         {
             BaseHandle ret = new BaseHandle(NDalicPINVOKE.TypeInfo_CreateInstance(swigCPtr), true);
@@ -134,6 +139,7 @@ namespace Tizen.NUI
         /// </summary>
         /// <returns>The count.</returns>
         /// <since_tizen> 3 </since_tizen>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public uint GetPropertyCount()
         {
             uint ret = NDalicPINVOKE.TypeInfo_GetPropertyCount(swigCPtr);
@@ -147,6 +153,7 @@ namespace Tizen.NUI
         /// <param name="index">The property index.</param>
         /// <returns>The name of the property at the given index.</returns>
         /// <since_tizen> 3 </since_tizen>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public string GetPropertyName(int index)
         {
             string ret = NDalicPINVOKE.TypeInfo_GetPropertyName(swigCPtr, index);

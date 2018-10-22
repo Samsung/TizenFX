@@ -1693,6 +1693,7 @@ namespace Tizen.NUI.BaseComponents
         /// The KeyPressed signal is emitted when the key event is received.<br />
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public event EventHandlerWithReturnType<object, KeyEventArgs, bool> KeyEvent
         {
             add
@@ -1824,6 +1825,7 @@ namespace Tizen.NUI.BaseComponents
         /// The touched signal is emitted when the touch input is received.<br />
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public event EventHandlerWithReturnType<object, TouchEventArgs, bool> TouchEvent
         {
             add
@@ -1905,6 +1907,7 @@ namespace Tizen.NUI.BaseComponents
         /// The hovered signal is emitted when the hover input is received.<br />
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public event EventHandlerWithReturnType<object, HoverEventArgs, bool> HoverEvent
         {
             add
@@ -1986,6 +1989,7 @@ namespace Tizen.NUI.BaseComponents
         /// The WheelMoved signal is emitted when the wheel event is received.<br />
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public event EventHandlerWithReturnType<object, WheelEventArgs, bool> WheelEvent
         {
             add

@@ -14,10 +14,10 @@
  * limitations under the License.
  *
  */
+using System.ComponentModel;
 
 namespace Tizen.NUI
 {
-
     /// <summary>
     /// A PinchGesture is emitted when the user moves two fingers towards or away from each other.<br />
     /// A pinch gesture will continue to be sent to the actor under the center point of the pinch until the pinch ends.<br />
@@ -87,6 +87,7 @@ namespace Tizen.NUI
         /// fingers towards each other, this value will decrease.<br />
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public float Scale
         {
             get
@@ -100,6 +101,7 @@ namespace Tizen.NUI
         /// This is the pixel movement per second.<br />
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public float Speed
         {
             get
@@ -112,6 +114,7 @@ namespace Tizen.NUI
         /// The center point of the two points that caused the pinch gesture in screen coordinates.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public Vector2 ScreenCenterPoint
         {
             get
@@ -124,6 +127,7 @@ namespace Tizen.NUI
         /// The center point of the two points that caused the pinch gesture in local actor coordinates.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public Vector2 LocalCenterPoint
         {
             get

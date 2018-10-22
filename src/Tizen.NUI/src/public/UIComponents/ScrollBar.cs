@@ -321,6 +321,7 @@ namespace Tizen.NUI.UIComponents
         /// The event emitted when panning is finished on the scroll indicator.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public event EventHandler<PanFinishedEventArgs> PanFinished
         {
             add
@@ -359,6 +360,7 @@ namespace Tizen.NUI.UIComponents
         /// This is the event emitted when the current scroll position of the scrollable content.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public event EventHandler<ScrollIntervalEventArgs> ScrollInterval
         {
             add

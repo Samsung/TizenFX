@@ -673,6 +673,7 @@ namespace Tizen.NUI.UIComponents
         /// An event is sent when the user has touched outside the dialog.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public event EventHandler<TouchedOutsideEventArgs> TouchedOutside
         {
             add

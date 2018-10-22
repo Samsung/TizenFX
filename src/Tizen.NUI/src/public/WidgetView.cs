@@ -28,6 +28,7 @@
 namespace Tizen.NUI
 {
     using System;
+    using System.ComponentModel;
     using System.Runtime.InteropServices;
     using Tizen.NUI.BaseComponents;
 
@@ -302,6 +303,7 @@ namespace Tizen.NUI
         /// Most resources are only loaded when the control is placed on the stage.<br />
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public event EventHandler<WidgetViewEventArgs> WidgetCreationAborted
         {
             add
@@ -352,6 +354,7 @@ namespace Tizen.NUI
         /// Most resources are only loaded when the control is placed on the stage.<br />
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        [EditorBrowsable(EditorBrowsableState.Never)]        
         public event EventHandler<WidgetViewEventArgs> WidgetContentUpdated
         {
             add
@@ -402,6 +405,7 @@ namespace Tizen.NUI
         /// Most resources are only loaded when the control is placed on the stage.<br />
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public event EventHandler<WidgetViewEventArgs> WidgetUpdatePeriodChanged
         {
             add
@@ -452,6 +456,7 @@ namespace Tizen.NUI
         /// Most resources are only loaded when the control is placed on the stage.<br />
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public event EventHandler<WidgetViewEventArgs> WidgetFaulted
         {
             add
@@ -740,6 +745,7 @@ namespace Tizen.NUI
         /// Gets or sets retry text.
         /// </summary>
         /// <since_tizen> 4 </since_tizen>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public PropertyMap RetryText
         {
             get
@@ -758,6 +764,7 @@ namespace Tizen.NUI
         /// Gets or sets effect.
         /// </summary>
         /// <since_tizen> 4 </since_tizen>
+        [EditorBrowsable(EditorBrowsableState.Never)]        
         public PropertyMap Effect
         {
             get

@@ -14,7 +14,7 @@
  * limitations under the License.
  *
  */
-
+using System.ComponentModel;
 
 namespace Tizen.NUI
 {
@@ -127,6 +127,7 @@ namespace Tizen.NUI
         /// <param name="view">The view to relayout.</param>
         /// <param name="size">The size to relayout.</param>
         /// <since_tizen> 3 </since_tizen>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public virtual void Add(View view, Size2D size)
         {
             NDalicPINVOKE.RelayoutContainer_Add(swigCPtr, View.getCPtr(view), Size2D.getCPtr(size));

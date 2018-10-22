@@ -394,6 +394,7 @@ namespace Tizen.NUI
         /// <param name="info">The type information.</param>
         /// <returns>True If get the type info.</returns>
         /// <since_tizen> 3 </since_tizen>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public bool GetTypeInfo(Tizen.NUI.TypeInfo info)
         {
             bool ret = NDalicPINVOKE.BaseHandle_GetTypeInfo(swigCPtr, Tizen.NUI.TypeInfo.getCPtr(info));
