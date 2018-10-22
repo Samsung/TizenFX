@@ -224,6 +224,48 @@ namespace Tizen.Applications.WatchfaceComplication
             return data;
         }
 
+        /// <summary>
+        /// Gets the current provider ID.
+        /// </summary>
+        /// <exception cref="ArgumentException">Thrown when editableId is invalid.</exception>
+        /// <exception cref="InvalidOperationException">Thrown when the method failed due to invalid operation.</exception>
+        /// <example>
+        /// <code>
+        /// MyComplication comp = new MyComplication();
+        /// string providerId = comp.GetCurrentProviderId();
+        /// </code>
+        /// </example>
+        /// <since_tizen> 5 </since_tizen>
+        public string GetCurrentProviderId()
+        {
+            string providerId;
+            ComplicationError err = Interop.WatchfaceComplication.GetCurrentProviderId(_handle, out providerId);
+            if (err != ComplicationError.None)
+                ErrorFactory.ThrowException(err, "Can not get current provider id");
+            return providerId;
+        }
+
+        /// <summary>
+        /// Gets the current complication type.
+        /// </summary>
+        /// <exception cref="ArgumentException">Thrown when editableId is invalid.</exception>
+        /// <exception cref="InvalidOperationException">Thrown when the method failed due to invalid operation.</exception>
+        /// <example>
+        /// <code>
+        /// MyComplication comp = new MyComplication();
+        /// ComplicationTypes type = comp.GetCurrentType();
+        /// </code>
+        /// </example>
+        /// <since_tizen> 5 </since_tizen>
+        public ComplicationTypes GetCurrentType()
+        {
+            ComplicationTypes type;
+            ComplicationError err = Interop.WatchfaceComplication.GetCurrentType(_handle, out type);
+            if (err != ComplicationError.None)
+                ErrorFactory.ThrowException(err, "Can not get current provider type");
+            return type;
+        }
+
         private void ComplicationUpdatedCallback(int complicationId,
             string providerId, ComplicationTypes type, IntPtr data, IntPtr userData)
         {
