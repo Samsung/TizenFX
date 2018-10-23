@@ -33,7 +33,7 @@ namespace Tizen.Applications.WatchfaceComplication
         /// The information about editable's current data index.
         /// </summary>
         /// <since_tizen> 5 </since_tizen>
-        int CurrentDataIndex { get; }
+        int GetCurrentDataIndex();
 
         /// <summary>
         /// The information about editable's current data.

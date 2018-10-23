@@ -178,24 +178,6 @@ namespace Tizen.Applications.WatchfaceComplication
         }
 
         /// <summary>
-        /// The information of editable's current data index.
-        /// </summary>
-        /// <since_tizen> 5 </since_tizen>
-        int IEditable.CurrentDataIndex
-        {
-            get
-            {
-                int curIdx;
-                ComplicationError ret = Interop.WatchfaceComplication.GetCurrentIdx(_handle, out curIdx);
-                if (ret != ComplicationError.None)
-                {
-                    ErrorFactory.ThrowException(ret, "Fail to get current idx");
-                }
-                return curIdx;
-            }
-        }
-
-        /// <summary>
         /// The information of complication ID.
         /// </summary>
         /// <since_tizen> 5 </since_tizen>
@@ -239,6 +221,29 @@ namespace Tizen.Applications.WatchfaceComplication
             {
                 Interop.WatchfaceComplication.SetEditableName(_handle, value);
             }
+        }
+
+        /// <summary>
+        /// Gets the editable's current data index.
+        /// </summary>
+        /// <returns>The index of current data</returns>
+        /// <exception cref="InvalidOperationException">Thrown when the method failed due to invalid operation.</exception>
+        /// <example>
+        /// <code>
+        /// MyComplication comp = new MyComplication();
+        /// Bundle curData = comp.GetCurrentDataIndex();
+        /// </code>
+        /// </example>
+        /// <since_tizen> 5 </since_tizen>
+        int IEditable.GetCurrentDataIndex()
+        {
+            int curIdx;
+            ComplicationError ret = Interop.WatchfaceComplication.GetCurrentIdx(_handle, out curIdx);
+            if (ret != ComplicationError.None)
+            {
+                ErrorFactory.ThrowException(ret, "Fail to get current idx");
+            }
+            return curIdx;
         }
 
         /// <summary>

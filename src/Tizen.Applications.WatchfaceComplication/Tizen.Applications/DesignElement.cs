@@ -148,15 +148,13 @@ namespace Tizen.Applications.WatchfaceComplication
         }
 
         /// <summary>
-        /// The information of Editable's current data index.
+        /// Gets the editable's current data index.
         /// </summary>
+        /// <returns>The editable's current data index.</returns>
         /// <since_tizen> 5 </since_tizen>
-        int IEditable.CurrentDataIndex
+        int IEditable.GetCurrentDataIndex()
         {
-            get
-            {
-                return _currentDataIndex;
-            }
+            return _currentDataIndex;
         }
 
         internal void SetCurrentDataIndex(int idx)
