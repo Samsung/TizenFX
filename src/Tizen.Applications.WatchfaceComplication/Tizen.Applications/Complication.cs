@@ -327,7 +327,6 @@ namespace Tizen.Applications.WatchfaceComplication
         /// <summary>
         /// Sends the complication update requests.
         /// </summary>
-        /// <exception cref="ArgumentException">Thrown when editableId is invalid.</exception>
         /// <exception cref="InvalidOperationException">Thrown when the method failed due to invalid operation.</exception>
         /// <exception cref="UnauthorizedAccessException">Thrown when the application does not have privilege to access this method.</exception>
         /// <example>
@@ -337,14 +336,11 @@ namespace Tizen.Applications.WatchfaceComplication
         /// </code>
         /// </example>
         /// <since_tizen> 5 </since_tizen>
-        public ComplicationError SendUpdateRequest()
+        public void SendUpdateRequest()
         {
             ComplicationError ret = Interop.WatchfaceComplication.SendUpdateRequest(_handle);
             if (ret != ComplicationError.None)
-            {
                 ErrorFactory.ThrowException(ret, "Fail to get send request");
-            }
-            return ret;
         }
 
         /// <summary>
@@ -362,10 +358,11 @@ namespace Tizen.Applications.WatchfaceComplication
         /// </code>
         /// </example>
         /// <since_tizen> 5 </since_tizen>
-        public ComplicationError TransferEvent(EventTypes eventType)
+        public void TransferEvent(EventTypes eventType)
         {
             ComplicationError ret = Interop.WatchfaceComplication.TransferEvent(_handle, eventType);
-            return ret;
+            if (ret != ComplicationError.None)
+                ErrorFactory.ThrowException(ret, "Fail to transfer event");
         }
 
         /// <summary>
