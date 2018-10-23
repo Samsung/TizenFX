@@ -21,6 +21,7 @@ namespace Tizen.Applications.WatchfaceComplication
         internal IntPtr _handle;
         private Interop.WatchfaceComplication.ComplicationUpdatedCallback _updatedCallback;
         private Interop.WatchfaceComplication.ComplicationErrorCallback _errorCallback;
+        private IEnumerable<(string providerId, ComplicationTypes supportTypes)> _allowedList;
         private int _editableId;
         private bool _disposed = false;
 
@@ -123,6 +124,40 @@ namespace Tizen.Applications.WatchfaceComplication
             set
             {
                 _highlight = value;
+            }
+        }
+
+
+        /// <summary>
+        /// The information of specific allowed provider id, support types list for complication
+        /// </summary>
+        /// <since_tizen> 5 </since_tizen>
+        public IEnumerable<(string providerId, ComplicationTypes supportTypes)> AllowedList
+        {
+            get
+            {
+                return _allowedList;
+            }
+            set
+            {
+                _allowedList = value;
+                if (_allowedList == null || _allowedList.Count() == 0)
+                {
+                    Interop.WatchfaceComplication.ClearAllowedList(_handle);
+                }
+                else
+                {
+                    IntPtr listRaw;
+                    Interop.WatchfaceComplication.CreateAllowedList(out listRaw);
+                    List<(string providerId, ComplicationTypes supportTypes)> list = _allowedList.ToList();
+                    foreach (var item in list)
+                    {
+                        Interop.WatchfaceComplication.AddAllowedList(listRaw, item.providerId, (int)item.supportTypes);
+                    }
+                    Interop.WatchfaceComplication.ApplyAllowedList(_handle, listRaw);
+                    Interop.WatchfaceComplication.DestroyAllowedList(listRaw);
+                }
+
             }
         }
 
@@ -300,34 +335,6 @@ namespace Tizen.Applications.WatchfaceComplication
             {
                 ErrorFactory.ThrowException(ret, "Fail to get send request");
             }
-            return ret;
-        }
-
-        /// <summary>
-        /// Applys specific allowed provider id, support types list for complication
-        /// </summary>
-        /// <exception cref="ArgumentException">Thrown when editableId is invalid.</exception>
-        /// <exception cref="InvalidOperationException">Thrown when the method failed due to invalid operation.</exception>
-        /// <example>
-        /// <code>
-        /// List&lt;(string providerId, ComplicationTypes t)&gt; allowedList = new List&lt;(string providerId, ComplicationTypes t)&gt;();
-        /// allowedList.Add(("org.tizen.ComplicationProviderCsharp/battery", ComplicationTypes.ShortText));
-        /// allowedList.Add(("org.tizen.ComplicationProviderCsharp/air", ComplicationTypes.ShortText));
-        /// ComplicationError err = _complication.ApplyAllowedList(allowedList);
-        /// </code>
-        /// </example>
-        /// <since_tizen> 5 </since_tizen>
-        public ComplicationError ApplyAllowedList(IEnumerable<(string providerId, ComplicationTypes supportTypes)> allowedList)
-        {
-            IntPtr listRaw;
-            Interop.WatchfaceComplication.CreateAllowedList(out listRaw);
-            List<(string providerId, ComplicationTypes supportTypes)> list = allowedList.ToList();
-            foreach (var item in list)
-            {
-                Interop.WatchfaceComplication.AddAllowedList(listRaw, item.providerId, (int)item.supportTypes);
-            }
-            ComplicationError ret = Interop.WatchfaceComplication.ApplyAllowedList(_handle, listRaw);
-            Interop.WatchfaceComplication.DestroyAllowedList(listRaw);
             return ret;
         }
 
