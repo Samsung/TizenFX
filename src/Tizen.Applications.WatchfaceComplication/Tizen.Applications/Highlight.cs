@@ -159,6 +159,10 @@ namespace Tizen.Applications.WatchfaceComplication
             {
                 return _type;
             }
+            set
+            {
+                _type = value;
+            }
         }
     }
 }
