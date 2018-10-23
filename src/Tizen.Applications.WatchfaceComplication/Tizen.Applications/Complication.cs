@@ -235,6 +235,10 @@ namespace Tizen.Applications.WatchfaceComplication
                 Interop.WatchfaceComplication.GetEditableName(_handle, out editableName);
                 return editableName;
             }
+            set
+            {
+                Interop.WatchfaceComplication.SetEditableName(_handle, value);
+            }
         }
 
         /// <summary>

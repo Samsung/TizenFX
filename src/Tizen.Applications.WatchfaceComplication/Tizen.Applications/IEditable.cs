@@ -21,7 +21,7 @@ namespace Tizen.Applications.WatchfaceComplication
         /// The information about editable's name.
         /// </summary>
         /// <since_tizen> 5 </since_tizen>
-        string Name { get; }
+        string Name { get; set; }
 
         /// <summary>
         /// The information about editable's geomatry.

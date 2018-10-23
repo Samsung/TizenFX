@@ -109,6 +109,10 @@ namespace Tizen.Applications.WatchfaceComplication
             {
                 return _editableName;
             }
+            set
+            {
+                _editableName = value;
+            }
         }
 
         /// <summary>
