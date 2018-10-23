@@ -32,6 +32,16 @@ namespace Tizen.NUI
         internal WebView(global::System.IntPtr cPtr, bool cMemoryOwn) : base(NDalicPINVOKE.WebView_SWIGUpcast(cPtr), cMemoryOwn)
         {
             swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
+
+            InitializeSignals();
+        }
+
+        private global::System.Runtime.InteropServices.HandleRef pageLoadStartedSignalProxy;
+        private global::System.Runtime.InteropServices.HandleRef pageLoadFinishedSignalProxy;
+        private void InitializeSignals()
+        {
+            pageLoadStartedSignalProxy = new global::System.Runtime.InteropServices.HandleRef(this, NDalicPINVOKE.new_WebViewSignalProxy_PageLoadStarted(swigCPtr));
+            pageLoadFinishedSignalProxy = new global::System.Runtime.InteropServices.HandleRef(this, NDalicPINVOKE.new_WebViewSignalProxy_PageLoadFinished(swigCPtr));
         }
 
         internal static global::System.Runtime.InteropServices.HandleRef getCPtr(WebView obj)
@@ -63,7 +73,7 @@ namespace Tizen.NUI
             //You should not access any managed member here except static instance.
             //because the execution order of Finalizes is non-deterministic.
 
-            DisConnectFromSignals();
+            DisposeSignals();
 
             if (swigCPtr.Handle != global::System.IntPtr.Zero)
             {
@@ -78,17 +88,27 @@ namespace Tizen.NUI
             base.Dispose(type);
         }
 
-        private void DisConnectFromSignals()
+        private void DisposeSignals()
         {
-            // Save current CPtr.
-            global::System.Runtime.InteropServices.HandleRef currentCPtr = swigCPtr;
+            if (pageLoadStartedSignalProxy.Handle != global::System.IntPtr.Zero)
+            {
+                if (pageLoadStartedCallback != null)
+                {
+                    WebViewProxyDisconnect(pageLoadStartedSignalProxy, pageLoadStartedCallback);
+                }
+                NDalicPINVOKE.delete_WebViewSignalProxy(pageLoadStartedSignalProxy);
+                pageLoadStartedSignalProxy = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
+            }
 
-            // Use BaseHandle CPtr as current might have been deleted already in derived classes.
-            swigCPtr = GetBaseHandleCPtrHandleRef;
-            
-            // BaseHandle CPtr is used in Registry and there is danger of deletion if we keep using it here.
-            // Restore current CPtr.
-            swigCPtr = currentCPtr;
+            if (pageLoadFinishedSignalProxy.Handle != global::System.IntPtr.Zero)
+            {
+                if (pageLoadFinishedCallback != null)
+                {
+                    WebViewProxyDisconnect(pageLoadFinishedSignalProxy, pageLoadFinishedCallback);
+                }
+                NDalicPINVOKE.delete_WebViewSignalProxy(pageLoadFinishedSignalProxy);
+                pageLoadFinishedSignalProxy = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
+            }
         }
 
         /// <summary>
@@ -134,6 +154,149 @@ namespace Tizen.NUI
             WebView ret = new WebView(NDalicPINVOKE.WebView_DownCast(BaseHandle.getCPtr(handle)), true);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
+        }
+
+        /// <summary>
+        /// Event arguments that passed via the webview signal.
+        /// </summary>
+        public class WebViewEventArgs : EventArgs
+        {
+            private WebView _webView;
+            /// <summary>
+            /// The view for displaying webpages.
+            /// </summary>
+            public WebView WebView
+            {
+                get
+                {
+                    return _webView;
+                }
+                set
+                {
+                    _webView = value;
+                }
+            }
+
+            private string _pageUrl;
+            /// <summary>
+            /// The url string of current webpage.
+            /// </summary>
+            public string PageUrl
+            {
+                get
+                {
+                    return _pageUrl;
+                }
+                set
+                {
+                    _pageUrl = value;
+                }
+            }
+        }
+
+        [UnmanagedFunctionPointer(CallingConvention.StdCall)]
+        private delegate void WebViewCallbackDelegate(IntPtr data, string pageUrl);
+
+        private void WebViewProxyConnect(global::System.Runtime.InteropServices.HandleRef proxy, System.Delegate func)
+        {
+            System.IntPtr ip = System.Runtime.InteropServices.Marshal.GetFunctionPointerForDelegate(func);
+            {
+                NDalicPINVOKE.WebViewSignalProxy_Connect(proxy, new System.Runtime.InteropServices.HandleRef(this, ip));
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            }
+        }
+
+        private void WebViewProxyDisconnect(global::System.Runtime.InteropServices.HandleRef proxy, System.Delegate func)
+        {
+            System.IntPtr ip = System.Runtime.InteropServices.Marshal.GetFunctionPointerForDelegate(func);
+            {
+                NDalicPINVOKE.WebViewSignalProxy_Disconnect(proxy, new System.Runtime.InteropServices.HandleRef(this, ip));
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            }
+        }
+
+        private EventHandler<WebViewEventArgs> pageLoadStartedEventHandler;
+        private WebViewCallbackDelegate pageLoadStartedCallback;
+
+        /// <summary>
+        /// Event for the PageLoadStarted signal which can be used to subscribe or unsubscribe the event handler.<br />
+        /// This signal is emitted when page loading has started.<br />
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public event EventHandler<WebViewEventArgs> PageLoadStarted
+        {
+            add
+            {
+                if (pageLoadStartedEventHandler == null)
+                {
+                    pageLoadStartedCallback = (OnPageLoadStarted);
+                    WebViewProxyConnect(pageLoadStartedSignalProxy, pageLoadStartedCallback);
+                }
+                pageLoadStartedEventHandler += value;
+            }
+            remove
+            {
+                pageLoadStartedEventHandler -= value;
+                if (pageLoadStartedEventHandler == null && pageLoadStartedCallback != null)
+                {
+                    WebViewProxyDisconnect(pageLoadStartedSignalProxy, pageLoadStartedCallback);
+                }
+            }
+        }
+
+        private void OnPageLoadStarted(IntPtr data, string pageUrl)
+        {
+            WebViewEventArgs e = new WebViewEventArgs();
+
+            e.WebView = Registry.GetManagedBaseHandleFromNativePtr(data) as WebView;
+            e.PageUrl = pageUrl;
+
+            if (pageLoadStartedEventHandler != null)
+            {
+                pageLoadStartedEventHandler(this, e);
+            }
+        }
+
+        private EventHandler<WebViewEventArgs> pageLoadFinishedEventHandler;
+        private WebViewCallbackDelegate pageLoadFinishedCallback;
+
+        /// <summary>
+        /// Event for the PageLoadFinished signal which can be used to subscribe or unsubscribe the event handler.<br />
+        /// This signal is emitted when page loading has finished.<br />
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public event EventHandler<WebViewEventArgs> PageLoadFinished
+        {
+            add
+            {
+                if (pageLoadFinishedEventHandler == null)
+                {
+                    pageLoadFinishedCallback = (OnPageLoadFinished);
+                    WebViewProxyConnect(pageLoadFinishedSignalProxy, pageLoadFinishedCallback);
+                }
+                pageLoadFinishedEventHandler += value;
+            }
+            remove
+            {
+                pageLoadFinishedEventHandler -= value;
+                if (pageLoadFinishedEventHandler == null && pageLoadFinishedCallback != null)
+                {
+                    WebViewProxyDisconnect(pageLoadFinishedSignalProxy, pageLoadFinishedCallback);
+                }
+            }
+        }
+
+        private void OnPageLoadFinished(IntPtr data, string pageUrl)
+        {
+            WebViewEventArgs e = new WebViewEventArgs();
+
+            e.WebView = Registry.GetManagedBaseHandleFromNativePtr(data) as WebView;
+            e.PageUrl = pageUrl;
+
+            if (pageLoadFinishedEventHandler != null)
+            {
+                pageLoadFinishedEventHandler(this, e);
+            }
         }
 
         /// <summary>
