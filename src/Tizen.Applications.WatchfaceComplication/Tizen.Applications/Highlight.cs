@@ -77,7 +77,6 @@ namespace Tizen.Applications.WatchfaceComplication
         /// The x coordinate.
         /// </summary>
         /// <exception cref="ArgumentException">Thrown when some parameter are invalid.</exception>
-        /// <exception cref="InvalidOperationException">Thrown when the method failed due to invalid operation.</exception>
         /// <since_tizen> 5 </since_tizen>
         public int X
         {
@@ -87,6 +86,8 @@ namespace Tizen.Applications.WatchfaceComplication
             }
             set
             {
+                if (value < 0)
+                    ErrorFactory.ThrowException(ComplicationError.InvalidParam, "invalid x value (" + value + ")");
                 _x = value;
             }
         }
@@ -95,7 +96,6 @@ namespace Tizen.Applications.WatchfaceComplication
         /// The y coordinate.
         /// </summary>
         /// <exception cref="ArgumentException">Thrown when some parameter are invalid.</exception>
-        /// <exception cref="InvalidOperationException">Thrown when the method failed due to invalid operation.</exception>
         /// <since_tizen> 5 </since_tizen>
         public int Y
         {
@@ -105,6 +105,8 @@ namespace Tizen.Applications.WatchfaceComplication
             }
             set
             {
+                if (value < 0)
+                    ErrorFactory.ThrowException(ComplicationError.InvalidParam, "invalid y value (" + value + ")");
                 _y = value;
             }
         }
@@ -113,7 +115,6 @@ namespace Tizen.Applications.WatchfaceComplication
         /// The width of editable.
         /// </summary>
         /// <exception cref="ArgumentException">Thrown when some parameter are invalid.</exception>
-        /// <exception cref="InvalidOperationException">Thrown when the method failed due to invalid operation.</exception>
         /// <since_tizen> 5 </since_tizen>
         public int W
         {
@@ -123,6 +124,8 @@ namespace Tizen.Applications.WatchfaceComplication
             }
             set
             {
+                if (value < 0)
+                    ErrorFactory.ThrowException(ComplicationError.InvalidParam, "invalid w value (" + value + ")");
                 _w = value;
             }
         }
@@ -131,7 +134,6 @@ namespace Tizen.Applications.WatchfaceComplication
         /// The height of editable.
         /// </summary>
         /// <exception cref="ArgumentException">Thrown when some parameter are invalid.</exception>
-        /// <exception cref="InvalidOperationException">Thrown when the method failed due to invalid operation.</exception>
         /// <since_tizen> 5 </since_tizen>
         public int H
         {
@@ -141,6 +143,8 @@ namespace Tizen.Applications.WatchfaceComplication
             }
             set
             {
+                if (value < 0)
+                    ErrorFactory.ThrowException(ComplicationError.InvalidParam, "invalid h value (" + value + ")");
                 _h = value;
             }
         }
@@ -148,8 +152,6 @@ namespace Tizen.Applications.WatchfaceComplication
         /// <summary>
         /// The shape of editable.
         /// </summary>
-        /// <exception cref="ArgumentException">Thrown when some parameter are invalid.</exception>
-        /// <exception cref="InvalidOperationException">Thrown when the method failed due to invalid operation.</exception>
         /// <since_tizen> 5 </since_tizen>
         public ShapeType ShapeType
         {
