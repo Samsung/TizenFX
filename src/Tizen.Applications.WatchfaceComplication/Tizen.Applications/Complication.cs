@@ -75,6 +75,7 @@ namespace Tizen.Applications.WatchfaceComplication
             ret = Interop.WatchfaceComplication.AddUpdatedCallback(_handle, _updatedCallback, _errorCallback, IntPtr.Zero);
             if (ret != ComplicationError.None)
             {
+
                 ErrorFactory.ThrowException(ret, "Fail to add update callback");
             }
         }
@@ -84,7 +85,7 @@ namespace Tizen.Applications.WatchfaceComplication
         /// </summary>
         ~Complication()
         {
-            Dispose(false);
+            Dispose(true);
         }
 
         /// <summary>
@@ -868,10 +869,7 @@ namespace Tizen.Applications.WatchfaceComplication
         {
             if (!_disposed)
             {
-                if (disposing)
-                {
-                    Interop.WatchfaceComplication.Destroy(_handle);
-                }
+                Interop.WatchfaceComplication.Destroy(_handle);
                 Interop.WatchfaceComplication.RemoveUpdatedCallback(_handle, _updatedCallback);
                 _disposed = true;
             }
