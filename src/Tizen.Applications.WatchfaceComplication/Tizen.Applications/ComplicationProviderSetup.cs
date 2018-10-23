@@ -14,6 +14,7 @@ namespace Tizen.Applications.WatchfaceComplication
         /// Gets the received appctrl containing inforamtion about edit.
         /// </summary>
         /// <param name="recvAppCtrl">The appcontrol received event args.</param>
+        /// <returns>The boolean value.</returns>
         /// <exception cref="ArgumentException">Thrown when e is invalid.</exception>
         /// <exception cref="InvalidOperationException">Thrown when the method failed due to invalid operation.</exception>
         /// <exception cref="NotSupportedException">Thrown when the watchface complication is not supported.</exception>
@@ -76,6 +77,7 @@ namespace Tizen.Applications.WatchfaceComplication
         /// Gets complication's setup context.
         /// </summary>
         /// <param name="recvAppCtrl">The appcontrol received event args.</param>
+        /// <returns>The setup context.</returns>
         /// <exception cref="ArgumentException">Thrown when e is invalid.</exception>
         /// <exception cref="InvalidOperationException">Thrown when the method failed due to invalid operation.</exception>
         /// <exception cref="NotSupportedException">Thrown when the watchface complication is not supported.</exception>

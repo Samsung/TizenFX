@@ -21,7 +21,7 @@ namespace Tizen.Applications.WatchfaceComplication
         internal IntPtr _handle;
         private Interop.WatchfaceComplication.ComplicationUpdatedCallback _updatedCallback;
         private Interop.WatchfaceComplication.ComplicationErrorCallback _errorCallback;
-        private IEnumerable<(string providerId, ComplicationTypes supportTypes)> _allowedList;
+        private IEnumerable<(string allowedProviderId, ComplicationTypes supportTypes)> _allowedList;
         private int _editableId;
         private bool _disposed = false;
 
@@ -33,7 +33,7 @@ namespace Tizen.Applications.WatchfaceComplication
         /// <param name="supportEvents">The complication's support events.</param>
         /// <param name="defaultProviderId">The complication's default provider ID.</param>
         /// <param name="defaultType">The complication's default type.</param>
-        /// <exception cref="ArgumentException">Thrown when editableId is invalid.</exception>
+        /// <exception cref="ArgumentException">Thrown when the invalid parameter is passed.</exception>
         /// <exception cref="InvalidOperationException">Thrown when the method failed due to invalid operation.</exception>
         /// <exception cref="NotSupportedException">Thrown when the watchface complication is not supported.</exception>
         /// <exception cref="UnauthorizedAccessException">Thrown when the application does not have privilege to access this method.</exception>
@@ -100,7 +100,7 @@ namespace Tizen.Applications.WatchfaceComplication
         }
 
         /// <summary>
-        /// Gets the support types.
+        /// Gets the support event types.
         /// </summary>
         /// <since_tizen> 5 </since_tizen>
         public EventTypes SupportEvents
@@ -112,7 +112,7 @@ namespace Tizen.Applications.WatchfaceComplication
         }
 
         /// <summary>
-        /// The information of editable geometry.
+        /// The information of the editable's highlight.
         /// </summary>
         /// <since_tizen> 5 </since_tizen>
         Highlight IEditable.Highlight
@@ -132,7 +132,7 @@ namespace Tizen.Applications.WatchfaceComplication
         /// The information of specific allowed provider id, support types list for complication
         /// </summary>
         /// <since_tizen> 5 </since_tizen>
-        public IEnumerable<(string providerId, ComplicationTypes supportTypes)> AllowedList
+        public IEnumerable<(string allowedProviderId, ComplicationTypes supportTypes)> AllowedList
         {
             get
             {
@@ -149,10 +149,10 @@ namespace Tizen.Applications.WatchfaceComplication
                 {
                     IntPtr listRaw;
                     Interop.WatchfaceComplication.CreateAllowedList(out listRaw);
-                    List<(string providerId, ComplicationTypes supportTypes)> list = _allowedList.ToList();
+                    List<(string allowedProviderId, ComplicationTypes supportTypes)> list = _allowedList.ToList();
                     foreach (var item in list)
                     {
-                        Interop.WatchfaceComplication.AddAllowedList(listRaw, item.providerId, (int)item.supportTypes);
+                        Interop.WatchfaceComplication.AddAllowedList(listRaw, item.allowedProviderId, (int)item.supportTypes);
                     }
                     Interop.WatchfaceComplication.ApplyAllowedList(_handle, listRaw);
                     Interop.WatchfaceComplication.DestroyAllowedList(listRaw);
@@ -162,7 +162,7 @@ namespace Tizen.Applications.WatchfaceComplication
         }
 
         /// <summary>
-        /// The information of complication geometry.
+        /// The information of the complication's highlight.
         /// </summary>
         /// <since_tizen> 5 </since_tizen>
         public Highlight Highlight
@@ -249,7 +249,7 @@ namespace Tizen.Applications.WatchfaceComplication
         /// <summary>
         /// Gets the editable's current data.
         /// </summary>
-        /// <exception cref="ArgumentException">Thrown when editableId is invalid.</exception>
+        /// <returns>The current data</returns>
         /// <exception cref="InvalidOperationException">Thrown when the method failed due to invalid operation.</exception>
         /// <example>
         /// <code>
@@ -271,7 +271,7 @@ namespace Tizen.Applications.WatchfaceComplication
         /// <summary>
         /// Gets the current provider ID.
         /// </summary>
-        /// <exception cref="ArgumentException">Thrown when editableId is invalid.</exception>
+        /// <returns>The current provider ID</returns>
         /// <exception cref="InvalidOperationException">Thrown when the method failed due to invalid operation.</exception>
         /// <example>
         /// <code>
@@ -282,7 +282,7 @@ namespace Tizen.Applications.WatchfaceComplication
         /// <since_tizen> 5 </since_tizen>
         public string GetCurrentProviderId()
         {
-            string providerId;
+            string providerId = "";
             ComplicationError err = Interop.WatchfaceComplication.GetCurrentProviderId(_handle, out providerId);
             if (err != ComplicationError.None)
                 ErrorFactory.ThrowException(err, "Can not get current provider id");
@@ -292,7 +292,7 @@ namespace Tizen.Applications.WatchfaceComplication
         /// <summary>
         /// Gets the current complication type.
         /// </summary>
-        /// <exception cref="ArgumentException">Thrown when editableId is invalid.</exception>
+        /// <returns>The current complication type</returns>
         /// <exception cref="InvalidOperationException">Thrown when the method failed due to invalid operation.</exception>
         /// <example>
         /// <code>
@@ -351,7 +351,7 @@ namespace Tizen.Applications.WatchfaceComplication
         /// Transfers event to the provider.
         /// </summary>
         /// <exception cref="UnauthorizedAccessException">Thrown when the application does not have privilege to access this method.</exception>
-        /// <exception cref="ArgumentException">Thrown when editableId is invalid.</exception>
+        /// <exception cref="ArgumentException">Thrown when the invalid argument is passed.</exception>
         /// <exception cref="InvalidOperationException">Thrown when the method failed due to invalid operation.</exception>
         /// <example>
         /// <code>
@@ -371,7 +371,8 @@ namespace Tizen.Applications.WatchfaceComplication
         /// <summary>
         /// Gets the complication data type.
         /// </summary>
-        /// <exception cref="ArgumentException">Thrown when editableId is invalid.</exception>
+        /// <returns>The complication type of data</returns>
+        /// <exception cref="ArgumentException">Thrown when the invalid argument is passed.</exception>
         /// <exception cref="InvalidOperationException">Thrown when the method failed due to invalid operation.</exception>
         /// <exception cref="NotSupportedException">Thrown when the watchface complication is not supported.</exception>
         /// <example>
@@ -394,6 +395,7 @@ namespace Tizen.Applications.WatchfaceComplication
         /// Gets the short text.
         /// </summary>
         /// <param name="data">The data from OnComplicationUpdate callback.</param>
+        /// <returns>The short text data</returns>
         /// <exception cref="ArgumentException">Thrown when data is invalid.</exception>
         /// <exception cref="InvalidOperationException">Thrown when the method failed due to invalid operation.</exception>
         /// <exception cref="NotSupportedException">Thrown when the watchface complication is not supported.</exception>
@@ -434,6 +436,7 @@ namespace Tizen.Applications.WatchfaceComplication
         /// Gets the long text.
         /// </summary>
         /// <param name="data">The data from OnComplicationUpdate callback.</param>
+        /// <returns>The long text data</returns>
         /// <exception cref="ArgumentException">Thrown when data is invalid.</exception>
         /// <exception cref="InvalidOperationException">Thrown when the method failed due to invalid operation.</exception>
         /// <exception cref="NotSupportedException">Thrown when the watchface complication is not supported.</exception>
@@ -474,6 +477,7 @@ namespace Tizen.Applications.WatchfaceComplication
         /// Gets the title.
         /// </summary>
         /// <param name="data">The data from OnComplicationUpdate callback.</param>
+        /// <returns>The title data</returns>
         /// <exception cref="ArgumentException">Thrown when data is invalid.</exception>
         /// <exception cref="InvalidOperationException">Thrown when the method failed due to invalid operation.</exception>
         /// <exception cref="NotSupportedException">Thrown when the watchface complication is not supported.</exception>
@@ -513,6 +517,7 @@ namespace Tizen.Applications.WatchfaceComplication
         /// <summary>
         /// Gets the timestamp.
         /// </summary>
+        /// <returns>The timestamp data in long value</returns>
         /// <param name="data">The data from OnComplicationUpdate callback.</param>
         /// <exception cref="ArgumentException">Thrown when data is invalid.</exception>
         /// <exception cref="InvalidOperationException">Thrown when the method failed due to invalid operation.</exception>
@@ -554,6 +559,7 @@ namespace Tizen.Applications.WatchfaceComplication
         /// Gets the image path.
         /// </summary>
         /// <param name="data">The data from OnComplicationUpdate callback.</param>
+        /// <returns>The image path data</returns>
         /// <exception cref="ArgumentException">Thrown when data is invalid.</exception>
         /// <exception cref="InvalidOperationException">Thrown when the method failed due to invalid operation.</exception>
         /// <exception cref="NotSupportedException">Thrown when the watchface complication is not supported.</exception>
@@ -593,6 +599,7 @@ namespace Tizen.Applications.WatchfaceComplication
         /// <summary>
         /// Gets the current value of ranged type data.
         /// </summary>
+        /// <returns>The current value of range type data</returns>
         /// <param name="data">The data from OnComplicationUpdate callback.</param>
         /// <exception cref="ArgumentException">Thrown when data is invalid.</exception>
         /// <exception cref="InvalidOperationException">Thrown when the method failed due to invalid operation.</exception>
@@ -634,6 +641,7 @@ namespace Tizen.Applications.WatchfaceComplication
         /// Gets the minimum value of ranged type data.
         /// </summary>
         /// <param name="data">The data from OnComplicationUpdate callback.</param>
+        /// <returns>The minimum value of range type data</returns>
         /// <exception cref="ArgumentException">Thrown when data is invalid.</exception>
         /// <exception cref="InvalidOperationException">Thrown when the method failed due to invalid operation.</exception>
         /// <exception cref="NotSupportedException">Thrown when the watchface complication is not supported.</exception>
@@ -674,6 +682,7 @@ namespace Tizen.Applications.WatchfaceComplication
         /// Gets the max value of ranged type data.
         /// </summary>
         /// <param name="data">The data from OnComplicationUpdate callback.</param>
+        /// <returns>The maximum value of range type data</returns>
         /// <exception cref="ArgumentException">Thrown when data is invalid.</exception>
         /// <exception cref="InvalidOperationException">Thrown when the method failed due to invalid operation.</exception>
         /// <exception cref="NotSupportedException">Thrown when the watchface complication is not supported.</exception>
@@ -714,6 +723,7 @@ namespace Tizen.Applications.WatchfaceComplication
         /// Gets the icon path.
         /// </summary>
         /// <param name="data">The data from OnComplicationUpdate callback.</param>
+        /// <returns>The icon path data</returns>
         /// <exception cref="ArgumentException">Thrown when data is invalid.</exception>
         /// <exception cref="InvalidOperationException">Thrown when the method failed due to invalid operation.</exception>
         /// <exception cref="NotSupportedException">Thrown when the watchface complication is not supported.</exception>
@@ -754,6 +764,7 @@ namespace Tizen.Applications.WatchfaceComplication
         /// Gets the extra data.
         /// </summary>
         /// <param name="data">The data from OnComplicationUpdate callback.</param>
+        /// <returns>The extra string data</returns>
         /// <exception cref="ArgumentException">Thrown when data is invalid.</exception>
         /// <exception cref="InvalidOperationException">Thrown when the method failed due to invalid operation.</exception>
         /// <exception cref="NotSupportedException">Thrown when the watchface complication is not supported.</exception>
@@ -794,6 +805,7 @@ namespace Tizen.Applications.WatchfaceComplication
         /// Gets the screen reader text.
         /// </summary>
         /// <param name="data">The data from OnComplicationUpdate callback.</param>
+        /// <returns>The screen reader text data</returns>
         /// <exception cref="ArgumentException">Thrown when data is invalid.</exception>
         /// <exception cref="InvalidOperationException">Thrown when the method failed due to invalid operation.</exception>
         /// <exception cref="NotSupportedException">Thrown when the watchface complication is not supported.</exception>

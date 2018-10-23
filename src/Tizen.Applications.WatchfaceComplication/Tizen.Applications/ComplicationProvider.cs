@@ -31,6 +31,7 @@ namespace Tizen.Applications.WatchfaceComplication
         /// <param name="providerId">The id of the complication provider.</param>
         /// <exception cref="ArgumentException">Thrown when providerId is invalid.</exception>
         /// <exception cref="InvalidOperationException">Thrown when the method failed due to invalid operation.</exception>
+        /// <exception cref="NotSupportedException">Thrown when the watchface complication is not supported.</exception>
         /// <example>
         /// <code>
         /// public class MyComplicationProvider : ComplicationProvider
@@ -318,8 +319,7 @@ namespace Tizen.Applications.WatchfaceComplication
         /// <summary>
         /// Emits the update event for complications.
         /// </summary>
-        /// <exception cref="UnauthorizedAccessException">Thrown when the application does not have privilege to access this method.</exception>
-        /// <exception cref="ArgumentException">Thrown when updatedProviderId is invalid.</exception>
+        /// <exception cref="UnauthorizedAccessException">Thrown when the application does not have privilege to access this method.</exception>        
         /// <exception cref="NotSupportedException">Thrown when the watchface complication is not supported.</exception>
         /// <since_tizen> 5 </since_tizen>
         public void NotifyUpdate()
@@ -333,7 +333,8 @@ namespace Tizen.Applications.WatchfaceComplication
         /// Gets the received event type.
         /// </summary>
         /// <param name="recvAppCtrl">The appcontrol received event args.</param>
-        /// <exception cref="ArgumentException">Thrown when e is invalid.</exception>
+        /// <returns>The type of received event</returns>
+        /// <exception cref="ArgumentException">Thrown when the invalid parameter is passed.</exception>
         /// <exception cref="InvalidOperationException">Thrown when the method failed due to invalid operation.</exception>
         /// <exception cref="NotSupportedException">Thrown when the watchface complication is not supported.</exception>
         /// <example>
@@ -364,6 +365,7 @@ namespace Tizen.Applications.WatchfaceComplication
         /// Gets the received event target provider ID.
         /// </summary>
         /// <param name="recvAppCtrl">The appcontrol received event args.</param>
+        /// <returns>The target provider ID of received event</returns>
         /// <exception cref="ArgumentException">Thrown when e is invalid.</exception>
         /// <exception cref="InvalidOperationException">Thrown when the method failed due to invalid operation.</exception>
         /// <exception cref="NotSupportedException">Thrown when the watchface complication is not supported.</exception>
@@ -391,6 +393,7 @@ namespace Tizen.Applications.WatchfaceComplication
         /// Gets the received event target complication type.
         /// </summary>
         /// <param name="recvAppCtrl">The appcontrol received event args.</param>
+        /// <returns>The target complication type of received event</returns>
         /// <exception cref="ArgumentException">Thrown when e is invalid.</exception>
         /// <exception cref="InvalidOperationException">Thrown when the method failed due to invalid operation.</exception>
         /// <exception cref="NotSupportedException">Thrown when the watchface complication is not supported.</exception>
@@ -418,6 +421,7 @@ namespace Tizen.Applications.WatchfaceComplication
         /// Gets the received event target complication context.
         /// </summary>
         /// <param name="e">The appcontrol received event args.</param>
+        /// <returns>The context of received event</returns>
         /// <exception cref="ArgumentException">Thrown when e is invalid.</exception>
         /// <exception cref="InvalidOperationException">Thrown when the method failed due to invalid operation.</exception>
         /// <exception cref="NotSupportedException">Thrown when the watchface complication is not supported.</exception>
@@ -450,6 +454,7 @@ namespace Tizen.Applications.WatchfaceComplication
         /// Checks the provider's complication data is valid.
         /// </summary>
         /// <param name="type">The complication type to check.</param>
+        /// <returns>The boolean value.</returns>
         /// <exception cref="ArgumentException">Thrown when e is invalid.</exception>
         /// <exception cref="InvalidOperationException">Thrown when the method failed due to invalid operation.</exception>
         /// <exception cref="NotSupportedException">Thrown when the watchface complication is not supported.</exception>

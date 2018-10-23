@@ -116,7 +116,7 @@ namespace Tizen.Applications.WatchfaceComplication
         }
 
         /// <summary>
-        /// The information of Editable geometry.
+        /// The information of editable's highlight.
         /// </summary>
         /// <since_tizen> 5 </since_tizen>
         Highlight IEditable.Highlight
@@ -132,7 +132,7 @@ namespace Tizen.Applications.WatchfaceComplication
         }
 
         /// <summary>
-        /// The information of design element geometry.
+        /// The information of design element's highlight.
         /// </summary>
         /// <since_tizen> 5 </since_tizen>
         public Highlight Highlight
@@ -165,7 +165,7 @@ namespace Tizen.Applications.WatchfaceComplication
         /// <summary>
         /// Gets the current selected data.
         /// </summary>
-        /// <returns>Current data</returns>
+        /// <returns>The eidtable's current data.</returns>
         /// <since_tizen> 5 </since_tizen>
         Bundle IEditable.GetCurrentData()
         {

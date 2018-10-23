@@ -42,10 +42,13 @@ namespace Tizen.Applications.WatchfaceComplication
         /// <summary>
         /// Adds the DesignElement to edit list.
         /// </summary>
+        /// <exception cref="ArgumentException">Thrown when the invalid parameter is passed.</exception>
         /// <exception cref="InvalidOperationException">Thrown when the method failed due to invalid operation.</exception>
         /// <since_tizen> 5 </since_tizen>
         public void Add(DesignElement de, int editableId)
         {
+            if (de == null)
+                ErrorFactory.ThrowException(ComplicationError.InvalidParam);
             if (IsExist(editableId))
                 ErrorFactory.ThrowException(ComplicationError.ExistID);
 
@@ -57,10 +60,13 @@ namespace Tizen.Applications.WatchfaceComplication
         /// <summary>
         /// Adds the Complication to edit list.
         /// </summary>
+        /// <exception cref="ArgumentException">Thrown when the invalid parameter is passed.</exception>
         /// <exception cref="InvalidOperationException">Thrown when the method failed due to invalid operation.</exception>
         /// <since_tizen> 5 </since_tizen>
         public void Add(Complication comp, int editableId)
         {
+            if (comp == null)
+                ErrorFactory.ThrowException(ComplicationError.InvalidParam);
             if (IsExist(editableId))
                 ErrorFactory.ThrowException(ComplicationError.ExistID);
 
@@ -72,7 +78,7 @@ namespace Tizen.Applications.WatchfaceComplication
         /// <summary>
         /// Removes the editable from edit list.
         /// </summary>
-        /// <exception cref="InvalidOperationException">Thrown when the method failed due to invalid operation.</exception>
+        /// <exception cref="ArgumentException">Thrown when the invalid parameter is passed.</exception>
         /// <example>
         /// <code>
         /// if (myContainer.IsExist(_colorEditId)
@@ -100,7 +106,7 @@ namespace Tizen.Applications.WatchfaceComplication
                 }
             }
 
-            ErrorFactory.ThrowException(ComplicationError.NotExist, "invalid editable ID");
+            ErrorFactory.ThrowException(ComplicationError.InvalidParam, "invalid editable ID");
         }
 
         internal IEditable GetEditable(int editableId)
@@ -173,7 +179,6 @@ namespace Tizen.Applications.WatchfaceComplication
         /// <summary>
         /// Requests edit to editor appliation.
         /// </summary>
-        /// <exception cref="ArgumentException">Thrown when some parameter are invalid.</exception>
         /// <exception cref="InvalidOperationException">Thrown when the method failed due to invalid operation.</exception>
         /// <exception cref="NotSupportedException">Thrown when the watchface complication is not supported.</exception>
         /// <example>
@@ -226,7 +231,7 @@ namespace Tizen.Applications.WatchfaceComplication
                 IntPtr hi = IntPtr.Zero;
                 if (e.Highlight != null && e.Highlight.Raw != IntPtr.Zero)
                     hi = e.Highlight.Raw;
-                Interop.WatchfaceComplication.AddDesignElement(_container, e.EditableId, e.CurrentDataIndex, candidates, hi, e.Name);
+                Interop.WatchfaceComplication.AddDesignElement(_container, e.EditableId, e.GetCurrentDataIndex(), candidates, hi, e.Name);
                 Log.Debug(_logTag, "Add design element done :" + e.Name);
             }
 
@@ -246,6 +251,7 @@ namespace Tizen.Applications.WatchfaceComplication
         /// <summary>
         /// Loads the editable's current data.
         /// </summary>
+        /// <returns>The editable's lastest data that selected by editor.</returns>
         /// <exception cref="ArgumentException">Thrown when some parameter are invalid.</exception>
         /// <exception cref="InvalidOperationException">Thrown when the method failed due to invalid operation.</exception>
         /// <exception cref="NotSupportedException">Thrown when the watchface complication is not supported.</exception>
