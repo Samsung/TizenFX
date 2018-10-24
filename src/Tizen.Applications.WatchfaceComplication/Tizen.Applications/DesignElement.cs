@@ -21,7 +21,7 @@ namespace Tizen.Applications.WatchfaceComplication
         /// Initializes the DesignElement class.
         /// </summary>
         /// <param name="candidates">The candidates list.</param>
-        /// <param name="currentDataIndex">The current selected candidate index.</param>
+        /// <param name="currentDataIndex">The currently selected data index of candidate list.</param>
         /// <param name="editableName">The design element name.</param>
         /// <exception cref="ArgumentException">Thrown when e is invalid.</exception>
         /// <exception cref="InvalidOperationException">Thrown when the method failed due to invalid operation.</exception>
@@ -55,6 +55,14 @@ namespace Tizen.Applications.WatchfaceComplication
         ///         }
         ///    }
         /// }
+        ///
+        /// List&lt;Bundle&gt; candidatesList = new List&lt;Bundle&gt;();
+        /// data = new Bundle();
+        /// data.AddItem(_colorKey, "RED");
+        /// candidatesList.Add(data);
+        /// data.AddItem(_colorKey, "BLUE");
+        /// candidatesList.Add(data);
+        /// ColorDesign colorEdit = new ColorDesign(candidatesList, curIdx, "COLOR", _complicationBtn);
         /// </code>
         /// </example>
         /// <since_tizen> 5 </since_tizen>
@@ -148,9 +156,9 @@ namespace Tizen.Applications.WatchfaceComplication
         }
 
         /// <summary>
-        /// Gets the editable's current data index.
+        /// Gets the editable's currently selected data index of candidate list.
         /// </summary>
-        /// <returns>The editable's current data index.</returns>
+        /// <returns>The currently selected data index of candidate list.</returns>
         /// <since_tizen> 5 </since_tizen>
         int IEditable.GetCurrentDataIndex()
         {
@@ -163,9 +171,9 @@ namespace Tizen.Applications.WatchfaceComplication
         }
 
         /// <summary>
-        /// Gets the current selected data.
+        /// Gets the editable's currently selected data.
         /// </summary>
-        /// <returns>The eidtable's current data.</returns>
+        /// <returns>The currently selected data.</returns>
         /// <since_tizen> 5 </since_tizen>
         Bundle IEditable.GetCurrentData()
         {

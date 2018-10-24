@@ -181,6 +181,7 @@ namespace Tizen.Applications.WatchfaceComplication
         /// </summary>
         /// <exception cref="InvalidOperationException">Thrown when the method failed due to invalid operation.</exception>
         /// <exception cref="NotSupportedException">Thrown when the watchface complication is not supported.</exception>
+        /// <exception cref="UnauthorizedAccessException">Thrown when the application does not have privilege to access this method.</exception>
         /// <example>
         /// <code>
         /// public class MyContainer : EditablesContainer {
@@ -251,7 +252,7 @@ namespace Tizen.Applications.WatchfaceComplication
         /// <summary>
         /// Loads the editable's current data.
         /// </summary>
-        /// <returns>The editable's lastest data that selected by editor.</returns>
+        /// <returns>The editable's latest data that selected by editor.</returns>
         /// <exception cref="ArgumentException">Thrown when some parameter are invalid.</exception>
         /// <exception cref="InvalidOperationException">Thrown when the method failed due to invalid operation.</exception>
         /// <exception cref="NotSupportedException">Thrown when the watchface complication is not supported.</exception>
