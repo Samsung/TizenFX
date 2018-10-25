@@ -33,6 +33,8 @@ namespace Tizen.Applications.WatchfaceComplication
         /// <param name="supportEvents">The complication's support events.</param>
         /// <param name="defaultProviderId">The complication's default provider ID.</param>
         /// <param name="defaultType">The complication's default type.</param>
+        /// <privilege>http://tizen.org/privilege/datasharing</privilege>
+        /// <privilege>http://tizen.org/privilege/packagemanager.info</privilege>
         /// <exception cref="ArgumentException">Thrown when the invalid parameter is passed.</exception>
         /// <exception cref="InvalidOperationException">Thrown when the method failed due to invalid operation.</exception>
         /// <exception cref="NotSupportedException">Thrown when the watchface complication is not supported.</exception>
@@ -328,6 +330,8 @@ namespace Tizen.Applications.WatchfaceComplication
         /// <summary>
         /// Sends the complication update requests.
         /// </summary>
+        /// <privilege>http://tizen.org/privilege/appmanager.launch</privilege>
+        /// <privilege>http://tizen.org/privilege/datasharing</privilege>
         /// <exception cref="InvalidOperationException">Thrown when the method failed due to invalid operation.</exception>
         /// <exception cref="UnauthorizedAccessException">Thrown when the application does not have privilege to access this method.</exception>
         /// <example>
@@ -347,6 +351,8 @@ namespace Tizen.Applications.WatchfaceComplication
         /// <summary>
         /// Transfers event to the provider.
         /// </summary>
+        /// <privilege>http://tizen.org/privilege/appmanager.launch</privilege>
+        /// <privilege>http://tizen.org/privilege/datasharing</privilege>
         /// <exception cref="UnauthorizedAccessException">Thrown when the application does not have privilege to access this method.</exception>
         /// <exception cref="ArgumentException">Thrown when the invalid argument is passed.</exception>
         /// <exception cref="InvalidOperationException">Thrown when the method failed due to invalid operation.</exception>

@@ -179,6 +179,7 @@ namespace Tizen.Applications.WatchfaceComplication
         /// <summary>
         /// Requests edit to editor appliation.
         /// </summary>
+        /// <privilege>http://tizen.org/privilege/datasharing</privilege>
         /// <exception cref="InvalidOperationException">Thrown when the method failed due to invalid operation.</exception>
         /// <exception cref="NotSupportedException">Thrown when the watchface complication is not supported.</exception>
         /// <exception cref="UnauthorizedAccessException">Thrown when the application does not have privilege to access this method.</exception>

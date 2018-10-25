@@ -46,6 +46,7 @@ namespace Tizen.Applications.WatchfaceComplication
         /// </summary>
         /// <param name="recvAppCtrl">The appcontrol received event args.</param>
         /// <param name="context">The context created by complication setup app.</param>
+        /// <privilege>http://tizen.org/privilege/datasharing</privilege>
         /// <exception cref="ArgumentException">Thrown when e is invalid.</exception>
         /// <exception cref="InvalidOperationException">Thrown when the method failed due to invalid operation.</exception>
         /// <exception cref="NotSupportedException">Thrown when the watchface complication is not supported.</exception>

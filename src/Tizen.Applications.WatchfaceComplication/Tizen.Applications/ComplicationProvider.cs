@@ -29,6 +29,7 @@ namespace Tizen.Applications.WatchfaceComplication
         /// Initializes the ComplicationProvider class.
         /// </summary>
         /// <param name="providerId">The id of the complication provider.</param>
+        /// <privilege>http://tizen.org/privilege/datasharing</privilege>
         /// <exception cref="ArgumentException">Thrown when providerId is invalid.</exception>
         /// <exception cref="InvalidOperationException">Thrown when the method failed due to invalid operation.</exception>
         /// <exception cref="NotSupportedException">Thrown when the watchface complication is not supported.</exception>
@@ -320,6 +321,7 @@ namespace Tizen.Applications.WatchfaceComplication
         /// <summary>
         /// Emits the update event for complications.
         /// </summary>
+        /// <privilege>http://tizen.org/privilege/datasharing</privilege>
         /// <exception cref="UnauthorizedAccessException">Thrown when the application does not have privilege to access this method.</exception>        
         /// <exception cref="NotSupportedException">Thrown when the watchface complication is not supported.</exception>
         /// <since_tizen> 5 </since_tizen>
