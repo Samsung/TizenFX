@@ -3188,6 +3188,7 @@ namespace Tizen.NUI.BaseComponents
         /// This means by default others are impossible so it is recommended that NUI object typed properties are configured by their constructor with parameters. <br />
         /// For example, this code is working fine : view.Scale = new Vector3( 2.0f, 1.5f, 0.0f); <br />
         /// but this will not work! : view.Scale.X = 2.0f; view.Scale.Y = 1.5f; <br />
+        /// It may not match the current value in some cases, i.e. when the animation is progressing or the maximum or minimu size is set. <br />
         /// </remarks>
         /// <since_tizen> 3 </since_tizen>
         public Size2D Size2D
@@ -5300,6 +5301,7 @@ namespace Tizen.NUI.BaseComponents
         /// It is recommended that NUI object typed properties are configured by their constructor with parameters. <br />
         /// For example, this code is working fine : view.Size = new Size( 1.0f, 1.0f, 0.0f); <br />
         /// but this will not work! : view.Size.Width = 2.0f; view.Size.Height = 2.0f; <br />
+        /// It may not match the current value in some cases, i.e. when the animation is progressing or the maximum or minimu size is set. <br />
         /// </remarks>
         /// <since_tizen> 5 </since_tizen>
         public Size Size
