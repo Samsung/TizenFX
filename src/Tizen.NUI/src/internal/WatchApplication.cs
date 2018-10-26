@@ -209,14 +209,16 @@ namespace Tizen.NUI
         private void OnTimeTick(IntPtr application, IntPtr watchTime)
         {
             TimeTickEventArgs e = new TimeTickEventArgs();
-            using (e.Application = Application.GetApplicationFromPtr(application))
+            if (application != null)
             {
-            using (e.WatchTime = WatchTime.GetWatchTimeFromPtr(watchTime))
-            {
-                _timeTickEventHandler?.Invoke(this, e);
+                e.Application = Application.GetApplicationFromPtr(application);
             }
+            if(watchTime != null)
+            {
+                e.WatchTime = WatchTime.GetWatchTimeFromPtr(watchTime);
             }
 
+            _timeTickEventHandler?.Invoke(this, e);
         }
 
         internal WatchTimeSignal TimeTickSignal()
@@ -288,14 +290,16 @@ namespace Tizen.NUI
         private void OnAmbientTick(IntPtr application, IntPtr watchTime)
         {
             AmbientTickEventArgs e = new AmbientTickEventArgs();
+            if (application != null)
+            {
+                e.Application = Application.GetApplicationFromPtr(application);
+            }
+            if (watchTime != null)
+            {
+                e.WatchTime = WatchTime.GetWatchTimeFromPtr(watchTime);
+            }
 
-            using (e.Application = Application.GetApplicationFromPtr(application))
-            {
-            using (e.WatchTime = WatchTime.GetWatchTimeFromPtr(watchTime))
-            {
-                _ambientTickEventHandler?.Invoke(this, e);
-            }
-            }
+            _ambientTickEventHandler?.Invoke(this, e);
         }
 
         internal WatchTimeSignal AmbientTickSignal()
@@ -367,11 +371,13 @@ namespace Tizen.NUI
         private void OnAmbientChanged(IntPtr application, bool changed)
         {
             AmbientChangedEventArgs e = new AmbientChangedEventArgs();
-            using (e.Application = Application.GetApplicationFromPtr(application))
+            if (application != null)
             {
-                e.Changed = changed;
-                _ambientChangedEventHandler?.Invoke(this, e);
+                e.Application = Application.GetApplicationFromPtr(application);
             }
+            e.Changed = changed;
+
+            _ambientChangedEventHandler?.Invoke(this, e);
         }
 
         internal WatchBoolSignal AmbientChangedSignal()

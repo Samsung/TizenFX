@@ -14,28 +14,24 @@
  * limitations under the License.
  */
 
-namespace Tizen.Multimedia.Remoting
+namespace Tizen.Multimedia
 {
     /// <summary>
-    /// Specifies the repeat mode.
+    /// Specifies the audio channels.
     /// </summary>
-    /// <since_tizen> 4 </since_tizen>
-    public enum MediaControlRepeatMode
+    /// <seealso cref="AudioCapture"/>
+    /// <seealso cref="AsyncAudioCapture"/>
+    /// <seealso cref="AudioPlayback"/>
+    /// <since_tizen> 3 </since_tizen>
+    public enum AudioChannel
     {
         /// <summary>
-        /// Off.
+        /// Mono.
         /// </summary>
-        Off,
-
+        Mono = 0x80,
         /// <summary>
-        /// On.
+        /// Stereo.
         /// </summary>
-        On,
-
-        /// <summary>
-        /// One media.
-        /// </summary>
-        /// <since_tizen> 5 </since_tizen>
-        OneMedia
+        Stereo
     }
 }

@@ -388,6 +388,50 @@ namespace ElmSharp
         }
 
         /// <summary>
+        /// Sets or gets the value of HorizontalScrollBarVisiblePolicy.
+        /// </summary>
+        /// <remarks>
+        /// ScrollBarVisiblePolicy.Auto means the horizontal scrollbar is made visible if it is needed, and otherwise kept hidden.
+        /// ScrollBarVisiblePolicy.Visible turns it on all the time, and ScrollBarVisiblePolicy.Invisible always keeps it off.
+        /// </remarks>
+        /// <since_tizen> preview </since_tizen>
+        public ScrollBarVisiblePolicy HorizontalScrollBarVisiblePolicy
+        {
+            get
+            {
+                Interop.Elementary.elm_scroller_policy_get(RealHandle, out int policy, IntPtr.Zero);
+                return (ScrollBarVisiblePolicy)policy;
+            }
+            set
+            {
+                ScrollBarVisiblePolicy v = VerticalScrollBarVisiblePolicy;
+                Interop.Elementary.elm_scroller_policy_set(RealHandle, (int)value, (int)v);
+            }
+        }
+
+        /// <summary>
+        /// Sets or gets the value of VerticalScrollBarVisiblePolicy.
+        /// </summary>
+        /// <remarks>
+        /// ScrollBarVisiblePolicy.Auto means the vertical scrollbar is made visible if it is needed, and otherwise kept hidden.
+        /// ScrollBarVisiblePolicy.Visible turns it on all the time, and ScrollBarVisiblePolicy.Invisible always keeps it off.
+        /// </remarks>
+        /// <since_tizen> preview </since_tizen>
+        public ScrollBarVisiblePolicy VerticalScrollBarVisiblePolicy
+        {
+            get
+            {
+                Interop.Elementary.elm_scroller_policy_get(RealHandle, IntPtr.Zero, out int policy);
+                return (ScrollBarVisiblePolicy)policy;
+            }
+            set
+            {
+                ScrollBarVisiblePolicy h = HorizontalScrollBarVisiblePolicy;
+                Interop.Elementary.elm_scroller_policy_set(RealHandle, (int)h, (int)value);
+            }
+        }
+
+        /// <summary>
         /// ItemSelected is raised when a new genlist item is selected.
         /// </summary>
         /// <since_tizen> preview </since_tizen>

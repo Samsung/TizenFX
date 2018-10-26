@@ -15,12 +15,12 @@
  */
 
 using System;
-using Tizen.Applications;
 
 namespace Tizen.Multimedia.Remoting
 {
     /// <summary>
-    /// Provides data for the <see cref="MediaControlServer.CustomCommandReceived"/> event.
+    /// Provides data for the <see cref="MediaControlServer.CustomCommandReceived"/> or
+    /// <see cref="MediaController.CustomCommandReceived"/> event.
     /// </summary>
     /// <since_tizen> 5 </since_tizen>
     public class CustomCommandReceivedEventArgs : EventArgs
@@ -29,10 +29,11 @@ namespace Tizen.Multimedia.Remoting
         /// Initializes a new instance of the <see cref="CustomCommandReceivedEventArgs"/> class.
         /// </summary>
         /// <param name="command">The playback position command.</param>
+        /// <exception cref="ArgumentNullException"><paramref name="command"/> is null.</exception>
         /// <since_tizen> 5 </since_tizen>
         public CustomCommandReceivedEventArgs(CustomCommand command)
         {
-            Command = command;
+            Command = command ?? throw new ArgumentNullException(nameof(command));
         }
 
         /// <summary>

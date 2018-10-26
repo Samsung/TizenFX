@@ -16,6 +16,7 @@
 
 using Tizen.Applications;
 using System;
+using System.Collections.Generic;
 using NativeClient = Interop.MediaControllerClient;
 using NativeServer = Interop.MediaControllerServer;
 using NativeClientHandle = Interop.MediaControllerClientHandle;
@@ -30,57 +31,117 @@ namespace Tizen.Multimedia.Remoting
     {
         private string _requestId;
 
-        internal NativeClientHandle _clientHandle;
-
-        private string _clientId;
-
         /// <summary>
-        /// The server id.
+        /// The id for command receiver.
         /// </summary>
         /// <since_tizen> 5 </since_tizen>
-        protected string _serverId;
+        protected string ReceiverId { get; private set; }
 
         /// <summary>
         /// Initializes a <see cref="Command"/> base class.
         /// </summary>
+        /// <since_tizen> 5 </since_tizen>
         protected Command() { }
-
-        internal abstract string Request();
-
-        internal void Response(IntPtr handle, int result, Bundle bundle)
-        {
-            if (bundle != null)
-            {
-                NativeServer.SendCommandReplyBundle(handle, _clientId, _requestId, result, bundle.SafeBundleHandle)
-                    .ThrowIfError("Failed to response command.");
-            }
-            else
-            {
-                NativeServer.SendCommandReply(handle, _clientId, _requestId, result, IntPtr.Zero)
-                    .ThrowIfError("Failed to response command.");
-            }
-        }
 
         /// <summary>
         /// Sets the server information.
         /// </summary>
-        /// <param name="clientrHandle">The client handle.</param>
-        /// <param name="serverId">The server Id that receives command.</param>
-        internal void SetServerInfo(NativeClientHandle clientrHandle, string serverId)
+        /// <param name="receiverId">The receiver Id that receives command.</param>
+        internal void SetRequestInformation(string receiverId)
         {
-            _serverId = serverId;
-            _clientHandle = clientrHandle;
+            ReceiverId = receiverId ?? throw new ArgumentNullException(nameof(receiverId));
         }
 
         /// <summary>
         /// Sets the client information.
         /// </summary>
-        /// <param name="clientId">The client Id that will be received response.</param>
+        /// <param name="receiverId">The receiver Id that receives response for command.</param>
         /// <param name="requestId">The request Id for each command.</param>
-        internal void SetClientInfo(string clientId, string requestId)
+        internal void SetResponseInformation(string receiverId, string requestId)
         {
-            _clientId = clientId;
-            _requestId = requestId;
+            ReceiverId = receiverId ?? throw new ArgumentNullException(nameof(receiverId)); ;
+            _requestId = requestId ?? throw new ArgumentNullException(nameof(requestId)); ;
+        }
+
+        /// <summary>
+        /// Requests command to server.
+        /// </summary>
+        /// <returns>The request id for each command.</returns>
+        internal abstract string Request(NativeClientHandle clientHandle);
+
+        /// <summary>
+        /// Requests command to client.
+        /// </summary>
+        /// <param name="serverHandle"></param>
+        /// <returns>The request id for each command.</returns>
+        internal virtual string Request(IntPtr serverHandle) => throw new NotImplementedException();
+
+        /// <summary>
+        /// Represents a method that is called when an response command completes.
+        /// </summary>
+        /// <since_tizen> 5 </since_tizen>
+        protected virtual void OnResponseCompleted() { }
+
+        /// <summary>
+        /// Responses command to the client.
+        /// </summary>
+        /// <param name="serverHandle">The server handle.</param>
+        /// <param name="result">The result of each command.</param>
+        /// <param name="bundle">The extra data.</param>
+        internal void Response(IntPtr serverHandle, int result, Bundle bundle)
+        {
+            try
+            {
+                if (bundle != null)
+                {
+                    NativeServer.SendCommandReplyBundle(serverHandle, ReceiverId, _requestId, result, bundle.SafeBundleHandle)
+                        .ThrowIfError("Failed to response command.");
+                }
+                else
+                {
+                    NativeServer.SendCommandReply(serverHandle, ReceiverId, _requestId, result, IntPtr.Zero)
+                        .ThrowIfError("Failed to response command.");
+                }
+            }
+            catch (ArgumentException)
+            {
+                throw new InvalidOperationException("Server is not running");
+            }
+            finally
+            {
+                OnResponseCompleted();
+            }
+        }
+
+        /// <summary>
+        /// Responses command to the server.
+        /// </summary>
+        /// <param name="clientHandle">The client handle.</param>
+        /// <param name="result">The result of each command.</param>
+        /// <param name="bundle">The extra data.</param>
+        internal void Response(NativeClientHandle clientHandle, int result, Bundle bundle)
+        {
+            try
+            {
+                if (bundle != null)
+                {
+                    NativeClient.SendCustomEventReplyBundle(clientHandle, ReceiverId, _requestId, result, bundle.SafeBundleHandle)
+                        .ThrowIfError("Failed to response event.");
+                }
+                else
+                {
+                    NativeClient.SendCustomEventReply(clientHandle, ReceiverId, _requestId, result, IntPtr.Zero)
+                        .ThrowIfError("Failed to response event.");
+                }
+            }
+            catch (ArgumentException)
+            {
+                throw new InvalidOperationException("Server is not running");
+            }
+            finally
+            {
+                OnResponseCompleted();
+            }
         }
     }
 
@@ -94,9 +155,12 @@ namespace Tizen.Multimedia.Remoting
         /// Initializes a new instance of the <see cref="PlaybackCommand"/> class.
         /// </summary>
         /// <param name="action">A <see cref="MediaControlPlaybackCommand"/>.</param>
+        /// <exception cref="ArgumentException"><paramref name="action"/> is not valid.</exception>
         /// <since_tizen> 5 </since_tizen>
         public PlaybackCommand(MediaControlPlaybackCommand action)
         {
+            ValidationUtil.ValidateEnum(typeof(MediaControlPlaybackCommand), action, nameof(action));
+
             Action = action;
         }
 
@@ -106,11 +170,11 @@ namespace Tizen.Multimedia.Remoting
         /// <since_tizen> 5 </since_tizen>
         public MediaControlPlaybackCommand Action { get; }
 
-        internal override string Request()
+        internal override string Request(NativeClientHandle clientHandle)
         {
-            ValidationUtil.ValidateEnum(typeof(MediaControlPlaybackCommand), Action, nameof(MediaControlPlaybackCommand));
+            ValidationUtil.ValidateEnum(typeof(MediaControlPlaybackCommand), Action, nameof(Action));
 
-            NativeClient.SendPlaybackActionCommand(_clientHandle, _serverId, Action.ToNative(), out string requestId)
+            NativeClient.SendPlaybackActionCommand(clientHandle, ReceiverId, Action.ToNative(), out string requestId)
                 .ThrowIfError("Failed to send playback command.");
 
             return requestId;
@@ -138,9 +202,9 @@ namespace Tizen.Multimedia.Remoting
         /// <since_tizen> 5 </since_tizen>
         public ulong Position { get; }
 
-        internal override string Request()
+        internal override string Request(NativeClientHandle clientHandle)
         {
-            NativeClient.SendPlaybackPositionCommand(_clientHandle, _serverId, Position, out string requestId)
+            NativeClient.SendPlaybackPositionCommand(clientHandle, ReceiverId, Position, out string requestId)
                 .ThrowIfError("Failed to send playback position command.");
 
             return requestId;
@@ -159,16 +223,18 @@ namespace Tizen.Multimedia.Remoting
         /// <param name="playlistName">The playlist name of the server.</param>
         /// <param name="index">The index of the media in the playlist.</param>
         /// <param name="position">The playback position in milliseconds.</param>
-        /// <exception cref="ArgumentException"><paramref name="index"/> cannot be converted to number.</exception>
+        /// <exception cref="ArgumentException"><paramref name="action"/>is not valid.</exception>
         /// <exception cref="ArgumentNullException">
-        /// <paramref name="playlistName"/> or <paramref name="index"/> is not vailed.
+        /// <paramref name="playlistName"/> or <paramref name="index"/> is null.
         /// </exception>
         /// <since_tizen> 5 </since_tizen>
         public PlaylistCommand(MediaControlPlaybackCommand action, string playlistName, string index, ulong position)
         {
+            ValidationUtil.ValidateEnum(typeof(MediaControlPlaybackCommand), action, nameof(action));
+
             Action = action;
-            Index = index ?? throw new ArgumentNullException("Playlist index is not set.");
-            Name = playlistName ?? throw new ArgumentNullException("Playlist name is not set.");
+            Index = index ?? throw new ArgumentNullException(nameof(index));
+            Name = playlistName ?? throw new ArgumentNullException(nameof(playlistName));
             Position = position;
         }
 
@@ -178,9 +244,8 @@ namespace Tizen.Multimedia.Remoting
         /// <param name="action">A <see cref="MediaControlPlaybackCommand"/>.</param>
         /// <param name="playlistName">The playlist name of the server.</param>
         /// <param name="index">The index of the media in the playlist.</param>
-        /// <exception cref="ArgumentException"><paramref name="index"/> cannot be converted to number.</exception>
         /// <exception cref="ArgumentNullException">
-        /// <paramref name="playlistName"/> or <paramref name="index"/> is not set.
+        /// <paramref name="playlistName"/> or <paramref name="index"/> is null.
         /// </exception>
         /// <since_tizen> 5 </since_tizen>
         public PlaylistCommand(MediaControlPlaybackCommand action, string playlistName, string index)
@@ -212,11 +277,11 @@ namespace Tizen.Multimedia.Remoting
         /// <since_tizen> 5 </since_tizen>
         public string Name { get; }
 
-        internal override string Request()
+        internal override string Request(NativeClientHandle clientHandle)
         {
-            ValidationUtil.ValidateEnum(typeof(MediaControlPlaybackCommand), Action, nameof(MediaControlPlaybackCommand));
+            ValidationUtil.ValidateEnum(typeof(MediaControlPlaybackCommand), Action, nameof(Action));
 
-            NativeClient.SendPlaylistCommand(_clientHandle, _serverId, Name, Index, Action.ToNative(),
+            NativeClient.SendPlaylistCommand(clientHandle, ReceiverId, Name, Index, Action.ToNative(),
                 Position, out string requestId).ThrowIfError("Failed to send playlist command.");
 
             return requestId;
@@ -244,11 +309,11 @@ namespace Tizen.Multimedia.Remoting
         /// </summary>
         public bool Enabled { get; }
 
-        internal override string Request()
+        internal override string Request(NativeClientHandle clientHandle)
         {
             var mode = Enabled ? MediaControllerNativeShuffleMode.On : MediaControllerNativeShuffleMode.Off;
 
-            NativeClient.SendShuffleModeCommand(_clientHandle, _serverId, mode, out string requestId).
+            NativeClient.SendShuffleModeCommand(clientHandle, ReceiverId, mode, out string requestId).
                 ThrowIfError("Failed to send playback shuffle command.");
 
             return requestId;
@@ -265,9 +330,12 @@ namespace Tizen.Multimedia.Remoting
         /// Initializes a new instance of the <see cref="RepeatModeCommand"/> class.
         /// </summary>
         /// <param name="mode">The <see cref="MediaControlRepeatMode"/>.</param>
+        /// <exception cref="ArgumentException"><paramref name="mode"/> is not vailid.</exception>
         /// <since_tizen> 5 </since_tizen>
         public RepeatModeCommand(MediaControlRepeatMode mode)
         {
+            ValidationUtil.ValidateEnum(typeof(MediaControlRepeatMode), mode, nameof(mode));
+
             Mode = mode;
         }
 
@@ -277,11 +345,11 @@ namespace Tizen.Multimedia.Remoting
         /// <since_tizen> 5 </since_tizen>
         public MediaControlRepeatMode Mode { get; }
 
-        internal override string Request()
+        internal override string Request(NativeClientHandle clientHandle)
         {
-            ValidationUtil.ValidateEnum(typeof(MediaControlRepeatMode), Mode, nameof(MediaControlRepeatMode));
+            ValidationUtil.ValidateEnum(typeof(MediaControlRepeatMode), Mode, nameof(Mode));
 
-            NativeClient.SendRepeatModeCommand(_clientHandle, _serverId, Mode.ToNative(), out string requestId).
+            NativeClient.SendRepeatModeCommand(clientHandle, ReceiverId, Mode.ToNative(), out string requestId).
                 ThrowIfError("Failed to send playback repeat command.");
 
             return requestId;
@@ -291,6 +359,7 @@ namespace Tizen.Multimedia.Remoting
     /// <summary>
     /// Provides a means to to send custom commands.
     /// </summary>
+    /// <remarks>This command can be used by both client and server to send predefined command or data.</remarks>
     /// <since_tizen> 5 </since_tizen>
     public sealed class CustomCommand : Command
     {
@@ -301,7 +370,7 @@ namespace Tizen.Multimedia.Remoting
         /// <since_tizen> 5 </since_tizen>
         public CustomCommand(string action)
         {
-            Action = action ?? throw new ArgumentNullException("Custom command is not set.");
+            Action = action ?? throw new ArgumentNullException(nameof(action));
         }
 
         /// <summary>
@@ -328,22 +397,179 @@ namespace Tizen.Multimedia.Remoting
         /// <since_tizen> 5 </since_tizen>
         public Bundle Bundle { get; }
 
-        internal override string Request()
+        internal override string Request(NativeClientHandle clientHandle)
         {
             string requestId = null;
 
             if (Bundle != null)
             {
-                NativeClient.SendCustomCommandBundle(_clientHandle, _serverId, Action, Bundle.SafeBundleHandle, out requestId).
+                NativeClient.SendCustomCommandBundle(clientHandle, ReceiverId, Action, Bundle.SafeBundleHandle, out requestId).
                     ThrowIfError("Failed to send custom command.");
             }
             else
             {
-                NativeClient.SendCustomCommand(_clientHandle, _serverId, Action, IntPtr.Zero, out requestId).
+                NativeClient.SendCustomCommand(clientHandle, ReceiverId, Action, IntPtr.Zero, out requestId).
                     ThrowIfError("Failed to send custom command.");
             }
 
             return requestId;
+        }
+
+        internal override string Request(IntPtr serverHandle)
+        {
+            string requestId = null;
+
+            if (Bundle != null)
+            {
+                NativeServer.SendCustomEventBundle(serverHandle, ReceiverId, Action, Bundle.SafeBundleHandle, out requestId)
+                    .ThrowIfError("Failed to send costom event.");
+            }
+            else
+            {
+                NativeServer.SendCustomEvent(serverHandle, ReceiverId, Action, IntPtr.Zero, out requestId)
+                    .ThrowIfError("Failed to send costom event.");
+            }
+
+            return requestId;
+        }
+    }
+
+    /// <summary>
+    /// Provides a means to to send search commands.
+    /// </summary>
+    /// <since_tizen> 5 </since_tizen>
+    public sealed class SearchCommand : Command
+    {
+        private readonly IntPtr _searchHandle;
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="SearchCommand"/> class.
+        /// </summary>
+        /// <remarks>User can search maximum 20 items once.</remarks>
+        /// <exception cref="ArgumentNullException"><paramref name="conditions"/> is not set.</exception>
+        /// <exception cref="ArgumentException">
+        ///     <paramref name="conditions.Count"/> is greater than maximum value(20).<br/>
+        ///     -or-<br/>
+        ///     <paramref name="conditions.Count"/> is less than 1.
+        /// </exception>
+        /// <exception cref="InvalidOperationException">An internal error occurs.</exception>
+        /// <param name="conditions">The set of <see cref="MediaControlSearchCondition"/>.</param>
+        /// <since_tizen> 5 </since_tizen>
+        public SearchCommand(List<MediaControlSearchCondition> conditions)
+        {
+            if (conditions == null)
+            {
+                throw new ArgumentNullException(nameof(conditions));
+            }
+            if (conditions.Count <= 0 || conditions.Count > 20)
+            {
+                var errMessage = $"Invalid number of search conditions. : {conditions.Count}. " +
+                    $"Valid range is 1 ~ 20.";
+                throw new ArgumentException(errMessage);
+            }
+
+            NativeClient.CreateSearchHandle(out _searchHandle).ThrowIfError("Failed to create search handle.");
+
+            try
+            {
+                foreach (var condition in conditions)
+                {
+                    if (condition.Bundle != null)
+                    {
+                        NativeClient.SetSearchConditionBundle(_searchHandle, condition.ContentType, condition.Category,
+                            condition.Keyword, condition.Bundle.SafeBundleHandle).
+                            ThrowIfError("Failed to set search condition.");
+                    }
+                    else
+                    {
+                        NativeClient.SetSearchCondition(_searchHandle, condition.ContentType, condition.Category,
+                            condition.Keyword, IntPtr.Zero).
+                            ThrowIfError("Failed to set search condition.");
+                    }
+                }
+            }
+            catch
+            {
+                if (_searchHandle != IntPtr.Zero)
+                {
+                    NativeClient.DestroySearchHandle(_searchHandle).ThrowIfError("Failed to destroy search handle");
+                }
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="SearchCommand"/> class.
+        /// </summary>
+        /// <exception cref="ArgumentNullException"><paramref name="condition"/> is not set.</exception>
+        /// <exception cref="InvalidOperationException">An internal error occurs.</exception>
+        /// <param name="condition">The set of <see cref="MediaControlSearchCondition"/>.</param>
+        /// <since_tizen> 5 </since_tizen>
+        public SearchCommand(MediaControlSearchCondition condition)
+        {
+            if (condition == null)
+            {
+                throw new ArgumentNullException(nameof(condition));
+            }
+
+            NativeClient.CreateSearchHandle(out _searchHandle).ThrowIfError("Failed to create search handle.");
+
+            try
+            {   
+                if (condition.Bundle != null)
+                {
+                    NativeClient.SetSearchConditionBundle(_searchHandle, condition.ContentType, condition.Category,
+                        condition.Keyword, condition.Bundle.SafeBundleHandle).
+                        ThrowIfError("Failed to set search condition.");
+                }
+                else
+                {
+                    NativeClient.SetSearchCondition(_searchHandle, condition.ContentType, condition.Category,
+                        condition.Keyword, IntPtr.Zero).
+                        ThrowIfError("Failed to set search condition.");
+                }
+            }
+            catch
+            {
+                if (_searchHandle != IntPtr.Zero)
+                {
+                    NativeClient.DestroySearchHandle(_searchHandle).ThrowIfError("Failed to destroy search handle");
+                }
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="SearchCommand"/> class by server side.
+        /// </summary>
+        internal SearchCommand(List<MediaControlSearchCondition> conditions, IntPtr searchHandle)
+        {
+            _searchHandle = searchHandle;
+            Conditions = conditions;
+        }
+
+        /// <summary>
+        /// Gets or sets the search conditions.
+        /// </summary>
+        /// <remarks>This property is used by MediaControlServer.</remarks>
+        /// <since_tizen> 5 </since_tizen>
+        public IEnumerable<MediaControlSearchCondition> Conditions { get; private set; }
+
+        internal override string Request(NativeClientHandle clientHandle)
+        {
+            NativeClient.SendSearchCommand(clientHandle, ReceiverId, _searchHandle, out string requestId).
+                ThrowIfError("Failed to send search command.");
+
+            return requestId;
+        }
+
+        /// <summary>
+        /// Represents a method that is called when an response command completes.
+        /// </summary>
+        /// <since_tizen> 5 </since_tizen>
+        protected override void OnResponseCompleted()
+        {
+            base.OnResponseCompleted();
         }
     }
 }
