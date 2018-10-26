@@ -369,8 +369,6 @@ namespace Tizen.NUI.BaseComponents
             /// The index or position of a row.
             /// </summary>
             /// <since_tizen> 5 </since_tizen>
-            /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
-            [EditorBrowsable(EditorBrowsableState.Never)]
             public uint RowIndex
             {
                 get
@@ -407,8 +405,6 @@ namespace Tizen.NUI.BaseComponents
             /// The index or position of a column.
             /// </summary>
             /// <since_tizen> 5 </since_tizen>
-            /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
-            [EditorBrowsable(EditorBrowsableState.Never)]
             public uint ColumnIndex
             {
                 get
@@ -444,8 +440,6 @@ namespace Tizen.NUI.BaseComponents
             /// The span of a row.
             /// </summary>
             /// <since_tizen> 5 </since_tizen>
-            /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
-            [EditorBrowsable(EditorBrowsableState.Never)]
             public uint RowSpan
             {
                 get
@@ -481,8 +475,6 @@ namespace Tizen.NUI.BaseComponents
             /// The span of a column.
             /// </summary>
             /// <since_tizen> 5 </since_tizen>
-            /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
-            [EditorBrowsable(EditorBrowsableState.Never)]
             public uint ColumnSpan
             {
                 get
@@ -499,8 +491,6 @@ namespace Tizen.NUI.BaseComponents
         /// <summary>
         /// Creates the default TableView view.
         /// </summary>
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
         public TableView() : this(NDalicPINVOKE.TableView_New(1, 1), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();

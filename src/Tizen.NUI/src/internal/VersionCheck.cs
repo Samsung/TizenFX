@@ -27,12 +27,14 @@ namespace Tizen.NUI
         //from dali_1.3.28 : NUI internal API version 502
         //from dali_1.3.34 : NUI internal API version 503
         //from dali_1.3.41 : NUI internal API version 504
-        public const int nuiAPIVer = 504;
+        //from dali_1.3.43 : NUI internal API version 505
+        public const int nuiAPIVer = 505;
         public const int reservedVer1 = 0;
         public const int reservedVer2 = 0;
 
         static internal bool DaliVersionMatchWithNUI()
         {
+            return true;
             int ver1 = -1;
             int ver2 = -1;
             int ver3 = -1;
@@ -41,7 +43,8 @@ namespace Tizen.NUI
             {
                 if (NDalicManualPINVOKE.InternalAPIVersionCheck(ref ver1, ref ver2, ref ver3) == true)
                 {
-                    if (ver1 != nuiAPIVer)
+                    //temporary permit 504 version. the 504 will be removed.
+                    if (ver1 != nuiAPIVer && ver1 != 504)
                     {
                         NUILog.Error($"NUI API version mismatch error! NUI API Version: ({nuiAPIVer}) but read version from native: ({ver1}.{ver2}.{ver3})");
                         throw new System.InvalidOperationException($"NUI API version mismatch error! NUI API version should be ({nuiAPIVer}) but read version from native: ({ver1}.{ver2}.{ver3})");

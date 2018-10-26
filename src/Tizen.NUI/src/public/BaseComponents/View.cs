@@ -394,6 +394,23 @@ namespace Tizen.NUI.BaseComponents
         });
         /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
+        public static readonly BindableProperty WeightProperty = BindableProperty.Create("Weight", typeof(float), typeof(View), default(float), propertyChanged: (bindable, oldValue, newValue) =>
+        {
+            var view = (View)bindable;
+            if (newValue != null)
+            {
+                Tizen.NUI.Object.SetProperty(view.swigCPtr, LinearLayout.ChildProperty.WEIGHT, new Tizen.NUI.PropertyValue((float)newValue));
+            }
+        },
+        defaultValueCreator:(bindable) =>
+        {
+            var view = (View)bindable;
+            float temp = 0.0f;
+            Tizen.NUI.Object.GetProperty(view.swigCPtr, LinearLayout.ChildProperty.WEIGHT).Get(out temp);
+            return temp;
+        });
+        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty LeftFocusableViewProperty = BindableProperty.Create("LeftFocusableView", typeof(View), typeof(View), default(View), propertyChanged: (bindable, oldValue, newValue) =>
         {
             var view = (View)bindable;
@@ -1242,8 +1259,6 @@ namespace Tizen.NUI.BaseComponents
         /// Event argument passed through the ChildAdded event.
         /// </summary>
         /// <since_tizen> 5 </since_tizen>
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
         public class ChildAddedEventArgs : EventArgs
         {
             /// <summary>
@@ -1257,8 +1272,6 @@ namespace Tizen.NUI.BaseComponents
         /// Event when a child is added.
         /// </summary>
         /// <since_tizen> 5 </since_tizen>
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
         public new event EventHandler<ChildAddedEventArgs> ChildAdded;
 
         // From Container Base class
@@ -1322,8 +1335,6 @@ namespace Tizen.NUI.BaseComponents
         /// Event argument passed through the ChildRemoved event.
         /// </summary>
         /// <since_tizen> 5 </since_tizen>
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
         public class ChildRemovedEventArgs : EventArgs
         {
             /// <summary>
@@ -1337,8 +1348,6 @@ namespace Tizen.NUI.BaseComponents
         /// Event when a child is removed.
         /// </summary>
         /// <since_tizen> 5 </since_tizen>
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
         public new event EventHandler<ChildRemovedEventArgs> ChildRemoved;
 
 
@@ -1552,6 +1561,11 @@ namespace Tizen.NUI.BaseComponents
             if (_keyInputFocusGainedCallback != null)
             {
                 this.KeyInputFocusGainedSignal().Disconnect(_keyInputFocusGainedCallback);
+            }
+
+            if (_backgroundResourceLoadedCallback != null)
+            {
+                this.ResourcesLoadedSignal().Disconnect(_backgroundResourceLoadedCallback);
             }
 
             // BaseHandle CPtr is used in Registry and there is danger of deletion if we keep using it here.
@@ -5515,6 +5529,109 @@ namespace Tizen.NUI.BaseComponents
             }
         }
 
+        internal float Weight
+        {
+            get
+            {
+                return (float)GetValue(WeightProperty);
+            }
+            set
+            {
+                SetValue(WeightProperty, value);
+                NotifyPropertyChanged();
+            }
+        }
+
+        private bool _backgroundImageSynchronosLoading = false;
+        internal bool BackgroundImageSynchronosLoading
+        {
+            get
+            {
+                return _backgroundImageSynchronosLoading;
+            }
+            set
+            {
+                if (value != _backgroundImageSynchronosLoading)
+                {
+                    string bgUrl = "";
+                    PropertyMap bgMap = this.Background;
+                    int visualType = 0;
+                    bgMap.Find(Visual.Property.Type)?.Get(out visualType);
+                    if (visualType == (int)Visual.Type.Image)
+                    {
+                        bgMap.Find(ImageVisualProperty.URL)?.Get(out bgUrl);
+                    }
+                    if (bgUrl.Length != 0)
+                    {
+                        _backgroundImageSynchronosLoading = value;
+                        bgMap.Add("synchronousLoading", new PropertyValue(_backgroundImageSynchronosLoading));
+                        this.Background = bgMap;
+                    }
+                }
+            }
+        }
+
+        internal class BackgroundResourceLoadedEventArgs : EventArgs
+        {
+            private ResourceLoadingStatusType status = ResourceLoadingStatusType.Invalid;
+            public ResourceLoadingStatusType Status
+            {
+                get
+                {
+                    return status;
+                }
+                set
+                {
+                    status = value;
+                }
+            }
+        }
+
+        private EventHandler<BackgroundResourceLoadedEventArgs> _backgroundResourceLoadedEventHandler;
+        [UnmanagedFunctionPointer(CallingConvention.StdCall)]
+        private delegate void _backgroundResourceLoadedCallbackType(IntPtr view);
+        private _backgroundResourceLoadedCallbackType _backgroundResourceLoadedCallback;
+
+        internal event EventHandler<BackgroundResourceLoadedEventArgs> BackgroundResourceLoaded
+        {
+            add
+            {
+                if (_backgroundResourceLoadedEventHandler == null)
+                {
+                    _backgroundResourceLoadedCallback = OnBackgroundResourceLoaded;
+                    this.ResourcesLoadedSignal().Connect(_backgroundResourceLoadedCallback);
+                }
+
+                _backgroundResourceLoadedEventHandler += value;
+            }
+            remove
+            {
+                _backgroundResourceLoadedEventHandler -= value;
+
+                if (_backgroundResourceLoadedEventHandler == null && ResourcesLoadedSignal().Empty() == false)
+                {
+                    this.ResourcesLoadedSignal().Disconnect(_backgroundResourceLoadedCallback);
+                }
+            }
+        }
+
+        private void OnBackgroundResourceLoaded(IntPtr view)
+        {
+            BackgroundResourceLoadedEventArgs e = new BackgroundResourceLoadedEventArgs();
+            e.Status = (ResourceLoadingStatusType)NDalicManualPINVOKE.View_GetVisualResourceStatus(this.swigCPtr, Property.BACKGROUND);
+            
+            if (_backgroundResourceLoadedEventHandler != null)
+            {
+                _backgroundResourceLoadedEventHandler(this, e);
+            }
+        }
+
+        internal ResourceLoadingStatusType GetBackgroundResourceStatus()
+        {
+            return (ResourceLoadingStatusType)NDalicManualPINVOKE.View_GetVisualResourceStatus(this.swigCPtr, Property.BACKGROUND);
+        }
+
+
     }
 
     /// <summary>
@@ -5545,6 +5662,14 @@ namespace Tizen.NUI.BaseComponents
         /// Constant which indicates parent should take the smallest size possible to wrap it's children with their desired size
         /// </summary>
         WrapContent = -2,
+    }
+
+    internal enum ResourceLoadingStatusType
+    {
+        Invalid = -1,
+        Preparing = 0,
+        Ready,
+        Failed,
     }
 
 }

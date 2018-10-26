@@ -26,7 +26,7 @@ The following NuGet packages will be published to [Tizen MyGet Gallery](https://
 * Tizen.NET.API5-5.0.0.#####
 * Tizen.NET.Internals-5.0.0.#####
 
-And, This branch is pushed to the [tizen branch](https://git.tizen.org/cgit/platform/core/csapi/tizenfx/?h=tizen) in the tizen gerrit and submmited for the Tizen vNext (5.0) platform.
+And, This branch is pushed to the [tizen branch](https://git.tizen.org/cgit/platform/core/csapi/tizenfx/?h=tizen) in the tizen gerrit and submitted for the Tizen vNext (5.0) platform.
 
 ### API4
 The __API4__ branch is the release branch for Tizen .NET __API Level 4__. 
@@ -38,7 +38,7 @@ The following NuGet packages are published to [Tizen MyGet Gallery](https://tize
 * Tizen.NET.API4-4.0.1.#####
 * Tizen.NET.Internals-4.0.1.#####
 
-And, This branch is pushed to the [tizen_4.0 branch](https://git.tizen.org/cgit/platform/core/csapi/tizenfx/?h=tizen_4.0) in the tizen gerrit and submmited for the Tizen 4.0 platform.
+And, This branch is pushed to the [tizen_4.0 branch](https://git.tizen.org/cgit/platform/core/csapi/tizenfx/?h=tizen_4.0) in the tizen gerrit and submitted for the Tizen 4.0 platform.
 
 
 

@@ -99,20 +99,42 @@ internal static partial class Interop
             string serverName, PlaylistCallback callback, IntPtr userData);
 
         [DllImport(Libraries.MediaController, EntryPoint = "mc_client_get_playlist_item_index")]
-        private static extern MediaControllerError GetPlaylistIndex(IntPtr handle, out IntPtr index);
+        private static extern MediaControllerError GetPlaylistIndex(IntPtr playbackHandle, out IntPtr index);
 
-        internal static string GetPlaylistIndex(IntPtr handle)
+        [Obsolete("Please do not use! This will be deprecated. Please use GetPlaylistInfo instead.")]
+        internal static string GetPlaylistIndex(IntPtr playbackHandle)
         {
             IntPtr valuePtr = IntPtr.Zero;
 
             try
             {
-                GetPlaylistIndex(handle, out valuePtr).ThrowIfError($"Failed to get playlist.");
+                GetPlaylistIndex(playbackHandle, out valuePtr).ThrowIfError($"Failed to get playlist.");
                 return Marshal.PtrToStringAnsi(valuePtr);
             }
             finally
             {
                 Tizen.Multimedia.LibcSupport.Free(valuePtr);
+            }
+        }
+
+        [DllImport(Libraries.MediaController, EntryPoint = "mc_client_get_playlist_item_info")]
+        internal static extern MediaControllerError GetPlaylistInfo(IntPtr playbackHandle, out IntPtr playlistName, out IntPtr index);
+
+        internal static (string name, string index) GetPlaylistInfo(IntPtr playbackHandle)
+        {
+            IntPtr playlistName = IntPtr.Zero;
+            IntPtr index = IntPtr.Zero;
+
+            try
+            {
+                GetPlaylistInfo(playbackHandle, out playlistName, out index).ThrowIfError($"Failed to get playlist info.");
+
+                return (Marshal.PtrToStringAnsi(playlistName), Marshal.PtrToStringAnsi(index));
+            }
+            finally
+            {
+                Tizen.Multimedia.LibcSupport.Free(playlistName);
+                Tizen.Multimedia.LibcSupport.Free(index);
             }
         }
 

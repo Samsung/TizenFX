@@ -416,24 +416,6 @@ namespace Tizen.NUI
             }
         }
 
-        [global::System.Runtime.InteropServices.DllImport(Graphics.GlesCSharpBinder, EntryPoint = "CSharp_Dali_LayoutLength_ConvertToFloat")]
-        public static extern float LayoutLength_ConvertToFloat_gl(global::System.Runtime.InteropServices.HandleRef jarg1);
-
-        [global::System.Runtime.InteropServices.DllImport(Graphics.VulkanCSharpBinder, EntryPoint = "CSharp_Dali_LayoutLength_ConvertToFloat")]
-        public static extern float LayoutLength_ConvertToFloat_vulkan(global::System.Runtime.InteropServices.HandleRef jarg1);
-
-        public static float LayoutLength_ConvertToFloat(global::System.Runtime.InteropServices.HandleRef jarg1)
-        {
-            if (Tizen.NUI.Graphics.Backend == Tizen.NUI.Graphics.BackendType.Vulkan)
-            {
-                return LayoutLength_ConvertToFloat_vulkan(jarg1);
-            }
-            else
-            {
-                return LayoutLength_ConvertToFloat_gl(jarg1);
-            }
-        }
-
         [global::System.Runtime.InteropServices.DllImport(Graphics.GlesCSharpBinder, EntryPoint = "CSharp_Dali_LayoutLength_mValue_set")]
         public static extern void LayoutLength_mValue_set_gl(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2);
 
@@ -1583,6 +1565,24 @@ namespace Tizen.NUI
             else
             {
                 LayoutItemWrapperImpl_Initialize_gl(jarg1, jarg2, jarg3);
+            }
+        }
+
+        [global::System.Runtime.InteropServices.DllImport(Graphics.GlesCSharpBinder, EntryPoint = "CSharp_Dali_LayoutItemWrapper_GetImplementation")]
+        public static extern global::System.IntPtr LayoutItemWrapper_GetImplementation_gl(global::System.IntPtr jarg1);
+
+        [global::System.Runtime.InteropServices.DllImport(Graphics.VulkanCSharpBinder, EntryPoint = "CSharp_Dali_LayoutItemWrapper_GetImplementation")]
+        public static extern global::System.IntPtr LayoutItemWrapper_GetImplementation_vulkan(global::System.IntPtr jarg1);
+
+        public static global::System.IntPtr LayoutItemWrapper_GetImplementation(global::System.IntPtr jarg1)
+        {
+            if (Tizen.NUI.Graphics.Backend == Tizen.NUI.Graphics.BackendType.Vulkan)
+            {
+                return LayoutItemWrapper_GetImplementation_vulkan(jarg1);
+            }
+            else
+            {
+                return LayoutItemWrapper_GetImplementation_gl(jarg1);
             }
         }
 
@@ -4535,6 +4535,96 @@ namespace Tizen.NUI
             else
             {
                 return LinearLayout_GetOrientation_gl(jarg1);
+            }
+        }
+
+        [global::System.Runtime.InteropServices.DllImport(Graphics.GlesCSharpBinder, EntryPoint = "CSharp_Dali_LinearLayout_SetAlignment")]
+        public static extern void LinearLayout_SetAlignment_gl(global::System.Runtime.InteropServices.HandleRef jarg1, uint jarg2);
+
+        [global::System.Runtime.InteropServices.DllImport(Graphics.VulkanCSharpBinder, EntryPoint = "CSharp_Dali_LinearLayout_SetAlignment")]
+        public static extern void LinearLayout_SetAlignment_vulkan(global::System.Runtime.InteropServices.HandleRef jarg1, uint jarg2);
+
+        public static void LinearLayout_SetAlignment(global::System.Runtime.InteropServices.HandleRef jarg1, uint jarg2)
+        {
+            if (Tizen.NUI.Graphics.Backend == Tizen.NUI.Graphics.BackendType.Vulkan)
+            {
+                LinearLayout_SetAlignment_vulkan(jarg1, jarg2);
+            }
+            else
+            {
+                LinearLayout_SetAlignment_gl(jarg1, jarg2);
+            }
+        }
+
+        [global::System.Runtime.InteropServices.DllImport(Graphics.GlesCSharpBinder, EntryPoint = "CSharp_Dali_LinearLayout_GetAlignment")]
+        public static extern uint LinearLayout_GetAlignment_gl(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+        [global::System.Runtime.InteropServices.DllImport(Graphics.VulkanCSharpBinder, EntryPoint = "CSharp_Dali_LinearLayout_GetAlignment")]
+        public static extern uint LinearLayout_GetAlignment_vulkan(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+        public static uint LinearLayout_GetAlignment(global::System.Runtime.InteropServices.HandleRef jarg1)
+        {
+            if (Tizen.NUI.Graphics.Backend == Tizen.NUI.Graphics.BackendType.Vulkan)
+            {
+                return LinearLayout_GetAlignment_vulkan(jarg1);
+            }
+            else
+            {
+                return LinearLayout_GetAlignment_gl(jarg1);
+            }
+        }
+
+        [global::System.Runtime.InteropServices.DllImport(Graphics.GlesCSharpBinder, EntryPoint = "CSharp_Dali_LinearLayout_ChildProperty_WEIGHT_get")]
+        public static extern int LinearLayout_ChildProperty_WEIGHT_get_gl();
+
+        [global::System.Runtime.InteropServices.DllImport(Graphics.VulkanCSharpBinder, EntryPoint = "CSharp_Dali_LinearLayout_ChildProperty_WEIGHT_get")]
+        public static extern int LinearLayout_ChildProperty_WEIGHT_get_vulkan();
+
+        public static int LinearLayout_ChildProperty_WEIGHT_get()
+        {
+            if (Tizen.NUI.Graphics.Backend == Tizen.NUI.Graphics.BackendType.Vulkan)
+            {
+                return LinearLayout_ChildProperty_WEIGHT_get_vulkan();
+            }
+            else
+            {
+                return LinearLayout_ChildProperty_WEIGHT_get_gl();
+            }
+        }
+
+        [global::System.Runtime.InteropServices.DllImport(Graphics.GlesCSharpBinder, EntryPoint = "CSharp_Dali_new_LinearLayout_ChildProperty")]
+        public static extern global::System.IntPtr new_LinearLayout_ChildProperty_gl();
+
+        [global::System.Runtime.InteropServices.DllImport(Graphics.VulkanCSharpBinder, EntryPoint = "CSharp_Dali_new_LinearLayout_ChildProperty")]
+        public static extern global::System.IntPtr new_LinearLayout_ChildProperty_vulkan();
+
+        public static global::System.IntPtr new_LinearLayout_ChildProperty()
+        {
+            if (Tizen.NUI.Graphics.Backend == Tizen.NUI.Graphics.BackendType.Vulkan)
+            {
+                return new_LinearLayout_ChildProperty_vulkan();
+            }
+            else
+            {
+                return new_LinearLayout_ChildProperty_gl();
+            }
+        }
+
+        [global::System.Runtime.InteropServices.DllImport(Graphics.GlesCSharpBinder, EntryPoint = "CSharp_Dali_delete_LinearLayout_ChildProperty")]
+        public static extern void delete_LinearLayout_ChildProperty_gl(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+        [global::System.Runtime.InteropServices.DllImport(Graphics.VulkanCSharpBinder, EntryPoint = "CSharp_Dali_delete_LinearLayout_ChildProperty")]
+        public static extern void delete_LinearLayout_ChildProperty_vulkan(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+        public static void delete_LinearLayout_ChildProperty(global::System.Runtime.InteropServices.HandleRef jarg1)
+        {
+            if (Tizen.NUI.Graphics.Backend == Tizen.NUI.Graphics.BackendType.Vulkan)
+            {
+                delete_LinearLayout_ChildProperty_vulkan(jarg1);
+            }
+            else
+            {
+                delete_LinearLayout_ChildProperty_gl(jarg1);
             }
         }
 

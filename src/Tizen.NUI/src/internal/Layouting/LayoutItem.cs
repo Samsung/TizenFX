@@ -26,8 +26,12 @@ namespace Tizen.NUI
     /// </summary>
     internal class LayoutItem : LayoutItemWrapper
     {
+        //It is called by LayoutGroupWrapper constructor.
         internal LayoutItem(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn)
         {
+            System.IntPtr wrapperImpe_CPtr = LayoutPINVOKE.LayoutItemWrapper_GetImplementation(cPtr);
+            layoutItemWrapperImpl = new LayoutItemWrapperImpl(wrapperImpe_CPtr, true);
+            LayoutItemInitialize(layoutItemWrapperImpl);
         }
 
         public LayoutItem() : base(new LayoutItemWrapperImpl())
@@ -221,7 +225,7 @@ namespace Tizen.NUI
 
         /// <summary>
         /// Returns the suggested minimum width that the layout should use.<br />
-        /// This returns the maximum of the layout's minimum width and the background's minimum width.<br />
+        /// This returns the maximum of the layout's minimum width and the owner's natural width.<br />
         /// </summary>
         public LayoutLength SuggestedMinimumWidth
         {
@@ -233,7 +237,7 @@ namespace Tizen.NUI
 
         /// <summary>
         /// Returns the suggested minimum width that the layout should use.<br />
-        /// This returns the maximum of the layout's minimum width and the background's minimum width.<br />
+        /// This returns the maximum of the layout's minimum width and the owner's natural width.<br />
         /// </summary>
         /// <returns>The suggested minimum width of the layout.</returns>
         private LayoutLength GetSuggestedMinimumWidth()
@@ -243,7 +247,7 @@ namespace Tizen.NUI
 
         /// <summary>
         /// Returns the suggested minimum height that the layout should use.<br />
-        /// This returns the maximum of the layout's minimum height and the background's minimum height.<br />
+        /// This returns the maximum of the layout's minimum height and the owner's natural height.<br />
         /// </summary>
         public LayoutLength SuggestedMinimumHeight
         {
@@ -255,7 +259,7 @@ namespace Tizen.NUI
 
         /// <summary>
         /// Returns the suggested minimum height that the layout should use.<br />
-        /// This returns the maximum of the layout's minimum height and the background's minimum height.<br />
+        /// This returns the maximum of the layout's minimum height and the owner's natural height.<br />
         /// </summary>
         /// <returns>The suggested minimum height of the layout.</returns>
         private LayoutLength GetSuggestedMinimumHeight()
@@ -267,6 +271,9 @@ namespace Tizen.NUI
         /// Sets the minimum width of the layout.<br />
         /// It is not guaranteed the layout will be able to achieve this minimum width (for example, if its parent
         /// layout constrains it with less available width).<br />
+        /// 1. if the owner's View.LayoutWidthSpecification has exact value, then that value overrides the minimum size.<br />
+        /// 2. If the owner's View.LayoutWidthSpecification is set to View.ChildLayoutData.WrapContent, then the view's width is set based on the suggested minimum width. (@see GetSuggestedMinimumWidth()).<br />
+        /// 3. If the owner's View.LayoutWidthSpecification is set to View.ChildLayoutData.MatchParent, then the parent width takes precedence over the minimum width.<br />
         /// </summary>
         public LayoutLength MinimumWidth
         {
@@ -295,6 +302,9 @@ namespace Tizen.NUI
         /// Sets the minimum height of the layout.<br />
         /// It is not guaranteed the layout will be able to achieve this minimum height (for example, if its parent
         /// layout constrains it with less available height).<br />
+        /// 1. if the owner's View.LayoutHeightSpecification has exact value, then that value overrides the minimum size.<br />
+        /// 2. If the owner's View.LayoutHeightSpecification is set to View.ChildLayoutData.WrapContent, then the view's height is set based on the suggested minimum height. (@see GetSuggestedMinimumHeight()).<br />
+        /// 3. If the owner's View.LayoutHeightSpecification is set to View.ChildLayoutData.MatchParent, then the parent height takes precedence over the minimum height.<br />
         /// </summary>
         public LayoutLength MinimumHeight
         {

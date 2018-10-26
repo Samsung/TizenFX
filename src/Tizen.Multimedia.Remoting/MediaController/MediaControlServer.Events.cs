@@ -16,6 +16,7 @@
 
 using Tizen.Applications;
 using System;
+using System.Collections.Generic;
 using Native = Interop.MediaControllerServer;
 
 namespace Tizen.Multimedia.Remoting
@@ -29,6 +30,8 @@ namespace Tizen.Multimedia.Remoting
         private static Native.ShuffleModeCommandReceivedCallback _shuffleModeCommandCallback;
         private static Native.RepeatModeCommandReceivedCallback _repeatModeCommandCallback;
         private static Native.CustomCommandReceivedCallback _customCommandCallback;
+        private static Native.SearchCommandReceivedCallback _searchCommandCallback;
+        private static Native.CommandCompletedCallback _commandCompletedCallback;
 
         /// <summary>
         /// Occurs when a client sends playback command.
@@ -73,6 +76,18 @@ namespace Tizen.Multimedia.Remoting
         /// <since_tizen> 5 </since_tizen>
         public static event EventHandler<CustomCommandReceivedEventArgs> CustomCommandReceived;
 
+        /// <summary>
+        /// Occurs when a client sends search command.
+        /// </summary>
+        /// <since_tizen> 5 </since_tizen>
+        public static event EventHandler<SearchCommandReceivedEventArgs> SearchCommandReceived;
+
+        /// <summary>
+        /// Occurs when a client sends custom command.
+        /// </summary>
+        /// <since_tizen> 5 </since_tizen>
+        internal static event EventHandler<CommandCompletedEventArgs> CommandCompleted;
+
         private static void RegisterPlaybackCommandReceivedEvent()
         {
             _playbackCommandCallback = (clientName, playbackCode, _) =>
@@ -88,7 +103,7 @@ namespace Tizen.Multimedia.Remoting
             _playbackActionCommandCallback = (clientName, requestId, playbackCommand, _) =>
             {
                 var command = new PlaybackCommand(playbackCommand.ToPublic());
-                command.SetClientInfo(clientName, requestId);
+                command.SetResponseInformation(clientName, requestId);
 
                 PlaybackActionCommandReceived?.Invoke(null, new PlaybackActionCommandReceivedEventArgs(command));
             };
@@ -101,7 +116,7 @@ namespace Tizen.Multimedia.Remoting
             _playbackPositionCommandCallback = (clientName, requestId, playbackPosition, _) =>
             {
                 var command = new PlaybackPositionCommand(playbackPosition);
-                command.SetClientInfo(clientName, requestId);
+                command.SetResponseInformation(clientName, requestId);
 
                 PlaybackPositionCommandReceived?.Invoke(null, new PlaybackPositionCommandReceivedEventArgs(command));
             };
@@ -114,7 +129,7 @@ namespace Tizen.Multimedia.Remoting
             _playlistCommandCallback = (clientName, requestId, playlistName, index, playbackCommand, playbackPosition, _) =>
             {
                 var command = new PlaylistCommand(playbackCommand.ToPublic(), playlistName, index, playbackPosition);
-                command.SetClientInfo(clientName, requestId);
+                command.SetResponseInformation(clientName, requestId);
 
                 PlaylistCommandReceived?.Invoke(null, new PlaylistCommandReceivedEventArgs(command));
             };
@@ -127,7 +142,7 @@ namespace Tizen.Multimedia.Remoting
             _shuffleModeCommandCallback = (clientName, requestId, mode, _) =>
             {
                 var command = new ShuffleModeCommand(mode == MediaControllerNativeShuffleMode.On ? true : false);
-                command.SetClientInfo(clientName, requestId);
+                command.SetResponseInformation(clientName, requestId);
 
                 ShuffleModeCommandReceived?.Invoke(null, new ShuffleModeCommandReceivedEventArgs(command));
             };
@@ -140,7 +155,7 @@ namespace Tizen.Multimedia.Remoting
             _repeatModeCommandCallback = (clientName, requestId, mode, _) =>
             {
                 var command = new RepeatModeCommand(mode.ToPublic());
-                command.SetClientInfo(clientName, requestId);
+                command.SetResponseInformation(clientName, requestId);
 
                 RepeatModeCommandReceived?.Invoke(null, new RepeatModeCommandReceivedEventArgs(command));
             };
@@ -162,12 +177,67 @@ namespace Tizen.Multimedia.Remoting
                     command = new CustomCommand(customCommand);
                 }
 
-                command.SetClientInfo(clientName, requestId);
+                command.SetResponseInformation(clientName, requestId);
 
                 CustomCommandReceived?.Invoke(null, new CustomCommandReceivedEventArgs(command));
             };
             Native.SetCustomCommandReceivedCb(Handle, _customCommandCallback).
                 ThrowIfError("Failed to init CustomCommandReceived event.");
+        }
+        
+        private static SearchCommand CreateSearchCommandReceivedEventArgs(IntPtr searchHandle)
+        {
+            var searchConditions = new List<MediaControlSearchCondition>();
+
+            Native.SearchItemCallback searchItemCallback = (type, category, keyword, bundleHandle, _) =>
+            {
+                Bundle bundle = null;
+
+                if (bundleHandle != IntPtr.Zero)
+                {
+                    bundle = new Bundle(new SafeBundleHandle(bundleHandle, true));
+                }
+
+                searchConditions.Add(new MediaControlSearchCondition(type, category, keyword, bundle));
+
+                return true;
+            };
+
+            Native.ForeachSearchCondition(searchHandle, searchItemCallback).
+                ThrowIfError("Failed to get search items.");
+
+            return new SearchCommand(searchConditions, searchHandle);
+        }
+
+        private static void RegisterSearchCommandReceivedEvent()
+        {
+            _searchCommandCallback = (clientName, requestId, searchHandle, _) =>
+            {
+                var command = CreateSearchCommandReceivedEventArgs(searchHandle);
+
+                command.SetResponseInformation(clientName, requestId);
+
+                SearchCommandReceived?.Invoke(null, new SearchCommandReceivedEventArgs(command));
+            };
+            Native.SetSearchCommandReceivedCb(Handle, _searchCommandCallback).
+                ThrowIfError("Failed to init SearchCommandReceived event.");
+        }
+
+        private static void RegisterCommandCompletedEvent()
+        {
+            _commandCompletedCallback = (clientName, requestId, result, bundleHandle, _) =>
+            {
+                if (bundleHandle != IntPtr.Zero)
+                {
+                    CommandCompleted?.Invoke(null, new CommandCompletedEventArgs(requestId, result, new Bundle(new SafeBundleHandle(bundleHandle, true))));
+                }
+                else
+                {
+                    CommandCompleted?.Invoke(null, new CommandCompletedEventArgs(requestId, result));
+                }
+            };
+            Native.SetEventReceivedCb(Handle, _commandCompletedCallback).
+                ThrowIfError("Failed to init RegisterEventCompletedEvent.");
         }
     }
 }

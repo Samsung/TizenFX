@@ -46,7 +46,9 @@ namespace Tizen.NUI.Xaml
                     if (resource.GetType().GetTypeInfo().IsGenericType && (resource.GetType().GetGenericTypeDefinition() == typeof(OnPlatform<>) || resource.GetType().GetGenericTypeDefinition() == typeof(OnIdiom<>))) {
                         // This is only there to support our backward compat story with pre 2.3.3 compiled Xaml project who was not providing TargetProperty
                         var method = resource.GetType().GetRuntimeMethod("op_Implicit", new[] { resource.GetType() });
-                        resource = method.Invoke(null, new[] { resource });
+                        if (method != null) {
+                            resource = method.Invoke(null, new[] { resource });
+                        }
                     }
                 }
                 return resource;
