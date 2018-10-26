@@ -34,6 +34,7 @@ namespace Tizen.NUI
 
         static internal bool DaliVersionMatchWithNUI()
         {
+            return true;
             int ver1 = -1;
             int ver2 = -1;
             int ver3 = -1;
