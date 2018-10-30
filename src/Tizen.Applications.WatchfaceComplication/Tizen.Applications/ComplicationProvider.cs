@@ -423,7 +423,7 @@ namespace Tizen.Applications.WatchfaceComplication
         /// <summary>
         /// Gets the received event target complication context.
         /// </summary>
-        /// <param name="e">The appcontrol received event args.</param>
+        /// <param name="recvAppCtrl">The appcontrol received event args.</param>
         /// <returns>The context of received event</returns>
         /// <exception cref="ArgumentException">Thrown when e is invalid.</exception>
         /// <exception cref="InvalidOperationException">Thrown when the method failed due to invalid operation.</exception>
@@ -439,10 +439,10 @@ namespace Tizen.Applications.WatchfaceComplication
         /// </example>
         /// <returns>Event target complication context</returns>
         /// <since_tizen> 5 </since_tizen>
-        public static Bundle GetEventContext(AppControlReceivedEventArgs e)
+        public static Bundle GetEventContext(ReceivedAppControl recvAppCtrl)
         {
             SafeBundleHandle bHandle;
-            ComplicationError err = Interop.WatchfaceComplication.GetEventContext(e.ReceivedAppControl.SafeAppControlHandle, out bHandle);
+            ComplicationError err = Interop.WatchfaceComplication.GetEventContext(recvAppCtrl.SafeAppControlHandle, out bHandle);
             if (err != ComplicationError.None)
             {
                 if (err == ComplicationError.NoData)
