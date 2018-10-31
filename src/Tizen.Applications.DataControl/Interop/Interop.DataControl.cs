@@ -300,6 +300,9 @@ internal static partial class Interop
         [DllImport(Libraries.DataControl, EntryPoint = "data_control_provider_send_error")]
         internal static extern ResultType SendError(int requestID, string error);
 
+        [DllImport(Libraries.DataControl, EntryPoint = "data_control_provider_get_client_appid")]
+        internal static extern ResultType GetClientAppId(int requestID, out string clientAppId);
+
         [DllImport(Libraries.DataControl, EntryPoint = "data_control_sql_insert")]
         internal static extern ResultType Insert(SafeDataControlHandle provider, SafeBundleHandle insertData, out int requestId);
 

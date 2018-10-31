@@ -42,6 +42,7 @@ namespace Tizen.Applications.DataControl
         private static Mutex _lock = new Mutex();
         private bool _disposed = false;
         private bool _isRunning = false;
+        private static string _latestClientAppId;
 
         /// <summary>
         /// Gets the data ID.
@@ -51,6 +52,22 @@ namespace Tizen.Applications.DataControl
         {
             get;
             private set;
+        }
+
+        /// <summary>
+        /// Gets the latest client appid.
+        /// </summary>
+        /// <since_tizen> 5 </since_tizen>
+        public string LatestClientAppId
+        {
+            get
+            {
+                return _latestClientAppId;
+            }
+            set
+            {
+                _latestClientAppId = value;
+            }
         }
 
         private static bool DataChangeListenFilter(IntPtr handlePtr, string consumerAppid, IntPtr userData)
@@ -126,6 +143,19 @@ namespace Tizen.Applications.DataControl
             return query;
         }
 
+        static internal ResultType UpdateLatestClient(int requestId)
+        {
+            string clientAppId;
+            ResultType ret = Interop.DataControl.GetClientAppId(requestId, out clientAppId);
+            if (ret != ResultType.Success)
+            {
+                Log.Error(LogTag, "Get client id fail " + ret.ToString());
+                return ResultType.IoError;
+            }
+            _latestClientAppId = clientAppId;
+            return ResultType.Success;
+        }
+
         private static void InsertRequest(int requestId, IntPtr handlePtr, IntPtr insertData, IntPtr userData)
         {
             Provider provider;
@@ -141,7 +171,11 @@ namespace Tizen.Applications.DataControl
                 return;
             }
 
-            result = provider.OnInsert(query, new Bundle(sbh));
+            ret = UpdateLatestClient(requestId);
+            if (ret != ResultType.Success)
+                return;
+
+                result = provider.OnInsert(query, new Bundle(sbh));
             if (result != null)
             {
                 if (result.Result)
@@ -191,6 +225,10 @@ namespace Tizen.Applications.DataControl
                 Log.Error(LogTag, "Provider not exist ");
                 return;
             }
+
+            ret = UpdateLatestClient(requestId);
+            if (ret != ResultType.Success)
+                return;
 
             result = provider.OnBulkInsert(queryList, bulkData);
             if (result != null)
@@ -434,6 +472,9 @@ namespace Tizen.Applications.DataControl
                 return;
             }
 
+            ret = UpdateLatestClient(requestId);
+            if (ret != ResultType.Success)
+                return;
             result = provider.OnSelect(query, where, _columnList, _columnList.Length, order, pageNum, countPerPage);
             if (result != null)
             {
@@ -505,6 +546,9 @@ namespace Tizen.Applications.DataControl
                 return;
             }
 
+            ret = UpdateLatestClient(requestId);
+            if (ret != ResultType.Success)
+                return;
             result = provider.OnUpdate(query, where, new Bundle(sbh));
             if (result != null)
             {
@@ -546,6 +590,9 @@ namespace Tizen.Applications.DataControl
                 return;
             }
 
+            ret = UpdateLatestClient(requestId);
+            if (ret != ResultType.Success)
+                return;
             result = provider.OnDelete(query, where);
             if (result != null)
             {
@@ -586,6 +633,9 @@ namespace Tizen.Applications.DataControl
                 return;
             }
 
+            ret = UpdateLatestClient(requestId);
+            if (ret != ResultType.Success)
+                return;
             result = provider.OnMapAdd(key, value);
             if (result != null)
             {
@@ -625,6 +675,9 @@ namespace Tizen.Applications.DataControl
                 return;
             }
 
+            ret = UpdateLatestClient(requestId);
+            if (ret != ResultType.Success)
+                return;
             result = provider.OnMapSet(key, oldValue, newValue);
             if (result != null)
             {
@@ -664,6 +717,9 @@ namespace Tizen.Applications.DataControl
                 return;
             }
 
+            ret = UpdateLatestClient(requestId);
+            if (ret != ResultType.Success)
+                return;
             result = provider.OnMapRemove(key, value);
             if (result != null)
             {
@@ -691,7 +747,7 @@ namespace Tizen.Applications.DataControl
             }
         }
 
-        private static void MapGetRequest(int requestID, IntPtr handlePtr, string key, IntPtr userData)
+        private static void MapGetRequest(int requestId, IntPtr handlePtr, string key, IntPtr userData)
         {
             Provider provider;
             MapGetResult result;
@@ -704,6 +760,9 @@ namespace Tizen.Applications.DataControl
                 return;
             }
 
+            ret = UpdateLatestClient(requestId);
+            if (ret != ResultType.Success)
+                return;
             result = provider.OnMapGet(key);
             if (result != null)
             {
@@ -712,7 +771,7 @@ namespace Tizen.Applications.DataControl
                     int valueCount = 0;
                     if (result.ValueList != null)
                         valueCount = result.ValueList.Length;
-                    ret = Interop.DataControl.SendMapGetResult(requestID, result.ValueList, valueCount);
+                    ret = Interop.DataControl.SendMapGetResult(requestId, result.ValueList, valueCount);
                     if (ret != ResultType.Success)
                     {
                         Log.Error(LogTag, "SendMapGetResult fail " + ret.ToString());
@@ -721,7 +780,7 @@ namespace Tizen.Applications.DataControl
                 }
                 else
                 {
-                    ret = Interop.DataControl.SendError(requestID, result.Result.ToString());
+                    ret = Interop.DataControl.SendError(requestId, result.Result.ToString());
                     if (ret != ResultType.Success)
                     {
                         Log.Error(LogTag, "SendError fail " + ret.ToString());
@@ -730,11 +789,11 @@ namespace Tizen.Applications.DataControl
             }
             else
             {
-                Log.Info(LogTag, $"MapRemoveRequest is null : {requestID.ToString()}");
+                Log.Info(LogTag, $"MapRemoveRequest is null : {requestId.ToString()}");
             }
         }
 
-        private static void MapBulkAddRequest(int requestID, IntPtr handlePtr, IntPtr bulkDataPtr, IntPtr userData)
+        private static void MapBulkAddRequest(int requestId, IntPtr handlePtr, IntPtr bulkDataPtr, IntPtr userData)
         {
             Provider provider;
             MapBulkAddResult result;
@@ -751,6 +810,9 @@ namespace Tizen.Applications.DataControl
                 queryList.Add(GetQuery(handlePtr, new SafeBundleHandle(bundleHandel, false), null, OperationType.Insert));
             }
 
+            ret = UpdateLatestClient(requestId);
+            if (ret != ResultType.Success)
+                return;
             provider = GetProvider(handlePtr);
             if (provider == null)
             {
@@ -763,7 +825,7 @@ namespace Tizen.Applications.DataControl
             {
                 if (result.Result)
                 {
-                    ret = Interop.DataControl.SendMapBulkAddResult(requestID, result.BulkResultData.SafeBulkDataHandle);
+                    ret = Interop.DataControl.SendMapBulkAddResult(requestId, result.BulkResultData.SafeBulkDataHandle);
                     if (ret != ResultType.Success)
                     {
                         Log.Error(LogTag, "SendMapBulkAddResult fail " + ret.ToString());
@@ -771,7 +833,7 @@ namespace Tizen.Applications.DataControl
                 }
                 else
                 {
-                    ret = Interop.DataControl.SendError(requestID, result.Result.ToString());
+                    ret = Interop.DataControl.SendError(requestId, result.Result.ToString());
                     if (ret != ResultType.Success)
                     {
                         Log.Error(LogTag, "SendError fail " + ret.ToString());
@@ -785,7 +847,7 @@ namespace Tizen.Applications.DataControl
             }
             else
             {
-                Log.Info(LogTag, $"MapBulkAddRequest is null : {requestID.ToString()}");
+                Log.Info(LogTag, $"MapBulkAddRequest is null : {requestId.ToString()}");
             }
         }
 
