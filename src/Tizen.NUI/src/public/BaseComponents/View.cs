@@ -1299,8 +1299,10 @@ namespace Tizen.NUI.BaseComponents
                 }
                 child.InternalParent = this;
 
-                // layoutSet flag is true when the View became a layout using the SetLayout API,
-                if (true == layoutSet && null == child.Layout) // Only give children a layout if parent an explicit container
+                // Only give children a layout if their parent is an explicit container or a pure View.
+                // Pure View meaning not derived from a View, e.g a Legacy container.
+                // layoutSet flag is true when the View became a layout using the SetLayout API
+                if ((true == layoutSet || GetType() == typeof(View)) && null == child.Layout)
                 {
                     Log.Info("NUI", "Add child Parent[" + Name + "] Layout set\n");
                     // If child is a View or explicitly set to require layouting then set child as a LayoutGroup.
@@ -5630,7 +5632,7 @@ namespace Tizen.NUI.BaseComponents
         {
             BackgroundResourceLoadedEventArgs e = new BackgroundResourceLoadedEventArgs();
             e.Status = (ResourceLoadingStatusType)NDalicManualPINVOKE.View_GetVisualResourceStatus(this.swigCPtr, Property.BACKGROUND);
-            
+
             if (_backgroundResourceLoadedEventHandler != null)
             {
                 _backgroundResourceLoadedEventHandler(this, e);
