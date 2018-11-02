@@ -67,7 +67,7 @@ cd TizenFX
 
 
 ## Tizen Project
-TizenFX is a part of the [Tizen project](https://www.tizen.org) and has been officially.
+TizenFX is a part of the [Tizen project](https://www.tizen.org).
 You can download the latest binaries with TizenFX from the link below :
 
 | Tizen Version     | Link |
