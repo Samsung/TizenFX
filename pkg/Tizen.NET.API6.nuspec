@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd">
   <metadata>
-    <id>Tizen.NET.API5</id>
+    <id>Tizen.NET.API6</id>
     <version>$fxversion$</version>
     <authors>Samsung Electronics</authors>
     <owners>Samsung Electronics</owners>
