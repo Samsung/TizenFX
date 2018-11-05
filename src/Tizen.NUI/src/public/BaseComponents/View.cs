@@ -1282,6 +1282,8 @@ namespace Tizen.NUI.BaseComponents
         /// <since_tizen> 4 </since_tizen>
         public override void Add(View child)
         {
+            Log.Info("NUI", "Add child:" + child.Name + " to " + Name + "\n");
+
             if (null == child)
             {
                 Tizen.Log.Fatal("NUI", "Child is null");
@@ -1297,15 +1299,24 @@ namespace Tizen.NUI.BaseComponents
                 }
                 child.InternalParent = this;
 
-                if (layoutSet == true && child.Layout == null) // Only give children a layout if parent an explicit container
+                // Only give children a layout if their parent is an explicit container or a pure View.
+                // Pure View meaning not derived from a View, e.g a Legacy container.
+                // layoutSet flag is true when the View became a layout using the SetLayout API
+                if ((true == layoutSet || GetType() == typeof(View)) && null == child.Layout)
                 {
+                    Log.Info("NUI", "Add child Parent[" + Name + "] Layout set\n");
+                    // If child is a View or explicitly set to require layouting then set child as a LayoutGroup.
+                    // If the child is derived from a View then it may be a legacy or existing container hence will do layouting itself.
                     if( child.GetType() == typeof(View) ||  true == child.LayoutingRequired )
                     {
+                        Log.Info("NUI", "Add child Creating LayoutGroup\n");
                         child.Layout = new LayoutGroup();
-
                     }
                     else
                     {
+                        // Adding child as a leaf, layouting will not propogate past this child.
+                        // Legacy containers will be a LayoutItems too and layout their children how they wish.
+                        Log.Info("NUI", "Add child Creating LayoutItem for " + child.Name + "\n");
                         child.Layout = new LayoutItem();
                     }
                 }
@@ -1470,7 +1481,7 @@ namespace Tizen.NUI.BaseComponents
             {
                 view.InternalParent = null;
             }
-            
+
             base.Dispose(type);
 
         }
@@ -3179,6 +3190,7 @@ namespace Tizen.NUI.BaseComponents
         /// This means by default others are impossible so it is recommended that NUI object typed properties are configured by their constructor with parameters. <br />
         /// For example, this code is working fine : view.Scale = new Vector3( 2.0f, 1.5f, 0.0f); <br />
         /// but this will not work! : view.Scale.X = 2.0f; view.Scale.Y = 1.5f; <br />
+        /// It may not match the current value in some cases, i.e. when the animation is progressing or the maximum or minimu size is set. <br />
         /// </remarks>
         /// <since_tizen> 3 </since_tizen>
         public Size2D Size2D
@@ -5291,6 +5303,7 @@ namespace Tizen.NUI.BaseComponents
         /// It is recommended that NUI object typed properties are configured by their constructor with parameters. <br />
         /// For example, this code is working fine : view.Size = new Size( 1.0f, 1.0f, 0.0f); <br />
         /// but this will not work! : view.Size.Width = 2.0f; view.Size.Height = 2.0f; <br />
+        /// It may not match the current value in some cases, i.e. when the animation is progressing or the maximum or minimu size is set. <br />
         /// </remarks>
         /// <since_tizen> 5 </since_tizen>
         public Size Size
@@ -5619,7 +5632,7 @@ namespace Tizen.NUI.BaseComponents
         {
             BackgroundResourceLoadedEventArgs e = new BackgroundResourceLoadedEventArgs();
             e.Status = (ResourceLoadingStatusType)NDalicManualPINVOKE.View_GetVisualResourceStatus(this.swigCPtr, Property.BACKGROUND);
-            
+
             if (_backgroundResourceLoadedEventHandler != null)
             {
                 _backgroundResourceLoadedEventHandler(this, e);
