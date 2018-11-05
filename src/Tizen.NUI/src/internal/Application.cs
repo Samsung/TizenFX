@@ -1489,7 +1489,7 @@ namespace Tizen.NUI
 
         public static Application GetApplicationFromPtr(global::System.IntPtr cPtr)
         {
-            if (cPtr == null)
+            if (cPtr == global::System.IntPtr.Zero)
             {
                 return null;
             }
