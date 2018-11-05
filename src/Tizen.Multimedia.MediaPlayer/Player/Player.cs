@@ -588,7 +588,7 @@ namespace Tizen.Multimedia
             {
                 NativeSetPlayPosition(position, accurate, nanoseconds, immediateResult ? null : cb);
 
-                if(immediateResult)
+                if (immediateResult)
                 {
                     taskCompletionSource.TrySetResult(true);
                 }
