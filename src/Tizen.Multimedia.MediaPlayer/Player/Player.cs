@@ -576,24 +576,23 @@ namespace Tizen.Multimedia
             ret.ThrowIfFailed(this, "Failed to set play position");
         }
 
+        internal static NativePlayer.SeekCompletedCallback seekCompletedCallback;
         private async Task SetPlayPosition(long position, bool accurate, bool nanoseconds)
         {
             var taskCompletionSource = new TaskCompletionSource<bool>(TaskCreationOptions.RunContinuationsAsynchronously);
 
             bool immediateResult = _source is MediaStreamSource;
 
-            NativePlayer.SeekCompletedCallback cb = _ => taskCompletionSource.TrySetResult(true);
+            seekCompletedCallback = _ => taskCompletionSource.TrySetResult(true);
 
-            using (var cbKeeper = ObjectKeeper.Get(cb))
+            NativeSetPlayPosition(position, accurate, nanoseconds, seekCompletedCallback);
+            if (immediateResult)
             {
-                NativeSetPlayPosition(position, accurate, nanoseconds, cb);
-                if (immediateResult)
-                {
-                    taskCompletionSource.TrySetResult(true);
-                }
-
-                await taskCompletionSource.Task;
+                taskCompletionSource.TrySetResult(true);
             }
+
+            await taskCompletionSource.Task;
+
         }
 
         /// <summary>
