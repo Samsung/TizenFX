@@ -488,7 +488,8 @@ namespace Tizen.NUI.BaseComponents
             }
             set
             {
-                SetValue(ResourceUrlProperty, value);
+                string tmp = (value != null ? value : "");
+                SetValue(ResourceUrlProperty, tmp);
                 NotifyPropertyChanged();
             }
         }
