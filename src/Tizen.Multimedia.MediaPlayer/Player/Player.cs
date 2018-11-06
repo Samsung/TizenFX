@@ -586,12 +586,12 @@ namespace Tizen.Multimedia
 
             using (var cbKeeper = ObjectKeeper.Get(cb))
             {
-                NativeSetPlayPosition(position, accurate, nanoseconds, cb);
+                NativeSetPlayPosition(position, accurate, nanoseconds, immediateResult ? null : cb);
+
                 if (immediateResult)
                 {
                     taskCompletionSource.TrySetResult(true);
                 }
-
                 await taskCompletionSource.Task;
             }
         }
