@@ -86,6 +86,7 @@ namespace Tizen.NUI
         /// <param name="bottom">Bottom position, relative to parent.</param>
         public void Layout(LayoutLength left, LayoutLength top, LayoutLength right, LayoutLength bottom)
         {
+            Log.Info("NUI", "LayoutItem Layout\n");
             layoutItemWrapperImpl.Layout(left, top, right, bottom);
         }
 
