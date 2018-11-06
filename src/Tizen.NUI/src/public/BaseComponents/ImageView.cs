@@ -31,25 +31,28 @@ namespace Tizen.NUI.BaseComponents
     {
         /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty ResourceUrlProperty = BindableProperty.Create("ResourceUrl", typeof(string), typeof(ImageView), string.Empty, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty ResourceUrlProperty = BindableProperty.Create(nameof(ImageView.ResourceUrl), typeof(string), typeof(ImageView), string.Empty, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var imageView = (ImageView)bindable;
-            if (newValue != null)
+            imageView._url = (string)newValue;
+
+            if (imageView._url != null)
             {
-                string url = (string)newValue;
-                if (imageView.IsCreateByXaml && url.Contains("*Resource*"))
+                if (imageView.IsCreateByXaml && imageView._url.Contains("*Resource*"))
                 {
                     string resource = Tizen.Applications.Application.Current.DirectoryInfo.Resource;
-                    url = url.Replace("*Resource*", resource);
+                    imageView._url = imageView._url.Replace("*Resource*", resource);
                 }
-                imageView._url = url;
-                imageView.UpdateImage();
             }
+            imageView.UpdateImage();
         },
         defaultValueCreator:(bindable) =>
         {
             var imageView = (ImageView)bindable;
-            Tizen.NUI.Object.GetProperty(imageView.swigCPtr, ImageView.Property.IMAGE).Get(out imageView._url);
+            if(imageView._url != null)
+            {
+                Tizen.NUI.Object.GetProperty(imageView.swigCPtr, ImageView.Property.IMAGE).Get(out imageView._url);
+            }
             return imageView._url;
         });
         /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
@@ -728,6 +731,10 @@ namespace Tizen.NUI.BaseComponents
                 { // just for normal image
                     SetProperty(ImageView.Property.IMAGE, new PropertyValue(_url));
                 }
+            }
+            else
+            {
+                SetProperty(ImageView.Property.IMAGE, new PropertyValue(""));
             }
         }
 
