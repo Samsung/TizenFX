@@ -290,9 +290,16 @@ namespace Tizen.NUI.Xaml
                 INode node;
                 if (!enode.Properties.TryGetValue(name, out node))
                 {
-                    throw new XamlParseException(
-                        String.Format("The Property {0} is required to create a {1} object.", propname, ctorInfo.DeclaringType.FullName),
-                        enode as IXmlLineInfo);
+                    String msg = "";
+                    if (propname != null)
+                    {
+                        msg = String.Format("The Property {0} is required to create a {1} object.", propname, ctorInfo.DeclaringType.FullName);
+                    }
+                    else
+                    {
+                        msg = "propname is null.";
+                    }
+                    throw new XamlParseException(msg, enode as IXmlLineInfo);
                 }
                 if (!enode.SkipProperties.Contains(name))
                     enode.SkipProperties.Add(name);
