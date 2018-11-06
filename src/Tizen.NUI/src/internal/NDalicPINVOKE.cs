@@ -68195,6 +68195,41 @@ namespace Tizen.NUI
             }
         }
 
+        [global::System.Runtime.InteropServices.DllImport(Graphics.GlesCSharpBinder, EntryPoint = "CSharp_Dali_GetEnvironmentVariable")]
+        public static extern string EnvironmentVariable_GetEnvironmentVariable_gl(string jarg1);
+
+        [global::System.Runtime.InteropServices.DllImport(Graphics.VulkanCSharpBinder, EntryPoint = "CSharp_Dali_GetEnvironmentVariable")]
+        public static extern string EnvironmentVariable_GetEnvironmentVariable_vulkan(string jarg1);
+
+        public static string EnvironmentVariable_GetEnvironmentVariable(string jarg1)
+        {
+            if (Tizen.NUI.Graphics.Backend == Tizen.NUI.Graphics.BackendType.Vulkan)
+            {
+                return EnvironmentVariable_GetEnvironmentVariable_vulkan(jarg1);
+            }
+            else
+            {
+                return EnvironmentVariable_GetEnvironmentVariable_gl(jarg1);
+            }
+        }
+
+        [global::System.Runtime.InteropServices.DllImport(Graphics.GlesCSharpBinder, EntryPoint = "CSharp_Dali_SetEnvironmentVariable")]
+        public static extern bool EnvironmentVariable_SetEnvironmentVariable_gl(string jarg1, string jarg2);
+
+        [global::System.Runtime.InteropServices.DllImport(Graphics.VulkanCSharpBinder, EntryPoint = "CSharp_Dali_SetEnvironmentVariable")]
+        public static extern bool EnvironmentVariable_SetEnvironmentVariable_vulkan(string jarg1, string jarg2);
+
+        public static bool EnvironmentVariable_SetEnvironmentVariable(string jarg1, string jarg2)
+        {
+            if (Tizen.NUI.Graphics.Backend == Tizen.NUI.Graphics.BackendType.Vulkan)
+            {
+                return EnvironmentVariable_SetEnvironmentVariable_vulkan(jarg1, jarg2);
+            }
+            else
+            {
+                return EnvironmentVariable_SetEnvironmentVariable_gl(jarg1, jarg2);
+            }
+        }
 
     }
 }

@@ -42,7 +42,11 @@ namespace Tizen.NUI.Binding
 
         public int Count
         {
-            get { return _list.Count; }
+            get 
+            {
+                lock (_list)
+                    return _list.Count; 
+            }
         }
 
         bool ICollection<T>.IsReadOnly
@@ -100,12 +104,15 @@ namespace Tizen.NUI.Binding
         {
             get
             {
-                ReadOnlyCollection<T> snap = _snapshot;
-                if (snap != null)
-                    return snap[index];
-
                 lock (_list)
+                {
+                    ReadOnlyCollection<T> snap = _snapshot;
+                    if (snap != null)
+                        return snap[index];
+
                     return _list[index];
+                }
+
             }
 
             set
