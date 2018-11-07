@@ -5314,7 +5314,6 @@ namespace Tizen.NUI.BaseComponents
             }
             set
             {
-            {
                 SetValue(SizeProperty, value);
                 // Set Specification so when layouts measure this View it matches the value set here.
                 // All Views are currently Layouts.
