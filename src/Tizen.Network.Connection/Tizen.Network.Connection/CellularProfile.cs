@@ -264,7 +264,7 @@ namespace Tizen.Network.Connection
 			{
 				Log.Debug(Globals.LogTag, "Get IsRoming");
 				bool value = false;
-				int ret = Interop.ConnectionCellularProfile.IsRoaming, out value);
+				int ret = Interop.ConnectionCellularProfile.IsRoaming(ProfileHandle, out value);
 				if ((ConnectionError)ret != ConnectionError.None)
 				{
 					Log.Error(Globals.LogTag, "It failed to get isRoaming, " + (ConnectionError)ret);
