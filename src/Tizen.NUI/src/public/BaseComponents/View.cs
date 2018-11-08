@@ -27,9 +27,11 @@ namespace Tizen.NUI.BaseComponents
     /// <since_tizen> 3 </since_tizen>
     public class View : Container, IResourcesProvider
     {
-        /// Flag to allow Layouting to be disabled for Views.
-        /// Once a View has a Layout set then any children added to Views from then on will receive
-        /// automatic Layouts.
+        /// <summary>
+        // Flag to allow Layouting to be disabled for Views.
+        // Once a View has a Layout set then any children added to Views from then on will receive
+        // automatic Layouts.
+        /// </summary>
         private static bool layoutingDisabled = true;
 
         /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
