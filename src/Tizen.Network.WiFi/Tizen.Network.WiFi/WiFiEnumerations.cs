@@ -199,7 +199,7 @@ namespace Tizen.Network.WiFi
     /// <summary>
     /// Enumeration for the Wi-Fi scanning state.
     /// </summary>
-    /// <since_tizen> 5 </since_tizen>
+    /// <since_tizen> 6 </since_tizen>
     public enum WiFiScanState
     {
         /// <summary>
