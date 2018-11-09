@@ -191,7 +191,7 @@ namespace Tizen.Network.WiFi
                         }
                         catch (Exception e)
                         {
-                            Log.Error(Globals.LogTag, "Exception on adding ScanStateChanged\n" + e.ToString());
+                            Log.Error(Globals.LogTag, "Exception on adding ScanStateChanged\n" + e);
                             return;
                         }
                     }
@@ -211,7 +211,7 @@ namespace Tizen.Network.WiFi
                         }
                         catch (Exception e)
                         {
-                            Log.Error(Globals.LogTag, "Exception on removing ScanStateChanged\n" + e.ToString());
+                            Log.Error(Globals.LogTag, "Exception on removing ScanStateChanged\n" + e);
                         }
                     }
                 }, null);
