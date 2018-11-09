@@ -21,7 +21,7 @@ namespace Tizen.Network.WiFi
     /// <summary>
     /// An extended EventArgs class which contains the changed scan state.
     /// </summary>
-    /// <since_tizen> 5 </since_tizen>
+    /// <since_tizen> 6 </since_tizen>
     public class ScanStateChangedEventArgs : EventArgs
     {
         private WiFiScanState _state = WiFiScanState.NotScanning;
@@ -34,7 +34,7 @@ namespace Tizen.Network.WiFi
         /// <summary>
         /// The Wi-Fi scan state.
         /// </summary>
-        /// <since_tizen> 5 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
         public WiFiScanState State
         {
             get

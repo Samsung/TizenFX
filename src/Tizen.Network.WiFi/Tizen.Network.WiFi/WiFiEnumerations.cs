@@ -205,12 +205,12 @@ namespace Tizen.Network.WiFi
         /// <summary>
         /// Scan is not running.
         /// </summary>
-        /// <since_tizen> 5 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
         NotScanning = 0,
         /// <summary>
         /// Scan is running.
         /// </summary>
-        /// <since_tizen> 5 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
         Scanning = 1
     }
 }
