@@ -317,7 +317,7 @@ namespace Tizen.Applications
         /// <summary>
         /// Gets main appid of the widget.
         /// </summary>
-        /// <since_tizen> 5 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
         /// <privilege>http://tizen.org/privilege/widget.viewer</privilege>
         /// <exception cref="ArgumentException">Thrown when failed because of an invalid argument.</exception>
         /// <exception cref="InvalidOperationException">Thrown in case of failed conditions.</exception>
@@ -351,7 +351,7 @@ namespace Tizen.Applications
         /// <summary>
         /// Gets package ID of the widget.
         /// </summary>
-        /// <since_tizen> 5 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
         /// <privilege>http://tizen.org/privilege/widget.viewer</privilege>
         /// <exception cref="ArgumentException">Thrown when failed because of an invalid argument.</exception>
         /// <exception cref="InvalidOperationException">Thrown in case of failed conditions.</exception>
