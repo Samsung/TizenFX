@@ -26,7 +26,13 @@ namespace Tizen.Applications
     public abstract class WidgetBase
     {
         internal IntPtr Handle;
-        internal string Id;
+
+        /// <summary>
+        /// ID for this widget instance.
+        /// It will be created after OnCreate method is invoked.
+        /// </summary>
+        /// <since_tizen> 6 </since_tizen>
+        protected string Id;
         private const string LogTag = "Tizen.Applications.WidgetBase";
 
         /// <summary>
@@ -35,6 +41,11 @@ namespace Tizen.Applications
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         protected Window Window;
+
+        public int test()
+        {
+            return 0;
+        }
 
         /// <summary>
         /// Delete type.
