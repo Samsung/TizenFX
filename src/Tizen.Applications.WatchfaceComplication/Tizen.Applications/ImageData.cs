@@ -22,10 +22,6 @@ namespace Tizen.Applications.WatchfaceComplication.Tizen.Applications
 {
     class ImageData : ComplicationData
     {
-        private string _imagePath;
-        private string _extraData;
-        private string _screenReaderText;
-
         /// <summary>
         /// Initializes the IconData class.
         /// </summary>
@@ -52,8 +48,8 @@ namespace Tizen.Applications.WatchfaceComplication.Tizen.Applications
         {
             if (imagePath == null)
                 ErrorFactory.ThrowException(ComplicationError.InvalidParam, "image path can not be null");
-            _imagePath = imagePath;
-            _extraData = extraData;
+            base.ImagePath = imagePath;
+            base.ExtraData = extraData;
         }
 
         /// <summary>
@@ -65,13 +61,13 @@ namespace Tizen.Applications.WatchfaceComplication.Tizen.Applications
         {
             get
             {
-                return _imagePath;
+                return base.ImagePath;
             }
             set
             {
                 if (value == null)
                     ErrorFactory.ThrowException(ComplicationError.InvalidParam, "image path can not be null");
-                _imagePath = value;
+                base.ImagePath = value;
             }
         }
 
@@ -79,15 +75,15 @@ namespace Tizen.Applications.WatchfaceComplication.Tizen.Applications
         /// The extra data.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
-        public string ExtraData
+        public new string ExtraData
         {
             get
             {
-                return _extraData;
+                return base.ExtraData;
             }
             set
             {
-                _extraData = value;
+                base.ExtraData = value;
             }
         }
 
@@ -95,32 +91,16 @@ namespace Tizen.Applications.WatchfaceComplication.Tizen.Applications
         /// The information about the screen reader text of complication data.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
-        public string ScreenReaderText
+        public new string ScreenReaderText
         {
             get
             {
-                return _screenReaderText;
+                return base.ScreenReaderText;
             }
             set
             {
-                _screenReaderText = value;
+                base.ScreenReaderText = value;
             }
-        }
-
-        internal override ComplicationError UpdateSharedData(IntPtr sharedData)
-        {
-            Bundle b = new Bundle();
-            ComplicationError err = ComplicationError.None;
-            err = Interop.WatchfaceComplication.ProviderSetDataType(sharedData, ComplicationTypes.Image);
-            if (err != ComplicationError.None)
-                return err;
-
-            err = Interop.WatchfaceComplication.ProviderSetImagePath(sharedData, _imagePath);
-            if (err != ComplicationError.None)
-                return err;
-            Interop.WatchfaceComplication.ProviderSetExtraData(sharedData, _extraData);
-            Interop.WatchfaceComplication.ProviderSetScreenReaderText(sharedData, _screenReaderText);
-            return ComplicationError.None;
         }
     }
 }

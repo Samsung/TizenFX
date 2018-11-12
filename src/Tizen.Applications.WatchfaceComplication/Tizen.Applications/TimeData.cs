@@ -26,11 +26,6 @@ namespace Tizen.Applications.WatchfaceComplication.Tizen.Applications
     /// <since_tizen> 6 </since_tizen>
     class TimeData : ComplicationData
     {
-        private long _timestamp;
-        private string _iconPath;
-        private string _extraData;
-        private string _screenReaderText;
-
         /// <summary>
         /// Initializes the ShortTextData class.
         /// </summary>
@@ -58,8 +53,9 @@ namespace Tizen.Applications.WatchfaceComplication.Tizen.Applications
         {
             if (timestamp < 0)
                 ErrorFactory.ThrowException(ComplicationError.InvalidParam, "Invalid value time(" + timestamp + ")");
-            _iconPath = iconPath;
-            _extraData = extraData;
+            Timestamp = timestamp;
+            IconPath = iconPath;
+            ExtraData = extraData;
         }
 
         /// <summary>
@@ -67,17 +63,17 @@ namespace Tizen.Applications.WatchfaceComplication.Tizen.Applications
         /// </summary>
         /// <exception cref="ArgumentException">Thrown when try to set invalid value.</exception>
         /// <since_tizen> 6 </since_tizen>
-        public long Timestamp
+        public new long Timestamp
         {
             get
             {
-                return _timestamp;
+                return base.Timestamp;
             }
             set
             {
                 if (value < 0)
                     ErrorFactory.ThrowException(ComplicationError.InvalidParam, "invalid time(" + value + ")");
-                _timestamp = value;
+                base.Timestamp = value;
             }
         }
 
@@ -85,15 +81,15 @@ namespace Tizen.Applications.WatchfaceComplication.Tizen.Applications
         /// The icon path data.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
-        public string IconPath
+        public new string IconPath
         {
             get
             {
-                return _iconPath;
+                return base.IconPath;
             }
             set
             {
-                _iconPath = value;
+                base.IconPath = value;
             }
         }
 
@@ -101,15 +97,15 @@ namespace Tizen.Applications.WatchfaceComplication.Tizen.Applications
         /// The extra data.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
-        public string ExtraData
+        public new string ExtraData
         {
             get
             {
-                return _extraData;
+                return base.ExtraData;
             }
             set
             {
-                _extraData = value;
+                base.ExtraData = value;
             }
         }
 
@@ -117,33 +113,17 @@ namespace Tizen.Applications.WatchfaceComplication.Tizen.Applications
         /// The information about the screen reader text of complication data.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
-        public string ScreenReaderText
+        public new string ScreenReaderText
         {
             get
             {
-                return _screenReaderText;
+                return base.ScreenReaderText;
             }
             set
             {
-                _screenReaderText = value;
+                base.ScreenReaderText = value;
             }
         }
 
-        internal override ComplicationError UpdateSharedData(IntPtr sharedData)
-        {
-            Bundle b = new Bundle();
-            ComplicationError err = ComplicationError.None;
-            err = Interop.WatchfaceComplication.ProviderSetDataType(sharedData, ComplicationTypes.Time);
-            if (err != ComplicationError.None)
-                return err;
-
-            err = Interop.WatchfaceComplication.ProviderSetTimestamp(sharedData, _timestamp);
-            if (err != ComplicationError.None)
-                return err;
-            Interop.WatchfaceComplication.ProviderSetIconPath(sharedData, _iconPath);
-            Interop.WatchfaceComplication.ProviderSetExtraData(sharedData, _extraData);
-            Interop.WatchfaceComplication.ProviderSetScreenReaderText(sharedData, _screenReaderText);
-            return ComplicationError.None;
-        }
     }
 }

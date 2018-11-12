@@ -26,12 +26,6 @@ namespace Tizen.Applications.WatchfaceComplication
     /// <since_tizen> 6 </since_tizen>
     public class ShortTextData : ComplicationData
     {
-        private string _shortText;
-        private string _iconPath;
-        private string _title;
-        private string _extraData;
-        private string _screenReaderText;
-
         /// <summary>
         /// Initializes the ShortTextData class.
         /// </summary>
@@ -60,10 +54,10 @@ namespace Tizen.Applications.WatchfaceComplication
         {
             if (shortText == null)
                 ErrorFactory.ThrowException(ComplicationError.InvalidParam, "fail to create short text");
-            _shortText = shortText;
-            _iconPath = iconPath;
-            _title = title;
-            _extraData = extraData;
+            ShortText = shortText;
+            IconPath = iconPath;
+            Title = title;
+            ExtraData = extraData;
         }
 
         /// <summary>
@@ -71,17 +65,17 @@ namespace Tizen.Applications.WatchfaceComplication
         /// </summary>
         /// <exception cref="ArgumentException">Thrown when try to set invalid value.</exception>
         /// <since_tizen> 6 </since_tizen>
-        public string ShortText
+        public new string ShortText
         {
             get
             {
-                return _shortText;
+                return base.ShortText;
             }
             set
             {
                 if (value == null)
                     ErrorFactory.ThrowException(ComplicationError.InvalidParam, "fail to create short text");
-                _shortText = value;
+                base.ShortText = value;
             }
         }
 
@@ -89,15 +83,15 @@ namespace Tizen.Applications.WatchfaceComplication
         /// The icon path data.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
-        public string IconPath
+        public new string IconPath
         {
             get
             {
-                return _iconPath;
+                return base.IconPath;
             }
             set
             {
-                _iconPath = value;
+                base.IconPath = value;
             }
         }
 
@@ -105,15 +99,15 @@ namespace Tizen.Applications.WatchfaceComplication
         /// The title data.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
-        public string Title
+        public new string Title
         {
             get
             {
-                return _title;
+                return base.Title;
             }
             set
             {
-                _title = value;
+                base.Title = value;
             }
         }
 
@@ -121,15 +115,15 @@ namespace Tizen.Applications.WatchfaceComplication
         /// The extra data.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
-        public string ExtraData
+        public new string ExtraData
         {
             get
             {
-                return _extraData;
+                return base.ExtraData;
             }
             set
             {
-                _extraData = value;
+                base.ExtraData = value;
             }
         }
 
@@ -137,34 +131,16 @@ namespace Tizen.Applications.WatchfaceComplication
         /// The information about the screen reader text of complication data.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
-        public string ScreenReaderText
+        public new string ScreenReaderText
         {
             get
             {
-                return _screenReaderText;
+                return base.ScreenReaderText;
             }
             set
             {
-                _screenReaderText = value;
+                base.ScreenReaderText = value;
             }
-        }
-
-        internal override ComplicationError UpdateSharedData(IntPtr sharedData)
-        {
-            Bundle b = new Bundle();
-            ComplicationError err = ComplicationError.None;
-            err = Interop.WatchfaceComplication.ProviderSetDataType(sharedData, ComplicationTypes.ShortText);
-            if (err != ComplicationError.None)
-                return err;
-
-            err = Interop.WatchfaceComplication.ProviderSetShortText(sharedData, _shortText);
-            if (err != ComplicationError.None)
-                return err;
-            Interop.WatchfaceComplication.ProviderSetIconPath(sharedData, _iconPath);
-            Interop.WatchfaceComplication.ProviderSetTitle(sharedData, _title);
-            Interop.WatchfaceComplication.ProviderSetExtraData(sharedData, _extraData);
-            Interop.WatchfaceComplication.ProviderSetScreenReaderText(sharedData, _screenReaderText);
-            return ComplicationError.None;
         }
     }
 }

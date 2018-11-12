@@ -26,15 +26,6 @@ namespace Tizen.Applications.WatchfaceComplication
     /// <since_tizen> 6 </since_tizen>
     class RangedValueData : ComplicationData
     {
-        private string _shortText;
-        private double _currentValue;
-        private double _minValue;
-        private double _maxValue;
-        private string _iconPath;
-        private string _title;
-        private string _extraData;
-        private string _screenReaderText;
-
         /// <summary>
         /// Initializes the ShortTextData class.
         /// </summary>
@@ -66,13 +57,13 @@ namespace Tizen.Applications.WatchfaceComplication
         {
             if (minValue > maxValue || currentValue < minValue || currentValue > maxValue)
                 ErrorFactory.ThrowException(ComplicationError.InvalidParam, "Invalid value range min(" + minValue + "), cur(" + currentValue + "), max(" + maxValue + ")");
-            _currentValue = currentValue;
-            _minValue = minValue;
-            _maxValue = maxValue;
-            _shortText = shortText;
-            _iconPath = iconPath;
-            _title = title;
-            _extraData = extraData;
+            base.RangeCurrent = currentValue;
+            base.RangeMin = minValue;
+            base.RangeMax = maxValue;
+            base.ShortText = shortText;
+            base.IconPath = iconPath;
+            base.Title = title;
+            base.ExtraData = extraData;
         }
 
         /// <summary>
@@ -80,21 +71,21 @@ namespace Tizen.Applications.WatchfaceComplication
         /// </summary>
         /// <exception cref="ArgumentException">Thrown when try to set invalid value.</exception>
         /// <since_tizen> 6 </since_tizen>
-        public double RangeCurrent
+        public new double RangeCurrent
         {
             get
             {
-                return _currentValue;
+                return base.RangeCurrent;
             }
             set
             {
-                if (value > _maxValue)
+                if (value > base.RangeMax)
                     ErrorFactory.ThrowException(ComplicationError.InvalidParam,
-                        "invalid min(" + value + "), current value can not bigger than max(" + _maxValue + ")");
-                if (value < _minValue)
+                        "invalid min(" + value + "), current value can not bigger than max(" + base.RangeMax + ")");
+                if (value < base.RangeMin)
                     ErrorFactory.ThrowException(ComplicationError.InvalidParam,
-                        "invalid min(" + value + "), min value can not smaller than min(" + _minValue + ")");
-                _currentValue = value;
+                        "invalid min(" + value + "), min value can not smaller than min(" + base.RangeMin + ")");
+                base.RangeCurrent = value;
             }
         }
 
@@ -103,18 +94,18 @@ namespace Tizen.Applications.WatchfaceComplication
         /// </summary>
         /// <exception cref="ArgumentException">Thrown when try to set invalid value.</exception>
         /// <since_tizen> 6 </since_tizen>
-        public double RangeMin
+        public new double RangeMin
         {
             get
             {
-                return _minValue;
+                return base.RangeMin;
             }
             set
             {
-                if (value > _currentValue)
+                if (value > base.RangeCurrent)
                     ErrorFactory.ThrowException(ComplicationError.InvalidParam,
-                        "invalid min(" + value + "), min value can not bigger than current(" + _currentValue + ")");
-                _minValue = value;
+                        "invalid min(" + value + "), min value can not bigger than current(" + base.RangeCurrent + ")");
+                base.RangeMin = value;
             }
         }
 
@@ -123,34 +114,37 @@ namespace Tizen.Applications.WatchfaceComplication
         /// </summary>
         /// <exception cref="ArgumentException">Thrown when try to set invalid value.</exception>
         /// <since_tizen> 6 </since_tizen>
-        public double RangeMax
+        public new double RangeMax
         {
             get
             {
-                return _maxValue;
+                return base.RangeMax;
             }
             set
             {
-                if (value < _currentValue)
+                if (value < base.RangeCurrent)
                     ErrorFactory.ThrowException(ComplicationError.InvalidParam,
-                        "invalid min(" + value + "), min value can not smaller than current(" + _currentValue + ")");
-                _maxValue = value;
+                        "invalid min(" + value + "), min value can not smaller than current(" + base.RangeCurrent + ")");
+                base.RangeMax = value;
             }
         }
 
         /// <summary>
         /// The short text data.
         /// </summary>
+        /// <exception cref="ArgumentException">Thrown when try to set invalid value.</exception>
         /// <since_tizen> 6 </since_tizen>
-        public string ShortText
+        public new string ShortText
         {
             get
             {
-                return _shortText;
+                return base.ShortText;
             }
             set
             {
-                _shortText = value;
+                if (value == null)
+                    ErrorFactory.ThrowException(ComplicationError.InvalidParam, "fail to create short text");
+                base.ShortText = value;
             }
         }
 
@@ -158,15 +152,15 @@ namespace Tizen.Applications.WatchfaceComplication
         /// The icon path data.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
-        public string IconPath
+        public new string IconPath
         {
             get
             {
-                return _iconPath;
+                return base.IconPath;
             }
             set
             {
-                _iconPath = value;
+                base.IconPath = value;
             }
         }
 
@@ -174,15 +168,15 @@ namespace Tizen.Applications.WatchfaceComplication
         /// The title data.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
-        public string Title
+        public new string Title
         {
             get
             {
-                return _title;
+                return base.Title;
             }
             set
             {
-                _title = value;
+                base.Title = value;
             }
         }
 
@@ -190,15 +184,15 @@ namespace Tizen.Applications.WatchfaceComplication
         /// The extra data.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
-        public string ExtraData
+        public new string ExtraData
         {
             get
             {
-                return _extraData;
+                return base.ExtraData;
             }
             set
             {
-                _extraData = value;
+                base.ExtraData = value;
             }
         }
 
@@ -206,33 +200,16 @@ namespace Tizen.Applications.WatchfaceComplication
         /// The information about the screen reader text of complication data.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
-        public string ScreenReaderText
+        public new string ScreenReaderText
         {
             get
             {
-                return _screenReaderText;
+                return base.ScreenReaderText;
             }
             set
             {
-                _screenReaderText = value;
+                base.ScreenReaderText = value;
             }
-        }
-
-        internal override ComplicationError UpdateSharedData(IntPtr sharedData)
-        {
-            Bundle b = new Bundle();
-            ComplicationError err = ComplicationError.None;
-            err = Interop.WatchfaceComplication.ProviderSetDataType(b.SafeBundleHandle.DangerousGetHandle(), ComplicationTypes.RangedValue);
-            if (err != ComplicationError.None)
-                return err;
-
-            Interop.WatchfaceComplication.ProviderSetLongText(sharedData, _shortText);
-            Interop.WatchfaceComplication.ProviderSetIconPath(sharedData, _iconPath);
-            Interop.WatchfaceComplication.ProviderSetTitle(sharedData, _title);
-            err = Interop.WatchfaceComplication.ProviderSetRangedValue(sharedData, _currentValue, _minValue, _maxValue);
-            Interop.WatchfaceComplication.ProviderSetExtraData(sharedData, _extraData);
-            Interop.WatchfaceComplication.ProviderSetScreenReaderText(sharedData, _screenReaderText);
-            return ComplicationError.None;
         }
     }
 }
