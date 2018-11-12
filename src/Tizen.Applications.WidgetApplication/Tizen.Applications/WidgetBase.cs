@@ -42,11 +42,6 @@ namespace Tizen.Applications
         /// <since_tizen> 3 </since_tizen>
         protected Window Window;
 
-        public int test()
-        {
-            return 0;
-        }
-
         /// <summary>
         /// Delete type.
         /// </summary>
