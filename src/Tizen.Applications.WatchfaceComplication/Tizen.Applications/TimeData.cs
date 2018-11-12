@@ -23,7 +23,7 @@ namespace Tizen.Applications.WatchfaceComplication.Tizen.Applications
     /// <summary>
     /// Represents the TimeData class for the Time type complication.
     /// </summary>
-    /// <since_tizen> 5.5 </since_tizen>
+    /// <since_tizen> 6 </since_tizen>
     class TimeData : ComplicationData
     {
         private long _timestamp;
@@ -53,7 +53,7 @@ namespace Tizen.Applications.WatchfaceComplication.Tizen.Applications
         ///     }
         /// </code>
         /// </example>
-        /// <since_tizen> 5.5 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
         public TimeData(long timestamp, string iconPath, string extraData)
         {
             if (timestamp < 0)
@@ -66,7 +66,7 @@ namespace Tizen.Applications.WatchfaceComplication.Tizen.Applications
         /// The information about the timestamp of complication data.
         /// </summary>
         /// <exception cref="ArgumentException">Thrown when try to set invalid value.</exception>
-        /// <since_tizen> 5.5 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
         public long Timestamp
         {
             get
@@ -84,7 +84,7 @@ namespace Tizen.Applications.WatchfaceComplication.Tizen.Applications
         /// <summary>
         /// The icon path data.
         /// </summary>
-        /// <since_tizen> 5.5 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
         public string IconPath
         {
             get
@@ -100,7 +100,7 @@ namespace Tizen.Applications.WatchfaceComplication.Tizen.Applications
         /// <summary>
         /// The extra data.
         /// </summary>
-        /// <since_tizen> 5.5 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
         public string ExtraData
         {
             get
@@ -116,7 +116,7 @@ namespace Tizen.Applications.WatchfaceComplication.Tizen.Applications
         /// <summary>
         /// The information about the screen reader text of complication data.
         /// </summary>
-        /// <since_tizen> 5.5 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
         public string ScreenReaderText
         {
             get

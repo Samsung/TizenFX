@@ -31,7 +31,7 @@ namespace Tizen.Applications.WatchfaceComplication
         ///     }
         /// </code>
         /// </example>
-        /// <since_tizen> 5.5 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
         public IconData(string iconPath, string extraData)
         {
             if (iconPath == null)
@@ -44,7 +44,7 @@ namespace Tizen.Applications.WatchfaceComplication
         /// The icon path data.
         /// </summary>
         /// <exception cref="ArgumentException">Thrown when try to set invalid value.</exception>
-        /// <since_tizen> 5.5 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
         public string IconPath
         {
             get
@@ -62,7 +62,7 @@ namespace Tizen.Applications.WatchfaceComplication
         /// <summary>
         /// The extra data.
         /// </summary>
-        /// <since_tizen> 5.5 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
         public string ExtraData
         {
             get
@@ -78,7 +78,7 @@ namespace Tizen.Applications.WatchfaceComplication
         /// <summary>
         /// The information about the screen reader text of complication data.
         /// </summary>
-        /// <since_tizen> 5.5 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
         public string ScreenReaderText
         {
             get

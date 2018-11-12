@@ -25,7 +25,7 @@ namespace Tizen.Applications.WatchfaceComplication
     /// <summary>
     /// Represents the Complication class for the watch application which using watchface complication.
     /// </summary>
-    /// <since_tizen> 5 </since_tizen>
+    /// <since_tizen> 6 </since_tizen>
     public abstract class Complication : IEditable, IDisposable
     {
         private int _complicationId;
@@ -74,7 +74,7 @@ namespace Tizen.Applications.WatchfaceComplication
         ///
         /// </code>
         /// </example>
-        /// <since_tizen> 5 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
         protected Complication(int complicationId, ComplicationTypes supportTypes, EventTypes supportEvents, string defaultProviderId, ComplicationTypes defaultType)
         {
             _complicationId = complicationId;
@@ -109,7 +109,7 @@ namespace Tizen.Applications.WatchfaceComplication
         /// <summary>
         /// Gets the support types.
         /// </summary>
-        /// <since_tizen> 5 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
         public ComplicationTypes SupportTypes
         {
             get
@@ -121,7 +121,7 @@ namespace Tizen.Applications.WatchfaceComplication
         /// <summary>
         /// Gets the support event types.
         /// </summary>
-        /// <since_tizen> 5 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
         public EventTypes SupportEvents
         {
             get
@@ -133,7 +133,7 @@ namespace Tizen.Applications.WatchfaceComplication
         /// <summary>
         /// The information of the editable's highlight.
         /// </summary>
-        /// <since_tizen> 5 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
         Highlight IEditable.Highlight
         {
             get
@@ -150,7 +150,7 @@ namespace Tizen.Applications.WatchfaceComplication
         /// <summary>
         /// The information of specific allowed provider id, support types list for complication
         /// </summary>
-        /// <since_tizen> 5 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
         public IEnumerable<(string allowedProviderId, ComplicationTypes supportTypes)> AllowedList
         {
             get
@@ -183,7 +183,7 @@ namespace Tizen.Applications.WatchfaceComplication
         /// <summary>
         /// The information of the complication's highlight.
         /// </summary>
-        /// <since_tizen> 5 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
         public Highlight Highlight
         {
             get
@@ -199,7 +199,7 @@ namespace Tizen.Applications.WatchfaceComplication
         /// <summary>
         /// The information of complication ID.
         /// </summary>
-        /// <since_tizen> 5 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
         public int ComplicationId
         {
             get
@@ -211,7 +211,7 @@ namespace Tizen.Applications.WatchfaceComplication
         /// <summary>
         /// The information of editable ID.
         /// </summary>
-        /// <since_tizen> 5 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
         int IEditable.EditableId
         {
             get
@@ -227,7 +227,7 @@ namespace Tizen.Applications.WatchfaceComplication
         /// <summary>
         /// The information of editable name.
         /// </summary>
-        /// <since_tizen> 5 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
         string IEditable.Name
         {
             get
@@ -253,7 +253,7 @@ namespace Tizen.Applications.WatchfaceComplication
         /// Bundle curData = comp.GetCurrentDataIndex();
         /// </code>
         /// </example>
-        /// <since_tizen> 5 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
         int IEditable.GetCurrentDataIndex()
         {
             int curIdx;
@@ -276,7 +276,7 @@ namespace Tizen.Applications.WatchfaceComplication
         /// Bundle curData = comp.GetCurrentData();
         /// </code>
         /// </example>
-        /// <since_tizen> 5 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
         Bundle IEditable.GetCurrentData()
         {
             SafeBundleHandle bundleHandle;
@@ -298,7 +298,7 @@ namespace Tizen.Applications.WatchfaceComplication
         /// string providerId = comp.GetCurrentProviderId();
         /// </code>
         /// </example>
-        /// <since_tizen> 5 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
         public string GetCurrentProviderId()
         {
             string providerId = "";
@@ -319,7 +319,7 @@ namespace Tizen.Applications.WatchfaceComplication
         /// ComplicationTypes type = comp.GetCurrentType();
         /// </code>
         /// </example>
-        /// <since_tizen> 5 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
         public ComplicationTypes GetCurrentType()
         {
             ComplicationTypes type;
@@ -356,7 +356,7 @@ namespace Tizen.Applications.WatchfaceComplication
         /// ComplicationError err = comp.SendUpdateRequest();
         /// </code>
         /// </example>
-        /// <since_tizen> 5 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
         public void SendUpdateRequest()
         {
             ComplicationError ret = Interop.WatchfaceComplication.SendUpdateRequest(_handle);
@@ -380,7 +380,7 @@ namespace Tizen.Applications.WatchfaceComplication
         /// }
         /// </code>
         /// </example>
-        /// <since_tizen> 5 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
         public void TransferEvent(EventTypes eventType)
         {
             ComplicationError ret = Interop.WatchfaceComplication.TransferEvent(_handle, eventType);
@@ -400,7 +400,7 @@ namespace Tizen.Applications.WatchfaceComplication
         /// ComplicationTypes type = Complication.GetType(dupData);
         /// </code>
         /// </example>
-        /// <since_tizen> 5 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
         public static ComplicationTypes GetType(Bundle data)
         {
             ComplicationTypes type;
@@ -441,7 +441,7 @@ namespace Tizen.Applications.WatchfaceComplication
         ///
         /// </code>
         /// </example>
-        /// <since_tizen> 5 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
         public static string GetShortText(Bundle data)
         {
             string shortText;
@@ -482,7 +482,7 @@ namespace Tizen.Applications.WatchfaceComplication
         ///
         /// </code>
         /// </example>
-        /// <since_tizen> 5 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
         public static string GetLongText(Bundle data)
         {
             string longText;
@@ -523,7 +523,7 @@ namespace Tizen.Applications.WatchfaceComplication
         ///
         /// </code>
         /// </example>
-        /// <since_tizen> 5 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
         public static string GetTitle(Bundle data)
         {
             string title;
@@ -564,7 +564,7 @@ namespace Tizen.Applications.WatchfaceComplication
         ///
         /// </code>
         /// </example>
-        /// <since_tizen> 5 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
         public static long GetTimestamp(Bundle data)
         {
             long timestamp;
@@ -605,7 +605,7 @@ namespace Tizen.Applications.WatchfaceComplication
         ///
         /// </code>
         /// </example>
-        /// <since_tizen> 5 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
         public static string GetImagePath(Bundle data)
         {
             string imagePath;
@@ -646,7 +646,7 @@ namespace Tizen.Applications.WatchfaceComplication
         ///
         /// </code>
         /// </example>
-        /// <since_tizen> 5 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
         public static double GetCurrentValueOfRange(Bundle data)
         {
             double curVal, minVal, maxVal;
@@ -687,7 +687,7 @@ namespace Tizen.Applications.WatchfaceComplication
         ///
         /// </code>
         /// </example>
-        /// <since_tizen> 5 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
         public static double GetMinValueOfRange(Bundle data)
         {
             double curVal, minVal, maxVal;
@@ -728,7 +728,7 @@ namespace Tizen.Applications.WatchfaceComplication
         ///
         /// </code>
         /// </example>
-        /// <since_tizen> 5 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
         public static double GetMaxValueOfRange(Bundle data)
         {
             double curVal, minVal, maxVal;
@@ -769,7 +769,7 @@ namespace Tizen.Applications.WatchfaceComplication
         ///
         /// </code>
         /// </example>
-        /// <since_tizen> 5 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
         public static string GetIconPath(Bundle data)
         {
             string iconPath;
@@ -810,7 +810,7 @@ namespace Tizen.Applications.WatchfaceComplication
         ///
         /// </code>
         /// </example>
-        /// <since_tizen> 5 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
         public static string GetExtraData(Bundle data)
         {
             string extraData;
@@ -851,7 +851,7 @@ namespace Tizen.Applications.WatchfaceComplication
         ///
         /// </code>
         /// </example>
-        /// <since_tizen> 5 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
         public static string GetScreenReaderText(Bundle data)
         {
             string screenReaderText;
@@ -868,7 +868,7 @@ namespace Tizen.Applications.WatchfaceComplication
         /// <param name="providerId">The updated provider's ID.</param>
         /// <param name="type">The updated type.</param>
         /// <param name="data">The updated data.</param>
-        /// <since_tizen> 5 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
         protected abstract void OnComplicationUpdated(string providerId, ComplicationTypes type, Bundle data);
 
         /// <summary>
@@ -877,7 +877,7 @@ namespace Tizen.Applications.WatchfaceComplication
         /// <param name="providerId">The updated provider's ID.</param>
         /// <param name="type">The updated type.</param>
         /// <param name="errorReason">The occured error.</param>
-        /// <since_tizen> 5 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
         protected virtual void OnComplicationError(string providerId, ComplicationTypes type, ComplicationError errorReason)
         {
         }

@@ -23,7 +23,7 @@ namespace Tizen.Applications.WatchfaceComplication
     /// <summary>
     /// Represents the ComplicationProvider class for the complication provider service application.
     /// </summary>
-    /// <since_tizen> 5 </since_tizen>
+    /// <since_tizen> 6 </since_tizen>
     public abstract class ComplicationProvider : IDisposable
     {
         private string _providerId;
@@ -53,7 +53,7 @@ namespace Tizen.Applications.WatchfaceComplication
         /// }
         /// </code>
         /// </example>
-        /// <since_tizen> 5 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
         protected ComplicationProvider(string providerId)
         {
             ComplicationError err = Interop.WatchfaceComplication.AddUpdateRequestedCallback(providerId, DataUpdateRequested, IntPtr.Zero);
@@ -73,7 +73,7 @@ namespace Tizen.Applications.WatchfaceComplication
         /// <summary>
         /// Gets the provider ID.
         /// </summary>
-        /// <since_tizen> 5 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
         public string Id
         {
             get
@@ -103,7 +103,7 @@ namespace Tizen.Applications.WatchfaceComplication
         /// <param name="reqestAppId">The application ID of application which sent update request.</param>
         /// <param name="type">The requested type.</param>
         /// <param name="contextData">The complication's context which is set by complication setup application.</param>
-        /// <since_tizen> 5 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
         protected abstract ComplicationData OnDataUpdateRequested(string reqestAppId, ComplicationTypes type, Bundle contextData);
 
         /// <summary>
@@ -112,7 +112,7 @@ namespace Tizen.Applications.WatchfaceComplication
         /// <privilege>http://tizen.org/privilege/datasharing</privilege>
         /// <exception cref="UnauthorizedAccessException">Thrown when the application does not have privilege to access this method.</exception>
         /// <exception cref="NotSupportedException">Thrown when the watchface complication is not supported.</exception>
-        /// <since_tizen> 5 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
         public void NotifyUpdate()
         {
             ComplicationError err = Interop.WatchfaceComplication.NotifyUpdate(_providerId);
@@ -142,7 +142,7 @@ namespace Tizen.Applications.WatchfaceComplication
         /// </code>
         /// </example>
         /// <returns>Complication event type</returns>
-        /// <since_tizen> 5 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
         public static EventTypes GetEventType(ReceivedAppControl recvAppCtrl)
         {
             EventTypes type;
@@ -170,7 +170,7 @@ namespace Tizen.Applications.WatchfaceComplication
         /// </code>
         /// </example>
         /// <returns>Event target provider ID</returns>
-        /// <since_tizen> 5 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
         public static string GetEventProviderId(ReceivedAppControl recvAppCtrl)
         {
             string providerId = string.Empty;
@@ -198,7 +198,7 @@ namespace Tizen.Applications.WatchfaceComplication
         /// </code>
         /// </example>
         /// <returns>Event target complication type</returns>
-        /// <since_tizen> 5 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
         public static ComplicationTypes GetEventComplicationType(ReceivedAppControl recvAppCtrl)
         {
             ComplicationTypes type;
@@ -226,7 +226,7 @@ namespace Tizen.Applications.WatchfaceComplication
         /// </code>
         /// </example>
         /// <returns>Event target complication context</returns>
-        /// <since_tizen> 5 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
         public static Bundle GetEventContext(ReceivedAppControl recvAppCtrl)
         {
             SafeBundleHandle bHandle;

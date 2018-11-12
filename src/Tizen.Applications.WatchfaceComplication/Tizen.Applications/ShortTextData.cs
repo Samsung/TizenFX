@@ -23,7 +23,7 @@ namespace Tizen.Applications.WatchfaceComplication
     /// <summary>
     /// Represents the ShortTextData class for the ShortText type complication.
     /// </summary>
-    /// <since_tizen> 5.5 </since_tizen>
+    /// <since_tizen> 6 </since_tizen>
     public class ShortTextData : ComplicationData
     {
         private string _shortText;
@@ -55,7 +55,7 @@ namespace Tizen.Applications.WatchfaceComplication
         ///     }
         /// </code>
         /// </example>
-        /// <since_tizen> 5.5 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
         public ShortTextData(string shortText, string iconPath, string title, string extraData)
         {
             if (shortText == null)
@@ -70,7 +70,7 @@ namespace Tizen.Applications.WatchfaceComplication
         /// The short text data.
         /// </summary>
         /// <exception cref="ArgumentException">Thrown when try to set invalid value.</exception>
-        /// <since_tizen> 5.5 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
         public string ShortText
         {
             get
@@ -88,7 +88,7 @@ namespace Tizen.Applications.WatchfaceComplication
         /// <summary>
         /// The icon path data.
         /// </summary>
-        /// <since_tizen> 5.5 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
         public string IconPath
         {
             get
@@ -104,7 +104,7 @@ namespace Tizen.Applications.WatchfaceComplication
         /// <summary>
         /// The title data.
         /// </summary>
-        /// <since_tizen> 5.5 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
         public string Title
         {
             get
@@ -120,7 +120,7 @@ namespace Tizen.Applications.WatchfaceComplication
         /// <summary>
         /// The extra data.
         /// </summary>
-        /// <since_tizen> 5.5 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
         public string ExtraData
         {
             get
@@ -136,7 +136,7 @@ namespace Tizen.Applications.WatchfaceComplication
         /// <summary>
         /// The information about the screen reader text of complication data.
         /// </summary>
-        /// <since_tizen> 5.5 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
         public string ScreenReaderText
         {
             get

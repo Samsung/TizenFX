@@ -23,7 +23,7 @@ namespace Tizen.Applications.WatchfaceComplication
     /// <summary>
     /// Represents the ComplicationProviderSetup class for the complication provider setup application.
     /// </summary>
-    /// <since_tizen> 5 </since_tizen>
+    /// <since_tizen> 6 </since_tizen>
     public static class ComplicationProviderSetup
     {
         /// <summary>
@@ -47,7 +47,7 @@ namespace Tizen.Applications.WatchfaceComplication
         /// </code>
         /// </example>
         /// <returns>Event target complication type</returns>
-        /// <since_tizen> 5 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
         public static bool IsEditing(ReceivedAppControl recvAppCtrl)
         {
             bool isEditing = false;
@@ -82,7 +82,7 @@ namespace Tizen.Applications.WatchfaceComplication
         /// </code>
         /// </example>
         /// <returns>Event target complication type</returns>
-        /// <since_tizen> 5 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
         public static void ReplyToEditor(ReceivedAppControl recvAppCtrl, Bundle context)
         {
             ComplicationError err = Interop.WatchfaceComplication.SetupReplyToEditor(recvAppCtrl.SafeAppControlHandle, context.SafeBundleHandle);
@@ -113,7 +113,7 @@ namespace Tizen.Applications.WatchfaceComplication
         /// </code>
         /// </example>
         /// <returns>Setup context</returns>
-        /// <since_tizen> 5 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
         public static Bundle GetContext(ReceivedAppControl recvAppCtrl)
         {
             SafeBundleHandle context;

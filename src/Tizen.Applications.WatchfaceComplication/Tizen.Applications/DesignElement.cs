@@ -23,7 +23,7 @@ namespace Tizen.Applications.WatchfaceComplication
     /// <summary>
     /// Represents the DesignElement class for the watch application.
     /// </summary>
-    /// <since_tizen> 5 </since_tizen>
+    /// <since_tizen> 6 </since_tizen>
     public abstract class DesignElement : IEditable
     {
 
@@ -81,7 +81,7 @@ namespace Tizen.Applications.WatchfaceComplication
         /// ColorDesign colorEdit = new ColorDesign(candidatesList, curIdx, "COLOR", _complicationBtn);
         /// </code>
         /// </example>
-        /// <since_tizen> 5 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
         protected DesignElement(IEnumerable<Bundle> candidates, int currentDataIndex, string editableName)
         {
             if (candidates == null || currentDataIndex < 0)
@@ -98,7 +98,7 @@ namespace Tizen.Applications.WatchfaceComplication
         /// <summary>
         /// The information of Editable ID.
         /// </summary>
-        /// <since_tizen> 5 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
         int IEditable.EditableId
         {
             get
@@ -114,7 +114,7 @@ namespace Tizen.Applications.WatchfaceComplication
         /// <summary>
         /// The information of Editable candidates.
         /// </summary>
-        /// <since_tizen> 5 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
         public IEnumerable<Bundle> Candidates
         {
             get
@@ -126,7 +126,7 @@ namespace Tizen.Applications.WatchfaceComplication
         /// <summary>
         /// The information of Editable name.
         /// </summary>
-        /// <since_tizen> 5 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
         string IEditable.Name
         {
             get
@@ -142,7 +142,7 @@ namespace Tizen.Applications.WatchfaceComplication
         /// <summary>
         /// The information of editable's highlight.
         /// </summary>
-        /// <since_tizen> 5 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
         Highlight IEditable.Highlight
         {
             get
@@ -158,7 +158,7 @@ namespace Tizen.Applications.WatchfaceComplication
         /// <summary>
         /// The information of design element's highlight.
         /// </summary>
-        /// <since_tizen> 5 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
         public Highlight Highlight
         {
             get
@@ -175,7 +175,7 @@ namespace Tizen.Applications.WatchfaceComplication
         /// Gets the editable's currently selected data index of candidate list.
         /// </summary>
         /// <returns>The currently selected data index of candidate list.</returns>
-        /// <since_tizen> 5 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
         int IEditable.GetCurrentDataIndex()
         {
             return _currentDataIndex;
@@ -190,7 +190,7 @@ namespace Tizen.Applications.WatchfaceComplication
         /// Gets the editable's currently selected data.
         /// </summary>
         /// <returns>The currently selected data.</returns>
-        /// <since_tizen> 5 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
         Bundle IEditable.GetCurrentData()
         {
             int idx = 0;
@@ -213,7 +213,7 @@ namespace Tizen.Applications.WatchfaceComplication
         /// </summary>
         /// <param name="selectedIdx">The selected candidate index.</param>
         /// <param name="state">The update state.</param>
-        /// <since_tizen> 5 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
         protected abstract void OnDesignUpdated(int selectedIdx, State state);
     }
 }

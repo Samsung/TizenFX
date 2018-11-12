@@ -23,7 +23,7 @@ namespace Tizen.Applications.WatchfaceComplication
     /// <summary>
     /// Represents the RangedValueData class for the RangedValue type complication.
     /// </summary>
-    /// <since_tizen> 5.5 </since_tizen>
+    /// <since_tizen> 6 </since_tizen>
     class RangedValueData : ComplicationData
     {
         private string _shortText;
@@ -61,7 +61,7 @@ namespace Tizen.Applications.WatchfaceComplication
         ///     }
         /// </code>
         /// </example>
-        /// <since_tizen> 5.5 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
         public RangedValueData(double currentValue, double minValue, double maxValue, string shortText, string iconPath, string title, string extraData)
         {
             if (minValue > maxValue || currentValue < minValue || currentValue > maxValue)
@@ -79,7 +79,7 @@ namespace Tizen.Applications.WatchfaceComplication
         /// The information about the current range value of complication data.
         /// </summary>
         /// <exception cref="ArgumentException">Thrown when try to set invalid value.</exception>
-        /// <since_tizen> 5 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
         public double RangeCurrent
         {
             get
@@ -102,7 +102,7 @@ namespace Tizen.Applications.WatchfaceComplication
         /// The information about the min range value of complication data.
         /// </summary>
         /// <exception cref="ArgumentException">Thrown when try to set invalid value.</exception>
-        /// <since_tizen> 5 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
         public double RangeMin
         {
             get
@@ -122,7 +122,7 @@ namespace Tizen.Applications.WatchfaceComplication
         /// The information about the max range value of complication data.
         /// </summary>
         /// <exception cref="ArgumentException">Thrown when try to set invalid value.</exception>
-        /// <since_tizen> 5 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
         public double RangeMax
         {
             get
@@ -141,7 +141,7 @@ namespace Tizen.Applications.WatchfaceComplication
         /// <summary>
         /// The short text data.
         /// </summary>
-        /// <since_tizen> 5.5 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
         public string ShortText
         {
             get
@@ -157,7 +157,7 @@ namespace Tizen.Applications.WatchfaceComplication
         /// <summary>
         /// The icon path data.
         /// </summary>
-        /// <since_tizen> 5.5 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
         public string IconPath
         {
             get
@@ -173,7 +173,7 @@ namespace Tizen.Applications.WatchfaceComplication
         /// <summary>
         /// The title data.
         /// </summary>
-        /// <since_tizen> 5.5 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
         public string Title
         {
             get
@@ -189,7 +189,7 @@ namespace Tizen.Applications.WatchfaceComplication
         /// <summary>
         /// The extra data.
         /// </summary>
-        /// <since_tizen> 5.5 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
         public string ExtraData
         {
             get
@@ -205,7 +205,7 @@ namespace Tizen.Applications.WatchfaceComplication
         /// <summary>
         /// The information about the screen reader text of complication data.
         /// </summary>
-        /// <since_tizen> 5.5 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
         public string ScreenReaderText
         {
             get

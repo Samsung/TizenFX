@@ -23,7 +23,7 @@ namespace Tizen.Applications.WatchfaceComplication
     /// <summary>
     /// Represents the Highlight class for the editable.
     /// </summary>
-    /// <since_tizen> 5 </since_tizen>
+    /// <since_tizen> 6 </since_tizen>
     public class Highlight
     {
         private IntPtr _raw = IntPtr.Zero;
@@ -43,7 +43,7 @@ namespace Tizen.Applications.WatchfaceComplication
         /// <param name="h">The highlight geometry h.</param>
         /// <exception cref="ArgumentException">Thrown when some parameter are invalid.</exception>
         /// <exception cref="InvalidOperationException">Thrown when the method failed due to invalid operation.</exception>
-        /// <since_tizen> 5 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
         public Highlight(ShapeType type, int x, int y, int w, int h)
         {
             _type = type;
@@ -93,7 +93,7 @@ namespace Tizen.Applications.WatchfaceComplication
         /// The x coordinate.
         /// </summary>
         /// <exception cref="ArgumentException">Thrown when some parameter are invalid.</exception>
-        /// <since_tizen> 5 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
         public int X
         {
             get
@@ -112,7 +112,7 @@ namespace Tizen.Applications.WatchfaceComplication
         /// The y coordinate.
         /// </summary>
         /// <exception cref="ArgumentException">Thrown when some parameter are invalid.</exception>
-        /// <since_tizen> 5 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
         public int Y
         {
             get
@@ -131,7 +131,7 @@ namespace Tizen.Applications.WatchfaceComplication
         /// The width of editable.
         /// </summary>
         /// <exception cref="ArgumentException">Thrown when some parameter are invalid.</exception>
-        /// <since_tizen> 5 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
         public int W
         {
             get
@@ -150,7 +150,7 @@ namespace Tizen.Applications.WatchfaceComplication
         /// The height of editable.
         /// </summary>
         /// <exception cref="ArgumentException">Thrown when some parameter are invalid.</exception>
-        /// <since_tizen> 5 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
         public int H
         {
             get
@@ -168,7 +168,7 @@ namespace Tizen.Applications.WatchfaceComplication
         /// <summary>
         /// The shape of editable.
         /// </summary>
-        /// <since_tizen> 5 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
         public ShapeType ShapeType
         {
             get

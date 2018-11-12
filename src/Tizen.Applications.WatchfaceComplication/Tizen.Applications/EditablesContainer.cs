@@ -22,7 +22,7 @@ namespace Tizen.Applications.WatchfaceComplication
     /// <summary>
     /// Represents the EditablesContainer class for the watch application.
     /// </summary>
-    /// <since_tizen> 5 </since_tizen>
+    /// <since_tizen> 6 </since_tizen>
     public abstract class EditablesContainer : IDisposable
     {
         internal IList<DesignElement> _deList = new List<DesignElement>();
@@ -38,7 +38,7 @@ namespace Tizen.Applications.WatchfaceComplication
         /// <exception cref="ArgumentException">Thrown when some parameter are invalid.</exception>
         /// <exception cref="InvalidOperationException">Thrown when the method failed due to invalid operation.</exception>
         /// <exception cref="NotSupportedException">Thrown when the watchface complication is not supported.</exception>
-        /// <since_tizen> 5 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
         protected EditablesContainer()
         {
             ComplicationError err = Interop.WatchfaceComplication.AddEditReadyCallback(EditReady, IntPtr.Zero);
@@ -60,7 +60,7 @@ namespace Tizen.Applications.WatchfaceComplication
         /// </summary>
         /// <exception cref="ArgumentException">Thrown when the invalid parameter is passed.</exception>
         /// <exception cref="InvalidOperationException">Thrown when the method failed due to invalid operation.</exception>
-        /// <since_tizen> 5 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
         public void Add(DesignElement de, int editableId)
         {
             if (de == null)
@@ -78,7 +78,7 @@ namespace Tizen.Applications.WatchfaceComplication
         /// </summary>
         /// <exception cref="ArgumentException">Thrown when the invalid parameter is passed.</exception>
         /// <exception cref="InvalidOperationException">Thrown when the method failed due to invalid operation.</exception>
-        /// <since_tizen> 5 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
         public void Add(Complication comp, int editableId)
         {
             if (comp == null)
@@ -101,7 +101,7 @@ namespace Tizen.Applications.WatchfaceComplication
         ///     myContainer.Remove(_colorEditId);
         /// </code>
         /// </example>
-        /// <since_tizen> 5 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
         public void Remove(int editableId)
         {
             foreach (DesignElement de in _deList)
@@ -159,7 +159,7 @@ namespace Tizen.Applications.WatchfaceComplication
         /// </summary>
         /// <param name="editableId">The target editable Id.</param>
         /// <returns>true if the editable is already exists in edit list, ortherwise false</returns>
-        /// <since_tizen> 5 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
         public bool IsExist(int editableId)
         {
             return (GetEditable(editableId) != null);
@@ -212,7 +212,7 @@ namespace Tizen.Applications.WatchfaceComplication
         /// }
         /// </code>
         /// </example>
-        /// <since_tizen> 5 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
         public void RequestEdit()
         {
             Log.Debug(_logTag, "request edit");
@@ -263,7 +263,7 @@ namespace Tizen.Applications.WatchfaceComplication
         /// <summary>
         /// Overrides this method if you want to handle the behavior when the editor is ready to edit.
         /// </summary>
-        /// <since_tizen> 5 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
         protected abstract void OnEditReady(string editorId);
 
         /// <summary>
@@ -304,7 +304,7 @@ namespace Tizen.Applications.WatchfaceComplication
         /// }
         /// </code>
         /// </example>
-        /// <since_tizen> 5 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
         public static Bundle LoadCurrentData(int editableId)
         {
             SafeBundleHandle handle;
