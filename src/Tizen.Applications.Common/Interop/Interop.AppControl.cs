@@ -132,7 +132,8 @@ internal static partial class Interop
         [DllImport(Libraries.AppControl, EntryPoint = "app_control_reply_to_launch_request")]
         internal static extern ErrorCode ReplyToLaunchRequest(SafeAppControlHandle reply, SafeAppControlHandle request, int result);
 
-        [DllImport(Libraries.AppControl, EntryPoint = "app_control_enable_app_started_result_event")]
+        [DllImport(Libraries.AppControl, EntryPoint = "app_control_enable_app_started_result_
+            ")]
         internal static extern ErrorCode EnableAppStartedResultEvent(SafeAppControlHandle handle);
     }
 }

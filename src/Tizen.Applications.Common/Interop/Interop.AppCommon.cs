@@ -71,6 +71,9 @@ internal static partial class Interop
         [DllImport(Libraries.AppCommon, EntryPoint = "app_get_version")]
         internal static extern ErrorCode AppGetVersion(out string version);
 
+        [DllImport(Libraries.AppCommon, EntryPoint = "app_get_device_orientation")]
+        internal static extern DeviceOrientation AppGetDeviceOrientation();
+
         [DllImport(Libraries.AppCommon, EntryPoint = "app_event_get_low_memory_status")]
         internal static extern ErrorCode AppEventGetLowMemoryStatus(IntPtr handle, out LowMemoryStatus status);
 

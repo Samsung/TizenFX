@@ -83,6 +83,47 @@ namespace Tizen.Applications
         }
 
         /// <summary>
+        /// Gets the current device orientation.
+        /// </summary>
+        /// <since_tizen> 6 </since_tizen>
+        public DeviceOrientation CurrentDeviceOrientation
+        {
+            get
+            {
+                return Interop.AppCommon.AppGetDeviceOrientation();
+            }
+        }
+
+        /// <summary>
+        /// Gets the name of current application.
+        /// </summary>
+        /// <since_tizen> 6 </since_tizen>
+        public string Name
+        {
+            get
+            {
+                string name;
+                Interop.AppCommon.AppGetName(out name);
+                return name;
+            }
+        }
+
+        /// <summary>
+        /// Gets the version of current application.
+        /// </summary>
+        /// <since_tizen> 6 </since_tizen>
+        public string Version
+        {
+            get
+            {
+                string version;
+                Interop.AppCommon.AppGetVersion(out version);
+                return version;
+            }
+        }
+
+
+        /// <summary>
         /// Runs the application's main loop.
         /// </summary>
         /// <param name="args">Arguments from commandline.</param>

@@ -128,7 +128,8 @@ namespace Tizen.Applications
         /// Can be launched by interested System-Event.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        public const string LaunchOnEvent = "http://tizen.org/appcontrol/operation/launch_on_event";
+        public const string LaunchOnEvent = "http://tizen.org/appcontrol/operation/launch_on_
+            ";
 
         /// <summary>
         /// Adds an item.
