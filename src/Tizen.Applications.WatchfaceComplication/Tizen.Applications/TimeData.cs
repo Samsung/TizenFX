@@ -39,7 +39,7 @@ namespace Tizen.Applications.WatchfaceComplication
         ///     {
         ///         if (type == ComplicationTypes.Time)
         ///         {
-        ///             return new TimeData(10, "icon path", "extra");
+        ///             return new TimeData((Int32)(DateTime.UtcNow.Subtract(new DateTime(1970, 1, 1))).TotalSeconds, "icon path", "extra");
         ///         }
         ///         else if (type == ComplicationTypes.LongText)
         ///         {
