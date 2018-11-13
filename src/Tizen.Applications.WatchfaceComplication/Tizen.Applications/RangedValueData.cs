@@ -24,10 +24,10 @@ namespace Tizen.Applications.WatchfaceComplication
     /// Represents the RangedValueData class for the RangedValue type complication.
     /// </summary>
     /// <since_tizen> 6 </since_tizen>
-    class RangedValueData : ComplicationData
+    public class RangedValueData : ComplicationData
     {
         /// <summary>
-        /// Initializes the ShortTextData class.
+        /// Initializes the RangedValueData class.
         /// </summary>
         /// <param name="currentValue">The current value.</param>
         /// <param name="minValue">The minimum value.</param>

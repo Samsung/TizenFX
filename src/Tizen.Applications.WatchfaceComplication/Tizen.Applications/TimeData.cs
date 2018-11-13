@@ -18,16 +18,16 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace Tizen.Applications.WatchfaceComplication.Tizen.Applications
+namespace Tizen.Applications.WatchfaceComplication
 {
     /// <summary>
     /// Represents the TimeData class for the Time type complication.
     /// </summary>
     /// <since_tizen> 6 </since_tizen>
-    class TimeData : ComplicationData
+    public class TimeData : ComplicationData
     {
         /// <summary>
-        /// Initializes the ShortTextData class.
+        /// Initializes the TimeData class.
         /// </summary>
         /// <param name="timestamp">The timestamp value.</param>
         /// <param name="iconPath">The icon path.</param>

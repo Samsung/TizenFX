@@ -37,7 +37,6 @@ namespace Tizen.Applications.WatchfaceComplication
         private string _screenReaderText;
         private string _title;
         private ComplicationTypes _type;
-        private Bundle _compData = new Bundle();
         private const string LogTag = "WatchfaceComplication";
 
         internal string ShortText
@@ -49,7 +48,6 @@ namespace Tizen.Applications.WatchfaceComplication
             set
             {
                 _shortText = value;
-                Interop.WatchfaceComplication.ProviderSetIconPath(_compData.SafeBundleHandle.DangerousGetHandle(), _shortText);
             }
         }
 
@@ -62,7 +60,6 @@ namespace Tizen.Applications.WatchfaceComplication
             set
             {
                 _longText = value;
-                Interop.WatchfaceComplication.ProviderSetLongText(_compData.SafeBundleHandle.DangerousGetHandle(), _longText);
             }
         }
 
@@ -75,7 +72,6 @@ namespace Tizen.Applications.WatchfaceComplication
             set
             {
                 _iconPath = value;
-                Interop.WatchfaceComplication.ProviderSetIconPath(_compData.SafeBundleHandle.DangerousGetHandle(), _iconPath);
             }
         }
 
@@ -88,7 +84,6 @@ namespace Tizen.Applications.WatchfaceComplication
             set
             {
                 _imagePath = value;
-                Interop.WatchfaceComplication.ProviderSetImagePath(_compData.SafeBundleHandle.DangerousGetHandle(), _imagePath);
             }
         }
 
@@ -101,7 +96,6 @@ namespace Tizen.Applications.WatchfaceComplication
             set
             {
                 _title = value;
-                Interop.WatchfaceComplication.ProviderSetTitle(_compData.SafeBundleHandle.DangerousGetHandle(), _title);
             }
         }
 
@@ -114,7 +108,6 @@ namespace Tizen.Applications.WatchfaceComplication
             set
             {
                 _extraData = value;
-                Interop.WatchfaceComplication.ProviderSetExtraData(_compData.SafeBundleHandle.DangerousGetHandle(), _extraData);
             }
         }
 
@@ -127,7 +120,6 @@ namespace Tizen.Applications.WatchfaceComplication
             set
             {
                 _screenReaderText = value;
-                Interop.WatchfaceComplication.ProviderSetScreenReaderText(_compData.SafeBundleHandle.DangerousGetHandle(), _screenReaderText);
             }
         }
 
@@ -140,7 +132,6 @@ namespace Tizen.Applications.WatchfaceComplication
             set
             {
                 _timestamp = value;
-                Interop.WatchfaceComplication.ProviderSetTimestamp(_compData.SafeBundleHandle.DangerousGetHandle(), _timestamp);
             }
         }
 
@@ -153,7 +144,6 @@ namespace Tizen.Applications.WatchfaceComplication
             set
             {
                 _currentValue = value;
-                Interop.WatchfaceComplication.ProviderSetRangedValue(_compData.SafeBundleHandle.DangerousGetHandle(), _currentValue, _minValue, _maxValue);
             }
         }
 
@@ -166,7 +156,6 @@ namespace Tizen.Applications.WatchfaceComplication
             set
             {
                 _minValue = value;
-                Interop.WatchfaceComplication.ProviderSetRangedValue(_compData.SafeBundleHandle.DangerousGetHandle(), _currentValue, _minValue, _maxValue);
             }
         }
 
@@ -179,7 +168,6 @@ namespace Tizen.Applications.WatchfaceComplication
             set
             {
                 _maxValue = value;
-                Interop.WatchfaceComplication.ProviderSetRangedValue(_compData.SafeBundleHandle.DangerousGetHandle(), _currentValue, _minValue, _maxValue);
             }
         }
 
@@ -192,14 +180,13 @@ namespace Tizen.Applications.WatchfaceComplication
             set
             {
                 _type = value;
-                Interop.WatchfaceComplication.ProviderSetDataType(_compData.SafeBundleHandle.DangerousGetHandle(), _type);
             }
         }
 
-        private bool IsDataValid()
+        private bool IsDataValid(IntPtr sharedData)
         {
             bool isValid = false;
-            ComplicationError err = Interop.WatchfaceComplication.ProviderSharedDataIsValid(_compData.SafeBundleHandle.DangerousGetHandle(), out isValid);
+            ComplicationError err = Interop.WatchfaceComplication.ProviderSharedDataIsValid(sharedData, out isValid);
             if (err != ComplicationError.None)
                 ErrorFactory.ThrowException(err, "fail to check shared data validation");
             return isValid;
@@ -207,22 +194,52 @@ namespace Tizen.Applications.WatchfaceComplication
 
         internal ComplicationError UpdateSharedData(IntPtr sharedData)
         {
+            ComplicationError err;
+            switch (_type)
+            {
+                case ComplicationTypes.ShortText:
+                    err = Interop.WatchfaceComplication.ProviderSetShortText(sharedData, _shortText);
+                    Interop.WatchfaceComplication.ProviderSetIconPath(sharedData, _iconPath);
+                    Interop.WatchfaceComplication.ProviderSetTitle(sharedData, _title);
+                    Interop.WatchfaceComplication.ProviderSetExtraData(sharedData, _extraData);
+                    break;
+                case ComplicationTypes.LongText:
+                    err = Interop.WatchfaceComplication.ProviderSetLongText(sharedData, _longText);
+                    Interop.WatchfaceComplication.ProviderSetIconPath(sharedData, _iconPath);
+                    Interop.WatchfaceComplication.ProviderSetTitle(sharedData, _title);
+                    Interop.WatchfaceComplication.ProviderSetExtraData(sharedData, _extraData);
+                    break;
+                case ComplicationTypes.RangedValue:
+                    Interop.WatchfaceComplication.ProviderSetLongText(sharedData, _shortText);
+                    Interop.WatchfaceComplication.ProviderSetIconPath(sharedData, _iconPath);
+                    Interop.WatchfaceComplication.ProviderSetTitle(sharedData, _title);
+                    err = Interop.WatchfaceComplication.ProviderSetRangedValue(sharedData, _currentValue, _minValue, _maxValue);
+                    Interop.WatchfaceComplication.ProviderSetExtraData(sharedData, _extraData);
+                    break;
+                case ComplicationTypes.Time:
+                    err = Interop.WatchfaceComplication.ProviderSetTimestamp(sharedData, _timestamp);
+                    Interop.WatchfaceComplication.ProviderSetIconPath(sharedData, _iconPath);
+                    Interop.WatchfaceComplication.ProviderSetExtraData(sharedData, _extraData);
+                    break;
+                case ComplicationTypes.Icon:
+                    err = Interop.WatchfaceComplication.ProviderSetIconPath(sharedData, _iconPath);
+                    Interop.WatchfaceComplication.ProviderSetExtraData(sharedData, _extraData);
+                    break;
+                case ComplicationTypes.Image:
+                    err = Interop.WatchfaceComplication.ProviderSetImagePath(sharedData, _imagePath);
+                    Interop.WatchfaceComplication.ProviderSetExtraData(sharedData, _extraData);
+                    break;
+            }
+            Interop.WatchfaceComplication.ProviderSetScreenReaderText(sharedData, _screenReaderText);
             try
             {
-                if (!IsDataValid())
+                if (!IsDataValid(sharedData))
                     return ComplicationError.IO;
             }
             catch (Exception ex)
             {
                 Log.Error(LogTag, "valid check fail : " + ex.ToString());
                 return ComplicationError.IO;
-            }
-
-
-            Bundle shared = new Bundle(new SafeBundleHandle(sharedData, false));
-            foreach (string key in _compData.Keys)
-            {
-                shared.AddItem(key, _compData.GetItem(key)?.ToString());
             }
 
             return ComplicationError.None;

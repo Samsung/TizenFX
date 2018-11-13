@@ -4,7 +4,11 @@ using System.Text;
 
 namespace Tizen.Applications.WatchfaceComplication
 {
-    class IconData : ComplicationData
+    /// <summary>
+    /// Represents the IconData class for the Icon type complication.
+    /// </summary>
+    /// <since_tizen> 6 </since_tizen>
+    public class IconData : ComplicationData
     {
         /// <summary>
         /// Initializes the IconData class.

@@ -18,12 +18,16 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace Tizen.Applications.WatchfaceComplication.Tizen.Applications
+namespace Tizen.Applications.WatchfaceComplication
 {
-    class ImageData : ComplicationData
+    /// <summary>
+    /// Represents the ImageData class for the Image type complication.
+    /// </summary>
+    /// <since_tizen> 6 </since_tizen>
+    public class ImageData : ComplicationData
     {
         /// <summary>
-        /// Initializes the IconData class.
+        /// Initializes the ImageData class.
         /// </summary>
         /// <param name="imagePath">The image path.</param>
         /// <param name="extraData">The extra data.</param>
