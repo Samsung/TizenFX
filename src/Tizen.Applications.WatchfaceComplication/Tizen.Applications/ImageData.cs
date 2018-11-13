@@ -48,8 +48,9 @@ namespace Tizen.Applications.WatchfaceComplication.Tizen.Applications
         {
             if (imagePath == null)
                 ErrorFactory.ThrowException(ComplicationError.InvalidParam, "image path can not be null");
-            base.ImagePath = imagePath;
-            base.ExtraData = extraData;
+            Type = ComplicationTypes.Image;
+            ImagePath = imagePath;
+            ExtraData = extraData;
         }
 
         /// <summary>
@@ -57,7 +58,7 @@ namespace Tizen.Applications.WatchfaceComplication.Tizen.Applications
         /// </summary>
         /// <exception cref="ArgumentException">Thrown when try to set invalid value.</exception>
         /// <since_tizen> 6 </since_tizen>
-        public string ImagePath
+        public new string ImagePath
         {
             get
             {

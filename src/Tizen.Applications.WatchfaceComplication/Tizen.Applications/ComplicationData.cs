@@ -183,6 +183,19 @@ namespace Tizen.Applications.WatchfaceComplication
             }
         }
 
+        internal ComplicationTypes Type
+        {
+            get
+            {
+                return _type;
+            }
+            set
+            {
+                _type = value;
+                Interop.WatchfaceComplication.ProviderSetDataType(_compData.SafeBundleHandle.DangerousGetHandle(), _type);
+            }
+        }
+
         private bool IsDataValid()
         {
             bool isValid = false;

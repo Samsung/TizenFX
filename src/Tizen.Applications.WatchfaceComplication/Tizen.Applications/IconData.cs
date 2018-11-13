@@ -32,8 +32,9 @@ namespace Tizen.Applications.WatchfaceComplication
         {
             if (iconPath == null)
                 ErrorFactory.ThrowException(ComplicationError.InvalidParam, "icon path can not be null");
-            base.IconPath = iconPath;
-            base.ExtraData = extraData;
+            Type = ComplicationTypes.Icon;
+            IconPath = iconPath;
+            ExtraData = extraData;
         }
 
         /// <summary>

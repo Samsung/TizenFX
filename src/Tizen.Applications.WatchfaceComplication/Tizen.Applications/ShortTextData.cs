@@ -54,6 +54,7 @@ namespace Tizen.Applications.WatchfaceComplication
         {
             if (shortText == null)
                 ErrorFactory.ThrowException(ComplicationError.InvalidParam, "fail to create short text");
+            Type = ComplicationTypes.ShortText;
             ShortText = shortText;
             IconPath = iconPath;
             Title = title;

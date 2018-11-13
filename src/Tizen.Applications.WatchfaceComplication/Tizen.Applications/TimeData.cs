@@ -53,6 +53,7 @@ namespace Tizen.Applications.WatchfaceComplication.Tizen.Applications
         {
             if (timestamp < 0)
                 ErrorFactory.ThrowException(ComplicationError.InvalidParam, "Invalid value time(" + timestamp + ")");
+            Type = ComplicationTypes.Time;
             Timestamp = timestamp;
             IconPath = iconPath;
             ExtraData = extraData;
