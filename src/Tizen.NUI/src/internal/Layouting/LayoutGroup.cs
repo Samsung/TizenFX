@@ -126,7 +126,7 @@ namespace Tizen.NUI
         /// <param name="top"> Top position, relative to parent.</param>
         /// <param name="right">Right position, relative to parent.</param>
         /// <param name="bottom">Bottom position, relative to parent.</param>
-        protected virtual void OnLayout(bool changed, LayoutLength left, LayoutLength top, LayoutLength right, LayoutLength bottom)
+        protected override void OnLayout(bool changed, LayoutLength left, LayoutLength top, LayoutLength right, LayoutLength bottom)
         {
             Log.Info("NUI", "OnLayout\n");
 
