@@ -59,6 +59,14 @@ namespace Tizen.Multimedia
         }
 
         /// <summary>
+        /// Finalizes an instance of the AudioStreamPolicy class.
+        /// </summary>
+        ~AudioStreamPolicy()
+        {
+            Dispose(false);
+        }
+
+        /// <summary>
         /// Occurs when the state of focus that belongs to the current AudioStreamPolicy is changed.
         /// </summary>
         /// <remarks>
@@ -311,6 +319,7 @@ namespace Tizen.Multimedia
         public void Dispose()
         {
             Dispose(true);
+            GC.SuppressFinalize(this);
         }
 
         /// <summary>
@@ -320,12 +329,14 @@ namespace Tizen.Multimedia
         /// <since_tizen> 3 </since_tizen>
         protected virtual void Dispose(bool disposing)
         {
-            if (!_disposed)
+            if (_disposed)
             {
-                if (_handle != null)
-                {
-                    _handle.Dispose();
-                }
+                return;
+            }
+
+            if (_handle != null)
+            {
+                _handle.Dispose();
                 _disposed = true;
             }
         }
