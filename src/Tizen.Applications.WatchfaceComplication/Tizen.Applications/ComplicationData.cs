@@ -194,7 +194,7 @@ namespace Tizen.Applications.WatchfaceComplication
 
         internal ComplicationError UpdateSharedData(IntPtr sharedData)
         {
-            ComplicationError err;
+            ComplicationError err = ComplicationError.None;
             switch (_type)
             {
                 case ComplicationTypes.ShortText:
@@ -238,11 +238,11 @@ namespace Tizen.Applications.WatchfaceComplication
             }
             catch (Exception ex)
             {
-                Log.Error(LogTag, "valid check fail : " + ex.ToString());
+                Log.Error(LogTag, "valid check fail : " + ex);
                 return ComplicationError.IO;
             }
 
-            return ComplicationError.None;
+            return err;
         }
     }
 }
