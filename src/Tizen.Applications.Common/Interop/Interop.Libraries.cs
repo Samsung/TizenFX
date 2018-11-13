@@ -20,9 +20,7 @@ internal static partial class Interop
     {
         public const string AppCommon = "libcapi-appfw-app-common.so.0";
         public const string AppControl = "libcapi-appfw-app-control.so.0";
-        public const string AppEvent = "libcapi-appfw-
-            
-            .so.0";
+        public const string AppEvent = "libcapi-appfw-event.so.0";
         public const string AppManager = "libcapi-appfw-app-manager.so.0";
         public const string Bundle = "libbundle.so.0";
         public const string Rua = "librua.so.0";
