@@ -261,9 +261,8 @@ namespace Tizen.Applications
         /// <exception cref="ArgumentException">Thrown when failed of invalid argument.</exception>
         /// <exception cref="UnauthorizedAccessException">Thrown when failed because of permission denied.</exception>
         /// <exception cref="InvalidOperationException">Thrown when failed because of system error.</exception>
-        /// <privilege>http://tizen.org/privilege/appmanager.kill</privilege>
-        /// <since_tizen> 4 </since_tizen>
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <privilege>http://tizen.org/privilege/appmanager.kill.bgapp</privilege>
+        /// <since_tizen> 6 </since_tizen>
         public void TerminateBgApp()
         {
             err = Interop.ApplicationManager.AppManagerRequestTerminateBgApp(_contextHandle);

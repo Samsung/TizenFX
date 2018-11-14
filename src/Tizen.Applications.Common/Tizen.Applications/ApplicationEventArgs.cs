@@ -21,12 +21,12 @@ namespace Tizen.Applications
     /// An extended EventArgs class, which contains event data.
     /// </summary>
     /// <since_tizen> 6 </since_tizen>
-    public class EventSystemArgs : EventArgs
+    public class ApplicationEventArgs : EventArgs
     {
         /// <summary>
         /// The message passed from the event system.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        public Bundle EventSystemData { get; internal set; }
+        public Bundle EventData { get; internal set; }
     }
 }
