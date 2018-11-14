@@ -256,6 +256,32 @@ namespace Tizen.Applications
         }
 
         /// <summary>
+        /// Terminates the background application.
+        /// </summary>
+        /// <exception cref="ArgumentException">Thrown when failed of invalid argument.</exception>
+        /// <exception cref="UnauthorizedAccessException">Thrown when failed because of permission denied.</exception>
+        /// <exception cref="InvalidOperationException">Thrown when failed because of system error.</exception>
+        /// <privilege>http://tizen.org/privilege/appmanager.kill</privilege>
+        /// <since_tizen> 4 </since_tizen>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void TerminateBgApp()
+        {
+            err = Interop.ApplicationManager.AppManagerRequestTerminateBgApp(_contextHandle);
+            if (err != Interop.ApplicationManager.ErrorCode.None)
+            {
+                switch (err)
+                {
+                    case Interop.ApplicationManager.ErrorCode.InvalidParameter:
+                        throw new ArgumentException("Invalid argument.");
+                    case Interop.ApplicationManager.ErrorCode.PermissionDenied:
+                        throw new UnauthorizedAccessException("Permission denied.");
+                    default:
+                        throw new InvalidOperationException("Invalid Operation.");
+                }
+            }
+        }
+
+        /// <summary>
         /// Resumes the running application.
         /// </summary>
         /// <exception cref="ArgumentException">Thrown when failed of invalid argument.</exception>

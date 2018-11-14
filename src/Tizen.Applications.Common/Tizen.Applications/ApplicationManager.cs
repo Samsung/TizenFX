@@ -347,6 +347,24 @@ namespace Tizen.Applications
             return isRunning;
         }
 
+        /// <summary>
+        /// Returns the application id.
+        /// </summary>
+        /// <param name="processId">The application pid.</param>
+        /// <returns>Returns the application id.</returns>
+        /// <exception cref="ArgumentException">Thrown when the given parameter is invalid.</exception>
+        /// <since_tizen> 6 </since_tizen>
+        public static string GetAppId(int processId)
+        {
+            string appid;
+            Interop.ApplicationManager.ErrorCode err = Interop.ApplicationManager.AppManagerGetAppId(processId, out appid);
+            if (err != Interop.ApplicationManager.ErrorCode.None)
+            {
+                throw ApplicationManagerErrorFactory.GetException(err, "fail to get appid(" + processId + ")");
+            }
+            return appid;
+        }
+
         private static void RegisterApplicationChangedEvent()
         {
             Interop.ApplicationManager.ErrorCode err = Interop.ApplicationManager.ErrorCode.None;
