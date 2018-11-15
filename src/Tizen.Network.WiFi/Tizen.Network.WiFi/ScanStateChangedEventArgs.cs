@@ -24,10 +24,10 @@ namespace Tizen.Network.WiFi
     /// <since_tizen> 6 </since_tizen>
     public class ScanStateChangedEventArgs : EventArgs
     {
-	internal ScanStateChangedEventArgs(WiFiScanState s)
+        internal ScanStateChangedEventArgs(WiFiScanState s)
         {
-		State = s;
-        }
+            State = s;
+    	}
 
         /// <summary>
         /// The Wi-Fi scan state.
