@@ -341,9 +341,7 @@ namespace Tizen.Network.WiFi
         {
             _scanChangedCallback = (int scanState, IntPtr userData) =>
             {
-                WiFiScanState state = (WiFiScanState)scanState;
-                ScanStateChangedEventArgs e = new ScanStateChangedEventArgs(state);
-                _scanStateChanged.SafeInvoke(null, e);
+                _scanStateChanged?.(null, new ScanStateChangedEventArgs((WiFiScanState)scanState));
             };
             int ret = Interop.WiFi.SetScanStateChangedCallback(GetSafeHandle(), _scanChangedCallback, IntPtr.Zero);
             if (ret != (int)WiFiError.None)
