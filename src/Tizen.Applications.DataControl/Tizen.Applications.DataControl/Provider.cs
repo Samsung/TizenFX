@@ -43,6 +43,7 @@ namespace Tizen.Applications.DataControl
         private bool _disposed = false;
         private bool _isRunning = false;
         private static string _currentClientAppId;
+        private static string _currentProviderId;
 
         /// <summary>
         /// Gets the data ID.
@@ -64,9 +65,21 @@ namespace Tizen.Applications.DataControl
             {
                 return _currentClientAppId;
             }
-            set
+        }
+
+        /// <summary>
+        /// Gets the current provider ID.
+        /// </summary>
+        /// <since_tizen> 6 </since_tizen>
+        public string CurrentProviderId
+        {
+            get
             {
-                _currentClientAppId = value;
+                return _currentProviderId;
+            }
+            internal set
+            {
+                _currentProviderId = value;
             }
         }
 
@@ -882,12 +895,15 @@ namespace Tizen.Applications.DataControl
             Interop.DataControl.SafeDataControlHandle handle = new Interop.DataControl.SafeDataControlHandle(handlePtr, false);
             Provider provider = null;
             string dataID;
+            string providerID;
 
+            Interop.DataControl.DataControlGetProviderId(handle, out providerID);
             Interop.DataControl.DataControlGetDataId(handle, out dataID);
             if (dataID != null && _providerDict.ContainsKey(dataID))
             {
                 provider = _providerDict[dataID];
                 provider._nativeHandle = handlePtr;
+                provider.CurrentProviderId = providerID;
                 Log.Info(LogTag, "DataID :" + dataID + ", hash code : " + provider.GetHashCode().ToString());
             }
             handle.Dispose();
