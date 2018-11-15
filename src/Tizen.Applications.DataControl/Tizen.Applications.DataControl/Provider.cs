@@ -42,8 +42,8 @@ namespace Tizen.Applications.DataControl
         private static Mutex _lock = new Mutex();
         private bool _disposed = false;
         private bool _isRunning = false;
-        private static string _currentClientAppId;
-        private static string _currentProviderId;
+        private string _currentClientAppId;
+        private string _currentProviderId;
 
         /// <summary>
         /// Gets the data ID.
@@ -64,6 +64,10 @@ namespace Tizen.Applications.DataControl
             get
             {
                 return _currentClientAppId;
+            }
+            internal set
+            {
+                _currentClientAppId = value;
             }
         }
 
@@ -156,7 +160,7 @@ namespace Tizen.Applications.DataControl
             return query;
         }
 
-        static internal ResultType UpdateCurrentClient(int requestId)
+        internal static ResultType UpdateCurrentClient(Provider provider, int requestId)
         {
             string clientAppId;
             ResultType ret = Interop.DataControl.GetClientAppId(requestId, out clientAppId);
@@ -165,7 +169,7 @@ namespace Tizen.Applications.DataControl
                 Log.Error(LogTag, "Get client id fail " + ret.ToString());
                 return ResultType.IoError;
             }
-            _currentClientAppId = clientAppId;
+            provider.CurrentClientAppId = clientAppId;
             return ResultType.Success;
         }
 
@@ -184,7 +188,7 @@ namespace Tizen.Applications.DataControl
                 return;
             }
 
-            ret = UpdateCurrentClient(requestId);
+            ret = UpdateCurrentClient(provider, requestId);
             if (ret != ResultType.Success)
                 return;
 
@@ -239,7 +243,7 @@ namespace Tizen.Applications.DataControl
                 return;
             }
 
-            ret = UpdateCurrentClient(requestId);
+            ret = UpdateCurrentClient(provider, requestId);
             if (ret != ResultType.Success)
                 return;
 
@@ -485,7 +489,7 @@ namespace Tizen.Applications.DataControl
                 return;
             }
 
-            ret = UpdateCurrentClient(requestId);
+            ret = UpdateCurrentClient(provider, requestId);
             if (ret != ResultType.Success)
                 return;
             result = provider.OnSelect(query, where, _columnList, _columnList.Length, order, pageNum, countPerPage);
@@ -559,7 +563,7 @@ namespace Tizen.Applications.DataControl
                 return;
             }
 
-            ret = UpdateCurrentClient(requestId);
+            ret = UpdateCurrentClient(provider, requestId);
             if (ret != ResultType.Success)
                 return;
             result = provider.OnUpdate(query, where, new Bundle(sbh));
@@ -603,7 +607,7 @@ namespace Tizen.Applications.DataControl
                 return;
             }
 
-            ret = UpdateCurrentClient(requestId);
+            ret = UpdateCurrentClient(provider, requestId);
             if (ret != ResultType.Success)
                 return;
             result = provider.OnDelete(query, where);
@@ -646,7 +650,7 @@ namespace Tizen.Applications.DataControl
                 return;
             }
 
-            ret = UpdateCurrentClient(requestId);
+            ret = UpdateCurrentClient(provider, requestId);
             if (ret != ResultType.Success)
                 return;
             result = provider.OnMapAdd(key, value);
@@ -688,7 +692,7 @@ namespace Tizen.Applications.DataControl
                 return;
             }
 
-            ret = UpdateCurrentClient(requestId);
+            ret = UpdateCurrentClient(provider, requestId);
             if (ret != ResultType.Success)
                 return;
             result = provider.OnMapSet(key, oldValue, newValue);
@@ -730,7 +734,7 @@ namespace Tizen.Applications.DataControl
                 return;
             }
 
-            ret = UpdateCurrentClient(requestId);
+            ret = UpdateCurrentClient(provider, requestId);
             if (ret != ResultType.Success)
                 return;
             result = provider.OnMapRemove(key, value);
@@ -773,7 +777,7 @@ namespace Tizen.Applications.DataControl
                 return;
             }
 
-            ret = UpdateCurrentClient(requestId);
+            ret = UpdateCurrentClient(provider, requestId);
             if (ret != ResultType.Success)
                 return;
             result = provider.OnMapGet(key);
@@ -823,15 +827,16 @@ namespace Tizen.Applications.DataControl
                 queryList.Add(GetQuery(handlePtr, new SafeBundleHandle(bundleHandel, false), null, OperationType.Insert));
             }
 
-            ret = UpdateCurrentClient(requestId);
-            if (ret != ResultType.Success)
-                return;
             provider = GetProvider(handlePtr);
             if (provider == null)
             {
                 Log.Error(LogTag, "Provider not exist");
                 return;
             }
+
+            ret = UpdateCurrentClient(provider, requestId);
+            if (ret != ResultType.Success)
+                return;
 
             result = provider.OnMapBulkAdd(bulkData);
             if (result != null)
