@@ -1,5 +1,5 @@
 /*
- * Copyright(c) 2017 Samsung Electronics Co., Ltd.
+ * Copyright(c) 2018 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -309,8 +309,14 @@ namespace Tizen.NUI
         }
     }
 
+    /// <summary>
+    /// A class to get resources in current application.
+    /// </summary>
     public class GetResourcesProvider
     {
+        /// <summary>
+        /// Get resources in current application.
+        /// </summary>
         static public IResourcesProvider Get()
         {
             return Tizen.NUI.Application.Current;
@@ -408,7 +414,7 @@ namespace Tizen.NUI
         }
 
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public NavigationProxy NavigationProxy { get; }
+        public new NavigationProxy NavigationProxy { get; }
 
         [EditorBrowsable(EditorBrowsableState.Never)]
         public int PanGestureId { get; set; }

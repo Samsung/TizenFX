@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2017 Samsung Electronics Co., Ltd.
+ * Copyright (c) 2018 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -27,6 +27,11 @@ namespace Tizen.NUI
     [Tizen.NUI.Binding.TypeConverter(typeof(Position2DTypeConverter))]
     public class Position2D : global::System.IDisposable
     {
+        /// <summary>
+        /// Convert a string to Position2D.
+        /// </summary>
+        /// <param name="value">The string to convert.</param>
+        /// <returns>The converted value.</returns>
         static public Position2D ConvertFromString(System.String value)
         {
             if (value != null)
@@ -41,6 +46,9 @@ namespace Tizen.NUI
             throw new InvalidOperationException($"Cannot convert \"{value}\" into {typeof(Position2D)}");
         }
 
+        /// <summary>
+        /// Constructor a Position2D from a stirng.
+        /// </summary>
         public static implicit operator Position2D(System.String value)
         {
             return ConvertFromString(value);
@@ -350,6 +358,16 @@ namespace Tizen.NUI
                 equal = true;
             }
             return equal;
+        }
+
+        /// <summary>
+        /// Gets the the hash code of this Position2D.
+        /// </summary>
+        /// <returns>The Hash Code.</returns>
+        /// <since_tizen> 5 </since_tizen>
+        public override int GetHashCode()
+        {
+            return base.GetHashCode();
         }
 
         /// <summary>
