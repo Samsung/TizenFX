@@ -22,6 +22,7 @@ using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
 using Tizen.Applications;
 using Tizen.Applications.RPCPort;
+using Tizen.System;
 
 
 namespace Tizen.Nlp
@@ -31,12 +32,13 @@ namespace Tizen.Nlp
     /// This class contains the methods in the NLP processing.
     /// </summary>
     /// <since_tizen> 5 </since_tizen>
-    public class NaturalLanguageProcess
+    public class NaturalLanguageProcess : IDisposable
     {
         private Message _msg;
         private Message.NotifyCb _noti = new Message.NotifyCb();
         private const string ServiceId = "org.tizen.nlp.service";
         private const string LogTag = "tizen.nlp.client";
+        private const string FeatureNlp = "http://tizen.org/feature/nlp";
         private bool disposed = false;
         private int _requestIdPos = 0;
         private int _requestIdLang = 0;
@@ -60,8 +62,13 @@ namespace Tizen.Nlp
         /// An construct method  to init local env of NLP .
         /// </summary>
         /// <since_tizen> 5 </since_tizen>
+        /// <feature>
+        /// http://tizen.org/feature/nlp
+        /// </feature>
+        /// <exception cref="NotSupportedException">The required feature is not supported.</exception>
         public NaturalLanguageProcess()
         {
+            ValidateFeatureSupported(FeatureNlp);
             _noti.Received += ResultReceived;
         }
 
@@ -156,14 +163,28 @@ namespace Tizen.Nlp
             }
         }
 
+        private void ValidateFeatureSupported(string featurePath)
+        {
+            if (Information.TryGetValue(featurePath, out bool supported) == false || supported == false)
+            {
+                throw new NotSupportedException($"The feature({featurePath}) is not supported.");
+            }
+        }
+
         /// <summary>
         /// An async method  to connect remote service.
         /// </summary>
         /// <since_tizen> 5 </since_tizen>
+        /// <feature>
+        /// http://tizen.org/feature/nlp
+        /// </feature>
         /// <returns>A task representing the asynchronous connect operation.</returns>
         /// <exception cref="InvalidOperationException">Thrown when the connect is rejected.</exception>
+        /// <exception cref="NotSupportedException">The required feature is not supported.</exception>
         public Task Connect()
         {
+            ValidateFeatureSupported(FeatureNlp);
+
             if (_connectionState == ConnectedState.Connected)
             {
                 return Task.CompletedTask;
@@ -201,8 +222,14 @@ namespace Tizen.Nlp
         /// A method to close message connection
         /// </summary>
         /// <since_tizen> 5 </since_tizen>
+        /// <feature>
+        /// http://tizen.org/feature/nlp
+        /// </feature>
+        /// <exception cref="NotSupportedException">The required feature is not supported.</exception>
         public void Close()
         {
+            ValidateFeatureSupported(FeatureNlp);
+
             if (_connectionState == ConnectedState.Disconnected) return;
             _msg.UnRegister();
             _msg.Dispose();
@@ -225,8 +252,14 @@ namespace Tizen.Nlp
         /// A method to release resource of library
         /// </summary>
         /// <since_tizen> 5 </since_tizen>
+        /// <feature>
+        /// http://tizen.org/feature/nlp
+        /// </feature>
+        /// <exception cref="NotSupportedException">The required feature is not supported.</exception>
         public void Dispose()
         {
+            ValidateFeatureSupported(FeatureNlp);
+
             Dispose(true);
             GC.SuppressFinalize(this);
         }
@@ -252,8 +285,14 @@ namespace Tizen.Nlp
         /// <param name="sentence">A sentence need to be processed.</param>
         /// <returns>PosTagResult</returns>
         /// <since_tizen> 5 </since_tizen>
+        /// <feature>
+        /// http://tizen.org/feature/nlp
+        /// </feature>
+        /// <exception cref="NotSupportedException">The required feature is not supported.</exception>
         public Task<PosTagResult> PosTagAsync(string sentence)
         {
+            ValidateFeatureSupported(FeatureNlp);
+
             int id = _requestIdPos++;
             MakeRequest("pos_tag", sentence, id);
             var task = new TaskCompletionSource<PosTagResult>();
@@ -276,8 +315,14 @@ namespace Tizen.Nlp
         /// <param name="sentence">A sentence need to be processed.</param>
         /// <returns>NamedEntityRecognitionResult</returns>
         /// <since_tizen> 5 </since_tizen>
+        /// <feature>
+        /// http://tizen.org/feature/nlp
+        /// </feature>
+        /// <exception cref="NotSupportedException">The required feature is not supported.</exception>
         public Task<NamedEntityRecognitionResult> NamedEntityRecognitionAsync(string sentence)
         {
+            ValidateFeatureSupported(FeatureNlp);
+
             int id = _requestIdNeChunk++;
             MakeRequest("ne_chunk", sentence, id);
             var task = new TaskCompletionSource<NamedEntityRecognitionResult>();
@@ -300,8 +345,14 @@ namespace Tizen.Nlp
         /// <param name="sentence">A sentence need to be processed.</param>
         /// <returns>LanguageDetectedResult</returns>
         /// <since_tizen> 5 </since_tizen>
+        /// <feature>
+        /// http://tizen.org/feature/nlp
+        /// </feature>
+        /// <exception cref="NotSupportedException">The required feature is not supported.</exception>
         public Task<LanguageDetectedResult> LanguageDetectAsync(string sentence)
         {
+            ValidateFeatureSupported(FeatureNlp);
+
             int id = _requestIdLang++;
             MakeRequest("langdetect", sentence, id);
             var task = new TaskCompletionSource<LanguageDetectedResult>();
@@ -322,8 +373,14 @@ namespace Tizen.Nlp
         /// <param name="sentence">A sentence need to be processed.</param>
         /// <returns>ProcessResult</returns>
         /// <since_tizen> 5 </since_tizen>
+        /// <feature>
+        /// http://tizen.org/feature/nlp
+        /// </feature>
+        /// <exception cref="NotSupportedException">The required feature is not supported.</exception>
         public Task<WordTokenizeResult> WordTokenizeAsync(string sentence)
         {
+            ValidateFeatureSupported(FeatureNlp);
+
             int id = _requestIdWordTokenize++;
             MakeRequest("word_tokenize", sentence, id);
             var task = new TaskCompletionSource<WordTokenizeResult>();
