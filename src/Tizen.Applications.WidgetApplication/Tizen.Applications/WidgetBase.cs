@@ -26,13 +26,7 @@ namespace Tizen.Applications
     public abstract class WidgetBase
     {
         internal IntPtr Handle;
-
-        /// <summary>
-        /// ID for this widget instance.
-        /// It will be created after OnCreate method is invoked.
-        /// </summary>
-        /// <since_tizen> 6 </since_tizen>
-        protected string Id;
+        private string _id;
         private const string LogTag = "Tizen.Applications.WidgetBase";
 
         /// <summary>
@@ -65,6 +59,19 @@ namespace Tizen.Applications
         /// <since_tizen> 3 </since_tizen>
         public WidgetBase()
         {
+        }
+
+        /// <summary>
+        /// ID for this widget instance.
+        /// It will be created after OnCreate method is invoked.
+        /// </summary>
+        /// <since_tizen> 6 </since_tizen>
+        public string Id
+        {
+            get
+            {
+                return _id;
+            }
         }
 
         /// <summary>
@@ -159,7 +166,7 @@ namespace Tizen.Applications
         internal void Bind(IntPtr handle, string id)
         {
             Handle = handle;
-            Id = id;
+            _id = id;
         }
 
         /// <summary>
