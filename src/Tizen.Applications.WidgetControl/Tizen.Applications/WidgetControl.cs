@@ -319,33 +319,12 @@ namespace Tizen.Applications
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
         /// <privilege>http://tizen.org/privilege/widget.viewer</privilege>
-        /// <exception cref="ArgumentException">Thrown when failed because of an invalid argument.</exception>
-        /// <exception cref="InvalidOperationException">Thrown in case of failed conditions.</exception>
-        /// <exception cref="NotSupportedException">Thrown when the API is not supported in this device.</exception>
-        /// <exception cref="UnauthorizedAccessException">Thrown when an application does not have the privilege to access this method.</exception>
-        public static string GetWidgetMainAppId(string widgetId)
+        public string MainAppId
         {
-            string appid = Interop.WidgetService.GetWidgetMainAppId(widgetId);
-            Interop.WidgetService.ErrorCode err = (Interop.WidgetService.ErrorCode)Internals.Errors.ErrorFacts.GetLastResult();
-            switch (err)
+            get
             {
-                case Interop.WidgetService.ErrorCode.InvalidParameter:
-                    throw new ArgumentException("Invalid parameter");
-
-                case Interop.WidgetService.ErrorCode.NotExist:
-                    throw new InvalidOperationException("widget id is not exist");
-
-                case Interop.WidgetService.ErrorCode.IoError:
-                case Interop.WidgetService.ErrorCode.Fault:
-                    throw new InvalidOperationException("IO error");
-
-                case Interop.WidgetService.ErrorCode.PermissionDenied:
-                    throw new UnauthorizedAccessException();
-
-                case Interop.WidgetService.ErrorCode.NotSupported:
-                    throw new NotSupportedException();
+                return Interop.WidgetService.GetWidgetMainAppId(Id);
             }
-            return appid;
         }
 
         /// <summary>
@@ -353,33 +332,12 @@ namespace Tizen.Applications
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
         /// <privilege>http://tizen.org/privilege/widget.viewer</privilege>
-        /// <exception cref="ArgumentException">Thrown when failed because of an invalid argument.</exception>
-        /// <exception cref="InvalidOperationException">Thrown in case of failed conditions.</exception>
-        /// <exception cref="NotSupportedException">Thrown when the API is not supported in this device.</exception>
-        /// <exception cref="UnauthorizedAccessException">Thrown when an application does not have the privilege to access this method.</exception>
-        public static string GetWidgetPackageId(string widgetId)
+        public string PackageId
         {
-            string pkgId = Interop.WidgetService.GetWidgetPackageId(widgetId);
-            Interop.WidgetService.ErrorCode err = (Interop.WidgetService.ErrorCode)Internals.Errors.ErrorFacts.GetLastResult();
-            switch (err)
+            get
             {
-                case Interop.WidgetService.ErrorCode.InvalidParameter:
-                    throw new ArgumentException("Invalid parameter");
-
-                case Interop.WidgetService.ErrorCode.NotExist:
-                    throw new InvalidOperationException("widget id is not exist");
-
-                case Interop.WidgetService.ErrorCode.Fault:
-                case Interop.WidgetService.ErrorCode.IoError:
-                    throw new InvalidOperationException("IO error");
-
-                case Interop.WidgetService.ErrorCode.PermissionDenied:
-                    throw new UnauthorizedAccessException();
-
-                case Interop.WidgetService.ErrorCode.NotSupported:
-                    throw new NotSupportedException();
+                return Interop.WidgetService.GetWidgetPackageId(Id);
             }
-            return pkgId;
         }
 
         /// <summary>
