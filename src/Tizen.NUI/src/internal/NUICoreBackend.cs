@@ -147,6 +147,8 @@ namespace Tizen.NUI
             _application.AppControl += OnAppControl;
 
             _application.MainLoop();
+
+            DisposeQueue.Instance.ProcessDisposables();
             _application.Dispose();
         }
 
