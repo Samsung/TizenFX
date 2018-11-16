@@ -126,7 +126,7 @@ namespace Tizen.NUI
         /// <param name="top"> Top position, relative to parent.</param>
         /// <param name="right">Right position, relative to parent.</param>
         /// <param name="bottom">Bottom position, relative to parent.</param>
-        protected virtual void OnLayout(bool changed, LayoutLength left, LayoutLength top, LayoutLength right, LayoutLength bottom)
+        protected override void OnLayout(bool changed, LayoutLength left, LayoutLength top, LayoutLength right, LayoutLength bottom)
         {
             Log.Info("NUI", "OnLayout\n");
 
@@ -162,7 +162,7 @@ namespace Tizen.NUI
         /// </summary>
         /// <param name="newSize">The new size of the layout.</param>
         /// <param name="oldSize">The old size of the layout.</param>
-        protected virtual void OnSizeChanged(LayoutSize newSize, LayoutSize oldSize)
+        protected override void OnSizeChanged(LayoutSize newSize, LayoutSize oldSize)
         {
 
         }

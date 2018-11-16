@@ -1,5 +1,5 @@
 /*
- * Copyright(c) 2017 Samsung Electronics Co., Ltd.
+ * Copyright(c) 2018 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -81,7 +81,7 @@ namespace Tizen.NUI
             return ret;
         }
 
-        private static readonly VisualFactory instance = VisualFactory.Get();
+        private static readonly VisualFactory instance = VisualFactory.Instance;
 
         /// <summary>
         /// Retrieves the VisualFactory singleton.

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2017 Samsung Electronics Co., Ltd.
+ * Copyright (c) 2018 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -26,8 +26,14 @@ namespace Tizen.NUI {
 public class WebViewSignal : global::System.IDisposable {
   private global::System.Runtime.InteropServices.HandleRef swigCPtr;
 
+  /// <summary>
+  /// swigCMemOwn flag
+  /// </summary>
   protected bool swigCMemOwn;
 
+  /// <summary>
+  /// Constructor
+  /// </summary>
   [EditorBrowsable(EditorBrowsableState.Never)]
   public WebViewSignal(global::System.IntPtr cPtr, bool cMemoryOwn) {
     swigCMemOwn = cMemoryOwn;
@@ -41,6 +47,9 @@ public class WebViewSignal : global::System.IDisposable {
   //A Flag to check who called Dispose(). (By User or DisposeQueue)
   private bool isDisposeQueued = false;
 
+  /// <summary>
+  /// Flag to allow early out of disposal
+  /// </summary>
   protected bool disposed = false;
 
   /// <summary>
@@ -117,7 +126,7 @@ public class WebViewSignal : global::System.IDisposable {
 
 
   /// <summary>
-  /// Empty 
+  /// Empty
   /// </summary>
   /// <returns>true if there is no signal attached</returns>
   [EditorBrowsable(EditorBrowsableState.Never)]
