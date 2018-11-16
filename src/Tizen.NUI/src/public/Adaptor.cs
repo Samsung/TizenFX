@@ -1,5 +1,5 @@
 /*
- * Copyright(c) 2017 Samsung Electronics Co., Ltd.
+ * Copyright(c) 2018 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -405,24 +405,6 @@ namespace Tizen.NUI
         internal void SceneCreated()
         {
             NDalicManualPINVOKE.Adaptor_SceneCreated(swigCPtr);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-        }
-
-        internal void SetViewMode(ViewMode viewMode)
-        {
-            NDalicManualPINVOKE.Adaptor_SetViewMode(swigCPtr, (int)viewMode);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-        }
-
-        /// <summary>
-        /// Sets the stereo base (eye separation) for stereoscopic 3D.
-        /// The stereo base is the distance in millimetres between the eyes. Typical values are
-        /// between 50mm and 70mm. The default value is 65mm.
-        /// </summary>
-        /// <param name="stereoBase">The stereo base (eye separation) for stereoscopic 3D.</param>
-        internal void SetStereoBase(float stereoBase)
-        {
-            NDalicManualPINVOKE.Adaptor_SetStereoBase(swigCPtr, stereoBase);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 

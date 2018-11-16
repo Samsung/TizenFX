@@ -6478,42 +6478,6 @@ namespace Tizen.NUI
             }
         }
 
-        [global::System.Runtime.InteropServices.DllImport(Graphics.GlesCSharpBinder, EntryPoint = "CSharp_Dali_Adaptor_SetViewMode")]
-        public static extern void Adaptor_SetViewMode_gl(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2);
-
-        [global::System.Runtime.InteropServices.DllImport(Graphics.VulkanCSharpBinder, EntryPoint = "CSharp_Dali_Adaptor_SetViewMode")]
-        public static extern void Adaptor_SetViewMode_vulkan(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2);
-
-        public static void Adaptor_SetViewMode(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2)
-        {
-            if (Tizen.NUI.Graphics.Backend == Tizen.NUI.Graphics.BackendType.Vulkan)
-            {
-                Adaptor_SetViewMode_vulkan(jarg1, jarg2);
-            }
-            else
-            {
-                Adaptor_SetViewMode_gl(jarg1, jarg2);
-            }
-        }
-
-        [global::System.Runtime.InteropServices.DllImport(Graphics.GlesCSharpBinder, EntryPoint = "CSharp_Dali_Adaptor_SetStereoBase")]
-        public static extern void Adaptor_SetStereoBase_gl(global::System.Runtime.InteropServices.HandleRef jarg1, float jarg2);
-
-        [global::System.Runtime.InteropServices.DllImport(Graphics.VulkanCSharpBinder, EntryPoint = "CSharp_Dali_Adaptor_SetStereoBase")]
-        public static extern void Adaptor_SetStereoBase_vulkan(global::System.Runtime.InteropServices.HandleRef jarg1, float jarg2);
-
-        public static void Adaptor_SetStereoBase(global::System.Runtime.InteropServices.HandleRef jarg1, float jarg2)
-        {
-            if (Tizen.NUI.Graphics.Backend == Tizen.NUI.Graphics.BackendType.Vulkan)
-            {
-                Adaptor_SetStereoBase_vulkan(jarg1, jarg2);
-            }
-            else
-            {
-                Adaptor_SetStereoBase_gl(jarg1, jarg2);
-            }
-        }
-
         [global::System.Runtime.InteropServices.DllImport(Graphics.GlesCSharpBinder, EntryPoint = "CSharp_Dali_Adaptor_ResizedSignal")]
         public static extern global::System.IntPtr Adaptor_ResizedSignal_gl(global::System.Runtime.InteropServices.HandleRef jarg1);
 
