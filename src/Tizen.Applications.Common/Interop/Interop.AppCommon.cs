@@ -91,9 +91,6 @@ internal static partial class Interop
 
         [DllImport(Libraries.Application, EntryPoint = "app_resource_manager_get")]
         internal static extern ErrorCode LegacyAppResourceManagerGet(ResourceCategory category, string id, out string path);
-
-        [DllImport(Libraries.AppCommon, EntryPoint = "app_event_get_device_orientation")]
-        internal static extern ErrorCode AppEventGetDeviceOrientation(IntPtr handle, out DeviceOrientation orientation);
     }
 }
 
