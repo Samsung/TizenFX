@@ -256,7 +256,7 @@ namespace Tizen.Applications
         }
 
         /// <summary>
-        /// Terminates the background application.
+        /// Terminates the application if it is running on background.
         /// </summary>
         /// <exception cref="ArgumentException">Thrown when failed of invalid argument.</exception>
         /// <exception cref="UnauthorizedAccessException">Thrown when failed because of permission denied.</exception>
