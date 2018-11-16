@@ -116,8 +116,10 @@ namespace Tizen.NUI
             IsCreateByXaml = true;
 
             Root = new View();
-            Root.WidthResizePolicy = ResizePolicyType.FillToParent;
-            Root.HeightResizePolicy = ResizePolicyType.FillToParent;
+            Root.Size2D = new Size2D(win.WindowSize.Width, win.WindowSize.Height);
+            Root.ParentOrigin = ParentOrigin.TopLeft;
+            Root.PivotPoint = PivotPoint.TopLeft;
+            Root.PositionUsesPivotPoint = true;
 
             win.Add(Root);
         }
