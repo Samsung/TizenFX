@@ -1672,32 +1672,6 @@ namespace Tizen.NUI
             return ret;
         }
 
-        internal void SetViewMode(ViewMode viewMode)
-        {
-            NDalicPINVOKE.Application_SetViewMode(swigCPtr, (int)viewMode);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-        }
-
-        internal ViewMode GetViewMode()
-        {
-            ViewMode ret = (ViewMode)NDalicPINVOKE.Application_GetViewMode(swigCPtr);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
-        }
-
-        public void SetStereoBase(float stereoBase)
-        {
-            NDalicPINVOKE.Application_SetStereoBase(swigCPtr, stereoBase);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-        }
-
-        public float GetStereoBase()
-        {
-            float ret = NDalicPINVOKE.Application_GetStereoBase(swigCPtr);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
-        }
-
         public string GetLanguage()
         {
             string ret = NDalicPINVOKE.Application_GetLanguage(swigCPtr);
