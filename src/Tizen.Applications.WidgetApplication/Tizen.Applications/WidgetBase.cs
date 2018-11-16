@@ -26,7 +26,6 @@ namespace Tizen.Applications
     public abstract class WidgetBase
     {
         internal IntPtr Handle;
-        private string _id;
         private const string LogTag = "Tizen.Applications.WidgetBase";
 
         /// <summary>
@@ -66,13 +65,7 @@ namespace Tizen.Applications
         /// It will be created after OnCreate method is invoked.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
-        public string Id
-        {
-            get
-            {
-                return _id;
-            }
-        }
+        public string Id { get; private set; }
 
         /// <summary>
         /// Sets the content information to the widget.
@@ -166,7 +159,7 @@ namespace Tizen.Applications
         internal void Bind(IntPtr handle, string id)
         {
             Handle = handle;
-            _id = id;
+            Id = id;
         }
 
         /// <summary>
