@@ -4628,6 +4628,7 @@ namespace Tizen.NUI.BaseComponents
             set
             {
                 SetValue(SizeWidthProperty, value);
+                SetProperty(LayoutItemWrapper.ChildProperty.WIDTH_SPECIFICATION, new Tizen.NUI.PropertyValue(value));
                 NotifyPropertyChanged();
             }
         }
@@ -4645,6 +4646,7 @@ namespace Tizen.NUI.BaseComponents
             set
             {
                 SetValue(SizeHeightProperty, value);
+                SetProperty(LayoutItemWrapper.ChildProperty.HEIGHT_SPECIFICATION, new Tizen.NUI.PropertyValue(value));
                 NotifyPropertyChanged();
             }
         }
