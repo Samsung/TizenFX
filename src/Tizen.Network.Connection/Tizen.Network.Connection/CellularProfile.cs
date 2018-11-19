@@ -253,25 +253,25 @@ namespace Tizen.Network.Connection
             }
         }
 
-		/// <summary>
-		/// Checks whether the connection is in roaming state.
-		/// </summary>
-		/// <since_tizen> 6 </since_tizen>
-		/// <value> True if the cellular profile is in roaming state, otherwise false.</value>
-		public bool IsRoaming
-		{
-			get
-			{
-				Log.Debug(Globals.LogTag, "Get IsRoaming");
-				bool value = false;
-				int ret = Interop.ConnectionCellularProfile.IsRoaming(ProfileHandle, out value);
-				if ((ConnectionError)ret != ConnectionError.None)
-				{
-					Log.Error(Globals.LogTag, "It failed to get isRoaming, " + (ConnectionError)ret);
-				}
-				return value;
-			}
-		}
+        /// <summary>
+        /// Checks whether the connection is in roaming state.
+        /// </summary>
+        /// <since_tizen> 6 </since_tizen>
+        /// <value> True if the cellular profile is in roaming state, otherwise false.</value>
+        public bool IsRoaming
+        {
+            get
+            {
+                Log.Debug(Globals.LogTag, "Get IsRoaming");
+                bool value = false;
+                int ret = Interop.ConnectionCellularProfile.IsRoaming(ProfileHandle, out value);
+                if ((ConnectionError)ret != ConnectionError.None)
+                {
+                    Log.Error(Globals.LogTag, "It failed to get isRoaming, " + (ConnectionError)ret);
+                }
+                return value;
+            }
+        }
 
         /// <summary>
         /// The cellular authentication information.
