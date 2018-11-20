@@ -132,6 +132,7 @@ namespace Tizen.Multimedia
         public void Dispose()
         {
             Dispose(true);
+            GC.SuppressFinalize(this);
         }
 
         /// <summary>
@@ -143,7 +144,12 @@ namespace Tizen.Multimedia
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected virtual void Dispose(bool disposing)
         {
-            if (!_disposed)
+            if (_disposed)
+            {
+                return;
+            }
+
+            if (disposing)
             {
                 ReplaceDisplay(null);
 
@@ -152,19 +158,19 @@ namespace Tizen.Multimedia
                     try
                     {
                         _source.DetachFrom(this);
+                        _source = null;
                     }
                     catch (Exception e)
                     {
                         Log.Error(PlayerLog.Tag, e.ToString());
                     }
                 }
-                _source = null;
 
                 if (_handle != null)
                 {
                     _handle.Dispose();
+                    _disposed = true;
                 }
-                _disposed = true;
             }
         }
 

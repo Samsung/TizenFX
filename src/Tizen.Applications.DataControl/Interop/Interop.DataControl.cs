@@ -346,8 +346,8 @@ internal static partial class Interop
         [DllImport(Libraries.DataControl, EntryPoint = "datacontrol_provider_write_socket")]
         internal static extern unsafe ResultType WriteSelectResult(int socketFd, byte* buffer, uint nbytes, out uint bytesWrite);
 
-        [DllImport(Libraries.DataControl, EntryPoint = "data_control_provider_send_data_change_noti")]
-        internal static extern ResultType SendDataChange(IntPtr handle, ChangeType type, SafeBundleHandle data);
+        [DllImport(Libraries.DataControl, EntryPoint = "data_control_provider_send_data_change_noti_by_data_id")]
+        internal static extern ResultType SendDataChange(string dataId, ChangeType type, SafeBundleHandle data);
 
         [DllImport(Libraries.DataControl, EntryPoint = "data_control_sql_step_next")]
         internal static extern ResultType Next(SafeCursorHandle cursor);
