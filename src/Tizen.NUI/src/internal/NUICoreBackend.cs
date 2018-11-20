@@ -147,8 +147,6 @@ namespace Tizen.NUI
             _application.AppControl += OnAppControl;
 
             _application.MainLoop();
-
-            DisposeQueue.Instance.ProcessDisposables();
             _application.Dispose();
         }
 
@@ -161,7 +159,7 @@ namespace Tizen.NUI
         {
             Log.Info("NUI", "NUICorebackend OnRegionChanged Called");
             var handler = Handlers[EventType.RegionFormatChanged] as Action<RegionFormatChangedEventArgs>;
-            handler?.Invoke( new RegionFormatChangedEventArgs(e.Application.GetRegion()));
+            handler?.Invoke( new RegionFormatChangedEventArgs((source as Application)?.GetRegion()));
         }
 
         /// <summary>
@@ -203,7 +201,7 @@ namespace Tizen.NUI
         {
             Log.Info("NUI", "NUICorebackend OnLanguageChanged Called");
             var handler = Handlers[EventType.LocaleChanged] as Action<LocaleChangedEventArgs>;
-            handler?.Invoke( new LocaleChangedEventArgs(e.Application.GetLanguage()));
+            handler?.Invoke( new LocaleChangedEventArgs((source as Application)?.GetLanguage()));
         }
 
         /// <summary>

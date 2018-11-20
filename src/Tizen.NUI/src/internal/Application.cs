@@ -955,7 +955,9 @@ namespace Tizen.NUI
             // Initialize DisposeQueue Singleton class. This is also required to create DisposeQueue on main thread.
             DisposeQueue.Instance.Initialize();
 
-            _applicationInitEventHandler?.Invoke(this, new NUIApplicationInitEventArgs());
+            NUIApplicationInitEventArgs e = new NUIApplicationInitEventArgs();
+            e.Application = this;
+            _applicationInitEventHandler?.Invoke(this, e);
 
         }
 
@@ -997,7 +999,9 @@ namespace Tizen.NUI
         // Callback for Application TerminateSignal
         private void OnNUIApplicationTerminate(IntPtr data)
         {
-            _applicationTerminateEventHandler?.Invoke(this, new NUIApplicationTerminatingEventArgs());
+            NUIApplicationTerminatingEventArgs e = new NUIApplicationTerminatingEventArgs();
+            e.Application = this;
+            _applicationTerminateEventHandler?.Invoke(this, e);
         }
 
         /**
@@ -1038,7 +1042,9 @@ namespace Tizen.NUI
         // Callback for Application PauseSignal
         private void OnNUIApplicationPause(IntPtr data)
         {
-            _applicationPauseEventHandler?.Invoke(this, new NUIApplicationPausedEventArgs());
+            NUIApplicationPausedEventArgs e = new NUIApplicationPausedEventArgs();
+            e.Application = this;
+            _applicationPauseEventHandler?.Invoke(this, e);
         }
 
         /**
@@ -1079,7 +1085,9 @@ namespace Tizen.NUI
         // Callback for Application ResumeSignal
         private void OnNUIApplicationResume(IntPtr data)
         {
-            _applicationResumeEventHandler?.Invoke(this, new NUIApplicationResumedEventArgs());
+            NUIApplicationResumedEventArgs e = new NUIApplicationResumedEventArgs();
+            e.Application = this;
+            _applicationResumeEventHandler?.Invoke(this, e);
         }
 
         /**
@@ -1120,7 +1128,9 @@ namespace Tizen.NUI
         // Callback for Application ResetSignal
         private void OnNUIApplicationReset(IntPtr data)
         {
-            _applicationResetEventHandler?.Invoke(this, new NUIApplicationResetEventArgs());
+            NUIApplicationResetEventArgs e = new NUIApplicationResetEventArgs();
+            e.Application = this;
+            _applicationResetEventHandler?.Invoke(this, e);
         }
 
         /**
@@ -1161,7 +1171,9 @@ namespace Tizen.NUI
         // Callback for Application ResizeSignal
         private void OnNUIApplicationResize(IntPtr data)
         {
-            _applicationResizeEventHandler?.Invoke(this, new NUIApplicationResizedEventArgs());
+            NUIApplicationResizedEventArgs e = new NUIApplicationResizedEventArgs();
+            e.Application = this;
+            _applicationResizeEventHandler?.Invoke(this, e);
         }
 
         /**
@@ -1202,7 +1214,9 @@ namespace Tizen.NUI
         // Callback for Application LanguageChangedSignal
         private void OnNUIApplicationLanguageChanged(IntPtr data)
         {
-            _applicationLanguageChangedEventHandler?.Invoke(this, new NUIApplicationLanguageChangedEventArgs());
+            NUIApplicationLanguageChangedEventArgs e = new NUIApplicationLanguageChangedEventArgs();
+            e.Application = this;
+            _applicationLanguageChangedEventHandler?.Invoke(this, e);
         }
 
         /**
@@ -1243,7 +1257,9 @@ namespace Tizen.NUI
         // Callback for Application RegionChangedSignal
         private void OnNUIApplicationRegionChanged(IntPtr data)
         {
-            _applicationRegionChangedEventHandler?.Invoke(this, new NUIApplicationRegionChangedEventArgs());
+            NUIApplicationRegionChangedEventArgs e = new NUIApplicationRegionChangedEventArgs();
+            e.Application = this;
+            _applicationRegionChangedEventHandler?.Invoke(this, e);
         }
 
         /**
@@ -1376,6 +1392,7 @@ namespace Tizen.NUI
         {
             NUIApplicationAppControlEventArgs e = new NUIApplicationAppControlEventArgs();
             e.VoidP = voidp;
+            e.Application = this;
             _applicationAppControlEventHandler?.Invoke(this, e);
         }
 
