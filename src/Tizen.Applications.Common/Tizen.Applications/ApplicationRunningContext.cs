@@ -28,7 +28,7 @@ namespace Tizen.Applications
     {
         private const string LogTag = "Tizen.Applications";
         private bool _disposed = false;
-        private IntPtr _contextHandle = IntPtr.Zero;
+        internal IntPtr _contextHandle = IntPtr.Zero;
         private Interop.ApplicationManager.ErrorCode err = Interop.ApplicationManager.ErrorCode.None;
 
         internal ApplicationRunningContext(IntPtr contextHandle)
@@ -109,6 +109,9 @@ namespace Tizen.Applications
         /// <summary>
         /// Enumeration for the application state.
         /// </summary>
+        /// <remarks>
+        /// Note that application's state might be changed after you get app_context. This API just returns the state of application when you get the app_context.
+        /// </remarks>
         /// <since_tizen> 3 </since_tizen>
         public enum AppState
         {
@@ -153,6 +156,34 @@ namespace Tizen.Applications
                     Log.Warn(LogTag, "Failed to get the application id. err = " + err);
                 }
                 return appid;
+            }
+        }
+
+        /// <summary>
+        /// Gets whether the application is terminated.
+        /// </summary>
+        /// <since_tizen> 6 </since_tizen>
+        public bool IsTerminated
+        {
+            get
+            {
+                bool isRunning = false;
+                string appid = string.Empty;
+                err = Interop.ApplicationManager.AppContextGetAppId(_contextHandle, out appid);
+                if (err != Interop.ApplicationManager.ErrorCode.None)
+                {
+                    Log.Warn(LogTag, "Failed to get the application id. err = " + err);
+                }
+                else
+                {
+                    Interop.ApplicationManager.AppManagerIsRunning(appid, out isRunning);
+                    err = Interop.ApplicationManager.AppContextGetAppId(_contextHandle, out appid);
+                    if (err != Interop.ApplicationManager.ErrorCode.None)
+                    {
+                        Log.Warn(LogTag, "Failed to get is running. err = " + err);
+                    }
+                }
+                return !isRunning;
             }
         }
 
@@ -241,31 +272,6 @@ namespace Tizen.Applications
         public void Terminate()
         {
             err = Interop.ApplicationManager.AppManagerTerminateApp(_contextHandle);
-            if (err != Interop.ApplicationManager.ErrorCode.None)
-            {
-                switch (err)
-                {
-                    case Interop.ApplicationManager.ErrorCode.InvalidParameter:
-                        throw new ArgumentException("Invalid argument.");
-                    case Interop.ApplicationManager.ErrorCode.PermissionDenied:
-                        throw new UnauthorizedAccessException("Permission denied.");
-                    default:
-                        throw new InvalidOperationException("Invalid Operation.");
-                }
-            }
-        }
-
-        /// <summary>
-        /// Terminates the application if it is running on background.
-        /// </summary>
-        /// <exception cref="ArgumentException">Thrown when failed of invalid argument.</exception>
-        /// <exception cref="UnauthorizedAccessException">Thrown when failed because of permission denied.</exception>
-        /// <exception cref="InvalidOperationException">Thrown when failed because of system error.</exception>
-        /// <privilege>http://tizen.org/privilege/appmanager.kill.bgapp</privilege>
-        /// <since_tizen> 6 </since_tizen>
-        public void TerminateBgApp()
-        {
-            err = Interop.ApplicationManager.AppManagerRequestTerminateBgApp(_contextHandle);
             if (err != Interop.ApplicationManager.ErrorCode.None)
             {
                 switch (err)

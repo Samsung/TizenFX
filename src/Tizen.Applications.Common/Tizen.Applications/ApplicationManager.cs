@@ -19,6 +19,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Runtime.InteropServices;
 using System.Threading.Tasks;
+using static Interop.ApplicationManager;
 
 namespace Tizen.Applications
 {
@@ -168,6 +169,31 @@ namespace Tizen.Applications
                 }
                 return result;
             });
+        }
+
+        /// <summary>
+        /// Terminates the application if it is running on background.
+        /// </summary>
+        /// <exception cref="ArgumentException">Thrown when failed of invalid argument.</exception>
+        /// <exception cref="UnauthorizedAccessException">Thrown when failed because of permission denied.</exception>
+        /// <exception cref="InvalidOperationException">Thrown when failed because of system error.</exception>
+        /// <privilege>http://tizen.org/privilege/appmanager.kill.bgapp</privilege>
+        /// <since_tizen> 6 </since_tizen>
+        public static void TerminateBackgroundApplication(ApplicationRunningContext app)
+        {
+            ErrorCode err = Interop.ApplicationManager.AppManagerRequestTerminateBgApp(app._contextHandle);
+            if (err != Interop.ApplicationManager.ErrorCode.None)
+            {
+                switch (err)
+                {
+                    case Interop.ApplicationManager.ErrorCode.InvalidParameter:
+                        throw new ArgumentException("Invalid argument.");
+                    case Interop.ApplicationManager.ErrorCode.PermissionDenied:
+                        throw new UnauthorizedAccessException("Permission denied.");
+                    default:
+                        throw new InvalidOperationException("Invalid Operation.");
+                }
+            }
         }
 
         /// <summary>
