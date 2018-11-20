@@ -109,9 +109,6 @@ namespace Tizen.Applications
         /// <summary>
         /// Enumeration for the application state.
         /// </summary>
-        /// <remarks>
-        /// Note that application's state might be changed after you get app_context. This API just returns the state of application when you get the app_context.
-        /// </remarks>
         /// <since_tizen> 3 </since_tizen>
         public enum AppState
         {
@@ -226,6 +223,9 @@ namespace Tizen.Applications
         /// <summary>
         /// Gets the state of the application.
         /// </summary>
+        /// <remarks>
+        /// Note that application's state might be changed after you get app_context. This API just returns the state of application when you get the app_context.
+        /// </remarks>
         /// <since_tizen> 3 </since_tizen>
         public AppState State
         {
