@@ -178,6 +178,10 @@ namespace Tizen.Applications
         /// <exception cref="UnauthorizedAccessException">Thrown when failed because of permission denied.</exception>
         /// <exception cref="InvalidOperationException">Thrown when failed because of system error.</exception>
         /// <privilege>http://tizen.org/privilege/appmanager.kill.bgapp</privilege>
+        /// <remarks>
+        /// This function returns after it just sends a request for terminating a background application.
+        /// Platform will decide if the target application could be terminated or not according to the state of the target application.
+        /// </remarks>
         /// <since_tizen> 6 </since_tizen>
         public static void TerminateBackgroundApplication(ApplicationRunningContext app)
         {
