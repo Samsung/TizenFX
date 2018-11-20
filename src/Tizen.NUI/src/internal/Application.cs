@@ -955,10 +955,12 @@ namespace Tizen.NUI
             // Initialize DisposeQueue Singleton class. This is also required to create DisposeQueue on main thread.
             DisposeQueue.Instance.Initialize();
 
-            NUIApplicationInitEventArgs e = new NUIApplicationInitEventArgs();
-            e.Application = this;
-            _applicationInitEventHandler?.Invoke(this, e);
-
+            if(_applicationInitEventHandler != null)
+            {
+                NUIApplicationInitEventArgs e = new NUIApplicationInitEventArgs();
+                e.Application = this;
+                _applicationInitEventHandler.Invoke(this, e);
+            }
         }
 
         /**
@@ -999,9 +1001,12 @@ namespace Tizen.NUI
         // Callback for Application TerminateSignal
         private void OnNUIApplicationTerminate(IntPtr data)
         {
-            NUIApplicationTerminatingEventArgs e = new NUIApplicationTerminatingEventArgs();
-            e.Application = this;
-            _applicationTerminateEventHandler?.Invoke(this, e);
+            if(_applicationTerminateEventHandler != null)
+            {
+                NUIApplicationTerminatingEventArgs e = new NUIApplicationTerminatingEventArgs();
+                e.Application = this;
+                _applicationTerminateEventHandler.Invoke(this, e);
+            }
         }
 
         /**
@@ -1042,9 +1047,12 @@ namespace Tizen.NUI
         // Callback for Application PauseSignal
         private void OnNUIApplicationPause(IntPtr data)
         {
-            NUIApplicationPausedEventArgs e = new NUIApplicationPausedEventArgs();
-            e.Application = this;
-            _applicationPauseEventHandler?.Invoke(this, e);
+            if(_applicationPauseEventHandler != null)
+            {
+                NUIApplicationPausedEventArgs e = new NUIApplicationPausedEventArgs();
+                e.Application = this;
+                _applicationPauseEventHandler.Invoke(this, e);
+            }
         }
 
         /**
@@ -1085,9 +1093,12 @@ namespace Tizen.NUI
         // Callback for Application ResumeSignal
         private void OnNUIApplicationResume(IntPtr data)
         {
-            NUIApplicationResumedEventArgs e = new NUIApplicationResumedEventArgs();
-            e.Application = this;
-            _applicationResumeEventHandler?.Invoke(this, e);
+            if(_applicationResumeEventHandler != null)
+            {
+                NUIApplicationResumedEventArgs e = new NUIApplicationResumedEventArgs();
+                e.Application = this;
+                _applicationResumeEventHandler.Invoke(this, e);
+            }
         }
 
         /**
@@ -1128,9 +1139,12 @@ namespace Tizen.NUI
         // Callback for Application ResetSignal
         private void OnNUIApplicationReset(IntPtr data)
         {
-            NUIApplicationResetEventArgs e = new NUIApplicationResetEventArgs();
-            e.Application = this;
-            _applicationResetEventHandler?.Invoke(this, e);
+            if(_applicationResetEventHandler != null)
+            {
+                NUIApplicationResetEventArgs e = new NUIApplicationResetEventArgs();
+                e.Application = this;
+                _applicationResetEventHandler.Invoke(this, e);
+            }
         }
 
         /**
@@ -1171,9 +1185,12 @@ namespace Tizen.NUI
         // Callback for Application ResizeSignal
         private void OnNUIApplicationResize(IntPtr data)
         {
-            NUIApplicationResizedEventArgs e = new NUIApplicationResizedEventArgs();
-            e.Application = this;
-            _applicationResizeEventHandler?.Invoke(this, e);
+            if(_applicationResizeEventHandler != null)
+            {
+                NUIApplicationResizedEventArgs e = new NUIApplicationResizedEventArgs();
+                e.Application = this;
+                _applicationResizeEventHandler.Invoke(this, e);
+            }
         }
 
         /**
@@ -1214,9 +1231,12 @@ namespace Tizen.NUI
         // Callback for Application LanguageChangedSignal
         private void OnNUIApplicationLanguageChanged(IntPtr data)
         {
-            NUIApplicationLanguageChangedEventArgs e = new NUIApplicationLanguageChangedEventArgs();
-            e.Application = this;
-            _applicationLanguageChangedEventHandler?.Invoke(this, e);
+            if(_applicationLanguageChangedEventHandler != null)
+            {
+                NUIApplicationLanguageChangedEventArgs e = new NUIApplicationLanguageChangedEventArgs();
+                e.Application = this;
+                _applicationLanguageChangedEventHandler.Invoke(this, e);
+            }
         }
 
         /**
@@ -1257,9 +1277,12 @@ namespace Tizen.NUI
         // Callback for Application RegionChangedSignal
         private void OnNUIApplicationRegionChanged(IntPtr data)
         {
-            NUIApplicationRegionChangedEventArgs e = new NUIApplicationRegionChangedEventArgs();
-            e.Application = this;
-            _applicationRegionChangedEventHandler?.Invoke(this, e);
+            if(_applicationRegionChangedEventHandler != null)
+            {
+                NUIApplicationRegionChangedEventArgs e = new NUIApplicationRegionChangedEventArgs();
+                e.Application = this;
+                _applicationRegionChangedEventHandler.Invoke(this, e);
+            }
         }
 
         /**
@@ -1390,10 +1413,13 @@ namespace Tizen.NUI
         // Callback for Application AppControlSignal
         private void OnNUIApplicationAppControl(IntPtr application, IntPtr voidp)
         {
-            NUIApplicationAppControlEventArgs e = new NUIApplicationAppControlEventArgs();
-            e.VoidP = voidp;
-            e.Application = this;
-            _applicationAppControlEventHandler?.Invoke(this, e);
+            if(_applicationAppControlEventHandler != null)
+            {
+                NUIApplicationAppControlEventArgs e = new NUIApplicationAppControlEventArgs();
+                e.VoidP = voidp;
+                e.Application = this;
+                _applicationAppControlEventHandler.Invoke(this, e);
+            }
         }
 
         private static Application _instance; // singleton
