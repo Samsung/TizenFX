@@ -1232,4 +1232,60 @@ namespace Tizen.Network.Bluetooth
         /// </summary>
         Write = 1,
     }
+
+    /// <summary>
+    /// Enumeration for the Bluetooth HID header type.
+    /// </summary>
+    /// <since_tizen> 6 </since_tizen>
+    public enum BluetoothHidHeaderType
+    {
+        /// <summary>
+        /// The Bluetooth HID header type: Handshake
+        /// </summary>
+        Handshake,
+        /// <summary>
+        /// The Bluetooth HID header type: HID control
+        /// </summary>
+        HidControl,
+        /// <summary>
+        /// The Bluetooth HID header type: Get report
+        /// </summary>
+        GetReport,
+        /// <summary>
+        /// The Bluetooth HID header type: Set report
+        /// </summary>
+        SetReport,
+        /// <summary>
+        /// The Bluetooth HID header type: Get protocol
+        /// </summary>
+        GetProtocol,
+        /// <summary>
+        /// The Bluetooth HID header type: Set protocol
+        /// </summary>
+        SetProtocol,
+        /// <summary>
+        /// The Bluetooth HID header type: Data
+        /// </summary>
+        Data,
+        /// <summary>
+        /// The Bluetooth HID header type: Unknown
+        /// </summary>
+        Unknown
+    }
+
+    /// <summary>
+    /// Enumeration for the Bluetooth HID parameter type.
+    /// </summary>
+    /// <since_tizen> 6 </since_tizen>
+    public enum BluetoothHidParamType
+    {
+        /// <summary>
+        /// Parameter type: Input
+        /// </summary>
+        Input,
+        /// <summary>
+        /// Parameter type: Output
+        /// </summary>
+        Output
+    }
 }

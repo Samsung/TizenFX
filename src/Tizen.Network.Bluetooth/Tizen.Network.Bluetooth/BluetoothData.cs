@@ -542,4 +542,162 @@ namespace Tizen.Network.Bluetooth
             }
         }
     }
+
+    /// <summary>
+    /// This class contains the HID mouse event information.
+    /// </summary>
+    /// <since_tizen> 6 </since_tizen>
+    public class BluetoothHidMouseData
+    {
+        /// <summary>
+        /// The default constructor. Initializes an object of the BluetoothHidMouseData.
+        /// </summary>
+        /// <since_tizen> 6 </since_tizen>
+        public BluetoothHidMouseData()
+        {
+        }
+
+        /// <summary>
+        /// The button values, we can combine key's values when we pressed multiple mouse buttons
+        /// </summary>
+        /// <since_tizen> 6 </since_tizen>
+        public int Buttons
+        {
+            get;
+            set;
+        }
+
+        /// <summary>
+        /// The location's x value, -128 ~127
+        /// </summary>
+        /// <since_tizen> 6 </since_tizen>
+        public int AxisX
+        {
+            get;
+            set;
+        }
+
+        /// <summary>
+        /// The location's y value, -128 ~127
+        /// </summary>
+        /// <since_tizen> 6 </since_tizen>
+        public int AxisY
+        {
+            get;
+            set;
+        }
+
+        /// <summary>
+        /// The padding value, -128 ~127
+        /// </summary>
+        /// <since_tizen> 6 </since_tizen>
+        public int Padding
+        {
+            get;
+            set;
+        }
+    }
+
+    /// <summary>
+    /// This class contains the HID keyboard event information.
+    /// </summary>
+    /// <since_tizen> 6 </since_tizen>
+    public class BluetoothHidKeyData
+    {
+        /// <summary>
+        /// The default constructor. Initializes an object of the BluetoothHidKeyData.
+        /// </summary>
+        /// <since_tizen> 6 </since_tizen>
+        public BluetoothHidKeyData()
+        {
+        }
+
+        /// <summary>
+        /// The modifier keys : such as shift, alt
+        /// </summary>
+        /// <since_tizen> 6 </since_tizen>
+        public byte Modifier
+        {
+            get;
+            set;
+        }
+
+        /// <summary>
+        /// The key value - currently pressed keys : Max 8 at once
+        /// </summary>
+        /// <since_tizen> 6 </since_tizen>
+        public byte[] Key
+        {
+            get;
+            set;
+        }
+    }
+
+    /// <summary>
+    /// This class contains the data received from the HID Host.
+    /// </summary>
+    /// <since_tizen> 6 </since_tizen>
+    public class BluetoothHidReceivedData
+    {
+        internal string _address;
+        internal BluetoothHidHeaderType _headerType;
+        internal BluetoothHidParamType _paramType;
+        internal string _data;
+
+        /// <summary>
+        /// The default constructor. Initializes an object of the BluetoothHidReceivedData.
+        /// </summary>
+        /// <since_tizen> 6 </since_tizen>
+        internal BluetoothHidReceivedData()
+        {
+        }
+
+        /// <summary>
+        /// The remote device's address
+        /// </summary>
+        /// <since_tizen> 6 </since_tizen>
+        public string Address
+        {
+            get
+            {
+                return _address;
+            }
+        }
+
+        /// <summary>
+        /// The header type
+        /// </summary>
+        /// <since_tizen> 6 </since_tizen>
+        public BluetoothHidHeaderType HeaderType
+        {
+            get
+            {
+                return _headerType;
+            }
+        }
+
+        /// <summary>
+        /// The parameter type
+        /// </summary>
+        /// <since_tizen> 6 </since_tizen>
+        public BluetoothHidParamType ParamType
+        {
+            get
+            {
+                return _paramType;
+            }
+        }
+
+        /// <summary>
+        /// The received data
+        /// </summary>
+        /// <since_tizen> 6 </since_tizen>
+        public string Data
+        {
+            get
+            {
+                return _data;
+            }
+        }
+    }
 }

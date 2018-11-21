@@ -63,6 +63,10 @@ internal static partial class Interop
 
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         internal delegate void HidConnectionStateChangedCallback(int result, bool connected, string deviceAddress, IntPtr userData);
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+        internal delegate void HidDeviceConnectionStateChangedCallback(int result, bool connected, string deviceAddress, IntPtr userData);
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+        internal delegate void HidDataReceivedCallback(BluetoothHidReceivedData receivedData, IntPtr userData);
 
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         internal delegate void ConnectionRequestedCallback(string deviceAddress, IntPtr userData);
@@ -387,6 +391,25 @@ internal static partial class Interop
         [DllImport(Libraries.Bluetooth, EntryPoint = "bt_hid_host_disconnect")]
         internal static extern int Disconnect(string deviceAddress);
 
+        [DllImport(Libraries.Bluetooth, EntryPoint = "bt_hid_device_activate")]
+        internal static extern int ActivateDevice(HidDeviceConnectionStateChangedCallback stateChangedCb, IntPtr userData);
+        [DllImport(Libraries.Bluetooth, EntryPoint = "bt_hid_device_deactivate")]
+        internal static extern int DeactivateDevice();
+        [DllImport(Libraries.Bluetooth, EntryPoint = "bt_hid_device_connect")]
+        internal static extern int ConnectDevice(string deviceAddress);
+        [DllImport(Libraries.Bluetooth, EntryPoint = "bt_hid_device_disconnect")]
+        internal static extern int DisconnectDevice(string deviceAddress);
+        [DllImport(Libraries.Bluetooth, EntryPoint = "bt_hid_device_send_mouse_event")]
+        internal static extern int SendDeviceMouseEvent(string deviceAddress, BluetoothHidMouseData mouseData);
+        [DllImport(Libraries.Bluetooth, EntryPoint = "bt_hid_device_send_key_event")]
+        internal static extern int SendDeviceKeyEvent(string deviceAddress, BluetoothHidKeyData keyData);
+        [DllImport(Libraries.Bluetooth, EntryPoint = "bt_hid_device_set_data_received_cb")]
+        internal static extern int SetDataReceivedCallback(HidDataReceivedCallback dataReceivedCb, IntPtr userData);
+        [DllImport(Libraries.Bluetooth, EntryPoint = "bt_hid_device_unset_data_received_cb")]
+        internal static extern int UnsetDataReceivedCallback(HidDataReceivedCallback dataReceivedCb, IntPtr userData);
+        [DllImport(Libraries.Bluetooth, EntryPoint = "bt_hid_device_reply_to_report")]
+        internal static extern int ReplyToReport(string deviceAddress, BluetoothHidHeaderType headerType, BluetoothHidParamType paramType, byte[] value, int len, IntPtr userData);
+
         // Bluetooth OPP
         // Opp Server
         [DllImport(Libraries.Bluetooth, EntryPoint = "bt_opp_server_initialize")]
@@ -414,7 +437,7 @@ internal static partial class Interop
         [DllImport(Libraries.Bluetooth, EntryPoint = "bt_opp_client_initialize")]
         internal static extern int InitializeOppClient();
 
-        [DllImport(Libraries.Bluetooth, EntryPoint = "bt_opp_client_dinitialize")]
+        [DllImport(Libraries.Bluetooth, EntryPoint = "bt_opp_client_deinitialize")]
         internal static extern int DeinitializeOppClient();
 
         [DllImport(Libraries.Bluetooth, EntryPoint = "bt_opp_client_add_file")]
