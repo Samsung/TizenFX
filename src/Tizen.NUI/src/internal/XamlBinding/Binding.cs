@@ -200,7 +200,7 @@ namespace Tizen.NUI.Binding
                     string indexerName = defaultMember != null ? defaultMember.MemberName : "Item";
 
                     MethodInfo getterInfo =
-                        declarerType.GetProperties().Where(pi => pi.Name == indexerName && pi.CanRead && pi.GetMethod.IsPublic && !pi.GetMethod.IsStatic).Select(pi => pi.GetMethod).FirstOrDefault();
+                        declarerType.GetProperties().Where(pi => (pi.GetMethod != null) && pi.Name == indexerName && pi.CanRead && pi.GetMethod.IsPublic && !pi.GetMethod.IsStatic).Select(pi => pi.GetMethod).FirstOrDefault();
                     if (getterInfo != null)
                     {
                         if (getterInfo == methodCall.Method)
