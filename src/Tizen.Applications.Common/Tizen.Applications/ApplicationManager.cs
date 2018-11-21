@@ -32,10 +32,12 @@ namespace Tizen.Applications
         private static EventHandler<ApplicationLaunchedEventArgs> s_launchedHandler;
         private static EventHandler<ApplicationTerminatedEventArgs> s_terminatedHandler;
         private static Interop.ApplicationManager.AppManagerAppContextEventCallback s_applicationChangedEventCallback;
-        private static EventHandler<ApplicationEnabledEventArgs> _enabledHandler;
-        private static EventHandler<ApplicationDisabledEventArgs> _disabledHandler;
-        private static Interop.ApplicationManager.AppManagerEventCallback _eventCallback;
+        private static EventHandler<ApplicationEnabledEventArgs> s_enabledHandler;
+        private static EventHandler<ApplicationDisabledEventArgs> s_disabledHandler;
+        private static Interop.ApplicationManager.AppManagerEventCallback s_eventCallback;
         private static IntPtr _eventHandle = IntPtr.Zero;
+        private static readonly object s_eventLock = new object();
+        private static readonly object s_applicationChangedEventLock = new object();
 
         /// <summary>
         /// Occurs whenever the installed application is enabled.
@@ -45,18 +47,25 @@ namespace Tizen.Applications
         {
             add
             {
-                if (_enabledHandler == null && _disabledHandler == null)
+                lock (s_eventLock)
                 {
-                    RegisterApplicationEvent();
+                    if (s_eventCallback == null)
+                    {
+                        RegisterApplicationEvent();
+                    }
+                    s_enabledHandler += value;
                 }
-                _enabledHandler += value;
             }
             remove
             {
-                _enabledHandler -= value;
-                if (_enabledHandler == null && _disabledHandler == null)
+                lock (s_eventLock)
                 {
-                    UnRegisterApplicationEvent();
+                    s_enabledHandler -= value;
+                    if (s_enabledHandler == null && s_disabledHandler == null && s_eventCallback != null)
+                    {
+                        UnRegisterApplicationEvent();
+                        s_eventCallback = null;
+                    }
                 }
             }
         }
@@ -69,18 +78,25 @@ namespace Tizen.Applications
         {
             add
             {
-                if (_disabledHandler == null && _enabledHandler == null)
+                lock (s_eventLock)
                 {
-                    RegisterApplicationEvent();
+                    if (s_eventCallback == null)
+                    {
+                        RegisterApplicationEvent();
+                    }
+                    s_disabledHandler += value;
                 }
-                _disabledHandler += value;
             }
             remove
             {
-                _disabledHandler -= value;
-                if (_disabledHandler == null && _enabledHandler == null)
+                lock (s_eventLock)
                 {
-                    UnRegisterApplicationEvent();
+                    s_disabledHandler -= value;
+                    if (s_enabledHandler == null && s_disabledHandler == null && s_eventCallback != null)
+                    {
+                        UnRegisterApplicationEvent();
+                        s_eventCallback = null;
+                    }
                 }
             }
         }
@@ -93,18 +109,25 @@ namespace Tizen.Applications
         {
             add
             {
-                if (s_launchedHandler == null && s_terminatedHandler == null)
+                lock (s_applicationChangedEventLock)
                 {
-                    RegisterApplicationChangedEvent();
+                    if (s_applicationChangedEventCallback == null)
+                    {
+                        RegisterApplicationChangedEvent();
+                    }
+                    s_launchedHandler += value;
                 }
-                s_launchedHandler += value;
             }
             remove
             {
-                s_launchedHandler -= value;
-                if (s_launchedHandler == null && s_terminatedHandler == null)
+                lock (s_applicationChangedEventLock)
                 {
-                    UnRegisterApplicationChangedEvent();
+                    s_launchedHandler -= value;
+                    if (s_launchedHandler == null && s_terminatedHandler == null && s_applicationChangedEventCallback != null)
+                    {
+                        UnRegisterApplicationChangedEvent();
+                        s_applicationChangedEventCallback = null;
+                    }
                 }
             }
         }
@@ -117,18 +140,25 @@ namespace Tizen.Applications
         {
             add
             {
-                if (s_launchedHandler == null && s_terminatedHandler == null)
+                lock (s_applicationChangedEventLock)
                 {
-                    RegisterApplicationChangedEvent();
+                    if (s_applicationChangedEventCallback == null)
+                    {
+                        RegisterApplicationChangedEvent();
+                    }
+                    s_terminatedHandler += value;
                 }
-                s_terminatedHandler += value;
             }
             remove
             {
-                s_terminatedHandler -= value;
-                if (s_launchedHandler == null && s_terminatedHandler == null)
+                lock (s_applicationChangedEventLock)
                 {
-                    UnRegisterApplicationChangedEvent();
+                    s_terminatedHandler -= value;
+                    if (s_launchedHandler == null && s_terminatedHandler == null && s_applicationChangedEventCallback != null)
+                    {
+                        UnRegisterApplicationChangedEvent();
+                        s_applicationChangedEventCallback = null;
+                    }
                 }
             }
         }
@@ -401,18 +431,18 @@ namespace Tizen.Applications
                 throw ApplicationManagerErrorFactory.GetException(err, "Failed to set the application event");
             }
 
-            _eventCallback = (string appType, string appId, Interop.ApplicationManager.AppManagerEventType eventType, Interop.ApplicationManager.AppManagerEventState eventState, IntPtr eventHandle, IntPtr UserData) =>
+            s_eventCallback = (string appType, string appId, Interop.ApplicationManager.AppManagerEventType eventType, Interop.ApplicationManager.AppManagerEventState eventState, IntPtr eventHandle, IntPtr UserData) =>
             {
                 if (eventType == Interop.ApplicationManager.AppManagerEventType.Enable)
                 {
-                    _enabledHandler?.Invoke(null, new ApplicationEnabledEventArgs(appId, (ApplicationEventState)eventState));
+                    s_enabledHandler?.Invoke(null, new ApplicationEnabledEventArgs(appId, (ApplicationEventState)eventState));
                 }
                 else if (eventType == Interop.ApplicationManager.AppManagerEventType.Disable)
                 {
-                    _disabledHandler?.Invoke(null, new ApplicationDisabledEventArgs(appId, (ApplicationEventState)eventState));
+                    s_disabledHandler?.Invoke(null, new ApplicationDisabledEventArgs(appId, (ApplicationEventState)eventState));
                 }
             };
-            err = Interop.ApplicationManager.AppManagerSetEventCallback(_eventHandle, _eventCallback, IntPtr.Zero);
+            err = Interop.ApplicationManager.AppManagerSetEventCallback(_eventHandle, s_eventCallback, IntPtr.Zero);
             if (err != Interop.ApplicationManager.ErrorCode.None)
             {
                 Interop.ApplicationManager.AppManagerEventDestroy(_eventHandle);
