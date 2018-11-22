@@ -1079,7 +1079,7 @@ namespace Tizen.Applications
             var err = Interop.PackageManager.ErrorCode.None;
             if (s_eventStatus != eventStatus)
             {
-                err = Interop.PackageManager.PackageManagerSetEvenStatus(Handle, eventStatus);
+                err = Interop.PackageManager.PackageManagerSetEventStatus(Handle, eventStatus);
                 if (err == Interop.PackageManager.ErrorCode.None)
                 {
                     s_eventStatus = eventStatus;
@@ -1106,7 +1106,7 @@ namespace Tizen.Applications
             var err = Interop.PackageManager.ErrorCode.None;
             if (s_eventStatus != eventStatus)
             {
-                err = Interop.PackageManager.PackageManagerSetEvenStatus(Handle, eventStatus);
+                err = Interop.PackageManager.PackageManagerSetEventStatus(Handle, eventStatus);
                 if (err == Interop.PackageManager.ErrorCode.None)
                 {
                     s_eventStatus = eventStatus;
