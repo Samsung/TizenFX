@@ -692,7 +692,7 @@ namespace Tizen.Network.Bluetooth
         /// The received data
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
-        public string Data
+        public byte[] Data
         {
             get
             {
