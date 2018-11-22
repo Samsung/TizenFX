@@ -642,7 +642,7 @@ namespace Tizen.Network.Bluetooth
         internal string _address;
         internal BluetoothHidHeaderType _headerType;
         internal BluetoothHidParamType _paramType;
-        internal string _data;
+        internal byte[] _data;
 
         /// <summary>
         /// The default constructor. Initializes an object of the BluetoothHidReceivedData.
