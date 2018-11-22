@@ -1127,14 +1127,17 @@ namespace Tizen.Applications
 
             if (!Handle.IsInvalid)
             {
-                Log.Debug(LogTag, "Reset Package Event");
-                err = Interop.PackageManager.PackageManagerUnsetEvent(Handle);
-                if (err != Interop.PackageManager.ErrorCode.None)
+                lock (Handle)
                 {
-                    throw PackageManagerErrorFactory.GetException(err, "Failed to unregister package manager event event.");
-                }
+                    Log.Debug(LogTag, "Reset Package Event");
+                    err = Interop.PackageManager.PackageManagerUnsetEvent(Handle);
+                    if (err != Interop.PackageManager.ErrorCode.None)
+                    {
+                        throw PackageManagerErrorFactory.GetException(err, "Failed to unregister package manager event event.");
+                    }
 
-                err = Interop.PackageManager.PackageManagerSetEvent(Handle, s_packageManagerEventCallback, IntPtr.Zero);
+                    err = Interop.PackageManager.PackageManagerSetEvent(Handle, s_packageManagerEventCallback, IntPtr.Zero);
+                }
             }
             if (err != Interop.PackageManager.ErrorCode.None)
             {
@@ -1182,10 +1185,13 @@ namespace Tizen.Applications
 
             s_packageManagerEventCallback = null;
 
-            var err = Interop.PackageManager.PackageManagerUnsetEvent(Handle);
-            if (err != Interop.PackageManager.ErrorCode.None)
+            lock (Handle)
             {
-                throw PackageManagerErrorFactory.GetException(err, "Failed to unregister package manager event event.");
+                var err = Interop.PackageManager.PackageManagerUnsetEvent(Handle);
+                if (err != Interop.PackageManager.ErrorCode.None)
+                {
+                    throw PackageManagerErrorFactory.GetException(err, "Failed to unregister package manager event event.");
+                }
             }
         }
     }
