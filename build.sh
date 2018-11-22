@@ -5,11 +5,7 @@ SCRIPT_DIR=$(dirname $SCRIPT_FILE)
 
 OUTDIR=$SCRIPT_DIR/Artifacts
 
-RETRY_CMD="$SCRIPT_DIR/tools/scripts/retry.sh"
-TIMEOUT_CMD="$SCRIPT_DIR/tools/scripts/timeout.sh"
-DOTNET_CMD="$RETRY_CMD $TIMEOUT_CMD 600 dotnet"
-
-RUN_BUILD="$DOTNET_CMD msbuild $SCRIPT_DIR/build/build.proj /nologo"
+RUN_BUILD="dotnet msbuild $SCRIPT_DIR/build/build.proj /nologo"
 
 VERSION_PREFIX=6.0.0
 

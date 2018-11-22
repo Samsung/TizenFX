@@ -145,9 +145,11 @@ GetFileList wearable > wearable.filelist
 
 rm -fr %{_tizenfx_bin_path}
 export DOTNET_SKIP_FIRST_TIME_EXPERIENCE=true
-./build.sh --full
-./build.sh --dummy
-./build.sh --pack %{TIZEN_NET_NUGET_VERSION}
+
+%define build_cmd ./tools/scripts/retry.sh ./tools/scripts/timeout.sh -t 600 ./build.sh
+%{build_cmd} --full
+%{build_cmd} --dummy
+%{build_cmd} --pack %{TIZEN_NET_NUGET_VERSION}
 
 %install
 mkdir -p %{buildroot}%{DOTNET_ASSEMBLY_PATH}
