@@ -94,6 +94,12 @@ namespace Tizen.Multimedia
 
             [DllImport(Libraries.MediaTool, EntryPoint = "media_packet_get_rotate_method")]
             internal static extern int GetRotation(IntPtr handle, out RotationFlip rotationFlip);
+
+            [DllImport(Libraries.MediaTool, EntryPoint = "media_packet_set_duration")]
+            internal static extern int SetDuration(IntPtr handle, ulong value);
+
+            [DllImport(Libraries.MediaTool, EntryPoint = "media_packet_get_duration")]
+            internal static extern int GetDuration(IntPtr handle, out ulong value);
         }
 
         internal static class MediaFormat
@@ -134,6 +140,9 @@ namespace Tizen.Multimedia
 
             [DllImport(Libraries.MediaTool, EntryPoint = "media_format_set_video_avg_bps")]
             internal static extern int SetVideoAverageBps(IntPtr handle, int value);
+
+            [DllImport(Libraries.MediaTool, EntryPoint = "media_format_set_video_max_bps")]
+            internal static extern int SetVideoMaxBps(IntPtr handle, int value);
 
             [DllImport(Libraries.MediaTool, EntryPoint = "media_format_set_video_frame_rate")]
             internal static extern int SetVideoFrameRate(IntPtr handle, int value);
