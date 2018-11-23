@@ -76,7 +76,7 @@ namespace Tizen.Network.Bluetooth
             }
         }
 
-        internal int ActivateDevice(string deviceAddress)
+        internal int ActivateDevice()
         {
             Interop.Bluetooth.HidDeviceConnectionStateChangedCallback _hidDeviceConnectionStateChangedCallback = (int result, bool isConnected, string address, IntPtr userData) =>
             {
@@ -98,7 +98,7 @@ namespace Tizen.Network.Bluetooth
             return (int)BluetoothError.NotInitialized;
         }
 
-        internal int DeactivateDevice(string deviceAddress)
+        internal int DeactivateDevice()
         {
             if (Globals.IsHidInitialize)
             {
