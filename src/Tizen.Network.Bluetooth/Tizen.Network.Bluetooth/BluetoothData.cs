@@ -550,14 +550,6 @@ namespace Tizen.Network.Bluetooth
     public class BluetoothHidMouseData
     {
         /// <summary>
-        /// The default constructor. Initializes an object of the BluetoothHidMouseData.
-        /// </summary>
-        /// <since_tizen> 6 </since_tizen>
-        public BluetoothHidMouseData()
-        {
-        }
-
-        /// <summary>
         /// The button values, we can combine key's values when we pressed multiple mouse buttons
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
@@ -604,14 +596,6 @@ namespace Tizen.Network.Bluetooth
     /// <since_tizen> 6 </since_tizen>
     public class BluetoothHidKeyData
     {
-        /// <summary>
-        /// The default constructor. Initializes an object of the BluetoothHidKeyData.
-        /// </summary>
-        /// <since_tizen> 6 </since_tizen>
-        public BluetoothHidKeyData()
-        {
-        }
-
         /// <summary>
         /// The modifier keys : such as shift, alt
         /// </summary>

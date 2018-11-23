@@ -683,6 +683,60 @@ namespace Tizen.Network.Bluetooth
     }
 
     /// <summary>
+    /// An extended EventArgs class contains the connection state and the address of the remote Bluetooth device.
+    /// </summary>
+    /// <since_tizen> 3 </since_tizen>
+    public class HidDeviceConnectionStateChangedEventArgs : EventArgs
+    {
+        private int _result;
+        private bool _isConnected;
+        private string _address;
+
+        internal HidDeviceConnectionStateChangedEventArgs(int result, bool isConnected, string address)
+        {
+            _result = result;
+            _isConnected = isConnected;
+            _address = address;
+        }
+
+        /// <summary>
+        /// The result.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
+        public int Result
+        {
+            get
+            {
+                return _result;
+            }
+        }
+
+        /// <summary>
+        /// A value indicating whether this instance is connected.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
+        public bool IsConnected
+        {
+            get
+            {
+                return _isConnected;
+            }
+        }
+
+        /// <summary>
+        /// The address.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
+        public string Address
+        {
+            get
+            {
+                return _address;
+            }
+        }
+    }
+
+    /// <summary>
     /// An extended EventArgs class contains the changed equalizer state.
     /// </summary>
     /// <since_tizen> 3 </since_tizen>

@@ -78,6 +78,63 @@ namespace Tizen.Network.Bluetooth
                 BluetoothErrorFactory.ThrowBluetoothException((int)BluetoothError.NotEnabled);
             }
         }
+
+        /// <summary>
+        /// The HidDeviceConnectionStateChanged event is called when the HID device connection state is changed.
+        /// </summary>
+        /// <exception cref="InvalidOperationException">Thrown when the Bluetooth is not enabled.</exception>
+        /// <since_tizen> 6 </since_tizen>
+        public event EventHandler<HidDeviceConnectionStateChangedEventArgs> HidDeviceConnectionStateChanged
+        {
+            add
+            {
+                try
+                {
+                    BluetoothHidImpl.Instance.HidDeviceConnectionStateChanged += value;
+                }
+                catch (TypeInitializationException e)
+                {
+                    throw e.InnerException;
+                }
+            }
+            remove
+            {
+                try
+                {
+                    BluetoothHidImpl.Instance.HidDeviceConnectionStateChanged -= value;
+                }
+                catch (TypeInitializationException e)
+                {
+                    throw e.InnerException;
+                }
+            }
+        }
+
+        /// <summary>
+        /// Activates the Bluetooth HID Device role.
+        /// </summary>
+        /// <exception cref="InvalidOperationException">Thrown when the Bluetooth is not enabled.</exception>
+        /// <since_tizen> 6 </since_tizen>
+        public void ActivateDevice()
+        {
+            if (BluetoothAdapter.IsBluetoothEnabled && Globals.IsInitialize)
+            {
+                int ret = BluetoothHidImpl.Instance.ActivateDevice(RemoteAddress);
+            }
+        }
+
+        /// <summary>
+        /// Deactivates the Bluetooth HID Device role.
+        /// </summary>
+        /// <exception cref="InvalidOperationException">Thrown when the Bluetooth is not enabled.</exception>
+        /// <since_tizen> 6 </since_tizen>
+        public void DeactivateDevice()
+        {
+            if (BluetoothAdapter.IsBluetoothEnabled && Globals.IsInitialize)
+            {
+                int ret = BluetoothHidImpl.Instance.DeactivateDevice(RemoteAddress);
+            }
+        }
     }
 }
 

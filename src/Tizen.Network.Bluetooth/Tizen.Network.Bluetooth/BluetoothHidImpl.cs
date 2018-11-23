@@ -22,6 +22,8 @@ namespace Tizen.Network.Bluetooth
     {
         private event EventHandler<HidConnectionStateChangedEventArgs> _hidConnectionChanged;
         private Interop.Bluetooth.HidConnectionStateChangedCallback _hidConnectionChangedCallback;
+        private event EventHandler<HidDeviceConnectionStateChangedEventArgs> _hidDeviceConnectionStateChanged = null;
+        private Interop.Bluetooth.HidDeviceConnectionStateChangedCallback _hidDeviceConnectionStateChangedCallback;
 
         private static readonly BluetoothHidImpl _instance = new BluetoothHidImpl();
         private bool disposed = false;
@@ -58,6 +60,54 @@ namespace Tizen.Network.Bluetooth
                 int ret = Interop.Bluetooth.Disconnect (deviceAddress);
                 if (ret != (int)BluetoothError.None) {
                     Log.Error (Globals.LogTag, "Failed to disconnect device with the hid service, Error - " + (BluetoothError)ret);
+                }
+                return ret;
+            }
+            return (int)BluetoothError.NotInitialized;
+        }
+
+        internal event EventHandler<HidDeviceConnectionStateChangedEventArgs> HidDeviceConnectionStateChanged
+        {
+            add
+            {
+                _hidDeviceConnectionStateChanged += value;
+            }
+            remove
+            {
+                _hidDeviceConnectionStateChanged -= value;
+            }
+        }
+
+        internal int ActivateDevice(string deviceAddress)
+        {
+            _hidDeviceConnectionStateChangedCallback = (int result, bool isConnected, string address, IntPtr userData) =>
+            {
+                if (_hidDeviceConnectionStateChanged != null)
+                {
+                    _hidDeviceConnectionStateChanged(null, new HidDeviceConnectionStateChangedEventArgs(result, isConnected, address));
+                }
+            };
+
+            if (Globals.IsHidInitialize)
+            {
+                int ret = Interop.Bluetooth.ActivateDevice(_hidDeviceConnectionStateChangedCallback, IntPtr.Zero);
+                if (ret != (int)BluetoothError.None)
+                {
+                    Log.Error(Globals.LogTag, "Failed to disconnect device with the hid service, Error - " + (BluetoothError)ret);
+                }
+                return ret;
+            }
+            return (int)BluetoothError.NotInitialized;
+        }
+
+        internal int DeactivateDevice(string deviceAddress)
+        {
+            if (Globals.IsHidInitialize)
+            {
+                int ret = Interop.Bluetooth.DeactivateDevice();
+                if (ret != (int)BluetoothError.None)
+                {
+                    Log.Error(Globals.LogTag, "Failed to disconnect device with the hid service, Error - " + (BluetoothError)ret);
                 }
                 return ret;
             }
