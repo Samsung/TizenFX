@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.IO;
 using System.Linq;
 using System.Reflection;
@@ -121,7 +122,8 @@ namespace Checker_ABI
                 var internalAPIList = new List<MemberInfo>();
                 for (int i = changedAPIList.Count - 1; i >= 0; i--)
                 {
-                    if (changedAPIList[i].GetCustomAttribute<System.ComponentModel.EditorBrowsableAttribute>()?.State == System.ComponentModel.EditorBrowsableState.Never)
+                    if (changedAPIList[i].GetCustomAttribute<EditorBrowsableAttribute>()?.State == EditorBrowsableState.Never
+                        || changedAPIList[i].DeclaringType.GetCustomAttribute<EditorBrowsableAttribute>()?.State == EditorBrowsableState.Never)
                     {
                         Console.WriteLine($"  Internal API changed: {changedAPIList[i].DeclaringType}::{changedAPIList[i].ToString()}");
                         internalAPIList.Add(changedAPIList[i]);
