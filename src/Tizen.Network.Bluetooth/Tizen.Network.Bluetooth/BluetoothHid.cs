@@ -88,25 +88,11 @@ namespace Tizen.Network.Bluetooth
         {
             add
             {
-                try
-                {
-                    BluetoothHidImpl.Instance.HidDeviceConnectionStateChanged += value;
-                }
-                catch (TypeInitializationException e)
-                {
-                    throw e.InnerException;
-                }
+                BluetoothHidImpl.Instance.HidDeviceConnectionStateChanged += value;
             }
             remove
             {
-                try
-                {
-                    BluetoothHidImpl.Instance.HidDeviceConnectionStateChanged -= value;
-                }
-                catch (TypeInitializationException e)
-                {
-                    throw e.InnerException;
-                }
+                BluetoothHidImpl.Instance.HidDeviceConnectionStateChanged -= value;
             }
         }
 
@@ -120,6 +106,11 @@ namespace Tizen.Network.Bluetooth
             if (BluetoothAdapter.IsBluetoothEnabled && Globals.IsInitialize)
             {
                 int ret = BluetoothHidImpl.Instance.ActivateDevice(RemoteAddress);
+                if (ret != (int)BluetoothError.None)
+                {
+                    Log.Error(Globals.LogTag, "Failed to ActivateDevice - " + (BluetoothError)ret);
+                    BluetoothErrorFactory.ThrowBluetoothException(ret);
+                }
             }
         }
 
@@ -133,6 +124,11 @@ namespace Tizen.Network.Bluetooth
             if (BluetoothAdapter.IsBluetoothEnabled && Globals.IsInitialize)
             {
                 int ret = BluetoothHidImpl.Instance.DeactivateDevice(RemoteAddress);
+                if (ret != (int)BluetoothError.None)
+                {
+                    Log.Error(Globals.LogTag, "Failed to DeactivateDevice - " + (BluetoothError)ret);
+                    BluetoothErrorFactory.ThrowBluetoothException(ret);
+                }
             }
         }
     }

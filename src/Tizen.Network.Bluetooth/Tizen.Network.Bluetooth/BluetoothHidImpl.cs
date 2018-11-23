@@ -21,9 +21,7 @@ namespace Tizen.Network.Bluetooth
     internal class BluetoothHidImpl : IDisposable
     {
         private event EventHandler<HidConnectionStateChangedEventArgs> _hidConnectionChanged;
-        private Interop.Bluetooth.HidConnectionStateChangedCallback _hidConnectionChangedCallback;
-        private event EventHandler<HidDeviceConnectionStateChangedEventArgs> _hidDeviceConnectionStateChanged = null;
-        private Interop.Bluetooth.HidDeviceConnectionStateChangedCallback _hidDeviceConnectionStateChangedCallback;
+        private event EventHandler<HidDeviceConnectionStateChangedEventArgs> _hidDeviceConnectionStateChanged;
 
         private static readonly BluetoothHidImpl _instance = new BluetoothHidImpl();
         private bool disposed = false;
@@ -80,7 +78,7 @@ namespace Tizen.Network.Bluetooth
 
         internal int ActivateDevice(string deviceAddress)
         {
-            _hidDeviceConnectionStateChangedCallback = (int result, bool isConnected, string address, IntPtr userData) =>
+            Interop.Bluetooth.HidDeviceConnectionStateChangedCallback _hidDeviceConnectionStateChangedCallback = (int result, bool isConnected, string address, IntPtr userData) =>
             {
                 if (_hidDeviceConnectionStateChanged != null)
                 {
@@ -154,7 +152,7 @@ namespace Tizen.Network.Bluetooth
         {
             if (Globals.IsInitialize)
             {
-                _hidConnectionChangedCallback = (int result, bool connected, string deviceAddress, IntPtr userData) =>
+                Interop.Bluetooth.HidConnectionStateChangedCallback _hidConnectionChangedCallback = (int result, bool connected, string deviceAddress, IntPtr userData) =>
                 {
                     if (_hidConnectionChanged != null)
                     {
