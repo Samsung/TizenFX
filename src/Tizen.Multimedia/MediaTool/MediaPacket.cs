@@ -59,8 +59,7 @@ namespace Tizen.Multimedia
         {
             _handle = handle;
 
-            IntPtr formatHandle;
-            int ret = Interop.MediaPacket.GetFormat(handle, out formatHandle);
+            int ret = Interop.MediaPacket.GetFormat(handle, out IntPtr formatHandle);
 
             MultimediaDebug.AssertNoError(ret);
 
@@ -226,6 +225,35 @@ namespace Tizen.Multimedia
                 ValidateNotLocked();
 
                 int ret = Interop.MediaPacket.SetDts(_handle, value);
+                MultimediaDebug.AssertNoError(ret);
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the duration value of the current packet.
+        /// </summary>
+        /// <exception cref="ObjectDisposedException">The MediaPacket has already been disposed of.</exception>
+        /// <exception cref="InvalidOperationException">
+        ///     The MediaPacket is not in the writable state, which means it is being used by another module.
+        /// </exception>
+        /// <since_tizen> 6 </since_tizen>
+        public ulong Duration
+        {
+            get
+            {
+                ValidateNotDisposed();
+
+                int ret = Interop.MediaPacket.GetDuration(_handle, out var value);
+                MultimediaDebug.AssertNoError(ret);
+
+                return value;
+            }
+            set
+            {
+                ValidateNotDisposed();
+                ValidateNotLocked();
+
+                int ret = Interop.MediaPacket.SetDuration(_handle, value);
                 MultimediaDebug.AssertNoError(ret);
             }
         }
