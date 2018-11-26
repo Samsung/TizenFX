@@ -127,10 +127,54 @@ namespace Tizen.Network.Bluetooth
         {
             if (BluetoothAdapter.IsBluetoothEnabled && Globals.IsInitialize)
             {
-                int ret = BluetoothHidImpl.Instance.DeactivateDevice();
+                int ret = BluetoothHidImpl.DeactivateDevice();
                 if (ret != (int)BluetoothError.None)
                 {
                     Log.Error(Globals.LogTag, "Failed to DeactivateDevice - " + (BluetoothError)ret);
+                    BluetoothErrorFactory.ThrowBluetoothException(ret);
+                }
+            }
+            else
+            {
+                BluetoothErrorFactory.ThrowBluetoothException((int)BluetoothError.NotEnabled);
+            }
+        }
+
+        /// <summary>
+        /// Connects the Bluetooth HID Device role.
+        /// </summary>
+        /// <exception cref="InvalidOperationException">Thrown when the Bluetooth is not enabled.</exception>
+        /// <since_tizen> 6 </since_tizen>
+        public void ConnectDevice()
+        {
+            if (BluetoothAdapter.IsBluetoothEnabled && Globals.IsInitialize)
+            {
+                int ret = BluetoothHidImpl.ConnectDevice(RemoteAddress);
+                if (ret != (int)BluetoothError.None)
+                {
+                    Log.Error(Globals.LogTag, "Failed to ConnectDevice - " + (BluetoothError)ret);
+                    BluetoothErrorFactory.ThrowBluetoothException(ret);
+                }
+            }
+            else
+            {
+                BluetoothErrorFactory.ThrowBluetoothException((int)BluetoothError.NotEnabled);
+            }
+        }
+
+        /// <summary>
+        /// Connects the Bluetooth HID Device role.
+        /// </summary>
+        /// <exception cref="InvalidOperationException">Thrown when the Bluetooth is not enabled.</exception>
+        /// <since_tizen> 6 </since_tizen>
+        public void DisconnectDevice()
+        {
+            if (BluetoothAdapter.IsBluetoothEnabled && Globals.IsInitialize)
+            {
+                int ret = BluetoothHidImpl.DisconnectDevice(RemoteAddress);
+                if (ret != (int)BluetoothError.None)
+                {
+                    Log.Error(Globals.LogTag, "Failed to ConnectDevice - " + (BluetoothError)ret);
                     BluetoothErrorFactory.ThrowBluetoothException(ret);
                 }
             }

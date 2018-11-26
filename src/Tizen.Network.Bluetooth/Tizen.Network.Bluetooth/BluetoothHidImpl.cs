@@ -98,11 +98,39 @@ namespace Tizen.Network.Bluetooth
             return (int)BluetoothError.NotInitialized;
         }
 
-        internal int DeactivateDevice()
+        internal static int DeactivateDevice()
         {
             if (Globals.IsHidInitialize)
             {
                 int ret = Interop.Bluetooth.DeactivateDevice();
+                if (ret != (int)BluetoothError.None)
+                {
+                    Log.Error(Globals.LogTag, "Failed to disconnect device with the hid service, Error - " + (BluetoothError)ret);
+                }
+                return ret;
+            }
+            return (int)BluetoothError.NotInitialized;
+        }
+
+        internal static int ConnectDevice(string deviceAddress)
+        {
+            if (Globals.IsHidInitialize)
+            {
+                int ret = Interop.Bluetooth.ConnectDevice(deviceAddress);
+                if (ret != (int)BluetoothError.None)
+                {
+                    Log.Error(Globals.LogTag, "Failed to disconnect device with the hid service, Error - " + (BluetoothError)ret);
+                }
+                return ret;
+            }
+            return (int)BluetoothError.NotInitialized;
+        }
+
+        internal static int DisconnectDevice(string deviceAddress)
+        {
+            if (Globals.IsHidInitialize)
+            {
+                int ret = Interop.Bluetooth.DisconnectDevice(deviceAddress);
                 if (ret != (int)BluetoothError.None)
                 {
                     Log.Error(Globals.LogTag, "Failed to disconnect device with the hid service, Error - " + (BluetoothError)ret);
