@@ -58,6 +58,8 @@ namespace Tizen.Applications.WatchfaceComplication
         /// <summary>
         /// Adds the DesignElement to edit list.
         /// </summary>
+        /// <param name="de">The DesignElement object.</param>
+        /// <param name="editableId">The editable id.</param>
         /// <exception cref="ArgumentException">Thrown when the invalid parameter is passed.</exception>
         /// <exception cref="InvalidOperationException">Thrown when the method failed due to invalid operation.</exception>
         /// <since_tizen> 6 </since_tizen>
@@ -76,6 +78,8 @@ namespace Tizen.Applications.WatchfaceComplication
         /// <summary>
         /// Adds the Complication to edit list.
         /// </summary>
+        /// <param name="comp">The Complication object.</param>
+        /// <param name="editableId">The editable id.</param>
         /// <exception cref="ArgumentException">Thrown when the invalid parameter is passed.</exception>
         /// <exception cref="InvalidOperationException">Thrown when the method failed due to invalid operation.</exception>
         /// <since_tizen> 6 </since_tizen>
@@ -94,6 +98,7 @@ namespace Tizen.Applications.WatchfaceComplication
         /// <summary>
         /// Removes the editable from edit list.
         /// </summary>
+        /// <param name="editableId">The editable id.</param>
         /// <exception cref="ArgumentException">Thrown when the invalid parameter is passed.</exception>
         /// <example>
         /// <code>
@@ -158,7 +163,7 @@ namespace Tizen.Applications.WatchfaceComplication
         /// Checks the editable with editableId is already exists in edit list.
         /// </summary>
         /// <param name="editableId">The target editable Id.</param>
-        /// <returns>true if the editable is already exists in edit list, ortherwise false</returns>
+        /// <returns>true if the editable is already exists in edit list, otherwise false</returns>
         /// <since_tizen> 6 </since_tizen>
         public bool IsExist(int editableId)
         {
@@ -193,7 +198,7 @@ namespace Tizen.Applications.WatchfaceComplication
         }
 
         /// <summary>
-        /// Requests edit to editor appliation.
+        /// Requests edit to editor application.
         /// </summary>
         /// <privilege>http://tizen.org/privilege/datasharing</privilege>
         /// <exception cref="InvalidOperationException">Thrown when the method failed due to invalid operation.</exception>
@@ -263,6 +268,7 @@ namespace Tizen.Applications.WatchfaceComplication
         /// <summary>
         /// Overrides this method if you want to handle the behavior when the editor is ready to edit.
         /// </summary>
+        /// <param name="editorId">The appid of ready to edit editor.</param>
         /// <since_tizen> 6 </since_tizen>
         protected abstract void OnEditReady(string editorId);
 

@@ -58,7 +58,7 @@ namespace Tizen.Applications.WatchfaceComplication
         }
 
         /// <summary>
-        /// The iamge path data.
+        /// The image path data.
         /// </summary>
         /// <exception cref="ArgumentException">Thrown when try to set invalid value.</exception>
         /// <since_tizen> 6 </since_tizen>

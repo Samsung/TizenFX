@@ -40,7 +40,7 @@ namespace Tizen.Applications.WatchfaceComplication
         string Name { get; set; }
 
         /// <summary>
-        /// The information about editable's geomatry.
+        /// The information about editable's geometry.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
         Highlight Highlight { get; set; }

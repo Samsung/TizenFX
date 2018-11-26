@@ -367,6 +367,7 @@ namespace Tizen.Applications.WatchfaceComplication
         /// <summary>
         /// Transfers event to the provider.
         /// </summary>
+        /// <param name="eventType">The complication event type.</param>
         /// <privilege>http://tizen.org/privilege/appmanager.launch</privilege>
         /// <privilege>http://tizen.org/privilege/datasharing</privilege>
         /// <exception cref="UnauthorizedAccessException">Thrown when the application does not have privilege to access this method.</exception>
@@ -391,6 +392,7 @@ namespace Tizen.Applications.WatchfaceComplication
         /// <summary>
         /// Gets the complication data type.
         /// </summary>
+        /// <param name="data">The data from OnComplicationUpdate callback.</param>
         /// <returns>The complication type of data</returns>
         /// <exception cref="ArgumentException">Thrown when the invalid argument is passed.</exception>
         /// <exception cref="InvalidOperationException">Thrown when the method failed due to invalid operation.</exception>

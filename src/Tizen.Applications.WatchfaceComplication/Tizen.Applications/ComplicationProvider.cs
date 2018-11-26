@@ -103,6 +103,7 @@ namespace Tizen.Applications.WatchfaceComplication
         /// <param name="reqestAppId">The application ID of application which sent update request.</param>
         /// <param name="type">The requested type.</param>
         /// <param name="contextData">The complication's context which is set by complication setup application.</param>
+        /// <returns>The requested ComplicationData</returns>
         /// <since_tizen> 6 </since_tizen>
         protected abstract ComplicationData OnDataUpdateRequested(string reqestAppId, ComplicationTypes type, Bundle contextData);
 
@@ -124,7 +125,6 @@ namespace Tizen.Applications.WatchfaceComplication
         /// Gets the received event type.
         /// </summary>
         /// <param name="recvAppCtrl">The appcontrol received event args.</param>
-        /// <returns>The type of received event</returns>
         /// <exception cref="ArgumentException">Thrown when the invalid parameter is passed.</exception>
         /// <exception cref="InvalidOperationException">Thrown when the method failed due to invalid operation.</exception>
         /// <exception cref="NotSupportedException">Thrown when the watchface complication is not supported.</exception>
@@ -141,7 +141,7 @@ namespace Tizen.Applications.WatchfaceComplication
         /// }
         /// </code>
         /// </example>
-        /// <returns>Complication event type</returns>
+        /// <returns>The type of received event</returns>
         /// <since_tizen> 6 </since_tizen>
         public static EventTypes GetEventType(ReceivedAppControl recvAppCtrl)
         {
@@ -156,7 +156,6 @@ namespace Tizen.Applications.WatchfaceComplication
         /// Gets the received event target provider ID.
         /// </summary>
         /// <param name="recvAppCtrl">The appcontrol received event args.</param>
-        /// <returns>The target provider ID of received event</returns>
         /// <exception cref="ArgumentException">Thrown when e is invalid.</exception>
         /// <exception cref="InvalidOperationException">Thrown when the method failed due to invalid operation.</exception>
         /// <exception cref="NotSupportedException">Thrown when the watchface complication is not supported.</exception>
@@ -169,7 +168,7 @@ namespace Tizen.Applications.WatchfaceComplication
         /// }
         /// </code>
         /// </example>
-        /// <returns>Event target provider ID</returns>
+        /// <returns>The target provider ID of received event</returns>
         /// <since_tizen> 6 </since_tizen>
         public static string GetEventProviderId(ReceivedAppControl recvAppCtrl)
         {
@@ -184,7 +183,6 @@ namespace Tizen.Applications.WatchfaceComplication
         /// Gets the received event target complication type.
         /// </summary>
         /// <param name="recvAppCtrl">The appcontrol received event args.</param>
-        /// <returns>The target complication type of received event</returns>
         /// <exception cref="ArgumentException">Thrown when e is invalid.</exception>
         /// <exception cref="InvalidOperationException">Thrown when the method failed due to invalid operation.</exception>
         /// <exception cref="NotSupportedException">Thrown when the watchface complication is not supported.</exception>
@@ -197,7 +195,7 @@ namespace Tizen.Applications.WatchfaceComplication
         /// }
         /// </code>
         /// </example>
-        /// <returns>Event target complication type</returns>
+        /// <returns>The target complication type of received event</returns>
         /// <since_tizen> 6 </since_tizen>
         public static ComplicationTypes GetEventComplicationType(ReceivedAppControl recvAppCtrl)
         {
@@ -212,7 +210,6 @@ namespace Tizen.Applications.WatchfaceComplication
         /// Gets the received event target complication context.
         /// </summary>
         /// <param name="recvAppCtrl">The appcontrol received event args.</param>
-        /// <returns>The context of received event</returns>
         /// <exception cref="ArgumentException">Thrown when e is invalid.</exception>
         /// <exception cref="InvalidOperationException">Thrown when the method failed due to invalid operation.</exception>
         /// <exception cref="NotSupportedException">Thrown when the watchface complication is not supported.</exception>
@@ -225,7 +222,7 @@ namespace Tizen.Applications.WatchfaceComplication
         /// }
         /// </code>
         /// </example>
-        /// <returns>Event target complication context</returns>
+        /// <returns>The context of received event</returns>
         /// <since_tizen> 6 </since_tizen>
         public static Bundle GetEventContext(ReceivedAppControl recvAppCtrl)
         {
