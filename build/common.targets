@@ -1,7 +1,5 @@
 <Project>
 
-  <UsingTask TaskName="GenDummyTask" AssemblyFile="$(MSBuildThisFileDirectory)..\tools\bin\GenDummy.Tasks\GenDummy.Tasks.dll" />
-
   <Target Name="CopyToArtifactsDirectory"
           Condition="'$(ArtifactsDirectory)' != ''"
           DependsOnTargets="GetCopyToOutputDirectoryItems">
@@ -16,17 +14,6 @@
           DependsOnTargets="GetCopyToOutputDirectoryItems">
     <Copy SourceFiles="$(TargetPath)"
           DestinationFiles="$(OutputDummyDir)$(TargetFileName)" />
-  </Target>
-
-  <Target Name="BeforeCompile"
-          Condition="'$(IsDummyBuild)' == 'True'">
-    <GenDummyTask Sources="@(Compile)" OutputDirectory="$(IntermediateOutputPath)dummy\">
-      <Output TaskParameter="GeneratedFiles" ItemName="_DummyCompile" />
-    </GenDummyTask>
-    <ItemGroup>
-      <Compile Remove="@(Compile)" />
-      <Compile Include="@(_DummyCompile)" />
-    </ItemGroup>
   </Target>
 
 </Project>

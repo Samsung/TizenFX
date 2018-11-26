@@ -42,11 +42,7 @@ cmd_full_build() {
 }
 
 cmd_dummy_build() {
-  if [ -d /nuget ]; then
-    NUGET_SOURCE_OPT="/p:RestoreSources=/nuget"
-  fi
-  $RUN_BUILD /t:restore $NUGET_SOURCE_OPT
-  $RUN_BUILD /t:dummy $NUGET_SOURCE_OPT
+  $RUN_BUILD /t:dummy
 }
 
 cmd_pack() {

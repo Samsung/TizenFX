@@ -101,16 +101,12 @@
   -->
   <Target Name="Dummy">
 
-    <MSBuild Projects="@(ProjectToBuild)"
-             Properties="Configuration=$(Configuration);IsDummyBuild=True"
-             BuildInParallel="true"
-             UseResultsCache="true"
-             Targets="Rebuild" />
+    <PropertyGroup>
+      <GenDummyToolPath>$(MSBuildThisFileDirectory)..\tools\bin\GenDummy\GenDummy.dll</GenDummyToolPath>
+    </PropertyGroup>
 
-    <MSBuild Projects="@(ProjectToBuild)"
-             Properties="Configuration=$(Configuration)"
-             BuildInParallel="false"
-             Targets="CopyToDummyArtifactsDirectory" />
+    <MakeDir Directories="$(OutputDummyDir)" />
+    <Exec Command="dotnet $([System.IO.Path]::GetFullPath('$(GenDummyToolPath)')) $(OutputPublicDir)ref $(OutputDummyDir) " />
 
   </Target>
 
