@@ -10,10 +10,4 @@
           DestinationFiles="$(ArtifactsDirectory)%(RecursiveDir)%(Filename)%(Extension)" />
   </Target>
 
-  <Target Name="CopyToDummyArtifactsDirectory"
-          DependsOnTargets="GetCopyToOutputDirectoryItems">
-    <Copy SourceFiles="$(TargetPath)"
-          DestinationFiles="$(OutputDummyDir)$(TargetFileName)" />
-  </Target>
-
 </Project>
