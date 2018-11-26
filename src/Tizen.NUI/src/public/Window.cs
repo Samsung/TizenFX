@@ -1495,6 +1495,12 @@ namespace Tizen.NUI
             return ret;
         }
 
+        internal void SetPositionSize(Rectangle positionSize)
+        {
+            NDalicPINVOKE.Window_SetPositionSize(swigCPtr, Rectangle.getCPtr(positionSize));
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
         /// <summary>
         /// Sets whether the window is transparent or not.
         /// </summary>
@@ -1690,6 +1696,26 @@ namespace Tizen.NUI
             set
             {
                 SetPosition(value);
+            }
+        }
+
+        /// <summary>
+        /// Sets position and size of the window. This API guarantees that
+        /// both moving and resizing of window will appear on the screen at once.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public Rectangle WindowPositionSize
+        {
+            get
+            {
+                Position2D position = GetPosition();
+                Size2D size = GetSize();
+                Rectangle ret = new Rectangle(position.X, position.Y, size.Width, size.Height);
+                return ret;
+            }
+            set
+            {
+                SetPositionSize(value);
             }
         }
 
