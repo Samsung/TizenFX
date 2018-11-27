@@ -110,7 +110,7 @@ namespace Tizen.Multimedia
         /// <since_tizen> 3 </since_tizen>
         public VideoMediaFormat(MediaFormatVideoMimeType mimeType, int width, int height,
             int frameRate, int bitRate)
-            : this(mimeType, new Size(width, height), frameRate, bitRate)
+            : this(mimeType, width, height, frameRate, bitRate, DefaultMaxBps)
         {
         }
 
@@ -139,7 +139,30 @@ namespace Tizen.Multimedia
 
         /// <summary>
         /// Initializes a new instance of the VideoMediaFormat class with the specified mime type,
-        /// size, frame rate, and bit rate.
+        /// width, height, frame rate, bit rate and max bps.
+        /// </summary>
+        /// <param name="mimeType">The mime type of the format.</param>
+        /// <param name="width">The width value of the format.</param>
+        /// <param name="height">The height value of the format</param>
+        /// <param name="frameRate">The frame rate of the format.</param>
+        /// <param name="bitRate">The bit rate of the format.</param>
+        /// <param name="maxBps">The max bps of the format.</param>
+        /// <exception cref="ArgumentException"><paramref name="mimeType"/> is invalid (i.e. undefined value).</exception>
+        /// <exception cref="ArgumentOutOfRangeException">
+        ///     <paramref name="width"/>, <paramref name="height"/>, <br/>
+        ///     -or-<br/>
+        ///     <paramref name="frameRate"/>, or <paramref name="bitRate"/>, or <paramref name="maxBps"/> is less than zero.
+        /// </exception>
+        /// <since_tizen> 6 </since_tizen>
+        public VideoMediaFormat(MediaFormatVideoMimeType mimeType, int width, int height,
+            int frameRate, int bitRate, int maxBps)
+            : this(mimeType, new Size(width, height), frameRate, bitRate, maxBps)
+        {
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the VideoMediaFormat class with the specified mime type,
+        /// size, frame rate, bit rate and max bps.
         /// </summary>
         /// <param name="mimeType">The mime type of the format.</param>
         /// <param name="size">The size of the format.</param>
