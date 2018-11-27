@@ -621,7 +621,7 @@ namespace Tizen.Network.Bluetooth
     /// This class contains the data received from the HID Host.
     /// </summary>
     /// <since_tizen> 6 </since_tizen>
-    public class BluetoothHidReceivedData
+    public class BluetoothHidDeviceReceivedData
     {
         internal string _address;
         internal BluetoothHidHeaderType _headerType;
@@ -632,7 +632,7 @@ namespace Tizen.Network.Bluetooth
         /// The default constructor. Initializes an object of the BluetoothHidReceivedData.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
-        internal BluetoothHidReceivedData()
+        internal BluetoothHidDeviceReceivedData()
         {
         }
 

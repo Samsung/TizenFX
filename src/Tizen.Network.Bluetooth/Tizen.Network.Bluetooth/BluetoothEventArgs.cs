@@ -685,7 +685,7 @@ namespace Tizen.Network.Bluetooth
     /// <summary>
     /// An extended EventArgs class contains the connection state and the address of the remote Bluetooth device.
     /// </summary>
-    /// <since_tizen> 3 </since_tizen>
+    /// <since_tizen> 6 </since_tizen>
     public class HidDeviceConnectionStateChangedEventArgs : EventArgs
     {
         private int _result;
@@ -702,7 +702,7 @@ namespace Tizen.Network.Bluetooth
         /// <summary>
         /// The result.
         /// </summary>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
         public int Result
         {
             get
@@ -714,7 +714,7 @@ namespace Tizen.Network.Bluetooth
         /// <summary>
         /// A value indicating whether this instance is connected.
         /// </summary>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
         public bool IsConnected
         {
             get
@@ -726,12 +726,52 @@ namespace Tizen.Network.Bluetooth
         /// <summary>
         /// The address.
         /// </summary>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
         public string Address
         {
             get
             {
                 return _address;
+            }
+        }
+    }
+
+    /// <summary>
+    /// An extended EventArgs class contains the connection state and the address of the remote Bluetooth device.
+    /// </summary>
+    /// <since_tizen> 6 </since_tizen>
+    public class HidDeviceDataReceivedEventArgs : EventArgs
+    {
+        private BluetoothHidDeviceReceivedData _receivedData;
+        private IntPtr _userData;
+
+        internal HidDeviceDataReceivedEventArgs(BluetoothHidDeviceReceivedData receivedData, IntPtr userData)
+        {
+            _receivedData = receivedData;
+            _userData = userData;
+        }
+
+        /// <summary>
+        /// The result.
+        /// </summary>
+        /// <since_tizen> 6 </since_tizen>
+        public BluetoothHidDeviceReceivedData ReceivedData
+        {
+            get
+            {
+                return _receivedData;
+            }
+        }
+
+        /// <summary>
+        /// A value indicating whether this instance is connected.
+        /// </summary>
+        /// <since_tizen> 6 </since_tizen>
+        public IntPtr UserData
+        {
+            get
+            {
+                return _userData;
             }
         }
     }
