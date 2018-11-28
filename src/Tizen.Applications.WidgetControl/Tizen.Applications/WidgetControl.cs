@@ -52,6 +52,7 @@ namespace Tizen.Applications
             /// Gets the widget content.
             /// </summary>
             /// <since_tizen> 3 </since_tizen>
+            /// <feature>http://tizen.org/feature/shell.appwidget</feature>
             /// <exception cref="InvalidOperationException">Thrown in case of failed conditions.</exception>
             public Bundle GetContent()
             {
@@ -77,6 +78,7 @@ namespace Tizen.Applications
             /// <since_tizen> 3 </since_tizen>
             /// <param name="content">Content to be changed.</param>
             /// <param name="force"> True if you want to update your widget even if the provider is paused, otherwise false.</param>
+            /// <feature>http://tizen.org/feature/shell.appwidget</feature>
             /// <exception cref="ArgumentException">Thrown when failed because of an invalid argument.</exception>
             /// <exception cref="InvalidOperationException">Thrown in case of failed conditions.</exception>
             /// <exception cref="UnauthorizedAccessException">Thrown when an application does not have the privilege to access this method.</exception>
@@ -107,6 +109,7 @@ namespace Tizen.Applications
             /// Changes the update period for the widget instance.
             /// </summary>
             /// <since_tizen> 3 </since_tizen>
+            /// <feature>http://tizen.org/feature/shell.appwidget</feature>
             /// <exception cref="ArgumentException">Thrown when failed because of an invalid argument.</exception>
             /// <exception cref="InvalidOperationException">Thrown in case of failed conditions.</exception>
             /// <exception cref="UnauthorizedAccessException">Thrown when an application does not have the privilege to access this method.</exception>
@@ -255,6 +258,7 @@ namespace Tizen.Applications
         /// <since_tizen> 3 </since_tizen>
         /// <param name="pkgId">Package ID.</param>
         /// <privilege>http://tizen.org/privilege/widget.viewer</privilege>
+        /// <feature>http://tizen.org/feature/shell.appwidget</feature>
         /// <exception cref="ArgumentException">Thrown when failed because of an invalid argument.</exception>
         /// <exception cref="InvalidOperationException">Thrown in case of failed conditions.</exception>
         /// <exception cref="UnauthorizedAccessException">Thrown when an application does not have the privilege to access this method.</exception>
@@ -287,6 +291,7 @@ namespace Tizen.Applications
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <privilege>http://tizen.org/privilege/widget.viewer</privilege>
+        /// <feature>http://tizen.org/feature/shell.appwidget</feature>
         /// <exception cref="ArgumentException">Thrown when failed because of an invalid argument.</exception>
         /// <exception cref="InvalidOperationException">Thrown in case of failed conditions.</exception>
         /// <exception cref="UnauthorizedAccessException">Thrown when an application does not have the privilege to access this method.</exception>
@@ -319,6 +324,7 @@ namespace Tizen.Applications
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
         /// <privilege>http://tizen.org/privilege/widget.viewer</privilege>
+        /// <feature>http://tizen.org/feature/shell.appwidget</feature>
         public string MainAppId
         {
             get
@@ -332,6 +338,7 @@ namespace Tizen.Applications
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
         /// <privilege>http://tizen.org/privilege/widget.viewer</privilege>
+        /// <feature>http://tizen.org/feature/shell.appwidget</feature>
         public string PackageId
         {
             get
@@ -351,6 +358,7 @@ namespace Tizen.Applications
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <privilege>http://tizen.org/privilege/widget.viewer</privilege>
+        /// <feature>http://tizen.org/feature/shell.appwidget</feature>
         public bool IsNoDisplay
         {
             get
@@ -366,6 +374,7 @@ namespace Tizen.Applications
         ///  The event handler for a created widget instance.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        /// <feature>http://tizen.org/feature/shell.appwidget</feature>
         /// <exception cref="InvalidOperationException">Thrown in case of failed conditions.</exception>
         /// <exception cref="UnauthorizedAccessException">Thrown when an application does not have the privilege to access this method.</exception>
         public event EventHandler<WidgetLifecycleEventArgs> Created
@@ -386,6 +395,7 @@ namespace Tizen.Applications
         /// The event handler for a resumed widget instance.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        /// <feature>http://tizen.org/feature/shell.appwidget</feature>
         /// <exception cref="InvalidOperationException">Thrown in case of failed conditions.</exception>
         /// <exception cref="UnauthorizedAccessException">Thrown when an application does not have the privilege to access this method.</exception>
         public event EventHandler<WidgetLifecycleEventArgs> Resumed
@@ -406,6 +416,7 @@ namespace Tizen.Applications
         /// The event handler for a paused widget instance.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        /// <feature>http://tizen.org/feature/shell.appwidget</feature>
         /// <exception cref="InvalidOperationException">Thrown in case of failed conditions.</exception>
         /// <exception cref="UnauthorizedAccessException">Thrown when an application does not have the privilege to access this method.</exception>
         public event EventHandler<WidgetLifecycleEventArgs> Paused
@@ -426,6 +437,7 @@ namespace Tizen.Applications
         /// The event handler for a destroyed widget instance.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        /// <feature>http://tizen.org/feature/shell.appwidget</feature>
         /// <exception cref="InvalidOperationException">Thrown in case of failed conditions.</exception>
         /// <exception cref="UnauthorizedAccessException">Thrown when an application does not have the privilege to access this method.</exception>
         public event EventHandler<WidgetLifecycleEventArgs> Destroyed
@@ -464,6 +476,7 @@ namespace Tizen.Applications
         /// Gets the objects for widget instance information.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        /// <feature>http://tizen.org/feature/shell.appwidget</feature>
         /// <exception cref="InvalidOperationException">Thrown in case of failed conditions.</exception>
         /// <exception cref="NotSupportedException">Thrown when the API is not supported in this device.</exception>
         /// <exception cref="UnauthorizedAccessException">Thrown when an application does not have the privilege to access this method.</exception>
@@ -495,6 +508,7 @@ namespace Tizen.Applications
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <privilege>http://tizen.org/privilege/widget.viewer</privilege>
+        /// <feature>http://tizen.org/feature/shell.appwidget</feature>
         /// <exception cref="InvalidOperationException">Thrown in case of failed conditions.</exception>
         /// <exception cref="UnauthorizedAccessException">Thrown when an application does not have the privilege to access this method.</exception>
         public IEnumerable<Scale> GetScales()
@@ -579,6 +593,7 @@ namespace Tizen.Applications
         /// <since_tizen> 3 </since_tizen>
         /// <param name="lang">Language.</param>
         /// <privilege>http://tizen.org/privilege/widget.viewer</privilege>
+        /// <feature>http://tizen.org/feature/shell.appwidget</feature>
         /// <exception cref="ArgumentNullException">Thrown when the argument is null.</exception>
         public string GetName(string lang)
         {
@@ -594,6 +609,7 @@ namespace Tizen.Applications
         /// <since_tizen> 3 </since_tizen>
         /// <param name="lang">Language.</param>
         /// <privilege>http://tizen.org/privilege/widget.viewer</privilege>
+        /// <feature>http://tizen.org/feature/shell.appwidget</feature>
         /// <exception cref="ArgumentNullException">Thrown when the argument is null.</exception>
         public string GetIconPath(string lang)
         {
