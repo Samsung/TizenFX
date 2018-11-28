@@ -5102,6 +5102,28 @@ namespace Tizen.NUI.BaseComponents
             set
             {
                 SetValue(WidthResizePolicyProperty, value);
+                // Match ResizePolicy to new Layouting.
+                // Parent relative policies can not be mapped at this point as parent size unknown.
+                switch( value )
+                {
+                  case ResizePolicyType.UseNaturalSize :
+                  {
+                    SetProperty(LayoutItemWrapper.ChildProperty.WIDTH_SPECIFICATION, new Tizen.NUI.PropertyValue( NaturalSize.Width) );
+                    break;
+                  }
+                  case ResizePolicyType.FillToParent :
+                  {
+                    SetProperty(LayoutItemWrapper.ChildProperty.WIDTH_SPECIFICATION, new Tizen.NUI.PropertyValue( (int)ChildLayoutData.MatchParent ) );
+                    break;
+                  }
+                  case ResizePolicyType.FitToChildren :
+                  {
+                    SetProperty(LayoutItemWrapper.ChildProperty.WIDTH_SPECIFICATION, new Tizen.NUI.PropertyValue( (int)ChildLayoutData.WrapContent ) );
+                    break;
+                  }
+                  default:
+                  break;
+                }
                 NotifyPropertyChanged();
             }
         }
@@ -5119,6 +5141,28 @@ namespace Tizen.NUI.BaseComponents
             set
             {
                 SetValue(HeightResizePolicyProperty, value);
+                // Match ResizePolicy to new Layouting.
+                // Parent relative policies can not be mapped at this point as parent size unknown.
+                switch( value )
+                {
+                  case ResizePolicyType.UseNaturalSize :
+                  {
+                    SetProperty(LayoutItemWrapper.ChildProperty.HEIGHT_SPECIFICATION, new Tizen.NUI.PropertyValue( NaturalSize.Height) );
+                    break;
+                  }
+                  case ResizePolicyType.FillToParent :
+                  {
+                    SetProperty(LayoutItemWrapper.ChildProperty.HEIGHT_SPECIFICATION, new Tizen.NUI.PropertyValue( (int)ChildLayoutData.MatchParent ) );
+                    break;
+                  }
+                  case ResizePolicyType.FitToChildren :
+                  {
+                    SetProperty(LayoutItemWrapper.ChildProperty.HEIGHT_SPECIFICATION, new Tizen.NUI.PropertyValue( (int)ChildLayoutData.WrapContent ) );
+                    break;
+                  }
+                  default:
+                  break;
+                }
                 NotifyPropertyChanged();
             }
         }
