@@ -161,13 +161,7 @@ namespace Tizen.NUI.BaseComponents
             {
                 NUILog.Error("State get error!");
             }
-            switch (temp)
-            {
-                case 0: return States.Normal;
-                case 1: return States.Focused;
-                case 2: return States.Disabled;
-                default: return States.Normal;
-            }
+            return (States)temp;
         });
         /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
