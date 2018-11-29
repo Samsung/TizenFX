@@ -228,6 +228,8 @@ namespace ElmSharp
         EvasObjectEvent<EvasKeyEventArgs> _keydown;
         EvasObjectEvent _moved;
         EvasObjectEvent _resized;
+        EvasObjectEvent _showed;
+        EvasObjectEvent _hid;
         EventHandler _renderPost;
         Interop.Evas.EvasCallback _renderPostCallback = null;
         Interop.Elementary.Elm_Tooltip_Content_Cb _tooltipContentCallback = null;
@@ -364,6 +366,26 @@ namespace ElmSharp
         {
             add { _resized.On += value; }
             remove { _resized.On -= value; }
+        }
+
+        /// <summary>
+        /// Resized Event Handler of the current widget's size.
+        /// </summary>
+        /// <since_tizen> preview </since_tizen>
+        public event EventHandler Showed
+        {
+            add { _showed.On += value; }
+            remove { _showed.On -= value; }
+        }
+
+        /// <summary>
+        /// Resized Event Handler of the current widget's size.
+        /// </summary>
+        /// <since_tizen> preview </since_tizen>
+        public event EventHandler Hid
+        {
+            add { _hid.On += value; }
+            remove { _hid.On -= value; }
         }
 
         /// <summary>
@@ -1167,6 +1189,8 @@ namespace ElmSharp
                 _keyup = new EvasObjectEvent<EvasKeyEventArgs>(this, RealHandle, EvasObjectCallbackType.KeyUp, EvasKeyEventArgs.Create);
                 _moved = new EvasObjectEvent(this, EvasObjectCallbackType.Move);
                 _resized = new EvasObjectEvent(this, EvasObjectCallbackType.Resize);
+                _showed = new EvasObjectEvent(this, EvasObjectCallbackType.Show);
+                _hid = new EvasObjectEvent(this, EvasObjectCallbackType.Hide);
 
                 _deleted.On += (s, e) => MakeInvalidate();
             }

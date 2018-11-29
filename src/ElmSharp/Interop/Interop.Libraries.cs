@@ -20,6 +20,7 @@ internal static partial class Interop
     {
         internal const string Libc = "libc.so.6";
         internal const string Libdl = "libdl.so.2";
+        internal const string LottiePlayer = "liblottie-player.so.0";
         internal const string Evas = "libevas.so.1";
         internal const string Elementary = "libelementary.so.1";
         internal const string Eina = "libeina.so.1";
