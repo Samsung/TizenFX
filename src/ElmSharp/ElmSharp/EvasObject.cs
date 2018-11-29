@@ -369,7 +369,7 @@ namespace ElmSharp
         }
 
         /// <summary>
-        /// Resized Event Handler of the current widget's size.
+        /// Showed Event Handler of the current widget's size.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
         public event EventHandler Showed
@@ -379,7 +379,7 @@ namespace ElmSharp
         }
 
         /// <summary>
-        /// Resized Event Handler of the current widget's size.
+        /// Hid Event Handler of the current widget's size.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
         public event EventHandler Hid
