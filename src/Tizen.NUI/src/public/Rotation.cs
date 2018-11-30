@@ -19,7 +19,6 @@
 
 namespace Tizen.NUI
 {
-
     /// <summary>
     /// The Rotation class.
     /// </summary>
@@ -27,31 +26,43 @@ namespace Tizen.NUI
     [TypeConverter(typeof(RotationTypeConverter))]
     public class Rotation : global::System.IDisposable
     {
-        private global::System.Runtime.InteropServices.HandleRef swigCPtr;
         /// <summary>
         /// swigCMemOwn
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         protected bool swigCMemOwn;
 
-        internal Rotation(global::System.IntPtr cPtr, bool cMemoryOwn)
-        {
-            swigCMemOwn = cMemoryOwn;
-            swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
-        }
-
-        internal static global::System.Runtime.InteropServices.HandleRef getCPtr(Rotation obj)
-        {
-            return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
-        }
-
-        //A Flag to check who called Dispose(). (By User or DisposeQueue)
-        private bool isDisposeQueued = false;
         /// <summary>
         /// A Flat to check if it is already disposed.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         protected bool disposed = false;
+
+        private global::System.Runtime.InteropServices.HandleRef swigCPtr;
+
+        //A Flag to check who called Dispose(). (By User or DisposeQueue)
+        private bool isDisposeQueued = false;
+
+
+        /// <summary>
+        /// The default constructor.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
+        public Rotation() : this(NDalicPINVOKE.new_Rotation__SWIG_0(), true)
+        {
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        /// <summary>
+        /// The constructor from an axis and angle.
+        /// </summary>
+        /// <param name="angle">The angle around the axis.</param>
+        /// <param name="axis">The vector of the axis.</param>
+        /// <since_tizen> 3 </since_tizen>
+        public Rotation(Radian angle, Vector3 axis) : this(NDalicPINVOKE.new_Rotation__SWIG_1(Radian.getCPtr(angle), Vector3.getCPtr(axis)), true)
+        {
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
 
         /// <summary>
         /// Dispose.
@@ -67,60 +78,18 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// To make the Rotation instance be disposed.
+        /// (0.0f,0.0f,0.0f,1.0f).
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        public void Dispose()
+        public static Rotation IDENTITY
         {
-            //Throw excpetion if Dispose() is called in separate thread.
-            if (!Window.IsInstalled())
+            get
             {
-                throw new System.InvalidOperationException("This API called from separate thread. This API must be called from MainThread.");
+                global::System.IntPtr cPtr = NDalicPINVOKE.Rotation_IDENTITY_get();
+                Rotation ret = (cPtr == global::System.IntPtr.Zero) ? null : new Rotation(cPtr, false);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                return ret;
             }
-
-            if (isDisposeQueued)
-            {
-                Dispose(DisposeTypes.Implicit);
-            }
-            else
-            {
-                Dispose(DisposeTypes.Explicit);
-                System.GC.SuppressFinalize(this);
-            }
-        }
-
-        /// <summary>
-        /// Dispose.
-        /// </summary>
-        /// <since_tizen> 3 </since_tizen>
-        protected virtual void Dispose(DisposeTypes type)
-        {
-            if (disposed)
-            {
-                return;
-            }
-
-            if(type == DisposeTypes.Explicit)
-            {
-                //Called by User
-                //Release your own managed resources here.
-                //You should release all of your own disposable objects here.
-            }
-
-            //Release your own unmanaged resources here.
-            //You should not access any managed member here except static instance.
-            //because the execution order of Finalizes is non-deterministic.
-
-            if (swigCPtr.Handle != global::System.IntPtr.Zero)
-            {
-                if (swigCMemOwn)
-                {
-                    swigCMemOwn = false;
-                    NDalicPINVOKE.delete_Rotation(swigCPtr);
-                }
-                swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
-            }
-            disposed = true;
         }
 
         /// <summary>
@@ -219,37 +188,115 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// The default constructor.
+        /// Returns the dot product of two rotations.
         /// </summary>
+        /// <param name="q1">The first rotation.</param>
+        /// <param name="q2">The second rotation.</param>
+        /// <returns>The dot product of the two rotations.</returns>
         /// <since_tizen> 3 </since_tizen>
-        public Rotation() : this(NDalicPINVOKE.new_Rotation__SWIG_0(), true)
+        public static float Dot(Rotation q1, Rotation q2)
         {
+            float ret = NDalicPINVOKE.Rotation_Dot(Rotation.getCPtr(q1), Rotation.getCPtr(q2));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
         }
 
         /// <summary>
-        /// The constructor from an axis and angle.
+        /// The linear iterpolation (using a straight line between the two rotations).
         /// </summary>
-        /// <param name="angle">The angle around the axis.</param>
-        /// <param name="axis">The vector of the axis.</param>
+        /// <param name="q1">The start rotation.</param>
+        /// <param name="q2">The end rotation.</param>
+        /// <param name="t">A progress value between 0 and 1.</param>
+        /// <returns>The interpolated rotation.</returns>
         /// <since_tizen> 3 </since_tizen>
-        public Rotation(Radian angle, Vector3 axis) : this(NDalicPINVOKE.new_Rotation__SWIG_1(Radian.getCPtr(angle), Vector3.getCPtr(axis)), true)
+        public static Rotation Lerp(Rotation q1, Rotation q2, float t)
         {
+            Rotation ret = new Rotation(NDalicPINVOKE.Rotation_Lerp(Rotation.getCPtr(q1), Rotation.getCPtr(q2), t), true);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
         }
 
         /// <summary>
-        /// (0.0f,0.0f,0.0f,1.0f).
+        /// The spherical linear interpolation (using the shortest arc of a great circle between the two rotations).
+        /// </summary>
+        /// <param name="q1">The start rotation.</param>
+        /// <param name="q2">The end rotation.</param>
+        /// <param name="progress">A progress value between 0 and 1.</param>
+        /// <returns>The interpolated rotation.</returns>
+        /// <since_tizen> 3 </since_tizen>
+        public static Rotation Slerp(Rotation q1, Rotation q2, float progress)
+        {
+            Rotation ret = new Rotation(NDalicPINVOKE.Rotation_Slerp(Rotation.getCPtr(q1), Rotation.getCPtr(q2), progress), true);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        /// <summary>
+        /// This version of slerp, used by squad, does not check for theta > 90.
+        /// </summary>
+        /// <param name="q1">The start rotation.</param>
+        /// <param name="q2">The end rotation.</param>
+        /// <param name="t">A progress value between 0 and 1.</param>
+        /// <returns>The interpolated rotation.</returns>
+        /// <since_tizen> 3 </since_tizen>
+        public static Rotation SlerpNoInvert(Rotation q1, Rotation q2, float t)
+        {
+            Rotation ret = new Rotation(NDalicPINVOKE.Rotation_SlerpNoInvert(Rotation.getCPtr(q1), Rotation.getCPtr(q2), t), true);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        /// <summary>
+        /// The spherical cubic interpolation.
+        /// </summary>
+        /// <param name="start">The start rotation.</param>
+        /// <param name="end">The end rotation.</param>
+        /// <param name="ctrl1">The control rotation for q1.</param>
+        /// <param name="ctrl2">The control rotation for q2.</param>
+        /// <param name="t">A progress value between 0 and 1.</param>
+        /// <returns>The interpolated rotation.</returns>
+        /// <since_tizen> 3 </since_tizen>
+        public static Rotation Squad(Rotation start, Rotation end, Rotation ctrl1, Rotation ctrl2, float t)
+        {
+            Rotation ret = new Rotation(NDalicPINVOKE.Rotation_Squad(Rotation.getCPtr(start), Rotation.getCPtr(end), Rotation.getCPtr(ctrl1), Rotation.getCPtr(ctrl2), t), true);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        /// <summary>
+        /// Returns the shortest angle between two rotations in radians.
+        /// </summary>
+        /// <param name="q1">The first rotation.</param>
+        /// <param name="q2">The second rotation.</param>
+        /// <returns>The angle between the two rotation.</returns>
+        /// <since_tizen> 3 </since_tizen>
+        public static float AngleBetween(Rotation q1, Rotation q2)
+        {
+            float ret = NDalicPINVOKE.Rotation_AngleBetween(Rotation.getCPtr(q1), Rotation.getCPtr(q2));
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        /// <summary>
+        /// To make the Rotation instance be disposed.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        public static Rotation IDENTITY
+        public void Dispose()
         {
-            get
+            //Throw excpetion if Dispose() is called in separate thread.
+            if (!Window.IsInstalled())
             {
-                global::System.IntPtr cPtr = NDalicPINVOKE.Rotation_IDENTITY_get();
-                Rotation ret = (cPtr == global::System.IntPtr.Zero) ? null : new Rotation(cPtr, false);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-                return ret;
+                throw new System.InvalidOperationException("This API called from separate thread. This API must be called from MainThread.");
+            }
+
+            if (isDisposeQueued)
+            {
+                Dispose(DisposeTypes.Implicit);
+            }
+            else
+            {
+                Dispose(DisposeTypes.Explicit);
+                System.GC.SuppressFinalize(this);
             }
         }
 
@@ -277,6 +324,141 @@ namespace Tizen.NUI
             bool ret = NDalicPINVOKE.Rotation_GetAxisAngle(swigCPtr, Vector3.getCPtr(axis), Radian.getCPtr(angle));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
+        }
+
+        /// <summary>
+        /// Returns the length of the rotation.
+        /// </summary>
+        /// <returns>The length of the rotation.</returns>
+        /// <since_tizen> 3 </since_tizen>
+        public float Length()
+        {
+            float ret = NDalicPINVOKE.Rotation_Length(swigCPtr);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        /// <summary>
+        /// Returns the squared length of the rotation.
+        /// </summary>
+        /// <returns>The squared length of the rotation.</returns>
+        /// <since_tizen> 3 </since_tizen>
+        public float LengthSquared()
+        {
+            float ret = NDalicPINVOKE.Rotation_LengthSquared(swigCPtr);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        /// <summary>
+        /// Normalizes this to unit length.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
+        public void Normalize()
+        {
+            NDalicPINVOKE.Rotation_Normalize(swigCPtr);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        /// <summary>
+        /// Normalized.
+        /// </summary>
+        /// <returns>A normalized version of this rotation.</returns>
+        /// <since_tizen> 3 </since_tizen>
+        public Rotation Normalized()
+        {
+            Rotation ret = new Rotation(NDalicPINVOKE.Rotation_Normalized(swigCPtr), true);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        /// <summary>
+        /// Conjugates this rotation.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
+        public void Conjugate()
+        {
+            NDalicPINVOKE.Rotation_Conjugate(swigCPtr);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        /// <summary>
+        /// Inverts this rotation.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
+        public void Invert()
+        {
+            NDalicPINVOKE.Rotation_Invert(swigCPtr);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        /// <summary>
+        /// Performs the logarithm of a rotation.
+        /// </summary>
+        /// <returns>The rotation representing the logarithm.</returns>
+        /// <since_tizen> 3 </since_tizen>
+        public Rotation Log()
+        {
+            Rotation ret = new Rotation(NDalicPINVOKE.Rotation_Log(swigCPtr), true);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        /// <summary>
+        /// Performs an exponent.
+        /// </summary>
+        /// <returns>The rotation representing the exponent.</returns>
+        /// <since_tizen> 3 </since_tizen>
+        public Rotation Exp()
+        {
+            Rotation ret = new Rotation(NDalicPINVOKE.Rotation_Exp(swigCPtr), true);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        internal static global::System.Runtime.InteropServices.HandleRef getCPtr(Rotation obj)
+        {
+            return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
+        }
+
+        internal Rotation(global::System.IntPtr cPtr, bool cMemoryOwn)
+        {
+            swigCMemOwn = cMemoryOwn;
+            swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
+        }
+
+        /// <summary>
+        /// Dispose.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
+        protected virtual void Dispose(DisposeTypes type)
+        {
+            if (disposed)
+            {
+                return;
+            }
+
+            if(type == DisposeTypes.Explicit)
+            {
+                //Called by User
+                //Release your own managed resources here.
+                //You should release all of your own disposable objects here.
+            }
+
+            //Release your own unmanaged resources here.
+            //You should not access any managed member here except static instance.
+            //because the execution order of Finalizes is non-deterministic.
+
+            if (swigCPtr.Handle != global::System.IntPtr.Zero)
+            {
+                if (swigCMemOwn)
+                {
+                    swigCMemOwn = false;
+                    NDalicPINVOKE.delete_Rotation(swigCPtr);
+                }
+                swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
+            }
+            disposed = true;
         }
 
         private Rotation Add(Rotation other)
@@ -383,187 +565,5 @@ namespace Tizen.NUI
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
-
-        /// <summary>
-        /// Returns the length of the rotation.
-        /// </summary>
-        /// <returns>The length of the rotation.</returns>
-        /// <since_tizen> 3 </since_tizen>
-        public float Length()
-        {
-            float ret = NDalicPINVOKE.Rotation_Length(swigCPtr);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
-        }
-
-        /// <summary>
-        /// Returns the squared length of the rotation.
-        /// </summary>
-        /// <returns>The squared length of the rotation.</returns>
-        /// <since_tizen> 3 </since_tizen>
-        public float LengthSquared()
-        {
-            float ret = NDalicPINVOKE.Rotation_LengthSquared(swigCPtr);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
-        }
-
-        /// <summary>
-        /// Normalizes this to unit length.
-        /// </summary>
-        /// <since_tizen> 3 </since_tizen>
-        public void Normalize()
-        {
-            NDalicPINVOKE.Rotation_Normalize(swigCPtr);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-        }
-
-        /// <summary>
-        /// Normalized.
-        /// </summary>
-        /// <returns>A normalized version of this rotation.</returns>
-        /// <since_tizen> 3 </since_tizen>
-        public Rotation Normalized()
-        {
-            Rotation ret = new Rotation(NDalicPINVOKE.Rotation_Normalized(swigCPtr), true);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
-        }
-
-        /// <summary>
-        /// Conjugates this rotation.
-        /// </summary>
-        /// <since_tizen> 3 </since_tizen>
-        public void Conjugate()
-        {
-            NDalicPINVOKE.Rotation_Conjugate(swigCPtr);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-        }
-
-        /// <summary>
-        /// Inverts this rotation.
-        /// </summary>
-        /// <since_tizen> 3 </since_tizen>
-        public void Invert()
-        {
-            NDalicPINVOKE.Rotation_Invert(swigCPtr);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-        }
-
-        /// <summary>
-        /// Performs the logarithm of a rotation.
-        /// </summary>
-        /// <returns>The rotation representing the logarithm.</returns>
-        /// <since_tizen> 3 </since_tizen>
-        public Rotation Log()
-        {
-            Rotation ret = new Rotation(NDalicPINVOKE.Rotation_Log(swigCPtr), true);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
-        }
-
-        /// <summary>
-        /// Performs an exponent.
-        /// </summary>
-        /// <returns>The rotation representing the exponent.</returns>
-        /// <since_tizen> 3 </since_tizen>
-        public Rotation Exp()
-        {
-            Rotation ret = new Rotation(NDalicPINVOKE.Rotation_Exp(swigCPtr), true);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
-        }
-
-        /// <summary>
-        /// Returns the dot product of two rotations.
-        /// </summary>
-        /// <param name="q1">The first rotation.</param>
-        /// <param name="q2">The second rotation.</param>
-        /// <returns>The dot product of the two rotations.</returns>
-        /// <since_tizen> 3 </since_tizen>
-        public static float Dot(Rotation q1, Rotation q2)
-        {
-            float ret = NDalicPINVOKE.Rotation_Dot(Rotation.getCPtr(q1), Rotation.getCPtr(q2));
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
-        }
-
-        /// <summary>
-        /// The linear iterpolation (using a straight line between the two rotations).
-        /// </summary>
-        /// <param name="q1">The start rotation.</param>
-        /// <param name="q2">The end rotation.</param>
-        /// <param name="t">A progress value between 0 and 1.</param>
-        /// <returns>The interpolated rotation.</returns>
-        /// <since_tizen> 3 </since_tizen>
-        public static Rotation Lerp(Rotation q1, Rotation q2, float t)
-        {
-            Rotation ret = new Rotation(NDalicPINVOKE.Rotation_Lerp(Rotation.getCPtr(q1), Rotation.getCPtr(q2), t), true);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
-        }
-
-        /// <summary>
-        /// The spherical linear interpolation (using the shortest arc of a great circle between the two rotations).
-        /// </summary>
-        /// <param name="q1">The start rotation.</param>
-        /// <param name="q2">The end rotation.</param>
-        /// <param name="progress">A progress value between 0 and 1.</param>
-        /// <returns>The interpolated rotation.</returns>
-        /// <since_tizen> 3 </since_tizen>
-        public static Rotation Slerp(Rotation q1, Rotation q2, float progress)
-        {
-            Rotation ret = new Rotation(NDalicPINVOKE.Rotation_Slerp(Rotation.getCPtr(q1), Rotation.getCPtr(q2), progress), true);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
-        }
-
-        /// <summary>
-        /// This version of slerp, used by squad, does not check for theta > 90.
-        /// </summary>
-        /// <param name="q1">The start rotation.</param>
-        /// <param name="q2">The end rotation.</param>
-        /// <param name="t">A progress value between 0 and 1.</param>
-        /// <returns>The interpolated rotation.</returns>
-        /// <since_tizen> 3 </since_tizen>
-        public static Rotation SlerpNoInvert(Rotation q1, Rotation q2, float t)
-        {
-            Rotation ret = new Rotation(NDalicPINVOKE.Rotation_SlerpNoInvert(Rotation.getCPtr(q1), Rotation.getCPtr(q2), t), true);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
-        }
-
-        /// <summary>
-        /// The spherical cubic interpolation.
-        /// </summary>
-        /// <param name="start">The start rotation.</param>
-        /// <param name="end">The end rotation.</param>
-        /// <param name="ctrl1">The control rotation for q1.</param>
-        /// <param name="ctrl2">The control rotation for q2.</param>
-        /// <param name="t">A progress value between 0 and 1.</param>
-        /// <returns>The interpolated rotation.</returns>
-        /// <since_tizen> 3 </since_tizen>
-        public static Rotation Squad(Rotation start, Rotation end, Rotation ctrl1, Rotation ctrl2, float t)
-        {
-            Rotation ret = new Rotation(NDalicPINVOKE.Rotation_Squad(Rotation.getCPtr(start), Rotation.getCPtr(end), Rotation.getCPtr(ctrl1), Rotation.getCPtr(ctrl2), t), true);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
-        }
-
-        /// <summary>
-        /// Returns the shortest angle between two rotations in radians.
-        /// </summary>
-        /// <param name="q1">The first rotation.</param>
-        /// <param name="q2">The second rotation.</param>
-        /// <returns>The angle between the two rotation.</returns>
-        /// <since_tizen> 3 </since_tizen>
-        public static float AngleBetween(Rotation q1, Rotation q2)
-        {
-            float ret = NDalicPINVOKE.Rotation_AngleBetween(Rotation.getCPtr(q1), Rotation.getCPtr(q2));
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
-        }
-
     }
-
 }

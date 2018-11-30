@@ -27,21 +27,39 @@ namespace Tizen.NUI
     /// <since_tizen> 3 </since_tizen>
     public class VisualFactory : BaseHandle
     {
-        private global::System.Runtime.InteropServices.HandleRef swigCPtr;
 
         /// <summary>
         /// Instance of the VisualFactory singleton.
         /// </summary>
         private static VisualFactory instance = null;
+        private global::System.Runtime.InteropServices.HandleRef swigCPtr;
 
         internal VisualFactory(global::System.IntPtr cPtr, bool cMemoryOwn) : base(NDalicPINVOKE.VisualFactory_SWIGUpcast(cPtr), cMemoryOwn)
         {
             swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
         }
 
-        internal static global::System.Runtime.InteropServices.HandleRef getCPtr(VisualFactory obj)
+        internal VisualFactory() : this(NDalicPINVOKE.new_VisualFactory__SWIG_0(), true)
         {
-            return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        /// <summary>
+        /// Retrieves the VisualFactory singleton.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
+        public static VisualFactory Instance
+        {
+            get
+            {
+                if (!instance)
+                {
+                    instance = new VisualFactory(NDalicPINVOKE.VisualFactory_Get(), true);
+                    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                }
+
+                return instance;
+            }
         }
 
         /// <summary>
@@ -58,12 +76,6 @@ namespace Tizen.NUI
             return VisualFactory.Instance;
         }
 
-        internal VisualFactory() : this(NDalicPINVOKE.new_VisualFactory__SWIG_0(), true)
-        {
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-        }
-
-
         /// <summary>
         /// Request the visual.
         /// </summary>
@@ -77,29 +89,16 @@ namespace Tizen.NUI
             return ret;
         }
 
+        internal static global::System.Runtime.InteropServices.HandleRef getCPtr(VisualFactory obj)
+        {
+            return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
+        }
+
         internal VisualBase CreateVisual(Image image)
         {
             VisualBase ret = new VisualBase(NDalicPINVOKE.VisualFactory_CreateVisual__SWIG_1(swigCPtr, Image.getCPtr(image)), true);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
-        }
-
-        /// <summary>
-        /// Retrieves the VisualFactory singleton.
-        /// </summary>
-        /// <since_tizen> 3 </since_tizen>
-        public static VisualFactory Instance
-        {
-            get
-            {
-                if (!instance)
-                {
-                  instance = new VisualFactory(NDalicPINVOKE.VisualFactory_Get(), true);
-                  if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-                }
-
-                return instance;
-            }
         }
 
     }
