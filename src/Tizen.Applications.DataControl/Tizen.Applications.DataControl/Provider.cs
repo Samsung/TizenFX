@@ -1095,30 +1095,51 @@ namespace Tizen.Applications.DataControl
         /// <summary>
         /// Overrides this method if you want to handle the behavior when the select request is received.
         /// </summary>
+        /// <param name="query">The select query.</param>
+        /// <param name="where">The where statement.</param>
+        /// <param name="columList">The requested column list.</param>
+        /// <param name="columnCount">The requested column count.</param>
+        /// <param name="order">The select order.</param>
+        /// <param name="pageNum">The page number.</param>
+        /// <param name="countPerPage">The count per page.</param>
+        /// <returns>The result of select operation.</returns>
         /// <since_tizen> 3 </since_tizen>
         protected abstract SelectResult OnSelect(string query, string where, string[] columList, int columnCount, string order, int pageNum, int countPerPage);
 
         /// <summary>
         /// Overrides this method if you want to handle the behavior when the insert request is received.
         /// </summary>
+        /// <param name="query">The select query.</param>
+        /// <param name="insertData">The insert data.</param>
+        /// <returns>The result of insert operation.</returns>
         /// <since_tizen> 3 </since_tizen>
         protected abstract InsertResult OnInsert(string query, Bundle insertData);
 
         /// <summary>
         /// Overrides this method if you want to handle the behavior when the update request is received.
         /// </summary>
+        /// <param name="query">The update query.</param>
+        /// <param name="where">The where statement.</param>
+        /// <param name="updateData">The update data.</param>
+        /// <returns>The result of update operation.</returns>
         /// <since_tizen> 3 </since_tizen>
         protected abstract UpdateResult OnUpdate(string query, string where, Bundle updateData);
 
         /// <summary>
         /// Overrides this method if you want to handle the behavior when the delete request is received.
         /// </summary>
+        /// <param name="query">The delete query.</param>
+        /// <param name="where">The where statement.</param>
+        /// <returns>The result of delete operation.</returns>
         /// <since_tizen> 3 </since_tizen>
         protected abstract DeleteResult OnDelete(string query, string where);
 
         /// <summary>
         /// Overrides this method if you want to handle the behavior when the bulk insert request is received.
         /// </summary>
+        /// <param name="query">The insert query list.</param>
+        /// <param name="bulkInsertData">The bulk insert data.</param>
+        /// <returns>The result of bulk insert operation.</returns>
         /// <since_tizen> 3 </since_tizen>
         protected virtual BulkInsertResult OnBulkInsert(IEnumerable<string> query, BulkData bulkInsertData)
         {
@@ -1129,6 +1150,8 @@ namespace Tizen.Applications.DataControl
         /// <summary>
         /// Overrides this method if you want to handle the behavior when the map get request is received.
         /// </summary>
+        /// <param name="key">The key of requested data.</param>
+        /// <returns>The result of get operation.</returns>
         /// <since_tizen> 3 </since_tizen>
         protected virtual MapGetResult OnMapGet(string key)
         {
@@ -1139,6 +1162,9 @@ namespace Tizen.Applications.DataControl
         /// <summary>
         /// Overrides this method if you want to handle the behavior when the map add request is received.
         /// </summary>
+        /// <param name="key">The key of added data.</param>
+        /// <param name="value">The value of added data.</param>
+        /// <returns>The result of add operation.</returns>
         /// <since_tizen> 3 </since_tizen>
         protected virtual MapAddResult OnMapAdd(string key, string value)
         {
@@ -1149,6 +1175,10 @@ namespace Tizen.Applications.DataControl
         /// <summary>
         /// Overrides this method if you want to handle the behavior when the update request is received.
         /// </summary>
+        /// <param name="key">The key of set data.</param>
+        /// <param name="oldValue">The old value of set data.</param>
+        /// <param name="newValue">The new value.</param>
+        /// <returns>The result of set operation.</returns>
         /// <since_tizen> 3 </since_tizen>
         protected virtual MapSetResult OnMapSet(string key, string oldValue, string newValue)
         {
@@ -1159,6 +1189,9 @@ namespace Tizen.Applications.DataControl
         /// <summary>
         /// Overrides this method if you want to handle the behavior when the delete request is received.
         /// </summary>
+        /// <param name="key">The key of removed data.</param>
+        /// <param name="value">The value of removed data.</param>
+        /// <returns>The result of remove operation.</returns>
         /// <since_tizen> 3 </since_tizen>
         protected virtual MapRemoveResult OnMapRemove(string key, string value)
         {
@@ -1169,6 +1202,8 @@ namespace Tizen.Applications.DataControl
         /// <summary>
         /// Overrides this method if you want to handle the behavior when the bulk add request is received.
         /// </summary>
+        /// <param name="bulkAddData">The bulk add data.</param>
+        /// <returns>The result of bulk add operation.</returns>
         /// <since_tizen> 3 </since_tizen>
         protected virtual MapBulkAddResult OnMapBulkAdd(BulkData bulkAddData)
         {
@@ -1179,6 +1214,8 @@ namespace Tizen.Applications.DataControl
         /// <summary>
         /// Overrides this method if you want to handle the behavior when the data change listen request is received.
         /// </summary>
+        /// <param name="requestAppID">The app ID sent data change listen request.</param>
+        /// <returns>The result of data change listen operation.</returns>
         /// <since_tizen> 3 </since_tizen>
         protected virtual DataChangeListenResult OnDataChangeListenRequest(string requestAppID)
         {
