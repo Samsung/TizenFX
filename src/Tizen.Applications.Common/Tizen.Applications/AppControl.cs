@@ -660,6 +660,7 @@ namespace Tizen.Applications
         /// </remarks>
         /// <param name="launchRequest">The AppControl.</param>
         /// <param name="replyAfterLaunching">The callback function to be called when the reply is delivered.</param>
+        /// <returns>A task with the result of the launch request.</returns>
         /// <exception cref="ArgumentException">Thrown when failed because of the argument is invalid.</exception>
         /// <exception cref="Exceptions.AppNotFoundException">Thrown when the application to run is not found.</exception>
         /// <exception cref="Exceptions.LaunchRejectedException">Thrown when the launch request is rejected.</exception>
