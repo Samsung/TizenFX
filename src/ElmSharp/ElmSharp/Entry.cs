@@ -1131,9 +1131,10 @@ namespace ElmSharp
         }
 
         /// <summary>
-        /// This disables the entry's selection.
+        /// This disables the entry's selection handlers.
+        /// This works properly on the profile that provides selection handlers.
         /// </summary>
-        /// <param name="disable">If true, the selection is disabled.</param>
+        /// <param name="disable">If true, the selection handlers are disabled.</param>
         /// <since_tizen> preview </since_tizen>
         public void DisableSelection(bool disable)
         {

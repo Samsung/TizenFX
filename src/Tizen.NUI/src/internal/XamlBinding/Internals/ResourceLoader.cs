@@ -1,22 +1,30 @@
 ﻿using System;
+using System.IO;
 using System.Reflection;
 using Tizen.NUI.Xaml;
 
-namespace Tizen.NUI.Internals
+namespace Tizen.NUI.Binding.Internals
 {
-	internal static class ResourceLoader
-	{
-		static Func<AssemblyName, string, string> resourceProvider;
+    internal static class ResourceLoader
+    {
+        static Func<AssemblyName, string, string> resourceProvider = (asmName, path) =>
+        {
+            string resource = Tizen.Applications.Application.Current.DirectoryInfo.Resource;
+            path = resource + path;
 
-		//takes a resource path, returns string content
-		public static Func<AssemblyName, string, string> ResourceProvider {
-			get => resourceProvider;
-			internal set {
-				DesignMode.IsDesignModeEnabled = true;
-				resourceProvider = value;
-			}
-		}
+            string ret = File.ReadAllText(path);
+            return ret;
+        };
 
-		internal static Action<Exception> ExceptionHandler { get; set; }
-	}
+        //takes a resource path, returns string content
+        public static Func<AssemblyName, string, string> ResourceProvider {
+            get => resourceProvider;
+            internal set {
+                DesignMode.IsDesignModeEnabled = true;
+                resourceProvider = value;
+            }
+        }
+
+        internal static Action<Exception> ExceptionHandler { get; set; }
+    }
 }

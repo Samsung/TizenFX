@@ -1,5 +1,5 @@
 /*
- * Copyright(c) 2017 Samsung Electronics Co., Ltd.
+ * Copyright(c) 2018 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -31,6 +31,8 @@ namespace Tizen.NUI
     {
         private global::System.Runtime.InteropServices.HandleRef swigCPtr;
         private global::System.Runtime.InteropServices.HandleRef stageCPtr;
+        private global::System.Runtime.InteropServices.HandleRef rootLayoutCPtr;
+        private global::System.IntPtr rootLayoutIntPtr;
         private Layer _rootLayer;
         private string _windowTitle;
 
@@ -49,6 +51,15 @@ namespace Tizen.NUI
             if (NDalicPINVOKE.Stage_IsInstalled())
             {
                 stageCPtr = new global::System.Runtime.InteropServices.HandleRef(this, NDalicPINVOKE.Stage_GetCurrent());
+                // Create a root layout (AbsoluteLayout) that is invisible to the user but enables layouts added to the Window
+                // Enables layouts added to the Window to have a parent layout.  As parent layout is needed to store measure spec properties.
+                // Currently without these measure specs the new layout added will always be the size of the window.
+                rootLayoutIntPtr = NDalicManualPINVOKE.Window_NewRootLayout();
+                // Store HandleRef used by Add()
+                rootLayoutCPtr = new global::System.Runtime.InteropServices.HandleRef(this, rootLayoutIntPtr);
+                Layer rootLayer = GetRootLayer();
+                // Add the root layout created above to the root layer.
+                NDalicPINVOKE.Actor_Add(  Layer.getCPtr(rootLayer), rootLayoutCPtr );
             }
         }
 
@@ -431,6 +442,22 @@ namespace Tizen.NUI
             }
         }
 
+        /// <summary>
+        /// The rendering behavior of a Window.
+        /// </summary>
+        /// <since_tizen> 5 </since_tizen>
+        public RenderingBehaviorType RenderingBehavior
+        {
+            get
+            {
+                return GetRenderingBehavior();
+            }
+            set
+            {
+                SetRenderingBehavior(value);
+            }
+        }
+
         internal WindowFocusSignalType WindowFocusChangedSignal()
         {
             WindowFocusSignalType ret = new WindowFocusSignalType(NDalicPINVOKE.FocusChangedSignal(swigCPtr), false);
@@ -597,7 +624,10 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public void Add(View view)
         {
-            GetRootLayer()?.Add(view);
+            NDalicPINVOKE.Actor_Add( rootLayoutCPtr, View.getCPtr(view) );
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            this.GetRootLayer().AddViewToLayerList(view); // Maintain the children list in the Layer
+            view.InternalParent = this.GetRootLayer();
         }
 
         /// <summary>
@@ -607,7 +637,9 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public void Remove(View view)
         {
-            GetRootLayer()?.Remove(view);
+            NDalicPINVOKE.Actor_Remove( rootLayoutCPtr, View.getCPtr(view) );
+            this.GetRootLayer().RemoveViewFromLayerList(view); // Maintain the children list in the Layer
+            view.InternalParent = null;
         }
 
         internal Vector2 GetSize()
@@ -705,6 +737,20 @@ namespace Tizen.NUI
         {
             NDalicPINVOKE.Stage_KeepRendering(stageCPtr, durationSeconds);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        internal void SetRenderingBehavior(RenderingBehaviorType renderingBehavior)
+        {
+            NDalicPINVOKE.Stage_SetRenderingBehavior(stageCPtr, (int)renderingBehavior);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        internal RenderingBehaviorType GetRenderingBehavior()
+        {
+            RenderingBehaviorType ret = (RenderingBehaviorType)NDalicPINVOKE.Stage_GetRenderingBehavior(stageCPtr);
+            if (NDalicPINVOKE.SWIGPendingException.Pending)
+                throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
         }
 
         internal KeyEventSignal KeyEventSignal()
@@ -875,6 +921,34 @@ namespace Tizen.NUI
         public bool UngrabKey(int DaliKey)
         {
             bool ret = NDalicManualPINVOKE.UngrabKey(HandleRef.ToIntPtr(this.swigCPtr), DaliKey);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        /// <summary>
+        /// Sets the keyboard repeat information.
+        /// </summary>
+        /// <param name="rate">The key repeat rate value in seconds.</param>
+        /// <param name="delay">The key repeat delay value in seconds.</param>
+        /// <returns>True if setting the keyboard repeat succeeds.</returns>
+        /// <since_tizen> 5 </since_tizen>
+        public bool SetKeyboardRepeatInfo(float rate, float delay)
+        {
+            bool ret = NDalicManualPINVOKE.SetKeyboardRepeatInfo(rate, delay);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        /// <summary>
+        /// Gets the keyboard repeat information.
+        /// </summary>
+        /// <param name="rate">The key repeat rate value in seconds.</param>
+        /// <param name="delay">The key repeat delay value in seconds.</param>
+        /// <returns>True if setting the keyboard repeat succeeds.</returns>
+        /// <since_tizen> 5 </since_tizen>
+        public bool GetKeyboardRepeatInfo(out float rate, out float delay)
+        {
+            bool ret = NDalicManualPINVOKE.GetKeyboardRepeatInfo(out rate, out delay);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -1424,7 +1498,7 @@ namespace Tizen.NUI
         /// <summary>
         /// Sets whether the window is transparent or not.
         /// </summary>
-        /// <param name="transparent">Whether the window is transparent.</param>
+        /// <param name="transparent">Whether the window is transparent or not.</param>
         /// <since_tizen> 5 </since_tizen>
         public void SetTransparency(bool transparent) {
             NDalicManualPINVOKE.SetTransparency(swigCPtr, transparent);
@@ -1620,7 +1694,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Feed a key-event into the window.
+        /// Feeds a key event into the window.
         /// </summary>
         /// <param name="keyEvent">The key event to feed.</param>
         /// <since_tizen> 5 </since_tizen>

@@ -1,6 +1,7 @@
 using System;
 using System.Linq;
 using System.Reflection;
+using System.Globalization;
 
 using Tizen.NUI;
 
@@ -15,7 +16,9 @@ namespace Tizen.NUI.Binding
                 string[] parts = value.Split(',');
                 if (parts.Length == 3)
                 {
-                    return new Size(float.Parse(parts[0].Trim()), float.Parse(parts[1].Trim()), float.Parse(parts[2].Trim()));
+                    return new Size(Single.Parse(parts[0].Trim(), CultureInfo.InvariantCulture),
+                                    Single.Parse(parts[1].Trim(), CultureInfo.InvariantCulture),
+                                    Single.Parse(parts[2].Trim(), CultureInfo.InvariantCulture));
                 }
             }
 
@@ -32,7 +35,8 @@ namespace Tizen.NUI.Binding
                 string[] parts = value.Split(',');
                 if (parts.Length == 2)
                 {
-                    return new Size2D(int.Parse(parts[0].Trim()), int.Parse(parts[1].Trim()));
+                    return new Size2D(Int32.Parse(parts[0].Trim(), CultureInfo.InvariantCulture),
+                                    Int32.Parse(parts[1].Trim(), CultureInfo.InvariantCulture));
                 }
             }
 

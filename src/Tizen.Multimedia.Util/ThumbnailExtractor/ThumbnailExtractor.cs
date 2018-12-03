@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2016 Samsung Electronics Co., Ltd All Rights Reserved
+ * Copyright (c) 2018 Samsung Electronics Co., Ltd All Rights Reserved
  *
  * Licensed under the Apache License, Version 2.0 (the License);
  * you may not use this file except in compliance with the License.
@@ -175,12 +175,16 @@ namespace Tizen.Multimedia.Util
 
                 try
                 {
-                    Native.Extract(handle, GetCallback(tcs), IntPtr.Zero, out id)
-                        .ThrowIfError("Failed to extract.");
-
-                    using (RegisterCancellationToken(tcs, cancellationToken, handle, Marshal.PtrToStringAnsi(id)))
+                    var cb = GetCallback(tcs);
+                    using (var cbKeeper = ObjectKeeper.Get(cb))
                     {
-                        return await tcs.Task;
+                        Native.Extract(handle, cb, IntPtr.Zero, out id)
+                            .ThrowIfError("Failed to extract.");
+
+                        using (RegisterCancellationToken(tcs, cancellationToken, handle, Marshal.PtrToStringAnsi(id)))
+                        {
+                            return await tcs.Task;
+                        }
                     }
                 }
                 finally

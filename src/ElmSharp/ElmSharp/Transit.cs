@@ -375,7 +375,7 @@ namespace ElmSharp
         void AddObject(EvasObject obj)
         {
             if (_checker.Contains(obj))
-                throw new Exception("Cannot add the duplicate object.");
+                throw new InvalidOperationException("Cannot add the duplicate object.");
 
             _checker.Add(obj);
             Interop.Elementary.elm_transit_object_add(_handle, obj);
@@ -400,7 +400,7 @@ namespace ElmSharp
         void AddChainedTransit(Transit transit)
         {
             if (_checker.Contains(transit))
-                throw new Exception("Cannot add the duplicate transit.");
+                throw new InvalidOperationException("Cannot add the duplicate transit.");
 
             _checker.Add(transit);
             Interop.Elementary.elm_transit_chain_transit_add(_handle, transit._handle);

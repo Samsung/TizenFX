@@ -5,9 +5,9 @@ using System.IO;
 
 namespace Tizen.NUI
 {
-	interface IResourcesLoader
-	{
-		T CreateFromResource<T>(string resourcePath, Assembly assembly, IXmlLineInfo lineInfo) where T : new();
-		string GetResource(string resourcePath, Assembly assembly, IXmlLineInfo lineInfo);
-	}
+    internal interface IResourcesLoader
+    {
+        T CreateFromResource<T>(string resourcePath, Assembly assembly, IXmlLineInfo lineInfo) where T : new();
+        string GetResource(string resourcePath, Assembly assembly, IXmlLineInfo lineInfo);
+    }
 }

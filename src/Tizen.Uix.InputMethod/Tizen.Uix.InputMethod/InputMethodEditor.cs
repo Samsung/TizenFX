@@ -1990,6 +1990,28 @@ namespace Tizen.Uix.InputMethod
         }
 
         /// <summary>
+        /// Sends the request to hide the IME.
+        /// </summary>
+        /// <privilege>
+        /// http://tizen.org/privilege/ime
+        /// </privilege>
+        /// <exception cref="InvalidOperationException">
+        /// This can occur due to the following reasons:
+        /// 1) The application does not have the privilege to call this function.
+        /// 2) The IME main loop has not yet started.
+        /// </exception>
+        /// <since_tizen> 5 </since_tizen>
+        public static void RequestHide()
+        {
+            ErrorCode error = ImeRequestHide();
+            if (error != ErrorCode.None)
+            {
+                Log.Error(LogTag, "RequestHide Failed with error " + error);
+                throw InputMethodExceptionFactory.CreateException(error);
+            }
+        }
+
+        /// <summary>
         /// This API requests the InputMethodEditor to initialize.
         /// </summary>
         /// <privilege>
@@ -2041,6 +2063,79 @@ namespace Tizen.Uix.InputMethod
             if (error != ErrorCode.None)
             {
                 Log.Error(LogTag, "ImeFinalize Failed with error " + error);
+                throw InputMethodExceptionFactory.CreateException(error);
+            }
+        }
+
+        /// <summary>
+        /// Sets the floating mode to on or off.
+        /// </summary>
+        /// <privilege>
+        /// http://tizen.org/privilege/ime
+        /// </privilege>
+        /// <param name="floating_mode"><c>true</c> to set the floating mode to on and <c>false</c> to set it to off.</param>
+        /// <exception cref="InvalidOperationException">
+        /// This can occur due to the following reasons:
+        /// 1) The application does not have the privilege to call this function.
+        /// 2) The IME main loop has not yet started.
+        /// </exception>
+        /// <since_tizen> 5 </since_tizen>
+        public static void SetFloatingMode(bool floating_mode)
+        {
+            ErrorCode error = ImeSetFloatingMode(floating_mode);
+            if (error != ErrorCode.None)
+            {
+                Log.Error(LogTag, "SetFloatingMode Failed with error " + error);
+                throw InputMethodExceptionFactory.CreateException(error);
+            }
+        }
+
+        /// <summary>
+        /// Allows the floating input panel window to move along with the mouse pointer when the mouse is pressed.
+        /// </summary>
+        /// <privilege>
+        /// http://tizen.org/privilege/ime
+        /// </privilege>
+        /// <remarks>
+        /// This function can be used in floating mode. If the floating mode is deactivated, calling this function has no effect.
+        /// </remarks>
+        /// <exception cref="InvalidOperationException">
+        /// This can occur due to the following reasons:
+        /// 1) The application does not have the privilege to call this function.
+        /// 2) The IME main loop has not yet started.
+        /// </exception>
+        /// <since_tizen> 5 </since_tizen>
+        public static void SetFloatingDragStart()
+        {
+            ErrorCode error = ImeSetFloatingDragStart();
+            if (error != ErrorCode.None)
+            {
+                Log.Error(LogTag, "SetFloatingDragStart Failed with error " + error);
+                throw InputMethodExceptionFactory.CreateException(error);
+            }
+        }
+
+        /// <summary>
+        /// Does not allow the movement of the floating input panel window with the mouse pointer when the mouse is pressed.
+        /// </summary>
+        /// <privilege>
+        /// http://tizen.org/privilege/ime
+        /// </privilege>
+        /// <remarks>
+        /// This function can be used in floating mode. If the floating mode is deactivated, calling this function has no effect.
+        /// </remarks>
+        /// <exception cref="InvalidOperationException">
+        /// This can occur due to the following reasons:
+        /// 1) The application does not have the privilege to call this function.
+        /// 2) The IME main loop has not yet started.
+        /// </exception>
+        /// <since_tizen> 5 </since_tizen>
+        public static void SetFloatingDragEnd()
+        {
+            ErrorCode error = ImeSetFloatingDragEnd();
+            if (error != ErrorCode.None)
+            {
+                Log.Error(LogTag, "SetFloatingDragEnd Failed with error " + error);
                 throw InputMethodExceptionFactory.CreateException(error);
             }
         }

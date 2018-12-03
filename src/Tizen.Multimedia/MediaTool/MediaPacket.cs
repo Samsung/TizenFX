@@ -59,8 +59,7 @@ namespace Tizen.Multimedia
         {
             _handle = handle;
 
-            IntPtr formatHandle;
-            int ret = Interop.MediaPacket.GetFormat(handle, out formatHandle);
+            int ret = Interop.MediaPacket.GetFormat(handle, out IntPtr formatHandle);
 
             MultimediaDebug.AssertNoError(ret);
 
@@ -216,7 +215,6 @@ namespace Tizen.Multimedia
                 ValidateNotDisposed();
 
                 int ret = Interop.MediaPacket.GetDts(_handle, out var value);
-
                 MultimediaDebug.AssertNoError(ret);
 
                 return value;
@@ -227,7 +225,35 @@ namespace Tizen.Multimedia
                 ValidateNotLocked();
 
                 int ret = Interop.MediaPacket.SetDts(_handle, value);
+                MultimediaDebug.AssertNoError(ret);
+            }
+        }
 
+        /// <summary>
+        /// Gets or sets the duration value of the current packet.
+        /// </summary>
+        /// <exception cref="ObjectDisposedException">The MediaPacket has already been disposed of.</exception>
+        /// <exception cref="InvalidOperationException">
+        ///     The MediaPacket is not in the writable state, which means it is being used by another module.
+        /// </exception>
+        /// <since_tizen> 6 </since_tizen>
+        public ulong Duration
+        {
+            get
+            {
+                ValidateNotDisposed();
+
+                int ret = Interop.MediaPacket.GetDuration(_handle, out var value);
+                MultimediaDebug.AssertNoError(ret);
+
+                return value;
+            }
+            set
+            {
+                ValidateNotDisposed();
+                ValidateNotLocked();
+
+                int ret = Interop.MediaPacket.SetDuration(_handle, value);
                 MultimediaDebug.AssertNoError(ret);
             }
         }
@@ -245,10 +271,86 @@ namespace Tizen.Multimedia
                 ValidateNotDisposed();
 
                 int ret = Interop.MediaPacket.IsEncoded(_handle, out var value);
-
                 MultimediaDebug.AssertNoError(ret);
 
                 return value;
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the rotation value of the current packet.
+        /// </summary>
+        /// <exception cref="ArgumentException">The specified value to set is invalid.</exception>
+        /// <exception cref="ObjectDisposedException">The MediaPacket has already been disposed of.</exception>
+        /// <exception cref="InvalidOperationException">
+        ///     The MediaPacket is not in the writable state, which means it is being used by another module.
+        /// </exception>
+        /// <since_tizen> 5 </since_tizen>
+        public Rotation Rotation
+        {
+            get
+            {
+                ValidateNotDisposed();
+
+                int ret = Interop.MediaPacket.GetRotation(_handle, out var value);
+                MultimediaDebug.AssertNoError(ret);
+
+                var rotation = value < RotationFlip.HorizontalFlip ? (Rotation)value : Rotation.Rotate0;
+
+                return rotation;
+            }
+            set
+            {
+                ValidateNotDisposed();
+                ValidateNotLocked();
+                ValidationUtil.ValidateEnum(typeof(Rotation), value, nameof(value));
+
+                int ret = Interop.MediaPacket.SetRotation(_handle, (RotationFlip)value);
+                MultimediaDebug.AssertNoError(ret);
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the flip value of the current packet.
+        /// </summary>
+        /// <remarks>
+        /// <see cref="Flips.None"/> will be ignored in set case. It's not supported in Native FW.
+        /// </remarks>
+        /// <exception cref="ArgumentException">The specified value to set is invalid.</exception>
+        /// <exception cref="ObjectDisposedException">The MediaPacket has already been disposed of.</exception>
+        /// <exception cref="InvalidOperationException">
+        ///     The MediaPacket is not in the writable state, which means it is being used by another module.
+        /// </exception>
+        /// <since_tizen> 5 </since_tizen>
+        public Flips Flip
+        {
+            get
+            {
+                ValidateNotDisposed();
+
+                int ret = Interop.MediaPacket.GetRotation(_handle, out var value);
+                MultimediaDebug.AssertNoError(ret);
+
+                var flip = (value < RotationFlip.HorizontalFlip) ? Flips.None :
+                    (value == RotationFlip.HorizontalFlip ? Flips.Horizontal : Flips.Vertical);
+
+                return flip;
+            }
+            set
+            {
+                ValidateNotDisposed();
+                ValidateNotLocked();
+                ValidationUtil.ValidateEnum(typeof(Flips), value, nameof(value));
+
+                if (value == Flips.None)
+                {
+                    return;
+                }
+
+                var flip = value == Flips.Horizontal ? RotationFlip.HorizontalFlip : RotationFlip.VerticalFlip;
+
+                int ret = Interop.MediaPacket.SetRotation(_handle, flip);
+                MultimediaDebug.AssertNoError(ret);
             }
         }
 
@@ -396,6 +498,7 @@ namespace Tizen.Multimedia
             }
         }
 
+        #region Dispose support
         /// <summary>
         /// Gets a value indicating whether the packet has been disposed of.
         /// </summary>
@@ -404,7 +507,6 @@ namespace Tizen.Multimedia
         public bool IsDisposed => _isDisposed;
 
         private bool _isDisposed = false;
-
 
         /// <summary>
         /// Releases all resources used by the <see cref="MediaPacket"/> object.
@@ -448,15 +550,6 @@ namespace Tizen.Multimedia
             _isDisposed = true;
         }
 
-        internal IntPtr GetHandle()
-        {
-            ValidateNotDisposed();
-
-            Debug.Assert(_handle != IntPtr.Zero, "The handle is invalid!");
-
-            return _handle;
-        }
-
         /// <summary>
         /// Validates the current object has not been disposed of.
         /// </summary>
@@ -467,6 +560,16 @@ namespace Tizen.Multimedia
             {
                 throw new ObjectDisposedException("This packet has already been disposed of.");
             }
+        }
+        #endregion
+
+        internal IntPtr GetHandle()
+        {
+            ValidateNotDisposed();
+
+            Debug.Assert(_handle != IntPtr.Zero, "The handle is invalid!");
+
+            return _handle;
         }
 
         /// <summary>

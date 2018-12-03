@@ -14,11 +14,12 @@
  * limitations under the License.
  *
  */
+using System.ComponentModel;
+using System.Runtime.InteropServices;
+using Tizen.NUI.BaseComponents;
 
 namespace Tizen.NUI
 {
-    using System.Runtime.InteropServices;
-    using Tizen.NUI.BaseComponents;
     /// <summary>
     /// Touch events are a collection of points at a specific moment in time.<br />
     /// When a multi-touch event occurs, each point represents the points that are currently being
@@ -45,12 +46,12 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         protected override void Dispose(DisposeTypes type)
         {
-            if(disposed)
+            if (disposed)
             {
                 return;
             }
 
-            if(type == DisposeTypes.Explicit)
+            if (type == DisposeTypes.Explicit)
             {
                 //Called by User
                 //Release your own managed resources here.
@@ -261,5 +262,51 @@ namespace Tizen.NUI
             return ret;
         }
 
+        /// <summary>
+        /// Get mouse device's button value (for example, right or left button)
+        /// </summary>
+        /// <param name="point">The point required.</param>
+        /// <returns></returns>
+        /// <since_tizen> 5 </since_tizen>
+        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public MouseButton GetMouseButton(uint point)
+        {
+            int ret = NDalicManualPINVOKE.Touch_GetMouseButton(swigCPtr, point);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return (MouseButton)ret;
+        }
+
     }
+
+    /// <summary>
+    /// Mouse device button type.
+    /// </summary>
+    /// <since_tizen> 5 </since_tizen>
+    /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+    [EditorBrowsable(EditorBrowsableState.Never)]
+    public enum MouseButton
+    {
+        /// <summary>
+        /// No mouse button event or invalid data.
+        /// </summary>
+        /// <since_tizen> 5 </since_tizen>
+        Invalid = -1,
+        /// <summary>
+        /// Primary(Left) mouse button.
+        /// </summary>
+        /// <since_tizen> 5 </since_tizen>
+        Primary = 1,
+        /// <summary>
+        /// Secondary(Right) mouse button.
+        /// </summary>
+        /// <since_tizen> 5 </since_tizen>
+        Secondary = 3,
+        /// <summary>
+        /// Center(Wheel) mouse button.
+        /// </summary>
+        /// <since_tizen> 5 </since_tizen>
+        Tertiary = 2,
+    }
+
 }

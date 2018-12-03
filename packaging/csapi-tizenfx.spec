@@ -1,9 +1,8 @@
 # Auto-generated from csapi-tizenfx.spec.in by makespec.sh
 
-%define TIZEN_NET_API_VERSION 5
-%define TIZEN_NET_RPM_VERSION 5.0.0.999
-%define TIZEN_NET_NUGET_VERSION 5.0.0-preview1-99999
-%define TIZEN_NET_INTERNAL_NUGET_VERSION 5.0.0.999
+%define TIZEN_NET_API_VERSION 6
+%define TIZEN_NET_RPM_VERSION 6.0.0.999+nui505
+%define TIZEN_NET_NUGET_VERSION 6.0.0.99999
 
 %define DOTNET_ASSEMBLY_PATH /usr/share/dotnet.tizen/framework
 %define DOTNET_ASSEMBLY_DUMMY_PATH %{DOTNET_ASSEMBLY_PATH}/ref
@@ -15,7 +14,7 @@ Summary:    Assemblies of Tizen .NET
 Version:    %{TIZEN_NET_RPM_VERSION}
 Release:    1
 Group:      Development/Libraries
-License:    Apache-2.0
+License:    Apache-2.0 and MIT
 URL:        https://www.tizen.org
 Source0:    %{name}-%{version}.tar.gz
 Source1:    %{name}.manifest
@@ -146,9 +145,11 @@ GetFileList wearable > wearable.filelist
 
 rm -fr %{_tizenfx_bin_path}
 export DOTNET_SKIP_FIRST_TIME_EXPERIENCE=true
-./build.sh --full
-./build.sh --dummy
-./build.sh --pack %{TIZEN_NET_NUGET_VERSION} %{TIZEN_NET_INTERNAL_NUGET_VERSION}
+
+%define build_cmd ./tools/scripts/retry.sh ./tools/scripts/timeout.sh -t 600 ./build.sh
+%{build_cmd} --full
+%{build_cmd} --dummy
+%{build_cmd} --pack %{TIZEN_NET_NUGET_VERSION}
 
 %install
 mkdir -p %{buildroot}%{DOTNET_ASSEMBLY_PATH}

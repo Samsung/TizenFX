@@ -1,4 +1,4 @@
-﻿/*
+/*
  * Copyright (c) 2016 Samsung Electronics Co., Ltd All Rights Reserved
  *
  * Licensed under the Apache License, Version 2.0 (the License);
@@ -16,7 +16,7 @@
 
 using System;
 using System.Diagnostics;
-using Native = Interop.MediaControllerClient;
+using Native = Interop.MediaControllerPlaylist;
 
 namespace Tizen.Multimedia.Remoting
 {
@@ -38,17 +38,17 @@ namespace Tizen.Multimedia.Remoting
         {
             Debug.Assert(handle != IntPtr.Zero);
 
-            Title = Native.GetMetadata(handle, MediaControllerAttribute.Title);
-            Artist = Native.GetMetadata(handle, MediaControllerAttribute.Artist);
-            Album = Native.GetMetadata(handle, MediaControllerAttribute.Album);
-            Author = Native.GetMetadata(handle, MediaControllerAttribute.Author);
-            Genre = Native.GetMetadata(handle, MediaControllerAttribute.Genre);
-            Duration = Native.GetMetadata(handle, MediaControllerAttribute.Duration);
-            Date = Native.GetMetadata(handle, MediaControllerAttribute.Date);
-            Copyright = Native.GetMetadata(handle, MediaControllerAttribute.Copyright);
-            Description = Native.GetMetadata(handle, MediaControllerAttribute.Description);
-            TrackNumber = Native.GetMetadata(handle, MediaControllerAttribute.TrackNumber);
-            AlbumArtPath = Native.GetMetadata(handle, MediaControllerAttribute.Picture);
+            Title = Native.GetMetadata(handle, MediaControllerNativeAttribute.Title);
+            Artist = Native.GetMetadata(handle, MediaControllerNativeAttribute.Artist);
+            Album = Native.GetMetadata(handle, MediaControllerNativeAttribute.Album);
+            Author = Native.GetMetadata(handle, MediaControllerNativeAttribute.Author);
+            Genre = Native.GetMetadata(handle, MediaControllerNativeAttribute.Genre);
+            Duration = Native.GetMetadata(handle, MediaControllerNativeAttribute.Duration);
+            Date = Native.GetMetadata(handle, MediaControllerNativeAttribute.Date);
+            Copyright = Native.GetMetadata(handle, MediaControllerNativeAttribute.Copyright);
+            Description = Native.GetMetadata(handle, MediaControllerNativeAttribute.Description);
+            TrackNumber = Native.GetMetadata(handle, MediaControllerNativeAttribute.TrackNumber);
+            AlbumArtPath = Native.GetMetadata(handle, MediaControllerNativeAttribute.Picture);
         }
 
         /// <summary>

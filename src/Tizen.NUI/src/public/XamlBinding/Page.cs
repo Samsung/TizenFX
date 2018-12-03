@@ -22,7 +22,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
-using Tizen.NUI.Internals;
+using Tizen.NUI.Binding.Internals;
 using Tizen.NUI.Binding;
 
 namespace Tizen.NUI
@@ -33,152 +33,166 @@ namespace Tizen.NUI
     // [RenderWith(typeof(_PageRenderer))]
     [EditorBrowsable(EditorBrowsableState.Never)]
     public class Page : /*VisualElement*/BaseHandle, ILayout, IPageController, IElementConfiguration<Page>, IPaddingElement
-	{
+    {
         /// <summary>
         /// For internal use.
         /// </summary>
-		public const string BusySetSignalName = "Xamarin.BusySet";
+        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public const string BusySetSignalName = "NUI.BusySet";
 
         /// <summary>
         /// For internal use.
         /// </summary>
-		public const string AlertSignalName = "Xamarin.SendAlert";
+        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public const string AlertSignalName = "NUI.SendAlert";
 
         /// <summary>
         /// For internal use.
         /// </summary>
-		public const string ActionSheetSignalName = "Xamarin.ShowActionSheet";
+        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public const string ActionSheetSignalName = "NUI.ShowActionSheet";
 
-		internal static readonly BindableProperty IgnoresContainerAreaProperty = BindableProperty.Create("IgnoresContainerArea", typeof(bool), typeof(Page), false);
+        internal static readonly BindableProperty IgnoresContainerAreaProperty = BindableProperty.Create("IgnoresContainerArea", typeof(bool), typeof(Page), false);
 
         /// <summary>
         /// Identifies the BackgroundImage property.
         /// </summary>
-		public static readonly BindableProperty BackgroundImageProperty = BindableProperty.Create("BackgroundImage", typeof(string), typeof(Page), default(string));
+        internal static readonly BindableProperty BackgroundImageProperty = BindableProperty.Create("BackgroundImage", typeof(string), typeof(Page), default(string));
 
         /// <summary>
         /// Identifies the IsBusy property.
         /// </summary>
-		public static readonly BindableProperty IsBusyProperty = BindableProperty.Create("IsBusy", typeof(bool), typeof(Page), false, propertyChanged: (bo, o, n) => ((Page)bo).OnPageBusyChanged());
+        internal static readonly BindableProperty IsBusyProperty = BindableProperty.Create("IsBusy", typeof(bool), typeof(Page), false, propertyChanged: (bo, o, n) => ((Page)bo).OnPageBusyChanged());
 
         /// <summary>
         /// Identifies the Padding property.
         /// </summary>
-		public static readonly BindableProperty PaddingProperty = PaddingElement.PaddingProperty;
+        internal static readonly BindableProperty PaddingProperty = PaddingElement.PaddingProperty;
 
         /// <summary>
         /// Identifies the Title property.
         /// </summary>
-		public static readonly BindableProperty TitleProperty = BindableProperty.Create("Title", typeof(string), typeof(Page), null);
+        internal static readonly BindableProperty TitleProperty = BindableProperty.Create("Title", typeof(string), typeof(Page), null);
 
         /// <summary>
         /// Identifies the Icon property.
         /// </summary>
-		public static readonly BindableProperty IconProperty = BindableProperty.Create("Icon", typeof(FileImageSource), typeof(Page), default(FileImageSource));
+        internal static readonly BindableProperty IconProperty = BindableProperty.Create("Icon", typeof(FileImageSource), typeof(Page), default(FileImageSource));
 
-		readonly Lazy<PlatformConfigurationRegistry<Page>> _platformConfigurationRegistry;
+        readonly Lazy<PlatformConfigurationRegistry<Page>> _platformConfigurationRegistry;
 
-		bool _allocatedFlag;
-		Rectangle _containerArea;
+        bool _allocatedFlag;
+        Rectangle _containerArea;
 
-		bool _containerAreaSet;
+        bool _containerAreaSet;
 
-		bool _hasAppeared;
+        bool _hasAppeared;
 
-		ReadOnlyCollection<Element> _logicalChildren;
+        ReadOnlyCollection<Element> _logicalChildren;
 
         /// <summary>
         /// Creates a new Page element with default values.
         /// </summary>
-		public Page()
-		{
-			var toolbarItems = new ObservableCollection<ToolbarItem>();
-			toolbarItems.CollectionChanged += OnToolbarItemsCollectionChanged;
-			// ToolbarItems = toolbarItems;
-			InternalChildren.CollectionChanged += InternalChildrenOnCollectionChanged;
-			_platformConfigurationRegistry = new Lazy<PlatformConfigurationRegistry<Page>>(() => new PlatformConfigurationRegistry<Page>(this));
-		}
+        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public Page()
+        {
+            var toolbarItems = new ObservableCollection<ToolbarItem>();
+            toolbarItems.CollectionChanged += OnToolbarItemsCollectionChanged;
+            // ToolbarItems = toolbarItems;
+            InternalChildren.CollectionChanged += InternalChildrenOnCollectionChanged;
+            _platformConfigurationRegistry = new Lazy<PlatformConfigurationRegistry<Page>>(() => new PlatformConfigurationRegistry<Page>(this));
+        }
 
         /// <summary>
         /// Identifies the image used as a background for the Page.
         /// </summary>
-		public string BackgroundImage
-		{
-			get { return (string)GetValue(BackgroundImageProperty); }
-			set { SetValue(BackgroundImageProperty, value); }
-		}
+        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public string BackgroundImage
+        {
+            get { return (string)GetValue(BackgroundImageProperty); }
+            set { SetValue(BackgroundImageProperty, value); }
+        }
 
-		internal FileImageSource Icon
-		{
-			get { return (FileImageSource)GetValue(IconProperty); }
-			set { SetValue(IconProperty, value); }
-		}
+        internal FileImageSource Icon
+        {
+            get { return (FileImageSource)GetValue(IconProperty); }
+            set { SetValue(IconProperty, value); }
+        }
 
         /// <summary>
         /// Marks the Page as busy. This will cause the platform specific global activity indicator to show a busy state.
         /// </summary>
-		public bool IsBusy
-		{
-			get { return (bool)GetValue(IsBusyProperty); }
-			set { SetValue(IsBusyProperty, value); }
-		}
+        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public bool IsBusy
+        {
+            get { return (bool)GetValue(IsBusyProperty); }
+            set { SetValue(IsBusyProperty, value); }
+        }
 
         /// <summary>
         /// The space between the content of the Page and it's border.
         /// </summary>
-		public Thickness Padding
-		{
-			get { return (Thickness)GetValue(PaddingElement.PaddingProperty); }
-			set { SetValue(PaddingElement.PaddingProperty, value); }
-		}
+        internal Thickness Padding
+        {
+            get { return (Thickness)GetValue(PaddingElement.PaddingProperty); }
+            set { SetValue(PaddingElement.PaddingProperty, value); }
+        }
 
-		Thickness IPaddingElement.PaddingDefaultValueCreator()
-		{
-			return default(Thickness);
-		}
+        Thickness IPaddingElement.PaddingDefaultValueCreator()
+        {
+            return default(Thickness);
+        }
 
-		void IPaddingElement.OnPaddingPropertyChanged(Thickness oldValue, Thickness newValue)
-		{
-			UpdateChildrenLayout();
-		}
+        void IPaddingElement.OnPaddingPropertyChanged(Thickness oldValue, Thickness newValue)
+        {
+            UpdateChildrenLayout();
+        }
 
         /// <summary>
         /// The Page's title.
         /// </summary>
-		public string Title
-		{
-			get { return (string)GetValue(TitleProperty); }
-			set { SetValue(TitleProperty, value); }
-		}
+        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public string Title
+        {
+            get { return (string)GetValue(TitleProperty); }
+            set { SetValue(TitleProperty, value); }
+        }
 
-		internal IList<ToolbarItem> ToolbarItems { get;/* internal set;*/ }
+        internal IList<ToolbarItem> ToolbarItems { get;/* internal set;*/ }
 
         /// <summary>
         /// For internal use.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public Rectangle ContainerArea
-		{
-			get { return _containerArea; }
-			set
-			{
-				if (_containerArea == value)
-					return;
-				_containerAreaSet = true;
-				_containerArea = value;
-				ForceLayout();
-			}
-		}
+        {
+            get { return _containerArea; }
+            set
+            {
+                if (_containerArea == value)
+                    return;
+                _containerAreaSet = true;
+                _containerArea = value;
+                ForceLayout();
+            }
+        }
 
         /// <summary>
         /// For internal use.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public bool IgnoresContainerArea
-		{
-			get { return (bool)GetValue(IgnoresContainerAreaProperty); }
-			set { SetValue(IgnoresContainerAreaProperty, value); }
-		}
+        {
+            get { return (bool)GetValue(IgnoresContainerAreaProperty); }
+            set { SetValue(IgnoresContainerAreaProperty, value); }
+        }
 
         /// <summary>
         /// For internal use.
@@ -186,23 +200,29 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public ObservableCollection<Element> InternalChildren { get; } = new ObservableCollection<Element>();
 
-		internal override ReadOnlyCollection<Element> LogicalChildrenInternal => 
-			_logicalChildren ?? (_logicalChildren = new ReadOnlyCollection<Element>(InternalChildren));
+        internal override ReadOnlyCollection<Element> LogicalChildrenInternal => 
+            _logicalChildren ?? (_logicalChildren = new ReadOnlyCollection<Element>(InternalChildren));
 
         /// <summary>
         /// Raised when the layout of the Page has changed.
         /// </summary>
-		public event EventHandler LayoutChanged;
+        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public event EventHandler LayoutChanged;
 
         /// <summary>
         /// ndicates that the Page is about to appear.
         /// </summary>
-		public event EventHandler Appearing;
+        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public event EventHandler Appearing;
 
         /// <summary>
         /// Indicates that the Page is about to cease displaying.
         /// </summary>
-		public event EventHandler Disappearing;
+        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public event EventHandler Disappearing;
 
         /// <summary>
         /// Displays a native platform action sheet, allowing the application user to choose from several buttons.
@@ -212,12 +232,14 @@ namespace Tizen.NUI
         /// <param name="destruction">Text to be displayed in the 'Destruct' button. Can be null to hide the destructive option.</param>
         /// <param name="buttons">Text labels for additional buttons. Must not be null.</param>
         /// <returns>An awaitable Task that displays an action sheet and returns the Text of the button pressed by the user.</returns>
-		public Task<string> DisplayActionSheet(string title, string cancel, string destruction, params string[] buttons)
-		{
-			var args = new ActionSheetArguments(title, cancel, destruction, buttons);
-			MessagingCenter.Send(this, ActionSheetSignalName, args);
-			return args.Result.Task;
-		}
+        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public Task<string> DisplayActionSheet(string title, string cancel, string destruction, params string[] buttons)
+        {
+            var args = new ActionSheetArguments(title, cancel, destruction, buttons);
+            MessagingCenter.Send(this, ActionSheetSignalName, args);
+            return args.Result.Task;
+        }
 
         /// <summary>
         /// Presents an alert dialog to the application user with a single cancel button.
@@ -226,10 +248,12 @@ namespace Tizen.NUI
         /// <param name="message">The body text of the alert dialog.</param>
         /// <param name="cancel">Text to be displayed on the 'Cancel' button.</param>
         /// <returns></returns>
-		public Task DisplayAlert(string title, string message, string cancel)
-		{
-			return DisplayAlert(title, message, null, cancel);
-		}
+        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public Task DisplayAlert(string title, string message, string cancel)
+        {
+            return DisplayAlert(title, message, null, cancel);
+        }
 
         /// <summary>
         /// resents an alert dialog to the application user with an accept and a cancel button.
@@ -239,32 +263,38 @@ namespace Tizen.NUI
         /// <param name="accept">Text to be displayed on the 'Accept' button.</param>
         /// <param name="cancel">Text to be displayed on the 'Cancel' button.</param>
         /// <returns></returns>
-		public Task<bool> DisplayAlert(string title, string message, string accept, string cancel)
-		{
-			if (string.IsNullOrEmpty(cancel))
-				throw new ArgumentNullException("cancel");
+        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public Task<bool> DisplayAlert(string title, string message, string accept, string cancel)
+        {
+            if (string.IsNullOrEmpty(cancel))
+                throw new ArgumentNullException("cancel");
 
-			var args = new AlertArguments(title, message, accept, cancel);
-			MessagingCenter.Send(this, AlertSignalName, args);
-			return args.Result.Task;
-		}
+            var args = new AlertArguments(title, message, accept, cancel);
+            MessagingCenter.Send(this, AlertSignalName, args);
+            return args.Result.Task;
+        }
 
         /// <summary>
         /// Forces the Page to perform a layout pass.
         /// </summary>
-		public void ForceLayout()
-		{
-			// SizeAllocated(Width, Height);
-		}
+        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void ForceLayout()
+        {
+            // SizeAllocated(Width, Height);
+        }
 
         /// <summary>
         /// Calls OnBackButtonPressed().
         /// </summary>
         /// <returns></returns>
-		public bool SendBackButtonPressed()
-		{
-			return OnBackButtonPressed();
-		}
+        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public bool SendBackButtonPressed()
+        {
+            return OnBackButtonPressed();
+        }
 
         /// <summary>
         /// Lays out children Elements into the specified area.
@@ -273,305 +303,321 @@ namespace Tizen.NUI
         /// <param name="y">Top of layout area.</param>
         /// <param name="width">Width of layout area.</param>
         /// <param name="height">Height of layout area.</param>
-		protected virtual void LayoutChildren(double x, double y, double width, double height)
-		{
-			var area = new Rectangle((int)x, (int)y, (int)width, (int)height);
-			Rectangle originalArea = area;
-			if (_containerAreaSet)
-			{
-				area = ContainerArea;
-				area.X += (int)Padding.Left;
-				area.Y += (int)Padding.Right;
-				area.Width -= (int)Padding.HorizontalThickness;
-				area.Height -= (int)Padding.VerticalThickness;
-				area.Width = Math.Max(0, area.Width);
-				area.Height = Math.Max(0, area.Height);
-			}
+        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected virtual void LayoutChildren(double x, double y, double width, double height)
+        {
+            var area = new Rectangle((int)x, (int)y, (int)width, (int)height);
+            Rectangle originalArea = area;
+            if (_containerAreaSet)
+            {
+                area = ContainerArea;
+                area.X += (int)Padding.Left;
+                area.Y += (int)Padding.Right;
+                area.Width -= (int)Padding.HorizontalThickness;
+                area.Height -= (int)Padding.VerticalThickness;
+                area.Width = Math.Max(0, area.Width);
+                area.Height = Math.Max(0, area.Height);
+            }
 
-			List<Element> elements = LogicalChildren.ToList();
-			foreach (Element element in elements)
-			{
-				var child = element as /*VisualElement*/BaseHandle;
-				if (child == null)
-					continue;
-				var page = child as Page;
-				// if (page != null && page.IgnoresContainerArea)
-					// Forms.Layout.LayoutChildIntoBoundingRegion(child, originalArea);
-				// else
-					// Forms.Layout.LayoutChildIntoBoundingRegion(child, area);
-			}
-		}
+            List<Element> elements = LogicalChildren.ToList();
+            foreach (Element element in elements)
+            {
+                var child = element as /*VisualElement*/BaseHandle;
+                if (child == null)
+                    continue;
+                var page = child as Page;
+                // if (page != null && page.IgnoresContainerArea)
+                    // Forms.Layout.LayoutChildIntoBoundingRegion(child, originalArea);
+                // else
+                    // Forms.Layout.LayoutChildIntoBoundingRegion(child, area);
+            }
+        }
 
         /// <summary>
         /// When overridden, allows application developers to customize behavior immediately prior to the Page becoming visible.
         /// </summary>
-		protected virtual void OnAppearing()
-		{
-		}
+        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected virtual void OnAppearing()
+        {
+        }
 
         /// <summary>
         /// Application developers can override this method to provide behavior when the back button is pressed.
         /// </summary>
         /// <returns>true if consumed</returns>
-		protected virtual bool OnBackButtonPressed()
-		{
-			var application = RealParent as Application;
-			// if (application == null || this == application.MainPage)
-				// return false;
+        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected virtual bool OnBackButtonPressed()
+        {
+            var application = RealParent as Application;
+            // if (application == null || this == application.MainPage)
+                // return false;
 
-			var canceled = false;
-			EventHandler handler = (sender, args) => { canceled = true; };
-			// application.PopCanceled += handler;
-			Navigation.PopModalAsync().ContinueWith(t => { throw t.Exception; }, CancellationToken.None, TaskContinuationOptions.OnlyOnFaulted, TaskScheduler.FromCurrentSynchronizationContext());
+            var canceled = false;
+            EventHandler handler = (sender, args) => { canceled = true; };
+            // application.PopCanceled += handler;
+            Navigation.PopModalAsync().ContinueWith(t => { throw t.Exception; }, CancellationToken.None, TaskContinuationOptions.OnlyOnFaulted, TaskScheduler.FromCurrentSynchronizationContext());
 
-			// application.PopCanceled -= handler;
-			return !canceled;
-		}
+            // application.PopCanceled -= handler;
+            return !canceled;
+        }
 
         /// <summary>
         /// Invoked whenever the binding context of the Page changes. Override this method to add class handling for this event.
         /// </summary>
-		protected override void OnBindingContextChanged()
-		{
-			base.OnBindingContextChanged();
-			foreach (ToolbarItem toolbarItem in ToolbarItems)
-			{
-				SetInheritedBindingContext(toolbarItem, BindingContext);
-			}
-		}
+        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected override void OnBindingContextChanged()
+        {
+            base.OnBindingContextChanged();
+            // foreach (ToolbarItem toolbarItem in ToolbarItems)
+            // {
+            // 	SetInheritedBindingContext(toolbarItem, BindingContext);
+            // }
+        }
 
         /// <summary>
         /// Indicates that the preferred size of a child Element has changed.
         /// </summary>
         /// <param name="sender">The object that raised the event.</param>
         /// <param name="e">The event arguments.</param>
-		protected virtual void OnChildMeasureInvalidated(object sender, EventArgs e)
-		{
-			InvalidationTrigger trigger = (e as InvalidationEventArgs)?.Trigger ?? InvalidationTrigger.Undefined;
-			OnChildMeasureInvalidated((/*VisualElement*/BaseHandle)sender, trigger);
-		}
+        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected virtual void OnChildMeasureInvalidated(object sender, EventArgs e)
+        {
+            InvalidationTrigger trigger = (e as InvalidationEventArgs)?.Trigger ?? InvalidationTrigger.Undefined;
+            OnChildMeasureInvalidated((/*VisualElement*/BaseHandle)sender, trigger);
+        }
 
         /// <summary>
         /// When overridden, allows the application developer to customize behavior as the Page disappears.
         /// </summary>
-		protected virtual void OnDisappearing()
-		{
-		}
+        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected virtual void OnDisappearing()
+        {
+        }
 
         /// <summary>
         /// Called when the Page's Parent property has changed.
         /// </summary>
-		protected override void OnParentSet()
-		{
-			//if (!Application.IsApplicationOrNull(RealParent) && !(RealParent is Page))
-				// throw new InvalidOperationException("Parent of a Page must also be a Page");
-			base.OnParentSet();
-		}
+        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected override void OnParentSet()
+        {
+            //if (!Application.IsApplicationOrNull(RealParent) && !(RealParent is Page))
+                // throw new InvalidOperationException("Parent of a Page must also be a Page");
+            base.OnParentSet();
+        }
 
         ///// <summary>
         ///// Indicates that the Page has been assigned a size.
         ///// </summary>
         // protected override void OnSizeAllocated(double width, double height)
         // {
-        // 	_allocatedFlag = true;
-        // 	//base.OnSizeAllocated(width, height);
-        // 	UpdateChildrenLayout();
+        //  _allocatedFlag = true;
+        //  //base.OnSizeAllocated(width, height);
+        //  UpdateChildrenLayout();
         // }
 
         /// <summary>
         /// Requests that the children Elements of the Page update their layouts.
         /// </summary>
+        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         protected void UpdateChildrenLayout()
-		{
-			if (!ShouldLayoutChildren())
-				return;
+        {
+            if (!ShouldLayoutChildren())
+                return;
 
-			var startingLayout = new List<Rectangle>(LogicalChildren.Count);
-			foreach (/*VisualElement*/BaseHandle c in LogicalChildren)
-			{
-				//startingLayout.Add(c.Bounds);
-			}
+            var startingLayout = new List<Rectangle>(LogicalChildren.Count);
+            foreach (/*VisualElement*/BaseHandle c in LogicalChildren)
+            {
+                //startingLayout.Add(c.Bounds);
+            }
 
-			double x = Padding.Left;
-			double y = Padding.Top;
-			//double w = Math.Max(0, Width - Padding.HorizontalThickness);
-			//double h = Math.Max(0, Height - Padding.VerticalThickness);
+            double x = Padding.Left;
+            double y = Padding.Top;
+            //double w = Math.Max(0, Width - Padding.HorizontalThickness);
+            //double h = Math.Max(0, Height - Padding.VerticalThickness);
 
-			//LayoutChildren(x, y, w, h);
+            //LayoutChildren(x, y, w, h);
 
-			for (var i = 0; i < LogicalChildren.Count; i++)
-			{
-				var c = (/*VisualElement*/BaseHandle)LogicalChildren[i];
+            for (var i = 0; i < LogicalChildren.Count; i++)
+            {
+                var c = (/*VisualElement*/BaseHandle)LogicalChildren[i];
 
-				// if (c.Bounds != startingLayout[i])
-				// {
-				// 	LayoutChanged?.Invoke(this, EventArgs.Empty);
-				// 	return;
-				// }
-			}
-		}
+                // if (c.Bounds != startingLayout[i])
+                // {
+                // 	LayoutChanged?.Invoke(this, EventArgs.Empty);
+                // 	return;
+                // }
+            }
+        }
 
-		internal virtual void OnChildMeasureInvalidated(/*VisualElement*/BaseHandle child, InvalidationTrigger trigger)
-		{
-			var container = this as IPageContainer<Page>;
-			if (container != null)
-			{
-				Page page = container.CurrentPage;
-				if (page != null /*&& page.IsVisible && (!page.IsPlatformEnabled || !page.IsNativeStateConsistent)*/)
-					return;
-			}
-			else
-			{
-				for (var i = 0; i < LogicalChildren.Count; i++)
-				{
-					var v = LogicalChildren[i] as /*VisualElement*/BaseHandle;
-					if (v != null /*&& v.IsVisible && (!v.IsPlatformEnabled || !v.IsNativeStateConsistent)*/)
-						return;
-				}
-			}
+        internal virtual void OnChildMeasureInvalidated(/*VisualElement*/BaseHandle child, InvalidationTrigger trigger)
+        {
+            var container = this as IPageContainer<Page>;
+            if (container != null)
+            {
+                Page page = container.CurrentPage;
+                if (page != null /*&& page.IsVisible && (!page.IsPlatformEnabled || !page.IsNativeStateConsistent)*/)
+                    return;
+            }
+            else
+            {
+                for (var i = 0; i < LogicalChildren.Count; i++)
+                {
+                    var v = LogicalChildren[i] as /*VisualElement*/BaseHandle;
+                    if (v != null /*&& v.IsVisible && (!v.IsPlatformEnabled || !v.IsNativeStateConsistent)*/)
+                        return;
+                }
+            }
 
-			_allocatedFlag = false;
-			// InvalidateMeasureInternal(InvalidationTrigger.MeasureChanged);
-			if (!_allocatedFlag /*&& Width >= 0 && Height >= 0*/)
-			{
-				// SizeAllocated(Width, Height);
-			}
-		}
+            _allocatedFlag = false;
+            // InvalidateMeasureInternal(InvalidationTrigger.MeasureChanged);
+            if (!_allocatedFlag /*&& Width >= 0 && Height >= 0*/)
+            {
+                // SizeAllocated(Width, Height);
+            }
+        }
 
         /// <summary>
         /// For intarnal use.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void SendAppearing()
-		{
-			if (_hasAppeared)
-				return;
+        {
+            if (_hasAppeared)
+                return;
 
-			_hasAppeared = true;
+            _hasAppeared = true;
 
-			if (IsBusy)
-				MessagingCenter.Send(this, BusySetSignalName, true);
+            if (IsBusy)
+                MessagingCenter.Send(this, BusySetSignalName, true);
 
-			OnAppearing();
-			Appearing?.Invoke(this, EventArgs.Empty);
+            OnAppearing();
+            Appearing?.Invoke(this, EventArgs.Empty);
 
-			var pageContainer = this as IPageContainer<Page>;
-			pageContainer?.CurrentPage?.SendAppearing();
+            var pageContainer = this as IPageContainer<Page>;
+            pageContainer?.CurrentPage?.SendAppearing();
 
-			//FindApplication(this)?.OnPageAppearing(this);
-		}
+            //FindApplication(this)?.OnPageAppearing(this);
+        }
 
         /// <summary>
         /// For intarnal use.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void SendDisappearing()
-		{
-			if (!_hasAppeared)
-				return;
+        {
+            if (!_hasAppeared)
+                return;
 
-			_hasAppeared = false;
+            _hasAppeared = false;
 
-			if (IsBusy)
-				MessagingCenter.Send(this, BusySetSignalName, false);
+            if (IsBusy)
+                MessagingCenter.Send(this, BusySetSignalName, false);
 
-			var pageContainer = this as IPageContainer<Page>;
-			pageContainer?.CurrentPage?.SendDisappearing();
+            var pageContainer = this as IPageContainer<Page>;
+            pageContainer?.CurrentPage?.SendDisappearing();
 
-			OnDisappearing();
-			Disappearing?.Invoke(this, EventArgs.Empty);
+            OnDisappearing();
+            Disappearing?.Invoke(this, EventArgs.Empty);
 
-			//FindApplication(this)?.OnPageDisappearing(this);
-		}
+            //FindApplication(this)?.OnPageDisappearing(this);
+        }
 
-		Application FindApplication(Element element)
-		{
-			if (element == null)
-				return null;
+        Application FindApplication(Element element)
+        {
+            if (element == null)
+                return null;
 
-			return (element.Parent is Application app) ? app : FindApplication(element.Parent);
-		}
+            return (element.Parent is Application app) ? app : FindApplication(element.Parent);
+        }
 
-		void InternalChildrenOnCollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
-		{
-			if (e.OldItems != null)
-			{
-				foreach (/*VisualElement*/BaseHandle item in e.OldItems.OfType</*VisualElement*/BaseHandle>())
-					OnInternalRemoved(item);
-			}
+        void InternalChildrenOnCollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
+        {
+            if (e.OldItems != null)
+            {
+                foreach (/*VisualElement*/BaseHandle item in e.OldItems.OfType</*VisualElement*/BaseHandle>())
+                    OnInternalRemoved(item);
+            }
 
-			if (e.NewItems != null)
-			{
-				foreach (/*VisualElement*/BaseHandle item in e.NewItems.OfType</*VisualElement*/BaseHandle>())
-					OnInternalAdded(item);
-			}
-		}
+            if (e.NewItems != null)
+            {
+                foreach (/*VisualElement*/BaseHandle item in e.NewItems.OfType</*VisualElement*/BaseHandle>())
+                    OnInternalAdded(item);
+            }
+        }
 
-		void OnInternalAdded(/*VisualElement*/BaseHandle view)
-		{
-			// view.MeasureInvalidated += OnChildMeasureInvalidated;
+        void OnInternalAdded(/*VisualElement*/BaseHandle view)
+        {
+            // view.MeasureInvalidated += OnChildMeasureInvalidated;
 
-			OnChildAdded(view);
-			// InvalidateMeasureInternal(InvalidationTrigger.MeasureChanged);
-		}
+            OnChildAdded(view);
+            // InvalidateMeasureInternal(InvalidationTrigger.MeasureChanged);
+        }
 
-		void OnInternalRemoved(/*VisualElement*/BaseHandle view)
-		{
-			// view.MeasureInvalidated -= OnChildMeasureInvalidated;
+        void OnInternalRemoved(/*VisualElement*/BaseHandle view)
+        {
+            // view.MeasureInvalidated -= OnChildMeasureInvalidated;
 
-			OnChildRemoved(view);
-		}
+            OnChildRemoved(view);
+        }
 
-		void OnPageBusyChanged()
-		{
-			if (!_hasAppeared)
-				return;
+        void OnPageBusyChanged()
+        {
+            if (!_hasAppeared)
+                return;
 
-			MessagingCenter.Send(this, BusySetSignalName, IsBusy);
-		}
+            MessagingCenter.Send(this, BusySetSignalName, IsBusy);
+        }
 
-		void OnToolbarItemsCollectionChanged(object sender, NotifyCollectionChangedEventArgs args)
-		{
-			if (args.Action != NotifyCollectionChangedAction.Add)
-				return;
-			foreach (IElement item in args.NewItems)
-				item.Parent = this;
-		}
+        void OnToolbarItemsCollectionChanged(object sender, NotifyCollectionChangedEventArgs args)
+        {
+            if (args.Action != NotifyCollectionChangedAction.Add)
+                return;
+            foreach (IElement item in args.NewItems)
+                item.Parent = this;
+        }
 
-		bool ShouldLayoutChildren()
-		{
-			if (!LogicalChildren.Any()/* || Width <= 0 || Height <= 0 || !IsNativeStateConsistent*/)
-				return false;
+        bool ShouldLayoutChildren()
+        {
+            if (!LogicalChildren.Any()/* || Width <= 0 || Height <= 0 || !IsNativeStateConsistent*/)
+                return false;
 
-			var container = this as IPageContainer<Page>;
-			if (container?.CurrentPage != null)
-			{
-				// if (InternalChildren.Contains(container.CurrentPage))
-				// 	return container.CurrentPage.IsPlatformEnabled && container.CurrentPage.IsNativeStateConsistent;
-				return true;
-			}
+            var container = this as IPageContainer<Page>;
+            if (container?.CurrentPage != null)
+            {
+                // if (InternalChildren.Contains(container.CurrentPage))
+                // 	return container.CurrentPage.IsPlatformEnabled && container.CurrentPage.IsNativeStateConsistent;
+                return true;
+            }
 
-			var any = false;
-			for (var i = 0; i < LogicalChildren.Count; i++)
-			{
-				var v = LogicalChildren[i] as /*VisualElement*/BaseHandle;
-				if (v != null /*&& (!v.IsPlatformEnabled || !v.IsNativeStateConsistent)*/)
-				{
-					any = true;
-					break;
-				}
-			}
-			return !any;
-		}
+            var any = false;
+            for (var i = 0; i < LogicalChildren.Count; i++)
+            {
+                var v = LogicalChildren[i] as /*VisualElement*/BaseHandle;
+                if (v != null /*&& (!v.IsPlatformEnabled || !v.IsNativeStateConsistent)*/)
+                {
+                    any = true;
+                    break;
+                }
+            }
+            return !any;
+        }
 
         /// <summary>
         /// Returns the platform-specific instance of this Page, on which a platform-specific method may be called.
         /// </summary>
         /// <typeparam name="T">The platform for which to return an instance.</typeparam>
         /// <returns>The platform-specific instance of this Page</returns>
-		public IPlatformElementConfiguration<T, Page> On<T>() where T : IConfigPlatform
-		{
-			return _platformConfigurationRegistry.Value.On<T>();
-		}
-	}
+        internal IPlatformElementConfiguration<T, Page> On<T>() where T : IConfigPlatform
+        {
+            return _platformConfigurationRegistry.Value.On<T>();
+        }
+    }
 }

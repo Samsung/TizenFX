@@ -105,7 +105,7 @@ namespace ElmSharp
             }
             else
             {
-                throw new Exception("This method just makes sense if an image file was set.");
+                throw new InvalidOperationException("This method just makes sense if an image file was set.");
             }
         }
 

@@ -207,7 +207,8 @@ namespace Tizen.Applications
                 {
                     if (key.Length != 0)
                     {
-                        metadata.Add(key, value);
+                        if (!metadata.ContainsKey(key))
+                            metadata.Add(key, value);
                     }
                     return true;
                 };
@@ -295,6 +296,9 @@ namespace Tizen.Applications
         /// <summary>
         /// Gets the shared data path.
         /// </summary>
+        /// <remarks>
+        /// An application that wants to use shared/data directory must declare http://tizen.org/privilege/appdir.shareddata privilege. If the application doesn't declare the privilege, the framework will not create shared/data directory for the application. This property will return empty string when the application doesn't have shared/data directory.
+        /// </remarks>
         /// <since_tizen> 3 </since_tizen>
         public string SharedDataPath
         {

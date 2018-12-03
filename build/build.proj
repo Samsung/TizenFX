@@ -4,23 +4,15 @@
 
   <!-- Build Properties -->
   <PropertyGroup>
-    <Configuration>Release</Configuration>
-    <GenDummyCommand>dotnet $(GenDummyDir)\GenDummy.dll</GenDummyCommand>
-    <PublicDummyProjectDir>$(ProjectRootDir).dummy\</PublicDummyProjectDir>
-    <InternalDummyProjectDir>$(ProjectRootDir)internal\.dummy\</InternalDummyProjectDir>
+    <Configuration Condition="'$(Configuration)' == ''">Release</Configuration>
+    <BuildWithAnalyzer Condition="'$(BuildWithAnalyzer)' == ''">False</BuildWithAnalyzer>
   </PropertyGroup>
 
   <!-- Projects to build -->
   <ItemGroup>
-    <ProjectToBuild Include="$(ProjectSrcDir)\$(Project)\$(Project).csproj" Condition="'$(Project)' != ''">
-      <Visibility>Public</Visibility>
-    </ProjectToBuild>
-    <ProjectToBuild Include="$(ProjectSrcDir)**\*.csproj" Condition="'$(Project)' == ''">
-      <Visibility>Public</Visibility>
-    </ProjectToBuild>
-    <ProjectToBuild Include="$(InternalProjectSrcDir)**\*.csproj" Condition="'$(Project)' == ''">
-      <Visibility>Internal</Visibility>
-    </ProjectToBuild>
+    <ProjectToBuild Include="$(ProjectSrcDir)\$(Project)\$(Project).csproj" Condition="'$(Project)' != ''" />
+    <ProjectToBuild Include="$(ProjectSrcDir)**\*.csproj" Condition="'$(Project)' == ''" />
+    <ProjectToBuild Include="$(InternalProjectSrcDir)**\*.csproj" Condition="'$(Project)' == ''" />
   </ItemGroup>
 
   <!-- Nuspec files to pack -->
@@ -45,8 +37,6 @@
     <ItemGroup>
       <DirToRemove Include="$(OutputBaseDir)" />
       <DirToRemove Include="@(ProjectIntermediateDir)" />
-      <DirToRemove Include="$(PublicDummyProjectDir)" />
-      <DirToRemove Include="$(InternalDummyProjectDir)" />
     </ItemGroup>
 
     <RemoveDir Directories="@(DirToRemove)" />
@@ -61,7 +51,7 @@
   <Target Name="Restore">
 
     <MSBuild Projects="@(ProjectToBuild)"
-             Properties="Configuration=$(Configuration);RestoreSources=$(RestoreSources)"
+             Properties="Configuration=$(Configuration);RestoreSources=$(RestoreSources);BuildWithAnalyzer=$(BuildWithAnalyzer)"
              BuildInParallel="false"
              Targets="Restore" />
 
@@ -75,10 +65,10 @@
   <Target Name="Build">
 
     <MSBuild Projects="@(ProjectToBuild)"
-             Properties="Configuration=$(Configuration)"
+             Properties="Configuration=$(Configuration);BuildWithAnalyzer=$(BuildWithAnalyzer)"
              BuildInParallel="true"
              UseResultsCache="true"
-             Targets="Build" />
+             Targets="Rebuild" />
 
     <MSBuild Projects="@(ProjectToBuild)"
              Properties="Configuration=$(Configuration)"
@@ -109,45 +99,19 @@
     ==============
     Generate dummy assemblies of all projects.
   -->
-  <Target Name="Dummy" DependsOnTargets="GenerateDummyProject">
+  <Target Name="Dummy">
 
-    <ItemGroup>
-      <DummyProjectToBuild Include="$(PublicDummyProjectDir)**\*.csproj" />
-      <DummyProjectToBuild Include="$(InternalDummyProjectDir)**\*.csproj" />
-    </ItemGroup>
-
-    <MSBuild Projects="@(DummyProjectToBuild)"
-             Properties="Configuration=$(Configuration);RestoreSources=$(RestoreSources)"
-             BuildInParallel="false"
-             Targets="Restore" />
-
-    <MSBuild Projects="@(DummyProjectToBuild)"
-             Properties="Configuration=$(Configuration);WarningLevel=0;OutDir=$(OutputDummyDir);ProduceReferenceAssembly=False"
+    <MSBuild Projects="@(ProjectToBuild)"
+             Properties="Configuration=$(Configuration);IsDummyBuild=True"
              BuildInParallel="true"
              UseResultsCache="true"
-             Targets="Build" />
+             Targets="Rebuild" />
 
-  </Target>
+    <MSBuild Projects="@(ProjectToBuild)"
+             Properties="Configuration=$(Configuration)"
+             BuildInParallel="false"
+             Targets="CopyToDummyArtifactsDirectory" />
 
-
-  <Target Name="GenerateDummyProject" Inputs="@(ProjectToBuild)" Outputs="%(Filename)" >
-
-    <PropertyGroup>
-      <GeneratedDummyAssembly>$(OutputDummyDir)%(ProjectToBuild.Filename).dll</GeneratedDummyAssembly>
-      <ClonedProjectsDir Condition="'%(ProjectToBuild.Visibility)' == 'Public'" >$(PublicDummyProjectDir)</ClonedProjectsDir>
-      <ClonedProjectsDir Condition="'%(ProjectToBuild.Visibility)' == 'Internal'" >$(InternalDummyProjectDir)</ClonedProjectsDir>
-    </PropertyGroup>
-
-    <Message Text="[GenDummy] %(ProjectToBuild.Filename)" Importance="High" />
-    <Message Text="Directory = %(ProjectToBuild.Directory)" Importance="High" />
-
-    <Exec Command='$(GenDummyCommand) -project %(ProjectToBuild.Filename) -source %(ProjectToBuild.RootDir)%(ProjectToBuild.Directory).. -clonePath $(ClonedProjectsDir)' />
-
-  </Target>
-
-  <Target Name="AfterDummy">
-    <Message Text="Clean Directory" Importance="High" />
-    <RemoveDir Directories="$(PublicDummyProjectDir);$(InternalDummyProjectDir)" />
   </Target>
 
 </Project>

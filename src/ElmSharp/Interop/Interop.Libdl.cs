@@ -52,7 +52,7 @@ internal static partial class Interop
             var errPtr = dlerror();
             if (errPtr != IntPtr.Zero)
             {
-                throw new Exception("dlsym : " + Marshal.PtrToStringAnsi(errPtr));
+                throw new InvalidOperationException("dlsym : " + Marshal.PtrToStringAnsi(errPtr));
             }
             return res;
         }

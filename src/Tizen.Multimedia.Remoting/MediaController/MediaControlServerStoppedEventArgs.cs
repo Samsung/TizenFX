@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2016 Samsung Electronics Co., Ltd All Rights Reserved
+ * Copyright (c) 2018 Samsung Electronics Co., Ltd All Rights Reserved
  *
  * Licensed under the Apache License, Version 2.0 (the License);
  * you may not use this file except in compliance with the License.
@@ -32,12 +32,7 @@ namespace Tizen.Multimedia.Remoting
         /// <since_tizen> 4 </since_tizen>
         public MediaControlServerStoppedEventArgs(string serverAppId)
         {
-            if (serverAppId == null)
-            {
-                throw new ArgumentNullException(nameof(serverAppId));
-            }
-
-            ServerAppId = serverAppId;
+            ServerAppId = serverAppId ?? throw new ArgumentNullException(nameof(serverAppId));
         }
 
         /// <summary>

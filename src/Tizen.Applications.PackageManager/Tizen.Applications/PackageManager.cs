@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2016 Samsung Electronics Co., Ltd All Rights Reserved
+ * Copyright (c) 2018 Samsung Electronics Co., Ltd All Rights Reserved
  *
  * Licensed under the Apache License, Version 2.0 (the License);
  * you may not use this file except in compliance with the License.
@@ -42,6 +42,9 @@ namespace Tizen.Applications
         private static event EventHandler<PackageManagerEventArgs> s_clearDataEventHandler;
 
         private static Interop.PackageManager.PackageManagerEventCallback s_packageManagerEventCallback;
+
+        private static Dictionary<IntPtr, Interop.PackageManager.PackageManagerTotalSizeInfoCallback> s_totalSizeInfoCallbackDict = new Dictionary<IntPtr, Interop.PackageManager.PackageManagerTotalSizeInfoCallback>();
+        private static int s_callbackId = 0;
 
         /// <summary>
         /// Event callback method for the request.
@@ -383,15 +386,28 @@ namespace Tizen.Applications
         public static async Task<PackageSizeInformation> GetTotalSizeInformationAsync()
         {
             TaskCompletionSource<PackageSizeInformation> tcs = new TaskCompletionSource<PackageSizeInformation>();
+
             Interop.PackageManager.PackageManagerTotalSizeInfoCallback cb = (handle, userData) =>
             {
                 if (handle != IntPtr.Zero)
                 {
                     tcs.TrySetResult(PackageSizeInformation.GetPackageSizeInformation(handle));
                 }
+
+                lock (s_totalSizeInfoCallbackDict)
+                {
+                    s_totalSizeInfoCallbackDict.Remove(userData);
+                }
             };
 
-            var err = Interop.PackageManager.PackageManagerGetTotalSizeInfo(cb, IntPtr.Zero);
+            IntPtr callbackId;
+            lock (s_totalSizeInfoCallbackDict)
+            {
+                callbackId = (IntPtr)s_callbackId++;
+                s_totalSizeInfoCallbackDict[callbackId] = cb;
+            }
+
+            var err = Interop.PackageManager.PackageManagerGetTotalSizeInfo(cb, callbackId);
             if (err != Interop.PackageManager.ErrorCode.None)
             {
                 tcs.TrySetException(PackageManagerErrorFactory.GetException(err, "Failed to get total package size info"));
@@ -1063,7 +1079,7 @@ namespace Tizen.Applications
             var err = Interop.PackageManager.ErrorCode.None;
             if (s_eventStatus != eventStatus)
             {
-                err = Interop.PackageManager.PackageManagerSetEvenStatus(Handle, eventStatus);
+                err = Interop.PackageManager.PackageManagerSetEventStatus(Handle, eventStatus);
                 if (err == Interop.PackageManager.ErrorCode.None)
                 {
                     s_eventStatus = eventStatus;
@@ -1090,7 +1106,7 @@ namespace Tizen.Applications
             var err = Interop.PackageManager.ErrorCode.None;
             if (s_eventStatus != eventStatus)
             {
-                err = Interop.PackageManager.PackageManagerSetEvenStatus(Handle, eventStatus);
+                err = Interop.PackageManager.PackageManagerSetEventStatus(Handle, eventStatus);
                 if (err == Interop.PackageManager.ErrorCode.None)
                 {
                     s_eventStatus = eventStatus;
@@ -1111,14 +1127,17 @@ namespace Tizen.Applications
 
             if (!Handle.IsInvalid)
             {
-                Log.Debug(LogTag, "Reset Package Event");
-                err = Interop.PackageManager.PackageManagerUnsetEvent(Handle);
-                if (err != Interop.PackageManager.ErrorCode.None)
+                lock (Handle)
                 {
-                    throw PackageManagerErrorFactory.GetException(err, "Failed to unregister package manager event event.");
-                }
+                    Log.Debug(LogTag, "Reset Package Event");
+                    err = Interop.PackageManager.PackageManagerUnsetEvent(Handle);
+                    if (err != Interop.PackageManager.ErrorCode.None)
+                    {
+                        throw PackageManagerErrorFactory.GetException(err, "Failed to unregister package manager event event.");
+                    }
 
-                err = Interop.PackageManager.PackageManagerSetEvent(Handle, s_packageManagerEventCallback, IntPtr.Zero);
+                    err = Interop.PackageManager.PackageManagerSetEvent(Handle, s_packageManagerEventCallback, IntPtr.Zero);
+                }
             }
             if (err != Interop.PackageManager.ErrorCode.None)
             {
@@ -1166,10 +1185,13 @@ namespace Tizen.Applications
 
             s_packageManagerEventCallback = null;
 
-            var err = Interop.PackageManager.PackageManagerUnsetEvent(Handle);
-            if (err != Interop.PackageManager.ErrorCode.None)
+            lock (Handle)
             {
-                throw PackageManagerErrorFactory.GetException(err, "Failed to unregister package manager event event.");
+                var err = Interop.PackageManager.PackageManagerUnsetEvent(Handle);
+                if (err != Interop.PackageManager.ErrorCode.None)
+                {
+                    throw PackageManagerErrorFactory.GetException(err, "Failed to unregister package manager event event.");
+                }
             }
         }
     }

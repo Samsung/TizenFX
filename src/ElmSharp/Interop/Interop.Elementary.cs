@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2016 Samsung Electronics Co., Ltd All Rights Reserved
+ * Copyright (c) 2018 Samsung Electronics Co., Ltd All Rights Reserved
  *
  * Licensed under the Apache License, Version 2.0 (the License);
  * you may not use this file except in compliance with the License.
@@ -90,6 +90,33 @@ internal static partial class Interop
         {
             return Marshal.PtrToStringAnsi(_elm_config_profile_get());
         }
+
+        internal static void elm_object_focused_clear(IntPtr handle)
+        {
+            if (elm_widget_is(handle))
+            {
+                efl_ui_widget_focused_object_clear(handle);
+            }
+            else
+            {
+                Evas.evas_object_focus_set(handle, false);
+            }
+
+            IntPtr win = elm_widget_top_get(handle);
+            if (win != IntPtr.Zero && Eo.efl_class_name_get(Eo.efl_class_get(win)) == "Efl.Ui.Win")
+            {
+                Evas.evas_object_focus_set(win, true);
+            }
+        }
+
+        [DllImport(Libraries.Elementary)]
+        internal static extern IntPtr elm_widget_top_get(IntPtr handle);
+
+        [DllImport(Libraries.Elementary)]
+        internal static extern bool elm_widget_is(IntPtr handle);
+
+        [DllImport(Libraries.Elementary)]
+        internal static extern void efl_ui_widget_focused_object_clear(IntPtr handle);
 
         [DllImport(Libraries.Elementary)]
         internal static extern void elm_config_preferred_engine_set(string name);

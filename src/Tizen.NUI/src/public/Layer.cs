@@ -1,5 +1,5 @@
 /*
- * Copyright(c) 2017 Samsung Electronics Co., Ltd.
+ * Copyright(c) 2018 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -29,10 +29,19 @@ namespace Tizen.NUI
     public class Layer : Container
     {
         private global::System.Runtime.InteropServices.HandleRef swigCPtr;
+        private global::System.IntPtr rootLayoutIntPtr;
+        private global::System.Runtime.InteropServices.HandleRef rootLayoutCPtr;
 
         internal Layer(global::System.IntPtr cPtr, bool cMemoryOwn) : base(NDalicPINVOKE.Layer_SWIGUpcast(cPtr), cMemoryOwn)
         {
             swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
+            // Create a root layout (AbsoluteLayout) that is invisible to the user but enables layouts added to this Layer.
+            // Enables layouts added to the Layer to have a parent layout.  As parent layout is needed to store measure spec properties.
+            rootLayoutIntPtr = NDalicManualPINVOKE.Window_NewRootLayout();
+            // Store HandleRef used by Add()
+            rootLayoutCPtr = new global::System.Runtime.InteropServices.HandleRef(this, rootLayoutIntPtr);
+            // Add the root layout created above to this layer.
+            NDalicPINVOKE.Actor_Add( swigCPtr, rootLayoutCPtr );
         }
 
         internal static global::System.Runtime.InteropServices.HandleRef getCPtr(Layer obj)
@@ -50,14 +59,26 @@ namespace Tizen.NUI
         /// <since_tizen> 4 </since_tizen>
         public override void Add(View child)
         {
-            Container oldParent = child.Parent;
+            Container oldParent = child.GetParent();
+
             if (oldParent != this)
             {
                 if (oldParent != null)
                 {
                     oldParent.Remove(child);
                 }
-                NDalicPINVOKE.Actor_Add(swigCPtr, View.getCPtr(child));
+                else
+                {
+                    child.InternalParent = this;
+                }
+                // If adding a View then set layout required flag
+                if( child.GetType() == typeof(View) )
+                {
+                    Log.Info("NUI", "Add child[" + child.Name + "] LayoutingRequired set as pure view\n");
+                    child.LayoutingRequired = true;
+                }
+
+                NDalicPINVOKE.Actor_Add( rootLayoutCPtr , View.getCPtr(child));
                 if (NDalicPINVOKE.SWIGPendingException.Pending)
                     throw NDalicPINVOKE.SWIGPendingException.Retrieve();
                 Children.Add(child);
@@ -72,11 +93,12 @@ namespace Tizen.NUI
         /// <since_tizen> 4 </since_tizen>
         public override void Remove(View child)
         {
-            NDalicPINVOKE.Actor_Remove(swigCPtr, View.getCPtr(child));
+            NDalicPINVOKE.Actor_Remove( rootLayoutCPtr, View.getCPtr(child));
             if (NDalicPINVOKE.SWIGPendingException.Pending)
                 throw NDalicPINVOKE.SWIGPendingException.Retrieve();
 
             Children.Remove(child);
+            child.InternalParent = null;
         }
 
         /// <summary>
@@ -263,14 +285,8 @@ namespace Tizen.NUI
 
                 if (currentIdx >= 0 && currentIdx < parentChildren.Count - 1)
                 {
-                    RaiseAbove(parentChildren[currentIdx + 1]);
-
-                    Layer temp = parentChildren[currentIdx + 1];
-                    parentChildren[currentIdx + 1] = this;
-                    parentChildren[currentIdx] = temp;
-
-                    NDalicPINVOKE.Layer_Raise(swigCPtr);
-                    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                    var upper = parentChildren[currentIdx + 1];
+                    RaiseAbove(upper);
                 }
             }
         }
@@ -288,14 +304,8 @@ namespace Tizen.NUI
 
                 if (currentIdx > 0 && currentIdx < parentChildren.Count)
                 {
-                    LowerBelow(parentChildren[currentIdx - 1]);
-
-                    Layer temp = parentChildren[currentIdx - 1];
-                    parentChildren[currentIdx - 1] = this;
-                    parentChildren[currentIdx] = temp;
-
-                    NDalicPINVOKE.Layer_Lower(swigCPtr);
-                    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                    var low = parentChildren[currentIdx - 1];
+                    LowerBelow(low);
                 }
             }
         }
@@ -321,7 +331,7 @@ namespace Tizen.NUI
                     parentChildren.Remove(this);
                     parentChildren.Insert(targetIndex, this);
 
-                    NDalicPINVOKE.Layer_RaiseAbove(swigCPtr, Layer.getCPtr(target));
+                    NDalicPINVOKE.Layer_MoveAbove(swigCPtr, Layer.getCPtr(target));
                     if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
                 }
             }
@@ -350,7 +360,7 @@ namespace Tizen.NUI
                     parentChildren.Remove(this);
                     parentChildren.Insert(targetIndex, this);
 
-                    NDalicPINVOKE.Layer_LowerBelow(swigCPtr, Layer.getCPtr(target));
+                    NDalicPINVOKE.Layer_MoveBelow(swigCPtr, Layer.getCPtr(target));
                     if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
                 }
             }
@@ -460,6 +470,16 @@ namespace Tizen.NUI
             bool ret = NDalicPINVOKE.Layer_IsHoverConsumed(swigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
+        }
+
+        internal void AddViewToLayerList( View view )
+        {
+            Children.Add(view);
+        }
+
+        internal void RemoveViewFromLayerList( View view )
+        {
+            Children.Remove(view);
         }
 
         /// <summary>

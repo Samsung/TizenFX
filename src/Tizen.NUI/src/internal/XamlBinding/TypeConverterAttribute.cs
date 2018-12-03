@@ -34,41 +34,41 @@ using System;
 
 namespace Tizen.NUI.Binding
 {
-	[AttributeUsage(AttributeTargets.All)]
-	internal sealed class TypeConverterAttribute : Attribute
-	{
-		internal static string[] TypeConvertersType = { "Tizen.NUI.Binding.TypeConverterAttribute", "System.ComponentModel.TypeConverterAttribute" };
+    [AttributeUsage(AttributeTargets.All)]
+    internal sealed class TypeConverterAttribute : Attribute
+    {
+        internal static string[] TypeConvertersType = { "Tizen.NUI.Binding.TypeConverterAttribute", "System.ComponentModel.TypeConverterAttribute" };
 
-		public static readonly TypeConverterAttribute Default = new TypeConverterAttribute();
+        public static readonly TypeConverterAttribute Default = new TypeConverterAttribute();
 
-		public TypeConverterAttribute()
-		{
-			ConverterTypeName = "";
-		}
+        public TypeConverterAttribute()
+        {
+            ConverterTypeName = "";
+        }
 
-		public TypeConverterAttribute(string typeName)
-		{
-			ConverterTypeName = typeName;
-		}
+        public TypeConverterAttribute(string typeName)
+        {
+            ConverterTypeName = typeName;
+        }
 
-		public TypeConverterAttribute(Type type)
-		{
-			ConverterTypeName = type.AssemblyQualifiedName;
-		}
+        public TypeConverterAttribute(Type type)
+        {
+            ConverterTypeName = type.AssemblyQualifiedName;
+        }
 
-		public string ConverterTypeName { get; }
+        public string ConverterTypeName { get; }
 
-		public override bool Equals(object obj)
-		{
-			if (!(obj is TypeConverterAttribute))
-				return false;
+        public override bool Equals(object obj)
+        {
+            if (!(obj is TypeConverterAttribute))
+                return false;
 
-			return ((TypeConverterAttribute)obj).ConverterTypeName == ConverterTypeName;
-		}
+            return ((TypeConverterAttribute)obj).ConverterTypeName == ConverterTypeName;
+        }
 
-		public override int GetHashCode()
-		{
-			return ConverterTypeName.GetHashCode();
-		}
-	}
+        public override int GetHashCode()
+        {
+            return ConverterTypeName.GetHashCode();
+        }
+    }
 }
