@@ -1228,10 +1228,6 @@ namespace Tizen.Applications.DataControl
                 Stop();
                 _disposed = true;
             }
-            if (disposing)
-            {
-                GC.SuppressFinalize(this);
-            }
         }
 
         /// <summary>
@@ -1241,6 +1237,7 @@ namespace Tizen.Applications.DataControl
         public void Dispose()
         {
             Dispose(true);
+            GC.SuppressFinalize(this);
         }
     }
 }
