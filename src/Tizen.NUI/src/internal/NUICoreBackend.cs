@@ -148,11 +148,7 @@ namespace Tizen.NUI
 
             _application.MainLoop();
 
-            if(Graphics.Backend == Graphics.BackendType.Gles)
-            {
-                //Temporary fix. VK backend make crash. this will be removed after VK memory issue is resolved.
-                _application.Dispose();
-            }
+            _application.Dispose();
 
         }
 
