@@ -1,0 +1,3 @@
+[submodule "opentk"]
+	path = externals/opentk
+	url = https://github.com/TizenAPI/opentk.git

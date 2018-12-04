@@ -22,9 +22,9 @@ using System.ComponentModel;
 namespace Tizen.NUI
 {
     /// <summary>
-    /// Specifically manages the input method framework which enables the virtual or hardware keyboards.
+    /// Specifically manages the input method framework (IMF) that enables the virtual or hardware keyboards.
     /// </summary>
-    /// <since_tizen> 3 </since_tizen>
+    /// <since_tizen> 5 </since_tizen>
     public class InputMethodContext : BaseHandle
     {
         private global::System.Runtime.InteropServices.HandleRef swigCPtr;
@@ -44,7 +44,7 @@ namespace Tizen.NUI
         /// Dispose
         /// </summary>
         /// <param name="type">Dispose Type</param>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 5 </since_tizen>
         /// Please DO NOT use! This will be deprecated!
         /// Dispose() method in Singletone classes (ex: FocusManager, StyleManager, VisualFactory, InputMethodContext, TtsPlayer, Window) is not required.
         [EditorBrowsable(EditorBrowsableState.Never)]
@@ -57,7 +57,7 @@ namespace Tizen.NUI
 
             if (type == DisposeTypes.Explicit)
             {
-                //Called by User
+                //Called by User.
                 //Release your own managed resources here.
                 //You should release all of your own disposable objects here.
 
@@ -65,7 +65,7 @@ namespace Tizen.NUI
 
             //Release your own unmanaged resources here.
             //You should not access any managed member here except static instance.
-            //because the execution order of Finalizes is non-deterministic.
+            //Because the execution order of Finalizes is non-deterministic.
 
             if (_keyboardTypeChangedEventCallback != null)
             {
@@ -88,14 +88,14 @@ namespace Tizen.NUI
         /// <summary>
         /// This structure is used to pass on data from the IMF regarding predictive text.
         /// </summary>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 5 </since_tizen>
         public class EventData : global::System.IDisposable
         {
             private global::System.Runtime.InteropServices.HandleRef swigCPtr;
             /// <summary>
             /// swigCMemOwn
             /// </summary>
-            /// <since_tizen> 3 </since_tizen>
+            /// <since_tizen> 5 </since_tizen>
             protected bool swigCMemOwn;
 
             internal EventData(IntPtr cPtr, bool cMemoryOwn)
@@ -109,18 +109,18 @@ namespace Tizen.NUI
                 return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, IntPtr.Zero) : obj.swigCPtr;
             }
 
-            //A Flag to check who called Dispose(). (By User or DisposeQueue)
+            //A flag to check who called Dispose(). (By User or DisposeQueue)
             private bool isDisposeQueued = false;
             /// <summary>
-            /// A Flat to check if it is already disposed.
+            /// A flag to check if it is already disposed.
             /// </summary>
-            /// <since_tizen> 3 </since_tizen>
+            /// <since_tizen> 5 </since_tizen>
             protected bool disposed = false;
 
             /// <summary>
             /// Dispose.
             /// </summary>
-            /// <since_tizen> 3 </since_tizen>
+            /// <since_tizen> 5 </since_tizen>
             ~EventData()
             {
                 if (!isDisposeQueued)
@@ -133,7 +133,7 @@ namespace Tizen.NUI
             /// <summary>
             /// The dispose pattern.
             /// </summary>
-            /// <since_tizen> 3 </since_tizen>
+            /// <since_tizen> 5 </since_tizen>
             public void Dispose()
             {
                 //Throw excpetion if Dispose() is called in separate thread.
@@ -156,7 +156,7 @@ namespace Tizen.NUI
             /// <summary>
             /// Dispose.
             /// </summary>
-            /// <since_tizen> 3 </since_tizen>
+            /// <since_tizen> 5 </since_tizen>
             protected virtual void Dispose(DisposeTypes type)
             {
                 if (disposed)
@@ -166,7 +166,7 @@ namespace Tizen.NUI
 
                 if (type == DisposeTypes.Explicit)
                 {
-                    //Called by User
+                    //Called by User.
                     //Release your own managed resources here.
                     //You should release all of your own disposable objects here.
 
@@ -199,7 +199,7 @@ namespace Tizen.NUI
             /// <summary>
             /// The default constructor.
             /// </summary>
-            /// <since_tizen> 3 </since_tizen>
+            /// <since_tizen> 5 </since_tizen>
             public EventData() : this(NDalicManualPINVOKE.new_InputMethodContext_EventData__SWIG_0(), true)
             {
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
@@ -212,7 +212,7 @@ namespace Tizen.NUI
             /// <param name="aPredictiveString">The pre-edit or the commit string.</param>
             /// <param name="aCursorOffset">Start the position from the current cursor position to start deleting characters.</param>
             /// <param name="aNumberOfChars">The number of characters to delete from the cursorOffset.</param>
-            /// <since_tizen> 3 </since_tizen>
+            /// <since_tizen> 5 </since_tizen>
             public EventData(InputMethodContext.EventType aEventName, string aPredictiveString, int aCursorOffset, int aNumberOfChars) : this(NDalicManualPINVOKE.new_InputMethodContext_EventData__SWIG_1((int)aEventName, aPredictiveString, aCursorOffset, aNumberOfChars), true)
             {
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
@@ -221,7 +221,7 @@ namespace Tizen.NUI
             /// <summary>
             /// The pre-edit or the commit string.
             /// </summary>
-            /// <since_tizen> 4 </since_tizen>
+            /// <since_tizen> 5 </since_tizen>
             public string PredictiveString
             {
                 set
@@ -240,7 +240,7 @@ namespace Tizen.NUI
             /// <summary>
             /// The name of the event from the IMF.
             /// </summary>
-            /// <since_tizen> 4 </since_tizen>
+            /// <since_tizen> 5 </since_tizen>
             public InputMethodContext.EventType EventName
             {
                 set
@@ -259,7 +259,7 @@ namespace Tizen.NUI
             /// <summary>
             /// The start position from the current cursor position to start deleting characters.
             /// </summary>
-            /// <since_tizen> 4 </since_tizen>
+            /// <since_tizen> 5 </since_tizen>
             public int CursorOffset
             {
                 set
@@ -278,7 +278,7 @@ namespace Tizen.NUI
             /// <summary>
             /// The number of characters to delete from the cursorOffset.
             /// </summary>
-            /// <since_tizen> 4 </since_tizen>
+            /// <since_tizen> 5 </since_tizen>
             public int NumberOfChars
             {
                 set
@@ -299,14 +299,14 @@ namespace Tizen.NUI
         /// <summary>
         /// Data required by the IMF from the callback.
         /// </summary>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 5 </since_tizen>
         public class CallbackData : global::System.IDisposable
         {
             private global::System.Runtime.InteropServices.HandleRef swigCPtr;
             /// <summary>
             /// swigCMemOwn
             /// </summary>
-            /// <since_tizen> 3 </since_tizen>
+            /// <since_tizen> 5 </since_tizen>
             protected bool swigCMemOwn;
 
             internal IntPtr GetCallbackDataPtr()
@@ -328,16 +328,16 @@ namespace Tizen.NUI
             //A Flag to check who called Dispose(). (By User or DisposeQueue)
             private bool isDisposeQueued = false;
             /// <summary>
-            /// A Flat to check if it is already disposed.
+            /// A Flag to check if it is already disposed.
             /// </summary>
-            /// <since_tizen> 3 </since_tizen>
+            /// <since_tizen> 5 </since_tizen>
             protected bool disposed = false;
 
 
             /// <summary>
             /// Dispose.
             /// </summary>
-            /// <since_tizen> 3 </since_tizen>
+            /// <since_tizen> 5 </since_tizen>
             ~CallbackData()
             {
                 if (!isDisposeQueued)
@@ -350,7 +350,7 @@ namespace Tizen.NUI
             /// <summary>
             /// The dispose pattern.
             /// </summary>
-            /// <since_tizen> 3 </since_tizen>
+            /// <since_tizen> 5 </since_tizen>
             public void Dispose()
             {
                 //Throw excpetion if Dispose() is called in separate thread.
@@ -373,7 +373,7 @@ namespace Tizen.NUI
             /// <summary>
             /// Dispose.
             /// </summary>
-            /// <since_tizen> 3 </since_tizen>
+            /// <since_tizen> 5 </since_tizen>
             protected virtual void Dispose(DisposeTypes type)
             {
                 if (disposed)
@@ -383,7 +383,7 @@ namespace Tizen.NUI
 
                 if (type == DisposeTypes.Explicit)
                 {
-                    //Called by User
+                    //Called by User.
                     //Release your own managed resources here.
                     //You should release all of your own disposable objects here.
 
@@ -391,7 +391,7 @@ namespace Tizen.NUI
 
                 //Release your own unmanaged resources here.
                 //You should not access any managed member here except static instance.
-                //because the execution order of Finalizes is non-deterministic.
+                //Because the execution order of Finalizes is non-deterministic.
 
                 if (swigCPtr.Handle != IntPtr.Zero)
                 {
@@ -416,7 +416,7 @@ namespace Tizen.NUI
             /// <summary>
             /// The default constructor.
             /// </summary>
-            /// <since_tizen> 3 </since_tizen>
+            /// <since_tizen> 5 </since_tizen>
             public CallbackData() : this(NDalicManualPINVOKE.new_InputMethodContext_CallbackData__SWIG_0(), true)
             {
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
@@ -429,7 +429,7 @@ namespace Tizen.NUI
             /// <param name="aCursorPosition">The new position of the cursor.</param>
             /// <param name="aCurrentText">The current text string.</param>
             /// <param name="aPreeditResetRequired">Flag if preedit reset is required.</param>
-            /// <since_tizen> 3 </since_tizen>
+            /// <since_tizen> 5 </since_tizen>
             public CallbackData(bool aUpdate, int aCursorPosition, string aCurrentText, bool aPreeditResetRequired) : this(NDalicManualPINVOKE.new_InputMethodContext_CallbackData__SWIG_1(aUpdate, aCursorPosition, aCurrentText, aPreeditResetRequired), true)
             {
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
@@ -438,7 +438,7 @@ namespace Tizen.NUI
             /// <summary>
             /// The current text string.
             /// </summary>
-            /// <since_tizen> 4 </since_tizen>
+            /// <since_tizen> 5 </since_tizen>
             public string CurrentText
             {
                 set
@@ -455,9 +455,9 @@ namespace Tizen.NUI
             }
 
             /// <summary>
-            /// The current text string.
+            /// The current cursor position.
             /// </summary>
-            /// <since_tizen> 4 </since_tizen>
+            /// <since_tizen> 5 </since_tizen>
             public int CursorPosition
             {
                 set
@@ -476,7 +476,7 @@ namespace Tizen.NUI
             /// <summary>
             /// If the cursor position needs to be updated.
             /// </summary>
-            /// <since_tizen> 4 </since_tizen>
+            /// <since_tizen> 5 </since_tizen>
             public bool Update
             {
                 set
@@ -493,9 +493,9 @@ namespace Tizen.NUI
             }
 
             /// <summary>
-            /// Flags if preedit reset is required.
+            /// Flags if the pre-edit reset is required.
             /// </summary>
-            /// <since_tizen> 4 </since_tizen>
+            /// <since_tizen> 5 </since_tizen>
             public bool PreeditResetRequired
             {
                 set
@@ -514,7 +514,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Destroy the context of the IMF.<br/>
+        /// Destroys the context of the IMF.<br/>
         /// </summary>
         /// <since_tizen> 5 </since_tizen>
         public void DestroyContext()
@@ -524,9 +524,9 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Destroy the context of the IMF.<br/>
+        /// Destroys the context of the IMF.<br/>
         /// </summary>
-        /// <since_tizen> 4 </since_tizen>
+        /// <since_tizen> 5 </since_tizen>
         /// Please do not use! This will be deprecated, instead please USE Tizen.NUI.InputMethodContext.Instance.DestroyContext()!
         [Obsolete("Please do not use! This will be deprecated! Please use InputMethodContext.Instance.DestroyContext() instead!")]
         [EditorBrowsable(EditorBrowsableState.Never)]
@@ -562,10 +562,10 @@ namespace Tizen.NUI
 
         /// <summary>
         /// Activates the IMF.<br/>
-        /// It means that the text editing is started somewhere.<br/>
-        /// If the hardware keyboard isn't connected, then it will show the virtual keyboard.
+        /// It means that the text editing has started.<br/>
+        /// If the hardware keyboard is not connected, then it shows the virtual keyboard.
         /// </summary>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 5 </since_tizen>
         public void Activate()
         {
             NDalicManualPINVOKE.InputMethodContext_Activate(swigCPtr);
@@ -574,9 +574,9 @@ namespace Tizen.NUI
 
         /// <summary>
         /// Deactivates the IMF.<br/>
-        /// It means that the text editing is finished somewhere.
+        /// It means that the text editing is complete.
         /// </summary>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 5 </since_tizen>
         public void Deactivate()
         {
             NDalicManualPINVOKE.InputMethodContext_Deactivate(swigCPtr);
@@ -584,11 +584,11 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Gets the restoration status which controls if the keyboard is restored after the focus is lost and then regained.<br/>
-        /// If true, then the keyboard will be restored (activated) after focus is regained.
+        /// Gets the restoration status, which controls if the keyboard is restored after the focus is lost and then regained.<br/>
+        /// If true, then the keyboard will be restored (activated) after the focus is regained.
         /// </summary>
         /// <returns>The restoration status.</returns>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 5 </since_tizen>
         public bool RestoreAfterFocusLost()
         {
             bool ret = NDalicManualPINVOKE.InputMethodContext_RestoreAfterFocusLost(swigCPtr);
@@ -599,8 +599,8 @@ namespace Tizen.NUI
         /// <summary>
         /// Sets the status whether the IMF has to restore the keyboard after losing focus.
         /// </summary>
-        /// <param name="toggle">True means that keyboard should be restored after the focus is lost and regained.</param>
-        /// <since_tizen> 3 </since_tizen>
+        /// <param name="toggle">True means that keyboard must be restored after the focus is lost and regained.</param>
+        /// <since_tizen> 5 </since_tizen>
         public void SetRestoreAfterFocusLost(bool toggle)
         {
             NDalicManualPINVOKE.InputMethodContext_SetRestoreAfterFocusLost(swigCPtr, toggle);
@@ -608,9 +608,9 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Sends a message reset to the preedit state or the IMF module.
+        /// Sends a message reset to the pre-edit state or the IMF module.
         /// </summary>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 5 </since_tizen>
         public new void Reset()
         {
             NDalicManualPINVOKE.InputMethodContext_Reset(swigCPtr);
@@ -618,9 +618,9 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Notifies the IMF context that the cursor position has changed, required for features like auto-capitalization.
+        /// Notifies the IMF context that the cursor position has changed, required for features such as auto-capitalization.
         /// </summary>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 5 </since_tizen>
         public void NotifyCursorPosition()
         {
             NDalicManualPINVOKE.InputMethodContext_NotifyCursorPosition(swigCPtr);
@@ -631,7 +631,7 @@ namespace Tizen.NUI
         /// Sets the cursor position stored in VirtualKeyboard, this is required by the IMF context.
         /// </summary>
         /// <param name="cursorPosition">The position of the cursor.</param>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 5 </since_tizen>
         public void SetCursorPosition(uint cursorPosition)
         {
             NDalicManualPINVOKE.InputMethodContext_SetCursorPosition(swigCPtr, cursorPosition);
@@ -642,7 +642,7 @@ namespace Tizen.NUI
         /// Gets the cursor position stored in VirtualKeyboard, this is required by the IMF context.
         /// </summary>
         /// <returns>The current position of the cursor.</returns>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 5 </since_tizen>
         public uint GetCursorPosition()
         {
             uint ret = NDalicManualPINVOKE.InputMethodContext_GetCursorPosition(swigCPtr);
@@ -654,7 +654,7 @@ namespace Tizen.NUI
         /// A method to store the string required by the IMF, this is used to provide predictive word suggestions.
         /// </summary>
         /// <param name="text">The text string surrounding the current cursor point.</param>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 5 </since_tizen>
         public void SetSurroundingText(string text)
         {
             NDalicManualPINVOKE.InputMethodContext_SetSurroundingText(swigCPtr, text);
@@ -665,7 +665,7 @@ namespace Tizen.NUI
         /// Gets the current text string set within the IMF manager, this is used to offer predictive suggestions.
         /// </summary>
         /// <returns>The surrounding text.</returns>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 5 </since_tizen>
         public string GetSurroundingText()
         {
             string ret = NDalicManualPINVOKE.InputMethodContext_GetSurroundingText(swigCPtr);
@@ -677,7 +677,7 @@ namespace Tizen.NUI
         /// Notifies the IMF context that text input is set to multiline or not.
         /// </summary>
         /// <param name="multiLine">True if multiline text input is used.</param>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 5 </since_tizen>
         public void NotifyTextInputMultiLine(bool multiLine)
         {
             NDalicManualPINVOKE.InputMethodContext_NotifyTextInputMultiLine(swigCPtr, multiLine);
@@ -685,10 +685,10 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Returns the text direction of the keyboard's current input language.
+        /// Returns the text direction of the current input language of the keyboard.
         /// </summary>
         /// <returns>The direction of the text.</returns>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 5 </since_tizen>
         public InputMethodContext.TextDirection GetTextDirection()
         {
             InputMethodContext.TextDirection ret = (InputMethodContext.TextDirection)NDalicManualPINVOKE.InputMethodContext_GetTextDirection(swigCPtr);
@@ -701,10 +701,10 @@ namespace Tizen.NUI
         /// The position is relative to whether the keyboard is visible or not.<br/>
         /// If the keyboard is not visible, then the position will be off the screen.<br/>
         /// If the keyboard is not being shown when this method is called, the keyboard is partially setup (IMFContext) to get/>
-        /// the values then taken down. So ideally, GetInputMethodArea() should be called after Show().
+        /// the values then taken down. So ideally, GetInputMethodArea() must be called after Show().
         /// </summary>
-        /// <returns>Rectangle which is keyboard panel x, y, width, height.</returns>
-        /// <since_tizen> 3 </since_tizen>
+        /// <returns>Rectangle which is keyboard panel x, y, width, and height.</returns>
+        /// <since_tizen> 5 </since_tizen>
         public Rectangle GetInputMethodArea()
         {
             Rectangle ret = new Rectangle(NDalicManualPINVOKE.InputMethodContext_GetInputMethodArea(swigCPtr), true);
@@ -719,10 +719,10 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Sets up the input-panel specific data.
+        /// Sets up the input panel specific data.
         /// </summary>
         /// <param name="text">The specific data to be set to the input panel.</param>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 5 </since_tizen>
         public void SetInputPanelUserData(string text)
         {
             NDalicManualPINVOKE.InputMethodContext_SetInputPanelUserData(swigCPtr, text);
@@ -733,7 +733,7 @@ namespace Tizen.NUI
         /// Gets the specific data of the current active input panel.
         /// </summary>
         /// <param name="text">The specific data to be received from the input panel.</param>
-        /// <since_tizen> 4 </since_tizen>
+        /// <since_tizen> 5 </since_tizen>
         public void GetInputPanelUserData(out string text)
         {
             NDalicManualPINVOKE.InputMethodContext_GetInputPanelUserData(swigCPtr, out text);
@@ -744,7 +744,7 @@ namespace Tizen.NUI
         /// Gets the state of the current active input panel.
         /// </summary>
         /// <returns>The state of the input panel.</returns>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 5 </since_tizen>
         public InputMethodContext.State GetInputPanelState()
         {
             InputMethodContext.State ret = (InputMethodContext.State)NDalicManualPINVOKE.InputMethodContext_GetInputPanelState(swigCPtr);
@@ -754,10 +754,10 @@ namespace Tizen.NUI
 
         /// <summary>
         /// Sets the return key on the input panel to be visible or invisible.<br/>
-        /// The default is true.
+        /// The default value is true.
         /// </summary>
         /// <param name="visible">True if the return key is visible (enabled), false otherwise.</param>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 5 </since_tizen>
         public void SetReturnKeyState(bool visible)
         {
             NDalicManualPINVOKE.InputMethodContext_SetReturnKeyState(swigCPtr, visible);
@@ -768,7 +768,7 @@ namespace Tizen.NUI
         /// Enables to show the input panel automatically when focused.
         /// </summary>
         /// <param name="enabled">If true, the input panel will be shown when focused.</param>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 5 </since_tizen>
         public void AutoEnableInputPanel(bool enabled)
         {
             NDalicManualPINVOKE.InputMethodContext_AutoEnableInputPanel(swigCPtr, enabled);
@@ -778,7 +778,7 @@ namespace Tizen.NUI
         /// <summary>
         /// Shows the input panel.
         /// </summary>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 5 </since_tizen>
         public void ShowInputPanel()
         {
             NDalicManualPINVOKE.InputMethodContext_ShowInputPanel(swigCPtr);
@@ -788,7 +788,7 @@ namespace Tizen.NUI
         /// <summary>
         /// Hides the input panel.
         /// </summary>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 5 </since_tizen>
         public void HideInputPanel()
         {
             NDalicManualPINVOKE.InputMethodContext_HideInputPanel(swigCPtr);
@@ -800,7 +800,7 @@ namespace Tizen.NUI
         /// The default keyboard type is SoftwareKeyboard.
         /// </summary>
         /// <returns>The keyboard type.</returns>
-        /// <since_tizen> 4 </since_tizen>
+        /// <since_tizen> 5 </since_tizen>
         public InputMethodContext.KeyboardType GetKeyboardType()
         {
             InputMethodContext.KeyboardType ret = (InputMethodContext.KeyboardType)NDalicManualPINVOKE.InputMethodContext_GetKeyboardType(swigCPtr);
@@ -810,10 +810,10 @@ namespace Tizen.NUI
 
         /// <summary>
         /// Gets the current language locale of the input panel.<br/>
-        /// For example, en_US, en_GB, en_PH, fr_FR, ...
+        /// For example, en_US, en_GB, en_PH, fr_FR, and so on.
         /// </summary>
         /// <returns>The current language locale of the input panel.</returns>
-        /// <since_tizen> 4 </since_tizen>
+        /// <since_tizen> 5 </since_tizen>
         public string GetInputPanelLocale()
         {
             string ret = NDalicManualPINVOKE.InputMethodContext_GetInputPanelLocale(swigCPtr);
@@ -821,16 +821,46 @@ namespace Tizen.NUI
             return ret;
         }
 
+        internal void AllowTextPrediction(bool prediction)
+        {
+            NDalicManualPINVOKE.InputMethodContext_AllowTextPrediction(swigCPtr, prediction);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        internal bool IsTextPredictionAllowed()
+        {
+            bool ret = NDalicManualPINVOKE.InputMethodContext_IsTextPredictionAllowed(swigCPtr);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        /// <summary>
+        /// Gets or sets whether the IM context allows to use the text prediction.
+        /// </summary>
+        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public bool TextPrediction
+        {
+            get
+            {
+                return IsTextPredictionAllowed();
+            }
+            set
+            {
+                AllowTextPrediction(value);
+            }
+        }
+
         /// <summary>
         /// InputMethodContext activated event arguments.
         /// </summary>
-        /// <since_tizen> 4 </since_tizen>
+        /// <since_tizen> 5 </since_tizen>
         public class ActivatedEventArgs : EventArgs
         {
             /// <summary>
             /// InputMethodContext
             /// </summary>
-            /// <since_tizen> 4 </since_tizen>
+            /// <since_tizen> 5 </since_tizen>
             public InputMethodContext InputMethodContext
             {
                 get;
@@ -846,7 +876,7 @@ namespace Tizen.NUI
         /// <summary>
         /// InputMethodContext activated.
         /// </summary>
-        /// <since_tizen> 4 </since_tizen>
+        /// <since_tizen> 5 </since_tizen>
         public event EventHandler<ActivatedEventArgs> Activated
         {
             add
@@ -893,15 +923,15 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// InputMethodContext event received event arguments.
+        /// InputMethodContext event receives event arguments.
         /// </summary>
-        /// <since_tizen> 4 </since_tizen>
+        /// <since_tizen> 5 </since_tizen>
         public class EventReceivedEventArgs : EventArgs
         {
             /// <summary>
             /// InputMethodContext
             /// </summary>
-            /// <since_tizen> 4 </since_tizen>
+            /// <since_tizen> 5 </since_tizen>
             public InputMethodContext InputMethodContext
             {
                 get;
@@ -909,9 +939,9 @@ namespace Tizen.NUI
             }
 
             /// <summary>
-            /// EventData
+            /// EventData.
             /// </summary>
-            /// <since_tizen> 4 </since_tizen>
+            /// <since_tizen> 5 </since_tizen>
             public EventData EventData
             {
                 get;
@@ -926,7 +956,7 @@ namespace Tizen.NUI
         /// <summary>
         /// InputMethodContext event received.
         /// </summary>
-        /// <since_tizen> 4 </since_tizen>
+        /// <since_tizen> 5 </since_tizen>
         public event EventHandlerWithReturnType<object, EventReceivedEventArgs, CallbackData> EventReceived
         {
             add
@@ -989,13 +1019,13 @@ namespace Tizen.NUI
         /// <summary>
         /// InputMethodContext status changed event arguments.
         /// </summary>
-        /// <since_tizen> 4 </since_tizen>
+        /// <since_tizen> 5 </since_tizen>
         public class StatusChangedEventArgs : EventArgs
         {
             /// <summary>
-            /// InputMethodContext status
+            /// InputMethodContext status.
             /// </summary>
-            /// <since_tizen> 4 </since_tizen>
+            /// <since_tizen> 5 </since_tizen>
             public bool StatusChanged
             {
                 get;
@@ -1010,7 +1040,7 @@ namespace Tizen.NUI
         /// <summary>
         /// InputMethodContext status changed.
         /// </summary>
-        /// <since_tizen> 4 </since_tizen>
+        /// <since_tizen> 5 </since_tizen>
         public event EventHandler<StatusChangedEventArgs> StatusChanged
         {
             add
@@ -1054,15 +1084,15 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// InputMethodContext resized event.
+        /// InputMethodContext resized event arguments.
         /// </summary>
-        /// <since_tizen> 4 </since_tizen>
+        /// <since_tizen> 5 </since_tizen>
         public class ResizedEventArgs : EventArgs
         {
             /// <summary>
             /// resized.
             /// </summary>
-            /// <since_tizen> 4 </since_tizen>
+            /// <since_tizen> 5 </since_tizen>
             public int Resized
             {
                 get;
@@ -1077,7 +1107,7 @@ namespace Tizen.NUI
         /// <summary>
         /// InputMethodContext resized.
         /// </summary>
-        /// <since_tizen> 4 </since_tizen>
+        /// <since_tizen> 5 </since_tizen>
         public event EventHandler<ResizedEventArgs> Resized
         {
             add
@@ -1120,15 +1150,15 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// InputMethodContext language changed event args.
+        /// InputMethodContext language changed event arguments.
         /// </summary>
-        /// <since_tizen> 4 </since_tizen>
+        /// <since_tizen> 5 </since_tizen>
         public class LanguageChangedEventArgs : EventArgs
         {
             /// <summary>
-            /// language changed.
+            /// Language changed.
             /// </summary>
-            /// <since_tizen> 4 </since_tizen>
+            /// <since_tizen> 5 </since_tizen>
             public int LanguageChanged
             {
                 get;
@@ -1143,7 +1173,7 @@ namespace Tizen.NUI
         /// <summary>
         /// InputMethodContext language changed.
         /// </summary>
-        /// <since_tizen> 4 </since_tizen>
+        /// <since_tizen> 5 </since_tizen>
         public event EventHandler<LanguageChangedEventArgs> LanguageChanged
         {
             add
@@ -1188,13 +1218,13 @@ namespace Tizen.NUI
         /// <summary>
         /// InputMethodContext keyboard type changed event arguments.
         /// </summary>
-        /// <since_tizen> 4 </since_tizen>
+        /// <since_tizen> 5 </since_tizen>
         public class KeyboardTypeChangedEventArgs : EventArgs
         {
             /// <summary>
-            /// InputMethodContext keyboard type
+            /// InputMethodContext keyboard type.
             /// </summary>
-            /// <since_tizen> 4 </since_tizen>
+            /// <since_tizen> 5 </since_tizen>
             public KeyboardType KeyboardType
             {
                 get;
@@ -1209,7 +1239,7 @@ namespace Tizen.NUI
         /// <summary>
         /// InputMethodContext keyboard type changed.
         /// </summary>
-        /// <since_tizen> 4 </since_tizen>
+        /// <since_tizen> 5 </since_tizen>
         public event EventHandler<KeyboardTypeChangedEventArgs> KeyboardTypeChanged
         {
             add
@@ -1255,7 +1285,7 @@ namespace Tizen.NUI
         /// <summary>
         /// The direction of the text.
         /// </summary>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 5 </since_tizen>
         public enum TextDirection
         {
             /// <summary>
@@ -1271,84 +1301,84 @@ namespace Tizen.NUI
         /// <summary>
         /// Events that are generated by the IMF.
         /// </summary>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 5 </since_tizen>
         public enum EventType
         {
             /// <summary>
             /// No event.
             /// </summary>
-            /// <since_tizen> 4 </since_tizen>
+            /// <since_tizen> 5 </since_tizen>
             Void,
             /// <summary>
-            /// Pre-Edit changed.
+            /// Pre-edit changed.
             /// </summary>
-            /// <since_tizen> 4 </since_tizen>
+            /// <since_tizen> 5 </since_tizen>
             Preedit,
             /// <summary>
             /// Commit received.
             /// </summary>
-            /// <since_tizen> 4 </since_tizen>
+            /// <since_tizen> 5 </since_tizen>
             Commit,
             /// <summary>
             /// An event to delete a range of characters from the string.
             /// </summary>
-            /// <since_tizen> 4 </since_tizen>
+            /// <since_tizen> 5 </since_tizen>
             DeleteSurrounding,
             /// <summary>
             /// An event to query string and the cursor position.
             /// </summary>
-            /// <since_tizen> 4 </since_tizen>
+            /// <since_tizen> 5 </since_tizen>
             GetSurrounding,
             /// <summary>
             /// Private command sent from the input panel.
             /// </summary>
-            /// <since_tizen> 4 </since_tizen>
+            /// <since_tizen> 5 </since_tizen>
             PrivateCommand
         }
 
         /// <summary>
         /// Enumeration for the state of the input panel.
         /// </summary>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 5 </since_tizen>
         public enum State
         {
             /// <summary>
             /// Unknown state.
             /// </summary>
-            /// <since_tizen> 4 </since_tizen>
+            /// <since_tizen> 5 </since_tizen>
             Default = 0,
             /// <summary>
             /// Input panel is shown.
             /// </summary>
-            /// <since_tizen> 4 </since_tizen>
+            /// <since_tizen> 5 </since_tizen>
             Show,
             /// <summary>
             /// Input panel is hidden.
             /// </summary>
-            /// <since_tizen> 4 </since_tizen>
+            /// <since_tizen> 5 </since_tizen>
             Hide,
             /// <summary>
             /// Input panel in process of being shown.
             /// </summary>
-            /// <since_tizen> 4 </since_tizen>
+            /// <since_tizen> 5 </since_tizen>
             WillShow
         }
 
         /// <summary>
         /// Enumeration for the types of keyboard.
         /// </summary>
-        /// <since_tizen> 4 </since_tizen>
+        /// <since_tizen> 5 </since_tizen>
         public enum KeyboardType
         {
             /// <summary>
             /// Software keyboard (virtual keyboard) is default.
             /// </summary>
-            /// <since_tizen> 4 </since_tizen>
+            /// <since_tizen> 5 </since_tizen>
             SoftwareKeyboard,
             /// <summary>
             /// Hardware keyboard.
             /// </summary>
-            /// <since_tizen> 4 </since_tizen>
+            /// <since_tizen> 5 </since_tizen>
             HardwareKeyboard
         }
     }

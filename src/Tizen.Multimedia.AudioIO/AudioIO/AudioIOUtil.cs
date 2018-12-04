@@ -22,47 +22,6 @@ namespace Tizen.Multimedia
 {
     internal static class AudioIOUtil
     {
-        internal static void ThrowIfError(int errorCode, string msg = null)
-        {
-            if (errorCode >= 0)
-            {
-                Log.Info(nameof(AudioIOUtil), "No error.");
-                return;
-            }
-
-            AudioIOError code = (AudioIOError)errorCode;
-
-            msg = $"{(msg == null ? "" : msg + " : ")}{ code }";
-
-            switch (code)
-            {
-                case AudioIOError.OutOfMemory:
-                    throw new OutOfMemoryException();
-
-                case AudioIOError.InvalidParameter:
-                    throw new ArgumentException(msg);
-
-                case AudioIOError.DevicePolicyRestriction:
-                case AudioIOError.PermissionDenied:
-                    throw new UnauthorizedAccessException(msg);
-
-                case AudioIOError.SoundPolicy:
-                    throw new AudioPolicyException(msg);
-
-                case AudioIOError.NotSupportedType:
-                case AudioIOError.NotSupported:
-                    throw new NotSupportedException(msg);
-
-                case AudioIOError.DeviceNotOpened:
-                case AudioIOError.DeviceNotClosed:
-                case AudioIOError.InvalidBuffer:
-                case AudioIOError.InvalidOperation:
-                case AudioIOError.InvalidState:
-                default:
-                    throw new InvalidOperationException(msg);
-            }
-        }
-
         internal static void ValidateState(AudioIOState curState, params AudioIOState[] desiredStates)
         {
             Debug.Assert(desiredStates.Length > 0);

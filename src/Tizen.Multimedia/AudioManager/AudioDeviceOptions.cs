@@ -55,11 +55,13 @@ namespace Tizen.Multimedia
         /// <summary>
         /// Deactivated devices.
         /// </summary>
+        [Obsolete("Deprecated since API level 5.")]
         Deactivated = 0x1000,
 
         /// <summary>
         /// Activated devices.
         /// </summary>
+        [Obsolete("Deprecated since API level 5.")]
         Activated = 0x2000,
 
         /// <summary>

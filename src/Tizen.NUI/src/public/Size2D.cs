@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2017 Samsung Electronics Co., Ltd.
+ * Copyright (c) 2018 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -59,7 +59,7 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         ~Size2D()
         {
-            if(!isDisposeQueued)
+            if (!isDisposeQueued)
             {
                 isDisposeQueued = true;
                 DisposeQueue.Instance.Add(this);
@@ -100,7 +100,7 @@ namespace Tizen.NUI
                 return;
             }
 
-            if(type == DisposeTypes.Explicit)
+            if (type == DisposeTypes.Explicit)
             {
                 //Called by User
                 //Release your own managed resources here.
@@ -253,6 +253,14 @@ namespace Tizen.NUI
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
+        internal delegate void Size2DChangedCallback(int width, int height);
+        private Size2DChangedCallback callback = null;
+        internal Size2D(Size2DChangedCallback cb, int x, int y) : this(NDalicPINVOKE.new_Vector2__SWIG_1((float)x, (float)y), true)
+        {
+            callback = cb;
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
         private Size2D Add(Size2D rhs)
         {
             Size2D ret = new Size2D(NDalicPINVOKE.Vector2_Add(swigCPtr, Size2D.getCPtr(rhs)), true);
@@ -305,6 +313,22 @@ namespace Tizen.NUI
         }
 
         /// <summary>
+        /// Determines whether the specified object is equal to the current object.
+        /// </summary>
+        /// <param name="obj">The object to compare with the current object.</param>
+        /// <returns>true if the specified object is equal to the current object; otherwise, false.</returns>
+        public override bool Equals(System.Object obj)
+        {
+            Size2D size2D = obj as Size2D;
+            bool equal = false;
+            if (Width == size2D?.Width && Height == size2D?.Height)
+            {
+                equal = true;
+            }
+            return equal;
+        }
+
+        /// <summary>
         /// Checks equality.<br />
         /// Utilizes appropriate machine epsilon values.<br />
         /// </summary>
@@ -349,6 +373,8 @@ namespace Tizen.NUI
             {
                 NDalicPINVOKE.Vector2_Width_set(swigCPtr, (float)value);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+
+                callback?.Invoke(Width, Height);
             }
             get
             {
@@ -368,6 +394,8 @@ namespace Tizen.NUI
             {
                 NDalicPINVOKE.Vector2_Height_set(swigCPtr, (float)value);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+
+                callback?.Invoke(Width, Height);
             }
             get
             {

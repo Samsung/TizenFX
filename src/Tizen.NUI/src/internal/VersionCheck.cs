@@ -1,5 +1,5 @@
 /*
- * Copyright(c) 2017 Samsung Electronics Co., Ltd.
+ * Copyright(c) 2018 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -24,7 +24,11 @@ namespace Tizen.NUI
     internal static class Version
     {
         //from dali_1.3.23 : NUI internal API version 501
-        public const int nuiAPIVer = 501;
+        //from dali_1.3.28 : NUI internal API version 502
+        //from dali_1.3.34 : NUI internal API version 503
+        //from dali_1.3.41 : NUI internal API version 504
+        //from dali_1.3.48 : NUI internal API version 505
+        public const int nuiAPIVer = 505;
         public const int reservedVer1 = 0;
         public const int reservedVer2 = 0;
 
@@ -69,7 +73,7 @@ namespace Tizen.NUI
 
             NDalicManualPINVOKE.NativeVersionCheck(ref ver1, ref ver2, ref ver3);
             //NUILog.Debug($"DALi Version: ({ver1}.{ver2}.{ver3}), NUI API Version: ({nuiAPIVer})");
-            NUILog.Error($"DALi Version: ({ver1}.{ver2}.{ver3}), NUI API Version: ({nuiAPIVer})");
+            NUILog.Error($"NOT Error! Just Showing DALi Version: ({ver1}.{ver2}.{ver3}), NUI API Version: ({nuiAPIVer})");
         }
     }
 }

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2016 Samsung Electronics Co., Ltd All Rights Reserved
+ * Copyright (c) 2018 Samsung Electronics Co., Ltd All Rights Reserved
  *
  * Licensed under the Apache License, Version 2.0 (the License);
  * you may not use this file except in compliance with the License.
@@ -90,7 +90,7 @@ namespace ElmSharp
         internal static GenListItemEventArgs CreateFromSmartEvent(IntPtr data, IntPtr obj, IntPtr info)
         {
             GenListItem item = ItemObject.GetItemByHandle(info) as GenListItem;
-            return new GenListItemEventArgs() { Item = item };
+            return new GenListItemEventArgs { Item = item };
         }
     }
 
@@ -168,7 +168,7 @@ namespace ElmSharp
         /// Creates and initializes a new instance of the GenList class.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
-        protected GenList() : base()
+        protected GenList()
         {
         }
 
@@ -384,6 +384,50 @@ namespace ElmSharp
             get
             {
                 return Interop.Elementary.elm_genlist_items_count(RealHandle);
+            }
+        }
+
+        /// <summary>
+        /// Sets or gets the value of HorizontalScrollBarVisiblePolicy.
+        /// </summary>
+        /// <remarks>
+        /// ScrollBarVisiblePolicy.Auto means the horizontal scrollbar is made visible if it is needed, and otherwise kept hidden.
+        /// ScrollBarVisiblePolicy.Visible turns it on all the time, and ScrollBarVisiblePolicy.Invisible always keeps it off.
+        /// </remarks>
+        /// <since_tizen> preview </since_tizen>
+        public ScrollBarVisiblePolicy HorizontalScrollBarVisiblePolicy
+        {
+            get
+            {
+                Interop.Elementary.elm_scroller_policy_get(RealHandle, out int policy, IntPtr.Zero);
+                return (ScrollBarVisiblePolicy)policy;
+            }
+            set
+            {
+                ScrollBarVisiblePolicy v = VerticalScrollBarVisiblePolicy;
+                Interop.Elementary.elm_scroller_policy_set(RealHandle, (int)value, (int)v);
+            }
+        }
+
+        /// <summary>
+        /// Sets or gets the value of VerticalScrollBarVisiblePolicy.
+        /// </summary>
+        /// <remarks>
+        /// ScrollBarVisiblePolicy.Auto means the vertical scrollbar is made visible if it is needed, and otherwise kept hidden.
+        /// ScrollBarVisiblePolicy.Visible turns it on all the time, and ScrollBarVisiblePolicy.Invisible always keeps it off.
+        /// </remarks>
+        /// <since_tizen> preview </since_tizen>
+        public ScrollBarVisiblePolicy VerticalScrollBarVisiblePolicy
+        {
+            get
+            {
+                Interop.Elementary.elm_scroller_policy_get(RealHandle, IntPtr.Zero, out int policy);
+                return (ScrollBarVisiblePolicy)policy;
+            }
+            set
+            {
+                ScrollBarVisiblePolicy h = HorizontalScrollBarVisiblePolicy;
+                Interop.Elementary.elm_scroller_policy_set(RealHandle, (int)h, (int)value);
             }
         }
 

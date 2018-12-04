@@ -1,5 +1,5 @@
  /*
- * Copyright (c) 2016 Samsung Electronics Co., Ltd All Rights Reserved
+ * Copyright (c) 2018 Samsung Electronics Co., Ltd All Rights Reserved
  *
  * Licensed under the Apache License, Version 2.0 (the License);
  * you may not use this file except in compliance with the License.
@@ -84,7 +84,7 @@ namespace Tizen.Messaging.Push
         /// <param name="pushAppId"> The Push Application ID Registered with the server.</param>
         public static void PushServiceConnect(string pushAppId)
         {
-            PushImpl.Instance.PushServiceConnect(pushAppId);
+            PushImpl.PushServiceConnect(pushAppId);
         }
 
         /// <summary>
@@ -93,7 +93,7 @@ namespace Tizen.Messaging.Push
         /// <since_tizen> 3 </since_tizen>
         public static void PushServiceDisconnect()
         {
-            PushImpl.Instance.PushServiceDisconnect();
+            PushImpl.PushServiceDisconnect();
             //PushImpl.Reset();
         }
 
@@ -107,7 +107,7 @@ namespace Tizen.Messaging.Push
         /// </returns>
         public static Task<ServerResponse> PushServerRegister()
         {
-            return PushImpl.Instance.PushServerRegister();
+            return PushImpl.PushServerRegister();
         }
 
         /// <summary>
@@ -119,7 +119,7 @@ namespace Tizen.Messaging.Push
         /// </returns>
         public static Task<ServerResponse> PushServerUnregister()
         {
-            return PushImpl.Instance.PushServerUnregister();
+            return PushImpl.PushServerUnregister();
         }
 
         /// <summary>
@@ -128,7 +128,7 @@ namespace Tizen.Messaging.Push
         /// <since_tizen> 3 </since_tizen>
         public static void GetUnreadNotifications()
         {
-            PushImpl.Instance.GetUnreadNotifications();
+            PushImpl.GetUnreadNotifications();
         }
 
         /// <summary>
@@ -140,7 +140,7 @@ namespace Tizen.Messaging.Push
         /// </returns>
         public static string GetRegistrationId()
         {
-            return PushImpl.Instance.GetRegistrationId();
+            return PushImpl.GetRegistrationId();
         }
 
         internal static void StateChange(PushConnectionStateEventArgs args)

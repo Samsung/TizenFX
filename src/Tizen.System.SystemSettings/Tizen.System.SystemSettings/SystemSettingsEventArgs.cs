@@ -1044,7 +1044,7 @@ namespace Tizen.System
         }
 
         /// <summary>
-        /// Indicates whether the vibration is enabled on the device.
+        /// Indicates whether the vibration is enabled on the device or not.
         /// </summary>
         /// <since_tizen> 5 </since_tizen>
         public bool Value
@@ -1077,7 +1077,7 @@ namespace Tizen.System
         }
 
         /// <summary>
-        /// Indicates whether the updating time automatically is enabled on the device.
+        /// Indicates whether the updating time is automatically enabled on the device or not.
         /// </summary>
         /// <since_tizen> 5 </since_tizen>
         public bool Value
@@ -1109,7 +1109,7 @@ namespace Tizen.System
         }
 
         /// <summary>
-        /// Indicates whether developer option state is enabled on the device.
+        /// Indicates whether developer option state is enabled on the device or not.
         /// </summary>
         /// <since_tizen> 5 </since_tizen>
         public bool Value

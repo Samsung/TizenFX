@@ -4,16 +4,16 @@ using System.ComponentModel;
 
 namespace Tizen.NUI.Binding
 {
-	[EditorBrowsable(EditorBrowsableState.Never)]
-	internal class ResourcesChangedEventArgs : EventArgs
-	{
-		public static readonly ResourcesChangedEventArgs StyleSheets = new ResourcesChangedEventArgs(null);
+    [EditorBrowsable(EditorBrowsableState.Never)]
+    internal class ResourcesChangedEventArgs : EventArgs
+    {
+        public static readonly ResourcesChangedEventArgs StyleSheets = new ResourcesChangedEventArgs(null);
 
-		public ResourcesChangedEventArgs(IEnumerable<KeyValuePair<string, object>> values)
-		{
-			Values = values;
-		}
+        public ResourcesChangedEventArgs(IEnumerable<KeyValuePair<string, object>> values)
+        {
+            Values = values;
+        }
 
-		public IEnumerable<KeyValuePair<string, object>> Values { get; private set; }
-	}
+        public IEnumerable<KeyValuePair<string, object>> Values { get; private set; }
+    }
 }

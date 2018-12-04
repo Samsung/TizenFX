@@ -1,7 +1,7 @@
 ﻿namespace Tizen.NUI.Xaml
 {
-	interface IConverterOptions
-	{
-		bool IgnoreCase { get; }
-	}
+    internal interface IConverterOptions
+    {
+        bool IgnoreCase { get; }
+    }
 }

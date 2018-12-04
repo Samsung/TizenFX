@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2017 Samsung Electronics Co., Ltd All Rights Reserved
+ * Copyright (c) 2017 - 2018 Samsung Electronics Co., Ltd All Rights Reserved
  *
  * Licensed under the Apache License, Version 2.0 (the License);
  * you may not use this file except in compliance with the License.
@@ -53,10 +53,27 @@ internal static partial class Interop
         //[UnmanagedFunctionPointerAttribute(CallingConvention.Cdecl)]
         internal delegate void RequestResponseCallback(CallCause cause, RequestResult result, string privilege, IntPtr userData);
 
+        //[UnmanagedFunctionPointerAttribute(CallingConvention.Cdecl)]
+        internal delegate void RequestMultipleResponseCallback(CallCause cause,
+                                                               [MarshalAs(UnmanagedType.LPArray, SizeParamIndex = 3)] RequestResult[] results,
+                                                               [MarshalAs(UnmanagedType.LPArray, SizeParamIndex = 3)] string[] privileges,
+                                                               uint privilegesCount, IntPtr userData);
+
         [DllImport(Libraries.PrivacyPrivilegeManager, EntryPoint = "ppm_check_permission")]
         internal static extern ErrorCode CheckPermission(string privilege, out CheckResult result);
 
+        [DllImport(Libraries.PrivacyPrivilegeManager, EntryPoint = "ppm_check_permissions")]
+        internal static extern ErrorCode CheckPermissions([MarshalAs(UnmanagedType.LPArray, SizeParamIndex = 1)]string[] privileges,
+                                                          uint privilegesCount,
+                                                          [MarshalAs(UnmanagedType.LPArray, SizeParamIndex = 1)] CheckResult[] results);
+
+
         [DllImport(Libraries.PrivacyPrivilegeManager, EntryPoint = "ppm_request_permission")]
         internal static extern ErrorCode RequestPermission(string privilege, RequestResponseCallback callback, IntPtr userData);
+
+        [DllImport(Libraries.PrivacyPrivilegeManager, EntryPoint = "ppm_request_permissions")]
+        internal static extern ErrorCode RequestPermissions([MarshalAs(UnmanagedType.LPArray, SizeParamIndex = 1)] string[] privileges,
+                                                            uint privilegesCount, RequestMultipleResponseCallback callback, IntPtr userData);
+
     }
 }

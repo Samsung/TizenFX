@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2016 Samsung Electronics Co., Ltd All Rights Reserved
+ * Copyright (c) 2018 Samsung Electronics Co., Ltd All Rights Reserved
  *
  * Licensed under the Apache License, Version 2.0 (the License);
  * you may not use this file except in compliance with the License.
@@ -281,7 +281,6 @@ namespace Tizen.Network.Connection
         /// <feature>http://tizen.org/feature/network.wifi</feature>
         /// <exception cref="System.NotSupportedException">Thrown when a feature is not supported.</exception>
         /// <exception cref="System.UnauthorizedAccessException">Thrown when a permission is denied.</exception>
-        /// <exception cref="System.ArgumentException">Thrown when a value is an invalid parameter.</exception>
         /// <exception cref="System.InvalidOperationException">Thrown when a profile instance is invalid or when a method fails due to an invalid operation.</exception>
         /// <exception cref="System.ObjectDisposedException">Thrown when an operation is performed on a disposed object.</exception>
         public void Refresh()
@@ -291,6 +290,10 @@ namespace Tizen.Network.Connection
             if ((ConnectionError)ret != ConnectionError.None)
             {
                 Log.Error(Globals.LogTag, "It failed to get network interface name, " + (ConnectionError)ret);
+                if ((ConnectionError)ret == ConnectionError.InvalidParameter)
+                {
+                    throw new InvalidOperationException("Invalid handle");
+                }
                 ConnectionErrorFactory.CheckFeatureUnsupportedException(ret, "http://tizen.org/feature/network.telephony " + "http://tizen.org/feature/network.wifi " + "http://tizen.org/feature/network.tethering.bluetooth " + "http://tizen.org/feature/network.ethernet");
                 ConnectionErrorFactory.CheckPermissionDeniedException(ret, "(http://tizen.org/privilege/network.get)");
                 ConnectionErrorFactory.CheckHandleNullException(ret, (ProfileHandle == IntPtr.Zero), "ProfileHandle may have been disposed or released");

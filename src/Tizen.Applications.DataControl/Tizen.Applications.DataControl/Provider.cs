@@ -33,7 +33,6 @@ namespace Tizen.Applications.DataControl
         private static IDictionary<string, Provider> _providerDict = new Dictionary<string, Provider>();
         private static Interop.DataControl.SqlRequestCallbacks _sqlRequestCallbacks;
         private static Interop.DataControl.MapRequestCallbacks _mapRequestCallbacks;
-        private IntPtr _nativeHandle;
         private static Interop.DataControl.DataChangeConsumerFilterCb _filterCallback;
         private static int _filterCallbackID;
         private static bool _filterRegistered;
@@ -927,7 +926,6 @@ namespace Tizen.Applications.DataControl
             if (dataID != null && _providerDict.ContainsKey(dataID))
             {
                 provider = _providerDict[dataID];
-                provider._nativeHandle = handlePtr;
                 provider.CurrentProviderId = providerID;
                 Log.Info(LogTag, "DataID :" + dataID + ", hash code : " + provider.GetHashCode().ToString());
             }
@@ -955,12 +953,7 @@ namespace Tizen.Applications.DataControl
                 ErrorFactory.ThrowException(ResultType.InvalidParameter, false, "changedData");
             }
 
-            if (this._nativeHandle == IntPtr.Zero)
-            {
-                return;
-            }
-
-            ret = Interop.DataControl.SendDataChange(this._nativeHandle, type, changedData.SafeBundleHandle);
+            ret = Interop.DataControl.SendDataChange(this.DataID, type, changedData.SafeBundleHandle);
             if (ret != ResultType.Success)
             {
                 ErrorFactory.ThrowException(ret, false);

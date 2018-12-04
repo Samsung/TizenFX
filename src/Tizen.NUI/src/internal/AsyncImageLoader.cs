@@ -129,11 +129,6 @@ namespace Tizen.NUI
             return ret;
         }
 
-        public AsyncImageLoader(SWIGTYPE_p_Dali__Toolkit__Internal__AsyncImageLoader impl) : this(NDalicPINVOKE.new_AsyncImageLoader__SWIG_2(SWIGTYPE_p_Dali__Toolkit__Internal__AsyncImageLoader.getCPtr(impl)), true)
-        {
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-        }
-
     }
 
 }

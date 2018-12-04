@@ -104,14 +104,14 @@ namespace Tizen.NUI
 
                 if (type == DisposeTypes.Explicit)
                 {
-                    //Called by User
+                    //Called by User.
                     //Release your own managed resources here.
                     //You should release all of your own disposable objects here.
                 }
 
                 //Release your own unmanaged resources here.
                 //You should not access any managed member here except static instance.
-                //because the execution order of Finalizes is non-deterministic.
+                //Because the execution order of Finalizes is non-deterministic.
 
                 if (swigCPtr.Handle != global::System.IntPtr.Zero)
                 {
@@ -195,7 +195,7 @@ namespace Tizen.NUI
         private static readonly FontClient instance = FontClient.Get();
 
         /// <summary>
-        /// Gets the singleton of the FontClient object.
+        /// Gets the singleton pattern of the FontClient object.
         /// </summary>
         /// <since_tizen> 5 </since_tizen>
         public static FontClient Instance
@@ -300,7 +300,7 @@ namespace Tizen.NUI
         /// Whether the given character is supported by the font.
         /// </summary>
         /// <param name="fontId">The id of the font.</param>
-        /// <param name="character">The character.</param>
+        /// <param name="character">The character in a font.</param>
         /// <returns>True if the character is supported by the font.</returns>
         /// <since_tizen> 5 </since_tizen>
         public bool IsCharacterSupportedByFont(uint fontId, uint character)
@@ -311,12 +311,12 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Find the default font for displaying a UTF-32 character.
+        /// Finds the default font for displaying a UTF-32 character.
         /// </summary>
         /// <param name="charcode">The character for which a font is needed.</param>
-        /// <param name="requestedPointSize">The point size in 26.6 fractional points; the default point size is 12*64.</param>
+        /// <param name="requestedPointSize">The point size in 26.6 fractional points. The default point size is 12*64.</param>
         /// <param name="preferColor">True if a color font is preferred.</param>
-        /// <returns>A valid font identifier, or zero if the font does not exist.</returns>
+        /// <returns>A valid font identifier. Zero if the font does not exist.</returns>
         /// <since_tizen> 5 </since_tizen>
         public uint FindDefaultFont(uint charcode, uint requestedPointSize, bool preferColor)
         {
@@ -329,8 +329,8 @@ namespace Tizen.NUI
         /// Find the default font for displaying a UTF-32 character.
         /// </summary>
         /// <param name="charcode">The character for which a font is needed.</param>
-        /// <param name="requestedPointSize">The point size in 26.6 fractional points; the default point size is 12*64.</param>
-        /// <returns>A valid font identifier, or zero if the font does not exist.</returns>
+        /// <param name="requestedPointSize">The point size in 26.6 fractional points. The default point size is 12*64.</param>
+        /// <returns>A valid font identifier. Zero if the font does not exist.</returns>
         /// <since_tizen> 5 </since_tizen>
         public uint FindDefaultFont(uint charcode, uint requestedPointSize)
         {
@@ -343,7 +343,7 @@ namespace Tizen.NUI
         /// Find the default font for displaying a UTF-32 character.
         /// </summary>
         /// <param name="charcode">The character for which a font is needed.</param>
-        /// <returns>A valid font identifier, or zero if the font does not exist.</returns>
+        /// <returns>A valid font identifier. Zero if the font does not exist.</returns>
         /// <since_tizen> 5 </since_tizen>
         public uint FindDefaultFont(uint charcode)
         {
@@ -374,12 +374,12 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Retrieve the unique identifier for a font..
+        /// Retrieve the unique identifier for a font.
         /// </summary>
         /// <param name="path">The path to a font file.</param>
-        /// <param name="requestedPointSize">The point size in 26.6 fractional points; the default point size is 12*64.</param>
+        /// <param name="requestedPointSize">The point size in 26.6 fractional points. The default point size is 12*64.</param>
         /// <param name="faceIndex">The index of the font face.</param>
-        /// <returns>A valid font identifier, or zero if the font does not exist.</returns>
+        /// <returns>A valid font identifier. Zero if the font does not exist.</returns>
         /// <since_tizen> 5 </since_tizen>
         public uint GetFontId(string path, uint requestedPointSize, uint faceIndex)
         {
@@ -389,11 +389,11 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Retrieve the unique identifier for a font..
+        /// Retrieve the unique identifier for a font.
         /// </summary>
         /// <param name="path">The path to a font file.</param>
-        /// <param name="requestedPointSize">The point size in 26.6 fractional points; the default point size is 12*64.</param>
-        /// <returns>A valid font identifier, or zero if the font does not exist.</returns>
+        /// <param name="requestedPointSize">The point size in 26.6 fractional points. The default point size is 12*64.</param>
+        /// <returns>A valid font identifier. Zero if the font does not exist.</returns>
         /// <since_tizen> 5 </since_tizen>
         public uint GetFontId(string path, uint requestedPointSize)
         {
@@ -403,10 +403,10 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Retrieve the unique identifier for a font..
+        /// Retrieve the unique identifier for a font.
         /// </summary>
         /// <param name="path">The path to a font file.</param>
-        /// <returns>A valid font identifier, or zero if the font does not exist.</returns>
+        /// <returns>A valid font identifier. Zero if the font does not exist.</returns>
         /// <since_tizen> 5 </since_tizen>
         public uint GetFontId(string path)
         {
@@ -439,7 +439,7 @@ namespace Tizen.NUI
         /// <summary>
         /// Check to see if a font is scalable.
         /// </summary>
-        /// <param name="path">Path The path to a font file.</param>
+        /// <param name="path">The path where the font file is located.</param>
         /// <returns>True if scalable.</returns>
         /// <since_tizen> 5 </since_tizen>
         public bool IsScalable(string path)
@@ -495,9 +495,9 @@ namespace Tizen.NUI
             return ret;
         }
 
-        internal void CreateBitmap(uint fontId, uint glyphIndex, FontClient.GlyphBufferData data, int outlineWidth)
+        internal void CreateBitmap(uint fontId, uint glyphIndex, bool softwareItalic, bool softwareBold, FontClient.GlyphBufferData data, int outlineWidth)
         {
-            NDalicManualPINVOKE.FontClient_CreateBitmap__SWIG_0(swigCPtr, fontId, glyphIndex, FontClient.GlyphBufferData.getCPtr(data), outlineWidth);
+            NDalicManualPINVOKE.FontClient_CreateBitmap__SWIG_0(swigCPtr, fontId, glyphIndex, softwareItalic, softwareBold, FontClient.GlyphBufferData.getCPtr(data), outlineWidth);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
@@ -529,7 +529,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Add custom fonts directory.
+        /// Adds custom fonts directory.
         /// </summary>
         /// <param name="path">Path to the fonts directory.</param>
         /// <returns>True if the fonts can be added.</returns>

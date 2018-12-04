@@ -2,7 +2,7 @@
 
 namespace Tizen.NUI.Binding
 {
-	internal abstract class BaseMenuItem : Element
-	{
-	}
+    internal abstract class BaseMenuItem : Element
+    {
+    }
 }

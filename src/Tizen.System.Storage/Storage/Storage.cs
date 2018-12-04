@@ -26,7 +26,8 @@ namespace Tizen.System
     {
         private const string LogTag = "Tizen.System";
         private Interop.Storage.StorageState _state;
-        private StorageDevice _devicetype;
+        private Interop.Storage.StorageDevice _devicetype;
+        private Interop.Storage.StorageArea _storagetype;
         private string _fstype;
         private string _fsuuid;
         private ulong _totalSpace;
@@ -37,7 +38,7 @@ namespace Tizen.System
         internal Storage(int storageID, Interop.Storage.StorageArea storageType, Interop.Storage.StorageState storagestate, string rootDirectory)
         {
             Id = storageID;
-            StorageType = (StorageArea)storageType;
+            _storagetype = storageType;
             RootDirectory = rootDirectory;
             _state = storagestate;
 
@@ -61,10 +62,10 @@ namespace Tizen.System
         internal Storage(int storageID, Interop.Storage.StorageArea storageType, Interop.Storage.StorageState storagestate, string rootDirectory, Interop.Storage.StorageDevice devicetype, string fstype, string fsuuid, bool primary, int flags)
         {
             Id = storageID;
-            StorageType = (StorageArea)storageType;
+            _storagetype = storageType;
             RootDirectory = rootDirectory;
             _state = storagestate;
-            _devicetype = (StorageDevice)devicetype;
+            _devicetype = devicetype;
             _fstype = fstype;
             _fsuuid = fsuuid;
             _primary = primary;
@@ -157,7 +158,7 @@ namespace Tizen.System
         /// The type of storage.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        public StorageArea StorageType { get; }
+        public StorageArea StorageType { get { return (StorageArea)_storagetype; } }
         /// <summary>
         /// The root directory for the storage.
         /// </summary>
@@ -190,7 +191,7 @@ namespace Tizen.System
         }
 
         /// <summary>
-        /// The StorageDevice
+        /// The StorageDevice.
         /// </summary>
         /// <since_tizen> 5 </since_tizen>
         /// <exception cref="InvalidOperationException">Thrown when DeviceType is not initialized.</exception>
@@ -198,17 +199,17 @@ namespace Tizen.System
         {
             get
             {
-                if (!information_set)
+                Interop.Storage.ErrorCode err = Interop.Storage.StorageGetTypeDev(Id, out _storagetype, out _devicetype);
+                if (err != Interop.Storage.ErrorCode.None)
                 {
-                    Log.Error(LogTag, string.Format("Doesn't know StorageDevice type."));
-                    throw new InvalidOperationException("Doesn't know StorageDevice type");
+                    Log.Warn(LogTag, string.Format("Failed to get storage device type for storage Id: {0}. err = {1}", Id, err));
                 }
                 return (StorageDevice)_devicetype;
             }
         }
 
         /// <summary>
-        /// The type of file system
+        /// The type of file system.
         /// </summary>
         /// <since_tizen> 5 </since_tizen>
         /// <exception cref="InvalidOperationException">Thrown when Fstype is not initialized.</exception>
@@ -226,7 +227,7 @@ namespace Tizen.System
         }
 
         /// <summary>
-        /// The uuid of the file system
+        /// The UUID of the file system.
         /// </summary>
         /// <since_tizen> 5 </since_tizen>
         /// <exception cref="InvalidOperationException">Thrown when Fsuuid is not initialized.</exception>
@@ -244,10 +245,10 @@ namespace Tizen.System
         }
 
         /// <summary>
-        /// Information about whether this is primary partition
+        /// Information whether this is a primary partition.
         /// </summary>
         /// <since_tizen> 5 </since_tizen>
-        /// <exception cref="InvalidOperationException">Thrown when Primary is not initialized.</exception>
+        /// <exception cref="InvalidOperationException">Thrown when primary is not initialized.</exception>
         public bool Primary
         {
             get
@@ -262,10 +263,10 @@ namespace Tizen.System
         }
 
         /// <summary>
-        /// The flags for the storage status
+        /// The flags for the storage status.
         /// </summary>
         /// <since_tizen> 5 </since_tizen>
-        /// <exception cref="InvalidOperationException">Thrown when Flags is not initialized.</exception>
+        /// <exception cref="InvalidOperationException">Thrown when flags are not initialized.</exception>
         public int Flags
         {
             get
@@ -280,10 +281,32 @@ namespace Tizen.System
         }
 
         /// <summary>
-        /// The available storage size in bytes.
+        /// [Obsolete("Please do not use! this will be deprecated")]
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        /// Please do not use! this will be deprecated!
+        /// Instead please use AvailableSpace.
+        [Obsolete("Please do not use! This will be deprecated! Please use AvailableSpace instead!")]
         public ulong AvaliableSpace
+        {
+            get
+            {
+                ulong available;
+                Interop.Storage.ErrorCode err = Interop.Storage.StorageGetAvailableSpace(Id, out available);
+                if (err != Interop.Storage.ErrorCode.None)
+                {
+                    Log.Warn(LogTag, string.Format("Failed to get available storage stace for storage Id: {0}. err = {1}", Id, err));
+                }
+
+                return available;
+            }
+        }
+
+        /// <summary>
+        /// The available storage size in bytes.
+        /// </summary>
+        /// <since_tizen> 5 </since_tizen>
+        public ulong AvailableSpace
         {
             get
             {

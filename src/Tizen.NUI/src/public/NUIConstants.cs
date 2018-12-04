@@ -651,18 +651,18 @@ namespace Tizen.NUI
     }
 
     /// <summary>
-    /// Specifies the Release Policy types <br />
-    /// Decides if the image should be cached in different conditions
+    /// Specifies the release policy types.<br />
+    /// Decides if the image should be cached in different conditions.
     /// </summary>
     /// <since_tizen> 5 </since_tizen>
     public enum ReleasePolicyType
     {
       /// <summary>
-      /// Image is released when visual detached from scene
+      /// Image is released when visual detached from scene.
       /// </summary>
       Detached = 0,
       /// <summary>
-      /// Image is only released when visual is destroyed
+      /// Image is only released when visual is destroyed.
       /// </summary>
       Destroyed,
       /// <summary>
@@ -672,8 +672,8 @@ namespace Tizen.NUI
     }
 
     /// <summary>
-    /// Specifies the Load Policy types <br />
-    /// Decides when the image texture should be loaded
+    /// Specifies the load policy types.<br />
+    /// Decides when the image texture should be loaded.
     /// </summary>
     /// <since_tizen> 5 </since_tizen>
     public enum LoadPolicyType
@@ -806,6 +806,22 @@ namespace Tizen.NUI
         /// Image rows: Limit loaded image resolution to row height using the FitHeight mode.
         /// </summary>
         FitHeight
+    }
+
+    /// <summary>
+    /// The values of this enum determine how the visual should fit into the view.
+    /// </summary>
+    /// <since_tizen> 5 </since_tizen>
+    public enum VisualFittingModeType
+    {
+        /// <summary>
+        /// The visual should be scaled to fit, preserving aspect ratio.
+        /// </summary>
+        FitKeepAspectRatio,
+        /// <summary>
+        /// The visual should be stretched to fill, not preserving aspect ratio.
+        /// </summary>
+        Fill
     }
 
     /// <summary>
@@ -942,7 +958,7 @@ namespace Tizen.NUI
             /// </summary>
             Text,
             /// <summary>
-            /// Renders an n-patch image.
+            /// Renders an NPatch image.
             /// </summary>
             NPatch,
             /// <summary>
@@ -991,6 +1007,11 @@ namespace Tizen.NUI
             /// </summary>
             /// <since_tizen> 3 </since_tizen>
             public static readonly int Opacity = NDalic.VISUAL_PROPERTY_MIX_COLOR + 1;
+            /// <summary>
+            /// The fitting mode of the visual.
+            /// </summary>
+            /// <since_tizen> 5 </since_tizen>
+            public static readonly int VisualFittingMode = NDalic.VISUAL_PROPERTY_MIX_COLOR + 2;
         }
 
         /// <summary>
@@ -1114,6 +1135,11 @@ namespace Tizen.NUI
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public static readonly int MixColor = NDalic.COLOR_VISUAL_MIX_COLOR;
+        /// <summary>
+        /// Whether to render if the MixColor is transparent.
+        /// </summary>
+        /// <since_tizen> 5 </since_tizen>
+        public static readonly int RenderIfTransparent = NDalic.COLOR_VISUAL_MIX_COLOR + 1;
     }
 
     /// <summary>
@@ -1231,6 +1257,11 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public static readonly int Border = NDalic.IMAGE_VISUAL_BORDER;
         /// <summary>
+        /// Whether to use the texture atlas.
+        /// </summary>
+        /// <since_tizen> 5 </since_tizen>
+        public static readonly int Atlasing = NDalic.IMAGE_VISUAL_BORDER + 1;
+        /// <summary>
         /// The scale factor to apply to the content image before masking.
         /// </summary>
         /// <since_tizen> 4 </since_tizen>
@@ -1256,23 +1287,23 @@ namespace Tizen.NUI
         /// <since_tizen> 4 </since_tizen>
         public static readonly int FrameDelay = NDalic.IMAGE_VISUAL_FRAME_DELAY;
         /// <summary>
-        /// The number of times the AnimatedImageVisual will be looped
-        /// Default -1. if less than 0, loop unlimited. else, loop loopCount times.
+        /// The number of times the AnimatedImageVisual will be looped.
+        /// The default is -1. If the value is less than 0, loop unlimited. Otherwise, loop loopCount times.
         /// </summary>
         /// <since_tizen> 5 </since_tizen>
         public static readonly int LoopCount = NDalic.IMAGE_VISUAL_LOOP_COUNT;
         /// <summary>
-        /// The policy to determine when an image should no longer be cached
+        /// The policy to determine when an image should no longer be cached.
         /// </summary>
         /// <since_tizen> 5 </since_tizen>
         public static readonly int ReleasePolicy = NDalic.IMAGE_VISUAL_RELEASE_POLICY;
         /// <summary>
-        /// The policy to determine when an image should be loaded
+        /// The policy to determine when an image should be loaded.
         /// </summary>
         /// <since_tizen> 5 </since_tizen>
         public static readonly int LoadPolicy = NDalic.IMAGE_VISUAL_LOAD_POLICY;
         /// <summary>
-        /// Determines if image orientation should be corrected so the image displays as it was intended
+        /// Determines if image orientation should be corrected so that the image displays as it was intended.
         /// </summary>
         /// <since_tizen> 5 </since_tizen>
         public static readonly int OrientationCorrection = NDalic.IMAGE_VISUAL_ORIENTATION_CORRECTION;
@@ -1450,6 +1481,26 @@ namespace Tizen.NUI
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public static readonly int EnableMarkup = NDalic.TEXT_VISUAL_ENABLE_MARKUP;
+        /// <summary>
+        /// The shadow parameters.
+        /// </summary>
+        /// <since_tizen> 5 </since_tizen>
+        public static readonly int Shadow = NDalic.TEXT_VISUAL_ENABLE_MARKUP + 1;
+        /// <summary>
+        /// The default underline parameters.
+        /// </summary>
+        /// <since_tizen> 5 </since_tizen>
+        public static readonly int Underline = NDalic.TEXT_VISUAL_ENABLE_MARKUP + 2;
+        /// <summary>
+        /// The default outline parameters.
+        /// </summary>
+        /// <since_tizen> 5 </since_tizen>
+        public static readonly int Outline = NDalic.TEXT_VISUAL_ENABLE_MARKUP + 3;
+        /// <summary>
+        /// The default text background parameters.
+        /// </summary>
+        /// <since_tizen> 5 </since_tizen>
+        public static readonly int Background = NDalic.TEXT_VISUAL_ENABLE_MARKUP + 4;
     }
 
     /// <summary>
@@ -2413,7 +2464,7 @@ namespace Tizen.NUI
     }
 
     /// <summary>
-    /// An enum of text direction.
+    /// An enum of text directions.
     /// </summary>
     /// <since_tizen> 5 </since_tizen>
     public enum TextDirection
@@ -2432,7 +2483,7 @@ namespace Tizen.NUI
     }
 
     /// <summary>
-    /// An enum of vertical line alignment.
+    /// An enum of vertical line alignments.
     /// </summary>
     /// <since_tizen> 5 </since_tizen>
     public enum VerticalLineAlignment
@@ -2651,7 +2702,7 @@ namespace Tizen.NUI
     }
 
     /// <summary>
-    /// Enumeration type for the glyph type
+    /// Enumeration type for the glyph type.
     /// </summary>
     /// <since_tizen> 5 </since_tizen>
     public enum GlyphType
@@ -2666,6 +2717,22 @@ namespace Tizen.NUI
         /// </summary>
         /// <since_tizen> 5 </since_tizen>
         VectorGlyph
+    }
+
+    /// <summary>
+    /// Enumeration for Setting the rendering behavior of a Window.
+    /// </summary>
+    /// <since_tizen> 5 </since_tizen>
+    public enum RenderingBehaviorType
+    {
+        /// <summary>
+        /// Default. Only renders if required.
+        /// </summary>
+        IfRequired,
+        /// <summary>
+        /// Renders continuously.
+        /// </summary>
+        Continuously
     }
 
 }

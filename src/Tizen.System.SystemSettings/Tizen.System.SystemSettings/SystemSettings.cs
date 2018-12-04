@@ -970,7 +970,7 @@ namespace Tizen.System
         }
 
         /// <summary>
-        /// Indicates whether the vibration is enabled on the device.
+        /// Indicates whether the vibration is enabled on the device or not.
         /// </summary>
         /// <privilege>http://tizen.org/privilege/systemsettings.admin</privilege>
         /// <privlevel>platform</privlevel>
@@ -1003,7 +1003,7 @@ namespace Tizen.System
         }
 
         /// <summary>
-        /// Indicates whether the automatic time update is enabled on the device.
+        /// Indicates whether the automatic time update is enabled on the device or not.
         /// </summary>
         /// <privilege>http://tizen.org/privilege/systemsettings.admin</privilege>
         /// <privlevel>platform</privlevel>
@@ -1037,7 +1037,7 @@ namespace Tizen.System
         }
 
         /// <summary>
-        /// Indicates whether the developer option state is enabled on the device.
+        /// Indicates whether the developer option state is enabled on the device or not.
         /// </summary>
         /// <privilege>http://tizen.org/privilege/systemsettings.admin</privilege>
         /// <privlevel>platform</privlevel>
@@ -2718,7 +2718,7 @@ namespace Tizen.System
         };
         private static event EventHandler<AutomaticTimeUpdateChangedEventArgs> s_automaticTimeUpdateChanged;
         /// <summary>
-        /// The AutomaticTimeUpdateChanged event is triggered when the automaticTimeUpdate value is changed.
+        /// The AutomaticTimeUpdateChanged event is triggered when the AutomaticTimeUpdate value is changed.
         /// </summary>
         /// <privilege>http://tizen.org/privilege/systemsettings.admin</privilege>
         /// <privlevel>platform</privlevel>
@@ -2765,7 +2765,7 @@ namespace Tizen.System
         };
         private static event EventHandler<DeveloperOptionStateChangedEventArgs> s_developerOptionStateChanged;
         /// <summary>
-        /// The DeveloperOptionStateChanged event is triggered when the developerOptionState value is changed.
+        /// The DeveloperOptionStateChanged event is triggered when the DeveloperOptionState value is changed.
         /// </summary>
         /// <privilege>http://tizen.org/privilege/systemsettings.admin</privilege>
         /// <privlevel>platform</privlevel>

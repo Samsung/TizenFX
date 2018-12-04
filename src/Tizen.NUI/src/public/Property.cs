@@ -1423,7 +1423,9 @@ namespace Tizen.NUI
         /// Retrieves a Size value.
         /// </summary>
         /// <param name="vectorValue"> On return, a size value.</param>
-        internal bool Get(Size vectorValue)
+        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public bool Get(Size vectorValue)
         {
             bool ret = NDalicPINVOKE.Property_Value_Get__SWIG_6(swigCPtr, Size.getCPtr(vectorValue));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
@@ -1723,6 +1725,51 @@ namespace Tizen.NUI
             return ret;
         }
 
+        /// <summary>
+        /// Retrieves a vector value.
+        /// </summary>
+        /// <param name="vectorValue">On return, a vector value.</param>
+        /// <returns>Returns true if the value is successfully retrieved, false if the type is not convertible.</returns>
+        /// <since_tizen> 5 </since_tizen>
+        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public bool Get(RelativeVector2 vectorValue)
+        {
+            bool ret = NDalicPINVOKE.Property_Value_Get__SWIG_5(swigCPtr, RelativeVector2.getCPtr(vectorValue));
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        /// <summary>
+        /// Retrieves a vector value.
+        /// </summary>
+        /// <param name="vectorValue">On return, a vector value.</param>
+        /// <returns>Returns true if the value is successfully retrieved, false if the type is not convertible.</returns>
+        /// <since_tizen> 5 </since_tizen>
+        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public bool Get(RelativeVector3 vectorValue)
+        {
+            bool ret = NDalicPINVOKE.Property_Value_Get__SWIG_6(swigCPtr, RelativeVector3.getCPtr(vectorValue));
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        /// <summary>
+        /// Retrieves a vector value.
+        /// </summary>
+        /// <param name="vectorValue">On return, a vector value.</param>
+        /// <returns>Returns true if the value is successfully retrieved, false if the type is not convertible.</returns>
+        /// <since_tizen> 5 </since_tizen>
+        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public bool Get(RelativeVector4 vectorValue)
+        {
+            bool ret = NDalicPINVOKE.Property_Value_Get__SWIG_7(swigCPtr, RelativeVector4.getCPtr(vectorValue));
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
         internal bool Get(Matrix3 matrixValue)
         {
             bool ret = NDalicPINVOKE.Property_Value_Get__SWIG_8(swigCPtr, Matrix3.getCPtr(matrixValue));
@@ -1745,7 +1792,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Retrieves a Rotation value.
+        /// Retrieves a rotation value.
         /// </summary>
         /// <param name="quaternionValue">On return, a rotation value.</param>
         /// <returns>Returns true if the value is successfully retrieved, false if the type is not convertible.</returns>
@@ -1872,13 +1919,11 @@ namespace Tizen.NUI
                 {
                     KeyInt = (int)value;
                 }
-                if (value is string)
+                else if (value is string)
                 {
                     KeyString = value.ToString();
                 }
-
-
-                if (value.GetType().Equals(typeof(int)) || value.GetType().Equals(typeof(Int32)))
+                else if (value.GetType().Equals(typeof(int)) || value.GetType().Equals(typeof(Int32)))
                 {
                     KeyInt = (int)value;
                 }
@@ -1886,7 +1931,6 @@ namespace Tizen.NUI
                 {
                     KeyString = value.ToString();
                 }
-                KeyInt = (int)value;
             }
         }
 

@@ -34,7 +34,7 @@ namespace Tizen.NUI.Examples
 
         public SearchPage(Window win) : base (win)
         {
-            Content.BackgroundImage = "/home/tengxb/GitRepo/nui-xaml/TestXaml/res/images/store_default_bg_01.png";
+            Root.BackgroundImage = "/home/owner/apps_rw/org.tizen.example.NUIXAMLTestSample/res/images/store_default_bg_01.png";
         }
 
         /// <summary>
@@ -68,9 +68,9 @@ namespace Tizen.NUI.Examples
 
         public override void SetFocus()
         {
-            upperListTable = Content.FindChildByName("UpperListTable") as TableView;
-            midListTable = Content.FindChildByName("MidListTable") as TableView;
-            bottomListTable = Content.FindChildByName("BottomListTable") as TableView;
+            upperListTable = Root.FindChildByName("UpperListTable") as TableView;
+            midListTable = Root.FindChildByName("MidListTable") as TableView;
+            bottomListTable = Root.FindChildByName("BottomListTable") as TableView;
  
             FocusManager.Instance.FocusIndicator = new View();
             FocusManager.Instance.SetCurrentFocusView(upperListTable.GetChildAt(0));

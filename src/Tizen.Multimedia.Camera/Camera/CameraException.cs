@@ -35,6 +35,7 @@ namespace Tizen.Multimedia
         /// <summary>
         /// Initializes a new instance of the <see cref="CameraException"/> class with a specified error message.
         /// </summary>
+        /// <param name="message">A specified error message.</param>
         /// <since_tizen> 3 </since_tizen>
         public CameraException(string message) : base(message)
         {
@@ -58,6 +59,7 @@ namespace Tizen.Multimedia
         /// <summary>
         /// Initializes a new instance of the <see cref="CameraDeviceException"/> class with a specified error message.
         /// </summary>
+        /// <param name="message">A specified error message.</param>
         /// <since_tizen> 3 </since_tizen>
         public CameraDeviceException(string message) : base(message)
         {
@@ -81,6 +83,7 @@ namespace Tizen.Multimedia
         /// <summary>
         /// Initializes a new instance of the <see cref="CameraDeviceNotFoundException"/> class with a specified error message.
         /// </summary>
+        /// <param name="message">A specified error message.</param>
         /// <since_tizen> 3 </since_tizen>
         public CameraDeviceNotFoundException(string message) : base(message)
         {

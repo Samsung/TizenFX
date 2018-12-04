@@ -9,11 +9,10 @@ RPMSPEC_IN=$RPMSPEC.in
 
 source $VERSION_FILE
 
-while getopts ":r:n:i:" opt; do
+while getopts ":r:n:" opt; do
   case $opt in
     r) RPM_VERSION=$OPTARG ;;
     n) NUGET_VERSION=$OPTARG ;;
-    i) INTERNAL_NUGET_VERSION=$OPTARG ;;
     :) echo "Option -$OPTARG requires an argument."; exit 1 ;;
   esac
 done
@@ -25,4 +24,3 @@ echo "# Auto-generated from $(basename $RPMSPEC_IN) by makespec.sh" | cat - $RPM
 sed -i -e "s/@api_version@/$API_VERSION/g" $RPMSPEC
 sed -i -e "s/@rpm_version@/$RPM_VERSION/g" $RPMSPEC
 sed -i -e "s/@nuget_version@/$NUGET_VERSION/g" $RPMSPEC
-sed -i -e "s/@internal_nuget_version@/$INTERNAL_NUGET_VERSION/g" $RPMSPEC

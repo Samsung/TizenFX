@@ -1,6 +1,6 @@
 namespace Tizen.NUI.Binding
 {
-	internal interface IRegisterable
-	{
-	}
+    internal interface IRegisterable
+    {
+    }
 }

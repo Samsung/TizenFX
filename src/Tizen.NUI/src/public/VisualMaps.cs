@@ -532,6 +532,12 @@ namespace Tizen.NUI
         protected float? _opacity = null;
 
         /// <summary>
+        /// The FittingMode of the visual.
+        /// </summary>
+        /// <since_tizen> 5 </since_tizen>
+        protected VisualFittingModeType? _visualFittingMode = null;
+
+        /// <summary>
         /// The map for visual.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
@@ -606,6 +612,40 @@ namespace Tizen.NUI
             }
         }
 
+        /// <summary>
+        /// The fitting mode of the visual.
+        /// The default is defined by the type of visual (if it is suitable to be stretched or not).
+        /// </summary>
+        /// <since_tizen> 5 </since_tizen>
+        public VisualFittingModeType VisualFittingMode
+        {
+            get
+            {
+                if (_visualFittingMode == null)
+                {
+                    if (this is AnimatedImageVisual ||
+                        this is MeshVisual ||
+                        this is PrimitiveVisual ||
+                        this is TextVisual)
+                    {
+                        return VisualFittingModeType.FitKeepAspectRatio;
+                    }
+                    else
+                    {
+                        return VisualFittingModeType.Fill;
+                    }
+                }
+                else
+                {
+                    return (VisualFittingModeType)_visualFittingMode;
+                }
+            }
+            set
+            {
+                _visualFittingMode = value;
+                UpdateVisual();
+            }
+        }
     }
 
     /// <summary>
@@ -640,6 +680,7 @@ namespace Tizen.NUI
         private ReleasePolicyType? _releasePolicy = null;
         private LoadPolicyType? _loadPolicy = null;
         private bool? _orientationCorrection = true;
+        private bool? _atlasing = false;
 
         /// <summary>
         /// Gets or sets the URL of the image.<br />
@@ -679,7 +720,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Overlays the auxiliary iamge on top of an NPatch image.
+        /// Overlays the auxiliary image on top of an NPatch image.
         /// The resulting visual image will be at least as large as the smallest possible n-patch or the auxiliary image, whichever is larger.
         /// </summary>
         /// <since_tizen> 5 </since_tizen>
@@ -933,8 +974,8 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Get or set the Image Visual release policy<br />
-        /// It decides if a texture should be released from the cache or kept to reduce loading time <br />
+        /// Gets or sets the Image Visual release policy.<br/>
+        /// It decides if a texture should be released from the cache or kept to reduce the loading time.<br/>
         /// </summary>
         /// <since_tizen> 5 </since_tizen>
         public ReleasePolicyType ReleasePolicy
@@ -952,8 +993,8 @@ namespace Tizen.NUI
 
 
         /// <summary>
-        /// Get or set the Image Visual image loading policy<br />
-        /// It decides if a texture should be loaded immediately after source set or only after visual is added to window <br />
+        /// Gets or sets the Image Visual image loading policy.<br />
+        /// It decides if a texture should be loaded immediately after source set or only after the visual is added to the window.<br />
         /// </summary>
         /// <since_tizen> 5 </since_tizen>
         public LoadPolicyType LoadPolicy
@@ -970,7 +1011,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Get or set whether to automatically correct the orientation based on exif data.<br />
+        /// Gets or sets whether to automatically correct the orientation based on the Exchangeable Image File (EXIF) data.<br />
         /// If not specified, the default is true.<br />
         /// For JPEG images only.<br />
         /// Optional.
@@ -989,6 +1030,23 @@ namespace Tizen.NUI
             }
         }
 
+        /// <summary>
+        /// Whether to use the texture atlas or not.
+        /// Optional. By default atlasing is off.
+        /// </summary>
+        /// <since_tizen> 5 </since_tizen>
+        public bool Atlasing
+        {
+            get
+            {
+                return _atlasing ?? (false);
+            }
+            set
+            {
+                _atlasing = value;
+                UpdateVisual();
+            }
+        }
 
         /// <summary>
         /// Compose the out visual map.
@@ -1022,6 +1080,8 @@ namespace Tizen.NUI
                 if (_releasePolicy != null) { _outputVisualMap.Add( ImageVisualProperty.ReleasePolicy , new PropertyValue((int)_releasePolicy)); }
                 if (_loadPolicy != null) { _outputVisualMap.Add( ImageVisualProperty.LoadPolicy, new PropertyValue((int)_loadPolicy)); }
                 if (_orientationCorrection != null) { _outputVisualMap.Add( ImageVisualProperty.OrientationCorrection, new PropertyValue((bool)_orientationCorrection)); }
+                if (_atlasing != null) { _outputVisualMap.Add( ImageVisualProperty.Atlasing, new PropertyValue((bool)_atlasing)); }
+                if (_visualFittingMode != null) { _outputVisualMap.Add((int)Visual.Property.VisualFittingMode, new PropertyValue((int)_visualFittingMode)); }
             }
         }
     }
@@ -1049,6 +1109,10 @@ namespace Tizen.NUI
         private string _verticalAlignment = null;
         private Color _textColor = null;
         private bool? _enableMarkup = null;
+        private PropertyMap _shadow = null;
+        private PropertyMap _underline = null;
+        private PropertyMap _outline = null;
+        private PropertyMap _background = null;
 
         /// <summary>
         /// Gets or sets the text to display in the UTF-8 format.<br />
@@ -1280,6 +1344,74 @@ namespace Tizen.NUI
         }
 
         /// <summary>
+        /// Gets or sets the shadow parameters.
+        /// </summary>
+        /// <since_tizen> 5 </since_tizen>
+        public PropertyMap Shadow
+        {
+            get
+            {
+                return _shadow;
+            }
+            set
+            {
+                _shadow = value;
+                UpdateVisual();
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the underline parameters.
+        /// </summary>
+        /// <since_tizen> 5 </since_tizen>
+        public PropertyMap Underline
+        {
+            get
+            {
+                return _underline;
+            }
+            set
+            {
+                _underline = value;
+                UpdateVisual();
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the outline parameters.
+        /// </summary>
+        /// <since_tizen> 5 </since_tizen>
+        public PropertyMap Outline
+        {
+            get
+            {
+                return _outline;
+            }
+            set
+            {
+                _outline = value;
+                UpdateVisual();
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the background parameters.
+        /// </summary>
+        /// <since_tizen> 5 </since_tizen>
+        public PropertyMap Background
+        {
+            get
+            {
+                return _background;
+            }
+            set
+            {
+                _background = value;
+                UpdateVisual();
+            }
+        }
+
+        /// <summary>
         /// Compose the out visual map.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
@@ -1302,6 +1434,11 @@ namespace Tizen.NUI
                 if (_premultipliedAlpha != null) { _outputVisualMap.Add((int)Visual.Property.PremultipliedAlpha, new PropertyValue((bool)_premultipliedAlpha)); }
                 if (_mixColor != null) { _outputVisualMap.Add((int)Visual.Property.MixColor, new PropertyValue(_mixColor)); }
                 if (_opacity != null) { _outputVisualMap.Add((int)Visual.Property.Opacity, new PropertyValue((float)_opacity)); }
+                if (_shadow != null) { _outputVisualMap.Add(TextVisualProperty.Shadow, new PropertyValue(_shadow)); }
+                if (_underline != null) { _outputVisualMap.Add(TextVisualProperty.Underline, new PropertyValue(_underline)); }
+                if (_outline != null) { _outputVisualMap.Add(TextVisualProperty.Outline, new PropertyValue(_outline)); }
+                if (_background != null) { _outputVisualMap.Add(TextVisualProperty.Background, new PropertyValue(_background)); }
+                if (_visualFittingMode != null) { _outputVisualMap.Add((int)Visual.Property.VisualFittingMode, new PropertyValue((int)_visualFittingMode)); }
             }
         }
     }
@@ -1396,6 +1533,7 @@ namespace Tizen.NUI
                 if (_premultipliedAlpha != null) { _outputVisualMap.Add((int)Visual.Property.PremultipliedAlpha, new PropertyValue((bool)_premultipliedAlpha)); }
                 if (_mixColor != null) { _outputVisualMap.Add((int)Visual.Property.MixColor, new PropertyValue(_mixColor)); }
                 if (_opacity != null) { _outputVisualMap.Add((int)Visual.Property.Opacity, new PropertyValue((float)_opacity)); }
+                if (_visualFittingMode != null) { _outputVisualMap.Add((int)Visual.Property.VisualFittingMode, new PropertyValue((int)_visualFittingMode)); }
             }
         }
     }
@@ -1415,6 +1553,7 @@ namespace Tizen.NUI
         }
 
         private Color _mixColorForColorVisual = null;
+        private bool? _renderIfTransparent = false;
 
         /// <summary>
         /// Gets or sets the solid color required.<br />
@@ -1435,6 +1574,24 @@ namespace Tizen.NUI
         }
 
         /// <summary>
+        /// Gets or sets whether to render if the MixColor is transparent.
+        /// By default it is false, which means that the ColorVisual will not render if the MIX_COLOR is transparent.
+        /// </summary>
+        /// <since_tizen> 5 </since_tizen>
+        public bool RenderIfTransparent
+        {
+            get
+            {
+                return _renderIfTransparent ?? (false);
+            }
+            set
+            {
+                _renderIfTransparent = value;
+                UpdateVisual();
+            }
+        }
+
+        /// <summary>
         /// Compose the out visual map.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
@@ -1448,6 +1605,8 @@ namespace Tizen.NUI
                 if (_shader != null) { _outputVisualMap.Add((int)Visual.Property.Shader, new PropertyValue(_shader)); }
                 if (_premultipliedAlpha != null) { _outputVisualMap.Add((int)Visual.Property.PremultipliedAlpha, new PropertyValue((bool)_premultipliedAlpha)); }
                 if (_opacity != null) { _outputVisualMap.Add((int)Visual.Property.Opacity, new PropertyValue((float)_opacity)); }
+                if (_renderIfTransparent != null) { _outputVisualMap.Add(ColorVisualProperty.RenderIfTransparent, new PropertyValue((bool)_renderIfTransparent)); }
+                if (_visualFittingMode != null) { _outputVisualMap.Add((int)Visual.Property.VisualFittingMode, new PropertyValue((int)_visualFittingMode)); }
             }
         }
     }
@@ -1647,6 +1806,7 @@ namespace Tizen.NUI
                 if (_premultipliedAlpha != null) { _outputVisualMap.Add((int)Visual.Property.PremultipliedAlpha, new PropertyValue((bool)_premultipliedAlpha)); }
                 if (_mixColor != null) { _outputVisualMap.Add((int)Visual.Property.MixColor, new PropertyValue(_mixColor)); }
                 if (_opacity != null) { _outputVisualMap.Add((int)Visual.Property.Opacity, new PropertyValue((float)_opacity)); }
+                if (_visualFittingMode != null) { _outputVisualMap.Add((int)Visual.Property.VisualFittingMode, new PropertyValue((int)_visualFittingMode)); }
             }
         }
     }
@@ -1827,6 +1987,7 @@ namespace Tizen.NUI
                 if (_premultipliedAlpha != null) { _outputVisualMap.Add((int)Visual.Property.PremultipliedAlpha, new PropertyValue((bool)_premultipliedAlpha)); }
                 if (_mixColor != null) { _outputVisualMap.Add((int)Visual.Property.MixColor, new PropertyValue(_mixColor)); }
                 if (_opacity != null) { _outputVisualMap.Add((int)Visual.Property.Opacity, new PropertyValue((float)_opacity)); }
+                if (_visualFittingMode != null) { _outputVisualMap.Add((int)Visual.Property.VisualFittingMode, new PropertyValue((int)_visualFittingMode)); }
             }
         }
     }
@@ -2142,6 +2303,7 @@ namespace Tizen.NUI
             if (_shader != null) { _outputVisualMap.Add((int)Visual.Property.Shader, new PropertyValue(_shader)); }
             if (_premultipliedAlpha != null) { _outputVisualMap.Add((int)Visual.Property.PremultipliedAlpha, new PropertyValue((bool)_premultipliedAlpha)); }
             if (_opacity != null) { _outputVisualMap.Add((int)Visual.Property.Opacity, new PropertyValue((float)_opacity)); }
+            if (_visualFittingMode != null) { _outputVisualMap.Add((int)Visual.Property.VisualFittingMode, new PropertyValue((int)_visualFittingMode)); }
         }
     }
 
@@ -2237,6 +2399,7 @@ namespace Tizen.NUI
                 if (_premultipliedAlpha != null) { _outputVisualMap.Add((int)Visual.Property.PremultipliedAlpha, new PropertyValue((bool)_premultipliedAlpha)); }
                 if (_mixColor != null) { _outputVisualMap.Add((int)Visual.Property.MixColor, new PropertyValue(_mixColor)); }
                 if (_opacity != null) { _outputVisualMap.Add((int)Visual.Property.Opacity, new PropertyValue((float)_opacity)); }
+                if (_visualFittingMode != null) { _outputVisualMap.Add((int)Visual.Property.VisualFittingMode, new PropertyValue((int)_visualFittingMode)); }
             }
         }
     }
@@ -2289,6 +2452,7 @@ namespace Tizen.NUI
                 if (_premultipliedAlpha != null) { _outputVisualMap.Add((int)Visual.Property.PremultipliedAlpha, new PropertyValue((bool)_premultipliedAlpha)); }
                 if (_mixColor != null) { _outputVisualMap.Add((int)Visual.Property.MixColor, new PropertyValue(_mixColor)); }
                 if (_opacity != null) { _outputVisualMap.Add((int)Visual.Property.Opacity, new PropertyValue((float)_opacity)); }
+                if (_visualFittingMode != null) { _outputVisualMap.Add((int)Visual.Property.VisualFittingMode, new PropertyValue((int)_visualFittingMode)); }
             }
         }
     }
@@ -2414,8 +2578,8 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Gets and Sets the number of times the AnimatedImageVisual will be looped.
-        /// Default -1. if less than 0, loop unlimited. else, loop loopCount times.
+        /// Gets and sets the number of times the AnimatedImageVisual will be looped.
+        /// The default is -1. If the number is less than 0 then it loops unlimited,otherwise loop loopCount times.
         /// </summary>
         /// <since_tizen> 5 </since_tizen>
         public float LoopCount
@@ -2462,6 +2626,7 @@ namespace Tizen.NUI
                 if (_premultipliedAlpha != null) { _outputVisualMap.Add((int)Visual.Property.PremultipliedAlpha, new PropertyValue((bool)_premultipliedAlpha)); }
                 if (_mixColor != null) { _outputVisualMap.Add((int)Visual.Property.MixColor, new PropertyValue(_mixColor)); }
                 if (_opacity != null) { _outputVisualMap.Add((int)Visual.Property.Opacity, new PropertyValue((float)_opacity)); }
+                if (_visualFittingMode != null) { _outputVisualMap.Add((int)Visual.Property.VisualFittingMode, new PropertyValue((int)_visualFittingMode)); }
             }
         }
     }
