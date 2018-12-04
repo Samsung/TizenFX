@@ -137,6 +137,7 @@ namespace Tizen.Applications
         /// <summary>
         /// Gets the information of the installed applications asynchronously.
         /// </summary>
+        /// <returns>The installed application info list.</returns>
         /// <since_tizen> 3 </since_tizen>
         public static async Task<IEnumerable<ApplicationInfo>> GetInstalledApplicationsAsync()
         {
@@ -174,6 +175,7 @@ namespace Tizen.Applications
         /// <summary>
         /// Terminates the application if it is running on background.
         /// </summary>
+        /// <param name="app">ApplicationRunningContext object</param>
         /// <exception cref="ArgumentException">Thrown when failed of invalid argument.</exception>
         /// <exception cref="UnauthorizedAccessException">Thrown when failed because of permission denied.</exception>
         /// <exception cref="InvalidOperationException">Thrown when failed because of system error.</exception>
@@ -204,6 +206,7 @@ namespace Tizen.Applications
         /// Gets the information of the installed applications with the ApplicationInfoFilter asynchronously.
         /// </summary>
         /// <param name="filter">Key-value pairs for filtering.</param>
+        /// <returns>The installed application info list.</returns>
         /// <since_tizen> 3 </since_tizen>
         public static async Task<IEnumerable<ApplicationInfo>> GetInstalledApplicationsAsync(ApplicationInfoFilter filter)
         {
@@ -237,6 +240,7 @@ namespace Tizen.Applications
         /// Gets the information of the installed applications with the ApplicationInfoMetadataFilter asynchronously.
         /// </summary>
         /// <param name="filter">Key-value pairs for filtering.</param>
+        /// <returns>The installed application info list.</returns>
         /// <since_tizen> 3 </since_tizen>
         public static async Task<IEnumerable<ApplicationInfo>> GetInstalledApplicationsAsync(ApplicationInfoMetadataFilter filter)
         {
@@ -269,6 +273,7 @@ namespace Tizen.Applications
         /// <summary>
         /// Gets the information of the running applications asynchronously.
         /// </summary>
+        /// <returns>The application running context list.</returns>
         /// <since_tizen> 3 </since_tizen>
         public static async Task<IEnumerable<ApplicationRunningContext>> GetRunningApplicationsAsync()
         {
@@ -307,6 +312,7 @@ namespace Tizen.Applications
         /// <summary>
         /// Gets the information of the running applications including subapp asynchronously.
         /// </summary>
+        /// <returns>The application running context list.</returns>
         /// <since_tizen> 3 </since_tizen>
         public static async Task<IEnumerable<ApplicationRunningContext>> GetAllRunningApplicationsAsync()
         {
@@ -346,6 +352,7 @@ namespace Tizen.Applications
         /// Gets the information of the specified application with the application ID.
         /// </summary>
         /// <param name="applicationId">Application ID.</param>
+        /// <returns>The application info.</returns>
         /// <since_tizen> 3 </since_tizen>
         public static ApplicationInfo GetInstalledApplication(string applicationId)
         {
