@@ -50,18 +50,6 @@ namespace Tizen.Applications
         }
 
         /// <summary>
-        /// Gets the current device orientation.
-        /// </summary>
-        /// <since_tizen> 6 </since_tizen>
-        static public DeviceOrientation CurrentDeviceOrientation
-        {
-            get
-            {
-                return Interop.Application.AppGetDeviceOrientation();
-            }
-        }
-
-        /// <summary>
         /// Occurs whenever the application is resumed.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
