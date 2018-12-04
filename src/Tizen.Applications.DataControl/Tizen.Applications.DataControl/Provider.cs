@@ -41,6 +41,8 @@ namespace Tizen.Applications.DataControl
         private static Mutex _lock = new Mutex();
         private bool _disposed = false;
         private bool _isRunning = false;
+        private string _currentClientAppId;
+        private string _currentProviderId;
 
         /// <summary>
         /// Gets the data ID.
@@ -50,6 +52,38 @@ namespace Tizen.Applications.DataControl
         {
             get;
             private set;
+        }
+
+        /// <summary>
+        /// Gets the current client appid.
+        /// </summary>
+        /// <since_tizen> 6 </since_tizen>
+        public string CurrentClientAppId
+        {
+            get
+            {
+                return _currentClientAppId;
+            }
+            internal set
+            {
+                _currentClientAppId = value;
+            }
+        }
+
+        /// <summary>
+        /// Gets the current provider ID.
+        /// </summary>
+        /// <since_tizen> 6 </since_tizen>
+        public string CurrentProviderId
+        {
+            get
+            {
+                return _currentProviderId;
+            }
+            internal set
+            {
+                _currentProviderId = value;
+            }
         }
 
         private static bool DataChangeListenFilter(IntPtr handlePtr, string consumerAppid, IntPtr userData)
@@ -125,6 +159,19 @@ namespace Tizen.Applications.DataControl
             return query;
         }
 
+        internal static ResultType UpdateCurrentClient(Provider provider, int requestId)
+        {
+            string clientAppId;
+            ResultType ret = Interop.DataControl.GetClientAppId(requestId, out clientAppId);
+            if (ret != ResultType.Success)
+            {
+                Log.Error(LogTag, "Get client id fail " + ret.ToString());
+                return ResultType.IoError;
+            }
+            provider.CurrentClientAppId = clientAppId;
+            return ResultType.Success;
+        }
+
         private static void InsertRequest(int requestId, IntPtr handlePtr, IntPtr insertData, IntPtr userData)
         {
             Provider provider;
@@ -137,6 +184,12 @@ namespace Tizen.Applications.DataControl
             if (provider == null)
             {
                 Log.Error(LogTag, "Provider not exist ");
+                return;
+            }
+
+            ret = UpdateCurrentClient(provider, requestId);
+            if (ret != ResultType.Success)
+            {
                 return;
             }
 
@@ -188,6 +241,12 @@ namespace Tizen.Applications.DataControl
             if (provider == null)
             {
                 Log.Error(LogTag, "Provider not exist ");
+                return;
+            }
+
+            ret = UpdateCurrentClient(provider, requestId);
+            if (ret != ResultType.Success)
+            {
                 return;
             }
 
@@ -433,6 +492,11 @@ namespace Tizen.Applications.DataControl
                 return;
             }
 
+            ret = UpdateCurrentClient(provider, requestId);
+            if (ret != ResultType.Success)
+            {
+                return;
+            }
             result = provider.OnSelect(query, where, _columnList, _columnList.Length, order, pageNum, countPerPage);
             if (result != null)
             {
@@ -504,6 +568,11 @@ namespace Tizen.Applications.DataControl
                 return;
             }
 
+            ret = UpdateCurrentClient(provider, requestId);
+            if (ret != ResultType.Success)
+            {
+                return;
+            }
             result = provider.OnUpdate(query, where, new Bundle(sbh));
             if (result != null)
             {
@@ -545,6 +614,11 @@ namespace Tizen.Applications.DataControl
                 return;
             }
 
+            ret = UpdateCurrentClient(provider, requestId);
+            if (ret != ResultType.Success)
+            {
+                return;
+            }
             result = provider.OnDelete(query, where);
             if (result != null)
             {
@@ -585,6 +659,11 @@ namespace Tizen.Applications.DataControl
                 return;
             }
 
+            ret = UpdateCurrentClient(provider, requestId);
+            if (ret != ResultType.Success)
+            {
+                return;
+            }
             result = provider.OnMapAdd(key, value);
             if (result != null)
             {
@@ -624,6 +703,11 @@ namespace Tizen.Applications.DataControl
                 return;
             }
 
+            ret = UpdateCurrentClient(provider, requestId);
+            if (ret != ResultType.Success)
+            {
+                return;
+            }
             result = provider.OnMapSet(key, oldValue, newValue);
             if (result != null)
             {
@@ -663,6 +747,11 @@ namespace Tizen.Applications.DataControl
                 return;
             }
 
+            ret = UpdateCurrentClient(provider, requestId);
+            if (ret != ResultType.Success)
+            {
+                return;
+            }
             result = provider.OnMapRemove(key, value);
             if (result != null)
             {
@@ -690,7 +779,7 @@ namespace Tizen.Applications.DataControl
             }
         }
 
-        private static void MapGetRequest(int requestID, IntPtr handlePtr, string key, IntPtr userData)
+        private static void MapGetRequest(int requestId, IntPtr handlePtr, string key, IntPtr userData)
         {
             Provider provider;
             MapGetResult result;
@@ -703,6 +792,11 @@ namespace Tizen.Applications.DataControl
                 return;
             }
 
+            ret = UpdateCurrentClient(provider, requestId);
+            if (ret != ResultType.Success)
+            {
+                return;
+            }
             result = provider.OnMapGet(key);
             if (result != null)
             {
@@ -711,7 +805,7 @@ namespace Tizen.Applications.DataControl
                     int valueCount = 0;
                     if (result.ValueList != null)
                         valueCount = result.ValueList.Length;
-                    ret = Interop.DataControl.SendMapGetResult(requestID, result.ValueList, valueCount);
+                    ret = Interop.DataControl.SendMapGetResult(requestId, result.ValueList, valueCount);
                     if (ret != ResultType.Success)
                     {
                         Log.Error(LogTag, "SendMapGetResult fail " + ret.ToString());
@@ -720,7 +814,7 @@ namespace Tizen.Applications.DataControl
                 }
                 else
                 {
-                    ret = Interop.DataControl.SendError(requestID, result.Result.ToString());
+                    ret = Interop.DataControl.SendError(requestId, result.Result.ToString());
                     if (ret != ResultType.Success)
                     {
                         Log.Error(LogTag, "SendError fail " + ret.ToString());
@@ -729,11 +823,11 @@ namespace Tizen.Applications.DataControl
             }
             else
             {
-                Log.Info(LogTag, $"MapRemoveRequest is null : {requestID.ToString()}");
+                Log.Info(LogTag, $"MapRemoveRequest is null : {requestId.ToString()}");
             }
         }
 
-        private static void MapBulkAddRequest(int requestID, IntPtr handlePtr, IntPtr bulkDataPtr, IntPtr userData)
+        private static void MapBulkAddRequest(int requestId, IntPtr handlePtr, IntPtr bulkDataPtr, IntPtr userData)
         {
             Provider provider;
             MapBulkAddResult result;
@@ -757,12 +851,18 @@ namespace Tizen.Applications.DataControl
                 return;
             }
 
+            ret = UpdateCurrentClient(provider, requestId);
+            if (ret != ResultType.Success)
+            {
+                return;
+            }
+
             result = provider.OnMapBulkAdd(bulkData);
             if (result != null)
             {
                 if (result.Result)
                 {
-                    ret = Interop.DataControl.SendMapBulkAddResult(requestID, result.BulkResultData.SafeBulkDataHandle);
+                    ret = Interop.DataControl.SendMapBulkAddResult(requestId, result.BulkResultData.SafeBulkDataHandle);
                     if (ret != ResultType.Success)
                     {
                         Log.Error(LogTag, "SendMapBulkAddResult fail " + ret.ToString());
@@ -770,7 +870,7 @@ namespace Tizen.Applications.DataControl
                 }
                 else
                 {
-                    ret = Interop.DataControl.SendError(requestID, result.Result.ToString());
+                    ret = Interop.DataControl.SendError(requestId, result.Result.ToString());
                     if (ret != ResultType.Success)
                     {
                         Log.Error(LogTag, "SendError fail " + ret.ToString());
@@ -784,7 +884,7 @@ namespace Tizen.Applications.DataControl
             }
             else
             {
-                Log.Info(LogTag, $"MapBulkAddRequest is null : {requestID.ToString()}");
+                Log.Info(LogTag, $"MapBulkAddRequest is null : {requestId.ToString()}");
             }
         }
 
@@ -819,11 +919,14 @@ namespace Tizen.Applications.DataControl
             Interop.DataControl.SafeDataControlHandle handle = new Interop.DataControl.SafeDataControlHandle(handlePtr, false);
             Provider provider = null;
             string dataID;
+            string providerID;
 
+            Interop.DataControl.DataControlGetProviderId(handle, out providerID);
             Interop.DataControl.DataControlGetDataId(handle, out dataID);
             if (dataID != null && _providerDict.ContainsKey(dataID))
             {
                 provider = _providerDict[dataID];
+                provider.CurrentProviderId = providerID;
                 Log.Info(LogTag, "DataID :" + dataID + ", hash code : " + provider.GetHashCode().ToString());
             }
             handle.Dispose();
@@ -985,30 +1088,51 @@ namespace Tizen.Applications.DataControl
         /// <summary>
         /// Overrides this method if you want to handle the behavior when the select request is received.
         /// </summary>
+        /// <param name="query">The select query.</param>
+        /// <param name="where">The where statement.</param>
+        /// <param name="columList">The requested column list.</param>
+        /// <param name="columnCount">The requested column count.</param>
+        /// <param name="order">The select order.</param>
+        /// <param name="pageNum">The page number.</param>
+        /// <param name="countPerPage">The count per page.</param>
+        /// <returns>The result of select operation.</returns>
         /// <since_tizen> 3 </since_tizen>
         protected abstract SelectResult OnSelect(string query, string where, string[] columList, int columnCount, string order, int pageNum, int countPerPage);
 
         /// <summary>
         /// Overrides this method if you want to handle the behavior when the insert request is received.
         /// </summary>
+        /// <param name="query">The select query.</param>
+        /// <param name="insertData">The insert data.</param>
+        /// <returns>The result of insert operation.</returns>
         /// <since_tizen> 3 </since_tizen>
         protected abstract InsertResult OnInsert(string query, Bundle insertData);
 
         /// <summary>
         /// Overrides this method if you want to handle the behavior when the update request is received.
         /// </summary>
+        /// <param name="query">The update query.</param>
+        /// <param name="where">The where statement.</param>
+        /// <param name="updateData">The update data.</param>
+        /// <returns>The result of update operation.</returns>
         /// <since_tizen> 3 </since_tizen>
         protected abstract UpdateResult OnUpdate(string query, string where, Bundle updateData);
 
         /// <summary>
         /// Overrides this method if you want to handle the behavior when the delete request is received.
         /// </summary>
+        /// <param name="query">The delete query.</param>
+        /// <param name="where">The where statement.</param>
+        /// <returns>The result of delete operation.</returns>
         /// <since_tizen> 3 </since_tizen>
         protected abstract DeleteResult OnDelete(string query, string where);
 
         /// <summary>
         /// Overrides this method if you want to handle the behavior when the bulk insert request is received.
         /// </summary>
+        /// <param name="query">The insert query list.</param>
+        /// <param name="bulkInsertData">The bulk insert data.</param>
+        /// <returns>The result of bulk insert operation.</returns>
         /// <since_tizen> 3 </since_tizen>
         protected virtual BulkInsertResult OnBulkInsert(IEnumerable<string> query, BulkData bulkInsertData)
         {
@@ -1019,6 +1143,8 @@ namespace Tizen.Applications.DataControl
         /// <summary>
         /// Overrides this method if you want to handle the behavior when the map get request is received.
         /// </summary>
+        /// <param name="key">The key of requested data.</param>
+        /// <returns>The result of get operation.</returns>
         /// <since_tizen> 3 </since_tizen>
         protected virtual MapGetResult OnMapGet(string key)
         {
@@ -1029,6 +1155,9 @@ namespace Tizen.Applications.DataControl
         /// <summary>
         /// Overrides this method if you want to handle the behavior when the map add request is received.
         /// </summary>
+        /// <param name="key">The key of added data.</param>
+        /// <param name="value">The value of added data.</param>
+        /// <returns>The result of add operation.</returns>
         /// <since_tizen> 3 </since_tizen>
         protected virtual MapAddResult OnMapAdd(string key, string value)
         {
@@ -1039,6 +1168,10 @@ namespace Tizen.Applications.DataControl
         /// <summary>
         /// Overrides this method if you want to handle the behavior when the update request is received.
         /// </summary>
+        /// <param name="key">The key of set data.</param>
+        /// <param name="oldValue">The old value of set data.</param>
+        /// <param name="newValue">The new value.</param>
+        /// <returns>The result of set operation.</returns>
         /// <since_tizen> 3 </since_tizen>
         protected virtual MapSetResult OnMapSet(string key, string oldValue, string newValue)
         {
@@ -1049,6 +1182,9 @@ namespace Tizen.Applications.DataControl
         /// <summary>
         /// Overrides this method if you want to handle the behavior when the delete request is received.
         /// </summary>
+        /// <param name="key">The key of removed data.</param>
+        /// <param name="value">The value of removed data.</param>
+        /// <returns>The result of remove operation.</returns>
         /// <since_tizen> 3 </since_tizen>
         protected virtual MapRemoveResult OnMapRemove(string key, string value)
         {
@@ -1059,6 +1195,8 @@ namespace Tizen.Applications.DataControl
         /// <summary>
         /// Overrides this method if you want to handle the behavior when the bulk add request is received.
         /// </summary>
+        /// <param name="bulkAddData">The bulk add data.</param>
+        /// <returns>The result of bulk add operation.</returns>
         /// <since_tizen> 3 </since_tizen>
         protected virtual MapBulkAddResult OnMapBulkAdd(BulkData bulkAddData)
         {
@@ -1069,6 +1207,8 @@ namespace Tizen.Applications.DataControl
         /// <summary>
         /// Overrides this method if you want to handle the behavior when the data change listen request is received.
         /// </summary>
+        /// <param name="requestAppID">The app ID sent data change listen request.</param>
+        /// <returns>The result of data change listen operation.</returns>
         /// <since_tizen> 3 </since_tizen>
         protected virtual DataChangeListenResult OnDataChangeListenRequest(string requestAppID)
         {
@@ -1088,10 +1228,6 @@ namespace Tizen.Applications.DataControl
                 Stop();
                 _disposed = true;
             }
-            if (disposing)
-            {
-                GC.SuppressFinalize(this);
-            }
         }
 
         /// <summary>
@@ -1101,6 +1237,7 @@ namespace Tizen.Applications.DataControl
         public void Dispose()
         {
             Dispose(true);
+            GC.SuppressFinalize(this);
         }
     }
 }
