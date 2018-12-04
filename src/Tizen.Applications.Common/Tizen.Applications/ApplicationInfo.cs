@@ -372,6 +372,7 @@ namespace Tizen.Applications
         /// Gets the localized label of the application for the given locale.
         /// </summary>
         /// <param name="locale">Locale.</param>
+        /// <returns>The localized label.</returns>
         /// <since_tizen> 3 </since_tizen>
         public string GetLocalizedLabel(string locale)
         {
