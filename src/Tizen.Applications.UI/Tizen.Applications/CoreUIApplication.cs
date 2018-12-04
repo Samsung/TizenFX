@@ -53,7 +53,7 @@ namespace Tizen.Applications
         /// Gets the current device orientation.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
-        public DeviceOrientation CurrentDeviceOrientation
+        static public DeviceOrientation CurrentDeviceOrientation
         {
             get
             {
