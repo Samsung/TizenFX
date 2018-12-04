@@ -33,6 +33,50 @@ namespace Tizen.WebView
         }
 
         /// <summary>
+        /// Gets the argument as an integer type.
+        /// </summary>
+        /// <returns>Argument as an integer type.</returns>
+        /// <since_tizen> 4 </since_tizen>
+        public int GetAsInteger()
+        {
+            if (_arg == IntPtr.Zero)
+            {
+                return 0;
+            }
+            return Marshal.ReadInt32(_arg, 0);
+        }
+
+        /// <summary>
+        /// Gets the argument as a double type.
+        /// </summary>
+        /// <returns>Argument as a double type.</returns>
+        /// <since_tizen> 4 </since_tizen>
+        public double GetAsDouble()
+        {
+            if (_arg == IntPtr.Zero)
+            {
+                return 0d;
+            }
+            double[] ret = new double[1];
+            Marshal.Copy(_arg, ret, 0, 1);
+            return ret[0];
+        }
+
+        /// <summary>
+        /// Gets the argument as a boolean type.
+        /// </summary>
+        /// <returns>Argument as a boolean type.</returns>
+        /// <since_tizen> 4 </since_tizen>
+        public bool GetAsBoolean()
+        {
+            if (_arg == IntPtr.Zero)
+            {
+                return false;
+            }
+            return Marshal.ReadByte(_arg) != (byte)0;
+        }
+
+        /// <summary>
         /// Gets the argument as a string type.
         /// </summary>
         /// <returns>Argument as a string type.</returns>
