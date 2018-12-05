@@ -396,6 +396,36 @@ namespace Tizen.Network.Bluetooth
             }
         }
 
+        internal int Enable()
+        {
+            int ret = Interop.Bluetooth.EnableAdapter();
+            if (ret != (int)BluetoothError.None)
+            {
+                Log.Error(Globals.LogTag, "Failed to enable adapter, Error - " + (BluetoothError)ret);
+            }
+            return ret;
+        }
+
+        internal int Disable()
+        {
+            int ret = Interop.Bluetooth.DisableAdapter();
+            if (ret != (int)BluetoothError.None)
+            {
+                Log.Error(Globals.LogTag, "Failed to disable adapter, Error - " + (BluetoothError)ret);
+            }
+            return ret;
+        }
+
+        internal int SetVisibility(VisibilityMode mode, int duration)
+        {
+            int ret = Interop.Bluetooth.SetVisibility(mode, duration);
+            if (ret != (int)BluetoothError.None)
+            {
+                Log.Error(Globals.LogTag, "Failed to set visibility, Error - " + (BluetoothError)ret);
+            }
+            return ret;
+        }
+
         internal void StartDiscovery()
         {
             int ret = Interop.Bluetooth.StartDiscovery();
@@ -448,6 +478,7 @@ namespace Tizen.Network.Bluetooth
             }
             BluetoothDeviceStruct device = (BluetoothDeviceStruct)Marshal.PtrToStructure(deviceInfo, typeof(BluetoothDeviceStruct));
 
+            Interop.Libc.Free(deviceInfo);
             return BluetoothUtils.ConvertStructToDeviceClass(device);
         }
 

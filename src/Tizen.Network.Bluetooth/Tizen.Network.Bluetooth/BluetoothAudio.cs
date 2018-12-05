@@ -105,5 +105,98 @@ namespace Tizen.Network.Bluetooth
                 BluetoothErrorFactory.ThrowBluetoothException((int)BluetoothError.NotEnabled);
             }
         }
+
+        /// <summary>
+        /// Opens a SCO(Synchronous Connection Oriented link) to connected remote device, asynchronously.
+        /// </summary>
+        /// <since_tizen> 6 </since_tizen>
+        public void OpenAgSco()
+        {
+            if (BluetoothAdapter.IsBluetoothEnabled && Globals.IsInitialize)
+            {
+                int ret = BluetoothAudioImpl.Instance.OpenAgSco();
+                if (ret != (int)BluetoothError.None)
+                {
+                    Log.Error(Globals.LogTag, "Failed to OpenAgSco - " + (BluetoothError)ret);
+                    BluetoothErrorFactory.ThrowBluetoothException(ret);
+                }
+            }
+            else
+            {
+                BluetoothErrorFactory.ThrowBluetoothException((int)BluetoothError.NotEnabled);
+            }
+        }
+
+        /// <summary>
+        /// Closes a SCO(Synchronous Connection Oriented link) to connected remote device, asynchronously.
+        /// </summary>
+        /// <since_tizen> 6 </since_tizen>
+        public void CloseAgSco()
+        {
+            if (BluetoothAdapter.IsBluetoothEnabled && Globals.IsInitialize)
+            {
+                int ret = BluetoothAudioImpl.Instance.CloseAgSco();
+                if (ret != (int)BluetoothError.None)
+                {
+                    Log.Error(Globals.LogTag, "Failed to CloseAgSco - " + (BluetoothError)ret);
+                    BluetoothErrorFactory.ThrowBluetoothException(ret);
+                }
+            }
+            else
+            {
+                BluetoothErrorFactory.ThrowBluetoothException((int)BluetoothError.NotEnabled);
+            }
+        }
+
+        /// <summary>
+        /// A property to check whether an opened SCO(Synchronous Connection Oriented link) exists or not.
+        /// </summary>
+        /// <exception cref="NotSupportedException">Thrown when the Bluetooth is not supported.</exception>
+        /// <exception cref="InvalidOperationException">Thrown when the Bluetooth is not enabled.</exception>
+        /// <since_tizen> 6 </since_tizen>
+        static public bool IsAgScoOpened
+        {
+            get
+            {   
+                return BluetoothAudioImpl.Instance.IsAgScoOpened;
+            }
+        }
+
+        /// <summary>
+        /// Registers a callback function that will be invoked when the SCO(Synchronous Connection Oriented link) state is changed
+        /// </summary>
+        /// <since_tizen> 6 </since_tizen>
+        public event EventHandler<AgScoStateChangedEventArgs> AgScoStateChanged
+        {
+            add
+            {
+                BluetoothAudioImpl.Instance.AgScoStateChanged += value;
+            }
+            remove
+            {
+                BluetoothAudioImpl.Instance.AgScoStateChanged -= value;
+            }
+        }
+
+        /// <summary>
+        /// Notifies the state of voice recognition.
+        /// </summary>
+        /// <since_tizen> 6 </since_tizen>
+        public void NotifyAgVoiceRecognitionState(bool state)
+        {
+            if (BluetoothAdapter.IsBluetoothEnabled && Globals.IsInitialize)
+            {
+                int ret = BluetoothAudioImpl.Instance.NotifyAgVoiceRecognitionState(state);
+                if (ret != (int)BluetoothError.None)
+                {
+                    Log.Error(Globals.LogTag, "Failed to NotifyAgVoiceRecognitionState - " + (BluetoothError)ret);
+                    BluetoothErrorFactory.ThrowBluetoothException(ret);
+                }
+            }
+            else
+            {
+                BluetoothErrorFactory.ThrowBluetoothException((int)BluetoothError.NotEnabled);
+            }
+        }
     }
 }

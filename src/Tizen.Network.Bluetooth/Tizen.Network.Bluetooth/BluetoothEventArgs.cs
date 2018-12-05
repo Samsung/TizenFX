@@ -561,6 +561,46 @@ namespace Tizen.Network.Bluetooth
     }
 
     /// <summary>
+    /// An extended EventArgs class contains the socket connection requested.
+    /// </summary>
+    /// <since_tizen> 6 </since_tizen>
+    public class SocketConnectionRequestedEventArgs : EventArgs
+    {
+        private int _socketFd;
+        private string _remoteAddress;
+
+        internal SocketConnectionRequestedEventArgs(int socketFd, string remoteAddress)
+        {
+            _socketFd = socketFd;
+            _remoteAddress = remoteAddress;
+        }
+
+        /// <summary>
+        /// The socket fd.
+        /// </summary>
+        /// <since_tizen> 6 </since_tizen>
+        public int SocketFd
+        {
+            get
+            {
+                return _socketFd;
+            }
+        }
+
+        /// <summary>
+        /// The remote address.
+        /// </summary>
+        /// <since_tizen> 6 </since_tizen>
+        public string RemoteAddress
+        {
+            get
+            {
+                return _remoteAddress;
+            }
+        }
+    }
+
+    /// <summary>
     /// An extended EventArgs class contains the connection state, remote address, and the type of audio profile.
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
@@ -624,6 +664,46 @@ namespace Tizen.Network.Bluetooth
             get
             {
                 return _type;
+            }
+        }
+    }
+
+    /// <summary>
+    /// An extended EventArgs class contains the connection state and the address of the remote Bluetooth device.
+    /// </summary>
+    /// <since_tizen> 6 </since_tizen>
+    public class AgScoStateChangedEventArgs : EventArgs
+    {
+        int _result;
+        private bool _isOpened;
+
+        internal AgScoStateChangedEventArgs(int result, bool isOpened)
+        {
+            _result = result;
+            _isOpened = isOpened;
+        }
+
+        /// <summary>
+        /// The result.
+        /// </summary>
+        /// <since_tizen> 6 </since_tizen>
+        public int Result
+        {
+            get
+            {
+                return _result;
+            }
+        }
+
+        /// <summary>
+        /// A value indicating whether the state is connected.
+        /// </summary>
+        /// <since_tizen> 6 </since_tizen>
+        public bool IsOpened
+        {
+            get
+            {
+                return _isOpened;
             }
         }
     }

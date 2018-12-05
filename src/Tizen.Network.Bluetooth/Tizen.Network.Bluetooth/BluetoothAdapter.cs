@@ -372,6 +372,59 @@ namespace Tizen.Network.Bluetooth
         }
 
         /// <summary>
+        /// Enables the local Bluetooth adapter, asynchronously.
+        /// </summary>
+        /// <exception cref="InvalidOperationException">Thrown when the Bluetooth is not enabled.</exception>
+        /// <since_tizen> 6 </since_tizen>
+        public static void Enable()
+        {
+            int ret = BluetoothAdapterImpl.Instance.Enable();
+            if (ret != (int)BluetoothError.None)
+            {
+                Log.Error(Globals.LogTag, "Failed to Enable - " + (BluetoothError)ret);
+                BluetoothErrorFactory.ThrowBluetoothException(ret);
+            }
+        }
+
+        /// <summary>
+        /// Disables the local Bluetooth adapter, asynchronously.
+        /// </summary>
+        /// <exception cref="InvalidOperationException">Thrown when the Bluetooth is not enabled.</exception>
+        /// <since_tizen> 6 </since_tizen>
+        public static void Disable()
+        {
+            int ret = BluetoothAdapterImpl.Instance.Disable();
+            if (ret != (int)BluetoothError.None)
+            {
+                Log.Error(Globals.LogTag, "Failed to Disable - " + (BluetoothError)ret);
+                BluetoothErrorFactory.ThrowBluetoothException(ret);
+            }
+        }
+
+        /// <summary>
+        /// Sets the visibility mode.
+        /// </summary>
+        /// <exception cref="InvalidOperationException">Thrown when the Bluetooth is not enabled.</exception>
+        /// <since_tizen> 6 </since_tizen>
+        public static void SetVisibility(VisibilityMode mode, int duration)
+        {
+            if (IsBluetoothEnabled)
+            {
+                int ret = BluetoothAdapterImpl.Instance.SetVisibility(mode, duration);
+                if (ret != (int)BluetoothError.None)
+                {
+                    Log.Error(Globals.LogTag, "Failed to SetVisibility - " + (BluetoothError)ret);
+                    BluetoothErrorFactory.ThrowBluetoothException(ret);
+                }
+            }
+            else
+            {
+                BluetoothErrorFactory.ThrowBluetoothException((int)BluetoothError.NotEnabled);
+            }
+
+        }
+
+        /// <summary>
         /// Starts the device discovery process.
         /// </summary>
         /// <remarks>
