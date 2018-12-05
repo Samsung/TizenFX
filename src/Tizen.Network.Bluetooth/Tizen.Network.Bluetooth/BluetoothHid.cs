@@ -82,7 +82,6 @@ namespace Tizen.Network.Bluetooth
         /// <summary>
         /// The HidDeviceConnectionStateChanged event is called when the HID device connection state is changed.
         /// </summary>
-        /// <exception cref="InvalidOperationException">Thrown when the Bluetooth is not enabled.</exception>
         /// <since_tizen> 6 </since_tizen>
         public event EventHandler<HidDeviceConnectionStateChangedEventArgs> HidDeviceConnectionStateChanged
         {
@@ -100,6 +99,7 @@ namespace Tizen.Network.Bluetooth
         /// Activates the Bluetooth HID Device role.
         /// </summary>
         /// <exception cref="InvalidOperationException">Thrown when the Bluetooth is not enabled.</exception>
+        /// or when the connection attempt to the remote device fails.</exception>
         /// <since_tizen> 6 </since_tizen>
         public static void ActivateDevice()
         {
@@ -122,6 +122,7 @@ namespace Tizen.Network.Bluetooth
         /// Deactivates the Bluetooth HID Device role.
         /// </summary>
         /// <exception cref="InvalidOperationException">Thrown when the Bluetooth is not enabled.</exception>
+        /// or when the connection attempt to the remote device fails.</exception>
         /// <since_tizen> 6 </since_tizen>
         public static void DeactivateDevice()
         {
@@ -144,6 +145,7 @@ namespace Tizen.Network.Bluetooth
         /// Connects to the remote device.
         /// </summary>
         /// <exception cref="InvalidOperationException">Thrown when the Bluetooth is not enabled.</exception>
+        /// or when the connection attempt to the remote device fails.</exception>
         /// <since_tizen> 6 </since_tizen>
         public void ConnectDevice()
         {
@@ -166,6 +168,7 @@ namespace Tizen.Network.Bluetooth
         /// Disconnects to the remote device.
         /// </summary>
         /// <exception cref="InvalidOperationException">Thrown when the Bluetooth is not enabled.</exception>
+        /// or when the connection attempt to the remote device fails.</exception>
         /// <since_tizen> 6 </since_tizen>
         public void DisconnectDevice()
         {
@@ -188,6 +191,7 @@ namespace Tizen.Network.Bluetooth
         /// Sends the mouse event data to the remote device.
         /// </summary>
         /// <exception cref="InvalidOperationException">Thrown when the Bluetooth is not enabled.</exception>
+        /// or when the connection attempt to the remote device fails.</exception>
         /// <since_tizen> 6 </since_tizen>
         public void SendDeviceMouseEvent(BluetoothHidMouseData mouseData)
         {
@@ -210,6 +214,7 @@ namespace Tizen.Network.Bluetooth
         /// Sends the key event data to the remote device.
         /// </summary>
         /// <exception cref="InvalidOperationException">Thrown when the Bluetooth is not enabled.</exception>
+        /// or when the connection attempt to the remote device fails.</exception>
         /// <since_tizen> 6 </since_tizen>
         public void SendDeviceKeyEvent(BluetoothHidKeyData keyData)
         {
@@ -231,7 +236,6 @@ namespace Tizen.Network.Bluetooth
         /// <summary>
         /// The DataReceived event is called when the device receives data from the HID Host.
         /// </summary>
-        /// <exception cref="InvalidOperationException">Thrown when the Bluetooth is not enabled.</exception>
         /// <since_tizen> 6 </since_tizen>
         public event EventHandler<HidDeviceDataReceivedEventArgs> HidDeviceDataReceived
         {
@@ -250,6 +254,7 @@ namespace Tizen.Network.Bluetooth
         /// </summary>
         /// <exception cref="InvalidOperationException">Thrown when the Bluetooth is not enabled.</exception>
         /// <since_tizen> 6 </since_tizen>
+        /// or when the connection attempt to the remote device fails.</exception>
         public void ReplyToReport(BluetoothHidHeaderType headerType, BluetoothHidParamType paramType, byte[] data)
         {
             if (BluetoothAdapter.IsBluetoothEnabled && Globals.IsInitialize)

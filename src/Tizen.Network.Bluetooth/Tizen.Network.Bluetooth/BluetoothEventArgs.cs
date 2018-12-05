@@ -743,12 +743,10 @@ namespace Tizen.Network.Bluetooth
     public class HidDeviceDataReceivedEventArgs : EventArgs
     {
         private BluetoothHidDeviceReceivedData _receivedData;
-        private IntPtr _userData;
 
-        internal HidDeviceDataReceivedEventArgs(BluetoothHidDeviceReceivedData receivedData, IntPtr userData)
+        internal HidDeviceDataReceivedEventArgs(BluetoothHidDeviceReceivedData receivedData)
         {
             _receivedData = receivedData;
-            _userData = userData;
         }
 
         /// <summary>
@@ -760,18 +758,6 @@ namespace Tizen.Network.Bluetooth
             get
             {
                 return _receivedData;
-            }
-        }
-
-        /// <summary>
-        /// A value indicating whether this instance is connected.
-        /// </summary>
-        /// <since_tizen> 6 </since_tizen>
-        public IntPtr UserData
-        {
-            get
-            {
-                return _userData;
             }
         }
     }
