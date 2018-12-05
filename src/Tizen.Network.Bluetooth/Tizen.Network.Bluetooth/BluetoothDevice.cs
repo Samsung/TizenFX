@@ -699,7 +699,11 @@ namespace Tizen.Network.Bluetooth
                 BluetoothHid hid = new BluetoothHid();
                 profile = (hid as T);
             }
-
+            else if (type.Equals("Tizen.Network.Bluetooth.BluetoothHidDevice"))
+            {
+                BluetoothHidDevice hidDevice = new BluetoothHidDevice();
+                profile = (hidDevice as T);
+            }
             else if (type.Equals("Tizen.Network.Bluetooth.BluetoothOppClient"))
             {
                 BluetoothOppClient oppClient = new BluetoothOppClient();
