@@ -23,7 +23,7 @@ namespace Tizen.Network.Bluetooth
         }
 
         /// <summary>
-        /// The HidDeviceConnectionStateChanged event is called when the HID device connection state is changed.
+        /// The ConnectionStateChanged event is called when the HID device connection state is changed.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
         public event EventHandler<HidDeviceConnectionStateChangedEventArgs> ConnectionStateChanged
