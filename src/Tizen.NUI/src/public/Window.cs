@@ -1789,5 +1789,63 @@ namespace Tizen.NUI
             }
         }
 
+        /// <summary>
+        /// Disconnect all native signals
+        /// </summary>
+        /// <since_tizen> 5 </since_tizen>
+        internal void DisconnectNativeSignals() 
+        {
+            if( _windowFocusChangedEventCallback != null )
+            {
+                WindowFocusChangedSignal().Disconnect(_windowFocusChangedEventCallback);
+            }
+
+            if( _rootLayerTouchDataCallback != null )
+            {
+                TouchDataSignal().Disconnect(_rootLayerTouchDataCallback);
+            }
+
+            if( _wheelEventCallback != null )
+            {
+                StageWheelEventSignal().Disconnect(_wheelEventCallback);
+            }
+
+            if( _stageKeyCallbackDelegate != null )
+            {
+                KeyEventSignal().Disconnect(_stageKeyCallbackDelegate);
+            }
+
+            if( _stageEventProcessingFinishedEventCallbackDelegate != null )
+            {
+                EventProcessingFinishedSignal().Disconnect(_stageEventProcessingFinishedEventCallbackDelegate);
+            }
+
+            if( _stageContextLostEventCallbackDelegate != null )
+            {
+                ContextLostSignal().Disconnect(_stageContextLostEventCallbackDelegate);
+            }
+
+            if( _stageContextRegainedEventCallbackDelegate != null )
+            {
+                ContextRegainedSignal().Disconnect(_stageContextRegainedEventCallbackDelegate);
+            }
+
+            if( _stageSceneCreatedEventCallbackDelegate != null )
+            {
+                SceneCreatedSignal().Disconnect(_stageSceneCreatedEventCallbackDelegate);
+            }
+
+            if( _windowResizedEventCallback != null )
+            {
+                ResizedSignal().Disconnect(_windowResizedEventCallback);
+            }
+
+            if( _windowFocusChangedEventCallback2 != null )
+            {
+                WindowFocusChangedSignal().Disconnect(_windowFocusChangedEventCallback2);
+            }
+
+        }
+
     }
 }
