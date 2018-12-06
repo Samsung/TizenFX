@@ -163,7 +163,7 @@ namespace Tizen.Network.Bluetooth
         }
 
         /// <summary>
-        /// Registers a callback function that will be invoked when the SCO(Synchronous Connection Oriented link) state is changed
+        /// This event is called when the SCO(Synchronous Connection Oriented link) state is changed.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
         public event EventHandler<AgScoStateChangedEventArgs> AgScoStateChanged
@@ -181,6 +181,7 @@ namespace Tizen.Network.Bluetooth
         /// <summary>
         /// Notifies the state of voice recognition.
         /// </summary>
+        /// <param name="state">The state of voice recognition.</param>
         /// <since_tizen> 6 </since_tizen>
         public void NotifyAgVoiceRecognitionState(bool state)
         {

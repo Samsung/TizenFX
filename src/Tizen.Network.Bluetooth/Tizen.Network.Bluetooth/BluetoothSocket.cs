@@ -243,7 +243,7 @@ namespace Tizen.Network.Bluetooth
             {
                 if (_connectionRequested == null)
                 {
-                    RegisterConnectionRequestedChangedEvent();
+                    RegisterConnectionRequestedEvent();
                 }
                 _connectionRequested += value;
             }
@@ -252,23 +252,26 @@ namespace Tizen.Network.Bluetooth
                 _connectionRequested -= value;
                 if (_connectionRequested == null)
                 {
-                    UnregisterConnectionRequestedChangedEvent();
+                    UnregisterConnectionRequestedEvent();
                 }
             }
         }
 
-        private void RegisterConnectionRequestedChangedEvent()
+        private void RegisterConnectionRequestedEvent()
         {
             Interop.Bluetooth.SocketConnectionRequestedCallback _connectionRequestedCallback = (int socket_fd, string remoteAddress, IntPtr userData) =>
             {
-                Log.Info(Globals.LogTag, "ConnectionStateChangedCallback is called");
+                Log.Info(Globals.LogTag, "SocketConnectionRequestedCallback is called");
                 if (_connectionRequested != null)
                 {
-                    _connectionRequested(null, new SocketConnectionRequestedEventArgs(socket_fd, remoteAddress)); // Ã¹¹øÂ° ÆÄ¶ó¹ÌÅÍ È®ÀÎ
+                    connectedSocket = socket_fd;
+                    GCHandle handle2 = (GCHandle)userData;
+                    _connectionRequested(handle2, new SocketConnectionRequestedEventArgs(socket_fd, remoteAddress));
                 }
             };
-            
-            int ret = Interop.Bluetooth.SetSocketConnectionRequestedCallback(_connectionRequestedCallback, IntPtr.Zero);
+            GCHandle handle1 = GCHandle.Alloc(this);
+            IntPtr data = (IntPtr)handle1;
+            int ret = Interop.Bluetooth.SetSocketConnectionRequestedCallback(_connectionRequestedCallback, data);
             if (ret != (int)BluetoothError.None)
             {
                 Log.Error(Globals.LogTag, "Failed to set connection requested callback, Error - " + (BluetoothError)ret);
@@ -276,7 +279,7 @@ namespace Tizen.Network.Bluetooth
             }
         }
 
-        private void UnregisterConnectionRequestedChangedEvent()
+        private void UnregisterConnectionRequestedEvent()
         {
             int ret = Interop.Bluetooth.UnsetSocketConnectionRequestedCallback();
             if (ret != (int)BluetoothError.None)

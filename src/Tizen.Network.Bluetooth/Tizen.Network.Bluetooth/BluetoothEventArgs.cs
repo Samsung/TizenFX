@@ -674,25 +674,11 @@ namespace Tizen.Network.Bluetooth
     /// <since_tizen> 6 </since_tizen>
     public class AgScoStateChangedEventArgs : EventArgs
     {
-        int _result;
         private bool _isOpened;
 
-        internal AgScoStateChangedEventArgs(int result, bool isOpened)
+        internal AgScoStateChangedEventArgs(bool isOpened)
         {
-            _result = result;
             _isOpened = isOpened;
-        }
-
-        /// <summary>
-        /// The result.
-        /// </summary>
-        /// <since_tizen> 6 </since_tizen>
-        public int Result
-        {
-            get
-            {
-                return _result;
-            }
         }
 
         /// <summary>

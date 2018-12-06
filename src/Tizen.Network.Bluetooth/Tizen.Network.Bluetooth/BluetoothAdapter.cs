@@ -404,6 +404,8 @@ namespace Tizen.Network.Bluetooth
         /// <summary>
         /// Sets the visibility mode.
         /// </summary>
+        /// <param name="mode">The Bluetooth visibility mode to set.</param>
+        /// <param name="duration">The duration until the visibility mode is changed NonDiscoverable(in seconds).</param>
         /// <exception cref="InvalidOperationException">Thrown when the Bluetooth is not enabled.</exception>
         /// <since_tizen> 6 </since_tizen>
         public static void SetVisibility(VisibilityMode mode, int duration)

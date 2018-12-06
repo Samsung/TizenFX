@@ -152,7 +152,7 @@ namespace Tizen.Network.Bluetooth
             {
                 if (_agScoStateChanged != null)
                 {
-                    _agScoStateChanged(null, new AgScoStateChangedEventArgs(result, opened));
+                    _agScoStateChanged(null, new AgScoStateChangedEventArgs(opened));
                 }
             };
 
