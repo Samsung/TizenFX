@@ -15,6 +15,7 @@
  *
  */
 using System;
+using System.Globalization;
 using Tizen.NUI.Binding;
 
 namespace Tizen.NUI
@@ -39,7 +40,7 @@ namespace Tizen.NUI
                 string[] parts = value.Split(',');
                 if (parts.Length == 2)
                 {
-                    return new Position2D(int.Parse(parts[0].Trim()), int.Parse(parts[1].Trim()));
+                    return new Position2D(int.Parse(parts[0].Trim(), CultureInfo.InvariantCulture), int.Parse(parts[1].Trim(), CultureInfo.InvariantCulture));
                 }
             }
 
