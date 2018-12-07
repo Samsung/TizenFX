@@ -102,16 +102,6 @@ AutoReqProv: no
 %description tv
 Tizen .NET assemblies for TV profile
 
-%package ivi
-Summary:   Tizen .NET assemblies for IVI profile
-Group:     Development/Libraries
-Requires:  %{name} = %{version}-%{release}
-Requires:  csapi-tizenfx-dummy = %{version}-%{release}
-AutoReqProv: no
-
-%description ivi
-Tizen .NET assemblies for IVI profile
-
 %package wearable
 Summary:   Tizen .NET assemblies for Wearable profile
 Group:     Development/Libraries
@@ -133,14 +123,13 @@ cp %{SOURCE1} .
 
 GetFileList() {
   PROFILE=$1
-  cat pkg/PlatformFileList.txt | grep -E "#$PROFILE[[:space:]]|#$PROFILE$" | cut -d# -f1 | sed "s#^#%{DOTNET_ASSEMBLY_PATH}/#"
+  cat packaging/PlatformFileList.txt | grep -E "#$PROFILE[[:space:]]|#$PROFILE$" | cut -d# -f1 | sed "s#^#%{DOTNET_ASSEMBLY_PATH}/#"
 }
 
 GetFileList common > common.filelist
 GetFileList mobile > mobile.filelist
 GetFileList mobile-emul > mobile-emul.filelist
 GetFileList tv > tv.filelist
-GetFileList ivi > ivi.filelist
 GetFileList wearable > wearable.filelist
 
 rm -fr %{_tizenfx_bin_path}
@@ -176,6 +165,7 @@ install -p -m 644 %{_tizenfx_bin_path}/bin/dummy/*.dll %{buildroot}%{DOTNET_ASSE
 
 # Install NuGet Packages
 install -p -m 644 %{_tizenfx_bin_path}/*.nupkg %{buildroot}%{DOTNET_NUGET_SOURCE}
+install -p -m 644 packaging/*.nupkg %{buildroot}%{DOTNET_NUGET_SOURCE}
 
 %post
 /usr/bin/vconftool set -t int db/dotnet/tizen_api_version %{TIZEN_NET_API_VERSION} -f
@@ -208,9 +198,6 @@ install -p -m 644 %{_tizenfx_bin_path}/*.nupkg %{buildroot}%{DOTNET_NUGET_SOURCE
 %manifest %{name}.manifest
 
 %files tv -f tv.filelist
-%manifest %{name}.manifest
-
-%files ivi -f ivi.filelist
 %manifest %{name}.manifest
 
 %files wearable -f wearable.filelist

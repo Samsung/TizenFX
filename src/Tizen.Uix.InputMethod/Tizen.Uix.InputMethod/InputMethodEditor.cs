@@ -1042,6 +1042,8 @@ namespace Tizen.Uix.InputMethod
             /// <summary>
             /// Compares whether the ContextIds are equal.
             /// </summary>
+            /// <param name="other">The ContextIds to test for equality.</param>
+            /// <returns>true if the ContextIds is the same; otherwise, false.</returns>
             /// <since_tizen> 4 </since_tizen>
             public bool Equals(ContextId other)
             {
@@ -2136,6 +2138,76 @@ namespace Tizen.Uix.InputMethod
             if (error != ErrorCode.None)
             {
                 Log.Error(LogTag, "SetFloatingDragEnd Failed with error " + error);
+                throw InputMethodExceptionFactory.CreateException(error);
+            }
+        }
+
+        /// <summary>
+        /// Notifies the changed language of the input panel to the the associated text input UI control.
+        /// </summary>
+        /// <privilege>
+        /// http://tizen.org/privilege/ime
+        /// </privilege>
+        /// <remarks>
+        /// LanguageRequestedCallback is raised after this API is called when the App requests changed language information.
+        /// </remarks>
+        /// <exception cref="InvalidOperationException">
+        /// This can occur due to the following reasons:
+        /// 1) The application does not have the privilege to call this function.
+        /// 2) The IME main loop has not yet started.
+        /// </exception>
+        /// <since_tizen> 6 </since_tizen>
+        public static void SendLanguageUpdated()
+        {
+            ErrorCode error = ImeUpdateInputPanelEvent(ImeEventType.Language, 0);
+            if (error != ErrorCode.None)
+            {
+                Log.Error(LogTag, "SendLanguageUpdated Failed with error " + error);
+                throw InputMethodExceptionFactory.CreateException(error);
+            }
+        }
+
+        /// <summary>
+        /// Sends the changed shift mode of the input panel to the the associated text input UI control.
+        /// </summary>
+        /// <privilege>
+        /// http://tizen.org/privilege/ime
+        /// </privilege>
+        /// <param name="enable"><c>true</c> if shift button is clicked, otherwise <c>false</c>.</param>
+        /// <exception cref="InvalidOperationException">
+        /// This can occur due to the following reasons:
+        /// 1) The application does not have the privilege to call this function.
+        /// 2) The IME main loop has not yet started.
+        /// </exception>
+        /// <since_tizen> 6 </since_tizen>
+        public static void SendShiftModeUpdated(bool enable)
+        {
+            ErrorCode error = ImeUpdateInputPanelEvent(ImeEventType.ShiftMode, enable ? (uint)ImeShiftMode.On : (uint)ImeShiftMode.Off);
+            if (error != ErrorCode.None)
+            {
+                Log.Error(LogTag, "SendInputPanelEvent Failed with error " + error);
+                throw InputMethodExceptionFactory.CreateException(error);
+            }
+        }
+
+        /// <summary>
+        /// Notifies the changed geometry of input panel window to the associated text input UI control.
+        /// </summary>
+        /// <privilege>
+        /// http://tizen.org/privilege/ime
+        /// </privilege>
+        /// <exception cref="InvalidOperationException">
+        /// This can occur due to the following reasons:
+        /// 1) The application does not have the privilege to call this function.
+        /// 2) The IME main loop has not yet started.
+        /// </exception>
+        /// <since_tizen> 6 </since_tizen>
+        public static void SendCustomGeometryUpdated()
+        {
+            ErrorCode error = ImeUpdateInputPanelEvent(ImeEventType.Geometry, 0);
+            if (error != ErrorCode.None)
+            {
+                Log.Error(LogTag, "SendCustomGeometryUpdated Failed with error " + error);
                 throw InputMethodExceptionFactory.CreateException(error);
             }
         }
