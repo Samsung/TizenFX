@@ -1257,6 +1257,7 @@ namespace Tizen.NUI.BaseComponents
         /// Get the InputMethodContext instance.
         /// </summary>
         /// <returns>The InputMethodContext instance.</returns>
+        /// <since_tizen> 5 </since_tizen>
         public InputMethodContext GetInputMethodContext()
         {
             if (inputMethodCotext == null)
