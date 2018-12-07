@@ -31,14 +31,50 @@ namespace Tizen.NUI
     {
         private global::System.Runtime.InteropServices.HandleRef swigCPtr;
 
-        internal ScrollViewPagePathEffect(global::System.IntPtr cPtr, bool cMemoryOwn) : base(NDalicPINVOKE.ScrollViewPagePathEffect_SWIGUpcast(cPtr), cMemoryOwn)
+        /// <summary>
+        /// Creates an initialized ScrollViewPagePathEffect.
+        /// </summary>
+        /// <param name="path">The path that will be used by the scroll effect.</param>
+        /// <param name="forward">Vector in page object space which will be aligned with the tangent of the path.</param>
+        /// <param name="inputPropertyIndex">Index of a property of the scroll-view which will be used as the input for the path.</param>
+        /// <param name="pageSize">Size of a page in the scrollview.</param>
+        /// <param name="pageCount">Total number of pages in the scrollview.</param>
+        /// <returns>A handle to a newly allocated Dali resource.</returns>
+        /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public ScrollViewPagePathEffect(Path path, Vector3 forward, int inputPropertyIndex, Vector3 pageSize, uint pageCount) : this(NDalicPINVOKE.ScrollViewPagePathEffect_New(Path.getCPtr(path), Vector3.getCPtr(forward), inputPropertyIndex, Vector3.getCPtr(pageSize), pageCount), true)
         {
-            swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        /// <summary>
+        /// Manually apply effect to a page in the scroll-view.
+        /// </summary>
+        /// <param name="page">The page to be affected by this effect.</param>
+        /// <param name="pageOrder">The order of the page in the scroll view.</param>
+        /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void ApplyToPage(View page, uint pageOrder)
+        {
+            NDalicPINVOKE.ScrollViewPagePathEffect_ApplyToPage(swigCPtr, View.getCPtr(page), pageOrder);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        internal static ScrollViewPagePathEffect DownCast(BaseHandle handle)
+        {
+            ScrollViewPagePathEffect ret = Registry.GetManagedBaseHandleFromNativePtr(handle) as ScrollViewPagePathEffect;
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
         }
 
         internal static global::System.Runtime.InteropServices.HandleRef getCPtr(ScrollViewPagePathEffect obj)
         {
             return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
+        }
+
+        internal ScrollViewPagePathEffect(global::System.IntPtr cPtr, bool cMemoryOwn) : base(NDalicPINVOKE.ScrollViewPagePathEffect_SWIGUpcast(cPtr), cMemoryOwn)
+        {
+            swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
         }
 
         /// <summary>
@@ -75,43 +111,5 @@ namespace Tizen.NUI
 
             base.Dispose(type);
         }
-
-        /// <summary>
-        /// Creates an initialized ScrollViewPagePathEffect.
-        /// </summary>
-        /// <param name="path">The path that will be used by the scroll effect.</param>
-        /// <param name="forward">Vector in page object space which will be aligned with the tangent of the path.</param>
-        /// <param name="inputPropertyIndex">Index of a property of the scroll-view which will be used as the input for the path.</param>
-        /// <param name="pageSize">Size of a page in the scrollview.</param>
-        /// <param name="pageCount">Total number of pages in the scrollview.</param>
-        /// <returns>A handle to a newly allocated Dali resource.</returns>
-        /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public ScrollViewPagePathEffect(Path path, Vector3 forward, int inputPropertyIndex, Vector3 pageSize, uint pageCount) : this(NDalicPINVOKE.ScrollViewPagePathEffect_New(Path.getCPtr(path), Vector3.getCPtr(forward), inputPropertyIndex, Vector3.getCPtr(pageSize), pageCount), true)
-        {
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-        }
-
-        internal static ScrollViewPagePathEffect DownCast(BaseHandle handle)
-        {
-            ScrollViewPagePathEffect ret =  Registry.GetManagedBaseHandleFromNativePtr(handle) as ScrollViewPagePathEffect;
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
-        }
-
-        /// <summary>
-        /// Manually apply effect to a page in the scroll-view.
-        /// </summary>
-        /// <param name="page">The page to be affected by this effect.</param>
-        /// <param name="pageOrder">The order of the page in the scroll view.</param>
-        /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public void ApplyToPage(View page, uint pageOrder)
-        {
-            NDalicPINVOKE.ScrollViewPagePathEffect_ApplyToPage(swigCPtr, View.getCPtr(page), pageOrder);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-        }
-
     }
-
 }

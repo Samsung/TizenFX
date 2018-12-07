@@ -30,82 +30,49 @@ namespace Tizen.NUI
     /// <since_tizen> 3 </since_tizen>
     public class FocusManager : BaseHandle
     {
+        private static readonly FocusManager instance = FocusManager.Get();
         private global::System.Runtime.InteropServices.HandleRef swigCPtr;
         private CustomAlgorithmInterfaceWrapper _customAlgorithmInterfaceWrapper;
+
+        private EventHandlerWithReturnType<object, PreFocusChangeEventArgs, View> _preFocusChangeEventHandler;
+        private PreFocusChangeEventCallback _preFocusChangeCallback;
+
+        private EventHandler<FocusChangedEventArgs> _focusChangedEventHandler;
+        private FocusChangedEventCallback _focusChangedEventCallback;
+
+        private EventHandler<FocusGroupChangedEventArgs> _focusGroupChangedEventHandler;
+        private FocusGroupChangedEventCallback _focusGroupChangedEventCallback;
+
+        private EventHandler<FocusedViewActivatedEventArgs> _focusedViewEnterKeyEventHandler;
+        private FocusedViewEnterKeyEventCallback _focusedViewEnterKeyEventCallback;
+
+        private EventHandler<FocusedViewActivatedEventArgs> _focusedViewEnterKeyEventHandler2;
+        private FocusedViewEnterKeyEventCallback2 _focusedViewEnterKeyEventCallback2;
 
         internal FocusManager(global::System.IntPtr cPtr, bool cMemoryOwn) : base(NDalicManualPINVOKE.FocusManager_SWIGUpcast(cPtr), cMemoryOwn)
         {
             swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
         }
 
-        internal static global::System.Runtime.InteropServices.HandleRef getCPtr(FocusManager obj)
+        internal FocusManager() : this(NDalicManualPINVOKE.new_FocusManager(), true)
         {
-            return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
-        ///<summary>
-        /// Event arguments that passed via the PreFocusChange signal.
-        /// </summary>
-        /// <since_tizen> 3 </since_tizen>
-        public class PreFocusChangeEventArgs : EventArgs
-        {
-            private View _current;
-            private View _proposed;
-            private View.FocusDirection _direction;
-
-            /// <summary>
-            /// The current focus view.
-            /// </summary>
-            /// <since_tizen> 3 </since_tizen>
-            public View CurrentView
-            {
-                get
-                {
-                    return _current;
-                }
-                set
-                {
-                    _current = value;
-                }
-            }
-
-            /// <summary>
-            /// The  proposed view.
-            /// </summary>
-            /// <since_tizen> 3 </since_tizen>
-            public View ProposedView
-            {
-                get
-                {
-                    return _proposed;
-                }
-                set
-                {
-                    _proposed = value;
-                }
-            }
-
-            /// <summary>
-            /// The focus move direction.
-            /// </summary>
-            /// <since_tizen> 3 </since_tizen>
-            public View.FocusDirection Direction
-            {
-                get
-                {
-                    return _direction;
-                }
-                set
-                {
-                    _direction = value;
-                }
-            }
-        }
-
-        private EventHandlerWithReturnType<object, PreFocusChangeEventArgs, View> _preFocusChangeEventHandler;
         [UnmanagedFunctionPointer(CallingConvention.StdCall)]
         internal delegate IntPtr PreFocusChangeEventCallback(IntPtr current, IntPtr proposed, View.FocusDirection direction);
-        private PreFocusChangeEventCallback _preFocusChangeCallback;
+
+        [UnmanagedFunctionPointer(CallingConvention.StdCall)]
+        internal delegate void FocusChangedEventCallback(IntPtr current, IntPtr next);
+
+        [UnmanagedFunctionPointer(CallingConvention.StdCall)]
+        private delegate void FocusGroupChangedEventCallback(IntPtr current, bool forwardDirection);
+
+        [UnmanagedFunctionPointer(CallingConvention.StdCall)]
+        private delegate void FocusedViewEnterKeyEventCallback(IntPtr view);
+
+        [UnmanagedFunctionPointer(CallingConvention.StdCall)]
+        private delegate void FocusedViewEnterKeyEventCallback2(IntPtr view);
 
         /// <summary>
         /// PreFocusChange will be triggered before the focus is going to be changed.<br />
@@ -136,83 +103,6 @@ namespace Tizen.NUI
             }
         }
 
-        private IntPtr OnPreFocusChange(IntPtr current, IntPtr proposed, View.FocusDirection direction)
-        {
-            View view = null;
-            PreFocusChangeEventArgs e = new PreFocusChangeEventArgs();
-
-            if (current != global::System.IntPtr.Zero)
-            {
-                e.CurrentView = Registry.GetManagedBaseHandleFromNativePtr(current) as View;
-            }
-            if (proposed != global::System.IntPtr.Zero)
-            {
-                e.ProposedView = Registry.GetManagedBaseHandleFromNativePtr(proposed) as View;
-            }
-            e.Direction = direction;
-
-            if (_preFocusChangeEventHandler != null)
-            {
-                view = _preFocusChangeEventHandler(this, e);
-            }
-
-            if (view)
-            {
-                return view.GetPtrfromView();
-            }
-            else
-            {
-                if (e.ProposedView) return proposed;
-                else return current;
-            }
-        }
-
-        ///<summary>
-        /// Event arguments that passed via the FocusChanged signal.
-        /// </summary>
-        /// <since_tizen> 3 </since_tizen>
-        public class FocusChangedEventArgs : EventArgs
-        {
-            private View _current;
-            private View _next;
-
-            /// <summary>
-            /// The current focus view.
-            /// </summary>
-            /// <since_tizen> 3 </since_tizen>
-            public View CurrentView
-            {
-                get
-                {
-                    return _current;
-                }
-                set
-                {
-                    _current = value;
-                }
-            }
-            /// <summary>
-            /// The next focus view.
-            /// </summary>
-            /// <since_tizen> 3 </since_tizen>
-            public View NextView
-            {
-                get
-                {
-                    return _next;
-                }
-                set
-                {
-                    _next = value;
-                }
-            }
-        }
-
-        private EventHandler<FocusChangedEventArgs> _focusChangedEventHandler;
-        [UnmanagedFunctionPointer(CallingConvention.StdCall)]
-        internal delegate void FocusChangedEventCallback(IntPtr current, IntPtr next);
-        private FocusChangedEventCallback _focusChangedEventCallback;
-
         /// <summary>
         /// The FocusGroupChanged will be triggered after the current focused view has been changed.
         /// </summary>
@@ -238,66 +128,6 @@ namespace Tizen.NUI
                 }
             }
         }
-
-        private void OnFocusChanged(IntPtr current, IntPtr next)
-        {
-            FocusChangedEventArgs e = new FocusChangedEventArgs();
-
-            e.CurrentView = Registry.GetManagedBaseHandleFromNativePtr(current) as View;
-            e.NextView = Registry.GetManagedBaseHandleFromNativePtr(next) as View;
-
-            if (_focusChangedEventHandler != null)
-            {
-                _focusChangedEventHandler(this, e);
-            }
-        }
-
-        ///<summary>
-        /// Event arguments that passed via the FocusGroupChanged signal.
-        /// </summary>
-        /// <since_tizen> 3 </since_tizen>
-        public class FocusGroupChangedEventArgs : EventArgs
-        {
-            private View _current;
-            private bool _forwardDirection;
-
-            /// <summary>
-            /// The current focus view.
-            /// </summary>
-            /// <since_tizen> 3 </since_tizen>
-            public View CurrentView
-            {
-                get
-                {
-                    return _current;
-                }
-                set
-                {
-                    _current = value;
-                }
-            }
-
-            /// <summary>
-            /// The forward direction.
-            /// </summary>
-            /// <since_tizen> 3 </since_tizen>
-            public bool ForwardDirection
-            {
-                get
-                {
-                    return _forwardDirection;
-                }
-                set
-                {
-                    _forwardDirection = value;
-                }
-            }
-        }
-
-        private EventHandler<FocusGroupChangedEventArgs> _focusGroupChangedEventHandler;
-        [UnmanagedFunctionPointer(CallingConvention.StdCall)]
-        private delegate void FocusGroupChangedEventCallback(IntPtr current, bool forwardDirection);
-        private FocusGroupChangedEventCallback _focusGroupChangedEventCallback;
 
         /// <summary>
         /// The FocusGroupChanged will be triggered when the focus group has been changed.<br />
@@ -327,49 +157,6 @@ namespace Tizen.NUI
             }
         }
 
-        private void OnFocusGroupChanged(IntPtr current, bool forwardDirection)
-        {
-            FocusGroupChangedEventArgs e = new FocusGroupChangedEventArgs();
-
-            e.CurrentView = Registry.GetManagedBaseHandleFromNativePtr(current) as View;
-            e.ForwardDirection = forwardDirection;
-
-            if (_focusGroupChangedEventHandler != null)
-            {
-                _focusGroupChangedEventHandler(this, e);
-            }
-        }
-
-        ///<summary>
-        /// Event arguments that passed via the FocusedViewEnterKey signal.
-        /// </summary>
-        /// <since_tizen> 3 </since_tizen>
-        public class FocusedViewActivatedEventArgs : EventArgs
-        {
-            private View _view;
-
-            /// <summary>
-            /// View.
-            /// </summary>
-            /// <since_tizen> 3 </since_tizen>
-            public View View
-            {
-                get
-                {
-                    return _view;
-                }
-                set
-                {
-                    _view = value;
-                }
-            }
-        }
-
-        private EventHandler<FocusedViewActivatedEventArgs> _focusedViewEnterKeyEventHandler;
-        [UnmanagedFunctionPointer(CallingConvention.StdCall)]
-        private delegate void FocusedViewEnterKeyEventCallback(IntPtr view);
-        private FocusedViewEnterKeyEventCallback _focusedViewEnterKeyEventCallback;
-
         /// <summary>
         /// The FocusedViewActivated will be triggered when the current focused view has the enter key pressed on it.
         /// </summary>
@@ -396,29 +183,104 @@ namespace Tizen.NUI
             }
         }
 
-        private void OnFocusedViewEnterKey(IntPtr view)
+        /// <summary>
+        /// [Obsolete("Please do not use! this will be deprecated")]
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
+        /// Please do not use! this will be deprecated!
+        /// Instead please use FocusedViewActivated.
+        [Obsolete("Please do not use! This will be deprecated! Please use FocusManager.FocusedViewActivated instead! " +
+            "Like: " +
+            "FocusManager.Instance.FocusedViewActivated = OnFocusedViewActivated; " +
+            "private void OnFocusedViewActivated(object source, FocusManager.FocusedViewActivatedEventArgs args) {...}")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public event EventHandler<FocusedViewActivatedEventArgs> FocusedViewEnterKeyPressed
         {
-            FocusedViewActivatedEventArgs e = new FocusedViewActivatedEventArgs();
-
-            e.View = Registry.GetManagedBaseHandleFromNativePtr(view) as View;
-
-            if (_focusedViewEnterKeyEventHandler != null)
+            add
             {
-                _focusedViewEnterKeyEventHandler(this, e);
+                if (_focusedViewEnterKeyEventCallback2 == null)
+                {
+                    _focusedViewEnterKeyEventCallback2 = OnFocusedViewEnterKey2;
+                    FocusedViewEnterKeySignal().Connect(_focusedViewEnterKeyEventCallback2);
+                }
+                _focusedViewEnterKeyEventHandler2 += value;
+            }
+            remove
+            {
+                _focusedViewEnterKeyEventHandler2 -= value;
+
+                if (_focusedViewEnterKeyEventCallback2 != null && FocusedViewEnterKeySignal().Empty() == false)
+                {
+                    FocusedViewEnterKeySignal().Disconnect(_focusedViewEnterKeyEventCallback2);
+                }
             }
         }
 
-
-        internal FocusManager() : this(NDalicManualPINVOKE.new_FocusManager(), true)
+        /// <summary>
+        /// ICustomFocusAlgorithm is used to provide the custom keyboard focus algorithm for retrieving the next focusable view.<br />
+        /// The application can implement the interface and override the keyboard focus behavior.<br />
+        /// If the focus is changing within a layout container, then the layout container is queried first to provide the next focusable view.<br />
+        /// If this does not provide a valid view, then the Keyboard FocusManager will check focusable properties to determine the next focusable actor.<br />
+        /// If focusable properties are not set, then the keyboard FocusManager calls the GetNextFocusableView() method of this interface.<br />
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
+        public interface ICustomFocusAlgorithm
         {
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            /// <summary>
+            /// Get the next focus actor.
+            /// </summary>
+            /// <param name="current">The current focus view.</param>
+            /// <param name="proposed">The proposed focus view</param>
+            /// <param name="direction">The focus move direction</param>
+            /// <returns>The next focus actor.</returns>
+            /// <since_tizen> 3 </since_tizen>
+            View GetNextFocusableView(View current, View proposed, View.FocusDirection direction);
         }
 
-        internal static FocusManager Get()
+        /// <summary>
+        /// Gets or sets the status of whether the focus movement should be looped within the same focus group.<br />
+        /// The focus movement is not looped by default.<br />
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
+        public bool FocusGroupLoop
         {
-            FocusManager ret = new FocusManager(NDalicManualPINVOKE.FocusManager_Get(), true);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
+            set
+            {
+                SetFocusGroupLoop(value);
+            }
+            get
+            {
+                return GetFocusGroupLoop();
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the focus indicator view.<br />
+        /// This will replace the default focus indicator view in the FocusManager and will be added to the focused view as a highlight.<br />
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
+        public View FocusIndicator
+        {
+            set
+            {
+                SetFocusIndicatorView(value);
+            }
+            get
+            {
+                return GetFocusIndicatorView();
+            }
+        }
+
+        /// <summary>
+        /// Gets the singleton of the FocusManager object.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
+        public static FocusManager Instance
+        {
+            get
+            {
+                return instance;
+            }
         }
 
         /// <summary>
@@ -493,36 +355,6 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Gets or sets the status of whether the focus movement should be looped within the same focus group.<br />
-        /// The focus movement is not looped by default.<br />
-        /// </summary>
-        /// <since_tizen> 3 </since_tizen>
-        public bool FocusGroupLoop
-        {
-            set
-            {
-                SetFocusGroupLoop(value);
-            }
-            get
-            {
-                return GetFocusGroupLoop();
-            }
-        }
-
-        internal void SetFocusGroupLoop(bool enabled)
-        {
-            NDalicManualPINVOKE.FocusManager_SetFocusGroupLoop(swigCPtr, enabled);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-        }
-
-        internal bool GetFocusGroupLoop()
-        {
-            bool ret = NDalicManualPINVOKE.FocusManager_GetFocusGroupLoop(swigCPtr);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
-        }
-
-        /// <summary>
         /// Sets whether the view is a focus group that can limit the scope of the focus movement to its child views in the focus chain.<br />
         /// Layout controls set themselves as focus groups by default.<br />
         /// </summary>
@@ -567,20 +399,42 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Gets or sets the focus indicator view.<br />
-        /// This will replace the default focus indicator view in the FocusManager and will be added to the focused view as a highlight.<br />
+        /// Provides the implementation of a custom focus algorithm interface to allow the application to define the focus logic.<br />
         /// </summary>
+        /// <param name="arg0">The user's implementation of ICustomFocusAlgorithm.</param>
         /// <since_tizen> 3 </since_tizen>
-        public View FocusIndicator
+        public void SetCustomAlgorithm(ICustomFocusAlgorithm arg0)
         {
-            set
-            {
-                SetFocusIndicatorView(value);
-            }
-            get
-            {
-                return GetFocusIndicatorView();
-            }
+            _customAlgorithmInterfaceWrapper = new CustomAlgorithmInterfaceWrapper();
+            _customAlgorithmInterfaceWrapper.SetFocusAlgorithm(arg0);
+
+            NDalicPINVOKE.SetCustomAlgorithm(swigCPtr, CustomAlgorithmInterface.getCPtr(_customAlgorithmInterfaceWrapper));
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        internal static global::System.Runtime.InteropServices.HandleRef getCPtr(FocusManager obj)
+        {
+            return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
+        }
+
+        internal static FocusManager Get()
+        {
+            FocusManager ret = new FocusManager(NDalicManualPINVOKE.FocusManager_Get(), true);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        internal void SetFocusGroupLoop(bool enabled)
+        {
+            NDalicManualPINVOKE.FocusManager_SetFocusGroupLoop(swigCPtr, enabled);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        internal bool GetFocusGroupLoop()
+        {
+            bool ret = NDalicManualPINVOKE.FocusManager_GetFocusGroupLoop(swigCPtr);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
         }
 
         internal void SetFocusIndicatorView(View indicator)
@@ -599,20 +453,6 @@ namespace Tizen.NUI
             CPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
 
             return ret;
-        }
-
-        /// <summary>
-        /// Provides the implementation of a custom focus algorithm interface to allow the application to define the focus logic.<br />
-        /// </summary>
-        /// <param name="arg0">The user's implementation of ICustomFocusAlgorithm.</param>
-        /// <since_tizen> 3 </since_tizen>
-        public void SetCustomAlgorithm(ICustomFocusAlgorithm arg0)
-        {
-            _customAlgorithmInterfaceWrapper = new CustomAlgorithmInterfaceWrapper();
-            _customAlgorithmInterfaceWrapper.SetFocusAlgorithm(arg0);
-
-            NDalicPINVOKE.SetCustomAlgorithm(swigCPtr, CustomAlgorithmInterface.getCPtr(_customAlgorithmInterfaceWrapper));
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         internal PreFocusChangeSignal PreFocusChangeSignal()
@@ -643,60 +483,260 @@ namespace Tizen.NUI
             return ret;
         }
 
-        private static readonly FocusManager instance = FocusManager.Get();
-
-        /// <summary>
-        /// Gets the singleton of the FocusManager object.
-        /// </summary>
-        /// <since_tizen> 3 </since_tizen>
-        public static FocusManager Instance
+        private IntPtr OnPreFocusChange(IntPtr current, IntPtr proposed, View.FocusDirection direction)
         {
-            get
+            View view = null;
+            PreFocusChangeEventArgs e = new PreFocusChangeEventArgs();
+
+            if (current != global::System.IntPtr.Zero)
             {
-                return instance;
+                e.CurrentView = Registry.GetManagedBaseHandleFromNativePtr(current) as View;
+            }
+            if (proposed != global::System.IntPtr.Zero)
+            {
+                e.ProposedView = Registry.GetManagedBaseHandleFromNativePtr(proposed) as View;
+            }
+            e.Direction = direction;
+
+            if (_preFocusChangeEventHandler != null)
+            {
+                view = _preFocusChangeEventHandler(this, e);
+            }
+
+            if (view)
+            {
+                return view.GetPtrfromView();
+            }
+            else
+            {
+                if (e.ProposedView) return proposed;
+                else return current;
+            }
+        }
+
+        private void OnFocusChanged(IntPtr current, IntPtr next)
+        {
+            FocusChangedEventArgs e = new FocusChangedEventArgs();
+
+            e.CurrentView = Registry.GetManagedBaseHandleFromNativePtr(current) as View;
+            e.NextView = Registry.GetManagedBaseHandleFromNativePtr(next) as View;
+
+            if (_focusChangedEventHandler != null)
+            {
+                _focusChangedEventHandler(this, e);
+            }
+        }
+
+        private void OnFocusGroupChanged(IntPtr current, bool forwardDirection)
+        {
+            FocusGroupChangedEventArgs e = new FocusGroupChangedEventArgs();
+
+            e.CurrentView = Registry.GetManagedBaseHandleFromNativePtr(current) as View;
+            e.ForwardDirection = forwardDirection;
+
+            if (_focusGroupChangedEventHandler != null)
+            {
+                _focusGroupChangedEventHandler(this, e);
+            }
+        }
+
+        private void OnFocusedViewEnterKey(IntPtr view)
+        {
+            FocusedViewActivatedEventArgs e = new FocusedViewActivatedEventArgs();
+
+            e.View = Registry.GetManagedBaseHandleFromNativePtr(view) as View;
+
+            if (_focusedViewEnterKeyEventHandler != null)
+            {
+                _focusedViewEnterKeyEventHandler(this, e);
             }
         }
 
         /// <summary>
-        /// ICustomFocusAlgorithm is used to provide the custom keyboard focus algorithm for retrieving the next focusable view.<br />
-        /// The application can implement the interface and override the keyboard focus behavior.<br />
-        /// If the focus is changing within a layout container, then the layout container is queried first to provide the next focusable view.<br />
-        /// If this does not provide a valid view, then the Keyboard FocusManager will check focusable properties to determine the next focusable actor.<br />
-        /// If focusable properties are not set, then the keyboard FocusManager calls the GetNextFocusableView() method of this interface.<br />
+        /// Please do not use! this will be deprecated!
+        /// </summary>
+        /// Please do not use! this will be deprecated!
+        /// Instead please use OnFocusedViewEnterKey.
+        [Obsolete("Please do not use! This will be deprecated! Please use FocusManager.OnFocusedViewEnterKey instead!")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        private void OnFocusedViewEnterKey2(IntPtr view)
+        {
+            FocusedViewActivatedEventArgs e = new FocusedViewActivatedEventArgs();
+
+            e.View = Registry.GetManagedBaseHandleFromNativePtr(view) as View;
+
+            if (_focusedViewEnterKeyEventHandler != null)
+            {
+                _focusedViewEnterKeyEventHandler(this, e);
+            }
+        }
+
+        ///<summary>
+        /// Event arguments that passed via the PreFocusChange signal.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        public interface ICustomFocusAlgorithm
+        public class PreFocusChangeEventArgs : EventArgs
         {
+            private View _current;
+            private View _proposed;
+            private View.FocusDirection _direction;
+
             /// <summary>
-            /// Get the next focus actor.
+            /// The current focus view.
             /// </summary>
-            /// <param name="current">The current focus view.</param>
-            /// <param name="proposed">The proposed focus view</param>
-            /// <param name="direction">The focus move direction</param>
-            /// <returns>The next focus actor.</returns>
             /// <since_tizen> 3 </since_tizen>
-            View GetNextFocusableView(View current, View proposed, View.FocusDirection direction);
+            public View CurrentView
+            {
+                get
+                {
+                    return _current;
+                }
+                set
+                {
+                    _current = value;
+                }
+            }
+
+            /// <summary>
+            /// The  proposed view.
+            /// </summary>
+            /// <since_tizen> 3 </since_tizen>
+            public View ProposedView
+            {
+                get
+                {
+                    return _proposed;
+                }
+                set
+                {
+                    _proposed = value;
+                }
+            }
+
+            /// <summary>
+            /// The focus move direction.
+            /// </summary>
+            /// <since_tizen> 3 </since_tizen>
+            public View.FocusDirection Direction
+            {
+                get
+                {
+                    return _direction;
+                }
+                set
+                {
+                    _direction = value;
+                }
+            }
         }
 
-        private class CustomAlgorithmInterfaceWrapper : CustomAlgorithmInterface
+        ///<summary>
+        /// Event arguments that passed via the FocusChanged signal.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
+        public class FocusChangedEventArgs : EventArgs
         {
-            private FocusManager.ICustomFocusAlgorithm _customFocusAlgorithm;
+            private View _current;
+            private View _next;
 
-            public CustomAlgorithmInterfaceWrapper()
+            /// <summary>
+            /// The current focus view.
+            /// </summary>
+            /// <since_tizen> 3 </since_tizen>
+            public View CurrentView
             {
+                get
+                {
+                    return _current;
+                }
+                set
+                {
+                    _current = value;
+                }
             }
-
-            public void SetFocusAlgorithm(FocusManager.ICustomFocusAlgorithm customFocusAlgorithm)
+            /// <summary>
+            /// The next focus view.
+            /// </summary>
+            /// <since_tizen> 3 </since_tizen>
+            public View NextView
             {
-                _customFocusAlgorithm = customFocusAlgorithm;
-            }
-
-            public override View GetNextFocusableView(View current, View proposed, View.FocusDirection direction)
-            {
-                return _customFocusAlgorithm.GetNextFocusableView(current, proposed, direction);
+                get
+                {
+                    return _next;
+                }
+                set
+                {
+                    _next = value;
+                }
             }
         }
 
+        ///<summary>
+        /// Event arguments that passed via the FocusGroupChanged signal.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
+        public class FocusGroupChangedEventArgs : EventArgs
+        {
+            private View _current;
+            private bool _forwardDirection;
+
+            /// <summary>
+            /// The current focus view.
+            /// </summary>
+            /// <since_tizen> 3 </since_tizen>
+            public View CurrentView
+            {
+                get
+                {
+                    return _current;
+                }
+                set
+                {
+                    _current = value;
+                }
+            }
+
+            /// <summary>
+            /// The forward direction.
+            /// </summary>
+            /// <since_tizen> 3 </since_tizen>
+            public bool ForwardDirection
+            {
+                get
+                {
+                    return _forwardDirection;
+                }
+                set
+                {
+                    _forwardDirection = value;
+                }
+            }
+        }
+
+        ///<summary>
+        /// Event arguments that passed via the FocusedViewEnterKey signal.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
+        public class FocusedViewActivatedEventArgs : EventArgs
+        {
+            private View _view;
+
+            /// <summary>
+            /// View.
+            /// </summary>
+            /// <since_tizen> 3 </since_tizen>
+            public View View
+            {
+                get
+                {
+                    return _view;
+                }
+                set
+                {
+                    _view = value;
+                }
+            }
+        }
 
         /// <summary>
         /// Please do not use! this will be deprecated
@@ -731,61 +771,25 @@ namespace Tizen.NUI
             }
         }
 
-        private EventHandler<FocusedViewActivatedEventArgs> _focusedViewEnterKeyEventHandler2;
-        [UnmanagedFunctionPointer(CallingConvention.StdCall)]
-        private delegate void FocusedViewEnterKeyEventCallback2(IntPtr view);
-        private FocusedViewEnterKeyEventCallback2 _focusedViewEnterKeyEventCallback2;
-
-        /// <summary>
-        /// [Obsolete("Please do not use! this will be deprecated")]
-        /// </summary>
-        /// <since_tizen> 3 </since_tizen>
-        /// Please do not use! this will be deprecated!
-        /// Instead please use FocusedViewActivated.
-        [Obsolete("Please do not use! This will be deprecated! Please use FocusManager.FocusedViewActivated instead! " +
-            "Like: " +
-            "FocusManager.Instance.FocusedViewActivated = OnFocusedViewActivated; " +
-            "private void OnFocusedViewActivated(object source, FocusManager.FocusedViewActivatedEventArgs args) {...}")]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public event EventHandler<FocusedViewActivatedEventArgs> FocusedViewEnterKeyPressed
+        private class CustomAlgorithmInterfaceWrapper : CustomAlgorithmInterface
         {
-            add
-            {
-                if (_focusedViewEnterKeyEventCallback2 == null)
-                {
-                    _focusedViewEnterKeyEventCallback2 = OnFocusedViewEnterKey2;
-                    FocusedViewEnterKeySignal().Connect(_focusedViewEnterKeyEventCallback2);
-                }
-                _focusedViewEnterKeyEventHandler2 += value;
-            }
-            remove
-            {
-                _focusedViewEnterKeyEventHandler2 -= value;
+            private FocusManager.ICustomFocusAlgorithm _customFocusAlgorithm;
 
-                if (_focusedViewEnterKeyEventCallback2 != null && FocusedViewEnterKeySignal().Empty() == false)
-                {
-                    FocusedViewEnterKeySignal().Disconnect(_focusedViewEnterKeyEventCallback2);
-                }
+            public CustomAlgorithmInterfaceWrapper()
+            {
+            }
+
+            public void SetFocusAlgorithm(FocusManager.ICustomFocusAlgorithm customFocusAlgorithm)
+            {
+                _customFocusAlgorithm = customFocusAlgorithm;
+            }
+
+            public override View GetNextFocusableView(View current, View proposed, View.FocusDirection direction)
+            {
+                return _customFocusAlgorithm.GetNextFocusableView(current, proposed, direction);
             }
         }
 
-        /// <summary>
-        /// Please do not use! this will be deprecated!
-        /// </summary>
-        /// Please do not use! this will be deprecated!
-        /// Instead please use OnFocusedViewEnterKey.
-        [Obsolete("Please do not use! This will be deprecated! Please use FocusManager.OnFocusedViewEnterKey instead!")]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        private void OnFocusedViewEnterKey2(IntPtr view)
-        {
-            FocusedViewActivatedEventArgs e = new FocusedViewActivatedEventArgs();
 
-            e.View = Registry.GetManagedBaseHandleFromNativePtr(view) as View;
-
-            if (_focusedViewEnterKeyEventHandler != null)
-            {
-                _focusedViewEnterKeyEventHandler(this, e);
-            }
-        }
     }
 }
