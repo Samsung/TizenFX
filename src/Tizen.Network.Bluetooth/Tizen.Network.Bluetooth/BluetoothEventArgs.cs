@@ -688,15 +688,11 @@ namespace Tizen.Network.Bluetooth
     /// <since_tizen> 6 </since_tizen>
     public class HidDeviceConnectionStateChangedEventArgs : EventArgs
     {
-        private int _result;
-        private bool _isConnected;
-        private string _address;
-
         internal HidDeviceConnectionStateChangedEventArgs(int result, bool isConnected, string address)
         {
-            _result = result;
-            _isConnected = isConnected;
-            _address = address;
+            Result = result;
+            IsConnected = isConnected;
+            Address = address;
         }
 
         /// <summary>
@@ -705,10 +701,8 @@ namespace Tizen.Network.Bluetooth
         /// <since_tizen> 6 </since_tizen>
         public int Result
         {
-            get
-            {
-                return _result;
-            }
+            get;
+            private set;
         }
 
         /// <summary>
@@ -717,10 +711,8 @@ namespace Tizen.Network.Bluetooth
         /// <since_tizen> 6 </since_tizen>
         public bool IsConnected
         {
-            get
-            {
-                return _isConnected;
-            }
+            get;
+            private set;
         }
 
         /// <summary>
@@ -729,10 +721,8 @@ namespace Tizen.Network.Bluetooth
         /// <since_tizen> 6 </since_tizen>
         public string Address
         {
-            get
-            {
-                return _address;
-            }
+            get;
+            private set;
         }
     }
 
@@ -742,11 +732,9 @@ namespace Tizen.Network.Bluetooth
     /// <since_tizen> 6 </since_tizen>
     public class HidDeviceDataReceivedEventArgs : EventArgs
     {
-        private BluetoothHidDeviceReceivedData _receivedData;
-
         internal HidDeviceDataReceivedEventArgs(BluetoothHidDeviceReceivedData receivedData)
         {
-            _receivedData = receivedData;
+            ReceivedData = receivedData;
         }
 
         /// <summary>
@@ -755,10 +743,8 @@ namespace Tizen.Network.Bluetooth
         /// <since_tizen> 6 </since_tizen>
         public BluetoothHidDeviceReceivedData ReceivedData
         {
-            get
-            {
-                return _receivedData;
-            }
+            get;
+            private set;
         }
     }
 

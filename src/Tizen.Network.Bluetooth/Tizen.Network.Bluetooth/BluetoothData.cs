@@ -623,11 +623,6 @@ namespace Tizen.Network.Bluetooth
     /// <since_tizen> 6 </since_tizen>
     public class BluetoothHidDeviceReceivedData
     {
-        internal string _address;
-        internal BluetoothHidHeaderType _headerType;
-        internal BluetoothHidParamType _paramType;
-        internal byte[] _data;
-
         /// <summary>
         /// The default constructor. Initializes an object of the BluetoothHidReceivedData.
         /// </summary>
@@ -642,10 +637,8 @@ namespace Tizen.Network.Bluetooth
         /// <since_tizen> 6 </since_tizen>
         public string Address
         {
-            get
-            {
-                return _address;
-            }
+            get;
+            internal set;
         }
 
         /// <summary>
@@ -654,10 +647,8 @@ namespace Tizen.Network.Bluetooth
         /// <since_tizen> 6 </since_tizen>
         public BluetoothHidHeaderType HeaderType
         {
-            get
-            {
-                return _headerType;
-            }
+            get;
+            internal set;
         }
 
         /// <summary>
@@ -666,10 +657,18 @@ namespace Tizen.Network.Bluetooth
         /// <since_tizen> 6 </since_tizen>
         public BluetoothHidParamType ParamType
         {
-            get
-            {
-                return _paramType;
-            }
+            get;
+            internal set;
+        }
+
+        /// <summary>
+        /// The received data length
+        /// </summary>
+        /// <since_tizen> 6 </since_tizen>
+        public int DataLength
+        {
+            get;
+            internal set;
         }
 
         /// <summary>
@@ -678,10 +677,8 @@ namespace Tizen.Network.Bluetooth
         /// <since_tizen> 6 </since_tizen>
         public byte[] Data
         {
-            get
-            {
-                return _data;
-            }
+            get;
+            internal set;
         }
     }
 }

@@ -379,7 +379,7 @@ internal static partial class Interop
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         internal delegate void HidDeviceConnectionStateChangedCallback(int result, bool connected, string deviceAddress, IntPtr userData);
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-        internal delegate void HidDeviceDataReceivedCallback(BluetoothHidDeviceReceivedData receivedData, IntPtr userData);
+        internal delegate void HidDeviceDataReceivedCallback(ref BluetoothHidDeviceReceivedDataStruct receivedData, IntPtr userData);
 
         [DllImport(Libraries.Bluetooth, EntryPoint = "bt_hid_host_initialize")]
         internal static extern int InitializeHid(HidConnectionStateChangedCallback hidConnectionChangedCb, IntPtr userData);

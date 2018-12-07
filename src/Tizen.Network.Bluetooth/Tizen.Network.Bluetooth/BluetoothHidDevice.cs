@@ -49,11 +49,8 @@ namespace Tizen.Network.Bluetooth
             if (BluetoothAdapter.IsBluetoothEnabled && Globals.IsInitialize)
             {
                 Interop.Bluetooth.HidDeviceConnectionStateChangedCallback _hidDeviceConnectionStateChangedCallback = (int result, bool isConnected, string address, IntPtr userData) =>
-               {
-                    if (_hidDeviceConnectionStateChanged != null)
-                    {
-                        _hidDeviceConnectionStateChanged(null, new HidDeviceConnectionStateChangedEventArgs(result, isConnected, address));
-                    }
+                {
+                    _hidDeviceConnectionStateChanged?.Invoke(null, new HidDeviceConnectionStateChangedEventArgs(result, isConnected, address));
                 };
 
                 int ret = Interop.Bluetooth.ActivateHidDevice(_hidDeviceConnectionStateChangedCallback, IntPtr.Zero);
@@ -204,12 +201,9 @@ namespace Tizen.Network.Bluetooth
 
         private void RegisterHidDataReceivedEvent()
         {
-            Interop.Bluetooth.HidDeviceDataReceivedCallback _hidDeviceDataReceivedCallback = (BluetoothHidDeviceReceivedData receivedData, IntPtr userData) =>
+            Interop.Bluetooth.HidDeviceDataReceivedCallback _hidDeviceDataReceivedCallback = (ref BluetoothHidDeviceReceivedDataStruct receivedData, IntPtr userData) =>
             {
-                if (_hidDeviceDataReceived != null)
-                {
-                    _hidDeviceDataReceived(null, new HidDeviceDataReceivedEventArgs(receivedData));
-                }
+                _hidDeviceDataReceived?.Invoke(null, new HidDeviceDataReceivedEventArgs(BluetoothUtils.ConvertStructToBluetoothHidDeviceReceivedData(receivedData)));
             };
 
             int ret = Interop.Bluetooth.SetHidDeviceDataReceivedCallback(_hidDeviceDataReceivedCallback, IntPtr.Zero);
