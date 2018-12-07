@@ -40,6 +40,7 @@ namespace Tizen.Network.WiFi
         InvalidKeyError = WiFiErrorValue.Base | 0x06,
         NoReplyError = WiFiErrorValue.Base | 0x07,
         SecurityRestrictedError = WiFiErrorValue.Base | 0x08,
+        WpsTimeoutError = WiFiErrorValue.Base | 0x10,
         PermissionDeniedError = ErrorCode.PermissionDenied,
         NotSupportedError = ErrorCode.NotSupported
     }
@@ -71,35 +72,51 @@ namespace Tizen.Network.WiFi
             ThrowException(e, (handle1 == IntPtr.Zero), (handle2 == IntPtr.Zero), message);
         }
 
+        // Used for return value of native API
         static private void ThrowException(int e, bool isHandle1Null, bool isHandle2Null, string message)
         {
             WiFiError err = (WiFiError)e;
-            if (err == WiFiError.NotSupportedError)
+            switch (err)
             {
-                throw new NotSupportedException("Unsupported feature http://tizen.org/feature/network.wifi");
+                case WiFiError.NotSupportedError:
+                    throw new NotSupportedException("Unsupported feature http://tizen.org/feature/network.wifi");
+                case WiFiError.PermissionDeniedError:
+                    throw new UnauthorizedAccessException("Permission denied " + message);
+                case WiFiError.SecurityRestrictedError:
+                    throw new UnauthorizedAccessException("Disabled by the device policy");
+                case WiFiError.OutOfMemoryError:
+                    throw new OutOfMemoryException("Out of memory");
+                case WiFiError.InvalidParameterError:
+                    if (isHandle1Null || isHandle2Null)
+                        throw new InvalidOperationException("Invalid instance (object may have been disposed or released)");
+                    throw new ArgumentException("Invalid parameter");
+                case WiFiError.InvalidKeyError:
+                    if (isHandle1Null || isHandle2Null)
+                        throw new InvalidOperationException("Invalid instance (object may have been disposed or released)");
+                    throw new InvalidKeyException(message);
+                case WiFiError.NowInProgressError:
+                    throw new NowInProgressException(message);
+                default:
+                    throw new InvalidOperationException(err.ToString());
             }
+        }
 
-            if (err == WiFiError.PermissionDeniedError)
+        // Used in callback
+        static internal Exception GetException(int e, string message)
+        {
+            WiFiError err = (WiFiError)e;
+            switch (err)
             {
-                throw new UnauthorizedAccessException("Permission denied " + message);
+                case WiFiError.NowInProgressError:
+                    return new NowInProgressException(message);
+                case WiFiError.InvalidKeyError:
+                    return new InvalidKeyException(message);
+                case WiFiError.SecurityRestrictedError:
+                    return new UnauthorizedAccessException("Disabled by the device policy");
+                case WiFiError.WpsTimeoutError:
+                    return new TimeoutException("WPS connection is timed out");
             }
-
-            if (err == WiFiError.OutOfMemoryError)
-            {
-                throw new OutOfMemoryException("Out of memory");
-            }
-
-            if (err == WiFiError.InvalidParameterError || err == WiFiError.InvalidKeyError)
-            {
-                if (isHandle1Null || isHandle2Null)
-                {
-                    throw new InvalidOperationException("Invalid instance (object may have been disposed or released)");
-                }
-
-                throw new ArgumentException("Invalid parameter");
-            }
-
-            throw new InvalidOperationException(err.ToString());
+            return new InvalidOperationException(message + " " + err.ToString());
         }
     }
 }
