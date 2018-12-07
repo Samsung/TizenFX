@@ -145,7 +145,7 @@ namespace Tizen.Sensor
         /// <summary>
         /// The axis orientation.
         /// </summary>
-        AxisOrientation,
+        AxisOrientation = 1,
 
         /// <summary>
         /// The pause policy.
@@ -187,28 +187,28 @@ namespace Tizen.Sensor
     }
 
     /// <summary>
-    /// The Sensor Option Enum definition for sensor option values.
+    /// The Sensor Option Enum definition for pause policies of sensor.
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
     public enum SensorPausePolicy
     {
         /// <summary>
-        /// Does not receive data when the LCD is off and in the power save mode.
+        /// Receives data when the LCD is off and in the power save mode.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         None,
         /// <summary>
-        /// Receives data when the LCD is off.
+        /// Does not receive data when the LCD is off.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         DisplayOff,
         /// <summary>
-        /// Receives data in the power save mode.
+        /// Does not receive data in the power save mode.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         PowerSaveMode,
         /// <summary>
-        /// Receives data when the LCD is off and in the power save mode.
+        /// Does not receive data when the LCD is off and in the power save mode.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         All
