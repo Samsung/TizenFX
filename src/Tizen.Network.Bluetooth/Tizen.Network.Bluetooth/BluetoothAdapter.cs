@@ -404,15 +404,38 @@ namespace Tizen.Network.Bluetooth
         /// <summary>
         /// Sets the visibility mode.
         /// </summary>
-        /// <param name="mode">The Bluetooth visibility mode to set.</param>
-        /// <param name="duration">The duration until the visibility mode is changed NonDiscoverable(in seconds).</param>
+        /// <param name="visible">The Bluetooth visibility mode to set. true is Discoverable, false is NonDiscoverable.</param>
         /// <exception cref="InvalidOperationException">Thrown when the Bluetooth is not enabled.</exception>
         /// <since_tizen> 6 </since_tizen>
-        public static void SetVisibility(VisibilityMode mode, int duration)
+        public static void SetVisibility(bool visible)
         {
             if (IsBluetoothEnabled)
             {
-                int ret = BluetoothAdapterImpl.Instance.SetVisibility(mode, duration);
+                int ret = BluetoothAdapterImpl.Instance.SetVisibility(visible == true ? VisibilityMode.Discoverable : VisibilityMode.NonDiscoverable, 0);
+                if (ret != (int)BluetoothError.None)
+                {
+                    Log.Error(Globals.LogTag, "Failed to SetVisibility - " + (BluetoothError)ret);
+                    BluetoothErrorFactory.ThrowBluetoothException(ret);
+                }
+            }
+            else
+            {
+                BluetoothErrorFactory.ThrowBluetoothException((int)BluetoothError.NotEnabled);
+            }
+
+        }
+
+        /// <summary>
+        /// Sets the visibility mode.
+        /// </summary>
+        /// <param name="timeout">The timeout until the visibility mode is changed NonDiscoverable(in seconds) from Discoverable.</param>
+        /// <exception cref="InvalidOperationException">Thrown when the Bluetooth is not enabled.</exception>
+        /// <since_tizen> 6 </since_tizen>
+        public static void SetVisibility(int timeout)
+        {
+            if (IsBluetoothEnabled)
+            {
+                int ret = BluetoothAdapterImpl.Instance.SetVisibility(VisibilityMode.TimeLimitedDiscoverable, timeout);
                 if (ret != (int)BluetoothError.None)
                 {
                     Log.Error(Globals.LogTag, "Failed to SetVisibility - " + (BluetoothError)ret);

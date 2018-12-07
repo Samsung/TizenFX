@@ -566,25 +566,10 @@ namespace Tizen.Network.Bluetooth
     /// <since_tizen> 6 </since_tizen>
     public class SocketConnectionRequestedEventArgs : EventArgs
     {
-        private int _socketFd;
-        private string _remoteAddress;
-
-        internal SocketConnectionRequestedEventArgs(int socketFd, string remoteAddress)
+        internal SocketConnectionRequestedEventArgs(string remoteAddress, BluetoothSocket server)
         {
-            _socketFd = socketFd;
-            _remoteAddress = remoteAddress;
-        }
-
-        /// <summary>
-        /// The socket fd.
-        /// </summary>
-        /// <since_tizen> 6 </since_tizen>
-        public int SocketFd
-        {
-            get
-            {
-                return _socketFd;
-            }
+            RemoteAddress = remoteAddress;
+            Server = (IBluetoothServerSocket)server;
         }
 
         /// <summary>
@@ -593,10 +578,18 @@ namespace Tizen.Network.Bluetooth
         /// <since_tizen> 6 </since_tizen>
         public string RemoteAddress
         {
-            get
-            {
-                return _remoteAddress;
-            }
+            get;
+            private set;
+        }
+
+        /// <summary>
+        /// The server socket instance.
+        /// </summary>
+        /// <since_tizen> 6 </since_tizen>
+        public IBluetoothServerSocket Server
+        {
+            get;
+            private set;
         }
     }
 
@@ -674,11 +667,9 @@ namespace Tizen.Network.Bluetooth
     /// <since_tizen> 6 </since_tizen>
     public class AgScoStateChangedEventArgs : EventArgs
     {
-        private bool _isOpened;
-
         internal AgScoStateChangedEventArgs(bool isOpened)
         {
-            _isOpened = isOpened;
+            IsOpened = isOpened;
         }
 
         /// <summary>
@@ -687,10 +678,8 @@ namespace Tizen.Network.Bluetooth
         /// <since_tizen> 6 </since_tizen>
         public bool IsOpened
         {
-            get
-            {
-                return _isOpened;
-            }
+            get;
+            private set;
         }
     }
 

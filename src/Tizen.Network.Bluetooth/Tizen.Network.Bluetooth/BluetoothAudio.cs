@@ -107,7 +107,7 @@ namespace Tizen.Network.Bluetooth
         }
 
         /// <summary>
-        /// Opens a SCO(Synchronous Connection Oriented link) to connected remote device, asynchronously.
+        /// Opens a AG(Audio Gateway) SCO(Synchronous Connection Oriented link) to connected remote device, asynchronously.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
         public void OpenAgSco()
@@ -128,7 +128,7 @@ namespace Tizen.Network.Bluetooth
         }
 
         /// <summary>
-        /// Closes a SCO(Synchronous Connection Oriented link) to connected remote device, asynchronously.
+        /// Closes a AG(Audio Gateway) SCO(Synchronous Connection Oriented link) to connected remote device, asynchronously.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
         public void CloseAgSco()
@@ -149,7 +149,7 @@ namespace Tizen.Network.Bluetooth
         }
 
         /// <summary>
-        /// A property to check whether an opened SCO(Synchronous Connection Oriented link) exists or not.
+        /// A property to check whether an opened AG(Audio Gateway) SCO(Synchronous Connection Oriented link) exists or not.
         /// </summary>
         /// <exception cref="NotSupportedException">Thrown when the Bluetooth is not supported.</exception>
         /// <exception cref="InvalidOperationException">Thrown when the Bluetooth is not enabled.</exception>
@@ -163,7 +163,7 @@ namespace Tizen.Network.Bluetooth
         }
 
         /// <summary>
-        /// This event is called when the SCO(Synchronous Connection Oriented link) state is changed.
+        /// This event is called when the AG(Audio Gateway) SCO(Synchronous Connection Oriented link) state is changed.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
         public event EventHandler<AgScoStateChangedEventArgs> AgScoStateChanged
@@ -179,7 +179,7 @@ namespace Tizen.Network.Bluetooth
         }
 
         /// <summary>
-        /// Notifies the state of voice recognition.
+        /// Notifies the state of AG(Audio Gateway) voice recognition.
         /// </summary>
         /// <param name="state">The state of voice recognition.</param>
         /// <since_tizen> 6 </since_tizen>

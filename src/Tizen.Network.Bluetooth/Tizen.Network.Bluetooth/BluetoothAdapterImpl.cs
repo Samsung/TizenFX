@@ -416,9 +416,9 @@ namespace Tizen.Network.Bluetooth
             return ret;
         }
 
-        internal int SetVisibility(VisibilityMode mode, int duration)
+        internal int SetVisibility(VisibilityMode mode, int timeout)
         {
-            int ret = Interop.Bluetooth.SetVisibility(mode, duration);
+            int ret = Interop.Bluetooth.SetVisibility(mode, timeout);
             if (ret != (int)BluetoothError.None)
             {
                 Log.Error(Globals.LogTag, "Failed to set visibility, Error - " + (BluetoothError)ret);

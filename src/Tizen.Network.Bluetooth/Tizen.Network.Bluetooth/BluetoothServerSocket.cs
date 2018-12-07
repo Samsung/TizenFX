@@ -27,6 +27,7 @@ namespace Tizen.Network.Bluetooth
     public class BluetoothServerSocket : IDisposable
     {
         private event EventHandler<AcceptStateChangedEventArgs> _acceptStateChanged;
+        private event EventHandler<SocketConnectionRequestedEventArgs> _connectionRequested;
         private Interop.Bluetooth.SocketConnectionStateChangedCallback _connectionStateChangedCallback;
         internal int socketFd;
         private bool disposed = false;
@@ -111,6 +112,60 @@ namespace Tizen.Network.Bluetooth
             if (ret != (int)BluetoothError.None)
             {
                 Log.Error(Globals.LogTag, "Failed to accept connection, Error - " + (BluetoothError)ret);
+                BluetoothErrorFactory.ThrowBluetoothException(ret);
+            }
+        }
+
+        /// <summary>
+        /// Registers a callback function that will be invoked when the SCO(Synchronous Connection Oriented link) state is changed
+        /// </summary>
+        /// <since_tizen> 6 </since_tizen>
+        public event EventHandler<SocketConnectionRequestedEventArgs> ConnectionRequested
+        {
+            add
+            {
+                if (_connectionRequested == null)
+                {
+                    RegisterConnectionRequestedEvent();
+                }
+                _connectionRequested += value;
+            }
+            remove
+            {
+                _connectionRequested -= value;
+                if (_connectionRequested == null)
+                {
+                    UnregisterConnectionRequestedEvent();
+                }
+            }
+        }
+
+        private void RegisterConnectionRequestedEvent()
+        {
+            Interop.Bluetooth.SocketConnectionRequestedCallback _connectionRequestedCallback = (int socket_fd, string remoteAddress, IntPtr userData) =>
+            {
+                Log.Info(Globals.LogTag, "SocketConnectionRequestedCallback is called");
+                BluetoothSocket socket = new BluetoothSocket();
+                socket.connectedSocket = socket_fd;
+                GCHandle handle2 = (GCHandle)userData;
+                _connectionRequested?.Invoke(handle2.Target as IBluetoothServerSocket, new SocketConnectionRequestedEventArgs(remoteAddress, socket));
+            };
+            GCHandle handle1 = GCHandle.Alloc(this);
+            IntPtr data = (IntPtr)handle1;
+            int ret = Interop.Bluetooth.SetSocketConnectionRequestedCallback(_connectionRequestedCallback, data);
+            if (ret != (int)BluetoothError.None)
+            {
+                Log.Error(Globals.LogTag, "Failed to set connection requested callback, Error - " + (BluetoothError)ret);
+                BluetoothErrorFactory.ThrowBluetoothException(ret);
+            }
+        }
+
+        private void UnregisterConnectionRequestedEvent()
+        {
+            int ret = Interop.Bluetooth.UnsetSocketConnectionRequestedCallback();
+            if (ret != (int)BluetoothError.None)
+            {
+                Log.Error(Globals.LogTag, "Failed to unset connection requested callback, Error - " + (BluetoothError)ret);
                 BluetoothErrorFactory.ThrowBluetoothException(ret);
             }
         }
