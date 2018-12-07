@@ -316,7 +316,7 @@ namespace Tizen.Network.WiFi
                     if (error != (int)WiFiError.None)
                     {
                         Log.Error(Globals.LogTag, "Error occurs during WiFi activating, " + (WiFiError)error);
-                        task.SetException(new InvalidOperationException("Error occurs during WiFi activating, " + (WiFiError)error));
+                        task.SetException(WiFiErrorFactory.GetException(error, "Error occurs during WiFi activating"));
                     }
                     else
                     {
@@ -361,7 +361,7 @@ namespace Tizen.Network.WiFi
                     if (error != (int)WiFiError.None)
                     {
                         Log.Error(Globals.LogTag, "Error occurs during WiFi activating, " + (WiFiError)error);
-                        task.SetException(new InvalidOperationException("Error occurs during WiFi activating, " + (WiFiError)error));
+                        task.SetException(WiFiErrorFactory.GetException(error, "Error occurs during WiFi activating"));
                     }
                     else
                     {
@@ -406,7 +406,7 @@ namespace Tizen.Network.WiFi
                     if (error != (int)WiFiError.None)
                     {
                         Log.Error(Globals.LogTag, "Error occurs during WiFi deactivating, " + (WiFiError)error);
-                        task.SetException(new InvalidOperationException("Error occurs during WiFi deactivating, " + (WiFiError)error));
+                        task.SetException(WiFiErrorFactory.GetException(error, "Error occurs during WiFi deactivating"));
                     }
                     else
                     {
