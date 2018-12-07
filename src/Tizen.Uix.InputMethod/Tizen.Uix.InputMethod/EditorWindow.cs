@@ -38,6 +38,8 @@ namespace Tizen.Uix.InputMethod
         /// <summary>
         /// This API creates a handle for the editor window.
         /// </summary>
+        /// <param name="parent">Parent EvasObject.</param>
+        /// <returns>Handle IntPtr.</returns>
         /// <since_tizen> 4 </since_tizen>
         protected override IntPtr CreateHandle(EvasObject parent)
         {
@@ -47,6 +49,7 @@ namespace Tizen.Uix.InputMethod
         /// <summary>
         /// This API gets a handle for the editor window.
         /// </summary>
+        /// <returns>Handle IntPtr.</returns>
         /// <since_tizen> 4 </since_tizen>
         public IntPtr GetHandle()
         {

@@ -44,6 +44,19 @@ internal static partial class Interop
             OutOfMemory = Tizen.Internals.Errors.ErrorCode.OutOfMemory
         };
 
+        internal enum ImeEventType
+        {
+            Language = 1,    /* The language of the input panel */
+            ShiftMode = 2,   /* The shift key state of the input panel */
+            Geometry = 3     /* The size of the input panel */
+        };
+
+        internal enum ImeShiftMode
+        {
+            Off,
+            On
+        };
+
         [StructLayout(LayoutKind.Sequential, CharSet = CharSet.Ansi)]
         internal struct ImeCallbackStruct
         {
@@ -257,6 +270,8 @@ internal static partial class Interop
         [DllImport(Libraries.InputMethod, EntryPoint = "ime_set_floating_drag_end")]
         internal static extern ErrorCode ImeSetFloatingDragEnd();
 
+        [DllImport(Libraries.InputMethod, EntryPoint = "ime_update_input_panel_event")]
+        internal static extern ErrorCode ImeUpdateInputPanelEvent(ImeEventType type, uint value);
 
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         internal delegate void ImeCreateCb(IntPtr userData);
