@@ -1583,9 +1583,7 @@ namespace Tizen.Uix.InputMethod
             {
                 string langauage;
                 _languageRequestedDelegate(out langauage);
-                char[] languageArray = langauage.ToCharArray();
-                langCode = new IntPtr();
-                Marshal.Copy(languageArray, 0, langCode, languageArray.Length);
+                langCode = (IntPtr)Marshal.StringToHGlobalAnsi(langauage);
             };
             ErrorCode error = ImeEventSetLanguageRequestedCallbackCb(_imeLanguageRequestedDelegate, IntPtr.Zero);
             if (error != ErrorCode.None)
@@ -1631,7 +1629,7 @@ namespace Tizen.Uix.InputMethod
             {
                 byte[] dataArr;
                 _imDataRequestedDelegate(out dataArr);
-                data = new IntPtr();
+                data = Marshal.AllocHGlobal(dataArr.Length);
                 Marshal.Copy(dataArr, 0, data, dataArr.Length);
                 dataLength = (uint)dataArr.Length;
             };
