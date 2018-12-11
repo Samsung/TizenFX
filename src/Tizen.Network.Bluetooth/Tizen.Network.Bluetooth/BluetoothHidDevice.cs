@@ -34,23 +34,28 @@ namespace Tizen.Network.Bluetooth
     {
         internal BluetoothHidDevice()
         {
+            BluetoothHidDeviceImpl.Instance.ConnectionStateChanged += (s, e) =>
+            {
+                if (e.Address == RemoteAddress)
+                {
+                    ConnectionStateChanged?.Invoke(this, e);
+                }
+            };
+
+            BluetoothHidDeviceImpl.Instance.DataReceived += (s, e) =>
+            {
+                if (e.ReceivedData.Address == RemoteAddress)
+                {
+                    DataReceived?.Invoke(this, e);
+                }
+            };
         }
 
         /// <summary>
         /// The ConnectionStateChanged event is called when the HID device connection state is changed.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
-        public event EventHandler<HidDeviceConnectionStateChangedEventArgs> ConnectionStateChanged
-        {
-            add
-            {
-                BluetoothHidDeviceImpl.Instance.ConnectionStateChanged += value;
-            }
-            remove
-            {
-                BluetoothHidDeviceImpl.Instance.ConnectionStateChanged -= value;
-            }
-        }
+        public event EventHandler<HidDeviceConnectionStateChangedEventArgs> ConnectionStateChanged;
 
         /// <summary>
         /// Connects to the remote device asynchronously.
@@ -61,7 +66,7 @@ namespace Tizen.Network.Bluetooth
         /// <feature>http://tizen.org/feature/network.bluetooth.hid_device</feature>
         /// <privilege>http://tizen.org/privilege/bluetooth</privilege>
         /// <exception cref="InvalidOperationException">Thrown when the method is failed with message.</exception>
-        public Task ConnectAsync()
+        public Task<BluetoothError> ConnectAsync()
         {
             return BluetoothHidDeviceImpl.Instance.ConnectHidDeviceAsync(RemoteAddress);
         }
@@ -75,7 +80,7 @@ namespace Tizen.Network.Bluetooth
         /// <feature>http://tizen.org/feature/network.bluetooth.hid_device</feature>
         /// <privilege>http://tizen.org/privilege/bluetooth</privilege>
         /// <exception cref="InvalidOperationException">Thrown when the method is failed with message.</exception>
-        public Task DisconnectAsync()
+        public Task<BluetoothError> DisconnectAsync()
         {
             return BluetoothHidDeviceImpl.Instance.DisconnectHidDeviceAsync(RemoteAddress);
         }
@@ -115,17 +120,7 @@ namespace Tizen.Network.Bluetooth
         /// <feature>http://tizen.org/feature/network.bluetooth</feature>
         /// <feature>http://tizen.org/feature/network.bluetooth.hid_device</feature>
         /// <exception cref="InvalidOperationException">Thrown when the method is failed with message.</exception>
-        public event EventHandler<HidDeviceDataReceivedEventArgs> DataReceived
-        {
-            add
-            {
-                BluetoothHidDeviceImpl.Instance.DataReceived += value;
-            }
-            remove
-            {
-                BluetoothHidDeviceImpl.Instance.DataReceived -= value;
-            }
-        }
+        public event EventHandler<HidDeviceDataReceivedEventArgs> DataReceived;
 
         /// <summary>
         /// Replies to reports from the HID Host.

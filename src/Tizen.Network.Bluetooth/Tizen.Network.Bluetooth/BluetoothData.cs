@@ -635,9 +635,8 @@ namespace Tizen.Network.Bluetooth
             receivedData.ParamType = structInfo.paramType;
             if (structInfo.dataSize > 0)
             {
-                receivedData.DataLength = structInfo.dataSize;
-                receivedData.Data = new byte[receivedData.DataLength];
-                Marshal.Copy(structInfo.data, receivedData.Data, 0, receivedData.DataLength);
+                receivedData.Data = new byte[structInfo.dataSize];
+                Marshal.Copy(structInfo.data, receivedData.Data, 0, structInfo.dataSize);
             }
             return receivedData;
         }
@@ -667,16 +666,6 @@ namespace Tizen.Network.Bluetooth
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
         public BluetoothHidParamType ParamType
-        {
-            get;
-            private set;
-        }
-
-        /// <summary>
-        /// The received data length
-        /// </summary>
-        /// <since_tizen> 6 </since_tizen>
-        public int DataLength
         {
             get;
             private set;

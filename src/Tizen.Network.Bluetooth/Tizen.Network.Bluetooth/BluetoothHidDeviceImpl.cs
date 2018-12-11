@@ -25,9 +25,7 @@ namespace Tizen.Network.Bluetooth
         private event EventHandler<HidDeviceDataReceivedEventArgs> _hidDeviceDataReceived;
 
         private TaskCompletionSource<BluetoothError> _taskForConnection;
-        private bool _taskForConnectionIsCompleted;
         private TaskCompletionSource<BluetoothError> _taskForDisconnection;
-        private bool _taskForDisconnectionIsCompleted;
 
         private static readonly BluetoothHidDeviceImpl _instance = new BluetoothHidDeviceImpl();
         private bool disposed = false;
@@ -44,29 +42,37 @@ namespace Tizen.Network.Bluetooth
             }
         }
 
-        internal Task ConnectHidDeviceAsync(string deviceAddress)
+        internal Task<BluetoothError> ConnectHidDeviceAsync(string deviceAddress)
         {
             _taskForConnection = new TaskCompletionSource<BluetoothError>();
+            if (_taskForConnection != null && !_taskForConnection.Task.IsCompleted)
+            {
+                throw new InvalidOperationException("Connection is in progress");
+            }
+
             int ret = Interop.Bluetooth.ConnectHidDevice(deviceAddress);
             if (ret != (int)BluetoothError.None)
             {
                 Log.Error(Globals.LogTag, "Failed to connect to the remote device, Error - " + (BluetoothError)ret);
                 _taskForConnection.SetException(new InvalidOperationException("Failed to connect to the remote device, Error - " + (BluetoothError)ret));
             }
-            _taskForConnectionIsCompleted = false;
             return _taskForConnection.Task;
         }
 
-        internal Task DisconnectHidDeviceAsync(string deviceAddress)
+        internal Task<BluetoothError> DisconnectHidDeviceAsync(string deviceAddress)
         {
             _taskForDisconnection = new TaskCompletionSource<BluetoothError>();
+            if (_taskForDisconnection != null && !_taskForDisconnection.Task.IsCompleted)
+            {
+                throw new InvalidOperationException("Disconnection is in progress");
+            }
+
             int ret = Interop.Bluetooth.DisconnectHidDevice(deviceAddress);
             if (ret != (int)BluetoothError.None)
             {
                 Log.Error(Globals.LogTag, "Failed to disconnect to the remote device, Error - " + (BluetoothError)ret);
                 _taskForDisconnection.SetException(new InvalidOperationException("Failed to disconnect to the remote device, Error - " + (BluetoothError)ret));
             }
-            _taskForDisconnectionIsCompleted = false;
             return _taskForDisconnection.Task;
         }
 
@@ -114,7 +120,6 @@ namespace Tizen.Network.Bluetooth
         {
             Interop.Bluetooth.HidDeviceDataReceivedCallback _hidDeviceDataReceivedCallback = (ref BluetoothHidDeviceReceivedDataStruct receivedData, IntPtr userData) =>
             {
-                // TODO: In case event callback is occured several time, need a logic to classify each event handler.
                 _hidDeviceDataReceived?.Invoke(null, new HidDeviceDataReceivedEventArgs(BluetoothHidDeviceReceivedData.Create(receivedData)));
             };
 
@@ -188,16 +193,14 @@ namespace Tizen.Network.Bluetooth
             {
                 Interop.Bluetooth.HidDeviceConnectionStateChangedCallback _hidDeviceConnectionStateChangedCallback = (int result, bool isConnected, string address, IntPtr userData) =>
                 {
-                    if (_taskForConnection != null && !_taskForConnectionIsCompleted)
+                    if (_taskForConnection != null && !_taskForConnection.Task.IsCompleted)
                     {
                         _taskForConnection.SetResult((BluetoothError)result);
-                        _taskForConnectionIsCompleted = true;
                     }
 
-                    if (_taskForDisconnection != null && _taskForDisconnectionIsCompleted)
+                    if (_taskForDisconnection != null && _taskForDisconnection.Task.IsCompleted)
                     {
                         _taskForDisconnection.SetResult((BluetoothError)result);
-                        _taskForDisconnectionIsCompleted = true;
                     }
 
                     if (result == (int)BluetoothError.None)
