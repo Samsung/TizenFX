@@ -18,6 +18,6 @@ internal static partial class Interop
 {
     internal static partial class Libraries
     {
-        public const string DevicePolicyManager = "libdpm.so";
+        public const string DevicePolicyManager = "libdpm.so.0";
     }
 }
