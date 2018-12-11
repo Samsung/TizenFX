@@ -192,7 +192,8 @@ namespace Tizen.Multimedia
         /// Gets the streaming download progress.
         /// </summary>
         /// <returns>The <see cref="DownloadProgress"/> containing current download progress.</returns>
-        /// <remarks>The player must be in the <see cref="PlayerState.Playing"/> or <see cref="PlayerState.Paused"/> state.</remarks>
+        /// <remarks>The player must be in the <see cref="PlayerState.Ready"/>, <see cref="PlayerState.Playing"/>,
+        /// or <see cref="PlayerState.Paused"/> state.</remarks>
         /// <exception cref="InvalidOperationException">
         ///     The player is not streaming.<br/>
         ///     -or-<br/>
@@ -202,7 +203,7 @@ namespace Tizen.Multimedia
         /// <since_tizen> 3 </since_tizen>
         public DownloadProgress GetDownloadProgress()
         {
-            ValidatePlayerState(PlayerState.Playing, PlayerState.Paused);
+            ValidatePlayerState(PlayerState.Ready, PlayerState.Playing, PlayerState.Paused);
 
             int start = 0;
             int current = 0;
