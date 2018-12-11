@@ -55,7 +55,7 @@ namespace GenDummy
                 DirectoryInfo inputDirInfo = new DirectoryInfo(options.InputPath);
                 FileInfo[] inputFiles = inputDirInfo.GetFiles("*.dll", SearchOption.AllDirectories);
 
-                Regex rgx = new Regex("^" + options.InputPath.Replace("\\", "\\\\"));
+                Regex rgx = new Regex("^" + options.InputPath.Replace("\\", "\\\\").Replace("+", "\\+"));
                 foreach (var f in inputFiles)
                 {
                     Log.Info($"Processing {f.FullName} ...");
@@ -84,6 +84,7 @@ namespace GenDummy
             catch (Exception ex)
             {
                 Log.Error(ex.Message);
+                Log.Error(ex.StackTrace);
                 Environment.Exit(1);
             }
         }
