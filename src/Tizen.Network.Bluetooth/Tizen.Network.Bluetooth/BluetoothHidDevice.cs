@@ -59,6 +59,7 @@ namespace Tizen.Network.Bluetooth
         /// <returns> A task indicating whether the method is done or not.</returns>
         /// <feature>http://tizen.org/feature/network.bluetooth</feature>
         /// <feature>http://tizen.org/feature/network.bluetooth.hid_device</feature>
+        /// <privilege>http://tizen.org/privilege/bluetooth</privilege>
         /// <exception cref="InvalidOperationException">Thrown when the method is failed with message.</exception>
         public Task ConnectAsync()
         {
@@ -72,6 +73,7 @@ namespace Tizen.Network.Bluetooth
         /// <returns> A task indicating whether the method is done or not.</returns>
         /// <feature>http://tizen.org/feature/network.bluetooth</feature>
         /// <feature>http://tizen.org/feature/network.bluetooth.hid_device</feature>
+        /// <privilege>http://tizen.org/privilege/bluetooth</privilege>
         /// <exception cref="InvalidOperationException">Thrown when the method is failed with message.</exception>
         public Task DisconnectAsync()
         {
@@ -85,6 +87,7 @@ namespace Tizen.Network.Bluetooth
         /// <param name="mouseData">The mouse data to be passed to the remote device.</param>
         /// <feature>http://tizen.org/feature/network.bluetooth</feature>
         /// <feature>http://tizen.org/feature/network.bluetooth.hid_device</feature>
+        /// <privilege>http://tizen.org/privilege/bluetooth</privilege>
         /// <exception cref="InvalidOperationException">Thrown when the method is failed with message.</exception>
         public void SendMouseEvent(BluetoothHidMouseData mouseData)
         {
@@ -98,6 +101,7 @@ namespace Tizen.Network.Bluetooth
         /// <param name="keyData">The key data to be passed to the remote device.</param>
         /// <feature>http://tizen.org/feature/network.bluetooth</feature>
         /// <feature>http://tizen.org/feature/network.bluetooth.hid_device</feature>
+        /// <privilege>http://tizen.org/privilege/bluetooth</privilege>
         /// <exception cref="InvalidOperationException">Thrown when the method is failed with message.</exception>
         public void SendKeyEvent(BluetoothHidKeyData keyData)
         {
