@@ -399,21 +399,6 @@ namespace Tizen.Network.Bluetooth
             connectionInfo.Uuid = structInfo.ServiceUuid;
             return connectionInfo;
         }
-
-        internal static BluetoothHidDeviceReceivedData ConvertStructToBluetoothHidDeviceReceivedData(BluetoothHidDeviceReceivedDataStruct structInfo)
-        {
-            BluetoothHidDeviceReceivedData receivedData = new BluetoothHidDeviceReceivedData();
-            receivedData.Address = structInfo.RemoteAddress;
-            receivedData.HeaderType = structInfo.headerType;
-            receivedData.ParamType = structInfo.paramType;
-            if (structInfo.dataSize > 0)
-            {
-                receivedData.DataLength = structInfo.dataSize;
-                receivedData.Data = new byte[receivedData.DataLength];
-                Marshal.Copy(structInfo.data, receivedData.Data, 0, receivedData.DataLength);
-            }
-            return receivedData;
-        }
     }
 }
 

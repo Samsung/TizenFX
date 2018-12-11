@@ -688,21 +688,10 @@ namespace Tizen.Network.Bluetooth
     /// <since_tizen> 6 </since_tizen>
     public class HidDeviceConnectionStateChangedEventArgs : EventArgs
     {
-        internal HidDeviceConnectionStateChangedEventArgs(int result, bool isConnected, string address)
+        internal HidDeviceConnectionStateChangedEventArgs(bool isConnected, string address)
         {
-            Result = result;
             IsConnected = isConnected;
             Address = address;
-        }
-
-        /// <summary>
-        /// The result.
-        /// </summary>
-        /// <since_tizen> 6 </since_tizen>
-        public int Result
-        {
-            get;
-            private set;
         }
 
         /// <summary>

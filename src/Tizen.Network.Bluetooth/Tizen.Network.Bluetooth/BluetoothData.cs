@@ -627,8 +627,19 @@ namespace Tizen.Network.Bluetooth
         /// The default constructor. Initializes an object of the BluetoothHidReceivedData.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
-        internal BluetoothHidDeviceReceivedData()
+        internal static BluetoothHidDeviceReceivedData Create(BluetoothHidDeviceReceivedDataStruct structInfo)
         {
+            BluetoothHidDeviceReceivedData receivedData = new BluetoothHidDeviceReceivedData();
+            receivedData.Address = structInfo.RemoteAddress;
+            receivedData.HeaderType = structInfo.headerType;
+            receivedData.ParamType = structInfo.paramType;
+            if (structInfo.dataSize > 0)
+            {
+                receivedData.DataLength = structInfo.dataSize;
+                receivedData.Data = new byte[receivedData.DataLength];
+                Marshal.Copy(structInfo.data, receivedData.Data, 0, receivedData.DataLength);
+            }
+            return receivedData;
         }
 
         /// <summary>
@@ -638,7 +649,7 @@ namespace Tizen.Network.Bluetooth
         public string Address
         {
             get;
-            internal set;
+            private set;
         }
 
         /// <summary>
@@ -648,7 +659,7 @@ namespace Tizen.Network.Bluetooth
         public BluetoothHidHeaderType HeaderType
         {
             get;
-            internal set;
+            private set;
         }
 
         /// <summary>
@@ -658,7 +669,7 @@ namespace Tizen.Network.Bluetooth
         public BluetoothHidParamType ParamType
         {
             get;
-            internal set;
+            private set;
         }
 
         /// <summary>
@@ -668,7 +679,7 @@ namespace Tizen.Network.Bluetooth
         public int DataLength
         {
             get;
-            internal set;
+            private set;
         }
 
         /// <summary>
@@ -678,7 +689,7 @@ namespace Tizen.Network.Bluetooth
         public byte[] Data
         {
             get;
-            internal set;
+            private set;
         }
     }
 }
