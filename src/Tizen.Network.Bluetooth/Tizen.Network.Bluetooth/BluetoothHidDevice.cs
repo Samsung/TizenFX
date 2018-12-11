@@ -82,6 +82,7 @@ namespace Tizen.Network.Bluetooth
         /// Sends the mouse event data to the remote device.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
+        /// <param name="mouseData">The mouse data to be passed to the remote device.</param>
         /// <feature>http://tizen.org/feature/network.bluetooth</feature>
         /// <feature>http://tizen.org/feature/network.bluetooth.hid_device</feature>
         /// <exception cref="InvalidOperationException">Thrown when the method is failed with message.</exception>
@@ -94,6 +95,7 @@ namespace Tizen.Network.Bluetooth
         /// Sends the key event data to the remote device.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
+        /// <param name="keyData">The key data to be passed to the remote device.</param>
         /// <feature>http://tizen.org/feature/network.bluetooth</feature>
         /// <feature>http://tizen.org/feature/network.bluetooth.hid_device</feature>
         /// <exception cref="InvalidOperationException">Thrown when the method is failed with message.</exception>
