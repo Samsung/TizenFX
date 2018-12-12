@@ -57,7 +57,7 @@ namespace Tizen.Network.Bluetooth
                     if (e.Result == (int)BluetoothError.None)
                     {
                         /* User does not need 'Result' in HidDeviceConnectionStateChangedEventArgs */
-                        ConnectionStateChanged?.Invoke(null, new HidDeviceConnectionStateChangedEventArgs(e.IsConnected, e.Address));
+                        ConnectionStateChanged?.Invoke(this, new HidDeviceConnectionStateChangedEventArgs(e.IsConnected, e.Address));
                     }
                 }
             };
