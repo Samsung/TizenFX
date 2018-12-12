@@ -16,6 +16,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 
 namespace Tizen.Network.Bluetooth
 {
@@ -686,6 +687,7 @@ namespace Tizen.Network.Bluetooth
     /// An extended EventArgs class contains the connection state and the address of the remote Bluetooth device.
     /// </summary>
     /// <since_tizen> 6 </since_tizen>
+    [EditorBrowsable(EditorBrowsableState.Never)]
     public class HidDeviceConnectionStateChangedEventArgs : EventArgs
     {
         internal HidDeviceConnectionStateChangedEventArgs(bool isConnected, string address)
@@ -732,6 +734,7 @@ namespace Tizen.Network.Bluetooth
     /// An extended EventArgs class contains the connection state and the address of the remote Bluetooth device.
     /// </summary>
     /// <since_tizen> 6 </since_tizen>
+    [EditorBrowsable(EditorBrowsableState.Never)]
     public class HidDeviceDataReceivedEventArgs : EventArgs
     {
         internal HidDeviceDataReceivedEventArgs(BluetoothHidDeviceReceivedData receivedData)

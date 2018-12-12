@@ -20,6 +20,7 @@ using System.Collections.Generic;
 using System.Collections.Concurrent;
 using System.Collections.ObjectModel;
 using System.Collections.Specialized;
+using System.ComponentModel;
 
 namespace Tizen.Network.Bluetooth
 {
@@ -547,6 +548,7 @@ namespace Tizen.Network.Bluetooth
     /// This class contains the HID mouse event information.
     /// </summary>
     /// <since_tizen> 6 </since_tizen>
+    [EditorBrowsable(EditorBrowsableState.Never)]
     public class BluetoothHidMouseData
     {
         /// <summary>
@@ -594,6 +596,7 @@ namespace Tizen.Network.Bluetooth
     /// This class contains the HID keyboard event information.
     /// </summary>
     /// <since_tizen> 6 </since_tizen>
+    [EditorBrowsable(EditorBrowsableState.Never)]
     public class BluetoothHidKeyData
     {
         /// <summary>
@@ -621,6 +624,7 @@ namespace Tizen.Network.Bluetooth
     /// This class contains the data received from the HID Host.
     /// </summary>
     /// <since_tizen> 6 </since_tizen>
+    [EditorBrowsable(EditorBrowsableState.Never)]
     public class BluetoothHidDeviceReceivedData
     {
         /// <summary>

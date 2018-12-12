@@ -86,6 +86,7 @@ namespace Tizen.Network.Bluetooth
         /// <feature>http://tizen.org/feature/network.bluetooth.hid_device</feature>
         /// <privilege>http://tizen.org/privilege/bluetooth</privilege>
         /// <exception cref="InvalidOperationException">Thrown when the method is failed with message.</exception>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public Task ConnectAsync()
         {   
             if (_taskForConnection != null && !_taskForConnection.Task.IsCompleted)
@@ -112,6 +113,7 @@ namespace Tizen.Network.Bluetooth
         /// <feature>http://tizen.org/feature/network.bluetooth.hid_device</feature>
         /// <privilege>http://tizen.org/privilege/bluetooth</privilege>
         /// <exception cref="InvalidOperationException">Thrown when the method is failed with message.</exception>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public Task DisconnectAsync()
         {   
             if (_taskForDisconnection != null && !_taskForDisconnection.Task.IsCompleted)
@@ -138,6 +140,7 @@ namespace Tizen.Network.Bluetooth
         /// <feature>http://tizen.org/feature/network.bluetooth.hid_device</feature>
         /// <privilege>http://tizen.org/privilege/bluetooth</privilege>
         /// <exception cref="InvalidOperationException">Thrown when the method is failed with message.</exception>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public void SendMouseEvent(BluetoothHidMouseData mouseData)
         {
             BluetoothHidDeviceImpl.Instance.SendHidDeviceMouseEvent(RemoteAddress, mouseData);
@@ -152,6 +155,7 @@ namespace Tizen.Network.Bluetooth
         /// <feature>http://tizen.org/feature/network.bluetooth.hid_device</feature>
         /// <privilege>http://tizen.org/privilege/bluetooth</privilege>
         /// <exception cref="InvalidOperationException">Thrown when the method is failed with message.</exception>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public void SendKeyEvent(BluetoothHidKeyData keyData)
         {
             BluetoothHidDeviceImpl.Instance.SendHidDeviceKeyEvent(RemoteAddress, keyData);
@@ -164,6 +168,7 @@ namespace Tizen.Network.Bluetooth
         /// <feature>http://tizen.org/feature/network.bluetooth</feature>
         /// <feature>http://tizen.org/feature/network.bluetooth.hid_device</feature>
         /// <exception cref="InvalidOperationException">Thrown when the method is failed with message.</exception>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public event EventHandler<HidDeviceDataReceivedEventArgs> DataReceived;
 
         /// <summary>
@@ -177,6 +182,7 @@ namespace Tizen.Network.Bluetooth
         /// <feature>http://tizen.org/feature/network.bluetooth.hid_device</feature>
         /// <privilege>http://tizen.org/privilege/bluetooth</privilege>
         /// <exception cref="InvalidOperationException">Thrown when the method is failed with message.</exception>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public void ReplyToReport(BluetoothHidHeaderType headerType, BluetoothHidParamType paramType, byte[] data)
         {
             BluetoothHidDeviceImpl.Instance.ReplyToReportHidDevice(RemoteAddress, headerType, paramType, data);

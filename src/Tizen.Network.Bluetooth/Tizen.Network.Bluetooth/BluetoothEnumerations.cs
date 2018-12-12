@@ -16,6 +16,7 @@
 
 using System;
 using Tizen.Internals.Errors;
+using System.ComponentModel;
 
 namespace Tizen.Network.Bluetooth
 {
@@ -1237,6 +1238,7 @@ namespace Tizen.Network.Bluetooth
     /// Enumeration for the Bluetooth HID header type.
     /// </summary>
     /// <since_tizen> 6 </since_tizen>
+    [EditorBrowsable(EditorBrowsableState.Never)]
     public enum BluetoothHidHeaderType
     {
         /// <summary>
@@ -1277,6 +1279,7 @@ namespace Tizen.Network.Bluetooth
     /// Enumeration for the Bluetooth HID parameter type.
     /// </summary>
     /// <since_tizen> 6 </since_tizen>
+    [EditorBrowsable(EditorBrowsableState.Never)]
     public enum BluetoothHidParamType
     {
         /// <summary>
