@@ -53,7 +53,7 @@ namespace Tizen.Network.Bluetooth
                         }
                     }
 
-                    if (_taskForDisconnection != null && _taskForDisconnection.Task.IsCompleted)
+                    if (_taskForDisconnection != null && !_taskForDisconnection.Task.IsCompleted)
                     {
                         if (e.Result == (int)BluetoothError.None)
                         {
