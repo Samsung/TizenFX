@@ -31,10 +31,11 @@ namespace Tizen.NUI
     {
         private global::System.Runtime.InteropServices.HandleRef swigCPtr;
         private global::System.Runtime.InteropServices.HandleRef stageCPtr;
-        private global::System.Runtime.InteropServices.HandleRef rootLayoutCPtr;
-        private global::System.IntPtr rootLayoutIntPtr;
+
         private Layer _rootLayer;
         private string _windowTitle;
+
+        private View rootLayout;
 
         private List<Layer> _childLayers = new List<Layer>();
         internal List<Layer> LayersChildren
@@ -51,15 +52,21 @@ namespace Tizen.NUI
             if (NDalicPINVOKE.Stage_IsInstalled())
             {
                 stageCPtr = new global::System.Runtime.InteropServices.HandleRef(this, NDalicPINVOKE.Stage_GetCurrent());
-                // Create a root layout (AbsoluteLayout) that is invisible to the user but enables layouts added to the Window
+                // Create a root layout (AbsoluteLayout) that is "invisible" to the user but enables layouts added to the Window
                 // Enables layouts added to the Window to have a parent layout.  As parent layout is needed to store measure spec properties.
                 // Currently without these measure specs the new layout added will always be the size of the window.
-                rootLayoutIntPtr = NDalicManualPINVOKE.Window_NewRootLayout();
-                // Store HandleRef used by Add()
-                rootLayoutCPtr = new global::System.Runtime.InteropServices.HandleRef(this, rootLayoutIntPtr);
+
+                rootLayout = new View();
+                rootLayout.Name = "window_root_layout";
+                rootLayout.ParentOrigin = ParentOrigin.Center;
+                rootLayout.PivotPoint = PivotPoint.Center;
+                rootLayout.PositionUsesPivotPoint = true;
+                var layout = new AbsoluteLayout();
+                rootLayout.Layout = layout;
+
                 Layer rootLayer = GetRootLayer();
                 // Add the root layout created above to the root layer.
-                NDalicPINVOKE.Actor_Add(  Layer.getCPtr(rootLayer), rootLayoutCPtr );
+                NDalicPINVOKE.Actor_Add(  Layer.getCPtr(rootLayer), View.getCPtr(rootLayout) );
             }
         }
 
@@ -624,7 +631,7 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public void Add(View view)
         {
-            NDalicPINVOKE.Actor_Add( rootLayoutCPtr, View.getCPtr(view) );
+            NDalicPINVOKE.Actor_Add( View.getCPtr(rootLayout), View.getCPtr(view) );
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             this.GetRootLayer().AddViewToLayerList(view); // Maintain the children list in the Layer
             view.InternalParent = this.GetRootLayer();
@@ -637,7 +644,7 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public void Remove(View view)
         {
-            NDalicPINVOKE.Actor_Remove( rootLayoutCPtr, View.getCPtr(view) );
+            NDalicPINVOKE.Actor_Remove( View.getCPtr(rootLayout), View.getCPtr(view) );
             this.GetRootLayer().RemoveViewFromLayerList(view); // Maintain the children list in the Layer
             view.InternalParent = null;
         }
@@ -1464,6 +1471,7 @@ namespace Tizen.NUI
         internal void SetWindowSize(Size2D size)
         {
             var val = new Uint16Pair((uint)size.Width, (uint)size.Height);
+            rootLayout.Layout.RequestLayout();
             NDalicManualPINVOKE.SetSize(swigCPtr, Uint16Pair.getCPtr(val));
 
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
@@ -1497,6 +1505,7 @@ namespace Tizen.NUI
 
         internal void SetPositionSize(Rectangle positionSize)
         {
+            rootLayout.Layout.RequestLayout();
             NDalicPINVOKE.Window_SetPositionSize(swigCPtr, Rectangle.getCPtr(positionSize));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
