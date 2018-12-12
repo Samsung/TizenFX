@@ -41,16 +41,27 @@ namespace Tizen.Network.Bluetooth
             {
                 if (e.Address == RemoteAddress)
                 {
-                    if ((_taskForConnection != null && !_taskForConnection.Task.IsCompleted)
-                            || (_taskForDisconnection != null && _taskForDisconnection.Task.IsCompleted))
+                    if (_taskForConnection != null && !_taskForConnection.Task.IsCompleted)
                     {
                         if (e.Result == (int)BluetoothError.None)
                         {
                             _taskForConnection.SetResult(true);
-                        }                            
+                        }
                         else
                         {
-                            BluetoothErrorFactory.CreateBluetoothException(e.Result);
+                            _taskForConnection.SetException(BluetoothErrorFactory.CreateBluetoothException(e.Result));
+                        }
+                    }
+
+                    if (_taskForDisconnection != null && _taskForDisconnection.Task.IsCompleted)
+                    {
+                        if (e.Result == (int)BluetoothError.None)
+                        {
+                            _taskForDisconnection.SetResult(true);
+                        }
+                        else
+                        {
+                            _taskForDisconnection.SetException(BluetoothErrorFactory.CreateBluetoothException(e.Result));
                         }
                     }
 
