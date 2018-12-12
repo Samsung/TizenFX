@@ -16,6 +16,7 @@ usage() {
   echo "    full               Build all modules in src/ directory"
   echo "    dummy              Generate dummy assemblies of all modules"
   echo "    pack [version]     Make a NuGet package with build artifacts"
+  echo "    install [target]   Install assemblies to the target device"
   echo "    clean              Clean all artifacts"
 }
 
@@ -54,6 +55,43 @@ cmd_pack() {
   $RUN_BUILD /t:pack /p:Version=$VERSION
 }
 
+cmd_install() {
+  DEVICE_ID=$1
+
+  RUNTIME_ASSEMBLIES="$OUTDIR/bin/public/*.dll $OUTDIR/bin/internal/*.dll"
+  TARGET_ASSEMBLY_PATH="/usr/share/dotnet.tizen/framework"
+
+  device_cnt=$(sdb devices | grep -v "List" | wc -l)
+  if [ $device_cnt -eq 0 ]; then
+    echo "No connected devices"
+    exit 1
+  fi
+
+  if [ $device_cnt -gt 1 ] && [ -z "$DEVICE_ID" ]; then
+    echo "Multiple devices are connected. Specify the device. (ex: ./build.sh install [device-id])"
+    sdb devices
+    exit 1
+  fi
+
+  SDB_OPTIONS=""
+  if [ -n "$DEVICE_ID" ]; then
+    SDB_OPTIONS="-s $DEVICE_ID"
+  fi
+
+  sdb $SDB_OPTIONS root on
+  sdb $SDB_OPTIONS shell mount -o remount,rw /
+  sdb $SDB_OPTIONS push $RUNTIME_ASSEMBLIES $TARGET_ASSEMBLY_PATH
+
+  nifile_cnt=$(sdb $SDB_OPTIONS shell find $TARGET_ASSEMBLY_PATH -name '*.ni.dll' | wc -l)
+  if [ $nifile_cnt -gt 0 ]; then
+    sdb $SDB_OPTIONS shell "rm -f $TARGET_ASSEMBLY_PATH/*.ni.dll"
+    sdb $SDB_OPTIONS shell nitool --system
+    sdb $SDB_OPTIONS shell nitool --regen-all-app
+  fi
+
+  sdb $SDB_OPTIONS shell chsmack -a '_' $TARGET_ASSEMBLY_PATH/*
+}
+
 cmd_clean() {
   $RUN_BUILD /t:clean
 }
@@ -64,6 +102,7 @@ case "$cmd" in
   full |--full |-f) cmd_full_build $@ ;;
   dummy|--dummy|-d) cmd_dummy_build $@ ;;
   pack |--pack |-p) cmd_pack $@ ;;
+  install |--install |-i) cmd_install $@ ;;
   clean|--clean|-c) cmd_clean $@ ;;
   *) usage ;;
 esac
