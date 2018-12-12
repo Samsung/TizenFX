@@ -694,6 +694,19 @@ namespace Tizen.Network.Bluetooth
             Address = address;
         }
 
+        internal HidDeviceConnectionStateChangedEventArgs(int result, bool isConnected, string address)
+        {
+            Result = result;
+            IsConnected = isConnected;
+            Address = address;
+        }
+
+        internal int Result
+        {
+            get;
+            private set;
+        }
+
         /// <summary>
         /// A value indicating whether this instance is connected.
         /// </summary>

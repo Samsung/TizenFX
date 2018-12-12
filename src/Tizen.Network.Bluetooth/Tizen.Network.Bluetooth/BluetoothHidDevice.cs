@@ -32,13 +32,30 @@ namespace Tizen.Network.Bluetooth
     [EditorBrowsable(EditorBrowsableState.Never)]
     public class BluetoothHidDevice : BluetoothProfile
     {
+        private TaskCompletionSource<BluetoothError> _taskForConnection;
+        private TaskCompletionSource<BluetoothError> _taskForDisconnection;
+
         internal BluetoothHidDevice()
         {
             BluetoothHidDeviceImpl.Instance.ConnectionStateChanged += (s, e) =>
             {
                 if (e.Address == RemoteAddress)
                 {
-                    ConnectionStateChanged?.Invoke(this, e);
+                    if (_taskForConnection != null && !_taskForConnection.Task.IsCompleted)
+                    {
+                        _taskForConnection.SetResult((BluetoothError)e.Result);
+                    }
+
+                    if (_taskForDisconnection != null && _taskForDisconnection.Task.IsCompleted)
+                    {
+                        _taskForDisconnection.SetResult((BluetoothError)e.Result);
+                    }
+
+                    if (e.Result == (int)BluetoothError.None)
+                    {
+                        /* User does not need 'Result' in HidDeviceConnectionStateChangedEventArgs */
+                        ConnectionStateChanged?.Invoke(null, new HidDeviceConnectionStateChangedEventArgs(e.IsConnected, e.Address));
+                    }
                 }
             };
 
@@ -68,7 +85,19 @@ namespace Tizen.Network.Bluetooth
         /// <exception cref="InvalidOperationException">Thrown when the method is failed with message.</exception>
         public Task<BluetoothError> ConnectAsync()
         {
-            return BluetoothHidDeviceImpl.Instance.ConnectHidDeviceAsync(RemoteAddress);
+            _taskForConnection = new TaskCompletionSource<BluetoothError>();
+            if (_taskForConnection != null && !_taskForConnection.Task.IsCompleted)
+            {
+                BluetoothErrorFactory.ThrowBluetoothException((int)BluetoothError.NowInProgress);
+            }
+
+            int ret = BluetoothHidDeviceImpl.Instance.ConnectHidDevice(RemoteAddress);
+            if (ret != (int)BluetoothError.None)
+            {
+                Log.Error(Globals.LogTag, "Failed to connect to the remote device, Error - " + (BluetoothError)ret);
+                BluetoothErrorFactory.ThrowBluetoothException(ret);
+            }
+            return _taskForConnection.Task;
         }
 
         /// <summary>
@@ -82,7 +111,19 @@ namespace Tizen.Network.Bluetooth
         /// <exception cref="InvalidOperationException">Thrown when the method is failed with message.</exception>
         public Task<BluetoothError> DisconnectAsync()
         {
-            return BluetoothHidDeviceImpl.Instance.DisconnectHidDeviceAsync(RemoteAddress);
+            _taskForDisconnection = new TaskCompletionSource<BluetoothError>();
+            if (_taskForDisconnection != null && !_taskForDisconnection.Task.IsCompleted)
+            {
+                BluetoothErrorFactory.ThrowBluetoothException((int)BluetoothError.NowInProgress);
+            }
+
+            int ret = BluetoothHidDeviceImpl.Instance.DisconnectHidDevice(RemoteAddress);
+            if (ret != (int)BluetoothError.None)
+            {
+                Log.Error(Globals.LogTag, "Failed to disconnect to the remote device, Error - " + (BluetoothError)ret);
+                BluetoothErrorFactory.ThrowBluetoothException(ret);
+            }
+            return _taskForDisconnection.Task;
         }
 
         /// <summary>
