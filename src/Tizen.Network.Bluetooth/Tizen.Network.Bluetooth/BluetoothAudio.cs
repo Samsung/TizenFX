@@ -15,6 +15,7 @@
  */
 
 using System;
+using System.ComponentModel;
 
 namespace Tizen.Network.Bluetooth
 {
@@ -110,6 +111,11 @@ namespace Tizen.Network.Bluetooth
         /// Opens a AG(Audio Gateway) SCO(Synchronous Connection Oriented link) to connected remote device, asynchronously.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
+        /// <feature>http://tizen.org/feature/network.bluetooth</feature>
+        /// <feature>http://tizen.org/feature/network.bluetooth.audio.call</feature>
+        /// <privilege>http://tizen.org/privilege/bluetooth.admin</privilege>
+        /// <exception cref="InvalidOperationException">Thrown when the method is failed with message.</exception>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public void OpenAgSco()
         {
             if (BluetoothAdapter.IsBluetoothEnabled && Globals.IsInitialize)
@@ -131,6 +137,11 @@ namespace Tizen.Network.Bluetooth
         /// Closes a AG(Audio Gateway) SCO(Synchronous Connection Oriented link) to connected remote device, asynchronously.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
+        /// <feature>http://tizen.org/feature/network.bluetooth</feature>
+        /// <feature>http://tizen.org/feature/network.bluetooth.audio.call</feature>
+        /// <privilege>http://tizen.org/privilege/bluetooth.admin</privilege>
+        /// <exception cref="InvalidOperationException">Thrown when the method is failed with message.</exception>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public void CloseAgSco()
         {
             if (BluetoothAdapter.IsBluetoothEnabled && Globals.IsInitialize)
@@ -151,9 +162,10 @@ namespace Tizen.Network.Bluetooth
         /// <summary>
         /// A property to check whether an opened AG(Audio Gateway) SCO(Synchronous Connection Oriented link) exists or not.
         /// </summary>
-        /// <exception cref="NotSupportedException">Thrown when the Bluetooth is not supported.</exception>
-        /// <exception cref="InvalidOperationException">Thrown when the Bluetooth is not enabled.</exception>
         /// <since_tizen> 6 </since_tizen>
+        /// <feature>http://tizen.org/feature/network.bluetooth</feature>
+        /// <feature>http://tizen.org/feature/network.bluetooth.audio.call</feature>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         static public bool IsAgScoOpened
         {
             get
@@ -166,6 +178,9 @@ namespace Tizen.Network.Bluetooth
         /// This event is called when the AG(Audio Gateway) SCO(Synchronous Connection Oriented link) state is changed.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
+        /// <feature>http://tizen.org/feature/network.bluetooth</feature>
+        /// <feature>http://tizen.org/feature/network.bluetooth.audio.call</feature>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public event EventHandler<AgScoStateChangedEventArgs> AgScoStateChanged
         {
             add
@@ -183,6 +198,11 @@ namespace Tizen.Network.Bluetooth
         /// </summary>
         /// <param name="state">The state of voice recognition.</param>
         /// <since_tizen> 6 </since_tizen>
+        /// <feature>http://tizen.org/feature/network.bluetooth</feature>
+        /// <feature>http://tizen.org/feature/network.bluetooth.audio.call</feature>
+        /// <privilege>http://tizen.org/privilege/bluetooth.admin</privilege>
+        /// <exception cref="InvalidOperationException">Thrown when the method is failed with message.</exception>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public void NotifyAgVoiceRecognitionState(bool state)
         {
             if (BluetoothAdapter.IsBluetoothEnabled && Globals.IsInitialize)

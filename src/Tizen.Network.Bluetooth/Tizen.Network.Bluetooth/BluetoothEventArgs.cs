@@ -566,10 +566,20 @@ namespace Tizen.Network.Bluetooth
     /// <since_tizen> 6 </since_tizen>
     public class SocketConnectionRequestedEventArgs : EventArgs
     {
-        internal SocketConnectionRequestedEventArgs(string remoteAddress, BluetoothSocket server)
+        internal SocketConnectionRequestedEventArgs(int socketFd, string remoteAddress)
         {
+            SocketFd = socketFd;
             RemoteAddress = remoteAddress;
-            Server = (IBluetoothServerSocket)server;
+        }
+
+        /// <summary>
+        /// The socket fd.
+        /// </summary>
+        /// <since_tizen> 6 </since_tizen>
+        public int SocketFd
+        {
+            get;
+            private set;
         }
 
         /// <summary>
@@ -577,16 +587,6 @@ namespace Tizen.Network.Bluetooth
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
         public string RemoteAddress
-        {
-            get;
-            private set;
-        }
-
-        /// <summary>
-        /// The server socket instance.
-        /// </summary>
-        /// <since_tizen> 6 </since_tizen>
-        public IBluetoothServerSocket Server
         {
             get;
             private set;

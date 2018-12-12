@@ -16,6 +16,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 
 namespace Tizen.Network.Bluetooth
 {
@@ -374,8 +375,11 @@ namespace Tizen.Network.Bluetooth
         /// <summary>
         /// Enables the local Bluetooth adapter, asynchronously.
         /// </summary>
-        /// <exception cref="InvalidOperationException">Thrown when the Bluetooth is not enabled.</exception>
         /// <since_tizen> 6 </since_tizen>
+        /// <feature>http://tizen.org/feature/network.bluetooth</feature>
+        /// <privilege>http://tizen.org/privilege/bluetooth.admin</privilege>
+        /// <exception cref="InvalidOperationException">Thrown when the method is failed with message.</exception>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public static void Enable()
         {
             int ret = BluetoothAdapterImpl.Instance.Enable();
@@ -389,8 +393,11 @@ namespace Tizen.Network.Bluetooth
         /// <summary>
         /// Disables the local Bluetooth adapter, asynchronously.
         /// </summary>
-        /// <exception cref="InvalidOperationException">Thrown when the Bluetooth is not enabled.</exception>
         /// <since_tizen> 6 </since_tizen>
+        /// <feature>http://tizen.org/feature/network.bluetooth</feature>
+        /// <privilege>http://tizen.org/privilege/bluetooth.admin</privilege>
+        /// <exception cref="InvalidOperationException">Thrown when the method is failed with message.</exception>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public static void Disable()
         {
             int ret = BluetoothAdapterImpl.Instance.Disable();
@@ -402,16 +409,18 @@ namespace Tizen.Network.Bluetooth
         }
 
         /// <summary>
-        /// Sets the visibility mode.
+        /// Enables the discoverable mode.
         /// </summary>
-        /// <param name="visible">The Bluetooth visibility mode to set. true is Discoverable, false is NonDiscoverable.</param>
-        /// <exception cref="InvalidOperationException">Thrown when the Bluetooth is not enabled.</exception>
         /// <since_tizen> 6 </since_tizen>
-        public static void SetVisibility(bool visible)
+        /// <feature>http://tizen.org/feature/network.bluetooth</feature>
+        /// <privilege>http://tizen.org/privilege/bluetooth.admin</privilege>
+        /// <exception cref="InvalidOperationException">Thrown when the method is failed with message.</exception>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static void EnableDiscoverable()
         {
             if (IsBluetoothEnabled)
             {
-                int ret = BluetoothAdapterImpl.Instance.SetVisibility(visible == true ? VisibilityMode.Discoverable : VisibilityMode.NonDiscoverable, 0);
+                int ret = BluetoothAdapterImpl.Instance.SetVisibility(VisibilityMode.Discoverable, 0);
                 if (ret != (int)BluetoothError.None)
                 {
                     Log.Error(Globals.LogTag, "Failed to SetVisibility - " + (BluetoothError)ret);
@@ -426,16 +435,45 @@ namespace Tizen.Network.Bluetooth
         }
 
         /// <summary>
-        /// Sets the visibility mode.
+        /// Enables the discoverable mode.
         /// </summary>
-        /// <param name="timeout">The timeout until the visibility mode is changed NonDiscoverable(in seconds) from Discoverable.</param>
-        /// <exception cref="InvalidOperationException">Thrown when the Bluetooth is not enabled.</exception>
         /// <since_tizen> 6 </since_tizen>
-        public static void SetVisibility(int timeout)
+        /// <param name="duration">The duration until the discoverable mode is to be disabled(in seconds).</param>
+        /// <feature>http://tizen.org/feature/network.bluetooth</feature>
+        /// <privilege>http://tizen.org/privilege/bluetooth.admin</privilege>
+        /// <exception cref="InvalidOperationException">Thrown when the method is failed with message.</exception>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static void EnableDiscoverable(int duration)
         {
             if (IsBluetoothEnabled)
             {
-                int ret = BluetoothAdapterImpl.Instance.SetVisibility(VisibilityMode.TimeLimitedDiscoverable, timeout);
+                int ret = BluetoothAdapterImpl.Instance.SetVisibility(VisibilityMode.TimeLimitedDiscoverable, duration);
+                if (ret != (int)BluetoothError.None)
+                {
+                    Log.Error(Globals.LogTag, "Failed to SetVisibility - " + (BluetoothError)ret);
+                    BluetoothErrorFactory.ThrowBluetoothException(ret);
+                }
+            }
+            else
+            {
+                BluetoothErrorFactory.ThrowBluetoothException((int)BluetoothError.NotEnabled);
+            }
+
+        }
+
+        /// <summary>
+        /// Disables the discoverable mode.
+        /// </summary>
+        /// <since_tizen> 6 </since_tizen>
+        /// <feature>http://tizen.org/feature/network.bluetooth</feature>
+        /// <privilege>http://tizen.org/privilege/bluetooth.admin</privilege>
+        /// <exception cref="InvalidOperationException">Thrown when the method is failed with message.</exception>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static void DisableDiscoverable()
+        {
+            if (IsBluetoothEnabled)
+            {
+                int ret = BluetoothAdapterImpl.Instance.SetVisibility(VisibilityMode.NonDiscoverable, 0);
                 if (ret != (int)BluetoothError.None)
                 {
                     Log.Error(Globals.LogTag, "Failed to SetVisibility - " + (BluetoothError)ret);

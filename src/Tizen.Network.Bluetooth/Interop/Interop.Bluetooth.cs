@@ -341,6 +341,10 @@ internal static partial class Interop
         internal static extern int DestroyServerSocket(int socketFd);
         [DllImport(Libraries.Bluetooth, EntryPoint = "bt_socket_listen_and_accept_rfcomm")]
         internal static extern int Listen(int socketFd, int pendingConnections);
+        [DllImport(Libraries.Bluetooth, EntryPoint = "bt_socket_accept")]
+        internal static extern int Accept(int socketFd);
+        [DllImport(Libraries.Bluetooth, EntryPoint = "bt_socket_reject")]
+        internal static extern int Reject(int socketFd);
         [DllImport(Libraries.Bluetooth, EntryPoint = "bt_socket_connect_rfcomm")]
         internal static extern int ConnectSocket(string address, string serviceUuid);
         [DllImport(Libraries.Bluetooth, EntryPoint = "bt_socket_disconnect_rfcomm")]
