@@ -42,7 +42,6 @@ namespace Tizen.Multimedia
         /// <since_tizen> 3 </since_tizen>
         public event EventHandler<PlaybackInterruptedEventArgs> PlaybackInterrupted;
         private NativePlayer.PlaybackInterruptedCallback _playbackInterruptedCallback;
-        internal NativePlayer.PlaybackInterruptedCallback _playbackInterruptedCallbackKeeper;
 
         /// <summary>
         /// Occurs when any error occurs.
