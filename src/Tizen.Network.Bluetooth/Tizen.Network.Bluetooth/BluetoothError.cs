@@ -105,6 +105,88 @@ namespace Tizen.Network.Bluetooth
                 throw new InvalidOperationException("Unknown exception");
             }
         }
+
+        /// <summary>
+        /// Creates Bluetooth Exception.
+        /// </summary>
+        internal static Exception CreateBluetoothException(int exception)
+        {
+            BluetoothError error = (BluetoothError)exception;
+            switch (error)
+            {
+                case BluetoothError.InvalidParameter:
+                    return new InvalidOperationException("Invalid parameter");
+
+                case BluetoothError.Cancelled:
+                    return new InvalidOperationException("Operation cancelled");
+
+                case BluetoothError.AlreadyDone:
+                    return new InvalidOperationException("Operation already done");
+
+                case BluetoothError.TimedOut:
+                    return new InvalidOperationException("Timeout error");
+
+                case BluetoothError.AuthFailed:
+                    return new InvalidOperationException("Authentication failed");
+
+                case BluetoothError.AuthRejected:
+                    return new InvalidOperationException("Authentication rejected");
+
+                case BluetoothError.NoData:
+                    return new InvalidOperationException("No data available");
+
+                case BluetoothError.NotEnabled:
+                    return new InvalidOperationException("Local adapter not enabled");
+
+                case BluetoothError.NotInitialized:
+                    return new InvalidOperationException("Local adapter not initialized");
+
+                case BluetoothError.NowInProgress:
+                    return new InvalidOperationException("Operation now in progress");
+
+                case BluetoothError.NotInProgress:
+                    return new InvalidOperationException("Operation not in progress");
+
+                case BluetoothError.NotSupported:
+                    return new NotSupportedException("Bluetooth is not supported");
+
+                case BluetoothError.OperationFailed:
+                    return new InvalidOperationException("Operation failed");
+
+                case BluetoothError.OutOfMemory:
+                    return new InvalidOperationException("Out of memory");
+
+                case BluetoothError.PermissionDenied:
+                    return new InvalidOperationException("Permission denied");
+
+                case BluetoothError.QuotaExceeded:
+                    return new InvalidOperationException("Quota exceeded");
+
+                case BluetoothError.RemoteDeviceNotBonded:
+                    return new InvalidOperationException("Remote device not bonded");
+
+                case BluetoothError.RemoteDeviceNotConnected:
+                    return new InvalidOperationException("Remote device not connected");
+
+                case BluetoothError.RemoteDeviceNotFound:
+                    return new InvalidOperationException("Remote device not found");
+
+                case BluetoothError.ResourceBusy:
+                    return new InvalidOperationException("Device or resource busy");
+
+                case BluetoothError.ResourceUnavailable:
+                    return new InvalidOperationException("Resource temporarily unavailable");
+
+                case BluetoothError.ServiceNotFound:
+                    return new InvalidOperationException("Service Not Found");
+
+                case BluetoothError.ServiceSearchFailed:
+                    return new InvalidOperationException("Service search failed");
+
+                default:
+                    return new InvalidOperationException("Unknown exception");
+            }
+        }
     }
 }
 
