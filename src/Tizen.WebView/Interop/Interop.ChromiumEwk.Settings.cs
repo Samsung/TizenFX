@@ -56,5 +56,29 @@ internal static partial class Interop
 
         [DllImport(Libraries.ChromiumEwk)]
         internal static extern int ewk_settings_default_font_size_get(IntPtr settings);
+
+        [DllImport(Libraries.ChromiumEwk)]
+        [return: MarshalAs(UnmanagedType.U1)]
+        internal static extern bool ewk_settings_force_zoom_set(IntPtr settings, bool enable);
+
+        [DllImport(Libraries.ChromiumEwk)]
+        [return: MarshalAs(UnmanagedType.U1)]
+        internal static extern bool ewk_settings_scripts_can_open_windows_set(IntPtr settings, bool enable);
+
+        [DllImport(Libraries.ChromiumEwk)]
+        [return: MarshalAs(UnmanagedType.U1)]
+        internal static extern bool ewk_settings_text_autosizing_enabled_set(IntPtr settings, bool enable);
+
+        [DllImport(Libraries.ChromiumEwk)]
+        [return: MarshalAs(UnmanagedType.U1)]
+        internal static extern bool ewk_settings_text_zoom_enabled_set(IntPtr settings, bool enable);
+
+        [DllImport(Libraries.ChromiumEwk)]
+        [return: MarshalAs(UnmanagedType.U1)]
+        internal static extern bool ewk_settings_uses_keypad_without_user_action_set(IntPtr settings, bool enable);
+
+        [DllImport(Libraries.ChromiumEwk)]
+        [return: MarshalAs(UnmanagedType.U1)]
+        internal static extern bool ewk_settings_extra_feature_set(IntPtr settings, string name, bool enable);
     }
 }

@@ -98,5 +98,72 @@ namespace Tizen.WebView
                 Interop.ChromiumEwk.ewk_settings_default_font_size_set(_handle, value);
             }
         }
+
+        /// <summary>
+        /// Enable or Disbale of force zoom.
+        /// </summary>
+        /// <param name="enable">The boolean value to set or reset.</param>
+        /// <returns>true on success false on failure.</returns>
+        /// <since_tizen> 6 </since_tizen>
+        public bool SetForceZoom(bool enable)
+        {
+            return Interop.ChromiumEwk.ewk_settings_force_zoom_set(_handle, enable);
+        }
+
+        /// <summary>
+        /// Whether the scripts can open windows.
+        /// </summary>
+        /// <param name="enable">The boolean value to set or reset.</param>
+        /// <returns>true on success false on failure.</returns>
+        /// <since_tizen> 6 </since_tizen>
+        public bool SetScriptsCanOpenWindow(bool enable)
+        {
+            return Interop.ChromiumEwk.ewk_settings_scripts_can_open_windows_set(_handle, enable);
+        }
+
+        /// <summary>
+        /// Enable or Disable text autosizing.
+        /// </summary>
+        /// <param name="enable">The boolean value to set or reset.</param>
+        /// <returns>true on success false on failure.</returns>
+        /// <since_tizen> 6 </since_tizen>
+        public bool SetTextAutosizingEnable(bool enable)
+        {
+            return Interop.ChromiumEwk.ewk_settings_text_autosizing_enabled_set(_handle, enable);
+        }
+
+        /// <summary>
+        /// Enable or Disable text zoom.
+        /// </summary>
+        /// <param name="enable">The boolean value to set or reset.</param>
+        /// <returns>true on success false on failure.</returns>
+        /// <since_tizen> 6 </since_tizen>
+        public bool SetTextZoomEnable(bool enable)
+        {
+            return Interop.ChromiumEwk.ewk_settings_text_zoom_enabled_set(_handle, enable);
+        }
+
+        /// <summary>
+        /// Enable or Disable the usage of keypad without user action.
+        /// </summary>
+        /// <param name="enable">The boolean value to set or reset.</param>
+        /// <returns>true on success false on failure.</returns>
+        /// <since_tizen> 6 </since_tizen>
+        public bool SetKeypadWithoutUserAction(bool enable)
+        {
+            return Interop.ChromiumEwk.ewk_settings_uses_keypad_without_user_action_set(_handle, enable);
+        }
+
+        /// <summary>
+        /// Sets Extra feature such as "edge,enable", "zoom,enable", "longpress,enable"
+        /// "doubletap,enable" and "selection,magnifier".
+        /// </summary>
+        /// <param name="name">The name of the feature user wants to set or reset.</param>
+        /// <param name="enable">The boolean value to set or reset.</param>
+        /// <since_tizen> 6 </since_tizen>
+        public void SetExtraFeature(string name, bool enable)
+        {
+            Interop.ChromiumEwk.ewk_settings_extra_feature_set(_handle, name, enable);
+        }
     }
 }
