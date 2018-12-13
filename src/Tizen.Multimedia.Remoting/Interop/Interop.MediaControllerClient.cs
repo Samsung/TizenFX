@@ -137,6 +137,10 @@ internal static partial class Interop
         internal static extern MediaControllerError SendPlaybackActionCommand(MediaControllerClientHandle handle,
             string serverName, MediaControllerNativePlaybackAction action, out string requestId);
 
+        [DllImport(Libraries.MediaController, EntryPoint = "mc_client_send_playback_action_cmd")]
+        internal static extern MediaControllerError SendPlaybackActionCommandWithoutReqId(MediaControllerClientHandle handle,
+            string serverName, MediaControllerNativePlaybackAction action, string requestId = default(string));
+
         [DllImport(Libraries.MediaController, EntryPoint = "mc_client_send_playback_position_cmd")]
         internal static extern MediaControllerError SendPlaybackPositionCommand(MediaControllerClientHandle handle,
             string serverName, ulong playbackPosition, out string requestId);
