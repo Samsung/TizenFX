@@ -205,6 +205,17 @@ namespace Tizen.Network.Bluetooth
         internal int ServiceDataLength;
     }
 
+    [StructLayout(LayoutKind.Sequential)]
+    internal struct BluetoothHidDeviceReceivedDataStruct
+    {
+        [MarshalAsAttribute(UnmanagedType.LPStr)]
+        internal string RemoteAddress;
+        internal BluetoothHidHeaderType headerType;
+        internal BluetoothHidParamType paramType;
+        internal int dataSize;
+        internal IntPtr data;
+    }
+
     internal static class BluetoothUtils
     {
         internal static BluetoothDevice ConvertStructToDeviceClass(BluetoothDeviceStruct device)

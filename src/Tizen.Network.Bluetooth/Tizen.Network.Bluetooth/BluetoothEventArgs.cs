@@ -16,6 +16,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 
 namespace Tizen.Network.Bluetooth
 {
@@ -679,6 +680,76 @@ namespace Tizen.Network.Bluetooth
             {
                 return _address;
             }
+        }
+    }
+
+    /// <summary>
+    /// An extended EventArgs class contains the connection state and the address of the remote Bluetooth device.
+    /// </summary>
+    /// <since_tizen> 6 </since_tizen>
+    [EditorBrowsable(EditorBrowsableState.Never)]
+    public class HidDeviceConnectionStateChangedEventArgs : EventArgs
+    {
+        internal HidDeviceConnectionStateChangedEventArgs(bool isConnected, string address)
+        {
+            IsConnected = isConnected;
+            Address = address;
+        }
+
+        internal HidDeviceConnectionStateChangedEventArgs(int result, bool isConnected, string address)
+        {
+            Result = result;
+            IsConnected = isConnected;
+            Address = address;
+        }
+
+        internal int Result
+        {
+            get;
+            private set;
+        }
+
+        /// <summary>
+        /// A value indicating whether this instance is connected.
+        /// </summary>
+        /// <since_tizen> 6 </since_tizen>
+        public bool IsConnected
+        {
+            get;
+            private set;
+        }
+
+        /// <summary>
+        /// The address.
+        /// </summary>
+        /// <since_tizen> 6 </since_tizen>
+        public string Address
+        {
+            get;
+            private set;
+        }
+    }
+
+    /// <summary>
+    /// An extended EventArgs class contains the connection state and the address of the remote Bluetooth device.
+    /// </summary>
+    /// <since_tizen> 6 </since_tizen>
+    [EditorBrowsable(EditorBrowsableState.Never)]
+    public class HidDeviceDataReceivedEventArgs : EventArgs
+    {
+        internal HidDeviceDataReceivedEventArgs(BluetoothHidDeviceReceivedData receivedData)
+        {
+            ReceivedData = receivedData;
+        }
+
+        /// <summary>
+        /// The result.
+        /// </summary>
+        /// <since_tizen> 6 </since_tizen>
+        public BluetoothHidDeviceReceivedData ReceivedData
+        {
+            get;
+            private set;
         }
     }
 
