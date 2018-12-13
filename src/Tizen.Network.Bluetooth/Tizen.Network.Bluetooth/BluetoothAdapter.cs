@@ -382,12 +382,7 @@ namespace Tizen.Network.Bluetooth
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static void Enable()
         {
-            int ret = BluetoothAdapterImpl.Instance.Enable();
-            if (ret != (int)BluetoothError.None)
-            {
-                Log.Error(Globals.LogTag, "Failed to Enable - " + (BluetoothError)ret);
-                BluetoothErrorFactory.ThrowBluetoothException(ret);
-            }
+            BluetoothAdapterImpl.Instance.Enable();
         }
 
         /// <summary>
@@ -400,12 +395,7 @@ namespace Tizen.Network.Bluetooth
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static void Disable()
         {
-            int ret = BluetoothAdapterImpl.Instance.Disable();
-            if (ret != (int)BluetoothError.None)
-            {
-                Log.Error(Globals.LogTag, "Failed to Disable - " + (BluetoothError)ret);
-                BluetoothErrorFactory.ThrowBluetoothException(ret);
-            }
+            BluetoothAdapterImpl.Instance.Disable();
         }
 
         /// <summary>
@@ -418,20 +408,7 @@ namespace Tizen.Network.Bluetooth
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static void EnableDiscoverable()
         {
-            if (IsBluetoothEnabled)
-            {
-                int ret = BluetoothAdapterImpl.Instance.SetVisibility(VisibilityMode.Discoverable, 0);
-                if (ret != (int)BluetoothError.None)
-                {
-                    Log.Error(Globals.LogTag, "Failed to SetVisibility - " + (BluetoothError)ret);
-                    BluetoothErrorFactory.ThrowBluetoothException(ret);
-                }
-            }
-            else
-            {
-                BluetoothErrorFactory.ThrowBluetoothException((int)BluetoothError.NotEnabled);
-            }
-
+            BluetoothAdapterImpl.Instance.SetVisibility(VisibilityMode.Discoverable, 0);
         }
 
         /// <summary>
@@ -445,20 +422,7 @@ namespace Tizen.Network.Bluetooth
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static void EnableDiscoverable(int duration)
         {
-            if (IsBluetoothEnabled)
-            {
-                int ret = BluetoothAdapterImpl.Instance.SetVisibility(VisibilityMode.TimeLimitedDiscoverable, duration);
-                if (ret != (int)BluetoothError.None)
-                {
-                    Log.Error(Globals.LogTag, "Failed to SetVisibility - " + (BluetoothError)ret);
-                    BluetoothErrorFactory.ThrowBluetoothException(ret);
-                }
-            }
-            else
-            {
-                BluetoothErrorFactory.ThrowBluetoothException((int)BluetoothError.NotEnabled);
-            }
-
+            BluetoothAdapterImpl.Instance.SetVisibility(VisibilityMode.TimeLimitedDiscoverable, duration);
         }
 
         /// <summary>
@@ -471,20 +435,7 @@ namespace Tizen.Network.Bluetooth
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static void DisableDiscoverable()
         {
-            if (IsBluetoothEnabled)
-            {
-                int ret = BluetoothAdapterImpl.Instance.SetVisibility(VisibilityMode.NonDiscoverable, 0);
-                if (ret != (int)BluetoothError.None)
-                {
-                    Log.Error(Globals.LogTag, "Failed to SetVisibility - " + (BluetoothError)ret);
-                    BluetoothErrorFactory.ThrowBluetoothException(ret);
-                }
-            }
-            else
-            {
-                BluetoothErrorFactory.ThrowBluetoothException((int)BluetoothError.NotEnabled);
-            }
-
+            BluetoothAdapterImpl.Instance.SetVisibility(VisibilityMode.NonDiscoverable, 0);
         }
 
         /// <summary>

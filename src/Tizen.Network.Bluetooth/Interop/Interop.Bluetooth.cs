@@ -133,7 +133,7 @@ internal static partial class Interop
         [DllImport(Libraries.Bluetooth, EntryPoint = "bt_adapter_get_bonded_device_info")]
         internal static extern int GetBondedDeviceByAddress(string deviceAddress, out IntPtr deviceInfo);
         [DllImport(Libraries.Bluetooth, EntryPoint = "bt_adapter_free_device_info")]
-        internal static extern int FreeDeviceInfo(BluetoothDeviceStruct deviceInfo);
+        internal static extern int FreeDeviceInfo(IntPtr deviceInfo);
         [DllImport(Libraries.Bluetooth, EntryPoint = "bt_adapter_is_service_used")]
         internal static extern int IsServiceUsed(string serviceUuid, out bool used);
         [DllImport(Libraries.Bluetooth, EntryPoint = "bt_adapter_get_local_oob_data")]

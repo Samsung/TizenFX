@@ -116,21 +116,9 @@ namespace Tizen.Network.Bluetooth
         /// <privilege>http://tizen.org/privilege/bluetooth.admin</privilege>
         /// <exception cref="InvalidOperationException">Thrown when the method is failed with message.</exception>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public void OpenAgSco()
+        public static void OpenAgSco()
         {
-            if (BluetoothAdapter.IsBluetoothEnabled && Globals.IsInitialize)
-            {
-                int ret = BluetoothAudioImpl.Instance.OpenAgSco();
-                if (ret != (int)BluetoothError.None)
-                {
-                    Log.Error(Globals.LogTag, "Failed to OpenAgSco - " + (BluetoothError)ret);
-                    BluetoothErrorFactory.ThrowBluetoothException(ret);
-                }
-            }
-            else
-            {
-                BluetoothErrorFactory.ThrowBluetoothException((int)BluetoothError.NotEnabled);
-            }
+            BluetoothAudioImpl.Instance.OpenAgSco();
         }
 
         /// <summary>
@@ -142,21 +130,9 @@ namespace Tizen.Network.Bluetooth
         /// <privilege>http://tizen.org/privilege/bluetooth.admin</privilege>
         /// <exception cref="InvalidOperationException">Thrown when the method is failed with message.</exception>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public void CloseAgSco()
+        public static void CloseAgSco()
         {
-            if (BluetoothAdapter.IsBluetoothEnabled && Globals.IsInitialize)
-            {
-                int ret = BluetoothAudioImpl.Instance.CloseAgSco();
-                if (ret != (int)BluetoothError.None)
-                {
-                    Log.Error(Globals.LogTag, "Failed to CloseAgSco - " + (BluetoothError)ret);
-                    BluetoothErrorFactory.ThrowBluetoothException(ret);
-                }
-            }
-            else
-            {
-                BluetoothErrorFactory.ThrowBluetoothException((int)BluetoothError.NotEnabled);
-            }
+            BluetoothAudioImpl.Instance.CloseAgSco();
         }
 
         /// <summary>
@@ -166,7 +142,7 @@ namespace Tizen.Network.Bluetooth
         /// <feature>http://tizen.org/feature/network.bluetooth</feature>
         /// <feature>http://tizen.org/feature/network.bluetooth.audio.call</feature>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        static public bool IsAgScoOpened
+        public static bool IsAgScoOpened
         {
             get
             {   
@@ -181,7 +157,7 @@ namespace Tizen.Network.Bluetooth
         /// <feature>http://tizen.org/feature/network.bluetooth</feature>
         /// <feature>http://tizen.org/feature/network.bluetooth.audio.call</feature>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public event EventHandler<AgScoStateChangedEventArgs> AgScoStateChanged
+        public static event EventHandler<AgScoStateChangedEventArgs> AgScoStateChanged
         {
             add
             {
@@ -203,21 +179,9 @@ namespace Tizen.Network.Bluetooth
         /// <privilege>http://tizen.org/privilege/bluetooth.admin</privilege>
         /// <exception cref="InvalidOperationException">Thrown when the method is failed with message.</exception>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public void NotifyAgVoiceRecognitionState(bool enable)
+        public static void NotifyAgVoiceRecognitionState(bool enable)
         {
-            if (BluetoothAdapter.IsBluetoothEnabled && Globals.IsInitialize)
-            {
-                int ret = BluetoothAudioImpl.Instance.NotifyAgVoiceRecognitionState(enable);
-                if (ret != (int)BluetoothError.None)
-                {
-                    Log.Error(Globals.LogTag, "Failed to NotifyAgVoiceRecognitionState - " + (BluetoothError)ret);
-                    BluetoothErrorFactory.ThrowBluetoothException(ret);
-                }
-            }
-            else
-            {
-                BluetoothErrorFactory.ThrowBluetoothException((int)BluetoothError.NotEnabled);
-            }
+            BluetoothAudioImpl.Instance.NotifyAgVoiceRecognitionState(enable);
         }
     }
 }

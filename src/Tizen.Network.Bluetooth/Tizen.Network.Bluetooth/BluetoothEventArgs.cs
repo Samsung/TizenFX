@@ -578,7 +578,7 @@ namespace Tizen.Network.Bluetooth
         /// The socket fd.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
-        public int SocketFd
+        internal int SocketFd
         {
             get;
             private set;
