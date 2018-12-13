@@ -194,9 +194,9 @@ namespace Tizen.Network.Bluetooth
         }
 
         /// <summary>
-        /// Notifies the state of AG(Audio Gateway) voice recognition.
+        /// Notifies the state of AG(Audio Gateway) voice recognition to connected remote device.
         /// </summary>
-        /// <param name="state">The state of voice recognition.</param>
+        /// <param name="state">The state of voice recognition. It is true if voice recognition state is enabled.</param>
         /// <since_tizen> 6 </since_tizen>
         /// <feature>http://tizen.org/feature/network.bluetooth</feature>
         /// <feature>http://tizen.org/feature/network.bluetooth.audio.call</feature>
