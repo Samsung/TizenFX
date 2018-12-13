@@ -391,7 +391,7 @@ internal static partial class Interop
         [DllImport(Libraries.Bluetooth, EntryPoint = "bt_ag_unset_sco_state_changed_cb")]
         internal static extern int UnsetAgScoStateChangedCallback();
         [DllImport(Libraries.Bluetooth, EntryPoint = "bt_ag_notify_voice_recognition_state")]
-        internal static extern int NotifyAgVoiceRecognitionState(bool state);
+        internal static extern int NotifyAgVoiceRecognitionState(bool enable);
 
         //Bluetooth Hid
         [DllImport(Libraries.Bluetooth, EntryPoint = "bt_hid_host_initialize")]

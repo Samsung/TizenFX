@@ -196,18 +196,18 @@ namespace Tizen.Network.Bluetooth
         /// <summary>
         /// Notifies the state of AG(Audio Gateway) voice recognition to connected remote device.
         /// </summary>
-        /// <param name="state">The state of voice recognition. It is true if voice recognition state is enabled.</param>
+        /// <param name="enable">The state of voice recognition. It is true if voice recognition state is enabled.</param>
         /// <since_tizen> 6 </since_tizen>
         /// <feature>http://tizen.org/feature/network.bluetooth</feature>
         /// <feature>http://tizen.org/feature/network.bluetooth.audio.call</feature>
         /// <privilege>http://tizen.org/privilege/bluetooth.admin</privilege>
         /// <exception cref="InvalidOperationException">Thrown when the method is failed with message.</exception>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public void NotifyAgVoiceRecognitionState(bool state)
+        public void NotifyAgVoiceRecognitionState(bool enable)
         {
             if (BluetoothAdapter.IsBluetoothEnabled && Globals.IsInitialize)
             {
-                int ret = BluetoothAudioImpl.Instance.NotifyAgVoiceRecognitionState(state);
+                int ret = BluetoothAudioImpl.Instance.NotifyAgVoiceRecognitionState(enable);
                 if (ret != (int)BluetoothError.None)
                 {
                     Log.Error(Globals.LogTag, "Failed to NotifyAgVoiceRecognitionState - " + (BluetoothError)ret);

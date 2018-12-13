@@ -172,9 +172,9 @@ namespace Tizen.Network.Bluetooth
             }
         }
 
-        internal int NotifyAgVoiceRecognitionState(bool state)
+        internal int NotifyAgVoiceRecognitionState(bool enable)
         {
-            int ret = Interop.Bluetooth.NotifyAgVoiceRecognitionState(state);
+            int ret = Interop.Bluetooth.NotifyAgVoiceRecognitionState(enable);
             if (ret != (int)BluetoothError.None)
             {
                 Log.Error(Globals.LogTag, "Failed to notify sco voice recognition state, Error - " + (BluetoothError)ret);
