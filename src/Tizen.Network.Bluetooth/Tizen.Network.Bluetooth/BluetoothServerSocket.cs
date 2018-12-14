@@ -18,6 +18,7 @@ using System;
 using System.Collections.Generic;
 using System.Runtime.InteropServices;
 using System.ComponentModel;
+using System.Threading.Tasks;
 
 namespace Tizen.Network.Bluetooth
 {
@@ -30,11 +31,32 @@ namespace Tizen.Network.Bluetooth
         private event EventHandler<AcceptStateChangedEventArgs> _acceptStateChanged;
         private static event EventHandler<SocketConnectionRequestedEventArgs> _connectionRequested;
         private Interop.Bluetooth.SocketConnectionStateChangedCallback _connectionStateChangedCallback;
+        private TaskCompletionSource<SocketConnection> _taskForAccept;
         internal int socketFd;
         private bool disposed = false;
 
         internal BluetoothServerSocket()
         {
+            PrivateAcceptStateChanged += (s, e) =>
+            {
+                if (e.Connection.ServerFd == socketFd)
+                {
+                    if (_taskForAccept != null && !_taskForAccept.Task.IsCompleted)
+                    {
+                        if (e.State == BluetoothSocketState.Connected)
+                        {
+                            _taskForAccept.SetResult(e.Connection);
+                        }
+                        else
+                        {
+                            _taskForAccept.SetException(BluetoothErrorFactory.CreateBluetoothException((int)e.Result));
+                        }
+                    }
+
+                    AcceptStateChanged?.Invoke(this, e);
+                }
+            };
+
             PrivateConnectionRequested += (s, e) =>
             {
                 if (e.SocketFd == socketFd)
@@ -50,7 +72,9 @@ namespace Tizen.Network.Bluetooth
         /// <exception cref="InvalidOperationException">Thrown when the Bluetooth is not enabled
         /// or when the register accpet state changed callback fails.</exception>
         /// <since_tizen> 3 </since_tizen>
-        public event EventHandler<AcceptStateChangedEventArgs> AcceptStateChanged
+        public event EventHandler<AcceptStateChangedEventArgs> AcceptStateChanged;
+
+        private event EventHandler<AcceptStateChangedEventArgs> PrivateAcceptStateChanged
         {
             add
             {
@@ -79,13 +103,11 @@ namespace Tizen.Network.Bluetooth
                 {
                     BluetoothSocket socket = new BluetoothSocket();
                     socket.connectedSocket = socketConnection.SocketFd;
-                    GCHandle handle2 = (GCHandle) userData;
-                    _acceptStateChanged(handle2.Target as BluetoothServerSocket, new AcceptStateChangedEventArgs((BluetoothError)result, connectionState, BluetoothUtils.ConvertStructToSocketConnection(socketConnection), socket));
+                    _acceptStateChanged(null, new AcceptStateChangedEventArgs((BluetoothError)result, connectionState, BluetoothUtils.ConvertStructToSocketConnection(socketConnection), socket));
                 }
             };
-            GCHandle handle1 = GCHandle.Alloc(this);
-            IntPtr data = (IntPtr) handle1;
-            int ret = Interop.Bluetooth.SetConnectionStateChangedCallback(_connectionStateChangedCallback, data);
+
+            int ret = Interop.Bluetooth.SetConnectionStateChangedCallback(_connectionStateChangedCallback, IntPtr.Zero);
             if (ret != (int)BluetoothError.None)
             {
                 Log.Error(Globals.LogTag, "Failed to set accept state changed callback, Error - " + (BluetoothError)ret);
@@ -129,21 +151,29 @@ namespace Tizen.Network.Bluetooth
         }
 
         /// <summary>
-        /// Accepts a connection request.
+        /// Accepts a connection request asynchronously.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
+        /// <returns> A task indicating whether the method is done or not.</returns>
         /// <feature>http://tizen.org/feature/network.bluetooth</feature>
         /// <privilege>http://tizen.org/privilege/bluetooth.admin</privilege>
         /// <exception cref="InvalidOperationException">Thrown when the method is failed with message.</exception>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public void Accept()
+        public Task<SocketConnection> AcceptAsync()
         {
+            if (_taskForAccept != null && !_taskForAccept.Task.IsCompleted)
+            {
+                BluetoothErrorFactory.ThrowBluetoothException((int)BluetoothError.NowInProgress);
+            }
+            _taskForAccept = new TaskCompletionSource<SocketConnection>();
+
             int ret = Interop.Bluetooth.Accept(socketFd);
             if (ret != (int)BluetoothError.None)
             {
                 Log.Error(Globals.LogTag, "Failed to accept connection, Error - " + (BluetoothError)ret);
                 BluetoothErrorFactory.ThrowBluetoothException(ret);
             }
+            return _taskForAccept.Task;
         }
 
         /// <summary>

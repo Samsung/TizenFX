@@ -542,6 +542,12 @@ namespace Tizen.Network.Bluetooth
                 return Uuid;
             }
         }
+
+        internal int ServerFd
+        {
+            get;
+            set;
+        }
     }
 
     /// <summary>
