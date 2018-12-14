@@ -48,7 +48,7 @@ namespace ElmSharp
     /// <since_tizen> preview </since_tizen>
     public static class Elementary
     {
-        private static readonly string _themeFilePath = "/usr/share/elm-sharp/elm-sharp-theme.edj";
+        private const string _themeFilePath = "/usr/share/elm-sharp/elm-sharp-theme.edj";
 
         /// <summary>
         /// AutomationIdSet will be triggered when the AutomationId is set to the object.
