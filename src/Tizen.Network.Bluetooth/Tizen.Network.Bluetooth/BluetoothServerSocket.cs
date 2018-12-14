@@ -51,6 +51,7 @@ namespace Tizen.Network.Bluetooth
                         {
                             _taskForAccept.SetException(BluetoothErrorFactory.CreateBluetoothException((int)e.Result));
                         }
+                        _taskForAccept = null;
                     }
 
                     AcceptStateChanged?.Invoke(this, e);
@@ -99,12 +100,11 @@ namespace Tizen.Network.Bluetooth
             _connectionStateChangedCallback = (int result, BluetoothSocketState connectionState, ref SocketConnectionStruct socketConnection, IntPtr userData) =>
             {
                 Log.Info(Globals.LogTag, "AcceptStateChanged cb is called");
-                if (_acceptStateChanged != null)
-                {
-                    BluetoothSocket socket = new BluetoothSocket();
-                    socket.connectedSocket = socketConnection.SocketFd;
-                    _acceptStateChanged(null, new AcceptStateChangedEventArgs((BluetoothError)result, connectionState, BluetoothUtils.ConvertStructToSocketConnection(socketConnection), socket));
-                }
+                BluetoothSocket socket = new BluetoothSocket();
+                socket.connectedSocket = socketConnection.SocketFd;
+                socket.remoteAddress = socketConnection.Address;
+                socket.serviceUuid = socketConnection.ServiceUuid;
+                _acceptStateChanged?.Invoke(null, new AcceptStateChangedEventArgs((BluetoothError)result, connectionState, BluetoothUtils.ConvertStructToSocketConnection(socketConnection), socket));
             };
 
             int ret = Interop.Bluetooth.SetConnectionStateChangedCallback(_connectionStateChangedCallback, IntPtr.Zero);
