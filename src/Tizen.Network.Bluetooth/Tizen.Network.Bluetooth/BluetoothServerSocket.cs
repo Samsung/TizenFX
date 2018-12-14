@@ -104,7 +104,7 @@ namespace Tizen.Network.Bluetooth
                 socket.connectedSocket = socketConnection.SocketFd;
                 socket.remoteAddress = socketConnection.Address;
                 socket.serviceUuid = socketConnection.ServiceUuid;
-                _acceptStateChanged?.Invoke(null, new AcceptStateChangedEventArgs((BluetoothError)result, connectionState, BluetoothUtils.ConvertStructToSocketConnection(socketConnection), socket));
+                _acceptStateChanged?.Invoke(this, new AcceptStateChangedEventArgs((BluetoothError)result, connectionState, BluetoothUtils.ConvertStructToSocketConnection(socketConnection), socket));
             };
 
             int ret = Interop.Bluetooth.SetConnectionStateChangedCallback(_connectionStateChangedCallback, IntPtr.Zero);
@@ -227,7 +227,7 @@ namespace Tizen.Network.Bluetooth
             Interop.Bluetooth.SocketConnectionRequestedCallback _connectionRequestedCallback = (int socketFd, string remoteAddress, IntPtr userData) =>
             {
                 Log.Info(Globals.LogTag, "SocketConnectionRequestedCallback is called");
-                _connectionRequested?.Invoke(null, new SocketConnectionRequestedEventArgs(socketFd, remoteAddress));
+                _connectionRequested?.Invoke(this, new SocketConnectionRequestedEventArgs(socketFd, remoteAddress));
             };
 
             int ret = Interop.Bluetooth.SetSocketConnectionRequestedCallback(_connectionRequestedCallback, IntPtr.Zero);
