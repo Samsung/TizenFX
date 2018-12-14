@@ -57,6 +57,7 @@ namespace ElmSharp.Test
         {
             Button button1 = new Button(window) {
                 Text = "Button 1",
+                AutomationId = "btn1",
             };
             button1.SetPartColor("bg", Color.Red);
             SetButtonEventHandler(button1);
@@ -65,6 +66,7 @@ namespace ElmSharp.Test
 
             Button button2 = new Button(window) {
                 Text = "Button 2",
+                AutomationId = "btn2",
                 BackgroundColor = Color.Red,
             };
             SetButtonEventHandler(button2);
@@ -73,6 +75,7 @@ namespace ElmSharp.Test
 
             Button button3 = new Button(window) {
                 Text = "Button 3",
+                AutomationId = "btn3",
                 BackgroundColor = new Color(125,200,255, 150)
             };
             SetButtonEventHandler(button3);
@@ -81,6 +84,7 @@ namespace ElmSharp.Test
 
             Button button4 = new Button(window) {
                 Text = "Button 4",
+                AutomationId = "btn4",
                 BackgroundColor = new Color(125, 200, 255, 10)
             };
             SetButtonEventHandler(button4);

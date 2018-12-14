@@ -51,6 +51,17 @@ namespace ElmSharp
         private static readonly string _themeFilePath = "/usr/share/elm-sharp/elm-sharp-theme.edj";
 
         /// <summary>
+        /// AutomationIdSet will be triggered when the AutomationId is set to the object.
+        /// </summary>
+        /// <since_tizen> preview </since_tizen>
+        public static event EventHandler AutomationIdSet;
+
+        internal static void SendAutomationIdSet(EvasObject obj)
+        {
+            AutomationIdSet?.Invoke(obj, EventArgs.Empty);
+        }
+
+        /// <summary>
         /// Gets or sets the configured finger size.
         /// </summary>
         /// <since_tizen> preview </since_tizen>

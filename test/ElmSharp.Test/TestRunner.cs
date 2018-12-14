@@ -220,6 +220,12 @@ namespace ElmSharp.Test
             Console.WriteLine("ELM_PROFILE : {0}", profile);
             Console.WriteLine("ELM_SCALE : {0}", Elementary.GetScale());
 
+            Elementary.AutomationIdSet += (s, e) =>
+            {
+                var obj = (EvasObject)s;
+                Console.WriteLine("Automation ID Set : ClassName = {0}, AutomationId = {1}", obj.ClassName, obj.AutomationId);
+            };
+
             TestRunner testRunner = new TestRunner();
             testRunner.Profile = profile;
             testRunner.Run(args);
