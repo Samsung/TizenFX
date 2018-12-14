@@ -31,8 +31,7 @@ namespace Tizen.NUI
     {
         private global::System.Runtime.InteropServices.HandleRef swigCPtr;
         private global::System.Runtime.InteropServices.HandleRef stageCPtr;
-        private global::System.Runtime.InteropServices.HandleRef rootLayoutCPtr;
-        private global::System.IntPtr rootLayoutIntPtr;
+        private readonly global::System.Runtime.InteropServices.HandleRef rootLayoutCPtr;
         private Layer _rootLayer;
         private string _windowTitle;
 
@@ -50,6 +49,7 @@ namespace Tizen.NUI
             swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
             if (NDalicPINVOKE.Stage_IsInstalled())
             {
+                global::System.IntPtr rootLayoutIntPtr;
                 stageCPtr = new global::System.Runtime.InteropServices.HandleRef(this, NDalicPINVOKE.Stage_GetCurrent());
                 // Create a root layout (AbsoluteLayout) that is invisible to the user but enables layouts added to the Window
                 // Enables layouts added to the Window to have a parent layout.  As parent layout is needed to store measure spec properties.
