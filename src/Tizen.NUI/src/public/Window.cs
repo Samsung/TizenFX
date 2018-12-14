@@ -34,6 +34,7 @@ namespace Tizen.NUI
         private readonly global::System.Runtime.InteropServices.HandleRef rootLayoutCPtr;
         private Layer _rootLayer;
         private string _windowTitle;
+        private readonly LayoutItem rootLayoutItem;
 
         private List<Layer> _childLayers = new List<Layer>();
         internal List<Layer> LayersChildren
@@ -60,6 +61,12 @@ namespace Tizen.NUI
                 Layer rootLayer = GetRootLayer();
                 // Add the root layout created above to the root layer.
                 NDalicPINVOKE.Actor_Add(  Layer.getCPtr(rootLayer), rootLayoutCPtr );
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+
+                global::System.IntPtr rootControlLayoutIntPtr = Tizen.NUI.NDalicManualPINVOKE.GetLayout__SWIG_1(rootLayoutCPtr);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+
+                rootLayoutItem = new LayoutItem(rootControlLayoutIntPtr, true);
             }
         }
 
@@ -1467,6 +1474,11 @@ namespace Tizen.NUI
             NDalicManualPINVOKE.SetSize(swigCPtr, Uint16Pair.getCPtr(val));
 
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+
+            if(rootLayoutItem != null)
+            {
+                rootLayoutItem.RequestLayout();
+            }
         }
 
         internal Size2D GetWindowSize()
@@ -1484,6 +1496,11 @@ namespace Tizen.NUI
             NDalicManualPINVOKE.SetPosition(swigCPtr, Uint16Pair.getCPtr(val));
 
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+
+            if(rootLayoutItem != null)
+            {
+                rootLayoutItem.RequestLayout();
+            }
         }
 
         internal Position2D GetPosition()
@@ -1499,6 +1516,11 @@ namespace Tizen.NUI
         {
             NDalicPINVOKE.Window_SetPositionSize(swigCPtr, Rectangle.getCPtr(positionSize));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+
+            if(rootLayoutItem != null)
+            {
+                rootLayoutItem.RequestLayout();
+            }
         }
 
         /// <summary>
