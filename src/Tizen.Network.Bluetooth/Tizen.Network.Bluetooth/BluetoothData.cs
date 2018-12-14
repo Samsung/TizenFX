@@ -20,6 +20,7 @@ using System.Collections.Generic;
 using System.Collections.Concurrent;
 using System.Collections.ObjectModel;
 using System.Collections.Specialized;
+using System.ComponentModel;
 
 namespace Tizen.Network.Bluetooth
 {
@@ -540,6 +541,148 @@ namespace Tizen.Network.Bluetooth
             {
                 return Uuid;
             }
+        }
+    }
+
+    /// <summary>
+    /// This class contains the HID mouse event information.
+    /// </summary>
+    /// <since_tizen> 6 </since_tizen>
+    [EditorBrowsable(EditorBrowsableState.Never)]
+    public class BluetoothHidMouseData
+    {
+        /// <summary>
+        /// The button values, we can combine key's values when we pressed multiple mouse buttons
+        /// </summary>
+        /// <since_tizen> 6 </since_tizen>
+        public int Buttons
+        {
+            get;
+            set;
+        }
+
+        /// <summary>
+        /// The location's x value, -128 ~127
+        /// </summary>
+        /// <since_tizen> 6 </since_tizen>
+        public int AxisX
+        {
+            get;
+            set;
+        }
+
+        /// <summary>
+        /// The location's y value, -128 ~127
+        /// </summary>
+        /// <since_tizen> 6 </since_tizen>
+        public int AxisY
+        {
+            get;
+            set;
+        }
+
+        /// <summary>
+        /// The padding value, -128 ~127
+        /// </summary>
+        /// <since_tizen> 6 </since_tizen>
+        public int Padding
+        {
+            get;
+            set;
+        }
+    }
+
+    /// <summary>
+    /// This class contains the HID keyboard event information.
+    /// </summary>
+    /// <since_tizen> 6 </since_tizen>
+    [EditorBrowsable(EditorBrowsableState.Never)]
+    public class BluetoothHidKeyData
+    {
+        /// <summary>
+        /// The modifier keys : such as shift, alt
+        /// </summary>
+        /// <since_tizen> 6 </since_tizen>
+        public byte Modifier
+        {
+            get;
+            set;
+        }
+
+        /// <summary>
+        /// The key value - currently pressed keys : Max 8 at once
+        /// </summary>
+        /// <since_tizen> 6 </since_tizen>
+        public byte[] Key
+        {
+            get;
+            set;
+        }
+    }
+
+    /// <summary>
+    /// This class contains the data received from the HID Host.
+    /// </summary>
+    /// <since_tizen> 6 </since_tizen>
+    [EditorBrowsable(EditorBrowsableState.Never)]
+    public class BluetoothHidDeviceReceivedData
+    {
+        /// <summary>
+        /// The default constructor. Initializes an object of the BluetoothHidReceivedData.
+        /// </summary>
+        /// <since_tizen> 6 </since_tizen>
+        internal static BluetoothHidDeviceReceivedData Create(BluetoothHidDeviceReceivedDataStruct structInfo)
+        {
+            BluetoothHidDeviceReceivedData receivedData = new BluetoothHidDeviceReceivedData();
+            receivedData.Address = structInfo.RemoteAddress;
+            receivedData.HeaderType = structInfo.headerType;
+            receivedData.ParamType = structInfo.paramType;
+            if (structInfo.dataSize > 0)
+            {
+                receivedData.Data = new byte[structInfo.dataSize];
+                Marshal.Copy(structInfo.data, receivedData.Data, 0, structInfo.dataSize);
+            }
+            return receivedData;
+        }
+
+        /// <summary>
+        /// The remote device's address
+        /// </summary>
+        /// <since_tizen> 6 </since_tizen>
+        public string Address
+        {
+            get;
+            private set;
+        }
+
+        /// <summary>
+        /// The header type
+        /// </summary>
+        /// <since_tizen> 6 </since_tizen>
+        public BluetoothHidHeaderType HeaderType
+        {
+            get;
+            private set;
+        }
+
+        /// <summary>
+        /// The parameter type
+        /// </summary>
+        /// <since_tizen> 6 </since_tizen>
+        public BluetoothHidParamType ParamType
+        {
+            get;
+            private set;
+        }
+
+        /// <summary>
+        /// The received data
+        /// </summary>
+        /// <since_tizen> 6 </since_tizen>
+        public byte[] Data
+        {
+            get;
+            private set;
         }
     }
 }

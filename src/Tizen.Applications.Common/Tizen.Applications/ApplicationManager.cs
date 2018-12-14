@@ -199,7 +199,7 @@ namespace Tizen.Applications
                     throw ApplicationManagerErrorFactory.GetException(err, "Failed to foreach the appinfo.");
                 }
                 return result;
-            });
+            }).ConfigureAwait(false);
         }
 
         /// <summary>
@@ -263,7 +263,7 @@ namespace Tizen.Applications
                 };
                 filter.Fetch(cb);
                 return result;
-            });
+            }).ConfigureAwait(false);
         }
 
         /// <summary>
@@ -297,7 +297,7 @@ namespace Tizen.Applications
                 };
                 filter.Fetch(cb);
                 return result;
-            });
+            }).ConfigureAwait(false);
         }
 
         /// <summary>
@@ -336,7 +336,7 @@ namespace Tizen.Applications
                     throw ApplicationManagerErrorFactory.GetException(err, "Failed to foreach appcontext.");
                 }
                 return result;
-            });
+            }).ConfigureAwait(false);
         }
 
         /// <summary>
@@ -375,7 +375,7 @@ namespace Tizen.Applications
                     throw ApplicationManagerErrorFactory.GetException(err, "Failed to foreach appcontext.");
                 }
                 return result;
-            });
+            }).ConfigureAwait(false);
         }
 
         /// <summary>

@@ -1,0 +1,91 @@
+ElmSharp.dll                                       #common #mobile #mobile-emul #tv #wearable
+ElmSharp.Wearable.dll                              #wearable
+res/maps_marker_pin_48.png                         #mobile #mobile-emul #tv #wearable
+res/maps_marker_pin_72.png                         #mobile #mobile-emul #tv #wearable
+res/maps_marker_sticker_48.png                     #mobile #mobile-emul #tv #wearable
+res/maps_marker_sticker_72.png                     #mobile #mobile-emul #tv #wearable
+Tizen.Account.AccountManager.dll                   #mobile #mobile-emul #tv #wearable
+Tizen.Account.FidoClient.dll                       #mobile #mobile-emul #wearable
+Tizen.Account.OAuth2.dll                           #mobile #mobile-emul #wearable
+Tizen.Account.SyncManager.dll                      #mobile #mobile-emul #wearable
+Tizen.Applications.Alarm.dll                       #common #mobile #mobile-emul #tv #wearable
+Tizen.Applications.AttachPanel.dll                 #mobile #mobile-emul
+Tizen.Applications.Badge.dll                       #mobile #mobile-emul #wearable
+Tizen.Applications.Common.dll                      #common #mobile #mobile-emul #tv #wearable
+Tizen.Applications.DataControl.dll                 #common #mobile #mobile-emul #tv #wearable
+Tizen.Applications.MessagePort.dll                 #common #mobile #mobile-emul #tv #wearable
+Tizen.Applications.Notification.dll                #common #mobile #mobile-emul #tv #wearable
+Tizen.Applications.NotificationEventListener.dll   #common #mobile #mobile-emul #tv #wearable
+Tizen.Applications.PackageManager.dll              #common #mobile #mobile-emul #tv #wearable
+Tizen.Applications.Preference.dll                  #common #mobile #mobile-emul #tv #wearable
+Tizen.Applications.RemoteView.dll                  #mobile #mobile-emul #tv #wearable
+Tizen.Applications.Service.dll                     #common #mobile #mobile-emul #tv #wearable
+Tizen.Applications.Shortcut.dll                    #mobile #mobile-emul
+Tizen.Applications.ToastMessage.dll                #common #mobile #mobile-emul #tv #wearable
+Tizen.Applications.UI.dll                          #common #mobile #mobile-emul #tv #wearable
+Tizen.Applications.WatchApplication.dll            #wearable
+Tizen.Applications.WidgetApplication.dll           #mobile #mobile-emul #tv #wearable
+Tizen.Applications.WidgetControl.dll               #mobile #mobile-emul #tv #wearable
+Tizen.Content.Download.dll                         #common #mobile #mobile-emul #tv #wearable
+Tizen.Content.MediaContent.dll                     #common #mobile #mobile-emul #tv #wearable
+Tizen.Content.MimeType.dll                         #common #mobile #mobile-emul #tv #wearable
+Tizen.Context.dll                                  #mobile #mobile-emul #wearable
+Tizen.dll                                          #common #mobile #mobile-emul #tv #wearable
+Tizen.Location.dll                                 #mobile #mobile-emul #tv #wearable
+Tizen.Location.Geofence.dll                        #mobile #mobile-emul
+Tizen.Log.dll                                      #common #mobile #mobile-emul #tv #wearable
+Tizen.Maps.dll                                     #mobile #mobile-emul #tv #wearable
+Tizen.Messaging.dll                                #mobile #mobile-emul #wearable
+Tizen.Messaging.Push.dll                           #common #mobile #mobile-emul #tv #wearable
+Tizen.Multimedia.AudioIO.dll                       #common #mobile #mobile-emul #tv #wearable
+Tizen.Multimedia.Camera.dll                        #common #mobile #mobile-emul #tv #wearable
+Tizen.Multimedia.dll                               #common #mobile #mobile-emul #tv #wearable
+Tizen.Multimedia.MediaCodec.dll                    #common #mobile #mobile-emul #wearable
+Tizen.Multimedia.MediaPlayer.dll                   #common #mobile #mobile-emul #tv #wearable
+Tizen.Multimedia.Metadata.dll                      #common #mobile #mobile-emul #tv #wearable
+Tizen.Multimedia.Radio.dll                         #common #mobile #mobile-emul #wearable
+Tizen.Multimedia.Recorder.dll                      #common #mobile #mobile-emul #tv #wearable
+Tizen.Multimedia.Remoting.dll                      #common #mobile #mobile-emul #tv #wearable
+Tizen.Multimedia.StreamRecorder.dll                #common #mobile #mobile-emul #tv #wearable
+Tizen.Multimedia.Util.dll                          #common #mobile #mobile-emul #tv #wearable
+Tizen.Multimedia.Vision.dll                        #common #mobile #mobile-emul #tv #wearable
+Tizen.Network.Bluetooth.dll                        #common #mobile #tv #wearable
+Tizen.Network.Connection.dll                       #common #mobile #mobile-emul #tv #wearable
+Tizen.Network.IoTConnectivity.dll                  #common #mobile #mobile-emul #tv #wearable
+Tizen.Network.Mtp.dll
+Tizen.Network.Nfc.dll                              #mobile #mobile-emul #wearable
+Tizen.Network.Nsd.dll                              #common #mobile #mobile-emul #tv #wearable
+Tizen.Network.Smartcard.dll                        #mobile #mobile-emul #wearable
+Tizen.Network.WiFi.dll                             #common #mobile #mobile-emul #tv #wearable
+Tizen.Network.WiFiDirect.dll                       #common #mobile #tv #ivi
+Tizen.Nlp.dll                                      #mobile #mobile-emul
+Tizen.NUI.dll                                      #common #mobile #mobile-emul #tv #wearable
+Tizen.NUI.Wearable.dll                             #wearable
+Tizen.PhonenumberUtils.dll                         #mobile #mobile-emul #wearable
+Tizen.Pims.Calendar.dll                            #common #mobile #mobile-emul #tv #wearable
+Tizen.Pims.Contacts.dll                            #mobile #mobile-emul #wearable
+Tizen.Security.dll                                 #common #mobile #mobile-emul #tv #wearable
+Tizen.Security.PrivacyPrivilegeManager.dll         #common #mobile #mobile-emul #tv #wearable
+Tizen.Security.SecureRepository.dll                #common #mobile #mobile-emul #tv #wearable
+Tizen.Security.TEEC.dll                            #mobile #mobile-emul #tv #wearable
+Tizen.Sensor.dll                                   #common #mobile #mobile-emul #tv #wearable
+Tizen.System.dll                                   #common #mobile #mobile-emul #tv #wearable
+Tizen.System.Feedback.dll                          #common #mobile #mobile-emul #tv #wearable
+Tizen.System.Information.dll                       #common #mobile #mobile-emul #tv #wearable
+Tizen.System.MediaKey.dll                          #common #mobile #mobile-emul #tv #wearable
+Tizen.System.PlatformConfig.dll                    #common #mobile #mobile-emul #tv #wearable
+Tizen.System.Storage.dll                           #common #mobile #mobile-emul #tv #wearable
+Tizen.System.SystemSettings.dll                    #common #mobile #mobile-emul #tv #wearable
+Tizen.System.Usb.dll                               #common #mobile #mobile-emul
+Tizen.Tapi.dll
+Tizen.Telephony.dll                                #mobile #mobile-emul #wearable
+Tizen.Tracer.dll                                   #common #mobile #mobile-emul #tv #wearable
+Tizen.Uix.InputMethod.dll                          #common #mobile #mobile-emul #tv #wearable
+Tizen.Uix.InputMethodManager.dll                   #common #mobile #mobile-emul #tv #wearable
+Tizen.Uix.Stt.dll                                  #common #mobile #mobile-emul #tv #wearable
+Tizen.Uix.SttEngine.dll                            #common #mobile #mobile-emul #tv #wearable
+Tizen.Uix.Tts.dll                                  #common #mobile #mobile-emul #tv #wearable
+Tizen.Uix.TtsEngine.dll                            #common #mobile #mobile-emul #tv #wearable
+Tizen.Uix.VoiceControl.dll                         #common #mobile #mobile-emul #tv #wearable
+Tizen.Uix.VoiceControlWidget.dll                   #common #mobile #mobile-emul #tv #wearable
+Tizen.WebView.dll                                  #common #mobile #mobile-emul #tv #wearable
