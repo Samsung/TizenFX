@@ -16,6 +16,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.Runtime.InteropServices;
 
 namespace Tizen.Applications
 {
@@ -193,6 +194,21 @@ namespace Tizen.Applications
             }
         }
 
+        private static Interop.ApplicationManager.AppInfoMetadataCallback s_appInfoMetadataCallback = (string key, string value, IntPtr userData) =>
+        {
+            GCHandle handle = (GCHandle)userData;
+            IDictionary<string, string> metadata = (handle.Target as IDictionary<string, string>);
+
+            if (key.Length != 0)
+            {
+                if (!metadata.ContainsKey(key))
+                {
+                    metadata.Add(key, value);
+                }
+            }
+            return true;
+        };
+
         /// <summary>
         /// Gets the application's metadata.
         /// </summary>
@@ -201,27 +217,20 @@ namespace Tizen.Applications
         {
             get
             {
-                IDictionary<string, string> metadata = new Dictionary<String, String>();
-
-                Interop.ApplicationManager.AppInfoMetadataCallback cb = (string key, string value, IntPtr userData) =>
-                {
-                    if (key.Length != 0)
-                    {
-                        if (!metadata.ContainsKey(key))
-                            metadata.Add(key, value);
-                    }
-                    return true;
-                };
+                IDictionary<string, string> metadata = new Dictionary<string, string>();
+                GCHandle handle = GCHandle.Alloc(metadata);
 
                 IntPtr infoHandle = GetInfoHandle();
                 if (infoHandle != IntPtr.Zero)
                 {
-                    err = Interop.ApplicationManager.AppInfoForeachMetadata(infoHandle, cb, IntPtr.Zero);
+                    err = Interop.ApplicationManager.AppInfoForeachMetadata(infoHandle, s_appInfoMetadataCallback, (IntPtr)handle);
                     if (err != Interop.ApplicationManager.ErrorCode.None)
                     {
                         Log.Warn(LogTag, "Failed to get application metadata of " + _applicationId + ". err = " + err);
                     }
                 }
+
+                handle.Free();
                 return metadata;
             }
         }
