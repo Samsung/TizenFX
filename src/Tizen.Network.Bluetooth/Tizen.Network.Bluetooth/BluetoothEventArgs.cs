@@ -552,6 +552,7 @@ namespace Tizen.Network.Bluetooth
         /// The server socket instance.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        [Obsolete("Deprecated since API level 6. Please use the 'Client' in the SocketConnection.")]
         public IBluetoothServerSocket Server
         {
             get

@@ -28,7 +28,7 @@ namespace Tizen.Network.Bluetooth
     /// <since_tizen> 3 </since_tizen>
     public class BluetoothServerSocket : IDisposable
     {
-        private event EventHandler<AcceptStateChangedEventArgs> _acceptStateChanged;
+        private static event EventHandler<AcceptStateChangedEventArgs> _acceptStateChanged;
         private static event EventHandler<SocketConnectionRequestedEventArgs> _connectionRequested;
         private Interop.Bluetooth.SocketConnectionStateChangedCallback _connectionStateChangedCallback;
         private TaskCompletionSource<SocketConnection> _taskForAccept;
@@ -146,6 +146,24 @@ namespace Tizen.Network.Bluetooth
             if (ret != (int)BluetoothError.None)
             {
                 Log.Error(Globals.LogTag, "Failed to accept connection, Error - " + (BluetoothError)ret);
+                BluetoothErrorFactory.ThrowBluetoothException(ret);
+            }
+        }
+
+        /// <summary>
+        /// Starts listening on the passed RFCOMM socket without accepting connection requests.
+        /// </summary>
+        /// <since_tizen> 6 </since_tizen>
+        /// <feature>http://tizen.org/feature/network.bluetooth</feature>
+        /// <privilege>http://tizen.org/privilege/bluetooth.admin</privilege>
+        /// <exception cref="InvalidOperationException">Thrown when the method is failed with message.</exception>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void ListenWithoutAccept()
+        {
+            int ret = Interop.Bluetooth.ListenWithoutAccept(socketFd, 1);
+            if (ret != (int)BluetoothError.None)
+            {
+                Log.Error(Globals.LogTag, "Failed to ListenWithoutAccept, Error - " + (BluetoothError)ret);
                 BluetoothErrorFactory.ThrowBluetoothException(ret);
             }
         }
@@ -271,11 +289,11 @@ namespace Tizen.Network.Bluetooth
             if (disposed)
                 return;
 
-            if (disposing)
+            int ret = Interop.Bluetooth.DestroyServerSocket(socketFd);
+            if (ret != (int)BluetoothError.None)
             {
-                // Free managed objects.
+                Log.Error(Globals.LogTag, "Failed to destroy socket, Error - " + (BluetoothError)ret);
             }
-            //Free unmanaged objects
             RemoveRegisteredEvents();
             disposed = true;
         }

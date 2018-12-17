@@ -398,6 +398,13 @@ namespace Tizen.Network.Bluetooth
             connectionInfo.RemoteAddress = structInfo.Address;
             connectionInfo.Uuid = structInfo.ServiceUuid;
             connectionInfo.ServerFd = structInfo.ServerFd;
+
+            BluetoothSocket clientSocket = new BluetoothSocket();
+            clientSocket.connectedSocket = structInfo.SocketFd;
+            clientSocket.remoteAddress = structInfo.Address;
+            clientSocket.serviceUuid = structInfo.ServiceUuid;
+            connectionInfo.Client = (IBluetoothServerSocket)clientSocket;
+
             return connectionInfo;
         }
     }

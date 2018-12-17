@@ -548,6 +548,15 @@ namespace Tizen.Network.Bluetooth
             get;
             set;
         }
+        /// <summary>
+        /// The client socket.
+        /// </summary>
+        /// <since_tizen> 6 </since_tizen>
+        public IBluetoothServerSocket Client
+        {
+            get;
+            set;
+        }
     }
 
     /// <summary>

@@ -706,6 +706,7 @@ namespace Tizen.Network.Bluetooth
         /// <exception cref="InvalidOperationException">Thrown when the Bluetooth is not enabled
         /// or the socket destroy error occurs.</exception>
         /// <since_tizen> 3 </since_tizen>
+        [Obsolete("Deprecated since API level 6. Please use Dispose() on BluetoothServerSocket.")]
         static public void DestroyServerSocket(BluetoothServerSocket socket)
         {
             if (IsBluetoothEnabled && Globals.IsInitialize)
