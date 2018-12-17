@@ -36828,6 +36828,24 @@ namespace Tizen.NUI
             }
         }
 
+        [global::System.Runtime.InteropServices.DllImport(Graphics.GlesCSharpBinder, EntryPoint = "CSharp_Dali_Window_SetPositionSize")]
+        public static extern void Window_SetPositionSize_gl(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+
+        [global::System.Runtime.InteropServices.DllImport(Graphics.VulkanCSharpBinder, EntryPoint = "CSharp_Dali_Window_SetPositionSize")]
+        public static extern void Window_SetPositionSize_vulkan(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+
+        public static void Window_SetPositionSize(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2)
+        {
+            if (Tizen.NUI.Graphics.Backend == Tizen.NUI.Graphics.BackendType.Vulkan)
+            {
+                Window_SetPositionSize_vulkan(jarg1, jarg2);
+            }
+            else
+            {
+                Window_SetPositionSize_gl(jarg1, jarg2);
+            }
+        }
+
         [global::System.Runtime.InteropServices.DllImport(Graphics.GlesCSharpBinder, EntryPoint = "CSharp_Dali_Application_New__SWIG_0")]
         public static extern global::System.IntPtr Application_New__SWIG_0_gl();
 

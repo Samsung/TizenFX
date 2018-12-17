@@ -27,6 +27,11 @@ namespace Tizen.NUI.BaseComponents
     /// <since_tizen> 3 </since_tizen>
     public class View : Container, IResourcesProvider
     {
+        /// Flag to allow Layouting to be disabled for Views.
+        /// Once a View has a Layout set then any children added to Views from then on will receive
+        /// automatic Layouts.
+        private static bool layoutingDisabled = true;
+
         /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public bool IsResourcesCreated
@@ -1301,8 +1306,9 @@ namespace Tizen.NUI.BaseComponents
 
                 // Only give children a layout if their parent is an explicit container or a pure View.
                 // Pure View meaning not derived from a View, e.g a Legacy container.
-                // layoutSet flag is true when the View became a layout using the SetLayout API
-                if (true == layoutSet && null == child.Layout)
+                // layoutSet flag is true when the View became a layout using the set Layout API opposed to automatically due to it's parent.
+                // First time the set Layout API is used by any View the Window no longer has layoutingDisabled.
+                if ((true == layoutSet || GetType() == typeof(View)) && null == child.Layout && false == layoutingDisabled )
                 {
                     Log.Info("NUI", "Parent[" + Name + "] Layout set[" + layoutSet.ToString() + "] Pure View[" + (!layoutSet).ToString() + "]\n");
                     // If child is a View or explicitly set to require layouting then set child as a LayoutGroup.
@@ -1310,14 +1316,14 @@ namespace Tizen.NUI.BaseComponents
                     if( child.GetType() == typeof(View) ||  true == child.LayoutingRequired )
                     {
                         Log.Info("NUI", "Creating LayoutGroup for " + child.Name + " LayoutingRequired[" + child.LayoutingRequired.ToString() + "]\n");
-                        child.Layout = new LayoutGroup();
+                        child.SetLayout( new LayoutGroup() );
                     }
                     else
                     {
                         // Adding child as a leaf, layouting will not propagate past this child.
                         // Legacy containers will be a LayoutItems too and layout their children how they wish.
                         Log.Info("NUI", "Creating LayoutItem for " + child.Name + "\n");
-                        child.Layout = new LayoutItem();
+                        child.SetLayout( new LayoutItem() );
                     }
                 }
 
@@ -3459,13 +3465,20 @@ namespace Tizen.NUI.BaseComponents
             }
             set
             {
-                Tizen.NUI.NDalicManualPINVOKE.SetLayout__SWIG_1(View.getCPtr(this), LayoutItem.getCPtr(value));
-                value.LayoutChildren.Clear();
+                Log.Info("NUI", "Set Layout on:" + Name + "\n");
+                layoutingDisabled = false;
                 layoutSet = true;
+                SetLayout( value );
+            }
+        }
+
+        internal void SetLayout( LayoutItem layout )
+        {
+            Tizen.NUI.NDalicManualPINVOKE.SetLayout__SWIG_1(View.getCPtr(this), LayoutItem.getCPtr(layout) );
+            layout.LayoutChildren.Clear();
                 foreach (View view in Children)
                 {
-                    value.LayoutChildren.Add(view.Layout);
-                }
+                layout.LayoutChildren.Add(view.Layout);
             }
         }
 
@@ -4628,6 +4641,7 @@ namespace Tizen.NUI.BaseComponents
             set
             {
                 SetValue(SizeWidthProperty, value);
+                SetProperty(LayoutItemWrapper.ChildProperty.WIDTH_SPECIFICATION, new Tizen.NUI.PropertyValue(value));
                 NotifyPropertyChanged();
             }
         }
@@ -4645,6 +4659,7 @@ namespace Tizen.NUI.BaseComponents
             set
             {
                 SetValue(SizeHeightProperty, value);
+                SetProperty(LayoutItemWrapper.ChildProperty.HEIGHT_SPECIFICATION, new Tizen.NUI.PropertyValue(value));
                 NotifyPropertyChanged();
             }
         }
@@ -5084,6 +5099,28 @@ namespace Tizen.NUI.BaseComponents
             set
             {
                 SetValue(WidthResizePolicyProperty, value);
+                // Match ResizePolicy to new Layouting.
+                // Parent relative policies can not be mapped at this point as parent size unknown.
+                switch( value )
+                {
+                  case ResizePolicyType.UseNaturalSize :
+                  {
+                    SetProperty(LayoutItemWrapper.ChildProperty.WIDTH_SPECIFICATION, new Tizen.NUI.PropertyValue( (int)ChildLayoutData.WrapContent ) );
+                    break;
+                  }
+                  case ResizePolicyType.FillToParent :
+                  {
+                    SetProperty(LayoutItemWrapper.ChildProperty.WIDTH_SPECIFICATION, new Tizen.NUI.PropertyValue( (int)ChildLayoutData.MatchParent ) );
+                    break;
+                  }
+                  case ResizePolicyType.FitToChildren :
+                  {
+                    SetProperty(LayoutItemWrapper.ChildProperty.WIDTH_SPECIFICATION, new Tizen.NUI.PropertyValue( (int)ChildLayoutData.WrapContent ) );
+                    break;
+                  }
+                  default:
+                  break;
+                }
                 NotifyPropertyChanged();
             }
         }
@@ -5101,6 +5138,28 @@ namespace Tizen.NUI.BaseComponents
             set
             {
                 SetValue(HeightResizePolicyProperty, value);
+                // Match ResizePolicy to new Layouting.
+                // Parent relative policies can not be mapped at this point as parent size unknown.
+                switch( value )
+                {
+                  case ResizePolicyType.UseNaturalSize :
+                  {
+                    SetProperty(LayoutItemWrapper.ChildProperty.HEIGHT_SPECIFICATION, new Tizen.NUI.PropertyValue( (int)ChildLayoutData.WrapContent ) );
+                    break;
+                  }
+                  case ResizePolicyType.FillToParent :
+                  {
+                    SetProperty(LayoutItemWrapper.ChildProperty.HEIGHT_SPECIFICATION, new Tizen.NUI.PropertyValue( (int)ChildLayoutData.MatchParent ) );
+                    break;
+                  }
+                  case ResizePolicyType.FitToChildren :
+                  {
+                    SetProperty(LayoutItemWrapper.ChildProperty.HEIGHT_SPECIFICATION, new Tizen.NUI.PropertyValue( (int)ChildLayoutData.WrapContent ) );
+                    break;
+                  }
+                  default:
+                  break;
+                }
                 NotifyPropertyChanged();
             }
         }
