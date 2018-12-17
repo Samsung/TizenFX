@@ -1081,12 +1081,26 @@ namespace ElmSharp
         /// <param name="y">y coordinate of the line.</param>
         /// <param name="w">w coordinate of the line.</param>
         /// <param name="h">h coordinate of the line.</param>
-        /// <returns></returns>
+        /// <returns>True on success, or False on error.</returns>
         /// <since_tizen> preview </since_tizen>
         [Obsolete("GetTextBlockGeometryByLineNumber is obsolete as of version 5.0.0.14299 and is no longer supported.")]
         public bool GetTextBlockGeometryByLineNumber(int lineNumber, out int x, out int y, out int w, out int h)
         {
-            return Interop.Evas.evas_object_textblock_line_number_geometry_get(RealHandle, lineNumber, out x, out y, out w, out h);
+            x = -1; y = -1; w = -1; h = -1;
+
+            IntPtr _edjeHandle = Interop.Elementary.elm_layout_edje_get(RealHandle);
+            if (_edjeHandle == IntPtr.Zero)
+            {
+                return false;
+            }
+
+            IntPtr _textblock = Interop.Elementary.edje_object_part_object_get(_edjeHandle, "elm.text");
+            if (_textblock == IntPtr.Zero)
+            {
+                return false;
+            }
+
+            return Interop.Evas.evas_object_textblock_line_number_geometry_get(_textblock, lineNumber, out x, out y, out w, out h);
         }
 
         internal IntPtr GetData(string key)

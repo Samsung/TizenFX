@@ -34,25 +34,22 @@ namespace Tizen.NUI.BaseComponents
         public static readonly BindableProperty ResourceUrlProperty = BindableProperty.Create(nameof(ImageView.ResourceUrl), typeof(string), typeof(ImageView), string.Empty, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var imageView = (ImageView)bindable;
-            imageView._url = (string)newValue;
-
-            if (imageView._url != null)
+            if (newValue != null)
             {
-                if (imageView.IsCreateByXaml && imageView._url.Contains("*Resource*"))
+                string url = (string)newValue;
+                if (imageView.IsCreateByXaml && url.Contains("*Resource*"))
                 {
                     string resource = Tizen.Applications.Application.Current.DirectoryInfo.Resource;
-                    imageView._url = imageView._url.Replace("*Resource*", resource);
+                    url = url.Replace("*Resource*", resource);
                 }
+                imageView._url = url;
+                imageView.UpdateImage();
             }
-            imageView.UpdateImage();
         },
         defaultValueCreator:(bindable) =>
         {
             var imageView = (ImageView)bindable;
-            if(imageView._url != null)
-            {
                 Tizen.NUI.Object.GetProperty(imageView.swigCPtr, ImageView.Property.IMAGE).Get(out imageView._url);
-            }
             return imageView._url;
         });
         /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
@@ -481,6 +478,8 @@ namespace Tizen.NUI.BaseComponents
 
         /// <summary>
         /// ImageView ResourceUrl, type string.
+        /// This is one of mandatory property. Even if not set or null set, it sets empty string ("") internally.
+        /// When it is set as null, it gives empty string ("") to be read.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public string ResourceUrl
@@ -491,7 +490,8 @@ namespace Tizen.NUI.BaseComponents
             }
             set
             {
-                SetValue(ResourceUrlProperty, value);
+                _url = (value == null? "" : value);
+                SetValue(ResourceUrlProperty, _url);
                 NotifyPropertyChanged();
             }
         }
@@ -731,10 +731,6 @@ namespace Tizen.NUI.BaseComponents
                 { // just for normal image
                     SetProperty(ImageView.Property.IMAGE, new PropertyValue(_url));
                 }
-            }
-            else
-            {
-                SetProperty(ImageView.Property.IMAGE, new PropertyValue(""));
             }
         }
 
