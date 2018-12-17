@@ -77,13 +77,13 @@ namespace Tizen.NUI.Binding
         {
             lock (_list)
             {
-            ReadOnlyCollection<T> snap = _snapshot;
-            if (snap == null)
-            {
+                ReadOnlyCollection<T> snap = _snapshot;
+                if (snap == null)
+                {
                     _snapshot = snap = new ReadOnlyCollection<T>(_list.ToList());
+                }
+                return snap?.GetEnumerator();
             }
-            return snap?.GetEnumerator();
-        }
         }
 
         public int IndexOf(T item)
