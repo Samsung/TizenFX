@@ -457,7 +457,6 @@ namespace ElmSharp
                 if (_automationId != null)
                     throw new InvalidOperationException("AutomationId may only be set one time.");
                 _automationId = value;
-                Elementary.SendAutomationIdSet(this);
             }
         }
 
@@ -1213,6 +1212,8 @@ namespace ElmSharp
                 _hidden = new EvasObjectEvent(this, EvasObjectCallbackType.Hide);
 
                 _deleted.On += (s, e) => MakeInvalidate();
+                
+                Elementary.SendEvasObjectRealized(this);
             }
         }
 
