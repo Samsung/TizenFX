@@ -3476,8 +3476,8 @@ namespace Tizen.NUI.BaseComponents
         {
             Tizen.NUI.NDalicManualPINVOKE.SetLayout__SWIG_1(View.getCPtr(this), LayoutItem.getCPtr(layout) );
             layout.LayoutChildren.Clear();
-                foreach (View view in Children)
-                {
+            foreach (View view in Children)
+            {
                 layout.LayoutChildren.Add(view.Layout);
             }
         }
