@@ -31,6 +31,18 @@ internal static partial class Interop
             OutOfMemory = Tizen.Internals.Errors.ErrorCode.OutOfMemory
         }
 
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+        internal delegate void PolicyChangedCallback(string name, string state, IntPtr userData);
+        // void (* dpm_policy_changed_cb)(const char* name, const char* state, void* user_data);
+
+        [DllImport(Libraries.DevicePolicyManager, EntryPoint = "dpm_add_policy_changed_cb", CallingConvention = CallingConvention.Cdecl)]
+        internal static extern int AddPolicyChangedCallback(IntPtr handle, string name, PolicyChangedCallback callback, IntPtr userData, out int callbackId);
+        // int dpm_add_policy_changed_cb(device_policy_manager_h handle, const char* name, dpm_policy_changed_cb callback, void* user_data, int* id)
+
+        [DllImport(Libraries.DevicePolicyManager, EntryPoint = "dpm_remove_policy_changed_cb", CallingConvention = CallingConvention.Cdecl)]
+        internal static extern int RemovePolicyChangedCallback(IntPtr handle, int callbackId);
+        // int dpm_remove_policy_changed_cb(device_policy_manager_h handle, int id)
+
         [DllImport(Libraries.DevicePolicyManager, EntryPoint = "dpm_manager_create", CallingConvention = CallingConvention.Cdecl)]
         internal static extern IntPtr CreateHandle();
         // device_policy_manager_h dpm_manager_create(void)
