@@ -55,6 +55,7 @@ namespace ElmSharp
         /// </summary>
         /// <since_tizen> preview </since_tizen>
         public static event EventHandler EvasObjectRealized;
+        
         internal static void SendEvasObjectRealized(EvasObject obj)
         {
             EvasObjectRealized?.Invoke(obj, EventArgs.Empty);
