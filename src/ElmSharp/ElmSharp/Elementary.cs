@@ -51,14 +51,14 @@ namespace ElmSharp
         private const string _themeFilePath = "/usr/share/elm-sharp/elm-sharp-theme.edj";
 
         /// <summary>
-        /// AutomationIdSet will be triggered when the AutomationId is set to the object.
+        /// EvasObjectRealized will be triggered when the EvasObject is realized.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
-        public static event EventHandler AutomationIdSet;
+        public static event EventHandler EvasObjectRealized;
 
-        internal static void SendAutomationIdSet(EvasObject obj)
+        internal static void SendEvasObjectRealized(EvasObject obj)
         {
-            AutomationIdSet?.Invoke(obj, EventArgs.Empty);
+            EvasObjectRealized?.Invoke(obj, EventArgs.Empty);
         }
 
         /// <summary>
