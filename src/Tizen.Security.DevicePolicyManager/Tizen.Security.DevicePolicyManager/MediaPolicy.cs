@@ -1,0 +1,151 @@
+﻿/*
+ *  Copyright (c) 2018 Samsung Electronics Co., Ltd All Rights Reserved
+ *
+ *  Licensed under the Apache License, Version 2.0 (the "License");
+ *  you may not use this file except in compliance with the License.
+ *  You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ *  Unless required by applicable law or agreed to in writing, software
+ *  distributed under the License is distributed on an "AS IS" BASIS,
+ *  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ *  See the License for the specific language governing permissions and
+ *  limitations under the License
+ */
+
+using System;
+
+namespace Tizen.Security.DevicePolicyManager
+{
+    /// <summary>
+    /// The MediaPolicy provides methods to control media policies.
+    /// </summary>
+    /// <since_tizen> 6 </since_tizen>
+    public class MediaPolicy
+    {
+        private readonly string _cameraPolicyName = "camera";
+        private readonly string _microphonePolicyName = "microphone";
+        private readonly DevicePolicyManager handle;
+        private int _cameraCallbackId;
+        private int _microphoneCallbackId;
+
+        private Interop.DevicePolicyManager.PolicyChangedCallback _cameraPolicyChangedCallback;
+        private Interop.DevicePolicyManager.PolicyChangedCallback _microphonePolicyChangedCallback;
+        private EventHandler<PolicyChangedEventArgs> _cameraPolicyChanged;
+        private EventHandler<PolicyChangedEventArgs> _microphonePolicyChanged;
+
+        internal MediaPolicy()
+        {
+        }
+
+        internal MediaPolicy(DevicePolicyManager dpm)
+        {
+            handle = dpm;
+        }
+
+        /// <summary>
+        /// The CameraPolicyChanged event is raised when the camera policy is changed.
+        /// </summary>
+        /// <since_tizen> 6 </since_tizen>
+        public event EventHandler<PolicyChangedEventArgs> CameraPolicyChanged
+        {
+            add
+            {
+                if (_cameraPolicyChanged == null)
+                {
+                    AddCameraPolicyChangedCallback();
+                }
+                _cameraPolicyChanged += value;
+            }
+            remove
+            {
+                _cameraPolicyChanged -= value;
+                if (_cameraPolicyChanged == null)
+                {
+                    RemoveCameraPolicyChangedCallback();
+                }
+            }
+        }
+
+        private void AddCameraPolicyChangedCallback()
+        {
+            if (_cameraPolicyChangedCallback == null)
+            {
+                _cameraPolicyChangedCallback = (string name, string state, IntPtr userData) =>
+                {
+                    _cameraPolicyChanged?.Invoke(null, new PolicyChangedEventArgs(name, state));
+                };
+            }
+
+            int ret = Interop.DevicePolicyManager.AddPolicyChangedCallback(handle.GetHandle(), _cameraPolicyName, _cameraPolicyChangedCallback, IntPtr.Zero, out _cameraCallbackId);
+            if (ret != (int)Interop.DevicePolicyManager.DpmError.None)
+            {
+                throw DevicePolicyManagerErrorFactory.GetException(ret);
+            }
+        }
+
+        private void RemoveCameraPolicyChangedCallback()
+        {
+            int ret = Interop.DevicePolicyManager.RemovePolicyChangedCallback(handle.GetHandle(), _cameraCallbackId);
+            if (ret != (int)Interop.DevicePolicyManager.DpmError.None)
+            {
+                throw DevicePolicyManagerErrorFactory.GetException(ret);
+            }
+            _cameraPolicyChangedCallback = null;
+            _cameraCallbackId = 0;
+        }
+
+        /// <summary>
+        /// The MicrophonePolicyChanged event is raised when the microphone policy is changed.
+        /// </summary>
+        /// <since_tizen> 6 </since_tizen>
+        public event EventHandler<PolicyChangedEventArgs> MicrophonePolicyChanged
+        {
+            add
+            {
+                if (_microphonePolicyChanged == null)
+                {
+                    AddMicrophonePolicyChangedCallback();
+                }
+                _microphonePolicyChanged += value;
+            }
+            remove
+            {
+                _microphonePolicyChanged -= value;
+                if (_microphonePolicyChanged == null)
+                {
+                    RemoveMicrophonePolicyChangedCallback();
+                }
+            }
+        }
+
+        private void AddMicrophonePolicyChangedCallback()
+        {
+            if (_microphonePolicyChangedCallback == null)
+            {
+                _microphonePolicyChangedCallback = (string name, string state, IntPtr userData) =>
+                {
+                    _microphonePolicyChanged?.Invoke(null, new PolicyChangedEventArgs(name, state));
+                };
+            }
+
+            int ret = Interop.DevicePolicyManager.AddPolicyChangedCallback(handle.GetHandle(), _microphonePolicyName, _microphonePolicyChangedCallback, IntPtr.Zero, out _microphoneCallbackId);
+            if (ret != (int)Interop.DevicePolicyManager.DpmError.None)
+            {
+                throw DevicePolicyManagerErrorFactory.GetException(ret);
+            }
+        }
+
+        private void RemoveMicrophonePolicyChangedCallback()
+        {
+            int ret = Interop.DevicePolicyManager.RemovePolicyChangedCallback(handle.GetHandle(), _microphoneCallbackId);
+            if (ret != (int)Interop.DevicePolicyManager.DpmError.None)
+            {
+                throw DevicePolicyManagerErrorFactory.GetException(ret);
+            }
+            _microphonePolicyChangedCallback = null;
+            _microphoneCallbackId = 0;
+        }
+    }
+}

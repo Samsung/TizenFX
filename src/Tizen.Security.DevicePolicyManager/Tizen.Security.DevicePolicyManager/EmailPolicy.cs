@@ -14,6 +14,8 @@
  *  limitations under the License
  */
 
+using System;
+
 namespace Tizen.Security.DevicePolicyManager
 {
     /// <summary>
@@ -22,7 +24,12 @@ namespace Tizen.Security.DevicePolicyManager
     /// <since_tizen> 6 </since_tizen>
     public class EmailPolicy
     {
+        private readonly string _popImapPolicyName = "popimap_email";
         private readonly DevicePolicyManager handle;
+        private int _popImapCallbackId;
+
+        private Interop.DevicePolicyManager.PolicyChangedCallback _popImapPolicyChangedCallback;
+        private EventHandler<PolicyChangedEventArgs> _popImapPolicyChanged;
 
         internal EmailPolicy()
         {
@@ -56,6 +63,58 @@ namespace Tizen.Security.DevicePolicyManager
             {
                 return false;
             }
+        }
+
+        /// <summary>
+        /// The PopImapPolicyChanged event is raised when the popimap-email policy is changed.
+        /// </summary>
+        /// <since_tizen> 6 </since_tizen>
+        public event EventHandler<PolicyChangedEventArgs> PopImapPolicyChanged
+        {
+            add
+            {
+                if (_popImapPolicyChanged == null)
+                {
+                    AddPopImapPolicyChangedCallback();
+                }
+                _popImapPolicyChanged += value;
+            }
+            remove
+            {
+                _popImapPolicyChanged -= value;
+                if (_popImapPolicyChanged == null)
+                {
+                    RemovePopImapPolicyChangedCallback();
+                }
+            }
+        }
+
+        private void AddPopImapPolicyChangedCallback()
+        {
+            if (_popImapPolicyChangedCallback == null)
+            {
+                _popImapPolicyChangedCallback = (string name, string state, IntPtr userData) =>
+                {
+                    _popImapPolicyChanged?.Invoke(null, new PolicyChangedEventArgs(name, state));
+                };
+            }
+
+            int ret = Interop.DevicePolicyManager.AddPolicyChangedCallback(handle.GetHandle(), _popImapPolicyName, _popImapPolicyChangedCallback, IntPtr.Zero, out _popImapCallbackId);
+            if (ret != (int)Interop.DevicePolicyManager.DpmError.None)
+            {
+                throw DevicePolicyManagerErrorFactory.GetException(ret);
+            }
+        }
+
+        private void RemovePopImapPolicyChangedCallback()
+        {
+            int ret = Interop.DevicePolicyManager.RemovePolicyChangedCallback(handle.GetHandle(), _popImapCallbackId);
+            if (ret != (int)Interop.DevicePolicyManager.DpmError.None)
+            {
+                throw DevicePolicyManagerErrorFactory.GetException(ret);
+            }
+            _popImapPolicyChangedCallback = null;
+            _popImapCallbackId = 0;
         }
     }
 }

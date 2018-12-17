@@ -14,15 +14,22 @@
  *  limitations under the License
  */
 
+using System;
+
 namespace Tizen.Security.DevicePolicyManager
 {
     /// <summary>
     /// The TelephonyPolicy provides methods to control telephony policies.
     /// </summary>
     /// <since_tizen> 6 </since_tizen>
-    class TelephonyPolicy
+    public class TelephonyPolicy
     {
+        private readonly string _messagingPolicyName = "messaging";
         private readonly DevicePolicyManager handle;
+        private int _messagingCallbackId;
+
+        private Interop.DevicePolicyManager.PolicyChangedCallback _messagingPolicyChangedCallback;
+        private EventHandler<PolicyChangedEventArgs> _messagingPolicyChanged;
 
         internal TelephonyPolicy()
         {
@@ -57,6 +64,58 @@ namespace Tizen.Security.DevicePolicyManager
             {
                 return false;
             }
+        }
+
+        /// <summary>
+        /// The MessagingPolicyChanged event is raised when the messaging policy is changed.
+        /// </summary>
+        /// <since_tizen> 6 </since_tizen>
+        public event EventHandler<PolicyChangedEventArgs> MessagingPolicyChanged
+        {
+            add
+            {
+                if (_messagingPolicyChanged == null)
+                {
+                    AddMessagingPolicyChangedCallback();
+                }
+                _messagingPolicyChanged += value;
+            }
+            remove
+            {
+                _messagingPolicyChanged -= value;
+                if (_messagingPolicyChanged == null)
+                {
+                    RemoveMessagingPolicyChangedCallback();
+                }
+            }
+        }
+
+        private void AddMessagingPolicyChangedCallback()
+        {
+            if (_messagingPolicyChangedCallback == null)
+            {
+                _messagingPolicyChangedCallback = (string name, string state, IntPtr userData) =>
+                {
+                    _messagingPolicyChanged?.Invoke(null, new PolicyChangedEventArgs(name, state));
+                };
+            }
+
+            int ret = Interop.DevicePolicyManager.AddPolicyChangedCallback(handle.GetHandle(), _messagingPolicyName, _messagingPolicyChangedCallback, IntPtr.Zero, out _messagingCallbackId);
+            if (ret != (int)Interop.DevicePolicyManager.DpmError.None)
+            {
+                throw DevicePolicyManagerErrorFactory.GetException(ret);
+            }
+        }
+
+        private void RemoveMessagingPolicyChangedCallback()
+        {
+            int ret = Interop.DevicePolicyManager.RemovePolicyChangedCallback(handle.GetHandle(), _messagingCallbackId);
+            if (ret != (int)Interop.DevicePolicyManager.DpmError.None)
+            {
+                throw DevicePolicyManagerErrorFactory.GetException(ret);
+            }
+            _messagingPolicyChangedCallback = null;
+            _messagingCallbackId = 0;
         }
     }
 }
