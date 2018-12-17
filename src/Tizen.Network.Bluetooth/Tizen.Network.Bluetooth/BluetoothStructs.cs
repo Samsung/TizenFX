@@ -403,7 +403,7 @@ namespace Tizen.Network.Bluetooth
             clientSocket.connectedSocket = structInfo.SocketFd;
             clientSocket.remoteAddress = structInfo.Address;
             clientSocket.serviceUuid = structInfo.ServiceUuid;
-            connectionInfo.Client = (IBluetoothServerSocket)clientSocket;
+            connectionInfo.ClientSocket = (IBluetoothServerSocket)clientSocket;
 
             return connectionInfo;
         }
