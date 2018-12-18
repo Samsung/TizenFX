@@ -106,8 +106,9 @@ namespace Tizen.Account.AccountManager
             List<int> values = new List<int>();
             Interop.Account.AccountCallback accountCallback = (IntPtr data, IntPtr userdata) =>
             {
-                Account account = new Account(new SafeAccountHandle(data, true));
+                Account account = new Account(new SafeAccountHandle(data, false));
                 values.Add(account.AccountId);
+		account.Dispose();
                 return true;
             };
 
@@ -149,7 +150,7 @@ namespace Tizen.Account.AccountManager
                 throw AccountErrorFactory.CreateException(res, "Failed to get accounts from the database for account id: " + accountId);
             }
             Account ref_account = new Account(handle);
-			
+
             return ref_account;
         }
 
@@ -402,8 +403,9 @@ namespace Tizen.Account.AccountManager
             List<int> values = new List<int>();
             Interop.Account.AccountCallback accountCallback = (IntPtr handle, IntPtr data) =>
             {
-                Account account = new Account(new SafeAccountHandle(handle, true));
+                Account account = new Account(new SafeAccountHandle(handle, false));
                 values.Add(account.AccountId);
+		account.Dispose();
                 return true;
             };
 
@@ -440,8 +442,9 @@ namespace Tizen.Account.AccountManager
             List<int> values = new List<int>();
             Interop.Account.AccountCallback accountCallback = (IntPtr handle, IntPtr data) =>
             {
-                Account account = new Account(new SafeAccountHandle(handle, true));
+                Account account = new Account(new SafeAccountHandle(handle, false));
                 values.Add(account.AccountId);
+		account.Dispose();
                 return true;
             };
 
@@ -478,8 +481,9 @@ namespace Tizen.Account.AccountManager
             List<int> values = new List<int>();
             Interop.Account.AccountCallback accountCallback = (IntPtr handle, IntPtr data) =>
             {
-                Account account = new Account(new SafeAccountHandle(handle, true));
+                Account account = new Account(new SafeAccountHandle(handle, false));
                 values.Add(account.AccountId);
+		account.Dispose();
                 return true;
             };
 
