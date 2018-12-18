@@ -25,7 +25,7 @@ namespace Tizen.Security.DevicePolicyManager
     public class UsbPolicy
     {
         private readonly string _usbTetheringPolicyName = "usb_tethering";
-        private readonly DevicePolicyManager handle;
+        private readonly DevicePolicyManager _dpm;
         private int _usbTetheringCallbackId;
 
         private Interop.DevicePolicyManager.PolicyChangedCallback _usbTetheringPolicyChangedCallback;
@@ -37,7 +37,7 @@ namespace Tizen.Security.DevicePolicyManager
 
         internal UsbPolicy(DevicePolicyManager dpm)
         {
-            handle = dpm;
+            _dpm = dpm;
         }
 
         /// <summary>
@@ -74,7 +74,7 @@ namespace Tizen.Security.DevicePolicyManager
                 };
             }
 
-            int ret = Interop.DevicePolicyManager.AddPolicyChangedCallback(handle.GetHandle(), _usbTetheringPolicyName, _usbTetheringPolicyChangedCallback, IntPtr.Zero, out _usbTetheringCallbackId);
+            int ret = Interop.DevicePolicyManager.AddPolicyChangedCallback(_dpm.GetHandle(), _usbTetheringPolicyName, _usbTetheringPolicyChangedCallback, IntPtr.Zero, out _usbTetheringCallbackId);
             if (ret != (int)Interop.DevicePolicyManager.DpmError.None)
             {
                 throw DevicePolicyManagerErrorFactory.GetException(ret);
@@ -83,7 +83,7 @@ namespace Tizen.Security.DevicePolicyManager
 
         private void RemoveUsbTetheringPolicyChangedCallback()
         {
-            int ret = Interop.DevicePolicyManager.RemovePolicyChangedCallback(handle.GetHandle(), _usbTetheringCallbackId);
+            int ret = Interop.DevicePolicyManager.RemovePolicyChangedCallback(_dpm.GetHandle(), _usbTetheringCallbackId);
             if (ret != (int)Interop.DevicePolicyManager.DpmError.None)
             {
                 throw DevicePolicyManagerErrorFactory.GetException(ret);

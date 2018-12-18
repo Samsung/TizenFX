@@ -26,8 +26,8 @@ namespace Tizen.Security.DevicePolicyManager
     /// <since_tizen> 6 </since_tizen>
     public class DevicePolicyManager : IDisposable
     {
-        private IntPtr handle = IntPtr.Zero;
-        private bool disposed = false;
+        private IntPtr _handle = IntPtr.Zero;
+        private bool _disposed = false;
 
         /// <summary>
         /// A constructor of DevicePolicyManager that creates handle.
@@ -35,7 +35,7 @@ namespace Tizen.Security.DevicePolicyManager
         /// <since_tizen> 6 </since_tizen>
         public DevicePolicyManager()
         {
-            handle = Interop.DevicePolicyManager.CreateHandle();
+            _handle = Interop.DevicePolicyManager.CreateHandle();
         }
 
         /// <summary>
@@ -62,12 +62,12 @@ namespace Tizen.Security.DevicePolicyManager
 
         internal IntPtr GetHandle()
         {
-            if (disposed)
+            if (_disposed)
             {
                 return IntPtr.Zero;
             }
 
-            return handle;
+            return _handle;
         }
 
         /// <summary>
@@ -84,18 +84,18 @@ namespace Tizen.Security.DevicePolicyManager
         /// <param name="disposing">If true, disposes any disposable objects. If false, does not dispose disposable objects.</param>
         protected virtual void Dispose(bool disposing)
         {
-            if (this.disposed)
+            if (_disposed)
             {
                 return;
             }
  
-            if (handle != IntPtr.Zero)
+            if (_handle != IntPtr.Zero)
             {
-                Interop.DevicePolicyManager.DestroyHandle(handle);
-                handle = IntPtr.Zero;
+                Interop.DevicePolicyManager.DestroyHandle(_handle);
+                _handle = IntPtr.Zero;
             }
 
-            disposed = true;
+            _disposed = true;
         }
 
         /// <summary>

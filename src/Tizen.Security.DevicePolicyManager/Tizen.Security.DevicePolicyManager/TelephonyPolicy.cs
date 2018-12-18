@@ -25,7 +25,7 @@ namespace Tizen.Security.DevicePolicyManager
     public class TelephonyPolicy
     {
         private readonly string _messagingPolicyName = "messaging";
-        private readonly DevicePolicyManager handle;
+        private readonly DevicePolicyManager _dpm;
         private int _messagingCallbackId;
 
         private Interop.DevicePolicyManager.PolicyChangedCallback _messagingPolicyChangedCallback;
@@ -37,7 +37,7 @@ namespace Tizen.Security.DevicePolicyManager
 
         internal TelephonyPolicy(DevicePolicyManager dpm)
         {
-            handle = dpm;
+            _dpm = dpm;
         }
 
         /// <summary>
@@ -49,7 +49,7 @@ namespace Tizen.Security.DevicePolicyManager
         public bool GetMessagingState(string simId)
         {
             int state;
-            int ret = Interop.DevicePolicyManager.RestrictionGetMessagingState(handle.GetHandle(), simId, out state);
+            int ret = Interop.DevicePolicyManager.RestrictionGetMessagingState(_dpm.GetHandle(), simId, out state);
 
             if (ret != (int)Interop.DevicePolicyManager.DpmError.None)
             {
@@ -100,7 +100,7 @@ namespace Tizen.Security.DevicePolicyManager
                 };
             }
 
-            int ret = Interop.DevicePolicyManager.AddPolicyChangedCallback(handle.GetHandle(), _messagingPolicyName, _messagingPolicyChangedCallback, IntPtr.Zero, out _messagingCallbackId);
+            int ret = Interop.DevicePolicyManager.AddPolicyChangedCallback(_dpm.GetHandle(), _messagingPolicyName, _messagingPolicyChangedCallback, IntPtr.Zero, out _messagingCallbackId);
             if (ret != (int)Interop.DevicePolicyManager.DpmError.None)
             {
                 throw DevicePolicyManagerErrorFactory.GetException(ret);
@@ -109,7 +109,7 @@ namespace Tizen.Security.DevicePolicyManager
 
         private void RemoveMessagingPolicyChangedCallback()
         {
-            int ret = Interop.DevicePolicyManager.RemovePolicyChangedCallback(handle.GetHandle(), _messagingCallbackId);
+            int ret = Interop.DevicePolicyManager.RemovePolicyChangedCallback(_dpm.GetHandle(), _messagingCallbackId);
             if (ret != (int)Interop.DevicePolicyManager.DpmError.None)
             {
                 throw DevicePolicyManagerErrorFactory.GetException(ret);

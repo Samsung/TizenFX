@@ -22,7 +22,7 @@ namespace Tizen.Security.DevicePolicyManager
     /// <since_tizen> 6 </since_tizen>
     public class PasswordPolicy
     {
-        private readonly DevicePolicyManager handle;
+        private readonly DevicePolicyManager _dpm;
 
         internal PasswordPolicy()
         {
@@ -30,7 +30,7 @@ namespace Tizen.Security.DevicePolicyManager
 
         internal PasswordPolicy(DevicePolicyManager dpm)
         {
-            handle = dpm;
+            _dpm = dpm;
         }
 
         /// <summary>
@@ -43,7 +43,7 @@ namespace Tizen.Security.DevicePolicyManager
         public int GetExpires()
         {
             int value;
-            int ret = Interop.DevicePolicyManager.PasswordGetExpires(handle.GetHandle(), out value);
+            int ret = Interop.DevicePolicyManager.PasswordGetExpires(_dpm.GetHandle(), out value);
             if (ret != (int)Interop.DevicePolicyManager.DpmError.None)
             {
                 throw DevicePolicyManagerErrorFactory.GetException(ret);
@@ -62,7 +62,7 @@ namespace Tizen.Security.DevicePolicyManager
         public int GetHistory()
         {
             int value;
-            int ret = Interop.DevicePolicyManager.PasswordGetHistory(handle.GetHandle(), out value);
+            int ret = Interop.DevicePolicyManager.PasswordGetHistory(_dpm.GetHandle(), out value);
             if (ret != (int)Interop.DevicePolicyManager.DpmError.None)
             {
                 throw DevicePolicyManagerErrorFactory.GetException(ret);
@@ -81,7 +81,7 @@ namespace Tizen.Security.DevicePolicyManager
         public int GetMaxInactivityTimeDeviceLock()
         {
             int value;
-            int ret = Interop.DevicePolicyManager.PasswordGetMaxInactivityTimeDeviceLock(handle.GetHandle(), out value);
+            int ret = Interop.DevicePolicyManager.PasswordGetMaxInactivityTimeDeviceLock(_dpm.GetHandle(), out value);
             if (ret != (int)Interop.DevicePolicyManager.DpmError.None)
             {
                 throw DevicePolicyManagerErrorFactory.GetException(ret);
@@ -101,7 +101,7 @@ namespace Tizen.Security.DevicePolicyManager
         public int GetMaximumFailedAttemptsForWipe()
         {
             int value;
-            int ret = Interop.DevicePolicyManager.PasswordGetMaximumFailedAttemptsForWipe(handle.GetHandle(), out value);
+            int ret = Interop.DevicePolicyManager.PasswordGetMaximumFailedAttemptsForWipe(_dpm.GetHandle(), out value);
             if (ret != (int)Interop.DevicePolicyManager.DpmError.None)
             {
                 throw DevicePolicyManagerErrorFactory.GetException(ret);
@@ -121,7 +121,7 @@ namespace Tizen.Security.DevicePolicyManager
         public int GetMinComplexChars()
         {
             int value;
-            int ret = Interop.DevicePolicyManager.PasswordGetMinComplexChars(handle.GetHandle(), out value);
+            int ret = Interop.DevicePolicyManager.PasswordGetMinComplexChars(_dpm.GetHandle(), out value);
             if (ret != (int)Interop.DevicePolicyManager.DpmError.None)
             {
                 throw DevicePolicyManagerErrorFactory.GetException(ret);
@@ -140,7 +140,7 @@ namespace Tizen.Security.DevicePolicyManager
         public int GetMinimumLength()
         {
             int value;
-            int ret = Interop.DevicePolicyManager.PasswordGetMinimumLength(handle.GetHandle(), out value);
+            int ret = Interop.DevicePolicyManager.PasswordGetMinimumLength(_dpm.GetHandle(), out value);
             if (ret != (int)Interop.DevicePolicyManager.DpmError.None)
             {
                 throw DevicePolicyManagerErrorFactory.GetException(ret);
@@ -160,7 +160,7 @@ namespace Tizen.Security.DevicePolicyManager
         public int GetQuality()
         {
             int quality;
-            int ret = Interop.DevicePolicyManager.PasswordGetQuality(handle.GetHandle(), out quality);
+            int ret = Interop.DevicePolicyManager.PasswordGetQuality(_dpm.GetHandle(), out quality);
             if (ret != (int)Interop.DevicePolicyManager.DpmError.None)
             {
                 throw DevicePolicyManagerErrorFactory.GetException(ret);

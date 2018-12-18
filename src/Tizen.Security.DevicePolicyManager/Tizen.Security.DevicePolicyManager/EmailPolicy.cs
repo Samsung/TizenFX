@@ -25,7 +25,7 @@ namespace Tizen.Security.DevicePolicyManager
     public class EmailPolicy
     {
         private readonly string _popImapPolicyName = "popimap_email";
-        private readonly DevicePolicyManager handle;
+        private readonly DevicePolicyManager _dpm;
         private int _popImapCallbackId;
 
         private Interop.DevicePolicyManager.PolicyChangedCallback _popImapPolicyChangedCallback;
@@ -37,7 +37,7 @@ namespace Tizen.Security.DevicePolicyManager
  
         internal EmailPolicy(DevicePolicyManager dpm)
         {
-            handle = dpm;
+            _dpm = dpm;
         }
 
         /// <summary>
@@ -48,7 +48,7 @@ namespace Tizen.Security.DevicePolicyManager
         public bool GetPopImapState()
         {
             int state;
-            int ret = Interop.DevicePolicyManager.RestrictionGetPopimapEmailState(handle.GetHandle(), out state);
+            int ret = Interop.DevicePolicyManager.RestrictionGetPopimapEmailState(_dpm.GetHandle(), out state);
 
             if (ret != (int)Interop.DevicePolicyManager.DpmError.None)
             {
@@ -99,7 +99,7 @@ namespace Tizen.Security.DevicePolicyManager
                 };
             }
 
-            int ret = Interop.DevicePolicyManager.AddPolicyChangedCallback(handle.GetHandle(), _popImapPolicyName, _popImapPolicyChangedCallback, IntPtr.Zero, out _popImapCallbackId);
+            int ret = Interop.DevicePolicyManager.AddPolicyChangedCallback(_dpm.GetHandle(), _popImapPolicyName, _popImapPolicyChangedCallback, IntPtr.Zero, out _popImapCallbackId);
             if (ret != (int)Interop.DevicePolicyManager.DpmError.None)
             {
                 throw DevicePolicyManagerErrorFactory.GetException(ret);
@@ -108,7 +108,7 @@ namespace Tizen.Security.DevicePolicyManager
 
         private void RemovePopImapPolicyChangedCallback()
         {
-            int ret = Interop.DevicePolicyManager.RemovePolicyChangedCallback(handle.GetHandle(), _popImapCallbackId);
+            int ret = Interop.DevicePolicyManager.RemovePolicyChangedCallback(_dpm.GetHandle(), _popImapCallbackId);
             if (ret != (int)Interop.DevicePolicyManager.DpmError.None)
             {
                 throw DevicePolicyManagerErrorFactory.GetException(ret);

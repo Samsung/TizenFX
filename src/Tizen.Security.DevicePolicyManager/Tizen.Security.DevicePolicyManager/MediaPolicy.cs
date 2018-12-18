@@ -26,7 +26,7 @@ namespace Tizen.Security.DevicePolicyManager
     {
         private readonly string _cameraPolicyName = "camera";
         private readonly string _microphonePolicyName = "microphone";
-        private readonly DevicePolicyManager handle;
+        private readonly DevicePolicyManager _dpm;
         private int _cameraCallbackId;
         private int _microphoneCallbackId;
 
@@ -41,7 +41,7 @@ namespace Tizen.Security.DevicePolicyManager
 
         internal MediaPolicy(DevicePolicyManager dpm)
         {
-            handle = dpm;
+            _dpm = dpm;
         }
 
         /// <summary>
@@ -78,7 +78,7 @@ namespace Tizen.Security.DevicePolicyManager
                 };
             }
 
-            int ret = Interop.DevicePolicyManager.AddPolicyChangedCallback(handle.GetHandle(), _cameraPolicyName, _cameraPolicyChangedCallback, IntPtr.Zero, out _cameraCallbackId);
+            int ret = Interop.DevicePolicyManager.AddPolicyChangedCallback(_dpm.GetHandle(), _cameraPolicyName, _cameraPolicyChangedCallback, IntPtr.Zero, out _cameraCallbackId);
             if (ret != (int)Interop.DevicePolicyManager.DpmError.None)
             {
                 throw DevicePolicyManagerErrorFactory.GetException(ret);
@@ -87,7 +87,7 @@ namespace Tizen.Security.DevicePolicyManager
 
         private void RemoveCameraPolicyChangedCallback()
         {
-            int ret = Interop.DevicePolicyManager.RemovePolicyChangedCallback(handle.GetHandle(), _cameraCallbackId);
+            int ret = Interop.DevicePolicyManager.RemovePolicyChangedCallback(_dpm.GetHandle(), _cameraCallbackId);
             if (ret != (int)Interop.DevicePolicyManager.DpmError.None)
             {
                 throw DevicePolicyManagerErrorFactory.GetException(ret);
@@ -130,7 +130,7 @@ namespace Tizen.Security.DevicePolicyManager
                 };
             }
 
-            int ret = Interop.DevicePolicyManager.AddPolicyChangedCallback(handle.GetHandle(), _microphonePolicyName, _microphonePolicyChangedCallback, IntPtr.Zero, out _microphoneCallbackId);
+            int ret = Interop.DevicePolicyManager.AddPolicyChangedCallback(_dpm.GetHandle(), _microphonePolicyName, _microphonePolicyChangedCallback, IntPtr.Zero, out _microphoneCallbackId);
             if (ret != (int)Interop.DevicePolicyManager.DpmError.None)
             {
                 throw DevicePolicyManagerErrorFactory.GetException(ret);
@@ -139,7 +139,7 @@ namespace Tizen.Security.DevicePolicyManager
 
         private void RemoveMicrophonePolicyChangedCallback()
         {
-            int ret = Interop.DevicePolicyManager.RemovePolicyChangedCallback(handle.GetHandle(), _microphoneCallbackId);
+            int ret = Interop.DevicePolicyManager.RemovePolicyChangedCallback(_dpm.GetHandle(), _microphoneCallbackId);
             if (ret != (int)Interop.DevicePolicyManager.DpmError.None)
             {
                 throw DevicePolicyManagerErrorFactory.GetException(ret);

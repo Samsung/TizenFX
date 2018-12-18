@@ -25,7 +25,7 @@ namespace Tizen.Security.DevicePolicyManager
     public class BrowserPolicy
     {
         private readonly string _browserPolicyName = "browser";
-        private readonly DevicePolicyManager handle;
+        private readonly DevicePolicyManager _dpm;
         private int _browserCallbackId;
 
         private Interop.DevicePolicyManager.PolicyChangedCallback _browserPolicyChangedCallback;
@@ -37,7 +37,7 @@ namespace Tizen.Security.DevicePolicyManager
 
         internal BrowserPolicy(DevicePolicyManager dpm)
         {
-            handle = dpm;
+            _dpm = dpm;
         }
 
         /// <summary>
@@ -74,7 +74,7 @@ namespace Tizen.Security.DevicePolicyManager
                 };
             }
 
-            int ret = Interop.DevicePolicyManager.AddPolicyChangedCallback(handle.GetHandle(), _browserPolicyName, _browserPolicyChangedCallback, IntPtr.Zero, out _browserCallbackId);
+            int ret = Interop.DevicePolicyManager.AddPolicyChangedCallback(_dpm.GetHandle(), _browserPolicyName, _browserPolicyChangedCallback, IntPtr.Zero, out _browserCallbackId);
             if (ret != (int)Interop.DevicePolicyManager.DpmError.None)
             {
                 throw DevicePolicyManagerErrorFactory.GetException(ret);
@@ -83,7 +83,7 @@ namespace Tizen.Security.DevicePolicyManager
 
         private void RemoveBrowserPolicyChangedCallback()
         {
-            int ret = Interop.DevicePolicyManager.RemovePolicyChangedCallback(handle.GetHandle(), _browserCallbackId);
+            int ret = Interop.DevicePolicyManager.RemovePolicyChangedCallback(_dpm.GetHandle(), _browserCallbackId);
             if (ret != (int)Interop.DevicePolicyManager.DpmError.None)
             {
                 throw DevicePolicyManagerErrorFactory.GetException(ret);

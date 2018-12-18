@@ -25,7 +25,7 @@ namespace Tizen.Security.DevicePolicyManager
     public class StoragePolicy
     {
         private readonly string _externalStoragePolicyName = "external_storage";
-        private readonly DevicePolicyManager handle;
+        private readonly DevicePolicyManager _dpm;
         private int _externalStorageCallbackId;
 
         private Interop.DevicePolicyManager.PolicyChangedCallback _externalStoragePolicyChangedCallback;
@@ -37,7 +37,7 @@ namespace Tizen.Security.DevicePolicyManager
 
         internal StoragePolicy(DevicePolicyManager dpm)
         {
-            handle = dpm;
+            _dpm = dpm;
         }
 
         /// <summary>
@@ -74,7 +74,7 @@ namespace Tizen.Security.DevicePolicyManager
                 };
             }
 
-            int ret = Interop.DevicePolicyManager.AddPolicyChangedCallback(handle.GetHandle(), _externalStoragePolicyName, _externalStoragePolicyChangedCallback, IntPtr.Zero, out _externalStorageCallbackId);
+            int ret = Interop.DevicePolicyManager.AddPolicyChangedCallback(_dpm.GetHandle(), _externalStoragePolicyName, _externalStoragePolicyChangedCallback, IntPtr.Zero, out _externalStorageCallbackId);
             if (ret != (int)Interop.DevicePolicyManager.DpmError.None)
             {
                 throw DevicePolicyManagerErrorFactory.GetException(ret);
@@ -83,7 +83,7 @@ namespace Tizen.Security.DevicePolicyManager
 
         private void RemoveExternalStoragePolicyChangedCallback()
         {
-            int ret = Interop.DevicePolicyManager.RemovePolicyChangedCallback(handle.GetHandle(), _externalStorageCallbackId);
+            int ret = Interop.DevicePolicyManager.RemovePolicyChangedCallback(_dpm.GetHandle(), _externalStorageCallbackId);
             if (ret != (int)Interop.DevicePolicyManager.DpmError.None)
             {
                 throw DevicePolicyManagerErrorFactory.GetException(ret);

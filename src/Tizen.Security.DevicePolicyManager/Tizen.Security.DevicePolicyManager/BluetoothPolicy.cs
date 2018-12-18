@@ -26,7 +26,7 @@ namespace Tizen.Security.DevicePolicyManager
     {
         private readonly string _bluetoothPolicyName = "bluetooth";
         private readonly string _bluetoothTetheringPolicyName = "bluetooth_tethering";
-        private readonly DevicePolicyManager handle;
+        private readonly DevicePolicyManager _dpm;
         private int _bluetoothCallbackId;
         private int _bluetoothTetheringCallbackId;
 
@@ -41,7 +41,7 @@ namespace Tizen.Security.DevicePolicyManager
 
         internal BluetoothPolicy(DevicePolicyManager dpm)
         {
-            handle = dpm;
+            _dpm = dpm;
         }
 
         /// <summary>
@@ -78,7 +78,7 @@ namespace Tizen.Security.DevicePolicyManager
                 };
             }
 
-            int ret = Interop.DevicePolicyManager.AddPolicyChangedCallback(handle.GetHandle(), _bluetoothPolicyName, _bluetoothPolicyChangedCallback, IntPtr.Zero, out _bluetoothCallbackId);
+            int ret = Interop.DevicePolicyManager.AddPolicyChangedCallback(_dpm.GetHandle(), _bluetoothPolicyName, _bluetoothPolicyChangedCallback, IntPtr.Zero, out _bluetoothCallbackId);
             if (ret != (int)Interop.DevicePolicyManager.DpmError.None)
             {
                 throw DevicePolicyManagerErrorFactory.GetException(ret);
@@ -87,7 +87,7 @@ namespace Tizen.Security.DevicePolicyManager
 
         private void RemoveBluetoothPolicyChangedCallback()
         {
-            int ret = Interop.DevicePolicyManager.RemovePolicyChangedCallback(handle.GetHandle(), _bluetoothCallbackId);
+            int ret = Interop.DevicePolicyManager.RemovePolicyChangedCallback(_dpm.GetHandle(), _bluetoothCallbackId);
             if (ret != (int)Interop.DevicePolicyManager.DpmError.None)
             {
                 throw DevicePolicyManagerErrorFactory.GetException(ret);
@@ -130,7 +130,7 @@ namespace Tizen.Security.DevicePolicyManager
                 };
             }
 
-            int ret = Interop.DevicePolicyManager.AddPolicyChangedCallback(handle.GetHandle(), _bluetoothTetheringPolicyName, _bluetoothTetheringPolicyChangedCallback, IntPtr.Zero, out _bluetoothTetheringCallbackId);
+            int ret = Interop.DevicePolicyManager.AddPolicyChangedCallback(_dpm.GetHandle(), _bluetoothTetheringPolicyName, _bluetoothTetheringPolicyChangedCallback, IntPtr.Zero, out _bluetoothTetheringCallbackId);
             if (ret != (int)Interop.DevicePolicyManager.DpmError.None)
             {
                 throw DevicePolicyManagerErrorFactory.GetException(ret);
@@ -139,7 +139,7 @@ namespace Tizen.Security.DevicePolicyManager
 
         private void RemoveBluetoothTetheringPolicyChangedCallback()
         {
-            int ret = Interop.DevicePolicyManager.RemovePolicyChangedCallback(handle.GetHandle(), _bluetoothTetheringCallbackId);
+            int ret = Interop.DevicePolicyManager.RemovePolicyChangedCallback(_dpm.GetHandle(), _bluetoothTetheringCallbackId);
             if (ret != (int)Interop.DevicePolicyManager.DpmError.None)
             {
                 throw DevicePolicyManagerErrorFactory.GetException(ret);

@@ -26,7 +26,7 @@ namespace Tizen.Security.DevicePolicyManager
     {
         private readonly string _wifiPolicyName = "wifi";
         private readonly string _wifiHotspotPolicyName = "wifi_hotspot";
-        private readonly DevicePolicyManager handle;
+        private readonly DevicePolicyManager _dpm;
         private int _wifiCallbackId;
         private int _wifiHotspotCallbackId;
 
@@ -41,7 +41,7 @@ namespace Tizen.Security.DevicePolicyManager
 
         internal WifiPolicy(DevicePolicyManager dpm)
         {
-            handle = dpm;
+            _dpm = dpm;
         }
 
         /// <summary>
@@ -52,7 +52,7 @@ namespace Tizen.Security.DevicePolicyManager
         public bool GetWifiState()
         {
             int state;
-            int ret = Interop.DevicePolicyManager.RestrictionGetWifiState(handle.GetHandle(), out state);
+            int ret = Interop.DevicePolicyManager.RestrictionGetWifiState(_dpm.GetHandle(), out state);
 
             if (ret != (int)Interop.DevicePolicyManager.DpmError.None)
             {
@@ -103,7 +103,7 @@ namespace Tizen.Security.DevicePolicyManager
                 };
             }
 
-            int ret = Interop.DevicePolicyManager.AddPolicyChangedCallback(handle.GetHandle(), _wifiPolicyName, _wifiPolicyChangedCallback, IntPtr.Zero, out _wifiCallbackId);
+            int ret = Interop.DevicePolicyManager.AddPolicyChangedCallback(_dpm.GetHandle(), _wifiPolicyName, _wifiPolicyChangedCallback, IntPtr.Zero, out _wifiCallbackId);
             if (ret != (int)Interop.DevicePolicyManager.DpmError.None)
             {
                 throw DevicePolicyManagerErrorFactory.GetException(ret);
@@ -112,7 +112,7 @@ namespace Tizen.Security.DevicePolicyManager
 
         private void RemoveWifiStatePolicyChangedCallback()
         {
-            int ret = Interop.DevicePolicyManager.RemovePolicyChangedCallback(handle.GetHandle(), _wifiCallbackId);
+            int ret = Interop.DevicePolicyManager.RemovePolicyChangedCallback(_dpm.GetHandle(), _wifiCallbackId);
             if (ret != (int)Interop.DevicePolicyManager.DpmError.None)
             {
                 throw DevicePolicyManagerErrorFactory.GetException(ret);
@@ -155,7 +155,7 @@ namespace Tizen.Security.DevicePolicyManager
                 };
             }
 
-            int ret = Interop.DevicePolicyManager.AddPolicyChangedCallback(handle.GetHandle(), _wifiHotspotPolicyName, _wifiHotspotStatePolicyChangedCallback, IntPtr.Zero, out _wifiHotspotCallbackId);
+            int ret = Interop.DevicePolicyManager.AddPolicyChangedCallback(_dpm.GetHandle(), _wifiHotspotPolicyName, _wifiHotspotStatePolicyChangedCallback, IntPtr.Zero, out _wifiHotspotCallbackId);
             if (ret != (int)Interop.DevicePolicyManager.DpmError.None)
             {
                 throw DevicePolicyManagerErrorFactory.GetException(ret);
@@ -164,7 +164,7 @@ namespace Tizen.Security.DevicePolicyManager
 
         private void RemoveWifiHotspotPolicyChangedCallback()
         {
-            int ret = Interop.DevicePolicyManager.RemovePolicyChangedCallback(handle.GetHandle(), _wifiHotspotCallbackId);
+            int ret = Interop.DevicePolicyManager.RemovePolicyChangedCallback(_dpm.GetHandle(), _wifiHotspotCallbackId);
             if (ret != (int)Interop.DevicePolicyManager.DpmError.None)
             {
                 throw DevicePolicyManagerErrorFactory.GetException(ret);

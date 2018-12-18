@@ -25,7 +25,7 @@ namespace Tizen.Security.DevicePolicyManager
     public class LocationPolicy
     {
         private readonly string _locationPolicyName = "location";
-        private readonly DevicePolicyManager handle;
+        private readonly DevicePolicyManager _dpm;
         private int _locationCallbackId;
 
         private Interop.DevicePolicyManager.PolicyChangedCallback _locationPolicyChangedCallback;
@@ -37,7 +37,7 @@ namespace Tizen.Security.DevicePolicyManager
 
         internal LocationPolicy(DevicePolicyManager dpm)
         {
-            handle = dpm;
+            _dpm = dpm;
         }
 
         /// <summary>
@@ -74,7 +74,7 @@ namespace Tizen.Security.DevicePolicyManager
                 };
             }
 
-            int ret = Interop.DevicePolicyManager.AddPolicyChangedCallback(handle.GetHandle(), _locationPolicyName, _locationPolicyChangedCallback, IntPtr.Zero, out _locationCallbackId);
+            int ret = Interop.DevicePolicyManager.AddPolicyChangedCallback(_dpm.GetHandle(), _locationPolicyName, _locationPolicyChangedCallback, IntPtr.Zero, out _locationCallbackId);
             if (ret != (int)Interop.DevicePolicyManager.DpmError.None)
             {
                 throw DevicePolicyManagerErrorFactory.GetException(ret);
@@ -83,7 +83,7 @@ namespace Tizen.Security.DevicePolicyManager
 
         private void RemoveLocationPolicyChangedCallback()
         {
-            int ret = Interop.DevicePolicyManager.RemovePolicyChangedCallback(handle.GetHandle(), _locationCallbackId);
+            int ret = Interop.DevicePolicyManager.RemovePolicyChangedCallback(_dpm.GetHandle(), _locationCallbackId);
             if (ret != (int)Interop.DevicePolicyManager.DpmError.None)
             {
                 throw DevicePolicyManagerErrorFactory.GetException(ret);
