@@ -108,7 +108,7 @@ namespace Tizen.Account.AccountManager
             {
                 Account account = new Account(new SafeAccountHandle(data, false));
                 values.Add(account.AccountId);
-		account.Dispose();
+                account.Dispose();
                 return true;
             };
 
@@ -405,7 +405,7 @@ namespace Tizen.Account.AccountManager
             {
                 Account account = new Account(new SafeAccountHandle(handle, false));
                 values.Add(account.AccountId);
-		account.Dispose();
+                account.Dispose();
                 return true;
             };
 
@@ -444,7 +444,7 @@ namespace Tizen.Account.AccountManager
             {
                 Account account = new Account(new SafeAccountHandle(handle, false));
                 values.Add(account.AccountId);
-		account.Dispose();
+                account.Dispose();
                 return true;
             };
 
@@ -483,7 +483,7 @@ namespace Tizen.Account.AccountManager
             {
                 Account account = new Account(new SafeAccountHandle(handle, false));
                 values.Add(account.AccountId);
-		account.Dispose();
+                account.Dispose();
                 return true;
             };
 
