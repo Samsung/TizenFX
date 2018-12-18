@@ -77,7 +77,7 @@ namespace Tizen.Network.Bluetooth
         /// <exception cref="InvalidOperationException">Thrown when the Bluetooth is not enabled
         /// or when the register accpet state changed callback fails.</exception>
         /// <since_tizen> 3 </since_tizen>
-        public static event EventHandler<AcceptStateChangedEventArgs> AcceptStateChanged;
+        public event EventHandler<AcceptStateChangedEventArgs> AcceptStateChanged;
 
         private static event EventHandler<AcceptStateChangedEventArgs> StaticAcceptStateChanged
         {
