@@ -164,10 +164,7 @@ namespace Tizen.Network.Bluetooth
         {
             Interop.Bluetooth.AgScoStateChangedCallback _agScoStateChangedCallback = (int result, bool opened, IntPtr userData) =>
             {
-                if (_agScoStateChanged != null)
-                {
-                    _agScoStateChanged(null, new AgScoStateChangedEventArgs(opened));
-                }
+                _agScoStateChanged?.Invoke(null, new AgScoStateChangedEventArgs(opened));
             };
 
             int ret = Interop.Bluetooth.SetAgScoStateChangedCallback(_agScoStateChangedCallback, IntPtr.Zero);

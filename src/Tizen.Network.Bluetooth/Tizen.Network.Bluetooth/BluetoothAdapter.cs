@@ -506,6 +506,7 @@ namespace Tizen.Network.Bluetooth
         /// The Bluetooth must be enabled.
         /// </remarks>
         /// <returns> Information of the bonded BluetoothDeviceInfo object.</returns>
+        /// <param name="address">The remote device address.</param>
         /// <exception cref="NotSupportedException">Thrown when the Bluetooth is not supported.</exception>
         /// <exception cref="InvalidOperationException">Thrown when the Bluetooth is not enabled
         /// or reading the bonded device information fails.</exception>

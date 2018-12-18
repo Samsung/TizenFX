@@ -1408,11 +1408,10 @@ namespace Tizen.Network.Bluetooth
         }
     }
 
-    /// <Summary>
+    /// <summary>
     /// An extended EventArgs class which contains the Push Request respond state
-    /// </Summary>
+    /// </summary>
     /// <since_tizen> 4 </since_tizen>
-
     public class PushRespondedEventArgs : EventArgs
     {
         int _result;
@@ -1503,11 +1502,10 @@ namespace Tizen.Network.Bluetooth
         }
     }
 
-    /// <Summary>
+    /// <summary>
     /// An extended EventArgs class which contains the Push Request respond state
-    /// </Summary>
+    /// </summary>
     /// <since_tizen> 4 </since_tizen>
-
     public class PushFinishedEventArgs : EventArgs
     {
         int _result;

@@ -30,41 +30,45 @@ namespace Tizen.Network.Bluetooth
     {
         private static event EventHandler<AcceptStateChangedEventArgs> _acceptStateChanged;
         private static event EventHandler<SocketConnectionRequestedEventArgs> _connectionRequested;
-        private Interop.Bluetooth.SocketConnectionStateChangedCallback _connectionStateChangedCallback;
+        private static Interop.Bluetooth.SocketConnectionStateChangedCallback _connectionStateChangedCallback;
+        private static Interop.Bluetooth.SocketConnectionRequestedCallback _connectionRequestedCallback;
         private TaskCompletionSource<SocketConnection> _taskForAccept;
         internal int socketFd;
         private bool disposed = false;
 
         internal BluetoothServerSocket()
         {
-            PrivateAcceptStateChanged += (s, e) =>
+            StaticAcceptStateChanged += OnAcceptStateChanged;
+            StaticConnectionRequested += OnConnectionRequested;
+        }
+
+        private void OnConnectionRequested(Object s, SocketConnectionRequestedEventArgs e)
+        {
+            if (e.SocketFd == socketFd)
             {
-                if (e.Connection.ServerFd == socketFd)
+                ConnectionRequested?.Invoke(this, e);
+            }
+        }
+
+        private void OnAcceptStateChanged(Object s, AcceptStateChangedEventArgs e)
+        {
+            if (e.Connection.ServerFd == socketFd)
+            {
+                if (_taskForAccept != null && !_taskForAccept.Task.IsCompleted)
                 {
-                    if (_taskForAccept != null && !_taskForAccept.Task.IsCompleted)
+                    if (e.State == BluetoothSocketState.Connected)
                     {
-                        if (e.State == BluetoothSocketState.Connected)
-                        {
-                            _taskForAccept.SetResult(e.Connection);
-                        }
-                        else
-                        {
-                            _taskForAccept.SetException(BluetoothErrorFactory.CreateBluetoothException((int)e.Result));
-                        }
-                        _taskForAccept = null;
+                        _taskForAccept.SetResult(e.Connection);
                     }
-
-                    AcceptStateChanged?.Invoke(this, e);
+                    else
+                    {
+                        _taskForAccept.SetException(BluetoothErrorFactory.CreateBluetoothException((int)e.Result));
+                    }
+                    _taskForAccept = null;
                 }
-            };
 
-            PrivateConnectionRequested += (s, e) =>
-            {
-                if (e.SocketFd == socketFd)
-                {
-                    ConnectionRequested?.Invoke(this, e);
-                }
-            };
+                AcceptStateChanged?.Invoke(this, e);
+            }
         }
 
         /// <summary>
@@ -73,9 +77,9 @@ namespace Tizen.Network.Bluetooth
         /// <exception cref="InvalidOperationException">Thrown when the Bluetooth is not enabled
         /// or when the register accpet state changed callback fails.</exception>
         /// <since_tizen> 3 </since_tizen>
-        public event EventHandler<AcceptStateChangedEventArgs> AcceptStateChanged;
+        public static event EventHandler<AcceptStateChangedEventArgs> AcceptStateChanged;
 
-        private event EventHandler<AcceptStateChangedEventArgs> PrivateAcceptStateChanged
+        private static event EventHandler<AcceptStateChangedEventArgs> StaticAcceptStateChanged
         {
             add
             {
@@ -95,7 +99,7 @@ namespace Tizen.Network.Bluetooth
             }
         }
 
-        private void RegisterAcceptStateChangedEvent()
+        private static void RegisterAcceptStateChangedEvent()
         {
             _connectionStateChangedCallback = (int result, BluetoothSocketState connectionState, ref SocketConnectionStruct socketConnection, IntPtr userData) =>
             {
@@ -104,7 +108,7 @@ namespace Tizen.Network.Bluetooth
                 socket.connectedSocket = socketConnection.SocketFd;
                 socket.remoteAddress = socketConnection.Address;
                 socket.serviceUuid = socketConnection.ServiceUuid;
-                _acceptStateChanged?.Invoke(this, new AcceptStateChangedEventArgs((BluetoothError)result, connectionState, BluetoothUtils.ConvertStructToSocketConnection(socketConnection), socket));
+                _acceptStateChanged?.Invoke(null, new AcceptStateChangedEventArgs((BluetoothError)result, connectionState, BluetoothUtils.ConvertStructToSocketConnection(socketConnection), socket));
             };
 
             int ret = Interop.Bluetooth.SetConnectionStateChangedCallback(_connectionStateChangedCallback, IntPtr.Zero);
@@ -115,7 +119,7 @@ namespace Tizen.Network.Bluetooth
             }
         }
 
-        private void UnregisterAcceptStateChangedEvent()
+        private static void UnregisterAcceptStateChangedEvent()
         {
             int ret = Interop.Bluetooth.UnsetSocketConnectionStateChangedCallback();
             if (ret != (int)BluetoothError.None)
@@ -220,7 +224,7 @@ namespace Tizen.Network.Bluetooth
         [EditorBrowsable(EditorBrowsableState.Never)]
         public event EventHandler<SocketConnectionRequestedEventArgs> ConnectionRequested;
 
-        private event EventHandler<SocketConnectionRequestedEventArgs> PrivateConnectionRequested
+        private static event EventHandler<SocketConnectionRequestedEventArgs> StaticConnectionRequested
         {
             add
             {
@@ -240,12 +244,12 @@ namespace Tizen.Network.Bluetooth
             }
         }
 
-        private void RegisterConnectionRequestedEvent()
+        private static void RegisterConnectionRequestedEvent()
         {
-            Interop.Bluetooth.SocketConnectionRequestedCallback _connectionRequestedCallback = (int socketFd, string remoteAddress, IntPtr userData) =>
+            _connectionRequestedCallback = (int socketFd, string remoteAddress, IntPtr userData) =>
             {
                 Log.Info(Globals.LogTag, "SocketConnectionRequestedCallback is called");
-                _connectionRequested?.Invoke(this, new SocketConnectionRequestedEventArgs(socketFd, remoteAddress));
+                _connectionRequested?.Invoke(null, new SocketConnectionRequestedEventArgs(socketFd, remoteAddress));
             };
 
             int ret = Interop.Bluetooth.SetSocketConnectionRequestedCallback(_connectionRequestedCallback, IntPtr.Zero);
@@ -256,7 +260,7 @@ namespace Tizen.Network.Bluetooth
             }
         }
 
-        private void UnregisterConnectionRequestedEvent()
+        private static void UnregisterConnectionRequestedEvent()
         {
             int ret = Interop.Bluetooth.UnsetSocketConnectionRequestedCallback();
             if (ret != (int)BluetoothError.None)
@@ -267,7 +271,7 @@ namespace Tizen.Network.Bluetooth
         }
 
         /// <summary>
-        /// BluetoothServerSocket distructor.
+        /// BluetoothServerSocket destructor.
         /// </summary>
         ~BluetoothServerSocket()
         {
@@ -294,17 +298,9 @@ namespace Tizen.Network.Bluetooth
             {
                 Log.Error(Globals.LogTag, "Failed to destroy socket, Error - " + (BluetoothError)ret);
             }
-            RemoveRegisteredEvents();
+            StaticAcceptStateChanged -= OnAcceptStateChanged;
+            StaticConnectionRequested -= OnConnectionRequested;
             disposed = true;
-        }
-
-        private void RemoveRegisteredEvents()
-        {
-            //unregister all remaining events when this object is released.
-            if (_acceptStateChanged != null)
-            {
-                UnregisterAcceptStateChangedEvent();
-            }
         }
     }
 }
