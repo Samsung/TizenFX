@@ -19,7 +19,7 @@ using System;
 namespace Tizen.Security.DevicePolicyManager
 {
     /// <summary>
-    /// The EmailPolicy provides methods to control email policies.
+    /// The EmailPolicy provides methods to manage email policies.
     /// </summary>
     /// <since_tizen> 6 </since_tizen>
     public class EmailPolicy
@@ -43,8 +43,10 @@ namespace Tizen.Security.DevicePolicyManager
         /// <summary>
         /// Checks whether the access to POP or IMAP email is allowed or not.
         /// </summary>
-        /// <since_tizen> 6 </since_tizen>
         /// <returns>true if the POP or IMAP email is allowed, false otherwise.</returns>
+        /// <since_tizen> 6 </since_tizen>
+        /// <exception cref="ArgumentException">Thrown when failed because of invalid handle of DevicePolicyManager.</exception>
+        /// <exception cref="TimeoutException">Thrown when failed because of timeout.</exception>
         public bool GetPopImapState()
         {
             int state;

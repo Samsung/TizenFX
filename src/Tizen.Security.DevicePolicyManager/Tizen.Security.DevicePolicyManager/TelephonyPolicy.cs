@@ -19,7 +19,7 @@ using System;
 namespace Tizen.Security.DevicePolicyManager
 {
     /// <summary>
-    /// The TelephonyPolicy provides methods to control telephony policies.
+    /// The TelephonyPolicy provides methods to manage telephony policies.
     /// </summary>
     /// <since_tizen> 6 </since_tizen>
     public class TelephonyPolicy
@@ -44,8 +44,10 @@ namespace Tizen.Security.DevicePolicyManager
         /// Checks whether the text messaging is allowed or not.
         /// </summary>
         /// <param name="simId">SIM identifier</param>
-        /// <since_tizen> 6 </since_tizen>
         /// <returns>true if the messaging is allowed, false otherwise.</returns>
+        /// <since_tizen> 6 </since_tizen>
+        /// <exception cref="ArgumentException">Thrown when failed because of invalid parameter.</exception>
+        /// <exception cref="TimeoutException">Thrown when failed because of timeout.</exception>
         public bool GetMessagingState(string simId)
         {
             int state;

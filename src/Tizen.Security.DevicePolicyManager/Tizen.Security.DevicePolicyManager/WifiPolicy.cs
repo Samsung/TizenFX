@@ -19,7 +19,7 @@ using System;
 namespace Tizen.Security.DevicePolicyManager
 {
     /// <summary>
-    /// The WifiPolicy provides methods to control wifi policies.
+    /// The WifiPolicy provides methods to manage wifi policies.
     /// </summary>
     /// <since_tizen> 6 </since_tizen>
     public class WifiPolicy
@@ -47,8 +47,10 @@ namespace Tizen.Security.DevicePolicyManager
         /// <summary>
         /// Checks whether the Wi-Fi state change is allowed or not.
         /// </summary>
-        /// <since_tizen> 6 </since_tizen>
         /// <returns>true if the change is allowed, false otherwise.</returns>
+        /// <since_tizen> 6 </since_tizen>
+        /// <exception cref="ArgumentException">Thrown when failed because of invalid handle of DevicePolicyManager.</exception>
+        /// <exception cref="TimeoutException">Thrown when failed because of timeout.</exception>
         public bool GetWifiState()
         {
             int state;

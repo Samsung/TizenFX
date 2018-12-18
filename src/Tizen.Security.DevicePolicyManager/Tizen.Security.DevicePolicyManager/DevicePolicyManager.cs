@@ -33,9 +33,12 @@ namespace Tizen.Security.DevicePolicyManager
         /// A constructor of DevicePolicyManager that creates handle.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
+        /// <exception cref="InvalidOperationException">Thrown when connection refused.</exception>
+        /// <exception cref="OutOfMemoryException">Thrown when a memory error occurred.</exception>
         public DevicePolicyManager()
         {
             _handle = Interop.DevicePolicyManager.CreateHandle();
+            DevicePolicyManagerErrorFactory.GetException(ErrorFacts.GetLastResult());
         }
 
         /// <summary>
@@ -44,6 +47,7 @@ namespace Tizen.Security.DevicePolicyManager
         /// <typeparam name="T">The generic type to create.</typeparam>
         /// <returns>An instance of policy.</returns>
         /// <since_tizen> 6 </since_tizen>
+        /// <exception cref="InvalidOperationException">Thrown when failed to create instance of the policy.</exception>
         public T GetPolicy<T>() where T : class
         {
             T policy = Activator.CreateInstance(typeof(T),
@@ -52,7 +56,7 @@ namespace Tizen.Security.DevicePolicyManager
 
             if (policy == null)
             {
-                return default(T);
+                throw new InvalidOperationException("Failed to create " + policy.ToString());
             }
             else
             {
@@ -91,7 +95,11 @@ namespace Tizen.Security.DevicePolicyManager
  
             if (_handle != IntPtr.Zero)
             {
-                Interop.DevicePolicyManager.DestroyHandle(_handle);
+                int ret = Interop.DevicePolicyManager.DestroyHandle(_handle);
+                if (ret != (int)Interop.DevicePolicyManager.DpmError.None)
+                {
+                    throw DevicePolicyManagerErrorFactory.GetException(ret);
+                }
                 _handle = IntPtr.Zero;
             }
 

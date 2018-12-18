@@ -19,7 +19,7 @@ using System;
 namespace Tizen.Security.DevicePolicyManager
 {
     /// <summary>
-    /// The LocationPolicy provides methods to control location policies.
+    /// The LocationPolicy provides methods to manage location policies.
     /// </summary>
     /// <since_tizen> 6 </since_tizen>
     public class LocationPolicy

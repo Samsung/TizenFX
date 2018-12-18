@@ -19,7 +19,7 @@ using System;
 namespace Tizen.Security.DevicePolicyManager
 {
     /// <summary>
-    /// The MediaPolicy provides methods to control media policies.
+    /// The MediaPolicy provides methods to manage media policies.
     /// </summary>
     /// <since_tizen> 6 </since_tizen>
     public class MediaPolicy

@@ -19,7 +19,7 @@ using System;
 namespace Tizen.Security.DevicePolicyManager
 {
     /// <summary>
-    /// The StoragePolicy provides methods to control storage policies.
+    /// The StoragePolicy provides methods to manage storage policies.
     /// </summary>
     /// <since_tizen> 6 </since_tizen>
     public class StoragePolicy

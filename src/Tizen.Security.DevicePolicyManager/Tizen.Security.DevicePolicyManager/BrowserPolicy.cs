@@ -19,7 +19,7 @@ using System;
 namespace Tizen.Security.DevicePolicyManager
 {
     /// <summary>
-    /// The BrowserPolicy provides methods to control browser policies.
+    /// The BrowserPolicy provides methods to manage browser policies.
     /// </summary>
     /// <since_tizen> 6 </since_tizen>
     public class BrowserPolicy

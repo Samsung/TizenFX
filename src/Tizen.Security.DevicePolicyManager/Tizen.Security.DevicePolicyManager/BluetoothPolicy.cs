@@ -19,7 +19,7 @@ using System;
 namespace Tizen.Security.DevicePolicyManager
 {
     /// <summary>
-    /// The BluetoothPolicy provides methods to control bluetooth policies.
+    /// The BluetoothPolicy provides methods to manage Bluetooth policies.
     /// </summary>
     /// <since_tizen> 6 </since_tizen>
     public class BluetoothPolicy
@@ -45,7 +45,7 @@ namespace Tizen.Security.DevicePolicyManager
         }
 
         /// <summary>
-        /// The BluetoothPolicyChanged event is raised when the bluetooth policy is changed.
+        /// The BluetoothPolicyChanged event is raised when the Bluetooth policy is changed.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
         public event EventHandler<PolicyChangedEventArgs> BluetoothPolicyChanged
@@ -97,7 +97,7 @@ namespace Tizen.Security.DevicePolicyManager
         }
 
         /// <summary>
-        /// The BluetoothTetheringPolicyChanged event is raised when the bluetooth tethering policy is changed.
+        /// The BluetoothTetheringPolicyChanged event is raised when the Bluetooth tethering policy is changed.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
         public event EventHandler<PolicyChangedEventArgs> BluetoothTetheringPolicyChanged

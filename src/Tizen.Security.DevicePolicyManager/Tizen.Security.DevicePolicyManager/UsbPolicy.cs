@@ -19,7 +19,7 @@ using System;
 namespace Tizen.Security.DevicePolicyManager
 {
     /// <summary>
-    /// The UsbPolicy provides methods to control usb policies.
+    /// The UsbPolicy provides methods to manage usb policies.
     /// </summary>
     /// <since_tizen> 6 </since_tizen>
     public class UsbPolicy
