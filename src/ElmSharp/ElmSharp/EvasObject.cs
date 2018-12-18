@@ -184,6 +184,7 @@ namespace ElmSharp
     {
         private IntPtr _realHandle = IntPtr.Zero;
         private EvasCanvas _evasCanvas;
+        private string _automationId;
 
         private event EventHandler _backButtonPressed;
 
@@ -228,6 +229,8 @@ namespace ElmSharp
         EvasObjectEvent<EvasKeyEventArgs> _keydown;
         EvasObjectEvent _moved;
         EvasObjectEvent _resized;
+        EvasObjectEvent _shown;
+        EvasObjectEvent _hidden;
         EventHandler _renderPost;
         Interop.Evas.EvasCallback _renderPostCallback = null;
         Interop.Elementary.Elm_Tooltip_Content_Cb _tooltipContentCallback = null;
@@ -367,6 +370,26 @@ namespace ElmSharp
         }
 
         /// <summary>
+        /// Shown will be triggered when the widget is shown.
+        /// </summary>
+        /// <since_tizen> preview </since_tizen>
+        public event EventHandler Shown
+        {
+            add { _shown.On += value; }
+            remove { _shown.On -= value; }
+        }
+        
+        /// <summary>
+        /// Hidden will be triggered when the widget is hidden.
+        /// </summary>
+        /// <since_tizen> preview </since_tizen>
+        public event EventHandler Hidden
+        {
+            add { _hidden.On += value; }
+            remove { _hidden.On -= value; }
+        }
+
+        /// <summary>
         /// RenderPost Event Handler of the current widget.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
@@ -416,6 +439,24 @@ namespace ElmSharp
                 if (_evasCanvas == null)
                     _evasCanvas = new EvasCanvas(Handle);
                 return _evasCanvas;
+            }
+        }
+
+        /// <summary>
+        /// Sets of gets a value that allow the automation framework to find and interact with this object.
+        /// </summary>
+        /// <since_tizen> preview </since_tizen>
+        public string AutomationId
+        {
+            get
+            {
+                return _automationId;
+            }
+            set
+            {
+                if (_automationId != null)
+                    throw new InvalidOperationException("AutomationId may only be set one time.");
+                _automationId = value;
             }
         }
 
@@ -1181,8 +1222,12 @@ namespace ElmSharp
                 _keyup = new EvasObjectEvent<EvasKeyEventArgs>(this, RealHandle, EvasObjectCallbackType.KeyUp, EvasKeyEventArgs.Create);
                 _moved = new EvasObjectEvent(this, EvasObjectCallbackType.Move);
                 _resized = new EvasObjectEvent(this, EvasObjectCallbackType.Resize);
+                _shown = new EvasObjectEvent(this, EvasObjectCallbackType.Show);
+                _hidden = new EvasObjectEvent(this, EvasObjectCallbackType.Hide);
 
                 _deleted.On += (s, e) => MakeInvalidate();
+
+                Elementary.SendEvasObjectRealized(this);
             }
         }
 
