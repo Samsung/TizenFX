@@ -378,6 +378,7 @@ namespace ElmSharp
             add { _shown.On += value; }
             remove { _shown.On -= value; }
         }
+        
         /// <summary>
         /// Hidden will be triggered when the widget is hidden.
         /// </summary>
