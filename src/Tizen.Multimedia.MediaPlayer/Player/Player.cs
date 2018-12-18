@@ -310,7 +310,8 @@ namespace Tizen.Multimedia
         /// </summary>
         /// <returns>A task that represents the asynchronous prepare operation.</returns>
         /// <remarks>To prepare the player, the player must be in the <see cref="PlayerState.Idle"/> state,
-        ///     and a source must be set.</remarks>
+        ///     and a source must be set.
+        /// <see cref="PlayerState.Preparing"/> state is only for checking state in PrepareAsync.</remarks>
         /// <exception cref="InvalidOperationException">No source is set.</exception>
         /// <exception cref="ObjectDisposedException">The player has already been disposed of.</exception>
         /// <exception cref="InvalidOperationException">The player is not in the valid state.</exception>
