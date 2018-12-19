@@ -54,6 +54,7 @@ namespace Tizen.Security.DevicePolicyManager
 
             if (ret != (int)Interop.DevicePolicyManager.DpmError.None)
             {
+                Log.Error(Globals.LogTag, "Failed to get popimap email policy " + ret);
                 throw DevicePolicyManagerErrorFactory.GetException(ret);
             }
 
@@ -104,6 +105,7 @@ namespace Tizen.Security.DevicePolicyManager
             int ret = Interop.DevicePolicyManager.AddPolicyChangedCallback(_dpm.GetHandle(), _popImapPolicyName, _popImapPolicyChangedCallback, IntPtr.Zero, out _popImapCallbackId);
             if (ret != (int)Interop.DevicePolicyManager.DpmError.None)
             {
+                Log.Error(Globals.LogTag, "Failed to add policy changed callback, name " + _popImapPolicyName + ", ret : " + ret);
                 throw DevicePolicyManagerErrorFactory.GetException(ret);
             }
         }
@@ -113,6 +115,7 @@ namespace Tizen.Security.DevicePolicyManager
             int ret = Interop.DevicePolicyManager.RemovePolicyChangedCallback(_dpm.GetHandle(), _popImapCallbackId);
             if (ret != (int)Interop.DevicePolicyManager.DpmError.None)
             {
+                Log.Error(Globals.LogTag, "Failed to remove policy changed callback, name " + _popImapPolicyName + ", ret : " + ret);
                 throw DevicePolicyManagerErrorFactory.GetException(ret);
             }
             _popImapPolicyChangedCallback = null;

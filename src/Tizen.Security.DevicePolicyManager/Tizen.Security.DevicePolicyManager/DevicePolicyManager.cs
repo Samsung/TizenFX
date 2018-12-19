@@ -56,6 +56,7 @@ namespace Tizen.Security.DevicePolicyManager
 
             if (policy == null)
             {
+                Log.Error(Globals.LogTag, "Failed to create " + policy.ToString());
                 throw new InvalidOperationException("Failed to create " + policy.ToString());
             }
             else
@@ -98,6 +99,7 @@ namespace Tizen.Security.DevicePolicyManager
                 int ret = Interop.DevicePolicyManager.DestroyHandle(_handle);
                 if (ret != (int)Interop.DevicePolicyManager.DpmError.None)
                 {
+                    Log.Error(Globals.LogTag, "Faild to destroy dpm handle");
                     throw DevicePolicyManagerErrorFactory.GetException(ret);
                 }
                 _handle = IntPtr.Zero;
@@ -114,6 +116,11 @@ namespace Tizen.Security.DevicePolicyManager
             this.Dispose(true);
             GC.SuppressFinalize(this);
         }
+    }
+
+    static internal class Globals
+    {
+        internal const string LogTag = "Tizen.Security.DPM";
     }
 
     internal static class DevicePolicyManagerErrorFactory

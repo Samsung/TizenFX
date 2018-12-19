@@ -108,6 +108,7 @@ namespace Tizen.Security.DevicePolicyManager
             int ret = Interop.DevicePolicyManager.AddPolicyChangedCallback(_dpm.GetHandle(), _wifiPolicyName, _wifiPolicyChangedCallback, IntPtr.Zero, out _wifiCallbackId);
             if (ret != (int)Interop.DevicePolicyManager.DpmError.None)
             {
+                Log.Error(Globals.LogTag, "Failed to add policy changed callback, name " + _wifiPolicyName + ", ret : " + ret);
                 throw DevicePolicyManagerErrorFactory.GetException(ret);
             }
         }
@@ -117,6 +118,7 @@ namespace Tizen.Security.DevicePolicyManager
             int ret = Interop.DevicePolicyManager.RemovePolicyChangedCallback(_dpm.GetHandle(), _wifiCallbackId);
             if (ret != (int)Interop.DevicePolicyManager.DpmError.None)
             {
+                Log.Error(Globals.LogTag, "Failed to remove policy changed callback, name " + _wifiPolicyName + ", ret : " + ret);
                 throw DevicePolicyManagerErrorFactory.GetException(ret);
             }
             _wifiPolicyChangedCallback = null;
@@ -160,6 +162,7 @@ namespace Tizen.Security.DevicePolicyManager
             int ret = Interop.DevicePolicyManager.AddPolicyChangedCallback(_dpm.GetHandle(), _wifiHotspotPolicyName, _wifiHotspotStatePolicyChangedCallback, IntPtr.Zero, out _wifiHotspotCallbackId);
             if (ret != (int)Interop.DevicePolicyManager.DpmError.None)
             {
+                Log.Error(Globals.LogTag, "Failed to add policy changed callback, name " + _wifiHotspotPolicyName + ", ret : " + ret);
                 throw DevicePolicyManagerErrorFactory.GetException(ret);
             }
         }
@@ -169,6 +172,7 @@ namespace Tizen.Security.DevicePolicyManager
             int ret = Interop.DevicePolicyManager.RemovePolicyChangedCallback(_dpm.GetHandle(), _wifiHotspotCallbackId);
             if (ret != (int)Interop.DevicePolicyManager.DpmError.None)
             {
+                Log.Error(Globals.LogTag, "Failed to remove policy changed callback, name " + _wifiHotspotPolicyName + ", ret : " + ret);
                 throw DevicePolicyManagerErrorFactory.GetException(ret);
             }
             _wifiHotspotStatePolicyChangedCallback = null;

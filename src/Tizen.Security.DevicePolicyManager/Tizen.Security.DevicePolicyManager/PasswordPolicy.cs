@@ -51,6 +51,7 @@ namespace Tizen.Security.DevicePolicyManager
             int ret = Interop.DevicePolicyManager.PasswordGetExpires(_dpm.GetHandle(), out value);
             if (ret != (int)Interop.DevicePolicyManager.DpmError.None)
             {
+                Log.Error(Globals.LogTag, "Failed to get password expires policy " + ret);
                 throw DevicePolicyManagerErrorFactory.GetException(ret);
             }
 
@@ -73,6 +74,7 @@ namespace Tizen.Security.DevicePolicyManager
             int ret = Interop.DevicePolicyManager.PasswordGetHistory(_dpm.GetHandle(), out value);
             if (ret != (int)Interop.DevicePolicyManager.DpmError.None)
             {
+                Log.Error(Globals.LogTag, "Failed to get password history policy " + ret);
                 throw DevicePolicyManagerErrorFactory.GetException(ret);
             }
 
@@ -95,6 +97,7 @@ namespace Tizen.Security.DevicePolicyManager
             int ret = Interop.DevicePolicyManager.PasswordGetMaxInactivityTimeDeviceLock(_dpm.GetHandle(), out value);
             if (ret != (int)Interop.DevicePolicyManager.DpmError.None)
             {
+                Log.Error(Globals.LogTag, "Failed to get password maximum inactivity time policy " + ret);
                 throw DevicePolicyManagerErrorFactory.GetException(ret);
             }
 
@@ -118,6 +121,7 @@ namespace Tizen.Security.DevicePolicyManager
             int ret = Interop.DevicePolicyManager.PasswordGetMaximumFailedAttemptsForWipe(_dpm.GetHandle(), out value);
             if (ret != (int)Interop.DevicePolicyManager.DpmError.None)
             {
+                Log.Error(Globals.LogTag, "Failed to get password maximum failed attempts policy " + ret);
                 throw DevicePolicyManagerErrorFactory.GetException(ret);
             }
 
@@ -141,6 +145,7 @@ namespace Tizen.Security.DevicePolicyManager
             int ret = Interop.DevicePolicyManager.PasswordGetMinComplexChars(_dpm.GetHandle(), out value);
             if (ret != (int)Interop.DevicePolicyManager.DpmError.None)
             {
+                Log.Error(Globals.LogTag, "Failed to get password min complext chars policy " + ret);
                 throw DevicePolicyManagerErrorFactory.GetException(ret);
             }
 
@@ -163,6 +168,7 @@ namespace Tizen.Security.DevicePolicyManager
             int ret = Interop.DevicePolicyManager.PasswordGetMinimumLength(_dpm.GetHandle(), out value);
             if (ret != (int)Interop.DevicePolicyManager.DpmError.None)
             {
+                Log.Error(Globals.LogTag, "Failed to get password min length policy " + ret);
                 throw DevicePolicyManagerErrorFactory.GetException(ret);
             }
 
@@ -186,6 +192,7 @@ namespace Tizen.Security.DevicePolicyManager
             int ret = Interop.DevicePolicyManager.PasswordGetQuality(_dpm.GetHandle(), out quality);
             if (ret != (int)Interop.DevicePolicyManager.DpmError.None)
             {
+                Log.Error(Globals.LogTag, "Failed to get password quality policy " + ret);
                 throw DevicePolicyManagerErrorFactory.GetException(ret);
             }
 
