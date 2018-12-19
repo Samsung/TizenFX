@@ -133,7 +133,7 @@ namespace ElmSharp.Test
                 WeightY = 0,
                 AlignmentX = 1.0,
                 AlignmentY = 0.5,
-                Text = "Duration : " + (Math.Round(Convert.ToDouble(aniview.DurationTime), 2)).ToString(),
+                //Text = "Duration : " + (Math.Round(Convert.ToDouble(aniview.DurationTime), 2)).ToString(),
             };
             label2.Show();
             box.PackEnd(label2);
