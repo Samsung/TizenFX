@@ -34,7 +34,8 @@ namespace Tizen.Multimedia
         Album,
         AlbumArtist,
         Genre,
-        Author,
+        Author, // This will be deprecated. Please use `Composer` instead.
+        Composer = Author,
         Copyright,
         ReleaseDate,
         Description,
