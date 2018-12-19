@@ -32,7 +32,7 @@ namespace ElmSharp.Test
             PlayBack,
             Pause,
             Stop,
-        }
+        };
 
         private AnimationState _state;
         private bool _isPlayingBack;
