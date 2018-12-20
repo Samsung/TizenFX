@@ -378,6 +378,7 @@ namespace Tizen.Network.Bluetooth
         /// <since_tizen> 6 </since_tizen>
         /// <feature>http://tizen.org/feature/network.bluetooth</feature>
         /// <privilege>http://tizen.org/privilege/bluetooth.admin</privilege>
+        /// <exception cref="NotSupportedException">Thrown when the Bluetooth is not supported.</exception>
         /// <exception cref="InvalidOperationException">Thrown when the method is failed with message.</exception>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static void Enable()
@@ -391,6 +392,7 @@ namespace Tizen.Network.Bluetooth
         /// <since_tizen> 6 </since_tizen>
         /// <feature>http://tizen.org/feature/network.bluetooth</feature>
         /// <privilege>http://tizen.org/privilege/bluetooth.admin</privilege>
+        /// <exception cref="NotSupportedException">Thrown when the Bluetooth is not supported.</exception>
         /// <exception cref="InvalidOperationException">Thrown when the method is failed with message.</exception>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static void Disable()
@@ -404,6 +406,7 @@ namespace Tizen.Network.Bluetooth
         /// <since_tizen> 6 </since_tizen>
         /// <feature>http://tizen.org/feature/network.bluetooth</feature>
         /// <privilege>http://tizen.org/privilege/bluetooth.admin</privilege>
+        /// <exception cref="NotSupportedException">Thrown when the Bluetooth is not supported.</exception>
         /// <exception cref="InvalidOperationException">Thrown when the method is failed with message.</exception>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static void EnableDiscoverable()
@@ -418,6 +421,7 @@ namespace Tizen.Network.Bluetooth
         /// <param name="duration">The duration until the discoverable mode is to be disabled(in seconds).</param>
         /// <feature>http://tizen.org/feature/network.bluetooth</feature>
         /// <privilege>http://tizen.org/privilege/bluetooth.admin</privilege>
+        /// <exception cref="NotSupportedException">Thrown when the Bluetooth is not supported.</exception>
         /// <exception cref="InvalidOperationException">Thrown when the method is failed with message.</exception>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static void EnableDiscoverable(int duration)
@@ -431,6 +435,7 @@ namespace Tizen.Network.Bluetooth
         /// <since_tizen> 6 </since_tizen>
         /// <feature>http://tizen.org/feature/network.bluetooth</feature>
         /// <privilege>http://tizen.org/privilege/bluetooth.admin</privilege>
+        /// <exception cref="NotSupportedException">Thrown when the Bluetooth is not supported.</exception>
         /// <exception cref="InvalidOperationException">Thrown when the method is failed with message.</exception>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static void DisableDiscoverable()

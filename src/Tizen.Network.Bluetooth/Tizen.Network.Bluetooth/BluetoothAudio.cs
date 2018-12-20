@@ -114,6 +114,7 @@ namespace Tizen.Network.Bluetooth
         /// <feature>http://tizen.org/feature/network.bluetooth</feature>
         /// <feature>http://tizen.org/feature/network.bluetooth.audio.call</feature>
         /// <privilege>http://tizen.org/privilege/bluetooth.admin</privilege>
+        /// <exception cref="NotSupportedException">Thrown when the Bluetooth is not supported.</exception>
         /// <exception cref="InvalidOperationException">Thrown when the method is failed with message.</exception>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static void OpenAgSco()
@@ -128,6 +129,7 @@ namespace Tizen.Network.Bluetooth
         /// <feature>http://tizen.org/feature/network.bluetooth</feature>
         /// <feature>http://tizen.org/feature/network.bluetooth.audio.call</feature>
         /// <privilege>http://tizen.org/privilege/bluetooth.admin</privilege>
+        /// <exception cref="NotSupportedException">Thrown when the Bluetooth is not supported.</exception>
         /// <exception cref="InvalidOperationException">Thrown when the method is failed with message.</exception>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static void CloseAgSco()
@@ -177,6 +179,7 @@ namespace Tizen.Network.Bluetooth
         /// <feature>http://tizen.org/feature/network.bluetooth</feature>
         /// <feature>http://tizen.org/feature/network.bluetooth.audio.call</feature>
         /// <privilege>http://tizen.org/privilege/bluetooth.admin</privilege>
+        /// <exception cref="NotSupportedException">Thrown when the Bluetooth is not supported.</exception>
         /// <exception cref="InvalidOperationException">Thrown when the method is failed with message.</exception>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static void NotifyAgVoiceRecognitionState(bool enable)
