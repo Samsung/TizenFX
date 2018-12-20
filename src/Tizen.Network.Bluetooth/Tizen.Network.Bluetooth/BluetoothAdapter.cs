@@ -16,6 +16,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 
 namespace Tizen.Network.Bluetooth
 {
@@ -372,6 +373,77 @@ namespace Tizen.Network.Bluetooth
         }
 
         /// <summary>
+        /// Enables the local Bluetooth adapter, asynchronously.
+        /// </summary>
+        /// <since_tizen> 6 </since_tizen>
+        /// <feature>http://tizen.org/feature/network.bluetooth</feature>
+        /// <privilege>http://tizen.org/privilege/bluetooth.admin</privilege>
+        /// <exception cref="NotSupportedException">Thrown when the Bluetooth is not supported.</exception>
+        /// <exception cref="InvalidOperationException">Thrown when the method is failed with message.</exception>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static void Enable()
+        {
+            BluetoothAdapterImpl.Instance.Enable();
+        }
+
+        /// <summary>
+        /// Disables the local Bluetooth adapter, asynchronously.
+        /// </summary>
+        /// <since_tizen> 6 </since_tizen>
+        /// <feature>http://tizen.org/feature/network.bluetooth</feature>
+        /// <privilege>http://tizen.org/privilege/bluetooth.admin</privilege>
+        /// <exception cref="NotSupportedException">Thrown when the Bluetooth is not supported.</exception>
+        /// <exception cref="InvalidOperationException">Thrown when the method is failed with message.</exception>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static void Disable()
+        {
+            BluetoothAdapterImpl.Instance.Disable();
+        }
+
+        /// <summary>
+        /// Enables the discoverable mode.
+        /// </summary>
+        /// <since_tizen> 6 </since_tizen>
+        /// <feature>http://tizen.org/feature/network.bluetooth</feature>
+        /// <privilege>http://tizen.org/privilege/bluetooth.admin</privilege>
+        /// <exception cref="NotSupportedException">Thrown when the Bluetooth is not supported.</exception>
+        /// <exception cref="InvalidOperationException">Thrown when the method is failed with message.</exception>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static void EnableDiscoverable()
+        {
+            BluetoothAdapterImpl.Instance.SetVisibility(VisibilityMode.Discoverable, 0);
+        }
+
+        /// <summary>
+        /// Enables the discoverable mode.
+        /// </summary>
+        /// <since_tizen> 6 </since_tizen>
+        /// <param name="duration">The duration until the discoverable mode is to be disabled(in seconds).</param>
+        /// <feature>http://tizen.org/feature/network.bluetooth</feature>
+        /// <privilege>http://tizen.org/privilege/bluetooth.admin</privilege>
+        /// <exception cref="NotSupportedException">Thrown when the Bluetooth is not supported.</exception>
+        /// <exception cref="InvalidOperationException">Thrown when the method is failed with message.</exception>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static void EnableDiscoverable(int duration)
+        {
+            BluetoothAdapterImpl.Instance.SetVisibility(VisibilityMode.TimeLimitedDiscoverable, duration);
+        }
+
+        /// <summary>
+        /// Disables the discoverable mode.
+        /// </summary>
+        /// <since_tizen> 6 </since_tizen>
+        /// <feature>http://tizen.org/feature/network.bluetooth</feature>
+        /// <privilege>http://tizen.org/privilege/bluetooth.admin</privilege>
+        /// <exception cref="NotSupportedException">Thrown when the Bluetooth is not supported.</exception>
+        /// <exception cref="InvalidOperationException">Thrown when the method is failed with message.</exception>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static void DisableDiscoverable()
+        {
+            BluetoothAdapterImpl.Instance.SetVisibility(VisibilityMode.NonDiscoverable, 0);
+        }
+
+        /// <summary>
         /// Starts the device discovery process.
         /// </summary>
         /// <remarks>
@@ -439,6 +511,7 @@ namespace Tizen.Network.Bluetooth
         /// The Bluetooth must be enabled.
         /// </remarks>
         /// <returns> Information of the bonded BluetoothDeviceInfo object.</returns>
+        /// <param name="address">The remote device address.</param>
         /// <exception cref="NotSupportedException">Thrown when the Bluetooth is not supported.</exception>
         /// <exception cref="InvalidOperationException">Thrown when the Bluetooth is not enabled
         /// or reading the bonded device information fails.</exception>
@@ -639,6 +712,7 @@ namespace Tizen.Network.Bluetooth
         /// <exception cref="InvalidOperationException">Thrown when the Bluetooth is not enabled
         /// or the socket destroy error occurs.</exception>
         /// <since_tizen> 3 </since_tizen>
+        [Obsolete("Deprecated since API level 6. Please use Dispose() on BluetoothServerSocket.")]
         static public void DestroyServerSocket(BluetoothServerSocket socket)
         {
             if (IsBluetoothEnabled && Globals.IsInitialize)

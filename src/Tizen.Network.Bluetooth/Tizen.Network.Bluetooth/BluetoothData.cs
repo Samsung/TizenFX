@@ -504,6 +504,7 @@ namespace Tizen.Network.Bluetooth
         internal string Uuid;
         internal string RemoteAddress;
         internal int Fd;
+        internal IBluetoothServerSocket ClientSocket;
 
         internal SocketConnection()
         {
@@ -540,6 +541,23 @@ namespace Tizen.Network.Bluetooth
             get
             {
                 return Uuid;
+            }
+        }
+
+        internal int ServerFd
+        {
+            get;
+            set;
+        }
+        /// <summary>
+        /// The client socket.
+        /// </summary>
+        /// <since_tizen> 6 </since_tizen>
+        public IBluetoothServerSocket Client
+        {
+            get
+            {
+                return ClientSocket;
             }
         }
     }
