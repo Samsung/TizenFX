@@ -676,6 +676,7 @@ namespace Tizen.Network.Bluetooth
         /// <remarks>
         /// The Bluetooth must be enabled.
         /// </remarks>
+        /// <returns>The profile instance.</returns>
         /// <since_tizen> 3 </since_tizen>
         public T GetProfile<T>() where T : BluetoothProfile
         {

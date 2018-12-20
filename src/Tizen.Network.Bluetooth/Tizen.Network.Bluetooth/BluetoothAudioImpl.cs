@@ -21,6 +21,7 @@ namespace Tizen.Network.Bluetooth
     internal class BluetoothAudioImpl : IDisposable
     {
         private event EventHandler<AudioConnectionStateChangedEventArgs> _audioConnectionChanged;
+        private event EventHandler<AgScoStateChangedEventArgs> _agScoStateChanged;
         private Interop.Bluetooth.AudioConnectionStateChangedCallback _audioConnectionChangedCallback;
 
         private static readonly BluetoothAudioImpl _instance = new BluetoothAudioImpl();
@@ -89,6 +90,114 @@ namespace Tizen.Network.Bluetooth
                 Log.Error(Globals.LogTag, "Failed to disconnect device with the given profile type, Error - " + (BluetoothError)ret);
             }
             return ret;
+        }
+
+        internal void OpenAgSco()
+        {
+            if (Globals.IsAudioInitialize)
+            {
+                int ret = Interop.Bluetooth.OpenAgSco();
+                if (ret != (int)BluetoothError.None)
+                {
+                    Log.Error(Globals.LogTag, "Failed to open ag sco to remote device, Error - " + (BluetoothError)ret);
+                    BluetoothErrorFactory.ThrowBluetoothException(ret);
+                }
+            }
+            else
+            {
+                BluetoothErrorFactory.ThrowBluetoothException((int)BluetoothError.NotInitialized);
+            }   
+        }
+
+        internal void CloseAgSco()
+        {
+            if (Globals.IsAudioInitialize)
+            {
+                int ret = Interop.Bluetooth.CloseAgSco();
+                if (ret != (int)BluetoothError.None)
+                {
+                    Log.Error(Globals.LogTag, "Failed to close ag sco to remote device, Error - " + (BluetoothError)ret);
+                    BluetoothErrorFactory.ThrowBluetoothException(ret);
+                }
+            }
+            else
+            {
+                BluetoothErrorFactory.ThrowBluetoothException((int)BluetoothError.NotInitialized);
+            }
+        }
+
+        internal bool IsAgScoOpened
+        {
+            get
+            {
+                bool isOpened;
+                int ret = Interop.Bluetooth.IsAgScoOpened(out isOpened);
+                if (ret != (int)BluetoothError.None)
+                {
+                    Log.Error(Globals.LogTag, "Failed to check whether an opened SCO exists or not., Error - " + (BluetoothError)ret);
+                }
+                return isOpened;
+            }
+        }
+
+        internal event EventHandler<AgScoStateChangedEventArgs> AgScoStateChanged
+        {
+            add
+            {
+                if (_agScoStateChanged == null)
+                {
+                    RegisterAgScoStateChangedEvent();
+                }
+                _agScoStateChanged += value;
+            }
+            remove
+            {
+                _agScoStateChanged -= value;
+                if (_agScoStateChanged == null)
+                {
+                    UnregisterAgScoStateChangedEvent();
+                }
+            }
+        }
+
+        private void RegisterAgScoStateChangedEvent()
+        {
+            Interop.Bluetooth.AgScoStateChangedCallback _agScoStateChangedCallback = (int result, bool opened, IntPtr userData) =>
+            {
+                _agScoStateChanged?.Invoke(null, new AgScoStateChangedEventArgs(opened));
+            };
+
+            int ret = Interop.Bluetooth.SetAgScoStateChangedCallback(_agScoStateChangedCallback, IntPtr.Zero);
+            if (ret != (int)BluetoothError.None)
+            {
+                Log.Error(Globals.LogTag, "Failed to set ag sco state changed callback, Error - " + (BluetoothError)ret);
+            }
+        }
+
+        private void UnregisterAgScoStateChangedEvent()
+        {
+            int ret = Interop.Bluetooth.UnsetAgScoStateChangedCallback();
+            if (ret != (int)BluetoothError.None)
+            {
+                Log.Error(Globals.LogTag, "Failed to unset ag sco state changed callback, Error - " + (BluetoothError)ret);
+            }
+        }
+
+        internal void NotifyAgVoiceRecognitionState(bool enable)
+        {
+            if (Globals.IsAudioInitialize)
+            {
+                int ret = Interop.Bluetooth.NotifyAgVoiceRecognitionState(enable);
+                if (ret != (int)BluetoothError.None)
+                {
+                    Log.Error(Globals.LogTag, "Failed to notify sco voice recognition state, Error - " + (BluetoothError)ret);
+                    BluetoothErrorFactory.ThrowBluetoothException(ret);
+                }
+            }
+            else
+            {
+                BluetoothErrorFactory.ThrowBluetoothException((int)BluetoothError.NotInitialized);
+            }
         }
 
         internal static BluetoothAudioImpl Instance

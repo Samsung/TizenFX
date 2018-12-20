@@ -103,65 +103,58 @@ internal static partial class Interop
         [DllImport(Libraries.Bluetooth, EntryPoint = "bt_deinitialize")]
         internal static extern int Deinitialize();
 
+        [DllImport(Libraries.Bluetooth, EntryPoint = "bt_adapter_enable")]
+        internal static extern int EnableAdapter();
+        [DllImport(Libraries.Bluetooth, EntryPoint = "bt_adapter_disable")]
+        internal static extern int DisableAdapter();
         [DllImport(Libraries.Bluetooth, EntryPoint = "bt_adapter_get_name")]
         internal static extern int GetName(out string name);
         [DllImport(Libraries.Bluetooth, EntryPoint = "bt_adapter_set_name")]
         internal static extern int SetName(string name);
-
         [DllImport(Libraries.Bluetooth, EntryPoint = "bt_adapter_get_state")]
         internal static extern int GetState(out BluetoothState isActivated);
         [DllImport(Libraries.Bluetooth, EntryPoint = "bt_adapter_get_address")]
         internal static extern int GetAddress(out string address);
-
+        [DllImport(Libraries.Bluetooth, EntryPoint = "bt_adapter_set_visibility")]
+        internal static extern int SetVisibility(VisibilityMode visibilityMode, int duration);
         [DllImport(Libraries.Bluetooth, EntryPoint = "bt_adapter_get_visibility")]
         internal static extern int GetVisibility(out int visibility, out int duration);
-
         [DllImport(Libraries.Bluetooth, EntryPoint = "bt_adapter_is_discovering")]
         internal static extern int IsDiscovering(out bool isDiscovering);
-
         [DllImport(Libraries.Bluetooth, EntryPoint = "bt_adapter_start_device_discovery")]
         internal static extern int StartDiscovery();
         [DllImport(Libraries.Bluetooth, EntryPoint = "bt_adapter_stop_device_discovery")]
         internal static extern int StopDiscovery();
-
         [DllImport(Libraries.Bluetooth, EntryPoint = "bt_adapter_foreach_bonded_device")]
         internal static extern int GetBondedDevices(BondedDeviceCallback bondedDeviceCb, IntPtr userData);
-
         [DllImport(Libraries.Bluetooth, EntryPoint = "bt_adapter_get_bonded_device_info")]
         internal static extern int GetBondedDeviceByAddress(string deviceAddress, out IntPtr deviceInfo);
         [DllImport(Libraries.Bluetooth, EntryPoint = "bt_adapter_free_device_info")]
-        internal static extern int FreeDeviceInfo(BluetoothDeviceStruct deviceInfo);
-
+        internal static extern int FreeDeviceInfo(IntPtr deviceInfo);
         [DllImport(Libraries.Bluetooth, EntryPoint = "bt_adapter_is_service_used")]
         internal static extern int IsServiceUsed(string serviceUuid, out bool used);
-
         [DllImport(Libraries.Bluetooth, EntryPoint = "bt_adapter_get_local_oob_data")]
         internal static extern int GetOobData(out IntPtr hash, out IntPtr randomizer, out int hashLen, out int randomizerLen);
         [DllImport(Libraries.Bluetooth, EntryPoint = "bt_adapter_set_remote_oob_data")]
         internal static extern int SetOobData(string deviceAddress, IntPtr hash, IntPtr randomizer, int hashLen, int randomizerLen);
         [DllImport(Libraries.Bluetooth, EntryPoint = "bt_adapter_remove_remote_oob_data")]
         internal static extern int RemoveOobData(string deviceAddress);
-
         [DllImport(Libraries.Bluetooth, EntryPoint = "bt_adapter_set_state_changed_cb")]
         internal static extern int SetStateChangedCallback(StateChangedCallback stateChangedCb, IntPtr userData);
         [DllImport(Libraries.Bluetooth, EntryPoint = "bt_adapter_unset_state_changed_cb")]
         internal static extern int UnsetStateChangedCallback();
-
         [DllImport(Libraries.Bluetooth, EntryPoint = "bt_adapter_set_name_changed_cb")]
         internal static extern int SetNameChangedCallback(NameChangedCallback nameChangedCb, IntPtr userData);
         [DllImport(Libraries.Bluetooth, EntryPoint = "bt_adapter_unset_name_changed_cb")]
         internal static extern int UnsetNameChangedCallback();
-
         [DllImport(Libraries.Bluetooth, EntryPoint = "bt_adapter_set_visibility_mode_changed_cb")]
         internal static extern int SetVisibilityModeChangedCallback(VisibilityModeChangedCallback visibilityChangedCb, IntPtr userData);
         [DllImport(Libraries.Bluetooth, EntryPoint = "bt_adapter_unset_visibility_mode_changed_cb")]
         internal static extern int UnsetVisibilityModeChangedCallback();
-
         [DllImport(Libraries.Bluetooth, EntryPoint = "bt_adapter_set_visibility_duration_changed_cb")]
         internal static extern int SetVisibilityDurationChangedCallback(VisibilityDurationChangedCallback durationChangedCb, IntPtr userData);
         [DllImport(Libraries.Bluetooth, EntryPoint = "bt_adapter_unset_visibility_duration_changed_cb")]
         internal static extern int UnsetVisibilityDurationChangedCallback();
-
         [DllImport(Libraries.Bluetooth, EntryPoint = "bt_adapter_set_device_discovery_state_changed_cb")]
         internal static extern int SetDiscoveryStateChangedCallback(DiscoveryStateChangedCallback discoveryChangedCb, IntPtr userData);
         [DllImport(Libraries.Bluetooth, EntryPoint = "bt_adapter_unset_device_discovery_state_changed_cb")]
@@ -336,12 +329,21 @@ internal static partial class Interop
                                         bool connectable);
 
         //Bluetooth Socket
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+        internal delegate void SocketConnectionRequestedCallback(int socket_fd, string remoteAddress, IntPtr userData);
+
         [DllImport(Libraries.Bluetooth, EntryPoint = "bt_socket_create_rfcomm")]
         internal static extern int CreateServerSocket(string serviceUuid, out int socketFd);
         [DllImport(Libraries.Bluetooth, EntryPoint = "bt_socket_destroy_rfcomm")]
         internal static extern int DestroyServerSocket(int socketFd);
         [DllImport(Libraries.Bluetooth, EntryPoint = "bt_socket_listen_and_accept_rfcomm")]
         internal static extern int Listen(int socketFd, int pendingConnections);
+        [DllImport(Libraries.Bluetooth, EntryPoint = "bt_socket_listen")]
+        internal static extern int ListenWithoutAccept(int socketFd, int pendingConnections);
+        [DllImport(Libraries.Bluetooth, EntryPoint = "bt_socket_accept")]
+        internal static extern int Accept(int socketFd);
+        [DllImport(Libraries.Bluetooth, EntryPoint = "bt_socket_reject")]
+        internal static extern int Reject(int socketFd);
         [DllImport(Libraries.Bluetooth, EntryPoint = "bt_socket_connect_rfcomm")]
         internal static extern int ConnectSocket(string address, string serviceUuid);
         [DllImport(Libraries.Bluetooth, EntryPoint = "bt_socket_disconnect_rfcomm")]
@@ -356,22 +358,39 @@ internal static partial class Interop
         internal static extern int SetConnectionStateChangedCallback(SocketConnectionStateChangedCallback callback, IntPtr userData);
         [DllImport(Libraries.Bluetooth, EntryPoint = "bt_socket_unset_connection_state_changed_cb")]
         internal static extern int UnsetSocketConnectionStateChangedCallback();
+        [DllImport(Libraries.Bluetooth, EntryPoint = "bt_socket_set_connection_requested_cb")]
+        internal static extern int SetSocketConnectionRequestedCallback(SocketConnectionRequestedCallback socketConnectionRequestedCb, IntPtr userData);
+        [DllImport(Libraries.Bluetooth, EntryPoint = "bt_socket_unset_connection_requested_cb")]
+        internal static extern int UnsetSocketConnectionRequestedCallback();
 
         // Bluetooth Audio
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+        internal delegate void AgScoStateChangedCallback(int result, bool opened, IntPtr userData);
+
         [DllImport(Libraries.Bluetooth, EntryPoint = "bt_audio_initialize")]
         internal static extern int InitializeAudio();
         [DllImport(Libraries.Bluetooth, EntryPoint = "bt_audio_deinitialize")]
         internal static extern int DeinitializeAudio();
-
         [DllImport(Libraries.Bluetooth, EntryPoint = "bt_audio_connect")]
         internal static extern int Connect(string deviceAddress, int profileType);
         [DllImport(Libraries.Bluetooth, EntryPoint = "bt_audio_disconnect")]
         internal static extern int Disconnect(string deviceAddress, int profileType);
-
         [DllImport(Libraries.Bluetooth, EntryPoint = "bt_audio_set_connection_state_changed_cb")]
         internal static extern int SetAudioConnectionStateChangedCallback(AudioConnectionStateChangedCallback audioStateChangedCb, IntPtr userData);
         [DllImport(Libraries.Bluetooth, EntryPoint = "bt_audio_unset_connection_state_changed_cb")]
         internal static extern int UnsetAudioConnectionStateChangedCallback();
+        [DllImport(Libraries.Bluetooth, EntryPoint = "bt_ag_open_sco")]
+        internal static extern int OpenAgSco();
+        [DllImport(Libraries.Bluetooth, EntryPoint = "bt_ag_close_sco")]
+        internal static extern int CloseAgSco();
+        [DllImport(Libraries.Bluetooth, EntryPoint = "bt_ag_is_sco_opened")]
+        internal static extern int IsAgScoOpened(out bool opened);
+        [DllImport(Libraries.Bluetooth, EntryPoint = "bt_ag_set_sco_state_changed_cb")]
+        internal static extern int SetAgScoStateChangedCallback(AgScoStateChangedCallback scoStateChangedCb, IntPtr userData);
+        [DllImport(Libraries.Bluetooth, EntryPoint = "bt_ag_unset_sco_state_changed_cb")]
+        internal static extern int UnsetAgScoStateChangedCallback();
+        [DllImport(Libraries.Bluetooth, EntryPoint = "bt_ag_notify_voice_recognition_state")]
+        internal static extern int NotifyAgVoiceRecognitionState(bool enable);
 
         // Bluetooth Hid
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
