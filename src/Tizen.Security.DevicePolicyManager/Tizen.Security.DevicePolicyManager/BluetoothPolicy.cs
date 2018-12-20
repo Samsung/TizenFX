@@ -56,8 +56,10 @@ namespace Tizen.Security.DevicePolicyManager
                 {
                     AddBluetoothPolicyChangedCallback();
                 }
+
                 _bluetoothPolicyChanged += value;
             }
+
             remove
             {
                 _bluetoothPolicyChanged -= value;
@@ -94,6 +96,7 @@ namespace Tizen.Security.DevicePolicyManager
                 Log.Error(Globals.LogTag, "Failed to remove policy changed callback, name " + _bluetoothPolicyName + ", ret : " + ret);
                 throw DevicePolicyManagerErrorFactory.GetException(ret);
             }
+
             _bluetoothPolicyChangedCallback = null;
             _bluetoothCallbackId = 0;
         }
@@ -110,8 +113,10 @@ namespace Tizen.Security.DevicePolicyManager
                 {
                     AddBluetoothTetheringPolicyChangedCallback();
                 }
+
                 _bluetoothTetheringPolicyChanged += value;
             }
+
             remove
             {
                 _bluetoothTetheringPolicyChanged -= value;
@@ -148,6 +153,7 @@ namespace Tizen.Security.DevicePolicyManager
                 Log.Error(Globals.LogTag, "Failed to remove policy changed callback, name " + _bluetoothTetheringPolicyName + ", ret : " + ret);
                 throw DevicePolicyManagerErrorFactory.GetException(ret);
             }
+
             _bluetoothTetheringPolicyChangedCallback = null;
             _bluetoothTetheringCallbackId = 0;
         }

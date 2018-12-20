@@ -52,8 +52,10 @@ namespace Tizen.Security.DevicePolicyManager
                 {
                     AddUsbTetheringPolicyChangedCallback();
                 }
+
                 _usbTetheringPolicyChanged += value;
             }
+
             remove
             {
                 _usbTetheringPolicyChanged -= value;
@@ -90,6 +92,7 @@ namespace Tizen.Security.DevicePolicyManager
                 Log.Error(Globals.LogTag, "Failed to remove policy changed callback, name " + _usbTetheringPolicyName + ", ret : " + ret);
                 throw DevicePolicyManagerErrorFactory.GetException(ret);
             }
+
             _usbTetheringPolicyChangedCallback = null;
             _usbTetheringCallbackId = 0;
         }

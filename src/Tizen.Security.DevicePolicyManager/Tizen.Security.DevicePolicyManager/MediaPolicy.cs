@@ -56,8 +56,10 @@ namespace Tizen.Security.DevicePolicyManager
                 {
                     AddCameraPolicyChangedCallback();
                 }
+
                 _cameraPolicyChanged += value;
             }
+
             remove
             {
                 _cameraPolicyChanged -= value;
@@ -94,6 +96,7 @@ namespace Tizen.Security.DevicePolicyManager
                 Log.Error(Globals.LogTag, "Failed to remove policy changed callback, name " + _cameraPolicyName + ", ret : " + ret);
                 throw DevicePolicyManagerErrorFactory.GetException(ret);
             }
+
             _cameraPolicyChangedCallback = null;
             _cameraCallbackId = 0;
         }
@@ -110,8 +113,10 @@ namespace Tizen.Security.DevicePolicyManager
                 {
                     AddMicrophonePolicyChangedCallback();
                 }
+
                 _microphonePolicyChanged += value;
             }
+
             remove
             {
                 _microphonePolicyChanged -= value;
@@ -148,6 +153,7 @@ namespace Tizen.Security.DevicePolicyManager
                 Log.Error(Globals.LogTag, "Failed to remove policy changed callback, name " + _microphonePolicyName + ", ret : " + ret);
                 throw DevicePolicyManagerErrorFactory.GetException(ret);
             }
+
             _microphonePolicyChangedCallback = null;
             _microphoneCallbackId = 0;
         }

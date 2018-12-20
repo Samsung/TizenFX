@@ -52,8 +52,10 @@ namespace Tizen.Security.DevicePolicyManager
                 {
                     AddBrowserPolicyChangedCallback();
                 }
+
                 _browserPolicyChanged += value;
             }
+
             remove
             {
                 _browserPolicyChanged -= value;
@@ -90,6 +92,7 @@ namespace Tizen.Security.DevicePolicyManager
                 Log.Error(Globals.LogTag, "Failed to remove policy changed callback, name " + _browserPolicyName + ", ret : " + ret);
                 throw DevicePolicyManagerErrorFactory.GetException(ret);
             }
+
             _browserPolicyChangedCallback = null;
             _browserCallbackId = 0;
         }

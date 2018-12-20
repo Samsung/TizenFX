@@ -58,14 +58,7 @@ namespace Tizen.Security.DevicePolicyManager
                 throw DevicePolicyManagerErrorFactory.GetException(ret);
             }
 
-            if (state == 1)
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
+            return state == 1 ? true : false;
         }
 
         /// <summary>
@@ -80,8 +73,10 @@ namespace Tizen.Security.DevicePolicyManager
                 {
                     AddMessagingPolicyChangedCallback();
                 }
+
                 _messagingPolicyChanged += value;
             }
+
             remove
             {
                 _messagingPolicyChanged -= value;
@@ -118,6 +113,7 @@ namespace Tizen.Security.DevicePolicyManager
                 Log.Error(Globals.LogTag, "Failed to remove policy changed callback, name " + _messagingPolicyName + ", ret : " + ret);
                 throw DevicePolicyManagerErrorFactory.GetException(ret);
             }
+
             _messagingPolicyChangedCallback = null;
             _messagingCallbackId = 0;
         }

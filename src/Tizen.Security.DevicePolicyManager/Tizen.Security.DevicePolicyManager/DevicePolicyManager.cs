@@ -67,12 +67,7 @@ namespace Tizen.Security.DevicePolicyManager
 
         internal IntPtr GetHandle()
         {
-            if (_disposed)
-            {
-                return IntPtr.Zero;
-            }
-
-            return _handle;
+            return _disposed ? IntPtr.Zero : _handle;
         }
 
         /// <summary>
@@ -102,6 +97,7 @@ namespace Tizen.Security.DevicePolicyManager
                     Log.Error(Globals.LogTag, "Faild to destroy dpm handle");
                     throw DevicePolicyManagerErrorFactory.GetException(ret);
                 }
+
                 _handle = IntPtr.Zero;
             }
 

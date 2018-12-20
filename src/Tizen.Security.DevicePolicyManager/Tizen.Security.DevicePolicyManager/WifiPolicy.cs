@@ -61,14 +61,7 @@ namespace Tizen.Security.DevicePolicyManager
                 throw DevicePolicyManagerErrorFactory.GetException(ret);
             }
 
-            if (state == 1)
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
+            return state == 1 ? true : false;
         }
 
         /// <summary>
@@ -83,8 +76,10 @@ namespace Tizen.Security.DevicePolicyManager
                 {
                     AddWifiStatePolicyChangedCallback();
                 }
+
                 _wifiPolicyChanged += value;
             }
+
             remove
             {
                 _wifiPolicyChanged -= value;
@@ -121,6 +116,7 @@ namespace Tizen.Security.DevicePolicyManager
                 Log.Error(Globals.LogTag, "Failed to remove policy changed callback, name " + _wifiPolicyName + ", ret : " + ret);
                 throw DevicePolicyManagerErrorFactory.GetException(ret);
             }
+
             _wifiPolicyChangedCallback = null;
             _wifiCallbackId = 0;
         }
@@ -137,8 +133,10 @@ namespace Tizen.Security.DevicePolicyManager
                 {
                     AddWifiHotspotPolicyChangedCallback();
                 }
+
                 _wifiHotspotPolicyChanged += value;
             }
+
             remove
             {
                 _wifiHotspotPolicyChanged -= value;
@@ -175,6 +173,7 @@ namespace Tizen.Security.DevicePolicyManager
                 Log.Error(Globals.LogTag, "Failed to remove policy changed callback, name " + _wifiHotspotPolicyName + ", ret : " + ret);
                 throw DevicePolicyManagerErrorFactory.GetException(ret);
             }
+
             _wifiHotspotStatePolicyChangedCallback = null;
             _wifiHotspotCallbackId = 0;
         }

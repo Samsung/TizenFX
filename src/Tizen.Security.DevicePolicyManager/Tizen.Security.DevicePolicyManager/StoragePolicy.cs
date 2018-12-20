@@ -52,8 +52,10 @@ namespace Tizen.Security.DevicePolicyManager
                 {
                     AddExternalStoragePolicyChangedCallback();
                 }
+
                 _externalStoragePolicyChanged += value;
             }
+
             remove
             {
                 _externalStoragePolicyChanged -= value;
@@ -90,6 +92,7 @@ namespace Tizen.Security.DevicePolicyManager
                 Log.Error(Globals.LogTag, "Failed to remove policy changed callback, name " + _externalStoragePolicyName + ", ret : " + ret);
                 throw DevicePolicyManagerErrorFactory.GetException(ret);
             }
+
             _externalStoragePolicyChangedCallback = null;
             _externalStorageCallbackId = 0;
         }

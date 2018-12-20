@@ -52,8 +52,10 @@ namespace Tizen.Security.DevicePolicyManager
                 {
                     AddLocationPolicyChangedCallback();
                 }
+
                 _locationPolicyChanged += value;
             }
+
             remove
             {
                 _locationPolicyChanged -= value;
@@ -90,6 +92,7 @@ namespace Tizen.Security.DevicePolicyManager
                 Log.Error(Globals.LogTag, "Failed to remove policy changed callback, name " + _locationPolicyName + ", ret : " + ret);
                 throw DevicePolicyManagerErrorFactory.GetException(ret);
             }
+
             _locationPolicyChangedCallback = null;
             _locationCallbackId = 0;
         }
