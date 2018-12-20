@@ -10393,6 +10393,60 @@ namespace Tizen.NUI
             }
         }
 
+        [global::System.Runtime.InteropServices.DllImport(Graphics.GlesCSharpBinder, EntryPoint = "CSharp_TextLabel_Property_MATCH_SYSTEM_LANGUAGE_DIRECTION_get")]
+        public static extern int TextLabel_Property_MATCH_SYSTEM_LANGUAGE_DIRECTION_get_gl();
+
+        [global::System.Runtime.InteropServices.DllImport(Graphics.VulkanCSharpBinder, EntryPoint = "CSharp_TextLabel_Property_MATCH_SYSTEM_LANGUAGE_DIRECTION_get")]
+        public static extern int TextLabel_Property_MATCH_SYSTEM_LANGUAGE_DIRECTION_get_vulkan();
+
+        public static int TextLabel_Property_MATCH_SYSTEM_LANGUAGE_DIRECTION_get()
+        {
+            if (Tizen.NUI.Graphics.Backend == Tizen.NUI.Graphics.BackendType.Vulkan)
+            {
+                return TextLabel_Property_MATCH_SYSTEM_LANGUAGE_DIRECTION_get_vulkan();
+            }
+            else
+            {
+                return TextLabel_Property_MATCH_SYSTEM_LANGUAGE_DIRECTION_get_gl();
+            }
+        }
+
+        [global::System.Runtime.InteropServices.DllImport(Graphics.GlesCSharpBinder, EntryPoint = "CSharp_TextField_Property_MATCH_SYSTEM_LANGUAGE_DIRECTION_get")]
+        public static extern int TextField_Property_MATCH_SYSTEM_LANGUAGE_DIRECTION_get_gl();
+
+        [global::System.Runtime.InteropServices.DllImport(Graphics.VulkanCSharpBinder, EntryPoint = "CSharp_TextField_Property_MATCH_SYSTEM_LANGUAGE_DIRECTION_get")]
+        public static extern int TextField_Property_MATCH_SYSTEM_LANGUAGE_DIRECTION_get_vulkan();
+
+        public static int TextField_Property_MATCH_SYSTEM_LANGUAGE_DIRECTION_get()
+        {
+            if (Tizen.NUI.Graphics.Backend == Tizen.NUI.Graphics.BackendType.Vulkan)
+            {
+                return TextField_Property_MATCH_SYSTEM_LANGUAGE_DIRECTION_get_vulkan();
+            }
+            else
+            {
+                return TextField_Property_MATCH_SYSTEM_LANGUAGE_DIRECTION_get_gl();
+            }
+        }
+
+        [global::System.Runtime.InteropServices.DllImport(Graphics.GlesCSharpBinder, EntryPoint = "CSharp_TextEditor_Property_MATCH_SYSTEM_LANGUAGE_DIRECTION_get")]
+        public static extern int TextEditor_Property_MATCH_SYSTEM_LANGUAGE_DIRECTION_get_gl();
+
+        [global::System.Runtime.InteropServices.DllImport(Graphics.VulkanCSharpBinder, EntryPoint = "CSharp_TextEditor_Property_MATCH_SYSTEM_LANGUAGE_DIRECTION_get")]
+        public static extern int TextEditor_Property_MATCH_SYSTEM_LANGUAGE_DIRECTION_get_vulkan();
+
+        public static int TextEditor_Property_MATCH_SYSTEM_LANGUAGE_DIRECTION_get()
+        {
+            if (Tizen.NUI.Graphics.Backend == Tizen.NUI.Graphics.BackendType.Vulkan)
+            {
+                return TextEditor_Property_MATCH_SYSTEM_LANGUAGE_DIRECTION_get_vulkan();
+            }
+            else
+            {
+                return TextEditor_Property_MATCH_SYSTEM_LANGUAGE_DIRECTION_get_gl();
+            }
+        }
+
         [global::System.Runtime.InteropServices.DllImport(Graphics.GlesCSharpBinder, EntryPoint = "CSharp_ImageView_IMAGE_VISUAL_ACTION_RELOAD_get")]
         public static extern int ImageView_IMAGE_VISUAL_ACTION_RELOAD_get_gl();
 
