@@ -1,7 +1,9 @@
 import os
+import re
 from github import Github
 
 gitHubRepo = "Samsung/TizenFX"
+diffPattern = re.compile('^@@ \-([0-9,]+) \+([0-9,]+) @@')
 
 class PRManager:
     def __init__(self, token, prNumber):
@@ -19,25 +21,26 @@ class PRManager:
                 continue
             _patchLines = file.patch.split("\n")
             self._CreatePositionMap(file, _patchLines)
-            _patchLines[:] = [line for line in _patchLines if "@@ " in line]
             _diffLines = []
             for hunkline in _patchLines:
-                hunkline = hunkline[2:]
-                startingLine = hunkline[hunkline.find("+")+1:hunkline.find("@@")]
-                startingLine = startingLine.strip()
-                startingLine = startingLine.split(",")
-                _diffLines.insert(0, map(int, startingLine))
+                m = diffPattern.match(hunkline)
+                if m is not None:
+                    hunkrange = m.group(2).split(',')
+                    if len(hunkrange) == 1:
+                        hunkrange.append(1)
+                    _diffLines.insert(0, map(int, hunkrange))
             _diffLines.reverse()
             self.fileDiffHunkPairs[file] = _diffLines
 
     def _CreatePositionMap(self, file, patchLines):
         self.lineNumberToPositionMap[file] = {}
+        lineNumber = 0
         for position, line in enumerate(patchLines):
-            if line[0] == "@":
-                line = line[line.find("+")+1:]
-                lineNumber = int(line[:line.find(",")])
+            m = diffPattern.match(line)
+            if m is not None:
+                lineNumber = int(m.group(2).split(',')[0])
                 continue
-            elif line[0] == "-":
+            elif line[0] == '-':
                 continue
             self.lineNumberToPositionMap[file][lineNumber] = position
             lineNumber += 1
@@ -60,4 +63,4 @@ if __name__ == "__main__":
     gh = PRManager(pr)
     for file in gh.changedFiles:
         print("Chaged File: " + file.filename)
-    
+
