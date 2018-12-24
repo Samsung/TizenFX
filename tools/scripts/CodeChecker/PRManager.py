@@ -58,9 +58,5 @@ class PRManager:
         if self._CheckComment(file.filename, _position, body):
             self.pr.create_review_comment(body, self.latestCommit, file.filename, _position)
 
-if __name__ == "__main__":
-    pr = 9
-    gh = PRManager(pr)
-    for file in gh.changedFiles:
-        print("Chaged File: " + file.filename)
-
+    def CreateIssueComment(self, body):
+      self.pr.create_issue_comment(body)
