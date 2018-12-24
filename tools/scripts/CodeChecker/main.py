@@ -30,7 +30,7 @@ if __name__ == "__main__":
           pr.CreateReviewComment(file, warning['line'], _warningMessage)
 
   # Report Errors
-  if len(logs.erros) > 0:
+  if len(logs.errors) > 0:
     errBody = '### Build Error:\n'
     for err in logs.errors:
       errBody += '> {}({}): {}: {}\n'.format(err['file'], err['line'], err['code'], err['message'])
