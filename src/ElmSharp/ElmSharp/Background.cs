@@ -39,7 +39,7 @@ namespace ElmSharp
         /// Sets or gets the color to the background.
         /// </summary>
         /// <since_tizen> preview </since_tizen>
-        public override Color Color
+        public override Color Co lor
         {
             get
             {
