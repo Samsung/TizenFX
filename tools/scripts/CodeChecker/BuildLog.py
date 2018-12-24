@@ -10,7 +10,7 @@ class BuildLog:
   def _parseLog(self):
     errorPattern = re.compile('[0-9]+>(.+)\(([0-9]+),[0-9]+\): (error|warning) ([A-Z0-9]+): (.+) \[/')
     for line in self._file.readlines():
-      m = errorPattern.match(line)
+      m = errorPattern.match(line.strip())
       if m is not None:
         item = {'file': m.group(1), 'line': int(m.group(2)), 'type': m.group(3), 'code': m.group(4), 'message': m.group(5)}
         if item['type'] == 'warning':
