@@ -205,6 +205,29 @@ namespace Tizen.NUI
                                           argumentNullDelegate,
                                           argumentOutOfRangeDelegate);
             }
+
+            //Workaround for Vulkan. should be removed.
+            internal void SetAgain()
+            {
+                SWIGRegisterExceptionCallbacks_NDalic(
+                          applicationDelegate,
+                          arithmeticDelegate,
+                          divideByZeroDelegate,
+                          indexOutOfRangeDelegate,
+                          invalidCastDelegate,
+                          invalidOperationDelegate,
+                          ioDelegate,
+                          nullReferenceDelegate,
+                          outOfMemoryDelegate,
+                          overflowDelegate,
+                          systemDelegate);
+
+                SWIGRegisterExceptionCallbacksArgument_NDalic(
+                                          argumentDelegate,
+                                          argumentNullDelegate,
+                                          argumentOutOfRangeDelegate);
+            }
+
         }
 
         protected static SWIGExceptionHelper swigExceptionHelper = new SWIGExceptionHelper();
@@ -296,9 +319,23 @@ namespace Tizen.NUI
             {
                 SWIGRegisterStringCallback_NDalic(stringDelegate);
             }
+
+            //Workaround for Vulkan. should be removed.
+            internal void SetAgain()
+            {
+                SWIGRegisterStringCallback_NDalic(stringDelegate);
+            }
         }
 
         static protected SWIGStringHelper swigStringHelper = new SWIGStringHelper();
+
+        //Workaround for Vulkan. should be removed.
+        internal static void SetAgainExceptionHelperAndStringHelper()
+        {
+            swigExceptionHelper.SetAgain();
+            swigStringHelper.SetAgain();
+            Tizen.Log.Error("NUI", $"[NOT ERROR] SetAgainExceptionHelperAndStringHelper()");
+        }
 
 
         static NDalicPINVOKE()
