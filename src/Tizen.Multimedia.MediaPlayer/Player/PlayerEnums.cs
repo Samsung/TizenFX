@@ -132,8 +132,7 @@ namespace Tizen.Multimedia
         /// <summary>
         /// Preparation in progress.
         /// </summary>
-        /// <remarks>The Preparing state is translated to <see cref="PlayerState.Ready"/> internally.
-        /// And in this state, other methods and properties cannot be set.</remarks>
+        /// <remarks>In this state, other methods and properties cannot be set.</remarks>
         /// <seealso cref="Player.PrepareAsync"/>/>
         Preparing,
     }
