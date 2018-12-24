@@ -2,7 +2,7 @@ import sys
 from BuildLog import BuildLog
 from PRManager import PRManager
 
-logPath = "./build.log"
+logPath = "./msbuild.log"
 
 if __name__ == "__main__":
 
