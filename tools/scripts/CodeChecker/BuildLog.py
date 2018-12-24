@@ -8,7 +8,7 @@ class BuildLog:
     self._parseLog()
 
   def _parseLog(self):
-    errorPattern = re.compile('(.+)\(([0-9]+),[0-9]+\): (error|warning) ([A-Z0-9]+): (.+) \[/')
+    errorPattern = re.compile('[0-9]+>(.+)\(([0-9]+),[0-9]+\): (error|warning) ([A-Z0-9]+): (.+) \[/')
     for line in self._file.readlines():
       m = errorPattern.match(line)
       if m is not None:
