@@ -179,14 +179,14 @@ namespace Tizen.Security.DevicePolicyManager
         /// Gets password quality.
         /// An administrator can get the password restrictions it is imposing.
         /// </summary>
-        /// <returns>Password quality type, values of PasswordQuality combined with bitwise 'or'</returns>
+        /// <returns>Password quality type, values of PasswordQuality</returns>
         /// <since_tizen> 6 </since_tizen>
         /// <privilege>http://tizen.org/privilege/dpm.password</privilege>
         /// <privlevel>partner</privlevel>
         /// <exception cref="ArgumentException">Thrown when failed because of invalid handle of DevicePolicyManager.</exception>
         /// <exception cref="TimeoutException">Thrown when failed because of timeout.</exception>
         /// <exception cref="UnauthorizedAccessException">Thrown when application does not have privilege to access this method.</exception>
-        public int GetQuality()
+        public PasswordQuality GetQuality()
         {
             int quality;
             int ret = Interop.DevicePolicyManager.PasswordGetQuality(_dpm.GetHandle(), out quality);
@@ -196,7 +196,7 @@ namespace Tizen.Security.DevicePolicyManager
                 throw DevicePolicyManagerErrorFactory.GetException(ret);
             }
 
-            return quality;
+            return (PasswordQuality)quality;
         }
     }
 }
