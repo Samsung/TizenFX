@@ -152,7 +152,7 @@ namespace ElmSharp
         /// Sets or gets whether to turn on/off animation looping.
         /// <remarks>
         /// If AutoRepeat is true, it repeats animation when animation frame is reached to end.
-        /// This AutoRepeat mode is valid to both Play and PlayBack cases.
+        /// This AutoRepeat mode is valid to both Play and ReversePlay cases.
         /// </remarks>
         /// </summary>
         /// <since_tizen> preview </since_tizen>
@@ -240,7 +240,7 @@ namespace ElmSharp
         /// <summary>
         /// Play animation one time instantly when it's available.
         /// <remarks>
-        /// If current keyframe is on a certain position by playing back, this will play forward from there.
+        /// If current keyframe is on a certain position by playing reverse, this will play forward from there.
         /// Play request will be ignored if animation source is not set yet or animation is paused state or it's already on playing.
         /// </remarks>
         /// </summary>
