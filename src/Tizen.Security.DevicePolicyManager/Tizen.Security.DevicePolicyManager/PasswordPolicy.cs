@@ -179,7 +179,7 @@ namespace Tizen.Security.DevicePolicyManager
         /// Gets password quality.
         /// An administrator can get the password restrictions it is imposing.
         /// </summary>
-        /// <returns>Password quality type, values of PasswordQuality</returns>
+        /// <returns>Password quality type, values of PasswordQuality.</returns>
         /// <since_tizen> 6 </since_tizen>
         /// <privilege>http://tizen.org/privilege/dpm.password</privilege>
         /// <privlevel>partner</privlevel>

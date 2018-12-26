@@ -48,7 +48,7 @@ namespace Tizen.Security.DevicePolicyManager
         /// <since_tizen> 6 </since_tizen>
         ALPHABETIC = 0x40,
         /// <summary>
-        /// Containing at least numeric and alphabetic characters       
+        /// Containing at least numeric and alphabetic characters.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
         ALPHANUMERIC = 0x80

@@ -31,12 +31,12 @@ namespace Tizen.Security.DevicePolicyManager
         }
 
         /// <summary>
-        /// Get name of the policy
+        /// Get name of the policy.
         /// </summary>
         public string Name { get; }
 
         /// <summary>
-        /// Get the current state of the policy
+        /// Get the current state of the policy.
         /// </summary>
         public string State { get; }
     }
