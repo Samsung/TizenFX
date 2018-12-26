@@ -39,97 +39,18 @@ namespace Tizen.NUI
     public class WidgetView : View
     {
         private global::System.Runtime.InteropServices.HandleRef swigCPtr;
-
-        internal WidgetView(global::System.IntPtr cPtr, bool cMemoryOwn) : base(NDalicManualPINVOKE.WidgetView_SWIGUpcast(cPtr), cMemoryOwn)
-        {
-            swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
-        }
-
-        internal static global::System.Runtime.InteropServices.HandleRef getCPtr(WidgetView obj)
-        {
-            return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
-        }
-
-        /// <summary>
-        /// To make the Button instance be disposed.
-        /// </summary>
-        /// <since_tizen> 3 </since_tizen>
-        protected override void Dispose(DisposeTypes type)
-        {
-            if (disposed)
-            {
-                return;
-            }
-
-            if (type == DisposeTypes.Explicit)
-            {
-                //Called by User
-                //Release your own managed resources here.
-                //You should release all of your own disposable objects here.
-
-            }
-
-            //Release your own unmanaged resources here.
-            //You should not access any managed member here except static instance.
-            //because the execution order of Finalizes is non-deterministic.
-
-            if (_widgetAddedEventCallback != null)
-            {
-                this.WidgetAddedSignal().Disconnect(_widgetAddedEventCallback);
-            }
-
-            if (_widgetContentUpdatedEventCallback != null)
-            {
-                this.WidgetContentUpdatedSignal().Disconnect(_widgetContentUpdatedEventCallback);
-            }
-
-            if (_widgetCreationAbortedEventCallback != null)
-            {
-                this.WidgetCreationAbortedSignal().Disconnect(_widgetCreationAbortedEventCallback);
-            }
-
-            if (_widgetDeletedEventCallback != null)
-            {
-                this.WidgetDeletedSignal().Disconnect(_widgetDeletedEventCallback);
-            }
-
-            if (_widgetFaultedEventCallback != null)
-            {
-                this.WidgetFaultedSignal().Disconnect(_widgetFaultedEventCallback);
-            }
-
-            if (_widgetUpdatePeriodChangedEventCallback != null)
-            {
-                this.WidgetUpdatePeriodChangedSignal().Disconnect(_widgetUpdatePeriodChangedEventCallback);
-            }
-
-            if (swigCPtr.Handle != global::System.IntPtr.Zero)
-            {
-                if (swigCMemOwn)
-                {
-                    swigCMemOwn = false;
-                    NDalicManualPINVOKE.delete_WidgetView(swigCPtr);
-                }
-                swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
-            }
-            base.Dispose(type);
-        }
-
-        internal new class Property
-        {
-            internal static readonly int WIDGET_ID = NDalicManualPINVOKE.WidgetView_Property_WIDGET_ID_get();
-            internal static readonly int INSTANCE_ID = NDalicManualPINVOKE.WidgetView_Property_INSTANCE_ID_get();
-            internal static readonly int CONTENT_INFO = NDalicManualPINVOKE.WidgetView_Property_CONTENT_INFO_get();
-            internal static readonly int TITLE = NDalicManualPINVOKE.WidgetView_Property_TITLE_get();
-            internal static readonly int UPDATE_PERIOD = NDalicManualPINVOKE.WidgetView_Property_UPDATE_PERIOD_get();
-            internal static readonly int PREVIEW = NDalicManualPINVOKE.WidgetView_Property_PREVIEW_get();
-            internal static readonly int LOADING_TEXT = NDalicManualPINVOKE.WidgetView_Property_LOADING_TEXT_get();
-            internal static readonly int WIDGET_STATE_FAULTED = NDalicManualPINVOKE.WidgetView_Property_WIDGET_STATE_FAULTED_get();
-            internal static readonly int PERMANENT_DELETE = NDalicManualPINVOKE.WidgetView_Property_PERMANENT_DELETE_get();
-            internal static readonly int RETRY_TEXT = NDalicManualPINVOKE.WidgetView_Property_RETRY_TEXT_get();
-            internal static readonly int EFFECT = NDalicManualPINVOKE.WidgetView_Property_EFFECT_get();
-        }
-
+        private EventHandler<WidgetViewEventArgs> _widgetAddedEventHandler;
+        private WidgetAddedEventCallbackType _widgetAddedEventCallback;
+        private EventHandler<WidgetViewEventArgs> _widgetContentUpdatedEventHandler;
+        private WidgetContentUpdatedEventCallbackType _widgetContentUpdatedEventCallback;
+        private EventHandler<WidgetViewEventArgs> _widgetDeletedEventHandler;
+        private WidgetDeletedEventCallbackType _widgetDeletedEventCallback;
+        private EventHandler<WidgetViewEventArgs> _widgetCreationAbortedEventHandler;
+        private WidgetCreationAbortedEventCallbackType _widgetCreationAbortedEventCallback;
+        private EventHandler<WidgetViewEventArgs> _widgetUpdatePeriodChangedEventHandler;
+        private WidgetUpdatePeriodChangedEventCallbackType _widgetUpdatePeriodChangedEventCallback;
+        private EventHandler<WidgetViewEventArgs> _widgetFaultedEventHandler;
+        private WidgetFaultedEventCallbackType _widgetFaultedEventCallback;
         /// <summary>
         /// Creates a new WidgetView.
         /// </summary>
@@ -140,61 +61,27 @@ namespace Tizen.NUI
 
         }
 
-        internal static WidgetView DownCast(BaseHandle handle)
+        internal WidgetView(global::System.IntPtr cPtr, bool cMemoryOwn) : base(NDalicManualPINVOKE.WidgetView_SWIGUpcast(cPtr), cMemoryOwn)
         {
-            WidgetView ret = new WidgetView(NDalicManualPINVOKE.WidgetView_DownCast(BaseHandle.getCPtr(handle)), true);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
+            swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
         }
-
         internal WidgetView(WidgetView handle) : this(NDalicManualPINVOKE.new_WidgetView__SWIG_1(WidgetView.getCPtr(handle)), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
-        internal WidgetView Assign(WidgetView handle)
-        {
-            WidgetView ret = new WidgetView(NDalicManualPINVOKE.WidgetView_Assign(swigCPtr, WidgetView.getCPtr(handle)), false);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
-        }
-
-        internal static WidgetView GetWidgetViewFromPtr(global::System.IntPtr cPtr)
-        {
-            WidgetView ret = new WidgetView(cPtr, false);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
-        }
-
-        /// <summary>
-        /// Event arguments of the widget view.
-        /// </summary>
-        /// <since_tizen> 3 </since_tizen>
-        public class WidgetViewEventArgs : EventArgs
-        {
-            private WidgetView _widgetView;
-
-            /// <summary>
-            /// The widet view.
-            /// </summary>
-            /// <since_tizen> 3 </since_tizen>
-            public WidgetView WidgetView
-            {
-                get
-                {
-                    return _widgetView;
-                }
-                set
-                {
-                    _widgetView = value;
-                }
-            }
-        }
-
-        private EventHandler<WidgetViewEventArgs> _widgetAddedEventHandler;
         [UnmanagedFunctionPointer(CallingConvention.StdCall)]
         private delegate void WidgetAddedEventCallbackType(IntPtr data);
-        private WidgetAddedEventCallbackType _widgetAddedEventCallback;
+        [UnmanagedFunctionPointer(CallingConvention.StdCall)]
+        private delegate void WidgetContentUpdatedEventCallbackType(IntPtr data);
+        [UnmanagedFunctionPointer(CallingConvention.StdCall)]
+        private delegate void WidgetDeletedEventCallbackType(IntPtr data);
+        [UnmanagedFunctionPointer(CallingConvention.StdCall)]
+        private delegate void WidgetCreationAbortedEventCallbackType(IntPtr data);
+        [UnmanagedFunctionPointer(CallingConvention.StdCall)]
+        private delegate void WidgetUpdatePeriodChangedEventCallbackType(IntPtr data);
+        [UnmanagedFunctionPointer(CallingConvention.StdCall)]
+        private delegate void WidgetFaultedEventCallbackType(IntPtr data);
 
         /// <summary>
         /// An event for the ResourceReady signal which can be used to subscribe or unsubscribe the event handler.<br />
@@ -226,25 +113,35 @@ namespace Tizen.NUI
             }
         }
 
-        // Callback for WidgetView WidgetAdded signal
-        private void OnWidgetAdded(IntPtr data)
+        /// <summary>
+        /// An event for the ResourceReady signal which can be used to subscribe or unsubscribe the event handler.<br />
+        /// This signal is emitted after all resources required by a control are loaded and ready.<br />
+        /// Most resources are only loaded when the control is placed on the stage.<br />
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
+        public event EventHandler<WidgetViewEventArgs> WidgetContentUpdated
         {
-            WidgetViewEventArgs e = new WidgetViewEventArgs();
-            if(data != null)
+            add
             {
-                e.WidgetView = WidgetView.GetWidgetViewFromPtr(data);
+                if (_widgetContentUpdatedEventHandler == null)
+                {
+                    _widgetContentUpdatedEventCallback = OnWidgetContentUpdated;
+                    WidgetContentUpdatedSignal().Connect(_widgetContentUpdatedEventCallback);
+                }
+
+                _widgetContentUpdatedEventHandler += value;
             }
 
-            if (_widgetAddedEventHandler != null)
+            remove
             {
-                _widgetAddedEventHandler(this, e);
+                _widgetContentUpdatedEventHandler -= value;
+
+                if (_widgetContentUpdatedEventHandler == null && WidgetContentUpdatedSignal().Empty() == false)
+                {
+                    WidgetContentUpdatedSignal().Disconnect(_widgetContentUpdatedEventCallback);
+                }
             }
         }
-
-        private EventHandler<WidgetViewEventArgs> _widgetDeletedEventHandler;
-        [UnmanagedFunctionPointer(CallingConvention.StdCall)]
-        private delegate void WidgetDeletedEventCallbackType(IntPtr data);
-        private WidgetDeletedEventCallbackType _widgetDeletedEventCallback;
 
         /// <summary>
         /// An event for the ResourceReady signal which can be used to subscribe or unsubscribe the event handler.<br />
@@ -276,26 +173,6 @@ namespace Tizen.NUI
             }
         }
 
-        // Callback for WidgetView WidgetDeleted signal
-        private void OnWidgetDeleted(IntPtr data)
-        {
-            WidgetViewEventArgs e = new WidgetViewEventArgs();
-            if(data != null)
-            {
-                e.WidgetView = WidgetView.GetWidgetViewFromPtr(data);
-            }
-
-            if (_widgetDeletedEventHandler != null)
-            {
-                _widgetDeletedEventHandler(this, e);
-            }
-        }
-
-        private EventHandler<WidgetViewEventArgs> _widgetCreationAbortedEventHandler;
-        [UnmanagedFunctionPointer(CallingConvention.StdCall)]
-        private delegate void WidgetCreationAbortedEventCallbackType(IntPtr data);
-        private WidgetCreationAbortedEventCallbackType _widgetCreationAbortedEventCallback;
-
         /// <summary>
         /// An event for the ResourceReady signal which can be used to subscribe or unsubscribe the event handler.<br />
         /// This signal is emitted after all resources required by a control are loaded and ready.<br />
@@ -325,76 +202,6 @@ namespace Tizen.NUI
                 }
             }
         }
-
-        // Callback for WidgetView WidgetCreationAborted signal
-        private void OnWidgetCreationAborted(IntPtr data)
-        {
-            WidgetViewEventArgs e = new WidgetViewEventArgs();
-            if(data != null)
-            {
-                e.WidgetView = WidgetView.GetWidgetViewFromPtr(data);
-            }
-
-            if (_widgetCreationAbortedEventHandler != null)
-            {
-                _widgetCreationAbortedEventHandler(this, e);
-            }
-        }
-
-        private EventHandler<WidgetViewEventArgs> _widgetContentUpdatedEventHandler;
-        [UnmanagedFunctionPointer(CallingConvention.StdCall)]
-        private delegate void WidgetContentUpdatedEventCallbackType(IntPtr data);
-        private WidgetContentUpdatedEventCallbackType _widgetContentUpdatedEventCallback;
-
-        /// <summary>
-        /// An event for the ResourceReady signal which can be used to subscribe or unsubscribe the event handler.<br />
-        /// This signal is emitted after all resources required by a control are loaded and ready.<br />
-        /// Most resources are only loaded when the control is placed on the stage.<br />
-        /// </summary>
-        /// <since_tizen> 3 </since_tizen>
-        public event EventHandler<WidgetViewEventArgs> WidgetContentUpdated
-        {
-            add
-            {
-                if (_widgetContentUpdatedEventHandler == null)
-                {
-                    _widgetContentUpdatedEventCallback = OnWidgetContentUpdated;
-                    WidgetContentUpdatedSignal().Connect(_widgetContentUpdatedEventCallback);
-                }
-
-                _widgetContentUpdatedEventHandler += value;
-            }
-
-            remove
-            {
-                _widgetContentUpdatedEventHandler -= value;
-
-                if (_widgetContentUpdatedEventHandler == null && WidgetContentUpdatedSignal().Empty() == false)
-                {
-                    WidgetContentUpdatedSignal().Disconnect(_widgetContentUpdatedEventCallback);
-                }
-            }
-        }
-
-        // Callback for WidgetView WidgetContentUpdated signal
-        private void OnWidgetContentUpdated(IntPtr data)
-        {
-            WidgetViewEventArgs e = new WidgetViewEventArgs();
-            if(data != null)
-            {
-                e.WidgetView = WidgetView.GetWidgetViewFromPtr(data);
-            }
-
-            if (_widgetContentUpdatedEventHandler != null)
-            {
-                _widgetContentUpdatedEventHandler(this, e);
-            }
-        }
-
-        private EventHandler<WidgetViewEventArgs> _widgetUpdatePeriodChangedEventHandler;
-        [UnmanagedFunctionPointer(CallingConvention.StdCall)]
-        private delegate void WidgetUpdatePeriodChangedEventCallbackType(IntPtr data);
-        private WidgetUpdatePeriodChangedEventCallbackType _widgetUpdatePeriodChangedEventCallback;
 
         /// <summary>
         /// An event for the ResourceReady signal which can be used to subscribe or unsubscribe the event handler.<br />
@@ -426,26 +233,6 @@ namespace Tizen.NUI
             }
         }
 
-        // Callback for WidgetView WidgetUpdatePeriodChanged signal
-        private void OnWidgetUpdatePeriodChanged(IntPtr data)
-        {
-            WidgetViewEventArgs e = new WidgetViewEventArgs();
-            if(data != null)
-            {
-                e.WidgetView = WidgetView.GetWidgetViewFromPtr(data);
-            }
-
-            if (_widgetUpdatePeriodChangedEventHandler != null)
-            {
-                _widgetUpdatePeriodChangedEventHandler(this, e);
-            }
-        }
-
-        private EventHandler<WidgetViewEventArgs> _widgetFaultedEventHandler;
-        [UnmanagedFunctionPointer(CallingConvention.StdCall)]
-        private delegate void WidgetFaultedEventCallbackType(IntPtr data);
-        private WidgetFaultedEventCallbackType _widgetFaultedEventCallback;
-
         /// <summary>
         /// An event for the ResourceReady signal which can be used to subscribe or unsubscribe the event handler.<br />
         /// This signal is emitted after all resources required by a control are loaded and ready.<br />
@@ -474,124 +261,6 @@ namespace Tizen.NUI
                     WidgetFaultedSignal().Disconnect(_widgetFaultedEventCallback);
                 }
             }
-        }
-
-        // Callback for WidgetView WidgetFaulted signal
-        private void OnWidgetFaulted(IntPtr data)
-        {
-            WidgetViewEventArgs e = new WidgetViewEventArgs();
-            if(data != null)
-            {
-                e.WidgetView = WidgetView.GetWidgetViewFromPtr(data);
-            }
-
-            if (_widgetFaultedEventHandler != null)
-            {
-                _widgetFaultedEventHandler(this, e);
-            }
-        }
-
-        /// <summary>
-        /// Pauses a given widget.
-        /// </summary>
-        /// <returns>True on success, false otherwise.</returns>
-        /// <since_tizen> 3 </since_tizen>
-        public bool PauseWidget()
-        {
-            bool ret = NDalicManualPINVOKE.WidgetView_PauseWidget(swigCPtr);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
-        }
-
-        /// <summary>
-        /// Resumes a given widget.
-        /// </summary>
-        /// <returns>True on success, false otherwise.</returns>
-        /// <since_tizen> 3 </since_tizen>
-        public bool ResumeWidget()
-        {
-            bool ret = NDalicManualPINVOKE.WidgetView_ResumeWidget(swigCPtr);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
-        }
-
-        /// <summary>
-        /// Cancels the touch event procedure.
-        /// If you call this function after feed the touch down event, the widget will get ON_HOLD events.
-       ///  If a widget gets ON_HOLD event, it will not do anything even if you feed touch up event.
-        /// </summary>
-        /// <returns>True on success, false otherwise.</returns>
-        /// <since_tizen> 3 </since_tizen>
-        public bool CancelTouchEvent()
-        {
-            bool ret = NDalicManualPINVOKE.WidgetView_CancelTouchEvent(swigCPtr);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
-        }
-
-        /// <summary>
-        /// Activates a widget in the faulted state.
-        /// A widget in faulted state must be activated before adding the widget.
-        /// </summary>
-        /// <since_tizen> 3 </since_tizen>
-        public void ActivateFaultedWidget()
-        {
-            NDalicManualPINVOKE.WidgetView_ActivateFaultedWidget(swigCPtr);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-        }
-
-        /// <summary>
-        /// Terminate a widget instance.
-        /// </summary>
-        /// <returns>True on success, false otherwise</returns>
-        /// <since_tizen> 4 </since_tizen>
-        public bool TerminateWidget()
-        {
-            bool ret = NDalicManualPINVOKE.WidgetView_TerminateWidget(swigCPtr);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
-        }
-
-        internal WidgetViewSignal WidgetAddedSignal()
-        {
-            WidgetViewSignal ret = new WidgetViewSignal(NDalicManualPINVOKE.WidgetView_WidgetAddedSignal(swigCPtr), false);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
-        }
-
-        internal WidgetViewSignal WidgetDeletedSignal()
-        {
-            WidgetViewSignal ret = new WidgetViewSignal(NDalicManualPINVOKE.WidgetView_WidgetDeletedSignal(swigCPtr), false);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
-        }
-
-        internal WidgetViewSignal WidgetCreationAbortedSignal()
-        {
-            WidgetViewSignal ret = new WidgetViewSignal(NDalicManualPINVOKE.WidgetView_WidgetCreationAbortedSignal(swigCPtr), false);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
-        }
-
-        internal WidgetViewSignal WidgetContentUpdatedSignal()
-        {
-            WidgetViewSignal ret = new WidgetViewSignal(NDalicManualPINVOKE.WidgetView_WidgetContentUpdatedSignal(swigCPtr), false);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
-        }
-
-        internal WidgetViewSignal WidgetUpdatePeriodChangedSignal()
-        {
-            WidgetViewSignal ret = new WidgetViewSignal(NDalicManualPINVOKE.WidgetView_WidgetUpdatePeriodChangedSignal(swigCPtr), false);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
-        }
-
-        internal WidgetViewSignal WidgetFaultedSignal()
-        {
-            WidgetViewSignal ret = new WidgetViewSignal(NDalicManualPINVOKE.WidgetView_WidgetFaultedSignal(swigCPtr), false);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
         }
 
         /// <summary>
@@ -772,6 +441,332 @@ namespace Tizen.NUI
             }
         }
 
+        /// <summary>
+        /// Pauses a given widget.
+        /// </summary>
+        /// <returns>True on success, false otherwise.</returns>
+        /// <since_tizen> 3 </since_tizen>
+        public bool PauseWidget()
+        {
+            bool ret = NDalicManualPINVOKE.WidgetView_PauseWidget(swigCPtr);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        /// <summary>
+        /// Resumes a given widget.
+        /// </summary>
+        /// <returns>True on success, false otherwise.</returns>
+        /// <since_tizen> 3 </since_tizen>
+        public bool ResumeWidget()
+        {
+            bool ret = NDalicManualPINVOKE.WidgetView_ResumeWidget(swigCPtr);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        /// <summary>
+        /// Cancels the touch event procedure.
+        /// If you call this function after feed the touch down event, the widget will get ON_HOLD events.
+        ///  If a widget gets ON_HOLD event, it will not do anything even if you feed touch up event.
+        /// </summary>
+        /// <returns>True on success, false otherwise.</returns>
+        /// <since_tizen> 3 </since_tizen>
+        public bool CancelTouchEvent()
+        {
+            bool ret = NDalicManualPINVOKE.WidgetView_CancelTouchEvent(swigCPtr);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        /// <summary>
+        /// Activates a widget in the faulted state.
+        /// A widget in faulted state must be activated before adding the widget.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
+        public void ActivateFaultedWidget()
+        {
+            NDalicManualPINVOKE.WidgetView_ActivateFaultedWidget(swigCPtr);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        /// <summary>
+        /// Terminate a widget instance.
+        /// </summary>
+        /// <returns>True on success, false otherwise</returns>
+        /// <since_tizen> 4 </since_tizen>
+        public bool TerminateWidget()
+        {
+            bool ret = NDalicManualPINVOKE.WidgetView_TerminateWidget(swigCPtr);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        internal static WidgetView DownCast(BaseHandle handle)
+        {
+            WidgetView ret = new WidgetView(NDalicManualPINVOKE.WidgetView_DownCast(BaseHandle.getCPtr(handle)), true);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        internal static WidgetView GetWidgetViewFromPtr(global::System.IntPtr cPtr)
+        {
+            WidgetView ret = new WidgetView(cPtr, false);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        internal static global::System.Runtime.InteropServices.HandleRef getCPtr(WidgetView obj)
+        {
+            return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
+        }
+
+        internal WidgetView Assign(WidgetView handle)
+        {
+            WidgetView ret = new WidgetView(NDalicManualPINVOKE.WidgetView_Assign(swigCPtr, WidgetView.getCPtr(handle)), false);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        internal WidgetViewSignal WidgetAddedSignal()
+        {
+            WidgetViewSignal ret = new WidgetViewSignal(NDalicManualPINVOKE.WidgetView_WidgetAddedSignal(swigCPtr), false);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        internal WidgetViewSignal WidgetDeletedSignal()
+        {
+            WidgetViewSignal ret = new WidgetViewSignal(NDalicManualPINVOKE.WidgetView_WidgetDeletedSignal(swigCPtr), false);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        internal WidgetViewSignal WidgetCreationAbortedSignal()
+        {
+            WidgetViewSignal ret = new WidgetViewSignal(NDalicManualPINVOKE.WidgetView_WidgetCreationAbortedSignal(swigCPtr), false);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        internal WidgetViewSignal WidgetContentUpdatedSignal()
+        {
+            WidgetViewSignal ret = new WidgetViewSignal(NDalicManualPINVOKE.WidgetView_WidgetContentUpdatedSignal(swigCPtr), false);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        internal WidgetViewSignal WidgetUpdatePeriodChangedSignal()
+        {
+            WidgetViewSignal ret = new WidgetViewSignal(NDalicManualPINVOKE.WidgetView_WidgetUpdatePeriodChangedSignal(swigCPtr), false);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        internal WidgetViewSignal WidgetFaultedSignal()
+        {
+            WidgetViewSignal ret = new WidgetViewSignal(NDalicManualPINVOKE.WidgetView_WidgetFaultedSignal(swigCPtr), false);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        /// <summary>
+        /// To make the Button instance be disposed.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
+        protected override void Dispose(DisposeTypes type)
+        {
+            if (disposed)
+            {
+                return;
+            }
+
+            if (type == DisposeTypes.Explicit)
+            {
+                //Called by User
+                //Release your own managed resources here.
+                //You should release all of your own disposable objects here.
+
+            }
+
+            //Release your own unmanaged resources here.
+            //You should not access any managed member here except static instance.
+            //because the execution order of Finalizes is non-deterministic.
+
+            if (_widgetAddedEventCallback != null)
+            {
+                this.WidgetAddedSignal().Disconnect(_widgetAddedEventCallback);
+            }
+
+            if (_widgetContentUpdatedEventCallback != null)
+            {
+                this.WidgetContentUpdatedSignal().Disconnect(_widgetContentUpdatedEventCallback);
+            }
+
+            if (_widgetCreationAbortedEventCallback != null)
+            {
+                this.WidgetCreationAbortedSignal().Disconnect(_widgetCreationAbortedEventCallback);
+            }
+
+            if (_widgetDeletedEventCallback != null)
+            {
+                this.WidgetDeletedSignal().Disconnect(_widgetDeletedEventCallback);
+            }
+
+            if (_widgetFaultedEventCallback != null)
+            {
+                this.WidgetFaultedSignal().Disconnect(_widgetFaultedEventCallback);
+            }
+
+            if (_widgetUpdatePeriodChangedEventCallback != null)
+            {
+                this.WidgetUpdatePeriodChangedSignal().Disconnect(_widgetUpdatePeriodChangedEventCallback);
+            }
+
+            if (swigCPtr.Handle != global::System.IntPtr.Zero)
+            {
+                if (swigCMemOwn)
+                {
+                    swigCMemOwn = false;
+                    NDalicManualPINVOKE.delete_WidgetView(swigCPtr);
+                }
+                swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
+            }
+            base.Dispose(type);
+        }
+
+
+        // Callback for WidgetView WidgetAdded signal
+        private void OnWidgetAdded(IntPtr data)
+        {
+            WidgetViewEventArgs e = new WidgetViewEventArgs();
+            if(data != null)
+            {
+                e.WidgetView = WidgetView.GetWidgetViewFromPtr(data);
+            }
+
+            if (_widgetAddedEventHandler != null)
+            {
+                _widgetAddedEventHandler(this, e);
+            }
+        }
+
+        // Callback for WidgetView WidgetDeleted signal
+        private void OnWidgetDeleted(IntPtr data)
+        {
+            WidgetViewEventArgs e = new WidgetViewEventArgs();
+            if (data != null)
+            {
+                e.WidgetView = WidgetView.GetWidgetViewFromPtr(data);
+            }
+
+            if (_widgetDeletedEventHandler != null)
+            {
+                _widgetDeletedEventHandler(this, e);
+            }
+        }
+
+        // Callback for WidgetView WidgetCreationAborted signal
+        private void OnWidgetCreationAborted(IntPtr data)
+        {
+            WidgetViewEventArgs e = new WidgetViewEventArgs();
+            if (data != null)
+            {
+                e.WidgetView = WidgetView.GetWidgetViewFromPtr(data);
+            }
+
+            if (_widgetCreationAbortedEventHandler != null)
+            {
+                _widgetCreationAbortedEventHandler(this, e);
+            }
+        }
+
+
+
+        // Callback for WidgetView WidgetContentUpdated signal
+        private void OnWidgetContentUpdated(IntPtr data)
+        {
+            WidgetViewEventArgs e = new WidgetViewEventArgs();
+            if (data != null)
+            {
+                e.WidgetView = WidgetView.GetWidgetViewFromPtr(data);
+            }
+
+            if (_widgetContentUpdatedEventHandler != null)
+            {
+                _widgetContentUpdatedEventHandler(this, e);
+            }
+        }
+
+        // Callback for WidgetView WidgetUpdatePeriodChanged signal
+        private void OnWidgetUpdatePeriodChanged(IntPtr data)
+        {
+            WidgetViewEventArgs e = new WidgetViewEventArgs();
+            if (data != null)
+            {
+                e.WidgetView = WidgetView.GetWidgetViewFromPtr(data);
+            }
+
+            if (_widgetUpdatePeriodChangedEventHandler != null)
+            {
+                _widgetUpdatePeriodChangedEventHandler(this, e);
+            }
+        }
+
+        // Callback for WidgetView WidgetFaulted signal
+        private void OnWidgetFaulted(IntPtr data)
+        {
+            WidgetViewEventArgs e = new WidgetViewEventArgs();
+            if(data != null)
+            {
+                e.WidgetView = WidgetView.GetWidgetViewFromPtr(data);
+            }
+
+            if (_widgetFaultedEventHandler != null)
+            {
+                _widgetFaultedEventHandler(this, e);
+            }
+        }
+
+        /// <summary>
+        /// Event arguments of the widget view.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
+        public class WidgetViewEventArgs : EventArgs
+        {
+            private WidgetView _widgetView;
+
+            /// <summary>
+            /// The widet view.
+            /// </summary>
+            /// <since_tizen> 3 </since_tizen>
+            public WidgetView WidgetView
+            {
+                get
+                {
+                    return _widgetView;
+                }
+                set
+                {
+                    _widgetView = value;
+                }
+            }
+        }
+
+        internal new class Property
+        {
+            internal static readonly int WIDGET_ID = NDalicManualPINVOKE.WidgetView_Property_WIDGET_ID_get();
+            internal static readonly int INSTANCE_ID = NDalicManualPINVOKE.WidgetView_Property_INSTANCE_ID_get();
+            internal static readonly int CONTENT_INFO = NDalicManualPINVOKE.WidgetView_Property_CONTENT_INFO_get();
+            internal static readonly int TITLE = NDalicManualPINVOKE.WidgetView_Property_TITLE_get();
+            internal static readonly int UPDATE_PERIOD = NDalicManualPINVOKE.WidgetView_Property_UPDATE_PERIOD_get();
+            internal static readonly int PREVIEW = NDalicManualPINVOKE.WidgetView_Property_PREVIEW_get();
+            internal static readonly int LOADING_TEXT = NDalicManualPINVOKE.WidgetView_Property_LOADING_TEXT_get();
+            internal static readonly int WIDGET_STATE_FAULTED = NDalicManualPINVOKE.WidgetView_Property_WIDGET_STATE_FAULTED_get();
+            internal static readonly int PERMANENT_DELETE = NDalicManualPINVOKE.WidgetView_Property_PERMANENT_DELETE_get();
+            internal static readonly int RETRY_TEXT = NDalicManualPINVOKE.WidgetView_Property_RETRY_TEXT_get();
+            internal static readonly int EFFECT = NDalicManualPINVOKE.WidgetView_Property_EFFECT_get();
+        }
     }
 
 }
