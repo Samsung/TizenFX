@@ -29,13 +29,13 @@ namespace ElmSharp.Test
         {
             NotReady,
             Play,
-            PlayBack,
+            ReversePlay,
             Pause,
             Stop,
         }
 
         private AnimationState _state;
-        private bool _isPlayingBack;
+        private bool _isPlayingReverse;
 
         void UpdateAnimationViewStateLabel(Label _stateLabel)
         {
@@ -47,9 +47,9 @@ namespace ElmSharp.Test
             {
                 _stateLabel.Text = "<font_size=32>State = Playing</font_size>";
             }
-            else if (_state == AnimationState.PlayBack)
+            else if (_state == AnimationState.ReversePlay)
             {
-                _stateLabel.Text = "<font_size=32>State = Playing Back</font_size>";
+                _stateLabel.Text = "<font_size=32>State = Reverse Playing</font_size>";
             }
             else if (_state == AnimationState.Pause)
             {
@@ -231,8 +231,8 @@ namespace ElmSharp.Test
 
             btn1.Clicked += (s, e) =>
             {
-                _isPlayingBack = false;
-                if (_state == AnimationState.PlayBack)
+                _isPlayingReverse = false;
+                if (_state == AnimationState.ReversePlay)
                 {
                     UpdateAnimationViewStateLabel(label);
                 }
@@ -245,19 +245,19 @@ namespace ElmSharp.Test
                 WeightY = 0,
                 AlignmentX = -1,
                 AlignmentY = -1,
-                Text = "Play Back",
+                Text = "Reverse",
             };
             btn2.Show();
             box3.PackEnd(btn2);
 
             btn2.Clicked += (s, e) =>
             {
-                _isPlayingBack = true;
+                _isPlayingReverse = true;
                 if (_state == AnimationState.Play)
                 {
                     UpdateAnimationViewStateLabel(label);
                 }
-                aniview.PlayBack();
+                aniview.ReversePlay();
             };
 
             Button btn3 = new Button(box3)
@@ -321,13 +321,13 @@ namespace ElmSharp.Test
 
             aniview.Started += (s, e) =>
             {
-                if (!_isPlayingBack)
+                if (!_isPlayingReverse)
                 {
                     _state = AnimationState.Play;
                 }
                 else
                 {
-                    _state = AnimationState.PlayBack;
+                    _state = AnimationState.ReversePlay;
                 }
                 UpdateAnimationViewStateLabel(label);
             };
@@ -348,13 +348,13 @@ namespace ElmSharp.Test
 
             aniview.Resumed += (s, e) =>
             {
-                if (!_isPlayingBack)
+                if (!_isPlayingReverse)
                 {
                     _state = AnimationState.Play;
                 }
                 else
                 {
-                    _state = AnimationState.PlayBack;
+                    _state = AnimationState.ReversePlay;
                 }
                 UpdateAnimationViewStateLabel(label);
             };
