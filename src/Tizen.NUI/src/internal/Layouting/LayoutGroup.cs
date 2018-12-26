@@ -129,7 +129,6 @@ namespace Tizen.NUI
         protected override void OnLayout(bool changed, LayoutLength left, LayoutLength top, LayoutLength right, LayoutLength bottom)
         {
             Log.Info("NUI", "OnLayout\n");
-
             for( uint i = 0; i < ChildCount; ++i )
             {
                 var childLayout = GetChildAt( i );
@@ -138,7 +137,6 @@ namespace Tizen.NUI
                     View childOwner = childLayout.GetOwner();
 
                     // Use position if explicitly set to child otherwise will be top left.
-
                     var childLeft = new LayoutLength( childOwner.Position2D.X );
                     var childTop = new LayoutLength( childOwner.Position2D.Y );
 

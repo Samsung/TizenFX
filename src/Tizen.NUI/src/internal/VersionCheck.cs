@@ -65,7 +65,7 @@ namespace Tizen.NUI
         }
 
         //[Conditional("DEBUG_ON")]
-        static private void PrintDaliNativeVersion()
+        static internal void PrintDaliNativeVersion()
         {
             int ver1 = -1;
             int ver2 = -1;

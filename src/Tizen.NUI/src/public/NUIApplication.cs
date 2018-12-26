@@ -135,6 +135,14 @@ namespace Tizen.NUI
             if (windowSize != null) { _windowSize2D = windowSize; }
             if (windowPosition != null) { _windowPosition2D = windowPosition; }
             Registry.Instance.SavedApplicationThread = Thread.CurrentThread;
+
+            //Workaround for Vulkan. should be removed.
+            if (Graphics.Backend == Graphics.BackendType.Vulkan)
+            {
+                Tizen.Log.Error("NUI", "[NOT ERROR] NUIApplication Constructor! Vulkan backend!");
+                Tizen.NUI.Version.PrintDaliNativeVersion();
+                NDalicPINVOKE.SetAgainExceptionHelperAndStringHelper();
+            }
         }
 
         /// <summary>

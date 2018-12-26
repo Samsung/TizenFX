@@ -68,7 +68,13 @@ namespace Tizen.NUI
                 rootLayoutCPtr = new global::System.Runtime.InteropServices.HandleRef(this, rootLayoutIntPtr);
                 Layer rootLayer = GetRootLayer();
                 // Add the root layout created above to the root layer.
-                NDalicPINVOKE.Actor_Add(Layer.getCPtr(rootLayer), rootLayoutCPtr);
+                NDalicPINVOKE.Actor_Add(  Layer.getCPtr(rootLayer), rootLayoutCPtr );
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+
+                global::System.IntPtr rootControlLayoutIntPtr = Tizen.NUI.NDalicManualPINVOKE.GetLayout__SWIG_1(rootLayoutCPtr);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+
+                rootLayoutItem = new LayoutItem(rootControlLayoutIntPtr, true);
             }
         }
 
@@ -1088,17 +1094,6 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Sets whether the window is transparent or not.
-        /// </summary>
-        /// <param name="transparent">Whether the window is transparent or not.</param>
-        /// <since_tizen> 5 </since_tizen>
-        public void SetTransparency(bool transparent)
-        {
-            NDalicManualPINVOKE.SetTransparency(swigCPtr, transparent);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-        }
-
-        /// <summary>
         /// Adds a layer to the stage.
         /// </summary>
         /// <param name="layer">Layer to add.</param>
@@ -1437,6 +1432,22 @@ namespace Tizen.NUI
         internal void SetPositionSize(Rectangle positionSize)
         {
             NDalicPINVOKE.Window_SetPositionSize(swigCPtr, Rectangle.getCPtr(positionSize));
+
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+
+            if(rootLayoutItem != null)
+            {
+                rootLayoutItem.RequestLayout();
+            }
+        }
+
+        /// <summary>
+        /// Sets whether the window is transparent or not.
+        /// </summary>
+        /// <param name="transparent">Whether the window is transparent or not.</param>
+        /// <since_tizen> 5 </since_tizen>
+        public void SetTransparency(bool transparent) {
+            NDalicManualPINVOKE.SetTransparency(swigCPtr, transparent);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
 
             if(rootLayoutItem != null)
