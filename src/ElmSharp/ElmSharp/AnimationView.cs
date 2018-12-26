@@ -251,14 +251,14 @@ namespace ElmSharp
         }
 
         /// <summary>
-        /// Play back animation one time instantly when it's available.
+        /// Reverse play animation one time instantly when it's available.
         /// <remarks>
-        /// If current keyframe is on a certain position by playing, this will play backward from there.
-        /// PlayBack request will be ignored if animation source is not set yet or animation is paused state or it's already on playing back.
+        /// If current keyframe is on a certain position by playing, this will reverse play from there.
+        /// ReversePlay request will be ignored if animation source is not set yet or animation is paused state or it's already on reverse playing.
         /// </remarks>
         /// </summary>
         /// <since_tizen> preview </since_tizen>
-        public void PlayBack()
+        public void ReversePlay()
         {
             Interop.Elementary.elm_animation_view_play_back(Handle);
         }
