@@ -623,7 +623,7 @@ namespace Tizen.Account.AccountManager
         /// <param name="disposing">The boolean value for destoying account handle.</param>
         protected virtual void Dispose(bool disposing)
         {
-            if (!disposing)
+            if (disposing)
             {
                 _handle.Dispose();
             }
