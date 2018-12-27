@@ -38,7 +38,11 @@ namespace Tizen.Security.DevicePolicyManager
         public DevicePolicyManager()
         {
             _handle = Interop.DevicePolicyManager.CreateHandle();
-            DevicePolicyManagerErrorFactory.GetException(ErrorFacts.GetLastResult());
+            var lastError = ErrorFacts.GetLastResult();
+            if (lastError != (int)Interop.DevicePolicyManager.ErrorCode.None)
+            {
+                throw DevicePolicyManagerErrorFactory.CreateException(ErrorFacts.GetLastResult());
+            }
         }
 
         /// <summary>
@@ -91,13 +95,7 @@ namespace Tizen.Security.DevicePolicyManager
  
             if (_handle != IntPtr.Zero)
             {
-                int ret = Interop.DevicePolicyManager.DestroyHandle(_handle);
-                if (ret != (int)Interop.DevicePolicyManager.DpmError.None)
-                {
-                    Log.Error(Globals.LogTag, "Faild to destroy dpm handle");
-                    throw DevicePolicyManagerErrorFactory.GetException(ret);
-                }
-
+                Interop.DevicePolicyManager.DestroyHandle(_handle);
                 _handle = IntPtr.Zero;
             }
 
@@ -121,20 +119,20 @@ namespace Tizen.Security.DevicePolicyManager
 
     internal static class DevicePolicyManagerErrorFactory
     {
-        static internal Exception GetException(int error)
+        static internal Exception CreateException(int error)
         {
-            Interop.DevicePolicyManager.DpmError errCode = (Interop.DevicePolicyManager.DpmError)error;
+            Interop.DevicePolicyManager.ErrorCode errCode = (Interop.DevicePolicyManager.ErrorCode)error;
             switch (errCode)
             {
-                case Interop.DevicePolicyManager.DpmError.InvalidParameter:
+                case Interop.DevicePolicyManager.ErrorCode.InvalidParameter:
                     return new ArgumentException("Invalid parameter");
-                case Interop.DevicePolicyManager.DpmError.TimeOut:
+                case Interop.DevicePolicyManager.ErrorCode.TimeOut:
                     return new TimeoutException("Timeout");
-                case Interop.DevicePolicyManager.DpmError.PermissionDenied:
+                case Interop.DevicePolicyManager.ErrorCode.PermissionDenied:
                     return new UnauthorizedAccessException("Permission Denied");
-                case Interop.DevicePolicyManager.DpmError.OutOfMemory:
-                    return new OutOfMemoryException("Out of memory");
-                case Interop.DevicePolicyManager.DpmError.ConnectionRefused:
+                case Interop.DevicePolicyManager.ErrorCode.OutOfMemory:
+                    return new InvalidOperationException("Out of memory");
+                case Interop.DevicePolicyManager.ErrorCode.ConnectionRefused:
                     return new InvalidOperationException("Connection refused");
                 default:
                     return new InvalidOperationException("Unknown Error Code");

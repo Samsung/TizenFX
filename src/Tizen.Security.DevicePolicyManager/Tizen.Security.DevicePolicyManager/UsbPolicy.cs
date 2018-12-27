@@ -77,20 +77,20 @@ namespace Tizen.Security.DevicePolicyManager
             }
 
             int ret = Interop.DevicePolicyManager.AddPolicyChangedCallback(_dpm.GetHandle(), _usbTetheringPolicyName, _usbTetheringPolicyChangedCallback, IntPtr.Zero, out _usbTetheringCallbackId);
-            if (ret != (int)Interop.DevicePolicyManager.DpmError.None)
+            if (ret != (int)Interop.DevicePolicyManager.ErrorCode.None)
             {
                 Log.Error(Globals.LogTag, "Failed to add policy changed callback, name " + _usbTetheringPolicyName + ", ret : " + ret);
-                throw DevicePolicyManagerErrorFactory.GetException(ret);
+                throw DevicePolicyManagerErrorFactory.CreateException(ret);
             }
         }
 
         private void RemoveUsbTetheringPolicyChangedCallback()
         {
             int ret = Interop.DevicePolicyManager.RemovePolicyChangedCallback(_dpm.GetHandle(), _usbTetheringCallbackId);
-            if (ret != (int)Interop.DevicePolicyManager.DpmError.None)
+            if (ret != (int)Interop.DevicePolicyManager.ErrorCode.None)
             {
                 Log.Error(Globals.LogTag, "Failed to remove policy changed callback, name " + _usbTetheringPolicyName + ", ret : " + ret);
-                throw DevicePolicyManagerErrorFactory.GetException(ret);
+                throw DevicePolicyManagerErrorFactory.CreateException(ret);
             }
 
             _usbTetheringPolicyChangedCallback = null;

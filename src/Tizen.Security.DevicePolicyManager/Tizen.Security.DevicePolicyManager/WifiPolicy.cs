@@ -56,9 +56,9 @@ namespace Tizen.Security.DevicePolicyManager
             int state;
             int ret = Interop.DevicePolicyManager.RestrictionGetWifiState(_dpm.GetHandle(), out state);
 
-            if (ret != (int)Interop.DevicePolicyManager.DpmError.None)
+            if (ret != (int)Interop.DevicePolicyManager.ErrorCode.None)
             {
-                throw DevicePolicyManagerErrorFactory.GetException(ret);
+                throw DevicePolicyManagerErrorFactory.CreateException(ret);
             }
 
             return state == 1;
@@ -101,20 +101,20 @@ namespace Tizen.Security.DevicePolicyManager
             }
 
             int ret = Interop.DevicePolicyManager.AddPolicyChangedCallback(_dpm.GetHandle(), _wifiPolicyName, _wifiPolicyChangedCallback, IntPtr.Zero, out _wifiCallbackId);
-            if (ret != (int)Interop.DevicePolicyManager.DpmError.None)
+            if (ret != (int)Interop.DevicePolicyManager.ErrorCode.None)
             {
                 Log.Error(Globals.LogTag, "Failed to add policy changed callback, name " + _wifiPolicyName + ", ret : " + ret);
-                throw DevicePolicyManagerErrorFactory.GetException(ret);
+                throw DevicePolicyManagerErrorFactory.CreateException(ret);
             }
         }
 
         private void RemoveWifiStatePolicyChangedCallback()
         {
             int ret = Interop.DevicePolicyManager.RemovePolicyChangedCallback(_dpm.GetHandle(), _wifiCallbackId);
-            if (ret != (int)Interop.DevicePolicyManager.DpmError.None)
+            if (ret != (int)Interop.DevicePolicyManager.ErrorCode.None)
             {
                 Log.Error(Globals.LogTag, "Failed to remove policy changed callback, name " + _wifiPolicyName + ", ret : " + ret);
-                throw DevicePolicyManagerErrorFactory.GetException(ret);
+                throw DevicePolicyManagerErrorFactory.CreateException(ret);
             }
 
             _wifiPolicyChangedCallback = null;
@@ -158,20 +158,20 @@ namespace Tizen.Security.DevicePolicyManager
             }
 
             int ret = Interop.DevicePolicyManager.AddPolicyChangedCallback(_dpm.GetHandle(), _wifiHotspotPolicyName, _wifiHotspotStatePolicyChangedCallback, IntPtr.Zero, out _wifiHotspotCallbackId);
-            if (ret != (int)Interop.DevicePolicyManager.DpmError.None)
+            if (ret != (int)Interop.DevicePolicyManager.ErrorCode.None)
             {
                 Log.Error(Globals.LogTag, "Failed to add policy changed callback, name " + _wifiHotspotPolicyName + ", ret : " + ret);
-                throw DevicePolicyManagerErrorFactory.GetException(ret);
+                throw DevicePolicyManagerErrorFactory.CreateException(ret);
             }
         }
 
         private void RemoveWifiHotspotPolicyChangedCallback()
         {
             int ret = Interop.DevicePolicyManager.RemovePolicyChangedCallback(_dpm.GetHandle(), _wifiHotspotCallbackId);
-            if (ret != (int)Interop.DevicePolicyManager.DpmError.None)
+            if (ret != (int)Interop.DevicePolicyManager.ErrorCode.None)
             {
                 Log.Error(Globals.LogTag, "Failed to remove policy changed callback, name " + _wifiHotspotPolicyName + ", ret : " + ret);
-                throw DevicePolicyManagerErrorFactory.GetException(ret);
+                throw DevicePolicyManagerErrorFactory.CreateException(ret);
             }
 
             _wifiHotspotStatePolicyChangedCallback = null;

@@ -21,7 +21,7 @@ internal static partial class Interop
 {
     internal static partial class DevicePolicyManager
     {
-        internal enum DpmError
+        internal enum ErrorCode
         {
             None = Tizen.Internals.Errors.ErrorCode.None,
             InvalidParameter = Tizen.Internals.Errors.ErrorCode.InvalidParameter,

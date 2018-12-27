@@ -53,9 +53,9 @@ namespace Tizen.Security.DevicePolicyManager
             int state;
             int ret = Interop.DevicePolicyManager.RestrictionGetMessagingState(_dpm.GetHandle(), simId, out state);
 
-            if (ret != (int)Interop.DevicePolicyManager.DpmError.None)
+            if (ret != (int)Interop.DevicePolicyManager.ErrorCode.None)
             {
-                throw DevicePolicyManagerErrorFactory.GetException(ret);
+                throw DevicePolicyManagerErrorFactory.CreateException(ret);
             }
 
             return state == 1;
@@ -98,20 +98,20 @@ namespace Tizen.Security.DevicePolicyManager
             }
 
             int ret = Interop.DevicePolicyManager.AddPolicyChangedCallback(_dpm.GetHandle(), _messagingPolicyName, _messagingPolicyChangedCallback, IntPtr.Zero, out _messagingCallbackId);
-            if (ret != (int)Interop.DevicePolicyManager.DpmError.None)
+            if (ret != (int)Interop.DevicePolicyManager.ErrorCode.None)
             {
                 Log.Error(Globals.LogTag, "Failed to add policy changed callback, name " + _messagingPolicyName + ", ret : " + ret);
-                throw DevicePolicyManagerErrorFactory.GetException(ret);
+                throw DevicePolicyManagerErrorFactory.CreateException(ret);
             }
         }
 
         private void RemoveMessagingPolicyChangedCallback()
         {
             int ret = Interop.DevicePolicyManager.RemovePolicyChangedCallback(_dpm.GetHandle(), _messagingCallbackId);
-            if (ret != (int)Interop.DevicePolicyManager.DpmError.None)
+            if (ret != (int)Interop.DevicePolicyManager.ErrorCode.None)
             {
                 Log.Error(Globals.LogTag, "Failed to remove policy changed callback, name " + _messagingPolicyName + ", ret : " + ret);
-                throw DevicePolicyManagerErrorFactory.GetException(ret);
+                throw DevicePolicyManagerErrorFactory.CreateException(ret);
             }
 
             _messagingPolicyChangedCallback = null;
