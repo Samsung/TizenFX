@@ -57,7 +57,7 @@ namespace Tizen.NUI.Xaml
                 throw new Exception("Expression did not end in '}'");
 
             var parser = Activator.CreateInstance(GetType()) as IExpressionParser;
-            return parser.Parse(match, ref expression, serviceProvider);
+            return parser?.Parse(match, ref expression, serviceProvider);
         }
 
         internal static bool MatchMarkup(out string match, string expression, out int end)

@@ -27,12 +27,9 @@ namespace Tizen.NUI.BaseComponents
     /// <since_tizen> 3 </since_tizen>
     public class View : Container, IResourcesProvider
     {
-
-        /// <summary>
         /// Flag to allow Layouting to be disabled for Views.
         /// Once a View has a Layout set then any children added to Views from then on will receive
         /// automatic Layouts.
-        /// </summary>
         private static bool layoutingDisabled = true;
 
         /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
@@ -415,10 +412,10 @@ namespace Tizen.NUI.BaseComponents
         });
         /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty LeftFocusableViewProperty = BindableProperty.Create("LeftFocusableView", typeof(View), typeof(View), default(View), propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty LeftFocusableViewProperty = BindableProperty.Create(nameof(View.LeftFocusableView), typeof(View), typeof(View), default(View), propertyChanged: (bindable, oldValue, newValue) =>
         {
             var view = (View)bindable;
-            if (newValue != null) { view.LeftFocusableViewId = (int)(newValue as View).GetId(); }
+            if (newValue != null) { view.LeftFocusableViewId = (int)(newValue as View)?.GetId(); }
             else { view.LeftFocusableViewId = -1; }
         },
         defaultValueCreator:(bindable) =>
@@ -429,10 +426,10 @@ namespace Tizen.NUI.BaseComponents
         });
         /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty RightFocusableViewProperty = BindableProperty.Create("RightFocusableView", typeof(View), typeof(View), default(View), propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty RightFocusableViewProperty = BindableProperty.Create(nameof(View.RightFocusableView), typeof(View), typeof(View), default(View), propertyChanged: (bindable, oldValue, newValue) =>
         {
             var view = (View)bindable;
-            if (newValue != null) { view.RightFocusableViewId = (int)(newValue as View).GetId(); }
+            if (newValue != null) { view.RightFocusableViewId = (int)(newValue as View)?.GetId(); }
             else { view.RightFocusableViewId = -1; }
         },
         defaultValueCreator:(bindable) =>
@@ -443,10 +440,10 @@ namespace Tizen.NUI.BaseComponents
         });
         /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty UpFocusableViewProperty = BindableProperty.Create("UpFocusableView", typeof(View), typeof(View), default(View), propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty UpFocusableViewProperty = BindableProperty.Create(nameof(View.UpFocusableView), typeof(View), typeof(View), default(View), propertyChanged: (bindable, oldValue, newValue) =>
         {
             var view = (View)bindable;
-            if (newValue != null) { view.UpFocusableViewId = (int)(newValue as View).GetId(); }
+            if (newValue != null) { view.UpFocusableViewId = (int)(newValue as View)?.GetId(); }
             else  { view.UpFocusableViewId = -1; }
         },
         defaultValueCreator:(bindable) =>
@@ -457,10 +454,10 @@ namespace Tizen.NUI.BaseComponents
         });
         /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty DownFocusableViewProperty = BindableProperty.Create("DownFocusableView", typeof(View), typeof(View), default(View), propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty DownFocusableViewProperty = BindableProperty.Create(nameof(View.DownFocusableView), typeof(View), typeof(View), default(View), propertyChanged: (bindable, oldValue, newValue) =>
         {
             var view = (View)bindable;
-            if (newValue != null) { view.DownFocusableViewId = (int)(newValue as View).GetId(); }
+            if (newValue != null) { view.DownFocusableViewId = (int)(newValue as View)?.GetId(); }
             else { view.DownFocusableViewId = -1; }
         },
         defaultValueCreator:(bindable) =>
@@ -4640,6 +4637,7 @@ namespace Tizen.NUI.BaseComponents
             set
             {
                 SetValue(SizeWidthProperty, value);
+                SetProperty(LayoutItemWrapper.ChildProperty.WIDTH_SPECIFICATION, new Tizen.NUI.PropertyValue(value));
                 NotifyPropertyChanged();
             }
         }
@@ -4657,6 +4655,7 @@ namespace Tizen.NUI.BaseComponents
             set
             {
                 SetValue(SizeHeightProperty, value);
+                SetProperty(LayoutItemWrapper.ChildProperty.HEIGHT_SPECIFICATION, new Tizen.NUI.PropertyValue(value));
                 NotifyPropertyChanged();
             }
         }
@@ -5102,7 +5101,7 @@ namespace Tizen.NUI.BaseComponents
                 {
                   case ResizePolicyType.UseNaturalSize :
                   {
-                    SetProperty(LayoutItemWrapper.ChildProperty.WIDTH_SPECIFICATION, new Tizen.NUI.PropertyValue( NaturalSize.Width) );
+                    SetProperty(LayoutItemWrapper.ChildProperty.WIDTH_SPECIFICATION, new Tizen.NUI.PropertyValue( (int)ChildLayoutData.WrapContent ) );
                     break;
                   }
                   case ResizePolicyType.FillToParent :
@@ -5141,7 +5140,7 @@ namespace Tizen.NUI.BaseComponents
                 {
                   case ResizePolicyType.UseNaturalSize :
                   {
-                    SetProperty(LayoutItemWrapper.ChildProperty.HEIGHT_SPECIFICATION, new Tizen.NUI.PropertyValue( NaturalSize.Height) );
+                    SetProperty(LayoutItemWrapper.ChildProperty.HEIGHT_SPECIFICATION, new Tizen.NUI.PropertyValue( (int)ChildLayoutData.WrapContent ) );
                     break;
                   }
                   case ResizePolicyType.FillToParent :
