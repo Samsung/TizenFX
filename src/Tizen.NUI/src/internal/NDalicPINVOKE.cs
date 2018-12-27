@@ -205,6 +205,29 @@ namespace Tizen.NUI
                                           argumentNullDelegate,
                                           argumentOutOfRangeDelegate);
             }
+
+            //Workaround for Vulkan. should be removed.
+            internal void SetAgain()
+            {
+                SWIGRegisterExceptionCallbacks_NDalic(
+                          applicationDelegate,
+                          arithmeticDelegate,
+                          divideByZeroDelegate,
+                          indexOutOfRangeDelegate,
+                          invalidCastDelegate,
+                          invalidOperationDelegate,
+                          ioDelegate,
+                          nullReferenceDelegate,
+                          outOfMemoryDelegate,
+                          overflowDelegate,
+                          systemDelegate);
+
+                SWIGRegisterExceptionCallbacksArgument_NDalic(
+                                          argumentDelegate,
+                                          argumentNullDelegate,
+                                          argumentOutOfRangeDelegate);
+            }
+
         }
 
         protected static SWIGExceptionHelper swigExceptionHelper = new SWIGExceptionHelper();
@@ -296,9 +319,23 @@ namespace Tizen.NUI
             {
                 SWIGRegisterStringCallback_NDalic(stringDelegate);
             }
+
+            //Workaround for Vulkan. should be removed.
+            internal void SetAgain()
+            {
+                SWIGRegisterStringCallback_NDalic(stringDelegate);
+            }
         }
 
         static protected SWIGStringHelper swigStringHelper = new SWIGStringHelper();
+
+        //Workaround for Vulkan. should be removed.
+        internal static void SetAgainExceptionHelperAndStringHelper()
+        {
+            swigExceptionHelper.SetAgain();
+            swigStringHelper.SetAgain();
+            Tizen.Log.Error("NUI", $"[NOT ERROR] SetAgainExceptionHelperAndStringHelper()");
+        }
 
 
         static NDalicPINVOKE()
@@ -37170,78 +37207,6 @@ namespace Tizen.NUI
             else
             {
                 return Application_GetResourcePath_gl();
-            }
-        }
-
-        [global::System.Runtime.InteropServices.DllImport(Graphics.GlesCSharpBinder, EntryPoint = "CSharp_Dali_Application_SetViewMode")]
-        public static extern void Application_SetViewMode_gl(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2);
-
-        [global::System.Runtime.InteropServices.DllImport(Graphics.VulkanCSharpBinder, EntryPoint = "CSharp_Dali_Application_SetViewMode")]
-        public static extern void Application_SetViewMode_vulkan(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2);
-
-        public static void Application_SetViewMode(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2)
-        {
-            if (Tizen.NUI.Graphics.Backend == Tizen.NUI.Graphics.BackendType.Vulkan)
-            {
-                Application_SetViewMode_vulkan(jarg1, jarg2);
-            }
-            else
-            {
-                Application_SetViewMode_gl(jarg1, jarg2);
-            }
-        }
-
-        [global::System.Runtime.InteropServices.DllImport(Graphics.GlesCSharpBinder, EntryPoint = "CSharp_Dali_Application_GetViewMode")]
-        public static extern int Application_GetViewMode_gl(global::System.Runtime.InteropServices.HandleRef jarg1);
-
-        [global::System.Runtime.InteropServices.DllImport(Graphics.VulkanCSharpBinder, EntryPoint = "CSharp_Dali_Application_GetViewMode")]
-        public static extern int Application_GetViewMode_vulkan(global::System.Runtime.InteropServices.HandleRef jarg1);
-
-        public static int Application_GetViewMode(global::System.Runtime.InteropServices.HandleRef jarg1)
-        {
-            if (Tizen.NUI.Graphics.Backend == Tizen.NUI.Graphics.BackendType.Vulkan)
-            {
-                return Application_GetViewMode_vulkan(jarg1);
-            }
-            else
-            {
-                return Application_GetViewMode_gl(jarg1);
-            }
-        }
-
-        [global::System.Runtime.InteropServices.DllImport(Graphics.GlesCSharpBinder, EntryPoint = "CSharp_Dali_Application_SetStereoBase")]
-        public static extern void Application_SetStereoBase_gl(global::System.Runtime.InteropServices.HandleRef jarg1, float jarg2);
-
-        [global::System.Runtime.InteropServices.DllImport(Graphics.VulkanCSharpBinder, EntryPoint = "CSharp_Dali_Application_SetStereoBase")]
-        public static extern void Application_SetStereoBase_vulkan(global::System.Runtime.InteropServices.HandleRef jarg1, float jarg2);
-
-        public static void Application_SetStereoBase(global::System.Runtime.InteropServices.HandleRef jarg1, float jarg2)
-        {
-            if (Tizen.NUI.Graphics.Backend == Tizen.NUI.Graphics.BackendType.Vulkan)
-            {
-                Application_SetStereoBase_vulkan(jarg1, jarg2);
-            }
-            else
-            {
-                Application_SetStereoBase_gl(jarg1, jarg2);
-            }
-        }
-
-        [global::System.Runtime.InteropServices.DllImport(Graphics.GlesCSharpBinder, EntryPoint = "CSharp_Dali_Application_GetStereoBase")]
-        public static extern float Application_GetStereoBase_gl(global::System.Runtime.InteropServices.HandleRef jarg1);
-
-        [global::System.Runtime.InteropServices.DllImport(Graphics.VulkanCSharpBinder, EntryPoint = "CSharp_Dali_Application_GetStereoBase")]
-        public static extern float Application_GetStereoBase_vulkan(global::System.Runtime.InteropServices.HandleRef jarg1);
-
-        public static float Application_GetStereoBase(global::System.Runtime.InteropServices.HandleRef jarg1)
-        {
-            if (Tizen.NUI.Graphics.Backend == Tizen.NUI.Graphics.BackendType.Vulkan)
-            {
-                return Application_GetStereoBase_vulkan(jarg1);
-            }
-            else
-            {
-                return Application_GetStereoBase_gl(jarg1);
             }
         }
 
