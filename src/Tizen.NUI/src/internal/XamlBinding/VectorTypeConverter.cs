@@ -78,7 +78,7 @@ namespace Tizen.NUI.Binding
                 }
             }
 
-            throw new InvalidOperationException("Cannot convert \"{value}\" into {typeof(RelativeVector2)}");
+            throw new InvalidOperationException($"Cannot convert \"{value}\" into {typeof(RelativeVector2)}");
         }
     }
 

@@ -39,9 +39,9 @@ namespace Tizen.NUI
         {
             if(_isCalled == false)
             {
-            _disposeQueueProcessDisposablesDelegate = new EventThreadCallback.CallbackDelegate(ProcessDisposables);
-            _eventThreadCallback = new EventThreadCallback(_disposeQueueProcessDisposablesDelegate);
-                _isCalled = true;
+               _disposeQueueProcessDisposablesDelegate = new EventThreadCallback.CallbackDelegate(ProcessDisposables);
+                _eventThreadCallback = new EventThreadCallback(_disposeQueueProcessDisposablesDelegate);
+               _isCalled = true;
             }
         }
 
@@ -58,7 +58,7 @@ namespace Tizen.NUI
             }
         }
 
-        internal void ProcessDisposables()
+        public void ProcessDisposables()
         {
             lock (_listLock)
             {

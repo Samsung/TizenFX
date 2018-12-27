@@ -169,6 +169,32 @@ namespace Tizen.NUI
             return !r1.EqualTo(r2);
         }
 
+        /// <summary>
+        /// Determines whether the specified object is equal to the current object.
+        /// </summary>
+        /// <param name="obj">The object to compare with the current object.</param>
+        /// <returns>true if the specified object is equal to the current object; otherwise, false.</returns>
+        public override bool Equals(System.Object obj)
+        {
+            LayoutLength layoutLength = obj as LayoutLength;
+            bool equal = false;
+            if (Value == layoutLength?.Value)
+            {
+                equal = true;
+            }
+            return equal;
+        }
+
+        /// <summary>
+        /// Gets the the hash code of this LayoutLength.
+        /// </summary>
+        /// <returns>The Hash Code.</returns>
+        /// <since_tizen> 5 </since_tizen>
+        public override int GetHashCode()
+        {
+            return base.GetHashCode();
+        }
+
         private bool EqualTo(LayoutLength rhs)
         {
             bool ret = LayoutPINVOKE.LayoutLength_EqualTo__SWIG_0(swigCPtr, LayoutLength.getCPtr(rhs));
