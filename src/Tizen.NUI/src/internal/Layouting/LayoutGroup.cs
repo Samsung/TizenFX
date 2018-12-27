@@ -129,7 +129,6 @@ namespace Tizen.NUI
         protected override void OnLayout(bool changed, LayoutLength left, LayoutLength top, LayoutLength right, LayoutLength bottom)
         {
             Log.Info("NUI", "OnLayout\n");
-
             for( uint i = 0; i < ChildCount; ++i )
             {
                 var childLayout = GetChildAt( i );

@@ -28,97 +28,14 @@ namespace Tizen.NUI
     {
         private global::System.Runtime.InteropServices.HandleRef swigCPtr;
 
-        /// <summary>
-        /// Allows the creation of an empty typeRegistry handle.
-        /// </summary>
-        /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public TypeRegistry() : this(NDalicPINVOKE.new_TypeRegistry__SWIG_0(), true)
-        {
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-        }
-
-        internal TypeRegistry(TypeRegistry handle) : this(NDalicPINVOKE.new_TypeRegistry__SWIG_1(TypeRegistry.getCPtr(handle)), true)
-        {
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-        }
-
         internal TypeRegistry(global::System.IntPtr cPtr, bool cMemoryOwn) : base(NDalicPINVOKE.TypeRegistry_SWIGUpcast(cPtr), cMemoryOwn)
         {
             swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
         }
 
-        /// <summary>
-        /// Gets Type Registry handle.
-        /// </summary>
-        /// <returns>TypeRegistry handle.</returns>
-        /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public static TypeRegistry Get()
-        {
-            TypeRegistry ret = new TypeRegistry(NDalicPINVOKE.TypeRegistry_Get(), true);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
-        }
-
-        /// <summary>
-        /// Gets TypeInfo for a registered type.
-        /// </summary>
-        /// <param name="uniqueTypeName">A unique type name.</param>
-        /// <returns>TypeInfo if the type exists, otherwise an empty handle.</returns>
-        /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public Tizen.NUI.TypeInfo GetTypeInfo(string uniqueTypeName)
-        {
-            Tizen.NUI.TypeInfo ret = new Tizen.NUI.TypeInfo(NDalicPINVOKE.TypeRegistry_GetTypeInfo__SWIG_0(swigCPtr, uniqueTypeName), true);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
-        }
-
-        /// <summary>
-        /// Gets type name count.
-        /// </summary>
-        /// <returns>The counte.</returns>
-        /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public uint GetTypeNameCount()
-        {
-            uint ret = NDalicPINVOKE.TypeRegistry_GetTypeNameCount(swigCPtr);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
-        }
-
-        /// <summary>
-        /// Gets type names by index.
-        /// </summary>
-        /// <param name="index">The index to get the type name.</param>
-        /// <returns>The type name or an empty string when index is not valid.</returns>
-        /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public string GetTypeName(uint index)
-        {
-            string ret = NDalicPINVOKE.TypeRegistry_GetTypeName(swigCPtr, index);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
-        }
-
         internal static global::System.Runtime.InteropServices.HandleRef getCPtr(TypeRegistry obj)
         {
             return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
-        }
-
-        internal TypeRegistry Assign(TypeRegistry rhs)
-        {
-            TypeRegistry ret = new TypeRegistry(NDalicPINVOKE.TypeRegistry_Assign(swigCPtr, TypeRegistry.getCPtr(rhs)), false);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
-        }
-
-        internal Tizen.NUI.TypeInfo GetTypeInfo(SWIGTYPE_p_std__type_info registerType)
-        {
-            Tizen.NUI.TypeInfo ret = new Tizen.NUI.TypeInfo(NDalicPINVOKE.TypeRegistry_GetTypeInfo__SWIG_1(swigCPtr, SWIGTYPE_p_std__type_info.getCPtr(registerType)), true);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
         }
 
         /// <summary>
@@ -155,6 +72,91 @@ namespace Tizen.NUI
 
             base.Dispose(type);
         }
+
+        /// <summary>
+        /// Gets Type Registry handle.
+        /// </summary>
+        /// <returns>TypeRegistry handle.</returns>
+        /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static TypeRegistry Get()
+        {
+            TypeRegistry ret = new TypeRegistry(NDalicPINVOKE.TypeRegistry_Get(), true);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        /// <summary>
+        /// Allows the creation of an empty typeRegistry handle.
+        /// </summary>
+        /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public TypeRegistry() : this(NDalicPINVOKE.new_TypeRegistry__SWIG_0(), true)
+        {
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        internal TypeRegistry(TypeRegistry handle) : this(NDalicPINVOKE.new_TypeRegistry__SWIG_1(TypeRegistry.getCPtr(handle)), true)
+        {
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        internal TypeRegistry Assign(TypeRegistry rhs)
+        {
+            TypeRegistry ret = new TypeRegistry(NDalicPINVOKE.TypeRegistry_Assign(swigCPtr, TypeRegistry.getCPtr(rhs)), false);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        /// <summary>
+        /// Gets TypeInfo for a registered type.
+        /// </summary>
+        /// <param name="uniqueTypeName">A unique type name.</param>
+        /// <returns>TypeInfo if the type exists, otherwise an empty handle.</returns>
+        /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public Tizen.NUI.TypeInfo GetTypeInfo(string uniqueTypeName)
+        {
+            Tizen.NUI.TypeInfo ret = new Tizen.NUI.TypeInfo(NDalicPINVOKE.TypeRegistry_GetTypeInfo__SWIG_0(swigCPtr, uniqueTypeName), true);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        internal Tizen.NUI.TypeInfo GetTypeInfo(SWIGTYPE_p_std__type_info registerType)
+        {
+            Tizen.NUI.TypeInfo ret = new Tizen.NUI.TypeInfo(NDalicPINVOKE.TypeRegistry_GetTypeInfo__SWIG_1(swigCPtr, SWIGTYPE_p_std__type_info.getCPtr(registerType)), true);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        /// <summary>
+        /// Gets type name count.
+        /// </summary>
+        /// <returns>The counte.</returns>
+        /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public uint GetTypeNameCount()
+        {
+            uint ret = NDalicPINVOKE.TypeRegistry_GetTypeNameCount(swigCPtr);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        /// <summary>
+        /// Gets type names by index.
+        /// </summary>
+        /// <param name="index">The index to get the type name.</param>
+        /// <returns>The type name or an empty string when index is not valid.</returns>
+        /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public string GetTypeName(uint index)
+        {
+            string ret = NDalicPINVOKE.TypeRegistry_GetTypeName(swigCPtr, index);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
     }
 
 }
+
