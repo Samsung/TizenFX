@@ -22,10 +22,9 @@ namespace Tizen.Security.DevicePolicyManager
     /// The LocationPolicy provides methods to manage location policies.
     /// </summary>
     /// <since_tizen> 6 </since_tizen>
-    public class LocationPolicy
+    public class LocationPolicy : DevicePolicy
     {
         private readonly string _locationPolicyName = "location";
-        private readonly DevicePolicyManager _dpm;
         private int _locationCallbackId;
 
         private Interop.DevicePolicyManager.PolicyChangedCallback _locationPolicyChangedCallback;
@@ -35,9 +34,8 @@ namespace Tizen.Security.DevicePolicyManager
         {
         }
 
-        internal LocationPolicy(DevicePolicyManager dpm)
+        internal LocationPolicy(DevicePolicyManager dpm) : base(dpm)
         {
-            _dpm = dpm;
         }
 
         /// <summary>

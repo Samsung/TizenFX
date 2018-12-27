@@ -22,10 +22,9 @@ namespace Tizen.Security.DevicePolicyManager
     /// The StoragePolicy provides methods to manage storage policies.
     /// </summary>
     /// <since_tizen> 6 </since_tizen>
-    public class StoragePolicy
+    public class StoragePolicy : DevicePolicy
     {
         private readonly string _externalStoragePolicyName = "external_storage";
-        private readonly DevicePolicyManager _dpm;
         private int _externalStorageCallbackId;
 
         private Interop.DevicePolicyManager.PolicyChangedCallback _externalStoragePolicyChangedCallback;
@@ -35,9 +34,8 @@ namespace Tizen.Security.DevicePolicyManager
         {
         }
 
-        internal StoragePolicy(DevicePolicyManager dpm)
+        internal StoragePolicy(DevicePolicyManager dpm) : base(dpm)
         {
-            _dpm = dpm;
         }
 
         /// <summary>

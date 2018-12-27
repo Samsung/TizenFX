@@ -22,11 +22,10 @@ namespace Tizen.Security.DevicePolicyManager
     /// The BluetoothPolicy provides methods to manage Bluetooth policies.
     /// </summary>
     /// <since_tizen> 6 </since_tizen>
-    public class BluetoothPolicy
+    public class BluetoothPolicy : DevicePolicy
     {
         private readonly string _bluetoothPolicyName = "bluetooth";
         private readonly string _bluetoothTetheringPolicyName = "bluetooth_tethering";
-        private readonly DevicePolicyManager _dpm;
         private int _bluetoothCallbackId;
         private int _bluetoothTetheringCallbackId;
 
@@ -39,9 +38,8 @@ namespace Tizen.Security.DevicePolicyManager
         {
         }
 
-        internal BluetoothPolicy(DevicePolicyManager dpm)
+        internal BluetoothPolicy(DevicePolicyManager dpm) : base(dpm)
         {
-            _dpm = dpm;
         }
 
         /// <summary>

@@ -22,11 +22,11 @@ namespace Tizen.Security.DevicePolicyManager
     /// The WifiPolicy provides methods to manage wifi policies.
     /// </summary>
     /// <since_tizen> 6 </since_tizen>
-    public class WifiPolicy
+    public class WifiPolicy : DevicePolicy
     {
         private readonly string _wifiPolicyName = "wifi";
         private readonly string _wifiHotspotPolicyName = "wifi_hotspot";
-        private readonly DevicePolicyManager _dpm;
+
         private int _wifiCallbackId;
         private int _wifiHotspotCallbackId;
 
@@ -39,9 +39,8 @@ namespace Tizen.Security.DevicePolicyManager
         {
         }
 
-        internal WifiPolicy(DevicePolicyManager dpm)
+        internal WifiPolicy(DevicePolicyManager dpm) : base(dpm)
         {
-            _dpm = dpm;
         }
 
         /// <summary>

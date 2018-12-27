@@ -52,7 +52,7 @@ namespace Tizen.Security.DevicePolicyManager
         /// <returns>An instance of policy.</returns>
         /// <since_tizen> 6 </since_tizen>
         /// <exception cref="InvalidOperationException">Thrown when failed to create instance of the policy.</exception>
-        public T GetPolicy<T>() where T : class
+        public T GetPolicy<T>() where T : DevicePolicy
         {
             T policy = Activator.CreateInstance(typeof(T),
                 System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance,

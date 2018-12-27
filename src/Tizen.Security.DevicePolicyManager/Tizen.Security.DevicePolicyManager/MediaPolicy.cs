@@ -22,11 +22,10 @@ namespace Tizen.Security.DevicePolicyManager
     /// The MediaPolicy provides methods to manage media policies.
     /// </summary>
     /// <since_tizen> 6 </since_tizen>
-    public class MediaPolicy
+    public class MediaPolicy : DevicePolicy
     {
         private readonly string _cameraPolicyName = "camera";
         private readonly string _microphonePolicyName = "microphone";
-        private readonly DevicePolicyManager _dpm;
         private int _cameraCallbackId;
         private int _microphoneCallbackId;
 
@@ -39,9 +38,8 @@ namespace Tizen.Security.DevicePolicyManager
         {
         }
 
-        internal MediaPolicy(DevicePolicyManager dpm)
+        internal MediaPolicy(DevicePolicyManager dpm) : base(dpm)
         {
-            _dpm = dpm;
         }
 
         /// <summary>

@@ -22,10 +22,9 @@ namespace Tizen.Security.DevicePolicyManager
     /// The TelephonyPolicy provides methods to manage telephony policies.
     /// </summary>
     /// <since_tizen> 6 </since_tizen>
-    public class TelephonyPolicy
+    public class TelephonyPolicy : DevicePolicy
     {
         private readonly string _messagingPolicyName = "messaging";
-        private readonly DevicePolicyManager _dpm;
         private int _messagingCallbackId;
 
         private Interop.DevicePolicyManager.PolicyChangedCallback _messagingPolicyChangedCallback;
@@ -35,9 +34,8 @@ namespace Tizen.Security.DevicePolicyManager
         {
         }
 
-        internal TelephonyPolicy(DevicePolicyManager dpm)
+        internal TelephonyPolicy(DevicePolicyManager dpm) : base(dpm)
         {
-            _dpm = dpm;
         }
 
         /// <summary>

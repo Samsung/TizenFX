@@ -22,10 +22,9 @@ namespace Tizen.Security.DevicePolicyManager
     /// The BrowserPolicy provides methods to manage browser policies.
     /// </summary>
     /// <since_tizen> 6 </since_tizen>
-    public class BrowserPolicy
+    public class BrowserPolicy : DevicePolicy
     {
         private readonly string _browserPolicyName = "browser";
-        private readonly DevicePolicyManager _dpm;
         private int _browserCallbackId;
 
         private Interop.DevicePolicyManager.PolicyChangedCallback _browserPolicyChangedCallback;
@@ -35,9 +34,8 @@ namespace Tizen.Security.DevicePolicyManager
         {
         }
 
-        internal BrowserPolicy(DevicePolicyManager dpm)
+        internal BrowserPolicy(DevicePolicyManager dpm) : base(dpm)
         {
-            _dpm = dpm;
         }
 
         /// <summary>

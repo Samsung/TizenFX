@@ -22,10 +22,9 @@ namespace Tizen.Security.DevicePolicyManager
     /// The UsbPolicy provides methods to manage usb policies.
     /// </summary>
     /// <since_tizen> 6 </since_tizen>
-    public class UsbPolicy
+    public class UsbPolicy : DevicePolicy
     {
         private readonly string _usbTetheringPolicyName = "usb_tethering";
-        private readonly DevicePolicyManager _dpm;
         private int _usbTetheringCallbackId;
 
         private Interop.DevicePolicyManager.PolicyChangedCallback _usbTetheringPolicyChangedCallback;
@@ -35,9 +34,8 @@ namespace Tizen.Security.DevicePolicyManager
         {
         }
 
-        internal UsbPolicy(DevicePolicyManager dpm)
+        internal UsbPolicy(DevicePolicyManager dpm) : base(dpm)
         {
-            _dpm = dpm;
         }
 
         /// <summary>

@@ -22,10 +22,9 @@ namespace Tizen.Security.DevicePolicyManager
     /// The EmailPolicy provides methods to manage email policies.
     /// </summary>
     /// <since_tizen> 6 </since_tizen>
-    public class EmailPolicy
+    public class EmailPolicy : DevicePolicy
     {
         private readonly string _popImapPolicyName = "popimap_email";
-        private readonly DevicePolicyManager _dpm;
         private int _popImapCallbackId;
 
         private Interop.DevicePolicyManager.PolicyChangedCallback _popImapPolicyChangedCallback;
@@ -35,9 +34,8 @@ namespace Tizen.Security.DevicePolicyManager
         {
         }
  
-        internal EmailPolicy(DevicePolicyManager dpm)
+        internal EmailPolicy(DevicePolicyManager dpm) : base(dpm)
         {
-            _dpm = dpm;
         }
 
         /// <summary>

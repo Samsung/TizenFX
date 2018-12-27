@@ -22,17 +22,14 @@ namespace Tizen.Security.DevicePolicyManager
     /// The PasswordPolicy provides methods to manage password policies.
     /// </summary>
     /// <since_tizen> 6 </since_tizen>
-    public class PasswordPolicy
+    public class PasswordPolicy : DevicePolicy
     {
-        private readonly DevicePolicyManager _dpm;
-
         internal PasswordPolicy()
         {
         }
 
-        internal PasswordPolicy(DevicePolicyManager dpm)
+        internal PasswordPolicy(DevicePolicyManager dpm) : base(dpm)
         {
-            _dpm = dpm;
         }
 
         /// <summary>
