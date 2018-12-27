@@ -58,7 +58,7 @@ namespace Tizen.Security.DevicePolicyManager
                 throw DevicePolicyManagerErrorFactory.GetException(ret);
             }
 
-            return state == 1 ? true : false;
+            return state == 1;
         }
 
         /// <summary>
