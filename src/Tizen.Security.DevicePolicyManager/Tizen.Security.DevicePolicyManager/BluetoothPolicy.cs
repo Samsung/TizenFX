@@ -22,12 +22,13 @@ namespace Tizen.Security.DevicePolicyManager
     /// The BluetoothPolicy provides methods to manage Bluetooth policies.
     /// </summary>
     /// <since_tizen> 6 </since_tizen>
-    public class BluetoothPolicy : DevicePolicy
+    public class BluetoothPolicy : DevicePolicy, IDisposable
     {
         private readonly string _bluetoothPolicyName = "bluetooth";
         private readonly string _bluetoothTetheringPolicyName = "bluetooth_tethering";
         private int _bluetoothCallbackId;
         private int _bluetoothTetheringCallbackId;
+        private bool _disposed = false;
 
         private Interop.DevicePolicyManager.PolicyChangedCallback _bluetoothPolicyChangedCallback;
         private Interop.DevicePolicyManager.PolicyChangedCallback _bluetoothTetheringPolicyChangedCallback;
@@ -43,8 +44,67 @@ namespace Tizen.Security.DevicePolicyManager
         }
 
         /// <summary>
+        /// A Destructor of BluetoothPolicy.
+        /// </summary>
+        ~BluetoothPolicy()
+        {
+            this.Dispose(false);
+        }
+
+        /// <summary>
+        /// Releases any unmanaged resources used by this object.
+        /// </summary>
+        public void Dispose()
+        {
+            this.Dispose(true);
+            GC.SuppressFinalize(this);
+        }
+
+        /// <summary>
+        /// Releases any unmanaged resources used by this object. Can also dispose any other disposable objects.
+        /// </summary>
+        /// <param name="disposing">If true, disposes any disposable objects. If false, does not dispose disposable objects.</param>
+        protected virtual void Dispose(bool disposing)
+        {
+            if (!_disposed)
+            {
+                if (disposing)
+                {
+                    // to be used if there are any other disposable objects
+                }
+
+                if (_bluetoothCallbackId != 0)
+                {
+                    try
+                    {
+                        RemoveBluetoothPolicyChangedCallback();
+                    }
+                    catch(Exception e)
+                    {
+                        Log.Error(Globals.LogTag, e.ToString());
+                    }
+                }
+
+                if (_bluetoothTetheringCallbackId != 0)
+                {
+                    try
+                    {
+                        RemoveBluetoothTetheringPolicyChangedCallback();
+                    }
+                    catch(Exception e)
+                    {
+                        Log.Error(Globals.LogTag, e.ToString());
+                    }
+                }
+
+                _disposed = true;
+            }
+        }
+
+        /// <summary>
         /// The BluetoothPolicyChanged event is raised when the Bluetooth policy is changed.
         /// </summary>
+        /// <remarks>This event will be removed automatically when BluetoothPolicy is destroyed.</remarks>
         /// <since_tizen> 6 </since_tizen>
         public event EventHandler<PolicyChangedEventArgs> BluetoothPolicyChanged
         {
@@ -102,6 +162,7 @@ namespace Tizen.Security.DevicePolicyManager
         /// <summary>
         /// The BluetoothTetheringPolicyChanged event is raised when the Bluetooth tethering policy is changed.
         /// </summary>
+        /// <remarks>This event will be removed automatically when BluetoothPolicy is destroyed.</remarks>
         /// <since_tizen> 6 </since_tizen>
         public event EventHandler<PolicyChangedEventArgs> BluetoothTetheringPolicyChanged
         {

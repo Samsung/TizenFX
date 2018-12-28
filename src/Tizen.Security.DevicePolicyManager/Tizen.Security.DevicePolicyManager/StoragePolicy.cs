@@ -22,10 +22,11 @@ namespace Tizen.Security.DevicePolicyManager
     /// The StoragePolicy provides methods to manage storage policies.
     /// </summary>
     /// <since_tizen> 6 </since_tizen>
-    public class StoragePolicy : DevicePolicy
+    public class StoragePolicy : DevicePolicy, IDisposable
     {
         private readonly string _externalStoragePolicyName = "external_storage";
         private int _externalStorageCallbackId;
+        private bool _disposed = false;
 
         private Interop.DevicePolicyManager.PolicyChangedCallback _externalStoragePolicyChangedCallback;
         private EventHandler<PolicyChangedEventArgs> _externalStoragePolicyChanged;
@@ -39,8 +40,55 @@ namespace Tizen.Security.DevicePolicyManager
         }
 
         /// <summary>
+        /// A Destructor of StoragePolicy.
+        /// </summary>
+        ~StoragePolicy()
+        {
+            this.Dispose(false);
+        }
+
+        /// <summary>
+        /// Releases any unmanaged resources used by this object.
+        /// </summary>
+        public void Dispose()
+        {
+            this.Dispose(true);
+            GC.SuppressFinalize(this);
+        }
+
+        /// <summary>
+        /// Releases any unmanaged resources used by this object. Can also dispose any other disposable objects.
+        /// </summary>
+        /// <param name="disposing">If true, disposes any disposable objects. If false, does not dispose disposable objects.</param>
+        protected virtual void Dispose(bool disposing)
+        {
+            if (!_disposed)
+            {
+                if (disposing)
+                {
+                    // to be used if there are any other disposable objects
+                }
+
+                if (_externalStorageCallbackId != 0)
+                {
+                    try
+                    {
+                        RemoveExternalStoragePolicyChangedCallback();
+                    }
+                    catch (Exception e)
+                    {
+                        Log.Error(Globals.LogTag, e.ToString());
+                    }
+                }
+
+                _disposed = true;
+            }
+        }
+
+        /// <summary>
         /// The ExternalStoragePolicyChanged event is raised when the external storage policy is changed.
         /// </summary>
+        /// <remarks>This event will be removed automatically when StoragePolicy is destroyed.</remarks>
         /// <since_tizen> 6 </since_tizen>
         public event EventHandler<PolicyChangedEventArgs> ExternalStoragePolicyChanged
         {

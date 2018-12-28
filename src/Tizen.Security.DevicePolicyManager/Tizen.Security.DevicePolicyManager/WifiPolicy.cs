@@ -29,6 +29,7 @@ namespace Tizen.Security.DevicePolicyManager
 
         private int _wifiCallbackId;
         private int _wifiHotspotCallbackId;
+        private bool _disposed = false;
 
         private Interop.DevicePolicyManager.PolicyChangedCallback _wifiPolicyChangedCallback;
         private Interop.DevicePolicyManager.PolicyChangedCallback _wifiHotspotStatePolicyChangedCallback;
@@ -41,6 +42,64 @@ namespace Tizen.Security.DevicePolicyManager
 
         internal WifiPolicy(DevicePolicyManager dpm) : base(dpm)
         {
+        }
+
+        /// <summary>
+        /// A Destructor of WifiPolicy.
+        /// </summary>
+        ~WifiPolicy()
+        {
+            this.Dispose();
+        }
+
+        /// <summary>
+        /// Releases any unmanaged resources used by this object.
+        /// </summary>
+        public void Dispose()
+        {
+            this.Dispose(true);
+            GC.SuppressFinalize(this);
+        }
+
+        /// <summary>
+        /// Releases any unmanaged resources used by this object. Can also dispose any other disposable objects.
+        /// </summary>
+        /// <param name="disposing">If true, disposes any disposable objects. If false, does not dispose disposable objects.</param>
+        protected virtual void Dispose(bool disposing)
+        {
+            if (!_disposed)
+            {
+                if (disposing)
+                {
+                    // to be used if there are any other disposable objects
+                }
+
+                if (_wifiCallbackId != 0)
+                {
+                    try
+                    {
+                        RemoveWifiStatePolicyChangedCallback();
+                    }
+                    catch (Exception e)
+                    {
+                        Log.Error(Globals.LogTag, e.ToString());
+                    }
+                }
+
+                if (_wifiHotspotCallbackId != 0)
+                {
+                    try
+                    {
+                        RemoveWifiHotspotPolicyChangedCallback();
+                    }
+                    catch (Exception e)
+                    {
+                        Log.Error(Globals.LogTag, e.ToString());
+                    }
+                }
+
+                _disposed = true;
+            }
         }
 
         /// <summary>
@@ -66,6 +125,7 @@ namespace Tizen.Security.DevicePolicyManager
         /// <summary>
         /// The WifiPolicyChanged event is raised when the wifi state policy is changed.
         /// </summary>
+        /// <remarks>This event will be removed automatically when WifiPolicy is destroyed.</remarks>
         /// <since_tizen> 6 </since_tizen>
         public event EventHandler<PolicyChangedEventArgs> WifiPolicyChanged
         {
@@ -123,6 +183,7 @@ namespace Tizen.Security.DevicePolicyManager
         /// <summary>
         /// The WifiHotspotPolicyChanged event is raised when the wifi hotspot policy is changed.
         /// </summary>
+        /// <remarks>This event will be removed automatically when WifiPolicy is destroyed.</remarks>
         /// <since_tizen> 6 </since_tizen>
         public event EventHandler<PolicyChangedEventArgs> WifiHotspotPolicyChanged
         {

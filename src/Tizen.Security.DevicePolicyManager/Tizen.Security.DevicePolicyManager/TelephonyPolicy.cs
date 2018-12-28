@@ -22,10 +22,11 @@ namespace Tizen.Security.DevicePolicyManager
     /// The TelephonyPolicy provides methods to manage telephony policies.
     /// </summary>
     /// <since_tizen> 6 </since_tizen>
-    public class TelephonyPolicy : DevicePolicy
+    public class TelephonyPolicy : DevicePolicy, IDisposable
     {
         private readonly string _messagingPolicyName = "messaging";
         private int _messagingCallbackId;
+        private bool _disposed = false;
 
         private Interop.DevicePolicyManager.PolicyChangedCallback _messagingPolicyChangedCallback;
         private EventHandler<PolicyChangedEventArgs> _messagingPolicyChanged;
@@ -36,6 +37,52 @@ namespace Tizen.Security.DevicePolicyManager
 
         internal TelephonyPolicy(DevicePolicyManager dpm) : base(dpm)
         {
+        }
+
+        /// <summary>
+        /// A Destructor of TelephonyPolicy.
+        /// </summary>
+        ~TelephonyPolicy()
+        {
+            this.Dispose(false);
+        }
+
+        /// <summary>
+        /// Releases any unmanaged resources used by this object.
+        /// </summary>
+        public void Dispose()
+        {
+            this.Dispose(true);
+            GC.SuppressFinalize(this);
+        }
+
+        /// <summary>
+        /// Releases any unmanaged resources used by this object. Can also dispose any other disposable objects.
+        /// </summary>
+        /// <param name="disposing">If true, disposes any disposable objects. If false, does not dispose disposable objects.</param>
+        protected virtual void Dispose(bool disposing)
+        {
+            if (!_disposed)
+            {
+                if (disposing)
+                {
+                    // to be used if there are any other disposable objects
+                }
+
+                if (_messagingCallbackId != 0)
+                {
+                    try
+                    {
+                        RemoveMessagingPolicyChangedCallback();
+                    }
+                    catch (Exception e)
+                    {
+                        Log.Error(Globals.LogTag, e.ToString());
+                    }
+                }
+
+                _disposed = true;
+            }
         }
 
         /// <summary>
@@ -62,6 +109,7 @@ namespace Tizen.Security.DevicePolicyManager
         /// <summary>
         /// The MessagingPolicyChanged event is raised when the messaging policy is changed.
         /// </summary>
+        /// <remarks>This event will be removed automatically when TelephonyPolicy is destroyed.</remarks>
         /// <since_tizen> 6 </since_tizen>
         public event EventHandler<PolicyChangedEventArgs> MessagingPolicyChanged
         {

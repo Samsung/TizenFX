@@ -22,10 +22,11 @@ namespace Tizen.Security.DevicePolicyManager
     /// The UsbPolicy provides methods to manage usb policies.
     /// </summary>
     /// <since_tizen> 6 </since_tizen>
-    public class UsbPolicy : DevicePolicy
+    public class UsbPolicy : DevicePolicy, IDisposable
     {
         private readonly string _usbTetheringPolicyName = "usb_tethering";
         private int _usbTetheringCallbackId;
+        private bool _disposed = false;
 
         private Interop.DevicePolicyManager.PolicyChangedCallback _usbTetheringPolicyChangedCallback;
         private EventHandler<PolicyChangedEventArgs> _usbTetheringPolicyChanged;
@@ -39,8 +40,55 @@ namespace Tizen.Security.DevicePolicyManager
         }
 
         /// <summary>
+        /// A Destructor of UsbPolicy.
+        /// </summary>
+        ~UsbPolicy()
+        {
+            this.Dispose(false);
+        }
+
+        /// <summary>
+        /// Releases any unmanaged resources used by this object.
+        /// </summary>
+        public void Dispose()
+        {
+            this.Dispose(true);
+            GC.SuppressFinalize(this);
+        }
+
+        /// <summary>
+        /// Releases any unmanaged resources used by this object. Can also dispose any other disposable objects.
+        /// </summary>
+        /// <param name="disposing">If true, disposes any disposable objects. If false, does not dispose disposable objects.</param>
+        protected virtual void Dispose(bool disposing)
+        {
+            if (!_disposed)
+            {
+                if (disposing)
+                {
+                    // to be used if there are any other disposable objects
+                }
+
+                if (_usbTetheringCallbackId != 0)
+                {
+                    try
+                    {
+                        RemoveUsbTetheringPolicyChangedCallback();
+                    }
+                    catch (Exception e)
+                    {
+                        Log.Error(Globals.LogTag, e.ToString());
+                    }
+                }
+
+                _disposed = true;
+            }
+        }
+
+        /// <summary>
         /// The UsbTetheringPolicyChanged event is raised when the usb tethering policy is changed.
         /// </summary>
+        /// <remarks>This event will be removed automatically when UsbPolicy is destroyed.</remarks>
         /// <since_tizen> 6 </since_tizen>
         public event EventHandler<PolicyChangedEventArgs> UsbTetheringPolicyChanged
         {

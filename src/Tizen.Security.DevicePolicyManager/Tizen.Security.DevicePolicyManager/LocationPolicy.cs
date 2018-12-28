@@ -22,10 +22,11 @@ namespace Tizen.Security.DevicePolicyManager
     /// The LocationPolicy provides methods to manage location policies.
     /// </summary>
     /// <since_tizen> 6 </since_tizen>
-    public class LocationPolicy : DevicePolicy
+    public class LocationPolicy : DevicePolicy, IDisposable
     {
         private readonly string _locationPolicyName = "location";
         private int _locationCallbackId;
+        private bool _disposed = false;
 
         private Interop.DevicePolicyManager.PolicyChangedCallback _locationPolicyChangedCallback;
         private EventHandler<PolicyChangedEventArgs> _locationPolicyChanged;
@@ -39,8 +40,54 @@ namespace Tizen.Security.DevicePolicyManager
         }
 
         /// <summary>
+        /// A Destructor of LocationPolicy.
+        /// </summary>
+        ~LocationPolicy()
+        {
+            this.Dispose(false);
+        }
+        /// <summary>
+        /// Releases any unmanaged resources used by this object.
+        /// </summary>
+        public void Dispose()
+        {
+            this.Dispose(true);
+            GC.SuppressFinalize(this);
+        }
+
+        /// <summary>
+        /// Releases any unmanaged resources used by this object. Can also dispose any other disposable objects.
+        /// </summary>
+        /// <param name="disposing">If true, disposes any disposable objects. If false, does not dispose disposable objects.</param>
+        protected virtual void Dispose(bool disposing)
+        {
+            if (!_disposed)
+            {
+                if (disposing)
+                {
+                    // to be used if there are any other disposable objects
+                }
+
+                if (_locationCallbackId != 0)
+                {
+                    try
+                    {
+                        RemoveLocationPolicyChangedCallback();
+                    }
+                    catch (Exception e)
+                    {
+                        Log.Error(Globals.LogTag, e.ToString());
+                    }
+                }
+
+                _disposed = true;
+            }
+        }
+
+        /// <summary>
         /// The LocationPolicyChanged event is raised when the location policy is changed.
         /// </summary>
+        /// <remarks>This event will be removed automatically when LocationPolicy is destroyed.</remarks>
         /// <since_tizen> 6 </since_tizen>
         public event EventHandler<PolicyChangedEventArgs> LocationPolicyChanged
         {

@@ -22,10 +22,11 @@ namespace Tizen.Security.DevicePolicyManager
     /// The BrowserPolicy provides methods to manage browser policies.
     /// </summary>
     /// <since_tizen> 6 </since_tizen>
-    public class BrowserPolicy : DevicePolicy
+    public class BrowserPolicy : DevicePolicy, IDisposable
     {
         private readonly string _browserPolicyName = "browser";
         private int _browserCallbackId;
+        private bool _disposed = false;
 
         private Interop.DevicePolicyManager.PolicyChangedCallback _browserPolicyChangedCallback;
         private EventHandler<PolicyChangedEventArgs> _browserPolicyChanged;
@@ -39,8 +40,55 @@ namespace Tizen.Security.DevicePolicyManager
         }
 
         /// <summary>
+        /// A Destructor of BrowserPolicy.
+        /// </summary>
+        ~BrowserPolicy()
+        {
+            this.Dispose(false);
+        }
+
+        /// <summary>
+        /// Releases any unmanaged resources used by this object.
+        /// </summary>
+        public void Dispose()
+        {
+            this.Dispose(true);
+            GC.SuppressFinalize(this);
+        }
+
+        /// <summary>
+        /// Releases any unmanaged resources used by this object. Can also dispose any other disposable objects.
+        /// </summary>
+        /// <param name="disposing">If true, disposes any disposable objects. If false, does not dispose disposable objects.</param>
+        protected virtual void Dispose(bool disposing)
+        {
+            if (!_disposed)
+            {
+                if (disposing)
+                {
+                    // to be used if there are any other disposable objects
+                }
+
+                if (_browserCallbackId != 0)
+                {
+                    try
+                    {
+                        RemoveBrowserPolicyChangedCallback();
+                    }
+                    catch(Exception e)
+                    {
+                        Log.Error(Globals.LogTag, e.ToString());
+                    }
+                }
+
+                _disposed = true;
+            }
+        }
+
+        /// <summary>
         /// The BrowserPolicyChanged event is raised when the browser policy is changed.
         /// </summary>
+        /// <remarks>This event will be removed automatically when BrowserPolicy is destroyed.</remarks>
         /// <since_tizen> 6 </since_tizen>
         public event EventHandler<PolicyChangedEventArgs> BrowserPolicyChanged
         {

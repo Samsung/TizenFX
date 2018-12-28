@@ -33,8 +33,7 @@ namespace Tizen.Security.DevicePolicyManager
         /// A constructor of DevicePolicyManager that creates handle.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
-        /// <exception cref="InvalidOperationException">Thrown when connection refused.</exception>
-        /// <exception cref="OutOfMemoryException">Thrown when a memory error occurred.</exception>
+        /// <exception cref="InvalidOperationException">Thrown when connection refused or a memory error occurred.</exception>
         public DevicePolicyManager()
         {
             _handle = Interop.DevicePolicyManager.CreateHandle();
@@ -88,18 +87,26 @@ namespace Tizen.Security.DevicePolicyManager
         /// <param name="disposing">If true, disposes any disposable objects. If false, does not dispose disposable objects.</param>
         protected virtual void Dispose(bool disposing)
         {
-            if (_disposed)
+            if (!_disposed)
             {
-                return;
-            }
- 
-            if (_handle != IntPtr.Zero)
-            {
-                Interop.DevicePolicyManager.DestroyHandle(_handle);
-                _handle = IntPtr.Zero;
-            }
+                if (disposing)
+                {
+                    // to be used if there are any other disposable objects
+                }
 
-            _disposed = true;
+                if (_handle != IntPtr.Zero)
+                {
+                    int ret = Interop.DevicePolicyManager.DestroyHandle(_handle);
+                    if (ret != (int)Interop.DevicePolicyManager.ErrorCode.None)
+                    {
+                        Log.Error(Globals.LogTag, "Failed to destroy handle " + ret);
+                    }
+
+                    _handle = IntPtr.Zero;
+                }
+
+                _disposed = true;
+            }
         }
 
         /// <summary>

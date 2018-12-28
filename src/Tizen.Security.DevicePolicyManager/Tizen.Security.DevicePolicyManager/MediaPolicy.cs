@@ -22,12 +22,13 @@ namespace Tizen.Security.DevicePolicyManager
     /// The MediaPolicy provides methods to manage media policies.
     /// </summary>
     /// <since_tizen> 6 </since_tizen>
-    public class MediaPolicy : DevicePolicy
+    public class MediaPolicy : DevicePolicy, IDisposable
     {
         private readonly string _cameraPolicyName = "camera";
         private readonly string _microphonePolicyName = "microphone";
         private int _cameraCallbackId;
         private int _microphoneCallbackId;
+        private bool _disposed = false;
 
         private Interop.DevicePolicyManager.PolicyChangedCallback _cameraPolicyChangedCallback;
         private Interop.DevicePolicyManager.PolicyChangedCallback _microphonePolicyChangedCallback;
@@ -43,8 +44,67 @@ namespace Tizen.Security.DevicePolicyManager
         }
 
         /// <summary>
+        /// A Destructor of MediaPolicy.
+        /// </summary>
+        ~MediaPolicy()
+        {
+            this.Dispose(false);
+        }
+
+        /// <summary>
+        /// Releases any unmanaged resources used by this object.
+        /// </summary>
+        public void Dispose()
+        {
+            this.Dispose(true);
+            GC.SuppressFinalize(this);
+        }
+
+        /// <summary>
+        /// Releases any unmanaged resources used by this object. Can also dispose any other disposable objects.
+        /// </summary>
+        /// <param name="disposing">If true, disposes any disposable objects. If false, does not dispose disposable objects.</param>
+        protected virtual void Dispose(bool disposing)
+        {
+            if (!_disposed)
+            {
+                if (disposing)
+                {
+                    // to be used if there are any other disposable objects
+                }
+
+                if (_cameraCallbackId != 0)
+                {
+                    try
+                    {
+                        RemoveCameraPolicyChangedCallback();
+                    }
+                    catch (Exception e)
+                    {
+                        Log.Error(Globals.LogTag, e.ToString());
+                    }
+                }
+
+                if (_microphoneCallbackId != 0)
+                {
+                    try
+                    {
+                        RemoveMicrophonePolicyChangedCallback();
+                    }
+                    catch (Exception e)
+                    {
+                        Log.Error(Globals.LogTag, e.ToString());
+                    }
+                }
+
+                _disposed = true;
+            }
+        }
+
+        /// <summary>
         /// The CameraPolicyChanged event is raised when the camera policy is changed.
         /// </summary>
+        /// <remarks>This event will be removed automatically when MediaPolicy is destroyed.</remarks>
         /// <since_tizen> 6 </since_tizen>
         public event EventHandler<PolicyChangedEventArgs> CameraPolicyChanged
         {
@@ -102,6 +162,7 @@ namespace Tizen.Security.DevicePolicyManager
         /// <summary>
         /// The MicrophonePolicyChanged event is raised when the microphone policy is changed.
         /// </summary>
+        /// <remarks>This event will be removed automatically when MediaPolicy is destroyed.</remarks>
         /// <since_tizen> 6 </since_tizen>
         public event EventHandler<PolicyChangedEventArgs> MicrophonePolicyChanged
         {

@@ -22,10 +22,11 @@ namespace Tizen.Security.DevicePolicyManager
     /// The EmailPolicy provides methods to manage email policies.
     /// </summary>
     /// <since_tizen> 6 </since_tizen>
-    public class EmailPolicy : DevicePolicy
+    public class EmailPolicy : DevicePolicy, IDisposable
     {
         private readonly string _popImapPolicyName = "popimap_email";
         private int _popImapCallbackId;
+        private bool _disposed = false;
 
         private Interop.DevicePolicyManager.PolicyChangedCallback _popImapPolicyChangedCallback;
         private EventHandler<PolicyChangedEventArgs> _popImapPolicyChanged;
@@ -36,6 +37,52 @@ namespace Tizen.Security.DevicePolicyManager
  
         internal EmailPolicy(DevicePolicyManager dpm) : base(dpm)
         {
+        }
+
+        /// <summary>
+        /// A Destructor of EmailPolicy.
+        /// </summary>
+        ~EmailPolicy()
+        {
+            this.Dispose(false);
+        }
+
+        /// <summary>
+        /// Releases any unmanaged resources used by this object.
+        /// </summary>
+        public void Dispose()
+        {
+            this.Dispose(true);
+            GC.SuppressFinalize(this);
+        }
+
+        /// <summary>
+        /// Releases any unmanaged resources used by this object. Can also dispose any other disposable objects.
+        /// </summary>
+        /// <param name="disposing">If true, disposes any disposable objects. If false, does not dispose disposable objects.</param>
+        protected virtual void Dispose(bool disposing)
+        {
+            if (!_disposed)
+            {
+                if (disposing)
+                {
+                    // to be used if there are any other disposable objects
+                }
+
+                if (_popImapCallbackId != 0)
+                {
+                    try
+                    {
+                        RemovePopImapPolicyChangedCallback();
+                    }
+                    catch(Exception e)
+                    {
+                        Log.Error(Globals.LogTag, e.ToString());
+                    }
+                }
+
+                _disposed = true;
+            }
         }
 
         /// <summary>
@@ -62,6 +109,7 @@ namespace Tizen.Security.DevicePolicyManager
         /// <summary>
         /// The PopImapPolicyChanged event is raised when the popimap-email policy is changed.
         /// </summary>
+        /// <remarks>This event will be removed automatically when EmailPolicy is destroyed.</remarks>
         /// <since_tizen> 6 </since_tizen>
         public event EventHandler<PolicyChangedEventArgs> PopImapPolicyChanged
         {
