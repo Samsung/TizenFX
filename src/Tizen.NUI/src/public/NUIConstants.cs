@@ -120,6 +120,8 @@ namespace Tizen.NUI
         /// <summary>
         /// Will be replaced by separate ClippingMode enum. Draw the actor and its children into the stencil buffer.
         /// </summary>
+        [Obsolete("Please do not use! This will be deprecated!")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         Stencil = 3
     }
 

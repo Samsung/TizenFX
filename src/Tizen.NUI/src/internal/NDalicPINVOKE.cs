@@ -19441,24 +19441,6 @@ namespace Tizen.NUI
             }
         }
 
-        [global::System.Runtime.InteropServices.DllImport(Graphics.GlesCSharpBinder, EntryPoint = "CSharp_Dali_Actor_Property_POSITION_INHERITANCE_get")]
-        public static extern int Actor_Property_POSITION_INHERITANCE_get_gl();
-
-        [global::System.Runtime.InteropServices.DllImport(Graphics.VulkanCSharpBinder, EntryPoint = "CSharp_Dali_Actor_Property_POSITION_INHERITANCE_get")]
-        public static extern int Actor_Property_POSITION_INHERITANCE_get_vulkan();
-
-        public static int Actor_Property_POSITION_INHERITANCE_get()
-        {
-            if (Tizen.NUI.Graphics.Backend == Tizen.NUI.Graphics.BackendType.Vulkan)
-            {
-                return Actor_Property_POSITION_INHERITANCE_get_vulkan();
-            }
-            else
-            {
-                return Actor_Property_POSITION_INHERITANCE_get_gl();
-            }
-        }
-
         [global::System.Runtime.InteropServices.DllImport(Graphics.GlesCSharpBinder, EntryPoint = "CSharp_Dali_Actor_Property_DRAW_MODE_get")]
         public static extern int Actor_Property_DRAW_MODE_get_gl();
 
@@ -20464,24 +20446,6 @@ namespace Tizen.NUI
             else
             {
                 Actor_SetInheritPosition_gl(jarg1, jarg2);
-            }
-        }
-
-        [global::System.Runtime.InteropServices.DllImport(Graphics.GlesCSharpBinder, EntryPoint = "CSharp_Dali_Actor_GetPositionInheritanceMode")]
-        public static extern int Actor_GetPositionInheritanceMode_gl(global::System.Runtime.InteropServices.HandleRef jarg1);
-
-        [global::System.Runtime.InteropServices.DllImport(Graphics.VulkanCSharpBinder, EntryPoint = "CSharp_Dali_Actor_GetPositionInheritanceMode")]
-        public static extern int Actor_GetPositionInheritanceMode_vulkan(global::System.Runtime.InteropServices.HandleRef jarg1);
-
-        public static int Actor_GetPositionInheritanceMode(global::System.Runtime.InteropServices.HandleRef jarg1)
-        {
-            if (Tizen.NUI.Graphics.Backend == Tizen.NUI.Graphics.BackendType.Vulkan)
-            {
-                return Actor_GetPositionInheritanceMode_vulkan(jarg1);
-            }
-            else
-            {
-                return Actor_GetPositionInheritanceMode_gl(jarg1);
             }
         }
 
@@ -54219,42 +54183,6 @@ namespace Tizen.NUI
             }
         }
 
-        [global::System.Runtime.InteropServices.DllImport(Graphics.GlesCSharpBinder, EntryPoint = "CSharp_Dali_TextField_Property_SHADOW_OFFSET_get")]
-        public static extern int TextField_Property_SHADOW_OFFSET_get_gl();
-
-        [global::System.Runtime.InteropServices.DllImport(Graphics.VulkanCSharpBinder, EntryPoint = "CSharp_Dali_TextField_Property_SHADOW_OFFSET_get")]
-        public static extern int TextField_Property_SHADOW_OFFSET_get_vulkan();
-
-        public static int TextField_Property_SHADOW_OFFSET_get()
-        {
-            if (Tizen.NUI.Graphics.Backend == Tizen.NUI.Graphics.BackendType.Vulkan)
-            {
-                return TextField_Property_SHADOW_OFFSET_get_vulkan();
-            }
-            else
-            {
-                return TextField_Property_SHADOW_OFFSET_get_gl();
-            }
-        }
-
-        [global::System.Runtime.InteropServices.DllImport(Graphics.GlesCSharpBinder, EntryPoint = "CSharp_Dali_TextField_Property_SHADOW_COLOR_get")]
-        public static extern int TextField_Property_SHADOW_COLOR_get_gl();
-
-        [global::System.Runtime.InteropServices.DllImport(Graphics.VulkanCSharpBinder, EntryPoint = "CSharp_Dali_TextField_Property_SHADOW_COLOR_get")]
-        public static extern int TextField_Property_SHADOW_COLOR_get_vulkan();
-
-        public static int TextField_Property_SHADOW_COLOR_get()
-        {
-            if (Tizen.NUI.Graphics.Backend == Tizen.NUI.Graphics.BackendType.Vulkan)
-            {
-                return TextField_Property_SHADOW_COLOR_get_vulkan();
-            }
-            else
-            {
-                return TextField_Property_SHADOW_COLOR_get_gl();
-            }
-        }
-
         [global::System.Runtime.InteropServices.DllImport(Graphics.GlesCSharpBinder, EntryPoint = "CSharp_Dali_TextField_Property_PRIMARY_CURSOR_COLOR_get")]
         public static extern int TextField_Property_PRIMARY_CURSOR_COLOR_get_gl();
 
@@ -55242,96 +55170,6 @@ namespace Tizen.NUI
             else
             {
                 return TextLabel_Property_TEXT_COLOR_get_gl();
-            }
-        }
-
-        [global::System.Runtime.InteropServices.DllImport(Graphics.GlesCSharpBinder, EntryPoint = "CSharp_Dali_TextLabel_Property_SHADOW_OFFSET_get")]
-        public static extern int TextLabel_Property_SHADOW_OFFSET_get_gl();
-
-        [global::System.Runtime.InteropServices.DllImport(Graphics.VulkanCSharpBinder, EntryPoint = "CSharp_Dali_TextLabel_Property_SHADOW_OFFSET_get")]
-        public static extern int TextLabel_Property_SHADOW_OFFSET_get_vulkan();
-
-        public static int TextLabel_Property_SHADOW_OFFSET_get()
-        {
-            if (Tizen.NUI.Graphics.Backend == Tizen.NUI.Graphics.BackendType.Vulkan)
-            {
-                return TextLabel_Property_SHADOW_OFFSET_get_vulkan();
-            }
-            else
-            {
-                return TextLabel_Property_SHADOW_OFFSET_get_gl();
-            }
-        }
-
-        [global::System.Runtime.InteropServices.DllImport(Graphics.GlesCSharpBinder, EntryPoint = "CSharp_Dali_TextLabel_Property_SHADOW_COLOR_get")]
-        public static extern int TextLabel_Property_SHADOW_COLOR_get_gl();
-
-        [global::System.Runtime.InteropServices.DllImport(Graphics.VulkanCSharpBinder, EntryPoint = "CSharp_Dali_TextLabel_Property_SHADOW_COLOR_get")]
-        public static extern int TextLabel_Property_SHADOW_COLOR_get_vulkan();
-
-        public static int TextLabel_Property_SHADOW_COLOR_get()
-        {
-            if (Tizen.NUI.Graphics.Backend == Tizen.NUI.Graphics.BackendType.Vulkan)
-            {
-                return TextLabel_Property_SHADOW_COLOR_get_vulkan();
-            }
-            else
-            {
-                return TextLabel_Property_SHADOW_COLOR_get_gl();
-            }
-        }
-
-        [global::System.Runtime.InteropServices.DllImport(Graphics.GlesCSharpBinder, EntryPoint = "CSharp_Dali_TextLabel_Property_UNDERLINE_ENABLED_get")]
-        public static extern int TextLabel_Property_UNDERLINE_ENABLED_get_gl();
-
-        [global::System.Runtime.InteropServices.DllImport(Graphics.VulkanCSharpBinder, EntryPoint = "CSharp_Dali_TextLabel_Property_UNDERLINE_ENABLED_get")]
-        public static extern int TextLabel_Property_UNDERLINE_ENABLED_get_vulkan();
-
-        public static int TextLabel_Property_UNDERLINE_ENABLED_get()
-        {
-            if (Tizen.NUI.Graphics.Backend == Tizen.NUI.Graphics.BackendType.Vulkan)
-            {
-                return TextLabel_Property_UNDERLINE_ENABLED_get_vulkan();
-            }
-            else
-            {
-                return TextLabel_Property_UNDERLINE_ENABLED_get_gl();
-            }
-        }
-
-        [global::System.Runtime.InteropServices.DllImport(Graphics.GlesCSharpBinder, EntryPoint = "CSharp_Dali_TextLabel_Property_UNDERLINE_COLOR_get")]
-        public static extern int TextLabel_Property_UNDERLINE_COLOR_get_gl();
-
-        [global::System.Runtime.InteropServices.DllImport(Graphics.VulkanCSharpBinder, EntryPoint = "CSharp_Dali_TextLabel_Property_UNDERLINE_COLOR_get")]
-        public static extern int TextLabel_Property_UNDERLINE_COLOR_get_vulkan();
-
-        public static int TextLabel_Property_UNDERLINE_COLOR_get()
-        {
-            if (Tizen.NUI.Graphics.Backend == Tizen.NUI.Graphics.BackendType.Vulkan)
-            {
-                return TextLabel_Property_UNDERLINE_COLOR_get_vulkan();
-            }
-            else
-            {
-                return TextLabel_Property_UNDERLINE_COLOR_get_gl();
-            }
-        }
-
-        [global::System.Runtime.InteropServices.DllImport(Graphics.GlesCSharpBinder, EntryPoint = "CSharp_Dali_TextLabel_Property_UNDERLINE_HEIGHT_get")]
-        public static extern int TextLabel_Property_UNDERLINE_HEIGHT_get_gl();
-
-        [global::System.Runtime.InteropServices.DllImport(Graphics.VulkanCSharpBinder, EntryPoint = "CSharp_Dali_TextLabel_Property_UNDERLINE_HEIGHT_get")]
-        public static extern int TextLabel_Property_UNDERLINE_HEIGHT_get_vulkan();
-
-        public static int TextLabel_Property_UNDERLINE_HEIGHT_get()
-        {
-            if (Tizen.NUI.Graphics.Backend == Tizen.NUI.Graphics.BackendType.Vulkan)
-            {
-                return TextLabel_Property_UNDERLINE_HEIGHT_get_vulkan();
-            }
-            else
-            {
-                return TextLabel_Property_UNDERLINE_HEIGHT_get_gl();
             }
         }
 

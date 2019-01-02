@@ -205,92 +205,7 @@ namespace Tizen.NUI.BaseComponents
         });
         /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty ShadowOffsetProperty = BindableProperty.Create(nameof(ShadowOffset), typeof(Vector2), typeof(TextLabel), Vector2.Zero, propertyChanged: (bindable, oldValue, newValue) =>
-        {
-            var textLabel = (TextLabel)bindable;
-            if (newValue != null)
-            {
-                Tizen.NUI.Object.SetProperty(textLabel.swigCPtr, TextLabel.Property.SHADOW_OFFSET, new Tizen.NUI.PropertyValue((Vector2)newValue));
-            }
-        },
-        defaultValueCreator:(bindable) =>
-        {
-            var textLabel = (TextLabel)bindable;
-            Vector2 temp = new Vector2(0.0f, 0.0f);
-            Tizen.NUI.Object.GetProperty(textLabel.swigCPtr, TextLabel.Property.SHADOW_OFFSET).Get(temp);
-            return temp;
-        });
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty ShadowColorProperty = BindableProperty.Create(nameof(ShadowColor), typeof(Vector4), typeof(TextLabel), Vector4.Zero, propertyChanged: (bindable, oldValue, newValue) =>
-        {
-            var textLabel = (TextLabel)bindable;
-            if (newValue != null)
-            {
-                Tizen.NUI.Object.SetProperty(textLabel.swigCPtr, TextLabel.Property.SHADOW_COLOR, new Tizen.NUI.PropertyValue((Vector4)newValue));
-            }
-        },
-        defaultValueCreator:(bindable) =>
-        {
-            var textLabel = (TextLabel)bindable;
-            Vector4 temp = new Vector4(0.0f, 0.0f, 0.0f, 0.0f);
-            Tizen.NUI.Object.GetProperty(textLabel.swigCPtr, TextLabel.Property.SHADOW_COLOR).Get(temp);
-            return temp;
-        });
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty UnderlineEnabledProperty = BindableProperty.Create(nameof(UnderlineEnabled), typeof(bool), typeof(TextLabel), false, propertyChanged: (bindable, oldValue, newValue) =>
-        {
-            var textLabel = (TextLabel)bindable;
-            if (newValue != null)
-            {
-                Tizen.NUI.Object.SetProperty(textLabel.swigCPtr, TextLabel.Property.UNDERLINE_ENABLED, new Tizen.NUI.PropertyValue((bool)newValue));
-            }
-        },
-        defaultValueCreator:(bindable) =>
-        {
-            var textLabel = (TextLabel)bindable;
-            bool temp = false;
-            Tizen.NUI.Object.GetProperty(textLabel.swigCPtr, TextLabel.Property.UNDERLINE_ENABLED).Get(out temp);
-            return temp;
-        });
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty UnderlineColorProperty = BindableProperty.Create(nameof(UnderlineColor), typeof(Vector4), typeof(TextLabel), Vector4.Zero, propertyChanged: (bindable, oldValue, newValue) =>
-        {
-            var textLabel = (TextLabel)bindable;
-            if (newValue != null)
-            {
-                Tizen.NUI.Object.SetProperty(textLabel.swigCPtr, TextLabel.Property.UNDERLINE_COLOR, new Tizen.NUI.PropertyValue((Vector4)newValue));
-            }
-        },
-        defaultValueCreator:(bindable) =>
-        {
-            var textLabel = (TextLabel)bindable;
-            Vector4 temp = new Vector4(0.0f, 0.0f, 0.0f, 0.0f);
-            Tizen.NUI.Object.GetProperty(textLabel.swigCPtr, TextLabel.Property.UNDERLINE_COLOR).Get(temp);
-            return temp;
-        });
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty UnderlineHeightProperty = BindableProperty.Create(nameof(UnderlineHeight), typeof(float), typeof(TextLabel), default(float), propertyChanged: (bindable, oldValue, newValue) =>
-        {
-            var textLabel = (TextLabel)bindable;
-            if (newValue != null)
-            {
-                Tizen.NUI.Object.SetProperty(textLabel.swigCPtr, TextLabel.Property.UNDERLINE_HEIGHT, new Tizen.NUI.PropertyValue((float)newValue));
-            }
-        },
-        defaultValueCreator:(bindable) =>
-        {
-            var textLabel = (TextLabel)bindable;
-            float temp = 0.0f;
-            Tizen.NUI.Object.GetProperty(textLabel.swigCPtr, TextLabel.Property.UNDERLINE_HEIGHT).Get(out temp);
-            return temp;
-        });
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty EnableMarkupProperty = BindableProperty.Create(nameof(EnableMarkup), typeof(bool), typeof(TextLabel), false, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty EnableMarkupProperty = BindableProperty.Create("EnableMarkup", typeof(bool), typeof(TextLabel), false, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var textLabel = (TextLabel)bindable;
             if (newValue != null)
@@ -669,11 +584,6 @@ namespace Tizen.NUI.BaseComponents
             internal static readonly int HORIZONTAL_ALIGNMENT = NDalicPINVOKE.TextLabel_Property_HORIZONTAL_ALIGNMENT_get();
             internal static readonly int VERTICAL_ALIGNMENT = NDalicPINVOKE.TextLabel_Property_VERTICAL_ALIGNMENT_get();
             internal static readonly int TEXT_COLOR = NDalicPINVOKE.TextLabel_Property_TEXT_COLOR_get();
-            internal static readonly int SHADOW_OFFSET = NDalicPINVOKE.TextLabel_Property_SHADOW_OFFSET_get();
-            internal static readonly int SHADOW_COLOR = NDalicPINVOKE.TextLabel_Property_SHADOW_COLOR_get();
-            internal static readonly int UNDERLINE_ENABLED = NDalicPINVOKE.TextLabel_Property_UNDERLINE_ENABLED_get();
-            internal static readonly int UNDERLINE_COLOR = NDalicPINVOKE.TextLabel_Property_UNDERLINE_COLOR_get();
-            internal static readonly int UNDERLINE_HEIGHT = NDalicPINVOKE.TextLabel_Property_UNDERLINE_HEIGHT_get();
             internal static readonly int ENABLE_MARKUP = NDalicPINVOKE.TextLabel_Property_ENABLE_MARKUP_get();
             internal static readonly int ENABLE_AUTO_SCROLL = NDalicPINVOKE.TextLabel_Property_ENABLE_AUTO_SCROLL_get();
             internal static readonly int AUTO_SCROLL_SPEED = NDalicPINVOKE.TextLabel_Property_AUTO_SCROLL_SPEED_get();
@@ -924,15 +834,23 @@ namespace Tizen.NUI.BaseComponents
         /// The drop shadow offset 0 indicates no shadow.<br />
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        [Obsolete("Please do not use! This will be deprecated! Please use Shadow property instead!")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public Vector2 ShadowOffset
         {
             get
             {
-                return (Vector2)GetValue(ShadowOffsetProperty);
+                PropertyMap map = new PropertyMap();
+                GetProperty(TextLabel.Property.SHADOW).Get(map);
+                Vector2 shadowOffset = new Vector2();
+                map.Find(TextLabel.Property.SHADOW, "offset")?.Get(shadowOffset);
+                return shadowOffset;
             }
             set
             {
-                SetValue(ShadowOffsetProperty, value);
+                PropertyMap temp = new PropertyMap();
+                temp.Insert("offset", new PropertyValue(value));
+                SetValue(ShadowProperty, temp);
                 NotifyPropertyChanged();
             }
         }
@@ -942,15 +860,23 @@ namespace Tizen.NUI.BaseComponents
         /// The color of a drop shadow.<br />
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        [Obsolete("Please do not use! This will be deprecated! Please use Shadow property instead!")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public Vector4 ShadowColor
         {
             get
             {
-                return (Vector4)GetValue(ShadowColorProperty);
+                PropertyMap map = new PropertyMap();
+                GetProperty(TextLabel.Property.SHADOW).Get(map);
+                Vector4 shadowColor = new Vector4();
+                map.Find(TextLabel.Property.SHADOW, "color")?.Get(shadowColor);
+                return shadowColor;
             }
             set
             {
-                SetValue(ShadowColorProperty, value);
+                PropertyMap temp = new PropertyMap();
+                temp.Insert("color", new PropertyValue(value));
+                SetValue(ShadowProperty, temp);
                 NotifyPropertyChanged();
             }
         }
@@ -960,15 +886,23 @@ namespace Tizen.NUI.BaseComponents
         /// The underline enabled flag.<br />
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        [Obsolete("Please do not use! This will be deprecated! Please use Underline property instead!")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public bool UnderlineEnabled
         {
             get
             {
-                return (bool)GetValue(UnderlineEnabledProperty);
+                PropertyMap map = new PropertyMap();
+                GetProperty(TextLabel.Property.UNDERLINE).Get(map);
+                bool underlineEnabled = false;
+                map.Find(TextLabel.Property.UNDERLINE, "enable")?.Get(out underlineEnabled);
+                return underlineEnabled;
             }
             set
             {
-                SetValue(UnderlineEnabledProperty, value);
+                PropertyMap temp = new PropertyMap();
+                temp.Insert("enable", new PropertyValue(value));
+                SetValue(UnderlineProperty, temp);
                 NotifyPropertyChanged();
             }
         }
@@ -978,15 +912,23 @@ namespace Tizen.NUI.BaseComponents
         /// Overrides the underline height from font metrics.<br />
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        [Obsolete("Please do not use! This will be deprecated! Please use Underline property instead!")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public Vector4 UnderlineColor
         {
             get
             {
-                return (Vector4)GetValue(UnderlineColorProperty);
+                PropertyMap map = new PropertyMap();
+                GetProperty(TextLabel.Property.UNDERLINE).Get(map);
+                Vector4 underlineColor = new Vector4();
+                map.Find(TextLabel.Property.UNDERLINE, "color")?.Get(underlineColor);
+                return underlineColor;
             }
             set
             {
-                SetValue(UnderlineColorProperty, value);
+                PropertyMap temp = new PropertyMap();
+                temp.Insert("color", new PropertyValue(value));
+                SetValue(UnderlineProperty, temp);
                 NotifyPropertyChanged();
             }
         }
@@ -996,15 +938,23 @@ namespace Tizen.NUI.BaseComponents
         /// Overrides the underline height from font metrics.<br />
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        [Obsolete("Please do not use! This will be deprecated! Please use Underline property instead!")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public float UnderlineHeight
         {
             get
             {
-                return (float)GetValue(UnderlineHeightProperty);
+                PropertyMap map = new PropertyMap();
+                GetProperty(TextLabel.Property.UNDERLINE).Get(map);
+                float underlineHeight = 0.0f;
+                map.Find(TextLabel.Property.UNDERLINE, "height")?.Get(out underlineHeight);
+                return underlineHeight;
             }
             set
             {
-                SetValue(UnderlineHeightProperty, value);
+                PropertyMap temp = new PropertyMap();
+                temp.Insert("height", new PropertyValue(value));
+                SetValue(UnderlineProperty, temp);
                 NotifyPropertyChanged();
             }
         }
