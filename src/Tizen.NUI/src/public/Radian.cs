@@ -17,57 +17,19 @@
 
 namespace Tizen.NUI
 {
+
     /// <summary>
     /// An angle in radians.
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
     public class Radian : global::System.IDisposable
     {
+        private global::System.Runtime.InteropServices.HandleRef swigCPtr;
         /// <summary>
         /// swigCMemOwn
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         protected bool swigCMemOwn;
-
-        /// <summary>
-        /// A Flat to check if it is already disposed.
-        /// </summary>
-        /// <since_tizen> 3 </since_tizen>
-        protected bool disposed = false;
-
-        private global::System.Runtime.InteropServices.HandleRef swigCPtr;
-
-        //A Flag to check who called Dispose(). (By User or DisposeQueue)
-        private bool isDisposeQueued = false;
-
-        /// <summary>
-        /// The default constructor, initializes to 0.
-        /// </summary>
-        /// <since_tizen> 3 </since_tizen>
-        public Radian() : this(NDalicPINVOKE.new_Radian__SWIG_0(), true)
-        {
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-        }
-
-        /// <summary>
-        /// Creates an angle in radians.
-        /// </summary>
-        /// <param name="value">The initial value in radians.</param>
-        /// <since_tizen> 3 </since_tizen>
-        public Radian(float value) : this(NDalicPINVOKE.new_Radian__SWIG_1(value), true)
-        {
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-        }
-
-        /// <summary>
-        /// Creates an angle in radians from an angle in degrees.
-        /// </summary>
-        /// <param name="degree">The initial value in degrees.</param>
-        /// <since_tizen> 3 </since_tizen>
-        public Radian(Degree degree) : this(NDalicPINVOKE.new_Radian__SWIG_2(Degree.getCPtr(degree)), true)
-        {
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-        }
 
         internal Radian(global::System.IntPtr cPtr, bool cMemoryOwn)
         {
@@ -75,35 +37,29 @@ namespace Tizen.NUI
             swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
         }
 
+        internal static global::System.Runtime.InteropServices.HandleRef getCPtr(Radian obj)
+        {
+            return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
+        }
+
+        //A Flag to check who called Dispose(). (By User or DisposeQueue)
+        private bool isDisposeQueued = false;
+        /// <summary>
+        /// A Flat to check if it is already disposed.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
+        protected bool disposed = false;
+
         /// <summary>
         /// Dispose.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         ~Radian()
         {
-            if (!isDisposeQueued)
+            if(!isDisposeQueued)
             {
                 isDisposeQueued = true;
                 DisposeQueue.Instance.Add(this);
-            }
-        }
-
-        /// <summary>
-        /// The value in radians.
-        /// </summary>
-        /// <since_tizen> 3 </since_tizen>
-        public float Value
-        {
-            set
-            {
-                NDalicPINVOKE.Radian_radian_set(swigCPtr, value);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            }
-            get
-            {
-                float ret = NDalicPINVOKE.Radian_radian_get(swigCPtr);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-                return ret;
             }
         }
 
@@ -128,23 +84,6 @@ namespace Tizen.NUI
                 Dispose(DisposeTypes.Explicit);
                 System.GC.SuppressFinalize(this);
             }
-        }
-
-        /// <summary>
-        /// Conversion to float.
-        /// </summary>
-        /// <returns>The float value of this radian.</returns>
-        /// <since_tizen> 3 </since_tizen>
-        public float ConvertToFloat()
-        {
-            float ret = NDalicPINVOKE.Radian_ConvertToFloat(swigCPtr);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
-        }
-
-        internal static global::System.Runtime.InteropServices.HandleRef getCPtr(Radian obj)
-        {
-            return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
         }
 
         /// <summary>
@@ -180,5 +119,68 @@ namespace Tizen.NUI
             }
             disposed = true;
         }
+
+
+        /// <summary>
+        /// The default constructor, initializes to 0.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
+        public Radian() : this(NDalicPINVOKE.new_Radian__SWIG_0(), true)
+        {
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        /// <summary>
+        /// Creates an angle in radians.
+        /// </summary>
+        /// <param name="value">The initial value in radians.</param>
+        /// <since_tizen> 3 </since_tizen>
+        public Radian(float value) : this(NDalicPINVOKE.new_Radian__SWIG_1(value), true)
+        {
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        /// <summary>
+        /// Creates an angle in radians from an angle in degrees.
+        /// </summary>
+        /// <param name="degree">The initial value in degrees.</param>
+        /// <since_tizen> 3 </since_tizen>
+        public Radian(Degree degree) : this(NDalicPINVOKE.new_Radian__SWIG_2(Degree.getCPtr(degree)), true)
+        {
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        /// <summary>
+        /// Conversion to float.
+        /// </summary>
+        /// <returns>The float value of this radian.</returns>
+        /// <since_tizen> 3 </since_tizen>
+        public float ConvertToFloat()
+        {
+            float ret = NDalicPINVOKE.Radian_ConvertToFloat(swigCPtr);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        /// <summary>
+        /// The value in radians.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
+        public float Value
+        {
+            set
+            {
+                NDalicPINVOKE.Radian_radian_set(swigCPtr, value);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            }
+            get
+            {
+                float ret = NDalicPINVOKE.Radian_radian_get(swigCPtr);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                return ret;
+            }
+        }
+
     }
+
 }

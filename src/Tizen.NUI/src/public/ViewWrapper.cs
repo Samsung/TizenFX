@@ -25,18 +25,12 @@ namespace Tizen.NUI
     /// <since_tizen> 3 </since_tizen>
     public class ViewWrapper : View
     {
-        internal ViewWrapperImpl viewWrapperImpl;
         private global::System.Runtime.InteropServices.HandleRef swigCPtr;
+        internal ViewWrapperImpl viewWrapperImpl;
 
         internal ViewWrapper(global::System.IntPtr cPtr, bool cMemoryOwn) : base(NDalicManualPINVOKE.ViewWrapper_SWIGUpcast(cPtr), cMemoryOwn)
         {
             swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
-        }
-
-        internal ViewWrapper(string typeName, ViewWrapperImpl implementation) : this(NDalicManualPINVOKE.ViewWrapper_New(typeName, ViewWrapperImpl.getCPtr(implementation)), true)
-        {
-            viewWrapperImpl = implementation;
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         internal static global::System.Runtime.InteropServices.HandleRef getCPtr(ViewWrapper obj)
@@ -79,6 +73,13 @@ namespace Tizen.NUI
             }
 
             base.Dispose(type);
+        }
+
+
+        internal ViewWrapper(string typeName, ViewWrapperImpl implementation) : this(NDalicManualPINVOKE.ViewWrapper_New(typeName, ViewWrapperImpl.getCPtr(implementation)), true)
+        {
+            viewWrapperImpl = implementation;
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
     }
 }

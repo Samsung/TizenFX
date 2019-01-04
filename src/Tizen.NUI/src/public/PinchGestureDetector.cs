@@ -30,108 +30,14 @@ namespace Tizen.NUI
     {
         private global::System.Runtime.InteropServices.HandleRef swigCPtr;
 
-        private DaliEventHandler<object, DetectedEventArgs> _pinchGestureEventHandler;
-        private DetectedCallbackDelegate _pinchGestureCallbackDelegate;
-
-
-        /// <summary>
-        /// Creates an initialized PinchGestureDetector.
-        /// </summary>
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public PinchGestureDetector() : this(NDalicPINVOKE.PinchGestureDetector_New(), true)
-        {
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-
-        }
-
-        /// <summary>
-        /// The copy constructor.
-        /// </summary>
-        /// <param name="handle">A reference to the copied handle</param>
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public PinchGestureDetector(PinchGestureDetector handle) : this(NDalicPINVOKE.new_PinchGestureDetector__SWIG_1(PinchGestureDetector.getCPtr(handle)), true)
-        {
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-        }
-
         internal PinchGestureDetector(global::System.IntPtr cPtr, bool cMemoryOwn) : base(NDalicPINVOKE.PinchGestureDetector_SWIGUpcast(cPtr), cMemoryOwn)
         {
             swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
         }
 
-        [UnmanagedFunctionPointer(CallingConvention.StdCall)]
-        private delegate void DetectedCallbackDelegate(IntPtr actor, IntPtr pinchGesture);
-
-        /// <summary>
-        /// This signal is emitted when the specified pinch is detected on the attached view.
-        /// </summary>
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public event DaliEventHandler<object, DetectedEventArgs> Detected
-        {
-            add
-            {
-                lock (this)
-                {
-                    // Restricted to only one listener
-                    if (_pinchGestureEventHandler == null)
-                    {
-                        _pinchGestureEventHandler += value;
-
-                        _pinchGestureCallbackDelegate = new DetectedCallbackDelegate(OnPinchGestureDetected);
-                        this.DetectedSignal().Connect(_pinchGestureCallbackDelegate);
-                    }
-                }
-            }
-
-            remove
-            {
-                lock (this)
-                {
-                    if (_pinchGestureEventHandler != null)
-                    {
-                        this.DetectedSignal().Disconnect(_pinchGestureCallbackDelegate);
-                    }
-
-                    _pinchGestureEventHandler -= value;
-                }
-            }
-        }
-
-
-        internal static PinchGestureDetector GetPinchGestureDetectorFromPtr(global::System.IntPtr cPtr)
-        {
-            PinchGestureDetector ret = new PinchGestureDetector(cPtr, false);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
-        }
-
-        internal new static PinchGestureDetector DownCast(BaseHandle handle)
-        {
-            PinchGestureDetector ret =  Registry.GetManagedBaseHandleFromNativePtr(handle) as PinchGestureDetector;
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
-        }
-
         internal static global::System.Runtime.InteropServices.HandleRef getCPtr(PinchGestureDetector obj)
         {
             return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
-        }
-
-        internal PinchGestureDetector Assign(PinchGestureDetector rhs)
-        {
-            PinchGestureDetector ret = new PinchGestureDetector(NDalicPINVOKE.PinchGestureDetector_Assign(swigCPtr, PinchGestureDetector.getCPtr(rhs)), false);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
-        }
-
-        internal PinchGestureDetectedSignal DetectedSignal()
-        {
-            PinchGestureDetectedSignal ret = new PinchGestureDetectedSignal(NDalicPINVOKE.PinchGestureDetector_DetectedSignal(swigCPtr), false);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
         }
 
         /// <summary>
@@ -171,22 +77,6 @@ namespace Tizen.NUI
             }
 
             base.Dispose(type);
-        }
-
-        private void OnPinchGestureDetected(IntPtr actor, IntPtr pinchGesture)
-        {
-            DetectedEventArgs e = new DetectedEventArgs();
-
-            // Populate all members of "e" (DetectedEventArgs) with real data.
-            e.View = Registry.GetManagedBaseHandleFromNativePtr(actor) as View;
-            e.PinchGesture = Tizen.NUI.PinchGesture.GetPinchGestureFromPtr(pinchGesture);
-
-            if (_pinchGestureEventHandler != null)
-            {
-                //Here we send all data to user event handlers.
-                _pinchGestureEventHandler(this, e);
-            }
-
         }
 
         /// <summary>
@@ -235,6 +125,114 @@ namespace Tizen.NUI
                     _pinchGesture = value;
                 }
             }
+        }
+
+        [UnmanagedFunctionPointer(CallingConvention.StdCall)]
+        private delegate void DetectedCallbackDelegate(IntPtr actor, IntPtr pinchGesture);
+        private DaliEventHandler<object, DetectedEventArgs> _pinchGestureEventHandler;
+        private DetectedCallbackDelegate _pinchGestureCallbackDelegate;
+
+        /// <summary>
+        /// This signal is emitted when the specified pinch is detected on the attached view.
+        /// </summary>
+        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public event DaliEventHandler<object, DetectedEventArgs> Detected
+        {
+            add
+            {
+                lock (this)
+                {
+                    // Restricted to only one listener
+                    if (_pinchGestureEventHandler == null)
+                    {
+                        _pinchGestureEventHandler += value;
+
+                        _pinchGestureCallbackDelegate = new DetectedCallbackDelegate(OnPinchGestureDetected);
+                        this.DetectedSignal().Connect(_pinchGestureCallbackDelegate);
+                    }
+                }
+            }
+
+            remove
+            {
+                lock (this)
+                {
+                    if (_pinchGestureEventHandler != null)
+                    {
+                        this.DetectedSignal().Disconnect(_pinchGestureCallbackDelegate);
+                    }
+
+                    _pinchGestureEventHandler -= value;
+                }
+            }
+        }
+
+        private void OnPinchGestureDetected(IntPtr actor, IntPtr pinchGesture)
+        {
+            DetectedEventArgs e = new DetectedEventArgs();
+
+            // Populate all members of "e" (DetectedEventArgs) with real data.
+            e.View = Registry.GetManagedBaseHandleFromNativePtr(actor) as View;
+            e.PinchGesture = Tizen.NUI.PinchGesture.GetPinchGestureFromPtr(pinchGesture);
+
+            if (_pinchGestureEventHandler != null)
+            {
+                //Here we send all data to user event handlers.
+                _pinchGestureEventHandler(this, e);
+            }
+
+        }
+
+
+        internal static PinchGestureDetector GetPinchGestureDetectorFromPtr(global::System.IntPtr cPtr)
+        {
+            PinchGestureDetector ret = new PinchGestureDetector(cPtr, false);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        /// <summary>
+        /// Creates an initialized PinchGestureDetector.
+        /// </summary>
+        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public PinchGestureDetector() : this(NDalicPINVOKE.PinchGestureDetector_New(), true)
+        {
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+
+        }
+
+        internal new static PinchGestureDetector DownCast(BaseHandle handle)
+        {
+            PinchGestureDetector ret =  Registry.GetManagedBaseHandleFromNativePtr(handle) as PinchGestureDetector;
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        /// <summary>
+        /// The copy constructor.
+        /// </summary>
+        /// <param name="handle">A reference to the copied handle</param>
+        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public PinchGestureDetector(PinchGestureDetector handle) : this(NDalicPINVOKE.new_PinchGestureDetector__SWIG_1(PinchGestureDetector.getCPtr(handle)), true)
+        {
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        internal PinchGestureDetector Assign(PinchGestureDetector rhs)
+        {
+            PinchGestureDetector ret = new PinchGestureDetector(NDalicPINVOKE.PinchGestureDetector_Assign(swigCPtr, PinchGestureDetector.getCPtr(rhs)), false);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        internal PinchGestureDetectedSignal DetectedSignal()
+        {
+            PinchGestureDetectedSignal ret = new PinchGestureDetectedSignal(NDalicPINVOKE.PinchGestureDetector_DetectedSignal(swigCPtr), false);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
         }
 
     }
