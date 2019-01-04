@@ -22,6 +22,10 @@ using System.Collections.Generic;
 
 using Tizen.Applications;
 
+#if __UITEST__
+using Tizen.Appium;
+#endif
+
 namespace ElmSharp.Test
 {
     public class TestRunner : CoreUIApplication
@@ -220,14 +224,12 @@ namespace ElmSharp.Test
             Console.WriteLine("ELM_PROFILE : {0}", profile);
             Console.WriteLine("ELM_SCALE : {0}", Elementary.GetScale());
 
-            Elementary.EvasObjectRealized += (s, e) =>
-            {
-                var obj = (EvasObject)s;
-                //Console.WriteLine("EvasObject Realized : ClassName = {0}", obj.ClassName);
-            };
-
             TestRunner testRunner = new TestRunner();
             testRunner.Profile = profile;
+
+#if __UITEST__
+            global::Tizen.Appium.TizenAppium.StartService(testRunner);
+#endif
             testRunner.Run(args);
 
             // if running with appfw is failed, below line will be executed.

@@ -15,6 +15,10 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tizen.Applications.UI", "..
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tizen.Applications.Common", "..\Tizen.Applications.Common\Tizen.Applications.Common.csproj", "{526D21B7-D8BD-47F5-9A87-1E8E15A0D5AE}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tizen.Applications.MessagePort", "..\Tizen.Applications.MessagePort\Tizen.Applications.MessagePort.csproj", "{BD6C21CB-C1BC-416A-8860-5A81C81C1A2A}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tizen.System.Information", "..\Tizen.System.Information\Tizen.System.Information.csproj", "{05FAC145-EEF3-42A0-9D4C-2148BCCA03E8}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -45,6 +49,14 @@ Global
 		{526D21B7-D8BD-47F5-9A87-1E8E15A0D5AE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{526D21B7-D8BD-47F5-9A87-1E8E15A0D5AE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{526D21B7-D8BD-47F5-9A87-1E8E15A0D5AE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BD6C21CB-C1BC-416A-8860-5A81C81C1A2A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BD6C21CB-C1BC-416A-8860-5A81C81C1A2A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BD6C21CB-C1BC-416A-8860-5A81C81C1A2A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BD6C21CB-C1BC-416A-8860-5A81C81C1A2A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{05FAC145-EEF3-42A0-9D4C-2148BCCA03E8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{05FAC145-EEF3-42A0-9D4C-2148BCCA03E8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{05FAC145-EEF3-42A0-9D4C-2148BCCA03E8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{05FAC145-EEF3-42A0-9D4C-2148BCCA03E8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

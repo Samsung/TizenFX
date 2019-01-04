@@ -40,7 +40,8 @@ namespace ElmSharp.Test
                 AlignmentX = -1,
                 AlignmentY = -1,
                 WeightX = 1,
-                WeightY = 1
+                WeightY = 1,
+                AutomationId = "button1"
             };
             Button button2 = new Button(window) {
                 Text = "Button 2",
@@ -48,7 +49,8 @@ namespace ElmSharp.Test
                 AlignmentY = -1,
                 WeightX = 1,
                 WeightY = 1,
-                BackgroundColor = new Color(50,100,200,75)
+                BackgroundColor = new Color(50,100,200,75),
+                AutomationId = "button2"
             };
             Button button3 = new Button(window) {
                 Text = "Button 3",
@@ -56,7 +58,8 @@ namespace ElmSharp.Test
                 AlignmentY = -1,
                 WeightX = 1,
                 WeightY = 1,
-                BackgroundColor = Color.Olive
+                BackgroundColor = Color.Olive,
+                AutomationId = "button3"
             };
 
             box.PackEnd(button1);
