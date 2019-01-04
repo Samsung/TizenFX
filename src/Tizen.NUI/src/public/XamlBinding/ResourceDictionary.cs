@@ -31,13 +31,10 @@ namespace Tizen.NUI.Binding
             DependencyService.Register<IResourcesLoader, ResourcesLoader>();
         }
 
-        /// <summary>
-        /// Gets or sets the type of object with which the resource dictionary is merged.
-        /// </summary>
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
         [TypeConverter(typeof(TypeTypeConverter))]
         [Obsolete("Use Source")]
+        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public Type MergedWith {
             get { return _mergedWith; }
             set {
@@ -59,12 +56,9 @@ namespace Tizen.NUI.Binding
             }
         }
 
-        /// <summary>
-        /// Gets or sets the URI of the merged resource dictionary.
-        /// </summary>
+        [TypeConverter(typeof(RDSourceTypeConverter))]
         /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        [TypeConverter(typeof(RDSourceTypeConverter))]
         public Uri Source {
             get { return _source; }
             set {
@@ -74,14 +68,7 @@ namespace Tizen.NUI.Binding
             }
         }
 
-        /// <summary>
-        /// To set and load source.
-        /// </summary>
-        /// <param name="value">The source.</param>
-        /// <param name="resourcePath">The resource path.</param>
-        /// <param name="assembly">The assembly.</param>
-        /// <param name="lineInfo">The xml line info.</param>
-        /// Used by the XamlC compiled converter.
+        //Used by the XamlC compiled converter
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void SetAndLoadSource(Uri value, string resourcePath, Assembly assembly, System.Xml.IXmlLineInfo lineInfo)
         {
@@ -228,12 +215,9 @@ namespace Tizen.NUI.Binding
             return _innerDictionary.ContainsKey(key);
         }
 
-        /// <summary>
-        /// Gets or sets the value according to index.
-        /// </summary>
+        [IndexerName("Item")]
         /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        [IndexerName("Item")]
         public object this[string index]
         {
             get

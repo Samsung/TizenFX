@@ -6,13 +6,7 @@ namespace Tizen.NUI.Binding
     [EditorBrowsable(EditorBrowsableState.Never)]
     public interface IResourcesProvider
     {
-        /// <summary>
-        /// Check if resources created.
-        /// </summary>
         bool IsResourcesCreated { get; }
-        /// <summary>
-        /// Saved xaml resources.
-        /// </summary>
         ResourceDictionary XamlResources { get; set; }
     }
 }

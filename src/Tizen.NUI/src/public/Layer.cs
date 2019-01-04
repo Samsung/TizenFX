@@ -32,20 +32,6 @@ namespace Tizen.NUI
         private global::System.IntPtr rootLayoutIntPtr;
         private global::System.Runtime.InteropServices.HandleRef rootLayoutCPtr;
 
-        /// <summary>
-        /// Creates a Layer object.
-        /// </summary>
-        /// <since_tizen> 3 </since_tizen>
-        public Layer() : this(NDalicPINVOKE.Layer_New(), true)
-        {
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            if (Window.Instance != null)
-            {
-                this.SetAnchorPoint(Tizen.NUI.PivotPoint.TopLeft);
-                this.SetResizePolicy(ResizePolicyType.FillToParent, DimensionType.AllDimensions);
-            }
-        }
-
         internal Layer(global::System.IntPtr cPtr, bool cMemoryOwn) : base(NDalicPINVOKE.Layer_SWIGUpcast(cPtr), cMemoryOwn)
         {
             swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
@@ -58,198 +44,9 @@ namespace Tizen.NUI
             NDalicPINVOKE.Actor_Add( swigCPtr, rootLayoutCPtr );
         }
 
-        /// <summary>
-        /// Enumeration for the behavior of the layer.
-        /// </summary>
-        /// <since_tizen> 3 </since_tizen>
-        public enum LayerBehavior
+        internal static global::System.Runtime.InteropServices.HandleRef getCPtr(Layer obj)
         {
-            /// <summary>
-            /// UI control rendering mode.
-            /// </summary>
-            /// <since_tizen> 3 </since_tizen>
-            Layer2D,
-            /// <summary>
-            /// UI control rendering mode (default mode).
-            /// This mode is designed for UI controls that can overlap. In this
-            /// mode renderer order will be respective to the tree hierarchy of
-            /// Actors.<br />
-            /// The rendering order is depth first, so for the following actor tree,
-            /// A will be drawn first, then B, D, E, then C, F.  This ensures that
-            /// overlapping actors are drawn as expected (whereas, with breadth first
-            /// traversal, the actors would interleave).<br />
-            /// </summary>
-            /// <since_tizen> 3 </since_tizen>
-            LayerUI = Layer2D,
-            /// <summary>
-            /// Layer will use depth test.
-            /// This mode is designed for a 3 dimensional scene where actors in front
-            /// of other actors will obscure them, i.e. the actors are sorted by the
-            /// distance from the camera.<br />
-            /// When using this mode, a depth test will be used. A depth clear will
-            /// happen for each layer, which means actors in a layer "above" other
-            /// layers will be rendered in front of actors in those layers regardless
-            /// of their Z positions (see Layer::Raise() and Layer::Lower()).<br />
-            /// Opaque renderers are drawn first and write to the depth buffer.  Then
-            /// transparent renderers are drawn with depth test enabled but depth
-            /// write switched off.  Transparent renderers are drawn based on their
-            /// distance from the camera.  A renderer's DEPTH_INDEX property is used to
-            /// offset the distance to the camera when ordering transparent renderers.
-            /// This is useful if you want to define the draw order of two or more
-            /// transparent renderers that are equal distance from the camera.  Unlike
-            /// LAYER_UI, parent-child relationship does not affect rendering order at
-            /// all.
-            /// </summary>
-            /// <since_tizen> 3 </since_tizen>
-            Layer3D
-        }
-
-        internal enum TreeDepthMultiplier
-        {
-            TREE_DEPTH_MULTIPLIER = 10000
-        }
-
-        /// <summary>
-        /// Layer behavior, type String (Layer.LayerBehavior).
-        /// </summary>
-        /// <since_tizen> 3 </since_tizen>
-        public Layer.LayerBehavior Behavior
-        {
-            get
-            {
-                return GetBehavior();
-            }
-            set
-            {
-                SetBehavior(value);
-            }
-        }
-
-        /// <summary>
-        /// Sets the viewport (in window coordinates), type rectangle.
-        /// The contents of the layer will not be visible outside this box, when ViewportEnabled is true.
-        /// </summary>
-        /// <since_tizen> 4 </since_tizen>
-        public Rectangle Viewport
-        {
-            get
-            {
-                if (ClippingEnabled)
-                {
-                    Rectangle ret = new Rectangle(NDalicPINVOKE.Layer_GetClippingBox(swigCPtr), true);
-                    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-                    return ret;
-                }
-                else
-                {
-                    // Clipping not enabled so return the window size
-                    Size2D windowSize = Window.Instance.Size;
-                    Rectangle ret = new Rectangle(0, 0, windowSize.Width, windowSize.Height);
-                    return ret;
-                }
-            }
-            set
-            {
-                NDalicPINVOKE.Layer_SetClippingBox__SWIG_1(swigCPtr, Rectangle.getCPtr(value));
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-                ClippingEnabled = true;
-            }
-        }
-
-        /// <summary>
-        /// Retrieves and sets the layer's opacity.<br />
-        /// </summary>
-        /// <since_tizen> 3 </since_tizen>
-        public float Opacity
-        {
-            get
-            {
-                float temp = 0.0f;
-                GetProperty(View.Property.OPACITY).Get(out temp);
-                return temp;
-            }
-            set
-            {
-                SetProperty(View.Property.OPACITY, new Tizen.NUI.PropertyValue(value));
-            }
-        }
-
-        /// <summary>
-        /// Retrieves and sets the layer's visibility.
-        /// </summary>
-        /// <since_tizen> 3 </since_tizen>
-        public bool Visibility
-        {
-            get
-            {
-                bool temp = false;
-                GetProperty(View.Property.VISIBLE).Get(out temp);
-                return temp;
-            }
-            set
-            {
-                SetProperty(View.Property.VISIBLE, new Tizen.NUI.PropertyValue(value));
-            }
-        }
-
-        /// <summary>
-        /// Get the number of children held by the layer.
-        /// </summary>
-        /// <since_tizen> 3 </since_tizen>
-        public new uint ChildCount
-        {
-            get
-            {
-                return Convert.ToUInt32(Children.Count);
-            }
-        }
-
-        /// <summary>
-        /// Gets or sets the layer's name.
-        /// </summary>
-        /// <since_tizen> 3 </since_tizen>
-        public string Name
-        {
-            get
-            {
-                return GetName();
-            }
-            set
-            {
-                SetName(value);
-            }
-        }
-
-        /// <summary>
-        /// Queries the depth of the layer.<br />
-        /// 0 is the bottommost layer, higher number is on the top.<br />
-        /// </summary>
-        /// <since_tizen> 3 </since_tizen>
-        public uint Depth
-        {
-            get
-            {
-                return GetDepth();
-            }
-        }
-
-        /// <summary>
-        /// Internal only property to enable or disable clipping, type boolean.
-        /// By default, this is false, i.e., the viewport of the layer is the entire window.
-        /// </summary>
-        internal bool ClippingEnabled
-        {
-            get
-            {
-                bool ret = NDalicPINVOKE.Layer_IsClipping(swigCPtr);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-                return ret;
-            }
-            set
-            {
-                NDalicPINVOKE.Layer_SetClipping(swigCPtr, value);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            }
+            return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
         }
 
         /// From the Container base class.
@@ -344,6 +141,74 @@ namespace Tizen.NUI
         }
 
         /// <summary>
+        /// Dispose.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
+        protected override void Dispose(DisposeTypes type)
+        {
+            if(disposed)
+            {
+                return;
+            }
+
+            if(type == DisposeTypes.Explicit)
+            {
+                //Called by User
+                //Release your own managed resources here.
+                //You should release all of your own disposable objects here.
+            }
+
+            //Release your own unmanaged resources here.
+            //You should not access any managed member here except static instance.
+            //because the execution order of Finalizes is non-deterministic.
+
+            if (swigCPtr.Handle != global::System.IntPtr.Zero)
+            {
+                if (swigCMemOwn)
+                {
+                    swigCMemOwn = false;
+                    NDalicPINVOKE.delete_Layer(swigCPtr);
+                }
+                swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
+            }
+
+            base.Dispose(type);
+
+        }
+
+
+        internal class Property
+        {
+            internal static readonly int BEHAVIOR = NDalicPINVOKE.Layer_Property_BEHAVIOR_get();
+        }
+
+        /// <summary>
+        /// Creates a Layer object.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
+        public Layer() : this(NDalicPINVOKE.Layer_New(), true)
+        {
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            if(Window.Instance != null)
+            {
+                this.SetAnchorPoint(Tizen.NUI.PivotPoint.TopLeft);
+                this.SetResizePolicy(ResizePolicyType.FillToParent, DimensionType.AllDimensions);
+            }
+        }
+        internal void SetAnchorPoint(Vector3 anchorPoint)
+        {
+            NDalicPINVOKE.Actor_SetAnchorPoint(swigCPtr, Vector3.getCPtr(anchorPoint));
+            if (NDalicPINVOKE.SWIGPendingException.Pending)
+                throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+        internal void SetResizePolicy(ResizePolicyType policy, DimensionType dimension)
+        {
+            NDalicPINVOKE.Actor_SetResizePolicy(swigCPtr, (int)policy, (int)dimension);
+            if (NDalicPINVOKE.SWIGPendingException.Pending)
+                throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        /// <summary>
         /// Downcasts a handle to layer handle.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
@@ -353,7 +218,7 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static Layer DownCast(BaseHandle handle)
         {
-            Layer ret = Registry.GetManagedBaseHandleFromNativePtr(handle) as Layer;
+            Layer ret =  Registry.GetManagedBaseHandleFromNativePtr(handle) as Layer;
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -378,6 +243,33 @@ namespace Tizen.NUI
             if (NDalicPINVOKE.SWIGPendingException.Pending)
                 throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
+        }
+
+        /// <summary>
+        /// Queries the depth of the layer.<br />
+        /// 0 is the bottommost layer, higher number is on the top.<br />
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
+        public uint Depth
+        {
+            get
+            {
+                return GetDepth();
+            }
+        }
+
+        internal uint GetDepth()
+        {
+            var parentChildren = Window.Instance.LayersChildren;
+            if(parentChildren != null)
+            {
+                int idx = parentChildren.IndexOf(this);
+                if (idx >= 0)
+                {
+                    return Convert.ToUInt32(idx); ;
+                }
+            }
+            return 0u;
         }
 
         /// <summary>
@@ -414,6 +306,62 @@ namespace Tizen.NUI
                 {
                     var low = parentChildren[currentIdx - 1];
                     LowerBelow(low);
+                }
+            }
+        }
+
+        internal void RaiseAbove(Layer target)
+        {
+            var parentChildren = Window.Instance.LayersChildren;
+            if (parentChildren != null)
+            {
+                int currentIndex = parentChildren.IndexOf(this);
+                int targetIndex = parentChildren.IndexOf(target);
+
+                if(currentIndex < 0 || targetIndex < 0 ||
+                    currentIndex >= parentChildren.Count || targetIndex >= parentChildren.Count)
+                {
+                    NUILog.Error("index should be bigger than 0 and less than children of layer count");
+                    return;
+                }
+
+                // If the currentIndex is less than the target index and the target has the same parent.
+                if (currentIndex < targetIndex)
+                {
+                    parentChildren.Remove(this);
+                    parentChildren.Insert(targetIndex, this);
+
+                    NDalicPINVOKE.Layer_MoveAbove(swigCPtr, Layer.getCPtr(target));
+                    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                }
+            }
+        }
+
+        internal void LowerBelow(Layer target)
+        {
+            var parentChildren = Window.Instance.LayersChildren;
+
+            if (parentChildren != null)
+            {
+                int currentIndex = parentChildren.IndexOf(this);
+                int targetIndex = parentChildren.IndexOf(target);
+
+                if(currentIndex < 0 || targetIndex < 0 ||
+                    currentIndex >= parentChildren.Count || targetIndex >= parentChildren.Count)
+                {
+                    NUILog.Error("index should be bigger than 0 and less than children of layer count");
+                    return;
+                }
+
+                // If the currentIndex is not already the 0th index and the target has the same parent.
+                if ((currentIndex != 0) && (targetIndex != -1) &&
+                    (currentIndex > targetIndex))
+                {
+                    parentChildren.Remove(this);
+                    parentChildren.Insert(targetIndex, this);
+
+                    NDalicPINVOKE.Layer_MoveBelow(swigCPtr, Layer.getCPtr(target));
+                    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
                 }
             }
         }
@@ -479,92 +427,17 @@ namespace Tizen.NUI
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
-        internal static global::System.Runtime.InteropServices.HandleRef getCPtr(Layer obj)
+        private void SetBehavior(LayerBehavior behavior)
         {
-            return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
+            NDalicPINVOKE.Layer_SetBehavior(swigCPtr, (int)behavior);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
-        internal void SetAnchorPoint(Vector3 anchorPoint)
+        private LayerBehavior GetBehavior()
         {
-            NDalicPINVOKE.Actor_SetAnchorPoint(swigCPtr, Vector3.getCPtr(anchorPoint));
-            if (NDalicPINVOKE.SWIGPendingException.Pending)
-                throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-        }
-
-        internal void SetResizePolicy(ResizePolicyType policy, DimensionType dimension)
-        {
-            NDalicPINVOKE.Actor_SetResizePolicy(swigCPtr, (int)policy, (int)dimension);
-            if (NDalicPINVOKE.SWIGPendingException.Pending)
-                throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-        }
-
-        internal uint GetDepth()
-        {
-            var parentChildren = Window.Instance.LayersChildren;
-            if (parentChildren != null)
-            {
-                int idx = parentChildren.IndexOf(this);
-                if (idx >= 0)
-                {
-                    return Convert.ToUInt32(idx); ;
-                }
-            }
-            return 0u;
-        }
-        internal void RaiseAbove(Layer target)
-        {
-            var parentChildren = Window.Instance.LayersChildren;
-            if (parentChildren != null)
-            {
-                int currentIndex = parentChildren.IndexOf(this);
-                int targetIndex = parentChildren.IndexOf(target);
-
-                if (currentIndex < 0 || targetIndex < 0 ||
-                    currentIndex >= parentChildren.Count || targetIndex >= parentChildren.Count)
-                {
-                    NUILog.Error("index should be bigger than 0 and less than children of layer count");
-                    return;
-                }
-
-                // If the currentIndex is less than the target index and the target has the same parent.
-                if (currentIndex < targetIndex)
-                {
-                    parentChildren.Remove(this);
-                    parentChildren.Insert(targetIndex, this);
-
-                    NDalicPINVOKE.Layer_MoveAbove(swigCPtr, Layer.getCPtr(target));
-                    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-                }
-            }
-        }
-
-        internal void LowerBelow(Layer target)
-        {
-            var parentChildren = Window.Instance.LayersChildren;
-
-            if (parentChildren != null)
-            {
-                int currentIndex = parentChildren.IndexOf(this);
-                int targetIndex = parentChildren.IndexOf(target);
-
-                if (currentIndex < 0 || targetIndex < 0 ||
-                    currentIndex >= parentChildren.Count || targetIndex >= parentChildren.Count)
-                {
-                    NUILog.Error("index should be bigger than 0 and less than children of layer count");
-                    return;
-                }
-
-                // If the currentIndex is not already the 0th index and the target has the same parent.
-                if ((currentIndex != 0) && (targetIndex != -1) &&
-                    (currentIndex > targetIndex))
-                {
-                    parentChildren.Remove(this);
-                    parentChildren.Insert(targetIndex, this);
-
-                    NDalicPINVOKE.Layer_MoveBelow(swigCPtr, Layer.getCPtr(target));
-                    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-                }
-            }
+            Layer.LayerBehavior ret = (Layer.LayerBehavior)NDalicPINVOKE.Layer_GetBehavior(swigCPtr);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
         }
 
         internal void SetSortFunction(SWIGTYPE_p_f_r_q_const__Dali__Vector3__float function)
@@ -599,14 +472,195 @@ namespace Tizen.NUI
             return ret;
         }
 
-        internal void AddViewToLayerList(View view)
+        internal void AddViewToLayerList( View view )
         {
             Children.Add(view);
         }
 
-        internal void RemoveViewFromLayerList(View view)
+        internal void RemoveViewFromLayerList( View view )
         {
             Children.Remove(view);
+        }
+
+        /// <summary>
+        /// Enumeration for the behavior of the layer.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
+        public enum LayerBehavior
+        {
+            /// <summary>
+            /// UI control rendering mode.
+            /// </summary>
+            /// <since_tizen> 3 </since_tizen>
+            Layer2D,
+            /// <summary>
+            /// UI control rendering mode (default mode).
+            /// This mode is designed for UI controls that can overlap. In this
+            /// mode renderer order will be respective to the tree hierarchy of
+            /// Actors.<br />
+            /// The rendering order is depth first, so for the following actor tree,
+            /// A will be drawn first, then B, D, E, then C, F.  This ensures that
+            /// overlapping actors are drawn as expected (whereas, with breadth first
+            /// traversal, the actors would interleave).<br />
+            /// </summary>
+            /// <since_tizen> 3 </since_tizen>
+            LayerUI = Layer2D,
+            /// <summary>
+            /// Layer will use depth test.
+            /// This mode is designed for a 3 dimensional scene where actors in front
+            /// of other actors will obscure them, i.e. the actors are sorted by the
+            /// distance from the camera.<br />
+            /// When using this mode, a depth test will be used. A depth clear will
+            /// happen for each layer, which means actors in a layer "above" other
+            /// layers will be rendered in front of actors in those layers regardless
+            /// of their Z positions (see Layer::Raise() and Layer::Lower()).<br />
+            /// Opaque renderers are drawn first and write to the depth buffer.  Then
+            /// transparent renderers are drawn with depth test enabled but depth
+            /// write switched off.  Transparent renderers are drawn based on their
+            /// distance from the camera.  A renderer's DEPTH_INDEX property is used to
+            /// offset the distance to the camera when ordering transparent renderers.
+            /// This is useful if you want to define the draw order of two or more
+            /// transparent renderers that are equal distance from the camera.  Unlike
+            /// LAYER_UI, parent-child relationship does not affect rendering order at
+            /// all.
+            /// </summary>
+            /// <since_tizen> 3 </since_tizen>
+            Layer3D
+        }
+
+        internal enum TreeDepthMultiplier
+        {
+            TREE_DEPTH_MULTIPLIER = 10000
+        }
+
+        /// <summary>
+        /// Layer behavior, type String (Layer.LayerBehavior).
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
+        public Layer.LayerBehavior Behavior
+        {
+            get
+            {
+                return GetBehavior();
+            }
+            set
+            {
+                SetBehavior(value);
+            }
+        }
+
+        /// <summary>
+        /// Internal only property to enable or disable clipping, type boolean.
+        /// By default, this is false, i.e., the viewport of the layer is the entire window.
+        /// </summary>
+        internal bool ClippingEnabled
+        {
+            get
+            {
+                bool ret = NDalicPINVOKE.Layer_IsClipping(swigCPtr);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                return ret;
+            }
+            set
+            {
+                NDalicPINVOKE.Layer_SetClipping(swigCPtr, value);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            }
+        }
+
+        /// <summary>
+        /// Sets the viewport (in window coordinates), type rectangle.
+        /// The contents of the layer will not be visible outside this box, when ViewportEnabled is true.
+        /// </summary>
+        /// <since_tizen> 4 </since_tizen>
+        public Rectangle Viewport
+        {
+            get
+            {
+                if( ClippingEnabled )
+                {
+                  Rectangle ret = new Rectangle(NDalicPINVOKE.Layer_GetClippingBox(swigCPtr), true);
+                  if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                  return ret;
+                }
+                else
+                {
+                  // Clipping not enabled so return the window size
+                  Size2D windowSize = Window.Instance.Size;
+                  Rectangle ret = new Rectangle(0, 0, windowSize.Width, windowSize.Height);
+                  return ret;
+                }
+            }
+            set
+            {
+                NDalicPINVOKE.Layer_SetClippingBox__SWIG_1(swigCPtr, Rectangle.getCPtr(value));
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                ClippingEnabled = true;
+            }
+        }
+
+        /// <summary>
+        /// Retrieves and sets the layer's opacity.<br />
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
+        public float Opacity
+        {
+            get
+            {
+                float temp = 0.0f;
+                GetProperty(View.Property.OPACITY).Get(out temp);
+                return temp;
+            }
+            set
+            {
+                SetProperty(View.Property.OPACITY, new Tizen.NUI.PropertyValue(value));
+            }
+        }
+
+        /// <summary>
+        /// Retrieves and sets the layer's visibility.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
+        public bool Visibility
+        {
+            get
+            {
+                bool temp = false;
+                GetProperty(View.Property.VISIBLE).Get(out temp);
+                return temp;
+            }
+            set
+            {
+                SetProperty(View.Property.VISIBLE, new Tizen.NUI.PropertyValue(value));
+            }
+        }
+
+        /// <summary>
+        /// Get the number of children held by the layer.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
+        public new uint ChildCount
+        {
+            get
+            {
+                return Convert.ToUInt32(Children.Count);
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the layer's name.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
+        public string Name
+        {
+            get
+            {
+                return GetName();
+            }
+            set
+            {
+                SetName(value);
+            }
         }
 
         internal string GetName()
@@ -624,58 +678,5 @@ namespace Tizen.NUI
                 throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
-        /// <summary>
-        /// Dispose.
-        /// </summary>
-        /// <since_tizen> 3 </since_tizen>
-        protected override void Dispose(DisposeTypes type)
-        {
-            if (disposed)
-            {
-                return;
-            }
-
-            if (type == DisposeTypes.Explicit)
-            {
-                //Called by User
-                //Release your own managed resources here.
-                //You should release all of your own disposable objects here.
-            }
-
-            //Release your own unmanaged resources here.
-            //You should not access any managed member here except static instance.
-            //because the execution order of Finalizes is non-deterministic.
-
-            if (swigCPtr.Handle != global::System.IntPtr.Zero)
-            {
-                if (swigCMemOwn)
-                {
-                    swigCMemOwn = false;
-                    NDalicPINVOKE.delete_Layer(swigCPtr);
-                }
-                swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
-            }
-
-            base.Dispose(type);
-
-        }
-
-        private void SetBehavior(LayerBehavior behavior)
-        {
-            NDalicPINVOKE.Layer_SetBehavior(swigCPtr, (int)behavior);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-        }
-
-        private LayerBehavior GetBehavior()
-        {
-            Layer.LayerBehavior ret = (Layer.LayerBehavior)NDalicPINVOKE.Layer_GetBehavior(swigCPtr);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
-        }
-
-        internal class Property
-        {
-            internal static readonly int BEHAVIOR = NDalicPINVOKE.Layer_Property_BEHAVIOR_get();
-        }
     }
 }

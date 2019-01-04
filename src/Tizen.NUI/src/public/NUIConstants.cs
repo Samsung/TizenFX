@@ -688,6 +688,7 @@ namespace Tizen.NUI
        Attached
     }
 
+
     /// <summary>
     /// The type of coordinate system for certain attributes of the points in a gradient.
     /// </summary>
@@ -910,445 +911,6 @@ namespace Tizen.NUI
         /// Whether the width or the height size values are relative (percentage [0.0f to 1.0f] of the control) or absolute (in world units).
         /// </summary>
         SizePolicy
-    }
-
-    /// <summary>
-    /// The type for HiddenInput mode.
-    /// </summary>
-    /// <since_tizen> 3 </since_tizen>
-    public enum HiddenInputModeType
-    {
-        /// <summary>
-        /// Don't hide text.
-        /// </summary>
-        HideNone,
-        /// <summary>
-        /// Hide all the input text.
-        /// </summary>
-        HideAll,
-        /// <summary>
-        /// Hide n characters from start.
-        /// </summary>
-        HideCount,
-        /// <summary>
-        /// Show n characters from start.
-        /// </summary>
-        ShowCount,
-        /// <summary>
-        /// Show last character for the duration(use ShowLastCharacterDuration property to modify duration).
-        /// </summary>
-        ShowLastCharacter
-    }
-
-    /// <summary>
-    /// Auto scrolling stop behavior.
-    /// </summary>
-    /// <since_tizen> 3 </since_tizen>
-    public enum AutoScrollStopMode
-    {
-        /// <summary>
-        /// Stop animation after current loop finished.
-        /// </summary>
-        FinishLoop,
-        /// <summary>
-        /// Stop animation immediately and reset position.
-        /// </summary>
-        Immediate
-    }
-
-    /// <summary>
-    /// An enum of screen mode.
-    /// </summary>
-    /// <since_tizen> 4 </since_tizen>
-    public enum ScreenOffMode
-    {
-        /// <summary>
-        /// The mode which turns the screen off after a timeout.
-        /// </summary>
-        Timout,
-        /// <summary>
-        /// The mode which keeps the screen turned on.
-        /// </summary>
-        Never
-    }
-
-    /// <summary>
-    /// An enum of notification window's priority level.
-    /// </summary>
-    /// <since_tizen> 3 </since_tizen>
-    public enum NotificationLevel
-    {
-        /// <summary>
-        /// No notification level.<br />
-        /// Default level.<br />
-        /// This value makes the notification window place in the layer of the normal window.
-        /// </summary>
-        None = -1,
-        /// <summary>
-        /// The base nofitication level.
-        /// </summary>
-        Base = 10,
-        /// <summary>
-        /// The medium notification level than base.
-        /// </summary>
-        Medium = 20,
-        /// <summary>
-        /// The higher notification level than medium.
-        /// </summary>
-        High = 30,
-        /// <summary>
-        /// The highest notification level.
-        /// </summary>
-        Top = 40
-    }
-
-    /// <summary>
-    /// An enum of window types.
-    /// </summary>
-    /// <since_tizen> 3 </since_tizen>
-    public enum WindowType
-    {
-        /// <summary>
-        /// A default window type.<br />
-        /// Indicates a normal or top-level window.
-        /// Almost every window will be created with this type.
-        /// </summary>
-        Normal,
-        /// <summary>
-        /// A notification window, like a warning about battery life or a new email received.
-        /// </summary>
-        Notification,
-        /// <summary>
-        /// A persistent utility window, like a toolbox or a palette.
-        /// </summary>
-        Utility,
-        /// <summary>
-        /// Used for simple dialog windows.
-        /// </summary>
-        Dialog
-    }
-
-    /// <since_tizen> 3 </since_tizen>
-    public enum DisposeTypes
-    {
-        /// <summary>
-        /// Called By User
-        /// </summary>
-        /// <since_tizen> 3 </since_tizen>
-        Explicit,
-        /// <summary>
-        /// Called by DisposeQueue
-        /// </summary>
-        /// <since_tizen> 3 </since_tizen>
-        Implicit,
-    }
-
-    /// <summary>
-    /// An enum of the scroll state of the text eidtor.
-    /// </summary>
-    /// <since_tizen> 3 </since_tizen>
-    public enum ScrollState
-    {
-        /// <summary>
-        /// Scrolling is started.
-        /// </summary>
-        Started,
-
-        /// <summary>
-        /// Scrolling is finished.
-        /// </summary>
-        Finished
-    }
-
-    /// <summary>
-    /// An enum of the line wrap mode of text controls.
-    /// </summary>
-    /// <since_tizen> 4 </since_tizen>
-    public enum LineWrapMode
-    {
-        /// <summary>
-        /// The word mode will move a word to the next line.
-        /// </summary>
-        /// <since_tizen> 4 </since_tizen>
-        Word,
-
-        /// <summary>
-        /// character will move character by character to the next line.
-        /// </summary>
-        /// <since_tizen> 4 </since_tizen>
-        Character
-    }
-
-    /// <summary>
-    /// An enum of text directions.
-    /// </summary>
-    /// <since_tizen> 5 </since_tizen>
-    public enum TextDirection
-    {
-        /// <summary>
-        /// Text direction is from left to right.
-        /// </summary>
-        /// <since_tizen> 5 </since_tizen>
-        LeftToRight,
-
-        /// <summary>
-        /// Text direction is from right to left.
-        /// </summary>
-        /// <since_tizen> 5 </since_tizen>
-        RightToLeft
-    }
-
-    /// <summary>
-    /// An enum of vertical line alignments.
-    /// </summary>
-    /// <since_tizen> 5 </since_tizen>
-    public enum VerticalLineAlignment
-    {
-        /// <summary>
-        /// vertical line alignment is from top.
-        /// </summary>
-        /// <since_tizen> 5 </since_tizen>
-        Top,
-
-        /// <summary>
-        /// vertical line alignment is from center.
-        /// </summary>
-        /// <since_tizen> 5 </since_tizen>
-        Center,
-
-        /// <summary>
-        /// vertical line alignment is from bottom.
-        /// </summary>
-        /// <since_tizen> 5 </since_tizen>
-        Bottom
-    }
-
-    /// <summary>
-    /// Enumeration type for the font's slant.
-    /// </summary>
-    /// <since_tizen> 5 </since_tizen>
-    public enum FontSlantType
-    {
-        /// <summary>
-        /// None.
-        /// </summary>
-        /// <since_tizen> 5 </since_tizen>
-        None,
-        /// <summary>
-        /// Normal.
-        /// </summary>
-        /// <since_tizen> 5 </since_tizen>
-        Normal,
-        /// <summary>
-        /// Roman.
-        /// </summary>
-        /// <since_tizen> 5 </since_tizen>
-        Roman = Normal,
-        /// <summary>
-        /// Italic.
-        /// </summary>
-        /// <since_tizen> 5 </since_tizen>
-        Italic,
-        /// <summary>
-        /// Oblique.
-        /// </summary>
-        /// <since_tizen> 5 </since_tizen>
-        Oblique
-    }
-
-    /// <summary>
-    /// Enumeration type for the font's weight.
-    /// </summary>
-    /// <since_tizen> 5 </since_tizen>
-    public enum FontWeightType
-    {
-        /// <summary>
-        /// None.
-        /// </summary>
-        /// <since_tizen> 5 </since_tizen>
-        None,
-        /// <summary>
-        /// Thin.
-        /// </summary>
-        /// <since_tizen> 5 </since_tizen>
-        Thin,
-        /// <summary>
-        /// UltraLight.
-        /// </summary>
-        /// <since_tizen> 5 </since_tizen>
-        UltraLight,
-        /// <summary>
-        /// ExtraLight.
-        /// </summary>
-        /// <since_tizen> 5 </since_tizen>
-        ExtraLight = UltraLight,
-        /// <summary>
-        /// Light.
-        /// </summary>
-        /// <since_tizen> 5 </since_tizen>
-        Light,
-        /// <summary>
-        /// DemiLight.
-        /// </summary>
-        /// <since_tizen> 5 </since_tizen>
-        DemiLight,
-        /// <summary>
-        /// SemiLight.
-        /// </summary>
-        /// <since_tizen> 5 </since_tizen>
-        SemiLight = DemiLight,
-        /// <summary>
-        /// Book.
-        /// </summary>
-        /// <since_tizen> 5 </since_tizen>
-        Book,
-        /// <summary>
-        /// Normal.
-        /// </summary>
-        /// <since_tizen> 5 </since_tizen>
-        Normal,
-        /// <summary>
-        /// Regular.
-        /// </summary>
-        /// <since_tizen> 5 </since_tizen>
-        Regular = Normal,
-        /// <summary>
-        /// Medium.
-        /// </summary>
-        /// <since_tizen> 5 </since_tizen>
-        Medium,
-        /// <summary>
-        /// DemiBold.
-        /// </summary>
-        /// <since_tizen> 5 </since_tizen>
-        DemiBold,
-        /// <summary>
-        /// SemiBold.
-        /// </summary>
-        /// <since_tizen> 5 </since_tizen>
-        SemiBold = DemiBold,
-        /// <summary>
-        /// Bold.
-        /// </summary>
-        /// <since_tizen> 5 </since_tizen>
-        Bold,
-        /// <summary>
-        /// UltraBold.
-        /// </summary>
-        /// <since_tizen> 5 </since_tizen>
-        UltraBold,
-        /// <summary>
-        /// ExtraBold.
-        /// </summary>
-        /// <since_tizen> 5 </since_tizen>
-        ExtraBold = UltraBold,
-        /// <summary>
-        /// Black.
-        /// </summary>
-        /// <since_tizen> 5 </since_tizen>
-        Black,
-        /// <summary>
-        /// Heavy.
-        /// </summary>
-        /// <since_tizen> 5 </since_tizen>
-        Heavy = Black,
-        /// <summary>
-        /// ExtraBlack.
-        /// </summary>
-        /// <since_tizen> 5 </since_tizen>
-        ExtraBlack = Black
-    }
-
-    /// <summary>
-    /// Enumeration type for the font's width.
-    /// </summary>
-    /// <since_tizen> 5 </since_tizen>
-    public enum FontWidthType
-    {
-        /// <summary>
-        /// None.
-        /// </summary>
-        /// <since_tizen> 5 </since_tizen>
-        None,
-        /// <summary>
-        /// UltraCondensed.
-        /// </summary>
-        /// <since_tizen> 5 </since_tizen>
-        UltraCondensed,
-        /// <summary>
-        /// ExtraCondensed.
-        /// </summary>
-        /// <since_tizen> 5 </since_tizen>
-        ExtraCondensed,
-        /// <summary>
-        /// Condensed.
-        /// </summary>
-        /// <since_tizen> 5 </since_tizen>
-        Condensed,
-        /// <summary>
-        /// SemiCondensed.
-        /// </summary>
-        /// <since_tizen> 5 </since_tizen>
-        SemiCondensed,
-        /// <summary>
-        /// Normal.
-        /// </summary>
-        /// <since_tizen> 5 </since_tizen>
-        Normal,
-        /// <summary>
-        /// SemiExpanded.
-        /// </summary>
-        /// <since_tizen> 5 </since_tizen>
-        SemiExpanded,
-        /// <summary>
-        /// Expanded.
-        /// </summary>
-        /// <since_tizen> 5 </since_tizen>
-        Expanded,
-        /// <summary>
-        /// ExtraExpanded.
-        /// </summary>
-        /// <since_tizen> 5 </since_tizen>
-        ExtraExpanded,
-        /// <summary>
-        /// UltraExpanded.
-        /// </summary>
-        /// <since_tizen> 5 </since_tizen>
-        UltraExpanded
-    }
-
-    /// <summary>
-    /// Enumeration type for the glyph type.
-    /// </summary>
-    /// <since_tizen> 5 </since_tizen>
-    public enum GlyphType
-    {
-        /// <summary>
-        /// Glyph stored as pixels.
-        /// </summary>
-        /// <since_tizen> 5 </since_tizen>
-        BitmapGlyph,
-        /// <summary>
-        /// Glyph stored as vectors (scalable). This feature requires highp shader support and is not available on all platforms.
-        /// </summary>
-        /// <since_tizen> 5 </since_tizen>
-        VectorGlyph
-    }
-
-    /// <summary>
-    /// Enumeration for Setting the rendering behavior of a Window.
-    /// </summary>
-    /// <since_tizen> 5 </since_tizen>
-    public enum RenderingBehaviorType
-    {
-        /// <summary>
-        /// Default. Only renders if required.
-        /// </summary>
-        IfRequired,
-        /// <summary>
-        /// Renders continuously.
-        /// </summary>
-        Continuously
     }
 
     /// <summary>
@@ -2033,6 +1595,34 @@ namespace Tizen.NUI
     }
 
     /// <summary>
+    /// The type for HiddenInput mode.
+    /// </summary>
+    /// <since_tizen> 3 </since_tizen>
+    public enum HiddenInputModeType
+    {
+        /// <summary>
+        /// Don't hide text.
+        /// </summary>
+        HideNone,
+        /// <summary>
+        /// Hide all the input text.
+        /// </summary>
+        HideAll,
+        /// <summary>
+        /// Hide n characters from start.
+        /// </summary>
+        HideCount,
+        /// <summary>
+        /// Show n characters from start.
+        /// </summary>
+        ShowCount,
+        /// <summary>
+        /// Show last character for the duration(use ShowLastCharacterDuration property to modify duration).
+        /// </summary>
+        ShowLastCharacter
+    }
+
+    /// <summary>
     /// ParentOrigin constants.
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
@@ -2535,6 +2125,108 @@ namespace Tizen.NUI
     }
 
     /// <summary>
+    /// Auto scrolling stop behavior.
+    /// </summary>
+    /// <since_tizen> 3 </since_tizen>
+    public enum AutoScrollStopMode
+    {
+        /// <summary>
+        /// Stop animation after current loop finished.
+        /// </summary>
+        FinishLoop,
+        /// <summary>
+        /// Stop animation immediately and reset position.
+        /// </summary>
+        Immediate
+    }
+
+    /// <summary>
+    /// An enum of screen mode.
+    /// </summary>
+    /// <since_tizen> 4 </since_tizen>
+    public enum ScreenOffMode {
+        /// <summary>
+        /// The mode which turns the screen off after a timeout.
+        /// </summary>
+        Timout,
+        /// <summary>
+        /// The mode which keeps the screen turned on.
+        /// </summary>
+        Never
+    }
+
+    /// <summary>
+    /// An enum of notification window's priority level.
+    /// </summary>
+    /// <since_tizen> 3 </since_tizen>
+    public enum NotificationLevel {
+        /// <summary>
+        /// No notification level.<br />
+        /// Default level.<br />
+        /// This value makes the notification window place in the layer of the normal window.
+        /// </summary>
+        None = -1,
+        /// <summary>
+        /// The base nofitication level.
+        /// </summary>
+        Base = 10,
+        /// <summary>
+        /// The medium notification level than base.
+        /// </summary>
+        Medium = 20,
+        /// <summary>
+        /// The higher notification level than medium.
+        /// </summary>
+        High = 30,
+        /// <summary>
+        /// The highest notification level.
+        /// </summary>
+        Top = 40
+    }
+
+    /// <summary>
+    /// An enum of window types.
+    /// </summary>
+    /// <since_tizen> 3 </since_tizen>
+    public enum WindowType {
+        /// <summary>
+        /// A default window type.<br />
+        /// Indicates a normal or top-level window.
+        /// Almost every window will be created with this type.
+        /// </summary>
+        Normal,
+        /// <summary>
+        /// A notification window, like a warning about battery life or a new email received.
+        /// </summary>
+        Notification,
+        /// <summary>
+        /// A persistent utility window, like a toolbox or a palette.
+        /// </summary>
+        Utility,
+        /// <summary>
+        /// Used for simple dialog windows.
+        /// </summary>
+        Dialog
+    }
+
+    /// <since_tizen> 3 </since_tizen>
+    public enum DisposeTypes
+    {
+        /// <summary>
+        /// Called By User
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
+        Explicit,
+        /// <summary>
+        /// Called by DisposeQueue
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
+        Implicit,
+    }
+
+
+
+    /// <summary>
     /// [Obsolete("Please do not use! this will be deprecated")]
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
@@ -2734,4 +2426,313 @@ namespace Tizen.NUI
             }
         }
     }
+
+    /// <summary>
+    /// An enum of the scroll state of the text eidtor.
+    /// </summary>
+    /// <since_tizen> 3 </since_tizen>
+    public enum ScrollState
+    {
+        /// <summary>
+        /// Scrolling is started.
+        /// </summary>
+        Started,
+
+        /// <summary>
+        /// Scrolling is finished.
+        /// </summary>
+        Finished
+    }
+
+    /// <summary>
+    /// An enum of the line wrap mode of text controls.
+    /// </summary>
+    /// <since_tizen> 4 </since_tizen>
+    public enum LineWrapMode
+    {
+        /// <summary>
+        /// The word mode will move a word to the next line.
+        /// </summary>
+        /// <since_tizen> 4 </since_tizen>
+        Word,
+
+        /// <summary>
+        /// character will move character by character to the next line.
+        /// </summary>
+        /// <since_tizen> 4 </since_tizen>
+        Character
+    }
+
+    /// <summary>
+    /// An enum of text directions.
+    /// </summary>
+    /// <since_tizen> 5 </since_tizen>
+    public enum TextDirection
+    {
+        /// <summary>
+        /// Text direction is from left to right.
+        /// </summary>
+        /// <since_tizen> 5 </since_tizen>
+        LeftToRight,
+
+        /// <summary>
+        /// Text direction is from right to left.
+        /// </summary>
+        /// <since_tizen> 5 </since_tizen>
+        RightToLeft
+    }
+
+    /// <summary>
+    /// An enum of vertical line alignments.
+    /// </summary>
+    /// <since_tizen> 5 </since_tizen>
+    public enum VerticalLineAlignment
+    {    
+        /// <summary>
+        /// vertical line alignment is from top. 
+        /// </summary>
+        /// <since_tizen> 5 </since_tizen>
+        Top,
+
+        /// <summary>
+        /// vertical line alignment is from center.
+        /// </summary>
+        /// <since_tizen> 5 </since_tizen>
+        Center,
+
+        /// <summary>
+        /// vertical line alignment is from bottom.
+        /// </summary>
+        /// <since_tizen> 5 </since_tizen>
+        Bottom
+    }
+
+    /// <summary>
+    /// Enumeration type for the font's slant.
+    /// </summary>
+    /// <since_tizen> 5 </since_tizen>
+    public enum FontSlantType
+    {
+        /// <summary>
+        /// None.
+        /// </summary>
+        /// <since_tizen> 5 </since_tizen>
+        None,
+        /// <summary>
+        /// Normal.
+        /// </summary>
+        /// <since_tizen> 5 </since_tizen>
+        Normal,
+        /// <summary>
+        /// Roman.
+        /// </summary>
+        /// <since_tizen> 5 </since_tizen>
+        Roman = Normal,
+        /// <summary>
+        /// Italic.
+        /// </summary>
+        /// <since_tizen> 5 </since_tizen>
+        Italic,
+        /// <summary>
+        /// Oblique.
+        /// </summary>
+        /// <since_tizen> 5 </since_tizen>
+        Oblique
+    }
+
+    /// <summary>
+    /// Enumeration type for the font's weight.
+    /// </summary>
+    /// <since_tizen> 5 </since_tizen>
+    public enum FontWeightType
+    {
+        /// <summary>
+        /// None.
+        /// </summary>
+        /// <since_tizen> 5 </since_tizen>
+        None,
+        /// <summary>
+        /// Thin.
+        /// </summary>
+        /// <since_tizen> 5 </since_tizen>
+        Thin,
+        /// <summary>
+        /// UltraLight.
+        /// </summary>
+        /// <since_tizen> 5 </since_tizen>
+        UltraLight,
+        /// <summary>
+        /// ExtraLight.
+        /// </summary>
+        /// <since_tizen> 5 </since_tizen>
+        ExtraLight = UltraLight,
+        /// <summary>
+        /// Light.
+        /// </summary>
+        /// <since_tizen> 5 </since_tizen>
+        Light,
+        /// <summary>
+        /// DemiLight.
+        /// </summary>
+        /// <since_tizen> 5 </since_tizen>
+        DemiLight,
+        /// <summary>
+        /// SemiLight.
+        /// </summary>
+        /// <since_tizen> 5 </since_tizen>
+        SemiLight = DemiLight,
+        /// <summary>
+        /// Book.
+        /// </summary>
+        /// <since_tizen> 5 </since_tizen>
+        Book,
+        /// <summary>
+        /// Normal.
+        /// </summary>
+        /// <since_tizen> 5 </since_tizen>
+        Normal,
+        /// <summary>
+        /// Regular.
+        /// </summary>
+        /// <since_tizen> 5 </since_tizen>
+        Regular = Normal,
+        /// <summary>
+        /// Medium.
+        /// </summary>
+        /// <since_tizen> 5 </since_tizen>
+        Medium,
+        /// <summary>
+        /// DemiBold.
+        /// </summary>
+        /// <since_tizen> 5 </since_tizen>
+        DemiBold,
+        /// <summary>
+        /// SemiBold.
+        /// </summary>
+        /// <since_tizen> 5 </since_tizen>
+        SemiBold = DemiBold,
+        /// <summary>
+        /// Bold.
+        /// </summary>
+        /// <since_tizen> 5 </since_tizen>
+        Bold,
+        /// <summary>
+        /// UltraBold.
+        /// </summary>
+        /// <since_tizen> 5 </since_tizen>
+        UltraBold,
+        /// <summary>
+        /// ExtraBold.
+        /// </summary>
+        /// <since_tizen> 5 </since_tizen>
+        ExtraBold = UltraBold,
+        /// <summary>
+        /// Black.
+        /// </summary>
+        /// <since_tizen> 5 </since_tizen>
+        Black,
+        /// <summary>
+        /// Heavy.
+        /// </summary>
+        /// <since_tizen> 5 </since_tizen>
+        Heavy = Black,
+        /// <summary>
+        /// ExtraBlack.
+        /// </summary>
+        /// <since_tizen> 5 </since_tizen>
+        ExtraBlack = Black
+    }
+
+    /// <summary>
+    /// Enumeration type for the font's width.
+    /// </summary>
+    /// <since_tizen> 5 </since_tizen>
+    public enum FontWidthType
+    {
+        /// <summary>
+        /// None.
+        /// </summary>
+        /// <since_tizen> 5 </since_tizen>
+        None,
+        /// <summary>
+        /// UltraCondensed.
+        /// </summary>
+        /// <since_tizen> 5 </since_tizen>
+        UltraCondensed,
+        /// <summary>
+        /// ExtraCondensed.
+        /// </summary>
+        /// <since_tizen> 5 </since_tizen>
+        ExtraCondensed,
+        /// <summary>
+        /// Condensed.
+        /// </summary>
+        /// <since_tizen> 5 </since_tizen>
+        Condensed,
+        /// <summary>
+        /// SemiCondensed.
+        /// </summary>
+        /// <since_tizen> 5 </since_tizen>
+        SemiCondensed,
+        /// <summary>
+        /// Normal.
+        /// </summary>
+        /// <since_tizen> 5 </since_tizen>
+        Normal,
+        /// <summary>
+        /// SemiExpanded.
+        /// </summary>
+        /// <since_tizen> 5 </since_tizen>
+        SemiExpanded,
+        /// <summary>
+        /// Expanded.
+        /// </summary>
+        /// <since_tizen> 5 </since_tizen>
+        Expanded,
+        /// <summary>
+        /// ExtraExpanded.
+        /// </summary>
+        /// <since_tizen> 5 </since_tizen>
+        ExtraExpanded,
+        /// <summary>
+        /// UltraExpanded.
+        /// </summary>
+        /// <since_tizen> 5 </since_tizen>
+        UltraExpanded
+    }
+
+    /// <summary>
+    /// Enumeration type for the glyph type.
+    /// </summary>
+    /// <since_tizen> 5 </since_tizen>
+    public enum GlyphType
+    {
+        /// <summary>
+        /// Glyph stored as pixels.
+        /// </summary>
+        /// <since_tizen> 5 </since_tizen>
+        BitmapGlyph,
+        /// <summary>
+        /// Glyph stored as vectors (scalable). This feature requires highp shader support and is not available on all platforms.
+        /// </summary>
+        /// <since_tizen> 5 </since_tizen>
+        VectorGlyph
+    }
+
+    /// <summary>
+    /// Enumeration for Setting the rendering behavior of a Window.
+    /// </summary>
+    /// <since_tizen> 5 </since_tizen>
+    public enum RenderingBehaviorType
+    {
+        /// <summary>
+        /// Default. Only renders if required.
+        /// </summary>
+        IfRequired,
+        /// <summary>
+        /// Renders continuously.
+        /// </summary>
+        Continuously
+    }
+
 }

@@ -81,32 +81,6 @@ namespace Tizen.NUI
             return !r1.EqualTo(r2);
         }
 
-        /// <summary>
-        /// Determines whether the specified object is equal to the current object.
-        /// </summary>
-        /// <param name="obj">The object to compare with the current object.</param>
-        /// <returns>true if the specified object is equal to the current object; otherwise, false.</returns>
-        public override bool Equals(object obj)
-        {
-            LayoutMeasureSpec layoutMeasureSpec = obj as LayoutMeasureSpec;
-            bool equal = false;
-            if (Size == layoutMeasureSpec?.Size && Mode == layoutMeasureSpec?.Mode)
-            {
-                equal = true;
-            }
-            return equal;
-        }
-
-        /// <summary>
-        /// Gets the the hash code of this LayoutMeasureSpec.
-        /// </summary>
-        /// <returns>The Hash Code.</returns>
-        /// <since_tizen> 5 </since_tizen>
-        public override int GetHashCode()
-        {
-            return base.GetHashCode();
-        }
-
         private bool EqualTo(LayoutMeasureSpec value)
         {
             bool ret = LayoutPINVOKE.MeasureSpec_EqualTo(swigCPtr, LayoutMeasureSpec.getCPtr(value));
