@@ -30,6 +30,64 @@ namespace Tizen.NUI
     {
         private global::System.Runtime.InteropServices.HandleRef swigCPtr;
 
+        internal Touch(global::System.IntPtr cPtr, bool cMemoryOwn) : base(NDalicPINVOKE.Touch_SWIGUpcast(cPtr), cMemoryOwn)
+        {
+            swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
+        }
+
+        internal static global::System.Runtime.InteropServices.HandleRef getCPtr(Touch obj)
+        {
+            return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
+        }
+
+        /// <summary>
+        /// Dispose.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
+        protected override void Dispose(DisposeTypes type)
+        {
+            if (disposed)
+            {
+                return;
+            }
+
+            if (type == DisposeTypes.Explicit)
+            {
+                //Called by User
+                //Release your own managed resources here.
+                //You should release all of your own disposable objects here.
+            }
+
+            //Release your own unmanaged resources here.
+            //You should not access any managed member here except static instance.
+            //because the execution order of Finalizes is non-deterministic.
+
+            if (swigCPtr.Handle != global::System.IntPtr.Zero)
+            {
+                if (swigCMemOwn)
+                {
+                    swigCMemOwn = false;
+                    NDalicPINVOKE.delete_Touch(swigCPtr);
+                }
+                swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
+            }
+
+            base.Dispose(type);
+        }
+
+
+        internal static Touch GetTouchFromPtr(global::System.IntPtr cPtr)
+        {
+            Touch ret = Registry.GetManagedBaseHandleFromNativePtr(cPtr) as Touch;
+            if (ret == null)
+            {
+                ret = new Touch(cPtr, false);
+            }
+
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
         /// <summary>
         /// An uninitialized touch instance.<br />
         /// Calling member functions with an uninitialized touch handle is not allowed.<br />
@@ -43,11 +101,6 @@ namespace Tizen.NUI
         internal Touch(Touch other) : this(NDalicPINVOKE.new_Touch__SWIG_1(Touch.getCPtr(other)), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-        }
-
-        internal Touch(global::System.IntPtr cPtr, bool cMemoryOwn) : base(NDalicPINVOKE.Touch_SWIGUpcast(cPtr), cMemoryOwn)
-        {
-            swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
         }
 
         /// <summary>
@@ -202,6 +255,13 @@ namespace Tizen.NUI
             return ret;
         }
 
+        internal Degree GetAngle(uint point)
+        {
+            Degree ret = new Degree(NDalicPINVOKE.Touch_GetAngle(swigCPtr, point), true);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
         /// <summary>
         /// Get mouse device's button value (for example, right or left button)
         /// </summary>
@@ -215,65 +275,6 @@ namespace Tizen.NUI
             int ret = NDalicManualPINVOKE.Touch_GetMouseButton(swigCPtr, point);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return (MouseButton)ret;
-        }
-
-        internal static global::System.Runtime.InteropServices.HandleRef getCPtr(Touch obj)
-        {
-            return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
-        }
-
-        internal static Touch GetTouchFromPtr(global::System.IntPtr cPtr)
-        {
-            Touch ret = Registry.GetManagedBaseHandleFromNativePtr(cPtr) as Touch;
-            if (ret == null)
-            {
-                ret = new Touch(cPtr, false);
-            }
-
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
-        }
-
-        internal Degree GetAngle(uint point)
-        {
-            Degree ret = new Degree(NDalicPINVOKE.Touch_GetAngle(swigCPtr, point), true);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
-        }
-
-        /// <summary>
-        /// Dispose.
-        /// </summary>
-        /// <since_tizen> 3 </since_tizen>
-        protected override void Dispose(DisposeTypes type)
-        {
-            if (disposed)
-            {
-                return;
-            }
-
-            if (type == DisposeTypes.Explicit)
-            {
-                //Called by User
-                //Release your own managed resources here.
-                //You should release all of your own disposable objects here.
-            }
-
-            //Release your own unmanaged resources here.
-            //You should not access any managed member here except static instance.
-            //because the execution order of Finalizes is non-deterministic.
-
-            if (swigCPtr.Handle != global::System.IntPtr.Zero)
-            {
-                if (swigCMemOwn)
-                {
-                    swigCMemOwn = false;
-                    NDalicPINVOKE.delete_Touch(swigCPtr);
-                }
-                swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
-            }
-
-            base.Dispose(type);
         }
 
     }

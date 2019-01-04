@@ -1,5 +1,5 @@
 /*
- * Copyright(c) 2018 Samsung Electronics Co., Ltd.
+ * Copyright(c) 2017 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -309,14 +309,8 @@ namespace Tizen.NUI
         }
     }
 
-    /// <summary>
-    /// A class to get resources in current application.
-    /// </summary>
     public class GetResourcesProvider
     {
-        /// <summary>
-        /// Get resources in current application.
-        /// </summary>
         static public IResourcesProvider Get()
         {
             return Tizen.NUI.Application.Current;
@@ -414,7 +408,7 @@ namespace Tizen.NUI
         }
 
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public new NavigationProxy NavigationProxy { get; }
+        public NavigationProxy NavigationProxy { get; }
 
         [EditorBrowsable(EditorBrowsableState.Never)]
         public int PanGestureId { get; set; }
@@ -953,6 +947,11 @@ namespace Tizen.NUI
         // Callback for Application InitSignal
         private void OnApplicationInit(IntPtr data)
         {
+            if (Version.DaliVersionMatchWithNUI() == false)
+            {
+                Tizen.Log.Fatal("NUI", "Dali and NUI are version mismatched!");
+            }
+
             // Initialize DisposeQueue Singleton class. This is also required to create DisposeQueue on main thread.
             DisposeQueue.Instance.Initialize();
 
@@ -962,7 +961,6 @@ namespace Tizen.NUI
                 e.Application = this;
                 _applicationInitEventHandler.Invoke(this, e);
             }
-
         }
 
         /**
@@ -1611,6 +1609,32 @@ namespace Tizen.NUI
         public static string GetResourcePath()
         {
             string ret = NDalicPINVOKE.Application_GetResourcePath();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        internal void SetViewMode(ViewMode viewMode)
+        {
+            NDalicPINVOKE.Application_SetViewMode(swigCPtr, (int)viewMode);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        internal ViewMode GetViewMode()
+        {
+            ViewMode ret = (ViewMode)NDalicPINVOKE.Application_GetViewMode(swigCPtr);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        public void SetStereoBase(float stereoBase)
+        {
+            NDalicPINVOKE.Application_SetStereoBase(swigCPtr, stereoBase);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        public float GetStereoBase()
+        {
+            float ret = NDalicPINVOKE.Application_GetStereoBase(swigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }

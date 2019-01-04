@@ -58,10 +58,11 @@ namespace Tizen.NUI.Binding
         public static readonly BindableProperty CascadeInputTransparentProperty = BindableProperty.Create(
             nameof(CascadeInputTransparent), typeof(bool), typeof(Layout), true);
 
-        public new static readonly BindableProperty PaddingProperty = PaddingElement.PaddingProperty;
+        public static readonly BindableProperty PaddingProperty = PaddingElement.PaddingProperty;
 
         static IList<KeyValuePair<Layout, int>> s_resolutionList = new List<KeyValuePair<Layout, int>>();
         static bool s_relayoutInProgress;
+        bool _allocatedFlag;
 
         bool _hasDoneLayout;
         Size _lastLayoutSize = new Size(-1, -1, 0);
@@ -125,16 +126,59 @@ namespace Tizen.NUI.Binding
 
         public void ForceLayout()
         {
+            //SizeAllocated(Width, Height);
         }
 
+        [Obsolete("OnSizeRequest is obsolete as of version 2.2.0. Please use OnMeasure instead.")]
+        // public sealed override SizeRequest GetSizeRequest(double widthConstraint, double heightConstraint)
+        // {
+        // 	SizeRequest size = base.GetSizeRequest(widthConstraint - Padding.HorizontalThickness, heightConstraint - Padding.VerticalThickness);
+        // 	return new SizeRequest(new Size(size.Request.Width + Padding.HorizontalThickness, size.Request.Height + Padding.VerticalThickness, 0),
+        // 		new Size(size.Minimum.Width + Padding.HorizontalThickness, size.Minimum.Height + Padding.VerticalThickness, 0));
+        // }
 
-        public static void LayoutChildIntoBoundingRegion(BaseHandle child, Rectangle region)
+        public static void LayoutChildIntoBoundingRegion(/*VisualElement*/BaseHandle child, Rectangle region)
         {
+            //var parent = child.Parent as IFlowDirectionController;
+            //bool isRightToLeft = false;
+            //if (parent != null && (isRightToLeft = parent.EffectiveFlowDirection.IsRightToLeft()))
+                //region = new Rectangle(parent.Width - region.Right, region.Y, region.Width, region.Height);
+
             var view = child as View;
             if (view == null)
             {
+                //child.Layout(region);
                 return;
             }
+
+            //LayoutOptions horizontalOptions = view.HorizontalOptions;
+            // if (horizontalOptions.Alignment != LayoutAlignment.Fill)
+            // {
+            // 	SizeRequest request = child.Measure(region.Width, region.Height, MeasureFlags.IncludeMargins);
+            // 	double diff = Math.Max(0, region.Width - request.Request.Width);
+            // 	double horizontalAlign = horizontalOptions.Alignment.ToDouble();
+            // 	if (isRightToLeft)
+            // 		horizontalAlign = 1 - horizontalAlign;
+            // 	region.X += (int)(diff * horizontalAlign);
+            // 	region.Width -= diff;
+            // }
+
+            // LayoutOptions verticalOptions = view.VerticalOptions;
+            // if (verticalOptions.Alignment != LayoutAlignment.Fill)
+            // {
+            // 	SizeRequest request = child.Measure(region.Width, region.Height, MeasureFlags.IncludeMargins);
+            // 	double diff = Math.Max(0, region.Height - request.Request.Height);
+            // 	region.Y += (int)(diff * verticalOptions.Alignment.ToDouble());
+            // 	region.Height -= diff;
+            // }
+
+            // Thickness margin = view.Margin;
+            // region.X += margin.Left;
+            // region.Width -= margin.HorizontalThickness;
+            // region.Y += margin.Top;
+            // region.Height -= margin.VerticalThickness;
+
+            // child.Layout(region);
         }
 
         public void LowerChild(View view)
@@ -143,6 +187,7 @@ namespace Tizen.NUI.Binding
                 return;
 
             InternalChildren.Move(InternalChildren.IndexOf(view), 0);
+            // OnChildrenReordered();
         }
 
         public void RaiseChild(View view)
@@ -151,11 +196,13 @@ namespace Tizen.NUI.Binding
                 return;
 
             InternalChildren.Move(InternalChildren.IndexOf(view), InternalChildren.Count - 1);
+            // OnChildrenReordered();
         }
 
         protected virtual void InvalidateLayout()
         {
             _hasDoneLayout = false;
+            // InvalidateMeasureInternal(InvalidationTrigger.MeasureChanged);
             if (!_hasDoneLayout)
                 ForceLayout();
         }
@@ -165,13 +212,20 @@ namespace Tizen.NUI.Binding
         protected void OnChildMeasureInvalidated(object sender, EventArgs e)
         {
             InvalidationTrigger trigger = (e as InvalidationEventArgs)?.Trigger ?? InvalidationTrigger.Undefined;
-            OnChildMeasureInvalidated((BaseHandle)sender, trigger);
+            OnChildMeasureInvalidated((/*VisualElement*/BaseHandle)sender, trigger);
             OnChildMeasureInvalidated();
         }
 
         protected virtual void OnChildMeasureInvalidated()
         {
         }
+
+        // protected override void OnSizeAllocated(double width, double height)
+        // {
+        // 	_allocatedFlag = true;
+        // 	base.OnSizeAllocated(width, height);
+        // 	UpdateChildrenLayout();
+        // }
 
         protected virtual bool ShouldInvalidateOnChildAdded(View child)
         {
@@ -190,33 +244,118 @@ namespace Tizen.NUI.Binding
             if (!ShouldLayoutChildren())
                 return;
 
-            LayoutChanged?.Invoke(this, EventArgs.Empty);
+            var oldBounds = new Rectangle[LogicalChildrenInternal.Count];
+            for (var index = 0; index < oldBounds.Length; index++)
+            {
+                var c = (/*VisualElement*/BaseHandle)LogicalChildrenInternal[index];
+                // oldBounds[index] = c.Bounds;
+            }
+
+            // double width = Width;
+            // double height = Height;
+
+            // double x = Padding.Left;
+            // double y = Padding.Top;
+            // double w = Math.Max(0, width - Padding.HorizontalThickness);
+            // double h = Math.Max(0, height - Padding.VerticalThickness);
+
+            // var isHeadless = CompressedLayout.GetIsHeadless(this);
+            // var headlessOffset = CompressedLayout.GetHeadlessOffset(this);
+            // for (var i = 0; i < LogicalChildrenInternal.Count; i++)
+            // 	CompressedLayout.SetHeadlessOffset((/*VisualElement*/BaseHandle)LogicalChildrenInternal[i], isHeadless ? new Point(headlessOffset.X + Bounds.X, headlessOffset.Y + Bounds.Y) : new Point());
+
+            // LayoutChildren(x, y, w, h);
+
+            // for (var i = 0; i < oldBounds.Length; i++)
+            // {
+            // 	Rectangle oldBound = oldBounds[i];
+            // 	Rectangle newBound = ((/*VisualElement*/BaseHandle)LogicalChildrenInternal[i]).Bounds;
+            // 	if (oldBound != newBound)
+            // 	{
+            // 		LayoutChanged?.Invoke(this, EventArgs.Empty);
+            // 		return;
+            // 	}
+            // }
+
+            // _lastLayoutSize = new Size((float)width, (float)height, 0);
         }
 
         internal static void LayoutChildIntoBoundingRegion(View child, Rectangle region, SizeRequest childSizeRequest)
         {
+            // var parent = child.Parent as IFlowDirectionController;
+            // bool isRightToLeft = false;
+            // if (parent != null && (isRightToLeft = parent.EffectiveFlowDirection.IsRightToLeft()))
+            // 	region = new Rectangle(parent.Width - region.Right, region.Y, region.Width, region.Height);
+
+            // if (region.Size != childSizeRequest.Request)
+            // {
+            // 	bool canUseAlreadyDoneRequest = region.Width >= childSizeRequest.Request.Width && region.Height >= childSizeRequest.Request.Height;
+
+            // 	LayoutOptions horizontalOptions = child.HorizontalOptions;
+            // 	if (horizontalOptions.Alignment != LayoutAlignment.Fill)
+            // 	{
+            // 		SizeRequest request = canUseAlreadyDoneRequest ? childSizeRequest : child.Measure(region.Width, region.Height, MeasureFlags.IncludeMargins);
+            // 		double diff = Math.Max(0, region.Width - request.Request.Width);
+            // 		double horizontalAlign = horizontalOptions.Alignment.ToDouble();
+            // 		if (isRightToLeft)
+            // 			horizontalAlign = 1 - horizontalAlign;
+            // 		region.X += (int)(diff * horizontalAlign);
+            // 		region.Width -= diff;
+            // 	}
+
+            // 	LayoutOptions verticalOptions = child.VerticalOptions;
+            // 	if (verticalOptions.Alignment != LayoutAlignment.Fill)
+            // 	{
+            // 		SizeRequest request = canUseAlreadyDoneRequest ? childSizeRequest : child.Measure(region.Width, region.Height, MeasureFlags.IncludeMargins);
+            // 		double diff = Math.Max(0, region.Height - request.Request.Height);
+            // 		region.Y += (int)(diff * verticalOptions.Alignment.ToDouble());
+            // 		region.Height -= diff;
+            // 	}
+            // }
+
+            // Thickness margin = child.Margin;
+            // region.X += margin.Left;
+            // region.Width -= margin.HorizontalThickness;
+            // region.Y += margin.Top;
+            // region.Height -= margin.VerticalThickness;
+
+            // child.Layout(region);
         }
 
-        internal virtual void OnChildMeasureInvalidated(BaseHandle child, InvalidationTrigger trigger)
+        internal virtual void OnChildMeasureInvalidated(/*VisualElement*/BaseHandle child, InvalidationTrigger trigger)
         {
             ReadOnlyCollection<Element> children = LogicalChildrenInternal;
             int count = children.Count;
             for (var index = 0; index < count; index++)
             {
-                var v = LogicalChildrenInternal[index] as BaseHandle;
-                if (v != null)
+                var v = LogicalChildrenInternal[index] as /*VisualElement*/BaseHandle;
+                if (v != null /*&& v.IsVisible && (!v.IsPlatformEnabled || !v.IsNativeStateConsistent)*/)
                     return;
             }
 
             var view = child as View;
             if (view != null)
             {
-                //we can ignore the request if we are either fully constrained or when the size request changes and we were already fully constrainted
-                 if ((trigger == InvalidationTrigger.MeasureChanged) ||
-                     (trigger == InvalidationTrigger.SizeRequestChanged))
-                {
-                    return;
-                }
+                // we can ignore the request if we are either fully constrained or when the size request changes and we were already fully constrainted
+                // if ((trigger == InvalidationTrigger.MeasureChanged && view.Constraint == LayoutConstraint.Fixed) ||
+                // 	(trigger == InvalidationTrigger.SizeRequestChanged && view.ComputedConstraint == LayoutConstraint.Fixed))
+                // {
+                // 	return;
+                // }
+                // if (trigger == InvalidationTrigger.HorizontalOptionsChanged || trigger == InvalidationTrigger.VerticalOptionsChanged)
+                // {
+                // 	ComputeConstraintForView(view);
+                // }
+            }
+
+            _allocatedFlag = false;
+            if (trigger == InvalidationTrigger.RendererReady)
+            {
+                // InvalidateMeasureInternal(InvalidationTrigger.RendererReady);
+            }
+            else
+            {
+                // InvalidateMeasureInternal(InvalidationTrigger.MeasureChanged);
             }
 
             s_resolutionList.Add(new KeyValuePair<Layout, int>(this, GetElementDepth(this)));
@@ -229,9 +368,31 @@ namespace Tizen.NUI.Binding
                     IList<KeyValuePair<Layout, int>> copy = s_resolutionList;
                     s_resolutionList = new List<KeyValuePair<Layout, int>>();
                     s_relayoutInProgress = false;
+
+                    foreach (KeyValuePair<Layout, int> kvp in copy.OrderBy(kvp => kvp.Value))
+                    {
+                        Layout layout = kvp.Key;
+                        // double width = layout.Width, height = layout.Height;
+                        // if (!layout._allocatedFlag && width >= 0 && height >= 0)
+                        // {
+                        // 	layout.SizeAllocated(width, height);
+                        // }
+                    }
                 });
             }
         }
+
+        // internal override void OnIsVisibleChanged(bool oldValue, bool newValue)
+        // {
+        // 	base.OnIsVisibleChanged(oldValue, newValue);
+        // 	if (newValue)
+        // 	{
+        // 		if (_lastLayoutSize != new Size(Width, Height))
+        // 		{
+        // 			UpdateChildrenLayout();
+        // 		}
+        // 	}
+        // }
 
         static int GetElementDepth(Element view)
         {
@@ -281,16 +442,20 @@ namespace Tizen.NUI.Binding
 
         void OnInternalAdded(View view)
         {
-            var parent = view.GetParent() as Layout;
+            var parent = view.Parent as Layout;
             parent?.InternalChildren.Remove(view);
 
             OnChildAdded(view);
             if (ShouldInvalidateOnChildAdded(view))
                 InvalidateLayout();
+
+            // view.MeasureInvalidated += OnChildMeasureInvalidated;
         }
 
         void OnInternalRemoved(View view)
         {
+            // view.MeasureInvalidated -= OnChildMeasureInvalidated;
+
             OnChildRemoved(view);
             if (ShouldInvalidateOnChildRemoved(view))
                 InvalidateLayout();
@@ -298,15 +463,20 @@ namespace Tizen.NUI.Binding
 
         bool ShouldLayoutChildren()
         {
-            if ( !LogicalChildrenInternal.Any() )
-                return false;
+            // if (Width <= 0 || Height <= 0 || !LogicalChildrenInternal.Any() || !IsVisible || !IsNativeStateConsistent || DisableLayout)
+            // 	return false;
 
-            foreach (Element element in VisibleDescendants())
-            {
-                var visual = element as BaseHandle;
-                if (visual == null)
-                    continue;
-            }
+            // foreach (Element element in VisibleDescendants())
+            // {
+            // 	var visual = element as /*VisualElement*/BaseHandle;
+            // 	if (visual == null || !visual.IsVisible)
+            // 		continue;
+
+            // 	if (!visual.IsPlatformEnabled || !visual.IsNativeStateConsistent)
+            // 	{
+            // 		return false;
+            // 	}
+            // }
             return true;
         }
     }

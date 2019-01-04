@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2018 Samsung Electronics Co., Ltd.
+ * Copyright (c) 2017 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -84,6 +84,7 @@ namespace Tizen.NUI
 
         readonly Lazy<PlatformConfigurationRegistry<Page>> _platformConfigurationRegistry;
 
+        bool _allocatedFlag;
         Rectangle _containerArea;
 
         bool _containerAreaSet;
@@ -199,7 +200,7 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public ObservableCollection<Element> InternalChildren { get; } = new ObservableCollection<Element>();
 
-        internal override ReadOnlyCollection<Element> LogicalChildrenInternal =>
+        internal override ReadOnlyCollection<Element> LogicalChildrenInternal => 
             _logicalChildren ?? (_logicalChildren = new ReadOnlyCollection<Element>(InternalChildren));
 
         /// <summary>
@@ -281,6 +282,7 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void ForceLayout()
         {
+            // SizeAllocated(Width, Height);
         }
 
         /// <summary>
@@ -317,6 +319,19 @@ namespace Tizen.NUI
                 area.Width = Math.Max(0, area.Width);
                 area.Height = Math.Max(0, area.Height);
             }
+
+            List<Element> elements = LogicalChildren.ToList();
+            foreach (Element element in elements)
+            {
+                var child = element as /*VisualElement*/BaseHandle;
+                if (child == null)
+                    continue;
+                var page = child as Page;
+                // if (page != null && page.IgnoresContainerArea)
+                    // Forms.Layout.LayoutChildIntoBoundingRegion(child, originalArea);
+                // else
+                    // Forms.Layout.LayoutChildIntoBoundingRegion(child, area);
+            }
         }
 
         /// <summary>
@@ -337,11 +352,15 @@ namespace Tizen.NUI
         protected virtual bool OnBackButtonPressed()
         {
             var application = RealParent as Application;
+            // if (application == null || this == application.MainPage)
+                // return false;
 
             var canceled = false;
             EventHandler handler = (sender, args) => { canceled = true; };
+            // application.PopCanceled += handler;
             Navigation.PopModalAsync().ContinueWith(t => { throw t.Exception; }, CancellationToken.None, TaskContinuationOptions.OnlyOnFaulted, TaskScheduler.FromCurrentSynchronizationContext());
 
+            // application.PopCanceled -= handler;
             return !canceled;
         }
 
@@ -353,6 +372,10 @@ namespace Tizen.NUI
         protected override void OnBindingContextChanged()
         {
             base.OnBindingContextChanged();
+            // foreach (ToolbarItem toolbarItem in ToolbarItems)
+            // {
+            // 	SetInheritedBindingContext(toolbarItem, BindingContext);
+            // }
         }
 
         /// <summary>
@@ -365,7 +388,7 @@ namespace Tizen.NUI
         protected virtual void OnChildMeasureInvalidated(object sender, EventArgs e)
         {
             InvalidationTrigger trigger = (e as InvalidationEventArgs)?.Trigger ?? InvalidationTrigger.Undefined;
-            OnChildMeasureInvalidated((BaseHandle)sender, trigger);
+            OnChildMeasureInvalidated((/*VisualElement*/BaseHandle)sender, trigger);
         }
 
         /// <summary>
@@ -384,8 +407,20 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected override void OnParentSet()
         {
+            //if (!Application.IsApplicationOrNull(RealParent) && !(RealParent is Page))
+                // throw new InvalidOperationException("Parent of a Page must also be a Page");
             base.OnParentSet();
         }
+
+        ///// <summary>
+        ///// Indicates that the Page has been assigned a size.
+        ///// </summary>
+        // protected override void OnSizeAllocated(double width, double height)
+        // {
+        //  _allocatedFlag = true;
+        //  //base.OnSizeAllocated(width, height);
+        //  UpdateChildrenLayout();
+        // }
 
         /// <summary>
         /// Requests that the children Elements of the Page update their layouts.
@@ -397,33 +432,55 @@ namespace Tizen.NUI
             if (!ShouldLayoutChildren())
                 return;
 
+            var startingLayout = new List<Rectangle>(LogicalChildren.Count);
+            foreach (/*VisualElement*/BaseHandle c in LogicalChildren)
+            {
+                //startingLayout.Add(c.Bounds);
+            }
+
             double x = Padding.Left;
             double y = Padding.Top;
+            //double w = Math.Max(0, Width - Padding.HorizontalThickness);
+            //double h = Math.Max(0, Height - Padding.VerticalThickness);
+
+            //LayoutChildren(x, y, w, h);
 
             for (var i = 0; i < LogicalChildren.Count; i++)
             {
-                var c = (BaseHandle)LogicalChildren[i];
-                LayoutChanged?.Invoke(this, EventArgs.Empty);
+                var c = (/*VisualElement*/BaseHandle)LogicalChildren[i];
+
+                // if (c.Bounds != startingLayout[i])
+                // {
+                // 	LayoutChanged?.Invoke(this, EventArgs.Empty);
+                // 	return;
+                // }
             }
         }
 
-        internal virtual void OnChildMeasureInvalidated(BaseHandle child, InvalidationTrigger trigger)
+        internal virtual void OnChildMeasureInvalidated(/*VisualElement*/BaseHandle child, InvalidationTrigger trigger)
         {
             var container = this as IPageContainer<Page>;
             if (container != null)
             {
                 Page page = container.CurrentPage;
-                if (page != null)
+                if (page != null /*&& page.IsVisible && (!page.IsPlatformEnabled || !page.IsNativeStateConsistent)*/)
                     return;
             }
             else
             {
                 for (var i = 0; i < LogicalChildren.Count; i++)
                 {
-                    var v = LogicalChildren[i] as BaseHandle;
-                    if (v != null)
+                    var v = LogicalChildren[i] as /*VisualElement*/BaseHandle;
+                    if (v != null /*&& v.IsVisible && (!v.IsPlatformEnabled || !v.IsNativeStateConsistent)*/)
                         return;
                 }
+            }
+
+            _allocatedFlag = false;
+            // InvalidateMeasureInternal(InvalidationTrigger.MeasureChanged);
+            if (!_allocatedFlag /*&& Width >= 0 && Height >= 0*/)
+            {
+                // SizeAllocated(Width, Height);
             }
         }
 
@@ -446,6 +503,8 @@ namespace Tizen.NUI
 
             var pageContainer = this as IPageContainer<Page>;
             pageContainer?.CurrentPage?.SendAppearing();
+
+            //FindApplication(this)?.OnPageAppearing(this);
         }
 
         /// <summary>
@@ -467,6 +526,8 @@ namespace Tizen.NUI
 
             OnDisappearing();
             Disappearing?.Invoke(this, EventArgs.Empty);
+
+            //FindApplication(this)?.OnPageDisappearing(this);
         }
 
         Application FindApplication(Element element)
@@ -481,24 +542,29 @@ namespace Tizen.NUI
         {
             if (e.OldItems != null)
             {
-                foreach (BaseHandle item in e.OldItems.OfType<BaseHandle>())
+                foreach (/*VisualElement*/BaseHandle item in e.OldItems.OfType</*VisualElement*/BaseHandle>())
                     OnInternalRemoved(item);
             }
 
             if (e.NewItems != null)
             {
-                foreach (BaseHandle item in e.NewItems.OfType<BaseHandle>())
+                foreach (/*VisualElement*/BaseHandle item in e.NewItems.OfType</*VisualElement*/BaseHandle>())
                     OnInternalAdded(item);
             }
         }
 
-        void OnInternalAdded(BaseHandle view)
+        void OnInternalAdded(/*VisualElement*/BaseHandle view)
         {
+            // view.MeasureInvalidated += OnChildMeasureInvalidated;
+
             OnChildAdded(view);
+            // InvalidateMeasureInternal(InvalidationTrigger.MeasureChanged);
         }
 
-        void OnInternalRemoved(BaseHandle view)
+        void OnInternalRemoved(/*VisualElement*/BaseHandle view)
         {
+            // view.MeasureInvalidated -= OnChildMeasureInvalidated;
+
             OnChildRemoved(view);
         }
 
@@ -520,20 +586,22 @@ namespace Tizen.NUI
 
         bool ShouldLayoutChildren()
         {
-            if (!LogicalChildren.Any())
+            if (!LogicalChildren.Any()/* || Width <= 0 || Height <= 0 || !IsNativeStateConsistent*/)
                 return false;
 
             var container = this as IPageContainer<Page>;
             if (container?.CurrentPage != null)
             {
+                // if (InternalChildren.Contains(container.CurrentPage))
+                // 	return container.CurrentPage.IsPlatformEnabled && container.CurrentPage.IsNativeStateConsistent;
                 return true;
             }
 
             var any = false;
             for (var i = 0; i < LogicalChildren.Count; i++)
             {
-                var v = LogicalChildren[i] as BaseHandle;
-                if (v != null)
+                var v = LogicalChildren[i] as /*VisualElement*/BaseHandle;
+                if (v != null /*&& (!v.IsPlatformEnabled || !v.IsNativeStateConsistent)*/)
                 {
                     any = true;
                     break;
