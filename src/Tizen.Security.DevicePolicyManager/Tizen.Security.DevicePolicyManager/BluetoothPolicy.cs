@@ -79,7 +79,7 @@ namespace Tizen.Security.DevicePolicyManager
                     {
                         RemoveBluetoothPolicyChangedCallback();
                     }
-                    catch(Exception e)
+                    catch (Exception e)
                     {
                         Log.Error(Globals.LogTag, e.ToString());
                     }
@@ -91,7 +91,7 @@ namespace Tizen.Security.DevicePolicyManager
                     {
                         RemoveBluetoothTetheringPolicyChangedCallback();
                     }
-                    catch(Exception e)
+                    catch (Exception e)
                     {
                         Log.Error(Globals.LogTag, e.ToString());
                     }

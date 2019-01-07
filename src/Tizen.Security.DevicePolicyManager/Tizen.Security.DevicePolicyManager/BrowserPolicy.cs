@@ -75,7 +75,7 @@ namespace Tizen.Security.DevicePolicyManager
                     {
                         RemoveBrowserPolicyChangedCallback();
                     }
-                    catch(Exception e)
+                    catch (Exception e)
                     {
                         Log.Error(Globals.LogTag, e.ToString());
                     }
