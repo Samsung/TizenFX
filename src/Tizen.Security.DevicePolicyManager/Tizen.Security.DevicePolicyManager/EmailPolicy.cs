@@ -30,10 +30,6 @@ namespace Tizen.Security.DevicePolicyManager
 
         private Interop.DevicePolicyManager.PolicyChangedCallback _popImapPolicyChangedCallback;
         private EventHandler<PolicyChangedEventArgs> _popImapPolicyChanged;
-
-        internal EmailPolicy()
-        {
-        }
  
         internal EmailPolicy(DevicePolicyManager dpm) : base(dpm)
         {

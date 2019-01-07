@@ -31,10 +31,6 @@ namespace Tizen.Security.DevicePolicyManager
         private Interop.DevicePolicyManager.PolicyChangedCallback _usbTetheringPolicyChangedCallback;
         private EventHandler<PolicyChangedEventArgs> _usbTetheringPolicyChanged;
 
-        internal UsbPolicy()
-        {
-        }
-
         internal UsbPolicy(DevicePolicyManager dpm) : base(dpm)
         {
         }

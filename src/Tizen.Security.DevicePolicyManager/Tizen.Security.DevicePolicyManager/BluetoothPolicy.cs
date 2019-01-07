@@ -35,10 +35,6 @@ namespace Tizen.Security.DevicePolicyManager
         private EventHandler<PolicyChangedEventArgs> _bluetoothPolicyChanged;
         private EventHandler<PolicyChangedEventArgs> _bluetoothTetheringPolicyChanged;
 
-        internal BluetoothPolicy()
-        {
-        }
-
         internal BluetoothPolicy(DevicePolicyManager dpm) : base(dpm)
         {
         }

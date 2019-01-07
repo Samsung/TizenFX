@@ -31,10 +31,6 @@ namespace Tizen.Security.DevicePolicyManager
         private Interop.DevicePolicyManager.PolicyChangedCallback _locationPolicyChangedCallback;
         private EventHandler<PolicyChangedEventArgs> _locationPolicyChanged;
 
-        internal LocationPolicy()
-        {
-        }
-
         internal LocationPolicy(DevicePolicyManager dpm) : base(dpm)
         {
         }

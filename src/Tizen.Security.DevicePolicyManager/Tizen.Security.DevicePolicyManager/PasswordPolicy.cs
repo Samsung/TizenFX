@@ -24,10 +24,6 @@ namespace Tizen.Security.DevicePolicyManager
     /// <since_tizen> 6 </since_tizen>
     public class PasswordPolicy : DevicePolicy
     {
-        internal PasswordPolicy()
-        {
-        }
-
         internal PasswordPolicy(DevicePolicyManager dpm) : base(dpm)
         {
         }

@@ -31,10 +31,6 @@ namespace Tizen.Security.DevicePolicyManager
         private Interop.DevicePolicyManager.PolicyChangedCallback _browserPolicyChangedCallback;
         private EventHandler<PolicyChangedEventArgs> _browserPolicyChanged;
 
-        internal BrowserPolicy()
-        {
-        }
-
         internal BrowserPolicy(DevicePolicyManager dpm) : base(dpm)
         {
         }

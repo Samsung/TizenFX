@@ -35,10 +35,6 @@ namespace Tizen.Security.DevicePolicyManager
         private EventHandler<PolicyChangedEventArgs> _cameraPolicyChanged;
         private EventHandler<PolicyChangedEventArgs> _microphonePolicyChanged;
 
-        internal MediaPolicy()
-        {
-        }
-
         internal MediaPolicy(DevicePolicyManager dpm) : base(dpm)
         {
         }

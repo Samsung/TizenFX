@@ -31,10 +31,6 @@ namespace Tizen.Security.DevicePolicyManager
         private Interop.DevicePolicyManager.PolicyChangedCallback _externalStoragePolicyChangedCallback;
         private EventHandler<PolicyChangedEventArgs> _externalStoragePolicyChanged;
 
-        internal StoragePolicy()
-        {
-        }
-
         internal StoragePolicy(DevicePolicyManager dpm) : base(dpm)
         {
         }

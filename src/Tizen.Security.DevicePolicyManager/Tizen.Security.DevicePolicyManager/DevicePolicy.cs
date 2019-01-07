@@ -24,10 +24,6 @@ namespace Tizen.Security.DevicePolicyManager
     {
         internal readonly DevicePolicyManager _dpm;
 
-        internal DevicePolicy()
-        {
-        }
-
         internal DevicePolicy(DevicePolicyManager dpm)
         {
             _dpm = dpm;

@@ -31,10 +31,6 @@ namespace Tizen.Security.DevicePolicyManager
         private Interop.DevicePolicyManager.PolicyChangedCallback _messagingPolicyChangedCallback;
         private EventHandler<PolicyChangedEventArgs> _messagingPolicyChanged;
 
-        internal TelephonyPolicy()
-        {
-        }
-
         internal TelephonyPolicy(DevicePolicyManager dpm) : base(dpm)
         {
         }

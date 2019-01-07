@@ -36,10 +36,6 @@ namespace Tizen.Security.DevicePolicyManager
         private EventHandler<PolicyChangedEventArgs> _wifiPolicyChanged;
         private EventHandler<PolicyChangedEventArgs> _wifiHotspotPolicyChanged;
 
-        internal WifiPolicy()
-        {
-        }
-
         internal WifiPolicy(DevicePolicyManager dpm) : base(dpm)
         {
         }
