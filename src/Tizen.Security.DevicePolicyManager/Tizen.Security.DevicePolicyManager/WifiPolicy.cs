@@ -22,7 +22,7 @@ namespace Tizen.Security.DevicePolicyManager
     /// The WifiPolicy provides methods to manage wifi policies.
     /// </summary>
     /// <since_tizen> 6 </since_tizen>
-    public class WifiPolicy : DevicePolicy
+    public class WifiPolicy : DevicePolicy, IDisposable
     {
         private readonly string _wifiPolicyName = "wifi";
         private readonly string _wifiHotspotPolicyName = "wifi_hotspot";
@@ -49,7 +49,7 @@ namespace Tizen.Security.DevicePolicyManager
         /// </summary>
         ~WifiPolicy()
         {
-            this.Dispose();
+            this.Dispose(false);
         }
 
         /// <summary>
