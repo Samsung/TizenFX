@@ -168,7 +168,7 @@ namespace Tizen.Security.DevicePolicyManager
         {
             add
             {
-                if (_bluetoothPolicyChanged == null)
+                if (_bluetoothTetheringPolicyChanged == null)
                 {
                     AddBluetoothTetheringPolicyChangedCallback();
                 }
