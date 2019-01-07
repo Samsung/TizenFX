@@ -89,11 +89,11 @@ namespace Tizen.Security.DevicePolicyManager
         /// Checks whether the text messaging is allowed or not.
         /// </summary>
         /// <param name="simId">SIM identifier</param>
-        /// <returns>true if the messaging is allowed, false otherwise.</returns>
+        /// <returns>PolicyState ALLOWD if the messaging is allowed, PolicyState DISALLOWED otherwise.</returns>
         /// <since_tizen> 6 </since_tizen>
         /// <exception cref="ArgumentException">Thrown when failed because of invalid parameter.</exception>
         /// <exception cref="TimeoutException">Thrown when failed because of timeout.</exception>
-        public bool GetMessagingState(string simId)
+        public PolicyState IsMessagingAllowed(string simId)
         {
             int state;
             int ret = Interop.DevicePolicyManager.RestrictionGetMessagingState(_dpm.GetHandle(), simId, out state);
@@ -103,7 +103,7 @@ namespace Tizen.Security.DevicePolicyManager
                 throw DevicePolicyManagerErrorFactory.CreateException(ret);
             }
 
-            return state == 1;
+            return state == 1 ? PolicyState.ALLOWED : PolicyState.DISALLOWED;
         }
 
         /// <summary>
