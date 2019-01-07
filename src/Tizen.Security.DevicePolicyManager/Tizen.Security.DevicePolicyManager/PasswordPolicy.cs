@@ -35,165 +35,166 @@ namespace Tizen.Security.DevicePolicyManager
         /// <summary>
         /// Gets the number of days password expires.
         /// </summary>
-        /// <returns>Number of days after which the password expires.</returns>
+        /// <value>Number of days after which the password expires. If error occurs, -1 is returned.</value>
         /// <since_tizen> 6 </since_tizen>
         /// <privilege>http://tizen.org/privilege/dpm.password</privilege>
         /// <privlevel>partner</privlevel>
-        /// <exception cref="ArgumentException">Thrown when failed because of invalid handle of DevicePolicyManager.</exception>
-        /// <exception cref="TimeoutException">Thrown when failed because of timeout.</exception>
-        /// <exception cref="UnauthorizedAccessException">Thrown when application does not have privilege to access this method.</exception>
-        public int GetExpires()
+        public int ExpiresDay
         {
-            int value;
-            int ret = Interop.DevicePolicyManager.PasswordGetExpires(_dpm.GetHandle(), out value);
-            if (ret != (int)Interop.DevicePolicyManager.ErrorCode.None)
+            get
             {
-                Log.Error(Globals.LogTag, "Failed to get password expires policy " + ret);
-                throw DevicePolicyManagerErrorFactory.CreateException(ret);
-            }
+                int value;
+                int ret = Interop.DevicePolicyManager.PasswordGetExpires(_dpm.GetHandle(), out value);
+                if (ret != (int)Interop.DevicePolicyManager.ErrorCode.None)
+                {
+                    Log.Error(Globals.LogTag, "Failed to get password expires policy " + ret);
+                    return -1;
+                }
 
-            return value;
+                return value;
+            }
         }
 
         /// <summary>
         /// Gets the number of min password history to avoid previous password.
         /// </summary>
-        /// <returns>Number of previous passwords which cannot be used when settings a new password.</returns>
+        /// <value>Number of previous passwords which cannot be used when settings a new password. If error occurs, -1 is returned.</value>
         /// <since_tizen> 6 </since_tizen>
         /// <privilege>http://tizen.org/privilege/dpm.password</privilege>
         /// <privlevel>partner</privlevel>
-        /// <exception cref="ArgumentException">Thrown when failed because of invalid handle of DevicePolicyManager.</exception>
-        /// <exception cref="TimeoutException">Thrown when failed because of timeout.</exception>
-        /// <exception cref="UnauthorizedAccessException">Thrown when application does not have privilege to access this method.</exception>
-        public int GetHistory()
+        public int MinimumPreviousHistory
         {
-            int value;
-            int ret = Interop.DevicePolicyManager.PasswordGetHistory(_dpm.GetHandle(), out value);
-            if (ret != (int)Interop.DevicePolicyManager.ErrorCode.None)
+            get
             {
-                Log.Error(Globals.LogTag, "Failed to get password history policy " + ret);
-                throw DevicePolicyManagerErrorFactory.CreateException(ret);
-            }
+                int value;
+                int ret = Interop.DevicePolicyManager.PasswordGetHistory(_dpm.GetHandle(), out value);
+                if (ret != (int)Interop.DevicePolicyManager.ErrorCode.None)
+                {
+                    Log.Error(Globals.LogTag, "Failed to get password history policy " + ret);
+                    return -1;
+                }
 
-            return value;
+                return value;
+            }
         }
 
         /// <summary>
         /// Gets the maximum number of seconds of inactivity time before the screen timeout occurs.
         /// </summary>
-        /// <returns>Maximum inactivity time for device lock.</returns>
+        /// <value>Maximum inactivity time for device lock. If error occurs, -1 is returned.</value>
         /// <since_tizen> 6 </since_tizen>
         /// <privilege>http://tizen.org/privilege/dpm.password</privilege>
         /// <privlevel>partner</privlevel>
-        /// <exception cref="ArgumentException">Thrown when failed because of invalid handle of DevicePolicyManager.</exception>
-        /// <exception cref="TimeoutException">Thrown when failed because of timeout.</exception>
-        /// <exception cref="UnauthorizedAccessException">Thrown when application does not have privilege to access this method.</exception>
-        public int GetMaxInactivityTimeDeviceLock()
+        public int MaxInactivityTimeDeviceLock
         {
-            int value;
-            int ret = Interop.DevicePolicyManager.PasswordGetMaxInactivityTimeDeviceLock(_dpm.GetHandle(), out value);
-            if (ret != (int)Interop.DevicePolicyManager.ErrorCode.None)
+            get
             {
-                Log.Error(Globals.LogTag, "Failed to get password maximum inactivity time policy " + ret);
-                throw DevicePolicyManagerErrorFactory.CreateException(ret);
-            }
+                int value;
+                int ret = Interop.DevicePolicyManager.PasswordGetMaxInactivityTimeDeviceLock(_dpm.GetHandle(), out value);
+                if (ret != (int)Interop.DevicePolicyManager.ErrorCode.None)
+                {
+                    Log.Error(Globals.LogTag, "Failed to get password maximum inactivity time policy " + ret);
+                    return -1;
+                }
 
-            return value;
+                return value;
+            }
         }
 
         /// <summary>
         /// Gets maximum number of failed attempts before device is wiped.
         /// If user fails the last attempt, device will be wiped.
         /// </summary>
-        /// <returns>Maximum count for failed passwords.</returns>
+        /// <value>Maximum count for failed passwords. If error occurs, -1 is returned.</value>
         /// <since_tizen> 6 </since_tizen>
         /// <privilege>http://tizen.org/privilege/dpm.password</privilege>
         /// <privlevel>partner</privlevel>
-        /// <exception cref="ArgumentException">Thrown when failed because of invalid handle of DevicePolicyManager.</exception>
-        /// <exception cref="TimeoutException">Thrown when failed because of timeout.</exception>
-        /// <exception cref="UnauthorizedAccessException">Thrown when application does not have privilege to access this method.</exception>
-        public int GetMaximumFailedAttemptsForWipe()
+        public int MaximumFailedAttemptsForWipe
         {
-            int value;
-            int ret = Interop.DevicePolicyManager.PasswordGetMaximumFailedAttemptsForWipe(_dpm.GetHandle(), out value);
-            if (ret != (int)Interop.DevicePolicyManager.ErrorCode.None)
+            get
             {
-                Log.Error(Globals.LogTag, "Failed to get password maximum failed attempts policy " + ret);
-                throw DevicePolicyManagerErrorFactory.CreateException(ret);
-            }
+                int value;
+                int ret = Interop.DevicePolicyManager.PasswordGetMaximumFailedAttemptsForWipe(_dpm.GetHandle(), out value);
+                if (ret != (int)Interop.DevicePolicyManager.ErrorCode.None)
+                {
+                    Log.Error(Globals.LogTag, "Failed to get password maximum failed attempts policy " + ret);
+                    return -1;
+                }
 
-            return value;
+                return value;
+            }
         }
 
         /// <summary>
         /// Gets minimum complex char in password.
         /// Complex characters are all non-alphabetic characters; that is, numbers and symbols.
         /// </summary>
-        /// <returns>Number of minimum complex char in password.</returns>
+        /// <value>Number of minimum complex char in password. If error occurs, -1 is returned.</value>
         /// <since_tizen> 6 </since_tizen>
         /// <privilege>http://tizen.org/privilege/dpm.password</privilege>
         /// <privlevel>partner</privlevel>
-        /// <exception cref="ArgumentException">Thrown when failed because of invalid handle of DevicePolicyManager.</exception>
-        /// <exception cref="TimeoutException">Thrown when failed because of timeout.</exception>
-        /// <exception cref="UnauthorizedAccessException">Thrown when application does not have privilege to access this method.</exception>
-        public int GetMinComplexChars()
+        public int MinimumRequiredComplexChars
         {
-            int value;
-            int ret = Interop.DevicePolicyManager.PasswordGetMinComplexChars(_dpm.GetHandle(), out value);
-            if (ret != (int)Interop.DevicePolicyManager.ErrorCode.None)
+            get
             {
-                Log.Error(Globals.LogTag, "Failed to get password min complext chars policy " + ret);
-                throw DevicePolicyManagerErrorFactory.CreateException(ret);
-            }
+                int value;
+                int ret = Interop.DevicePolicyManager.PasswordGetMinComplexChars(_dpm.GetHandle(), out value);
+                if (ret != (int)Interop.DevicePolicyManager.ErrorCode.None)
+                {
+                    Log.Error(Globals.LogTag, "Failed to get password min complext chars policy " + ret);
+                    return -1;
+                }
 
-            return value;
+                return value;
+            }
         }
 
         /// <summary>
         /// Gets the minimum allowed password length.
         /// </summary>
-        /// <returns>Allowed minimum password length.</returns>
+        /// <value>Allowed minimum password length. If error occurs, -1 is returned.</value>
         /// <since_tizen> 6 </since_tizen>
         /// <privilege>http://tizen.org/privilege/dpm.password</privilege>
         /// <privlevel>partner</privlevel>
-        /// <exception cref="ArgumentException">Thrown when failed because of invalid handle of DevicePolicyManager.</exception>
-        /// <exception cref="TimeoutException">Thrown when failed because of timeout.</exception>
-        /// <exception cref="UnauthorizedAccessException">Thrown when application does not have privilege to access this method.</exception>
-        public int GetMinimumLength()
+        public int MinimunLength
         {
-            int value;
-            int ret = Interop.DevicePolicyManager.PasswordGetMinimumLength(_dpm.GetHandle(), out value);
-            if (ret != (int)Interop.DevicePolicyManager.ErrorCode.None)
+            get
             {
-                Log.Error(Globals.LogTag, "Failed to get password min length policy " + ret);
-                throw DevicePolicyManagerErrorFactory.CreateException(ret);
-            }
+                int value;
+                int ret = Interop.DevicePolicyManager.PasswordGetMinimumLength(_dpm.GetHandle(), out value);
+                if (ret != (int)Interop.DevicePolicyManager.ErrorCode.None)
+                {
+                    Log.Error(Globals.LogTag, "Failed to get password min length policy " + ret);
+                    return -1;
+                }
 
-            return value;
+                return value;
+            }
         }
 
         /// <summary>
         /// Gets password quality.
         /// An administrator can get the password restrictions it is imposing.
         /// </summary>
-        /// <returns>Password quality type, values of PasswordQuality.</returns>
+        /// <value>Password quality type, values of PasswordQuality. If error occurs, PasswordQuality UNSPECIFIED is returned.</value>
+        /// <seealso cref="PasswordQuality"/>
         /// <since_tizen> 6 </since_tizen>
         /// <privilege>http://tizen.org/privilege/dpm.password</privilege>
         /// <privlevel>partner</privlevel>
-        /// <exception cref="ArgumentException">Thrown when failed because of invalid handle of DevicePolicyManager.</exception>
-        /// <exception cref="TimeoutException">Thrown when failed because of timeout.</exception>
-        /// <exception cref="UnauthorizedAccessException">Thrown when application does not have privilege to access this method.</exception>
-        public PasswordQuality GetQuality()
+        public PasswordQuality Quality
         {
-            int quality;
-            int ret = Interop.DevicePolicyManager.PasswordGetQuality(_dpm.GetHandle(), out quality);
-            if (ret != (int)Interop.DevicePolicyManager.ErrorCode.None)
+            get
             {
-                Log.Error(Globals.LogTag, "Failed to get password quality policy " + ret);
-                throw DevicePolicyManagerErrorFactory.CreateException(ret);
-            }
+                int quality;
+                int ret = Interop.DevicePolicyManager.PasswordGetQuality(_dpm.GetHandle(), out quality);
+                if (ret != (int)Interop.DevicePolicyManager.ErrorCode.None)
+                {
+                    Log.Error(Globals.LogTag, "Failed to get password quality policy " + ret);
+                    return PasswordQuality.UNSPECIFIED;
+                }
 
-            return (PasswordQuality)quality;
+                return (PasswordQuality)quality;
+            }
         }
     }
 }

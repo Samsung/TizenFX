@@ -86,24 +86,26 @@ namespace Tizen.Security.DevicePolicyManager
         }
 
         /// <summary>
-        /// Checks whether the access to POP or IMAP email is allowed or not.
+        /// Gets whether the access to POP or IMAP email is allowed or not.
         /// </summary>
-        /// <returns>true if the POP or IMAP email is allowed, false otherwise.</returns>
+        /// <value>The pop-imap email policy state. If error occurs, PolicyState UNKNOWN is returned.</value>
+        /// <seealso cref="PolicyState"/>
         /// <since_tizen> 6 </since_tizen>
-        /// <exception cref="ArgumentException">Thrown when failed because of invalid handle of DevicePolicyManager.</exception>
-        /// <exception cref="TimeoutException">Thrown when failed because of timeout.</exception>
-        public bool GetPopImapState()
+        public PolicyState IsPopImapAllowed
         {
-            int state;
-            int ret = Interop.DevicePolicyManager.RestrictionGetPopimapEmailState(_dpm.GetHandle(), out state);
-
-            if (ret != (int)Interop.DevicePolicyManager.ErrorCode.None)
+            get
             {
-                Log.Error(Globals.LogTag, "Failed to get popimap email policy " + ret);
-                throw DevicePolicyManagerErrorFactory.CreateException(ret);
-            }
+                int state;
+                int ret = Interop.DevicePolicyManager.RestrictionGetPopimapEmailState(_dpm.GetHandle(), out state);
 
-            return state == 1;
+                if (ret != (int)Interop.DevicePolicyManager.ErrorCode.None)
+                {
+                    Log.Error(Globals.LogTag, "Failed to get popimap email policy " + ret);
+                    return PolicyState.UNKNOWN;
+                }
+
+                return state == 1 ? PolicyState.ALLOWED : PolicyState.DISALLOWED;
+            }
         }
 
         /// <summary>

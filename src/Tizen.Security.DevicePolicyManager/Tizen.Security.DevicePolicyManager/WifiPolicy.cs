@@ -103,23 +103,26 @@ namespace Tizen.Security.DevicePolicyManager
         }
 
         /// <summary>
-        /// Checks whether the Wi-Fi state change is allowed or not.
+        /// Gets whether the Wi-Fi state change is allowed or not.
         /// </summary>
-        /// <returns>true if the change is allowed, false otherwise.</returns>
+        /// <value>The wifi policy state. If error occurs, PolicyState UNKNOWN is returned.</value>
+        /// <seealso cref="PolicyState"/>
         /// <since_tizen> 6 </since_tizen>
-        /// <exception cref="ArgumentException">Thrown when failed because of invalid handle of DevicePolicyManager.</exception>
-        /// <exception cref="TimeoutException">Thrown when failed because of timeout.</exception>
-        public bool GetWifiState()
+        public PolicyState IsWifiAllowed
         {
-            int state;
-            int ret = Interop.DevicePolicyManager.RestrictionGetWifiState(_dpm.GetHandle(), out state);
-
-            if (ret != (int)Interop.DevicePolicyManager.ErrorCode.None)
+            get
             {
-                throw DevicePolicyManagerErrorFactory.CreateException(ret);
-            }
+                int state;
+                int ret = Interop.DevicePolicyManager.RestrictionGetWifiState(_dpm.GetHandle(), out state);
 
-            return state == 1;
+                if (ret != (int)Interop.DevicePolicyManager.ErrorCode.None)
+                {
+                    Log.Error(Globals.LogTag, "Failed to get wifi policy " + ret);
+                    return PolicyState.UNKNOWN;
+                }
+
+                return state == 1 ? PolicyState.ALLOWED : PolicyState.DISALLOWED;
+            }
         }
 
         /// <summary>
