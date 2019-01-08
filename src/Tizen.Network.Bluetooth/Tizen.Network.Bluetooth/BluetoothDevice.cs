@@ -681,7 +681,7 @@ namespace Tizen.Network.Bluetooth
         public T GetProfile<T>() where T : BluetoothProfile
         {
             // TODO : Need to check capability of supporting profiles
-            var profile = Activator.CreateInstance<T>();
+            var profile = (T)Activator.CreateInstance(typeof(T), true);
             profile.RemoteAddress = RemoteDeviceAddress;
             return profile;
         }
