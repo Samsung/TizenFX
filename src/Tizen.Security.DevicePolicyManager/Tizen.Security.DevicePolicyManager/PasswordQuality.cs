@@ -26,31 +26,31 @@ namespace Tizen.Security.DevicePolicyManager
         /// No requirements for password.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
-        UNSPECIFIED = 0x00,
+        Unspecified = 0x00,
         /// <summary>
         /// EAS(Exchange ActiveSync) requirement for simple password.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
-        SIMPLE = 0x01,
+        Simple = 0x01,
         /// <summary>
         /// Some kind password required, but doesn't care what it is.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
-        SOMETHING = 0x10,
+        Something = 0x10,
         /// <summary>
         /// Containing at least numeric character.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
-        NUMERIC = 0x20,
+        Numeric = 0x20,
         /// <summary>
         /// Containing at least alphabetic (or other symbol) characters.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
-        ALPHABETIC = 0x40,
+        Alphabetic = 0x40,
         /// <summary>
         /// Containing at least numeric and alphabetic characters.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
-        ALPHANUMERIC = 0x80
+        Alphanumeric = 0x80
     }
 }

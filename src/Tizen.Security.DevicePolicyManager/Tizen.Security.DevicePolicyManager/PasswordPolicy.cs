@@ -186,7 +186,7 @@ namespace Tizen.Security.DevicePolicyManager
                 if (ret != (int)Interop.DevicePolicyManager.ErrorCode.None)
                 {
                     Log.Error(Globals.LogTag, "Failed to get password quality policy " + ret);
-                    return PasswordQuality.UNSPECIFIED;
+                    return PasswordQuality.Unspecified;
                 }
 
                 return (PasswordQuality)quality;
