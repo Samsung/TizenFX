@@ -1,5 +1,5 @@
 /*
- * Copyright(c) 2018 Samsung Electronics Co., Ltd.
+ * Copyright(c) 2019 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -53,12 +53,18 @@ namespace Tizen.NUI
 
         private static readonly Window instance = Application.Instance?.GetWindow();
 
+        private LayoutController localController;
+
         internal Window(global::System.IntPtr cPtr, bool cMemoryOwn) : base(NDalicPINVOKE.Window_SWIGUpcast(cPtr), cMemoryOwn)
         {
             swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
             if (NDalicPINVOKE.Stage_IsInstalled())
             {
                 stageCPtr = new global::System.Runtime.InteropServices.HandleRef(this, NDalicPINVOKE.Stage_GetCurrent());
+
+                localController = new LayoutController();
+                NUILog.Debug("layoutController id:" + localController.GetId() );
+
                 // Create a root layout (AbsoluteLayout) that is invisible to the user but enables layouts added to the Window
                 // Enables layouts added to the Window to have a parent layout.  As parent layout is needed to store measure spec properties.
                 // Currently without these measure specs the new layout added will always be the size of the window.
@@ -1802,7 +1808,7 @@ namespace Tizen.NUI
         /// Disconnect all native signals
         /// </summary>
         /// <since_tizen> 5 </since_tizen>
-        internal void DisconnectNativeSignals() 
+        internal void DisconnectNativeSignals()
         {
             if( _windowFocusChangedEventCallback != null )
             {
