@@ -53,18 +53,17 @@ namespace Tizen.Security.DevicePolicyManager
         /// <exception cref="InvalidOperationException">Thrown when failed to create instance of the policy.</exception>
         public T GetPolicy<T>() where T : DevicePolicy
         {
-            T policy = Activator.CreateInstance(typeof(T),
-                System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance,
-                null, new object[] { this }, null) as T;
-
-            if (policy == null)
+            try
             {
-                Log.Error(Globals.LogTag, "Failed to create " + policy.ToString());
-                throw new InvalidOperationException("Failed to create " + policy.ToString());
-            }
-            else
-            {
+                T policy = Activator.CreateInstance(typeof(T),
+                    System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance,
+                    null, new object[] { this }, null) as T;
                 return policy;
+            }
+            catch (Exception e)
+            {
+                Log.Error(Globals.LogTag, "Failed to create policy. " + e.Message);
+                throw new InvalidOperationException("Failed to create policy.");
             }
         }
 
