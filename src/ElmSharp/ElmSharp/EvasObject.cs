@@ -1226,8 +1226,7 @@ namespace ElmSharp
                 _hidden = new EvasObjectEvent(this, EvasObjectCallbackType.Hide);
 
                 _deleted.On += (s, e) => MakeInvalidate();
-
-                Elementary.SendEvasObjectRealized(this);
+                _shown.On += (s, e) => Elementary.SendEvasObjectRealized(this);
             }
         }
 
