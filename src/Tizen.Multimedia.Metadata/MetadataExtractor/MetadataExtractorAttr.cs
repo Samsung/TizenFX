@@ -34,7 +34,7 @@ namespace Tizen.Multimedia
         Album,
         AlbumArtist,
         Genre,
-        Author,
+        Composer,
         Copyright,
         ReleaseDate,
         Description,

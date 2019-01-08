@@ -1042,7 +1042,7 @@ namespace Tizen.Uix.InputMethod
             /// <summary>
             /// Compares whether the ContextIds are equal.
             /// </summary>
-            /// <param name="other">The ContextIds to test for equality.</param>
+            /// <param name="other">The ContextId to compare with this instance.</param>
             /// <returns>true if the ContextIds is the same; otherwise, false.</returns>
             /// <since_tizen> 4 </since_tizen>
             public bool Equals(ContextId other)
@@ -1730,7 +1730,7 @@ namespace Tizen.Uix.InputMethod
         /// <exception cref="InvalidOperationException">
         /// This can occur due to the following reasons:
         /// 1) The application does not have the privilege to call this function.
-        /// 2) The IME main loop isn't started yet.
+        /// 2) The IME main loop has not started yet.
         /// </exception>
         /// <since_tizen> 4 </since_tizen>
         public static void SendKeyEvent(KeyCode keyCode, KeyMask keyMask, bool forwardKey = false)
@@ -1753,7 +1753,7 @@ namespace Tizen.Uix.InputMethod
         /// <exception cref="InvalidOperationException">
         /// This can occur due to the following reasons:
         /// 1) The application does not have the privilege to call this function.
-        /// 2) The IME main loop isn't started yet.
+        /// 2) The IME main loop has not started yet.
         /// </exception>
         /// <since_tizen> 4 </since_tizen>
         public static void CommitString(string str)
@@ -1775,7 +1775,7 @@ namespace Tizen.Uix.InputMethod
         /// <exception cref="InvalidOperationException">
         /// This can occur due to the following reasons:
         /// 1) The application does not have the privilege to call this function.
-        /// 2) The IME main loop isn't started yet.
+        /// 2) The IME main loop has not started yet.
         /// </exception>
         /// <since_tizen> 4 </since_tizen>
         public static void ShowPreEditString()
@@ -1797,7 +1797,7 @@ namespace Tizen.Uix.InputMethod
         /// <exception cref="InvalidOperationException">
         /// This can occur due to the following reasons:
         /// 1) The application does not have the privilege to call this function.
-        /// 2) The IME main loop isn't started yet.
+        /// 2) The IME main loop has not started yet.
         /// </exception>
         /// <since_tizen> 4 </since_tizen>
         public static void HidePreEditString()
@@ -1824,7 +1824,7 @@ namespace Tizen.Uix.InputMethod
         /// <exception cref="InvalidOperationException">
         /// This can occur due to the following reasons:
         /// 1) The application does not have the privilege to call this function.
-        /// 2) The IME main loop isn't started yet.
+        /// 2) The IME main loop has not started yet.
         /// 3) Invalid parameter.
         /// </exception>
         /// <since_tizen> 4 </since_tizen>
@@ -1866,7 +1866,7 @@ namespace Tizen.Uix.InputMethod
         /// <exception cref="InvalidOperationException">
         /// This can occur due to the following reasons:
         /// 1) The application does not have the privilege to call this function.
-        /// 2) The IME main loop isn't started yet.
+        /// 2) The IME main loop has not started yet.
         /// </exception>
         /// <postcondition>
         /// The requested surrounding text can be received using the SurroundingTextUpdated event, only if it is set.
@@ -1893,7 +1893,7 @@ namespace Tizen.Uix.InputMethod
         /// <exception cref="InvalidOperationException">
         /// This can occur due to the following reasons:
         /// 1) The application does not have the privilege to call this function.
-        /// 2) The IME main loop isn't started yet.
+        /// 2) The IME main loop has not started yet.
         /// 3) Invalid parameter.
         /// </exception>
         /// <since_tizen> 4 </since_tizen>
@@ -1920,7 +1920,7 @@ namespace Tizen.Uix.InputMethod
         /// <exception cref="InvalidOperationException">
         /// This can occur due to the following reasons:
         /// 1) The application does not have the privilege to call this function.
-        /// 2) The IME main loop isn't started yet.
+        /// 2) The IME main loop has not started yet.
         /// 3) Invalid parameter.
         /// 4) Failed to obtain text due to out of memory.
         /// </exception>
@@ -1948,7 +1948,7 @@ namespace Tizen.Uix.InputMethod
         /// <exception cref="InvalidOperationException">
         /// This can occur due to the following reasons:
         /// 1) The application does not have the privilege to call this function.
-        /// 2) The IME main loop isn't started yet.
+        /// 2) The IME main loop has not started yet.
         /// 3) Invalid parameter.
         /// </exception>
         /// <since_tizen> 4 </since_tizen>
@@ -1972,7 +1972,7 @@ namespace Tizen.Uix.InputMethod
         /// <exception cref="InvalidOperationException">
         /// This can occur due to the following reasons:
         /// 1) The application does not have the privilege to call this function.
-        /// 2) The IME main loop isn't started yet.
+        /// 2) The IME main loop has not started yet.
         /// 3) Operation failed.
         /// </exception>
         /// <since_tizen> 4 </since_tizen>
@@ -1998,7 +1998,7 @@ namespace Tizen.Uix.InputMethod
         /// <exception cref="InvalidOperationException">
         /// This can occur due to the following reasons:
         /// 1) The application does not have the privilege to call this function.
-        /// 2) The IME main loop has not yet started.
+        /// 2) The IME main loop has not started yet.
         /// </exception>
         /// <since_tizen> 5 </since_tizen>
         public static void RequestHide()
@@ -2073,16 +2073,16 @@ namespace Tizen.Uix.InputMethod
         /// <privilege>
         /// http://tizen.org/privilege/ime
         /// </privilege>
-        /// <param name="floating_mode"><c>true</c> to set the floating mode to on and <c>false</c> to set it to off.</param>
+        /// <param name="floatingMode"><c>true</c> to set the floating mode to on and <c>false</c> to set it to off.</param>
         /// <exception cref="InvalidOperationException">
         /// This can occur due to the following reasons:
         /// 1) The application does not have the privilege to call this function.
-        /// 2) The IME main loop has not yet started.
+        /// 2) The IME main loop has not started yet.
         /// </exception>
         /// <since_tizen> 5 </since_tizen>
-        public static void SetFloatingMode(bool floating_mode)
+        public static void SetFloatingMode(bool floatingMode)
         {
-            ErrorCode error = ImeSetFloatingMode(floating_mode);
+            ErrorCode error = ImeSetFloatingMode(floatingMode);
             if (error != ErrorCode.None)
             {
                 Log.Error(LogTag, "SetFloatingMode Failed with error " + error);
@@ -2102,7 +2102,7 @@ namespace Tizen.Uix.InputMethod
         /// <exception cref="InvalidOperationException">
         /// This can occur due to the following reasons:
         /// 1) The application does not have the privilege to call this function.
-        /// 2) The IME main loop has not yet started.
+        /// 2) The IME main loop has not started yet.
         /// </exception>
         /// <since_tizen> 5 </since_tizen>
         public static void SetFloatingDragStart()
@@ -2127,7 +2127,7 @@ namespace Tizen.Uix.InputMethod
         /// <exception cref="InvalidOperationException">
         /// This can occur due to the following reasons:
         /// 1) The application does not have the privilege to call this function.
-        /// 2) The IME main loop has not yet started.
+        /// 2) The IME main loop has not started yet.
         /// </exception>
         /// <since_tizen> 5 </since_tizen>
         public static void SetFloatingDragEnd()
@@ -2152,7 +2152,7 @@ namespace Tizen.Uix.InputMethod
         /// <exception cref="InvalidOperationException">
         /// This can occur due to the following reasons:
         /// 1) The application does not have the privilege to call this function.
-        /// 2) The IME main loop has not yet started.
+        /// 2) The IME main loop has not started yet.
         /// </exception>
         /// <since_tizen> 6 </since_tizen>
         public static void SendLanguageUpdated()
@@ -2175,7 +2175,7 @@ namespace Tizen.Uix.InputMethod
         /// <exception cref="InvalidOperationException">
         /// This can occur due to the following reasons:
         /// 1) The application does not have the privilege to call this function.
-        /// 2) The IME main loop has not yet started.
+        /// 2) The IME main loop has not started yet.
         /// </exception>
         /// <since_tizen> 6 </since_tizen>
         public static void SendShiftModeUpdated(bool enable)
@@ -2197,7 +2197,7 @@ namespace Tizen.Uix.InputMethod
         /// <exception cref="InvalidOperationException">
         /// This can occur due to the following reasons:
         /// 1) The application does not have the privilege to call this function.
-        /// 2) The IME main loop has not yet started.
+        /// 2) The IME main loop has not started yet.
         /// </exception>
         /// <since_tizen> 6 </since_tizen>
         public static void SendCustomGeometryUpdated()
