@@ -114,7 +114,7 @@ namespace Tizen.Security.DevicePolicyManager
             {
                 _usbTetheringPolicyChangedCallback = (string name, string state, IntPtr userData) =>
                 {
-                    _usbTetheringPolicyChanged?.Invoke(null, new PolicyChangedEventArgs(name, state));
+                    _usbTetheringPolicyChanged?.Invoke(this, new PolicyChangedEventArgs(name, state));
                 };
             }
 

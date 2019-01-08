@@ -113,7 +113,7 @@ namespace Tizen.Security.DevicePolicyManager
             {
                 _locationPolicyChangedCallback = (string name, string state, IntPtr userData) =>
                 {
-                    _locationPolicyChanged?.Invoke(null, new PolicyChangedEventArgs(name, state));
+                    _locationPolicyChanged?.Invoke(this, new PolicyChangedEventArgs(name, state));
                 };
             }
 

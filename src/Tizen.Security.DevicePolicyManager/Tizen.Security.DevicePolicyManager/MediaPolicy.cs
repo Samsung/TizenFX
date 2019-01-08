@@ -130,7 +130,7 @@ namespace Tizen.Security.DevicePolicyManager
             {
                 _cameraPolicyChangedCallback = (string name, string state, IntPtr userData) =>
                 {
-                    _cameraPolicyChanged?.Invoke(null, new PolicyChangedEventArgs(name, state));
+                    _cameraPolicyChanged?.Invoke(this, new PolicyChangedEventArgs(name, state));
                 };
             }
 
@@ -188,7 +188,7 @@ namespace Tizen.Security.DevicePolicyManager
             {
                 _microphonePolicyChangedCallback = (string name, string state, IntPtr userData) =>
                 {
-                    _microphonePolicyChanged?.Invoke(null, new PolicyChangedEventArgs(name, state));
+                    _microphonePolicyChanged?.Invoke(this, new PolicyChangedEventArgs(name, state));
                 };
             }
 

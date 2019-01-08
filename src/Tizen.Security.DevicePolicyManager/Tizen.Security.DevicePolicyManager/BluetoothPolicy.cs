@@ -130,7 +130,7 @@ namespace Tizen.Security.DevicePolicyManager
             {
                 _bluetoothPolicyChangedCallback = (string name, string state, IntPtr userData) =>
                 {
-                    _bluetoothPolicyChanged?.Invoke(null, new PolicyChangedEventArgs(name, state));
+                    _bluetoothPolicyChanged?.Invoke(this, new PolicyChangedEventArgs(name, state));
                 };
             }
 
@@ -188,7 +188,7 @@ namespace Tizen.Security.DevicePolicyManager
             {
                 _bluetoothTetheringPolicyChangedCallback = (string name, string state, IntPtr userData) =>
                 {
-                    _bluetoothTetheringPolicyChanged?.Invoke(null, new PolicyChangedEventArgs(name, state));
+                    _bluetoothTetheringPolicyChanged?.Invoke(this, new PolicyChangedEventArgs(name, state));
                 };
             }
 

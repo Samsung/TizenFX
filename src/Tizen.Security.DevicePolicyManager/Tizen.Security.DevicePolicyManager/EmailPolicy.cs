@@ -137,7 +137,7 @@ namespace Tizen.Security.DevicePolicyManager
             {
                 _popImapPolicyChangedCallback = (string name, string state, IntPtr userData) =>
                 {
-                    _popImapPolicyChanged?.Invoke(null, new PolicyChangedEventArgs(name, state));
+                    _popImapPolicyChanged?.Invoke(this, new PolicyChangedEventArgs(name, state));
                 };
             }
 

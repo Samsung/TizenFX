@@ -135,7 +135,7 @@ namespace Tizen.Security.DevicePolicyManager
             {
                 _messagingPolicyChangedCallback = (string name, string state, IntPtr userData) =>
                 {
-                    _messagingPolicyChanged?.Invoke(null, new PolicyChangedEventArgs(name, state));
+                    _messagingPolicyChanged?.Invoke(this, new PolicyChangedEventArgs(name, state));
                 };
             }
 

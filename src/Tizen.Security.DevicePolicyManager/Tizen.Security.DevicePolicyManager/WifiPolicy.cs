@@ -154,7 +154,7 @@ namespace Tizen.Security.DevicePolicyManager
             {
                 _wifiPolicyChangedCallback = (string name, string state, IntPtr userData) =>
                 {
-                    _wifiPolicyChanged?.Invoke(null, new PolicyChangedEventArgs(name, state));
+                    _wifiPolicyChanged?.Invoke(this, new PolicyChangedEventArgs(name, state));
                 };
             }
 
@@ -212,7 +212,7 @@ namespace Tizen.Security.DevicePolicyManager
             {
                 _wifiHotspotStatePolicyChangedCallback = (string name, string state, IntPtr userData) =>
                 {
-                    _wifiHotspotPolicyChanged?.Invoke(null, new PolicyChangedEventArgs(name, state));
+                    _wifiHotspotPolicyChanged?.Invoke(this, new PolicyChangedEventArgs(name, state));
                 };
             }
 

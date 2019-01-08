@@ -114,7 +114,7 @@ namespace Tizen.Security.DevicePolicyManager
             {
                 _browserPolicyChangedCallback = (string name, string state, IntPtr userData) =>
                 {
-                    _browserPolicyChanged?.Invoke(null, new PolicyChangedEventArgs(name, state));
+                    _browserPolicyChanged?.Invoke(this, new PolicyChangedEventArgs(name, state));
                 };
             }
 

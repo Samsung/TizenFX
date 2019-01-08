@@ -114,7 +114,7 @@ namespace Tizen.Security.DevicePolicyManager
             {
                 _externalStoragePolicyChangedCallback = (string name, string state, IntPtr userData) =>
                 {
-                    _externalStoragePolicyChanged?.Invoke(null, new PolicyChangedEventArgs(name, state));
+                    _externalStoragePolicyChanged?.Invoke(this, new PolicyChangedEventArgs(name, state));
                 };
             }
 
