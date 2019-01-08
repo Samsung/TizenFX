@@ -27,7 +27,14 @@ namespace Tizen.Security.DevicePolicyManager
         internal PolicyChangedEventArgs(string name, string state)
         {
             Name = name;
-            State = state;
+            if (state.Equals("disallowed"))
+            {
+                State = PolicyState.Disallowed;
+            }
+            else
+            {
+                State = PolicyState.Allowed;
+            }
         }
 
         /// <summary>
@@ -38,6 +45,6 @@ namespace Tizen.Security.DevicePolicyManager
         /// <summary>
         /// Get the current state of the policy.
         /// </summary>
-        public string State { get; }
+        public PolicyState State { get; }
     }
 }
