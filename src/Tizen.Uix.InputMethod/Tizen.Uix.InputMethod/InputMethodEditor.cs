@@ -2073,16 +2073,16 @@ namespace Tizen.Uix.InputMethod
         /// <privilege>
         /// http://tizen.org/privilege/ime
         /// </privilege>
-        /// <param name="floating_mode"><c>true</c> to set the floating mode to on and <c>false</c> to set it to off.</param>
+        /// <param name="floatingMode"><c>true</c> to set the floating mode to on and <c>false</c> to set it to off.</param>
         /// <exception cref="InvalidOperationException">
         /// This can occur due to the following reasons:
         /// 1) The application does not have the privilege to call this function.
         /// 2) The IME main loop has not started yet.
         /// </exception>
         /// <since_tizen> 5 </since_tizen>
-        public static void SetFloatingMode(bool floating_mode)
+        public static void SetFloatingMode(bool floatingMode)
         {
-            ErrorCode error = ImeSetFloatingMode(floating_mode);
+            ErrorCode error = ImeSetFloatingMode(floatingMode);
             if (error != ErrorCode.None)
             {
                 Log.Error(LogTag, "SetFloatingMode Failed with error " + error);
