@@ -84,7 +84,7 @@ namespace Tizen.Security.DevicePolicyManager
         /// <summary>
         /// Gets whether the access to POP or IMAP email is allowed or not.
         /// </summary>
-        /// <value>The pop-imap email policy state. If error occurs, PolicyState UNKNOWN is returned.</value>
+        /// <value>Allowed if the POP or IMAP email is allowed, Disallowed otherwise. If error occurs, The default value is returned.</value>
         /// <seealso cref="PolicyState"/>
         /// <since_tizen> 6 </since_tizen>
         public PolicyState IsPopImapAllowed
@@ -97,10 +97,10 @@ namespace Tizen.Security.DevicePolicyManager
                 if (ret != (int)Interop.DevicePolicyManager.ErrorCode.None)
                 {
                     Log.Error(Globals.LogTag, "Failed to get popimap email policy " + ret);
-                    return PolicyState.UNKNOWN;
+                    return default(PolicyState);
                 }
 
-                return state == 1 ? PolicyState.ALLOWED : PolicyState.DISALLOWED;
+                return state == 1 ? PolicyState.Allowed : PolicyState.Disallowed;
             }
         }
 

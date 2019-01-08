@@ -101,7 +101,7 @@ namespace Tizen.Security.DevicePolicyManager
         /// <summary>
         /// Gets whether the Wi-Fi state change is allowed or not.
         /// </summary>
-        /// <value>The wifi policy state. If error occurs, PolicyState UNKNOWN is returned.</value>
+        /// <value>Allowed if the state change is allowed, Disallowed otherwise. If error occurs, The default value is returned.</value>
         /// <seealso cref="PolicyState"/>
         /// <since_tizen> 6 </since_tizen>
         public PolicyState IsWifiAllowed
@@ -114,10 +114,10 @@ namespace Tizen.Security.DevicePolicyManager
                 if (ret != (int)Interop.DevicePolicyManager.ErrorCode.None)
                 {
                     Log.Error(Globals.LogTag, "Failed to get wifi policy " + ret);
-                    return PolicyState.UNKNOWN;
+                    return default(PolicyState);
                 }
 
-                return state == 1 ? PolicyState.ALLOWED : PolicyState.DISALLOWED;
+                return state == 1 ? PolicyState.Allowed : PolicyState.Disallowed;
             }
         }
 

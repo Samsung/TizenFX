@@ -25,16 +25,12 @@ namespace Tizen.Security.DevicePolicyManager
     public enum PolicyState
     {
         /// <summary>
-        /// The policy status is disallowed.
+        /// The policy state is disallowed.
         /// </summary>
-        DISALLOWED = 0,
+        Disallowed = -1,
         /// <summary>
-        /// The policy status is allowed.
+        /// The policy state is allowed. It's the default value.
         /// </summary>
-        ALLOWED,
-        /// <summary>
-        /// The policy status is unknown.
-        /// </summary>
-        UNKNOWN
+        Allowed,
     }
 }
