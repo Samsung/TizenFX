@@ -69,7 +69,7 @@ namespace Tizen.Uix.InputMethod
         /// <exception cref="InvalidOperationException">
         /// This can occur due to the following reasons:
         /// 1) The application does not have the privilege to call this function.
-        /// 2) The IME main loop isn't started yet.
+        /// 2) The IME main loop has not started yet.
         /// </exception>
         /// <since_tizen> 4 </since_tizen>
         public static void SetSize(int portraitWidth, int portraitHeight, int landscapeWidth, int landscapeHeight)
