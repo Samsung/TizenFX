@@ -262,7 +262,7 @@ internal static partial class Interop
         internal static extern ErrorCode ImeDeviceInfoGetSubclass(IntPtr dev_info, out DeviceSubclass devSubClass);
 
         [DllImport(Libraries.InputMethod, EntryPoint = "ime_set_floating_mode")]
-        internal static extern ErrorCode ImeSetFloatingMode(bool floating_mode);
+        internal static extern ErrorCode ImeSetFloatingMode(bool floatingMode);
 
         [DllImport(Libraries.InputMethod, EntryPoint = "ime_set_floating_drag_start")]
         internal static extern ErrorCode ImeSetFloatingDragStart();
