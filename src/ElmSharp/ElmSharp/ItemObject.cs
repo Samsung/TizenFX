@@ -123,6 +123,10 @@ namespace ElmSharp
                 _handle = value;
                 SetDeleteCallback();
                 s_HandleToItemTable[Handle] = this;
+                if (_handle != IntPtr.Zero)
+                {
+                    Elementary.SendItemObjectRealized(this);
+                }
             }
         }
 

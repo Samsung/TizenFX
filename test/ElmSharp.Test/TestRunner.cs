@@ -226,6 +226,12 @@ namespace ElmSharp.Test
                 //Console.WriteLine("EvasObject Realized : ClassName = {0}", obj.ClassName);
             };
 
+            Elementary.ItemObjectRealized += (s, e) =>
+            {
+                var obj = (ItemObject)s;
+                //Console.WriteLine("ItemObject Realized : ID = {0}", obj.Id);
+            };
+
             TestRunner testRunner = new TestRunner();
             testRunner.Profile = profile;
             testRunner.Run(args);
