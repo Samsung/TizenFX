@@ -22,7 +22,7 @@ namespace Tizen.Security.DevicePolicyManager
     /// <since_tizen> 6 </since_tizen>
     public abstract class DevicePolicy
     {
-        internal readonly DevicePolicyManager _dpm;
+        protected internal readonly DevicePolicyManager _dpm;
 
         internal DevicePolicy(DevicePolicyManager dpm)
         {
