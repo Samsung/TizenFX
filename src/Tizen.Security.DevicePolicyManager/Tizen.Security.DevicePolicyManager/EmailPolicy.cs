@@ -44,6 +44,29 @@ namespace Tizen.Security.DevicePolicyManager
         }
 
         /// <summary>
+        /// Gets whether the access to POP or IMAP email is allowed or not.
+        /// </summary>
+        /// <value>Allowed if the POP or IMAP email is allowed, Disallowed otherwise. The default value is Allowed.</value>
+        /// <seealso cref="PolicyState"/>
+        /// <since_tizen> 6 </since_tizen>
+        public PolicyState IsPopImapAllowed
+        {
+            get
+            {
+                int state;
+                int ret = Interop.DevicePolicyManager.RestrictionGetPopimapEmailState(_dpm.GetHandle(), out state);
+
+                if (ret != (int)Interop.DevicePolicyManager.ErrorCode.None)
+                {
+                    Log.Error(Globals.LogTag, "Failed to get popimap email policy " + ret);
+                    return default(PolicyState);
+                }
+
+                return state == 1 ? PolicyState.Allowed : PolicyState.Disallowed;
+            }
+        }
+
+        /// <summary>
         /// Releases any unmanaged resources used by this object.
         /// </summary>
         public void Dispose()
@@ -78,29 +101,6 @@ namespace Tizen.Security.DevicePolicyManager
                 }
 
                 _disposed = true;
-            }
-        }
-
-        /// <summary>
-        /// Gets whether the access to POP or IMAP email is allowed or not.
-        /// </summary>
-        /// <value>Allowed if the POP or IMAP email is allowed, Disallowed otherwise. If error occurs, The default value is returned.</value>
-        /// <seealso cref="PolicyState"/>
-        /// <since_tizen> 6 </since_tizen>
-        public PolicyState IsPopImapAllowed
-        {
-            get
-            {
-                int state;
-                int ret = Interop.DevicePolicyManager.RestrictionGetPopimapEmailState(_dpm.GetHandle(), out state);
-
-                if (ret != (int)Interop.DevicePolicyManager.ErrorCode.None)
-                {
-                    Log.Error(Globals.LogTag, "Failed to get popimap email policy " + ret);
-                    return default(PolicyState);
-                }
-
-                return state == 1 ? PolicyState.Allowed : PolicyState.Disallowed;
             }
         }
 

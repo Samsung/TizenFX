@@ -90,5 +90,41 @@ internal static partial class Interop
         [DllImport(Libraries.DevicePolicyManager, EntryPoint = "dpm_restriction_get_wifi_state", CallingConvention = CallingConvention.Cdecl)]
         internal static extern int RestrictionGetWifiState(IntPtr handle, out int allowed);
         // int dpm_restriction_get_wifi_state(device_policy_manager_h handle, int* is_allowed)
+
+        [DllImport(Libraries.DevicePolicyManager, EntryPoint = "dpm_restriction_get_wifi_hotspot_state", CallingConvention = CallingConvention.Cdecl)]
+        internal static extern int RestrictionGetWifiHotspotState(IntPtr handle, out int allowed);
+        // int dpm_restriction_get_wifi_hotspot_state(device_policy_manager_h handle, int* is_allowed)
+
+        [DllImport(Libraries.DevicePolicyManager, EntryPoint = "dpm_restriction_get_bluetooth_mode_change_state", CallingConvention = CallingConvention.Cdecl)]
+        internal static extern int RestrictionGetBluetoothModeChangeState(IntPtr handle, out int allowed);
+        // int dpm_restriction_get_bluetooth_mode_change_state(device_policy_manager_h handle, int* is_allowed)
+
+        [DllImport(Libraries.DevicePolicyManager, EntryPoint = "dpm_restriction_get_bluetooth_tethering_state", CallingConvention = CallingConvention.Cdecl)]
+        internal static extern int RestrictionGetBluetoothTetheringState(IntPtr handle, out int allowed);
+        // int dpm_restriction_get_bluetooth_tethering_state(device_policy_manager_h handle, int* is_allowed)
+
+        [DllImport(Libraries.DevicePolicyManager, EntryPoint = "dpm_restriction_get_browser_state", CallingConvention = CallingConvention.Cdecl)]
+        internal static extern int RestrictionGetBrowserState(IntPtr handle, out int allowed);
+        // int dpm_restriction_get_browser_state(device_policy_manager_h handle, int* is_allowed)
+
+        [DllImport(Libraries.DevicePolicyManager, EntryPoint = "dpm_restriction_get_camera_state", CallingConvention = CallingConvention.Cdecl)]
+        internal static extern int RestrictionGetCameraState(IntPtr handle, out int allowed);
+        // int dpm_restriction_get_camera_state(device_policy_manager_h handle, int* is_allowed)
+
+        [DllImport(Libraries.DevicePolicyManager, EntryPoint = "dpm_restriction_get_microphone_state", CallingConvention = CallingConvention.Cdecl)]
+        internal static extern int RestrictionGetMicrophoneState(IntPtr handle, out int allowed);
+        // int dpm_restriction_get_microphone_state(device_policy_manager_h handle, int* is_allowed)
+
+        [DllImport(Libraries.DevicePolicyManager, EntryPoint = "dpm_restriction_get_location_state", CallingConvention = CallingConvention.Cdecl)]
+        internal static extern int RestrictionGetLocationState(IntPtr handle, out int allowed);
+        // int dpm_restriction_get_location_state(device_policy_manager_h handle, int* is_allowed)
+
+        [DllImport(Libraries.DevicePolicyManager, EntryPoint = "dpm_restriction_get_external_storage_state", CallingConvention = CallingConvention.Cdecl)]
+        internal static extern int RestrictionGetExternalStorageState(IntPtr handle, out int allowed);
+        // int dpm_restriction_get_external_storage_state(device_policy_manager_h handle, int* is_allowed)
+
+        [DllImport(Libraries.DevicePolicyManager, EntryPoint = "dpm_restriction_get_usb_tethering_state", CallingConvention = CallingConvention.Cdecl)]
+        internal static extern int RestrictionGetUsbTetheringState(IntPtr handle, out int allowed);
+        // int dpm_restriction_get_usb_tethering_state(device_policy_manager_h handle, int* is_allowed)
     }
 }

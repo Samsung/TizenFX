@@ -44,6 +44,29 @@ namespace Tizen.Security.DevicePolicyManager
         }
 
         /// <summary>
+        /// Gets whether the use of web browser is allowed or not.
+        /// </summary>
+        /// <value>Allowed if the use of web browser is allowed, Disallowed otherwise. The default value is Allowed.</value>
+        /// <seealso cref="PolicyState"/>
+        /// <since_tizen> 6 </since_tizen>
+        public PolicyState IsBrowserAllowed
+        {
+            get
+            {
+                int state;
+                int ret = Interop.DevicePolicyManager.RestrictionGetBrowserState(_dpm.GetHandle(), out state);
+
+                if (ret != (int)Interop.DevicePolicyManager.ErrorCode.None)
+                {
+                    Log.Error(Globals.LogTag, "Failed to get browser policy " + ret);
+                    return default(PolicyState);
+                }
+
+                return state == 1 ? PolicyState.Allowed : PolicyState.Disallowed;
+            }
+        }
+
+        /// <summary>
         /// Releases any unmanaged resources used by this object.
         /// </summary>
         public void Dispose()
