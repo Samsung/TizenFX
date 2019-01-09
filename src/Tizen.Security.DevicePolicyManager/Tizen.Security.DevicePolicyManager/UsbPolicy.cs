@@ -49,7 +49,7 @@ namespace Tizen.Security.DevicePolicyManager
         /// <value>Allowed if the change is allowed, Disallowed otherwise. The default value is Allowed.</value>
         /// <seealso cref="PolicyState"/>
         /// <since_tizen> 6 </since_tizen>
-        public PolicyState IsUsbTetheringStateChangeAllowed
+        public PolicyState IsUsbTetheringAllowed
         {
             get
             {
