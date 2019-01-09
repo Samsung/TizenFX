@@ -31,7 +31,7 @@ namespace Tizen.Security.DevicePolicyManager
         /// <summary>
         /// Gets the number of days password expires.
         /// </summary>
-        /// <value>Number of days after which the password expires. If error occurs, -1 is returned.</value>
+        /// <value>Number of days after which the password expires. The default value is maximum of int.</value>
         /// <since_tizen> 6 </since_tizen>
         /// <privilege>http://tizen.org/privilege/dpm.password</privilege>
         /// <privlevel>partner</privlevel>
@@ -39,12 +39,11 @@ namespace Tizen.Security.DevicePolicyManager
         {
             get
             {
-                int value;
+                int value = int.MaxValue;
                 int ret = Interop.DevicePolicyManager.PasswordGetExpires(_dpm.GetHandle(), out value);
                 if (ret != (int)Interop.DevicePolicyManager.ErrorCode.None)
                 {
                     Log.Error(Globals.LogTag, "Failed to get password expires policy " + ret);
-                    return -1;
                 }
 
                 return value;
@@ -54,7 +53,7 @@ namespace Tizen.Security.DevicePolicyManager
         /// <summary>
         /// Gets the number of min password history to avoid previous password.
         /// </summary>
-        /// <value>Number of previous passwords which cannot be used when settings a new password. If error occurs, -1 is returned.</value>
+        /// <value>Number of previous passwords which cannot be used when settings a new password. The default value is 0.</value>
         /// <since_tizen> 6 </since_tizen>
         /// <privilege>http://tizen.org/privilege/dpm.password</privilege>
         /// <privlevel>partner</privlevel>
@@ -62,12 +61,11 @@ namespace Tizen.Security.DevicePolicyManager
         {
             get
             {
-                int value;
+                int value = 0;
                 int ret = Interop.DevicePolicyManager.PasswordGetHistory(_dpm.GetHandle(), out value);
                 if (ret != (int)Interop.DevicePolicyManager.ErrorCode.None)
                 {
                     Log.Error(Globals.LogTag, "Failed to get password history policy " + ret);
-                    return -1;
                 }
 
                 return value;
@@ -77,7 +75,7 @@ namespace Tizen.Security.DevicePolicyManager
         /// <summary>
         /// Gets the maximum number of seconds of inactivity time before the screen timeout occurs.
         /// </summary>
-        /// <value>Maximum inactivity time for device lock. If error occurs, -1 is returned.</value>
+        /// <value>Maximum inactivity time for device lock. The default value is maximum of int.</value>
         /// <since_tizen> 6 </since_tizen>
         /// <privilege>http://tizen.org/privilege/dpm.password</privilege>
         /// <privlevel>partner</privlevel>
@@ -85,12 +83,11 @@ namespace Tizen.Security.DevicePolicyManager
         {
             get
             {
-                int value;
+                int value = int.MaxValue;
                 int ret = Interop.DevicePolicyManager.PasswordGetMaxInactivityTimeDeviceLock(_dpm.GetHandle(), out value);
                 if (ret != (int)Interop.DevicePolicyManager.ErrorCode.None)
                 {
                     Log.Error(Globals.LogTag, "Failed to get password maximum inactivity time policy " + ret);
-                    return -1;
                 }
 
                 return value;
@@ -101,7 +98,7 @@ namespace Tizen.Security.DevicePolicyManager
         /// Gets maximum number of failed attempts before device is wiped.
         /// If user fails the last attempt, device will be wiped.
         /// </summary>
-        /// <value>Maximum count for failed passwords. If error occurs, -1 is returned.</value>
+        /// <value>Maximum count for failed passwords. The default value is maximum of int.</value>
         /// <since_tizen> 6 </since_tizen>
         /// <privilege>http://tizen.org/privilege/dpm.password</privilege>
         /// <privlevel>partner</privlevel>
@@ -109,12 +106,11 @@ namespace Tizen.Security.DevicePolicyManager
         {
             get
             {
-                int value;
+                int value = int.MaxValue;
                 int ret = Interop.DevicePolicyManager.PasswordGetMaximumFailedAttemptsForWipe(_dpm.GetHandle(), out value);
                 if (ret != (int)Interop.DevicePolicyManager.ErrorCode.None)
                 {
                     Log.Error(Globals.LogTag, "Failed to get password maximum failed attempts policy " + ret);
-                    return -1;
                 }
 
                 return value;
@@ -125,7 +121,7 @@ namespace Tizen.Security.DevicePolicyManager
         /// Gets minimum complex char in password.
         /// Complex characters are all non-alphabetic characters; that is, numbers and symbols.
         /// </summary>
-        /// <value>Number of minimum complex char in password. If error occurs, -1 is returned.</value>
+        /// <value>Number of minimum complex char in password. The default value is 0.</value>
         /// <since_tizen> 6 </since_tizen>
         /// <privilege>http://tizen.org/privilege/dpm.password</privilege>
         /// <privlevel>partner</privlevel>
@@ -133,12 +129,11 @@ namespace Tizen.Security.DevicePolicyManager
         {
             get
             {
-                int value;
+                int value = 0;
                 int ret = Interop.DevicePolicyManager.PasswordGetMinComplexChars(_dpm.GetHandle(), out value);
                 if (ret != (int)Interop.DevicePolicyManager.ErrorCode.None)
                 {
                     Log.Error(Globals.LogTag, "Failed to get password min complext chars policy " + ret);
-                    return -1;
                 }
 
                 return value;
@@ -148,7 +143,7 @@ namespace Tizen.Security.DevicePolicyManager
         /// <summary>
         /// Gets the minimum allowed password length.
         /// </summary>
-        /// <value>Allowed minimum password length. If error occurs, -1 is returned.</value>
+        /// <value>Allowed minimum password length. The default value is 0.</value>
         /// <since_tizen> 6 </since_tizen>
         /// <privilege>http://tizen.org/privilege/dpm.password</privilege>
         /// <privlevel>partner</privlevel>
@@ -156,12 +151,11 @@ namespace Tizen.Security.DevicePolicyManager
         {
             get
             {
-                int value;
+                int value = 0;
                 int ret = Interop.DevicePolicyManager.PasswordGetMinimumLength(_dpm.GetHandle(), out value);
                 if (ret != (int)Interop.DevicePolicyManager.ErrorCode.None)
                 {
                     Log.Error(Globals.LogTag, "Failed to get password min length policy " + ret);
-                    return -1;
                 }
 
                 return value;
@@ -172,7 +166,7 @@ namespace Tizen.Security.DevicePolicyManager
         /// Gets password quality.
         /// An administrator can get the password restrictions it is imposing.
         /// </summary>
-        /// <value>Password quality type, values of PasswordQuality. If error occurs, PasswordQuality UNSPECIFIED is returned.</value>
+        /// <value>Password quality type, values of PasswordQuality. The default value is PasswordQuality UNSPECIFIED.</value>
         /// <seealso cref="PasswordQuality"/>
         /// <since_tizen> 6 </since_tizen>
         /// <privilege>http://tizen.org/privilege/dpm.password</privilege>
