@@ -51,46 +51,42 @@ namespace Tizen.Security.DevicePolicyManager
         /// <summary>
         /// Gets whether the Wi-Fi state change is allowed or not.
         /// </summary>
-        /// <value>Allowed if the state change is allowed, Disallowed otherwise. The default value is Allowed.</value>
-        /// <seealso cref="PolicyState"/>
+        /// <value>true if the state change is allowed, false otherwise. The default value is true.</value>
         /// <since_tizen> 6 </since_tizen>
-        public PolicyState IsWifiAllowed
+        public bool IsWifiAllowed
         {
             get
             {
                 int state;
                 int ret = Interop.DevicePolicyManager.RestrictionGetWifiState(_dpm.GetHandle(), out state);
-
                 if (ret != (int)Interop.DevicePolicyManager.ErrorCode.None)
                 {
                     Log.Error(Globals.LogTag, "Failed to get wifi policy " + ret);
-                    return default(PolicyState);
+                    return true;
                 }
 
-                return state == 1 ? PolicyState.Allowed : PolicyState.Disallowed;
+                return state == 1;
             }
         }
 
         /// <summary>
         /// Gets whether the the Wi-Fi hotspot state change is allowed or not.
         /// </summary>
-        /// <value>Allowed if the state change is allowed, Disallowed otherwise. The default value is Allowed.</value>
-        /// <seealso cref="PolicyState"/>
+        /// <value>true if the state change is allowed, false otherwise. The default value is true.</value>
         /// <since_tizen> 6 </since_tizen>
-        public PolicyState IsWifiHotspotAllowed
+        public bool IsWifiHotspotAllowed
         {
             get
             {
                 int state;
                 int ret = Interop.DevicePolicyManager.RestrictionGetWifiHotspotState(_dpm.GetHandle(), out state);
-
                 if (ret != (int)Interop.DevicePolicyManager.ErrorCode.None)
                 {
                     Log.Error(Globals.LogTag, "Failed to get wifi hotspot policy " + ret);
-                    return default(PolicyState);
+                    return true;
                 }
 
-                return state == 1 ? PolicyState.Allowed : PolicyState.Disallowed;
+                return state == 1;
             }
         }
 

@@ -46,23 +46,21 @@ namespace Tizen.Security.DevicePolicyManager
         /// <summary>
         /// Gets whether user is allowed to change location state or not.
         /// </summary>
-        /// <value>Allowed if the location state change is allowed, Disallowed otherwise. The default value is Allowed.</value>
-        /// <seealso cref="PolicyState"/>
+        /// <value>true if the location state change is allowed, false otherwise. The default value is true.</value>
         /// <since_tizen> 6 </since_tizen>
-        public PolicyState IsLocationAllowed
+        public bool IsLocationAllowed
         {
             get
             {
                 int state;
                 int ret = Interop.DevicePolicyManager.RestrictionGetLocationState(_dpm.GetHandle(), out state);
-
                 if (ret != (int)Interop.DevicePolicyManager.ErrorCode.None)
                 {
                     Log.Error(Globals.LogTag, "Failed to get location policy " + ret);
-                    return default(PolicyState);
+                    return true;
                 }
 
-                return state == 1 ? PolicyState.Allowed : PolicyState.Disallowed;
+                return state == 1;
             }
         }
 

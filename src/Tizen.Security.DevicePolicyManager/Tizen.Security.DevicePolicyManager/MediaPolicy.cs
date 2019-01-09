@@ -50,46 +50,42 @@ namespace Tizen.Security.DevicePolicyManager
         /// <summary>
         /// Gets whether the use of camera is allowed or not.
         /// </summary>
-        /// <value>Allowed if the use of camera is allowed, Disallowed otherwise. The default value is Allowed.</value>
-        /// <seealso cref="PolicyState"/>
+        /// <value>true if the use of camera is allowed, false otherwise. The default value is true.</value>
         /// <since_tizen> 6 </since_tizen>
-        public PolicyState IsCameraAllowed
+        public bool IsCameraAllowed
         {
             get
             {
                 int state;
                 int ret = Interop.DevicePolicyManager.RestrictionGetCameraState(_dpm.GetHandle(), out state);
-
                 if (ret != (int)Interop.DevicePolicyManager.ErrorCode.None)
                 {
                     Log.Error(Globals.LogTag, "Failed to get camera policy " + ret);
-                    return default(PolicyState);
+                    return true;
                 }
 
-                return state == 1 ? PolicyState.Allowed : PolicyState.Disallowed;
+                return state == 1;
             }
         }
 
         /// <summary>
         /// Gets whether the use of microphone is allowed or not.
         /// </summary>
-        /// <value>Allowed if the use of microphone is allowed, Disallowed otherwise. The default value is Allowed.</value>
-        /// <seealso cref="PolicyState"/>
+        /// <value>true if the use of microphone is allowed, false otherwise. The default value is true.</value>
         /// <since_tizen> 6 </since_tizen>
-        public PolicyState IsMicrophoneAllowed
+        public bool IsMicrophoneAllowed
         {
             get
             {
                 int state;
                 int ret = Interop.DevicePolicyManager.RestrictionGetMicrophoneState(_dpm.GetHandle(), out state);
-
                 if (ret != (int)Interop.DevicePolicyManager.ErrorCode.None)
                 {
                     Log.Error(Globals.LogTag, "Failed to get microphone policy " + ret);
-                    return default(PolicyState);
+                    return true;
                 }
 
-                return state == 1 ? PolicyState.Allowed : PolicyState.Disallowed;
+                return state == 1;
             }
         }
 

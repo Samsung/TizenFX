@@ -46,23 +46,21 @@ namespace Tizen.Security.DevicePolicyManager
         /// <summary>
         /// Gets whether the USB tethering state change is allowed.
         /// </summary>
-        /// <value>Allowed if the change is allowed, Disallowed otherwise. The default value is Allowed.</value>
-        /// <seealso cref="PolicyState"/>
+        /// <value>true if the change is allowed, false otherwise. The default value is true.</value>
         /// <since_tizen> 6 </since_tizen>
-        public PolicyState IsUsbTetheringAllowed
+        public bool IsUsbTetheringAllowed
         {
             get
             {
                 int state;
                 int ret = Interop.DevicePolicyManager.RestrictionGetUsbTetheringState(_dpm.GetHandle(), out state);
-
                 if (ret != (int)Interop.DevicePolicyManager.ErrorCode.None)
                 {
                     Log.Error(Globals.LogTag, "Failed to get usb tethering state change policy " + ret);
-                    return default(PolicyState);
+                    return true;
                 }
 
-                return state == 1 ? PolicyState.Allowed : PolicyState.Disallowed;
+                return state == 1;
             }
         }
 
