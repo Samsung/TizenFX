@@ -63,51 +63,6 @@ namespace Tizen.NUI
             }
         }
 
-        public uint Width
-        {
-            set
-            {
-                NDalicManualPINVOKE.FontClient_GlyphBufferData_width_set(swigCPtr, value);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            }
-            get
-            {
-                uint ret = NDalicManualPINVOKE.FontClient_GlyphBufferData_width_get(swigCPtr);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-                return ret;
-            }
-        }
-
-        public uint Height
-        {
-            set
-            {
-                NDalicManualPINVOKE.FontClient_GlyphBufferData_height_set(swigCPtr, value);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            }
-            get
-            {
-                uint ret = NDalicManualPINVOKE.FontClient_GlyphBufferData_height_get(swigCPtr);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-                return ret;
-            }
-        }
-
-        public PixelFormat Format
-        {
-            set
-            {
-                NDalicManualPINVOKE.FontClient_GlyphBufferData_format_set(swigCPtr, (int)value);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            }
-            get
-            {
-                PixelFormat ret = (PixelFormat)NDalicManualPINVOKE.FontClient_GlyphBufferData_format_get(swigCPtr);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-                return ret;
-            }
-        }
-
         /// <summary>
         /// Called when the user changes the system defaults.
         /// </summary>
@@ -440,16 +395,13 @@ namespace Tizen.NUI
 
         internal class GlyphBufferData : global::System.IDisposable
         {
-
             protected bool swigCMemOwn;
-
             /// <summary>
             /// A Flat to check if it is already disposed.
             /// </summary>
             protected bool disposed = false;
 
             private global::System.Runtime.InteropServices.HandleRef swigCPtr;
-
             //A Flag to check who called Dispose(). (By User or DisposeQueue)
             private bool isDisposeQueued = false;
 
@@ -470,6 +422,67 @@ namespace Tizen.NUI
                 {
                     isDisposeQueued = true;
                     DisposeQueue.Instance.Add(this);
+                }
+            }
+
+            /*public byte[] Buffer
+            {
+                set
+                {
+                    NDalicManualPINVOKE.FontClient_GlyphBufferData_buffer_set(swigCPtr, value);
+                    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                }
+                get
+                {
+                    global::System.IntPtr cPtr = NDalicManualPINVOKE.FontClient_GlyphBufferData_buffer_get(swigCPtr);
+                    SWIGTYPE_p_unsigned_char ret = (cPtr == global::System.IntPtr.Zero) ? null : new SWIGTYPE_p_unsigned_char(cPtr, false);
+                    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                    return ret;
+                }
+            }*/
+
+            public uint Width
+            {
+                set
+                {
+                    NDalicManualPINVOKE.FontClient_GlyphBufferData_width_set(swigCPtr, value);
+                    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                }
+                get
+                {
+                    uint ret = NDalicManualPINVOKE.FontClient_GlyphBufferData_width_get(swigCPtr);
+                    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                    return ret;
+                }
+            }
+
+            public uint Height
+            {
+                set
+                {
+                    NDalicManualPINVOKE.FontClient_GlyphBufferData_height_set(swigCPtr, value);
+                    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                }
+                get
+                {
+                    uint ret = NDalicManualPINVOKE.FontClient_GlyphBufferData_height_get(swigCPtr);
+                    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                    return ret;
+                }
+            }
+
+            public PixelFormat Format
+            {
+                set
+                {
+                    NDalicManualPINVOKE.FontClient_GlyphBufferData_format_set(swigCPtr, (int)value);
+                    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                }
+                get
+                {
+                    PixelFormat ret = (PixelFormat)NDalicManualPINVOKE.FontClient_GlyphBufferData_format_get(swigCPtr);
+                    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                    return ret;
                 }
             }
 
@@ -526,23 +539,6 @@ namespace Tizen.NUI
                 }
                 disposed = true;
             }
-
-            /*public byte[] Buffer
-            {
-                set
-                {
-                    NDalicManualPINVOKE.FontClient_GlyphBufferData_buffer_set(swigCPtr, value);
-                    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-                }
-                get
-                {
-                    global::System.IntPtr cPtr = NDalicManualPINVOKE.FontClient_GlyphBufferData_buffer_get(swigCPtr);
-                    SWIGTYPE_p_unsigned_char ret = (cPtr == global::System.IntPtr.Zero) ? null : new SWIGTYPE_p_unsigned_char(cPtr, false);
-                    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-                    return ret;
-                }
-            }*/
-
         }
     }
 }
