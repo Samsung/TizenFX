@@ -24,6 +24,13 @@ namespace Tizen.Security.DevicePolicyManager
     /// <since_tizen> 6 </since_tizen>
     public class BrowserPolicy : DevicePolicy, IDisposable
     {
+        /// <summary>
+        /// The Browser policy name. This represents <see cref="BrowserPolicy.IsBrowserAllowed"/>.
+        /// </summary>
+        /// <remarks>This is used in <see cref="PolicyChangedEventArgs.PolicyName"/>.</remarks>
+        /// <since_tizen> 6 </since_tizen>
+        public const string BrowserPolicyName = "Browser";
+
         private readonly string _browserPolicyName = "browser";
         private int _browserCallbackId;
         private bool _disposed = false;
@@ -135,7 +142,7 @@ namespace Tizen.Security.DevicePolicyManager
             {
                 _browserPolicyChangedCallback = (string name, string state, IntPtr userData) =>
                 {
-                    _browserPolicyChanged?.Invoke(this, new PolicyChangedEventArgs(name, state));
+                    _browserPolicyChanged?.Invoke(this, new PolicyChangedEventArgs(BrowserPolicyName, state));
                 };
             }
 

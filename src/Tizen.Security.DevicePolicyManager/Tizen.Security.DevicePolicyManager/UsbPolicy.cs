@@ -24,6 +24,13 @@ namespace Tizen.Security.DevicePolicyManager
     /// <since_tizen> 6 </since_tizen>
     public class UsbPolicy : DevicePolicy, IDisposable
     {
+        /// <summary>
+        /// The Usb tethering policy name. This represents <see cref="UsbPolicy.IsUsbTetheringAllowed"/>.
+        /// </summary>
+        /// <remarks>This is used in <see cref="PolicyChangedEventArgs.PolicyName"/>.</remarks>
+        /// <since_tizen> 6 </since_tizen>
+        public const string UsbTetheringPolicyName = "UsbTethering";
+
         private readonly string _usbTetheringPolicyName = "usb_tethering";
         private int _usbTetheringCallbackId;
         private bool _disposed = false;
@@ -135,7 +142,7 @@ namespace Tizen.Security.DevicePolicyManager
             {
                 _usbTetheringPolicyChangedCallback = (string name, string state, IntPtr userData) =>
                 {
-                    _usbTetheringPolicyChanged?.Invoke(this, new PolicyChangedEventArgs(name, state));
+                    _usbTetheringPolicyChanged?.Invoke(this, new PolicyChangedEventArgs(UsbTetheringPolicyName, state));
                 };
             }
 

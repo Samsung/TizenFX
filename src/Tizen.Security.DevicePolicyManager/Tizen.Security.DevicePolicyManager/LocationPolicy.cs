@@ -24,6 +24,13 @@ namespace Tizen.Security.DevicePolicyManager
     /// <since_tizen> 6 </since_tizen>
     public class LocationPolicy : DevicePolicy, IDisposable
     {
+        /// <summary>
+        /// The Location policy name. This represents <see cref="LocationPolicy.IsLocationAllowed"/>.
+        /// </summary>
+        /// <remarks>This is used in <see cref="PolicyChangedEventArgs.PolicyName"/>.</remarks>
+        /// <since_tizen> 6 </since_tizen>
+        public const string LocationPolicyName = "Location";
+
         private readonly string _locationPolicyName = "location";
         private int _locationCallbackId;
         private bool _disposed = false;
@@ -135,7 +142,7 @@ namespace Tizen.Security.DevicePolicyManager
             {
                 _locationPolicyChangedCallback = (string name, string state, IntPtr userData) =>
                 {
-                    _locationPolicyChanged?.Invoke(this, new PolicyChangedEventArgs(name, state));
+                    _locationPolicyChanged?.Invoke(this, new PolicyChangedEventArgs(LocationPolicyName, state));
                 };
             }
 

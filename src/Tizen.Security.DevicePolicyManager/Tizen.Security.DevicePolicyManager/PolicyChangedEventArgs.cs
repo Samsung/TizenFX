@@ -26,17 +26,18 @@ namespace Tizen.Security.DevicePolicyManager
     {
         internal PolicyChangedEventArgs(string name, string state)
         {
-            Name = name;
+            PolicyName = name;
             IsAllowed = state.Equals("allowed");
         }
 
         /// <summary>
-        /// Get name of the policy.
+        /// Gets the name of the changed policy.
         /// </summary>
-        public string Name { get; }
+        /// <remarks>Each policy that can raise event has the name. The policy name value is in each policy class.</remarks>
+        public string PolicyName { get; }
 
         /// <summary>
-        /// Get the current state of the policy.
+        /// Gets the current state of the policy.
         /// </summary>
         public bool IsAllowed { get; }
     }

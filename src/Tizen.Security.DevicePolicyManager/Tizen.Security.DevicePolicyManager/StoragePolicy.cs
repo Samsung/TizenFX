@@ -24,6 +24,13 @@ namespace Tizen.Security.DevicePolicyManager
     /// <since_tizen> 6 </since_tizen>
     public class StoragePolicy : DevicePolicy, IDisposable
     {
+        /// <summary>
+        /// The External storage policy name. This represents <see cref="StoragePolicy.IsExternalStorageAllowed"/>.
+        /// </summary>
+        /// <remarks>This is used in <see cref="PolicyChangedEventArgs.PolicyName"/>.</remarks>
+        /// <since_tizen> 6 </since_tizen>
+        public const string ExternalStoragePolicyName = "ExternalStorage";
+
         private readonly string _externalStoragePolicyName = "external_storage";
         private int _externalStorageCallbackId;
         private bool _disposed = false;
@@ -135,7 +142,7 @@ namespace Tizen.Security.DevicePolicyManager
             {
                 _externalStoragePolicyChangedCallback = (string name, string state, IntPtr userData) =>
                 {
-                    _externalStoragePolicyChanged?.Invoke(this, new PolicyChangedEventArgs(name, state));
+                    _externalStoragePolicyChanged?.Invoke(this, new PolicyChangedEventArgs(ExternalStoragePolicyName, state));
                 };
             }
 

@@ -24,6 +24,13 @@ namespace Tizen.Security.DevicePolicyManager
     /// <since_tizen> 6 </since_tizen>
     public class EmailPolicy : DevicePolicy, IDisposable
     {
+        /// <summary>
+        /// The PopImap email policy name. This represents <see cref="EmailPolicy.IsPopImapAllowed"/>.
+        /// </summary>
+        /// <remarks>This is used in <see cref="PolicyChangedEventArgs.PolicyName"/>.</remarks>
+        /// <since_tizen> 6 </since_tizen>
+        public const string PopImapEmailPolicyName = "PopImapEmail";
+
         private readonly string _popImapPolicyName = "popimap_email";
         private int _popImapCallbackId;
         private bool _disposed = false;
@@ -135,7 +142,7 @@ namespace Tizen.Security.DevicePolicyManager
             {
                 _popImapPolicyChangedCallback = (string name, string state, IntPtr userData) =>
                 {
-                    _popImapPolicyChanged?.Invoke(this, new PolicyChangedEventArgs(name, state));
+                    _popImapPolicyChanged?.Invoke(this, new PolicyChangedEventArgs(PopImapEmailPolicyName, state));
                 };
             }
 

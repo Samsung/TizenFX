@@ -24,6 +24,13 @@ namespace Tizen.Security.DevicePolicyManager
     /// <since_tizen> 6 </since_tizen>
     public class TelephonyPolicy : DevicePolicy, IDisposable
     {
+        /// <summary>
+        /// The Text messaging policy name. This represents <see cref="TelephonyPolicy.IsMessagingAllowed(string)"/>.
+        /// </summary>
+        /// <remarks>This is used in <see cref="PolicyChangedEventArgs.PolicyName"/>.</remarks>
+        /// <since_tizen> 6 </since_tizen>
+        public const string MessagingPolicyName = "Messaging";
+
         private readonly string _messagingPolicyName = "messaging";
         private int _messagingCallbackId;
         private bool _disposed = false;
@@ -134,7 +141,7 @@ namespace Tizen.Security.DevicePolicyManager
             {
                 _messagingPolicyChangedCallback = (string name, string state, IntPtr userData) =>
                 {
-                    _messagingPolicyChanged?.Invoke(this, new PolicyChangedEventArgs(name, state));
+                    _messagingPolicyChanged?.Invoke(this, new PolicyChangedEventArgs(MessagingPolicyName, state));
                 };
             }
 

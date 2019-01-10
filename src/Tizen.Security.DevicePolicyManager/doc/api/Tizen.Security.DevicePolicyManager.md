@@ -10,15 +10,15 @@ The device policy API supports the policies listed in the below, and application
 ### Policy List
 |  <center>Policy Name</center> |  <center>Event</center> |  <center>Description</center> |
 |:--------|:--------|:--------|
-|wifi |WifiPolicyChanged |Specifies wether the use of Wi-Fi is allowed or not |
-|wifi-hotspot |WifiHotspotChanged |Specifies whether the use of Wi-Fi hotspot is allowed or not |
-|bluetooth |BluetoothPolicyChanged |Specifies whether the use of bluetooth is allowed or not |
-|camera |CameraPolicyChanged |Specifies whether the use of camera is allowed or not |
-|microphone |MicrophonePolicyChanged |Specifies whether the use of microphone is allowed or not |
-|location |LocationPolicyChanged |Specifies whether the use of GPS is allowed or not |
-|external-storage |ExternalStoragePolicyChanged |Specifies whether the use of external storage is allowed or not |
-|messaging |MessagingPolicyChanged |Specifies whether the use of text messaging is allowed or not |
-|popimap-email |PopImapPolicyChanged |Specifies whether the use of POP/IMAP Email is allowed or not |
-|browser |BrowserPolicyChanged |Specifies whether the use of browser is allowed or not |
-|bluetooth-tethering |BluetoothTetheringPolicyChanged |Specifies whether the use of bluetooth tethering is allowed or not |
-|usb-tethering |UsbTetheringPolicyChanged |Specifies whether the use of usb tethering is allowed or not |
+|Wifi |WifiPolicyChanged |Specifies wether the use of Wi-Fi is allowed or not |
+|WifiHotspot |WifiHotspotChanged |Specifies whether the use of Wi-Fi hotspot is allowed or not |
+|Bluetooth |BluetoothPolicyChanged |Specifies whether the use of bluetooth is allowed or not |
+|Camera |CameraPolicyChanged |Specifies whether the use of camera is allowed or not |
+|Microphone |MicrophonePolicyChanged |Specifies whether the use of microphone is allowed or not |
+|Location |LocationPolicyChanged |Specifies whether the use of GPS is allowed or not |
+|ExternalStorage |ExternalStoragePolicyChanged |Specifies whether the use of external storage is allowed or not |
+|Messaging |MessagingPolicyChanged |Specifies whether the use of text messaging is allowed or not |
+|PopImapEmail |PopImapPolicyChanged |Specifies whether the use of POP/IMAP Email is allowed or not |
+|Browser |BrowserPolicyChanged |Specifies whether the use of browser is allowed or not |
+|BluetoothTethering |BluetoothTetheringPolicyChanged |Specifies whether the use of bluetooth tethering is allowed or not |
+|UsbTethering |UsbTetheringPolicyChanged |Specifies whether the use of usb tethering is allowed or not |

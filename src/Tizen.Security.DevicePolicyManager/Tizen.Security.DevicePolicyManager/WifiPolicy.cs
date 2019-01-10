@@ -24,6 +24,20 @@ namespace Tizen.Security.DevicePolicyManager
     /// <since_tizen> 6 </since_tizen>
     public class WifiPolicy : DevicePolicy, IDisposable
     {
+        /// <summary>
+        /// The Wifi policy name. This represents <see cref="WifiPolicy.IsWifiAllowed"/>.
+        /// </summary>
+        /// <remarks>This is used in <see cref="PolicyChangedEventArgs.PolicyName"/>.</remarks>
+        /// <since_tizen> 6 </since_tizen>
+        public const string WifiPolicyName = "Wifi";
+
+        /// <summary>
+        /// The Wifi hotspot policy name. This represents <see cref="WifiPolicy.IsWifiHotspotAllowed"/>.
+        /// </summary>
+        /// <remarks>This is used in <see cref="PolicyChangedEventArgs.PolicyName"/>.</remarks>
+        /// <since_tizen> 6 </since_tizen>
+        public const string WifiHotspotPolicyName = "WifiHotspot";
+
         private readonly string _wifiPolicyName = "wifi";
         private readonly string _wifiHotspotPolicyName = "wifi_hotspot";
 
@@ -173,7 +187,7 @@ namespace Tizen.Security.DevicePolicyManager
             {
                 _wifiPolicyChangedCallback = (string name, string state, IntPtr userData) =>
                 {
-                    _wifiPolicyChanged?.Invoke(this, new PolicyChangedEventArgs(name, state));
+                    _wifiPolicyChanged?.Invoke(this, new PolicyChangedEventArgs(WifiPolicyName, state));
                 };
             }
 
@@ -231,7 +245,7 @@ namespace Tizen.Security.DevicePolicyManager
             {
                 _wifiHotspotStatePolicyChangedCallback = (string name, string state, IntPtr userData) =>
                 {
-                    _wifiHotspotPolicyChanged?.Invoke(this, new PolicyChangedEventArgs(name, state));
+                    _wifiHotspotPolicyChanged?.Invoke(this, new PolicyChangedEventArgs(WifiHotspotPolicyName, state));
                 };
             }
 

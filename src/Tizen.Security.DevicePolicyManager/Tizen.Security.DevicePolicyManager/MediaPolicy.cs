@@ -24,6 +24,20 @@ namespace Tizen.Security.DevicePolicyManager
     /// <since_tizen> 6 </since_tizen>
     public class MediaPolicy : DevicePolicy, IDisposable
     {
+        /// <summary>
+        /// The Cemera policy name. This represents <see cref="MediaPolicy.IsCameraAllowed"/>.
+        /// </summary>
+        /// <remarks>This is used in <see cref="PolicyChangedEventArgs.PolicyName"/>.</remarks>
+        /// <since_tizen> 6 </since_tizen>
+        public const string CemeraPolicyName = "Cemera";
+
+        /// <summary>
+        /// The Microphone policy name. This represents <see cref="MediaPolicy.IsMicrophoneAllowed"/>.
+        /// </summary>
+        /// <remarks>This is used in <see cref="PolicyChangedEventArgs.PolicyName"/>.</remarks>
+        /// <since_tizen> 6 </since_tizen>
+        public const string MicrophonePolicyName = "Microphone";
+
         private readonly string _cameraPolicyName = "camera";
         private readonly string _microphonePolicyName = "microphone";
         private int _cameraCallbackId;
@@ -172,7 +186,7 @@ namespace Tizen.Security.DevicePolicyManager
             {
                 _cameraPolicyChangedCallback = (string name, string state, IntPtr userData) =>
                 {
-                    _cameraPolicyChanged?.Invoke(this, new PolicyChangedEventArgs(name, state));
+                    _cameraPolicyChanged?.Invoke(this, new PolicyChangedEventArgs(CemeraPolicyName, state));
                 };
             }
 
@@ -230,7 +244,7 @@ namespace Tizen.Security.DevicePolicyManager
             {
                 _microphonePolicyChangedCallback = (string name, string state, IntPtr userData) =>
                 {
-                    _microphonePolicyChanged?.Invoke(this, new PolicyChangedEventArgs(name, state));
+                    _microphonePolicyChanged?.Invoke(this, new PolicyChangedEventArgs(MicrophonePolicyName, state));
                 };
             }
 

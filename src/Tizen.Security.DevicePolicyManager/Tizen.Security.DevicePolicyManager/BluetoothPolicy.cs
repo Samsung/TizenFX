@@ -24,6 +24,20 @@ namespace Tizen.Security.DevicePolicyManager
     /// <since_tizen> 6 </since_tizen>
     public class BluetoothPolicy : DevicePolicy, IDisposable
     {
+        /// <summary>
+        /// The Bluetooth policy name. This represents <see cref="BluetoothPolicy.IsBluetoothAllowed"/>.
+        /// </summary>
+        /// <remarks>This is used in <see cref="PolicyChangedEventArgs.PolicyName"/>.</remarks>
+        /// <since_tizen> 6 </since_tizen>
+        public const string BluetoothPolicyName = "Bluetooth";
+
+        /// <summary>
+        /// The Bluetooth Tethering policy name. This represents <see cref="BluetoothPolicy.IsBluetoothTetheringAllowed"/>.
+        /// </summary>
+        /// <remarks>This is used in <see cref="PolicyChangedEventArgs.PolicyName"/>.</remarks>
+        /// <since_tizen> 6 </since_tizen>
+        public const string BluetoothTetheringPolicyName = "BluetoothTethering";
+
         private readonly string _bluetoothPolicyName = "bluetooth";
         private readonly string _bluetoothTetheringPolicyName = "bluetooth_tethering";
         private int _bluetoothCallbackId;
@@ -172,7 +186,7 @@ namespace Tizen.Security.DevicePolicyManager
             {
                 _bluetoothPolicyChangedCallback = (string name, string state, IntPtr userData) =>
                 {
-                    _bluetoothPolicyChanged?.Invoke(this, new PolicyChangedEventArgs(name, state));
+                    _bluetoothPolicyChanged?.Invoke(this, new PolicyChangedEventArgs(BluetoothPolicyName, state));
                 };
             }
 
@@ -230,7 +244,7 @@ namespace Tizen.Security.DevicePolicyManager
             {
                 _bluetoothTetheringPolicyChangedCallback = (string name, string state, IntPtr userData) =>
                 {
-                    _bluetoothTetheringPolicyChanged?.Invoke(this, new PolicyChangedEventArgs(name, state));
+                    _bluetoothTetheringPolicyChanged?.Invoke(this, new PolicyChangedEventArgs(BluetoothTetheringPolicyName, state));
                 };
             }
 
