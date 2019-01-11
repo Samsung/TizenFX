@@ -178,7 +178,7 @@ namespace Tizen.NUI
         /// Connects a member function.
         /// </summary>
         /// <param name="arg">The member function to connect</param>
-        /// <since_tizen> 4 </since_tizen>
+        /// <since_tizen> 5 </since_tizen>
         public void Emit(InputMethodContext.KeyboardType arg)
         {
             NDalicManualPINVOKE.KeyboardTypeSignalType_Emit(swigCPtr, (int)arg);

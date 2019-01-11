@@ -25,12 +25,52 @@ namespace Tizen.NUI
     /// <since_tizen> 3 </since_tizen>
     public class Degree : global::System.IDisposable
     {
-        private global::System.Runtime.InteropServices.HandleRef swigCPtr;
+
         /// <summary>
         /// swigCMemOwn.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         protected bool swigCMemOwn;
+
+        /// <summary>
+        /// A Flat to check if it is already disposed.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
+        protected bool disposed = false;
+
+        private global::System.Runtime.InteropServices.HandleRef swigCPtr;
+
+        //A Flag to check who called Dispose(). (By User or DisposeQueue)
+        private bool isDisposeQueued = false;
+
+        /// <summary>
+        /// The constructor.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
+        public Degree() : this(NDalicPINVOKE.new_Degree__SWIG_0(), true)
+        {
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        /// <summary>
+        /// Creates an angle in degrees.
+        /// </summary>
+        /// <param name="value">The initial value in degrees.</param>
+        /// <since_tizen> 3 </since_tizen>
+        public Degree(float value) : this(NDalicPINVOKE.new_Degree__SWIG_1(value), true)
+        {
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        /// <summary>
+        /// Creates an angle in degrees from a radian.
+        /// </summary>
+        /// <param name="value">The initial value in radians.</param>
+        /// <since_tizen> 3 </since_tizen>
+        public Degree(Radian value) : this(NDalicPINVOKE.new_Degree__SWIG_2(Radian.getCPtr(value)), true)
+        {
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
 
         internal Degree(global::System.IntPtr cPtr, bool cMemoryOwn)
         {
@@ -38,29 +78,35 @@ namespace Tizen.NUI
             swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
         }
 
-        internal static global::System.Runtime.InteropServices.HandleRef getCPtr(Degree obj)
-        {
-            return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
-        }
-
-        //A Flag to check who called Dispose(). (By User or DisposeQueue)
-        private bool isDisposeQueued = false;
-        /// <summary>
-        /// A Flat to check if it is already disposed.
-        /// </summary>
-        /// <since_tizen> 3 </since_tizen>
-        protected bool disposed = false;
-
         /// <summary>
         /// Dispose.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         ~Degree()
         {
-            if(!isDisposeQueued)
+            if (!isDisposeQueued)
             {
                 isDisposeQueued = true;
                 DisposeQueue.Instance.Add(this);
+            }
+        }
+
+        /// <summary>
+        /// The value of degree.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
+        public float Value
+        {
+            set
+            {
+                NDalicPINVOKE.Degree_degree_set(swigCPtr, value);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            }
+            get
+            {
+                float ret = NDalicPINVOKE.Degree_degree_get(swigCPtr);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                return ret;
             }
         }
 
@@ -85,6 +131,11 @@ namespace Tizen.NUI
                 Dispose(DisposeTypes.Explicit);
                 System.GC.SuppressFinalize(this);
             }
+        }
+
+        internal static global::System.Runtime.InteropServices.HandleRef getCPtr(Degree obj)
+        {
+            return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
         }
 
         /// <summary>
@@ -119,54 +170,6 @@ namespace Tizen.NUI
                 swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
             }
             disposed = true;
-        }
-
-        /// <summary>
-        /// The constructor.
-        /// </summary>
-        /// <since_tizen> 3 </since_tizen>
-        public Degree() : this(NDalicPINVOKE.new_Degree__SWIG_0(), true)
-        {
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-        }
-
-        /// <summary>
-        /// Creates an angle in degrees.
-        /// </summary>
-        /// <param name="value">The initial value in degrees.</param>
-        /// <since_tizen> 3 </since_tizen>
-        public Degree(float value) : this(NDalicPINVOKE.new_Degree__SWIG_1(value), true)
-        {
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-        }
-
-        /// <summary>
-        /// Creates an angle in degrees from a radian.
-        /// </summary>
-        /// <param name="value">The initial value in radians.</param>
-        /// <since_tizen> 3 </since_tizen>
-        public Degree(Radian value) : this(NDalicPINVOKE.new_Degree__SWIG_2(Radian.getCPtr(value)), true)
-        {
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-        }
-
-        /// <summary>
-        /// The value of degree.
-        /// </summary>
-        /// <since_tizen> 3 </since_tizen>
-        public float Value
-        {
-            set
-            {
-                NDalicPINVOKE.Degree_degree_set(swigCPtr, value);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            }
-            get
-            {
-                float ret = NDalicPINVOKE.Degree_degree_get(swigCPtr);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-                return ret;
-            }
         }
 
     }
