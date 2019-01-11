@@ -139,11 +139,14 @@ namespace Tizen.NUI
         /// <param name="windowPosition"></param>
         /// <param name="styleSheet"></param>
         /// InhouseAPI, this could be opend in NextTizen
+        [Obsolete("Please do not use! This will be deprecated!")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public NUIApplication(Graphics.BackendType backend, WindowMode windowMode = WindowMode.Opaque, Size2D windowSize = null, Position2D windowPosition = null, string styleSheet = "") : base(new NUICoreBackend(styleSheet, windowMode))
         {
             //windowMode and styleSheet will be added later. currenlty it's not working as expected.
             Graphics.Backend = backend;
+            Tizen.Log.Error("NUI", "Plaese DO NOT set graphical backend type with this constructor! This will give no effect!");
+
             if (windowSize != null) { _windowSize2D = windowSize; }
             if (windowPosition != null) { _windowPosition2D = windowPosition; }
             Registry.Instance.SavedApplicationThread = Thread.CurrentThread;
@@ -356,6 +359,7 @@ namespace Tizen.NUI
     /// Graphics BackendType
     /// </summary>
     /// InhouseAPI, this could be opend in NextTizen
+    [Obsolete("Please do not use! This will be deprecated!")]
     [EditorBrowsable(EditorBrowsableState.Never)]
     public class Graphics
     {
@@ -370,3 +374,4 @@ namespace Tizen.NUI
     }
 
 }
+
