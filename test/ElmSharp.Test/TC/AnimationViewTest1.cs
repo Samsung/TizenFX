@@ -236,7 +236,7 @@ namespace ElmSharp.Test
                 {
                     UpdateAnimationViewStateLabel(label);
                 }
-                aniview.Play();
+                aniview.Play(false);
             };
 
             Button btn2 = new Button(box3)
@@ -257,7 +257,7 @@ namespace ElmSharp.Test
                 {
                     UpdateAnimationViewStateLabel(label);
                 }
-                aniview.ReversePlay();
+                aniview.Play(true);
             };
 
             Button btn3 = new Button(box3)
