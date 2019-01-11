@@ -244,6 +244,20 @@ namespace ElmSharp
         /// Play request will be ignored if animation source is not set yet or animation is paused state or it's already on playing.
         /// </remarks>
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
+        public void Play()
+        {
+            Interop.Elementary.elm_animation_view_play(Handle);
+        }
+
+        /// <summary>
+        /// Play animation one time instantly when it's available.
+        /// <remarks>
+        /// If current keyframe is on a certain position by playing reverse and isReverse is ture, this will play forward from there.
+        /// And if current keyframe is on a certain position by playing and isReverse is false, this will play backward from there.
+        /// Play request will be ignored if animation source is not set yet or animation is paused state or it's already on playing.
+        /// </remarks>
+        /// </summary>
         /// <param name="isReverse">Whether the animation play or reverse play.</param>
         /// <since_tizen> preview </since_tizen>
         public void Play(bool isReverse)
