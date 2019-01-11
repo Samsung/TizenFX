@@ -168,7 +168,7 @@ install -p -m 644 packaging/*.nupkg %{buildroot}%{DOTNET_NUGET_SOURCE}
 
 %post
 /usr/bin/vconftool set -t int db/dotnet/tizen_api_version %{TIZEN_NET_API_VERSION} -f
-
+/usr/bin/vconftool set -t string db/dotnet/tizen_api_path %{DOTNET_ASSEMBLY_PATH} -f
 
 %files
 %license LICENSE
