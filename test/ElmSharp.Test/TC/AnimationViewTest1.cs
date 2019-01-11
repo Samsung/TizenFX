@@ -236,7 +236,7 @@ namespace ElmSharp.Test
                 {
                     UpdateAnimationViewStateLabel(label);
                 }
-                aniview.Play(false);
+                aniview.Play();
             };
 
             Button btn2 = new Button(box3)
