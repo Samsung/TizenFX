@@ -989,6 +989,12 @@ namespace Tizen.Uix.InputMethod
         private static ImeRotationChangedCb _imeRotationChangedDelegate;
         private static event EventHandler<AccessibilityStateChangedEventArgs> _accessibilityStateChanged;
         private static ImeAccessibilityStateChangedCb _imeAccessibilityStateChangedDelegate;
+        private static event EventHandler<PredictionHintUpdatedEventArgs> _predictionHintUpdated;
+        private static ImePredictionHintSetCb _imePredictionHintSetDelegate;
+        private static event EventHandler<PredictionHintDataUpdatedEventArgs> _predictionHintDataUpdated;
+        private static ImePredictionHintDataSetCb _imePredictionHintDataSetDelegate;
+        private static event EventHandler<MimeTypeUpdateRequestedEventArgs> _mimeTypeUpdateRequested;
+        private static ImeMimeTypeSetRequestCb _imeMimeTypeSetRequestDelegate;
         private static ImeLanguageRequestedCb _imeLanguageRequestedDelegate;
         private static OutAction<string> _languageRequestedDelegate;
         private static BoolAction<KeyCode, KeyMask, InputMethodDeviceInformation> _processKeyDelagate;
@@ -2206,6 +2212,188 @@ namespace Tizen.Uix.InputMethod
             if (error != ErrorCode.None)
             {
                 Log.Error(LogTag, "SendCustomGeometryUpdated Failed with error " + error);
+                throw InputMethodExceptionFactory.CreateException(error);
+            }
+        }
+
+        /// <summary>
+        /// Gets the selected text synchronously.
+        /// </summary>
+        /// <privilege>
+        /// http://tizen.org/privilege/ime
+        /// </privilege>
+        /// <returns>The selected text.</returns>
+        /// <exception cref="InvalidOperationException">
+        /// This can occur due to the following reasons:
+        /// 1) The application does not have the privilege to call this function.
+        /// 2) The IME main loop has not started yet.
+        /// 3) Invalid parameter.
+        /// </exception>
+        /// <since_tizen> 6 </since_tizen>
+        public static string GetSelectedText()
+        {
+            IntPtr txt;
+            ErrorCode error = ImeGetSelectedText(out txt);
+            if (error != ErrorCode.None)
+            {
+                Log.Error(LogTag, "GetSelectedText Failed with error " + error);
+                throw InputMethodExceptionFactory.CreateException(error);
+            }
+            return Marshal.PtrToStringAnsi(txt);
+        }
+
+        /// <summary>
+        /// Called to set the prediction hint string to deliver to the input panel.
+        /// </summary>
+        /// <since_tizen> 6 </since_tizen>
+        public static event EventHandler<PredictionHintUpdatedEventArgs> PredictionHintUpdated
+        {
+            add
+            {
+                lock (thisLock)
+                {
+                    if (_imePredictionHintSetDelegate == null)
+                    {
+                        _imePredictionHintSetDelegate = (IntPtr predictionHint, IntPtr userData) =>
+                        {
+                            PredictionHintUpdatedEventArgs args = new PredictionHintUpdatedEventArgs(Marshal.PtrToStringAnsi(predictionHint));
+                            _predictionHintUpdated?.Invoke(null, args);
+                        };
+                        ErrorCode error = ImeEventSetPredictionHintSetCb(_imePredictionHintSetDelegate, IntPtr.Zero);
+                        if (error != ErrorCode.None)
+                        {
+                            Log.Error(LogTag, "Add PredictionHintUpdated Failed with error " + error);
+                        }
+                    }
+                    _predictionHintUpdated += value;
+                }
+            }
+            remove
+            {
+                lock (thisLock)
+                {
+                    _predictionHintUpdated -= value;
+                }
+            }
+        }
+
+        /// <summary>
+        /// Called to set the prediction hint key and value to deliver to the input panel.
+        /// </summary>
+        /// <since_tizen> 6 </since_tizen>
+        public static event EventHandler<PredictionHintDataUpdatedEventArgs> PredictionHintDataUpdated
+        {
+            add
+            {
+                lock (thisLock)
+                {
+                    if (_imePredictionHintDataSetDelegate == null)
+                    {
+                        _imePredictionHintDataSetDelegate = (IntPtr key, IntPtr keyValue, IntPtr userData) =>
+                        {
+                            PredictionHintDataUpdatedEventArgs args = new PredictionHintDataUpdatedEventArgs(Marshal.PtrToStringAnsi(key), Marshal.PtrToStringAnsi(keyValue));
+                            _predictionHintDataUpdated?.Invoke(null, args);
+                        };
+
+                        ErrorCode error = ImeEventSetPredictionHintDataSetCb(_imePredictionHintDataSetDelegate, IntPtr.Zero);
+                        if (error != ErrorCode.None)
+                        {
+                            Log.Error(LogTag, "Add PredictionHintDataUpdated Failed with error " + error);
+                        }
+                    }
+                    _predictionHintDataUpdated += value;
+                }
+            }
+            remove
+            {
+                lock (thisLock)
+                {
+                    _predictionHintDataUpdated -= value;
+                }
+            }
+        }
+
+        /// <summary>
+        /// Called when an associated text input UI control requests the text entry to set the MIME type.
+        /// </summary>
+        /// <since_tizen> 6 </since_tizen>
+        public static event EventHandler<MimeTypeUpdateRequestedEventArgs> MimeTypeUpdateRequested
+        {
+            add
+            {
+                lock (thisLock)
+                {
+                    if (_imeMimeTypeSetRequestDelegate == null)
+                    {
+                        _imeMimeTypeSetRequestDelegate = (IntPtr mimeType, IntPtr userData) =>
+                        {
+                            MimeTypeUpdateRequestedEventArgs args = new MimeTypeUpdateRequestedEventArgs(Marshal.PtrToStringAnsi(mimeType));
+                            _mimeTypeUpdateRequested?.Invoke(null, args);
+                        };
+                        ErrorCode error = ImeEventSetMimeTypeSetRequestCb(_imeMimeTypeSetRequestDelegate, IntPtr.Zero);
+                        if (error != ErrorCode.None)
+                        {
+                            Log.Error(LogTag, "Add MimeTypeUpdateRequested Failed with error " + error);
+                        }
+                    }
+                    _mimeTypeUpdateRequested += value;
+                }
+            }
+            remove
+            {
+                lock (thisLock)
+                {
+                    _mimeTypeUpdateRequested -= value;
+                }
+            }
+        }
+
+        /// <summary>
+        /// Sends a private command to the associated text input UI control.
+        /// </summary>
+        /// <privilege>
+        /// http://tizen.org/privilege/ime
+        /// </privilege>
+        /// <param name="command">The UTF-8 string to be sent.</param>
+        /// <exception cref="InvalidOperationException">
+        /// This can occur due to the following reasons:
+        /// 1) The application does not have the privilege to call this function.
+        /// 2) The IME main loop has not started yet.
+        /// 3) Invalid parameter.
+        /// </exception>
+        /// <since_tizen> 6 </since_tizen>
+        public static void SendPrivateCommand(string command)
+        {
+            ErrorCode error = ImeSendPrivateCommand(command);
+            if (error != ErrorCode.None)
+            {
+                Log.Error(LogTag, "SendPrivateCommand Failed with error " + error);
+                throw InputMethodExceptionFactory.CreateException(error);
+            }
+        }
+
+        /// <summary>
+        /// Commits contents such as image to the associated text input UI control.
+        /// </summary>
+        /// <privilege>
+        /// http://tizen.org/privilege/ime
+        /// </privilege>
+        /// <param name="content">The content URI to be sent.</param>
+        /// <param name="description">The content description.</param>
+        /// <param name="mimeType">The MIME type received from the MimeTypeSetRequest</param>
+        /// <exception cref="InvalidOperationException">
+        /// This can occur due to the following reasons:
+        /// 1) The application does not have the privilege to call this function.
+        /// 2) The IME main loop has not started yet.
+        /// 3) Invalid parameter.
+        /// </exception>
+        /// <since_tizen> 6 </since_tizen>
+        public static void CommitContent(string content, string description, string mimeType)
+        {
+            ErrorCode error = ImeCommitContent(content, description, mimeType);
+            if (error != ErrorCode.None)
+            {
+                Log.Error(LogTag, "CommitContent Failed with error " + error);
                 throw InputMethodExceptionFactory.CreateException(error);
             }
         }
