@@ -198,7 +198,7 @@ namespace ElmSharp
         /// <since_tizen> preview </since_tizen>
         public ListItem Append(string label, EvasObject leftIcon, EvasObject rightIcon)
         {
-            ListItem item = new ListItem(label, leftIcon, rightIcon);
+            ListItem item = new ListItem(this, label, leftIcon, rightIcon);
             item.Handle = Interop.Elementary.elm_list_item_append(RealHandle, label, leftIcon, rightIcon, null, (IntPtr)item.Id);
             AddInternal(item);
             return item;
@@ -225,7 +225,7 @@ namespace ElmSharp
         /// <since_tizen> preview </since_tizen>
         public ListItem Prepend(string label, EvasObject leftIcon, EvasObject rigthIcon)
         {
-            ListItem item = new ListItem(label, leftIcon, rigthIcon);
+            ListItem item = new ListItem(this, label, leftIcon, rigthIcon);
             item.Handle = Interop.Elementary.elm_list_item_prepend(RealHandle, label, leftIcon, rigthIcon, null, (IntPtr)item.Id);
             AddInternal(item);
             return item;

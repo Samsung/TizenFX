@@ -27,7 +27,7 @@ namespace ElmSharp
     /// <since_tizen> preview </since_tizen>
     public class GenGridItem : GenItem
     {
-        internal GenGridItem(object data, GenItemClass itemClass) : base(data, itemClass)
+        internal GenGridItem(EvasObject parent, object data, GenItemClass itemClass) : base(parent, data, itemClass)
         {
         }
 

@@ -41,7 +41,18 @@ namespace ElmSharp
         /// </summary>
         /// <param name="text">FlipSelectorItem's text</param>
         /// <since_tizen> preview </since_tizen>
-        public FlipSelectorItem(string text) : base(IntPtr.Zero)
+        public FlipSelectorItem(string text) : base(null, IntPtr.Zero)
+        {
+            Text = text;
+        }
+
+        /// <summary>
+        /// Creates and initializes a new instance of the FlipSelectorItem.
+        /// </summary>
+        /// <param name="parent">Parent EvasObject</param>
+        /// <param name="text">FlipSelectorItem's text</param>
+        /// <since_tizen> preview </since_tizen>
+        public FlipSelectorItem(EvasObject parent, string text) : base(parent, IntPtr.Zero)
         {
             Text = text;
         }

@@ -130,7 +130,7 @@ namespace ElmSharp
         /// <since_tizen> preview </since_tizen>
         public FlipSelectorItem Append(string text)
         {
-            FlipSelectorItem item = new FlipSelectorItem(text);
+            FlipSelectorItem item = new FlipSelectorItem(this, text);
             item.Handle = Interop.Elementary.elm_flipselector_item_append(Handle, text, null, (IntPtr)item.Id);
             return item;
         }
@@ -146,7 +146,7 @@ namespace ElmSharp
         /// <since_tizen> preview </since_tizen>
         public FlipSelectorItem Prepend(string text)
         {
-            FlipSelectorItem item = new FlipSelectorItem(text);
+            FlipSelectorItem item = new FlipSelectorItem(this, text);
             item.Handle = Interop.Elementary.elm_flipselector_item_prepend(Handle, text, null, (IntPtr)item.Id);
             return item;
         }

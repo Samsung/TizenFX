@@ -36,15 +36,23 @@ namespace ElmSharp
         EvasObject _trackObject = null;
 
         /// <summary>
-        /// Creates and initializes a new instance of the ItemObject class.
+        /// Gets the parent object for ItemObject.
         /// </summary>
+        /// <since_tizen> preview </since_tizen>
+        public EvasObject Parent { get; internal set; }
+
+        /// <summary>
+        /// Creates and initializes a new instance of the ItemObject class with parent object.
+        /// </summary>
+        /// <param name="parent">Parent EvasObject</param>
         /// <param name="handle">IntPtr</param>
         /// <since_tizen> preview </since_tizen>
-        protected ItemObject(IntPtr handle)
+        protected ItemObject(EvasObject parent, IntPtr handle)
         {
             _deleteCallback = DeleteCallbackHandler;
             Id = GetNextId();
             s_IdToItemTable[Id] = this;
+            Parent = parent;
             Handle = handle;
         }
 
@@ -327,6 +335,7 @@ namespace ElmSharp
         void DeleteCallbackHandler(IntPtr data, IntPtr obj, IntPtr info)
         {
             Deleted?.Invoke(this, EventArgs.Empty);
+            Parent = null;
             OnInvalidate();
             if (s_IdToItemTable.ContainsKey(Id))
             {

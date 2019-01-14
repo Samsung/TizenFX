@@ -26,7 +26,7 @@ namespace ElmSharp
     /// <since_tizen> preview </since_tizen>
     public class ListItem : ItemObject
     {
-        internal ListItem(string text, EvasObject leftIcon, EvasObject rightIcon) : base(IntPtr.Zero)
+        internal ListItem(EvasObject parent, string text, EvasObject leftIcon, EvasObject rightIcon) : base(parent, IntPtr.Zero)
         {
             Text = text;
             LeftIcon = leftIcon;

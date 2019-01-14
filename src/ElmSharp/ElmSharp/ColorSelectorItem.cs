@@ -24,7 +24,7 @@ namespace ElmSharp
     /// <since_tizen> preview </since_tizen>
     public class ColorSelectorItem : ItemObject
     {
-        internal ColorSelectorItem() : base(IntPtr.Zero)
+        internal ColorSelectorItem(EvasObject parent) : base(parent, IntPtr.Zero)
         {
         }
 

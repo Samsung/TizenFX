@@ -31,12 +31,12 @@ namespace ElmSharp
         /// </summary>
         /// <param name="text">The text of the MultiButtonEntryItem's label name.</param>
         /// <since_tizen> preview </since_tizen>
-        public MultiButtonEntryItem(string text) : base(IntPtr.Zero)
+        public MultiButtonEntryItem(string text) : base(null, IntPtr.Zero)
         {
             Label = text;
         }
 
-        internal MultiButtonEntryItem(IntPtr handle) : base(handle)
+        internal MultiButtonEntryItem(EvasObject parent, IntPtr handle) : base(parent, handle)
         {
             Label = Interop.Elementary.elm_object_item_part_text_get(handle, null);
         }

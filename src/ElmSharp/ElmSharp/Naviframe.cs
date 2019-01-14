@@ -148,7 +148,7 @@ namespace ElmSharp
         public NaviItem Push(EvasObject content, string title, string style)
         {
             IntPtr item = Interop.Elementary.elm_naviframe_item_push(RealHandle, title, IntPtr.Zero, IntPtr.Zero, content.Handle, style);
-            NaviItem naviItem = NaviItem.FromNativeHandle(item, content);
+            NaviItem naviItem = NaviItem.FromNativeHandle(this, item, content);
             _itemStack.Add(naviItem);
             naviItem.Popped += ItemPoppedHandler;
             return naviItem;
@@ -193,7 +193,7 @@ namespace ElmSharp
         public NaviItem InsertBefore(NaviItem before, EvasObject content, string title, string style)
         {
             IntPtr item = Interop.Elementary.elm_naviframe_item_insert_before(RealHandle, before, title, IntPtr.Zero, IntPtr.Zero, content, null);
-            NaviItem naviItem = NaviItem.FromNativeHandle(item, content);
+            NaviItem naviItem = NaviItem.FromNativeHandle(this, item, content);
             int idx = _itemStack.IndexOf(before);
             _itemStack.Insert(idx, naviItem);
             naviItem.Popped += ItemPoppedHandler;
@@ -239,7 +239,7 @@ namespace ElmSharp
         public NaviItem InsertAfter(NaviItem after, EvasObject content, string title, string style)
         {
             IntPtr item = Interop.Elementary.elm_naviframe_item_insert_after(RealHandle, after, title, IntPtr.Zero, IntPtr.Zero, content, null);
-            NaviItem naviItem = NaviItem.FromNativeHandle(item, content);
+            NaviItem naviItem = NaviItem.FromNativeHandle(this, item, content);
             int idx = _itemStack.IndexOf(after);
             _itemStack.Insert(idx + 1, naviItem);
             naviItem.Popped += ItemPoppedHandler;

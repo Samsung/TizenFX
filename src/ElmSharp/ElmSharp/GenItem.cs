@@ -62,7 +62,7 @@ namespace ElmSharp
         /// <since_tizen> preview </since_tizen>
         public delegate EvasObject GetTooltipContentDelegate();
 
-        internal GenItem(object data, GenItemClass itemClass) : base(IntPtr.Zero)
+        internal GenItem(EvasObject parent, object data, GenItemClass itemClass) : base(parent, IntPtr.Zero)
         {
             Data = data;
             ItemClass = itemClass;

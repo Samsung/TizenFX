@@ -24,7 +24,7 @@ namespace ElmSharp
     /// <since_tizen> preview </since_tizen>
     public class HoverselItem : ItemObject
     {
-        internal HoverselItem() : base(IntPtr.Zero)
+        internal HoverselItem(EvasObject parent) : base(parent, IntPtr.Zero)
         {
         }
 

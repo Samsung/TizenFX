@@ -278,7 +278,7 @@ namespace ElmSharp
         /// <since_tizen> preview </since_tizen>
         public PopupItem Append(string label, EvasObject icon)
         {
-            PopupItem item = new PopupItem(label, icon);
+            PopupItem item = new PopupItem(this, label, icon);
             item.Handle = Interop.Elementary.elm_popup_item_append(Handle, label, icon, null, (IntPtr)item.Id);
             AddInternal(item);
             return item;

@@ -30,7 +30,7 @@ namespace ElmSharp
         Color _barBackgroundColor = Color.Default;
         Interop.Elementary.Elm_Naviframe_Item_Pop_Cb _popped;
 
-        NaviItem(IntPtr handle, EvasObject content) : base(handle)
+        NaviItem(EvasObject parent, IntPtr handle, EvasObject content) : base(parent, handle)
         {
             _isPopped = false;
             _content = content;
@@ -125,9 +125,9 @@ namespace ElmSharp
                 Popped?.Invoke(this, EventArgs.Empty);
         }
 
-        internal static NaviItem FromNativeHandle(IntPtr handle, EvasObject content)
+        internal static NaviItem FromNativeHandle(EvasObject parent, IntPtr handle, EvasObject content)
         {
-            return new NaviItem(handle, content);
+            return new NaviItem(parent, handle, content);
         }
     }
 }
