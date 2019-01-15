@@ -247,8 +247,6 @@ namespace Tizen.NUI
             {
                 return ValueOfIndex(index);
             }
-
-            return equal;
         }
 
         internal static Position2D GetPosition2DFromPtr(global::System.IntPtr cPtr)
