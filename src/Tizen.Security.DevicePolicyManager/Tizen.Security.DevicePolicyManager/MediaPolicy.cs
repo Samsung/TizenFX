@@ -25,11 +25,11 @@ namespace Tizen.Security.DevicePolicyManager
     public class MediaPolicy : DevicePolicy, IDisposable
     {
         /// <summary>
-        /// The Cemera policy name. This represents <see cref="MediaPolicy.IsCameraAllowed"/>.
+        /// The Camera policy name. This represents <see cref="MediaPolicy.IsCameraAllowed"/>.
         /// </summary>
         /// <remarks>This is used in <see cref="PolicyChangedEventArgs.PolicyName"/>.</remarks>
         /// <since_tizen> 6 </since_tizen>
-        public const string CemeraPolicyName = "Cemera";
+        public const string CameraPolicyName = "Camera";
 
         /// <summary>
         /// The Microphone policy name. This represents <see cref="MediaPolicy.IsMicrophoneAllowed"/>.
@@ -186,7 +186,7 @@ namespace Tizen.Security.DevicePolicyManager
             {
                 _cameraPolicyChangedCallback = (string name, string state, IntPtr userData) =>
                 {
-                    _cameraPolicyChanged?.Invoke(this, new PolicyChangedEventArgs(CemeraPolicyName, state));
+                    _cameraPolicyChanged?.Invoke(this, new PolicyChangedEventArgs(CameraPolicyName, state));
                 };
             }
 
