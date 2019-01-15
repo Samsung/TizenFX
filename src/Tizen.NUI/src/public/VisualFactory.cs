@@ -32,7 +32,7 @@ namespace Tizen.NUI
         /// <summary>
         /// Instance of the VisualFactory singleton.
         /// </summary>
-        private static VisualFactory instance = null;
+        private static VisualFactory instance;
 
         internal VisualFactory(global::System.IntPtr cPtr, bool cMemoryOwn) : base(NDalicPINVOKE.VisualFactory_SWIGUpcast(cPtr), cMemoryOwn)
         {

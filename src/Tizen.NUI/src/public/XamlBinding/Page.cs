@@ -402,7 +402,6 @@ namespace Tizen.NUI
 
             for (var i = 0; i < LogicalChildren.Count; i++)
             {
-                var c = (BaseHandle)LogicalChildren[i];
                 LayoutChanged?.Invoke(this, EventArgs.Empty);
             }
         }
@@ -414,7 +413,9 @@ namespace Tizen.NUI
             {
                 Page page = container.CurrentPage;
                 if (page != null)
+                {
                     return;
+                }
             }
             else
             {
@@ -422,7 +423,9 @@ namespace Tizen.NUI
                 {
                     var v = LogicalChildren[i] as BaseHandle;
                     if (v != null)
+                    {
                         return;
+                    }
                 }
             }
         }
@@ -482,22 +485,26 @@ namespace Tizen.NUI
             if (e.OldItems != null)
             {
                 foreach (BaseHandle item in e.OldItems.OfType<BaseHandle>())
+                {
                     OnInternalRemoved(item);
+                }
             }
 
             if (e.NewItems != null)
             {
                 foreach (BaseHandle item in e.NewItems.OfType<BaseHandle>())
+                {
                     OnInternalAdded(item);
+                }
             }
         }
 
-        void OnInternalAdded(BaseHandle view)
+        private void OnInternalAdded(BaseHandle view)
         {
             OnChildAdded(view);
         }
 
-        void OnInternalRemoved(BaseHandle view)
+        private void OnInternalRemoved(BaseHandle view)
         {
             OnChildRemoved(view);
         }
@@ -521,7 +528,9 @@ namespace Tizen.NUI
         bool ShouldLayoutChildren()
         {
             if (!LogicalChildren.Any())
+            {
                 return false;
+            }
 
             var container = this as IPageContainer<Page>;
             if (container?.CurrentPage != null)

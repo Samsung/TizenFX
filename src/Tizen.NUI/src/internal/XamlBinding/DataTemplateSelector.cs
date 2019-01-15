@@ -11,7 +11,9 @@ namespace Tizen.NUI.Binding
         {
             DataTemplate dataTemplate = null;
             if (_dataTemplates.TryGetValue(item.GetType(), out dataTemplate))
+            {
                 return dataTemplate;
+            }
 
             dataTemplate = OnSelectTemplate(item, container);
             if (dataTemplate is DataTemplateSelector)

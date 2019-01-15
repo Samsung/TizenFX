@@ -504,7 +504,7 @@ namespace Tizen.NUI
         /// <since_tizen> 5 </since_tizen>
         public override int GetHashCode()
         {
-            return base.GetHashCode();
+            return X.GetHashCode();
         }
 
         /// <summary>

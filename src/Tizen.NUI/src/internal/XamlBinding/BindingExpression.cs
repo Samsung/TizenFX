@@ -343,7 +343,10 @@ namespace Tizen.NUI.Binding
             if (property != null)
             {
                 if (property.CanRead && property.GetMethod.IsPublic && !property.GetMethod.IsStatic)
+                {
                     part.LastGetter = property.GetMethod;
+                }
+
                 if (property.CanWrite && property.SetMethod.IsPublic && !property.SetMethod.IsStatic)
                 {
                     part.LastSetter = property.SetMethod;

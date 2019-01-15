@@ -235,7 +235,9 @@ namespace Tizen.NUI.Xaml
                 serviceProvider = new XamlServiceProvider(node, Context);
 
             if (serviceProvider != null && propertyName != XmlName.Empty)
+            {
                 ((XamlValueTargetProvider)serviceProvider.IProvideValueTarget).TargetProperty = GetTargetProperty(source, propertyName, Context, node);
+            }
 
             if (markupExtension != null)
                 value = markupExtension.ProvideValue(serviceProvider);

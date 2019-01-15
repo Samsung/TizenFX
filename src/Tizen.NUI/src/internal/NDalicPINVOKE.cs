@@ -67203,44 +67203,6 @@ namespace Tizen.NUI
             }
         }
 
-
-        [global::System.Runtime.InteropServices.DllImport(Graphics.GlesCSharpBinder, EntryPoint = "CSharp_Dali_WebView_PageLoadStartedSignal")]
-        public static extern WebViewSignal WebView_PageLoadStartedSignal_gl(global::System.Runtime.InteropServices.HandleRef jarg1);
-
-        [global::System.Runtime.InteropServices.DllImport(Graphics.VulkanCSharpBinder, EntryPoint = "CSharp_Dali_WebView_PageLoadStartedSignal")]
-        public static extern WebViewSignal WebView_PageLoadStartedSignal_vulkan(global::System.Runtime.InteropServices.HandleRef jarg1);
-
-        public static WebViewSignal WebView_PageLoadStartedSignal(global::System.Runtime.InteropServices.HandleRef jarg1)
-        {
-            if (Tizen.NUI.Graphics.Backend == Tizen.NUI.Graphics.BackendType.Vulkan)
-            {
-                return WebView_PageLoadStartedSignal_vulkan(jarg1);
-            }
-            else
-            {
-                return WebView_PageLoadStartedSignal_gl(jarg1);
-            }
-        }
-
-
-        [global::System.Runtime.InteropServices.DllImport(Graphics.GlesCSharpBinder, EntryPoint = "CSharp_Dali_WebView_PageLoadFinishedSignal")]
-        public static extern WebViewSignal WebView_PageLoadFinishedSignal_gl(global::System.Runtime.InteropServices.HandleRef jarg1);
-
-        [global::System.Runtime.InteropServices.DllImport(Graphics.VulkanCSharpBinder, EntryPoint = "CSharp_Dali_WebView_PageLoadFinishedSignal")]
-        public static extern WebViewSignal WebView_PageLoadFinishedSignal_vulkan(global::System.Runtime.InteropServices.HandleRef jarg1);
-
-        public static WebViewSignal WebView_PageLoadFinishedSignal(global::System.Runtime.InteropServices.HandleRef jarg1)
-        {
-            if (Tizen.NUI.Graphics.Backend == Tizen.NUI.Graphics.BackendType.Vulkan)
-            {
-                return WebView_PageLoadFinishedSignal_vulkan(jarg1);
-            }
-            else
-            {
-                return WebView_PageLoadFinishedSignal_gl(jarg1);
-            }
-        }
-
         [global::System.Runtime.InteropServices.DllImport(Graphics.GlesCSharpBinder, EntryPoint = "CSharp_Dali_WebView_SWIGUpcast")]
         public static extern global::System.IntPtr WebView_SWIGUpcast_gl(global::System.IntPtr jarg1);
 

@@ -1490,11 +1490,6 @@ namespace Tizen.NUI
 
         public static Application GetApplicationFromPtr(global::System.IntPtr cPtr)
         {
-            if (cPtr == null)
-            {
-                return null;
-            }
-
             Application ret = new Application(cPtr, false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;

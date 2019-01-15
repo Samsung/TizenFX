@@ -164,7 +164,7 @@ namespace Tizen.NUI
         /// <param name="oldSize">The old size of the layout.</param>
         protected override void OnSizeChanged(LayoutSize newSize, LayoutSize oldSize)
         {
-
+            //Do nothing
         }
 
         /// <summary>

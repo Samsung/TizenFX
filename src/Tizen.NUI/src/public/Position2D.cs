@@ -247,6 +247,8 @@ namespace Tizen.NUI
             {
                 return ValueOfIndex(index);
             }
+
+            return equal;
         }
 
         internal static Position2D GetPosition2DFromPtr(global::System.IntPtr cPtr)
@@ -368,7 +370,7 @@ namespace Tizen.NUI
         /// <since_tizen> 5 </since_tizen>
         public override int GetHashCode()
         {
-            return base.GetHashCode();
+            return X.GetHashCode();
         }
 
         /// <summary>
