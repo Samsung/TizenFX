@@ -342,43 +342,48 @@ namespace Tizen.NUI.Binding
 
             if (property != null)
             {
-                if (property.CanRead && property.GetMethod.IsPublic && !property.GetMethod.IsStatic)
+                if (property.CanRead && property.GetMethod != null)
                 {
-                    part.LastGetter = property.GetMethod;
-                }
-
-                if (property.CanWrite && property.SetMethod.IsPublic && !property.SetMethod.IsStatic)
-                {
-                    part.LastSetter = property.SetMethod;
-                    part.SetterType = part.LastSetter.GetParameters().Last().ParameterType;
-
-                    if (Binding.AllowChaining)
+                    if (property.GetMethod.IsPublic && !property.GetMethod.IsStatic)
                     {
-                        FieldInfo bindablePropertyField = sourceType.GetDeclaredField(part.Content + "Property");
-                        if (bindablePropertyField != null && bindablePropertyField.FieldType == typeof(BindableProperty) && sourceType.ImplementedInterfaces.Contains(typeof(IElementController)))
+                        part.LastGetter = property.GetMethod;
+                    }
+                }
+                if (property.CanWrite && property.SetMethod != null)
+                {
+                    if(property.SetMethod.IsPublic && !property.SetMethod.IsStatic)
+                    {
+                        part.LastSetter = property.SetMethod;
+                        part.SetterType = part.LastSetter.GetParameters().Last().ParameterType;
+
+                        if (Binding.AllowChaining)
                         {
-                            MethodInfo setValueMethod = null;
-#if NETSTANDARD1_0
-                            foreach (MethodInfo m in sourceType.AsType().GetRuntimeMethods())
+                            FieldInfo bindablePropertyField = sourceType.GetDeclaredField(part.Content + "Property");
+                            if (bindablePropertyField != null && bindablePropertyField.FieldType == typeof(BindableProperty) && sourceType.ImplementedInterfaces.Contains(typeof(IElementController)))
                             {
-                                if (m.Name.EndsWith("IElementController.SetValueFromRenderer"))
+                                MethodInfo setValueMethod = null;
+#if NETSTANDARD1_0
+                                foreach (MethodInfo m in sourceType.AsType().GetRuntimeMethods())
                                 {
-                                    ParameterInfo[] parameters = m.GetParameters();
-                                    if (parameters.Length == 2 && parameters[0].ParameterType == typeof(BindableProperty))
+                                    if (m.Name.EndsWith("IElementController.SetValueFromRenderer"))
                                     {
-                                        setValueMethod = m;
-                                        break;
+                                        ParameterInfo[] parameters = m.GetParameters();
+                                        if (parameters.Length == 2 && parameters[0].ParameterType == typeof(BindableProperty))
+                                        {
+                                            setValueMethod = m;
+                                            break;
+                                        }
                                     }
                                 }
-                            }
 #else
-                            setValueMethod = typeof(IElementController).GetMethod("SetValueFromRenderer", new[] { typeof(BindableProperty), typeof(object) });
+                                setValueMethod = typeof(IElementController).GetMethod("SetValueFromRenderer", new[] { typeof(BindableProperty), typeof(object) });
 #endif
-                            if (setValueMethod != null)
-                            {
-                                part.LastSetter = setValueMethod;
-                                part.IsBindablePropertySetter = true;
-                                part.BindablePropertyField = bindablePropertyField.GetValue(null);
+                                if (setValueMethod != null)
+                                {
+                                    part.LastSetter = setValueMethod;
+                                    part.IsBindablePropertySetter = true;
+                                    part.BindablePropertyField = bindablePropertyField.GetValue(null);
+                                }
                             }
                         }
                     }

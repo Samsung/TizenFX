@@ -202,35 +202,35 @@ namespace Tizen.NUI.UIComponents
                 switch ((ContextualModeType)newValue)
                 {
                     case ContextualModeType.NonContextual:
-                        {
-                            valueToString = "NON_CONTEXTUAL";
-                            break;
-                        }
+                    {
+                        valueToString = "NON_CONTEXTUAL";
+                        break;
+                    }
                     case ContextualModeType.Above:
-                        {
-                            valueToString = "ABOVE";
-                            break;
-                        }
+                    {
+                        valueToString = "ABOVE";
+                        break;
+                    }
                     case ContextualModeType.Rright:
-                        {
-                            valueToString = "RIGHT";
-                            break;
-                        }
+                    {
+                        valueToString = "RIGHT";
+                        break;
+                    }
                     case ContextualModeType.Below:
-                        {
-                            valueToString = "BELOW";
-                            break;
-                        }
+                    {
+                        valueToString = "BELOW";
+                        break;
+                    }
                     case ContextualModeType.Left:
-                        {
-                            valueToString = "LEFT";
-                            break;
-                        }
+                    {
+                        valueToString = "LEFT";
+                        break;
+                    }
                     default:
-                        {
-                            valueToString = "BELOW";
-                            break;
-                        }
+                    {
+                        valueToString = "BELOW";
+                        break;
+                    }
                 }
                 Tizen.NUI.Object.SetProperty(popup.swigCPtr, Popup.Property.CONTEXTUAL_MODE, new Tizen.NUI.PropertyValue(valueToString));
             }
@@ -287,30 +287,30 @@ namespace Tizen.NUI.UIComponents
                 switch ((AnimationModeType)newValue)
                 {
                     case AnimationModeType.None:
-                        {
-                            valueToString = "NONE";
-                            break;
-                        }
+                    {
+                        valueToString = "NONE";
+                        break;
+                    }
                     case AnimationModeType.Zoom:
-                        {
-                            valueToString = "ZOOM";
-                            break;
-                        }
+                    {
+                        valueToString = "ZOOM";
+                        break;
+                    }
                     case AnimationModeType.Fade:
-                        {
-                            valueToString = "FADE";
-                            break;
-                        }
+                    {
+                        valueToString = "FADE";
+                        break;
+                    }
                     case AnimationModeType.Custom:
-                        {
-                            valueToString = "CUSTOM";
-                            break;
-                        }
+                    {
+                        valueToString = "CUSTOM";
+                        break;
+                    }
                     default:
-                        {
-                            valueToString = "FADE";
-                            break;
-                        }
+                    {
+                        valueToString = "FADE";
+                        break;
+                    }
                 }
                 Tizen.NUI.Object.SetProperty(popup.swigCPtr, Popup.Property.ANIMATION_MODE, new Tizen.NUI.PropertyValue(valueToString));
             }
@@ -526,148 +526,41 @@ namespace Tizen.NUI.UIComponents
         });
 
         private global::System.Runtime.InteropServices.HandleRef swigCPtr;
+        private EventHandler<TouchedOutsideEventArgs> _popUpOutsideTouchedEventHandler;
+        private OutsideTouchedEventCallbackDelegate _popUpOutsideTouchedEventCallbackDelegate;
+        private EventHandler<ShowingEventArgs> _popUpShowingEventHandler;
+        private ShowingEventCallbackDelegate _popUpShowingEventCallbackDelegate;
+        private EventHandler<ShownEventArgs> _popUpShownEventHandler;
+        private ShownEventCallbackDelegate _popUpShownEventCallbackDelegate;
+        private EventHandler<HidingEventArgs> _popUpHidingEventHandler;
+        private HidingEventCallbackDelegate _popUpHidingEventCallbackDelegate;
+        private EventHandler<HiddenEventArgs> _popUpHiddenEventHandler;
+        private HiddenEventCallbackDelegate _popUpHiddenEventCallbackDelegate;
+
+        /// <summary>
+        /// Creates the popup.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
+        public Popup() : this(NDalicPINVOKE.Popup_New(), true)
+        {
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
 
         internal Popup(global::System.IntPtr cPtr, bool cMemoryOwn) : base(NDalicPINVOKE.Popup_SWIGUpcast(cPtr), cMemoryOwn)
         {
             swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
         }
 
-        internal static global::System.Runtime.InteropServices.HandleRef getCPtr(Popup obj)
-        {
-            return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
-        }
-
-        /// <summary>
-        /// Dispose.
-        /// </summary>
-        /// <param name="type">The dispose type</param>
-        /// <since_tizen> 3 </since_tizen>
-        protected override void Dispose(DisposeTypes type)
-        {
-            if (disposed)
-            {
-                return;
-            }
-
-            if (type == DisposeTypes.Explicit)
-            {
-                //Called by User
-                //Release your own managed resources here.
-                //You should release all of your own disposable objects here.
-
-            }
-
-            //Release your own unmanaged resources here.
-            //You should not access any managed member here except static instance.
-            //because the execution order of Finalizes is non-deterministic.
-            if (this != null)
-            {
-                if (_popUpHiddenEventCallbackDelegate != null)
-                {
-                    HiddenSignal().Disconnect(_popUpHiddenEventCallbackDelegate);
-                }
-
-                if (_popUpHidingEventCallbackDelegate != null)
-                {
-                    HidingSignal().Disconnect(_popUpHidingEventCallbackDelegate);
-                }
-            }
-
-            if (_popUpShownEventCallbackDelegate != null)
-            {
-                ShownSignal().Disconnect(_popUpShownEventCallbackDelegate);
-            }
-
-            if (_popUpShowingEventCallbackDelegate != null)
-            {
-                ShowingSignal().Disconnect(_popUpShowingEventCallbackDelegate);
-            }
-
-            if (_popUpOutsideTouchedEventCallbackDelegate != null)
-            {
-                this.OutsideTouchedSignal().Disconnect(_popUpOutsideTouchedEventCallbackDelegate);
-            }
-
-            if (swigCPtr.Handle != global::System.IntPtr.Zero)
-            {
-                if (swigCMemOwn)
-                {
-                    swigCMemOwn = false;
-                    NDalicPINVOKE.delete_Popup(swigCPtr);
-                }
-                swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
-            }
-
-            base.Dispose(type);
-        }
-
-
-
-
-        /// <summary>
-        /// Event arguments that passed via the OutsideTouchedEvent.
-        /// </summary>
-        /// <since_tizen> 3 </since_tizen>
-        public class TouchedOutsideEventArgs : EventArgs
-        {
-        }
-
-        /// <summary>
-        /// Event arguments that passed via the ShowingEventArgs.
-        /// </summary>
-        /// <since_tizen> 3 </since_tizen>
-        public class ShowingEventArgs : EventArgs
-        {
-        }
-
-        /// <summary>
-        /// Event arguments that passed via the ShownEventArgs.
-        /// </summary>
-        /// <since_tizen> 3 </since_tizen>
-        public class ShownEventArgs : EventArgs
-        {
-        }
-
-        /// <summary>
-        /// Event arguments that passed via the HidingEventArgs.
-        /// </summary>
-        /// <since_tizen> 3 </since_tizen>
-        public class HidingEventArgs : EventArgs
-        {
-        }
-
-        /// <summary>
-        /// Event arguments that passed via the HiddenEventArgs.
-        /// </summary>
-        /// <since_tizen> 3 </since_tizen>
-        public class HiddenEventArgs : EventArgs
-        {
-        }
-
         [UnmanagedFunctionPointer(CallingConvention.StdCall)]
         private delegate void OutsideTouchedEventCallbackDelegate();
-        private EventHandler<TouchedOutsideEventArgs> _popUpOutsideTouchedEventHandler;
-        private OutsideTouchedEventCallbackDelegate _popUpOutsideTouchedEventCallbackDelegate;
-
         [UnmanagedFunctionPointer(CallingConvention.StdCall)]
         private delegate void ShowingEventCallbackDelegate();
-        private EventHandler<ShowingEventArgs> _popUpShowingEventHandler;
-        private ShowingEventCallbackDelegate _popUpShowingEventCallbackDelegate;
-
         [UnmanagedFunctionPointer(CallingConvention.StdCall)]
         private delegate void ShownEventCallbackDelegate();
-        private EventHandler<ShownEventArgs> _popUpShownEventHandler;
-        private ShownEventCallbackDelegate _popUpShownEventCallbackDelegate;
-
         [UnmanagedFunctionPointer(CallingConvention.StdCall)]
         private delegate void HidingEventCallbackDelegate();
-        private EventHandler<HidingEventArgs> _popUpHidingEventHandler;
-        private HidingEventCallbackDelegate _popUpHidingEventCallbackDelegate;
-
         [UnmanagedFunctionPointer(CallingConvention.StdCall)]
         private delegate void HiddenEventCallbackDelegate();
-        private EventHandler<HiddenEventArgs> _popUpHiddenEventHandler;
-        private HiddenEventCallbackDelegate _popUpHiddenEventCallbackDelegate;
 
         /// <summary>
         /// An event is sent when the user has touched outside the dialog.
@@ -691,18 +584,6 @@ namespace Tizen.NUI.UIComponents
                 {
                     this.OutsideTouchedSignal().Disconnect(_popUpOutsideTouchedEventCallbackDelegate);
                 }
-            }
-        }
-
-        // Callback for Popup OutsideTouchedSignal
-        private void OnOutsideTouched()
-        {
-            TouchedOutsideEventArgs e = new TouchedOutsideEventArgs();
-
-            if (_popUpOutsideTouchedEventHandler != null)
-            {
-                //here we send all data to user event handlers
-                _popUpOutsideTouchedEventHandler(this, e);
             }
         }
 
@@ -731,19 +612,6 @@ namespace Tizen.NUI.UIComponents
             }
         }
 
-        // Callback for ShowingSignal
-        private void OnShowing()
-        {
-            ShowingEventArgs e = new ShowingEventArgs();
-
-            if (_popUpShowingEventHandler != null)
-            {
-                //here we send all data to user event handlers
-                _popUpShowingEventHandler(this, e);
-            }
-        }
-
-
         /// <summary>
         /// An event is sent when the popup has been fully displayed.
         /// </summary>
@@ -766,18 +634,6 @@ namespace Tizen.NUI.UIComponents
                 {
                     ShownSignal().Disconnect(_popUpShownEventCallbackDelegate);
                 }
-            }
-        }
-
-        // Callback for ShownSignal
-        private void OnShown()
-        {
-            ShownEventArgs e = new ShownEventArgs();
-
-            if (_popUpShownEventHandler != null)
-            {
-                //here we send all data to user event handlers
-                _popUpShownEventHandler(this, e);
             }
         }
 
@@ -806,18 +662,6 @@ namespace Tizen.NUI.UIComponents
             }
         }
 
-        // Callback for HidingSignal
-        private void OnHiding()
-        {
-            HidingEventArgs e = new HidingEventArgs();
-
-            if (_popUpHidingEventHandler != null)
-            {
-                //here we send all data to user event handlers
-                _popUpHidingEventHandler(this, e);
-            }
-        }
-
         /// <summary>
         /// An event is sent when the popup has been completely hidden.
         /// </summary>
@@ -841,191 +685,6 @@ namespace Tizen.NUI.UIComponents
                     HiddenSignal().Disconnect(_popUpHiddenEventCallbackDelegate);
                 }
             }
-        }
-
-        // Callback for HiddenSignal
-        private void OnHidden()
-        {
-            HiddenEventArgs e = new HiddenEventArgs();
-
-            if (_popUpHiddenEventHandler != null)
-            {
-                //here we send all data to user event handlers
-                _popUpHiddenEventHandler(this, e);
-            }
-        }
-
-        internal new class Property
-        {
-            internal static readonly int TITLE = NDalicPINVOKE.Popup_Property_TITLE_get();
-            internal static readonly int CONTENT = NDalicPINVOKE.Popup_Property_CONTENT_get();
-            internal static readonly int FOOTER = NDalicPINVOKE.Popup_Property_FOOTER_get();
-            internal static readonly int DISPLAY_STATE = NDalicPINVOKE.Popup_Property_DISPLAY_STATE_get();
-            internal static readonly int TOUCH_TRANSPARENT = NDalicPINVOKE.Popup_Property_TOUCH_TRANSPARENT_get();
-            internal static readonly int TAIL_VISIBILITY = NDalicPINVOKE.Popup_Property_TAIL_VISIBILITY_get();
-            internal static readonly int TAIL_POSITION = NDalicPINVOKE.Popup_Property_TAIL_POSITION_get();
-            internal static readonly int CONTEXTUAL_MODE = NDalicPINVOKE.Popup_Property_CONTEXTUAL_MODE_get();
-            internal static readonly int ANIMATION_DURATION = NDalicPINVOKE.Popup_Property_ANIMATION_DURATION_get();
-            internal static readonly int ANIMATION_MODE = NDalicPINVOKE.Popup_Property_ANIMATION_MODE_get();
-            internal static readonly int ENTRY_ANIMATION = NDalicPINVOKE.Popup_Property_ENTRY_ANIMATION_get();
-            internal static readonly int EXIT_ANIMATION = NDalicPINVOKE.Popup_Property_EXIT_ANIMATION_get();
-            internal static readonly int AUTO_HIDE_DELAY = NDalicPINVOKE.Popup_Property_AUTO_HIDE_DELAY_get();
-            internal static readonly int BACKING_ENABLED = NDalicPINVOKE.Popup_Property_BACKING_ENABLED_get();
-            internal static readonly int BACKING_COLOR = NDalicPINVOKE.Popup_Property_BACKING_COLOR_get();
-            internal static readonly int POPUP_BACKGROUND_IMAGE = NDalicPINVOKE.Popup_Property_POPUP_BACKGROUND_IMAGE_get();
-            internal static readonly int POPUP_BACKGROUND_BORDER = NDalicPINVOKE.Popup_Property_POPUP_BACKGROUND_BORDER_get();
-            internal static readonly int TAIL_UP_IMAGE = NDalicPINVOKE.Popup_Property_TAIL_UP_IMAGE_get();
-            internal static readonly int TAIL_DOWN_IMAGE = NDalicPINVOKE.Popup_Property_TAIL_DOWN_IMAGE_get();
-            internal static readonly int TAIL_LEFT_IMAGE = NDalicPINVOKE.Popup_Property_TAIL_LEFT_IMAGE_get();
-            internal static readonly int TAIL_RIGHT_IMAGE = NDalicPINVOKE.Popup_Property_TAIL_RIGHT_IMAGE_get();
-        }
-
-        /// <summary>
-        /// Creates the popup.
-        /// </summary>
-        /// <since_tizen> 3 </since_tizen>
-        public Popup() : this(NDalicPINVOKE.Popup_New(), true)
-        {
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-
-        }
-
-        /// <summary>
-        /// Sets the title for this popup.
-        /// </summary>
-        /// <param name="titleView">The actor to set the title.</param>
-        /// <since_tizen> 3 </since_tizen>
-        public void SetTitle(View titleView)
-        {
-            NDalicPINVOKE.Popup_SetTitle(swigCPtr, View.getCPtr(titleView));
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-        }
-
-        internal View GetTitle()
-        {
-            //to fix memory leak issue, match the handle count with native side.
-            IntPtr cPtr = NDalicPINVOKE.Popup_GetTitle(swigCPtr);
-            HandleRef CPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
-            View ret = Registry.GetManagedBaseHandleFromNativePtr(CPtr.Handle) as View;
-            NDalicPINVOKE.delete_BaseHandle(CPtr);
-            CPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
-
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
-        }
-
-        /// <summary>
-        /// Sets the content actor.
-        /// </summary>
-        /// <param name="content">The actor to use.</param>
-        /// <since_tizen> 3 </since_tizen>
-        public void SetContent(View content)
-        {
-            NDalicPINVOKE.Popup_SetContent(swigCPtr, View.getCPtr(content));
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-        }
-
-        internal View GetContent()
-        {
-            //to fix memory leak issue, match the handle count with native side.
-            IntPtr cPtr = NDalicPINVOKE.Popup_GetContent(swigCPtr);
-            HandleRef CPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
-            View ret = Registry.GetManagedBaseHandleFromNativePtr(CPtr.Handle) as View;
-            NDalicPINVOKE.delete_BaseHandle(CPtr);
-            CPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
-
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
-        }
-
-        /// <summary>
-        /// Sets the actor to use for the footer in this popup.
-        /// </summary>
-        /// <param name="footer">The footer actor to be added to this popup.</param>
-        /// <since_tizen> 3 </since_tizen>
-        public void SetFooter(View footer)
-        {
-            NDalicPINVOKE.Popup_SetFooter(swigCPtr, View.getCPtr(footer));
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-        }
-
-        internal View GetFooter()
-        {
-            //to fix memory leak issue, match the handle count with native side.
-            IntPtr cPtr = NDalicPINVOKE.Popup_GetFooter(swigCPtr);
-            HandleRef CPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
-            View ret = Registry.GetManagedBaseHandleFromNativePtr(CPtr.Handle) as View;
-            NDalicPINVOKE.delete_BaseHandle(CPtr);
-            CPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
-
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
-        }
-
-        /// <summary>
-        /// Sets the display state of popup.<br />
-        /// There are 4 total display states.<br />
-        /// Only 2 can be set, but all four can be read for better inspection of the current popup state.<br />
-        /// <br />
-        /// The other two states are getable, but not setable, and are there for consistency.<br />
-        /// <br />
-        /// | Value    | Setting the state              | Getting the state              |<br />
-        /// |----------|--------------------------------|--------------------------------|<br />
-        /// | SHOWN    | Show the popup                 | The popup is fully shown       |<br />
-        /// | HIDDEN   | Hide the popup                 | The popup is fully hidden      |<br />
-        /// | SHOWING  |                                | The popup is transitioning in  |<br />
-        /// | HIDING   |                                | The popup is transitioning out |<br />
-        /// <br />
-        /// All 4 states changes cause notifications via 4 respective signals that can be connected to.<br />
-        /// </summary>
-        /// <param name="displayState">The desired display state to change to.</param>
-        /// <since_tizen> 3 </since_tizen>
-        public void SetDisplayState(Popup.DisplayStateType displayState)
-        {
-            NDalicPINVOKE.Popup_SetDisplayState(swigCPtr, (int)displayState);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-        }
-
-        internal Popup.DisplayStateType GetDisplayState()
-        {
-            Popup.DisplayStateType ret = (Popup.DisplayStateType)NDalicPINVOKE.Popup_GetDisplayState(swigCPtr);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
-        }
-
-        internal VoidSignal OutsideTouchedSignal()
-        {
-            VoidSignal ret = new VoidSignal(NDalicPINVOKE.Popup_OutsideTouchedSignal(swigCPtr), false);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
-        }
-
-        internal VoidSignal ShowingSignal()
-        {
-            VoidSignal ret = new VoidSignal(NDalicPINVOKE.Popup_ShowingSignal(swigCPtr), false);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
-        }
-
-        internal VoidSignal ShownSignal()
-        {
-            VoidSignal ret = new VoidSignal(NDalicPINVOKE.Popup_ShownSignal(swigCPtr), false);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
-        }
-
-        internal VoidSignal HidingSignal()
-        {
-            VoidSignal ret = new VoidSignal(NDalicPINVOKE.Popup_HidingSignal(swigCPtr), false);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
-        }
-
-        internal VoidSignal HiddenSignal()
-        {
-            VoidSignal ret = new VoidSignal(NDalicPINVOKE.Popup_HiddenSignal(swigCPtr), false);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
         }
 
         /// <summary>
@@ -1135,6 +794,7 @@ namespace Tizen.NUI.UIComponents
                 SetValue(TitleProperty, value);
             }
         }
+
         /// <summary>
         /// The popup content.
         /// </summary>
@@ -1150,6 +810,7 @@ namespace Tizen.NUI.UIComponents
                 SetValue(ContentProperty, value);
             }
         }
+
         /// <summary>
         /// The popup footer.
         /// </summary>
@@ -1165,6 +826,7 @@ namespace Tizen.NUI.UIComponents
                 SetValue(FooterProperty, value);
             }
         }
+
         /// <summary>
         /// The popup display state.
         /// </summary>
@@ -1180,6 +842,7 @@ namespace Tizen.NUI.UIComponents
                 SetValue(DisplayStateProperty, value);
             }
         }
+
         /// <summary>
         /// The touch transparent.
         /// </summary>
@@ -1195,6 +858,7 @@ namespace Tizen.NUI.UIComponents
                 SetValue(TouchTransparentProperty, value);
             }
         }
+
         /// <summary>
         /// The popup tail visibility.
         /// </summary>
@@ -1210,6 +874,7 @@ namespace Tizen.NUI.UIComponents
                 SetValue(TailVisibilityProperty, value);
             }
         }
+
         /// <summary>
         /// The popup tail position.
         /// </summary>
@@ -1225,6 +890,7 @@ namespace Tizen.NUI.UIComponents
                 SetValue(TailPositionProperty, value);
             }
         }
+
         /// <summary>
         /// The contextual mode.
         /// </summary>
@@ -1240,6 +906,7 @@ namespace Tizen.NUI.UIComponents
                 SetValue(ContextualModeProperty, value);
             }
         }
+
         /// <summary>
         /// The animation duration.
         /// </summary>
@@ -1255,6 +922,7 @@ namespace Tizen.NUI.UIComponents
                 SetValue(AnimationDurationProperty, value);
             }
         }
+
         /// <summary>
         /// The animation mode.
         /// </summary>
@@ -1270,6 +938,7 @@ namespace Tizen.NUI.UIComponents
                 SetValue(AnimationModeProperty, value);
             }
         }
+
         /// <summary>
         /// The entry animation.
         /// </summary>
@@ -1285,6 +954,7 @@ namespace Tizen.NUI.UIComponents
                 SetValue(EntryAnimationProperty, value);
             }
         }
+
         /// <summary>
         /// The exit animation.
         /// </summary>
@@ -1300,6 +970,7 @@ namespace Tizen.NUI.UIComponents
                 SetValue(ExitAnimationProperty, value);
             }
         }
+
         /// <summary>
         /// The auto hide delay.
         /// </summary>
@@ -1315,6 +986,7 @@ namespace Tizen.NUI.UIComponents
                 SetValue(AutoHideDelayProperty, value);
             }
         }
+
         /// <summary>
         /// The backing enabled.
         /// </summary>
@@ -1330,6 +1002,7 @@ namespace Tizen.NUI.UIComponents
                 SetValue(BackingEnabledProperty, value);
             }
         }
+
         /// <summary>
         /// The backing color.
         /// </summary>
@@ -1345,6 +1018,7 @@ namespace Tizen.NUI.UIComponents
                 SetValue(BackingColorProperty, value);
             }
         }
+
         /// <summary>
         /// The background image.
         /// </summary>
@@ -1360,6 +1034,7 @@ namespace Tizen.NUI.UIComponents
                 SetValue(PopupBackgroundImageProperty, value);
             }
         }
+
         /// <summary>
         /// The background border.
         /// </summary>
@@ -1375,6 +1050,7 @@ namespace Tizen.NUI.UIComponents
                 SetValue(PopupBackgroundBorderProperty, value);
             }
         }
+
         /// <summary>
         /// The tail up image.
         /// </summary>
@@ -1390,6 +1066,7 @@ namespace Tizen.NUI.UIComponents
                 SetValue(TailUpImageProperty, value);
             }
         }
+
         /// <summary>
         /// The tail down image.
         /// </summary>
@@ -1405,6 +1082,7 @@ namespace Tizen.NUI.UIComponents
                 SetValue(TailDownImageProperty, value);
             }
         }
+
         /// <summary>
         /// The tail left image.
         /// </summary>
@@ -1420,6 +1098,7 @@ namespace Tizen.NUI.UIComponents
                 SetValue(TailLeftImageProperty, value);
             }
         }
+
         /// <summary>
         /// The tail right image.
         /// </summary>
@@ -1436,6 +1115,336 @@ namespace Tizen.NUI.UIComponents
             }
         }
 
-    }
+        /// <summary>
+        /// Sets the title for this popup.
+        /// </summary>
+        /// <param name="titleView">The actor to set the title.</param>
+        /// <since_tizen> 3 </since_tizen>
+        public void SetTitle(View titleView)
+        {
+            NDalicPINVOKE.Popup_SetTitle(swigCPtr, View.getCPtr(titleView));
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
 
+        /// <summary>
+        /// Sets the content actor.
+        /// </summary>
+        /// <param name="content">The actor to use.</param>
+        /// <since_tizen> 3 </since_tizen>
+        public void SetContent(View content)
+        {
+            NDalicPINVOKE.Popup_SetContent(swigCPtr, View.getCPtr(content));
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        /// <summary>
+        /// Sets the actor to use for the footer in this popup.
+        /// </summary>
+        /// <param name="footer">The footer actor to be added to this popup.</param>
+        /// <since_tizen> 3 </since_tizen>
+        public void SetFooter(View footer)
+        {
+            NDalicPINVOKE.Popup_SetFooter(swigCPtr, View.getCPtr(footer));
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        /// <summary>
+        /// Sets the display state of popup.<br />
+        /// There are 4 total display states.<br />
+        /// Only 2 can be set, but all four can be read for better inspection of the current popup state.<br />
+        /// <br />
+        /// The other two states are getable, but not setable, and are there for consistency.<br />
+        /// <br />
+        /// | Value    | Setting the state              | Getting the state              |<br />
+        /// |----------|--------------------------------|--------------------------------|<br />
+        /// | SHOWN    | Show the popup                 | The popup is fully shown       |<br />
+        /// | HIDDEN   | Hide the popup                 | The popup is fully hidden      |<br />
+        /// | SHOWING  |                                | The popup is transitioning in  |<br />
+        /// | HIDING   |                                | The popup is transitioning out |<br />
+        /// <br />
+        /// All 4 states changes cause notifications via 4 respective signals that can be connected to.<br />
+        /// </summary>
+        /// <param name="displayState">The desired display state to change to.</param>
+        /// <since_tizen> 3 </since_tizen>
+        public void SetDisplayState(Popup.DisplayStateType displayState)
+        {
+            NDalicPINVOKE.Popup_SetDisplayState(swigCPtr, (int)displayState);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        internal static global::System.Runtime.InteropServices.HandleRef getCPtr(Popup obj)
+        {
+            return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
+        }
+
+        internal View GetTitle()
+        {
+            //to fix memory leak issue, match the handle count with native side.
+            IntPtr cPtr = NDalicPINVOKE.Popup_GetTitle(swigCPtr);
+            HandleRef CPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
+            View ret = Registry.GetManagedBaseHandleFromNativePtr(CPtr.Handle) as View;
+            NDalicPINVOKE.delete_BaseHandle(CPtr);
+            CPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
+
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        internal View GetContent()
+        {
+            //to fix memory leak issue, match the handle count with native side.
+            IntPtr cPtr = NDalicPINVOKE.Popup_GetContent(swigCPtr);
+            HandleRef CPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
+            View ret = Registry.GetManagedBaseHandleFromNativePtr(CPtr.Handle) as View;
+            NDalicPINVOKE.delete_BaseHandle(CPtr);
+            CPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
+
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        internal View GetFooter()
+        {
+            //to fix memory leak issue, match the handle count with native side.
+            IntPtr cPtr = NDalicPINVOKE.Popup_GetFooter(swigCPtr);
+            HandleRef CPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
+            View ret = Registry.GetManagedBaseHandleFromNativePtr(CPtr.Handle) as View;
+            NDalicPINVOKE.delete_BaseHandle(CPtr);
+            CPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
+
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        internal Popup.DisplayStateType GetDisplayState()
+        {
+            Popup.DisplayStateType ret = (Popup.DisplayStateType)NDalicPINVOKE.Popup_GetDisplayState(swigCPtr);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        internal VoidSignal OutsideTouchedSignal()
+        {
+            VoidSignal ret = new VoidSignal(NDalicPINVOKE.Popup_OutsideTouchedSignal(swigCPtr), false);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        internal VoidSignal ShowingSignal()
+        {
+            VoidSignal ret = new VoidSignal(NDalicPINVOKE.Popup_ShowingSignal(swigCPtr), false);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        internal VoidSignal ShownSignal()
+        {
+            VoidSignal ret = new VoidSignal(NDalicPINVOKE.Popup_ShownSignal(swigCPtr), false);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        internal VoidSignal HidingSignal()
+        {
+            VoidSignal ret = new VoidSignal(NDalicPINVOKE.Popup_HidingSignal(swigCPtr), false);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        internal VoidSignal HiddenSignal()
+        {
+            VoidSignal ret = new VoidSignal(NDalicPINVOKE.Popup_HiddenSignal(swigCPtr), false);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        /// <summary>
+        /// Dispose.
+        /// </summary>
+        /// <param name="type">The dispose type</param>
+        /// <since_tizen> 3 </since_tizen>
+        protected override void Dispose(DisposeTypes type)
+        {
+            if (disposed)
+            {
+                return;
+            }
+
+            if (type == DisposeTypes.Explicit)
+            {
+                //Called by User
+                //Release your own managed resources here.
+                //You should release all of your own disposable objects here.
+
+            }
+
+            //Release your own unmanaged resources here.
+            //You should not access any managed member here except static instance.
+            //because the execution order of Finalizes is non-deterministic.
+            if (this != null)
+            {
+                if (_popUpHiddenEventCallbackDelegate != null)
+                {
+                    HiddenSignal().Disconnect(_popUpHiddenEventCallbackDelegate);
+                }
+
+                if (_popUpHidingEventCallbackDelegate != null)
+                {
+                    HidingSignal().Disconnect(_popUpHidingEventCallbackDelegate);
+                }
+            }
+
+            if (_popUpShownEventCallbackDelegate != null)
+            {
+                ShownSignal().Disconnect(_popUpShownEventCallbackDelegate);
+            }
+
+            if (_popUpShowingEventCallbackDelegate != null)
+            {
+                ShowingSignal().Disconnect(_popUpShowingEventCallbackDelegate);
+            }
+
+            if (_popUpOutsideTouchedEventCallbackDelegate != null)
+            {
+                this.OutsideTouchedSignal().Disconnect(_popUpOutsideTouchedEventCallbackDelegate);
+            }
+
+            if (swigCPtr.Handle != global::System.IntPtr.Zero)
+            {
+                if (swigCMemOwn)
+                {
+                    swigCMemOwn = false;
+                    NDalicPINVOKE.delete_Popup(swigCPtr);
+                }
+                swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
+            }
+
+            base.Dispose(type);
+        }
+
+        // Callback for Popup OutsideTouchedSignal
+        private void OnOutsideTouched()
+        {
+            TouchedOutsideEventArgs e = new TouchedOutsideEventArgs();
+
+            if (_popUpOutsideTouchedEventHandler != null)
+            {
+                //here we send all data to user event handlers
+                _popUpOutsideTouchedEventHandler(this, e);
+            }
+        }
+
+        // Callback for ShowingSignal
+        private void OnShowing()
+        {
+            ShowingEventArgs e = new ShowingEventArgs();
+
+            if (_popUpShowingEventHandler != null)
+            {
+                //here we send all data to user event handlers
+                _popUpShowingEventHandler(this, e);
+            }
+        }
+
+        // Callback for ShownSignal
+        private void OnShown()
+        {
+            ShownEventArgs e = new ShownEventArgs();
+
+            if (_popUpShownEventHandler != null)
+            {
+                //here we send all data to user event handlers
+                _popUpShownEventHandler(this, e);
+            }
+        }
+
+        // Callback for HidingSignal
+        private void OnHiding()
+        {
+            HidingEventArgs e = new HidingEventArgs();
+
+            if (_popUpHidingEventHandler != null)
+            {
+                //here we send all data to user event handlers
+                _popUpHidingEventHandler(this, e);
+            }
+        }
+
+        // Callback for HiddenSignal
+        private void OnHidden()
+        {
+            HiddenEventArgs e = new HiddenEventArgs();
+
+            if (_popUpHiddenEventHandler != null)
+            {
+                //here we send all data to user event handlers
+                _popUpHiddenEventHandler(this, e);
+            }
+        }
+
+        /// <summary>
+        /// Event arguments that passed via the OutsideTouchedEvent.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
+        public class TouchedOutsideEventArgs : EventArgs
+        {
+        }
+
+        /// <summary>
+        /// Event arguments that passed via the ShowingEventArgs.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
+        public class ShowingEventArgs : EventArgs
+        {
+        }
+
+        /// <summary>
+        /// Event arguments that passed via the ShownEventArgs.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
+        public class ShownEventArgs : EventArgs
+        {
+        }
+
+        /// <summary>
+        /// Event arguments that passed via the HidingEventArgs.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
+        public class HidingEventArgs : EventArgs
+        {
+        }
+
+        /// <summary>
+        /// Event arguments that passed via the HiddenEventArgs.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
+        public class HiddenEventArgs : EventArgs
+        {
+        }
+
+        internal new class Property
+        {
+            internal static readonly int TITLE = NDalicPINVOKE.Popup_Property_TITLE_get();
+            internal static readonly int CONTENT = NDalicPINVOKE.Popup_Property_CONTENT_get();
+            internal static readonly int FOOTER = NDalicPINVOKE.Popup_Property_FOOTER_get();
+            internal static readonly int DISPLAY_STATE = NDalicPINVOKE.Popup_Property_DISPLAY_STATE_get();
+            internal static readonly int TOUCH_TRANSPARENT = NDalicPINVOKE.Popup_Property_TOUCH_TRANSPARENT_get();
+            internal static readonly int TAIL_VISIBILITY = NDalicPINVOKE.Popup_Property_TAIL_VISIBILITY_get();
+            internal static readonly int TAIL_POSITION = NDalicPINVOKE.Popup_Property_TAIL_POSITION_get();
+            internal static readonly int CONTEXTUAL_MODE = NDalicPINVOKE.Popup_Property_CONTEXTUAL_MODE_get();
+            internal static readonly int ANIMATION_DURATION = NDalicPINVOKE.Popup_Property_ANIMATION_DURATION_get();
+            internal static readonly int ANIMATION_MODE = NDalicPINVOKE.Popup_Property_ANIMATION_MODE_get();
+            internal static readonly int ENTRY_ANIMATION = NDalicPINVOKE.Popup_Property_ENTRY_ANIMATION_get();
+            internal static readonly int EXIT_ANIMATION = NDalicPINVOKE.Popup_Property_EXIT_ANIMATION_get();
+            internal static readonly int AUTO_HIDE_DELAY = NDalicPINVOKE.Popup_Property_AUTO_HIDE_DELAY_get();
+            internal static readonly int BACKING_ENABLED = NDalicPINVOKE.Popup_Property_BACKING_ENABLED_get();
+            internal static readonly int BACKING_COLOR = NDalicPINVOKE.Popup_Property_BACKING_COLOR_get();
+            internal static readonly int POPUP_BACKGROUND_IMAGE = NDalicPINVOKE.Popup_Property_POPUP_BACKGROUND_IMAGE_get();
+            internal static readonly int POPUP_BACKGROUND_BORDER = NDalicPINVOKE.Popup_Property_POPUP_BACKGROUND_BORDER_get();
+            internal static readonly int TAIL_UP_IMAGE = NDalicPINVOKE.Popup_Property_TAIL_UP_IMAGE_get();
+            internal static readonly int TAIL_DOWN_IMAGE = NDalicPINVOKE.Popup_Property_TAIL_DOWN_IMAGE_get();
+            internal static readonly int TAIL_LEFT_IMAGE = NDalicPINVOKE.Popup_Property_TAIL_LEFT_IMAGE_get();
+            internal static readonly int TAIL_RIGHT_IMAGE = NDalicPINVOKE.Popup_Property_TAIL_RIGHT_IMAGE_get();
+        }
+    }
 }

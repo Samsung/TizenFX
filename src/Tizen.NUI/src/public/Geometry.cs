@@ -26,52 +26,6 @@ namespace Tizen.NUI
     {
         private global::System.Runtime.InteropServices.HandleRef swigCPtr;
 
-        internal Geometry(global::System.IntPtr cPtr, bool cMemoryOwn) : base(NDalicPINVOKE.Geometry_SWIGUpcast(cPtr), cMemoryOwn)
-        {
-            swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
-        }
-
-        internal static global::System.Runtime.InteropServices.HandleRef getCPtr(Geometry obj)
-        {
-            return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
-        }
-
-        /// <summary>
-        /// Dispose.
-        /// </summary>
-        /// <since_tizen> 3 </since_tizen>
-        protected override void Dispose(DisposeTypes type)
-        {
-            if (disposed)
-            {
-                return;
-            }
-
-            if (type == DisposeTypes.Explicit)
-            {
-                //Called by User
-                //Release your own managed resources here.
-                //You should release all of your own disposable objects here.
-
-            }
-
-            //Release your own unmanaged resources here.
-            //You should not access any managed member here except static instance.
-            //because the execution order of Finalizes is non-deterministic.
-
-            if (swigCPtr.Handle != global::System.IntPtr.Zero)
-            {
-                if (swigCMemOwn)
-                {
-                    swigCMemOwn = false;
-                    NDalicPINVOKE.delete_Geometry(swigCPtr);
-                }
-                swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
-            }
-
-            base.Dispose(type);
-        }
-
         /// <summary>
         /// Create an instance of Geometry.
         /// </summary>
@@ -80,6 +34,55 @@ namespace Tizen.NUI
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
 
+        }
+
+        internal Geometry(global::System.IntPtr cPtr, bool cMemoryOwn) : base(NDalicPINVOKE.Geometry_SWIGUpcast(cPtr), cMemoryOwn)
+        {
+            swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
+        }
+
+        /// <summary>
+        /// Enumeration for the description of the type of geometry,
+        /// used to determine how the coordinates will be used.
+        /// </summary>
+        /// <returns>Type of primitives this geometry contains.</returns>
+        /// <since_tizen> 3 </since_tizen>
+        public enum Type
+        {
+            /// <summary>
+            /// Individual points.
+            /// </summary>
+            POINTS,
+
+            /// <summary>
+            /// Individual lines (made of 2 points each).
+            /// </summary>
+            LINES,
+
+            /// <summary>
+            /// A strip of lines (made of 1 point each) which also joins the first and last point.
+            /// </summary>
+            LINE_LOOP,
+
+            /// <summary>
+            /// A strip of lines (made of 1 point each).
+            /// </summary>
+            LINE_STRIP,
+
+            /// <summary>
+            /// Individual triangles (made of 3 points each).
+            /// </summary>
+            TRIANGLES,
+
+            /// <summary>
+            /// A fan of triangles around a centre point (after the first triangle, following triangles need only 1 point).
+            /// </summary>
+            TRIANGLE_FAN,
+
+            /// <summary>
+            /// A strip of triangles (after the first triangle, following triangles need only 1 point).
+            /// </summary>
+            TRIANGLE_STRIP
         }
 
         /// <summary>
@@ -154,50 +157,46 @@ namespace Tizen.NUI
             return ret;
         }
 
-        /// <summary>
-        /// Enumeration for the description of the type of geometry,
-        /// used to determine how the coordinates will be used.
-        /// </summary>
-        /// <returns>Type of primitives this geometry contains.</returns>
-        /// <since_tizen> 3 </since_tizen>
-        public enum Type
+        internal static global::System.Runtime.InteropServices.HandleRef getCPtr(Geometry obj)
         {
-            /// <summary>
-            /// Individual points.
-            /// </summary>
-            POINTS,
+            return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
+        }
 
-            /// <summary>
-            /// Individual lines (made of 2 points each).
-            /// </summary>
-            LINES,
+        /// <summary>
+        /// Dispose.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
+        protected override void Dispose(DisposeTypes type)
+        {
+            if (disposed)
+            {
+                return;
+            }
 
-            /// <summary>
-            /// A strip of lines (made of 1 point each) which also joins the first and last point.
-            /// </summary>
-            LINE_LOOP,
+            if (type == DisposeTypes.Explicit)
+            {
+                //Called by User
+                //Release your own managed resources here.
+                //You should release all of your own disposable objects here.
 
-            /// <summary>
-            /// A strip of lines (made of 1 point each).
-            /// </summary>
-            LINE_STRIP,
+            }
 
-            /// <summary>
-            /// Individual triangles (made of 3 points each).
-            /// </summary>
-            TRIANGLES,
+            //Release your own unmanaged resources here.
+            //You should not access any managed member here except static instance.
+            //because the execution order of Finalizes is non-deterministic.
 
-            /// <summary>
-            /// A fan of triangles around a centre point (after the first triangle, following triangles need only 1 point).
-            /// </summary>
-            TRIANGLE_FAN,
+            if (swigCPtr.Handle != global::System.IntPtr.Zero)
+            {
+                if (swigCMemOwn)
+                {
+                    swigCMemOwn = false;
+                    NDalicPINVOKE.delete_Geometry(swigCPtr);
+                }
+                swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
+            }
 
-            /// <summary>
-            /// A strip of triangles (after the first triangle, following triangles need only 1 point).
-            /// </summary>
-            TRIANGLE_STRIP
+            base.Dispose(type);
         }
 
     }
-
 }

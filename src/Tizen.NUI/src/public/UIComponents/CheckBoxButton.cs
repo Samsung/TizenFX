@@ -17,7 +17,6 @@
 
 namespace Tizen.NUI.UIComponents
 {
-
     /// <summary>
     /// The CheckBoxButton provides a checkbox button which the user can check or uncheck.<br />
     /// By default, the CheckBoxButton emits a Button.Clicked event when the button changes its state to selected or unselected.<br />
@@ -31,6 +30,15 @@ namespace Tizen.NUI.UIComponents
     {
         private global::System.Runtime.InteropServices.HandleRef swigCPtr;
 
+        /// <summary>
+        /// Creates an initialized CheckBoxButton.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
+        public CheckBoxButton() : this(NDalicPINVOKE.CheckBoxButton_New(), true)
+        {
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
         internal CheckBoxButton(global::System.IntPtr cPtr, bool cMemoryOwn) : base(NDalicPINVOKE.CheckBoxButton_SWIGUpcast(cPtr), cMemoryOwn)
         {
             swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
@@ -40,7 +48,6 @@ namespace Tizen.NUI.UIComponents
         {
             return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
         }
-
 
         /// <summary>
         /// To dispose the CheckBoxButton instance.
@@ -76,17 +83,5 @@ namespace Tizen.NUI.UIComponents
 
             base.Dispose(type);
         }
-
-        /// <summary>
-        /// Creates an initialized CheckBoxButton.
-        /// </summary>
-        /// <since_tizen> 3 </since_tizen>
-        public CheckBoxButton() : this(NDalicPINVOKE.CheckBoxButton_New(), true)
-        {
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-
-        }
-
     }
-
 }

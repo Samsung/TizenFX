@@ -29,208 +29,20 @@ namespace Tizen.NUI
     [Tizen.NUI.Binding.TypeConverter(typeof(PositionTypeConverter))]
     public class Position : global::System.IDisposable
     {
-        private global::System.Runtime.InteropServices.HandleRef swigCPtr;
         /// <summary>
         /// swigCMemOwn
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         protected bool swigCMemOwn;
-
-        internal Position(global::System.IntPtr cPtr, bool cMemoryOwn)
-        {
-            swigCMemOwn = cMemoryOwn;
-            swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
-        }
-
-        internal static global::System.Runtime.InteropServices.HandleRef getCPtr(Position obj)
-        {
-            return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
-        }
-
-        //A Flag to check who called Dispose(). (By User or DisposeQueue)
-        private bool isDisposeQueued = false;
         /// <summary>
         /// A Flat to check if it is already disposed.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         protected bool disposed = false;
 
-        /// <summary>
-        /// Dispose.
-        /// </summary>
-        /// <since_tizen> 3 </since_tizen>
-        ~Position()
-        {
-            if(!isDisposeQueued)
-            {
-                isDisposeQueued = true;
-                DisposeQueue.Instance.Add(this);
-            }
-        }
-
-        /// <summary>
-        /// Dispose.
-        /// </summary>
-        /// <since_tizen> 3 </since_tizen>
-        public void Dispose()
-        {
-            //Throw excpetion if Dispose() is called in separate thread.
-            if (!Window.IsInstalled())
-            {
-                throw new System.InvalidOperationException("This API called from separate thread. This API must be called from MainThread.");
-            }
-
-            if (isDisposeQueued)
-            {
-                Dispose(DisposeTypes.Implicit);
-            }
-            else
-            {
-                Dispose(DisposeTypes.Explicit);
-                System.GC.SuppressFinalize(this);
-            }
-        }
-
-        /// <summary>
-        /// Dispose.
-        /// </summary>
-        /// <since_tizen> 3 </since_tizen>
-        protected virtual void Dispose(DisposeTypes type)
-        {
-            if (disposed)
-            {
-                return;
-            }
-
-            if(type == DisposeTypes.Explicit)
-            {
-                //Called by User
-                //Release your own managed resources here.
-                //You should release all of your own disposable objects here.
-            }
-
-            //Release your own unmanaged resources here.
-            //You should not access any managed member here except static instance.
-            //because the execution order of Finalizes is non-deterministic.
-
-            if (swigCPtr.Handle != global::System.IntPtr.Zero)
-            {
-                if (swigCMemOwn)
-                {
-                    swigCMemOwn = false;
-                    NDalicPINVOKE.delete_Vector3(swigCPtr);
-                }
-                swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
-            }
-            disposed = true;
-        }
-
-
-        /// <summary>
-        /// An addition operator.
-        /// </summary>
-        /// <param name="arg1">The vector to add.</param>
-        /// <param name="arg2">The vector to add.</param>
-        /// <returns>The vector containing the result of the addition.</returns>
-        /// <since_tizen> 3 </since_tizen>
-        public static Position operator +(Position arg1, Position arg2)
-        {
-            return arg1.Add(arg2);
-        }
-
-        /// <summary>
-        /// The subtraction operator.
-        /// </summary>
-        /// <param name="arg1">The vector to subtract.</param>
-        /// <param name="arg2">The vector to subtract.</param>
-        /// <returns>The vector containing the result of the subtraction.</returns>
-        /// <since_tizen> 3 </since_tizen>
-        public static Position operator -(Position arg1, Position arg2)
-        {
-            return arg1.Subtract(arg2);
-        }
-
-        /// <summary>
-        /// The unary negation operator.
-        /// </summary>
-        /// <param name="arg1">The vector to negate.</param>
-        /// <returns>The vector containg the negation.</returns>
-        /// <since_tizen> 3 </since_tizen>
-        public static Position operator -(Position arg1)
-        {
-            return arg1.Subtract();
-        }
-
-        /// <summary>
-        /// The multiplication operator.
-        /// </summary>
-        /// <param name="arg1">The vector to multiply.</param>
-        /// <param name="arg2">The vector to multiply.</param>
-        /// <returns>The vector containing the result of the multiplication.</returns>
-        /// <since_tizen> 3 </since_tizen>
-        public static Position operator *(Position arg1, Position arg2)
-        {
-            return arg1.Multiply(arg2);
-        }
-
-        /// <summary>
-        /// The multiplication operator.
-        /// </summary>
-        /// <param name="arg1">The vector to multiply</param>
-        /// <param name="arg2">The float value to scale the vector.</param>
-        /// <returns>The vector containing the result of scaling.</returns>
-        /// <since_tizen> 3 </since_tizen>
-        public static Position operator *(Position arg1, float arg2)
-        {
-            return arg1.Multiply(arg2);
-        }
-
-        /// <summary>
-        /// The division operator.
-        /// </summary>
-        /// <param name="arg1">The vector to divide.</param>
-        /// <param name="arg2">The vector to divide.</param>
-        /// <returns>The vector containing the result of the division.</returns>
-        /// <since_tizen> 3 </since_tizen>
-        public static Position operator /(Position arg1, Position arg2)
-        {
-            return arg1.Divide(arg2);
-        }
-
-        /// <summary>
-        /// The division operator.
-        /// </summary>
-        /// <param name="arg1">The vector to divide.</param>
-        /// <param name="arg2">The float value to scale the vector by.</param>
-        /// <returns>The vector containing the result of scaling.</returns>
-        /// <since_tizen> 3 </since_tizen>
-        public static Position operator /(Position arg1, float arg2)
-        {
-            return arg1.Divide(arg2);
-        }
-
-
-        /// <summary>
-        /// The const array subscript operator overload. Should be 0, 1, or 2.
-        /// </summary>
-        /// <param name="index">The subscript index.</param>
-        /// <returns>The float at the given index.</returns>
-        /// <since_tizen> 3 </since_tizen>
-        public float this[uint index]
-        {
-            get
-            {
-                return ValueOfIndex(index);
-            }
-        }
-
-        internal static Position GetPositionFromPtr(global::System.IntPtr cPtr)
-        {
-            Position ret = new Position(cPtr, false);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
-        }
-
+        private global::System.Runtime.InteropServices.HandleRef swigCPtr;
+        //A Flag to check who called Dispose(). (By User or DisposeQueue)
+        private bool isDisposeQueued = false;
 
         /// <summary>
         /// The constructor.
@@ -263,171 +75,23 @@ namespace Tizen.NUI
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
-
-
-        private Position Add(Position rhs)
+        internal Position(global::System.IntPtr cPtr, bool cMemoryOwn)
         {
-            Position ret = new Position(NDalicPINVOKE.Vector3_Add(swigCPtr, Position.getCPtr(rhs)), true);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
-        }
-
-        private Position Subtract(Position rhs)
-        {
-            Position ret = new Position(NDalicPINVOKE.Vector3_Subtract__SWIG_0(swigCPtr, Position.getCPtr(rhs)), true);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
-        }
-
-        private Position Multiply(Position rhs)
-        {
-            Position ret = new Position(NDalicPINVOKE.Vector3_Multiply__SWIG_0(swigCPtr, Position.getCPtr(rhs)), true);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
-        }
-
-        private Position Multiply(float rhs)
-        {
-            Position ret = new Position(NDalicPINVOKE.Vector3_Multiply__SWIG_1(swigCPtr, rhs), true);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
-        }
-
-        private Position Divide(Position rhs)
-        {
-            Position ret = new Position(NDalicPINVOKE.Vector3_Divide__SWIG_0(swigCPtr, Position.getCPtr(rhs)), true);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
-        }
-
-        private Position Divide(float rhs)
-        {
-            Position ret = new Position(NDalicPINVOKE.Vector3_Divide__SWIG_1(swigCPtr, rhs), true);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
-        }
-
-        private Position Subtract()
-        {
-            Position ret = new Position(NDalicPINVOKE.Vector3_Subtract__SWIG_1(swigCPtr), true);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
-        }
-
-        private float ValueOfIndex(uint index)
-        {
-            float ret = NDalicPINVOKE.Vector3_ValueOfIndex__SWIG_0(swigCPtr, index);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
-        }
-
-        /// <summary>
-        /// Determines whether the specified object is equal to the current object.
-        /// </summary>
-        /// <param name="obj">The object to compare with the current object.</param>
-        /// <returns>true if the specified object is equal to the current object; otherwise, false.</returns>
-        public override bool Equals(System.Object obj)
-        {
-            Position position = obj as Position;
-            bool equal = false;
-            if (X == position?.X && Y == position?.Y && Z == position?.Z)
-            {
-                equal = true;
-            }
-            return equal;
-        }
-
-        /// <summary>
-        /// Gets the the hash code of this Position.
-        /// </summary>
-        /// <returns>The Hash Code.</returns>
-        /// <since_tizen> 5 </since_tizen>
-        public override int GetHashCode()
-        {
-            return X.GetHashCode();
-        }
-
-        /// <summary>
-        /// Compares if rhs is equal to.
-        /// </summary>
-        /// <param name="rhs">The vector to compare.</param>
-        /// <returns>Returns true if the two vectors are equal, otherwise false.</returns>
-        /// <since_tizen> 3 </since_tizen>
-        public bool EqualTo(Position rhs)
-        {
-            bool ret = NDalicPINVOKE.Vector3_EqualTo(swigCPtr, Position.getCPtr(rhs));
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
-        }
-
-        /// <summary>
-        /// Compares if rhs is not equal to.
-        /// </summary>
-        /// <param name="rhs">The vector to compare.</param>
-        /// <returns>Returns true if the two vectors are not equal, otherwise false.</returns>
-        /// <since_tizen> 3 </since_tizen>
-        public bool NotEqualTo(Position rhs)
-        {
-            bool ret = NDalicPINVOKE.Vector3_NotEqualTo(swigCPtr, Position.getCPtr(rhs));
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
+            swigCMemOwn = cMemoryOwn;
+            swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
         }
 
 
         /// <summary>
-        /// The x component.
+        /// Dispose.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        public float X
+        ~Position()
         {
-            set
+            if(!isDisposeQueued)
             {
-                NDalicPINVOKE.Vector3_X_set(swigCPtr, value);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            }
-            get
-            {
-                float ret = NDalicPINVOKE.Vector3_X_get(swigCPtr);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-                return ret;
-            }
-        }
-
-        /// <summary>
-        /// The y component.
-        /// </summary>
-        /// <since_tizen> 3 </since_tizen>
-        public float Y
-        {
-            set
-            {
-                NDalicPINVOKE.Vector3_Y_set(swigCPtr, value);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            }
-            get
-            {
-                float ret = NDalicPINVOKE.Vector3_Y_get(swigCPtr);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-                return ret;
-            }
-        }
-
-        /// <summary>
-        /// The z component.
-        /// </summary>
-        /// <since_tizen> 3 </since_tizen>
-        public float Z
-        {
-            set
-            {
-                NDalicPINVOKE.Vector3_Z_set(swigCPtr, value);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            }
-            get
-            {
-                float ret = NDalicPINVOKE.Vector3_Z_get(swigCPtr);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-                return ret;
+                isDisposeQueued = true;
+                DisposeQueue.Instance.Add(this);
             }
         }
 
@@ -856,6 +520,78 @@ namespace Tizen.NUI
             }
         }
 
+        /// <summary>
+        /// Constant ( 0.0f, 0.0f, 0.0f ).
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
+        public static Position Zero
+        {
+            get
+            {
+                global::System.IntPtr cPtr = NDalicPINVOKE.Vector3_ZERO_get();
+                Position ret = (cPtr == global::System.IntPtr.Zero) ? null : new Position(cPtr, false);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                return ret;
+            }
+        }
+
+        /// <summary>
+        /// The x component.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
+        public float X
+        {
+            set
+            {
+                NDalicPINVOKE.Vector3_X_set(swigCPtr, value);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            }
+            get
+            {
+                float ret = NDalicPINVOKE.Vector3_X_get(swigCPtr);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                return ret;
+            }
+        }
+
+        /// <summary>
+        /// The y component.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
+        public float Y
+        {
+            set
+            {
+                NDalicPINVOKE.Vector3_Y_set(swigCPtr, value);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            }
+            get
+            {
+                float ret = NDalicPINVOKE.Vector3_Y_get(swigCPtr);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                return ret;
+            }
+        }
+
+        /// <summary>
+        /// The z component.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
+        public float Z
+        {
+            set
+            {
+                NDalicPINVOKE.Vector3_Z_set(swigCPtr, value);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            }
+            get
+            {
+                float ret = NDalicPINVOKE.Vector3_Z_get(swigCPtr);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                return ret;
+            }
+        }
+
         internal static Position XAxis
         {
             get
@@ -923,18 +659,101 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Constant ( 0.0f, 0.0f, 0.0f ).
+        /// The const array subscript operator overload. Should be 0, 1, or 2.
         /// </summary>
+        /// <param name="index">The subscript index.</param>
+        /// <returns>The float at the given index.</returns>
         /// <since_tizen> 3 </since_tizen>
-        public static Position Zero
+        public float this[uint index]
         {
             get
             {
-                global::System.IntPtr cPtr = NDalicPINVOKE.Vector3_ZERO_get();
-                Position ret = (cPtr == global::System.IntPtr.Zero) ? null : new Position(cPtr, false);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-                return ret;
+                return ValueOfIndex(index);
             }
+        }
+
+
+        /// <summary>
+        /// An addition operator.
+        /// </summary>
+        /// <param name="arg1">The vector to add.</param>
+        /// <param name="arg2">The vector to add.</param>
+        /// <returns>The vector containing the result of the addition.</returns>
+        /// <since_tizen> 3 </since_tizen>
+        public static Position operator +(Position arg1, Position arg2)
+        {
+            return arg1.Add(arg2);
+        }
+
+        /// <summary>
+        /// The subtraction operator.
+        /// </summary>
+        /// <param name="arg1">The vector to subtract.</param>
+        /// <param name="arg2">The vector to subtract.</param>
+        /// <returns>The vector containing the result of the subtraction.</returns>
+        /// <since_tizen> 3 </since_tizen>
+        public static Position operator -(Position arg1, Position arg2)
+        {
+            return arg1.Subtract(arg2);
+        }
+
+        /// <summary>
+        /// The unary negation operator.
+        /// </summary>
+        /// <param name="arg1">The vector to negate.</param>
+        /// <returns>The vector containg the negation.</returns>
+        /// <since_tizen> 3 </since_tizen>
+        public static Position operator -(Position arg1)
+        {
+            return arg1.Subtract();
+        }
+
+        /// <summary>
+        /// The multiplication operator.
+        /// </summary>
+        /// <param name="arg1">The vector to multiply.</param>
+        /// <param name="arg2">The vector to multiply.</param>
+        /// <returns>The vector containing the result of the multiplication.</returns>
+        /// <since_tizen> 3 </since_tizen>
+        public static Position operator *(Position arg1, Position arg2)
+        {
+            return arg1.Multiply(arg2);
+        }
+
+        /// <summary>
+        /// The multiplication operator.
+        /// </summary>
+        /// <param name="arg1">The vector to multiply</param>
+        /// <param name="arg2">The float value to scale the vector.</param>
+        /// <returns>The vector containing the result of scaling.</returns>
+        /// <since_tizen> 3 </since_tizen>
+        public static Position operator *(Position arg1, float arg2)
+        {
+            return arg1.Multiply(arg2);
+        }
+
+        /// <summary>
+        /// The division operator.
+        /// </summary>
+        /// <param name="arg1">The vector to divide.</param>
+        /// <param name="arg2">The vector to divide.</param>
+        /// <returns>The vector containing the result of the division.</returns>
+        /// <since_tizen> 3 </since_tizen>
+        public static Position operator /(Position arg1, Position arg2)
+        {
+            return arg1.Divide(arg2);
+        }
+
+        /// <summary>
+        /// The division operator.
+        /// </summary>
+        /// <param name="arg1">The vector to divide.</param>
+        /// <param name="arg2">The float value to scale the vector by.</param>
+        /// <returns>The vector containing the result of scaling.</returns>
+        /// <since_tizen> 3 </since_tizen>
+        public static Position operator /(Position arg1, float arg2)
+        {
+            return arg1.Divide(arg2);
         }
 
         /// <summary>
@@ -953,6 +772,184 @@ namespace Tizen.NUI
         public static implicit operator Position(Vector3 vec)
         {
             return new Position(vec.X, vec.Y, vec.Z);
+        }
+
+        /// <summary>
+        /// Determines whether the specified object is equal to the current object.
+        /// </summary>
+        /// <param name="obj">The object to compare with the current object.</param>
+        /// <returns>true if the specified object is equal to the current object; otherwise, false.</returns>
+        public override bool Equals(System.Object obj)
+        {
+            Position position = obj as Position;
+            bool equal = false;
+            if (X == position?.X && Y == position?.Y && Z == position?.Z)
+            {
+                equal = true;
+            }
+            return equal;
+        }
+
+        /// <summary>
+        /// Gets the the hash code of this Position.
+        /// </summary>
+        /// <returns>The Hash Code.</returns>
+        /// <since_tizen> 5 </since_tizen>
+        public override int GetHashCode()
+        {
+            return X.GetHashCode();
+        }
+
+        /// <summary>
+        /// Dispose.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
+        public void Dispose()
+        {
+            //Throw excpetion if Dispose() is called in separate thread.
+            if (!Window.IsInstalled())
+            {
+                throw new System.InvalidOperationException("This API called from separate thread. This API must be called from MainThread.");
+            }
+
+            if (isDisposeQueued)
+            {
+                Dispose(DisposeTypes.Implicit);
+            }
+            else
+            {
+                Dispose(DisposeTypes.Explicit);
+                System.GC.SuppressFinalize(this);
+            }
+        }
+
+        /// <summary>
+        /// Compares if rhs is equal to.
+        /// </summary>
+        /// <param name="rhs">The vector to compare.</param>
+        /// <returns>Returns true if the two vectors are equal, otherwise false.</returns>
+        /// <since_tizen> 3 </since_tizen>
+        public bool EqualTo(Position rhs)
+        {
+            bool ret = NDalicPINVOKE.Vector3_EqualTo(swigCPtr, Position.getCPtr(rhs));
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        /// <summary>
+        /// Compares if rhs is not equal to.
+        /// </summary>
+        /// <param name="rhs">The vector to compare.</param>
+        /// <returns>Returns true if the two vectors are not equal, otherwise false.</returns>
+        /// <since_tizen> 3 </since_tizen>
+        public bool NotEqualTo(Position rhs)
+        {
+            bool ret = NDalicPINVOKE.Vector3_NotEqualTo(swigCPtr, Position.getCPtr(rhs));
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        internal static global::System.Runtime.InteropServices.HandleRef getCPtr(Position obj)
+        {
+            return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
+        }
+
+        internal static Position GetPositionFromPtr(global::System.IntPtr cPtr)
+        {
+            Position ret = new Position(cPtr, false);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        /// <summary>
+        /// Dispose.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
+        protected virtual void Dispose(DisposeTypes type)
+        {
+            if (disposed)
+            {
+                return;
+            }
+
+            if (type == DisposeTypes.Explicit)
+            {
+                //Called by User
+                //Release your own managed resources here.
+                //You should release all of your own disposable objects here.
+            }
+
+            //Release your own unmanaged resources here.
+            //You should not access any managed member here except static instance.
+            //because the execution order of Finalizes is non-deterministic.
+
+            if (swigCPtr.Handle != global::System.IntPtr.Zero)
+            {
+                if (swigCMemOwn)
+                {
+                    swigCMemOwn = false;
+                    NDalicPINVOKE.delete_Vector3(swigCPtr);
+                }
+                swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
+            }
+            disposed = true;
+        }
+
+
+        private Position Add(Position rhs)
+        {
+            Position ret = new Position(NDalicPINVOKE.Vector3_Add(swigCPtr, Position.getCPtr(rhs)), true);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        private Position Subtract(Position rhs)
+        {
+            Position ret = new Position(NDalicPINVOKE.Vector3_Subtract__SWIG_0(swigCPtr, Position.getCPtr(rhs)), true);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        private Position Multiply(Position rhs)
+        {
+            Position ret = new Position(NDalicPINVOKE.Vector3_Multiply__SWIG_0(swigCPtr, Position.getCPtr(rhs)), true);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        private Position Multiply(float rhs)
+        {
+            Position ret = new Position(NDalicPINVOKE.Vector3_Multiply__SWIG_1(swigCPtr, rhs), true);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        private Position Divide(Position rhs)
+        {
+            Position ret = new Position(NDalicPINVOKE.Vector3_Divide__SWIG_0(swigCPtr, Position.getCPtr(rhs)), true);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        private Position Divide(float rhs)
+        {
+            Position ret = new Position(NDalicPINVOKE.Vector3_Divide__SWIG_1(swigCPtr, rhs), true);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        private Position Subtract()
+        {
+            Position ret = new Position(NDalicPINVOKE.Vector3_Subtract__SWIG_1(swigCPtr), true);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        private float ValueOfIndex(uint index)
+        {
+            float ret = NDalicPINVOKE.Vector3_ValueOfIndex__SWIG_0(swigCPtr, index);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
         }
 
     }

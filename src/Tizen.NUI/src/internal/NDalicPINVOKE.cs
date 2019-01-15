@@ -205,6 +205,29 @@ namespace Tizen.NUI
                                           argumentNullDelegate,
                                           argumentOutOfRangeDelegate);
             }
+
+            //Workaround for Vulkan. should be removed.
+            internal void SetAgain()
+            {
+                SWIGRegisterExceptionCallbacks_NDalic(
+                          applicationDelegate,
+                          arithmeticDelegate,
+                          divideByZeroDelegate,
+                          indexOutOfRangeDelegate,
+                          invalidCastDelegate,
+                          invalidOperationDelegate,
+                          ioDelegate,
+                          nullReferenceDelegate,
+                          outOfMemoryDelegate,
+                          overflowDelegate,
+                          systemDelegate);
+
+                SWIGRegisterExceptionCallbacksArgument_NDalic(
+                                          argumentDelegate,
+                                          argumentNullDelegate,
+                                          argumentOutOfRangeDelegate);
+            }
+
         }
 
         protected static SWIGExceptionHelper swigExceptionHelper = new SWIGExceptionHelper();
@@ -296,9 +319,23 @@ namespace Tizen.NUI
             {
                 SWIGRegisterStringCallback_NDalic(stringDelegate);
             }
+
+            //Workaround for Vulkan. should be removed.
+            internal void SetAgain()
+            {
+                SWIGRegisterStringCallback_NDalic(stringDelegate);
+            }
         }
 
         static protected SWIGStringHelper swigStringHelper = new SWIGStringHelper();
+
+        //Workaround for Vulkan. should be removed.
+        internal static void SetAgainExceptionHelperAndStringHelper()
+        {
+            swigExceptionHelper.SetAgain();
+            swigStringHelper.SetAgain();
+            Tizen.Log.Error("NUI", $"[NOT ERROR] SetAgainExceptionHelperAndStringHelper()");
+        }
 
 
         static NDalicPINVOKE()
@@ -19404,24 +19441,6 @@ namespace Tizen.NUI
             }
         }
 
-        [global::System.Runtime.InteropServices.DllImport(Graphics.GlesCSharpBinder, EntryPoint = "CSharp_Dali_Actor_Property_POSITION_INHERITANCE_get")]
-        public static extern int Actor_Property_POSITION_INHERITANCE_get_gl();
-
-        [global::System.Runtime.InteropServices.DllImport(Graphics.VulkanCSharpBinder, EntryPoint = "CSharp_Dali_Actor_Property_POSITION_INHERITANCE_get")]
-        public static extern int Actor_Property_POSITION_INHERITANCE_get_vulkan();
-
-        public static int Actor_Property_POSITION_INHERITANCE_get()
-        {
-            if (Tizen.NUI.Graphics.Backend == Tizen.NUI.Graphics.BackendType.Vulkan)
-            {
-                return Actor_Property_POSITION_INHERITANCE_get_vulkan();
-            }
-            else
-            {
-                return Actor_Property_POSITION_INHERITANCE_get_gl();
-            }
-        }
-
         [global::System.Runtime.InteropServices.DllImport(Graphics.GlesCSharpBinder, EntryPoint = "CSharp_Dali_Actor_Property_DRAW_MODE_get")]
         public static extern int Actor_Property_DRAW_MODE_get_gl();
 
@@ -20427,24 +20446,6 @@ namespace Tizen.NUI
             else
             {
                 Actor_SetInheritPosition_gl(jarg1, jarg2);
-            }
-        }
-
-        [global::System.Runtime.InteropServices.DllImport(Graphics.GlesCSharpBinder, EntryPoint = "CSharp_Dali_Actor_GetPositionInheritanceMode")]
-        public static extern int Actor_GetPositionInheritanceMode_gl(global::System.Runtime.InteropServices.HandleRef jarg1);
-
-        [global::System.Runtime.InteropServices.DllImport(Graphics.VulkanCSharpBinder, EntryPoint = "CSharp_Dali_Actor_GetPositionInheritanceMode")]
-        public static extern int Actor_GetPositionInheritanceMode_vulkan(global::System.Runtime.InteropServices.HandleRef jarg1);
-
-        public static int Actor_GetPositionInheritanceMode(global::System.Runtime.InteropServices.HandleRef jarg1)
-        {
-            if (Tizen.NUI.Graphics.Backend == Tizen.NUI.Graphics.BackendType.Vulkan)
-            {
-                return Actor_GetPositionInheritanceMode_vulkan(jarg1);
-            }
-            else
-            {
-                return Actor_GetPositionInheritanceMode_gl(jarg1);
             }
         }
 
@@ -36828,6 +36829,24 @@ namespace Tizen.NUI
             }
         }
 
+        [global::System.Runtime.InteropServices.DllImport(Graphics.GlesCSharpBinder, EntryPoint = "CSharp_Dali_Window_SetPositionSize")]
+        public static extern void Window_SetPositionSize_gl(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+
+        [global::System.Runtime.InteropServices.DllImport(Graphics.VulkanCSharpBinder, EntryPoint = "CSharp_Dali_Window_SetPositionSize")]
+        public static extern void Window_SetPositionSize_vulkan(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+
+        public static void Window_SetPositionSize(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2)
+        {
+            if (Tizen.NUI.Graphics.Backend == Tizen.NUI.Graphics.BackendType.Vulkan)
+            {
+                Window_SetPositionSize_vulkan(jarg1, jarg2);
+            }
+            else
+            {
+                Window_SetPositionSize_gl(jarg1, jarg2);
+            }
+        }
+
         [global::System.Runtime.InteropServices.DllImport(Graphics.GlesCSharpBinder, EntryPoint = "CSharp_Dali_Application_New__SWIG_0")]
         public static extern global::System.IntPtr Application_New__SWIG_0_gl();
 
@@ -37152,78 +37171,6 @@ namespace Tizen.NUI
             else
             {
                 return Application_GetResourcePath_gl();
-            }
-        }
-
-        [global::System.Runtime.InteropServices.DllImport(Graphics.GlesCSharpBinder, EntryPoint = "CSharp_Dali_Application_SetViewMode")]
-        public static extern void Application_SetViewMode_gl(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2);
-
-        [global::System.Runtime.InteropServices.DllImport(Graphics.VulkanCSharpBinder, EntryPoint = "CSharp_Dali_Application_SetViewMode")]
-        public static extern void Application_SetViewMode_vulkan(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2);
-
-        public static void Application_SetViewMode(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2)
-        {
-            if (Tizen.NUI.Graphics.Backend == Tizen.NUI.Graphics.BackendType.Vulkan)
-            {
-                Application_SetViewMode_vulkan(jarg1, jarg2);
-            }
-            else
-            {
-                Application_SetViewMode_gl(jarg1, jarg2);
-            }
-        }
-
-        [global::System.Runtime.InteropServices.DllImport(Graphics.GlesCSharpBinder, EntryPoint = "CSharp_Dali_Application_GetViewMode")]
-        public static extern int Application_GetViewMode_gl(global::System.Runtime.InteropServices.HandleRef jarg1);
-
-        [global::System.Runtime.InteropServices.DllImport(Graphics.VulkanCSharpBinder, EntryPoint = "CSharp_Dali_Application_GetViewMode")]
-        public static extern int Application_GetViewMode_vulkan(global::System.Runtime.InteropServices.HandleRef jarg1);
-
-        public static int Application_GetViewMode(global::System.Runtime.InteropServices.HandleRef jarg1)
-        {
-            if (Tizen.NUI.Graphics.Backend == Tizen.NUI.Graphics.BackendType.Vulkan)
-            {
-                return Application_GetViewMode_vulkan(jarg1);
-            }
-            else
-            {
-                return Application_GetViewMode_gl(jarg1);
-            }
-        }
-
-        [global::System.Runtime.InteropServices.DllImport(Graphics.GlesCSharpBinder, EntryPoint = "CSharp_Dali_Application_SetStereoBase")]
-        public static extern void Application_SetStereoBase_gl(global::System.Runtime.InteropServices.HandleRef jarg1, float jarg2);
-
-        [global::System.Runtime.InteropServices.DllImport(Graphics.VulkanCSharpBinder, EntryPoint = "CSharp_Dali_Application_SetStereoBase")]
-        public static extern void Application_SetStereoBase_vulkan(global::System.Runtime.InteropServices.HandleRef jarg1, float jarg2);
-
-        public static void Application_SetStereoBase(global::System.Runtime.InteropServices.HandleRef jarg1, float jarg2)
-        {
-            if (Tizen.NUI.Graphics.Backend == Tizen.NUI.Graphics.BackendType.Vulkan)
-            {
-                Application_SetStereoBase_vulkan(jarg1, jarg2);
-            }
-            else
-            {
-                Application_SetStereoBase_gl(jarg1, jarg2);
-            }
-        }
-
-        [global::System.Runtime.InteropServices.DllImport(Graphics.GlesCSharpBinder, EntryPoint = "CSharp_Dali_Application_GetStereoBase")]
-        public static extern float Application_GetStereoBase_gl(global::System.Runtime.InteropServices.HandleRef jarg1);
-
-        [global::System.Runtime.InteropServices.DllImport(Graphics.VulkanCSharpBinder, EntryPoint = "CSharp_Dali_Application_GetStereoBase")]
-        public static extern float Application_GetStereoBase_vulkan(global::System.Runtime.InteropServices.HandleRef jarg1);
-
-        public static float Application_GetStereoBase(global::System.Runtime.InteropServices.HandleRef jarg1)
-        {
-            if (Tizen.NUI.Graphics.Backend == Tizen.NUI.Graphics.BackendType.Vulkan)
-            {
-                return Application_GetStereoBase_vulkan(jarg1);
-            }
-            else
-            {
-                return Application_GetStereoBase_gl(jarg1);
             }
         }
 
@@ -54236,42 +54183,6 @@ namespace Tizen.NUI
             }
         }
 
-        [global::System.Runtime.InteropServices.DllImport(Graphics.GlesCSharpBinder, EntryPoint = "CSharp_Dali_TextField_Property_SHADOW_OFFSET_get")]
-        public static extern int TextField_Property_SHADOW_OFFSET_get_gl();
-
-        [global::System.Runtime.InteropServices.DllImport(Graphics.VulkanCSharpBinder, EntryPoint = "CSharp_Dali_TextField_Property_SHADOW_OFFSET_get")]
-        public static extern int TextField_Property_SHADOW_OFFSET_get_vulkan();
-
-        public static int TextField_Property_SHADOW_OFFSET_get()
-        {
-            if (Tizen.NUI.Graphics.Backend == Tizen.NUI.Graphics.BackendType.Vulkan)
-            {
-                return TextField_Property_SHADOW_OFFSET_get_vulkan();
-            }
-            else
-            {
-                return TextField_Property_SHADOW_OFFSET_get_gl();
-            }
-        }
-
-        [global::System.Runtime.InteropServices.DllImport(Graphics.GlesCSharpBinder, EntryPoint = "CSharp_Dali_TextField_Property_SHADOW_COLOR_get")]
-        public static extern int TextField_Property_SHADOW_COLOR_get_gl();
-
-        [global::System.Runtime.InteropServices.DllImport(Graphics.VulkanCSharpBinder, EntryPoint = "CSharp_Dali_TextField_Property_SHADOW_COLOR_get")]
-        public static extern int TextField_Property_SHADOW_COLOR_get_vulkan();
-
-        public static int TextField_Property_SHADOW_COLOR_get()
-        {
-            if (Tizen.NUI.Graphics.Backend == Tizen.NUI.Graphics.BackendType.Vulkan)
-            {
-                return TextField_Property_SHADOW_COLOR_get_vulkan();
-            }
-            else
-            {
-                return TextField_Property_SHADOW_COLOR_get_gl();
-            }
-        }
-
         [global::System.Runtime.InteropServices.DllImport(Graphics.GlesCSharpBinder, EntryPoint = "CSharp_Dali_TextField_Property_PRIMARY_CURSOR_COLOR_get")]
         public static extern int TextField_Property_PRIMARY_CURSOR_COLOR_get_gl();
 
@@ -55259,96 +55170,6 @@ namespace Tizen.NUI
             else
             {
                 return TextLabel_Property_TEXT_COLOR_get_gl();
-            }
-        }
-
-        [global::System.Runtime.InteropServices.DllImport(Graphics.GlesCSharpBinder, EntryPoint = "CSharp_Dali_TextLabel_Property_SHADOW_OFFSET_get")]
-        public static extern int TextLabel_Property_SHADOW_OFFSET_get_gl();
-
-        [global::System.Runtime.InteropServices.DllImport(Graphics.VulkanCSharpBinder, EntryPoint = "CSharp_Dali_TextLabel_Property_SHADOW_OFFSET_get")]
-        public static extern int TextLabel_Property_SHADOW_OFFSET_get_vulkan();
-
-        public static int TextLabel_Property_SHADOW_OFFSET_get()
-        {
-            if (Tizen.NUI.Graphics.Backend == Tizen.NUI.Graphics.BackendType.Vulkan)
-            {
-                return TextLabel_Property_SHADOW_OFFSET_get_vulkan();
-            }
-            else
-            {
-                return TextLabel_Property_SHADOW_OFFSET_get_gl();
-            }
-        }
-
-        [global::System.Runtime.InteropServices.DllImport(Graphics.GlesCSharpBinder, EntryPoint = "CSharp_Dali_TextLabel_Property_SHADOW_COLOR_get")]
-        public static extern int TextLabel_Property_SHADOW_COLOR_get_gl();
-
-        [global::System.Runtime.InteropServices.DllImport(Graphics.VulkanCSharpBinder, EntryPoint = "CSharp_Dali_TextLabel_Property_SHADOW_COLOR_get")]
-        public static extern int TextLabel_Property_SHADOW_COLOR_get_vulkan();
-
-        public static int TextLabel_Property_SHADOW_COLOR_get()
-        {
-            if (Tizen.NUI.Graphics.Backend == Tizen.NUI.Graphics.BackendType.Vulkan)
-            {
-                return TextLabel_Property_SHADOW_COLOR_get_vulkan();
-            }
-            else
-            {
-                return TextLabel_Property_SHADOW_COLOR_get_gl();
-            }
-        }
-
-        [global::System.Runtime.InteropServices.DllImport(Graphics.GlesCSharpBinder, EntryPoint = "CSharp_Dali_TextLabel_Property_UNDERLINE_ENABLED_get")]
-        public static extern int TextLabel_Property_UNDERLINE_ENABLED_get_gl();
-
-        [global::System.Runtime.InteropServices.DllImport(Graphics.VulkanCSharpBinder, EntryPoint = "CSharp_Dali_TextLabel_Property_UNDERLINE_ENABLED_get")]
-        public static extern int TextLabel_Property_UNDERLINE_ENABLED_get_vulkan();
-
-        public static int TextLabel_Property_UNDERLINE_ENABLED_get()
-        {
-            if (Tizen.NUI.Graphics.Backend == Tizen.NUI.Graphics.BackendType.Vulkan)
-            {
-                return TextLabel_Property_UNDERLINE_ENABLED_get_vulkan();
-            }
-            else
-            {
-                return TextLabel_Property_UNDERLINE_ENABLED_get_gl();
-            }
-        }
-
-        [global::System.Runtime.InteropServices.DllImport(Graphics.GlesCSharpBinder, EntryPoint = "CSharp_Dali_TextLabel_Property_UNDERLINE_COLOR_get")]
-        public static extern int TextLabel_Property_UNDERLINE_COLOR_get_gl();
-
-        [global::System.Runtime.InteropServices.DllImport(Graphics.VulkanCSharpBinder, EntryPoint = "CSharp_Dali_TextLabel_Property_UNDERLINE_COLOR_get")]
-        public static extern int TextLabel_Property_UNDERLINE_COLOR_get_vulkan();
-
-        public static int TextLabel_Property_UNDERLINE_COLOR_get()
-        {
-            if (Tizen.NUI.Graphics.Backend == Tizen.NUI.Graphics.BackendType.Vulkan)
-            {
-                return TextLabel_Property_UNDERLINE_COLOR_get_vulkan();
-            }
-            else
-            {
-                return TextLabel_Property_UNDERLINE_COLOR_get_gl();
-            }
-        }
-
-        [global::System.Runtime.InteropServices.DllImport(Graphics.GlesCSharpBinder, EntryPoint = "CSharp_Dali_TextLabel_Property_UNDERLINE_HEIGHT_get")]
-        public static extern int TextLabel_Property_UNDERLINE_HEIGHT_get_gl();
-
-        [global::System.Runtime.InteropServices.DllImport(Graphics.VulkanCSharpBinder, EntryPoint = "CSharp_Dali_TextLabel_Property_UNDERLINE_HEIGHT_get")]
-        public static extern int TextLabel_Property_UNDERLINE_HEIGHT_get_vulkan();
-
-        public static int TextLabel_Property_UNDERLINE_HEIGHT_get()
-        {
-            if (Tizen.NUI.Graphics.Backend == Tizen.NUI.Graphics.BackendType.Vulkan)
-            {
-                return TextLabel_Property_UNDERLINE_HEIGHT_get_vulkan();
-            }
-            else
-            {
-                return TextLabel_Property_UNDERLINE_HEIGHT_get_gl();
             }
         }
 
@@ -67221,453 +67042,93 @@ namespace Tizen.NUI
             }
         }
 
-        [global::System.Runtime.InteropServices.DllImport(Graphics.GlesCSharpBinder, EntryPoint = "CSharp_Dali_WebViewSignal_Empty")]
-        public static extern bool WebViewSignal_Empty_gl(global::System.Runtime.InteropServices.HandleRef jarg1);
+        [global::System.Runtime.InteropServices.DllImport(Graphics.GlesCSharpBinder, EntryPoint = "CSharp_Dali_new_WebViewSignalProxy_PageLoadStarted")]
+        public static extern global::System.IntPtr new_WebViewSignalProxy_PageLoadStarted_gl(global::System.Runtime.InteropServices.HandleRef jarg1);
 
-        [global::System.Runtime.InteropServices.DllImport(Graphics.VulkanCSharpBinder, EntryPoint = "CSharp_Dali_WebViewSignal_Empty")]
-        public static extern bool WebViewSignal_Empty_vulkan(global::System.Runtime.InteropServices.HandleRef jarg1);
+        [global::System.Runtime.InteropServices.DllImport(Graphics.VulkanCSharpBinder, EntryPoint = "CSharp_Dali_new_WebViewSignalProxy_PageLoadStarted")]
+        public static extern global::System.IntPtr new_WebViewSignalProxy_PageLoadStarted_vulkan(global::System.Runtime.InteropServices.HandleRef jarg1);
 
-        public static bool WebViewSignal_Empty(global::System.Runtime.InteropServices.HandleRef jarg1)
+        public static global::System.IntPtr new_WebViewSignalProxy_PageLoadStarted(global::System.Runtime.InteropServices.HandleRef jarg1)
         {
             if (Tizen.NUI.Graphics.Backend == Tizen.NUI.Graphics.BackendType.Vulkan)
             {
-                return WebViewSignal_Empty_vulkan(jarg1);
+                return new_WebViewSignalProxy_PageLoadStarted_vulkan(jarg1);
             }
             else
             {
-                return WebViewSignal_Empty_gl(jarg1);
+                return new_WebViewSignalProxy_PageLoadStarted_gl(jarg1);
             }
         }
 
-        [global::System.Runtime.InteropServices.DllImport(Graphics.GlesCSharpBinder, EntryPoint = "CSharp_Dali_WebViewSignal_GetConnectionCount")]
-        public static extern uint WebViewSignal_GetConnectionCount_gl(global::System.Runtime.InteropServices.HandleRef jarg1);
+        [global::System.Runtime.InteropServices.DllImport(Graphics.GlesCSharpBinder, EntryPoint = "CSharp_Dali_new_WebViewSignalProxy_PageLoadFinished")]
+        public static extern global::System.IntPtr new_WebViewSignalProxy_PageLoadFinished_gl(global::System.Runtime.InteropServices.HandleRef jarg1);
 
-        [global::System.Runtime.InteropServices.DllImport(Graphics.VulkanCSharpBinder, EntryPoint = "CSharp_Dali_WebViewSignal_GetConnectionCount")]
-        public static extern uint WebViewSignal_GetConnectionCount_vulkan(global::System.Runtime.InteropServices.HandleRef jarg1);
+        [global::System.Runtime.InteropServices.DllImport(Graphics.VulkanCSharpBinder, EntryPoint = "CSharp_Dali_new_WebViewSignalProxy_PageLoadFinished")]
+        public static extern global::System.IntPtr new_WebViewSignalProxy_PageLoadFinished_vulkan(global::System.Runtime.InteropServices.HandleRef jarg1);
 
-        public static uint WebViewSignal_GetConnectionCount(global::System.Runtime.InteropServices.HandleRef jarg1)
+        public static global::System.IntPtr new_WebViewSignalProxy_PageLoadFinished(global::System.Runtime.InteropServices.HandleRef jarg1)
         {
             if (Tizen.NUI.Graphics.Backend == Tizen.NUI.Graphics.BackendType.Vulkan)
             {
-                return WebViewSignal_GetConnectionCount_vulkan(jarg1);
+                return new_WebViewSignalProxy_PageLoadFinished_vulkan(jarg1);
             }
             else
             {
-                return WebViewSignal_GetConnectionCount_gl(jarg1);
+                return new_WebViewSignalProxy_PageLoadFinished_gl(jarg1);
             }
         }
 
-        [global::System.Runtime.InteropServices.DllImport(Graphics.GlesCSharpBinder, EntryPoint = "CSharp_Dali_WebViewSignal_Connect")]
-        public static extern void WebViewSignal_Connect_gl(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+        [global::System.Runtime.InteropServices.DllImport(Graphics.GlesCSharpBinder, EntryPoint = "CSharp_Dali_delete_WebViewSignalProxy")]
+        public static extern void delete_WebViewSignalProxy_gl(global::System.Runtime.InteropServices.HandleRef jarg1);
 
-        [global::System.Runtime.InteropServices.DllImport(Graphics.VulkanCSharpBinder, EntryPoint = "CSharp_Dali_WebViewSignal_Connect")]
-        public static extern void WebViewSignal_Connect_vulkan(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+        [global::System.Runtime.InteropServices.DllImport(Graphics.VulkanCSharpBinder, EntryPoint = "CSharp_Dali_delete_WebViewSignalProxy")]
+        public static extern void delete_WebViewSignalProxy_vulkan(global::System.Runtime.InteropServices.HandleRef jarg1);
 
-        public static void WebViewSignal_Connect(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2)
+        public static void delete_WebViewSignalProxy(global::System.Runtime.InteropServices.HandleRef jarg1)
         {
             if (Tizen.NUI.Graphics.Backend == Tizen.NUI.Graphics.BackendType.Vulkan)
             {
-                WebViewSignal_Connect_vulkan(jarg1, jarg2);
+                delete_WebViewSignalProxy_vulkan(jarg1);
             }
             else
             {
-                WebViewSignal_Connect_gl(jarg1, jarg2);
+                delete_WebViewSignalProxy_gl(jarg1);
             }
         }
 
-        [global::System.Runtime.InteropServices.DllImport(Graphics.GlesCSharpBinder, EntryPoint = "CSharp_Dali_WebViewSignal_Disconnect")]
-        public static extern void WebViewSignal_Disconnect_gl(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+        [global::System.Runtime.InteropServices.DllImport(Graphics.GlesCSharpBinder, EntryPoint = "CSharp_Dali_WebViewSignalProxy_Connect")]
+        public static extern void WebViewSignalProxy_Connect_gl(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
 
-        [global::System.Runtime.InteropServices.DllImport(Graphics.VulkanCSharpBinder, EntryPoint = "CSharp_Dali_WebViewSignal_Disconnect")]
-        public static extern void WebViewSignal_Disconnect_vulkan(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+        [global::System.Runtime.InteropServices.DllImport(Graphics.VulkanCSharpBinder, EntryPoint = "CSharp_Dali_WebViewSignalProxy_Connect")]
+        public static extern void WebViewSignalProxy_Connect_vulkan(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
 
-        public static void WebViewSignal_Disconnect(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2)
+        public static void WebViewSignalProxy_Connect(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2)
         {
             if (Tizen.NUI.Graphics.Backend == Tizen.NUI.Graphics.BackendType.Vulkan)
             {
-                WebViewSignal_Disconnect_vulkan(jarg1, jarg2);
+                WebViewSignalProxy_Connect_vulkan(jarg1, jarg2);
             }
             else
             {
-                WebViewSignal_Disconnect_gl(jarg1, jarg2);
+                WebViewSignalProxy_Connect_gl(jarg1, jarg2);
             }
         }
 
-        [global::System.Runtime.InteropServices.DllImport(Graphics.GlesCSharpBinder, EntryPoint = "CSharp_Dali_WebViewSignal_Emit")]
-        public static extern void WebViewSignal_Emit_gl(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+        [global::System.Runtime.InteropServices.DllImport(Graphics.GlesCSharpBinder, EntryPoint = "CSharp_Dali_WebViewSignalProxy_Disconnect")]
+        public static extern void WebViewSignalProxy_Disconnect_gl(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
 
-        [global::System.Runtime.InteropServices.DllImport(Graphics.VulkanCSharpBinder, EntryPoint = "CSharp_Dali_WebViewSignal_Emit")]
-        public static extern void WebViewSignal_Emit_vulkan(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+        [global::System.Runtime.InteropServices.DllImport(Graphics.VulkanCSharpBinder, EntryPoint = "CSharp_Dali_WebViewSignalProxy_Disconnect")]
+        public static extern void WebViewSignalProxy_Disconnect_vulkan(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
 
-        public static void WebViewSignal_Emit(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2)
+        public static void WebViewSignalProxy_Disconnect(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2)
         {
             if (Tizen.NUI.Graphics.Backend == Tizen.NUI.Graphics.BackendType.Vulkan)
             {
-                WebViewSignal_Emit_vulkan(jarg1, jarg2);
+                WebViewSignalProxy_Disconnect_vulkan(jarg1, jarg2);
             }
             else
             {
-                WebViewSignal_Emit_gl(jarg1, jarg2);
-            }
-        }
-
-        [global::System.Runtime.InteropServices.DllImport(Graphics.GlesCSharpBinder, EntryPoint = "CSharp_Dali_new_WebViewSignal")]
-        public static extern global::System.IntPtr new_WebViewSignal_gl();
-
-        [global::System.Runtime.InteropServices.DllImport(Graphics.VulkanCSharpBinder, EntryPoint = "CSharp_Dali_new_WebViewSignal")]
-        public static extern global::System.IntPtr new_WebViewSignal_vulkan();
-
-        public static global::System.IntPtr new_WebViewSignal()
-        {
-            if (Tizen.NUI.Graphics.Backend == Tizen.NUI.Graphics.BackendType.Vulkan)
-            {
-                return new_WebViewSignal_vulkan();
-            }
-            else
-            {
-                return new_WebViewSignal_gl();
-            }
-        }
-
-        [global::System.Runtime.InteropServices.DllImport(Graphics.GlesCSharpBinder, EntryPoint = "CSharp_Dali_delete_WebViewSignal")]
-        public static extern void delete_WebViewSignal_gl(global::System.Runtime.InteropServices.HandleRef jarg1);
-
-        [global::System.Runtime.InteropServices.DllImport(Graphics.VulkanCSharpBinder, EntryPoint = "CSharp_Dali_delete_WebViewSignal")]
-        public static extern void delete_WebViewSignal_vulkan(global::System.Runtime.InteropServices.HandleRef jarg1);
-
-        public static void delete_WebViewSignal(global::System.Runtime.InteropServices.HandleRef jarg1)
-        {
-            if (Tizen.NUI.Graphics.Backend == Tizen.NUI.Graphics.BackendType.Vulkan)
-            {
-                delete_WebViewSignal_vulkan(jarg1);
-            }
-            else
-            {
-                delete_WebViewSignal_gl(jarg1);
-            }
-        }
-
-        [global::System.Runtime.InteropServices.DllImport(Graphics.GlesCSharpBinder, EntryPoint = "CSharp_Dali_WebViewLite_New")]
-        public static extern global::System.IntPtr WebViewLite_New_gl();
-
-        [global::System.Runtime.InteropServices.DllImport(Graphics.VulkanCSharpBinder, EntryPoint = "CSharp_Dali_WebViewLite_New")]
-        public static extern global::System.IntPtr WebViewLite_New_vulkan();
-
-        public static global::System.IntPtr WebViewLite_New()
-        {
-            if (Tizen.NUI.Graphics.Backend == Tizen.NUI.Graphics.BackendType.Vulkan)
-            {
-                return WebViewLite_New_vulkan();
-            }
-            else
-            {
-                return WebViewLite_New_gl();
-            }
-        }
-
-        [global::System.Runtime.InteropServices.DllImport(Graphics.GlesCSharpBinder, EntryPoint = "CSharp_Dali_new_WebViewLite__SWIG_0")]
-        public static extern global::System.IntPtr new_WebViewLite__SWIG_0_gl();
-
-        [global::System.Runtime.InteropServices.DllImport(Graphics.VulkanCSharpBinder, EntryPoint = "CSharp_Dali_new_WebViewLite__SWIG_0")]
-        public static extern global::System.IntPtr new_WebViewLite__SWIG_0_vulkan();
-
-        public static global::System.IntPtr new_WebViewLite__SWIG_0()
-        {
-            if (Tizen.NUI.Graphics.Backend == Tizen.NUI.Graphics.BackendType.Vulkan)
-            {
-                return new_WebViewLite__SWIG_0_vulkan();
-            }
-            else
-            {
-                return new_WebViewLite__SWIG_0_gl();
-            }
-        }
-
-        [global::System.Runtime.InteropServices.DllImport(Graphics.GlesCSharpBinder, EntryPoint = "CSharp_Dali_delete_WebViewLite")]
-        public static extern void delete_WebViewLite_gl(global::System.Runtime.InteropServices.HandleRef jarg1);
-
-        [global::System.Runtime.InteropServices.DllImport(Graphics.VulkanCSharpBinder, EntryPoint = "CSharp_Dali_delete_WebViewLite")]
-        public static extern void delete_WebViewLite_vulkan(global::System.Runtime.InteropServices.HandleRef jarg1);
-
-        public static void delete_WebViewLite(global::System.Runtime.InteropServices.HandleRef jarg1)
-        {
-            if (Tizen.NUI.Graphics.Backend == Tizen.NUI.Graphics.BackendType.Vulkan)
-            {
-                delete_WebViewLite_vulkan(jarg1);
-            }
-            else
-            {
-                delete_WebViewLite_gl(jarg1);
-            }
-        }
-
-        [global::System.Runtime.InteropServices.DllImport(Graphics.GlesCSharpBinder, EntryPoint = "CSharp_Dali_new_WebViewLite__SWIG_1")]
-        public static extern global::System.IntPtr new_WebViewLite__SWIG_1_gl(global::System.Runtime.InteropServices.HandleRef jarg1);
-
-        [global::System.Runtime.InteropServices.DllImport(Graphics.VulkanCSharpBinder, EntryPoint = "CSharp_Dali_new_WebViewLite__SWIG_1")]
-        public static extern global::System.IntPtr new_WebViewLite__SWIG_1_vulkan(global::System.Runtime.InteropServices.HandleRef jarg1);
-
-        public static global::System.IntPtr new_WebViewLite__SWIG_1(global::System.Runtime.InteropServices.HandleRef jarg1)
-        {
-            if (Tizen.NUI.Graphics.Backend == Tizen.NUI.Graphics.BackendType.Vulkan)
-            {
-                return new_WebViewLite__SWIG_1_vulkan(jarg1);
-            }
-            else
-            {
-                return new_WebViewLite__SWIG_1_gl(jarg1);
-            }
-        }
-
-        [global::System.Runtime.InteropServices.DllImport(Graphics.GlesCSharpBinder, EntryPoint = "CSharp_Dali_WebViewLite_Assign")]
-        public static extern global::System.IntPtr WebViewLite_Assign_gl(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
-
-        [global::System.Runtime.InteropServices.DllImport(Graphics.VulkanCSharpBinder, EntryPoint = "CSharp_Dali_WebViewLite_Assign")]
-        public static extern global::System.IntPtr WebViewLite_Assign_vulkan(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
-
-        public static global::System.IntPtr WebViewLite_Assign(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2)
-        {
-            if (Tizen.NUI.Graphics.Backend == Tizen.NUI.Graphics.BackendType.Vulkan)
-            {
-                return WebViewLite_Assign_vulkan(jarg1, jarg2);
-            }
-            else
-            {
-                return WebViewLite_Assign_gl(jarg1, jarg2);
-            }
-        }
-
-        [global::System.Runtime.InteropServices.DllImport(Graphics.GlesCSharpBinder, EntryPoint = "CSharp_Dali_WebViewLite_DownCast")]
-        public static extern global::System.IntPtr WebViewLite_DownCast_gl(global::System.Runtime.InteropServices.HandleRef jarg1);
-
-        [global::System.Runtime.InteropServices.DllImport(Graphics.VulkanCSharpBinder, EntryPoint = "CSharp_Dali_WebViewLite_DownCast")]
-        public static extern global::System.IntPtr WebViewLite_DownCast_vulkan(global::System.Runtime.InteropServices.HandleRef jarg1);
-
-        public static global::System.IntPtr WebViewLite_DownCast(global::System.Runtime.InteropServices.HandleRef jarg1)
-        {
-            if (Tizen.NUI.Graphics.Backend == Tizen.NUI.Graphics.BackendType.Vulkan)
-            {
-                return WebViewLite_DownCast_vulkan(jarg1);
-            }
-            else
-            {
-                return WebViewLite_DownCast_gl(jarg1);
-            }
-        }
-
-        [global::System.Runtime.InteropServices.DllImport(Graphics.GlesCSharpBinder, EntryPoint = "CSharp_Dali_WebViewLite_CreateInstance")]
-        public static extern void WebViewLite_CreateInstance_gl(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2, int jarg3, int jarg4, int jarg5, string jarg6, string jarg7);
-
-        [global::System.Runtime.InteropServices.DllImport(Graphics.VulkanCSharpBinder, EntryPoint = "CSharp_Dali_WebViewLite_CreateInstance")]
-        public static extern void WebViewLite_CreateInstance_vulkan(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2, int jarg3, int jarg4, int jarg5, string jarg6, string jarg7);
-
-        public static void WebViewLite_CreateInstance(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2, int jarg3, int jarg4, int jarg5, string jarg6, string jarg7)
-        {
-            if (Tizen.NUI.Graphics.Backend == Tizen.NUI.Graphics.BackendType.Vulkan)
-            {
-                WebViewLite_CreateInstance_vulkan(jarg1, jarg2, jarg3, jarg4, jarg5, jarg6, jarg7);
-            }
-            else
-            {
-                WebViewLite_CreateInstance_gl(jarg1, jarg2, jarg3, jarg4, jarg5, jarg6, jarg7);
-            }
-        }
-
-        [global::System.Runtime.InteropServices.DllImport(Graphics.GlesCSharpBinder, EntryPoint = "CSharp_Dali_WebViewLite_DestroyInstance")]
-        public static extern void WebViewLite_DestroyInstance_gl(global::System.Runtime.InteropServices.HandleRef jarg1);
-
-        [global::System.Runtime.InteropServices.DllImport(Graphics.VulkanCSharpBinder, EntryPoint = "CSharp_Dali_WebViewLite_DestroyInstance")]
-        public static extern void WebViewLite_DestroyInstance_vulkan(global::System.Runtime.InteropServices.HandleRef jarg1);
-
-        public static void WebViewLite_DestroyInstance(global::System.Runtime.InteropServices.HandleRef jarg1)
-        {
-            if (Tizen.NUI.Graphics.Backend == Tizen.NUI.Graphics.BackendType.Vulkan)
-            {
-                WebViewLite_DestroyInstance_vulkan(jarg1);
-            }
-            else
-            {
-                WebViewLite_DestroyInstance_gl(jarg1);
-            }
-        }
-
-        [global::System.Runtime.InteropServices.DllImport(Graphics.GlesCSharpBinder, EntryPoint = "CSharp_Dali_WebViewLite_LoadHtml")]
-        public static extern void WebViewLite_LoadHtml_gl(global::System.Runtime.InteropServices.HandleRef jarg1, string jarg2);
-
-        [global::System.Runtime.InteropServices.DllImport(Graphics.VulkanCSharpBinder, EntryPoint = "CSharp_Dali_WebViewLite_LoadHtml")]
-        public static extern void WebViewLite_LoadHtml_vulkan(global::System.Runtime.InteropServices.HandleRef jarg1, string jarg2);
-
-        public static void WebViewLite_LoadHtml(global::System.Runtime.InteropServices.HandleRef jarg1, string jarg2)
-        {
-            if (Tizen.NUI.Graphics.Backend == Tizen.NUI.Graphics.BackendType.Vulkan)
-            {
-                WebViewLite_LoadHtml_vulkan(jarg1, jarg2);
-            }
-            else
-            {
-                WebViewLite_LoadHtml_gl(jarg1, jarg2);
-            }
-        }
-
-        [global::System.Runtime.InteropServices.DllImport(Graphics.GlesCSharpBinder, EntryPoint = "CSharp_Dali_WebViewLite_FinishedSignal")]
-        public static extern global::System.IntPtr WebViewLite_FinishedSignal_gl(global::System.Runtime.InteropServices.HandleRef jarg1);
-
-        [global::System.Runtime.InteropServices.DllImport(Graphics.VulkanCSharpBinder, EntryPoint = "CSharp_Dali_WebViewLite_FinishedSignal")]
-        public static extern global::System.IntPtr WebViewLite_FinishedSignal_vulkan(global::System.Runtime.InteropServices.HandleRef jarg1);
-
-        public static global::System.IntPtr WebViewLite_FinishedSignal(global::System.Runtime.InteropServices.HandleRef jarg1)
-        {
-            if (Tizen.NUI.Graphics.Backend == Tizen.NUI.Graphics.BackendType.Vulkan)
-            {
-                return WebViewLite_FinishedSignal_vulkan(jarg1);
-            }
-            else
-            {
-                return WebViewLite_FinishedSignal_gl(jarg1);
-            }
-        }
-
-        [global::System.Runtime.InteropServices.DllImport(Graphics.GlesCSharpBinder, EntryPoint = "CSharp_Dali_WebViewLiteSignal_Empty")]
-        public static extern bool WebViewLiteSignal_Empty_gl(global::System.Runtime.InteropServices.HandleRef jarg1);
-
-        [global::System.Runtime.InteropServices.DllImport(Graphics.VulkanCSharpBinder, EntryPoint = "CSharp_Dali_WebViewLiteSignal_Empty")]
-        public static extern bool WebViewLiteSignal_Empty_vulkan(global::System.Runtime.InteropServices.HandleRef jarg1);
-
-        public static bool WebViewLiteSignal_Empty(global::System.Runtime.InteropServices.HandleRef jarg1)
-        {
-            if (Tizen.NUI.Graphics.Backend == Tizen.NUI.Graphics.BackendType.Vulkan)
-            {
-                return WebViewLiteSignal_Empty_vulkan(jarg1);
-            }
-            else
-            {
-                return WebViewLiteSignal_Empty_gl(jarg1);
-            }
-        }
-
-        [global::System.Runtime.InteropServices.DllImport(Graphics.GlesCSharpBinder, EntryPoint = "CSharp_Dali_WebViewLiteSignal_GetConnectionCount")]
-        public static extern uint WebViewLiteSignal_GetConnectionCount_gl(global::System.Runtime.InteropServices.HandleRef jarg1);
-
-        [global::System.Runtime.InteropServices.DllImport(Graphics.VulkanCSharpBinder, EntryPoint = "CSharp_Dali_WebViewLiteSignal_GetConnectionCount")]
-        public static extern uint WebViewLiteSignal_GetConnectionCount_vulkan(global::System.Runtime.InteropServices.HandleRef jarg1);
-
-        public static uint WebViewLiteSignal_GetConnectionCount(global::System.Runtime.InteropServices.HandleRef jarg1)
-        {
-            if (Tizen.NUI.Graphics.Backend == Tizen.NUI.Graphics.BackendType.Vulkan)
-            {
-                return WebViewLiteSignal_GetConnectionCount_vulkan(jarg1);
-            }
-            else
-            {
-                return WebViewLiteSignal_GetConnectionCount_gl(jarg1);
-            }
-        }
-
-        [global::System.Runtime.InteropServices.DllImport(Graphics.GlesCSharpBinder, EntryPoint = "CSharp_Dali_WebViewLiteSignal_Connect")]
-        public static extern void WebViewLiteSignal_Connect_gl(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
-
-        [global::System.Runtime.InteropServices.DllImport(Graphics.VulkanCSharpBinder, EntryPoint = "CSharp_Dali_WebViewLiteSignal_Connect")]
-        public static extern void WebViewLiteSignal_Connect_vulkan(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
-
-        public static void WebViewLiteSignal_Connect(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2)
-        {
-            if (Tizen.NUI.Graphics.Backend == Tizen.NUI.Graphics.BackendType.Vulkan)
-            {
-                WebViewLiteSignal_Connect_vulkan(jarg1, jarg2);
-            }
-            else
-            {
-                WebViewLiteSignal_Connect_gl(jarg1, jarg2);
-            }
-        }
-
-        [global::System.Runtime.InteropServices.DllImport(Graphics.GlesCSharpBinder, EntryPoint = "CSharp_Dali_WebViewLiteSignal_Disconnect")]
-        public static extern void WebViewLiteSignal_Disconnect_gl(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
-
-        [global::System.Runtime.InteropServices.DllImport(Graphics.VulkanCSharpBinder, EntryPoint = "CSharp_Dali_WebViewLiteSignal_Disconnect")]
-        public static extern void WebViewLiteSignal_Disconnect_vulkan(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
-
-        public static void WebViewLiteSignal_Disconnect(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2)
-        {
-            if (Tizen.NUI.Graphics.Backend == Tizen.NUI.Graphics.BackendType.Vulkan)
-            {
-                WebViewLiteSignal_Disconnect_vulkan(jarg1, jarg2);
-            }
-            else
-            {
-                WebViewLiteSignal_Disconnect_gl(jarg1, jarg2);
-            }
-        }
-
-        [global::System.Runtime.InteropServices.DllImport(Graphics.GlesCSharpBinder, EntryPoint = "CSharp_Dali_WebViewLiteSignal_Emit")]
-        public static extern void WebViewLiteSignal_Emit_gl(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
-
-        [global::System.Runtime.InteropServices.DllImport(Graphics.VulkanCSharpBinder, EntryPoint = "CSharp_Dali_WebViewLiteSignal_Emit")]
-        public static extern void WebViewLiteSignal_Emit_vulkan(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
-
-        public static void WebViewLiteSignal_Emit(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2)
-        {
-            if (Tizen.NUI.Graphics.Backend == Tizen.NUI.Graphics.BackendType.Vulkan)
-            {
-                WebViewLiteSignal_Emit_vulkan(jarg1, jarg2);
-            }
-            else
-            {
-                WebViewLiteSignal_Emit_gl(jarg1, jarg2);
-            }
-        }
-
-        [global::System.Runtime.InteropServices.DllImport(Graphics.GlesCSharpBinder, EntryPoint = "CSharp_Dali_new_WebViewLiteSignal")]
-        public static extern global::System.IntPtr new_WebViewLiteSignal_gl();
-
-        [global::System.Runtime.InteropServices.DllImport(Graphics.VulkanCSharpBinder, EntryPoint = "CSharp_Dali_new_WebViewLiteSignal")]
-        public static extern global::System.IntPtr new_WebViewLiteSignal_vulkan();
-
-        public static global::System.IntPtr new_WebViewLiteSignal()
-        {
-            if (Tizen.NUI.Graphics.Backend == Tizen.NUI.Graphics.BackendType.Vulkan)
-            {
-                return new_WebViewLiteSignal_vulkan();
-            }
-            else
-            {
-                return new_WebViewLiteSignal_gl();
-            }
-        }
-
-        [global::System.Runtime.InteropServices.DllImport(Graphics.GlesCSharpBinder, EntryPoint = "CSharp_Dali_delete_WebViewLiteSignal")]
-        public static extern void delete_WebViewLiteSignal_gl(global::System.Runtime.InteropServices.HandleRef jarg1);
-
-        [global::System.Runtime.InteropServices.DllImport(Graphics.VulkanCSharpBinder, EntryPoint = "CSharp_Dali_delete_WebViewLiteSignal")]
-        public static extern void delete_WebViewLiteSignal_vulkan(global::System.Runtime.InteropServices.HandleRef jarg1);
-
-        public static void delete_WebViewLiteSignal(global::System.Runtime.InteropServices.HandleRef jarg1)
-        {
-            if (Tizen.NUI.Graphics.Backend == Tizen.NUI.Graphics.BackendType.Vulkan)
-            {
-                delete_WebViewLiteSignal_vulkan(jarg1);
-            }
-            else
-            {
-                delete_WebViewLiteSignal_gl(jarg1);
-            }
-        }
-
-        [global::System.Runtime.InteropServices.DllImport(Graphics.GlesCSharpBinder, EntryPoint = "CSharp_Dali_WebViewLite_SWIGUpcast")]
-        public static extern global::System.IntPtr WebViewLite_SWIGUpcast_gl(global::System.IntPtr jarg1);
-
-        [global::System.Runtime.InteropServices.DllImport(Graphics.VulkanCSharpBinder, EntryPoint = "CSharp_Dali_WebViewLite_SWIGUpcast")]
-        public static extern global::System.IntPtr WebViewLite_SWIGUpcast_vulkan(global::System.IntPtr jarg1);
-
-        public static global::System.IntPtr WebViewLite_SWIGUpcast(global::System.IntPtr jarg1)
-        {
-            if (Tizen.NUI.Graphics.Backend == Tizen.NUI.Graphics.BackendType.Vulkan)
-            {
-                return WebViewLite_SWIGUpcast_vulkan(jarg1);
-            }
-            else
-            {
-                return WebViewLite_SWIGUpcast_gl(jarg1);
+                WebViewSignalProxy_Disconnect_gl(jarg1, jarg2);
             }
         }
 
@@ -68552,42 +68013,6 @@ namespace Tizen.NUI
             else
             {
                 return DownloadImageSynchronously__SWIG_4_gl(jarg1);
-            }
-        }
-
-        [global::System.Runtime.InteropServices.DllImport(Graphics.GlesCSharpBinder, EntryPoint = "CSharp_Dali_SetMaxTextureSize")]
-        public static extern void SetMaxTextureSize_gl(uint jarg1);
-
-        [global::System.Runtime.InteropServices.DllImport(Graphics.VulkanCSharpBinder, EntryPoint = "CSharp_Dali_SetMaxTextureSize")]
-        public static extern void SetMaxTextureSize_vulkan(uint jarg1);
-
-        public static void SetMaxTextureSize(uint jarg1)
-        {
-            if (Tizen.NUI.Graphics.Backend == Tizen.NUI.Graphics.BackendType.Vulkan)
-            {
-                SetMaxTextureSize_vulkan(jarg1);
-            }
-            else
-            {
-                SetMaxTextureSize_gl(jarg1);
-            }
-        }
-
-        [global::System.Runtime.InteropServices.DllImport(Graphics.GlesCSharpBinder, EntryPoint = "CSharp_Dali_GetMaxTextureSize")]
-        public static extern uint GetMaxTextureSize_gl();
-
-        [global::System.Runtime.InteropServices.DllImport(Graphics.VulkanCSharpBinder, EntryPoint = "CSharp_Dali_GetMaxTextureSize")]
-        public static extern uint GetMaxTextureSize_vulkan();
-
-        public static uint GetMaxTextureSize()
-        {
-            if (Tizen.NUI.Graphics.Backend == Tizen.NUI.Graphics.BackendType.Vulkan)
-            {
-                return GetMaxTextureSize_vulkan();
-            }
-            else
-            {
-                return GetMaxTextureSize_gl();
             }
         }
 
