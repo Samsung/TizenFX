@@ -30,59 +30,6 @@ namespace Tizen.NUI
     {
         private global::System.Runtime.InteropServices.HandleRef swigCPtr;
 
-        internal Path(global::System.IntPtr cPtr, bool cMemoryOwn) : base(NDalicPINVOKE.Path_SWIGUpcast(cPtr), cMemoryOwn)
-        {
-            swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
-        }
-
-        internal static global::System.Runtime.InteropServices.HandleRef getCPtr(Path obj)
-        {
-            return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
-        }
-
-        /// <summary>
-        /// Dispose
-        /// </summary>
-        /// <param name="type">The dispoase type</param>
-        /// <since_tizen> 3 </since_tizen>
-        protected override void Dispose(DisposeTypes type)
-        {
-            if(disposed)
-            {
-                return;
-            }
-
-            if(type == DisposeTypes.Explicit)
-            {
-                //Called by User
-                //Release your own managed resources here.
-                //You should release all of your own disposable objects here.
-            }
-
-            //Release your own unmanaged resources here.
-            //You should not access any managed member here except static instance.
-            //because the execution order of Finalizes is non-deterministic.
-
-            if (swigCPtr.Handle != global::System.IntPtr.Zero)
-            {
-                if (swigCMemOwn)
-                {
-                    swigCMemOwn = false;
-                    NDalicPINVOKE.delete_Path(swigCPtr);
-                }
-                swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
-            }
-
-            base.Dispose(type);
-        }
-
-
-        internal class Property
-        {
-            internal static readonly int POINTS = NDalicPINVOKE.Path_Property_POINTS_get();
-            internal static readonly int CONTROL_POINTS = NDalicPINVOKE.Path_Property_CONTROL_POINTS_get();
-        }
-
         /// <summary>
         /// Creates an initialized path handle.
         /// </summary>
@@ -91,6 +38,48 @@ namespace Tizen.NUI
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
 
+        }
+
+        internal Path(global::System.IntPtr cPtr, bool cMemoryOwn) : base(NDalicPINVOKE.Path_SWIGUpcast(cPtr), cMemoryOwn)
+        {
+            swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
+        }
+
+
+        /// <summary>
+        /// Enumeration for the Points.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
+        public PropertyArray Points
+        {
+            get
+            {
+                Tizen.NUI.PropertyArray temp = new Tizen.NUI.PropertyArray();
+                Tizen.NUI.Object.GetProperty(swigCPtr, Path.Property.POINTS).Get(temp);
+                return temp;
+            }
+            set
+            {
+                Tizen.NUI.Object.SetProperty(swigCPtr, Path.Property.POINTS, new Tizen.NUI.PropertyValue(value));
+            }
+        }
+
+        /// <summary>
+        /// Enumeration for the ControlPoints.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
+        public PropertyArray ControlPoints
+        {
+            get
+            {
+                Tizen.NUI.PropertyArray temp = new Tizen.NUI.PropertyArray();
+                Tizen.NUI.Object.GetProperty(swigCPtr, Path.Property.CONTROL_POINTS).Get(temp);
+                return temp;
+            }
+            set
+            {
+                Tizen.NUI.Object.SetProperty(swigCPtr, Path.Property.CONTROL_POINTS, new Tizen.NUI.PropertyValue(value));
+            }
         }
 
         /// <summary>
@@ -180,40 +169,51 @@ namespace Tizen.NUI
             return ret;
         }
 
-        /// <summary>
-        /// Enumeration for the Points.
-        /// </summary>
-        /// <since_tizen> 3 </since_tizen>
-        public PropertyArray Points
+        internal static global::System.Runtime.InteropServices.HandleRef getCPtr(Path obj)
         {
-            get
-            {
-                Tizen.NUI.PropertyArray temp = new Tizen.NUI.PropertyArray();
-                Tizen.NUI.Object.GetProperty(swigCPtr, Path.Property.POINTS).Get(temp);
-                return temp;
-            }
-            set
-            {
-                Tizen.NUI.Object.SetProperty(swigCPtr, Path.Property.POINTS, new Tizen.NUI.PropertyValue(value));
-            }
+            return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
         }
 
         /// <summary>
-        /// Enumeration for the ControlPoints.
+        /// Dispose
         /// </summary>
+        /// <param name="type">The dispoase type</param>
         /// <since_tizen> 3 </since_tizen>
-        public PropertyArray ControlPoints
+        protected override void Dispose(DisposeTypes type)
         {
-            get
+            if (disposed)
             {
-                Tizen.NUI.PropertyArray temp = new Tizen.NUI.PropertyArray();
-                Tizen.NUI.Object.GetProperty(swigCPtr, Path.Property.CONTROL_POINTS).Get(temp);
-                return temp;
+                return;
             }
-            set
+
+            if (type == DisposeTypes.Explicit)
             {
-                Tizen.NUI.Object.SetProperty(swigCPtr, Path.Property.CONTROL_POINTS, new Tizen.NUI.PropertyValue(value));
+                //Called by User
+                //Release your own managed resources here.
+                //You should release all of your own disposable objects here.
             }
+
+            //Release your own unmanaged resources here.
+            //You should not access any managed member here except static instance.
+            //because the execution order of Finalizes is non-deterministic.
+
+            if (swigCPtr.Handle != global::System.IntPtr.Zero)
+            {
+                if (swigCMemOwn)
+                {
+                    swigCMemOwn = false;
+                    NDalicPINVOKE.delete_Path(swigCPtr);
+                }
+                swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
+            }
+
+            base.Dispose(type);
+        }
+
+        internal class Property
+        {
+            internal static readonly int POINTS = NDalicPINVOKE.Path_Property_POINTS_get();
+            internal static readonly int CONTROL_POINTS = NDalicPINVOKE.Path_Property_CONTROL_POINTS_get();
         }
 
     }

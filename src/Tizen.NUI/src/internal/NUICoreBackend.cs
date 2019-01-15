@@ -149,7 +149,6 @@ namespace Tizen.NUI
             _application.MainLoop();
 
             _application.Dispose();
-
         }
 
         /// <summary>

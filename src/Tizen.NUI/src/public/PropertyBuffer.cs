@@ -26,9 +26,47 @@ namespace Tizen.NUI
     {
         private global::System.Runtime.InteropServices.HandleRef swigCPtr;
 
+        /// <summary>
+        /// Creates a PropertyBuffer.
+        /// </summary>
+        /// <param name="bufferFormat">The map of names and types that describes the components of the buffer.</param>
+        /// <since_tizen> 3 </since_tizen>
+        public PropertyBuffer(PropertyMap bufferFormat) : this(NDalicPINVOKE.PropertyBuffer_New(PropertyMap.getCPtr(bufferFormat)), true)
+        {
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+
+        }
+
         internal PropertyBuffer(global::System.IntPtr cPtr, bool cMemoryOwn) : base(NDalicPINVOKE.PropertyBuffer_SWIGUpcast(cPtr), cMemoryOwn)
         {
             swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
+        }
+
+        /// <summary>
+        /// Updates the whole buffer information.<br />
+        /// This function expects a pointer to an array of structures with the same
+        /// format that was given in the construction, and the number of elements to
+        /// be the same as the size of the buffer.<br />
+        /// </summary>
+        /// <param name="data">A pointer to the data that will be copied to the buffer.</param>
+        /// <param name="size">Number of elements to expand or contract the buffer.</param>
+        /// <since_tizen> 3 </since_tizen>
+        public void SetData(System.IntPtr data, uint size)
+        {
+            NDalicPINVOKE.PropertyBuffer_SetData(swigCPtr, data, size);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        /// <summary>
+        /// Gets the number of elements in the buffer.
+        /// </summary>
+        /// <returns>Number of elements to expand or contract the buffer.</returns>
+        /// <since_tizen> 3 </since_tizen>
+        public uint GetSize()
+        {
+            uint ret = NDalicPINVOKE.PropertyBuffer_GetSize(swigCPtr);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
         }
 
         internal static global::System.Runtime.InteropServices.HandleRef getCPtr(PropertyBuffer obj)
@@ -70,43 +108,6 @@ namespace Tizen.NUI
             }
 
             base.Dispose(type);
-        }
-
-        /// <summary>
-        /// Creates a PropertyBuffer.
-        /// </summary>
-        /// <param name="bufferFormat">The map of names and types that describes the components of the buffer.</param>
-        /// <since_tizen> 3 </since_tizen>
-        public PropertyBuffer(PropertyMap bufferFormat) : this(NDalicPINVOKE.PropertyBuffer_New(PropertyMap.getCPtr(bufferFormat)), true)
-        {
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-
-        }
-        /// <summary>
-        /// Updates the whole buffer information.<br />
-        /// This function expects a pointer to an array of structures with the same
-        /// format that was given in the construction, and the number of elements to
-        /// be the same as the size of the buffer.<br />
-        /// </summary>
-        /// <param name="data">A pointer to the data that will be copied to the buffer.</param>
-        /// <param name="size">Number of elements to expand or contract the buffer.</param>
-        /// <since_tizen> 3 </since_tizen>
-        public void SetData(System.IntPtr data, uint size)
-        {
-            NDalicPINVOKE.PropertyBuffer_SetData(swigCPtr, data, size);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-        }
-
-        /// <summary>
-        /// Gets the number of elements in the buffer.
-        /// </summary>
-        /// <returns>Number of elements to expand or contract the buffer.</returns>
-        /// <since_tizen> 3 </since_tizen>
-        public uint GetSize()
-        {
-            uint ret = NDalicPINVOKE.PropertyBuffer_GetSize(swigCPtr);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
         }
 
     }

@@ -158,13 +158,7 @@ namespace Tizen.NUI.BaseComponents
             {
                 NUILog.Error("State get error!");
             }
-            switch (temp)
-            {
-                case 0: return States.Normal;
-                case 1: return States.Focused;
-                case 2: return States.Disabled;
-                default: return States.Normal;
-            }
+            return (States)temp;
         });
         /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
@@ -225,6 +219,8 @@ namespace Tizen.NUI.BaseComponents
         //         Tizen.NUI.Object.SetProperty(view.swigCPtr, View.Property.TOOLTIP, new Tizen.NUI.PropertyValue((string)newValue));
         //     }
         // });
+        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty FlexProperty = BindableProperty.Create("Flex", typeof(float), typeof(View), default(float), propertyChanged: (bindable, oldValue, newValue) =>
         {
             var view = (View)bindable;
