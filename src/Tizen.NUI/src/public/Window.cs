@@ -34,7 +34,6 @@ namespace Tizen.NUI
         private readonly global::System.Runtime.InteropServices.HandleRef rootLayoutCPtr;
         private Layer _rootLayer;
         private string _windowTitle;
-        private readonly LayoutItem rootLayoutItem;
 
         private List<Layer> _childLayers = new List<Layer>();
         internal List<Layer> LayersChildren
@@ -50,23 +49,16 @@ namespace Tizen.NUI
             swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
             if (NDalicPINVOKE.Stage_IsInstalled())
             {
-                global::System.IntPtr rootLayoutIntPtr;
                 stageCPtr = new global::System.Runtime.InteropServices.HandleRef(this, NDalicPINVOKE.Stage_GetCurrent());
                 // Create a root layout (AbsoluteLayout) that is invisible to the user but enables layouts added to the Window
                 // Enables layouts added to the Window to have a parent layout.  As parent layout is needed to store measure spec properties.
                 // Currently without these measure specs the new layout added will always be the size of the window.
-                rootLayoutIntPtr = NDalicManualPINVOKE.Window_NewRootLayout();
+                global::System.IntPtr rootLayoutIntPtr = NDalicManualPINVOKE.Window_NewRootLayout();
                 // Store HandleRef used by Add()
                 rootLayoutCPtr = new global::System.Runtime.InteropServices.HandleRef(this, rootLayoutIntPtr);
                 Layer rootLayer = GetRootLayer();
                 // Add the root layout created above to the root layer.
                 NDalicPINVOKE.Actor_Add(  Layer.getCPtr(rootLayer), rootLayoutCPtr );
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-
-                global::System.IntPtr rootControlLayoutIntPtr = Tizen.NUI.NDalicManualPINVOKE.GetLayout__SWIG_1(rootLayoutCPtr);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-
-                rootLayoutItem = new LayoutItem(rootControlLayoutIntPtr, true);
             }
         }
 
@@ -1474,11 +1466,6 @@ namespace Tizen.NUI
             NDalicManualPINVOKE.SetSize(swigCPtr, Uint16Pair.getCPtr(val));
 
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-
-            if(rootLayoutItem != null)
-            {
-                rootLayoutItem.RequestLayout();
-            }
         }
 
         internal Size2D GetWindowSize()
@@ -1496,11 +1483,6 @@ namespace Tizen.NUI
             NDalicManualPINVOKE.SetPosition(swigCPtr, Uint16Pair.getCPtr(val));
 
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-
-            if(rootLayoutItem != null)
-            {
-                rootLayoutItem.RequestLayout();
-            }
         }
 
         internal Position2D GetPosition()
@@ -1510,17 +1492,6 @@ namespace Tizen.NUI
 
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
-        }
-
-        internal void SetPositionSize(Rectangle positionSize)
-        {
-            NDalicPINVOKE.Window_SetPositionSize(swigCPtr, Rectangle.getCPtr(positionSize));
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-
-            if(rootLayoutItem != null)
-            {
-                rootLayoutItem.RequestLayout();
-            }
         }
 
         /// <summary>
@@ -1641,7 +1612,7 @@ namespace Tizen.NUI
         private WindowFocusChangedEventCallbackType _windowFocusChangedEventCallback2;
         [UnmanagedFunctionPointer(CallingConvention.StdCall)]
         private delegate void WindowFocusChangedEventCallbackType2(bool focusGained);
-        private event EventHandler<WindowFocusChangedEventArgs> _windowFocusChangedEventHandler2;
+        private event EventHandler<FocusChangedEventArgs> _windowFocusChangedEventHandler2;
 
         /// <summary>
         /// Please do not use! this will be deprecated. Please use 'FocusChanged' event instead.
@@ -1654,7 +1625,7 @@ namespace Tizen.NUI
             "Window.Instance.FocusChanged = OnFocusChanged; " +
             "private void OnFocusChanged(object source, Window.FocusChangedEventArgs args) {...}")]
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public event EventHandler<WindowFocusChangedEventArgs> WindowFocusChanged
+        public event EventHandler<FocusChangedEventArgs> WindowFocusChanged
         {
             add
             {
@@ -1679,7 +1650,7 @@ namespace Tizen.NUI
 
         private void OnWindowFocusedChanged2(bool focusGained)
         {
-            WindowFocusChangedEventArgs e = new WindowFocusChangedEventArgs();
+            FocusChangedEventArgs e = new FocusChangedEventArgs();
 
             e.FocusGained = focusGained;
 
@@ -1718,26 +1689,6 @@ namespace Tizen.NUI
             set
             {
                 SetPosition(value);
-            }
-        }
-
-        /// <summary>
-        /// Sets position and size of the window. This API guarantees that
-        /// both moving and resizing of window will appear on the screen at once.
-        /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public Rectangle WindowPositionSize
-        {
-            get
-            {
-                Position2D position = GetPosition();
-                Size2D size = GetSize();
-                Rectangle ret = new Rectangle(position.X, position.Y, size.Width, size.Height);
-                return ret;
-            }
-            set
-            {
-                SetPositionSize(value);
             }
         }
 
@@ -1809,64 +1760,6 @@ namespace Tizen.NUI
             {
                 return true;
             }
-        }
-
-        /// <summary>
-        /// Disconnect all native signals
-        /// </summary>
-        /// <since_tizen> 5 </since_tizen>
-        internal void DisconnectNativeSignals() 
-        {
-            if( _windowFocusChangedEventCallback != null )
-            {
-                WindowFocusChangedSignal().Disconnect(_windowFocusChangedEventCallback);
-            }
-
-            if( _rootLayerTouchDataCallback != null )
-            {
-                TouchDataSignal().Disconnect(_rootLayerTouchDataCallback);
-            }
-
-            if( _wheelEventCallback != null )
-            {
-                StageWheelEventSignal().Disconnect(_wheelEventCallback);
-            }
-
-            if( _stageKeyCallbackDelegate != null )
-            {
-                KeyEventSignal().Disconnect(_stageKeyCallbackDelegate);
-            }
-
-            if( _stageEventProcessingFinishedEventCallbackDelegate != null )
-            {
-                EventProcessingFinishedSignal().Disconnect(_stageEventProcessingFinishedEventCallbackDelegate);
-            }
-
-            if( _stageContextLostEventCallbackDelegate != null )
-            {
-                ContextLostSignal().Disconnect(_stageContextLostEventCallbackDelegate);
-            }
-
-            if( _stageContextRegainedEventCallbackDelegate != null )
-            {
-                ContextRegainedSignal().Disconnect(_stageContextRegainedEventCallbackDelegate);
-            }
-
-            if( _stageSceneCreatedEventCallbackDelegate != null )
-            {
-                SceneCreatedSignal().Disconnect(_stageSceneCreatedEventCallbackDelegate);
-            }
-
-            if( _windowResizedEventCallback != null )
-            {
-                ResizedSignal().Disconnect(_windowResizedEventCallback);
-            }
-
-            if( _windowFocusChangedEventCallback2 != null )
-            {
-                WindowFocusChangedSignal().Disconnect(_windowFocusChangedEventCallback2);
-            }
-
         }
 
     }

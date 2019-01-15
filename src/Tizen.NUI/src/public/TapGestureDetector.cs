@@ -206,7 +206,7 @@ namespace Tizen.NUI
         /// <summary>
         /// Creates an initialized TapGestureDetector with the specified parameters.
         /// </summary>
-        /// <param name="tapsRequired">The minimum & maximum number of taps required</param>
+        /// <param name="tapsRequired">The minimum and maximum number of taps required</param>
         /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public TapGestureDetector(uint tapsRequired) : this(NDalicPINVOKE.TapGestureDetector_New__SWIG_1(tapsRequired), true)

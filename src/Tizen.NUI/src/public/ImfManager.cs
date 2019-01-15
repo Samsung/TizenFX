@@ -541,12 +541,14 @@ namespace Tizen.NUI
         /// </summary>
         /// <since_tizen> 4 </since_tizen>
         /// Please do not use! This will be deprecated, instead please USE Tizen.NUI.ImfManager.Instance.DestroyContext()!
+         #pragma warning disable 0465
         [Obsolete("Please do not use! This will be deprecated! Please use ImfManager.Instance.DestroyContext() instead!")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void Finalize()
         {
             DestroyContext();
         }
+        #pragma warning restore 0465
 
         /// <summary>
         /// Retrieves a handle to the instance of the ImfManager.
@@ -566,7 +568,7 @@ namespace Tizen.NUI
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
 
         }
-  
+
         internal ImfManager(ImfManager imfManager) : this(NDalicManualPINVOKE.new_InputMethodContext__SWIG_1(ImfManager.getCPtr(imfManager)), true) {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }

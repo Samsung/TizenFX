@@ -172,32 +172,8 @@ namespace Tizen.NUI.BaseComponents
         public static readonly BindableProperty HorizontalAlignmentProperty = BindableProperty.Create("HorizontalAlignment", typeof(HorizontalAlignment), typeof(TextField), HorizontalAlignment.Begin, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var textField = (TextField)bindable;
-            string valueToString = "";
             if (newValue != null)
             {
-                switch ((HorizontalAlignment)newValue)
-                {
-                    case HorizontalAlignment.Begin:
-                    {
-                        valueToString = "BEGIN";
-                        break;
-                    }
-                    case HorizontalAlignment.Center:
-                    {
-                        valueToString = "CENTER";
-                        break;
-                    }
-                    case HorizontalAlignment.End:
-                    {
-                        valueToString = "END";
-                        break;
-                    }
-                    default:
-                    {
-                        valueToString = "BEGIN";
-                        break;
-                    }
-                }
                 Tizen.NUI.Object.SetProperty(textField.swigCPtr, TextField.Property.HORIZONTAL_ALIGNMENT, new Tizen.NUI.PropertyValue((int)newValue));
             }
         },
@@ -223,16 +199,8 @@ namespace Tizen.NUI.BaseComponents
         public static readonly BindableProperty VerticalAlignmentProperty = BindableProperty.Create("VerticalAlignment", typeof(VerticalAlignment), typeof(TextField), VerticalAlignment.Bottom, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var textField = (TextField)bindable;
-            string valueToString = "";
             if (newValue != null)
             {
-                switch ((VerticalAlignment)newValue)
-                {
-                    case VerticalAlignment.Top: { valueToString = "TOP"; break; }
-                    case VerticalAlignment.Center: { valueToString = "CENTER"; break; }
-                    case VerticalAlignment.Bottom: { valueToString = "BOTTOM"; break; }
-                    default:  { valueToString = "BOTTOM"; break; }
-                }
                 Tizen.NUI.Object.SetProperty(textField.swigCPtr, TextField.Property.VERTICAL_ALIGNMENT, new Tizen.NUI.PropertyValue((int)newValue));
             }
         },
@@ -1289,6 +1257,7 @@ namespace Tizen.NUI.BaseComponents
         /// Get the InputMethodContext instance.
         /// </summary>
         /// <returns>The InputMethodContext instance.</returns>
+        /// <since_tizen> 5 </since_tizen>
         public InputMethodContext GetInputMethodContext()
         {
             if (inputMethodCotext == null)

@@ -128,6 +128,35 @@ namespace Tizen.NUI
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
+        /// <summary>
+        /// Determines whether the specified object is equal to the current object.
+        /// </summary>
+        /// <param name="obj">The object to compare with the current object.</param>
+        /// <returns>true if the specified object is equal to the current object; otherwise, false.</returns>
+        public override bool Equals(object obj)
+        {
+            MeasuredSize measuredSize = obj as MeasuredSize;
+            bool equal = false;
+            if ( measuredSize != null )
+            {
+              if ( Size == measuredSize.Size && State == measuredSize.State)
+              {
+                  equal = true;
+              }
+            }
+            return equal;
+        }
+
+        /// <summary>
+        /// Gets the the hash code of this MeasuredSize.
+        /// </summary>
+        /// <returns>The Hash Code.</returns>
+        /// <since_tizen> 5 </since_tizen>
+        public override int GetHashCode()
+        {
+            return State.GetHashCode();
+        }
+
         private bool EqualTo(MeasuredSize value)
         {
             bool ret = LayoutPINVOKE.MeasuredSize_EqualTo(swigCPtr, MeasuredSize.getCPtr(value));
@@ -140,16 +169,6 @@ namespace Tizen.NUI
             bool ret = LayoutPINVOKE.MeasuredSize_NotEqualTo(swigCPtr, MeasuredSize.getCPtr(value));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
-        }
-
-        public static bool operator ==(MeasuredSize r1, MeasuredSize r2)
-        {
-            return r1.EqualTo(r2);
-        }
-
-        public static bool operator !=(MeasuredSize r1, MeasuredSize r2)
-        {
-            return r1.NotEqualTo(r2);
         }
 
         public MeasuredSize.StateType State

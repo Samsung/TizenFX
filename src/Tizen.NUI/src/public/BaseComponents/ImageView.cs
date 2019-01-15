@@ -31,7 +31,7 @@ namespace Tizen.NUI.BaseComponents
     {
         /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty ResourceUrlProperty = BindableProperty.Create(nameof(ImageView.ResourceUrl), typeof(string), typeof(ImageView), string.Empty, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty ResourceUrlProperty = BindableProperty.Create("ResourceUrl", typeof(string), typeof(ImageView), string.Empty, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var imageView = (ImageView)bindable;
             if (newValue != null)
@@ -49,7 +49,7 @@ namespace Tizen.NUI.BaseComponents
         defaultValueCreator:(bindable) =>
         {
             var imageView = (ImageView)bindable;
-                Tizen.NUI.Object.GetProperty(imageView.swigCPtr, ImageView.Property.IMAGE).Get(out imageView._url);
+            Tizen.NUI.Object.GetProperty(imageView.swigCPtr, ImageView.Property.IMAGE).Get(out imageView._url);
             return imageView._url;
         });
         /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
@@ -478,8 +478,6 @@ namespace Tizen.NUI.BaseComponents
 
         /// <summary>
         /// ImageView ResourceUrl, type string.
-        /// This is one of mandatory property. Even if not set or null set, it sets empty string ("") internally.
-        /// When it is set as null, it gives empty string ("") to be read.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public string ResourceUrl
@@ -490,8 +488,7 @@ namespace Tizen.NUI.BaseComponents
             }
             set
             {
-                _url = (value == null? "" : value);
-                SetValue(ResourceUrlProperty, _url);
+                SetValue(ResourceUrlProperty, value);
                 NotifyPropertyChanged();
             }
         }

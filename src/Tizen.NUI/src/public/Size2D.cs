@@ -329,6 +329,16 @@ namespace Tizen.NUI
         }
 
         /// <summary>
+        /// Gets the the hash code of this Size2D.
+        /// </summary>
+        /// <returns>The Hash Code.</returns>
+        /// <since_tizen> 5 </since_tizen>
+        public override int GetHashCode()
+        {
+            return Width.GetHashCode();
+        }
+
+        /// <summary>
         /// Checks equality.<br />
         /// Utilizes appropriate machine epsilon values.<br />
         /// </summary>

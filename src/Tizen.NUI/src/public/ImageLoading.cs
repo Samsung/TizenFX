@@ -299,5 +299,31 @@ namespace Tizen.NUI
             return ret;
         }
 
+        /// <summary>
+        /// Set the maximum texture size. Then size can be kwown by GL_MAX_TEXTURE_SIZE.
+        /// </summary>
+        /// <param name="size">The maximum texture size to set.</param>
+        /// <since_tizen> 5 </since_tizen>
+        /// This will be released at Tizen.NET API Level 5. Therefore, currently this would be used as an in-house API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static void SetMaxTextureSize(uint size)
+        {
+            NDalicPINVOKE.SetMaxTextureSize(size);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        /// <summary>
+        /// Get the maximum texture size.
+        /// </summary>
+        /// <returns>The maximum texture size.</returns>
+        /// <since_tizen> 5 </since_tizen>
+        /// This will be released at Tizen.NET API Level 5. Therefore, currently this would be used as an in-house API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static uint GetMaxTextureSize()
+        {
+            uint ret = NDalicPINVOKE.GetMaxTextureSize();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
     }
 }

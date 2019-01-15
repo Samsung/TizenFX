@@ -293,7 +293,6 @@ namespace Tizen.NUI
                     return ret;
                 }
             }
-
         }
 
         /// <summary>
@@ -524,18 +523,6 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Destroys the context of the IMF.<br/>
-        /// </summary>
-        /// <since_tizen> 5 </since_tizen>
-        /// Please do not use! This will be deprecated, instead please USE Tizen.NUI.InputMethodContext.Instance.DestroyContext()!
-        [Obsolete("Please do not use! This will be deprecated! Please use InputMethodContext.Instance.DestroyContext() instead!")]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public void Finalize()
-        {
-            DestroyContext();
-        }
-
-        /// <summary>
         /// Constructor.<br/>
         /// </summary>
         /// <since_tizen> 5 </since_tizen>
@@ -543,7 +530,7 @@ namespace Tizen.NUI
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
 
         }
-  
+
         internal InputMethodContext(InputMethodContext inputMethodContext) : this(NDalicManualPINVOKE.new_InputMethodContext__SWIG_1(InputMethodContext.getCPtr(inputMethodContext)), true) {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
