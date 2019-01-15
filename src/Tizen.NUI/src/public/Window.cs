@@ -1498,11 +1498,8 @@ namespace Tizen.NUI
         private void OnStageKey(IntPtr data)
         {
             KeyEventArgs e = new KeyEventArgs();
+			e.Key = Tizen.NUI.Key.GetKeyFromPtr(data);
 
-            if (data != null)
-            {
-                e.Key = Tizen.NUI.Key.GetKeyFromPtr(data);
-            }
 
             if (_stageKeyHandler != null)
             {
