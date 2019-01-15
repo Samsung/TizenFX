@@ -127,22 +127,17 @@ namespace Tizen.NUI
         /// <param name="windowPosition"></param>
         /// <param name="styleSheet"></param>
         /// InhouseAPI, this could be opend in NextTizen
+        [Obsolete("Please do not use! This will be deprecated!")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public NUIApplication(Graphics.BackendType backend, WindowMode windowMode = WindowMode.Opaque, Size2D windowSize = null, Position2D windowPosition = null, string styleSheet = "") : base(new NUICoreBackend(styleSheet, windowMode))
         {
             //windowMode and styleSheet will be added later. currenlty it's not working as expected.
             Graphics.Backend = backend;
+            Tizen.Log.Error("NUI", "Plaese DO NOT set graphical backend type with this constructor! This will give no effect!");
+
             if (windowSize != null) { _windowSize2D = windowSize; }
             if (windowPosition != null) { _windowPosition2D = windowPosition; }
             Registry.Instance.SavedApplicationThread = Thread.CurrentThread;
-
-            //Workaround for Vulkan. should be removed.
-            if (Graphics.Backend == Graphics.BackendType.Vulkan)
-            {
-                Tizen.Log.Error("NUI", "[NOT ERROR] NUIApplication Constructor! Vulkan backend!");
-                Tizen.NUI.Version.PrintDaliNativeVersion();
-                NDalicPINVOKE.SetAgainExceptionHelperAndStringHelper();
-            }
         }
 
         /// <summary>
@@ -362,30 +357,18 @@ namespace Tizen.NUI
     /// <summary>
     /// Graphics BackendType
     /// </summary>
-    /// InhouseAPI, this could be opened in NextTizen
+    [Obsolete("Please do not use! This will be deprecated!")]
     [EditorBrowsable(EditorBrowsableState.Never)]
     public class Graphics
     {
-        /// <summary>
-        /// Active backend
-        /// </summary>
+        public enum BackendType
+        {
+            Gles,
+            Vulkan
+        }
         public static BackendType Backend = BackendType.Gles;
         internal const string GlesCSharpBinder = "libdali-csharp-binder.so";
         internal const string VulkanCSharpBinder = "libdali-csharp-binder-vk.so";
-
-        /// <summary>
-        /// Enumeration for Rendering backend
-        /// </summary>
-        public enum BackendType
-        {
-            /// <summary>
-            /// GLES
-            /// </summary>
-            Gles,
-            /// <summary>
-            /// Vulkan
-            /// </summary>
-            Vulkan
-        }
     }
+
 }
