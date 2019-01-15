@@ -501,7 +501,7 @@ namespace Tizen.NUI.BaseComponents
             var textLabel = (TextLabel)bindable;
             bool temp = false;
             Tizen.NUI.Object.GetProperty(textLabel.swigCPtr, TextLabel.Property.MATCH_SYSTEM_LANGUAGE_DIRECTION).Get(out temp);
-            return (bool)temp;
+            return temp;
         });
 
         private global::System.Runtime.InteropServices.HandleRef swigCPtr;
