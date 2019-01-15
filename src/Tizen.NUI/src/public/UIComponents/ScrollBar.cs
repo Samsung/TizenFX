@@ -313,14 +313,13 @@ namespace Tizen.NUI.UIComponents
         private PanFinishedEventCallbackDelegate _scrollBarPanFinishedEventCallbackDelegate;
 
         [UnmanagedFunctionPointer(CallingConvention.StdCall)]
-        private delegate void ScrollPositionIntervalReachedEventCallbackDelegate(float position);
+        private delegate void ScrollPositionIntervalReachedEventCallbackDelegate();
         private EventHandler<ScrollIntervalEventArgs> _scrollBarScrollPositionIntervalReachedEventHandler;
         private ScrollPositionIntervalReachedEventCallbackDelegate _scrollBarScrollPositionIntervalReachedEventCallbackDelegate;
 
         /// <summary>
         /// The event emitted when panning is finished on the scroll indicator.
         /// </summary>
-        /// <remarks>Event only emitted when the source of the scroll position properties are set.</remarks>
         /// <since_tizen> 3 </since_tizen>
         public event EventHandler<PanFinishedEventArgs> PanFinished
         {
@@ -357,9 +356,8 @@ namespace Tizen.NUI.UIComponents
 
 
         /// <summary>
-        /// This is the event emitted when the current scroll position of the scrollable content goes above or below the values specified by ScrollPositionIntervals property.
+        /// This is the event emitted when the current scroll position of the scrollable content.
         /// </summary>
-        /// <remarks>Event only emitted when the source of the scroll position properties are set.</remarks>
         /// <since_tizen> 3 </since_tizen>
         public event EventHandler<ScrollIntervalEventArgs> ScrollInterval
         {
@@ -383,10 +381,9 @@ namespace Tizen.NUI.UIComponents
         }
 
         // Callback for ScrollBar ScrollPositionIntervalReachedSignal
-        private void OnScrollBarScrollPositionIntervalReached(float position)
+        private void OnScrollBarScrollPositionIntervalReached()
         {
             ScrollIntervalEventArgs e = new ScrollIntervalEventArgs();
-            e.CurrentScrollPosition = position;
 
             if (_scrollBarScrollPositionIntervalReachedEventHandler != null)
             {
@@ -433,18 +430,7 @@ namespace Tizen.NUI.UIComponents
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
-        /// <summary>
-        /// Sets the source of the scroll position properties.
-        /// </summary>
-        /// <param name="handle">The handle of the object owing the scroll properties.</param>
-        /// <param name="propertyScrollPosition">The index of the scroll position property(The scroll position, type float).</param>
-        /// <param name="propertyMinScrollPosition">The index of the minimum scroll position property(The minimum scroll position, type float).</param>
-        /// <param name="propertyMaxScrollPosition">The index of the maximum scroll position property(The maximum scroll position, type float).</param>
-        /// <param name="propertyScrollContentSize">The index of the scroll content size property(The size of the scrollable content in actor coordinates, type float).</param>
-        /// <remarks>The handle to the object owing the scroll properties has been initialised and the property index must be valid.</remarks>
-        /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public void SetScrollPropertySource(Animatable handle, int propertyScrollPosition, int propertyMinScrollPosition, int propertyMaxScrollPosition, int propertyScrollContentSize)
+        internal void SetScrollPropertySource(Animatable handle, int propertyScrollPosition, int propertyMinScrollPosition, int propertyMaxScrollPosition, int propertyScrollContentSize)
         {
             NDalicPINVOKE.ScrollBar_SetScrollPropertySource(swigCPtr, Animatable.getCPtr(handle), propertyScrollPosition, propertyMinScrollPosition, propertyMaxScrollPosition, propertyScrollContentSize);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();

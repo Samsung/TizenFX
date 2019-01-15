@@ -84,37 +84,36 @@ namespace Tizen.NUI
         /// <param name="heightMeasureSpec">vertical space requirements as imposed by the parent.</param>
         protected override void OnMeasure(LayoutMeasureSpec widthMeasureSpec, LayoutMeasureSpec heightMeasureSpec)
         {
-            Log.Info("NUI", "OnMeasure\n");
-            LayoutLength childWidth = new LayoutLength(0);
-            LayoutLength childHeight = new LayoutLength(0);
+            LayoutLength childWidth  = new LayoutLength( 0 );
+            LayoutLength childHeight =  new LayoutLength( 0 );
 
             LayoutLength measuredWidth = childWidth;
             LayoutLength measuredHeight = childHeight;
 
-            for (uint i = 0; i < ChildCount; ++i)
+            for( uint i = 0; i < ChildCount; ++i )
             {
-                var childLayout = GetChildAt(i);
+                var childLayout = GetChildAt( i );
 
-                if (childLayout)
+                if( childLayout )
                 {
-                    MeasureChild(childLayout, widthMeasureSpec, heightMeasureSpec);
+                    MeasureChild( childLayout, widthMeasureSpec, heightMeasureSpec );
                     childWidth = childLayout.MeasuredWidth;
                     childHeight = childLayout.MeasuredHeight;
                     // Layout takes size of largest width and height dimension of children
-                    measuredWidth.Value = System.Math.Max(measuredWidth.Value, childWidth.Value);
-                    measuredHeight.Value = System.Math.Max(measuredHeight.Value, childHeight.Value);
+                    measuredWidth.Value = System.Math.Max( measuredWidth.Value, childWidth.Value );
+                    measuredHeight.Value = System.Math.Max( measuredHeight.Value, childHeight.Value );
                 }
             }
 
-            if (0 == ChildCount)
+            if( 0 == ChildCount )
             {
                 // Must be a leaf as has no children
-                measuredWidth = GetDefaultSize(SuggestedMinimumWidth, widthMeasureSpec);
-                measuredHeight = GetDefaultSize(SuggestedMinimumHeight, heightMeasureSpec);
+                measuredWidth = GetDefaultSize( SuggestedMinimumWidth, widthMeasureSpec );
+                measuredHeight = GetDefaultSize( SuggestedMinimumHeight, heightMeasureSpec );
             }
 
-            SetMeasuredDimensions(new MeasuredSize(measuredWidth),
-                                    new MeasuredSize(measuredHeight));
+            SetMeasuredDimensions( new MeasuredSize( measuredWidth ),
+                                    new MeasuredSize( measuredHeight ) );
         }
 
         /// <summary>
@@ -126,35 +125,9 @@ namespace Tizen.NUI
         /// <param name="top"> Top position, relative to parent.</param>
         /// <param name="right">Right position, relative to parent.</param>
         /// <param name="bottom">Bottom position, relative to parent.</param>
-        protected override void OnLayout(bool changed, LayoutLength left, LayoutLength top, LayoutLength right, LayoutLength bottom)
+        protected virtual void OnLayout(bool changed, LayoutLength left, LayoutLength top, LayoutLength right, LayoutLength bottom)
         {
-            Log.Info("NUI", "OnLayout\n");
 
-            for (uint i = 0; i < ChildCount; ++i)
-            {
-                var childLayout = GetChildAt(i);
-                if (childLayout)
-                {
-                    View childOwner = childLayout.GetOwner();
-
-                    // Use position if explicitly set to child otherwise will be top left.
-                    var childLeft = new LayoutLength(childOwner.Position2D.X);
-                    var childTop = new LayoutLength(childOwner.Position2D.Y);
-
-                    View owner = GetOwner();
-
-                    if (owner)
-                    {
-                        // Margin and Padding only supported when child anchor point is TOP_LEFT.
-                        if (owner.PivotPoint == PivotPoint.TopLeft || (owner.PositionUsesPivotPoint == false))
-                        {
-                            childLeft = childLeft + owner.Padding.Start + childOwner.Margin.Start;
-                            childTop = childTop + owner.Padding.Top + childOwner.Margin.Top;
-                        }
-                    }
-                    childLayout.Layout(childLeft, childTop, childLeft + childLayout.MeasuredWidth, childTop + childLayout.MeasuredHeight);
-                }
-            }
         }
 
         /// <summary>

@@ -74,7 +74,7 @@ namespace Tizen.NUI
                 // If adding a View then set layout required flag
                 if( child.GetType() == typeof(View) )
                 {
-                    Log.Info("NUI", "Add child[" + child.Name + "] LayoutingRequired set as pure view\n");
+                    Log.Info("NUI", "Add child LayoutingRequired for:" + child.Name + "\n");
                     child.LayoutingRequired = true;
                 }
 

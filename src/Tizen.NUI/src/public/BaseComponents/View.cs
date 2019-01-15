@@ -27,13 +27,6 @@ namespace Tizen.NUI.BaseComponents
     /// <since_tizen> 3 </since_tizen>
     public class View : Container, IResourcesProvider
     {
-        /// <summary>
-        // Flag to allow Layouting to be disabled for Views.
-        // Once a View has a Layout set then any children added to Views from then on will receive
-        // automatic Layouts.
-        /// </summary>
-        private static bool layoutingDisabled = true;
-
         /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public bool IsResourcesCreated
@@ -418,10 +411,10 @@ namespace Tizen.NUI.BaseComponents
         });
         /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty LeftFocusableViewProperty = BindableProperty.Create(nameof(View.LeftFocusableView), typeof(View), typeof(View), default(View), propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty LeftFocusableViewProperty = BindableProperty.Create("LeftFocusableView", typeof(View), typeof(View), default(View), propertyChanged: (bindable, oldValue, newValue) =>
         {
             var view = (View)bindable;
-            if (newValue != null) { view.LeftFocusableViewId = (int)(newValue as View)?.GetId(); }
+            if (newValue != null) { view.LeftFocusableViewId = (int)(newValue as View).GetId(); }
             else { view.LeftFocusableViewId = -1; }
         },
         defaultValueCreator:(bindable) =>
@@ -432,10 +425,10 @@ namespace Tizen.NUI.BaseComponents
         });
         /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty RightFocusableViewProperty = BindableProperty.Create(nameof(View.RightFocusableView), typeof(View), typeof(View), default(View), propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty RightFocusableViewProperty = BindableProperty.Create("RightFocusableView", typeof(View), typeof(View), default(View), propertyChanged: (bindable, oldValue, newValue) =>
         {
             var view = (View)bindable;
-            if (newValue != null) { view.RightFocusableViewId = (int)(newValue as View)?.GetId(); }
+            if (newValue != null) { view.RightFocusableViewId = (int)(newValue as View).GetId(); }
             else { view.RightFocusableViewId = -1; }
         },
         defaultValueCreator:(bindable) =>
@@ -446,10 +439,10 @@ namespace Tizen.NUI.BaseComponents
         });
         /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty UpFocusableViewProperty = BindableProperty.Create(nameof(View.UpFocusableView), typeof(View), typeof(View), default(View), propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty UpFocusableViewProperty = BindableProperty.Create("UpFocusableView", typeof(View), typeof(View), default(View), propertyChanged: (bindable, oldValue, newValue) =>
         {
             var view = (View)bindable;
-            if (newValue != null) { view.UpFocusableViewId = (int)(newValue as View)?.GetId(); }
+            if (newValue != null) { view.UpFocusableViewId = (int)(newValue as View).GetId(); }
             else  { view.UpFocusableViewId = -1; }
         },
         defaultValueCreator:(bindable) =>
@@ -460,10 +453,10 @@ namespace Tizen.NUI.BaseComponents
         });
         /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty DownFocusableViewProperty = BindableProperty.Create(nameof(View.DownFocusableView), typeof(View), typeof(View), default(View), propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty DownFocusableViewProperty = BindableProperty.Create("DownFocusableView", typeof(View), typeof(View), default(View), propertyChanged: (bindable, oldValue, newValue) =>
         {
             var view = (View)bindable;
-            if (newValue != null) { view.DownFocusableViewId = (int)(newValue as View)?.GetId(); }
+            if (newValue != null) { view.DownFocusableViewId = (int)(newValue as View).GetId(); }
             else { view.DownFocusableViewId = -1; }
         },
         defaultValueCreator:(bindable) =>
@@ -1289,13 +1282,13 @@ namespace Tizen.NUI.BaseComponents
         /// <since_tizen> 4 </since_tizen>
         public override void Add(View child)
         {
+            Log.Info("NUI", "Add child:" + child.Name + " to " + Name + "\n");
+
             if (null == child)
             {
                 Tizen.Log.Fatal("NUI", "Child is null");
                 return;
             }
-
-            Log.Info("NUI", "Adding Child:" + child.Name + " to " + Name + "\n");
 
             Container oldParent = child.GetParent();
             if (oldParent != this)
@@ -1306,26 +1299,23 @@ namespace Tizen.NUI.BaseComponents
                 }
                 child.InternalParent = this;
 
-                // Only give children a layout if their parent is an explicit container or a pure View.
-                // Pure View meaning not derived from a View, e.g a Legacy container.
-                // layoutSet flag is true when the View became a layout using the set Layout API opposed to automatically due to it's parent.
-                // First time the set Layout API is used by any View the Window no longer has layoutingDisabled.
-                if ((true == layoutSet || GetType() == typeof(View)) && null == child.Layout && false == layoutingDisabled )
+                // layoutSet flag is true when the View became a layout using the SetLayout API,
+                if (true == layoutSet && null == child.Layout) // Only give children a layout if parent an explicit container
                 {
-                    Log.Info("NUI", "Parent[" + Name + "] Layout set[" + layoutSet.ToString() + "] Pure View[" + (!layoutSet).ToString() + "]\n");
+                    Log.Info("NUI", "Add child Parent[" + Name + "] Layout set\n");
                     // If child is a View or explicitly set to require layouting then set child as a LayoutGroup.
                     // If the child is derived from a View then it may be a legacy or existing container hence will do layouting itself.
                     if( child.GetType() == typeof(View) ||  true == child.LayoutingRequired )
                     {
-                        Log.Info("NUI", "Creating LayoutGroup for " + child.Name + " LayoutingRequired[" + child.LayoutingRequired.ToString() + "]\n");
-                        child.SetLayout( new LayoutGroup() );
+                        Log.Info("NUI", "Add child Creating LayoutGroup\n");
+                        child.Layout = new LayoutGroup();
                     }
                     else
                     {
-                        // Adding child as a leaf, layouting will not propagate past this child.
+                        // Adding child as a leaf, layouting will not propogate past this child.
                         // Legacy containers will be a LayoutItems too and layout their children how they wish.
-                        Log.Info("NUI", "Creating LayoutItem for " + child.Name + "\n");
-                        child.SetLayout( new LayoutItem() );
+                        Log.Info("NUI", "Add child Creating LayoutItem for " + child.Name + "\n");
+                        child.Layout = new LayoutItem();
                     }
                 }
 
@@ -3467,20 +3457,13 @@ namespace Tizen.NUI.BaseComponents
             }
             set
             {
-                Log.Info("NUI", "Set Layout on:" + Name + "\n");
-                layoutingDisabled = false;
+                Tizen.NUI.NDalicManualPINVOKE.SetLayout__SWIG_1(View.getCPtr(this), LayoutItem.getCPtr(value));
+                value.LayoutChildren.Clear();
                 layoutSet = true;
-                SetLayout( value );
-            }
-        }
-
-        internal void SetLayout( LayoutItem layout )
-        {
-            Tizen.NUI.NDalicManualPINVOKE.SetLayout__SWIG_1(View.getCPtr(this), LayoutItem.getCPtr(layout) );
-            layout.LayoutChildren.Clear();
-            foreach (View view in Children)
-            {
-                layout.LayoutChildren.Add(view.Layout);
+                foreach (View view in Children)
+                {
+                    value.LayoutChildren.Add(view.Layout);
+                }
             }
         }
 
@@ -4643,7 +4626,6 @@ namespace Tizen.NUI.BaseComponents
             set
             {
                 SetValue(SizeWidthProperty, value);
-                SetProperty(LayoutItemWrapper.ChildProperty.WIDTH_SPECIFICATION, new Tizen.NUI.PropertyValue(value));
                 NotifyPropertyChanged();
             }
         }
@@ -4661,7 +4643,6 @@ namespace Tizen.NUI.BaseComponents
             set
             {
                 SetValue(SizeHeightProperty, value);
-                SetProperty(LayoutItemWrapper.ChildProperty.HEIGHT_SPECIFICATION, new Tizen.NUI.PropertyValue(value));
                 NotifyPropertyChanged();
             }
         }
@@ -5101,28 +5082,6 @@ namespace Tizen.NUI.BaseComponents
             set
             {
                 SetValue(WidthResizePolicyProperty, value);
-                // Match ResizePolicy to new Layouting.
-                // Parent relative policies can not be mapped at this point as parent size unknown.
-                switch( value )
-                {
-                  case ResizePolicyType.UseNaturalSize :
-                  {
-                    SetProperty(LayoutItemWrapper.ChildProperty.WIDTH_SPECIFICATION, new Tizen.NUI.PropertyValue( (int)ChildLayoutData.WrapContent ) );
-                    break;
-                  }
-                  case ResizePolicyType.FillToParent :
-                  {
-                    SetProperty(LayoutItemWrapper.ChildProperty.WIDTH_SPECIFICATION, new Tizen.NUI.PropertyValue( (int)ChildLayoutData.MatchParent ) );
-                    break;
-                  }
-                  case ResizePolicyType.FitToChildren :
-                  {
-                    SetProperty(LayoutItemWrapper.ChildProperty.WIDTH_SPECIFICATION, new Tizen.NUI.PropertyValue( (int)ChildLayoutData.WrapContent ) );
-                    break;
-                  }
-                  default:
-                  break;
-                }
                 NotifyPropertyChanged();
             }
         }
@@ -5140,28 +5099,6 @@ namespace Tizen.NUI.BaseComponents
             set
             {
                 SetValue(HeightResizePolicyProperty, value);
-                // Match ResizePolicy to new Layouting.
-                // Parent relative policies can not be mapped at this point as parent size unknown.
-                switch( value )
-                {
-                  case ResizePolicyType.UseNaturalSize :
-                  {
-                    SetProperty(LayoutItemWrapper.ChildProperty.HEIGHT_SPECIFICATION, new Tizen.NUI.PropertyValue( (int)ChildLayoutData.WrapContent ) );
-                    break;
-                  }
-                  case ResizePolicyType.FillToParent :
-                  {
-                    SetProperty(LayoutItemWrapper.ChildProperty.HEIGHT_SPECIFICATION, new Tizen.NUI.PropertyValue( (int)ChildLayoutData.MatchParent ) );
-                    break;
-                  }
-                  case ResizePolicyType.FitToChildren :
-                  {
-                    SetProperty(LayoutItemWrapper.ChildProperty.HEIGHT_SPECIFICATION, new Tizen.NUI.PropertyValue( (int)ChildLayoutData.WrapContent ) );
-                    break;
-                  }
-                  default:
-                  break;
-                }
                 NotifyPropertyChanged();
             }
         }
@@ -5376,10 +5313,6 @@ namespace Tizen.NUI.BaseComponents
             set
             {
                 SetValue(SizeProperty, value);
-                // Set Specification so when layouts measure this View it matches the value set here.
-                // All Views are currently Layouts.
-                SetProperty(LayoutItemWrapper.ChildProperty.WIDTH_SPECIFICATION, new Tizen.NUI.PropertyValue(value.Width));
-                SetProperty(LayoutItemWrapper.ChildProperty.HEIGHT_SPECIFICATION, new Tizen.NUI.PropertyValue(value.Height));
                 NotifyPropertyChanged();
             }
         }
@@ -5697,7 +5630,7 @@ namespace Tizen.NUI.BaseComponents
         {
             BackgroundResourceLoadedEventArgs e = new BackgroundResourceLoadedEventArgs();
             e.Status = (ResourceLoadingStatusType)NDalicManualPINVOKE.View_GetVisualResourceStatus(this.swigCPtr, Property.BACKGROUND);
-
+            
             if (_backgroundResourceLoadedEventHandler != null)
             {
                 _backgroundResourceLoadedEventHandler(this, e);

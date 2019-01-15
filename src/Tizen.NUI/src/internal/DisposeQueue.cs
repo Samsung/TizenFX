@@ -58,7 +58,7 @@ namespace Tizen.NUI
             }
         }
 
-        internal void ProcessDisposables()
+        private void ProcessDisposables()
         {
             lock (_listLock)
             {
