@@ -101,17 +101,6 @@ namespace Tizen.Applications
         /// <since_tizen> 3 </since_tizen>
         public override void Run(string[] args)
         {
-            base.Run(args);
-
-            _backend.AddEventHandler(EventType.Created, OnCreate);
-            _backend.AddEventHandler(EventType.Terminated, OnTerminate);
-            _backend.AddEventHandler<AppControlReceivedEventArgs>(EventType.AppControlReceived, OnAppControlReceived);
-            _backend.AddEventHandler<LowMemoryEventArgs>(EventType.LowMemory, OnLowMemory);
-            _backend.AddEventHandler<LowBatteryEventArgs>(EventType.LowBattery, OnLowBattery);
-            _backend.AddEventHandler<LocaleChangedEventArgs>(EventType.LocaleChanged, OnLocaleChanged);
-            _backend.AddEventHandler<RegionFormatChangedEventArgs>(EventType.RegionFormatChanged, OnRegionFormatChanged);
-            _backend.AddEventHandler<DeviceOrientationEventArgs>(EventType.DeviceOrientationChanged, OnDeviceOrientationChanged);
-
             string[] argsClone = null;
 
             if (args == null)
@@ -124,6 +113,18 @@ namespace Tizen.Applications
                 args.CopyTo(argsClone, 1);
             }
             argsClone[0] = string.Empty;
+
+            base.Run(argsClone);
+
+            _backend.AddEventHandler(EventType.Created, OnCreate);
+            _backend.AddEventHandler(EventType.Terminated, OnTerminate);
+            _backend.AddEventHandler<AppControlReceivedEventArgs>(EventType.AppControlReceived, OnAppControlReceived);
+            _backend.AddEventHandler<LowMemoryEventArgs>(EventType.LowMemory, OnLowMemory);
+            _backend.AddEventHandler<LowBatteryEventArgs>(EventType.LowBattery, OnLowBattery);
+            _backend.AddEventHandler<LocaleChangedEventArgs>(EventType.LocaleChanged, OnLocaleChanged);
+            _backend.AddEventHandler<RegionFormatChangedEventArgs>(EventType.RegionFormatChanged, OnRegionFormatChanged);
+            _backend.AddEventHandler<DeviceOrientationEventArgs>(EventType.DeviceOrientationChanged, OnDeviceOrientationChanged);
+
             _backend.Run(argsClone);
         }
 
