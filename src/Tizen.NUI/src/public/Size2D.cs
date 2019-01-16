@@ -288,7 +288,7 @@ namespace Tizen.NUI
         /// <since_tizen> 5 </since_tizen>
         public override int GetHashCode()
         {
-            return Width.GetHashCode();
+            return swigCPtr.GetHashCode();
         }
 
         /// <summary>

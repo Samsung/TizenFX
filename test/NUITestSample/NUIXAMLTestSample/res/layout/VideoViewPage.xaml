@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<ContentPage x:Class="Tizen.NUI.Examples.VideoViewPage"
+  xmlns="http://tizen.org/Tizen.NUI/2018/XAML"
+  xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
+  
+	<VideoView ResourceUrl="/home/owner/apps_rw/org.tizen.example.NUIXAMLTestSample/res/videos/demoVideo.mp4"
+	  x:Name="VideoView" Name="videoview" ParentOrigin="Center" PivotPoint="Center" Position2D="0,0" Size2D="600, 400" PositionUsesPivotPoint="true" Looping="true" Muted="false" />
+	<TableView x:Name="TableView" Rows="1" Columns="3" CellPadding="20,20" CellHorizontalAlignment="Center" CellVerticalAlignment="Center" Name="tableview" ParentOrigin="Center" PivotPoint="Center" Position2D="0,400" Size2D="600, 120" PositionUsesPivotPoint="true">
+		<PushButton BackgroundImage="/home/owner/apps_rw/org.tizen.example.NUIXAMLTestSample/res/images/Backward.png" x:Name="ButtonBackward" Name="buttonbackward" ParentOrigin="Center" PivotPoint="Center" Position2D="0,0" Size2D="100, 80" PositionUsesPivotPoint="true" CellIndex="0,0" Clicked="OnClicked" Focusable="true" FocusGained="OnFocusGained" FocusLost="OnFocusLost"/>
+		<PushButton BackgroundImage="/home/owner/apps_rw/org.tizen.example.NUIXAMLTestSample/res/images/icon-play.png" x:Name="ButtonPlay" Name="buttonplay" ParentOrigin="Center" PivotPoint="Center" Position2D="0,0" Size2D="100, 80" PositionUsesPivotPoint="true" CellIndex="0,1" Clicked="OnClicked" Focusable="true" FocusGained="OnFocusGained" FocusLost="OnFocusLost"/>
+		<PushButton BackgroundImage="/home/owner/apps_rw/org.tizen.example.NUIXAMLTestSample/res/images/Forward.png" x:Name="ButtonForward" Name="buttonforward" ParentOrigin="Center" PivotPoint="Center" Position2D="0,0" Size2D="100, 80" PositionUsesPivotPoint="true" CellIndex="0,2" Clicked="OnClicked" Focusable="true" FocusGained="OnFocusGained" FocusLost="OnFocusLost"/>
+    </TableView>	  
+</ContentPage>
