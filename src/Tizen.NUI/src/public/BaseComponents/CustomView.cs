@@ -35,11 +35,12 @@ namespace Tizen.NUI.BaseComponents
                 customView.SetKeyboardNavigationSupport((bool)newValue);
             }
         },
-        defaultValueCreator:(bindable) =>
+        defaultValueCreator: (bindable) =>
         {
             var customView = (CustomView)bindable;
             return customView.IsKeyboardNavigationSupported();
         });
+
         /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty FocusGroupProperty = BindableProperty.Create("FocusGroup", typeof(bool), typeof(CustomView), false, propertyChanged: (bindable, oldValue, newValue) =>
@@ -50,7 +51,7 @@ namespace Tizen.NUI.BaseComponents
                 customView.SetAsKeyboardFocusGroup((bool)newValue);
             }
         },
-        defaultValueCreator:(bindable) =>
+        defaultValueCreator: (bindable) =>
         {
             var customView = (CustomView)bindable;
             return customView.IsKeyboardFocusGroup();
@@ -114,37 +115,6 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        /// Sets the background with a property map.
-        /// </summary>
-        /// <param name="map">The background property map.</param>
-        /// <since_tizen> 3 </since_tizen>
-        public void SetBackground(Tizen.NUI.PropertyMap map)
-        {
-            viewWrapperImpl.SetBackground(map);
-        }
-
-        /// <summary>
-        /// Allows deriving classes to enable any of the gesture detectors that are available.<br />
-        /// Gesture detection can be enabled one at a time or in a bitwise format.<br />
-        /// </summary>
-        /// <param name="type">The gesture type(s) to enable.</param>
-        /// <since_tizen> 3 </since_tizen>
-        public void EnableGestureDetection(Gesture.GestureType type)
-        {
-            viewWrapperImpl.EnableGestureDetection(type);
-        }
-
-        /// <summary>
-        /// Allows deriving classes to disable any of the gesture detectors.<br />
-        /// Like EnableGestureDetection, this can also be called using bitwise or one at a time.<br />
-        /// </summary>
-        /// <param name="type">The gesture type(s) to disable.</param>
-        internal void DisableGestureDetection(Gesture.GestureType type)
-        {
-            viewWrapperImpl.DisableGestureDetection(type);
-        }
-
-        /// <summary>
         /// Sets whether this control supports two dimensional keyboard navigation
         /// (i.e., whether it knows how to handle the keyboard focus movement between its child views).<br />
         /// The control doesn't support it by default.<br />
@@ -161,21 +131,6 @@ namespace Tizen.NUI.BaseComponents
                 SetValue(FocusNavigationSupportProperty, value);
             }
         }
-
-        internal void SetKeyboardNavigationSupport(bool isSupported)
-        {
-            viewWrapperImpl.SetKeyboardNavigationSupport(isSupported);
-        }
-
-        /// <summary>
-        /// Gets whether this control supports two-dimensional keyboard navigation.
-        /// </summary>
-        /// <returns>True if this control supports two-dimensional keyboard navigation.</returns>
-        internal bool IsKeyboardNavigationSupported()
-        {
-            return viewWrapperImpl.IsKeyboardNavigationSupported();
-        }
-
 
         /// <summary>
         /// Sets or gets whether this control is a focus group for keyboard navigation.
@@ -195,183 +150,24 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        /// Sets whether this control is a focus group for keyboard navigation.
-        /// (i.e., the scope of keyboard focus movement can be limitied to its child views). The control is not a focus group by default.
+        /// Sets the background with a property map.
         /// </summary>
-        /// <param name="isFocusGroup">Whether this control is set as a focus group for keyboard navigation.</param>
-        internal void SetAsKeyboardFocusGroup(bool isFocusGroup)
-        {
-            viewWrapperImpl.SetAsFocusGroup(isFocusGroup);
-        }
-
-        /// <summary>
-        /// Gets whether this control is a focus group for keyboard navigation.
-        /// </summary>
-        internal bool IsKeyboardFocusGroup()
-        {
-            return viewWrapperImpl.IsFocusGroup();
-        }
-
-        /// <summary>
-        /// Requests a relayout, which means performing a size negotiation on this view, its parent, and children (and potentially whole scene).<br />
-        /// This method can also be called from a derived class every time it needs a different size.<br />
-        /// At the end of event processing, the relayout process starts and all controls which requested relayout will have their sizes (re)negotiated.<br />
-        /// It can be called multiple times; the size negotiation is still only performed once, i.e., there is no need to keep track of this in the calling side.<br />
-        /// </summary>
+        /// <param name="map">The background property map.</param>
         /// <since_tizen> 3 </since_tizen>
-        protected void RelayoutRequest()
+        public void SetBackground(Tizen.NUI.PropertyMap map)
         {
-            viewWrapperImpl.RelayoutRequest();
+            viewWrapperImpl.SetBackground(map);
         }
 
         /// <summary>
-        /// Provides the view implementation of GetHeightForWidth.
+        /// Allows deriving classes to enable any of the gesture detectors that are available.<br />
+        /// Gesture detection can be enabled one at a time or in a bitwise format.<br />
         /// </summary>
-        /// <param name="width">The width to use.</param>
-        /// <returns>The height based on the width.</returns>
+        /// <param name="type">The gesture type(s) to enable.</param>
         /// <since_tizen> 3 </since_tizen>
-        protected float GetHeightForWidthBase(float width)
+        public void EnableGestureDetection(Gesture.GestureType type)
         {
-            return viewWrapperImpl.GetHeightForWidthBase(width);
-        }
-
-        /// <summary>
-        /// Provides the view implementation of GetWidthForHeight.
-        /// </summary>
-        /// <param name="height">The height to use.</param>
-        /// <returns>The width based on the height.</returns>
-        /// <since_tizen> 3 </since_tizen>
-        protected float GetWidthForHeightBase(float height)
-        {
-            return viewWrapperImpl.GetWidthForHeightBase(height);
-        }
-
-        /// <summary>
-        /// Calculates the size for a child using the base view object.
-        /// </summary>
-        /// <param name="child">The child view to calculate the size for.</param>
-        /// <param name="dimension">The dimension to calculate the size, for example, the width or the height.</param>
-        /// <returns>Return the calculated size for the given dimension. If more than one dimension is requested, just return the first one found.</returns>
-        /// <since_tizen> 3 </since_tizen>
-        protected float CalculateChildSizeBase(View child, DimensionType dimension)
-        {
-            return viewWrapperImpl.CalculateChildSizeBase(child, dimension);
-        }
-
-        /// <summary>
-        /// Determines if this view is dependent on it's children for relayout from the base class.
-        /// </summary>
-        /// <param name="dimension">The dimension(s) to check for.</param>
-        /// <returns>Return if the view is dependent on it's children.</returns>
-        /// <since_tizen> 3 </since_tizen>
-        protected bool RelayoutDependentOnChildrenBase(DimensionType dimension)
-        {
-            return viewWrapperImpl.RelayoutDependentOnChildrenBase(dimension);
-        }
-
-        /// <summary>
-        /// Determines if this view is dependent on it's children for relayout from the base class.
-        /// </summary>
-        /// <returns>Return if the view is dependent on it's children.</returns>
-        /// <since_tizen> 3 </since_tizen>
-        protected bool RelayoutDependentOnChildrenBase()
-        {
-            return viewWrapperImpl.RelayoutDependentOnChildrenBase();
-        }
-
-        /// <summary>
-        /// Registers a visual by property index, linking a view to visual when required.<br />
-        /// In the case of the visual being a view or control deeming visual not required, then the visual should be an empty handle.<br />
-        /// No parenting is done during registration, this should be done by a derived class.<br />
-        /// </summary>
-        /// <param name="index">The property index of the visual used to reference visual.</param>
-        /// <param name="visual">The visual to register.</param>
-        /// <since_tizen> 3 </since_tizen>
-        protected void RegisterVisual(int index, VisualBase visual)
-        {
-            viewWrapperImpl.RegisterVisual(index, visual);
-        }
-
-        /// <summary>
-        /// Registers a visual by the property index, linking a view to visual when required.<br />
-        /// In the case of the visual being a view or control deeming visual not required, then the visual should be an empty handle.<br />
-        /// If enabled is false, then the visual is not set on the stage until enabled by the derived class.<br />
-        /// </summary>
-        /// <param name="index">The property index of the visual used to reference visual.</param>
-        /// <param name="visual">The visual to register.</param>
-        /// <param name="enabled">False if derived class wants to control when the visual is set on the stage.</param>
-        /// <since_tizen> 3 </since_tizen>
-        protected void RegisterVisual(int index, VisualBase visual, bool enabled)
-        {
-            viewWrapperImpl.RegisterVisual(index, visual, enabled);
-        }
-
-        /// <summary>
-        /// Erases the entry matching the given index from the list of registered visuals.
-        /// </summary>
-        /// <param name="index">The property index of the visual used to reference visual.</param>
-        /// <since_tizen> 3 </since_tizen>
-        protected void UnregisterVisual(int index)
-        {
-            viewWrapperImpl.UnregisterVisual(index);
-        }
-
-        /// <summary>
-        /// Retrieves the visual associated with the given property index.<br />
-        /// For managing the object lifecycle, do not store the returned visual as a member which increments its reference count.<br />
-        /// </summary>
-        /// <param name="index">The property index of the visual used to reference visual.</param>
-        /// <returns>The registered visual if exists, otherwise an empty handle.</returns>
-        /// <since_tizen> 3 </since_tizen>
-        protected VisualBase GetVisual(int index)
-        {
-            return viewWrapperImpl.GetVisual(index);
-        }
-
-        /// <summary>
-        /// Sets the given visual to be displayed or not when parent staged.<br />
-        /// For managing the object lifecycle, do not store the returned visual as a member which increments its reference count.<br />
-        /// </summary>
-        /// <param name="index">The property index of the visual, used to reference visual.</param>
-        /// <param name="enable">Flag set to enabled or disabled.</param>
-        /// <since_tizen> 3 </since_tizen>
-        protected void EnableVisual(int index, bool enable)
-        {
-            viewWrapperImpl.EnableVisual(index, enable);
-        }
-
-        /// <summary>
-        /// Queries if the given visual is to be displayed when parent staged.<br />
-        /// For managing the object lifecycle, do not store the returned visual as a member which increments its reference count.<br />
-        /// </summary>
-        /// <param name="index">The property index of the visual.</param>
-        /// <returns>Whether visual is enabled or not.</returns>
-        /// <since_tizen> 3 </since_tizen>
-        protected bool IsVisualEnabled(int index)
-        {
-            return viewWrapperImpl.IsVisualEnabled(index);
-        }
-
-        /// <summary>
-        /// Creates a transition effect on the control.
-        /// </summary>
-        /// <param name="transitionData">The transition data describing the effect to create.</param>
-        /// <returns>A handle to an animation defined with the given effect, or an empty handle if no properties match.</returns>
-        /// <since_tizen> 3 </since_tizen>
-        protected Animation CreateTransition(TransitionData transitionData)
-        {
-            return viewWrapperImpl.CreateTransition(transitionData);
-        }
-
-        /// <summary>
-        /// Emits the KeyInputFocusGained signal if true, else, emits the KeyInputFocusLost signal.<br />
-        /// Should be called last by the control after it acts on the input focus change.<br />
-        /// </summary>
-        /// <param name="focusGained">True if gained, false if lost.</param>
-        /// <since_tizen> 3 </since_tizen>
-        protected void EmitFocusSignal(bool focusGained)
-        {
-            viewWrapperImpl.EmitFocusSignal(focusGained);
+            viewWrapperImpl.EnableGestureDetection(type);
         }
 
         /// <summary>
@@ -620,55 +416,6 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        /// This method is called when the control accessibility is activated.<br />
-        /// Derived classes should override this to perform custom accessibility activation.<br />
-        /// </summary>
-        /// <returns>True if this control can perform accessibility activation.</returns>
-        internal virtual bool OnAccessibilityActivated()
-        {
-            return false;
-        }
-
-        /// <summary>
-        /// This method should be overridden by deriving classes when they wish to respond the accessibility.
-        /// </summary>
-        /// <param name="gestures">The pan gesture.</param>
-        /// <returns>True if the pan gesture has been consumed by this control.</returns>
-        internal virtual bool OnAccessibilityPan(PanGesture gestures)
-        {
-            return false;
-        }
-
-        /// <summary>
-        /// This method should be overridden by deriving classes when they wish to respond the accessibility.
-        /// </summary>
-        /// <param name="touch">The touch gesture.</param>
-        /// <returns>True if the touch event has been consumed by this control.</returns>
-        internal virtual bool OnAccessibilityTouch(Touch touch)
-        {
-            return false;
-        }
-
-        /// <summary>
-        /// This method should be overridden by deriving classes when they wish to respond the accessibility up and down action (i.e., value change of slider control).
-        /// </summary>
-        /// <param name="isIncrease">Whether the value should be increased or decreased.</param>
-        /// <returns>True if the value changed action has been consumed by this control.</returns>
-        internal virtual bool OnAccessibilityValueChange(bool isIncrease)
-        {
-            return false;
-        }
-
-        /// <summary>
-        /// This method should be overridden by deriving classes when they wish to respond the accessibility zoom action.
-        /// </summary>
-        /// <returns>True if the zoom action has been consumed by this control.</returns>
-        internal virtual bool OnAccessibilityZoom()
-        {
-            return false;
-        }
-
-        /// <summary>
         /// Called when the control gain key input focus. Should be overridden by derived classes if they need to customize what happens when the focus is gained.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
@@ -720,17 +467,6 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        /// Called whenever a pinch gesture is detected on this control.<br />
-        /// This can be overridden by deriving classes when pinch detection is enabled. The default behavior is to scale the control by the pinch scale.<br />
-        /// If overridden, then the default behavior will not occur.<br />
-        /// Pinch detection should be enabled via EnableGestureDetection().<br />
-        /// </summary>
-        /// <param name="pinch">The pinch tap gesture.</param>
-        internal virtual void OnPinch(PinchGesture pinch)
-        {
-        }
-
-        /// <summary>
         /// Called whenever a pan gesture is detected on this control.<br />
         /// This should be overridden by deriving classes when pan detection is enabled.<br />
         /// There is no default behavior with panning.<br />
@@ -755,6 +491,108 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
+        /// This method is called when the control accessibility is activated.<br />
+        /// Derived classes should override this to perform custom accessibility activation.<br />
+        /// </summary>
+        /// <returns>True if this control can perform accessibility activation.</returns>
+        internal virtual bool OnAccessibilityActivated()
+        {
+            return false;
+        }
+
+        /// <summary>
+        /// This method should be overridden by deriving classes when they wish to respond the accessibility.
+        /// </summary>
+        /// <param name="gestures">The pan gesture.</param>
+        /// <returns>True if the pan gesture has been consumed by this control.</returns>
+        internal virtual bool OnAccessibilityPan(PanGesture gestures)
+        {
+            return false;
+        }
+
+        /// <summary>
+        /// This method should be overridden by deriving classes when they wish to respond the accessibility.
+        /// </summary>
+        /// <param name="touch">The touch gesture.</param>
+        /// <returns>True if the touch event has been consumed by this control.</returns>
+        internal virtual bool OnAccessibilityTouch(Touch touch)
+        {
+            return false;
+        }
+
+        /// <summary>
+        /// This method should be overridden by deriving classes when they wish to respond the accessibility up and down action (i.e., value change of slider control).
+        /// </summary>
+        /// <param name="isIncrease">Whether the value should be increased or decreased.</param>
+        /// <returns>True if the value changed action has been consumed by this control.</returns>
+        internal virtual bool OnAccessibilityValueChange(bool isIncrease)
+        {
+            return false;
+        }
+
+        /// <summary>
+        /// This method should be overridden by deriving classes when they wish to respond the accessibility zoom action.
+        /// </summary>
+        /// <returns>True if the zoom action has been consumed by this control.</returns>
+        internal virtual bool OnAccessibilityZoom()
+        {
+            return false;
+        }
+
+        /// <summary>
+        /// Allows deriving classes to disable any of the gesture detectors.<br />
+        /// Like EnableGestureDetection, this can also be called using bitwise or one at a time.<br />
+        /// </summary>
+        /// <param name="type">The gesture type(s) to disable.</param>
+        internal void DisableGestureDetection(Gesture.GestureType type)
+        {
+            viewWrapperImpl.DisableGestureDetection(type);
+        }
+
+        internal void SetKeyboardNavigationSupport(bool isSupported)
+        {
+            viewWrapperImpl.SetKeyboardNavigationSupport(isSupported);
+        }
+
+        /// <summary>
+        /// Gets whether this control supports two-dimensional keyboard navigation.
+        /// </summary>
+        /// <returns>True if this control supports two-dimensional keyboard navigation.</returns>
+        internal bool IsKeyboardNavigationSupported()
+        {
+            return viewWrapperImpl.IsKeyboardNavigationSupported();
+        }
+
+        /// <summary>
+        /// Sets whether this control is a focus group for keyboard navigation.
+        /// (i.e., the scope of keyboard focus movement can be limitied to its child views). The control is not a focus group by default.
+        /// </summary>
+        /// <param name="isFocusGroup">Whether this control is set as a focus group for keyboard navigation.</param>
+        internal void SetAsKeyboardFocusGroup(bool isFocusGroup)
+        {
+            viewWrapperImpl.SetAsFocusGroup(isFocusGroup);
+        }
+
+        /// <summary>
+        /// Gets whether this control is a focus group for keyboard navigation.
+        /// </summary>
+        internal bool IsKeyboardFocusGroup()
+        {
+            return viewWrapperImpl.IsFocusGroup();
+        }
+
+        /// <summary>
+        /// Called whenever a pinch gesture is detected on this control.<br />
+        /// This can be overridden by deriving classes when pinch detection is enabled. The default behavior is to scale the control by the pinch scale.<br />
+        /// If overridden, then the default behavior will not occur.<br />
+        /// Pinch detection should be enabled via EnableGestureDetection().<br />
+        /// </summary>
+        /// <param name="pinch">The pinch tap gesture.</param>
+        internal virtual void OnPinch(PinchGesture pinch)
+        {
+        }
+
+        /// <summary>
         /// Called whenever a long press gesture is detected on this control.<br />
         /// This should be overridden by deriving classes when long press detection is enabled.<br />
         /// There is no default behavior associated with a long press.<br />
@@ -764,6 +602,169 @@ namespace Tizen.NUI.BaseComponents
         internal virtual void OnLongPress(LongPressGesture longPress)
         {
         }
+
+        /// <summary>
+        /// Requests a relayout, which means performing a size negotiation on this view, its parent, and children (and potentially whole scene).<br />
+        /// This method can also be called from a derived class every time it needs a different size.<br />
+        /// At the end of event processing, the relayout process starts and all controls which requested relayout will have their sizes (re)negotiated.<br />
+        /// It can be called multiple times; the size negotiation is still only performed once, i.e., there is no need to keep track of this in the calling side.<br />
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
+        protected void RelayoutRequest()
+        {
+            viewWrapperImpl.RelayoutRequest();
+        }
+
+        /// <summary>
+        /// Provides the view implementation of GetHeightForWidth.
+        /// </summary>
+        /// <param name="width">The width to use.</param>
+        /// <returns>The height based on the width.</returns>
+        /// <since_tizen> 3 </since_tizen>
+        protected float GetHeightForWidthBase(float width)
+        {
+            return viewWrapperImpl.GetHeightForWidthBase(width);
+        }
+
+        /// <summary>
+        /// Provides the view implementation of GetWidthForHeight.
+        /// </summary>
+        /// <param name="height">The height to use.</param>
+        /// <returns>The width based on the height.</returns>
+        /// <since_tizen> 3 </since_tizen>
+        protected float GetWidthForHeightBase(float height)
+        {
+            return viewWrapperImpl.GetWidthForHeightBase(height);
+        }
+
+        /// <summary>
+        /// Calculates the size for a child using the base view object.
+        /// </summary>
+        /// <param name="child">The child view to calculate the size for.</param>
+        /// <param name="dimension">The dimension to calculate the size, for example, the width or the height.</param>
+        /// <returns>Return the calculated size for the given dimension. If more than one dimension is requested, just return the first one found.</returns>
+        /// <since_tizen> 3 </since_tizen>
+        protected float CalculateChildSizeBase(View child, DimensionType dimension)
+        {
+            return viewWrapperImpl.CalculateChildSizeBase(child, dimension);
+        }
+
+        /// <summary>
+        /// Determines if this view is dependent on it's children for relayout from the base class.
+        /// </summary>
+        /// <param name="dimension">The dimension(s) to check for.</param>
+        /// <returns>Return if the view is dependent on it's children.</returns>
+        /// <since_tizen> 3 </since_tizen>
+        protected bool RelayoutDependentOnChildrenBase(DimensionType dimension)
+        {
+            return viewWrapperImpl.RelayoutDependentOnChildrenBase(dimension);
+        }
+
+        /// <summary>
+        /// Determines if this view is dependent on it's children for relayout from the base class.
+        /// </summary>
+        /// <returns>Return if the view is dependent on it's children.</returns>
+        /// <since_tizen> 3 </since_tizen>
+        protected bool RelayoutDependentOnChildrenBase()
+        {
+            return viewWrapperImpl.RelayoutDependentOnChildrenBase();
+        }
+
+        /// <summary>
+        /// Registers a visual by property index, linking a view to visual when required.<br />
+        /// In the case of the visual being a view or control deeming visual not required, then the visual should be an empty handle.<br />
+        /// No parenting is done during registration, this should be done by a derived class.<br />
+        /// </summary>
+        /// <param name="index">The property index of the visual used to reference visual.</param>
+        /// <param name="visual">The visual to register.</param>
+        /// <since_tizen> 3 </since_tizen>
+        protected void RegisterVisual(int index, VisualBase visual)
+        {
+            viewWrapperImpl.RegisterVisual(index, visual);
+        }
+
+        /// <summary>
+        /// Registers a visual by the property index, linking a view to visual when required.<br />
+        /// In the case of the visual being a view or control deeming visual not required, then the visual should be an empty handle.<br />
+        /// If enabled is false, then the visual is not set on the stage until enabled by the derived class.<br />
+        /// </summary>
+        /// <param name="index">The property index of the visual used to reference visual.</param>
+        /// <param name="visual">The visual to register.</param>
+        /// <param name="enabled">False if derived class wants to control when the visual is set on the stage.</param>
+        /// <since_tizen> 3 </since_tizen>
+        protected void RegisterVisual(int index, VisualBase visual, bool enabled)
+        {
+            viewWrapperImpl.RegisterVisual(index, visual, enabled);
+        }
+
+        /// <summary>
+        /// Erases the entry matching the given index from the list of registered visuals.
+        /// </summary>
+        /// <param name="index">The property index of the visual used to reference visual.</param>
+        /// <since_tizen> 3 </since_tizen>
+        protected void UnregisterVisual(int index)
+        {
+            viewWrapperImpl.UnregisterVisual(index);
+        }
+
+        /// <summary>
+        /// Retrieves the visual associated with the given property index.<br />
+        /// For managing the object lifecycle, do not store the returned visual as a member which increments its reference count.<br />
+        /// </summary>
+        /// <param name="index">The property index of the visual used to reference visual.</param>
+        /// <returns>The registered visual if exists, otherwise an empty handle.</returns>
+        /// <since_tizen> 3 </since_tizen>
+        protected VisualBase GetVisual(int index)
+        {
+            return viewWrapperImpl.GetVisual(index);
+        }
+
+        /// <summary>
+        /// Sets the given visual to be displayed or not when parent staged.<br />
+        /// For managing the object lifecycle, do not store the returned visual as a member which increments its reference count.<br />
+        /// </summary>
+        /// <param name="index">The property index of the visual, used to reference visual.</param>
+        /// <param name="enable">Flag set to enabled or disabled.</param>
+        /// <since_tizen> 3 </since_tizen>
+        protected void EnableVisual(int index, bool enable)
+        {
+            viewWrapperImpl.EnableVisual(index, enable);
+        }
+
+        /// <summary>
+        /// Queries if the given visual is to be displayed when parent staged.<br />
+        /// For managing the object lifecycle, do not store the returned visual as a member which increments its reference count.<br />
+        /// </summary>
+        /// <param name="index">The property index of the visual.</param>
+        /// <returns>Whether visual is enabled or not.</returns>
+        /// <since_tizen> 3 </since_tizen>
+        protected bool IsVisualEnabled(int index)
+        {
+            return viewWrapperImpl.IsVisualEnabled(index);
+        }
+
+        /// <summary>
+        /// Creates a transition effect on the control.
+        /// </summary>
+        /// <param name="transitionData">The transition data describing the effect to create.</param>
+        /// <returns>A handle to an animation defined with the given effect, or an empty handle if no properties match.</returns>
+        /// <since_tizen> 3 </since_tizen>
+        protected Animation CreateTransition(TransitionData transitionData)
+        {
+            return viewWrapperImpl.CreateTransition(transitionData);
+        }
+
+        /// <summary>
+        /// Emits the KeyInputFocusGained signal if true, else, emits the KeyInputFocusLost signal.<br />
+        /// Should be called last by the control after it acts on the input focus change.<br />
+        /// </summary>
+        /// <param name="focusGained">True if gained, false if lost.</param>
+        /// <since_tizen> 3 </since_tizen>
+        protected void EmitFocusSignal(bool focusGained)
+        {
+            viewWrapperImpl.EmitFocusSignal(focusGained);
+        }
+
 
         private void OnControlChildAdd(View child)
         {

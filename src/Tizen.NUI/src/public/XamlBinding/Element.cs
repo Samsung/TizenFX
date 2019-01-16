@@ -114,17 +114,17 @@ namespace Tizen.NUI.Binding
         /// <summary>
         /// Gets the element which is the closest ancestor of this element that is a BaseHandle.
         /// </summary>
-        [Obsolete("ParentView is obsolete as of version 2.1.0. Please use Parent instead.")]
         /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public /*VisualElement*/BaseHandle ParentView
+        [Obsolete("ParentView is obsolete as of version 2.1.0. Please use Parent instead.")]
+        public BaseHandle ParentView
         {
             get
             {
                 Element parent = Parent;
                 while (parent != null)
                 {
-                    var parentView = parent as /*VisualElement*/BaseHandle;
+                    var parentView = parent as BaseHandle;
                     if (parentView != null)
                         return parentView;
                     parent = parent.RealParent;
@@ -606,23 +606,13 @@ namespace Tizen.NUI.Binding
 
         internal static void SetFlowDirectionFromParent(Element child)
         {
-            // IFlowDirectionController controller = child as IFlowDirectionController;
-            // if (controller == null)
-            // 	return;
-
-            // if (controller.EffectiveFlowDirection.IsImplicit())
-            // {
-            // 	var parentView = child.Parent as IFlowDirectionController;
-            // 	if (parentView == null)
-            // 		return;
-
-            // 	var flowDirection = parentView.EffectiveFlowDirection.ToFlowDirection();
-
-            // 	if (flowDirection != controller.EffectiveFlowDirection.ToFlowDirection())
-            // 	{
-            // 		controller.EffectiveFlowDirection = flowDirection.ToEffectiveFlowDirection();
-            // 	}
-            // }
+       /*
+            var parentView = child.Parent;
+            if (parentView == null)
+            {
+                return;
+            }
+            */
         }
 
         /// <summary>
@@ -646,9 +636,11 @@ namespace Tizen.NUI.Binding
                 ReadOnlyCollection<Element> children = queue.Dequeue().LogicalChildrenInternal;
                 for (var i = 0; i < children.Count; i++)
                 {
-                    var child = children[i] as /*VisualElement*/BaseHandle;
-                    if (child == null /*|| !child.IsVisible*/)
+                    var child = children[i] as BaseHandle;
+                    if (child == null)
+                    {
                         continue;
+                    }
                     yield return child;
                     queue.Enqueue(child);
                 }

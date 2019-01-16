@@ -13,19 +13,10 @@ namespace Tizen.NUI.Binding
             if (element.RealParent is Application)
                 return null;
 
-            var skipCount = 0;
             element = await GetRealParentAsync(element);
             while (!Application.IsApplicationOrNull(element))
             {
                 var controlTemplated = element as IControlTemplated;
-                //if (controlTemplated?.ControlTemplate != null)
-                //{
-                //  if (skipCount == 0)
-                //      return element;
-                //  skipCount--;
-                //}
-                //  if (element is ContentPresenter)
-                //      skipCount++;
                 element = await GetRealParentAsync(element);
             }
 
@@ -55,25 +46,16 @@ namespace Tizen.NUI.Binding
 
         public static void OnContentChanged(BindableObject bindable, object oldValue, object newValue)
         {
+       /*
             var self = (IControlTemplated)bindable;
             var newElement = (Element)newValue;
-            //if (self.ControlTemplate == null)
-            //{
-            //  while (self.InternalChildren.Count > 0)
-            //  {
-            //      self.InternalChildren.RemoveAt(self.InternalChildren.Count - 1);
-            //  }
-
-            //  if (newValue != null)
-            //      self.InternalChildren.Add(newElement);
-            //}
-            //else
-            //{
-            //  if (newElement != null)
-            //  {
-            //      BindableObject.SetInheritedBindingContext(newElement, bindable.BindingContext);
-            //  }
-            //}
+            var oldElement = (Element)oldValue;
+			
+            if (newElement == oldElement)
+            {
+                return;
+            }
+           */
         }
 
         public static void OnControlTemplateChanged(BindableObject bindable, object oldValue, object newValue)
@@ -94,12 +76,7 @@ namespace Tizen.NUI.Binding
                     {
                         Element child = children[i];
                         var controlTemplated = child as IControlTemplated;
-
-                        // var presenter = child as ContentPresenter;
-                        // if (presenter != null)
-                        // 	presenter.Clear();
-                        // else if (controlTemplated == null || controlTemplated.ControlTemplate == null)
-                        // 	queue.Enqueue(child);
+                        queue.Enqueue(child);
                     }
                 }
             }
@@ -109,23 +86,6 @@ namespace Tizen.NUI.Binding
             {
                 self.InternalChildren.RemoveAt(self.InternalChildren.Count - 1);
             }
-
-            //ControlTemplate template = self.ControlTemplate;
-            //if (template == null)
-            //{
-            //  // do nothing for now
-            //}
-            //else
-            //{
-            //  var content = template.CreateContent() as View;
-            //  if (content == null)
-            //  {
-            //      throw new NotSupportedException("ControlTemplate must return a type derived from View.");
-            //  }
-
-            //  self.InternalChildren.Add(content);
-            //  ((IControlTemplated)bindable).OnControlTemplateChanged((ControlTemplate)oldValue, (ControlTemplate)newValue);
-            //}
         }
     }
 }

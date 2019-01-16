@@ -74,6 +74,16 @@ namespace Tizen.NUI
     /// <since_tizen> 3 </since_tizen>
     public class ScriptableProperty : System.Attribute
     {
+
+        /// <since_tizen> 3 </since_tizen>
+        public readonly ScriptableType type;
+
+        /// <since_tizen> 3 </since_tizen>
+        public ScriptableProperty(ScriptableType type = ScriptableType.Default)
+        {
+            this.type = type;
+        }
+
         /// <summary>
         /// Rhe enum of ScriptableType
         /// </summary>
@@ -86,15 +96,6 @@ namespace Tizen.NUI
             /// <since_tizen> 3 </since_tizen>
             Default,    // Read Writable, non-animatable property, event thread only
                         //  Animatable // Animatable property, Currently disabled, UK
-        }
-        /// <since_tizen> 3 </since_tizen>
-        public readonly ScriptableType type;
-
-
-        /// <since_tizen> 3 </since_tizen>
-        public ScriptableProperty(ScriptableType type = ScriptableType.Default)
-        {
-            this.type = type;
         }
     }
 
@@ -135,30 +136,6 @@ namespace Tizen.NUI
     /// <since_tizen> 3 </since_tizen>
     public sealed class CustomViewRegistry
     {
-        /// <summary>
-        /// ViewRegistry is a singleton.
-        /// </summary>
-        private static CustomViewRegistry instance = null;
-
-        [UnmanagedFunctionPointer(CallingConvention.StdCall)]
-        private delegate IntPtr CreateControlDelegate(IntPtr cPtrControlName);
-
-        [UnmanagedFunctionPointer(CallingConvention.StdCall)]
-        private delegate IntPtr GetPropertyDelegate(IntPtr controlPtr, IntPtr propertyName);
-
-        [UnmanagedFunctionPointer(CallingConvention.StdCall)]
-        private delegate void SetPropertyDelegate(IntPtr controlPtr, IntPtr propertyName, IntPtr propertyValue);
-
-        private CreateControlDelegate _createCallback;
-        private SetPropertyDelegate _setPropertyCallback;
-        private GetPropertyDelegate _getPropertyCallback;
-        private PropertyRangeManager _propertyRangeManager;
-
-        ///<summary>
-        /// Maps the name of a custom view to a create instance function
-        /// For example, given a string "Spin", we can get a function used to create the Spin View.
-        ///</summary>
-        private Dictionary<String, Func<CustomView>> _constructorMap;
 
         /// <summary>
         /// Lookup table to match C# types to DALi types, used for the automatic property registration.
@@ -183,6 +160,21 @@ namespace Tizen.NUI
             //  { "Matrix",  PropertyType.MATRIX },
         };
 
+        /// <summary>
+        /// ViewRegistry is a singleton.
+        /// </summary>
+        private static CustomViewRegistry instance = null;
+
+        private CreateControlDelegate _createCallback;
+        private SetPropertyDelegate _setPropertyCallback;
+        private GetPropertyDelegate _getPropertyCallback;
+        private PropertyRangeManager _propertyRangeManager;
+
+        ///<summary>
+        /// Maps the name of a custom view to a create instance function
+        /// For example, given a string "Spin", we can get a function used to create the Spin View.
+        ///</summary>
+        private Dictionary<String, Func<CustomView>> _constructorMap;
 
         private CustomViewRegistry()
         {
@@ -194,70 +186,14 @@ namespace Tizen.NUI
             _propertyRangeManager = new PropertyRangeManager();
         }
 
-        private Tizen.NUI.PropertyType GetDaliPropertyType(string cSharpTypeName)
-        {
-            Tizen.NUI.PropertyType daliType;
-            if (_daliPropertyTypeLookup.TryGetValue(cSharpTypeName, out daliType))
-            {
-                NUILog.Debug("mapped " + cSharpTypeName + " to dAli type " + daliType);
+        [UnmanagedFunctionPointer(CallingConvention.StdCall)]
+        private delegate IntPtr CreateControlDelegate(IntPtr cPtrControlName);
 
-                return daliType;
-            }
-            else
-            {
-                NUILog.Debug("Failed to find a mapping between C# property" + cSharpTypeName + " and DALi type");
+        [UnmanagedFunctionPointer(CallingConvention.StdCall)]
+        private delegate IntPtr GetPropertyDelegate(IntPtr controlPtr, IntPtr propertyName);
 
-                return PropertyType.None;
-            }
-        }
-
-        /// <summary>
-        /// Called directly from DALi C++ type registry to create a control (view) using no marshalling.
-        /// </summary>
-        /// <returns>Pointer to the control (views) handle.</returns>
-        /// <param name="cPtrControlName">C pointer to the control (view) name.</param>
-        private static IntPtr CreateControl(IntPtr cPtrControlName)
-        {
-            string controlName = System.Runtime.InteropServices.Marshal.PtrToStringAnsi(cPtrControlName);
-
-            NUILog.Debug("Create controlled called from C++ create a " + controlName);
-
-            Func<CustomView> controlConstructor;
-
-            // find the control constructor
-            if (Instance._constructorMap.TryGetValue(controlName, out controlConstructor))
-            {
-                // Create the control
-                CustomView newControl = controlConstructor();
-                if (newControl != null)
-                {
-                    return newControl.GetPtrfromView();  // return pointer to handle
-                }
-                else
-                {
-                    return IntPtr.Zero;
-                }
-            }
-            else
-            {
-                throw new global::System.InvalidOperationException("C# View not registererd with ViewRegistry" + controlName);
-            }
-        }
-
-        private static IntPtr GetProperty(IntPtr controlPtr, IntPtr propertyName)
-        {
-            string name = System.Runtime.InteropServices.Marshal.PtrToStringAnsi(propertyName);
-            return Instance.GetPropertyValue(controlPtr, name);
-        }
-
-        private static void SetProperty(IntPtr controlPtr, IntPtr propertyName, IntPtr propertyValue)
-        {
-            string name = System.Runtime.InteropServices.Marshal.PtrToStringAnsi(propertyName);
-
-            NUILog.Debug("SetControlProperty  called for:" + name);
-
-            Instance.SetPropertyValue(controlPtr, name, propertyValue);
-        }
+        [UnmanagedFunctionPointer(CallingConvention.StdCall)]
+        private delegate void SetPropertyDelegate(IntPtr controlPtr, IntPtr propertyName, IntPtr propertyValue);
 
         /// <since_tizen> 3 </since_tizen>
         public static CustomViewRegistry Instance
@@ -328,6 +264,71 @@ namespace Tizen.NUI
                     }
                     NUILog.Debug("property name = " + propertyInfo.Name);
                 }
+            }
+        }
+
+        /// <summary>
+        /// Called directly from DALi C++ type registry to create a control (view) using no marshalling.
+        /// </summary>
+        /// <returns>Pointer to the control (views) handle.</returns>
+        /// <param name="cPtrControlName">C pointer to the control (view) name.</param>
+        private static IntPtr CreateControl(IntPtr cPtrControlName)
+        {
+            string controlName = System.Runtime.InteropServices.Marshal.PtrToStringAnsi(cPtrControlName);
+
+            NUILog.Debug("Create controlled called from C++ create a " + controlName);
+
+            Func<CustomView> controlConstructor;
+
+            // find the control constructor
+            if (Instance._constructorMap.TryGetValue(controlName, out controlConstructor))
+            {
+                // Create the control
+                CustomView newControl = controlConstructor();
+                if (newControl != null)
+                {
+                    return newControl.GetPtrfromView();  // return pointer to handle
+                }
+                else
+                {
+                    return IntPtr.Zero;
+                }
+            }
+            else
+            {
+                throw new global::System.InvalidOperationException("C# View not registererd with ViewRegistry" + controlName);
+            }
+        }
+
+        private static IntPtr GetProperty(IntPtr controlPtr, IntPtr propertyName)
+        {
+            string name = System.Runtime.InteropServices.Marshal.PtrToStringAnsi(propertyName);
+            return Instance.GetPropertyValue(controlPtr, name);
+        }
+
+        private static void SetProperty(IntPtr controlPtr, IntPtr propertyName, IntPtr propertyValue)
+        {
+            string name = System.Runtime.InteropServices.Marshal.PtrToStringAnsi(propertyName);
+
+            NUILog.Debug("SetControlProperty  called for:" + name);
+
+            Instance.SetPropertyValue(controlPtr, name, propertyValue);
+        }
+
+        private Tizen.NUI.PropertyType GetDaliPropertyType(string cSharpTypeName)
+        {
+            Tizen.NUI.PropertyType daliType;
+            if (_daliPropertyTypeLookup.TryGetValue(cSharpTypeName, out daliType))
+            {
+                NUILog.Debug("mapped " + cSharpTypeName + " to dAli type " + daliType);
+
+                return daliType;
+            }
+            else
+            {
+                NUILog.Debug("Failed to find a mapping between C# property" + cSharpTypeName + " and DALi type");
+
+                return PropertyType.None;
             }
         }
 
