@@ -46,16 +46,6 @@ namespace Tizen.NUI.Binding
 
         public static void OnContentChanged(BindableObject bindable, object oldValue, object newValue)
         {
-       /*
-            var self = (IControlTemplated)bindable;
-            var newElement = (Element)newValue;
-            var oldElement = (Element)oldValue;
-			
-            if (newElement == oldElement)
-            {
-                return;
-            }
-           */
         }
 
         public static void OnControlTemplateChanged(BindableObject bindable, object oldValue, object newValue)
