@@ -168,7 +168,7 @@ namespace Tizen.NUI.Xaml
                         node = new ElementNode(new XmlType(elementNsUri, elementName, typeArguments), elementNsUri,
                             reader as IXmlNamespaceResolver, elementXmlInfo.LineNumber, elementXmlInfo.LinePosition);
                         ((IElementNode)node).Properties.AddRange(attributes);
-                        (node.IgnorablePrefixes ?? (node.IgnorablePrefixes = new List<string>())).AddRange(prefixes);
+                        (node.IgnorablePrefixes ?? (node.IgnorablePrefixes = new List<string>()))?.AddRange(prefixes);
 
                         ParseXamlElementFor((IElementNode)node, reader);
                         nodes.Add(node);

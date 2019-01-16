@@ -30,7 +30,7 @@ namespace Tizen.NUI.Binding
             NavigationProxy = new NavigationImpl(this);
             SetCurrentApplication(this);
 
-            SystemResources = DependencyService.Get<ISystemResourcesProvider>().GetSystemResources();
+            SystemResources = DependencyService.Get<ISystemResourcesProvider>()?.GetSystemResources();
             SystemResources.ValuesChanged += OnParentResourcesChanged;
             _platformConfigurationRegistry = new Lazy<PlatformConfigurationRegistry<Application>>(() => new PlatformConfigurationRegistry<Application>(this));
         }
@@ -350,7 +350,7 @@ namespace Tizen.NUI.Binding
             await SaveSemaphore.WaitAsync();
             try
             {
-                await DependencyService.Get<IDeserializer>().SerializePropertiesAsync(Properties);
+                await DependencyService.Get<IDeserializer>()?.SerializePropertiesAsync(Properties);
             }
             finally
             {
