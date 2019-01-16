@@ -473,10 +473,7 @@ namespace Tizen.NUI
         private void OnLanguageChanged(IntPtr adaptor)
         {
             LanguageChangedEventArgs e = new LanguageChangedEventArgs();
-            if (adaptor != null)
-            {
-                e.Adaptor = Adaptor.GetAdaptorFromPtr(adaptor);
-            }
+            e.Adaptor = Adaptor.GetAdaptorFromPtr(adaptor);
 
             if (_languageChangedEventHandler != null)
             {

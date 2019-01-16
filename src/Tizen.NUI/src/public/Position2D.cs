@@ -170,7 +170,7 @@ namespace Tizen.NUI
                 string[] parts = value.Split(',');
                 if (parts.Length == 2)
                 {
-                    return new Position2D(int.Parse(parts[0].Trim(), CultureInfo.InvariantCulture), int.Parse(parts[1].Trim(), CultureInfo.InvariantCulture));
+                    return new Position2D(int.Parse(parts[0].Trim()), int.Parse(parts[1].Trim()));
                 }
             }
 
@@ -314,7 +314,7 @@ namespace Tizen.NUI
         /// <since_tizen> 5 </since_tizen>
         public override int GetHashCode()
         {
-            return base.GetHashCode();
+            return X.GetHashCode();
         }
 
         /// <summary>

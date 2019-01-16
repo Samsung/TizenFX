@@ -606,9 +606,13 @@ namespace Tizen.NUI.Binding
 
         internal static void SetFlowDirectionFromParent(Element child)
         {
+       /*
             var parentView = child.Parent;
             if (parentView == null)
+            {
                 return;
+            }
+            */
         }
 
         /// <summary>
@@ -634,7 +638,9 @@ namespace Tizen.NUI.Binding
                 {
                     var child = children[i] as BaseHandle;
                     if (child == null)
+                    {
                         continue;
+                    }
                     yield return child;
                     queue.Enqueue(child);
                 }

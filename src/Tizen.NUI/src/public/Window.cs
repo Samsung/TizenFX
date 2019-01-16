@@ -58,12 +58,11 @@ namespace Tizen.NUI
             swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
             if (NDalicPINVOKE.Stage_IsInstalled())
             {
-                global::System.IntPtr rootLayoutIntPtr;
                 stageCPtr = new global::System.Runtime.InteropServices.HandleRef(this, NDalicPINVOKE.Stage_GetCurrent());
                 // Create a root layout (AbsoluteLayout) that is invisible to the user but enables layouts added to the Window
                 // Enables layouts added to the Window to have a parent layout.  As parent layout is needed to store measure spec properties.
                 // Currently without these measure specs the new layout added will always be the size of the window.
-                rootLayoutIntPtr = NDalicManualPINVOKE.Window_NewRootLayout();
+                global::System.IntPtr rootLayoutIntPtr = NDalicManualPINVOKE.Window_NewRootLayout();
                 // Store HandleRef used by Add()
                 rootLayoutCPtr = new global::System.Runtime.InteropServices.HandleRef(this, rootLayoutIntPtr);
                 Layer rootLayer = GetRootLayer();
@@ -1532,11 +1531,8 @@ namespace Tizen.NUI
         private void OnStageKey(IntPtr data)
         {
             KeyEventArgs e = new KeyEventArgs();
+			e.Key = Tizen.NUI.Key.GetKeyFromPtr(data);
 
-            if (data != null)
-            {
-                e.Key = Tizen.NUI.Key.GetKeyFromPtr(data);
-            }
 
             if (_stageKeyHandler != null)
             {

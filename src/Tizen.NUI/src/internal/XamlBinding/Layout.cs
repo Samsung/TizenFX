@@ -205,7 +205,9 @@ namespace Tizen.NUI.Binding
             {
                 var v = LogicalChildrenInternal[index] as BaseHandle;
                 if (v != null)
+                {
                     return;
+                }
             }
 
             var view = child as View;
@@ -299,13 +301,17 @@ namespace Tizen.NUI.Binding
         bool ShouldLayoutChildren()
         {
             if ( !LogicalChildrenInternal.Any() )
+            {
                 return false;
+            }
 
             foreach (Element element in VisibleDescendants())
             {
                 var visual = element as BaseHandle;
                 if (visual == null)
+                {
                     continue;
+                }
             }
             return true;
         }
