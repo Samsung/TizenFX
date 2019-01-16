@@ -41,7 +41,7 @@ namespace ElmSharp
         /// </summary>
         /// <param name="text">FlipSelectorItem's text</param>
         /// <since_tizen> preview </since_tizen>
-        public FlipSelectorItem(string text) : base(null, IntPtr.Zero)
+        public FlipSelectorItem(string text) : base(IntPtr.Zero)
         {
             Text = text;
         }

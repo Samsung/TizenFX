@@ -60,6 +60,10 @@ namespace ElmSharp
     /// <since_tizen> preview </since_tizen>
     public class GenListItem : GenItem
     {
+        internal GenListItem(object data, GenItemClass itemClass) : base(data, itemClass)
+        {
+        }
+
         internal GenListItem(EvasObject parent, object data, GenItemClass itemClass) : base(parent, data, itemClass)
         {
         }

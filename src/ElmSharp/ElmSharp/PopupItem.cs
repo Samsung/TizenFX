@@ -24,6 +24,12 @@ namespace ElmSharp
     /// <since_tizen> preview </since_tizen>
     public class PopupItem : ItemObject
     {
+        internal PopupItem(string text, EvasObject icon) : base(IntPtr.Zero)
+        {
+            Text = text;
+            Icon = icon;
+        }
+
         internal PopupItem(EvasObject parent, string text, EvasObject icon) : base(parent, IntPtr.Zero)
         {
             Text = text;

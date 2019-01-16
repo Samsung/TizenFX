@@ -220,7 +220,7 @@ namespace ElmSharp.Test
             Console.WriteLine("ELM_PROFILE : {0}", profile);
             Console.WriteLine("ELM_SCALE : {0}", Elementary.GetScale());
 
-            /*Elementary.EvasObjectRealized += (s, e) =>
+            Elementary.EvasObjectRealized += (s, e) =>
             {
                 var obj = (EvasObject)s;
                 Console.WriteLine("EvasObject Realized : {0}", obj.GetType());
@@ -229,8 +229,8 @@ namespace ElmSharp.Test
             Elementary.ItemObjectRealized += (s, e) =>
             {
                 var obj = (ItemObject)s;
-                Console.WriteLine("ItemObject Realized : {0}", obj.GetType());
-            };*/
+                Console.WriteLine("ItemObject Realized : {0} (Parent : {1})", obj.GetType(), obj.Parent != null? obj.Parent.GetType() : null);
+            };
 
             TestRunner testRunner = new TestRunner();
             testRunner.Profile = profile;

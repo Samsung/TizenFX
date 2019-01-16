@@ -29,7 +29,7 @@ namespace ElmSharp
         /// </summary>
         /// <param name="text">The text is set to the Text. It's the 'string' type.</param>
         /// <since_tizen> preview </since_tizen>
-        public IndexItem(string text) : base(null, IntPtr.Zero)
+        public IndexItem(string text) : base(IntPtr.Zero)
         {
             Text = text;
         }
