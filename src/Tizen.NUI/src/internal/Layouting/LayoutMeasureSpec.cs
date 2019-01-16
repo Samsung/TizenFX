@@ -104,7 +104,7 @@ namespace Tizen.NUI
         /// <since_tizen> 5 </since_tizen>
         public override int GetHashCode()
         {
-            return Mode.GetHashCode();
+            return swigCPtr.GetHashCode();
         }
 
         private bool EqualTo(LayoutMeasureSpec value)
