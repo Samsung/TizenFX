@@ -683,7 +683,7 @@ namespace Tizen.NUI
             await SaveSemaphore.WaitAsync();
             try
             {
-                await DependencyService.Get<IDeserializer>().SerializePropertiesAsync(Properties);
+                await DependencyService.Get<IDeserializer>()?.SerializePropertiesAsync(Properties);
             }
             finally
             {

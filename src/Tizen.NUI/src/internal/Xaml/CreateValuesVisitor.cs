@@ -175,7 +175,7 @@ namespace Tizen.NUI.Xaml
             {
                 // Modify the namespace
                 var propname =
-                    parameter.CustomAttributes.First(ca => ca.AttributeType.FullName == "Tizen.NUI.Binding.ParameterAttribute")
+                    parameter.CustomAttributes.First(ca => ca.AttributeType.FullName == "Tizen.NUI.Binding.ParameterAttribute")?
                         .ConstructorArguments.First()
                         .Value as string;
                 if (!node.Properties.ContainsKey(new XmlName("", propname)))
