@@ -28,7 +28,7 @@ namespace ElmSharp
         EvasObject _content;
         bool _isPopped;
         Color _barBackgroundColor = Color.Default;
-        Interop.Elementary.Elm_Naviframe_Item_Pop_Cb _popped;        
+        Interop.Elementary.Elm_Naviframe_Item_Pop_Cb _popped;
 
         NaviItem(IntPtr handle, EvasObject content) : base(handle)
         {
