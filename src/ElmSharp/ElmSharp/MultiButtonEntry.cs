@@ -445,7 +445,7 @@ namespace ElmSharp
             // ItemObject does NOT have an item that contains handle matched to "info" at this time.
             // So, item should be created and added internally here.
             
-            MultiButtonEntryItem item = new MultiButtonEntryItem(null, info);
+            MultiButtonEntryItem item = new MultiButtonEntryItem(info);
             return new MultiButtonEntryItemEventArgs { Item = item };
         }
     }
