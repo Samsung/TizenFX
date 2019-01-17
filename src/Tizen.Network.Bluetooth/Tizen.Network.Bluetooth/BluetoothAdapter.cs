@@ -373,7 +373,7 @@ namespace Tizen.Network.Bluetooth
         }
 
         /// <summary>
-        /// Enables the local Bluetooth adapter, asynchronously.
+        /// Enables the local Bluetooth adapter asynchronously.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
         /// <feature>http://tizen.org/feature/network.bluetooth</feature>
@@ -387,7 +387,7 @@ namespace Tizen.Network.Bluetooth
         }
 
         /// <summary>
-        /// Disables the local Bluetooth adapter, asynchronously.
+        /// Disables the local Bluetooth adapter asynchronously.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
         /// <feature>http://tizen.org/feature/network.bluetooth</feature>
@@ -401,7 +401,7 @@ namespace Tizen.Network.Bluetooth
         }
 
         /// <summary>
-        /// Enables the discoverable mode.
+        /// Enables the discoverable mode for the duration.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
         /// <feature>http://tizen.org/feature/network.bluetooth</feature>
