@@ -154,7 +154,7 @@ namespace Tizen.NUI
         /// <since_tizen> 5 </since_tizen>
         public override int GetHashCode()
         {
-            return State.GetHashCode();
+            return swigCPtr.GetHashCode();
         }
 
         private bool EqualTo(MeasuredSize value)
