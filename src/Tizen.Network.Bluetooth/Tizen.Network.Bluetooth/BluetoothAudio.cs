@@ -108,7 +108,7 @@ namespace Tizen.Network.Bluetooth
         }
 
         /// <summary>
-        /// Opens a AG(Audio Gateway) SCO(Synchronous Connection Oriented link) to connected remote device, asynchronously.
+        /// Opens a AG(Audio Gateway) SCO(Synchronous Connection Oriented link) to connected remote device asynchronously.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
         /// <feature>http://tizen.org/feature/network.bluetooth</feature>
@@ -123,7 +123,7 @@ namespace Tizen.Network.Bluetooth
         }
 
         /// <summary>
-        /// Closes a AG(Audio Gateway) SCO(Synchronous Connection Oriented link) to connected remote device, asynchronously.
+        /// Closes a AG(Audio Gateway) SCO(Synchronous Connection Oriented link) to connected remote device asynchronously.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
         /// <feature>http://tizen.org/feature/network.bluetooth</feature>
