@@ -794,7 +794,7 @@ namespace Tizen.Network.Bluetooth {
                 serviceDataPtr = Marshal.AllocHGlobal(data.DataLength);
                 Marshal.Copy(data.Data, 0, serviceDataPtr, data.DataLength);
 
-                for (int i = 0; i < 3; i++)
+                for (int i = 0; i < data.DataLength; i++)
                     Log.Error (Globals.LogTag, " service data is  " + data.Data [i]);
                 int ret = Interop.Bluetooth.AddAdvertisingServiceData(GetHandle(), packetType,
                     data.Uuid, serviceDataPtr, data.DataLength);
