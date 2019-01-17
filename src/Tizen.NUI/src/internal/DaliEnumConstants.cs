@@ -18,6 +18,7 @@ using System;
 using System.Reflection;
 using System.Diagnostics;
 using System.Runtime.CompilerServices;
+using System.ComponentModel;
 
 namespace Tizen.NUI
 {
@@ -39,6 +40,36 @@ namespace Tizen.NUI
                 /// </summary>
                 /// <since_tizen> 3 </since_tizen>
                 TextureCube = Tizen.NUI.TextureType.TEXTURE_CUBE
+        }
+
+        /// <summary>
+        /// Enumeration for stereoscopic view modes.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
+        [Obsolete("Please do not use! This will be deprecated!")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public enum ViewMode
+        {
+            /// <summary>
+            /// Monoscopic (single camera). This is the default.
+            /// </summary>
+            /// <since_tizen> 3 </since_tizen>
+            Mono,
+            /// <summary>
+            /// Stereoscopic. Frame buffer is split horizontally with the left and right camera views in their respective sides.
+            /// </summary>
+            /// <since_tizen> 3 </since_tizen>
+            StereoHorizontal,
+            /// <summary>
+            /// Stereoscopic. Frame buffer is split vertically with the left camera view at the top and the right camera view at the bottom.
+            /// </summary>
+            /// <since_tizen> 3 </since_tizen>
+            StereoVertical,
+            /// <summary>
+            /// Stereoscopic. Left/Right camera views are rendered into the framebuffer on alternate frames.
+            /// </summary>
+            /// <since_tizen> 3 </since_tizen>
+            StereoInterlaced
         }
 
         /// <summary>

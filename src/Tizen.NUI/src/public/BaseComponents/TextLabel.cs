@@ -1192,6 +1192,7 @@ namespace Tizen.NUI.BaseComponents
             }
         }
 
+        /// <summary>
         /// Downcasts a handle to textLabel handle
         /// </summary>
         /// <param name="handle"></param>

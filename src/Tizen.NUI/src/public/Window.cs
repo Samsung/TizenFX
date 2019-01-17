@@ -251,7 +251,7 @@ namespace Tizen.NUI
             "Window.Instance.FocusChanged = OnFocusChanged; " +
             "private void OnFocusChanged(object source, Window.FocusChangedEventArgs args) {...}")]
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public event EventHandler<FocusChangedEventArgs> WindowFocusChanged
+        public event EventHandler<WindowFocusChangedEventArgs> WindowFocusChanged
         {
             add
             {
@@ -365,7 +365,7 @@ namespace Tizen.NUI
         private event EventHandler<KeyEventArgs> _stageKeyHandler;
         private event EventHandler _stageEventProcessingFinishedEventHandler;
         private event EventHandler<ResizedEventArgs> _windowResizedEventHandler;
-        private event EventHandler<FocusChangedEventArgs> _windowFocusChangedEventHandler2;
+        private event EventHandler<WindowFocusChangedEventArgs> _windowFocusChangedEventHandler2;
 
         /// <summary>
         /// Enumeration for orientation of the window is the way in which a rectangular page is oriented for normal viewing.
@@ -1592,7 +1592,7 @@ namespace Tizen.NUI
 
         private void OnWindowFocusedChanged2(bool focusGained)
         {
-            FocusChangedEventArgs e = new FocusChangedEventArgs();
+            WindowFocusChangedEventArgs e = new WindowFocusChangedEventArgs();
 
             e.FocusGained = focusGained;
 
