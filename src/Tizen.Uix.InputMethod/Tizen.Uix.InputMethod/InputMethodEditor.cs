@@ -960,7 +960,6 @@ namespace Tizen.Uix.InputMethod
     /// <since_tizen> 4 </since_tizen>
     public static class InputMethodEditor
     {
-        private static Object thisLock = new Object();
         private static ImeCallbackStructGCHandle _imeCallbackStructGCHandle = new ImeCallbackStructGCHandle();
         private static event EventHandler<FocusedInEventArgs> _focusIn;
         private static ImeFocusedInCb _imeFocusedInDelegate;
@@ -1117,30 +1116,24 @@ namespace Tizen.Uix.InputMethod
         {
             add
             {
-                lock (thisLock)
+                _imeFocusedInDelegate = (int contextId, IntPtr userData) =>
                 {
-                    _imeFocusedInDelegate = (int contextId, IntPtr userData) =>
-                    {
-                        FocusedInEventArgs args = new FocusedInEventArgs(contextId);
-                        _focusIn?.Invoke(null, args);
-                    };
-                    ErrorCode error = ImeEventSetFocusedInCb(_imeFocusedInDelegate, IntPtr.Zero);
-                    if (error != ErrorCode.None)
-                    {
-                        Log.Error(LogTag, "Add FocusedIn Failed with error " + error);
-                    }
-                    else
-                    {
-                        _focusIn += value;
-                    }
+                    FocusedInEventArgs args = new FocusedInEventArgs(contextId);
+                    _focusIn?.Invoke(null, args);
+                };
+                ErrorCode error = ImeEventSetFocusedInCb(_imeFocusedInDelegate, IntPtr.Zero);
+                if (error != ErrorCode.None)
+                {
+                    Log.Error(LogTag, "Add FocusedIn Failed with error " + error);
+                }
+                else
+                {
+                    _focusIn += value;
                 }
             }
             remove
             {
-                lock (thisLock)
-                {
-                    _focusIn -= value;
-                }
+                _focusIn -= value;
             }
         }
 
@@ -1152,30 +1145,24 @@ namespace Tizen.Uix.InputMethod
         {
             add
             {
-                lock (thisLock)
+                _imeFocusedOutDelegate = (int contextId, IntPtr userData) =>
                 {
-                    _imeFocusedOutDelegate = (int contextId, IntPtr userData) =>
-                    {
-                        FocusedOutEventArgs args = new FocusedOutEventArgs(contextId);
-                        _focusOut?.Invoke(null, args);
-                    };
-                    ErrorCode error = ImeEventSetFocusedOutCb(_imeFocusedOutDelegate, IntPtr.Zero);
-                    if (error != ErrorCode.None)
-                    {
-                        Log.Error(LogTag, "Add FocusedOut Failed with error " + error);
-                    }
-                    else
-                    {
-                        _focusOut += value;
-                    }
+                    FocusedOutEventArgs args = new FocusedOutEventArgs(contextId);
+                    _focusOut?.Invoke(null, args);
+                };
+                ErrorCode error = ImeEventSetFocusedOutCb(_imeFocusedOutDelegate, IntPtr.Zero);
+                if (error != ErrorCode.None)
+                {
+                    Log.Error(LogTag, "Add FocusedOut Failed with error " + error);
+                }
+                else
+                {
+                    _focusOut += value;
                 }
             }
             remove
             {
-                lock (thisLock)
-                {
-                    _focusOut -= value;
-                }
+                _focusOut -= value;
             }
         }
 
@@ -1187,30 +1174,24 @@ namespace Tizen.Uix.InputMethod
         {
             add
             {
-                lock (thisLock)
+                _imeSurroundingTextUpdatedDelegate = (int contextId, IntPtr text, int cursorPos, IntPtr userData) =>
                 {
-                    _imeSurroundingTextUpdatedDelegate = (int contextId, IntPtr text, int cursorPos, IntPtr userData) =>
-                    {
-                        SurroundingTextUpdatedEventArgs args = new SurroundingTextUpdatedEventArgs(contextId, Marshal.PtrToStringAnsi(text), cursorPos);
-                        _surroundingTextUpdated?.Invoke(null, args);
-                    };
-                    ErrorCode error = ImeEventSetSurroundingTextUpdatedCb(_imeSurroundingTextUpdatedDelegate, IntPtr.Zero);
-                    if (error != ErrorCode.None)
-                    {
-                        Log.Error(LogTag, "Add SurroundingTextUpdated Failed with error " + error);
-                    }
-                    else
-                    {
-                        _surroundingTextUpdated += value;
-                    }
+                    SurroundingTextUpdatedEventArgs args = new SurroundingTextUpdatedEventArgs(contextId, Marshal.PtrToStringAnsi(text), cursorPos);
+                    _surroundingTextUpdated?.Invoke(null, args);
+                };
+                ErrorCode error = ImeEventSetSurroundingTextUpdatedCb(_imeSurroundingTextUpdatedDelegate, IntPtr.Zero);
+                if (error != ErrorCode.None)
+                {
+                    Log.Error(LogTag, "Add SurroundingTextUpdated Failed with error " + error);
+                }
+                else
+                {
+                    _surroundingTextUpdated += value;
                 }
             }
             remove
             {
-                lock (thisLock)
-                {
-                    _surroundingTextUpdated -= value;
-                }
+                _surroundingTextUpdated -= value;
             }
         }
 
@@ -1222,29 +1203,23 @@ namespace Tizen.Uix.InputMethod
         {
             add
             {
-                lock (thisLock)
+                _imeInputContextResetDelegate = (IntPtr userData) =>
                 {
-                    _imeInputContextResetDelegate = (IntPtr userData) =>
-                    {
-                        _inputContextReset?.Invoke(null, EventArgs.Empty);
-                    };
-                    ErrorCode error = ImeEventSetInputContextResetCb(_imeInputContextResetDelegate, IntPtr.Zero);
-                    if (error != ErrorCode.None)
-                    {
-                        Log.Error(LogTag, "Add InputContextReset Failed with error " + error);
-                    }
-                    else
-                    {
-                        _inputContextReset += value;
-                    }
+                    _inputContextReset?.Invoke(null, EventArgs.Empty);
+                };
+                ErrorCode error = ImeEventSetInputContextResetCb(_imeInputContextResetDelegate, IntPtr.Zero);
+                if (error != ErrorCode.None)
+                {
+                    Log.Error(LogTag, "Add InputContextReset Failed with error " + error);
+                }
+                else
+                {
+                    _inputContextReset += value;
                 }
             }
             remove
             {
-                lock (thisLock)
-                {
-                    _inputContextReset -= value;
-                }
+                _inputContextReset -= value;
             }
         }
 
@@ -1256,30 +1231,24 @@ namespace Tizen.Uix.InputMethod
         {
             add
             {
-                lock (thisLock)
+                _imeCursorPositionUpdatedDelegate = (int cursorPos, IntPtr userData) =>
                 {
-                    _imeCursorPositionUpdatedDelegate = (int cursorPos, IntPtr userData) =>
-                    {
-                        CursorPositionUpdatedEventArgs args = new CursorPositionUpdatedEventArgs(cursorPos);
-                        _cursorPositionUpdated?.Invoke(null, args);
-                    };
-                    ErrorCode error = ImeEventSetCursorPositionUpdatedCb(_imeCursorPositionUpdatedDelegate, IntPtr.Zero);
-                    if (error != ErrorCode.None)
-                    {
-                        Log.Error(LogTag, "Add CursorPositionUpdated Failed with error " + error);
-                    }
-                    else
-                    {
-                        _cursorPositionUpdated += value;
-                    }
+                    CursorPositionUpdatedEventArgs args = new CursorPositionUpdatedEventArgs(cursorPos);
+                    _cursorPositionUpdated?.Invoke(null, args);
+                };
+                ErrorCode error = ImeEventSetCursorPositionUpdatedCb(_imeCursorPositionUpdatedDelegate, IntPtr.Zero);
+                if (error != ErrorCode.None)
+                {
+                    Log.Error(LogTag, "Add CursorPositionUpdated Failed with error " + error);
+                }
+                else
+                {
+                    _cursorPositionUpdated += value;
                 }
             }
             remove
             {
-                lock (thisLock)
-                {
-                    _cursorPositionUpdated -= value;
-                }
+                _cursorPositionUpdated -= value;
             }
         }
 
@@ -1292,30 +1261,24 @@ namespace Tizen.Uix.InputMethod
         {
             add
             {
-                lock (thisLock)
+                _imeLanguageSetDelegate = (InputPanelLanguage language, IntPtr userData) =>
                 {
-                    _imeLanguageSetDelegate = (InputPanelLanguage language, IntPtr userData) =>
-                    {
-                        LanguageSetEventArgs args = new LanguageSetEventArgs(language);
-                        _langaugeSet?.Invoke(null, args);
-                    };
-                    ErrorCode error = ImeEventSetLanguageSetCb(_imeLanguageSetDelegate, IntPtr.Zero);
-                    if (error != ErrorCode.None)
-                    {
-                        Log.Error(LogTag, "Add LanguageSet Failed with error " + error);
-                    }
-                    else
-                    {
-                        _langaugeSet += value;
-                    }
+                    LanguageSetEventArgs args = new LanguageSetEventArgs(language);
+                    _langaugeSet?.Invoke(null, args);
+                };
+                ErrorCode error = ImeEventSetLanguageSetCb(_imeLanguageSetDelegate, IntPtr.Zero);
+                if (error != ErrorCode.None)
+                {
+                    Log.Error(LogTag, "Add LanguageSet Failed with error " + error);
+                }
+                else
+                {
+                    _langaugeSet += value;
                 }
             }
             remove
             {
-                lock (thisLock)
-                {
-                    _langaugeSet -= value;
-                }
+                _langaugeSet -= value;
             }
         }
 
@@ -1327,32 +1290,26 @@ namespace Tizen.Uix.InputMethod
         {
             add
             {
-                lock (thisLock)
+                _imeDataSetDelegate = (IntPtr data, uint dataLength, IntPtr userData) =>
                 {
-                    _imeDataSetDelegate = (IntPtr data, uint dataLength, IntPtr userData) =>
-                    {
-                        byte[] destination = new byte[dataLength];
-                        Marshal.Copy(data, destination, 0, (int)dataLength);
-                        SetDataEventArgs args = new SetDataEventArgs(destination, dataLength);
-                        _imDataSet?.Invoke(null, args);
-                    };
-                    ErrorCode error = ImeEventSetImdataSetCb(_imeDataSetDelegate, IntPtr.Zero);
-                    if (error != ErrorCode.None)
-                    {
-                        Log.Error(LogTag, "Add DataSet Failed with error " + error);
-                    }
-                    else
-                    {
-                        _imDataSet += value;
-                    }
+                    byte[] destination = new byte[dataLength];
+                    Marshal.Copy(data, destination, 0, (int)dataLength);
+                    SetDataEventArgs args = new SetDataEventArgs(destination, dataLength);
+                    _imDataSet?.Invoke(null, args);
+                };
+                ErrorCode error = ImeEventSetImdataSetCb(_imeDataSetDelegate, IntPtr.Zero);
+                if (error != ErrorCode.None)
+                {
+                    Log.Error(LogTag, "Add DataSet Failed with error " + error);
+                }
+                else
+                {
+                    _imDataSet += value;
                 }
             }
             remove
             {
-                lock (thisLock)
-                {
-                    _imDataSet -= value;
-                }
+                _imDataSet -= value;
             }
         }
 
@@ -1365,30 +1322,24 @@ namespace Tizen.Uix.InputMethod
         {
             add
             {
-                lock (thisLock)
+                _imeLayoutSetDelegate = (InputPanelLayout layout, IntPtr userData) =>
                 {
-                    _imeLayoutSetDelegate = (InputPanelLayout layout, IntPtr userData) =>
-                    {
-                        LayoutSetEventArgs args = new LayoutSetEventArgs(layout);
-                        _layoutSet?.Invoke(null, args);
-                    };
-                    ErrorCode error = ImeEventSetLayoutSetCb(_imeLayoutSetDelegate, IntPtr.Zero);
-                    if (error != ErrorCode.None)
-                    {
-                        Log.Error(LogTag, "Add LayoutSet Failed with error " + error);
-                    }
-                    else
-                    {
-                        _layoutSet += value;
-                    }
+                    LayoutSetEventArgs args = new LayoutSetEventArgs(layout);
+                    _layoutSet?.Invoke(null, args);
+                };
+                ErrorCode error = ImeEventSetLayoutSetCb(_imeLayoutSetDelegate, IntPtr.Zero);
+                if (error != ErrorCode.None)
+                {
+                    Log.Error(LogTag, "Add LayoutSet Failed with error " + error);
+                }
+                else
+                {
+                    _layoutSet += value;
                 }
             }
             remove
             {
-                lock (thisLock)
-                {
-                    _layoutSet -= value;
-                }
+                _layoutSet -= value;
             }
         }
 
@@ -1401,30 +1352,24 @@ namespace Tizen.Uix.InputMethod
         {
             add
             {
-                lock (thisLock)
+                _imeReturnKeySetDelegate = (InputPanelReturnKey type, IntPtr userData) =>
                 {
-                    _imeReturnKeySetDelegate = (InputPanelReturnKey type, IntPtr userData) =>
-                    {
-                        ReturnKeySetEventArgs args = new ReturnKeySetEventArgs(type);
-                        _returnKeyTypeSet?.Invoke(null, args);
-                    };
-                    ErrorCode error = ImeEventSetReturnKeySetCb(_imeReturnKeySetDelegate, IntPtr.Zero);
-                    if (error != ErrorCode.None)
-                    {
-                        Log.Error(LogTag, "Add ReturnKeySet Failed with error " + error);
-                    }
-                    else
-                    {
-                        _returnKeyTypeSet += value;
-                    }
+                    ReturnKeySetEventArgs args = new ReturnKeySetEventArgs(type);
+                    _returnKeyTypeSet?.Invoke(null, args);
+                };
+                ErrorCode error = ImeEventSetReturnKeySetCb(_imeReturnKeySetDelegate, IntPtr.Zero);
+                if (error != ErrorCode.None)
+                {
+                    Log.Error(LogTag, "Add ReturnKeySet Failed with error " + error);
+                }
+                else
+                {
+                    _returnKeyTypeSet += value;
                 }
             }
             remove
             {
-                lock (thisLock)
-                {
-                    _returnKeyTypeSet -= value;
-                }
+                _returnKeyTypeSet -= value;
             }
         }
 
@@ -1436,30 +1381,24 @@ namespace Tizen.Uix.InputMethod
         {
             add
             {
-                lock (thisLock)
+                _imeReturnKeyStateSetDelegate = (bool state, IntPtr userData) =>
                 {
-                    _imeReturnKeyStateSetDelegate = (bool state, IntPtr userData) =>
-                    {
-                        ReturnKeyStateSetEventArgs args = new ReturnKeyStateSetEventArgs(state);
-                        _returnKeyStateSet?.Invoke(null, args);
-                    };
-                    ErrorCode error = ImeEventSetReturnKeyStateSetCb(_imeReturnKeyStateSetDelegate, IntPtr.Zero);
-                    if (error != ErrorCode.None)
-                    {
-                        Log.Error(LogTag, "Add ReturnKeyStateSet Failed with error " + error);
-                    }
-                    else
-                    {
-                        _returnKeyStateSet += value;
-                    }
+                    ReturnKeyStateSetEventArgs args = new ReturnKeyStateSetEventArgs(state);
+                    _returnKeyStateSet?.Invoke(null, args);
+                };
+                ErrorCode error = ImeEventSetReturnKeyStateSetCb(_imeReturnKeyStateSetDelegate, IntPtr.Zero);
+                if (error != ErrorCode.None)
+                {
+                    Log.Error(LogTag, "Add ReturnKeyStateSet Failed with error " + error);
+                }
+                else
+                {
+                    _returnKeyStateSet += value;
                 }
             }
             remove
             {
-                lock (thisLock)
-                {
-                    _returnKeyStateSet -= value;
-                }
+                _returnKeyStateSet -= value;
             }
         }
 
@@ -1471,30 +1410,24 @@ namespace Tizen.Uix.InputMethod
         {
             add
             {
-                lock (thisLock)
+                _imeDisplayLanguageChangedDelegate = (IntPtr language, IntPtr userData) =>
                 {
-                    _imeDisplayLanguageChangedDelegate = (IntPtr language, IntPtr userData) =>
-                    {
-                        DisplayLanguageChangedEventArgs args = new DisplayLanguageChangedEventArgs(Marshal.PtrToStringAnsi(language));
-                        _displayLanguageChanged?.Invoke(null, args);
-                    };
-                    ErrorCode error = ImeEventSetDisplayLanguageChangedCb(_imeDisplayLanguageChangedDelegate, IntPtr.Zero);
-                    if (error != ErrorCode.None)
-                    {
-                        Log.Error(LogTag, "Add DisplayLanguageChanged Failed with error " + error);
-                    }
-                    else
-                    {
-                        _displayLanguageChanged += value;
-                    }
+                    DisplayLanguageChangedEventArgs args = new DisplayLanguageChangedEventArgs(Marshal.PtrToStringAnsi(language));
+                    _displayLanguageChanged?.Invoke(null, args);
+                };
+                ErrorCode error = ImeEventSetDisplayLanguageChangedCb(_imeDisplayLanguageChangedDelegate, IntPtr.Zero);
+                if (error != ErrorCode.None)
+                {
+                    Log.Error(LogTag, "Add DisplayLanguageChanged Failed with error " + error);
+                }
+                else
+                {
+                    _displayLanguageChanged += value;
                 }
             }
             remove
             {
-                lock (thisLock)
-                {
-                    _displayLanguageChanged -= value;
-                }
+                _displayLanguageChanged -= value;
             }
         }
 
@@ -1506,30 +1439,24 @@ namespace Tizen.Uix.InputMethod
         {
             add
             {
-                lock (thisLock)
+                _imeRotationChangedDelegate = (int degree, IntPtr userData) =>
                 {
-                    _imeRotationChangedDelegate = (int degree, IntPtr userData) =>
-                    {
-                        RotationChangedEventArgs args = new RotationChangedEventArgs(degree);
-                        _rotationDegreeChanged?.Invoke(null, args);
-                    };
-                    ErrorCode error = ImeEventSetRotationChangedCb(_imeRotationChangedDelegate, IntPtr.Zero);
-                    if (error != ErrorCode.None)
-                    {
-                        Log.Error(LogTag, "Add RotationChanged Failed with error " + error);
-                    }
-                    else
-                    {
-                        _rotationDegreeChanged += value;
-                    }
+                    RotationChangedEventArgs args = new RotationChangedEventArgs(degree);
+                    _rotationDegreeChanged?.Invoke(null, args);
+                };
+                ErrorCode error = ImeEventSetRotationChangedCb(_imeRotationChangedDelegate, IntPtr.Zero);
+                if (error != ErrorCode.None)
+                {
+                    Log.Error(LogTag, "Add RotationChanged Failed with error " + error);
+                }
+                else
+                {
+                    _rotationDegreeChanged += value;
                 }
             }
             remove
             {
-                lock (thisLock)
-                {
-                    _rotationDegreeChanged -= value;
-                }
+                _rotationDegreeChanged -= value;
             }
         }
 
@@ -1541,30 +1468,24 @@ namespace Tizen.Uix.InputMethod
         {
             add
             {
-                lock (thisLock)
+                _imeAccessibilityStateChangedDelegate = (bool state, IntPtr userData) =>
                 {
-                    _imeAccessibilityStateChangedDelegate = (bool state, IntPtr userData) =>
-                    {
-                        AccessibilityStateChangedEventArgs args = new AccessibilityStateChangedEventArgs(state);
-                        _accessibilityStateChanged?.Invoke(null, args);
-                    };
-                    ErrorCode error = ImeEventSetAccessibilityStateChangedCb(_imeAccessibilityStateChangedDelegate, IntPtr.Zero);
-                    if (error != ErrorCode.None)
-                    {
-                        Log.Error(LogTag, "Add AccessibilityStateChanged Failed with error " + error);
-                    }
-                    else
-                    {
-                        _accessibilityStateChanged += value;
-                    }
+                    AccessibilityStateChangedEventArgs args = new AccessibilityStateChangedEventArgs(state);
+                    _accessibilityStateChanged?.Invoke(null, args);
+                };
+                ErrorCode error = ImeEventSetAccessibilityStateChangedCb(_imeAccessibilityStateChangedDelegate, IntPtr.Zero);
+                if (error != ErrorCode.None)
+                {
+                    Log.Error(LogTag, "Add AccessibilityStateChanged Failed with error " + error);
+                }
+                else
+                {
+                    _accessibilityStateChanged += value;
                 }
             }
             remove
             {
-                lock (thisLock)
-                {
-                    _accessibilityStateChanged -= value;
-                }
+                _accessibilityStateChanged -= value;
             }
         }
 
