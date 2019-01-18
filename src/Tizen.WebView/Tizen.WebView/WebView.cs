@@ -25,7 +25,7 @@ namespace Tizen.WebView
     /// A view used to render the web contents.
     /// </summary>
     /// <since_tizen> 4 </since_tizen>
-    public class WebView: EvasObject
+    public class WebView : EvasObject
     {
         private static IDictionary<string, JavaScriptMessageHandler> _javaScriptMessageHandlerMap = new Dictionary<string, JavaScriptMessageHandler>();
 
@@ -45,7 +45,10 @@ namespace Tizen.WebView
         private SmartEvent<SmartCallbackArgs> _titleChanged;
         private SmartEvent<SmartCallbackArgs> _urlChanged;
 
+        private SmartEvent<ContextMenuItemEventArgs> _contextMenuItemSelected;
+        private SmartEvent<ContextMenuCustomizeEventArgs> _contextMenuCustomize;
 
+        private ContextMenuCustomize _contextMenuCustomizeDelegate;
 
         /// <summary>
         /// Event that occurs when the load is started.
@@ -76,6 +79,19 @@ namespace Tizen.WebView
         /// </summary>
         /// <since_tizen> 4 </since_tizen>
         public event EventHandler<SmartCallbackArgs> UrlChanged;
+
+        /// <summary>
+        /// The delegate is invoked when context menu customization is needed.
+        /// </summary>
+        /// <param name="menu">The instance of ContextMenu.</param>
+        /// <since_tizen> 6 </since_tizen>
+        public delegate void ContextMenuCustomize(ContextMenu menu);
+
+        /// <summary>
+        /// Event that occurs when the context menu item selected.
+        /// </summary>
+        /// <since_tizen> 6 </since_tizen>
+        public event EventHandler<ContextMenuItemEventArgs> ContextMenuItemSelected;
 
         /// <summary>
         /// Current URL of the main frame.
@@ -348,6 +364,16 @@ namespace Tizen.WebView
             return _handle;
         }
 
+        /// <summary>
+        /// Sets the delegate for context menu customization.
+        /// </summary>
+        /// <param name="contextMenuCustomizeDelegate">The delegate for context menu customization.</param>
+        /// <since_tizen> 6 </since_tizen>
+        public void SetContextMenuCustomizeDelegate(ContextMenuCustomize contextMenuCustomizeDelegate)
+        {
+            _contextMenuCustomizeDelegate = contextMenuCustomizeDelegate;
+        }
+
         private void InitializeSmartEvent()
         {
             // focus dummy
@@ -362,12 +388,18 @@ namespace Tizen.WebView
             _loadError = new SmartEvent<SmartCallbackLoadErrorArgs>(this, _realHandle, "load,error", SmartCallbackLoadErrorArgs.CreateFromSmartEvent);
             _titleChanged = new SmartEvent<SmartCallbackArgs>(this, _realHandle, "title,changed", SmartCallbackArgs.CreateFromSmartEvent);
             _urlChanged = new SmartEvent<SmartCallbackArgs>(this, _realHandle, "url,changed", SmartCallbackArgs.CreateFromSmartEvent);
+            _contextMenuCustomize = new SmartEvent<ContextMenuCustomizeEventArgs>(this, _realHandle, "contextmenu,customize", ContextMenuCustomizeEventArgs.CreateFromSmartEvent);
+            _contextMenuItemSelected = new SmartEvent<ContextMenuItemEventArgs>(this, _realHandle, "contextmenu,selected", ContextMenuItemEventArgs.CreateFromSmartEvent);
 
             _loadStarted.On += (s, e) => { LoadStarted?.Invoke(this, EventArgs.Empty); };
             _loadFinished.On += (s, e) => { LoadFinished?.Invoke(this, EventArgs.Empty); };
             _loadError.On += (s, e) => { LoadError?.Invoke(this, e); };
             _titleChanged.On += (s, e) => { TitleChanged?.Invoke(this, e); };
             _urlChanged.On += (s, e) => { UrlChanged?.Invoke(this, e); };
+
+            _contextMenuItemSelected.On += (s, e) => { ContextMenuItemSelected?.Invoke(this, e); };
+            _contextMenuCustomize.On += (s, e) => { _contextMenuCustomizeDelegate?.Invoke(e.Menu); };
         }
+        
     }
 }
