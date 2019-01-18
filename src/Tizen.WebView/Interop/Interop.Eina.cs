@@ -1,5 +1,5 @@
-/*
- * Copyright (c) 2017 Samsung Electronics Co., Ltd All Rights Reserved
+/* 
+ * Copyright (c) 2018 Samsung Electronics Co., Ltd All Rights Reserved
  *
  * Licensed under the Apache License, Version 2.0 (the License);
  * you may not use this file except in compliance with the License.
@@ -13,13 +13,19 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
+using System;
+using System.Runtime.InteropServices;
+
 internal static partial class Interop
 {
-    private static class Libraries
+    internal static partial class Eina
     {
-        internal const string ChromiumEwk = "libchromium-ewk.so";
-        internal const string Elementary = "libelementary.so.1";
-        internal const string Evas = "libevas.so.1";
-        internal const string Eina = "libeina.so.1";
+        [DllImport(Libraries.Eina)]
+        internal static extern IntPtr eina_hash_string_small_new();
+
+        [DllImport(Libraries.Eina)]
+        [return: MarshalAs(UnmanagedType.U1)]
+        internal static extern bool eina_hash_add(IntPtr hash, string Key, string Value);
     }
 }

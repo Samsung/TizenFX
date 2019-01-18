@@ -16,6 +16,7 @@
 
 using System;
 using System.Runtime.InteropServices;
+using Tizen.WebView;
 
 internal static partial class Interop
 {
@@ -106,6 +107,56 @@ internal static partial class Interop
         [DllImport(Libraries.ChromiumEwk)]
         [return: MarshalAs(UnmanagedType.U1)]
         internal static extern bool ewk_view_focus_get(IntPtr obj);
+
+        [DllImport(Libraries.ChromiumEwk)]
+        [return: MarshalAs(UnmanagedType.U1)]
+        internal static extern bool ewk_view_contents_size_get(IntPtr obj, out int width, out int height);
+
+        [DllImport(Libraries.ChromiumEwk)]
+        [return: MarshalAs(UnmanagedType.U1)]
+        internal static extern bool ewk_view_fullscreen_exit(IntPtr obj);
+
+        [DllImport(Libraries.ChromiumEwk)]
+        internal static extern double ewk_view_load_progress_get(IntPtr obj);
+
+        [DllImport(Libraries.ChromiumEwk)]
+        internal static extern void ewk_view_orientation_send(IntPtr obj, Orientation orientation);
+
+        [DllImport(Libraries.ChromiumEwk)]
+        internal static extern void ewk_view_suspend(IntPtr obj);
+
+        [DllImport(Libraries.ChromiumEwk)]
+        internal static extern void ewk_view_resume(IntPtr obj);
+
+        [DllImport(Libraries.ChromiumEwk)]
+        internal static extern double ewk_view_scale_get(IntPtr obj);
+
+        [DllImport(Libraries.ChromiumEwk)]
+        [return: MarshalAs(UnmanagedType.U1)]
+        internal static extern bool ewk_view_scale_set(IntPtr obj, double scaleFactor, int cX, int cY);
+
+        [DllImport(Libraries.ChromiumEwk)]
+        [return: MarshalAs(UnmanagedType.U1)]
+        internal static extern bool ewk_view_visibility_set(IntPtr obj, bool enable);
+
+        [DllImport(Libraries.ChromiumEwk)]
+        [return: MarshalAs(UnmanagedType.U1)]
+        internal static extern bool ewk_view_scroll_pos_get(IntPtr obj, out int X, out int Y);
+
+        [DllImport(Libraries.ChromiumEwk)]
+        [return: MarshalAs(UnmanagedType.U1)]
+        internal static extern bool ewk_view_scroll_set(IntPtr obj, int X, int Y);
+
+        [DllImport(Libraries.ChromiumEwk)]
+        internal static extern void ewk_view_scroll_by(IntPtr obj, int X, int Y);
+
+        [DllImport(Libraries.ChromiumEwk)]
+        [return: MarshalAs(UnmanagedType.U1)]
+        internal static extern bool ewk_view_text_find(IntPtr obj, string text, FindOption option, int maxMatchCount);
+
+        [DllImport(Libraries.ChromiumEwk)]
+        [return: MarshalAs(UnmanagedType.U1)]
+        internal static extern bool ewk_view_url_request_set(IntPtr obj, string url, HttpMethod method, IntPtr headers, string body);
 
         [StructLayout(LayoutKind.Sequential, CharSet =CharSet.Ansi)]
         internal struct ScriptMessage
