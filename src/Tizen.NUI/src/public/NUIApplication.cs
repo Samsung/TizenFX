@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2018 Samsung Electronics Co., Ltd.
+ * Copyright (c) 2019 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -355,17 +355,30 @@ namespace Tizen.NUI
     }
 
     /// <summary>
-    /// Graphics BackendType
+    /// Graphics Backend Type.
     /// </summary>
     [Obsolete("Please do not use! This will be deprecated!")]
     [EditorBrowsable(EditorBrowsableState.Never)]
     public class Graphics
     {
+        /// <summary>
+        /// Graphics Backend Type.
+        /// </summary>
         public enum BackendType
         {
+            /// <summary>
+            /// The GLES backend.
+            /// </summary>
             Gles,
+            /// <summary>
+            /// The Vulkan backend.
+            /// </summary>
             Vulkan
         }
+
+        /// <summary>
+        /// The backend used by the NUIApplication.
+        /// </summary>
         public static BackendType Backend = BackendType.Gles;
         internal const string GlesCSharpBinder = "libdali-csharp-binder.so";
         internal const string VulkanCSharpBinder = "libdali-csharp-binder-vk.so";
