@@ -17,7 +17,7 @@ find $SOURCE_DIR -type d -name "obj" -prune -exec rm -r "{}" \;
 dotnet publish -c $CONF Tools.sln
 
 # Install
-APPS="GenDummy.Tasks ABIChecker"
+APPS="GenDummy ABIChecker"
 
 for x in $APPS; do
   mkdir -p $BINARY_DIR/$x

@@ -311,6 +311,7 @@ namespace Tizen.Multimedia
         public void Dispose()
         {
             Dispose(true);
+            GC.SuppressFinalize(this);
         }
 
         /// <summary>
@@ -320,7 +321,12 @@ namespace Tizen.Multimedia
         /// <since_tizen> 3 </since_tizen>
         protected virtual void Dispose(bool disposing)
         {
-            if (!_disposed)
+            if (_disposed)
+            {
+                return;
+            }
+
+            if (disposing)
             {
                 if (_handle != null)
                 {

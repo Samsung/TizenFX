@@ -38,6 +38,8 @@ namespace Tizen.Uix.InputMethod
         /// <summary>
         /// This API creates a handle for the editor window.
         /// </summary>
+        /// <param name="parent">Parent EvasObject.</param>
+        /// <returns>Handle IntPtr.</returns>
         /// <since_tizen> 4 </since_tizen>
         protected override IntPtr CreateHandle(EvasObject parent)
         {
@@ -47,6 +49,7 @@ namespace Tizen.Uix.InputMethod
         /// <summary>
         /// This API gets a handle for the editor window.
         /// </summary>
+        /// <returns>Handle IntPtr.</returns>
         /// <since_tizen> 4 </since_tizen>
         public IntPtr GetHandle()
         {
@@ -66,7 +69,7 @@ namespace Tizen.Uix.InputMethod
         /// <exception cref="InvalidOperationException">
         /// This can occur due to the following reasons:
         /// 1) The application does not have the privilege to call this function.
-        /// 2) The IME main loop isn't started yet.
+        /// 2) The IME main loop has not started yet.
         /// </exception>
         /// <since_tizen> 4 </since_tizen>
         public static void SetSize(int portraitWidth, int portraitHeight, int landscapeWidth, int landscapeHeight)

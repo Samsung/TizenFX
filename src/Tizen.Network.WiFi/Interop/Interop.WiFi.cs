@@ -36,6 +36,8 @@ internal static partial class Interop
         internal delegate void ConnectionStateChangedCallback(int connectionState, IntPtr ap, IntPtr userData);
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         internal delegate void RssiLevelChangedCallback(int level, IntPtr userData);
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+        internal delegate void ScanStateChangedCallback(int scanState, IntPtr userData);
 
         //capi-network-wifi-1.0.65-19.23.armv7l
         [DllImport(Libraries.WiFi, EntryPoint = "wifi_manager_initialize_cs")]
@@ -110,6 +112,12 @@ internal static partial class Interop
         internal static extern int SetRssiLevelchangedCallback(SafeWiFiManagerHandle wifi, RssiLevelChangedCallback callback, IntPtr userData);
         [DllImport(Libraries.WiFi, EntryPoint = "wifi_manager_unset_rssi_level_changed_cb")]
         internal static extern int UnsetRssiLevelchangedCallback(SafeWiFiManagerHandle wifi);
+        [DllImport(Libraries.WiFi, EntryPoint = "wifi_manager_get_scan_state")]
+        internal static extern int GetScanState(SafeWiFiManagerHandle wifi, out int scanState);
+        [DllImport(Libraries.WiFi, EntryPoint = "wifi_manager_set_scan_state_changed_cb")]
+        internal static extern int SetScanStateChangedCallback(SafeWiFiManagerHandle wifi, ScanStateChangedCallback callback, IntPtr userData);
+        [DllImport(Libraries.WiFi, EntryPoint = "wifi_manager_unset_scan_state_changed_cb")]
+        internal static extern int UnsetScanStateChangedCallback(SafeWiFiManagerHandle wifi);
 
         internal static class AP
         {

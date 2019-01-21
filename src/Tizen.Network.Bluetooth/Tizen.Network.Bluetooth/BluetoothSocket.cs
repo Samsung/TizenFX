@@ -48,7 +48,6 @@ namespace Tizen.Network.Bluetooth
         /// The connection must be established.
         /// </remarks>
         /// <param name="data">The data to be sent.</param>
-        /// <returns></returns>
         /// <since_tizen> 3 </since_tizen>
         int SendData(string data);
     }

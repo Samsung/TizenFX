@@ -15,6 +15,7 @@
  */
 
 using System;
+using System.ComponentModel;
 
 namespace Tizen.Network.Bluetooth
 {
@@ -104,6 +105,86 @@ namespace Tizen.Network.Bluetooth
             {
                 BluetoothErrorFactory.ThrowBluetoothException((int)BluetoothError.NotEnabled);
             }
+        }
+
+        /// <summary>
+        /// Opens a AG(Audio Gateway) SCO(Synchronous Connection Oriented link) to connected remote device asynchronously.
+        /// </summary>
+        /// <since_tizen> 6 </since_tizen>
+        /// <feature>http://tizen.org/feature/network.bluetooth</feature>
+        /// <feature>http://tizen.org/feature/network.bluetooth.audio.call</feature>
+        /// <privilege>http://tizen.org/privilege/bluetooth.admin</privilege>
+        /// <exception cref="NotSupportedException">Thrown when the Bluetooth is not supported.</exception>
+        /// <exception cref="InvalidOperationException">Thrown when the method is failed with message.</exception>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static void OpenAgSco()
+        {
+            BluetoothAudioImpl.Instance.OpenAgSco();
+        }
+
+        /// <summary>
+        /// Closes a AG(Audio Gateway) SCO(Synchronous Connection Oriented link) to connected remote device asynchronously.
+        /// </summary>
+        /// <since_tizen> 6 </since_tizen>
+        /// <feature>http://tizen.org/feature/network.bluetooth</feature>
+        /// <feature>http://tizen.org/feature/network.bluetooth.audio.call</feature>
+        /// <privilege>http://tizen.org/privilege/bluetooth.admin</privilege>
+        /// <exception cref="NotSupportedException">Thrown when the Bluetooth is not supported.</exception>
+        /// <exception cref="InvalidOperationException">Thrown when the method is failed with message.</exception>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static void CloseAgSco()
+        {
+            BluetoothAudioImpl.Instance.CloseAgSco();
+        }
+
+        /// <summary>
+        /// A property to check whether an opened AG(Audio Gateway) SCO(Synchronous Connection Oriented link) exists or not.
+        /// </summary>
+        /// <since_tizen> 6 </since_tizen>
+        /// <feature>http://tizen.org/feature/network.bluetooth</feature>
+        /// <feature>http://tizen.org/feature/network.bluetooth.audio.call</feature>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static bool IsAgScoOpened
+        {
+            get
+            {   
+                return BluetoothAudioImpl.Instance.IsAgScoOpened;
+            }
+        }
+
+        /// <summary>
+        /// This event is called when the AG(Audio Gateway) SCO(Synchronous Connection Oriented link) state is changed.
+        /// </summary>
+        /// <since_tizen> 6 </since_tizen>
+        /// <feature>http://tizen.org/feature/network.bluetooth</feature>
+        /// <feature>http://tizen.org/feature/network.bluetooth.audio.call</feature>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static event EventHandler<AgScoStateChangedEventArgs> AgScoStateChanged
+        {
+            add
+            {
+                BluetoothAudioImpl.Instance.AgScoStateChanged += value;
+            }
+            remove
+            {
+                BluetoothAudioImpl.Instance.AgScoStateChanged -= value;
+            }
+        }
+
+        /// <summary>
+        /// Notifies the state of AG(Audio Gateway) voice recognition to connected remote device.
+        /// </summary>
+        /// <param name="enable">The state of voice recognition. It is true if voice recognition state is enabled.</param>
+        /// <since_tizen> 6 </since_tizen>
+        /// <feature>http://tizen.org/feature/network.bluetooth</feature>
+        /// <feature>http://tizen.org/feature/network.bluetooth.audio.call</feature>
+        /// <privilege>http://tizen.org/privilege/bluetooth.admin</privilege>
+        /// <exception cref="NotSupportedException">Thrown when the Bluetooth is not supported.</exception>
+        /// <exception cref="InvalidOperationException">Thrown when the method is failed with message.</exception>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static void NotifyAgVoiceRecognitionState(bool enable)
+        {
+            BluetoothAudioImpl.Instance.NotifyAgVoiceRecognitionState(enable);
         }
     }
 }

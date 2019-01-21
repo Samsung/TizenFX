@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Reflection;
 
@@ -65,7 +66,35 @@ namespace Checker_ABI
         {
             var basePublicTypes = baseAssembly.GetTypes().Where(b => b.IsPublic).ToList();
             var targetPublicTypes = targetAssembly.GetTypes().Where(b => b.IsPublic).ToList();
-            var diffrentMemberList = new List<MemberInfo>();
+            var differentMemberList = new List<MemberInfo>();
+
+            var removedClasses = basePublicTypes.Where(b => !targetPublicTypes.Any(t => {
+                return (t.FullName == b.FullName)
+                && (t.GetCustomAttribute<EditorBrowsableAttribute>()?.State == b.GetCustomAttribute<EditorBrowsableAttribute>()?.State);
+                }));
+            foreach (var type in removedClasses)
+            {
+                Console.WriteLine($"  !! Missing Class: {type.FullName}");
+                foreach (var member in type.GetMembers(PublicOnlyFlags))
+                {
+                    Console.WriteLine($"    !! Missing API: {member.ToString()}");
+                    differentMemberList.Add(member);
+                }
+            }
+
+            var addedClasses = targetPublicTypes.Where(t => !basePublicTypes.Any(b => {
+                return (b.FullName == t.FullName)
+                && (b.GetCustomAttribute<EditorBrowsableAttribute>()?.State == t.GetCustomAttribute<EditorBrowsableAttribute>()?.State);
+                }));
+            foreach (var type in addedClasses)
+            {
+                Console.WriteLine($"  !! Added Class: {type.FullName}");
+                foreach(var member in type.GetMembers(PublicOnlyFlags))
+                {
+                    Console.WriteLine($"    !! Added API: {member.ToString()}");
+                    differentMemberList.Add(member);
+                }
+            }
 
             for (int i = 0; i < basePublicTypes.Count; i++)
             {
@@ -74,19 +103,18 @@ namespace Checker_ABI
                     if (basePublicTypes[i].ToString() == targetPublicTypes[j].ToString())
                     {
                         var differentMembers = CompareClassTypes(basePublicTypes[i], targetPublicTypes[j]);
-
                         if (differentMembers?.Count > 0)
                         {
                             Console.WriteLine($"  ==> {basePublicTypes[i]}, Diffrent Member Count : {differentMembers.Count}");
                             foreach (var member in differentMembers)
                             {
-                                diffrentMemberList.Add(member);
+                                differentMemberList.Add(member);
                             }
                         }
                     }
                 }
             }
-            return diffrentMemberList;
+            return differentMemberList;
         }
 
         public IList<MemberInfo> CheckAssemblyFile(Assembly assembly)

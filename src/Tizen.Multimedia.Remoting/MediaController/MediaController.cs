@@ -434,7 +434,7 @@ namespace Tizen.Multimedia.Remoting
 
             ValidationUtil.ValidateEnum(typeof(MediaControlPlaybackCommand), command, nameof(command));
 
-            Native.SendPlaybackStateCommand(Manager.Handle, ServerAppId, command.ToNative()).
+            Native.SendPlaybackActionCommandWithoutReqId(Manager.Handle, ServerAppId, command.ToNative()).
                 ThrowIfError("Failed to send command.");
         }
 

@@ -16,6 +16,7 @@ TizenFX API constists of the following namespaces:
 * [](xref:Tizen.Applications.NotificationEventListener?displayProperty=fullName)
 * [](xref:Tizen.Applications.Notifications?displayProperty=fullName)
 * [](xref:Tizen.Applications.Shortcut?displayProperty=fullName)
+* [](xref:Tizen.Applications.WatchfaceComplication?displayProperty=fullName)
 * [](xref:Tizen.Common?displayProperty=fullName)
 * [](xref:Tizen.Content.Download?displayProperty=fullName)
 * [](xref:Tizen.Content.MediaContent?displayProperty=fullName)

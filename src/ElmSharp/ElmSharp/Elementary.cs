@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2016 Samsung Electronics Co., Ltd All Rights Reserved
+ * Copyright (c) 2019 Samsung Electronics Co., Ltd All Rights Reserved
  *
  * Licensed under the Apache License, Version 2.0 (the License);
  * you may not use this file except in compliance with the License.
@@ -48,7 +48,18 @@ namespace ElmSharp
     /// <since_tizen> preview </since_tizen>
     public static class Elementary
     {
-        private static readonly string _themeFilePath = "/usr/share/elm-sharp/elm-sharp-theme.edj";
+        private const string _themeFilePath = "/usr/share/elm-sharp/elm-sharp-theme.edj";
+
+        /// <summary>
+        /// EvasObjectRealized will be triggered when the EvasObject is realized.
+        /// </summary>
+        /// <since_tizen> preview </since_tizen>
+        public static event EventHandler EvasObjectRealized;
+        
+        internal static void SendEvasObjectRealized(EvasObject obj)
+        {
+            EvasObjectRealized?.Invoke(obj, EventArgs.Empty);
+        }
 
         /// <summary>
         /// Gets or sets the configured finger size.

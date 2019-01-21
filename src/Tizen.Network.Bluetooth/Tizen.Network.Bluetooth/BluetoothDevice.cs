@@ -676,40 +676,13 @@ namespace Tizen.Network.Bluetooth
         /// <remarks>
         /// The Bluetooth must be enabled.
         /// </remarks>
+        /// <returns>The profile instance.</returns>
         /// <since_tizen> 3 </since_tizen>
         public T GetProfile<T>() where T : BluetoothProfile
         {
-            /*
-             * FIXME: Find a proper way for dynamic allocation.
-             */
-            T profile = null;
-            String type = typeof(T).ToString();
-            if (type.Equals("Tizen.Network.Bluetooth.BluetoothAudio"))
-            {
-                BluetoothAudio audio = new BluetoothAudio();
-                profile = (audio as T);
-            }
-            else if (type.Equals("Tizen.Network.Bluetooth.BluetoothAvrcp"))
-            {
-                BluetoothAvrcp avrcp = new BluetoothAvrcp();
-                profile = (avrcp as T);
-            }
-            else if (type.Equals("Tizen.Network.Bluetooth.BluetoothHid"))
-            {
-                BluetoothHid hid = new BluetoothHid();
-                profile = (hid as T);
-            }
-
-            else if (type.Equals("Tizen.Network.Bluetooth.BluetoothOppClient"))
-            {
-                BluetoothOppClient oppClient = new BluetoothOppClient();
-                profile = (oppClient as T);
-            }
-
-            if (profile != null)
-            {
-                profile.RemoteAddress = RemoteDeviceAddress;
-            }
+            // TODO : Need to check capability of supporting profiles
+            var profile = (T)Activator.CreateInstance(typeof(T), true);
+            profile.RemoteAddress = RemoteDeviceAddress;
             return profile;
         }
 

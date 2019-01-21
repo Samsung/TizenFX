@@ -205,6 +205,17 @@ namespace Tizen.Network.Bluetooth
         internal int ServiceDataLength;
     }
 
+    [StructLayout(LayoutKind.Sequential)]
+    internal struct BluetoothHidDeviceReceivedDataStruct
+    {
+        [MarshalAsAttribute(UnmanagedType.LPStr)]
+        internal string RemoteAddress;
+        internal BluetoothHidHeaderType headerType;
+        internal BluetoothHidParamType paramType;
+        internal int dataSize;
+        internal IntPtr data;
+    }
+
     internal static class BluetoothUtils
     {
         internal static BluetoothDevice ConvertStructToDeviceClass(BluetoothDeviceStruct device)
@@ -386,6 +397,14 @@ namespace Tizen.Network.Bluetooth
             connectionInfo.Fd = structInfo.SocketFd;
             connectionInfo.RemoteAddress = structInfo.Address;
             connectionInfo.Uuid = structInfo.ServiceUuid;
+            connectionInfo.ServerFd = structInfo.ServerFd;
+
+            BluetoothSocket clientSocket = new BluetoothSocket();
+            clientSocket.connectedSocket = structInfo.SocketFd;
+            clientSocket.remoteAddress = structInfo.Address;
+            clientSocket.serviceUuid = structInfo.ServiceUuid;
+            connectionInfo.ClientSocket = (IBluetoothServerSocket)clientSocket;
+
             return connectionInfo;
         }
     }
