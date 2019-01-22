@@ -15051,6 +15051,11 @@ namespace Tizen.NUI
 
 
 
+        [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint = "CSharp_Dali_WebView_AddJavaScriptMessageHandler")]
+        public static extern void WebView_AddJavaScriptMessageHandler(global::System.Runtime.InteropServices.HandleRef jarg1, string jarg2, global::System.Runtime.InteropServices.HandleRef jarg3);
+
+
+
         [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint = "CSharp_Dali_WebView_ClearHistory")]
         public static extern void WebView_ClearHistory(global::System.Runtime.InteropServices.HandleRef jarg1);
 
