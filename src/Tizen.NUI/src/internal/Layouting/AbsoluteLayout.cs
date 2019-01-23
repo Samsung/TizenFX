@@ -1,24 +1,24 @@
-/** Copyright (c) 2018 Samsung Electronics Co., Ltd.
-*
-* Licensed under the Apache License, Version 2.0 (the "License");
-* you may not use this file except in compliance with the License.
-* You may obtain a copy of the License at
-*
-* http://www.apache.org/licenses/LICENSE-2.0
-*
-* Unless required by applicable law or agreed to in writing, software
-* distributed under the License is distributed on an "AS IS" BASIS,
-* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-* See the License for the specific language governing permissions and
-* limitations under the License.
-*
-*/
+/* Copyright (c) 2018 Samsung Electronics Co., Ltd.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
+ */
 using System.ComponentModel;
 
 namespace Tizen.NUI
 {
     /// <summary>
-    /// [Draft] This class implements a absolute layout, allowing explict positioning of children.
+    /// [Draft] This class implements a absolute layout, allowing explicit positioning of children.
     ///  Positions are from the top left of the layout and can be set using the Actor::Property::POSITION and alike.
     /// </summary>
     internal class AbsoluteLayout : LayoutGroupWrapper
@@ -35,7 +35,7 @@ namespace Tizen.NUI
             return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
         }
 
-        protected virtual void Dispose(DisposeTypes type)
+        protected override void Dispose(DisposeTypes type)
         {
             if (disposed)
             {
@@ -74,8 +74,8 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// [Draft] Downcasts a handle to a AbsoluteLayout handle. 
-        /// If handle points to a AbsoluteLayout, the downcast produces a valid handle. 
+        /// [Draft] Downcasts a handle to a AbsoluteLayout handle.
+        /// If handle points to a AbsoluteLayout, the downcast produces a valid handle.
         /// If not, the returned handle is left uninitialized.
         /// </summary>
         /// <param name="handle">handle to an object</param>

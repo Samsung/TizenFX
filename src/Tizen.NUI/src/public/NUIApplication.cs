@@ -34,21 +34,11 @@ namespace Tizen.NUI
     public class NUIApplication : CoreApplication
     {
         /// <summary>
-        /// Occurs whenever the application is resumed.
-        /// </summary>
-        /// <since_tizen> 4 </since_tizen>
-        public event EventHandler Resumed;
-
-        /// <summary>
-        /// Occurs whenever the application is paused.
-        /// </summary>
-        /// <since_tizen> 4 </since_tizen>
-        public event EventHandler Paused;
-
-        /// <summary>
         /// The instance of ResourceManager.
         /// </summary>
         private static System.Resources.ResourceManager resourceManager = null;
+        private Size2D _windowSize2D = null;
+        private Position2D _windowPosition2D = null;
 
         /// <summary>
         /// The default constructor.
@@ -59,8 +49,6 @@ namespace Tizen.NUI
             Registry.Instance.SavedApplicationThread = Thread.CurrentThread;
         }
 
-        private Size2D _windowSize2D = null;
-        private Position2D _windowPosition2D = null;
         /// <summary>
         /// The constructor with window size and position.
         /// </summary>
@@ -139,14 +127,127 @@ namespace Tizen.NUI
         /// <param name="windowPosition"></param>
         /// <param name="styleSheet"></param>
         /// InhouseAPI, this could be opend in NextTizen
+        [Obsolete("Please do not use! This will be deprecated!")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public NUIApplication(Graphics.BackendType backend, WindowMode windowMode = WindowMode.Opaque, Size2D windowSize = null, Position2D windowPosition = null, string styleSheet = "") : base(new NUICoreBackend(styleSheet, windowMode))
         {
             //windowMode and styleSheet will be added later. currenlty it's not working as expected.
             Graphics.Backend = backend;
+            Tizen.Log.Error("NUI", "Plaese DO NOT set graphical backend type with this constructor! This will give no effect!");
+
             if (windowSize != null) { _windowSize2D = windowSize; }
             if (windowPosition != null) { _windowPosition2D = windowPosition; }
             Registry.Instance.SavedApplicationThread = Thread.CurrentThread;
+        }
+
+        /// <summary>
+        /// Occurs whenever the application is resumed.
+        /// </summary>
+        /// <since_tizen> 4 </since_tizen>
+        public event EventHandler Resumed;
+
+        /// <summary>
+        /// Occurs whenever the application is paused.
+        /// </summary>
+        /// <since_tizen> 4 </since_tizen>
+        public event EventHandler Paused;
+
+        /// <summary>
+        /// Enumeration for deciding whether a NUI application window is opaque or transparent.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
+        public enum WindowMode
+        {
+            /// <summary>
+            /// Opaque
+            /// </summary>
+            /// <since_tizen> 3 </since_tizen>
+            Opaque = 0,
+            /// <summary>
+            /// Transparent
+            /// </summary>
+            /// <since_tizen> 3 </since_tizen>
+            Transparent = 1
+        }
+
+        /// <summary>
+        /// ResourceManager to handle multilingual.
+        /// </summary>
+        /// <since_tizen> 4 </since_tizen>
+        public static System.Resources.ResourceManager MultilingualResourceManager
+        {
+            get
+            {
+                return resourceManager;
+            }
+            set
+            {
+                resourceManager = value;
+            }
+        }
+
+        /// <summary>
+        /// Gets the window instance.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
+        [Obsolete("Please do not use! This will be deprecated!")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public Window Window
+        {
+            get
+            {
+                return Window.Instance;
+            }
+        }
+
+        internal Application ApplicationHandle
+        {
+            get
+            {
+                return ((NUICoreBackend)this.Backend).ApplicationHandle;
+            }
+        }
+
+        /// <summary>
+        /// Register the assembly to XAML.
+        /// </summary>
+        /// <since_tizen> 5 </since_tizen>
+        public static void RegisterAssembly(Assembly assembly)
+        {
+            XamlParser.s_assemblies.Add(assembly);
+        }
+
+        /// <summary>
+        /// Runs the NUIApplication.
+        /// </summary>
+        /// <param name="args">Arguments from commandline.</param>
+        /// <since_tizen> 4 </since_tizen>
+        public override void Run(string[] args)
+        {
+            Backend.AddEventHandler(EventType.PreCreated, OnPreCreate);
+            Backend.AddEventHandler(EventType.Resumed, OnResume);
+            Backend.AddEventHandler(EventType.Paused, OnPause);
+            base.Run(args);
+        }
+
+        /// <summary>
+        /// Exits the NUIApplication.
+        /// </summary>
+        /// <since_tizen> 4 </since_tizen>
+        public override void Exit()
+        {
+            base.Exit();
+        }
+
+        /// <summary>
+        /// Ensures that the function passed in is called from the main loop when it is idle.
+        /// </summary>
+        /// <param name="func">The function to call</param>
+        /// <returns>true if added successfully, false otherwise</returns>
+        /// <since_tizen> 4 </since_tizen>
+        public bool AddIdle(System.Delegate func)
+        {
+            return ((NUICoreBackend)this.Backend).AddIdle(func);
         }
 
         /// <summary>
@@ -251,111 +352,12 @@ namespace Tizen.NUI
             base.OnCreate();
             Device.PlatformServices = new TizenPlatformServices();
         }
-
-        /// <summary>
-        /// Runs the NUIApplication.
-        /// </summary>
-        /// <param name="args">Arguments from commandline.</param>
-        /// <since_tizen> 4 </since_tizen>
-        public override void Run(string[] args)
-        {
-            Backend.AddEventHandler(EventType.PreCreated, OnPreCreate);
-            Backend.AddEventHandler(EventType.Resumed, OnResume);
-            Backend.AddEventHandler(EventType.Paused, OnPause);
-            base.Run(args);
-        }
-
-        /// <summary>
-        /// Exits the NUIApplication.
-        /// </summary>
-        /// <since_tizen> 4 </since_tizen>
-        public override void Exit()
-        {
-            base.Exit();
-        }
-
-        /// <summary>
-        /// Ensures that the function passed in is called from the main loop when it is idle.
-        /// </summary>
-        /// <param name="func">The function to call</param>
-        /// <returns>true if added successfully, false otherwise</returns>
-        /// <since_tizen> 4 </since_tizen>
-        public bool AddIdle(System.Delegate func)
-        {
-            return ((NUICoreBackend)this.Backend).AddIdle(func);
-        }
-
-        /// <summary>
-        /// Enumeration for deciding whether a NUI application window is opaque or transparent.
-        /// </summary>
-        /// <since_tizen> 3 </since_tizen>
-        public enum WindowMode
-        {
-            /// <summary>
-            /// Opaque
-            /// </summary>
-            /// <since_tizen> 3 </since_tizen>
-            Opaque = 0,
-            /// <summary>
-            /// Transparent
-            /// </summary>
-            /// <since_tizen> 3 </since_tizen>
-            Transparent = 1
-        }
-
-
-        internal Application ApplicationHandle
-        {
-            get
-            {
-                return ((NUICoreBackend)this.Backend).ApplicationHandle;
-            }
-        }
-
-        /// <summary>
-        /// ResourceManager to handle multilingual.
-        /// </summary>
-        /// <since_tizen> 4 </since_tizen>
-        public static System.Resources.ResourceManager MultilingualResourceManager
-        {
-            get
-            {
-                return resourceManager;
-            }
-            set
-            {
-                resourceManager = value;
-            }
-        }
-
-        /// <summary>
-        /// Register the assembly to XAML.
-        /// </summary>
-        /// <since_tizen> 5 </since_tizen>
-        public static void RegisterAssembly(Assembly assembly)
-        {
-            XamlParser.s_assemblies.Add(assembly);
-        }
-
-        /// <summary>
-        /// Gets the window instance.
-        /// </summary>
-        /// <since_tizen> 3 </since_tizen>
-        [Obsolete("Please do not use! This will be deprecated!")]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public Window Window
-        {
-            get
-            {
-                return Window.Instance;
-            }
-        }
     }
 
     /// <summary>
     /// Graphics BackendType
     /// </summary>
-    /// InhouseAPI, this could be opend in NextTizen
+    [Obsolete("Please do not use! This will be deprecated!")]
     [EditorBrowsable(EditorBrowsableState.Never)]
     public class Graphics
     {

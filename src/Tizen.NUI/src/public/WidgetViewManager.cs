@@ -37,49 +37,6 @@ namespace Tizen.NUI
     {
         private global::System.Runtime.InteropServices.HandleRef swigCPtr;
 
-        internal WidgetViewManager(global::System.IntPtr cPtr, bool cMemoryOwn) : base(NDalicManualPINVOKE.WidgetViewManager_SWIGUpcast(cPtr), cMemoryOwn)
-        {
-            swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
-        }
-
-        internal static global::System.Runtime.InteropServices.HandleRef getCPtr(WidgetViewManager obj)
-        {
-            return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
-        }
-
-        /// <summary>
-        /// To make WidgetViewManager instance be disposed.
-        /// </summary>
-        /// <since_tizen> 3 </since_tizen>
-        protected override void Dispose(DisposeTypes type)
-        {
-            if(disposed)
-            {
-                return;
-            }
-
-            if(type == DisposeTypes.Explicit)
-            {
-                //Called by User
-                //Release your own managed resources here.
-                //You should release all of your own disposable objects here.
-            }
-
-            //Release your own unmanaged resources here.
-            //You should not access any managed member here except static instance.
-            //because the execution order of Finalizes is non-deterministic.
-            if (swigCPtr.Handle != global::System.IntPtr.Zero)
-            {
-                if (swigCMemOwn)
-                {
-                    swigCMemOwn = false;
-                    NDalicManualPINVOKE.delete_WidgetViewManager(swigCPtr);
-                }
-                swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
-            }
-            base.Dispose(type);
-        }
-
         /// <summary>
         /// Creates a new widgetView manager object.
         /// </summary>
@@ -87,6 +44,32 @@ namespace Tizen.NUI
         public WidgetViewManager(NUIApplication nuiApplication, string appId) : this(NDalicManualPINVOKE.WidgetViewManager_New(Application.getCPtr(nuiApplication.ApplicationHandle), appId), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+        internal WidgetViewManager(global::System.IntPtr cPtr, bool cMemoryOwn) : base(NDalicManualPINVOKE.WidgetViewManager_SWIGUpcast(cPtr), cMemoryOwn)
+        {
+            swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
+        }
+
+        /// <summary>
+        /// Creates a new widget view object.
+        /// </summary>
+        /// <param name="widgetId">The widget ID.</param>
+        /// <param name="contentInfo">Contents that will be given to the widget instance.</param>
+        /// <param name="width">The widget width.</param>
+        /// <param name="height">The widget height.</param>
+        /// <param name="updatePeriod">The period of updating contents of the widget.</param>
+        /// <returns>A handle to WidgetView.</returns>
+        /// <since_tizen> 3 </since_tizen>
+        public WidgetView AddWidget(string widgetId, string contentInfo, int width, int height, float updatePeriod)
+        {
+            WidgetView ret = new WidgetView(NDalicManualPINVOKE.WidgetViewManager_AddWidget(swigCPtr, widgetId, contentInfo, width, height, updatePeriod), true);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        internal static global::System.Runtime.InteropServices.HandleRef getCPtr(WidgetViewManager obj)
+        {
+            return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
         }
 
         internal static WidgetViewManager DownCast(BaseHandle handle)
@@ -109,20 +92,36 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Creates a new widget view object.
+        /// To make WidgetViewManager instance be disposed.
         /// </summary>
-        /// <param name="widgetId">The widget ID.</param>
-        /// <param name="contentInfo">Contents that will be given to the widget instance.</param>
-        /// <param name="width">The widget width.</param>
-        /// <param name="height">The widget height.</param>
-        /// <param name="updatePeriod">The period of updating contents of the widget.</param>
-        /// <returns>A handle to WidgetView.</returns>
         /// <since_tizen> 3 </since_tizen>
-        public WidgetView AddWidget(string widgetId, string contentInfo, int width, int height, float updatePeriod)
+        protected override void Dispose(DisposeTypes type)
         {
-            WidgetView ret = new WidgetView(NDalicManualPINVOKE.WidgetViewManager_AddWidget(swigCPtr, widgetId, contentInfo, width, height, updatePeriod), true);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
+            if (disposed)
+            {
+                return;
+            }
+
+            if (type == DisposeTypes.Explicit)
+            {
+                //Called by User
+                //Release your own managed resources here.
+                //You should release all of your own disposable objects here.
+            }
+
+            //Release your own unmanaged resources here.
+            //You should not access any managed member here except static instance.
+            //because the execution order of Finalizes is non-deterministic.
+            if (swigCPtr.Handle != global::System.IntPtr.Zero)
+            {
+                if (swigCMemOwn)
+                {
+                    swigCMemOwn = false;
+                    NDalicManualPINVOKE.delete_WidgetViewManager(swigCPtr);
+                }
+                swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
+            }
+            base.Dispose(type);
         }
 
     }

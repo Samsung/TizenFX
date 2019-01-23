@@ -31,7 +31,7 @@ namespace Tizen.NUI.BaseComponents
     {
         /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty ResourceUrlProperty = BindableProperty.Create("ResourceUrl", typeof(string), typeof(ImageView), string.Empty, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty ResourceUrlProperty = BindableProperty.Create(nameof(ImageView.ResourceUrl), typeof(string), typeof(ImageView), string.Empty, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var imageView = (ImageView)bindable;
             if (newValue != null)
@@ -46,7 +46,7 @@ namespace Tizen.NUI.BaseComponents
                 imageView.UpdateImage();
             }
         },
-        defaultValueCreator:(bindable) =>
+        defaultValueCreator: (bindable) =>
         {
             var imageView = (ImageView)bindable;
             Tizen.NUI.Object.GetProperty(imageView.swigCPtr, ImageView.Property.IMAGE).Get(out imageView._url);
@@ -54,7 +54,7 @@ namespace Tizen.NUI.BaseComponents
         });
         /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty ImageProperty = BindableProperty.Create("Image", typeof(PropertyMap), typeof(ImageView), new PropertyMap(), propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty ImageProperty = BindableProperty.Create("Image", typeof(PropertyMap), typeof(ImageView), null, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var imageView = (ImageView)bindable;
             if (newValue != null)
@@ -62,7 +62,7 @@ namespace Tizen.NUI.BaseComponents
                 PropertyMap map = (PropertyMap)newValue;
                 if (imageView.IsCreateByXaml)
                 {
-                    string url = "", alphaMaskURL="", auxiliaryImageURL = "";
+                    string url = "", alphaMaskURL = "", auxiliaryImageURL = "";
                     string resource = Tizen.Applications.Application.Current.DirectoryInfo.Resource;
                     PropertyValue urlValue = map.Find(NDalic.IMAGE_VISUAL_URL);
                     bool ret = false;
@@ -84,7 +84,7 @@ namespace Tizen.NUI.BaseComponents
                     }
 
                     ret = false;
-                    PropertyValue auxiliaryImageURLValue  = map.Find(NDalic.IMAGE_VISUAL_AUXILIARY_IMAGE_URL);
+                    PropertyValue auxiliaryImageURLValue = map.Find(NDalic.IMAGE_VISUAL_AUXILIARY_IMAGE_URL);
                     if (auxiliaryImageURLValue != null) ret = auxiliaryImageURLValue.Get(out auxiliaryImageURL);
                     if (ret && auxiliaryImageURL.Contains("*Resource*"))
                     {
@@ -100,7 +100,7 @@ namespace Tizen.NUI.BaseComponents
                 }
             }
         },
-        defaultValueCreator:(bindable) =>
+        defaultValueCreator: (bindable) =>
         {
             var imageView = (ImageView)bindable;
             if (imageView._border == null)
@@ -124,7 +124,7 @@ namespace Tizen.NUI.BaseComponents
                 Tizen.NUI.Object.SetProperty(imageView.swigCPtr, ImageView.Property.PRE_MULTIPLIED_ALPHA, new Tizen.NUI.PropertyValue((bool)newValue));
             }
         },
-        defaultValueCreator:(bindable) =>
+        defaultValueCreator: (bindable) =>
         {
             var imageView = (ImageView)bindable;
             bool temp = false;
@@ -133,7 +133,7 @@ namespace Tizen.NUI.BaseComponents
         });
         /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty PixelAreaProperty = BindableProperty.Create("PixelArea", typeof(RelativeVector4), typeof(ImageView), new RelativeVector4(0,0,0,0), propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty PixelAreaProperty = BindableProperty.Create("PixelArea", typeof(RelativeVector4), typeof(ImageView), null, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var imageView = (ImageView)bindable;
             if (newValue != null)
@@ -141,7 +141,7 @@ namespace Tizen.NUI.BaseComponents
                 Tizen.NUI.Object.SetProperty(imageView.swigCPtr, ImageView.Property.PIXEL_AREA, new Tizen.NUI.PropertyValue((RelativeVector4)newValue));
             }
         },
-        defaultValueCreator:(bindable) =>
+        defaultValueCreator: (bindable) =>
         {
             var imageView = (ImageView)bindable;
             Vector4 temp = new Vector4(0.0f, 0.0f, 0.0f, 0.0f);
@@ -151,7 +151,7 @@ namespace Tizen.NUI.BaseComponents
         });
         /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty BorderProperty = BindableProperty.Create("Border", typeof(Rectangle), typeof(ImageView), new Rectangle(0,0,0,0), propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty BorderProperty = BindableProperty.Create("Border", typeof(Rectangle), typeof(ImageView), null, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var imageView = (ImageView)bindable;
             if (newValue != null)
@@ -160,7 +160,7 @@ namespace Tizen.NUI.BaseComponents
                 imageView.UpdateImage();
             }
         },
-        defaultValueCreator:(bindable) =>
+        defaultValueCreator: (bindable) =>
         {
             var imageView = (ImageView)bindable;
             return imageView._border;
@@ -176,7 +176,7 @@ namespace Tizen.NUI.BaseComponents
                 imageView.UpdateImage();
             }
         },
-        defaultValueCreator:(bindable) =>
+        defaultValueCreator: (bindable) =>
         {
             var imageView = (ImageView)bindable;
             return imageView._borderOnly ?? false;
@@ -192,7 +192,7 @@ namespace Tizen.NUI.BaseComponents
                 imageView.UpdateImage();
             }
         },
-        defaultValueCreator:(bindable) =>
+        defaultValueCreator: (bindable) =>
         {
             var imageView = (ImageView)bindable;
             return imageView._synchronousLoading ?? false;
@@ -208,54 +208,62 @@ namespace Tizen.NUI.BaseComponents
                 imageView.UpdateImage();
             }
         },
-        defaultValueCreator:(bindable) =>
+        defaultValueCreator: (bindable) =>
         {
             var imageView = (ImageView)bindable;
             return imageView._orientationCorrection ?? false;
         });
 
         private global::System.Runtime.InteropServices.HandleRef swigCPtr;
+        private EventHandler<ResourceReadyEventArgs> _resourceReadyEventHandler;
+        private ResourceReadyEventCallbackType _resourceReadyEventCallback;
+        private EventHandler<ResourceLoadedEventArgs> _resourceLoadedEventHandler;
+        private _resourceLoadedCallbackType _resourceLoadedCallback;
 
+        private Rectangle _border = null;
+        private PropertyMap _nPatchMap = null;
+        private bool? _synchronousLoading = null;
+        private bool? _borderOnly = null;
+        private string _url = null;
+        private bool? _orientationCorrection = null;
+
+
+        /// <summary>
+        /// Creates an initialized ImageView.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
+        public ImageView() : this(NDalicPINVOKE.ImageView_New__SWIG_0(), true)
+        {
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        /// <summary>
+        /// Creates an initialized ImageView from a URL to an image resource.<br />
+        /// If the string is empty, ImageView will not display anything.<br />
+        /// </summary>
+        /// <param name="url">The URL of the image resource to display.</param>
+        /// <since_tizen> 3 </since_tizen>
+        public ImageView(string url) : this(NDalicPINVOKE.ImageView_New__SWIG_2(url), true)
+        {
+            _url = url;
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+
+        }
+        internal ImageView(string url, Uint16Pair size) : this(NDalicPINVOKE.ImageView_New__SWIG_3(url, Uint16Pair.getCPtr(size)), true)
+        {
+            _url = url;
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+
+        }
         internal ImageView(global::System.IntPtr cPtr, bool cMemoryOwn) : base(NDalicPINVOKE.ImageView_SWIGUpcast(cPtr), cMemoryOwn)
         {
             swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
         }
 
-        internal static global::System.Runtime.InteropServices.HandleRef getCPtr(ImageView obj)
-        {
-            return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
-        }
-
-
-        /// <summary>
-        /// Event arguments of resource ready.
-        /// </summary>
-        /// <since_tizen> 3 </since_tizen>
-        public class ResourceReadyEventArgs : EventArgs
-        {
-            private View _view;
-
-            /// <summary>
-            /// The view whose resource is ready.
-            /// </summary>
-            /// <since_tizen> 3 </since_tizen>
-            public View View
-            {
-                get
-                {
-                    return _view;
-                }
-                set
-                {
-                    _view = value;
-                }
-            }
-        }
-
-        private EventHandler<ResourceReadyEventArgs> _resourceReadyEventHandler;
         [UnmanagedFunctionPointer(CallingConvention.StdCall)]
         private delegate void ResourceReadyEventCallbackType(IntPtr data);
-        private ResourceReadyEventCallbackType _resourceReadyEventCallback;
+        [UnmanagedFunctionPointer(CallingConvention.StdCall)]
+        private delegate void _resourceLoadedCallbackType(IntPtr view);
 
         /// <summary>
         /// An event for ResourceReady signal which can be used to subscribe or unsubscribe the event handler.<br />
@@ -287,197 +295,56 @@ namespace Tizen.NUI.BaseComponents
             }
         }
 
-        // Callback for View ResourceReady signal
-        private void OnResourceReady(IntPtr data)
+        internal event EventHandler<ResourceLoadedEventArgs> ResourceLoaded
         {
-            ResourceReadyEventArgs e = new ResourceReadyEventArgs();
-            if (data != null)
+            add
             {
-                e.View = Registry.GetManagedBaseHandleFromNativePtr(data) as View;
-            }
-
-            if (_resourceReadyEventHandler != null)
-            {
-                _resourceReadyEventHandler(this, e);
-            }
-        }
-
-        /// <summary>
-        /// you can override it to clean-up your own resources.
-        /// </summary>
-        /// <param name="type">DisposeTypes</param>
-        /// <since_tizen> 3 </since_tizen>
-        protected override void Dispose(DisposeTypes type)
-        {
-            if (disposed)
-            {
-                return;
-            }
-
-            if (type == DisposeTypes.Explicit)
-            {
-                //Called by User
-                //Release your own managed resources here.
-                //You should release all of your own disposable objects here.
-                _border?.Dispose();
-                _border = null;
-                _nPatchMap?.Dispose();
-                _nPatchMap = null;
-            }
-
-            //Release your own unmanaged resources here.
-            //You should not access any managed member here except static instance.
-            //because the execution order of Finalizes is non-deterministic.
-
-            if (swigCPtr.Handle != global::System.IntPtr.Zero)
-            {
-                if (swigCMemOwn)
+                if (_resourceLoadedEventHandler == null)
                 {
-                    swigCMemOwn = false;
-                    NDalicPINVOKE.delete_ImageView(swigCPtr);
+                    _resourceLoadedCallback = OnResourceLoaded;
+                    this.ResourceReadySignal(this).Connect(_resourceLoadedCallback);
                 }
-                swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
+
+                _resourceLoadedEventHandler += value;
             }
+            remove
+            {
+                _resourceLoadedEventHandler -= value;
 
-            base.Dispose(type);
-        }
-
-        internal new class Property
-        {
-            internal static readonly int RESOURCE_URL = NDalicPINVOKE.ImageView_Property_RESOURCE_URL_get();
-            internal static readonly int IMAGE = NDalicPINVOKE.ImageView_Property_IMAGE_get();
-            internal static readonly int PRE_MULTIPLIED_ALPHA = NDalicPINVOKE.ImageView_Property_PRE_MULTIPLIED_ALPHA_get();
-            internal static readonly int PIXEL_AREA = NDalicPINVOKE.ImageView_Property_PIXEL_AREA_get();
-            internal static readonly int ACTION_RELOAD = NDalicManualPINVOKE.ImageView_IMAGE_VISUAL_ACTION_RELOAD_get();
-            internal static readonly int ACTION_PLAY = NDalicManualPINVOKE.ImageView_IMAGE_VISUAL_ACTION_PLAY_get();
-            internal static readonly int ACTION_PAUSE = NDalicManualPINVOKE.ImageView_IMAGE_VISUAL_ACTION_PAUSE_get();
-            internal static readonly int ACTION_STOP = NDalicManualPINVOKE.ImageView_IMAGE_VISUAL_ACTION_STOP_get();
+                if (_resourceLoadedEventHandler == null && this.ResourceReadySignal(this).Empty() == false)
+                {
+                    this.ResourceReadySignal(this).Disconnect(_resourceLoadedCallback);
+                }
+            }
         }
 
         /// <summary>
-        /// Creates an initialized ImageView.
-        /// </summary>
-        /// <since_tizen> 3 </since_tizen>
-        public ImageView() : this(NDalicPINVOKE.ImageView_New__SWIG_0(), true)
-        {
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-        }
-
-        /// <summary>
-        /// Creates an initialized ImageView from a URL to an image resource.<br />
-        /// If the string is empty, ImageView will not display anything.<br />
-        /// </summary>
-        /// <param name="url">The URL of the image resource to display.</param>
-        /// <since_tizen> 3 </since_tizen>
-        public ImageView(string url) : this(NDalicPINVOKE.ImageView_New__SWIG_2(url), true)
-        {
-            _url = url;
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-
-        }
-        internal ImageView(string url, Uint16Pair size) : this(NDalicPINVOKE.ImageView_New__SWIG_3(url, Uint16Pair.getCPtr(size)), true)
-        {
-            _url = url;
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-
-        }
-
-        /// <summary>
-        /// Downcasts a handle to imageView handle.
-        /// </summary>
-        /// Please do not use! this will be deprecated!
-        /// Instead please use as keyword.
-        /// <since_tizen> 3 </since_tizen>
-        [Obsolete("Please do not use! This will be deprecated! Please use as keyword instead! " +
-            "Like: " +
-            "BaseHandle handle = new ImageView(imagePath); " +
-            "ImageView image = handle as ImageView")]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public static ImageView DownCast(BaseHandle handle)
-        {
-            ImageView ret = Registry.GetManagedBaseHandleFromNativePtr(handle) as ImageView;
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
-        }
-
-        /// <summary>
-        /// Sets this ImageView from the given URL.<br />
-        /// If the URL is empty, ImageView will not display anything.<br />
-        /// </summary>
-        /// <param name="url">The URL to the image resource to display.</param>
-        /// <since_tizen> 3 </since_tizen>
-        public void SetImage(string url)
-        {
-            _url = url;
-            NDalicPINVOKE.ImageView_SetImage__SWIG_1(swigCPtr, url);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-        }
-        internal void SetImage(string url, Uint16Pair size)
-        {
-            _url = url;
-            NDalicPINVOKE.ImageView_SetImage__SWIG_2(swigCPtr, url, Uint16Pair.getCPtr(size));
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-        }
-
-        internal ViewResourceReadySignal ResourceReadySignal(View view)
-        {
-            ViewResourceReadySignal ret = new ViewResourceReadySignal(NDalicPINVOKE.ResourceReadySignal(View.getCPtr(view)), false);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
-        }
-
-        /// <summary>
-        /// Queries if all resources required by a control are loaded and ready.<br />
-        /// Most resources are only loaded when the control is placed on the stage.<br />
-        /// True if the resources are loaded and ready, false otherwise.<br />
-        /// </summary>
-        /// <since_tizen> 3 </since_tizen>
-        public new bool IsResourceReady()
-        {
-            bool ret = NDalicPINVOKE.IsResourceReady(swigCPtr);
-            if (NDalicPINVOKE.SWIGPendingException.Pending)
-                throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
-        }
-
-        /// <summary>
-        /// Forcefully reloads the image. All the visuals using this image will reload to the latest image.
-        /// </summary>
-        /// <since_tizen> 5 </since_tizen>        
-        public void Reload()
-        {
-            this.DoAction(ImageView.Property.IMAGE, Property.ACTION_RELOAD, new PropertyValue(0));
-        }
-
-        /// <summary>
-        /// Plays the animated GIF. This is also the default playback mode.
+        /// Enumeration for LoadingStatus of image.
         /// </summary>
         /// <since_tizen> 5 </since_tizen>
-        public void Play()
+        public enum LoadingStatusType
         {
-            this.DoAction(ImageView.Property.IMAGE, Property.ACTION_PLAY, new PropertyValue(0));
-        }
-
-        /// <summary>
-        /// Pauses the animated GIF.
-        /// </summary>
-        /// <since_tizen> 5 </since_tizen>
-        public void Pause()
-        {
-            this.DoAction(ImageView.Property.IMAGE, Property.ACTION_PAUSE, new PropertyValue(0));
-        }
-
-        /// <summary>
-        /// Stops the animated GIF.
-        /// </summary>
-        /// <since_tizen> 5 </since_tizen>
-        public void Stop()
-        {
-            this.DoAction(ImageView.Property.IMAGE, Property.ACTION_STOP, new PropertyValue(0));
+            /// <summary>
+            /// Loading preparing status.
+            /// </summary>
+            /// <since_tizen> 5 </since_tizen>
+            Preparing,
+            /// <summary>
+            /// Loading ready status.
+            /// </summary>
+            /// <since_tizen> 5 </since_tizen>
+            Ready,
+            /// <summary>
+            /// Loading failed status.
+            /// </summary>
+            /// <since_tizen> 5 </since_tizen>
+            Failed
         }
 
         /// <summary>
         /// ImageView ResourceUrl, type string.
+        /// This is one of mandatory property. Even if not set or null set, it sets empty string ("") internally.
+        /// When it is set as null, it gives empty string ("") to be read.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public string ResourceUrl
@@ -488,7 +355,8 @@ namespace Tizen.NUI.BaseComponents
             }
             set
             {
-                SetValue(ResourceUrlProperty, value);
+                _url = (value == null? "" : value);
+                SetValue(ResourceUrlProperty, _url);
                 NotifyPropertyChanged();
             }
         }
@@ -663,7 +531,6 @@ namespace Tizen.NUI.BaseComponents
             }
         }
 
-
         /// <summary>
         /// Gets the loading state of the visual resource.
         /// </summary>
@@ -677,28 +544,164 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        /// Enumeration for LoadingStatus of image.
+        /// Downcasts a handle to imageView handle.
         /// </summary>
-        /// <since_tizen> 5 </since_tizen>
-        public enum LoadingStatusType
+        /// Please do not use! this will be deprecated!
+        /// Instead please use as keyword.
+        /// <since_tizen> 3 </since_tizen>
+        [Obsolete("Please do not use! This will be deprecated! Please use as keyword instead! " +
+            "Like: " +
+            "BaseHandle handle = new ImageView(imagePath); " +
+            "ImageView image = handle as ImageView")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static ImageView DownCast(BaseHandle handle)
         {
-            /// <summary>
-            /// Loading preparing status.
-            /// </summary>
-            /// <since_tizen> 5 </since_tizen>
-            Preparing,
-            /// <summary>
-            /// Loading ready status.
-            /// </summary>
-            /// <since_tizen> 5 </since_tizen>
-            Ready,
-            /// <summary>
-            /// Loading failed status.
-            /// </summary>
-            /// <since_tizen> 5 </since_tizen>
-            Failed
+            ImageView ret = Registry.GetManagedBaseHandleFromNativePtr(handle) as ImageView;
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
         }
 
+        /// <summary>
+        /// Sets this ImageView from the given URL.<br />
+        /// If the URL is empty, ImageView will not display anything.<br />
+        /// </summary>
+        /// <param name="url">The URL to the image resource to display.</param>
+        /// <since_tizen> 3 </since_tizen>
+        public void SetImage(string url)
+        {
+            _url = url;
+            NDalicPINVOKE.ImageView_SetImage__SWIG_1(swigCPtr, url);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        /// <summary>
+        /// Queries if all resources required by a control are loaded and ready.<br />
+        /// Most resources are only loaded when the control is placed on the stage.<br />
+        /// True if the resources are loaded and ready, false otherwise.<br />
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
+        public new bool IsResourceReady()
+        {
+            bool ret = NDalicPINVOKE.IsResourceReady(swigCPtr);
+            if (NDalicPINVOKE.SWIGPendingException.Pending)
+                throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        /// <summary>
+        /// Forcefully reloads the image. All the visuals using this image will reload to the latest image.
+        /// </summary>
+        /// <since_tizen> 5 </since_tizen>
+        public void Reload()
+        {
+            this.DoAction(ImageView.Property.IMAGE, Property.ACTION_RELOAD, new PropertyValue(0));
+        }
+
+        /// <summary>
+        /// Plays the animated GIF. This is also the default playback mode.
+        /// </summary>
+        /// <since_tizen> 5 </since_tizen>
+        public void Play()
+        {
+            this.DoAction(ImageView.Property.IMAGE, Property.ACTION_PLAY, new PropertyValue(0));
+        }
+
+        /// <summary>
+        /// Pauses the animated GIF.
+        /// </summary>
+        /// <since_tizen> 5 </since_tizen>
+        public void Pause()
+        {
+            this.DoAction(ImageView.Property.IMAGE, Property.ACTION_PAUSE, new PropertyValue(0));
+        }
+
+        /// <summary>
+        /// Stops the animated GIF.
+        /// </summary>
+        /// <since_tizen> 5 </since_tizen>
+        public void Stop()
+        {
+            this.DoAction(ImageView.Property.IMAGE, Property.ACTION_STOP, new PropertyValue(0));
+        }
+
+        internal static global::System.Runtime.InteropServices.HandleRef getCPtr(ImageView obj)
+        {
+            return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
+        }
+
+        internal void SetImage(string url, Uint16Pair size)
+        {
+            _url = url;
+            NDalicPINVOKE.ImageView_SetImage__SWIG_2(swigCPtr, url, Uint16Pair.getCPtr(size));
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        internal ViewResourceReadySignal ResourceReadySignal(View view)
+        {
+            ViewResourceReadySignal ret = new ViewResourceReadySignal(NDalicPINVOKE.ResourceReadySignal(View.getCPtr(view)), false);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        internal ResourceLoadingStatusType GetResourceStatus()
+        {
+            return (ResourceLoadingStatusType)NDalicManualPINVOKE.View_GetVisualResourceStatus(this.swigCPtr, Property.IMAGE);
+        }
+
+        /// <summary>
+        /// you can override it to clean-up your own resources.
+        /// </summary>
+        /// <param name="type">DisposeTypes</param>
+        /// <since_tizen> 3 </since_tizen>
+        protected override void Dispose(DisposeTypes type)
+        {
+            if (disposed)
+            {
+                return;
+            }
+
+            if (type == DisposeTypes.Explicit)
+            {
+                //Called by User
+                //Release your own managed resources here.
+                //You should release all of your own disposable objects here.
+                _border?.Dispose();
+                _border = null;
+                _nPatchMap?.Dispose();
+                _nPatchMap = null;
+            }
+
+            //Release your own unmanaged resources here.
+            //You should not access any managed member here except static instance.
+            //because the execution order of Finalizes is non-deterministic.
+
+            if (swigCPtr.Handle != global::System.IntPtr.Zero)
+            {
+                if (swigCMemOwn)
+                {
+                    swigCMemOwn = false;
+                    NDalicPINVOKE.delete_ImageView(swigCPtr);
+                }
+                swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
+            }
+
+            base.Dispose(type);
+        }
+
+        // Callback for View ResourceReady signal
+        private void OnResourceReady(IntPtr data)
+        {
+            ResourceReadyEventArgs e = new ResourceReadyEventArgs();
+            if (data != null)
+            {
+                e.View = Registry.GetManagedBaseHandleFromNativePtr(data) as View;
+            }
+
+            if (_resourceReadyEventHandler != null)
+            {
+                _resourceReadyEventHandler(this, e);
+            }
+        }
 
         private void UpdateImage()
         {
@@ -731,13 +734,41 @@ namespace Tizen.NUI.BaseComponents
             }
         }
 
-        private Rectangle _border = null;
-        private PropertyMap _nPatchMap = null;
-        private bool? _synchronousLoading = null;
-        private bool? _borderOnly = null;
-        private string _url = null;
-        private bool? _orientationCorrection = null;
+        private void OnResourceLoaded(IntPtr view)
+        {
+            ResourceLoadedEventArgs e = new ResourceLoadedEventArgs();
+            e.Status = (ResourceLoadingStatusType)NDalicManualPINVOKE.View_GetVisualResourceStatus(this.swigCPtr, Property.IMAGE);
 
+            if (_resourceLoadedEventHandler != null)
+            {
+                _resourceLoadedEventHandler(this, e);
+            }
+        }
+
+        /// <summary>
+        /// Event arguments of resource ready.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
+        public class ResourceReadyEventArgs : EventArgs
+        {
+            private View _view;
+
+            /// <summary>
+            /// The view whose resource is ready.
+            /// </summary>
+            /// <since_tizen> 3 </since_tizen>
+            public View View
+            {
+                get
+                {
+                    return _view;
+                }
+                set
+                {
+                    _view = value;
+                }
+            }
+        }
 
         internal class ResourceLoadedEventArgs : EventArgs
         {
@@ -755,51 +786,16 @@ namespace Tizen.NUI.BaseComponents
             }
         }
 
-        private EventHandler<ResourceLoadedEventArgs> _resourceLoadedEventHandler;
-        [UnmanagedFunctionPointer(CallingConvention.StdCall)]
-        private delegate void _resourceLoadedCallbackType(IntPtr view);
-        private _resourceLoadedCallbackType _resourceLoadedCallback;
-
-        internal event EventHandler<ResourceLoadedEventArgs> ResourceLoaded
+        internal new class Property
         {
-            add
-            {
-                if (_resourceLoadedEventHandler == null)
-                {
-                    _resourceLoadedCallback = OnResourceLoaded;
-                    this.ResourceReadySignal(this).Connect(_resourceLoadedCallback);
-                }
-
-                _resourceLoadedEventHandler += value;
-            }
-            remove
-            {
-                _resourceLoadedEventHandler -= value;
-
-                if (_resourceLoadedEventHandler == null && this.ResourceReadySignal(this).Empty() == false)
-                {
-                    this.ResourceReadySignal(this).Disconnect(_resourceLoadedCallback);
-                }
-            }
+            internal static readonly int RESOURCE_URL = NDalicPINVOKE.ImageView_Property_RESOURCE_URL_get();
+            internal static readonly int IMAGE = NDalicPINVOKE.ImageView_Property_IMAGE_get();
+            internal static readonly int PRE_MULTIPLIED_ALPHA = NDalicPINVOKE.ImageView_Property_PRE_MULTIPLIED_ALPHA_get();
+            internal static readonly int PIXEL_AREA = NDalicPINVOKE.ImageView_Property_PIXEL_AREA_get();
+            internal static readonly int ACTION_RELOAD = NDalicManualPINVOKE.ImageView_IMAGE_VISUAL_ACTION_RELOAD_get();
+            internal static readonly int ACTION_PLAY = NDalicManualPINVOKE.ImageView_IMAGE_VISUAL_ACTION_PLAY_get();
+            internal static readonly int ACTION_PAUSE = NDalicManualPINVOKE.ImageView_IMAGE_VISUAL_ACTION_PAUSE_get();
+            internal static readonly int ACTION_STOP = NDalicManualPINVOKE.ImageView_IMAGE_VISUAL_ACTION_STOP_get();
         }
-
-        private void OnResourceLoaded(IntPtr view)
-        {
-            ResourceLoadedEventArgs e = new ResourceLoadedEventArgs();
-            e.Status = (ResourceLoadingStatusType)NDalicManualPINVOKE.View_GetVisualResourceStatus(this.swigCPtr, Property.IMAGE);
-
-            if (_resourceLoadedEventHandler != null)
-            {
-                _resourceLoadedEventHandler(this, e);
-            }
-        }
-
-        internal ResourceLoadingStatusType GetResourceStatus()
-        {
-            return (ResourceLoadingStatusType)NDalicManualPINVOKE.View_GetVisualResourceStatus(this.swigCPtr, Property.IMAGE);
-        }
-
-
     }
-
 }

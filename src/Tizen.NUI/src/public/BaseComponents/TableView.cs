@@ -42,7 +42,7 @@ namespace Tizen.NUI.BaseComponents
                 Tizen.NUI.Object.SetProperty(tableView.swigCPtr, TableView.Property.ROWS, new Tizen.NUI.PropertyValue((int)newValue));
             }
         },
-        defaultValueCreator:(bindable) =>
+        defaultValueCreator: (bindable) =>
         {
             var tableView = (TableView)bindable;
             int temp = 0;
@@ -59,7 +59,7 @@ namespace Tizen.NUI.BaseComponents
                 Tizen.NUI.Object.SetProperty(tableView.swigCPtr, TableView.Property.COLUMNS, new Tizen.NUI.PropertyValue((int)newValue));
             }
         },
-        defaultValueCreator:(bindable) =>
+        defaultValueCreator: (bindable) =>
         {
             var tableView = (TableView)bindable;
             int temp = 0;
@@ -68,7 +68,7 @@ namespace Tizen.NUI.BaseComponents
         });
         /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty CellPaddingProperty = BindableProperty.Create("CellPadding", typeof(Vector2), typeof(TableView), Vector2.Zero, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty CellPaddingProperty = BindableProperty.Create("CellPadding", typeof(Vector2), typeof(TableView), null, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var tableView = (TableView)bindable;
             if (newValue != null)
@@ -76,7 +76,7 @@ namespace Tizen.NUI.BaseComponents
                 Tizen.NUI.Object.SetProperty(tableView.swigCPtr, TableView.Property.CELL_PADDING, new Tizen.NUI.PropertyValue((Vector2)newValue));
             }
         },
-        defaultValueCreator:(bindable) =>
+        defaultValueCreator: (bindable) =>
         {
             var tableView = (TableView)bindable;
             Vector2 temp = new Vector2(0.0f, 0.0f);
@@ -85,7 +85,7 @@ namespace Tizen.NUI.BaseComponents
         });
         /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty LayoutRowsProperty = BindableProperty.Create("LayoutRows", typeof(PropertyMap), typeof(TableView), new PropertyMap(), propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty LayoutRowsProperty = BindableProperty.Create("LayoutRows", typeof(PropertyMap), typeof(TableView), null, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var tableView = (TableView)bindable;
             if (newValue != null)
@@ -93,7 +93,7 @@ namespace Tizen.NUI.BaseComponents
                 Tizen.NUI.Object.SetProperty(tableView.swigCPtr, TableView.Property.LAYOUT_ROWS, new Tizen.NUI.PropertyValue((PropertyMap)newValue));
             }
         },
-        defaultValueCreator:(bindable) =>
+        defaultValueCreator: (bindable) =>
         {
             var tableView = (TableView)bindable;
             PropertyMap temp = new PropertyMap();
@@ -102,7 +102,7 @@ namespace Tizen.NUI.BaseComponents
         });
         /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty LayoutColumnsProperty = BindableProperty.Create("LayoutColumns", typeof(PropertyMap), typeof(TableView), new PropertyMap(), propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty LayoutColumnsProperty = BindableProperty.Create("LayoutColumns", typeof(PropertyMap), typeof(TableView), null, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var tableView = (TableView)bindable;
             if (newValue != null)
@@ -110,7 +110,7 @@ namespace Tizen.NUI.BaseComponents
                 Tizen.NUI.Object.SetProperty(tableView.swigCPtr, TableView.Property.LAYOUT_COLUMNS, new Tizen.NUI.PropertyValue((PropertyMap)newValue));
             }
         },
-        defaultValueCreator:(bindable) =>
+        defaultValueCreator: (bindable) =>
         {
             var tableView = (TableView)bindable;
             PropertyMap temp = new PropertyMap();
@@ -118,375 +118,7 @@ namespace Tizen.NUI.BaseComponents
             return temp;
         });
 
-
         private global::System.Runtime.InteropServices.HandleRef swigCPtr;
-
-        internal TableView(global::System.IntPtr cPtr, bool cMemoryOwn) : base(NDalicPINVOKE.TableView_SWIGUpcast(cPtr), cMemoryOwn)
-        {
-            swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
-        }
-
-        internal static global::System.Runtime.InteropServices.HandleRef getCPtr(TableView obj)
-        {
-            return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
-        }
-
-        /// <summary>
-        /// Dispose
-        /// </summary>
-        /// <param name="type">The dispose type</param>
-        /// <since_tizen> 3 </since_tizen>
-        protected override void Dispose(DisposeTypes type)
-        {
-            if (disposed)
-            {
-                return;
-            }
-
-            if (type == DisposeTypes.Explicit)
-            {
-                //Called by User
-                //Release your own managed resources here.
-                //You should release all of your own disposable objects here.
-            }
-
-            //Release your own unmanaged resources here.
-            //You should not access any managed member here except static instance.
-            //because the execution order of Finalizes is non-deterministic.
-
-            if (swigCPtr.Handle != global::System.IntPtr.Zero)
-            {
-                if (swigCMemOwn)
-                {
-                    swigCMemOwn = false;
-                    NDalicPINVOKE.delete_TableView(swigCPtr);
-                }
-                swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
-            }
-
-            base.Dispose(type);
-        }
-
-
-        internal new class Property
-        {
-            internal static readonly int ROWS = NDalicPINVOKE.TableView_Property_ROWS_get();
-            internal static readonly int COLUMNS = NDalicPINVOKE.TableView_Property_COLUMNS_get();
-            internal static readonly int CELL_PADDING = NDalicPINVOKE.TableView_Property_CELL_PADDING_get();
-            internal static readonly int LAYOUT_ROWS = NDalicPINVOKE.TableView_Property_LAYOUT_ROWS_get();
-            internal static readonly int LAYOUT_COLUMNS = NDalicPINVOKE.TableView_Property_LAYOUT_COLUMNS_get();
-        }
-
-        internal class ChildProperty
-        {
-            internal static readonly int CELL_INDEX = NDalicPINVOKE.TableView_ChildProperty_CELL_INDEX_get();
-            internal static readonly int ROW_SPAN = NDalicPINVOKE.TableView_ChildProperty_ROW_SPAN_get();
-            internal static readonly int COLUMN_SPAN = NDalicPINVOKE.TableView_ChildProperty_COLUMN_SPAN_get();
-            internal static readonly int CELL_HORIZONTAL_ALIGNMENT = NDalicPINVOKE.TableView_ChildProperty_CELL_HORIZONTAL_ALIGNMENT_get();
-            internal static readonly int CELL_VERTICAL_ALIGNMENT = NDalicPINVOKE.TableView_ChildProperty_CELL_VERTICAL_ALIGNMENT_get();
-        }
-
-        /// <summary>
-        /// Class to specify the layout position for the child view.
-        /// </summary>
-        /// <since_tizen> 3 </since_tizen>
-        public class CellPosition : global::System.IDisposable
-        {
-            private global::System.Runtime.InteropServices.HandleRef swigCPtr;
-            /// <summary>
-            /// swigCMemOwn
-            /// </summary>
-            /// <since_tizen> 3 </since_tizen>
-            protected bool swigCMemOwn;
-
-            internal CellPosition(global::System.IntPtr cPtr, bool cMemoryOwn)
-            {
-                swigCMemOwn = cMemoryOwn;
-                swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
-            }
-
-            internal static global::System.Runtime.InteropServices.HandleRef getCPtr(CellPosition obj)
-            {
-                return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
-            }
-
-            //A Flag to check who called Dispose(). (By User or DisposeQueue)
-            private bool isDisposeQueued = false;
-            /// <summary>
-            /// A Flat to check if it is already disposed.
-            /// </summary>
-            /// <since_tizen> 3 </since_tizen>
-            protected bool disposed = false;
-
-            /// <summary>
-            /// Dispose.
-            /// </summary>
-            /// <since_tizen> 3 </since_tizen>
-            ~CellPosition()
-            {
-                if (!isDisposeQueued)
-                {
-                    isDisposeQueued = true;
-                    DisposeQueue.Instance.Add(this);
-                }
-            }
-
-            /// <summary>
-            /// Dispose.
-            /// </summary>
-            /// <since_tizen> 3 </since_tizen>
-            public void Dispose()
-            {
-                //Throw excpetion if Dispose() is called in separate thread.
-                if (!Window.IsInstalled())
-                {
-                    throw new System.InvalidOperationException("This API called from separate thread. This API must be called from MainThread.");
-                }
-
-                if (isDisposeQueued)
-                {
-                    Dispose(DisposeTypes.Implicit);
-                }
-                else
-                {
-                    Dispose(DisposeTypes.Explicit);
-                    System.GC.SuppressFinalize(this);
-                }
-            }
-
-            /// <summary>
-            /// Dispose.
-            /// </summary>
-            /// <param name="type">DisposeTypes</param>
-            /// <since_tizen> 3 </since_tizen>
-            protected virtual void Dispose(DisposeTypes type)
-            {
-                if (disposed)
-                {
-                    return;
-                }
-
-                if (type == DisposeTypes.Explicit)
-                {
-                    //Called by User
-                    //Release your own managed resources here.
-                    //You should release all of your own disposable objects here.
-                }
-
-                //Release your own unmanaged resources here.
-                //You should not access any managed member here except static instance.
-                //because the execution order of Finalizes is non-deterministic.
-
-                if (swigCPtr.Handle != global::System.IntPtr.Zero)
-                {
-                    if (swigCMemOwn)
-                    {
-                        swigCMemOwn = false;
-                        NDalicPINVOKE.delete_TableView_CellPosition(swigCPtr);
-                    }
-                    swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
-                }
-                disposed = true;
-            }
-
-            /// <summary>
-            /// The constructor.
-            /// </summary>
-            /// <param name="rowIndex">The row index initialized.</param>
-            /// <param name="columnIndex">The column index initialized.</param>
-            /// <param name="rowSpan">The row span initialized.</param>
-            /// <param name="columnSpan">The column span initialized.</param>
-            /// <since_tizen> 3 </since_tizen>
-            public CellPosition(uint rowIndex, uint columnIndex, uint rowSpan, uint columnSpan) : this(NDalicPINVOKE.new_TableView_CellPosition__SWIG_0(rowIndex, columnIndex, rowSpan, columnSpan), true)
-            {
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            }
-
-            /// <summary>
-            /// The constructor to initialize values to defaults for convenience.
-            /// </summary>
-            /// <param name="rowIndex">The row index initialized.</param>
-            /// <param name="columnIndex">The column index initialized.</param>
-            /// <param name="rowSpan">The row span initialized.</param>
-            /// <since_tizen> 3 </since_tizen>
-            public CellPosition(uint rowIndex, uint columnIndex, uint rowSpan) : this(NDalicPINVOKE.new_TableView_CellPosition__SWIG_1(rowIndex, columnIndex, rowSpan), true)
-            {
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            }
-
-            /// <summary>
-            /// The constructor to initialize values to defaults for convenience.
-            /// </summary>
-            /// <param name="rowIndex">The row index initialized.</param>
-            /// <param name="columnIndex">The column index initialized.</param>
-            /// <since_tizen> 3 </since_tizen>
-            public CellPosition(uint rowIndex, uint columnIndex) : this(NDalicPINVOKE.new_TableView_CellPosition__SWIG_2(rowIndex, columnIndex), true)
-            {
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            }
-
-            /// <summary>
-            /// The constructor to initialize values to default for convenience.
-            /// </summary>
-            /// <param name="rowIndex">The row index initialized.</param>
-            /// <since_tizen> 3 </since_tizen>
-            public CellPosition(uint rowIndex) : this(NDalicPINVOKE.new_TableView_CellPosition__SWIG_3(rowIndex), true)
-            {
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            }
-
-            /// <summary>
-            /// The default constructor.
-            /// </summary>
-            /// <since_tizen> 3 </since_tizen>
-            public CellPosition() : this(NDalicPINVOKE.new_TableView_CellPosition__SWIG_4(), true)
-            {
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            }
-
-            /// <summary>
-            /// The index of a row.
-            /// </summary>
-            /// <since_tizen> 3 </since_tizen>
-            [Obsolete("Please do not use! This will be deprecated! Please use RowIndex instead!")]
-            [EditorBrowsable(EditorBrowsableState.Never)]
-            public uint rowIndex
-            {
-                set
-                {
-                    NDalicPINVOKE.TableView_CellPosition_rowIndex_set(swigCPtr, value);
-                    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-                }
-                get
-                {
-                    uint ret = NDalicPINVOKE.TableView_CellPosition_rowIndex_get(swigCPtr);
-                    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-                    return ret;
-                }
-            }
-
-            /// <summary>
-            /// The index or position of a row.
-            /// </summary>
-            /// <since_tizen> 5 </since_tizen>
-            public uint RowIndex
-            {
-                get
-                {
-                    uint ret = NDalicPINVOKE.TableView_CellPosition_rowIndex_get(swigCPtr);
-                    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-                    return ret;
-                }
-            }
-
-
-            /// <summary>
-            /// The index of a column.
-            /// </summary>
-            /// <since_tizen> 3 </since_tizen>
-            [Obsolete("Please do not use! This will be deprecated! Please use ColumnIndex instead!")]
-            [EditorBrowsable(EditorBrowsableState.Never)]
-            public uint columnIndex
-            {
-                set
-                {
-                    NDalicPINVOKE.TableView_CellPosition_columnIndex_set(swigCPtr, value);
-                    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-                }
-                get
-                {
-                    uint ret = NDalicPINVOKE.TableView_CellPosition_columnIndex_get(swigCPtr);
-                    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-                    return ret;
-                }
-            }
-
-            /// <summary>
-            /// The index or position of a column.
-            /// </summary>
-            /// <since_tizen> 5 </since_tizen>
-            public uint ColumnIndex
-            {
-                get
-                {
-                    uint ret = NDalicPINVOKE.TableView_CellPosition_columnIndex_get(swigCPtr);
-                    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-                    return ret;
-                }
-            }
-
-            /// <summary>
-            /// The span of a row.
-            /// </summary>
-            /// <since_tizen> 3 </since_tizen>
-            [Obsolete("Please do not use! This will be deprecated! Please use RowSpan instead!")]
-            [EditorBrowsable(EditorBrowsableState.Never)]
-            public uint rowSpan
-            {
-                set
-                {
-                    NDalicPINVOKE.TableView_CellPosition_rowSpan_set(swigCPtr, value);
-                    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-                }
-                get
-                {
-                    uint ret = NDalicPINVOKE.TableView_CellPosition_rowSpan_get(swigCPtr);
-                    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-                    return ret;
-                }
-            }
-
-            /// <summary>
-            /// The span of a row.
-            /// </summary>
-            /// <since_tizen> 5 </since_tizen>
-            public uint RowSpan
-            {
-                get
-                {
-                    uint ret = NDalicPINVOKE.TableView_CellPosition_rowSpan_get(swigCPtr);
-                    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-                    return ret;
-                }
-            }
-
-            /// <summary>
-            /// The span of a column.
-            /// </summary>
-            /// <since_tizen> 3 </since_tizen>
-            [Obsolete("Please do not use! This will be deprecated! Please use ColumnSpan instead!")]
-            [EditorBrowsable(EditorBrowsableState.Never)]
-            public uint columnSpan
-            {
-                set
-                {
-                    NDalicPINVOKE.TableView_CellPosition_columnSpan_set(swigCPtr, value);
-                    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-                }
-                get
-                {
-                    uint ret = NDalicPINVOKE.TableView_CellPosition_columnSpan_get(swigCPtr);
-                    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-                    return ret;
-                }
-            }
-
-            /// <summary>
-            /// The span of a column.
-            /// </summary>
-            /// <since_tizen> 5 </since_tizen>
-            public uint ColumnSpan
-            {
-                get
-                {
-                    uint ret = NDalicPINVOKE.TableView_CellPosition_columnSpan_get(swigCPtr);
-                    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-                    return ret;
-                }
-            }
-
-
-        }
 
         /// <summary>
         /// Creates the default TableView view.
@@ -517,6 +149,123 @@ namespace Tizen.NUI.BaseComponents
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
+
+        internal TableView(global::System.IntPtr cPtr, bool cMemoryOwn) : base(NDalicPINVOKE.TableView_SWIGUpcast(cPtr), cMemoryOwn)
+        {
+            swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
+        }
+
+        /// <summary>
+        /// Enumeration for describing how the size of a row or column has been set.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
+        public enum LayoutPolicy
+        {
+            /// <summary>
+            /// Fixed with the given value.
+            /// </summary>
+            /// <since_tizen> 3 </since_tizen>
+            Fixed,
+            /// <summary>
+            /// Calculated as percentage of the remainder after subtracting Padding and Fixed height/width.
+            /// </summary>
+            /// <since_tizen> 3 </since_tizen>
+            Relative,
+            /// <summary>
+            ///  Default policy, get the remainder of the 100% (after subtracting Fixed, Fit and Relative height/ width) divided evenly between 'fill' rows/columns.
+            /// </summary>
+            /// <since_tizen> 3 </since_tizen>
+            Fill,
+            /// <summary>
+            /// Fit around its children.
+            /// </summary>
+            /// <since_tizen> 3 </since_tizen>
+            Fit
+        }
+
+        /// <summary>
+        /// The amount of rows in the table.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
+        public int Rows
+        {
+            get
+            {
+                return (int)GetValue(RowsProperty);
+            }
+            set
+            {
+                SetValue(RowsProperty, value);
+                NotifyPropertyChanged();
+            }
+        }
+        /// <summary>
+        /// The amount of columns in the table.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
+        public int Columns
+        {
+            get
+            {
+                return (int)GetValue(ColumnsProperty);
+            }
+            set
+            {
+                SetValue(ColumnsProperty, value);
+                NotifyPropertyChanged();
+            }
+        }
+        /// <summary>
+        /// Padding between cells.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
+        public Vector2 CellPadding
+        {
+            get
+            {
+                return (Vector2)GetValue(CellPaddingProperty);
+            }
+            set
+            {
+                SetValue(CellPaddingProperty, value);
+                NotifyPropertyChanged();
+            }
+        }
+
+        /// <summary>
+        /// The number of layout rows.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
+        public PropertyMap LayoutRows
+        {
+            get
+            {
+                return (PropertyMap)GetValue(LayoutRowsProperty);
+            }
+            set
+            {
+                SetValue(LayoutRowsProperty, value);
+                NotifyPropertyChanged();
+            }
+        }
+
+        /// <summary>
+        /// The number of layout columns.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
+        public PropertyMap LayoutColumns
+        {
+            get
+            {
+                return (PropertyMap)GetValue(LayoutColumnsProperty);
+            }
+            set
+            {
+                SetValue(LayoutColumnsProperty, value);
+                NotifyPropertyChanged();
+            }
+        }
+
 
         /// <summary>
         /// Adds a child to the table.<br />
@@ -834,116 +583,365 @@ namespace Tizen.NUI.BaseComponents
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
-        /// <summary>
-        /// Enumeration for describing how the size of a row or column has been set.
-        /// </summary>
-        /// <since_tizen> 3 </since_tizen>
-        public enum LayoutPolicy
+        internal static global::System.Runtime.InteropServices.HandleRef getCPtr(TableView obj)
         {
-            /// <summary>
-            /// Fixed with the given value.
-            /// </summary>
-            /// <since_tizen> 3 </since_tizen>
-            Fixed,
-            /// <summary>
-            /// Calculated as percentage of the remainder after subtracting Padding and Fixed height/width.
-            /// </summary>
-            /// <since_tizen> 3 </since_tizen>
-            Relative,
-            /// <summary>
-            ///  Default policy, get the remainder of the 100% (after subtracting Fixed, Fit and Relative height/ width) divided evenly between 'fill' rows/columns.
-            /// </summary>
-            /// <since_tizen> 3 </since_tizen>
-            Fill,
-            /// <summary>
-            /// Fit around its children.
-            /// </summary>
-            /// <since_tizen> 3 </since_tizen>
-            Fit
+            return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
         }
 
         /// <summary>
-        /// The amount of rows in the table.
+        /// Dispose
         /// </summary>
+        /// <param name="type">The dispose type</param>
         /// <since_tizen> 3 </since_tizen>
-        public int Rows
+        protected override void Dispose(DisposeTypes type)
         {
-            get
+            if (disposed)
             {
-                return (int)GetValue(RowsProperty);
+                return;
             }
-            set
+
+            if (type == DisposeTypes.Explicit)
             {
-                SetValue(RowsProperty, value);
-                NotifyPropertyChanged();
+                //Called by User
+                //Release your own managed resources here.
+                //You should release all of your own disposable objects here.
             }
-        }
-        /// <summary>
-        /// The amount of columns in the table.
-        /// </summary>
-        /// <since_tizen> 3 </since_tizen>
-        public int Columns
-        {
-            get
+
+            //Release your own unmanaged resources here.
+            //You should not access any managed member here except static instance.
+            //because the execution order of Finalizes is non-deterministic.
+
+            if (swigCPtr.Handle != global::System.IntPtr.Zero)
             {
-                return (int)GetValue(ColumnsProperty);
+                if (swigCMemOwn)
+                {
+                    swigCMemOwn = false;
+                    NDalicPINVOKE.delete_TableView(swigCPtr);
+                }
+                swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
             }
-            set
-            {
-                SetValue(ColumnsProperty, value);
-                NotifyPropertyChanged();
-            }
-        }
-        /// <summary>
-        /// Padding between cells.
-        /// </summary>
-        /// <since_tizen> 3 </since_tizen>
-        public Vector2 CellPadding
-        {
-            get
-            {
-                return (Vector2)GetValue(CellPaddingProperty);
-            }
-            set
-            {
-                SetValue(CellPaddingProperty, value);
-                NotifyPropertyChanged();
-            }
+
+            base.Dispose(type);
         }
 
         /// <summary>
-        /// The number of layout rows.
+        /// Class to specify the layout position for the child view.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        public PropertyMap LayoutRows
+        public class CellPosition : global::System.IDisposable
         {
-            get
+            /// <summary>
+            /// swigCMemOwn
+            /// </summary>
+            /// <since_tizen> 3 </since_tizen>
+            protected bool swigCMemOwn;
+            /// <summary>
+            /// A Flat to check if it is already disposed.
+            /// </summary>
+            /// <since_tizen> 3 </since_tizen>
+            protected bool disposed = false;
+
+            private global::System.Runtime.InteropServices.HandleRef swigCPtr;
+            //A Flag to check who called Dispose(). (By User or DisposeQueue)
+            private bool isDisposeQueued = false;
+
+            /// <summary>
+            /// The constructor.
+            /// </summary>
+            /// <param name="rowIndex">The row index initialized.</param>
+            /// <param name="columnIndex">The column index initialized.</param>
+            /// <param name="rowSpan">The row span initialized.</param>
+            /// <param name="columnSpan">The column span initialized.</param>
+            /// <since_tizen> 3 </since_tizen>
+            public CellPosition(uint rowIndex, uint columnIndex, uint rowSpan, uint columnSpan) : this(NDalicPINVOKE.new_TableView_CellPosition__SWIG_0(rowIndex, columnIndex, rowSpan, columnSpan), true)
             {
-                return (PropertyMap)GetValue(LayoutRowsProperty);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
-            set
+
+            /// <summary>
+            /// The constructor to initialize values to defaults for convenience.
+            /// </summary>
+            /// <param name="rowIndex">The row index initialized.</param>
+            /// <param name="columnIndex">The column index initialized.</param>
+            /// <param name="rowSpan">The row span initialized.</param>
+            /// <since_tizen> 3 </since_tizen>
+            public CellPosition(uint rowIndex, uint columnIndex, uint rowSpan) : this(NDalicPINVOKE.new_TableView_CellPosition__SWIG_1(rowIndex, columnIndex, rowSpan), true)
             {
-                SetValue(LayoutRowsProperty, value);
-                NotifyPropertyChanged();
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
+
+            /// <summary>
+            /// The constructor to initialize values to defaults for convenience.
+            /// </summary>
+            /// <param name="rowIndex">The row index initialized.</param>
+            /// <param name="columnIndex">The column index initialized.</param>
+            /// <since_tizen> 3 </since_tizen>
+            public CellPosition(uint rowIndex, uint columnIndex) : this(NDalicPINVOKE.new_TableView_CellPosition__SWIG_2(rowIndex, columnIndex), true)
+            {
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            }
+
+            /// <summary>
+            /// The constructor to initialize values to default for convenience.
+            /// </summary>
+            /// <param name="rowIndex">The row index initialized.</param>
+            /// <since_tizen> 3 </since_tizen>
+            public CellPosition(uint rowIndex) : this(NDalicPINVOKE.new_TableView_CellPosition__SWIG_3(rowIndex), true)
+            {
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            }
+
+            /// <summary>
+            /// The default constructor.
+            /// </summary>
+            /// <since_tizen> 3 </since_tizen>
+            public CellPosition() : this(NDalicPINVOKE.new_TableView_CellPosition__SWIG_4(), true)
+            {
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            }
+
+            internal CellPosition(global::System.IntPtr cPtr, bool cMemoryOwn)
+            {
+                swigCMemOwn = cMemoryOwn;
+                swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
+            }
+
+            /// <summary>
+            /// Dispose.
+            /// </summary>
+            /// <since_tizen> 3 </since_tizen>
+            ~CellPosition()
+            {
+                if (!isDisposeQueued)
+                {
+                    isDisposeQueued = true;
+                    DisposeQueue.Instance.Add(this);
+                }
+            }
+
+            /// <summary>
+            /// The index of a row.
+            /// </summary>
+            /// <since_tizen> 3 </since_tizen>
+            [Obsolete("Please do not use! This will be deprecated! Please use RowIndex instead!")]
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            public uint rowIndex
+            {
+                set
+                {
+                    NDalicPINVOKE.TableView_CellPosition_rowIndex_set(swigCPtr, value);
+                    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                }
+                get
+                {
+                    uint ret = NDalicPINVOKE.TableView_CellPosition_rowIndex_get(swigCPtr);
+                    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                    return ret;
+                }
+            }
+
+            /// <summary>
+            /// The index or position of a row.
+            /// </summary>
+            /// <since_tizen> 5 </since_tizen>
+            public uint RowIndex
+            {
+                get
+                {
+                    uint ret = NDalicPINVOKE.TableView_CellPosition_rowIndex_get(swigCPtr);
+                    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                    return ret;
+                }
+            }
+
+
+            /// <summary>
+            /// The index of a column.
+            /// </summary>
+            /// <since_tizen> 3 </since_tizen>
+            [Obsolete("Please do not use! This will be deprecated! Please use ColumnIndex instead!")]
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            public uint columnIndex
+            {
+                set
+                {
+                    NDalicPINVOKE.TableView_CellPosition_columnIndex_set(swigCPtr, value);
+                    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                }
+                get
+                {
+                    uint ret = NDalicPINVOKE.TableView_CellPosition_columnIndex_get(swigCPtr);
+                    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                    return ret;
+                }
+            }
+
+            /// <summary>
+            /// The index or position of a column.
+            /// </summary>
+            /// <since_tizen> 5 </since_tizen>
+            public uint ColumnIndex
+            {
+                get
+                {
+                    uint ret = NDalicPINVOKE.TableView_CellPosition_columnIndex_get(swigCPtr);
+                    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                    return ret;
+                }
+            }
+
+            /// <summary>
+            /// The span of a row.
+            /// </summary>
+            /// <since_tizen> 3 </since_tizen>
+            [Obsolete("Please do not use! This will be deprecated! Please use RowSpan instead!")]
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            public uint rowSpan
+            {
+                set
+                {
+                    NDalicPINVOKE.TableView_CellPosition_rowSpan_set(swigCPtr, value);
+                    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                }
+                get
+                {
+                    uint ret = NDalicPINVOKE.TableView_CellPosition_rowSpan_get(swigCPtr);
+                    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                    return ret;
+                }
+            }
+
+            /// <summary>
+            /// The span of a row.
+            /// </summary>
+            /// <since_tizen> 5 </since_tizen>
+            public uint RowSpan
+            {
+                get
+                {
+                    uint ret = NDalicPINVOKE.TableView_CellPosition_rowSpan_get(swigCPtr);
+                    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                    return ret;
+                }
+            }
+
+            /// <summary>
+            /// The span of a column.
+            /// </summary>
+            /// <since_tizen> 3 </since_tizen>
+            [Obsolete("Please do not use! This will be deprecated! Please use ColumnSpan instead!")]
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            public uint columnSpan
+            {
+                set
+                {
+                    NDalicPINVOKE.TableView_CellPosition_columnSpan_set(swigCPtr, value);
+                    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                }
+                get
+                {
+                    uint ret = NDalicPINVOKE.TableView_CellPosition_columnSpan_get(swigCPtr);
+                    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                    return ret;
+                }
+            }
+
+            /// <summary>
+            /// The span of a column.
+            /// </summary>
+            /// <since_tizen> 5 </since_tizen>
+            public uint ColumnSpan
+            {
+                get
+                {
+                    uint ret = NDalicPINVOKE.TableView_CellPosition_columnSpan_get(swigCPtr);
+                    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                    return ret;
+                }
+            }
+
+
+            /// <summary>
+            /// Dispose.
+            /// </summary>
+            /// <since_tizen> 3 </since_tizen>
+            public void Dispose()
+            {
+                //Throw excpetion if Dispose() is called in separate thread.
+                if (!Window.IsInstalled())
+                {
+                    throw new System.InvalidOperationException("This API called from separate thread. This API must be called from MainThread.");
+                }
+
+                if (isDisposeQueued)
+                {
+                    Dispose(DisposeTypes.Implicit);
+                }
+                else
+                {
+                    Dispose(DisposeTypes.Explicit);
+                    System.GC.SuppressFinalize(this);
+                }
+            }
+
+            internal static global::System.Runtime.InteropServices.HandleRef getCPtr(CellPosition obj)
+            {
+                return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
+            }
+
+            /// <summary>
+            /// Dispose.
+            /// </summary>
+            /// <param name="type">DisposeTypes</param>
+            /// <since_tizen> 3 </since_tizen>
+            protected virtual void Dispose(DisposeTypes type)
+            {
+                if (disposed)
+                {
+                    return;
+                }
+
+                if (type == DisposeTypes.Explicit)
+                {
+                    //Called by User
+                    //Release your own managed resources here.
+                    //You should release all of your own disposable objects here.
+                }
+
+                //Release your own unmanaged resources here.
+                //You should not access any managed member here except static instance.
+                //because the execution order of Finalizes is non-deterministic.
+
+                if (swigCPtr.Handle != global::System.IntPtr.Zero)
+                {
+                    if (swigCMemOwn)
+                    {
+                        swigCMemOwn = false;
+                        NDalicPINVOKE.delete_TableView_CellPosition(swigCPtr);
+                    }
+                    swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
+                }
+                disposed = true;
+            }
+
         }
 
-        /// <summary>
-        /// The number of layout columns.
-        /// </summary>
-        /// <since_tizen> 3 </since_tizen>
-        public PropertyMap LayoutColumns
+        internal new class Property
         {
-            get
-            {
-                return (PropertyMap)GetValue(LayoutColumnsProperty);
-            }
-            set
-            {
-                SetValue(LayoutColumnsProperty, value);
-                NotifyPropertyChanged();
-            }
+            internal static readonly int ROWS = NDalicPINVOKE.TableView_Property_ROWS_get();
+            internal static readonly int COLUMNS = NDalicPINVOKE.TableView_Property_COLUMNS_get();
+            internal static readonly int CELL_PADDING = NDalicPINVOKE.TableView_Property_CELL_PADDING_get();
+            internal static readonly int LAYOUT_ROWS = NDalicPINVOKE.TableView_Property_LAYOUT_ROWS_get();
+            internal static readonly int LAYOUT_COLUMNS = NDalicPINVOKE.TableView_Property_LAYOUT_COLUMNS_get();
         }
 
+        internal class ChildProperty
+        {
+            internal static readonly int CELL_INDEX = NDalicPINVOKE.TableView_ChildProperty_CELL_INDEX_get();
+            internal static readonly int ROW_SPAN = NDalicPINVOKE.TableView_ChildProperty_ROW_SPAN_get();
+            internal static readonly int COLUMN_SPAN = NDalicPINVOKE.TableView_ChildProperty_COLUMN_SPAN_get();
+            internal static readonly int CELL_HORIZONTAL_ALIGNMENT = NDalicPINVOKE.TableView_ChildProperty_CELL_HORIZONTAL_ALIGNMENT_get();
+            internal static readonly int CELL_VERTICAL_ALIGNMENT = NDalicPINVOKE.TableView_ChildProperty_CELL_VERTICAL_ALIGNMENT_get();
+        }
     }
 }
