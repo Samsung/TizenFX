@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2017 Samsung Electronics Co., Ltd.
+ * Copyright (c) 2018 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -34,7 +34,6 @@ namespace Tizen.NUI
         /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public View Root {get; internal set;}
-        private Window Window;
 
         internal static readonly BindableProperty ContentProperty = BindableProperty.Create(nameof(Content), typeof(View), typeof(ContentPage), null, propertyChanged: (bindable, oldValue, newValue) =>
         {
@@ -116,8 +115,10 @@ namespace Tizen.NUI
             IsCreateByXaml = true;
 
             Root = new View();
-            Root.WidthResizePolicy = ResizePolicyType.FillToParent;
-            Root.HeightResizePolicy = ResizePolicyType.FillToParent;
+            Root.Size2D = new Size2D(win.WindowSize.Width, win.WindowSize.Height);
+            Root.ParentOrigin = ParentOrigin.TopLeft;
+            Root.PivotPoint = PivotPoint.TopLeft;
+            Root.PositionUsesPivotPoint = true;
 
             win.Add(Root);
         }

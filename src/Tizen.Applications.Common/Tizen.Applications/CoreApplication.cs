@@ -112,18 +112,13 @@ namespace Tizen.Applications
             _backend.AddEventHandler<RegionFormatChangedEventArgs>(EventType.RegionFormatChanged, OnRegionFormatChanged);
             _backend.AddEventHandler<DeviceOrientationEventArgs>(EventType.DeviceOrientationChanged, OnDeviceOrientationChanged);
 
-            string[] argsClone = null;
-
-            if (args == null)
+            string[] argsClone = new string[args.Length + 1];
+            if (args.Length > 1)
             {
-                argsClone = new string[1];
-            }
-            else
-            {
-                argsClone = new string[args.Length + 1];
                 args.CopyTo(argsClone, 1);
             }
             argsClone[0] = string.Empty;
+
             _backend.Run(argsClone);
         }
 
