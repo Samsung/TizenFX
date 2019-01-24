@@ -17,6 +17,7 @@
 
 using System;
 using Tizen.NUI;
+using System.Threading;
 
 namespace Tizen.NUI
 {
@@ -68,6 +69,7 @@ namespace Tizen.NUI
         public NUIApplication() : base()
         {
             _appMode = AppMode.Default;
+            Registry.Instance.SavedApplicationThread = Thread.CurrentThread;
         }
 
         /// <summary>
@@ -78,6 +80,7 @@ namespace Tizen.NUI
             //handle the stylesheet
             _appMode = AppMode.StyleSheetOnly;
             _stylesheet = stylesheet;
+            Registry.Instance.SavedApplicationThread = Thread.CurrentThread;
         }
 
         /// <summary>
@@ -89,6 +92,7 @@ namespace Tizen.NUI
             _appMode = AppMode.StyleSheetWithWindowMode;
             _stylesheet = stylesheet;
             _windowMode = (Application.WindowMode)windowMode;
+            Registry.Instance.SavedApplicationThread = Thread.CurrentThread;
         }
 
         /// <summary>

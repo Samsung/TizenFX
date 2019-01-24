@@ -336,8 +336,8 @@ namespace HelloWorldTest
             Tizen.Log.Fatal("NUI", $"TextEditor LineWrapMode 1st={ myTextEditor?.LineWrapMode} 2nd={ myTextEditor2?.LineWrapMode}");
         }
 
-        [STAThread]
-        static void _Main(string[] args)
+//        [STAThread]
+        static void Main(string[] args)
         {
             Example example = new Example();
             example.Run(args);
