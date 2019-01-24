@@ -22,6 +22,7 @@ namespace Tizen.Security.DevicePolicyManager
     /// The LocationPolicy provides methods to manage location policies.
     /// </summary>
     /// <since_tizen> 6 </since_tizen>
+    /// <remarks>The LocationPolicy is created by <seealso cref="DevicePolicyManager.GetPolicy{T}"/>. and the DevicePolicyManager instance must exists when using the LocationPolicy.</remarks>
     public class LocationPolicy : DevicePolicy, IDisposable
     {
         /// <summary>

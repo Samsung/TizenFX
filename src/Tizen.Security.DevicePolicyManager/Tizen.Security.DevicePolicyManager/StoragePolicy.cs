@@ -22,6 +22,7 @@ namespace Tizen.Security.DevicePolicyManager
     /// The StoragePolicy provides methods to manage storage policies.
     /// </summary>
     /// <since_tizen> 6 </since_tizen>
+    /// <remarks>The StoragePolicy is created by <seealso cref="DevicePolicyManager.GetPolicy{T}"/>. and the DevicePolicyManager instance must exists when using the StoragePolicy.</remarks>
     public class StoragePolicy : DevicePolicy, IDisposable
     {
         /// <summary>

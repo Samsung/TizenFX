@@ -22,6 +22,7 @@ namespace Tizen.Security.DevicePolicyManager
     /// The EmailPolicy provides methods to manage email policies.
     /// </summary>
     /// <since_tizen> 6 </since_tizen>
+    /// <remarks>The EmailPolicy is created by <seealso cref="DevicePolicyManager.GetPolicy{T}"/>. and the DevicePolicyManager instance must exists when using the EmailPolicy.</remarks>
     public class EmailPolicy : DevicePolicy, IDisposable
     {
         /// <summary>

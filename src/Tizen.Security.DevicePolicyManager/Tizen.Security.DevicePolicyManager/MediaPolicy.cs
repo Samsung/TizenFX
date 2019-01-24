@@ -22,6 +22,7 @@ namespace Tizen.Security.DevicePolicyManager
     /// The MediaPolicy provides methods to manage media policies.
     /// </summary>
     /// <since_tizen> 6 </since_tizen>
+    /// <remarks>The MediaPolicy is created by <seealso cref="DevicePolicyManager.GetPolicy{T}"/>. and the DevicePolicyManager instance must exists when using the MediaPolicy.</remarks>
     public class MediaPolicy : DevicePolicy, IDisposable
     {
         /// <summary>

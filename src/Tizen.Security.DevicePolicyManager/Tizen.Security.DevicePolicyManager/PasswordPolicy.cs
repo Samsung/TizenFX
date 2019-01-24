@@ -22,6 +22,7 @@ namespace Tizen.Security.DevicePolicyManager
     /// The PasswordPolicy provides methods to manage password policies.
     /// </summary>
     /// <since_tizen> 6 </since_tizen>
+    /// <remarks>The PasswordPolicy is created by <seealso cref="DevicePolicyManager.GetPolicy{T}"/>. and the DevicePolicyManager instance must exists when using the PasswordPolicy.</remarks>
     public class PasswordPolicy : DevicePolicy
     {
         internal PasswordPolicy(DevicePolicyManager dpm) : base(dpm)

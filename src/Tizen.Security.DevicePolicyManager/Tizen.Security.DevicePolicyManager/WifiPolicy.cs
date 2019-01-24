@@ -22,6 +22,7 @@ namespace Tizen.Security.DevicePolicyManager
     /// The WifiPolicy provides methods to manage wifi policies.
     /// </summary>
     /// <since_tizen> 6 </since_tizen>
+    /// <remarks>The WifiPolicy is created by <seealso cref="DevicePolicyManager.GetPolicy{T}"/>. and the DevicePolicyManager instance must exists when using the WifiPolicy.</remarks>
     public class WifiPolicy : DevicePolicy, IDisposable
     {
         /// <summary>

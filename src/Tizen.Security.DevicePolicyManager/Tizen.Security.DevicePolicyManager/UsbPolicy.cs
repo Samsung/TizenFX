@@ -22,6 +22,7 @@ namespace Tizen.Security.DevicePolicyManager
     /// The UsbPolicy provides methods to manage usb policies.
     /// </summary>
     /// <since_tizen> 6 </since_tizen>
+    /// <remarks>The UsbPolicy is created by <seealso cref="DevicePolicyManager.GetPolicy{T}"/>. and the DevicePolicyManager instance must exists when using the UsbPolicy.</remarks>
     public class UsbPolicy : DevicePolicy, IDisposable
     {
         /// <summary>

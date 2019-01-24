@@ -22,6 +22,7 @@ namespace Tizen.Security.DevicePolicyManager
     /// The TelephonyPolicy provides methods to manage telephony policies.
     /// </summary>
     /// <since_tizen> 6 </since_tizen>
+    /// <remarks>The TelephonyPolicy is created by <seealso cref="DevicePolicyManager.GetPolicy{T}"/>. and the DevicePolicyManager instance must exists when using the TelephonyPolicy.</remarks>
     public class TelephonyPolicy : DevicePolicy, IDisposable
     {
         /// <summary>

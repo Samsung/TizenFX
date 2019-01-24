@@ -22,6 +22,7 @@ namespace Tizen.Security.DevicePolicyManager
     /// The BluetoothPolicy provides methods to manage Bluetooth policies.
     /// </summary>
     /// <since_tizen> 6 </since_tizen>
+    /// <remarks>The BluetoothPolicy is created by <seealso cref="DevicePolicyManager.GetPolicy{T}"/>. and the DevicePolicyManager instance must exists when using the BluetoothPolicy.</remarks>
     public class BluetoothPolicy : DevicePolicy, IDisposable
     {
         /// <summary>

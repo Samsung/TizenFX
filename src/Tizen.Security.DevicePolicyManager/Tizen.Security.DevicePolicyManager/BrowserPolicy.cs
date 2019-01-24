@@ -22,6 +22,7 @@ namespace Tizen.Security.DevicePolicyManager
     /// The BrowserPolicy provides methods to manage browser policies.
     /// </summary>
     /// <since_tizen> 6 </since_tizen>
+    /// <remarks>The BrowserPolicy is created by <seealso cref="DevicePolicyManager.GetPolicy{T}"/>. and the DevicePolicyManager instance must exists when using the BrowserPolicy.</remarks>
     public class BrowserPolicy : DevicePolicy, IDisposable
     {
         /// <summary>
