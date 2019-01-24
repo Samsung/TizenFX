@@ -51,10 +51,10 @@ namespace HelloTest
 
             // Add a _text label to the window
             _text = new TextLabel("Hello Mono World");
-            _text.ParentOrigin = ParentOrigin.Center;
-            _text.PivotPoint = PivotPoint.Center;
-            _text.HorizontalAlignment = HorizontalAlignment.Center;
-            _text.PointSize = 32.0f;
+            _text.ParentOrigin = ParentOrigin.TopLeft;
+//            _text.PivotPoint = PivotPoint.Center;
+//            _text.HorizontalAlignment = HorizontalAlignment.Center;
+            _text.PointSize = 18.0f;
 
             _window.Add(_text);
         }
@@ -73,7 +73,7 @@ namespace HelloTest
         /// </summary>
 
         [STAThread]
-        static void Main(string[] args)
+        static void _Main(string[] args)
         {
             Tizen.Log.Debug("NUI", "Hello mono world.");
             //Example example = new Example();
