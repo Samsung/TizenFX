@@ -28,52 +28,6 @@ namespace Tizen.NUI
     {
         private global::System.Runtime.InteropServices.HandleRef swigCPtr;
 
-        internal Animatable(global::System.IntPtr cPtr, bool cMemoryOwn) : base(NDalicPINVOKE.Handle_SWIGUpcast(cPtr), cMemoryOwn)
-        {
-            swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
-        }
-
-        internal static global::System.Runtime.InteropServices.HandleRef getCPtr(Animatable obj)
-        {
-            return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
-        }
-
-        /// <summary>
-        /// To make the Animatable instance be disposed.
-        /// </summary>
-        /// <since_tizen> 3 </since_tizen>
-        protected override void Dispose(DisposeTypes type)
-        {
-            if (disposed)
-            {
-                return;
-            }
-
-            if (type == DisposeTypes.Explicit)
-            {
-                //Called by User
-                //Release your own managed resources here.
-                //You should release all of your own disposable objects here.
-
-            }
-
-            //Release your own unmanaged resources here.
-            //You should not access any managed member here except static instance.
-            //because the execution order of Finalizes is non-deterministic.
-
-            if (swigCPtr.Handle != global::System.IntPtr.Zero)
-            {
-                if (swigCMemOwn)
-                {
-                    swigCMemOwn = false;
-                    NDalicPINVOKE.delete_Handle(swigCPtr);
-                }
-                swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
-            }
-
-            base.Dispose(type);
-        }
-
         /// <summary>
         /// Create an instance of animatable.
         /// </summary>
@@ -84,11 +38,23 @@ namespace Tizen.NUI
 
         }
 
-        internal uint GetPropertyCount()
+        internal Animatable(global::System.IntPtr cPtr, bool cMemoryOwn) : base(NDalicPINVOKE.Handle_SWIGUpcast(cPtr), cMemoryOwn)
         {
-            uint ret = NDalicPINVOKE.Handle_GetPropertyCount(swigCPtr);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
+            swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
+        }
+
+        /// <summary>
+        /// Enumeration for Handle's capabilities that can be queried.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
+        public enum Capability
+        {
+            /// <summary>
+            /// Some objects support dynamic property creation at run-time.
+            /// New properties are registered by calling RegisterProperty() with an unused property name.
+            /// </summary>
+            /// <since_tizen> 3 </since_tizen>
+            DYNAMIC_PROPERTIES = 0x01
         }
 
         /// <summary>
@@ -227,13 +193,6 @@ namespace Tizen.NUI
             return ret;
         }
 
-        internal PropertyNotification AddPropertyNotification(int index, int componentIndex, PropertyCondition condition)
-        {
-            PropertyNotification ret = new PropertyNotification(NDalicPINVOKE.Handle_AddPropertyNotification__SWIG_1(swigCPtr, index, componentIndex, PropertyCondition.getCPtr(condition)), true);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
-        }
-
         /// <summary>
         /// Removes a property notification from this object.
         /// </summary>
@@ -255,6 +214,25 @@ namespace Tizen.NUI
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
+        internal static global::System.Runtime.InteropServices.HandleRef getCPtr(Animatable obj)
+        {
+            return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
+        }
+
+        internal uint GetPropertyCount()
+        {
+            uint ret = NDalicPINVOKE.Handle_GetPropertyCount(swigCPtr);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        internal PropertyNotification AddPropertyNotification(int index, int componentIndex, PropertyCondition condition)
+        {
+            PropertyNotification ret = new PropertyNotification(NDalicPINVOKE.Handle_AddPropertyNotification__SWIG_1(swigCPtr, index, componentIndex, PropertyCondition.getCPtr(condition)), true);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
         internal void RemoveConstraints()
         {
             NDalicPINVOKE.Handle_RemoveConstraints__SWIG_0(swigCPtr);
@@ -268,17 +246,39 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Enumeration for Handle's capabilities that can be queried.
+        /// To make the Animatable instance be disposed.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        public enum Capability
+        protected override void Dispose(DisposeTypes type)
         {
-            /// <summary>
-            /// Some objects support dynamic property creation at run-time.
-            /// New properties are registered by calling RegisterProperty() with an unused property name.
-            /// </summary>
-            /// <since_tizen> 3 </since_tizen>
-            DYNAMIC_PROPERTIES = 0x01
+            if (disposed)
+            {
+                return;
+            }
+
+            if (type == DisposeTypes.Explicit)
+            {
+                //Called by User
+                //Release your own managed resources here.
+                //You should release all of your own disposable objects here.
+
+            }
+
+            //Release your own unmanaged resources here.
+            //You should not access any managed member here except static instance.
+            //because the execution order of Finalizes is non-deterministic.
+
+            if (swigCPtr.Handle != global::System.IntPtr.Zero)
+            {
+                if (swigCMemOwn)
+                {
+                    swigCMemOwn = false;
+                    NDalicPINVOKE.delete_Handle(swigCPtr);
+                }
+                swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
+            }
+
+            base.Dispose(type);
         }
 
     }

@@ -33,7 +33,7 @@ namespace Tizen.NUI.BaseComponents
     {
         /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty TextProperty = BindableProperty.Create("Text", typeof(string), typeof(TextField), string.Empty, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty TextProperty = BindableProperty.Create(nameof(Text), typeof(string), typeof(TextField), string.Empty, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var textField = (TextField)bindable;
             if (newValue != null)
@@ -41,7 +41,7 @@ namespace Tizen.NUI.BaseComponents
                 Tizen.NUI.Object.SetProperty(textField.swigCPtr, TextField.Property.TEXT, new Tizen.NUI.PropertyValue((string)newValue));
             }
         },
-        defaultValueCreator:(bindable) =>
+        defaultValueCreator: (bindable) =>
         {
             var textField = (TextField)bindable;
             string temp;
@@ -50,7 +50,7 @@ namespace Tizen.NUI.BaseComponents
         });
         /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty PlaceholderTextProperty = BindableProperty.Create("PlaceholderText", typeof(string), typeof(TextField), string.Empty, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty PlaceholderTextProperty = BindableProperty.Create(nameof(PlaceholderText), typeof(string), typeof(TextField), string.Empty, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var textField = (TextField)bindable;
             if (newValue != null)
@@ -58,7 +58,7 @@ namespace Tizen.NUI.BaseComponents
                 Tizen.NUI.Object.SetProperty(textField.swigCPtr, TextField.Property.PLACEHOLDER_TEXT, new Tizen.NUI.PropertyValue((string)newValue));
             }
         },
-        defaultValueCreator:(bindable) =>
+        defaultValueCreator: (bindable) =>
         {
             var textField = (TextField)bindable;
             string temp;
@@ -67,7 +67,7 @@ namespace Tizen.NUI.BaseComponents
         });
         /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty PlaceholderTextFocusedProperty = BindableProperty.Create("PlaceholderTextFocused", typeof(string), typeof(TextField), string.Empty, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty PlaceholderTextFocusedProperty = BindableProperty.Create(nameof(PlaceholderTextFocused), typeof(string), typeof(TextField), string.Empty, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var textField = (TextField)bindable;
             if (newValue != null)
@@ -75,7 +75,7 @@ namespace Tizen.NUI.BaseComponents
                 Tizen.NUI.Object.SetProperty(textField.swigCPtr, TextField.Property.PLACEHOLDER_TEXT_FOCUSED, new Tizen.NUI.PropertyValue((string)newValue));
             }
         },
-        defaultValueCreator:(bindable) =>
+        defaultValueCreator: (bindable) =>
         {
             var textField = (TextField)bindable;
             string temp;
@@ -84,7 +84,7 @@ namespace Tizen.NUI.BaseComponents
         });
         /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty FontFamilyProperty = BindableProperty.Create("FontFamily", typeof(string), typeof(TextField), string.Empty, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty FontFamilyProperty = BindableProperty.Create(nameof(FontFamily), typeof(string), typeof(TextField), string.Empty, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var textField = (TextField)bindable;
             if (newValue != null)
@@ -92,7 +92,7 @@ namespace Tizen.NUI.BaseComponents
                 Tizen.NUI.Object.SetProperty(textField.swigCPtr, TextField.Property.FONT_FAMILY, new Tizen.NUI.PropertyValue((string)newValue));
             }
         },
-        defaultValueCreator:(bindable) =>
+        defaultValueCreator: (bindable) =>
         {
             var textField = (TextField)bindable;
             string temp;
@@ -101,7 +101,7 @@ namespace Tizen.NUI.BaseComponents
         });
         /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty FontStyleProperty = BindableProperty.Create("FontStyle", typeof(PropertyMap), typeof(TextField), new PropertyMap(), propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty FontStyleProperty = BindableProperty.Create(nameof(FontStyle), typeof(PropertyMap), typeof(TextField), null, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var textField = (TextField)bindable;
             if (newValue != null)
@@ -109,7 +109,7 @@ namespace Tizen.NUI.BaseComponents
                 Tizen.NUI.Object.SetProperty(textField.swigCPtr, TextField.Property.FONT_STYLE, new Tizen.NUI.PropertyValue((PropertyMap)newValue));
             }
         },
-        defaultValueCreator:(bindable) =>
+        defaultValueCreator: (bindable) =>
         {
             var textField = (TextField)bindable;
             PropertyMap temp = new PropertyMap();
@@ -118,7 +118,7 @@ namespace Tizen.NUI.BaseComponents
         });
         /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty PointSizeProperty = BindableProperty.Create("PointSize", typeof(float), typeof(TextField), default(float), propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty PointSizeProperty = BindableProperty.Create(nameof(PointSize), typeof(float), typeof(TextField), default(float), propertyChanged: (bindable, oldValue, newValue) =>
         {
             var textField = (TextField)bindable;
             if (newValue != null)
@@ -126,7 +126,7 @@ namespace Tizen.NUI.BaseComponents
                 Tizen.NUI.Object.SetProperty(textField.swigCPtr, TextField.Property.POINT_SIZE, new Tizen.NUI.PropertyValue((float)newValue));
             }
         },
-        defaultValueCreator:(bindable) =>
+        defaultValueCreator: (bindable) =>
         {
             var textField = (TextField)bindable;
             float temp = 0.0f;
@@ -135,7 +135,7 @@ namespace Tizen.NUI.BaseComponents
         });
         /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty MaxLengthProperty = BindableProperty.Create("MaxLength", typeof(int), typeof(TextField), default(int), propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty MaxLengthProperty = BindableProperty.Create(nameof(MaxLength), typeof(int), typeof(TextField), default(int), propertyChanged: (bindable, oldValue, newValue) =>
         {
             var textField = (TextField)bindable;
             if (newValue != null)
@@ -143,7 +143,7 @@ namespace Tizen.NUI.BaseComponents
                 Tizen.NUI.Object.SetProperty(textField.swigCPtr, TextField.Property.MAX_LENGTH, new Tizen.NUI.PropertyValue((int)newValue));
             }
         },
-        defaultValueCreator:(bindable) =>
+        defaultValueCreator: (bindable) =>
         {
             var textField = (TextField)bindable;
             int temp = 0;
@@ -152,7 +152,7 @@ namespace Tizen.NUI.BaseComponents
         });
         /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty ExceedPolicyProperty = BindableProperty.Create("ExceedPolicy", typeof(int), typeof(TextField), default(int), propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty ExceedPolicyProperty = BindableProperty.Create(nameof(ExceedPolicy), typeof(int), typeof(TextField), default(int), propertyChanged: (bindable, oldValue, newValue) =>
         {
             var textField = (TextField)bindable;
             if (newValue != null)
@@ -160,7 +160,7 @@ namespace Tizen.NUI.BaseComponents
                 Tizen.NUI.Object.SetProperty(textField.swigCPtr, TextField.Property.EXCEED_POLICY, new Tizen.NUI.PropertyValue((int)newValue));
             }
         },
-        defaultValueCreator:(bindable) =>
+        defaultValueCreator: (bindable) =>
         {
             var textField = (TextField)bindable;
             int temp = 0;
@@ -169,7 +169,7 @@ namespace Tizen.NUI.BaseComponents
         });
         /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty HorizontalAlignmentProperty = BindableProperty.Create("HorizontalAlignment", typeof(HorizontalAlignment), typeof(TextField), HorizontalAlignment.Begin, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty HorizontalAlignmentProperty = BindableProperty.Create(nameof(HorizontalAlignment), typeof(HorizontalAlignment), typeof(TextField), HorizontalAlignment.Begin, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var textField = (TextField)bindable;
             string valueToString = "";
@@ -201,7 +201,7 @@ namespace Tizen.NUI.BaseComponents
                 Tizen.NUI.Object.SetProperty(textField.swigCPtr, TextField.Property.HORIZONTAL_ALIGNMENT, new Tizen.NUI.PropertyValue((int)newValue));
             }
         },
-        defaultValueCreator:(bindable) =>
+        defaultValueCreator: (bindable) =>
         {
             var textField = (TextField)bindable;
             string temp;
@@ -212,15 +212,15 @@ namespace Tizen.NUI.BaseComponents
 
             switch (temp)
             {
-                case "BEGIN":                    return HorizontalAlignment.Begin;
-                case "CENTER":                    return HorizontalAlignment.Center;
-                case "END":                    return HorizontalAlignment.End;
-                default:                    return HorizontalAlignment.Begin;
+                case "BEGIN": return HorizontalAlignment.Begin;
+                case "CENTER": return HorizontalAlignment.Center;
+                case "END": return HorizontalAlignment.End;
+                default: return HorizontalAlignment.Begin;
             }
         });
         /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty VerticalAlignmentProperty = BindableProperty.Create("VerticalAlignment", typeof(VerticalAlignment), typeof(TextField), VerticalAlignment.Bottom, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty VerticalAlignmentProperty = BindableProperty.Create(nameof(TextField.VerticalAlignment), typeof(VerticalAlignment), typeof(TextField), VerticalAlignment.Bottom, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var textField = (TextField)bindable;
             string valueToString = "";
@@ -236,7 +236,7 @@ namespace Tizen.NUI.BaseComponents
                 Tizen.NUI.Object.SetProperty(textField.swigCPtr, TextField.Property.VERTICAL_ALIGNMENT, new Tizen.NUI.PropertyValue((int)newValue));
             }
         },
-        defaultValueCreator:(bindable) =>
+        defaultValueCreator: (bindable) =>
         {
             var textField = (TextField)bindable;
             string temp;
@@ -255,7 +255,7 @@ namespace Tizen.NUI.BaseComponents
         });
         /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty TextColorProperty = BindableProperty.Create("TextColor", typeof(Color), typeof(TextField), Color.Transparent, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty TextColorProperty = BindableProperty.Create(nameof(TextField.TextColor), typeof(Color), typeof(TextField), null, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var textField = (TextField)bindable;
             if (newValue != null)
@@ -263,7 +263,7 @@ namespace Tizen.NUI.BaseComponents
                 Tizen.NUI.Object.SetProperty(textField.swigCPtr, TextField.Property.TEXT_COLOR, new Tizen.NUI.PropertyValue((Color)newValue));
             }
         },
-        defaultValueCreator:(bindable) =>
+        defaultValueCreator: (bindable) =>
         {
             var textField = (TextField)bindable;
             Color temp = new Color(0.0f, 0.0f, 0.0f, 0.0f);
@@ -272,7 +272,7 @@ namespace Tizen.NUI.BaseComponents
         });
         /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty PlaceholderTextColorProperty = BindableProperty.Create("PlaceholderTextColor", typeof(Vector4), typeof(TextField), Vector4.Zero, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty PlaceholderTextColorProperty = BindableProperty.Create(nameof(TextField.PlaceholderTextColor), typeof(Vector4), typeof(TextField), null, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var textField = (TextField)bindable;
             if (newValue != null)
@@ -280,50 +280,17 @@ namespace Tizen.NUI.BaseComponents
                 Tizen.NUI.Object.SetProperty(textField.swigCPtr, TextField.Property.PLACEHOLDER_TEXT_COLOR, new Tizen.NUI.PropertyValue((Vector4)newValue));
             }
         },
-        defaultValueCreator:(bindable) =>
+        defaultValueCreator: (bindable) =>
         {
             var textField = (TextField)bindable;
             Vector4 temp = new Vector4(0.0f, 0.0f, 0.0f, 0.0f);
             Tizen.NUI.Object.GetProperty(textField.swigCPtr, TextField.Property.PLACEHOLDER_TEXT_COLOR).Get(temp);
             return temp;
         });
+
         /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty ShadowOffsetProperty = BindableProperty.Create("ShadowOffset", typeof(Vector2), typeof(TextField), Vector2.Zero, propertyChanged: (bindable, oldValue, newValue) =>
-        {
-            var textField = (TextField)bindable;
-            if (newValue != null)
-            {
-                Tizen.NUI.Object.SetProperty(textField.swigCPtr, TextField.Property.SHADOW_OFFSET, new Tizen.NUI.PropertyValue((Vector2)newValue));
-            }
-        },
-        defaultValueCreator:(bindable) =>
-        {
-            var textField = (TextField)bindable;
-            Vector2 temp = new Vector2(0.0f, 0.0f);
-            Tizen.NUI.Object.GetProperty(textField.swigCPtr, TextField.Property.SHADOW_OFFSET).Get(temp);
-            return temp;
-        });
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty ShadowColorProperty = BindableProperty.Create("ShadowColor", typeof(Vector4), typeof(TextField), Vector4.Zero, propertyChanged: (bindable, oldValue, newValue) =>
-        {
-            var textField = (TextField)bindable;
-            if (newValue != null)
-            {
-                Tizen.NUI.Object.SetProperty(textField.swigCPtr, TextField.Property.SHADOW_COLOR, new Tizen.NUI.PropertyValue((Vector4)newValue));
-            }
-        },
-        defaultValueCreator:(bindable) =>
-        {
-            var textField = (TextField)bindable;
-            Vector4 temp = new Vector4(0.0f, 0.0f, 0.0f, 0.0f);
-            Tizen.NUI.Object.GetProperty(textField.swigCPtr, TextField.Property.SHADOW_COLOR).Get(temp);
-            return temp;
-        });
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty PrimaryCursorColorProperty = BindableProperty.Create("PrimaryCursorColor", typeof(Vector4), typeof(TextField), Vector4.Zero, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty PrimaryCursorColorProperty = BindableProperty.Create(nameof(TextField.PrimaryCursorColor), typeof(Vector4), typeof(TextField), null, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var textField = (TextField)bindable;
             if (newValue != null)
@@ -331,7 +298,7 @@ namespace Tizen.NUI.BaseComponents
                 Tizen.NUI.Object.SetProperty(textField.swigCPtr, TextField.Property.PRIMARY_CURSOR_COLOR, new Tizen.NUI.PropertyValue((Vector4)newValue));
             }
         },
-        defaultValueCreator:(bindable) =>
+        defaultValueCreator: (bindable) =>
         {
             var textField = (TextField)bindable;
             Vector4 temp = new Vector4(0.0f, 0.0f, 0.0f, 0.0f);
@@ -340,7 +307,7 @@ namespace Tizen.NUI.BaseComponents
         });
         /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty SecondaryCursorColorProperty = BindableProperty.Create("SecondaryCursorColor", typeof(Vector4), typeof(TextField), Vector4.Zero, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty SecondaryCursorColorProperty = BindableProperty.Create(nameof(TextField.SecondaryCursorColor), typeof(Vector4), typeof(TextField), null, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var textField = (TextField)bindable;
             if (newValue != null)
@@ -348,7 +315,7 @@ namespace Tizen.NUI.BaseComponents
                 Tizen.NUI.Object.SetProperty(textField.swigCPtr, TextField.Property.SECONDARY_CURSOR_COLOR, new Tizen.NUI.PropertyValue((Vector4)newValue));
             }
         },
-        defaultValueCreator:(bindable) =>
+        defaultValueCreator: (bindable) =>
         {
             var textField = (TextField)bindable;
             Vector4 temp = new Vector4(0.0f, 0.0f, 0.0f, 0.0f);
@@ -357,7 +324,7 @@ namespace Tizen.NUI.BaseComponents
         });
         /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty EnableCursorBlinkProperty = BindableProperty.Create("EnableCursorBlink", typeof(bool), typeof(TextField), false, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty EnableCursorBlinkProperty = BindableProperty.Create(nameof(TextField.EnableCursorBlink), typeof(bool), typeof(TextField), false, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var textField = (TextField)bindable;
             if (newValue != null)
@@ -365,7 +332,7 @@ namespace Tizen.NUI.BaseComponents
                 Tizen.NUI.Object.SetProperty(textField.swigCPtr, TextField.Property.ENABLE_CURSOR_BLINK, new Tizen.NUI.PropertyValue((bool)newValue));
             }
         },
-        defaultValueCreator:(bindable) =>
+        defaultValueCreator: (bindable) =>
         {
             var textField = (TextField)bindable;
             bool temp = false;
@@ -374,7 +341,7 @@ namespace Tizen.NUI.BaseComponents
         });
         /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty CursorBlinkIntervalProperty = BindableProperty.Create("CursorBlinkInterval", typeof(float), typeof(TextField), default(float), propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty CursorBlinkIntervalProperty = BindableProperty.Create(nameof(TextField.CursorBlinkInterval), typeof(float), typeof(TextField), default(float), propertyChanged: (bindable, oldValue, newValue) =>
         {
             var textField = (TextField)bindable;
             if (newValue != null)
@@ -382,7 +349,7 @@ namespace Tizen.NUI.BaseComponents
                 Tizen.NUI.Object.SetProperty(textField.swigCPtr, TextField.Property.CURSOR_BLINK_INTERVAL, new Tizen.NUI.PropertyValue((float)newValue));
             }
         },
-        defaultValueCreator:(bindable) =>
+        defaultValueCreator: (bindable) =>
         {
             var textField = (TextField)bindable;
             float temp = 0.0f;
@@ -391,7 +358,7 @@ namespace Tizen.NUI.BaseComponents
         });
         /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty CursorBlinkDurationProperty = BindableProperty.Create("CursorBlinkDuration", typeof(float), typeof(TextField), default(float), propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty CursorBlinkDurationProperty = BindableProperty.Create(nameof(TextField.CursorBlinkDuration), typeof(float), typeof(TextField), default(float), propertyChanged: (bindable, oldValue, newValue) =>
         {
             var textField = (TextField)bindable;
             if (newValue != null)
@@ -399,7 +366,7 @@ namespace Tizen.NUI.BaseComponents
                 Tizen.NUI.Object.SetProperty(textField.swigCPtr, TextField.Property.CURSOR_BLINK_DURATION, new Tizen.NUI.PropertyValue((float)newValue));
             }
         },
-        defaultValueCreator:(bindable) =>
+        defaultValueCreator: (bindable) =>
         {
             var textField = (TextField)bindable;
             float temp = 0.0f;
@@ -408,7 +375,7 @@ namespace Tizen.NUI.BaseComponents
         });
         /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty CursorWidthProperty = BindableProperty.Create("CursorWidth", typeof(int), typeof(TextField), default(int), propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty CursorWidthProperty = BindableProperty.Create(nameof(TextField.CursorWidth), typeof(int), typeof(TextField), default(int), propertyChanged: (bindable, oldValue, newValue) =>
         {
             var textField = (TextField)bindable;
             if (newValue != null)
@@ -416,7 +383,7 @@ namespace Tizen.NUI.BaseComponents
                 Tizen.NUI.Object.SetProperty(textField.swigCPtr, TextField.Property.CURSOR_WIDTH, new Tizen.NUI.PropertyValue((int)newValue));
             }
         },
-        defaultValueCreator:(bindable) =>
+        defaultValueCreator: (bindable) =>
         {
             var textField = (TextField)bindable;
             int temp = 0;
@@ -425,7 +392,7 @@ namespace Tizen.NUI.BaseComponents
         });
         /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty GrabHandleImageProperty = BindableProperty.Create("GrabHandleImage", typeof(string), typeof(TextField), string.Empty, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty GrabHandleImageProperty = BindableProperty.Create(nameof(TextField.GrabHandleImage), typeof(string), typeof(TextField), string.Empty, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var textField = (TextField)bindable;
             if (newValue != null)
@@ -433,7 +400,7 @@ namespace Tizen.NUI.BaseComponents
                 Tizen.NUI.Object.SetProperty(textField.swigCPtr, TextField.Property.GRAB_HANDLE_IMAGE, new Tizen.NUI.PropertyValue((string)newValue));
             }
         },
-        defaultValueCreator:(bindable) =>
+        defaultValueCreator: (bindable) =>
         {
             var textField = (TextField)bindable;
             string temp;
@@ -442,7 +409,7 @@ namespace Tizen.NUI.BaseComponents
         });
         /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty GrabHandlePressedImageProperty = BindableProperty.Create("GrabHandlePressedImage", typeof(string), typeof(TextField), string.Empty, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty GrabHandlePressedImageProperty = BindableProperty.Create(nameof(TextField.GrabHandlePressedImage), typeof(string), typeof(TextField), string.Empty, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var textField = (TextField)bindable;
             if (newValue != null)
@@ -450,7 +417,7 @@ namespace Tizen.NUI.BaseComponents
                 Tizen.NUI.Object.SetProperty(textField.swigCPtr, TextField.Property.GRAB_HANDLE_PRESSED_IMAGE, new Tizen.NUI.PropertyValue((string)newValue));
             }
         },
-        defaultValueCreator:(bindable) =>
+        defaultValueCreator: (bindable) =>
         {
             var textField = (TextField)bindable;
             string temp;
@@ -459,7 +426,7 @@ namespace Tizen.NUI.BaseComponents
         });
         /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty ScrollThresholdProperty = BindableProperty.Create("ScrollThreshold", typeof(float), typeof(TextField), default(float), propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty ScrollThresholdProperty = BindableProperty.Create(nameof(TextField.ScrollThreshold), typeof(float), typeof(TextField), default(float), propertyChanged: (bindable, oldValue, newValue) =>
         {
             var textField = (TextField)bindable;
             if (newValue != null)
@@ -467,7 +434,7 @@ namespace Tizen.NUI.BaseComponents
                 Tizen.NUI.Object.SetProperty(textField.swigCPtr, TextField.Property.SCROLL_THRESHOLD, new Tizen.NUI.PropertyValue((float)newValue));
             }
         },
-        defaultValueCreator:(bindable) =>
+        defaultValueCreator: (bindable) =>
         {
             var textField = (TextField)bindable;
             float temp = 0.0f;
@@ -476,7 +443,7 @@ namespace Tizen.NUI.BaseComponents
         });
         /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty ScrollSpeedProperty = BindableProperty.Create("ScrollSpeed", typeof(float), typeof(TextField), default(float), propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty ScrollSpeedProperty = BindableProperty.Create(nameof(TextField.ScrollSpeed), typeof(float), typeof(TextField), default(float), propertyChanged: (bindable, oldValue, newValue) =>
         {
             var textField = (TextField)bindable;
             if (newValue != null)
@@ -484,7 +451,7 @@ namespace Tizen.NUI.BaseComponents
                 Tizen.NUI.Object.SetProperty(textField.swigCPtr, TextField.Property.SCROLL_SPEED, new Tizen.NUI.PropertyValue((float)newValue));
             }
         },
-        defaultValueCreator:(bindable) =>
+        defaultValueCreator: (bindable) =>
         {
             var textField = (TextField)bindable;
             float temp = 0.0f;
@@ -493,7 +460,7 @@ namespace Tizen.NUI.BaseComponents
         });
         /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty SelectionHandleImageLeftProperty = BindableProperty.Create("SelectionHandleImageLeft", typeof(PropertyMap), typeof(TextField), new PropertyMap(), propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty SelectionHandleImageLeftProperty = BindableProperty.Create(nameof(TextField.SelectionHandleImageLeft), typeof(PropertyMap), typeof(TextField), null, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var textField = (TextField)bindable;
             if (newValue != null)
@@ -501,7 +468,7 @@ namespace Tizen.NUI.BaseComponents
                 Tizen.NUI.Object.SetProperty(textField.swigCPtr, TextField.Property.SELECTION_HANDLE_IMAGE_LEFT, new Tizen.NUI.PropertyValue((PropertyMap)newValue));
             }
         },
-        defaultValueCreator:(bindable) =>
+        defaultValueCreator: (bindable) =>
         {
             var textField = (TextField)bindable;
             PropertyMap temp = new PropertyMap();
@@ -510,7 +477,7 @@ namespace Tizen.NUI.BaseComponents
         });
         /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty SelectionHandleImageRightProperty = BindableProperty.Create("SelectionHandleImageRight", typeof(PropertyMap), typeof(TextField), new PropertyMap(), propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty SelectionHandleImageRightProperty = BindableProperty.Create(nameof(TextField.SelectionHandleImageLeft), typeof(PropertyMap), typeof(TextField), null, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var textField = (TextField)bindable;
             if (newValue != null)
@@ -518,7 +485,7 @@ namespace Tizen.NUI.BaseComponents
                 Tizen.NUI.Object.SetProperty(textField.swigCPtr, TextField.Property.SELECTION_HANDLE_IMAGE_RIGHT, new Tizen.NUI.PropertyValue((PropertyMap)newValue));
             }
         },
-        defaultValueCreator:(bindable) =>
+        defaultValueCreator: (bindable) =>
         {
             var textField = (TextField)bindable;
             PropertyMap temp = new PropertyMap();
@@ -527,7 +494,7 @@ namespace Tizen.NUI.BaseComponents
         });
         /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty SelectionHandlePressedImageLeftProperty = BindableProperty.Create("SelectionHandlePressedImageLeft", typeof(PropertyMap), typeof(TextField), new PropertyMap(), propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty SelectionHandlePressedImageLeftProperty = BindableProperty.Create(nameof(TextField.SelectionHandlePressedImageLeft), typeof(PropertyMap), typeof(TextField), null, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var textField = (TextField)bindable;
             if (newValue != null)
@@ -535,7 +502,7 @@ namespace Tizen.NUI.BaseComponents
                 Tizen.NUI.Object.SetProperty(textField.swigCPtr, TextField.Property.SELECTION_HANDLE_PRESSED_IMAGE_LEFT, new Tizen.NUI.PropertyValue((PropertyMap)newValue));
             }
         },
-        defaultValueCreator:(bindable) =>
+        defaultValueCreator: (bindable) =>
         {
             var textField = (TextField)bindable;
             PropertyMap temp = new PropertyMap();
@@ -544,7 +511,7 @@ namespace Tizen.NUI.BaseComponents
         });
         /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty SelectionHandlePressedImageRightProperty = BindableProperty.Create("SelectionHandlePressedImageRight", typeof(PropertyMap), typeof(TextField), new PropertyMap(), propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty SelectionHandlePressedImageRightProperty = BindableProperty.Create(nameof(TextField.SelectionHandlePressedImageRight), typeof(PropertyMap), typeof(TextField), null, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var textField = (TextField)bindable;
             if (newValue != null)
@@ -552,7 +519,7 @@ namespace Tizen.NUI.BaseComponents
                 Tizen.NUI.Object.SetProperty(textField.swigCPtr, TextField.Property.SELECTION_HANDLE_PRESSED_IMAGE_RIGHT, new Tizen.NUI.PropertyValue((PropertyMap)newValue));
             }
         },
-        defaultValueCreator:(bindable) =>
+        defaultValueCreator: (bindable) =>
         {
             var textField = (TextField)bindable;
             PropertyMap temp = new PropertyMap();
@@ -561,7 +528,7 @@ namespace Tizen.NUI.BaseComponents
         });
         /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty SelectionHandleMarkerImageLeftProperty = BindableProperty.Create("SelectionHandleMarkerImageLeft", typeof(PropertyMap), typeof(TextField), new PropertyMap(), propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty SelectionHandleMarkerImageLeftProperty = BindableProperty.Create(nameof(TextField.SelectionHandleMarkerImageLeft), typeof(PropertyMap), typeof(TextField), null, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var textField = (TextField)bindable;
             if (newValue != null)
@@ -569,7 +536,7 @@ namespace Tizen.NUI.BaseComponents
                 Tizen.NUI.Object.SetProperty(textField.swigCPtr, TextField.Property.SELECTION_HANDLE_MARKER_IMAGE_LEFT, new Tizen.NUI.PropertyValue((PropertyMap)newValue));
             }
         },
-        defaultValueCreator:(bindable) =>
+        defaultValueCreator: (bindable) =>
         {
             var textField = (TextField)bindable;
             PropertyMap temp = new PropertyMap();
@@ -578,7 +545,7 @@ namespace Tizen.NUI.BaseComponents
         });
         /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty SelectionHandleMarkerImageRightProperty = BindableProperty.Create("SelectionHandleMarkerImageRight", typeof(PropertyMap), typeof(TextField), new PropertyMap(), propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty SelectionHandleMarkerImageRightProperty = BindableProperty.Create(nameof(TextField.SelectionHandleMarkerImageRight), typeof(PropertyMap), typeof(TextField), null, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var textField = (TextField)bindable;
             if (newValue != null)
@@ -586,7 +553,7 @@ namespace Tizen.NUI.BaseComponents
                 Tizen.NUI.Object.SetProperty(textField.swigCPtr, TextField.Property.SELECTION_HANDLE_MARKER_IMAGE_RIGHT, new Tizen.NUI.PropertyValue((PropertyMap)newValue));
             }
         },
-        defaultValueCreator:(bindable) =>
+        defaultValueCreator: (bindable) =>
         {
             var textField = (TextField)bindable;
             PropertyMap temp = new PropertyMap();
@@ -595,7 +562,7 @@ namespace Tizen.NUI.BaseComponents
         });
         /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty SelectionHighlightColorProperty = BindableProperty.Create("SelectionHighlightColor", typeof(Vector4), typeof(TextField), Vector4.Zero, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty SelectionHighlightColorProperty = BindableProperty.Create(nameof(TextField.SelectionHighlightColor), typeof(Vector4), typeof(TextField), null, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var textField = (TextField)bindable;
             if (newValue != null)
@@ -603,7 +570,7 @@ namespace Tizen.NUI.BaseComponents
                 Tizen.NUI.Object.SetProperty(textField.swigCPtr, TextField.Property.SELECTION_HIGHLIGHT_COLOR, new Tizen.NUI.PropertyValue((Vector4)newValue));
             }
         },
-        defaultValueCreator:(bindable) =>
+        defaultValueCreator: (bindable) =>
         {
             var textField = (TextField)bindable;
             Vector4 temp = new Vector4(0.0f, 0.0f, 0.0f, 0.0f);
@@ -612,7 +579,7 @@ namespace Tizen.NUI.BaseComponents
         });
         /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty DecorationBoundingBoxProperty = BindableProperty.Create("DecorationBoundingBox", typeof(Rectangle), typeof(TextField), new Rectangle(0,0,0,0), propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty DecorationBoundingBoxProperty = BindableProperty.Create(nameof(TextField.DecorationBoundingBox), typeof(Rectangle), typeof(TextField), null, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var textField = (TextField)bindable;
             if (newValue != null)
@@ -620,7 +587,7 @@ namespace Tizen.NUI.BaseComponents
                 Tizen.NUI.Object.SetProperty(textField.swigCPtr, TextField.Property.DECORATION_BOUNDING_BOX, new Tizen.NUI.PropertyValue((Rectangle)newValue));
             }
         },
-        defaultValueCreator:(bindable) =>
+        defaultValueCreator: (bindable) =>
         {
             var textField = (TextField)bindable;
             Rectangle temp = new Rectangle(0, 0, 0, 0);
@@ -629,7 +596,7 @@ namespace Tizen.NUI.BaseComponents
         });
         /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty InputMethodSettingsProperty = BindableProperty.Create("InputMethodSettings", typeof(PropertyMap), typeof(TextField), new PropertyMap(), propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty InputMethodSettingsProperty = BindableProperty.Create(nameof(TextField.InputMethodSettings), typeof(PropertyMap), typeof(TextField), null, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var textField = (TextField)bindable;
             if (newValue != null)
@@ -637,7 +604,7 @@ namespace Tizen.NUI.BaseComponents
                 Tizen.NUI.Object.SetProperty(textField.swigCPtr, TextField.Property.INPUT_METHOD_SETTINGS, new Tizen.NUI.PropertyValue((PropertyMap)newValue));
             }
         },
-        defaultValueCreator:(bindable) =>
+        defaultValueCreator: (bindable) =>
         {
             var textField = (TextField)bindable;
             PropertyMap temp = new PropertyMap();
@@ -646,7 +613,7 @@ namespace Tizen.NUI.BaseComponents
         });
         /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty InputColorProperty = BindableProperty.Create("InputColor", typeof(Vector4), typeof(TextField), Vector4.Zero, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty InputColorProperty = BindableProperty.Create(nameof(TextField.InputColor), typeof(Vector4), typeof(TextField), null, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var textField = (TextField)bindable;
             if (newValue != null)
@@ -654,7 +621,7 @@ namespace Tizen.NUI.BaseComponents
                 Tizen.NUI.Object.SetProperty(textField.swigCPtr, TextField.Property.INPUT_COLOR, new Tizen.NUI.PropertyValue((Vector4)newValue));
             }
         },
-        defaultValueCreator:(bindable) =>
+        defaultValueCreator: (bindable) =>
         {
             var textField = (TextField)bindable;
             Vector4 temp = new Vector4(0.0f, 0.0f, 0.0f, 0.0f);
@@ -663,7 +630,7 @@ namespace Tizen.NUI.BaseComponents
         });
         /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty EnableMarkupProperty = BindableProperty.Create("EnableMarkup", typeof(bool), typeof(TextField), false, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty EnableMarkupProperty = BindableProperty.Create(nameof(TextField.EnableMarkup), typeof(bool), typeof(TextField), false, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var textField = (TextField)bindable;
             if (newValue != null)
@@ -671,7 +638,7 @@ namespace Tizen.NUI.BaseComponents
                 Tizen.NUI.Object.SetProperty(textField.swigCPtr, TextField.Property.ENABLE_MARKUP, new Tizen.NUI.PropertyValue((bool)newValue));
             }
         },
-        defaultValueCreator:(bindable) =>
+        defaultValueCreator: (bindable) =>
         {
             var textField = (TextField)bindable;
             bool temp = false;
@@ -680,7 +647,7 @@ namespace Tizen.NUI.BaseComponents
         });
         /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty InputFontFamilyProperty = BindableProperty.Create("InputFontFamily", typeof(string), typeof(TextField), string.Empty, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty InputFontFamilyProperty = BindableProperty.Create(nameof(TextField.InputFontFamily), typeof(string), typeof(TextField), string.Empty, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var textField = (TextField)bindable;
             if (newValue != null)
@@ -688,7 +655,7 @@ namespace Tizen.NUI.BaseComponents
                 Tizen.NUI.Object.SetProperty(textField.swigCPtr, TextField.Property.INPUT_FONT_FAMILY, new Tizen.NUI.PropertyValue((string)newValue));
             }
         },
-        defaultValueCreator:(bindable) =>
+        defaultValueCreator: (bindable) =>
         {
             var textField = (TextField)bindable;
             string temp;
@@ -697,7 +664,7 @@ namespace Tizen.NUI.BaseComponents
         });
         /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty InputFontStyleProperty = BindableProperty.Create("InputFontStyle", typeof(PropertyMap), typeof(TextField), new PropertyMap(), propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty InputFontStyleProperty = BindableProperty.Create(nameof(TextField.InputFontStyle), typeof(PropertyMap), typeof(TextField), null, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var textField = (TextField)bindable;
             if (newValue != null)
@@ -705,7 +672,7 @@ namespace Tizen.NUI.BaseComponents
                 Tizen.NUI.Object.SetProperty(textField.swigCPtr, TextField.Property.INPUT_FONT_STYLE, new Tizen.NUI.PropertyValue((PropertyMap)newValue));
             }
         },
-        defaultValueCreator:(bindable) =>
+        defaultValueCreator: (bindable) =>
         {
             var textField = (TextField)bindable;
             PropertyMap temp = new PropertyMap();
@@ -714,7 +681,7 @@ namespace Tizen.NUI.BaseComponents
         });
         /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty InputPointSizeProperty = BindableProperty.Create("InputPointSize", typeof(float), typeof(TextField), default(float), propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty InputPointSizeProperty = BindableProperty.Create(nameof(TextField.InputPointSize), typeof(float), typeof(TextField), default(float), propertyChanged: (bindable, oldValue, newValue) =>
         {
             var textField = (TextField)bindable;
             if (newValue != null)
@@ -722,7 +689,7 @@ namespace Tizen.NUI.BaseComponents
                 Tizen.NUI.Object.SetProperty(textField.swigCPtr, TextField.Property.INPUT_POINT_SIZE, new Tizen.NUI.PropertyValue((float)newValue));
             }
         },
-        defaultValueCreator:(bindable) =>
+        defaultValueCreator: (bindable) =>
         {
             var textField = (TextField)bindable;
             float temp = 0.0f;
@@ -731,7 +698,7 @@ namespace Tizen.NUI.BaseComponents
         });
         /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty UnderlineProperty = BindableProperty.Create("Underline", typeof(PropertyMap), typeof(TextField), new PropertyMap(), propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty UnderlineProperty = BindableProperty.Create(nameof(TextField.Underline), typeof(PropertyMap), typeof(TextField), null, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var textField = (TextField)bindable;
             if (newValue != null)
@@ -739,7 +706,7 @@ namespace Tizen.NUI.BaseComponents
                 Tizen.NUI.Object.SetProperty(textField.swigCPtr, TextField.Property.UNDERLINE, new Tizen.NUI.PropertyValue((PropertyMap)newValue));
             }
         },
-        defaultValueCreator:(bindable) =>
+        defaultValueCreator: (bindable) =>
         {
             var textField = (TextField)bindable;
             PropertyMap temp = new PropertyMap();
@@ -748,7 +715,7 @@ namespace Tizen.NUI.BaseComponents
         });
         /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty InputUnderlineProperty = BindableProperty.Create("InputUnderline", typeof(string), typeof(TextField), string.Empty, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty InputUnderlineProperty = BindableProperty.Create(nameof(TextField.InputUnderline), typeof(string), typeof(TextField), string.Empty, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var textField = (TextField)bindable;
             if (newValue != null)
@@ -756,7 +723,7 @@ namespace Tizen.NUI.BaseComponents
                 Tizen.NUI.Object.SetProperty(textField.swigCPtr, TextField.Property.INPUT_UNDERLINE, new Tizen.NUI.PropertyValue((string)newValue));
             }
         },
-        defaultValueCreator:(bindable) =>
+        defaultValueCreator: (bindable) =>
         {
             var textField = (TextField)bindable;
             string temp;
@@ -765,7 +732,7 @@ namespace Tizen.NUI.BaseComponents
         });
         /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty ShadowProperty = BindableProperty.Create("Shadow", typeof(PropertyMap), typeof(TextField), new PropertyMap(), propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty ShadowProperty = BindableProperty.Create(nameof(TextField.Shadow), typeof(PropertyMap), typeof(TextField), null, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var textField = (TextField)bindable;
             if (newValue != null)
@@ -773,7 +740,7 @@ namespace Tizen.NUI.BaseComponents
                 Tizen.NUI.Object.SetProperty(textField.swigCPtr, TextField.Property.SHADOW, new Tizen.NUI.PropertyValue((PropertyMap)newValue));
             }
         },
-        defaultValueCreator:(bindable) =>
+        defaultValueCreator: (bindable) =>
         {
             var textField = (TextField)bindable;
             PropertyMap temp = new PropertyMap();
@@ -782,7 +749,7 @@ namespace Tizen.NUI.BaseComponents
         });
         /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty InputShadowProperty = BindableProperty.Create("InputShadow", typeof(string), typeof(TextField), string.Empty, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty InputShadowProperty = BindableProperty.Create(nameof(TextField.InputShadow), typeof(string), typeof(TextField), string.Empty, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var textField = (TextField)bindable;
             if (newValue != null)
@@ -790,7 +757,7 @@ namespace Tizen.NUI.BaseComponents
                 Tizen.NUI.Object.SetProperty(textField.swigCPtr, TextField.Property.INPUT_SHADOW, new Tizen.NUI.PropertyValue((string)newValue));
             }
         },
-        defaultValueCreator:(bindable) =>
+        defaultValueCreator: (bindable) =>
         {
             var textField = (TextField)bindable;
             string temp;
@@ -799,7 +766,7 @@ namespace Tizen.NUI.BaseComponents
         });
         /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty EmbossProperty = BindableProperty.Create("Emboss", typeof(string), typeof(TextField), string.Empty, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty EmbossProperty = BindableProperty.Create(nameof(TextField.Emboss), typeof(string), typeof(TextField), string.Empty, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var textField = (TextField)bindable;
             if (newValue != null)
@@ -807,7 +774,7 @@ namespace Tizen.NUI.BaseComponents
                 Tizen.NUI.Object.SetProperty(textField.swigCPtr, TextField.Property.EMBOSS, new Tizen.NUI.PropertyValue((string)newValue));
             }
         },
-        defaultValueCreator:(bindable) =>
+        defaultValueCreator: (bindable) =>
         {
             var textField = (TextField)bindable;
             string temp;
@@ -816,7 +783,7 @@ namespace Tizen.NUI.BaseComponents
         });
         /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty InputEmbossProperty = BindableProperty.Create("InputEmboss", typeof(string), typeof(TextField), string.Empty, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty InputEmbossProperty = BindableProperty.Create(nameof(TextField.InputEmboss), typeof(string), typeof(TextField), string.Empty, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var textField = (TextField)bindable;
             if (newValue != null)
@@ -824,7 +791,7 @@ namespace Tizen.NUI.BaseComponents
                 Tizen.NUI.Object.SetProperty(textField.swigCPtr, TextField.Property.INPUT_EMBOSS, new Tizen.NUI.PropertyValue((string)newValue));
             }
         },
-        defaultValueCreator:(bindable) =>
+        defaultValueCreator: (bindable) =>
         {
             var textField = (TextField)bindable;
             string temp;
@@ -833,7 +800,7 @@ namespace Tizen.NUI.BaseComponents
         });
         /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty OutlineProperty = BindableProperty.Create("Outline", typeof(PropertyMap), typeof(TextField), new PropertyMap(), propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty OutlineProperty = BindableProperty.Create(nameof(TextField.Outline), typeof(PropertyMap), typeof(TextField), null, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var textField = (TextField)bindable;
             if (newValue != null)
@@ -841,7 +808,7 @@ namespace Tizen.NUI.BaseComponents
                 Tizen.NUI.Object.SetProperty(textField.swigCPtr, TextField.Property.OUTLINE, new Tizen.NUI.PropertyValue((PropertyMap)newValue));
             }
         },
-        defaultValueCreator:(bindable) =>
+        defaultValueCreator: (bindable) =>
         {
             var textField = (TextField)bindable;
             PropertyMap temp = new PropertyMap();
@@ -850,7 +817,7 @@ namespace Tizen.NUI.BaseComponents
         });
         /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty InputOutlineProperty = BindableProperty.Create("InputOutline", typeof(string), typeof(TextField), string.Empty, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty InputOutlineProperty = BindableProperty.Create(nameof(TextField.InputOutline), typeof(string), typeof(TextField), string.Empty, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var textField = (TextField)bindable;
             if (newValue != null)
@@ -858,7 +825,7 @@ namespace Tizen.NUI.BaseComponents
                 Tizen.NUI.Object.SetProperty(textField.swigCPtr, TextField.Property.INPUT_OUTLINE, new Tizen.NUI.PropertyValue((string)newValue));
             }
         },
-        defaultValueCreator:(bindable) =>
+        defaultValueCreator: (bindable) =>
         {
             var textField = (TextField)bindable;
             string temp;
@@ -867,7 +834,7 @@ namespace Tizen.NUI.BaseComponents
         });
         /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty HiddenInputSettingsProperty = BindableProperty.Create("HiddenInputSettings", typeof(PropertyMap), typeof(TextField), new PropertyMap(), propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty HiddenInputSettingsProperty = BindableProperty.Create(nameof(TextField.HiddenInputSettings), typeof(PropertyMap), typeof(TextField), null, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var textField = (TextField)bindable;
             if (newValue != null)
@@ -875,7 +842,7 @@ namespace Tizen.NUI.BaseComponents
                 Tizen.NUI.Object.SetProperty(textField.swigCPtr, TextField.Property.HIDDEN_INPUT_SETTINGS, new Tizen.NUI.PropertyValue((PropertyMap)newValue));
             }
         },
-        defaultValueCreator:(bindable) =>
+        defaultValueCreator: (bindable) =>
         {
             var textField = (TextField)bindable;
             Tizen.NUI.PropertyMap temp = new Tizen.NUI.PropertyMap();
@@ -884,7 +851,7 @@ namespace Tizen.NUI.BaseComponents
         });
         /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty PixelSizeProperty = BindableProperty.Create("PixelSize", typeof(float), typeof(TextField), default(float), propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty PixelSizeProperty = BindableProperty.Create(nameof(TextField.PixelSize), typeof(float), typeof(TextField), default(float), propertyChanged: (bindable, oldValue, newValue) =>
         {
             var textField = (TextField)bindable;
             if (newValue != null)
@@ -892,7 +859,7 @@ namespace Tizen.NUI.BaseComponents
                 Tizen.NUI.Object.SetProperty(textField.swigCPtr, TextField.Property.PIXEL_SIZE, new Tizen.NUI.PropertyValue((float)newValue));
             }
         },
-        defaultValueCreator:(bindable) =>
+        defaultValueCreator: (bindable) =>
         {
             var textField = (TextField)bindable;
             float temp = 0.0f;
@@ -901,7 +868,7 @@ namespace Tizen.NUI.BaseComponents
         });
         /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty EnableSelectionProperty = BindableProperty.Create("EnableSelection", typeof(bool), typeof(TextField), false, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty EnableSelectionProperty = BindableProperty.Create(nameof(TextField.EnableSelection), typeof(bool), typeof(TextField), false, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var textField = (TextField)bindable;
             if (newValue != null)
@@ -909,7 +876,7 @@ namespace Tizen.NUI.BaseComponents
                 Tizen.NUI.Object.SetProperty(textField.swigCPtr, TextField.Property.ENABLE_SELECTION, new Tizen.NUI.PropertyValue((bool)newValue));
             }
         },
-        defaultValueCreator:(bindable) =>
+        defaultValueCreator: (bindable) =>
         {
             var textField = (TextField)bindable;
             bool temp = false;
@@ -918,7 +885,7 @@ namespace Tizen.NUI.BaseComponents
         });
         /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty PlaceholderProperty = BindableProperty.Create("Placeholder", typeof(PropertyMap), typeof(TextField), new PropertyMap(), propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty PlaceholderProperty = BindableProperty.Create(nameof(TextField.Placeholder), typeof(PropertyMap), typeof(TextField), null, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var textField = (TextField)bindable;
             if (newValue != null)
@@ -926,7 +893,7 @@ namespace Tizen.NUI.BaseComponents
                 Tizen.NUI.Object.SetProperty(textField.swigCPtr, TextField.Property.PLACEHOLDER, new Tizen.NUI.PropertyValue((PropertyMap)newValue));
             }
         },
-        defaultValueCreator:(bindable) =>
+        defaultValueCreator: (bindable) =>
         {
             var textField = (TextField)bindable;
             Tizen.NUI.PropertyMap temp = new Tizen.NUI.PropertyMap();
@@ -935,7 +902,7 @@ namespace Tizen.NUI.BaseComponents
         });
         /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty EllipsisProperty = BindableProperty.Create("Ellipsis", typeof(bool), typeof(TextField), false, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty EllipsisProperty = BindableProperty.Create(nameof(TextField.Ellipsis), typeof(bool), typeof(TextField), false, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var textField = (TextField)bindable;
             if (newValue != null)
@@ -943,7 +910,7 @@ namespace Tizen.NUI.BaseComponents
                 Tizen.NUI.Object.SetProperty(textField.swigCPtr, TextField.Property.ELLIPSIS, new Tizen.NUI.PropertyValue((bool)newValue));
             }
         },
-        defaultValueCreator:(bindable) =>
+        defaultValueCreator: (bindable) =>
         {
             var textField = (TextField)bindable;
             bool temp = false;
@@ -952,7 +919,7 @@ namespace Tizen.NUI.BaseComponents
         });
         /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty EnableShiftSelectionProperty = BindableProperty.Create("EnableShiftSelection", typeof(bool), typeof(TextField), false, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty EnableShiftSelectionProperty = BindableProperty.Create(nameof(TextField.EnableShiftSelection), typeof(bool), typeof(TextField), false, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var textField = (TextField)bindable;
             if (newValue != null)
@@ -960,142 +927,65 @@ namespace Tizen.NUI.BaseComponents
                 Tizen.NUI.Object.SetProperty(textField.swigCPtr, TextField.Property.ENABLE_SHIFT_SELECTION, new Tizen.NUI.PropertyValue((bool)newValue));
             }
         },
-        defaultValueCreator:(bindable) =>
+        defaultValueCreator: (bindable) =>
         {
             var textField = (TextField)bindable;
             bool temp = false;
             Tizen.NUI.Object.GetProperty(textField.swigCPtr, TextField.Property.ENABLE_SHIFT_SELECTION).Get(out temp);
             return temp;
         });
-
-
+        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static readonly BindableProperty MatchSystemLanguageDirectionProperty = BindableProperty.Create(nameof(TextField.MatchSystemLanguageDirection), typeof(bool), typeof(TextField), false, propertyChanged: (bindable, oldValue, newValue) =>
+        {
+            var textField = (TextField)bindable;
+            if (newValue != null)
+            {
+                Tizen.NUI.Object.SetProperty(textField.swigCPtr, TextField.Property.MATCH_SYSTEM_LANGUAGE_DIRECTION, new Tizen.NUI.PropertyValue((bool)newValue));
+            }
+        },
+        defaultValueCreator: (bindable) =>
+        {
+            var textField = (TextField)bindable;
+            bool temp = false;
+            Tizen.NUI.Object.GetProperty(textField.swigCPtr, TextField.Property.MATCH_SYSTEM_LANGUAGE_DIRECTION).Get(out temp);
+            return (bool)temp;
+        });
 
         private global::System.Runtime.InteropServices.HandleRef swigCPtr;
         private string textFieldTextSid = null;
         private string textFieldPlaceHolderTextSid = null;
         private bool systemlangTextFlag = false;
         private InputMethodContext inputMethodCotext = null;
+        private EventHandler<TextChangedEventArgs> _textFieldTextChangedEventHandler;
+        private TextChangedCallbackDelegate _textFieldTextChangedCallbackDelegate;
+        private EventHandler<MaxLengthReachedEventArgs> _textFieldMaxLengthReachedEventHandler;
+        private MaxLengthReachedCallbackDelegate _textFieldMaxLengthReachedCallbackDelegate;
+
+        /// <summary>
+        /// Creates the TextField control.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
+        public TextField() : this(NDalicPINVOKE.TextField_New(), true)
+        {
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
 
         internal TextField(global::System.IntPtr cPtr, bool cMemoryOwn) : base(NDalicPINVOKE.TextField_SWIGUpcast(cPtr), cMemoryOwn)
         {
             swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
         }
 
-        internal static global::System.Runtime.InteropServices.HandleRef getCPtr(TextField obj)
+        internal TextField(TextField handle) : this(NDalicPINVOKE.new_TextField__SWIG_1(TextField.getCPtr(handle)), true)
         {
-            return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
-
-        /// <summary>
-        /// Dispose.
-        /// </summary>
-        /// <since_tizen> 3 </since_tizen>
-        protected override void Dispose(DisposeTypes type)
-        {
-            if (disposed)
-            {
-                DisposeQueue.Instance.Add(this);
-                return;
-            }
-
-            if (type == DisposeTypes.Explicit)
-            {
-                //Called by User
-                //Release your own managed resources here.
-                //You should release all of your own disposable objects here.
-            }
-
-            //Release your own unmanaged resources here.
-            //You should not access any managed member here except static instance.
-            //because the execution order of Finalizes is non-deterministic.
-            if (this.HasBody())
-            {
-                if (_textFieldMaxLengthReachedCallbackDelegate != null)
-                {
-                    this.MaxLengthReachedSignal().Disconnect(_textFieldMaxLengthReachedCallbackDelegate);
-                }
-
-                if (_textFieldTextChangedCallbackDelegate != null)
-                {
-                    TextChangedSignal().Disconnect(_textFieldTextChangedCallbackDelegate);
-                }
-            }
-
-            if (swigCPtr.Handle != global::System.IntPtr.Zero)
-            {
-                if (swigCMemOwn)
-                {
-                    swigCMemOwn = false;
-                    // In order to speed up IME hide, temporarily add
-                    GetInputMethodContext()?.DestroyContext();
-                    NDalicPINVOKE.delete_TextField(swigCPtr);
-                }
-                swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
-            }
-
-            base.Dispose(type);
-        }
-
-        /// <summary>
-        /// The TextChanged event arguments.
-        /// </summary>
-        /// <since_tizen> 3 </since_tizen>
-        public class TextChangedEventArgs : EventArgs
-        {
-            private TextField _textField;
-
-            /// <summary>
-            /// TextField.
-            /// </summary>
-            /// <since_tizen> 3 </since_tizen>
-            public TextField TextField
-            {
-                get
-                {
-                    return _textField;
-                }
-                set
-                {
-                    _textField = value;
-                }
-            }
-        }
-
-        /// <summary>
-        /// The MaxLengthReached event arguments.
-        /// </summary>
-        /// <since_tizen> 3 </since_tizen>
-        public class MaxLengthReachedEventArgs : EventArgs
-        {
-            private TextField _textField;
-
-            /// <summary>
-            /// TextField.
-            /// </summary>
-            /// <since_tizen> 3 </since_tizen>
-            public TextField TextField
-            {
-                get
-                {
-                    return _textField;
-                }
-                set
-                {
-                    _textField = value;
-                }
-            }
-        }
-
 
         [UnmanagedFunctionPointer(CallingConvention.StdCall)]
         private delegate void TextChangedCallbackDelegate(IntPtr textField);
-        private EventHandler<TextChangedEventArgs> _textFieldTextChangedEventHandler;
-        private TextChangedCallbackDelegate _textFieldTextChangedCallbackDelegate;
 
         [UnmanagedFunctionPointer(CallingConvention.StdCall)]
         private delegate void MaxLengthReachedCallbackDelegate(IntPtr textField);
-        private EventHandler<MaxLengthReachedEventArgs> _textFieldMaxLengthReachedEventHandler;
-        private MaxLengthReachedCallbackDelegate _textFieldMaxLengthReachedCallbackDelegate;
 
         /// <summary>
         /// The TextChanged event.
@@ -1122,21 +1012,6 @@ namespace Tizen.NUI.BaseComponents
             }
         }
 
-        private void OnTextChanged(IntPtr textField)
-        {
-            TextChangedEventArgs e = new TextChangedEventArgs();
-
-            // Populate all members of "e" (TextChangedEventArgs) with real data
-            e.TextField = Registry.GetManagedBaseHandleFromNativePtr(textField) as TextField;
-
-            if (_textFieldTextChangedEventHandler != null)
-            {
-                //here we send all data to user event handlers
-                _textFieldTextChangedEventHandler(this, e);
-            }
-
-        }
-
         /// <summary>
         /// The MaxLengthReached event.
         /// </summary>
@@ -1160,165 +1035,6 @@ namespace Tizen.NUI.BaseComponents
                 }
                 _textFieldMaxLengthReachedEventHandler -= value;
             }
-        }
-
-        private void OnMaxLengthReached(IntPtr textField)
-        {
-            MaxLengthReachedEventArgs e = new MaxLengthReachedEventArgs();
-
-            // Populate all members of "e" (MaxLengthReachedEventArgs) with real data
-            e.TextField = Registry.GetManagedBaseHandleFromNativePtr(textField) as TextField;
-
-            if (_textFieldMaxLengthReachedEventHandler != null)
-            {
-                //here we send all data to user event handlers
-                _textFieldMaxLengthReachedEventHandler(this, e);
-            }
-
-        }
-
-        internal new class Property
-        {
-            internal static readonly int RENDERING_BACKEND = NDalicPINVOKE.TextField_Property_RENDERING_BACKEND_get();
-            internal static readonly int TEXT = NDalicPINVOKE.TextField_Property_TEXT_get();
-            internal static readonly int PLACEHOLDER_TEXT = NDalicPINVOKE.TextField_Property_PLACEHOLDER_TEXT_get();
-            internal static readonly int PLACEHOLDER_TEXT_FOCUSED = NDalicPINVOKE.TextField_Property_PLACEHOLDER_TEXT_FOCUSED_get();
-            internal static readonly int FONT_FAMILY = NDalicPINVOKE.TextField_Property_FONT_FAMILY_get();
-            internal static readonly int FONT_STYLE = NDalicPINVOKE.TextField_Property_FONT_STYLE_get();
-            internal static readonly int POINT_SIZE = NDalicPINVOKE.TextField_Property_POINT_SIZE_get();
-            internal static readonly int MAX_LENGTH = NDalicPINVOKE.TextField_Property_MAX_LENGTH_get();
-            internal static readonly int EXCEED_POLICY = NDalicPINVOKE.TextField_Property_EXCEED_POLICY_get();
-            internal static readonly int HORIZONTAL_ALIGNMENT = NDalicPINVOKE.TextField_Property_HORIZONTAL_ALIGNMENT_get();
-            internal static readonly int VERTICAL_ALIGNMENT = NDalicPINVOKE.TextField_Property_VERTICAL_ALIGNMENT_get();
-            internal static readonly int TEXT_COLOR = NDalicPINVOKE.TextField_Property_TEXT_COLOR_get();
-            internal static readonly int PLACEHOLDER_TEXT_COLOR = NDalicPINVOKE.TextField_Property_PLACEHOLDER_TEXT_COLOR_get();
-            internal static readonly int SHADOW_OFFSET = NDalicPINVOKE.TextField_Property_SHADOW_OFFSET_get();
-            internal static readonly int SHADOW_COLOR = NDalicPINVOKE.TextField_Property_SHADOW_COLOR_get();
-            internal static readonly int PRIMARY_CURSOR_COLOR = NDalicPINVOKE.TextField_Property_PRIMARY_CURSOR_COLOR_get();
-            internal static readonly int SECONDARY_CURSOR_COLOR = NDalicPINVOKE.TextField_Property_SECONDARY_CURSOR_COLOR_get();
-            internal static readonly int ENABLE_CURSOR_BLINK = NDalicPINVOKE.TextField_Property_ENABLE_CURSOR_BLINK_get();
-            internal static readonly int CURSOR_BLINK_INTERVAL = NDalicPINVOKE.TextField_Property_CURSOR_BLINK_INTERVAL_get();
-            internal static readonly int CURSOR_BLINK_DURATION = NDalicPINVOKE.TextField_Property_CURSOR_BLINK_DURATION_get();
-            internal static readonly int CURSOR_WIDTH = NDalicPINVOKE.TextField_Property_CURSOR_WIDTH_get();
-            internal static readonly int GRAB_HANDLE_IMAGE = NDalicPINVOKE.TextField_Property_GRAB_HANDLE_IMAGE_get();
-            internal static readonly int GRAB_HANDLE_PRESSED_IMAGE = NDalicPINVOKE.TextField_Property_GRAB_HANDLE_PRESSED_IMAGE_get();
-            internal static readonly int SCROLL_THRESHOLD = NDalicPINVOKE.TextField_Property_SCROLL_THRESHOLD_get();
-            internal static readonly int SCROLL_SPEED = NDalicPINVOKE.TextField_Property_SCROLL_SPEED_get();
-            internal static readonly int SELECTION_HANDLE_IMAGE_LEFT = NDalicPINVOKE.TextField_Property_SELECTION_HANDLE_IMAGE_LEFT_get();
-            internal static readonly int SELECTION_HANDLE_IMAGE_RIGHT = NDalicPINVOKE.TextField_Property_SELECTION_HANDLE_IMAGE_RIGHT_get();
-            internal static readonly int SELECTION_HANDLE_PRESSED_IMAGE_LEFT = NDalicPINVOKE.TextField_Property_SELECTION_HANDLE_PRESSED_IMAGE_LEFT_get();
-            internal static readonly int SELECTION_HANDLE_PRESSED_IMAGE_RIGHT = NDalicPINVOKE.TextField_Property_SELECTION_HANDLE_PRESSED_IMAGE_RIGHT_get();
-            internal static readonly int SELECTION_HANDLE_MARKER_IMAGE_LEFT = NDalicPINVOKE.TextField_Property_SELECTION_HANDLE_MARKER_IMAGE_LEFT_get();
-            internal static readonly int SELECTION_HANDLE_MARKER_IMAGE_RIGHT = NDalicPINVOKE.TextField_Property_SELECTION_HANDLE_MARKER_IMAGE_RIGHT_get();
-            internal static readonly int SELECTION_HIGHLIGHT_COLOR = NDalicPINVOKE.TextField_Property_SELECTION_HIGHLIGHT_COLOR_get();
-            internal static readonly int DECORATION_BOUNDING_BOX = NDalicPINVOKE.TextField_Property_DECORATION_BOUNDING_BOX_get();
-            internal static readonly int INPUT_METHOD_SETTINGS = NDalicPINVOKE.TextField_Property_INPUT_METHOD_SETTINGS_get();
-            internal static readonly int INPUT_COLOR = NDalicPINVOKE.TextField_Property_INPUT_COLOR_get();
-            internal static readonly int ENABLE_MARKUP = NDalicPINVOKE.TextField_Property_ENABLE_MARKUP_get();
-            internal static readonly int INPUT_FONT_FAMILY = NDalicPINVOKE.TextField_Property_INPUT_FONT_FAMILY_get();
-            internal static readonly int INPUT_FONT_STYLE = NDalicPINVOKE.TextField_Property_INPUT_FONT_STYLE_get();
-            internal static readonly int INPUT_POINT_SIZE = NDalicPINVOKE.TextField_Property_INPUT_POINT_SIZE_get();
-            internal static readonly int UNDERLINE = NDalicPINVOKE.TextField_Property_UNDERLINE_get();
-            internal static readonly int INPUT_UNDERLINE = NDalicPINVOKE.TextField_Property_INPUT_UNDERLINE_get();
-            internal static readonly int SHADOW = NDalicPINVOKE.TextField_Property_SHADOW_get();
-            internal static readonly int INPUT_SHADOW = NDalicPINVOKE.TextField_Property_INPUT_SHADOW_get();
-            internal static readonly int EMBOSS = NDalicPINVOKE.TextField_Property_EMBOSS_get();
-            internal static readonly int INPUT_EMBOSS = NDalicPINVOKE.TextField_Property_INPUT_EMBOSS_get();
-            internal static readonly int OUTLINE = NDalicPINVOKE.TextField_Property_OUTLINE_get();
-            internal static readonly int INPUT_OUTLINE = NDalicPINVOKE.TextField_Property_INPUT_OUTLINE_get();
-            internal static readonly int HIDDEN_INPUT_SETTINGS = NDalicManualPINVOKE.TextField_Property_HIDDEN_INPUT_SETTINGS_get();
-            internal static readonly int PIXEL_SIZE = NDalicManualPINVOKE.TextField_Property_PIXEL_SIZE_get();
-            internal static readonly int ENABLE_SELECTION = NDalicManualPINVOKE.TextField_Property_ENABLE_SELECTION_get();
-            internal static readonly int PLACEHOLDER = NDalicManualPINVOKE.TextField_Property_PLACEHOLDER_get();
-            internal static readonly int ELLIPSIS = NDalicManualPINVOKE.TextField_Property_ELLIPSIS_get();
-            internal static readonly int ENABLE_SHIFT_SELECTION = NDalicManualPINVOKE.TextField_Property_ENABLE_SHIFT_SELECTION_get();
-        }
-
-        internal class InputStyle
-        {
-            internal enum Mask
-            {
-                None = 0x0000,
-                Color = 0x0001,
-                FontFamily = 0x0002,
-                PointSize = 0x0004,
-                FontStyle = 0x0008,
-                Underline = 0x0010,
-                Shadow = 0x0020,
-                Emboss = 0x0040,
-                Outline = 0x0080
-            }
-
-        }
-
-        /// <summary>
-        /// Creates the TextField control.
-        /// </summary>
-        /// <since_tizen> 3 </since_tizen>
-        public TextField() : this(NDalicPINVOKE.TextField_New(), true)
-        {
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-        }
-
-        internal override bool IsCreateByXaml
-        {
-            get
-            {
-                return base.IsCreateByXaml;
-            }
-            set
-            {
-                base.IsCreateByXaml = value;
-
-                if (value == true)
-                {
-                    this.TextChanged += (obj, e) =>
-                    {
-                        this.Text = this.Text;
-                    };
-                }
-            }
-        }
-
-        internal TextField(TextField handle) : this(NDalicPINVOKE.new_TextField__SWIG_1(TextField.getCPtr(handle)), true)
-        {
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-        }
-
-        /// <summary>
-        /// Get the InputMethodContext instance.
-        /// </summary>
-        /// <returns>The InputMethodContext instance.</returns>
-        public InputMethodContext GetInputMethodContext()
-        {
-            if (inputMethodCotext == null)
-            {
-                /*Avoid raising InputMethodContext reference count.*/
-                inputMethodCotext = new InputMethodContext(NDalicPINVOKE.TextField_GetInputMethodContext(swigCPtr), true);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            }
-            return inputMethodCotext;
-        }
-
-        internal TextFieldSignal TextChangedSignal()
-        {
-            TextFieldSignal ret = new TextFieldSignal(NDalicPINVOKE.TextField_TextChangedSignal(swigCPtr), false);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
-        }
-
-        internal TextFieldSignal MaxLengthReachedSignal()
-        {
-            TextFieldSignal ret = new TextFieldSignal(NDalicPINVOKE.TextField_MaxLengthReachedSignal(swigCPtr), false);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
-        }
-
-        internal SWIGTYPE_p_Dali__SignalT_void_fDali__Toolkit__TextField_Dali__Toolkit__TextField__InputStyle__MaskF_t InputStyleChangedSignal()
-        {
-            SWIGTYPE_p_Dali__SignalT_void_fDali__Toolkit__TextField_Dali__Toolkit__TextField__InputStyle__MaskF_t ret = new SWIGTYPE_p_Dali__SignalT_void_fDali__Toolkit__TextField_Dali__Toolkit__TextField__InputStyle__MaskF_t(NDalicPINVOKE.TextField_InputStyleChangedSignal(swigCPtr), false);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
         }
 
         internal enum ExceedPolicyType
@@ -1352,6 +1068,7 @@ namespace Tizen.NUI.BaseComponents
                 NotifyPropertyChanged();
             }
         }
+
         /// <summary>
         /// The TranslatablePlaceholderText property.<br />
         /// The text can set the SID value.<br />
@@ -1377,36 +1094,7 @@ namespace Tizen.NUI.BaseComponents
                 NotifyPropertyChanged();
             }
         }
-        private string SetTranslatable(string textFieldSid)
-        {
-            string translatableText = null;
-            translatableText = NUIApplication.MultilingualResourceManager?.GetString(textFieldSid, new CultureInfo(SystemSettings.LocaleLanguage.Replace("_", "-")));
-            if (translatableText != null)
-            {
-                if (systemlangTextFlag == false)
-                {
-                    SystemSettings.LocaleLanguageChanged += new WeakEventHandler<LocaleLanguageChangedEventArgs>(SystemSettings_LocaleLanguageChanged).Handler;
-                    systemlangTextFlag = true;
-                }
-                return translatableText;
-            }
-            else
-            {
-                translatableText = "";
-                return translatableText;
-            }
-        }
-        private void SystemSettings_LocaleLanguageChanged(object sender, LocaleLanguageChangedEventArgs e)
-        {
-            if (textFieldTextSid != null)
-            {
-                Text = NUIApplication.MultilingualResourceManager?.GetString(textFieldTextSid, new CultureInfo(e.Value.Replace("_", "-")));
-            }
-            if (textFieldPlaceHolderTextSid != null)
-            {
-                PlaceholderText = NUIApplication.MultilingualResourceManager?.GetString(textFieldPlaceHolderTextSid, new CultureInfo(e.Value.Replace("_", "-")));
-            }
-        }
+
         /// <summary>
         /// The Text property.
         /// </summary>
@@ -1616,15 +1304,23 @@ namespace Tizen.NUI.BaseComponents
         /// The ShadowOffset property.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        [Obsolete("Please do not use! This will be deprecated! Please use Shadow property instead!")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public Vector2 ShadowOffset
         {
             get
             {
-                return (Vector2)GetValue(ShadowOffsetProperty);
+                PropertyMap map = new PropertyMap();
+                GetProperty(TextField.Property.SHADOW).Get(map);
+                Vector2 shadowOffset = new Vector2();
+                map.Find(TextField.Property.SHADOW, "offset")?.Get(shadowOffset);
+                return shadowOffset;
             }
             set
             {
-                SetValue(ShadowOffsetProperty, value);
+                PropertyMap temp = new PropertyMap();
+                temp.Insert("offset", new PropertyValue(value));
+                SetValue(ShadowProperty, temp);
                 NotifyPropertyChanged();
             }
         }
@@ -1633,15 +1329,23 @@ namespace Tizen.NUI.BaseComponents
         /// The ShadowColor property.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        [Obsolete("Please do not use! This will be deprecated! Please use Shadow property instead!")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public Vector4 ShadowColor
         {
             get
             {
-                return (Vector4)GetValue(ShadowColorProperty);
+                PropertyMap map = new PropertyMap();
+                GetProperty(TextField.Property.SHADOW).Get(map);
+                Vector4 shadowColor = new Vector4();
+                map.Find(TextField.Property.SHADOW, "color")?.Get(shadowColor);
+                return shadowColor;
             }
             set
             {
-                SetValue(ShadowColorProperty, value);
+                PropertyMap temp = new PropertyMap();
+                temp.Insert("color", new PropertyValue(value));
+                SetValue(ShadowProperty, temp);
                 NotifyPropertyChanged();
             }
         }
@@ -2314,6 +2018,320 @@ namespace Tizen.NUI.BaseComponents
             {
                 SetValue(EnableShiftSelectionProperty, value);
                 NotifyPropertyChanged();
+            }
+        }
+
+
+        /// <summary>
+        /// The text alignment to match the direction of the system language.
+        /// </summary>
+        /// <since_tizen> 5 </since_tizen>
+        /// This will be released at Tizen.NET API Level 5, so currently this would be used as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public bool MatchSystemLanguageDirection
+        {
+            get
+            {
+                return (bool)GetValue(MatchSystemLanguageDirectionProperty);
+            }
+            set
+            {
+                SetValue(MatchSystemLanguageDirectionProperty, value);
+                NotifyPropertyChanged();
+            }
+        }
+
+        internal override bool IsCreateByXaml
+        {
+            get
+            {
+                return base.IsCreateByXaml;
+            }
+            set
+            {
+                base.IsCreateByXaml = value;
+
+                if (value == true)
+                {
+                    this.TextChanged += (obj, e) =>
+                    {
+                        this.Text = this.Text;
+                    };
+                }
+            }
+        }
+
+        /// <summary>
+        /// Get the InputMethodContext instance.
+        /// </summary>
+        /// <returns>The InputMethodContext instance.</returns>
+        /// <since_tizen> 5 </since_tizen>
+        public InputMethodContext GetInputMethodContext()
+        {
+            if (inputMethodCotext == null)
+            {
+                /*Avoid raising InputMethodContext reference count.*/
+                inputMethodCotext = new InputMethodContext(NDalicPINVOKE.TextField_GetInputMethodContext(swigCPtr), true);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            }
+            return inputMethodCotext;
+        }
+
+        internal static global::System.Runtime.InteropServices.HandleRef getCPtr(TextField obj)
+        {
+            return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
+        }
+
+        internal TextFieldSignal TextChangedSignal()
+        {
+            TextFieldSignal ret = new TextFieldSignal(NDalicPINVOKE.TextField_TextChangedSignal(swigCPtr), false);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        internal TextFieldSignal MaxLengthReachedSignal()
+        {
+            TextFieldSignal ret = new TextFieldSignal(NDalicPINVOKE.TextField_MaxLengthReachedSignal(swigCPtr), false);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        internal SWIGTYPE_p_Dali__SignalT_void_fDali__Toolkit__TextField_Dali__Toolkit__TextField__InputStyle__MaskF_t InputStyleChangedSignal()
+        {
+            SWIGTYPE_p_Dali__SignalT_void_fDali__Toolkit__TextField_Dali__Toolkit__TextField__InputStyle__MaskF_t ret = new SWIGTYPE_p_Dali__SignalT_void_fDali__Toolkit__TextField_Dali__Toolkit__TextField__InputStyle__MaskF_t(NDalicPINVOKE.TextField_InputStyleChangedSignal(swigCPtr), false);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        /// <summary>
+        /// Dispose.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
+        protected override void Dispose(DisposeTypes type)
+        {
+            if (disposed)
+            {
+                DisposeQueue.Instance.Add(this);
+                return;
+            }
+
+            if (type == DisposeTypes.Explicit)
+            {
+                //Called by User
+                //Release your own managed resources here.
+                //You should release all of your own disposable objects here.
+            }
+
+            //Release your own unmanaged resources here.
+            //You should not access any managed member here except static instance.
+            //because the execution order of Finalizes is non-deterministic.
+            if (this.HasBody())
+            {
+                if (_textFieldMaxLengthReachedCallbackDelegate != null)
+                {
+                    this.MaxLengthReachedSignal().Disconnect(_textFieldMaxLengthReachedCallbackDelegate);
+                }
+
+                if (_textFieldTextChangedCallbackDelegate != null)
+                {
+                    TextChangedSignal().Disconnect(_textFieldTextChangedCallbackDelegate);
+                }
+            }
+
+            if (swigCPtr.Handle != global::System.IntPtr.Zero)
+            {
+                if (swigCMemOwn)
+                {
+                    swigCMemOwn = false;
+                    // In order to speed up IME hide, temporarily add
+                    GetInputMethodContext()?.DestroyContext();
+                    NDalicPINVOKE.delete_TextField(swigCPtr);
+                }
+                swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
+            }
+
+            base.Dispose(type);
+        }
+
+        private void OnTextChanged(IntPtr textField)
+        {
+            TextChangedEventArgs e = new TextChangedEventArgs();
+
+            // Populate all members of "e" (TextChangedEventArgs) with real data
+            e.TextField = Registry.GetManagedBaseHandleFromNativePtr(textField) as TextField;
+
+            if (_textFieldTextChangedEventHandler != null)
+            {
+                //here we send all data to user event handlers
+                _textFieldTextChangedEventHandler(this, e);
+            }
+        }
+
+        private void OnMaxLengthReached(IntPtr textField)
+        {
+            MaxLengthReachedEventArgs e = new MaxLengthReachedEventArgs();
+
+            // Populate all members of "e" (MaxLengthReachedEventArgs) with real data
+            e.TextField = Registry.GetManagedBaseHandleFromNativePtr(textField) as TextField;
+
+            if (_textFieldMaxLengthReachedEventHandler != null)
+            {
+                //here we send all data to user event handlers
+                _textFieldMaxLengthReachedEventHandler(this, e);
+            }
+        }
+
+        private string SetTranslatable(string textFieldSid)
+        {
+            string translatableText = null;
+            translatableText = NUIApplication.MultilingualResourceManager?.GetString(textFieldSid, new CultureInfo(SystemSettings.LocaleLanguage.Replace("_", "-")));
+            if (translatableText != null)
+            {
+                if (systemlangTextFlag == false)
+                {
+                    SystemSettings.LocaleLanguageChanged += new WeakEventHandler<LocaleLanguageChangedEventArgs>(SystemSettings_LocaleLanguageChanged).Handler;
+                    systemlangTextFlag = true;
+                }
+                return translatableText;
+            }
+            else
+            {
+                translatableText = "";
+                return translatableText;
+            }
+        }
+
+        private void SystemSettings_LocaleLanguageChanged(object sender, LocaleLanguageChangedEventArgs e)
+        {
+            if (textFieldTextSid != null)
+            {
+                Text = NUIApplication.MultilingualResourceManager?.GetString(textFieldTextSid, new CultureInfo(e.Value.Replace("_", "-")));
+            }
+            if (textFieldPlaceHolderTextSid != null)
+            {
+                PlaceholderText = NUIApplication.MultilingualResourceManager?.GetString(textFieldPlaceHolderTextSid, new CultureInfo(e.Value.Replace("_", "-")));
+            }
+        }
+
+        /// <summary>
+        /// The TextChanged event arguments.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
+        public class TextChangedEventArgs : EventArgs
+        {
+            private TextField _textField;
+
+            /// <summary>
+            /// TextField.
+            /// </summary>
+            /// <since_tizen> 3 </since_tizen>
+            public TextField TextField
+            {
+                get
+                {
+                    return _textField;
+                }
+                set
+                {
+                    _textField = value;
+                }
+            }
+        }
+
+        /// <summary>
+        /// The MaxLengthReached event arguments.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
+        public class MaxLengthReachedEventArgs : EventArgs
+        {
+            private TextField _textField;
+
+            /// <summary>
+            /// TextField.
+            /// </summary>
+            /// <since_tizen> 3 </since_tizen>
+            public TextField TextField
+            {
+                get
+                {
+                    return _textField;
+                }
+                set
+                {
+                    _textField = value;
+                }
+            }
+        }
+
+        internal new class Property
+        {
+            internal static readonly int RENDERING_BACKEND = NDalicPINVOKE.TextField_Property_RENDERING_BACKEND_get();
+            internal static readonly int TEXT = NDalicPINVOKE.TextField_Property_TEXT_get();
+            internal static readonly int PLACEHOLDER_TEXT = NDalicPINVOKE.TextField_Property_PLACEHOLDER_TEXT_get();
+            internal static readonly int PLACEHOLDER_TEXT_FOCUSED = NDalicPINVOKE.TextField_Property_PLACEHOLDER_TEXT_FOCUSED_get();
+            internal static readonly int FONT_FAMILY = NDalicPINVOKE.TextField_Property_FONT_FAMILY_get();
+            internal static readonly int FONT_STYLE = NDalicPINVOKE.TextField_Property_FONT_STYLE_get();
+            internal static readonly int POINT_SIZE = NDalicPINVOKE.TextField_Property_POINT_SIZE_get();
+            internal static readonly int MAX_LENGTH = NDalicPINVOKE.TextField_Property_MAX_LENGTH_get();
+            internal static readonly int EXCEED_POLICY = NDalicPINVOKE.TextField_Property_EXCEED_POLICY_get();
+            internal static readonly int HORIZONTAL_ALIGNMENT = NDalicPINVOKE.TextField_Property_HORIZONTAL_ALIGNMENT_get();
+            internal static readonly int VERTICAL_ALIGNMENT = NDalicPINVOKE.TextField_Property_VERTICAL_ALIGNMENT_get();
+            internal static readonly int TEXT_COLOR = NDalicPINVOKE.TextField_Property_TEXT_COLOR_get();
+            internal static readonly int PLACEHOLDER_TEXT_COLOR = NDalicPINVOKE.TextField_Property_PLACEHOLDER_TEXT_COLOR_get();
+            internal static readonly int PRIMARY_CURSOR_COLOR = NDalicPINVOKE.TextField_Property_PRIMARY_CURSOR_COLOR_get();
+            internal static readonly int SECONDARY_CURSOR_COLOR = NDalicPINVOKE.TextField_Property_SECONDARY_CURSOR_COLOR_get();
+            internal static readonly int ENABLE_CURSOR_BLINK = NDalicPINVOKE.TextField_Property_ENABLE_CURSOR_BLINK_get();
+            internal static readonly int CURSOR_BLINK_INTERVAL = NDalicPINVOKE.TextField_Property_CURSOR_BLINK_INTERVAL_get();
+            internal static readonly int CURSOR_BLINK_DURATION = NDalicPINVOKE.TextField_Property_CURSOR_BLINK_DURATION_get();
+            internal static readonly int CURSOR_WIDTH = NDalicPINVOKE.TextField_Property_CURSOR_WIDTH_get();
+            internal static readonly int GRAB_HANDLE_IMAGE = NDalicPINVOKE.TextField_Property_GRAB_HANDLE_IMAGE_get();
+            internal static readonly int GRAB_HANDLE_PRESSED_IMAGE = NDalicPINVOKE.TextField_Property_GRAB_HANDLE_PRESSED_IMAGE_get();
+            internal static readonly int SCROLL_THRESHOLD = NDalicPINVOKE.TextField_Property_SCROLL_THRESHOLD_get();
+            internal static readonly int SCROLL_SPEED = NDalicPINVOKE.TextField_Property_SCROLL_SPEED_get();
+            internal static readonly int SELECTION_HANDLE_IMAGE_LEFT = NDalicPINVOKE.TextField_Property_SELECTION_HANDLE_IMAGE_LEFT_get();
+            internal static readonly int SELECTION_HANDLE_IMAGE_RIGHT = NDalicPINVOKE.TextField_Property_SELECTION_HANDLE_IMAGE_RIGHT_get();
+            internal static readonly int SELECTION_HANDLE_PRESSED_IMAGE_LEFT = NDalicPINVOKE.TextField_Property_SELECTION_HANDLE_PRESSED_IMAGE_LEFT_get();
+            internal static readonly int SELECTION_HANDLE_PRESSED_IMAGE_RIGHT = NDalicPINVOKE.TextField_Property_SELECTION_HANDLE_PRESSED_IMAGE_RIGHT_get();
+            internal static readonly int SELECTION_HANDLE_MARKER_IMAGE_LEFT = NDalicPINVOKE.TextField_Property_SELECTION_HANDLE_MARKER_IMAGE_LEFT_get();
+            internal static readonly int SELECTION_HANDLE_MARKER_IMAGE_RIGHT = NDalicPINVOKE.TextField_Property_SELECTION_HANDLE_MARKER_IMAGE_RIGHT_get();
+            internal static readonly int SELECTION_HIGHLIGHT_COLOR = NDalicPINVOKE.TextField_Property_SELECTION_HIGHLIGHT_COLOR_get();
+            internal static readonly int DECORATION_BOUNDING_BOX = NDalicPINVOKE.TextField_Property_DECORATION_BOUNDING_BOX_get();
+            internal static readonly int INPUT_METHOD_SETTINGS = NDalicPINVOKE.TextField_Property_INPUT_METHOD_SETTINGS_get();
+            internal static readonly int INPUT_COLOR = NDalicPINVOKE.TextField_Property_INPUT_COLOR_get();
+            internal static readonly int ENABLE_MARKUP = NDalicPINVOKE.TextField_Property_ENABLE_MARKUP_get();
+            internal static readonly int INPUT_FONT_FAMILY = NDalicPINVOKE.TextField_Property_INPUT_FONT_FAMILY_get();
+            internal static readonly int INPUT_FONT_STYLE = NDalicPINVOKE.TextField_Property_INPUT_FONT_STYLE_get();
+            internal static readonly int INPUT_POINT_SIZE = NDalicPINVOKE.TextField_Property_INPUT_POINT_SIZE_get();
+            internal static readonly int UNDERLINE = NDalicPINVOKE.TextField_Property_UNDERLINE_get();
+            internal static readonly int INPUT_UNDERLINE = NDalicPINVOKE.TextField_Property_INPUT_UNDERLINE_get();
+            internal static readonly int SHADOW = NDalicPINVOKE.TextField_Property_SHADOW_get();
+            internal static readonly int INPUT_SHADOW = NDalicPINVOKE.TextField_Property_INPUT_SHADOW_get();
+            internal static readonly int EMBOSS = NDalicPINVOKE.TextField_Property_EMBOSS_get();
+            internal static readonly int INPUT_EMBOSS = NDalicPINVOKE.TextField_Property_INPUT_EMBOSS_get();
+            internal static readonly int OUTLINE = NDalicPINVOKE.TextField_Property_OUTLINE_get();
+            internal static readonly int INPUT_OUTLINE = NDalicPINVOKE.TextField_Property_INPUT_OUTLINE_get();
+            internal static readonly int HIDDEN_INPUT_SETTINGS = NDalicManualPINVOKE.TextField_Property_HIDDEN_INPUT_SETTINGS_get();
+            internal static readonly int PIXEL_SIZE = NDalicManualPINVOKE.TextField_Property_PIXEL_SIZE_get();
+            internal static readonly int ENABLE_SELECTION = NDalicManualPINVOKE.TextField_Property_ENABLE_SELECTION_get();
+            internal static readonly int PLACEHOLDER = NDalicManualPINVOKE.TextField_Property_PLACEHOLDER_get();
+            internal static readonly int ELLIPSIS = NDalicManualPINVOKE.TextField_Property_ELLIPSIS_get();
+            internal static readonly int ENABLE_SHIFT_SELECTION = NDalicManualPINVOKE.TextField_Property_ENABLE_SHIFT_SELECTION_get();
+            internal static readonly int MATCH_SYSTEM_LANGUAGE_DIRECTION = NDalicManualPINVOKE.TextField_Property_MATCH_SYSTEM_LANGUAGE_DIRECTION_get();
+        }
+
+        internal class InputStyle
+        {
+            internal enum Mask
+            {
+                None = 0x0000,
+                Color = 0x0001,
+                FontFamily = 0x0002,
+                PointSize = 0x0004,
+                FontStyle = 0x0008,
+                Underline = 0x0010,
+                Shadow = 0x0020,
+                Emboss = 0x0040,
+                Outline = 0x0080
             }
         }
     }

@@ -9,7 +9,7 @@ namespace NUI.Ubuntu.Test.Examples
         static void Main(string[] args)
         {
             Console.WriteLine("-------------Start NUI Ubuntu Test--------------\n");
-            new HelloWorldTest.Example().Run(args);
+            new HelloTest.Example().Run(args);
             //new ControlDashboard.Example().Run(args);
             //new DatePickerTest.Example().Run(args);
             //new DatePickerUsingJson.Example().Run(args);

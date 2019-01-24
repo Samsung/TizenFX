@@ -17,7 +17,6 @@
 
 namespace Tizen.NUI.UIComponents
 {
-
     /// <summary>
     /// A RadioButton provides a radio button with two states, \e selected or \e unselected.<br />
     /// Radio buttons are designed to select one of the many options at the same time.<br />
@@ -35,6 +34,25 @@ namespace Tizen.NUI.UIComponents
     public class RadioButton : Button
     {
         private global::System.Runtime.InteropServices.HandleRef swigCPtr;
+
+        /// <summary>
+        /// Creates an uninitialized RadioButton.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
+        public RadioButton() : this(NDalicPINVOKE.RadioButton_New__SWIG_0(), true)
+        {
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        /// <summary>
+        /// Creates an uninitialized RadioButton with the label.
+        /// </summary>
+        /// <param name="label">The label text.</param>
+        /// <since_tizen> 3 </since_tizen>
+        public RadioButton(string label) : this(NDalicPINVOKE.RadioButton_New__SWIG_1(label), true)
+        {
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
 
         internal RadioButton(global::System.IntPtr cPtr, bool cMemoryOwn) : base(NDalicPINVOKE.RadioButton_SWIGUpcast(cPtr), cMemoryOwn)
         {
@@ -80,26 +98,6 @@ namespace Tizen.NUI.UIComponents
             }
 
             base.Dispose(type);
-        }
-        /// <summary>
-        /// Creates an uninitialized RadioButton.
-        /// </summary>
-        /// <since_tizen> 3 </since_tizen>
-        public RadioButton() : this(NDalicPINVOKE.RadioButton_New__SWIG_0(), true)
-        {
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-
-        }
-
-        /// <summary>
-        /// Creates an uninitialized RadioButton with the label.
-        /// </summary>
-        /// <param name="label">The label text.</param>
-        /// <since_tizen> 3 </since_tizen>
-        public RadioButton(string label) : this(NDalicPINVOKE.RadioButton_New__SWIG_1(label), true)
-        {
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-
         }
     }
 }

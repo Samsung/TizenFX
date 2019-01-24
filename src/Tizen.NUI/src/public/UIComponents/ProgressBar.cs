@@ -38,7 +38,7 @@ namespace Tizen.NUI.UIComponents
                 Tizen.NUI.Object.SetProperty(progressBar.swigCPtr, ProgressBar.Property.PROGRESS_VALUE, new Tizen.NUI.PropertyValue((float)newValue));
             }
         },
-        defaultValueCreator:(bindable) =>
+        defaultValueCreator: (bindable) =>
         {
             var progressBar = (ProgressBar)bindable;
             float temp = 0.0f;
@@ -55,7 +55,7 @@ namespace Tizen.NUI.UIComponents
                 Tizen.NUI.Object.SetProperty(progressBar.swigCPtr, ProgressBar.Property.SECONDARY_PROGRESS_VALUE, new Tizen.NUI.PropertyValue((float)newValue));
             }
         },
-        defaultValueCreator:(bindable) =>
+        defaultValueCreator: (bindable) =>
         {
             var progressBar = (ProgressBar)bindable;
             float temp = 0.0f;
@@ -72,7 +72,7 @@ namespace Tizen.NUI.UIComponents
                 Tizen.NUI.Object.SetProperty(progressBar.swigCPtr, ProgressBar.Property.INDETERMINATE, new Tizen.NUI.PropertyValue((bool)newValue));
             }
         },
-        defaultValueCreator:(bindable) =>
+        defaultValueCreator: (bindable) =>
         {
             var progressBar = (ProgressBar)bindable;
             bool temp = false;
@@ -89,7 +89,7 @@ namespace Tizen.NUI.UIComponents
                 Tizen.NUI.Object.SetProperty(progressBar.swigCPtr, ProgressBar.Property.TRACK_VISUAL, new Tizen.NUI.PropertyValue((PropertyMap)newValue));
             }
         },
-        defaultValueCreator:(bindable) =>
+        defaultValueCreator: (bindable) =>
         {
             var progressBar = (ProgressBar)bindable;
             Tizen.NUI.PropertyMap temp = new Tizen.NUI.PropertyMap();
@@ -106,7 +106,7 @@ namespace Tizen.NUI.UIComponents
                 Tizen.NUI.Object.SetProperty(progressBar.swigCPtr, ProgressBar.Property.PROGRESS_VISUAL, new Tizen.NUI.PropertyValue((PropertyMap)newValue));
             }
         },
-        defaultValueCreator:(bindable) =>
+        defaultValueCreator: (bindable) =>
         {
             var progressBar = (ProgressBar)bindable;
             Tizen.NUI.PropertyMap temp = new Tizen.NUI.PropertyMap();
@@ -123,7 +123,7 @@ namespace Tizen.NUI.UIComponents
                 Tizen.NUI.Object.SetProperty(progressBar.swigCPtr, ProgressBar.Property.SECONDARY_PROGRESS_VISUAL, new Tizen.NUI.PropertyValue((PropertyMap)newValue));
             }
         },
-        defaultValueCreator:(bindable) =>
+        defaultValueCreator: (bindable) =>
         {
             var progressBar = (ProgressBar)bindable;
             Tizen.NUI.PropertyMap temp = new Tizen.NUI.PropertyMap();
@@ -140,7 +140,7 @@ namespace Tizen.NUI.UIComponents
                 Tizen.NUI.Object.SetProperty(progressBar.swigCPtr, ProgressBar.Property.INDETERMINATE_VISUAL, new Tizen.NUI.PropertyValue((PropertyMap)newValue));
             }
         },
-        defaultValueCreator:(bindable) =>
+        defaultValueCreator: (bindable) =>
         {
             var progressBar = (ProgressBar)bindable;
             Tizen.NUI.PropertyMap temp = new Tizen.NUI.PropertyMap();
@@ -157,7 +157,7 @@ namespace Tizen.NUI.UIComponents
                 Tizen.NUI.Object.SetProperty(progressBar.swigCPtr, ProgressBar.Property.INDETERMINATE_VISUAL_ANIMATION, new Tizen.NUI.PropertyValue((PropertyArray)newValue));
             }
         },
-        defaultValueCreator:(bindable) =>
+        defaultValueCreator: (bindable) =>
         {
             var progressBar = (ProgressBar)bindable;
             Tizen.NUI.PropertyArray temp = new Tizen.NUI.PropertyArray();
@@ -174,7 +174,7 @@ namespace Tizen.NUI.UIComponents
                 Tizen.NUI.Object.SetProperty(progressBar.swigCPtr, ProgressBar.Property.LABEL_VISUAL, new Tizen.NUI.PropertyValue((PropertyMap)newValue));
             }
         },
-        defaultValueCreator:(bindable) =>
+        defaultValueCreator: (bindable) =>
         {
             var progressBar = (ProgressBar)bindable;
             Tizen.NUI.PropertyMap temp = new Tizen.NUI.PropertyMap();
@@ -182,125 +182,27 @@ namespace Tizen.NUI.UIComponents
             return temp;
         });
 
-
         private global::System.Runtime.InteropServices.HandleRef swigCPtr;
+        private EventHandler<ValueChangedEventArgs> _progressBarValueChangedEventHandler;
+        private ValueChangedCallbackDelegate _progressBarValueChangedCallbackDelegate;
+
+        /// <summary>
+        /// Creates the ProgressBar.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
+        public ProgressBar() : this(NDalicPINVOKE.ProgressBar_New(), true)
+        {
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+
+        }
 
         internal ProgressBar(global::System.IntPtr cPtr, bool cMemoryOwn) : base(NDalicPINVOKE.ProgressBar_SWIGUpcast(cPtr), cMemoryOwn)
         {
             swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
         }
 
-        internal static global::System.Runtime.InteropServices.HandleRef getCPtr(ProgressBar obj)
-        {
-            return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
-        }
-
-        /// <summary>
-        /// To dispose the ProgressBar instance.
-        /// </summary>
-        /// <since_tizen> 3 </since_tizen>
-        protected override void Dispose(DisposeTypes type)
-        {
-            if (disposed)
-            {
-                return;
-            }
-
-            if (type == DisposeTypes.Explicit)
-            {
-                //Called by User
-                //Release your own managed resources here.
-                //You should release all of your own disposable objects here.
-
-            }
-
-            //Release your own unmanaged resources here.
-            //You should not access any managed member here except static instance.
-            //because the execution order of Finalizes is non-deterministic.
-
-            if (this != null && _progressBarValueChangedCallbackDelegate != null)
-            {
-                ValueChangedSignal().Disconnect(_progressBarValueChangedCallbackDelegate);
-            }
-
-            if (swigCPtr.Handle != global::System.IntPtr.Zero)
-            {
-                if (swigCMemOwn)
-                {
-                    swigCMemOwn = false;
-                    NDalicPINVOKE.delete_ProgressBar(swigCPtr);
-                }
-                swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
-            }
-
-            base.Dispose(type);
-        }
-
-
-        /// <summary>
-        /// Event arguments that passed via the ValueChangedEventArgs.
-        /// </summary>
-        /// <since_tizen> 3 </since_tizen>
-        public class ValueChangedEventArgs : EventArgs
-        {
-            private ProgressBar _progressBar;
-            private float _progressValue;
-            private float _secondaryProgressValue;
-
-            /// <summary>
-            /// ProgressBar
-            /// </summary>
-            /// <since_tizen> 3 </since_tizen>
-            public ProgressBar ProgressBar
-            {
-                get
-                {
-                    return _progressBar;
-                }
-                set
-                {
-                    _progressBar = value;
-                }
-            }
-
-            /// <summary>
-            /// The progress value of the progress bar, the progress runs from 0 to 1.
-            /// </summary>
-            /// <since_tizen> 3 </since_tizen>
-            public float ProgressValue
-            {
-                get
-                {
-                    return _progressValue;
-                }
-                set
-                {
-                    _progressValue = value;
-                }
-            }
-
-            /// <summary>
-            /// The secondary progress value of the progress bar, the secondary progress runs from 0 to 1.
-            /// </summary>
-            /// <since_tizen> 3 </since_tizen>
-            public float SecondaryProgressValue
-            {
-                get
-                {
-                    return _secondaryProgressValue;
-                }
-                set
-                {
-                    _secondaryProgressValue = value;
-                }
-            }
-
-        }
-
         [UnmanagedFunctionPointer(CallingConvention.StdCall)]
         private delegate void ValueChangedCallbackDelegate(IntPtr progressBar, float progressValue, float secondaryProgressValue);
-        private EventHandler<ValueChangedEventArgs> _progressBarValueChangedEventHandler;
-        private ValueChangedCallbackDelegate _progressBarValueChangedCallbackDelegate;
 
         /// <summary>
         /// The event is sent when the ProgressBar value changes.
@@ -325,52 +227,6 @@ namespace Tizen.NUI.UIComponents
                     ValueChangedSignal().Disconnect(_progressBarValueChangedCallbackDelegate);
                 }
             }
-        }
-
-        // Callback for ProgressBar ValueChanged signal
-        private void OnValueChanged(IntPtr progressBar, float progressValue, float secondaryProgressValue)
-        {
-            ValueChangedEventArgs e = new ValueChangedEventArgs();
-
-            // Populate all members of "e" (ValueChangedEventArgs) with real page
-            e.ProgressBar = Registry.GetManagedBaseHandleFromNativePtr(progressBar) as ProgressBar;
-            e.ProgressValue = progressValue;
-            e.SecondaryProgressValue = secondaryProgressValue;
-
-            if (_progressBarValueChangedEventHandler != null)
-            {
-                _progressBarValueChangedEventHandler(this, e);
-            }
-        }
-
-        internal new class Property
-        {
-            internal static readonly int PROGRESS_VALUE = NDalicPINVOKE.ProgressBar_Property_PROGRESS_VALUE_get();
-            internal static readonly int SECONDARY_PROGRESS_VALUE = NDalicPINVOKE.ProgressBar_Property_SECONDARY_PROGRESS_VALUE_get();
-            internal static readonly int INDETERMINATE = NDalicPINVOKE.ProgressBar_Property_INDETERMINATE_get();
-            internal static readonly int TRACK_VISUAL = NDalicPINVOKE.ProgressBar_Property_TRACK_VISUAL_get();
-            internal static readonly int PROGRESS_VISUAL = NDalicPINVOKE.ProgressBar_Property_PROGRESS_VISUAL_get();
-            internal static readonly int SECONDARY_PROGRESS_VISUAL = NDalicPINVOKE.ProgressBar_Property_SECONDARY_PROGRESS_VISUAL_get();
-            internal static readonly int INDETERMINATE_VISUAL = NDalicPINVOKE.ProgressBar_Property_INDETERMINATE_VISUAL_get();
-            internal static readonly int INDETERMINATE_VISUAL_ANIMATION = NDalicPINVOKE.ProgressBar_Property_INDETERMINATE_VISUAL_ANIMATION_get();
-            internal static readonly int LABEL_VISUAL = NDalicPINVOKE.ProgressBar_Property_LABEL_VISUAL_get();
-        }
-
-        /// <summary>
-        /// Creates the ProgressBar.
-        /// </summary>
-        /// <since_tizen> 3 </since_tizen>
-        public ProgressBar() : this(NDalicPINVOKE.ProgressBar_New(), true)
-        {
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-
-        }
-
-        internal ProgressBarValueChangedSignal ValueChangedSignal()
-        {
-            ProgressBarValueChangedSignal ret = new ProgressBarValueChangedSignal(NDalicPINVOKE.ProgressBar_ValueChangedSignal(swigCPtr), false);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
         }
 
         /// <summary>
@@ -529,6 +385,146 @@ namespace Tizen.NUI.UIComponents
             }
         }
 
-    }
+        internal static global::System.Runtime.InteropServices.HandleRef getCPtr(ProgressBar obj)
+        {
+            return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
+        }
 
+        internal ProgressBarValueChangedSignal ValueChangedSignal()
+        {
+            ProgressBarValueChangedSignal ret = new ProgressBarValueChangedSignal(NDalicPINVOKE.ProgressBar_ValueChangedSignal(swigCPtr), false);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        /// <summary>
+        /// To dispose the ProgressBar instance.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
+        protected override void Dispose(DisposeTypes type)
+        {
+            if (disposed)
+            {
+                return;
+            }
+
+            if (type == DisposeTypes.Explicit)
+            {
+                //Called by User
+                //Release your own managed resources here.
+                //You should release all of your own disposable objects here.
+
+            }
+
+            //Release your own unmanaged resources here.
+            //You should not access any managed member here except static instance.
+            //because the execution order of Finalizes is non-deterministic.
+
+            if (this != null && _progressBarValueChangedCallbackDelegate != null)
+            {
+                ValueChangedSignal().Disconnect(_progressBarValueChangedCallbackDelegate);
+            }
+
+            if (swigCPtr.Handle != global::System.IntPtr.Zero)
+            {
+                if (swigCMemOwn)
+                {
+                    swigCMemOwn = false;
+                    NDalicPINVOKE.delete_ProgressBar(swigCPtr);
+                }
+                swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
+            }
+
+            base.Dispose(type);
+        }
+
+        // Callback for ProgressBar ValueChanged signal
+        private void OnValueChanged(IntPtr progressBar, float progressValue, float secondaryProgressValue)
+        {
+            ValueChangedEventArgs e = new ValueChangedEventArgs();
+
+            // Populate all members of "e" (ValueChangedEventArgs) with real page
+            e.ProgressBar = Registry.GetManagedBaseHandleFromNativePtr(progressBar) as ProgressBar;
+            e.ProgressValue = progressValue;
+            e.SecondaryProgressValue = secondaryProgressValue;
+
+            if (_progressBarValueChangedEventHandler != null)
+            {
+                _progressBarValueChangedEventHandler(this, e);
+            }
+        }
+
+        /// <summary>
+        /// Event arguments that passed via the ValueChangedEventArgs.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
+        public class ValueChangedEventArgs : EventArgs
+        {
+            private ProgressBar _progressBar;
+            private float _progressValue;
+            private float _secondaryProgressValue;
+
+            /// <summary>
+            /// ProgressBar
+            /// </summary>
+            /// <since_tizen> 3 </since_tizen>
+            public ProgressBar ProgressBar
+            {
+                get
+                {
+                    return _progressBar;
+                }
+                set
+                {
+                    _progressBar = value;
+                }
+            }
+
+            /// <summary>
+            /// The progress value of the progress bar, the progress runs from 0 to 1.
+            /// </summary>
+            /// <since_tizen> 3 </since_tizen>
+            public float ProgressValue
+            {
+                get
+                {
+                    return _progressValue;
+                }
+                set
+                {
+                    _progressValue = value;
+                }
+            }
+
+            /// <summary>
+            /// The secondary progress value of the progress bar, the secondary progress runs from 0 to 1.
+            /// </summary>
+            /// <since_tizen> 3 </since_tizen>
+            public float SecondaryProgressValue
+            {
+                get
+                {
+                    return _secondaryProgressValue;
+                }
+                set
+                {
+                    _secondaryProgressValue = value;
+                }
+            }
+
+        }
+
+        internal new class Property
+        {
+            internal static readonly int PROGRESS_VALUE = NDalicPINVOKE.ProgressBar_Property_PROGRESS_VALUE_get();
+            internal static readonly int SECONDARY_PROGRESS_VALUE = NDalicPINVOKE.ProgressBar_Property_SECONDARY_PROGRESS_VALUE_get();
+            internal static readonly int INDETERMINATE = NDalicPINVOKE.ProgressBar_Property_INDETERMINATE_get();
+            internal static readonly int TRACK_VISUAL = NDalicPINVOKE.ProgressBar_Property_TRACK_VISUAL_get();
+            internal static readonly int PROGRESS_VISUAL = NDalicPINVOKE.ProgressBar_Property_PROGRESS_VISUAL_get();
+            internal static readonly int SECONDARY_PROGRESS_VISUAL = NDalicPINVOKE.ProgressBar_Property_SECONDARY_PROGRESS_VISUAL_get();
+            internal static readonly int INDETERMINATE_VISUAL = NDalicPINVOKE.ProgressBar_Property_INDETERMINATE_VISUAL_get();
+            internal static readonly int INDETERMINATE_VISUAL_ANIMATION = NDalicPINVOKE.ProgressBar_Property_INDETERMINATE_VISUAL_ANIMATION_get();
+            internal static readonly int LABEL_VISUAL = NDalicPINVOKE.ProgressBar_Property_LABEL_VISUAL_get();
+        }
+    }
 }

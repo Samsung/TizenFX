@@ -33,6 +33,7 @@ namespace HelloWorldTest
 
         protected override void OnCreate()
         {
+            Tizen.Log.Error("MYLOG", "OnCreate\n");
             base.OnCreate();
             Initialize();
         }
@@ -41,6 +42,8 @@ namespace HelloWorldTest
         TextLabel pointLabel;
         public void Initialize()
         {
+            Tizen.Log.Error("MYLOG", "Init\n");
+
             Window window = Window.Instance;
             window.BackgroundColor = Color.White;
             window.TouchEvent += OnWindowTouched;
@@ -174,6 +177,8 @@ namespace HelloWorldTest
             textFieldPlaceholderTest.DownFocusableView = keySubclassTest;
             keySubclassTest.UpFocusableView = textFieldPlaceholderTest;
             FocusManager.Instance.SetCurrentFocusView(keySubclassTest);
+            Tizen.Log.Error("MYLOG", "Init 2\n");
+
         }
 
 

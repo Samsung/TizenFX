@@ -1,5 +1,5 @@
 /*
- * Copyright(c) 2017 Samsung Electronics Co., Ltd.
+ * Copyright(c) 2018 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -39,29 +39,33 @@ namespace Tizen.NUI
     /// <since_tizen> 4 </since_tizen>
     public class Adaptor : global::System.IDisposable
     {
-        private global::System.Runtime.InteropServices.HandleRef swigCPtr;
         /// <summary>swigCMemOwn.</summary>
         /// <since_tizen> 4 </since_tizen>
         protected bool swigCMemOwn;
+
+        /// <summary>
+        /// A Flat to check if it is already disposed.
+        /// </summary>
+        /// <since_tizen> 4 </since_tizen>
+        protected bool disposed = false;
+
+        private static readonly Adaptor instance = Adaptor.Get();
+        private global::System.Runtime.InteropServices.HandleRef swigCPtr;
+
+        //A Flag to check who called Dispose(). (By User or DisposeQueue)
+        private bool isDisposeQueued = false;
+
+        private EventHandler<ResizedEventArgs> _resizedEventHandler;
+        private ResizedCallbackDelegate _resizedCallbackDelegate;
+
+        private EventHandler<LanguageChangedEventArgs> _languageChangedEventHandler;
+        private LanguageChangedCallbackDelegate _languageChangedCallbackDelegate;
 
         internal Adaptor(global::System.IntPtr cPtr, bool cMemoryOwn)
         {
             swigCMemOwn = cMemoryOwn;
             swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
         }
-
-        internal static global::System.Runtime.InteropServices.HandleRef getCPtr(Adaptor obj)
-        {
-            return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
-        }
-
-        //A Flag to check who called Dispose(). (By User or DisposeQueue)
-        private bool isDisposeQueued = false;
-        /// <summary>
-        /// A Flat to check if it is already disposed.
-        /// </summary>
-        /// <since_tizen> 4 </since_tizen>
-        protected bool disposed = false;
 
         /// <summary>
         /// Dispose.
@@ -73,6 +77,75 @@ namespace Tizen.NUI
             {
                 isDisposeQueued = true;
                 DisposeQueue.Instance.Add(this);
+            }
+        }
+
+        [UnmanagedFunctionPointer(CallingConvention.StdCall)]
+        private delegate void ResizedCallbackDelegate(IntPtr adaptor);
+
+        [UnmanagedFunctionPointer(CallingConvention.StdCall)]
+        private delegate void LanguageChangedCallbackDelegate(IntPtr adaptor);
+
+        /// <summary>
+        /// An event for the Resized signal which can be used to subscribe or unsubscribe the event handler
+        /// provided by the user. The Resized signal is emitted when the size changes.<br />
+        /// </summary>
+        internal event EventHandler<ResizedEventArgs> Resized
+        {
+            add
+            {
+                if (_resizedEventHandler == null)
+                {
+                    _resizedCallbackDelegate = (OnResized);
+                    ResizedSignal().Connect(_resizedCallbackDelegate);
+                }
+                _resizedEventHandler += value;
+            }
+            remove
+            {
+                _resizedEventHandler -= value;
+                if (_resizedEventHandler == null && ResizedSignal().Empty() == false)
+                {
+                    ResizedSignal().Disconnect(_resizedCallbackDelegate);
+                }
+            }
+        }
+
+        /// <summary>
+        /// An event for LanguageChanged signal which can be used to subscribe or unsubscribe the event handler
+        /// provided by the user. The LanguageChanged signal is emitted when the language changes.<br />
+        /// </summary>
+        internal event EventHandler<LanguageChangedEventArgs> LanguageChanged
+        {
+            add
+            {
+                if (_languageChangedEventHandler == null)
+                {
+                    _languageChangedCallbackDelegate = (OnLanguageChanged);
+                    LanguageChangedSignal().Connect(_languageChangedCallbackDelegate);
+                }
+                _languageChangedEventHandler += value;
+            }
+            remove
+            {
+                _languageChangedEventHandler -= value;
+                if (_languageChangedEventHandler == null && LanguageChangedSignal().Empty() == false)
+                {
+                    LanguageChangedSignal().Disconnect(_languageChangedCallbackDelegate);
+                }
+            }
+        }
+
+        /// <summary>
+        /// Returns a reference to the instance of the adaptor used by the current thread.
+        /// </summary>
+        /// <remarks>The adaptor has been initialized. This is only valid in the main thread.</remarks>
+        /// <since_tizen> 4 </since_tizen>
+        public static Adaptor Instance
+        {
+            get
+            {
+                return instance;
             }
         }
 
@@ -97,36 +170,30 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Dispose.
+        /// Feeds a wheel event to the adaptor.
         /// </summary>
+        /// <param name="wheelEvent">The wheel event.</param>
         /// <since_tizen> 4 </since_tizen>
-        protected virtual void Dispose(DisposeTypes type)
+        public void FeedWheelEvent(Wheel wheelEvent)
         {
-            if (disposed)
-            {
-                return;
-            }
+            NDalicManualPINVOKE.Adaptor_FeedWheelEvent(swigCPtr, Wheel.getCPtr(wheelEvent));
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
 
-            if (type == DisposeTypes.Explicit)
-            {
-                //Called by User
-                //Release your own managed resources here.
-                //You should release all of your own disposable objects here.
+        /// <summary>
+        /// Feeds a key event to the adaptor.
+        /// </summary>
+        /// <param name="keyEvent">The key event holding the key information.</param>
+        /// <since_tizen> 4 </since_tizen>
+        public void FeedKeyEvent(Key keyEvent)
+        {
+            NDalicManualPINVOKE.Adaptor_FeedKeyEvent(swigCPtr, Key.getCPtr(keyEvent));
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
 
-            }
-
-            //Release your own unmanaged resources here.
-            //You should not access any managed member here except static instance.
-            //because the execution order of Finalizes is non-deterministic.
-
-            if (swigCPtr.Handle != global::System.IntPtr.Zero)
-            {
-                swigCMemOwn = false;
-                NDalicManualPINVOKE.delete_Adaptor(swigCPtr);
-                swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
-            }
-
-            disposed = true;
+        internal static global::System.Runtime.InteropServices.HandleRef getCPtr(Adaptor obj)
+        {
+            return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
         }
 
         internal static Adaptor GetAdaptorFromPtr(global::System.IntPtr cPtr)
@@ -160,6 +227,24 @@ namespace Tizen.NUI
         internal static Adaptor New(Any nativeWindow, SWIGTYPE_p_Dali__RenderSurface surface, SWIGTYPE_p_Configuration__ContextLoss configuration)
         {
             Adaptor ret = new Adaptor(NDalicManualPINVOKE.Adaptor_New__SWIG_3(Any.getCPtr(nativeWindow), SWIGTYPE_p_Dali__RenderSurface.getCPtr(surface), SWIGTYPE_p_Configuration__ContextLoss.getCPtr(configuration)), false);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        internal static Adaptor Get()
+        {
+            Adaptor ret = new Adaptor(NDalicManualPINVOKE.Adaptor_Get(), false);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        /// <summary>
+        /// Checks whether the adaptor is available.
+        /// </summary>
+        /// <returns>True if it is available, false otherwise.</returns>
+        internal static bool IsAvailable()
+        {
+            bool ret = NDalicManualPINVOKE.Adaptor_IsAvailable();
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -273,39 +358,6 @@ namespace Tizen.NUI
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
-        private static readonly Adaptor instance = Adaptor.Get();
-
-        internal static Adaptor Get()
-        {
-            Adaptor ret = new Adaptor(NDalicManualPINVOKE.Adaptor_Get(), false);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
-        }
-
-        /// <summary>
-        /// Returns a reference to the instance of the adaptor used by the current thread.
-        /// </summary>
-        /// <remarks>The adaptor has been initialized. This is only valid in the main thread.</remarks>
-        /// <since_tizen> 4 </since_tizen>
-        public static Adaptor Instance
-        {
-            get
-            {
-                return instance;
-            }
-        }
-
-        /// <summary>
-        /// Checks whether the adaptor is available.
-        /// </summary>
-        /// <returns>True if it is available, false otherwise.</returns>
-        internal static bool IsAvailable()
-        {
-            bool ret = NDalicManualPINVOKE.Adaptor_IsAvailable();
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
-        }
-
         /// <summary>
         /// Calls this method to notify DALi when a scene is created and initialized.
         /// Notify the adaptor that the scene has been created.
@@ -348,28 +400,6 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Feeds a wheel event to the adaptor.
-        /// </summary>
-        /// <param name="wheelEvent">The wheel event.</param>
-        /// <since_tizen> 4 </since_tizen>
-        public void FeedWheelEvent(Wheel wheelEvent)
-        {
-            NDalicManualPINVOKE.Adaptor_FeedWheelEvent(swigCPtr, Wheel.getCPtr(wheelEvent));
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-        }
-
-        /// <summary>
-        /// Feeds a key event to the adaptor.
-        /// </summary>
-        /// <param name="keyEvent">The key event holding the key information.</param>
-        /// <since_tizen> 4 </since_tizen>
-        public void FeedKeyEvent(Key keyEvent)
-        {
-            NDalicManualPINVOKE.Adaptor_FeedKeyEvent(swigCPtr, Key.getCPtr(keyEvent));
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-        }
-
-        /// <summary>
         /// Notifies core that the scene has been created.
         /// </summary>
         internal void SceneCreated()
@@ -378,22 +408,78 @@ namespace Tizen.NUI
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
-        internal void SetViewMode(ViewMode viewMode)
+        internal AdaptorSignalType ResizedSignal()
         {
-            NDalicManualPINVOKE.Adaptor_SetViewMode(swigCPtr, (int)viewMode);
+            AdaptorSignalType ret = new AdaptorSignalType(NDalicManualPINVOKE.Adaptor_ResizedSignal(swigCPtr), false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        internal AdaptorSignalType LanguageChangedSignal()
+        {
+            AdaptorSignalType ret = new AdaptorSignalType(NDalicManualPINVOKE.Adaptor_LanguageChangedSignal(swigCPtr), false);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
         }
 
         /// <summary>
-        /// Sets the stereo base (eye separation) for stereoscopic 3D.
-        /// The stereo base is the distance in millimetres between the eyes. Typical values are
-        /// between 50mm and 70mm. The default value is 65mm.
+        /// Dispose.
         /// </summary>
-        /// <param name="stereoBase">The stereo base (eye separation) for stereoscopic 3D.</param>
-        internal void SetStereoBase(float stereoBase)
+        /// <since_tizen> 4 </since_tizen>
+        protected virtual void Dispose(DisposeTypes type)
         {
-            NDalicManualPINVOKE.Adaptor_SetStereoBase(swigCPtr, stereoBase);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            if (disposed)
+            {
+                return;
+            }
+
+            if (type == DisposeTypes.Explicit)
+            {
+                //Called by User
+                //Release your own managed resources here.
+                //You should release all of your own disposable objects here.
+
+            }
+
+            //Release your own unmanaged resources here.
+            //You should not access any managed member here except static instance.
+            //because the execution order of Finalizes is non-deterministic.
+
+            if (swigCPtr.Handle != global::System.IntPtr.Zero)
+            {
+                swigCMemOwn = false;
+                NDalicManualPINVOKE.delete_Adaptor(swigCPtr);
+                swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
+            }
+
+            disposed = true;
+        }
+
+        private void OnResized(IntPtr adaptor)
+        {
+            ResizedEventArgs e = new ResizedEventArgs();
+            if (adaptor != null)
+            {
+                e.Adaptor = Adaptor.GetAdaptorFromPtr(adaptor);
+            }
+
+            if (_resizedEventHandler != null)
+            {
+                //here we send all data to user event handlers
+                _resizedEventHandler(this, e);
+            }
+        }
+
+        private void OnLanguageChanged(IntPtr adaptor)
+        {
+            LanguageChangedEventArgs e = new LanguageChangedEventArgs();
+            e.Adaptor = Adaptor.GetAdaptorFromPtr(adaptor);
+
+            if (_languageChangedEventHandler != null)
+            {
+                //here we send all data to user event handlers
+                _languageChangedEventHandler(this, e);
+            }
         }
 
         /// <summary>
@@ -413,58 +499,6 @@ namespace Tizen.NUI
             }
         }
 
-        [UnmanagedFunctionPointer(CallingConvention.StdCall)]
-        private delegate void ResizedCallbackDelegate(IntPtr adaptor);
-        private EventHandler<ResizedEventArgs> _resizedEventHandler;
-        private ResizedCallbackDelegate _resizedCallbackDelegate;
-
-        /// <summary>
-        /// An event for the Resized signal which can be used to subscribe or unsubscribe the event handler
-        /// provided by the user. The Resized signal is emitted when the size changes.<br />
-        /// </summary>
-        internal event EventHandler<ResizedEventArgs> Resized
-        {
-            add
-            {
-                if (_resizedEventHandler == null)
-                {
-                    _resizedCallbackDelegate = (OnResized);
-                    ResizedSignal().Connect(_resizedCallbackDelegate);
-                }
-                _resizedEventHandler += value;
-            }
-            remove
-            {
-                _resizedEventHandler -= value;
-                if (_resizedEventHandler == null && ResizedSignal().Empty() == false)
-                {
-                    ResizedSignal().Disconnect(_resizedCallbackDelegate);
-                }
-            }
-        }
-
-        private void OnResized(IntPtr adaptor)
-        {
-            ResizedEventArgs e = new ResizedEventArgs();
-            if (adaptor != null)
-            {
-                e.Adaptor = Adaptor.GetAdaptorFromPtr(adaptor);
-            }
-
-            if (_resizedEventHandler != null)
-            {
-                //here we send all data to user event handlers
-                _resizedEventHandler(this, e);
-            }
-        }
-
-        internal AdaptorSignalType ResizedSignal()
-        {
-            AdaptorSignalType ret = new AdaptorSignalType(NDalicManualPINVOKE.Adaptor_ResizedSignal(swigCPtr), false);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
-        }
-
         /// <summary>
         /// Event arguments that passed via the LanguageChanged signal.
         /// </summary>
@@ -480,58 +514,6 @@ namespace Tizen.NUI
                 get;
                 set;
             }
-        }
-
-        [UnmanagedFunctionPointer(CallingConvention.StdCall)]
-        private delegate void LanguageChangedCallbackDelegate(IntPtr adaptor);
-        private EventHandler<LanguageChangedEventArgs> _languageChangedEventHandler;
-        private LanguageChangedCallbackDelegate _languageChangedCallbackDelegate;
-
-        /// <summary>
-        /// An event for LanguageChanged signal which can be used to subscribe or unsubscribe the event handler
-        /// provided by the user. The LanguageChanged signal is emitted when the language changes.<br />
-        /// </summary>
-        internal event EventHandler<LanguageChangedEventArgs> LanguageChanged
-        {
-            add
-            {
-                if (_languageChangedEventHandler == null)
-                {
-                    _languageChangedCallbackDelegate = (OnLanguageChanged);
-                    LanguageChangedSignal().Connect(_languageChangedCallbackDelegate);
-                }
-                _languageChangedEventHandler += value;
-            }
-            remove
-            {
-                _languageChangedEventHandler -= value;
-                if (_languageChangedEventHandler == null && LanguageChangedSignal().Empty() == false)
-                {
-                    LanguageChangedSignal().Disconnect(_languageChangedCallbackDelegate);
-                }
-            }
-        }
-
-        private void OnLanguageChanged(IntPtr adaptor)
-        {
-            LanguageChangedEventArgs e = new LanguageChangedEventArgs();
-            if (adaptor != null)
-            {
-                e.Adaptor = Adaptor.GetAdaptorFromPtr(adaptor);
-            }
-
-            if (_languageChangedEventHandler != null)
-            {
-                //here we send all data to user event handlers
-                _languageChangedEventHandler(this, e);
-            }
-        }
-
-        internal AdaptorSignalType LanguageChangedSignal()
-        {
-            AdaptorSignalType ret = new AdaptorSignalType(NDalicManualPINVOKE.Adaptor_LanguageChangedSignal(swigCPtr), false);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
         }
 
     }

@@ -100,6 +100,8 @@ namespace Tizen.NUI.Xaml
             if (propertyName != XmlName.Empty || TryGetPropertyName(node, parentNode, out propertyName)) {
                 if (Skips.Contains(propertyName))
                     return;
+                if (parentElement == null)
+                    return;
                 if (parentElement.SkipProperties.Contains(propertyName))
                     return;
 
@@ -234,8 +236,9 @@ namespace Tizen.NUI.Xaml
             if (value.GetType().GetTypeInfo().GetCustomAttribute<AcceptEmptyServiceProviderAttribute>() == null)
                 serviceProvider = new XamlServiceProvider(node, Context);
 
-            if (serviceProvider != null && propertyName != XmlName.Empty)
+            if (serviceProvider != null && serviceProvider.IProvideValueTarget != null && propertyName != XmlName.Empty) {
                 ((XamlValueTargetProvider)serviceProvider.IProvideValueTarget).TargetProperty = GetTargetProperty(source, propertyName, Context, node);
+            }
 
             if (markupExtension != null)
                 value = markupExtension.ProvideValue(serviceProvider);
@@ -607,7 +610,7 @@ namespace Tizen.NUI.Xaml
             if (addMethod == null)
                 return false;
 
-            if (serviceProvider != null)
+            if (serviceProvider != null && serviceProvider.IProvideValueTarget != null)
                 ((XamlValueTargetProvider)serviceProvider.IProvideValueTarget).TargetProperty = targetProperty;
 
             addMethod.Invoke(collection, new [] { value.ConvertTo(addMethod.GetParameters() [0].ParameterType, (Func<TypeConverter>)null, serviceProvider) });

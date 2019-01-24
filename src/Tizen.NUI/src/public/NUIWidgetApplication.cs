@@ -20,7 +20,6 @@ using System.Collections.Generic;
 
 namespace Tizen.NUI
 {
-
     /// <summary>
     /// Represents an application that have UI screen. The NUIWidgetApplication class has a default stage.
     /// </summary>
@@ -49,6 +48,35 @@ namespace Tizen.NUI
         {
             NUIWidgetCoreBackend core = Backend as NUIWidgetCoreBackend;
             core?.RegisterWidgetInfo(new Dictionary<System.Type, string> { { widgetType, ApplicationInfo.ApplicationId } });
+        }
+
+        internal WidgetApplication ApplicationHandle
+        {
+            get
+            {
+                return ((NUIWidgetCoreBackend)this.Backend).WidgetApplicationHandle;
+            }
+        }
+
+        /// <summary>
+        /// Run NUIWidgetApplication.
+        /// </summary>
+        /// <param name="args">Arguments from commandline.</param>
+        /// <since_tizen> 4 </since_tizen>
+        public override void Run(string[] args)
+        {
+            Backend.AddEventHandler(EventType.PreCreated, OnPreCreate);
+            base.Run(args);
+        }
+
+        /// <summary>
+        /// Exit NUIWidgetApplication.
+        /// </summary>
+        /// <since_tizen> 4 </since_tizen>
+        public override void Exit()
+        {
+            Tizen.Log.Fatal("NUI", "### NUIWidgetApplication Exit called");
+            base.Exit();
         }
 
         /// <summary>
@@ -121,35 +149,6 @@ namespace Tizen.NUI
             disposeQ.Initialize();
             Log.Fatal("NUI","OnCreate() is called!");
             base.OnCreate();
-        }
-
-        /// <summary>
-        /// Run NUIWidgetApplication.
-        /// </summary>
-        /// <param name="args">Arguments from commandline.</param>
-        /// <since_tizen> 4 </since_tizen>
-        public override void Run(string[] args)
-        {
-            Backend.AddEventHandler(EventType.PreCreated, OnPreCreate);
-            base.Run(args);
-        }
-
-        /// <summary>
-        /// Exit NUIWidgetApplication.
-        /// </summary>
-        /// <since_tizen> 4 </since_tizen>
-        public override void Exit()
-        {
-            Tizen.Log.Fatal("NUI", "### NUIWidgetApplication Exit called");
-            base.Exit();
-        }
-
-        internal WidgetApplication ApplicationHandle
-        {
-            get
-            {
-                return ((NUIWidgetCoreBackend)this.Backend).WidgetApplicationHandle;
-            }
         }
     }
 }

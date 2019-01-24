@@ -154,9 +154,10 @@ namespace Tizen.NUI
 
         private static void RegistryCurrentThreadCheck()
         {
+            int id = Thread.CurrentThread.ManagedThreadId;
             if (savedApplicationThread == null)
             {
-                Tizen.Log.Fatal("NUI", $"Error! maybe main thread is created by other process ");
+                Tizen.Log.Fatal("NUI", $"Error! maybe main thread is created by other process\n");
                 return;
             }
             int currentId = Thread.CurrentThread.ManagedThreadId;
