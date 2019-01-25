@@ -27,11 +27,13 @@ namespace Tizen.Account.AccountManager
     {
         private readonly SafeAccountHandle _handle;
 
-	/// <summary>
-	/// Account constructor.
-	/// </summary>
-	/// <since_tizen> 4 </since_tizen>
-	/// <param name="handle"> The account handle.</param>
+        bool disposed = false;
+
+        /// <summary>
+        /// Account constructor.
+        /// </summary>
+        /// <since_tizen> 4 </since_tizen>
+        /// <param name="handle"> The account handle.</param>
         public Account(SafeAccountHandle handle)
         {
             _handle = handle;
@@ -402,7 +404,7 @@ namespace Tizen.Account.AccountManager
             }
         }
 
-		/// <summary>
+        /// <summary>
         /// Handle of the account.
         /// </summary>
         /// <since_tizen> 4 </since_tizen>
@@ -623,10 +625,14 @@ namespace Tizen.Account.AccountManager
         /// <param name="disposing">The boolean value for destoying account handle.</param>
         protected virtual void Dispose(bool disposing)
         {
-            if (disposing)
+            if (disposed)
+                return;           
+
+            if (disposing && _handle != null && !_handle.IsInvalid)
             {
-                _handle.Dispose();
+                    _handle.Dispose();                    
             }
+            disposed = true;
         }
     }
 }

@@ -60,6 +60,11 @@ namespace Tizen.Account.AccountManager
         /// <returns>true if the handle is released successfully</returns>
         protected override bool ReleaseHandle()
         {
+            AccountError err = (AccountError)Interop.Account.Destroy(handle);
+            if (err != AccountError.None)
+            {
+                throw AccountErrorFactory.CreateException(err, "Failed to destroy account handle.");
+            }
             this.SetHandle(IntPtr.Zero);
             return true;
         }
