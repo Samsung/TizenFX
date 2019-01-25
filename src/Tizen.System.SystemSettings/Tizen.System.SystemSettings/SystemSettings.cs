@@ -1069,6 +1069,72 @@ namespace Tizen.System
             }
         }
 
+        /// <summary>
+        /// Indicates whether accessibility grayscale is enabled on the device or not.
+        /// </summary>
+        /// <privilege>http://tizen.org/feature/accessibility.grayscale</privilege>
+        /// <privlevel>platform</privlevel>
+        /// <feature>http://tizen.org/feature/systemsetting</feature>
+        /// <exception cref="ArgumentException">Invalid Argument</exception>
+        /// <exception cref="NotSupportedException">Not Supported feature</exception>
+        /// <exception cref="InvalidOperationException">Invalid operation</exception>
+        /// <exception cref="UnauthorizedAccessException">Thrown when application does not have privilege to access this method.</exception>
+        /// <since_tizen> 5 </since_tizen>
+        public static bool AccessibilityGrayscale
+        {
+            get
+            {
+                bool isAccessibilityGrayscale;
+                SystemSettingsError res = (SystemSettingsError)Interop.Settings.SystemSettingsGetValueBool(SystemSettingsKeys.AccessibilityGrayscale, out isAccessibilityGrayscale);
+                if (res != SystemSettingsError.None)
+                {
+                    throw SystemSettingsExceptionFactory.CreateException(res, "unable to get isAccessibilityGrayscale system setting.");
+                }
+                return isAccessibilityGrayscale;
+            }
+            set
+            {
+                SystemSettingsError res = (SystemSettingsError)Interop.Settings.SystemSettingsSetValueBool(SystemSettingsKeys.AccessibilityGrayscale, value);
+                if (res != SystemSettingsError.None)
+                {
+                    throw SystemSettingsExceptionFactory.CreateException(res, "unable to set isAccessibilityGrayscale system setting.");
+                }
+            }
+        }
+
+        /// <summary>
+        /// Indicates whether accessibility negative color is enabled on the device or not.
+        /// </summary>
+        /// <privilege>http://tizen.org/feature/accessibility.negative</privilege>
+        /// <privlevel>platform</privlevel>
+        /// <feature>http://tizen.org/feature/systemsetting</feature>
+        /// <exception cref="ArgumentException">Invalid Argument</exception>
+        /// <exception cref="NotSupportedException">Not Supported feature</exception>
+        /// <exception cref="InvalidOperationException">Invalid operation</exception>
+        /// <exception cref="UnauthorizedAccessException">Thrown when application does not have privilege to access this method.</exception>
+        /// <since_tizen> 5 </since_tizen>
+        public static bool AccessibilityNegativeColor
+        {
+            get
+            {
+                bool isAccessibilityNegativeColor;
+                SystemSettingsError res = (SystemSettingsError)Interop.Settings.SystemSettingsGetValueBool(SystemSettingsKeys.AccessibilityNegativeColor, out isAccessibilityNegativeColor);
+                if (res != SystemSettingsError.None)
+                {
+                    throw SystemSettingsExceptionFactory.CreateException(res, "unable to get isAccessibilityNegativeColor system setting.");
+                }
+                return isAccessibilityNegativeColor;
+            }
+            set
+            {
+                SystemSettingsError res = (SystemSettingsError)Interop.Settings.SystemSettingsSetValueBool(SystemSettingsKeys.AccessibilityNegativeColor, value);
+                if (res != SystemSettingsError.None)
+                {
+                    throw SystemSettingsExceptionFactory.CreateException(res, "unable to set isAccessibilityNegativeColor system setting.");
+                }
+            }
+        }
+
         private static readonly Interop.Settings.SystemSettingsChangedCallback s_incomingCallRingtoneChangedCallback = (SystemSettingsKeys key, IntPtr userData) =>
         {
             string path = SystemSettings.IncomingCallRingtone;
@@ -2796,6 +2862,102 @@ namespace Tizen.System
                 if (s_developerOptionStateChanged == null)
                 {
                     SystemSettingsError ret = (SystemSettingsError)Interop.Settings.SystemSettingsRemoveCallback(SystemSettingsKeys.DeveloperOptionState, s_developerOptionStateChangedCallback);
+                    if (ret != SystemSettingsError.None)
+                    {
+                        throw SystemSettingsExceptionFactory.CreateException(ret, "Error in callback handling");
+                    }
+                }
+            }
+        }
+
+        private static readonly Interop.Settings.SystemSettingsChangedCallback s_accessibilityGrayscaleChangedCallback = (SystemSettingsKeys key, IntPtr userData) =>
+        {
+            bool accessibilityGrayscale = SystemSettings.AccessibilityGrayscale;
+            AccessibilityGrayscaleChangedEventArgs eventArgs = new AccessibilityGrayscaleChangedEventArgs(accessibilityGrayscale);
+            s_accessibilityGrayscaleChanged?.Invoke(null, eventArgs);
+        };
+        private static event EventHandler<AccessibilityGrayscaleChangedEventArgs> s_accessibilityGrayscaleChanged;
+        /// <summary>
+        /// The AccessibilityGrayscaleChanged event is triggered when the AccessibilityGrayscale value is changed.
+        /// </summary>
+        /// <privilege>http://tizen.org/privilege/systemsettings.admin</privilege>
+        /// <privlevel>platform</privlevel>
+        /// <feature>http://tizen.org/feature/systemsetting</feature>
+        /// <feature>http://tizen.org/feature/accessibility.grayscale</feature>
+        /// <exception cref="ArgumentException">Invalid Argument</exception>
+        /// <exception cref="NotSupportedException">Not Supported feature</exception>
+        /// <exception cref="InvalidOperationException">Invalid operation</exception>
+        /// <exception cref="UnauthorizedAccessException">Thrown when application does not have privilege to access this method.</exception>
+        /// <since_tizen> 5.5 </since_tizen>
+        public static event EventHandler<AccessibilityGrayscaleChangedEventArgs> AccessibilityGrayscaleChanged
+        {
+            add
+            {
+                if (s_accessibilityGrayscaleChanged == null)
+                {
+                    SystemSettingsError ret = (SystemSettingsError)Interop.Settings.SystemSettingsSetCallback(SystemSettingsKeys.AccessibilityGrayscale, s_accessibilityGrayscaleChangedCallback, IntPtr.Zero);
+                    if (ret != SystemSettingsError.None)
+                    {
+                        throw SystemSettingsExceptionFactory.CreateException(ret, "Error in callback handling");
+                    }
+                }
+                s_accessibilityGrayscaleChanged += value;
+            }
+
+            remove
+            {
+                s_accessibilityGrayscaleChanged -= value;
+                if (s_accessibilityGrayscaleChanged == null)
+                {
+                    SystemSettingsError ret = (SystemSettingsError)Interop.Settings.SystemSettingsRemoveCallback(SystemSettingsKeys.AccessibilityGrayscale, s_accessibilityGrayscaleChangedCallback);
+                    if (ret != SystemSettingsError.None)
+                    {
+                        throw SystemSettingsExceptionFactory.CreateException(ret, "Error in callback handling");
+                    }
+                }
+            }
+        }
+
+        private static readonly Interop.Settings.SystemSettingsChangedCallback s_accessibilityNegativeColorChangedCallback = (SystemSettingsKeys key, IntPtr userData) =>
+        {
+            bool accessibilityNegativeColor = SystemSettings.AccessibilityNegativeColor;
+            AccessibilityNegativeColorChangedEventArgs eventArgs = new AccessibilityNegativeColorChangedEventArgs(accessibilityNegativeColor);
+            s_accessibilityNegativeColorChanged?.Invoke(null, eventArgs);
+        };
+        private static event EventHandler<AccessibilityNegativeColorChangedEventArgs> s_accessibilityNegativeColorChanged;
+        /// <summary>
+        /// The AccessibilityNegativeColorChanged event is triggered when the AccessibilityNegativeColor value is changed.
+        /// </summary>
+        /// <privilege>http://tizen.org/privilege/systemsettings.admin</privilege>
+        /// <privlevel>platform</privlevel>
+        /// <feature>http://tizen.org/feature/systemsetting</feature>
+        /// <feature>http://tizen.org/feature/accessibility.negative</feature>
+        /// <exception cref="ArgumentException">Invalid Argument</exception>
+        /// <exception cref="NotSupportedException">Not Supported feature</exception>
+        /// <exception cref="InvalidOperationException">Invalid operation</exception>
+        /// <exception cref="UnauthorizedAccessException">Thrown when application does not have privilege to access this method.</exception>
+        /// <since_tizen> 5.5 </since_tizen>
+        public static event EventHandler<AccessibilityNegativeColorChangedEventArgs> AccessibilityNegativeColorChanged
+        {
+            add
+            {
+                if (s_accessibilityNegativeColorChanged == null)
+                {
+                    SystemSettingsError ret = (SystemSettingsError)Interop.Settings.SystemSettingsSetCallback(SystemSettingsKeys.AccessibilityNegativeColor, s_accessibilityNegativeColorChangedCallback, IntPtr.Zero);
+                    if (ret != SystemSettingsError.None)
+                    {
+                        throw SystemSettingsExceptionFactory.CreateException(ret, "Error in callback handling");
+                    }
+                }
+                s_accessibilityNegativeColorChanged += value;
+            }
+
+            remove
+            {
+                s_accessibilityNegativeColorChanged -= value;
+                if (s_accessibilityNegativeColorChanged == null)
+                {
+                    SystemSettingsError ret = (SystemSettingsError)Interop.Settings.SystemSettingsRemoveCallback(SystemSettingsKeys.AccessibilityNegativeColor, s_accessibilityNegativeColorChangedCallback);
                     if (ret != SystemSettingsError.None)
                     {
                         throw SystemSettingsExceptionFactory.CreateException(ret, "Error in callback handling");

@@ -172,6 +172,16 @@ namespace Tizen.System
         /// </summary>
         /// <since_tizen> 5 </since_tizen>
         DeveloperOptionState,
+        /// <summary>
+        /// GET (bool) Indicates whether accessibility grayscale  is enabled on the device.
+        /// </summary>
+        /// <since_tizen> 5.5 </since_tizen>
+        AccessibilityGrayscale,
+        /// <summary>
+        /// GET (bool) Indicates whether accessibility negative color is enabled on the device.
+        /// </summary>
+        /// <since_tizen> 5.5 </since_tizen>
+        AccessibilityNegativeColor
     }
     /// <summary>
     /// Enumeration for the Idle Lock State.
