@@ -27,6 +27,49 @@ namespace Tizen.NUI
     /// <since_tizen> 3 </since_tizen>
     public class VisualMap
     {
+        /// <summary>
+        /// outputVisualMap.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
+        protected PropertyMap _outputVisualMap = null;
+
+        /// <summary>
+        /// The shader of the visual.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
+        protected PropertyMap _shader = null;
+        //private PropertyMap _transform = null;
+
+        /// <summary>
+        /// The premultipliedAlpha of the visual.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
+        protected bool? _premultipliedAlpha = null;
+
+        /// <summary>
+        /// The mixColor of the Visual.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
+        protected Color _mixColor = null;
+
+        /// <summary>
+        /// The opacity of the visual.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
+        protected float? _opacity = null;
+
+        /// <summary>
+        /// The FittingMode of the visual.
+        /// </summary>
+        /// <since_tizen> 5 </since_tizen>
+        protected VisualFittingModeType? _visualFittingMode = null;
+
+        /// <summary>
+        /// The map for visual.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
+        protected PropertyMap _commonlyUsedMap = null;
+
         private Vector2 _visualSize = null;
         private Vector2 _visualOffset = null;
         private Vector2 _visualOffsetPolicy = null;
@@ -37,30 +80,6 @@ namespace Tizen.NUI
         private PropertyMap _visualTransformMap = null;
 
         private int? _depthIndex = null;
-
-        /// <summary>
-        /// outputVisualMap.
-        /// </summary>
-        /// <since_tizen> 3 </since_tizen>
-        protected PropertyMap _outputVisualMap = null;
-
-        internal string Name
-        {
-            set;
-            get;
-        }
-
-        internal int VisualIndex
-        {
-            set;
-            get;
-        }
-
-        internal VisualView Parent
-        {
-            set;
-            get;
-        }
 
         /// <summary>
         /// Constructor.
@@ -447,17 +466,6 @@ namespace Tizen.NUI
             }
         }
 
-        private void ComposingTransformMap()
-        {
-            _visualTransformMap = new PropertyMap();
-            if (_visualSize != null) { _visualTransformMap.Add((int)VisualTransformPropertyType.Size, new PropertyValue(_visualSize)); }
-            if (_visualOffset != null) { _visualTransformMap.Add((int)VisualTransformPropertyType.Offset, new PropertyValue(_visualOffset)); }
-            if (_visualOffsetPolicy != null) { _visualTransformMap.Add((int)VisualTransformPropertyType.OffsetPolicy, new PropertyValue(_visualOffsetPolicy)); }
-            if (_visualSizePolicy != null) { _visualTransformMap.Add((int)VisualTransformPropertyType.SizePolicy, new PropertyValue(_visualSizePolicy)); }
-            if (_visualOrigin != null) { _visualTransformMap.Add((int)VisualTransformPropertyType.Origin, new PropertyValue((int)_visualOrigin)); }
-            if (_visualAnchorPoint != null) { _visualTransformMap.Add((int)VisualTransformPropertyType.AnchorPoint, new PropertyValue((int)_visualAnchorPoint)); }
-        }
-
         /// <summary>
         /// Gets the transform map used by the visual.
         /// </summary>
@@ -469,15 +477,6 @@ namespace Tizen.NUI
                 ComposingTransformMap();
                 return _visualTransformMap;
             }
-        }
-
-        /// <summary>
-        /// Compose the out visual map.
-        /// </summary>
-        /// <since_tizen> 3 </since_tizen>
-        protected virtual void ComposingPropertyMap()
-        {
-            _outputVisualMap = new PropertyMap();
         }
 
         /// <summary>
@@ -493,55 +492,6 @@ namespace Tizen.NUI
             }
         }
 
-        internal void UpdateVisual()
-        {
-            if (VisualIndex > 0)
-            {
-                NUILog.Debug("UpdateVisual()! VisualIndex=" + VisualIndex);
-                Parent.UpdateVisual(VisualIndex, Name, this);
-            }
-            else
-            {
-                NUILog.Debug("VisualIndex was not set");
-            }
-        }
-
-        /// <summary>
-        /// The shader of the visual.
-        /// </summary>
-        /// <since_tizen> 3 </since_tizen>
-        protected PropertyMap _shader = null;
-        //private PropertyMap _transform = null;
-
-        /// <summary>
-        /// The premultipliedAlpha of the visual.
-        /// </summary>
-        /// <since_tizen> 3 </since_tizen>
-        protected bool? _premultipliedAlpha = null;
-
-        /// <summary>
-        /// The mixColor of the Visual.
-        /// </summary>
-        /// <since_tizen> 3 </since_tizen>
-        protected Color _mixColor = null;
-
-        /// <summary>
-        /// The opacity of the visual.
-        /// </summary>
-        /// <since_tizen> 3 </since_tizen>
-        protected float? _opacity = null;
-
-        /// <summary>
-        /// The FittingMode of the visual.
-        /// </summary>
-        /// <since_tizen> 5 </since_tizen>
-        protected VisualFittingModeType? _visualFittingMode = null;
-
-        /// <summary>
-        /// The map for visual.
-        /// </summary>
-        /// <since_tizen> 3 </since_tizen>
-        protected PropertyMap _commonlyUsedMap = null;
 
         /// <summary>
         /// The shader to use in the visual.
@@ -646,6 +596,58 @@ namespace Tizen.NUI
                 UpdateVisual();
             }
         }
+
+        internal string Name
+        {
+            set;
+            get;
+        }
+
+        internal int VisualIndex
+        {
+            set;
+            get;
+        }
+
+        internal VisualView Parent
+        {
+            set;
+            get;
+        }
+
+        internal void UpdateVisual()
+        {
+            if (VisualIndex > 0)
+            {
+                NUILog.Debug("UpdateVisual()! VisualIndex=" + VisualIndex);
+                Parent.UpdateVisual(VisualIndex, Name, this);
+            }
+            else
+            {
+                NUILog.Debug("VisualIndex was not set");
+            }
+        }
+
+        /// <summary>
+        /// Compose the out visual map.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
+        protected virtual void ComposingPropertyMap()
+        {
+            _outputVisualMap = new PropertyMap();
+        }
+
+        private void ComposingTransformMap()
+        {
+            _visualTransformMap = new PropertyMap();
+            if (_visualSize != null) { _visualTransformMap.Add((int)VisualTransformPropertyType.Size, new PropertyValue(_visualSize)); }
+            if (_visualOffset != null) { _visualTransformMap.Add((int)VisualTransformPropertyType.Offset, new PropertyValue(_visualOffset)); }
+            if (_visualOffsetPolicy != null) { _visualTransformMap.Add((int)VisualTransformPropertyType.OffsetPolicy, new PropertyValue(_visualOffsetPolicy)); }
+            if (_visualSizePolicy != null) { _visualTransformMap.Add((int)VisualTransformPropertyType.SizePolicy, new PropertyValue(_visualSizePolicy)); }
+            if (_visualOrigin != null) { _visualTransformMap.Add((int)VisualTransformPropertyType.Origin, new PropertyValue((int)_visualOrigin)); }
+            if (_visualAnchorPoint != null) { _visualTransformMap.Add((int)VisualTransformPropertyType.AnchorPoint, new PropertyValue((int)_visualAnchorPoint)); }
+        }
+
     }
 
     /// <summary>
@@ -654,14 +656,6 @@ namespace Tizen.NUI
     /// <since_tizen> 3 </since_tizen>
     public class ImageVisual : VisualMap
     {
-        /// <summary>
-        /// Constructor.
-        /// </summary>
-        /// <since_tizen> 3 </since_tizen>
-        public ImageVisual() : base()
-        {
-        }
-
         private string _url = null;
         private string _alphaMaskUrl = null;
         private string _auxiliaryImageUrl = null;
@@ -681,6 +675,14 @@ namespace Tizen.NUI
         private LoadPolicyType? _loadPolicy = null;
         private bool? _orientationCorrection = true;
         private bool? _atlasing = false;
+
+        /// <summary>
+        /// Constructor.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
+        public ImageVisual() : base()
+        {
+        }
 
         /// <summary>
         /// Gets or sets the URL of the image.<br />
@@ -1092,14 +1094,6 @@ namespace Tizen.NUI
     /// <since_tizen> 3 </since_tizen>
     public class TextVisual : VisualMap
     {
-        /// <summary>
-        /// Constructor.
-        /// </summary>
-        /// <since_tizen> 3 </since_tizen>
-        public TextVisual() : base()
-        {
-        }
-
         private string _text = null;
         private string _fontFamily = null;
         private PropertyMap _fontStyle = null;
@@ -1113,6 +1107,14 @@ namespace Tizen.NUI
         private PropertyMap _underline = null;
         private PropertyMap _outline = null;
         private PropertyMap _background = null;
+
+        /// <summary>
+        /// Constructor.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
+        public TextVisual() : base()
+        {
+        }
 
         /// <summary>
         /// Gets or sets the text to display in the UTF-8 format.<br />
@@ -1449,6 +1451,10 @@ namespace Tizen.NUI
     /// <since_tizen> 3 </since_tizen>
     public class BorderVisual : VisualMap
     {
+        private Color _color = null;
+        private float? _size = null;
+        private bool? _antiAliasing = null;
+
         /// <summary>
         /// Constructor.
         /// </summary>
@@ -1456,10 +1462,6 @@ namespace Tizen.NUI
         public BorderVisual() : base()
         {
         }
-
-        private Color _color = null;
-        private float? _size = null;
-        private bool? _antiAliasing = null;
 
         /// <summary>
         /// Gets or sets the color of the border.<br />
@@ -1544,6 +1546,9 @@ namespace Tizen.NUI
     /// <since_tizen> 3 </since_tizen>
     public class ColorVisual : VisualMap
     {
+        private Color _mixColorForColorVisual = null;
+        private bool? _renderIfTransparent = false;
+
         /// <summary>
         /// Constructor.
         /// </summary>
@@ -1551,9 +1556,6 @@ namespace Tizen.NUI
         public ColorVisual() : base()
         {
         }
-
-        private Color _mixColorForColorVisual = null;
-        private bool? _renderIfTransparent = false;
 
         /// <summary>
         /// Gets or sets the solid color required.<br />
@@ -1617,14 +1619,6 @@ namespace Tizen.NUI
     /// <since_tizen> 3 </since_tizen>
     public class GradientVisual : VisualMap
     {
-        /// <summary>
-        /// Constructor.
-        /// </summary>
-        /// <since_tizen> 3 </since_tizen>
-        public GradientVisual() : base()
-        {
-        }
-
         private Vector2 _startPosition = null;
         private Vector2 _endPosition = null;
         private Vector2 _center = null;
@@ -1633,6 +1627,14 @@ namespace Tizen.NUI
         private PropertyArray _stopColor = null;
         private GradientVisualUnitsType? _units = null;
         private GradientVisualSpreadMethodType? _spreadMethod = null;
+
+        /// <summary>
+        /// Constructor.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
+        public GradientVisual() : base()
+        {
+        }
 
         /// <summary>
         /// Gets or sets the start position of a linear gradient.<br />
@@ -1817,14 +1819,6 @@ namespace Tizen.NUI
     /// <since_tizen> 3 </since_tizen>
     public class MeshVisual : VisualMap
     {
-        /// <summary>
-        /// Constructor.
-        /// </summary>
-        /// <since_tizen> 3 </since_tizen>
-        public MeshVisual() : base()
-        {
-        }
-
         private string _objectURL = null;
         private string _materialtURL = null;
         private string _texturesPath = null;
@@ -1832,6 +1826,14 @@ namespace Tizen.NUI
         private bool? _useMipmapping = null;
         private bool? _useSoftNormals = null;
         private Vector3 _lightPosition = null;
+
+        /// <summary>
+        /// Constructor.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
+        public MeshVisual() : base()
+        {
+        }
 
         /// <summary>
         /// Gets or sets the location of the ".obj" file.<br />
@@ -1998,14 +2000,6 @@ namespace Tizen.NUI
     /// <since_tizen> 3 </since_tizen>
     public class PrimitiveVisual : VisualMap
     {
-        /// <summary>
-        /// Constructor.
-        /// </summary>
-        /// <since_tizen> 3 </since_tizen>
-        public PrimitiveVisual() : base()
-        {
-        }
-
         private PrimitiveVisualShapeType? _shape = null;
         private Color _mixColorForPrimitiveVisual = null;
         private int? _slices = null;
@@ -2018,6 +2012,14 @@ namespace Tizen.NUI
         private float? _bevelPercentage = null;
         private float? _bevelSmoothness = null;
         private Vector3 _lightPosition = null;
+
+        /// <summary>
+        /// Constructor.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
+        public PrimitiveVisual() : base()
+        {
+        }
 
         /// <summary>
         /// Gets or sets the specific shape to render.<br />
@@ -2313,6 +2315,10 @@ namespace Tizen.NUI
     /// <since_tizen> 3 </since_tizen>
     public class NPatchVisual : VisualMap
     {
+        private string _url = null;
+        private bool? _borderOnly = null;
+        private Rectangle _border = null;
+
         /// <summary>
         /// Constructor.
         /// </summary>
@@ -2320,10 +2326,6 @@ namespace Tizen.NUI
         public NPatchVisual() : base()
         {
         }
-
-        private string _url = null;
-        private bool? _borderOnly = null;
-        private Rectangle _border = null;
 
         /// <summary>
         /// Gets or sets the URL of the image.<br />
@@ -2410,6 +2412,8 @@ namespace Tizen.NUI
     /// <since_tizen> 3 </since_tizen>
     public class SVGVisual : VisualMap
     {
+        private string _url = null;
+
         /// <summary>
         /// Constructor.
         /// </summary>
@@ -2417,8 +2421,6 @@ namespace Tizen.NUI
         public SVGVisual() : base()
         {
         }
-
-        private string _url = null;
 
         /// <summary>
         /// The url of the svg resource.
@@ -2463,6 +2465,12 @@ namespace Tizen.NUI
     /// <since_tizen> 3 </since_tizen>
     public class AnimatedImageVisual : VisualMap
     {
+        private List<string> _urls = null;
+        private int? _batchSize = null;
+        private int? _cacheSize = null;
+        private float? _frameDelay = null;
+        private float? _loopCount = null;
+
         /// <summary>
         /// Constructor.
         /// </summary>
@@ -2470,12 +2478,6 @@ namespace Tizen.NUI
         public AnimatedImageVisual() : base()
         {
         }
-
-        private List<string> _urls = null;
-        private int? _batchSize = null;
-        private int? _cacheSize = null;
-        private float? _frameDelay = null;
-        private float? _loopCount = null;
 
         /// <summary>
         /// Gets and Sets the url in the AnimatedImageVisual.
@@ -2639,6 +2641,13 @@ namespace Tizen.NUI
     /// <since_tizen> 3 </since_tizen>
     public class VisualAnimator : VisualMap
     {
+        private string _alphaFunction = null;
+        private int _startTime = 0;
+        private int _endTime = 0;
+        private string _target = null;
+        private string _propertyIndex = null;
+        private object _destinationValue = null;
+
         /// <summary>
         /// Create VisualAnimator object.
         /// </summary>
@@ -2646,13 +2655,6 @@ namespace Tizen.NUI
         public VisualAnimator() : base()
         {
         }
-
-        private string _alphaFunction = null;
-        private int _startTime = 0;
-        private int _endTime = 0;
-        private string _target = null;
-        private string _propertyIndex = null;
-        private object _destinationValue = null;
 
         /// <summary>
         /// Sets and Gets the AlphaFunction of this transition.

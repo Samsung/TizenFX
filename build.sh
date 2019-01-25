@@ -37,9 +37,10 @@ cmd_full_build() {
   if [ -d /nuget ]; then
     NUGET_SOURCE_OPT="/p:RestoreSources=/nuget"
   fi
+  rm -f msbuild.log
   $RUN_BUILD /t:clean
   $RUN_BUILD /t:restore $NUGET_SOURCE_OPT $@
-  $RUN_BUILD /t:build $@
+  $RUN_BUILD /t:build /fl $@
 }
 
 cmd_dummy_build() {

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2017 Samsung Electronics Co., Ltd.
+ * Copyright (c) 2018 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -159,7 +159,7 @@ namespace Tizen.NUI
         {
             Log.Info("NUI", "NUICorebackend OnRegionChanged Called");
             var handler = Handlers[EventType.RegionFormatChanged] as Action<RegionFormatChangedEventArgs>;
-            handler?.Invoke( new RegionFormatChangedEventArgs(e.Application.GetRegion()));
+            handler?.Invoke( new RegionFormatChangedEventArgs((source as Application)?.GetRegion()));
         }
 
         /// <summary>
@@ -201,7 +201,7 @@ namespace Tizen.NUI
         {
             Log.Info("NUI", "NUICorebackend OnLanguageChanged Called");
             var handler = Handlers[EventType.LocaleChanged] as Action<LocaleChangedEventArgs>;
-            handler?.Invoke( new LocaleChangedEventArgs(e.Application.GetLanguage()));
+            handler?.Invoke( new LocaleChangedEventArgs((source as Application)?.GetLanguage()));
         }
 
         /// <summary>

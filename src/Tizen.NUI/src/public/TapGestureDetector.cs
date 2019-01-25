@@ -31,107 +31,39 @@ namespace Tizen.NUI
     public class TapGestureDetector : GestureDetector
     {
         private global::System.Runtime.InteropServices.HandleRef swigCPtr;
+        private DaliEventHandler<object, DetectedEventArgs> _tapGestureEventHandler;
+        private DetectedCallbackDelegate _tapGestureCallbackDelegate;
+
+        /// <summary>
+        /// Creates an initialized TapGestureDetector.
+        /// </summary>
+        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public TapGestureDetector() : this(NDalicPINVOKE.TapGestureDetector_New__SWIG_0(), true)
+        {
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+
+        }
+
+        /// <summary>
+        /// Creates an initialized TapGestureDetector with the specified parameters.
+        /// </summary>
+        /// <param name="tapsRequired">The minimum and maximum number of taps required</param>
+        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public TapGestureDetector(uint tapsRequired) : this(NDalicPINVOKE.TapGestureDetector_New__SWIG_1(tapsRequired), true)
+        {
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+
+        }
 
         internal TapGestureDetector(global::System.IntPtr cPtr, bool cMemoryOwn) : base(NDalicPINVOKE.TapGestureDetector_SWIGUpcast(cPtr), cMemoryOwn)
         {
             swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
         }
 
-        internal static global::System.Runtime.InteropServices.HandleRef getCPtr(TapGestureDetector obj)
-        {
-            return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
-        }
-
-        /// <summary>
-        /// Dispose.
-        /// </summary>
-        /// <param name="type">The dispose type</param>
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        protected override void Dispose(DisposeTypes type)
-        {
-            if (disposed)
-            {
-                return;
-            }
-
-            if (type == DisposeTypes.Explicit)
-            {
-                //Called by User
-                //Release your own managed resources here.
-                //You should release all of your own disposable objects here.
-
-            }
-
-            //Release your own unmanaged resources here.
-            //You should not access any managed member here except static instance.
-            //because the execution order of Finalizes is non-deterministic.
-
-            if (swigCPtr.Handle != global::System.IntPtr.Zero)
-            {
-                if (swigCMemOwn)
-                {
-                    swigCMemOwn = false;
-                    NDalicPINVOKE.delete_TapGestureDetector(swigCPtr);
-                }
-                swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
-            }
-
-            base.Dispose(type);
-        }
-
-        /// <summary>
-        /// Event arguments that are passed via the TapGestureEvent signal.
-        /// </summary>
-        /// <since_tizen> 5 </since_tizen>
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public class DetectedEventArgs : EventArgs
-        {
-            private View _view;
-            private TapGesture _tapGesture;
-
-            /// <summary>
-            /// The attached view.
-            /// </summary>
-            /// <since_tizen> 5 </since_tizen>
-            /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
-            [EditorBrowsable(EditorBrowsableState.Never)]
-            public View View
-            {
-                get
-                {
-                    return _view;
-                }
-                set
-                {
-                    _view = value;
-                }
-            }
-
-            /// <summary>
-            /// The TapGesture.
-            /// </summary>
-            /// <since_tizen> 5 </since_tizen>
-            /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
-            [EditorBrowsable(EditorBrowsableState.Never)]
-            public TapGesture TapGesture
-            {
-                get
-                {
-                    return _tapGesture;
-                }
-                set
-                {
-                    _tapGesture = value;
-                }
-            }
-        }
-
         [UnmanagedFunctionPointer(CallingConvention.StdCall)]
         private delegate void DetectedCallbackDelegate(IntPtr actor, IntPtr TapGesture);
-        private DaliEventHandler<object, DetectedEventArgs> _tapGestureEventHandler;
-        private DetectedCallbackDelegate _tapGestureCallbackDelegate;
 
         /// <summary>
         /// This signal is emitted when the specified tap is detected on the attached view.
@@ -169,59 +101,6 @@ namespace Tizen.NUI
             }
         }
 
-        private void OnTapGestureDetected(IntPtr actor, IntPtr tapGesture)
-        {
-            DetectedEventArgs e = new DetectedEventArgs();
-
-            // Populate all members of "e" (DetectedEventArgs) with real data
-            e.View = Registry.GetManagedBaseHandleFromNativePtr(actor) as View;
-            e.TapGesture = Tizen.NUI.TapGesture.GetTapGestureFromPtr(tapGesture);
-
-            if (_tapGestureEventHandler != null)
-            {
-                //here we send all data to user event handlers
-                _tapGestureEventHandler(this, e);
-            }
-
-        }
-
-        internal static TapGestureDetector GetTapGestureDetectorFromPtr(global::System.IntPtr cPtr)
-        {
-            TapGestureDetector ret = new TapGestureDetector(cPtr, false);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
-        }
-
-        /// <summary>
-        /// Creates an initialized TapGestureDetector.
-        /// </summary>
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public TapGestureDetector() : this(NDalicPINVOKE.TapGestureDetector_New__SWIG_0(), true)
-        {
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-
-        }
-
-        /// <summary>
-        /// Creates an initialized TapGestureDetector with the specified parameters.
-        /// </summary>
-        /// <param name="tapsRequired">The minimum & maximum number of taps required</param>
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public TapGestureDetector(uint tapsRequired) : this(NDalicPINVOKE.TapGestureDetector_New__SWIG_1(tapsRequired), true)
-        {
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-
-        }
-
-        internal new static TapGestureDetector DownCast(BaseHandle handle)
-        {
-            TapGestureDetector ret =  Registry.GetManagedBaseHandleFromNativePtr(handle) as TapGestureDetector;
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
-        }
-
         /// <summary>
         /// The copy constructor.
         /// </summary>
@@ -231,13 +110,6 @@ namespace Tizen.NUI
         public TapGestureDetector(TapGestureDetector handle) : this(NDalicPINVOKE.new_TapGestureDetector__SWIG_1(TapGestureDetector.getCPtr(handle)), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-        }
-
-        internal TapGestureDetector Assign(TapGestureDetector rhs)
-        {
-            TapGestureDetector ret = new TapGestureDetector(NDalicPINVOKE.TapGestureDetector_Assign(swigCPtr, TapGestureDetector.getCPtr(rhs)), false);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
         }
 
         /// <summary>
@@ -292,6 +164,25 @@ namespace Tizen.NUI
             return ret;
         }
 
+        internal new static TapGestureDetector DownCast(BaseHandle handle)
+        {
+            TapGestureDetector ret = Registry.GetManagedBaseHandleFromNativePtr(handle) as TapGestureDetector;
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        internal static global::System.Runtime.InteropServices.HandleRef getCPtr(TapGestureDetector obj)
+        {
+            return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
+        }
+
+        internal static TapGestureDetector GetTapGestureDetectorFromPtr(global::System.IntPtr cPtr)
+        {
+            TapGestureDetector ret = new TapGestureDetector(cPtr, false);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
         internal TapGestureDetectedSignal DetectedSignal()
         {
             TapGestureDetectedSignal ret = new TapGestureDetectedSignal(NDalicPINVOKE.TapGestureDetector_DetectedSignal(swigCPtr), false);
@@ -299,6 +190,114 @@ namespace Tizen.NUI
             return ret;
         }
 
+        internal TapGestureDetector Assign(TapGestureDetector rhs)
+        {
+            TapGestureDetector ret = new TapGestureDetector(NDalicPINVOKE.TapGestureDetector_Assign(swigCPtr, TapGestureDetector.getCPtr(rhs)), false);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        /// <summary>
+        /// Dispose.
+        /// </summary>
+        /// <param name="type">The dispose type</param>
+        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected override void Dispose(DisposeTypes type)
+        {
+            if (disposed)
+            {
+                return;
+            }
+
+            if (type == DisposeTypes.Explicit)
+            {
+                //Called by User
+                //Release your own managed resources here.
+                //You should release all of your own disposable objects here.
+
+            }
+
+            //Release your own unmanaged resources here.
+            //You should not access any managed member here except static instance.
+            //because the execution order of Finalizes is non-deterministic.
+
+            if (swigCPtr.Handle != global::System.IntPtr.Zero)
+            {
+                if (swigCMemOwn)
+                {
+                    swigCMemOwn = false;
+                    NDalicPINVOKE.delete_TapGestureDetector(swigCPtr);
+                }
+                swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
+            }
+
+            base.Dispose(type);
+        }
+
+        private void OnTapGestureDetected(IntPtr actor, IntPtr tapGesture)
+        {
+            DetectedEventArgs e = new DetectedEventArgs();
+
+            // Populate all members of "e" (DetectedEventArgs) with real data
+            e.View = Registry.GetManagedBaseHandleFromNativePtr(actor) as View;
+            e.TapGesture = Tizen.NUI.TapGesture.GetTapGestureFromPtr(tapGesture);
+
+            if (_tapGestureEventHandler != null)
+            {
+                //here we send all data to user event handlers
+                _tapGestureEventHandler(this, e);
+            }
+
+        }
+
+        /// <summary>
+        /// Event arguments that are passed via the TapGestureEvent signal.
+        /// </summary>
+        /// <since_tizen> 5 </since_tizen>
+        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public class DetectedEventArgs : EventArgs
+        {
+            private View _view;
+            private TapGesture _tapGesture;
+
+            /// <summary>
+            /// The attached view.
+            /// </summary>
+            /// <since_tizen> 5 </since_tizen>
+            /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            public View View
+            {
+                get
+                {
+                    return _view;
+                }
+                set
+                {
+                    _view = value;
+                }
+            }
+
+            /// <summary>
+            /// The TapGesture.
+            /// </summary>
+            /// <since_tizen> 5 </since_tizen>
+            /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            public TapGesture TapGesture
+            {
+                get
+                {
+                    return _tapGesture;
+                }
+                set
+                {
+                    _tapGesture = value;
+                }
+            }
+        }
     }
 
 }

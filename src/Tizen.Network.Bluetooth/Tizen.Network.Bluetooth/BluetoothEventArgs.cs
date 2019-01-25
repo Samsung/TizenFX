@@ -552,12 +552,47 @@ namespace Tizen.Network.Bluetooth
         /// The server socket instance.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        [Obsolete("Deprecated since API level 6. Please use the 'Client' in the SocketConnection.")]
         public IBluetoothServerSocket Server
         {
             get
             {
                 return _server;
             }
+        }
+    }
+
+    /// <summary>
+    /// An extended EventArgs class contains the socket connection requested.
+    /// </summary>
+    /// <since_tizen> 6 </since_tizen>
+    [EditorBrowsable(EditorBrowsableState.Never)]
+    public class SocketConnectionRequestedEventArgs : EventArgs
+    {
+        internal SocketConnectionRequestedEventArgs(int socketFd, string remoteAddress)
+        {
+            SocketFd = socketFd;
+            RemoteAddress = remoteAddress;
+        }
+
+        /// <summary>
+        /// The socket fd.
+        /// </summary>
+        /// <since_tizen> 6 </since_tizen>
+        internal int SocketFd
+        {
+            get;
+            private set;
+        }
+
+        /// <summary>
+        /// The remote address.
+        /// </summary>
+        /// <since_tizen> 6 </since_tizen>
+        public string RemoteAddress
+        {
+            get;
+            private set;
         }
     }
 
@@ -626,6 +661,29 @@ namespace Tizen.Network.Bluetooth
             {
                 return _type;
             }
+        }
+    }
+
+    /// <summary>
+    /// An extended EventArgs class contains the connection state and the address of the remote Bluetooth device.
+    /// </summary>
+    /// <since_tizen> 6 </since_tizen>
+    [EditorBrowsable(EditorBrowsableState.Never)]
+    public class AgScoStateChangedEventArgs : EventArgs
+    {
+        internal AgScoStateChangedEventArgs(bool isOpened)
+        {
+            IsOpened = isOpened;
+        }
+
+        /// <summary>
+        /// A value indicating whether the state is connected.
+        /// </summary>
+        /// <since_tizen> 6 </since_tizen>
+        public bool IsOpened
+        {
+            get;
+            private set;
         }
     }
 
@@ -1350,11 +1408,10 @@ namespace Tizen.Network.Bluetooth
         }
     }
 
-    /// <Summary>
+    /// <summary>
     /// An extended EventArgs class which contains the Push Request respond state
-    /// </Summary>
+    /// </summary>
     /// <since_tizen> 4 </since_tizen>
-
     public class PushRespondedEventArgs : EventArgs
     {
         int _result;
@@ -1445,11 +1502,10 @@ namespace Tizen.Network.Bluetooth
         }
     }
 
-    /// <Summary>
+    /// <summary>
     /// An extended EventArgs class which contains the Push Request respond state
-    /// </Summary>
+    /// </summary>
     /// <since_tizen> 4 </since_tizen>
-
     public class PushFinishedEventArgs : EventArgs
     {
         int _result;

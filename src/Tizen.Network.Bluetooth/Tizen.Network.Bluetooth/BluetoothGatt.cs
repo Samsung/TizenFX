@@ -54,7 +54,7 @@ namespace Tizen.Network.Bluetooth
         /// <summary>
         /// Creates the Bluetooth GATT server.
         /// </summary>
-        /// <returns></returns>
+        /// <returns>The BluetoothGattServer instance.</returns>
         /// <exception cref="NotSupportedException">Thrown when the BT/BTLE is not supported.</exception>
         /// <exception cref="InvalidOperationException">Thrown when the create GATT server fails.</exception>
         /// <since_tizen> 3 </since_tizen>
@@ -158,6 +158,7 @@ namespace Tizen.Network.Bluetooth
         /// </summary>
         /// <param name="characteristic">The characteristic whose the value is changed.</param>
         /// <param name="clientAddress">The remote device address to send, notify, or indicate and if set to NULL, then notify/indicate all is enabled.</param>
+        /// <returns>true on success, false otherwise.</returns>
         /// <exception cref="InvalidOperationException">Thrown when the BT/BTLE is not enabled
         /// or when the remote device is disconnected, or when service is not registered, or when the CCCD is not enabled.</exception>
         /// <since_tizen> 3 </since_tizen>
@@ -892,7 +893,7 @@ namespace Tizen.Network.Bluetooth
                 if (Server == null) return;
                 if (_writeValueRequested == null)
                 {
-                    _writeValueRequestedCallback = (clientAddress, requestId, serverHandle, gattHandle, offset, response_needed, valueToWrite, len, userData) =>
+                    _writeValueRequestedCallback = (clientAddress, requestId, serverHandle, gattHandle, response_needed, offset, valueToWrite, len, userData) =>
                     {
                         _writeValueRequested?.Invoke(this, new WriteRequestedEventArgs(Server, clientAddress, requestId, valueToWrite, offset, response_needed));
                     };
@@ -943,7 +944,7 @@ namespace Tizen.Network.Bluetooth
         /// <summary>
         /// Returns a string value at the specified offset.
         /// </summary>
-        /// <param name="offset"></param>
+        /// <param name="offset">An offset in the attribute value buffer.</param>
         /// <returns>The string value at specified offset.</returns>
         /// <since_tizen> 3 </since_tizen>
         public string GetValue(int offset)
