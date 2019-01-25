@@ -1132,7 +1132,7 @@ namespace Tizen.System
     /// <exception cref="NotSupportedException">Not Supported feature</exception>
     /// <exception cref="InvalidOperationException">Invalid operation</exception>
     /// <exception cref="UnauthorizedAccessException">Thrown when application does not have privilege to access this method.</exception>
-    /// <since_tizen> 5.5 </since_tizen>
+    /// <since_tizen> 6 </since_tizen>
     public class AccessibilityGrayscaleChangedEventArgs : EventArgs
     {
         private readonly bool _accessibilityGrayscale;
@@ -1165,7 +1165,7 @@ namespace Tizen.System
     /// <exception cref="NotSupportedException">Not Supported feature</exception>
     /// <exception cref="InvalidOperationException">Invalid operation</exception>
     /// <exception cref="UnauthorizedAccessException">Thrown when application does not have privilege to access this method.</exception>
-    /// <since_tizen> 5.5 </since_tizen>
+    /// <since_tizen> 6 </since_tizen>
     public class AccessibilityNegativeColorChangedEventArgs : EventArgs
     {
         private readonly bool _accessibilityNegativeColor;

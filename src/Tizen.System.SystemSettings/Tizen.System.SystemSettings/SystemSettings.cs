@@ -1079,7 +1079,7 @@ namespace Tizen.System
         /// <exception cref="NotSupportedException">Not Supported feature</exception>
         /// <exception cref="InvalidOperationException">Invalid operation</exception>
         /// <exception cref="UnauthorizedAccessException">Thrown when application does not have privilege to access this method.</exception>
-        /// <since_tizen> 5 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
         public static bool AccessibilityGrayscale
         {
             get
@@ -1112,7 +1112,7 @@ namespace Tizen.System
         /// <exception cref="NotSupportedException">Not Supported feature</exception>
         /// <exception cref="InvalidOperationException">Invalid operation</exception>
         /// <exception cref="UnauthorizedAccessException">Thrown when application does not have privilege to access this method.</exception>
-        /// <since_tizen> 5 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
         public static bool AccessibilityNegativeColor
         {
             get
@@ -2888,7 +2888,7 @@ namespace Tizen.System
         /// <exception cref="NotSupportedException">Not Supported feature</exception>
         /// <exception cref="InvalidOperationException">Invalid operation</exception>
         /// <exception cref="UnauthorizedAccessException">Thrown when application does not have privilege to access this method.</exception>
-        /// <since_tizen> 5.5 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
         public static event EventHandler<AccessibilityGrayscaleChangedEventArgs> AccessibilityGrayscaleChanged
         {
             add
@@ -2936,7 +2936,7 @@ namespace Tizen.System
         /// <exception cref="NotSupportedException">Not Supported feature</exception>
         /// <exception cref="InvalidOperationException">Invalid operation</exception>
         /// <exception cref="UnauthorizedAccessException">Thrown when application does not have privilege to access this method.</exception>
-        /// <since_tizen> 5.5 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
         public static event EventHandler<AccessibilityNegativeColorChangedEventArgs> AccessibilityNegativeColorChanged
         {
             add

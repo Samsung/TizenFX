@@ -175,12 +175,12 @@ namespace Tizen.System
         /// <summary>
         /// GET (bool) Indicates whether accessibility grayscale  is enabled on the device.
         /// </summary>
-        /// <since_tizen> 5.5 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
         AccessibilityGrayscale,
         /// <summary>
         /// GET (bool) Indicates whether accessibility negative color is enabled on the device.
         /// </summary>
-        /// <since_tizen> 5.5 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
         AccessibilityNegativeColor
     }
     /// <summary>
