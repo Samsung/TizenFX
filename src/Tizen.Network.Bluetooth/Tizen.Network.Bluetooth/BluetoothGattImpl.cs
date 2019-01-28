@@ -637,8 +637,13 @@ namespace Tizen.Network.Bluetooth
         {
             if (_hasOwnership == true)
             {
-                Interop.Bluetooth.BtGattServerDestroy(handle);
-                Interop.Bluetooth.BtGattServerDeinitialize();
+                int err;
+
+                err = Interop.Bluetooth.BtGattServerDestroy(handle);
+                GattUtil.ThrowForError(err, "Failed to destroy the server instance");
+
+                err = Interop.Bluetooth.BtGattServerDeinitialize();
+                GattUtil.ThrowForError(err, "Failed to deinitialize");
             }
             SetHandle(IntPtr.Zero);
             return true;
