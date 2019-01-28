@@ -1144,7 +1144,7 @@ namespace Tizen.System
         /// <summary>
         /// Indicates whether developer option state is enabled on the device or not.
         /// </summary>
-        /// <since_tizen> 5.5 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
         public bool Value
         {
             get
@@ -1177,7 +1177,7 @@ namespace Tizen.System
         /// <summary>
         /// Indicates whether developer option state is enabled on the device or not.
         /// </summary>
-        /// <since_tizen> 5.5 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
         public bool Value
         {
             get
