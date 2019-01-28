@@ -44,6 +44,9 @@ namespace Tizen.WebView
         private SmartEvent<SmartCallbackLoadErrorArgs> _loadError;
         private SmartEvent<SmartCallbackArgs> _titleChanged;
         private SmartEvent<SmartCallbackArgs> _urlChanged;
+        private SmartEvent<NavigationPolicyEventArgs> _policyNavigationDecide;
+        private SmartEvent<NewWindowPolicyEventArgs> _policyNewWindowDecide;
+        private SmartEvent<ResponsePolicyEventArgs> _policyResponseDecide;
 
 
 
@@ -76,6 +79,24 @@ namespace Tizen.WebView
         /// </summary>
         /// <since_tizen> 4 </since_tizen>
         public event EventHandler<SmartCallbackArgs> UrlChanged;
+
+        /// <summary>
+        /// Event that occurs when the policy navigation is decided.
+        /// </summary>
+        /// <since_tizen> 6 </since_tizen>
+        public event EventHandler<NavigationPolicyEventArgs> NavigationPolicyDecideRequested;
+
+        /// <summary>
+        /// Event that occurs when the policy new window is decided.
+        /// </summary>
+        /// <since_tizen> 6 </since_tizen>
+        public event EventHandler<NewWindowPolicyEventArgs> NewWindowPolicyDecideRequested;
+
+        /// <summary>
+        /// Event that occurs when the policy response is decided.
+        /// </summary>
+        /// <since_tizen> 6 </since_tizen>
+        public event EventHandler<ResponsePolicyEventArgs> ResponsePolicyDecideRequested;
 
         /// <summary>
         /// Current URL of the main frame.
@@ -368,6 +389,14 @@ namespace Tizen.WebView
             _loadError.On += (s, e) => { LoadError?.Invoke(this, e); };
             _titleChanged.On += (s, e) => { TitleChanged?.Invoke(this, e); };
             _urlChanged.On += (s, e) => { UrlChanged?.Invoke(this, e); };
+
+            _policyNavigationDecide = new SmartEvent<NavigationPolicyEventArgs>(this, _realHandle, "policy,navigation,decide", NavigationPolicyEventArgs.CreateFromSmartEvent);
+            _policyNewWindowDecide = new SmartEvent<NewWindowPolicyEventArgs>(this, _realHandle, "policy,newwindow,decide", NewWindowPolicyEventArgs.CreateFromSmartEvent);
+            _policyResponseDecide = new SmartEvent<ResponsePolicyEventArgs>(this, _realHandle, "policy,response,decide", ResponsePolicyEventArgs.CreateFromSmartEvent);
+
+            _policyNavigationDecide.On += (s, e) => { NavigationPolicyDecideRequested?.Invoke(this, e); };
+            _policyNewWindowDecide.On += (s, e) => { NewWindowPolicyDecideRequested?.Invoke(this, e); };
+            _policyResponseDecide.On += (s, e) => { ResponsePolicyDecideRequested?.Invoke(this, e); };
         }
     }
 }
