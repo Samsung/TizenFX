@@ -637,8 +637,8 @@ namespace Tizen.Network.Bluetooth
         {
             if (_hasOwnership == true)
             {
-                Interop.Bluetooth.BtGattServerDeinitialize();
                 Interop.Bluetooth.BtGattServerDestroy(handle);
+                Interop.Bluetooth.BtGattServerDeinitialize();
             }
             SetHandle(IntPtr.Zero);
             return true;
