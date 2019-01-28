@@ -30,7 +30,7 @@ namespace Tizen.Security.DevicePolicyManager
         /// </summary>
         /// <remarks>This is used in <see cref="PolicyChangedEventArgs.PolicyName"/>.</remarks>
         /// <since_tizen> 6 </since_tizen>
-        public const string PopImapEmailPolicyName = "PopImapEmail";
+        public static string PopImapEmailPolicyName => "PopImapEmail";
 
         private readonly string _popImapPolicyName = "popimap_email";
         private int _popImapCallbackId;

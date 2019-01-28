@@ -30,14 +30,14 @@ namespace Tizen.Security.DevicePolicyManager
         /// </summary>
         /// <remarks>This is used in <see cref="PolicyChangedEventArgs.PolicyName"/>.</remarks>
         /// <since_tizen> 6 </since_tizen>
-        public const string BluetoothPolicyName = "Bluetooth";
+        public static string BluetoothPolicyName => "Bluetooth";
 
         /// <summary>
         /// The Bluetooth Tethering policy name. This represents <see cref="BluetoothPolicy.IsBluetoothTetheringAllowed"/>.
         /// </summary>
         /// <remarks>This is used in <see cref="PolicyChangedEventArgs.PolicyName"/>.</remarks>
         /// <since_tizen> 6 </since_tizen>
-        public const string BluetoothTetheringPolicyName = "BluetoothTethering";
+        public static string BluetoothTetheringPolicyName => "BluetoothTethering";
 
         private readonly string _bluetoothPolicyName = "bluetooth";
         private readonly string _bluetoothTetheringPolicyName = "bluetooth_tethering";

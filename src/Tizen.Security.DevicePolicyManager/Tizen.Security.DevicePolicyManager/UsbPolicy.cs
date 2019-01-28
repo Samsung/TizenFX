@@ -30,7 +30,7 @@ namespace Tizen.Security.DevicePolicyManager
         /// </summary>
         /// <remarks>This is used in <see cref="PolicyChangedEventArgs.PolicyName"/>.</remarks>
         /// <since_tizen> 6 </since_tizen>
-        public const string UsbTetheringPolicyName = "UsbTethering";
+        public static string UsbTetheringPolicyName => "UsbTethering";
 
         private readonly string _usbTetheringPolicyName = "usb_tethering";
         private int _usbTetheringCallbackId;

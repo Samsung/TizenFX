@@ -30,7 +30,7 @@ namespace Tizen.Security.DevicePolicyManager
         /// </summary>
         /// <remarks>This is used in <see cref="PolicyChangedEventArgs.PolicyName"/>.</remarks>
         /// <since_tizen> 6 </since_tizen>
-        public const string ExternalStoragePolicyName = "ExternalStorage";
+        public static string ExternalStoragePolicyName => "ExternalStorage";
 
         private readonly string _externalStoragePolicyName = "external_storage";
         private int _externalStorageCallbackId;
