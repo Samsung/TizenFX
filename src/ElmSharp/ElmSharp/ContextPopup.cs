@@ -201,7 +201,7 @@ namespace ElmSharp
         /// <since_tizen> preview </since_tizen>
         public ContextPopupItem Append(string label, EvasObject icon)
         {
-            ContextPopupItem item = new ContextPopupItem(this, label, icon);
+            ContextPopupItem item = new ContextPopupItem(label, icon, this);
             item.Handle = Interop.Elementary.elm_ctxpopup_item_append(RealHandle, label, icon, _onSelected, (IntPtr)item.Id);
             AddInternal(item);
             return item;

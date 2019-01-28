@@ -58,10 +58,10 @@ namespace ElmSharp
         /// <summary>
         /// Creates and initializes a new instance of the ItemObject class with parent object.
         /// </summary>
-        /// <param name="parent">Parent EvasObject</param>
         /// <param name="handle">IntPtr</param>
+        /// <param name="parent">Parent EvasObject</param>
         /// <since_tizen> preview </since_tizen>
-        protected ItemObject(EvasObject parent, IntPtr handle)
+        protected ItemObject(IntPtr handle, EvasObject parent)
         {
             _deleteCallback = DeleteCallbackHandler;
             Id = GetNextId();

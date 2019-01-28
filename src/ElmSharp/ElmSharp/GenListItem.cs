@@ -64,7 +64,7 @@ namespace ElmSharp
         {
         }
 
-        internal GenListItem(EvasObject parent, object data, GenItemClass itemClass) : base(parent, data, itemClass)
+        internal GenListItem(object data, GenItemClass itemClass, EvasObject parent) : base(data, itemClass, parent)
         {
         }
 

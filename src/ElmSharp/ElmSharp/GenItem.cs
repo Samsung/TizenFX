@@ -69,7 +69,7 @@ namespace ElmSharp
             _tooltipCb = (d, obj, tooltip, item) => { return TooltipContentDelegate(); };
         }
 
-        internal GenItem(EvasObject parent, object data, GenItemClass itemClass) : base(parent, IntPtr.Zero)
+        internal GenItem(object data, GenItemClass itemClass, EvasObject parent) : base(IntPtr.Zero, parent)
         {
             Data = data;
             ItemClass = itemClass;

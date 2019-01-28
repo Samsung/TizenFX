@@ -30,7 +30,7 @@ namespace ElmSharp
             Icon = icon;
         }
 
-        internal PopupItem(EvasObject parent, string text, EvasObject icon) : base(parent, IntPtr.Zero)
+        internal PopupItem(string text, EvasObject icon, EvasObject parent) : base(IntPtr.Zero, parent)
         {
             Text = text;
             Icon = icon;

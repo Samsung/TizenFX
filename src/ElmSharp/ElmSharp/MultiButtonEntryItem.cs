@@ -41,7 +41,7 @@ namespace ElmSharp
             Label = Interop.Elementary.elm_object_item_part_text_get(handle, null);
         }
 
-        internal MultiButtonEntryItem(EvasObject parent, IntPtr handle) : base(parent, handle)
+        internal MultiButtonEntryItem(IntPtr handle, EvasObject parent) : base(handle, parent)
         {
             Label = Interop.Elementary.elm_object_item_part_text_get(handle, null);
         }

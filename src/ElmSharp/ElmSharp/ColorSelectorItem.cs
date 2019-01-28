@@ -28,7 +28,7 @@ namespace ElmSharp
         {
         }
 
-        internal ColorSelectorItem(EvasObject parent) : base(parent, IntPtr.Zero)
+        internal ColorSelectorItem(EvasObject parent) : base(IntPtr.Zero, parent)
         {
         }
 

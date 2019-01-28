@@ -35,7 +35,7 @@ namespace ElmSharp
             InitializeItem(handle, content);
         }
 
-        NaviItem(EvasObject parent, IntPtr handle, EvasObject content) : base(parent, handle)
+        NaviItem(IntPtr handle, EvasObject content, EvasObject parent) : base(handle, parent)
         {
             InitializeItem(handle, content);
         }
@@ -135,9 +135,9 @@ namespace ElmSharp
                 Popped?.Invoke(this, EventArgs.Empty);
         }
 
-        internal static NaviItem FromNativeHandle(EvasObject parent, IntPtr handle, EvasObject content)
+        internal static NaviItem FromNativeHandle(IntPtr handle, EvasObject content, EvasObject parent)
         {
-            return new NaviItem(parent, handle, content);
+            return new NaviItem(handle, content);
         }
     }
 }

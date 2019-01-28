@@ -181,7 +181,7 @@ namespace ElmSharp
         /// <since_tizen> preview </since_tizen>
         public IndexItem Append(string label)
         {
-            IndexItem item = new IndexItem(this, label);
+            IndexItem item = new IndexItem(label, this);
             item.Handle = Interop.Elementary.elm_index_item_append(RealHandle, label, null, (IntPtr)item.Id);
             return item;
         }
@@ -194,7 +194,7 @@ namespace ElmSharp
         /// <since_tizen> preview </since_tizen>
         public IndexItem Prepend(string label)
         {
-            IndexItem item = new IndexItem(this, label);
+            IndexItem item = new IndexItem(label, this);
             item.Handle = Interop.Elementary.elm_index_item_prepend(RealHandle, label, null, (IntPtr)item.Id);
             return item;
         }
@@ -208,7 +208,7 @@ namespace ElmSharp
         /// <since_tizen> preview </since_tizen>
         public IndexItem InsertBefore(string label, IndexItem before)
         {
-            IndexItem item = new IndexItem(this, label);
+            IndexItem item = new IndexItem(label, this);
             item.Handle = Interop.Elementary.elm_index_item_insert_before(RealHandle, before, label, null, (IntPtr)item.Id);
             return item;
         }
@@ -222,7 +222,7 @@ namespace ElmSharp
         /// <since_tizen> preview </since_tizen>
         public IndexItem InsertAfter(string label, IndexItem after)
         {
-            IndexItem item = new IndexItem(this, label);
+            IndexItem item = new IndexItem(label, this);
             item.Handle = Interop.Elementary.elm_index_item_insert_after(RealHandle, after, label, null, (IntPtr)item.Id);
             return item;
         }

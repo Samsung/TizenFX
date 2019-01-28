@@ -31,7 +31,7 @@ namespace ElmSharp
         {
         }
 
-        internal GenGridItem(EvasObject parent, object data, GenItemClass itemClass) : base(parent, data, itemClass)
+        internal GenGridItem(object data, GenItemClass itemClass, EvasObject parent) : base(data, itemClass, parent)
         {
         }
 

@@ -28,7 +28,7 @@ namespace ElmSharp
         {
         }
 
-        internal HoverselItem(EvasObject parent) : base(parent, IntPtr.Zero)
+        internal HoverselItem(EvasObject parent) : base(IntPtr.Zero, parent)
         {
         }
 

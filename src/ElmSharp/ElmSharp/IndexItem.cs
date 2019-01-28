@@ -37,10 +37,10 @@ namespace ElmSharp
         /// <summary>
         /// Creates and initializes a new instance of the IndexItem class with parent
         /// </summary>
-        /// <param name="parent">Parent EvasObject</param>
         /// <param name="text">The text is set to the Text. It's the 'string' type.</param>
+        /// <param name="parent">Parent EvasObject</param>
         /// <since_tizen> preview </since_tizen>
-        public IndexItem(EvasObject parent, string text) : base(parent, IntPtr.Zero)
+        public IndexItem(string text, EvasObject parent) : base(IntPtr.Zero, parent)
         {
             Text = text;
         }

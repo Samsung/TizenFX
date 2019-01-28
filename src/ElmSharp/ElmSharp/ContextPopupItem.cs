@@ -31,7 +31,7 @@ namespace ElmSharp
             Icon = icon;
         }
 
-        internal ContextPopupItem(EvasObject parent, string text, EvasObject icon) : base(parent, IntPtr.Zero)
+        internal ContextPopupItem(string text, EvasObject icon, EvasObject parent) : base(IntPtr.Zero, parent)
         {
             Text = text;
             Icon = icon;

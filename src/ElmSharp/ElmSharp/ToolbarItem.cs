@@ -33,7 +33,7 @@ namespace ElmSharp
             _icon = icon;
         }
 
-        internal ToolbarItem(EvasObject parent, string text, string icon) : base(parent, IntPtr.Zero)
+        internal ToolbarItem(string text, string icon, EvasObject parent) : base(IntPtr.Zero, parent)
         {
             _text = text;
             _icon = icon;

@@ -580,7 +580,7 @@ namespace ElmSharp
         /// <since_tizen> preview </since_tizen>
         public GenListItem Append(GenItemClass itemClass, object data, GenListItemType type, GenListItem parent)
         {
-            GenListItem item = new GenListItem(this, data, itemClass);
+            GenListItem item = new GenListItem(data, itemClass, this);
             item.Handle = Interop.Elementary.elm_genlist_item_append(RealHandle, itemClass.UnmanagedPtr, (IntPtr)item.Id, parent, (int)type, null, (IntPtr)item.Id);
             AddInternal(item);
             return item;
@@ -622,7 +622,7 @@ namespace ElmSharp
         /// <since_tizen> preview </since_tizen>
         public GenListItem Prepend(GenItemClass itemClass, object data, GenListItemType type, GenListItem parent)
         {
-            GenListItem item = new GenListItem(this, data, itemClass);
+            GenListItem item = new GenListItem(data, itemClass, this);
             item.Handle = Interop.Elementary.elm_genlist_item_prepend(RealHandle, itemClass.UnmanagedPtr, (IntPtr)item.Id, parent, (int)type, null, (IntPtr)item.Id);
             AddInternal(item);
             return item;
@@ -669,7 +669,7 @@ namespace ElmSharp
         /// <since_tizen> preview </since_tizen>
         public GenListItem InsertBefore(GenItemClass itemClass, object data, GenListItem before, GenListItemType type, GenListItem parent)
         {
-            GenListItem item = new GenListItem(this, data, itemClass);
+            GenListItem item = new GenListItem(data, itemClass, this);
             // insert before the `before` list item
             item.Handle = Interop.Elementary.elm_genlist_item_insert_before(
                 RealHandle, // genlist handle
@@ -696,7 +696,7 @@ namespace ElmSharp
         /// <since_tizen> preview </since_tizen>
         public GenListItem InsertAfter(GenItemClass itemClass, object data, GenListItem after, GenListItemType type, GenListItem parent)
         {
-            GenListItem item = new GenListItem(this, data, itemClass);
+            GenListItem item = new GenListItem(data, itemClass, this);
             // insert before the `before` list item
             item.Handle = Interop.Elementary.elm_genlist_item_insert_before(
                 RealHandle, // genlist handle
@@ -723,7 +723,7 @@ namespace ElmSharp
         /// <since_tizen> preview </since_tizen>
         public GenListItem InsertSorted(GenItemClass itemClass, object data, Comparison<object> comparison, GenListItemType type, GenListItem parent)
         {
-            GenListItem item = new GenListItem(this, data, itemClass);
+            GenListItem item = new GenListItem(data, itemClass, this);
 
             Interop.Elementary.Eina_Compare_Cb compareCallback = (handle1, handle2) =>
             {
