@@ -580,9 +580,8 @@ namespace ElmSharp
         /// <since_tizen> preview </since_tizen>
         public GenListItem Append(GenItemClass itemClass, object data, GenListItemType type, GenListItem parent)
         {
-            GenListItem item = new GenListItem(data, itemClass);
-            IntPtr handle = Interop.Elementary.elm_genlist_item_append(RealHandle, itemClass.UnmanagedPtr, (IntPtr)item.Id, parent, (int)type, null, (IntPtr)item.Id);
-            item.Handle = handle;
+            GenListItem item = new GenListItem(data, itemClass, this);
+            item.Handle = Interop.Elementary.elm_genlist_item_append(RealHandle, itemClass.UnmanagedPtr, (IntPtr)item.Id, parent, (int)type, null, (IntPtr)item.Id);
             AddInternal(item);
             return item;
         }
@@ -623,9 +622,8 @@ namespace ElmSharp
         /// <since_tizen> preview </since_tizen>
         public GenListItem Prepend(GenItemClass itemClass, object data, GenListItemType type, GenListItem parent)
         {
-            GenListItem item = new GenListItem(data, itemClass);
-            IntPtr handle = Interop.Elementary.elm_genlist_item_prepend(RealHandle, itemClass.UnmanagedPtr, (IntPtr)item.Id, parent, (int)type, null, (IntPtr)item.Id);
-            item.Handle = handle;
+            GenListItem item = new GenListItem(data, itemClass, this);
+            item.Handle = Interop.Elementary.elm_genlist_item_prepend(RealHandle, itemClass.UnmanagedPtr, (IntPtr)item.Id, parent, (int)type, null, (IntPtr)item.Id);
             AddInternal(item);
             return item;
         }
@@ -671,9 +669,9 @@ namespace ElmSharp
         /// <since_tizen> preview </since_tizen>
         public GenListItem InsertBefore(GenItemClass itemClass, object data, GenListItem before, GenListItemType type, GenListItem parent)
         {
-            GenListItem item = new GenListItem(data, itemClass);
+            GenListItem item = new GenListItem(data, itemClass, this);
             // insert before the `before` list item
-            IntPtr handle = Interop.Elementary.elm_genlist_item_insert_before(
+            item.Handle = Interop.Elementary.elm_genlist_item_insert_before(
                 RealHandle, // genlist handle
                 itemClass.UnmanagedPtr, // item class
                 (IntPtr)item.Id, // data
@@ -682,7 +680,6 @@ namespace ElmSharp
                 (int)type, // item type
                 null, // select callback
                 (IntPtr)item.Id); // callback data
-            item.Handle = handle;
             AddInternal(item);
             return item;
         }
@@ -699,9 +696,9 @@ namespace ElmSharp
         /// <since_tizen> preview </since_tizen>
         public GenListItem InsertAfter(GenItemClass itemClass, object data, GenListItem after, GenListItemType type, GenListItem parent)
         {
-            GenListItem item = new GenListItem(data, itemClass);
+            GenListItem item = new GenListItem(data, itemClass, this);
             // insert before the `before` list item
-            IntPtr handle = Interop.Elementary.elm_genlist_item_insert_before(
+            item.Handle = Interop.Elementary.elm_genlist_item_insert_before(
                 RealHandle, // genlist handle
                 itemClass.UnmanagedPtr, // item class
                 (IntPtr)item.Id, // data
@@ -710,7 +707,6 @@ namespace ElmSharp
                 (int)type, // item type
                 null, // select callback
                 (IntPtr)item.Id); // callback data
-            item.Handle = handle;
             AddInternal(item);
             return item;
         }
@@ -727,7 +723,7 @@ namespace ElmSharp
         /// <since_tizen> preview </since_tizen>
         public GenListItem InsertSorted(GenItemClass itemClass, object data, Comparison<object> comparison, GenListItemType type, GenListItem parent)
         {
-            GenListItem item = new GenListItem(data, itemClass);
+            GenListItem item = new GenListItem(data, itemClass, this);
 
             Interop.Elementary.Eina_Compare_Cb compareCallback = (handle1, handle2) =>
             {
@@ -736,7 +732,7 @@ namespace ElmSharp
                 return comparison(first.Data, second.Data);
             };
 
-            IntPtr handle = Interop.Elementary.elm_genlist_item_sorted_insert(
+            item.Handle = Interop.Elementary.elm_genlist_item_sorted_insert(
                 RealHandle, // genlist handle
                 itemClass.UnmanagedPtr, // item clas
                 (IntPtr)item.Id, // data
@@ -745,7 +741,6 @@ namespace ElmSharp
                 compareCallback, // compare callback
                 null, //select callback
                 (IntPtr)item.Id); // callback data
-            item.Handle = handle;
             AddInternal(item);
             return item;
         }
