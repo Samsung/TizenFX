@@ -137,7 +137,7 @@ namespace ElmSharp
 
         internal static NaviItem FromNativeHandle(IntPtr handle, EvasObject content, EvasObject parent)
         {
-            return new NaviItem(handle, content);
+            return new NaviItem(handle, content, parent);
         }
     }
 }
