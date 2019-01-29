@@ -46,6 +46,17 @@ namespace ElmSharp
             Text = text;
         }
 
+        /// <summary>
+        /// Creates and initializes a new instance of the FlipSelectorItem.
+        /// </summary>
+        /// <param name="text">FlipSelectorItem's text</param>
+        /// <param name="parent">Parent EvasObject</param>
+        /// <since_tizen> preview </since_tizen>
+        public FlipSelectorItem(string text, EvasObject parent) : base(IntPtr.Zero, parent)
+        {
+            Text = text;
+        }
+
         internal void SendSelected()
         {
             Selected?.Invoke(this, EventArgs.Empty);

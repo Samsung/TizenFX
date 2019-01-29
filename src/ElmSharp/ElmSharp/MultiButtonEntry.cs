@@ -380,6 +380,7 @@ namespace ElmSharp
 
         void OnItemAdded(object sender, MultiButtonEntryItemEventArgs e)
         {
+            e.Item.Parent = this;
             _children.Add(e.Item);
             e.Item.Deleted += Item_Deleted;
             ItemAdded?.Invoke(this, e);
@@ -443,6 +444,7 @@ namespace ElmSharp
             // And since "item.added" event will be called before xx_append() method returns,
             // ItemObject does NOT have an item that contains handle matched to "info" at this time.
             // So, item should be created and added internally here.
+
             MultiButtonEntryItem item = new MultiButtonEntryItem(info);
             return new MultiButtonEntryItemEventArgs { Item = item };
         }
