@@ -640,7 +640,6 @@ namespace Tizen.Network.Bluetooth
                 int err;
 
                 err = Interop.Bluetooth.BtGattServerDestroy(handle);
-
                 if (err.IsFailed())
                 {
                     Log.Error(Globals.LogTag, "Failed to destroy the server instance");
