@@ -6592,7 +6592,6 @@ namespace Tizen.NUI
         [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint = "CSharp_Dali_new_FrameBufferImage__SWIG_1")]
         public static extern global::System.IntPtr new_FrameBufferImage__SWIG_1(global::System.Runtime.InteropServices.HandleRef jarg1);
 
-
         [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint = "CSharp_Dali_FrameBufferImage_Assign")]
         public static extern global::System.IntPtr FrameBufferImage_Assign(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
 

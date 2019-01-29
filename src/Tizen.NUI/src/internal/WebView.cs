@@ -159,12 +159,14 @@ namespace Tizen.NUI
         /// <summary>
         /// Event arguments that passed via the webview signal.
         /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public class WebViewEventArgs : EventArgs
         {
             private WebView _webView;
             /// <summary>
             /// The view for displaying webpages.
             /// </summary>
+            [EditorBrowsable(EditorBrowsableState.Never)]
             public WebView WebView
             {
                 get
@@ -181,6 +183,7 @@ namespace Tizen.NUI
             /// <summary>
             /// The url string of current webpage.
             /// </summary>
+            [EditorBrowsable(EditorBrowsableState.Never)]
             public string PageUrl
             {
                 get
