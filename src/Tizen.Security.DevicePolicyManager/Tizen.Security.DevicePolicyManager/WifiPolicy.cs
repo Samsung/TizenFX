@@ -30,14 +30,14 @@ namespace Tizen.Security.DevicePolicyManager
         /// </summary>
         /// <remarks>This is used in <see cref="PolicyChangedEventArgs.PolicyName"/>.</remarks>
         /// <since_tizen> 6 </since_tizen>
-        public static string WifiPolicyName => "Wifi";
+        public static readonly string WifiPolicyName = "Wifi";
 
         /// <summary>
         /// The Wifi hotspot policy name. This represents <see cref="WifiPolicy.IsWifiHotspotAllowed"/>.
         /// </summary>
         /// <remarks>This is used in <see cref="PolicyChangedEventArgs.PolicyName"/>.</remarks>
         /// <since_tizen> 6 </since_tizen>
-        public static string WifiHotspotPolicyName => "WifiHotspot";
+        public static readonly string WifiHotspotPolicyName = "WifiHotspot";
 
         private readonly string _wifiPolicyName = "wifi";
         private readonly string _wifiHotspotPolicyName = "wifi_hotspot";

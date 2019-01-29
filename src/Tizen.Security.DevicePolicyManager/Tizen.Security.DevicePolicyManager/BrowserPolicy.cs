@@ -30,7 +30,7 @@ namespace Tizen.Security.DevicePolicyManager
         /// </summary>
         /// <remarks>This is used in <see cref="PolicyChangedEventArgs.PolicyName"/>.</remarks>
         /// <since_tizen> 6 </since_tizen>
-        public static string BrowserPolicyName => "Browser";
+        public static readonly string BrowserPolicyName = "Browser";
 
         private readonly string _browserPolicyName = "browser";
         private int _browserCallbackId;

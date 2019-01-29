@@ -30,7 +30,7 @@ namespace Tizen.Security.DevicePolicyManager
         /// </summary>
         /// <remarks>This is used in <see cref="PolicyChangedEventArgs.PolicyName"/>.</remarks>
         /// <since_tizen> 6 </since_tizen>
-        public static string MessagingPolicyName => "Messaging";
+        public static readonly string MessagingPolicyName = "Messaging";
 
         private readonly string _messagingPolicyName = "messaging";
         private int _messagingCallbackId;

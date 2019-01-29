@@ -30,14 +30,14 @@ namespace Tizen.Security.DevicePolicyManager
         /// </summary>
         /// <remarks>This is used in <see cref="PolicyChangedEventArgs.PolicyName"/>.</remarks>
         /// <since_tizen> 6 </since_tizen>
-        public static string CameraPolicyName => "Camera";
+        public static readonly string CameraPolicyName = "Camera";
 
         /// <summary>
         /// The Microphone policy name. This represents <see cref="MediaPolicy.IsMicrophoneAllowed"/>.
         /// </summary>
         /// <remarks>This is used in <see cref="PolicyChangedEventArgs.PolicyName"/>.</remarks>
         /// <since_tizen> 6 </since_tizen>
-        public static string MicrophonePolicyName => "Microphone";
+        public static readonly string MicrophonePolicyName = "Microphone";
 
         private readonly string _cameraPolicyName = "camera";
         private readonly string _microphonePolicyName = "microphone";
