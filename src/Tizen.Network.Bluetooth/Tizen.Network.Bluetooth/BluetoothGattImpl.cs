@@ -640,10 +640,20 @@ namespace Tizen.Network.Bluetooth
                 int err;
 
                 err = Interop.Bluetooth.BtGattServerDestroy(handle);
-                GattUtil.ThrowForError(err, "Failed to destroy the server instance");
+
+                if (err.IsFailed())
+                {
+                    Log.Error(Globals.LogTag, "Failed to destroy the server instance");
+                    return false;
+                }
 
                 err = Interop.Bluetooth.BtGattServerDeinitialize();
-                GattUtil.ThrowForError(err, "Failed to deinitialize");
+                if (err.IsFailed())
+                {
+                    Log.Error(Globals.LogTag, "Failed to deinitialize");
+                    SetHandle(IntPtr.Zero);
+                    return false;
+                }
             }
             SetHandle(IntPtr.Zero);
             return true;
