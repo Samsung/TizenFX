@@ -72,6 +72,20 @@ namespace Tizen.Network.Bluetooth
         }
 
         /// <summary>
+        /// Destroys the Bluetooth GATT server.
+        /// </summary>
+        /// <since_tizen> 6 </since_tizen>
+        public void DestroyServer()
+        {
+            if (_instance != null)
+            {
+                if (_impl != null && _impl.GetHandle() != null)
+                    _impl.GetHandle().Dispose();
+                _instance = null;
+            }
+        }
+
+        /// <summary>
         /// Registers the server along with the GATT services of the application it is hosting.
         /// </summary>
         /// <exception cref="NotSupportedException">Thrown when the BT/BTLE is not supported.</exception>
