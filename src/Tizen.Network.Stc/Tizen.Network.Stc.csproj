@@ -1,0 +1,27 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <Version>1.0.0</Version>
+    <Authors>Samsung Electronics</Authors>
+    <Copyright>© Samsung Electronics Co., Ltd All Rights Reserved</Copyright>
+    <Description>Provides the Stc APIs for Tizen .NET</Description>
+    <PackageProjectUrl>https://www.tizen.org/</PackageProjectUrl>
+    <PackageLicenseUrl>https://www.apache.org/licenses/LICENSE-2.0</PackageLicenseUrl>
+    <PackageIconUrl>https://developer.tizen.org/sites/default/files/images/tizen-pinwheel-on-light-rgb_64_64.png</PackageIconUrl>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <TargetFramework>netstandard1.3</TargetFramework>
+    <AllowUnsafeBlocks>True</AllowUnsafeBlocks>
+    <SignAssembly>True</SignAssembly>
+    <AssemblyOriginatorKeyFile>Tizen.Network.Stc.snk</AssemblyOriginatorKeyFile>
+    <PublicSign Condition="'$(OS)' != 'Windows_NT'">true</PublicSign>
+    <DelaySign>False</DelaySign>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Tizen" Version="1.0.5" />
+    <PackageReference Include="Tizen.Network.Connection" Version="1.0.18" />
+  </ItemGroup>
+
+</Project>
