@@ -981,7 +981,7 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public Layer GetLayer(uint depth)
         {
-            if (depth < LayersChildren.Count)
+            if (depth < LayersChildren?.Count)
             {
                 Layer ret = LayersChildren[Convert.ToInt32(depth)];
                 return ret;
@@ -1102,7 +1102,7 @@ namespace Tizen.NUI
             NDalicPINVOKE.Stage_Add(stageCPtr, Layer.getCPtr(layer));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
 
-            LayersChildren.Add(layer);
+            LayersChildren?.Add(layer);
         }
 
         /// <summary>
@@ -1115,7 +1115,7 @@ namespace Tizen.NUI
             NDalicPINVOKE.Stage_Remove(stageCPtr, Layer.getCPtr(layer));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
 
-            LayersChildren.Remove(layer);
+            LayersChildren?.Remove(layer);
         }
 
         /// <summary>
@@ -1235,7 +1235,7 @@ namespace Tizen.NUI
             NDalicPINVOKE.Stage_Add(stageCPtr, Layer.getCPtr(layer));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
 
-            LayersChildren.Add(layer);
+            LayersChildren?.Add(layer);
         }
 
         internal void Remove(Layer layer)
@@ -1243,7 +1243,7 @@ namespace Tizen.NUI
             NDalicPINVOKE.Stage_Remove(stageCPtr, Layer.getCPtr(layer));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
 
-            LayersChildren.Remove(layer);
+            LayersChildren?.Remove(layer);
         }
 
         internal Vector2 GetSize()
@@ -1281,7 +1281,7 @@ namespace Tizen.NUI
             {
                 _rootLayer = new Layer(NDalicPINVOKE.Stage_GetRootLayer(stageCPtr), true);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-                LayersChildren.Add(_rootLayer);
+                LayersChildren?.Add(_rootLayer);
             }
             return _rootLayer;
         }

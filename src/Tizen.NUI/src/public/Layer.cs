@@ -1,5 +1,5 @@
 /*
- * Copyright(c) 2018 Samsung Electronics Co., Ltd.
+ * Copyright(c) 2019 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -65,13 +65,6 @@ namespace Tizen.NUI
         public enum LayerBehavior
         {
             /// <summary>
-            /// UI control rendering mode.
-            /// </summary>
-            /// <since_tizen> 3 </since_tizen>
-            [Obsolete("Please do not use! This will be deprecated! Please use LayerUI property instead!")]
-            [EditorBrowsable(EditorBrowsableState.Never)]
-            Layer2D,
-            /// <summary>
             /// UI control rendering mode (default mode).
             /// This mode is designed for UI controls that can overlap. In this
             /// mode renderer order will be respective to the tree hierarchy of
@@ -82,7 +75,16 @@ namespace Tizen.NUI
             /// traversal, the actors would interleave).<br />
             /// </summary>
             /// <since_tizen> 3 </since_tizen>
-            LayerUI = Layer2D,
+            LayerUI,
+
+            /// <summary>
+            /// UI control rendering mode.
+            /// </summary>
+            /// <since_tizen> 3 </since_tizen>
+            [Obsolete("Please do not use! This will be deprecated! Please use LayerUI property instead!")]
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            Layer2D = LayerUI,
+
             /// <summary>
             /// Layer will use depth test.
             /// This mode is designed for a 3 dimensional scene where actors in front
