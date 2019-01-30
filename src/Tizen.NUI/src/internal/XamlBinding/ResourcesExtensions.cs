@@ -52,10 +52,14 @@ namespace Tizen.NUI.Binding
             {
                 var ve = element as IResourcesProvider;
                 if (ve != null && ve.IsResourcesCreated && ve.XamlResources != null && ve.XamlResources.TryGetValue(key, out value))
+                {
                     return true;
+                }
                 var app = element as Application;
                 if (app != null && app.SystemResources != null && app.SystemResources.TryGetValue(key, out value))
+                {
                     return true;
+                }
                 element = element.Parent;
             }
 
