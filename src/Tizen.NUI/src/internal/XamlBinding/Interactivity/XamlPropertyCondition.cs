@@ -28,13 +28,14 @@ namespace Tizen.NUI.Binding
                     return;
                 if (IsSealed)
                     throw new InvalidOperationException("Can not change Property once the Trigger has been applied.");
+
                 _property = value;
 
                 //convert the value
                 if (_property != null && s_valueConverter != null)
                 {
-                    Func<MemberInfo> minforetriever = () => Property.DeclaringType.GetRuntimeProperty(Property.PropertyName);
-                    Value = s_valueConverter.Convert(Value, Property.ReturnType, minforetriever, null);
+                    Func<MemberInfo> minforetriever = () => _property.DeclaringType.GetRuntimeProperty(_property.PropertyName);
+                    Value = s_valueConverter.Convert(Value, _property.ReturnType, minforetriever, null);
                 }
             }
         }
@@ -52,8 +53,8 @@ namespace Tizen.NUI.Binding
                 //convert the value
                 if (_property != null && s_valueConverter != null)
                 {
-                    Func<MemberInfo> minforetriever = () => Property.DeclaringType.GetRuntimeProperty(Property.PropertyName);
-                    value = s_valueConverter.Convert(value, Property.ReturnType, minforetriever, null);
+                    Func<MemberInfo> minforetriever = () => _property.DeclaringType.GetRuntimeProperty(_property.PropertyName);
+                    value = s_valueConverter.Convert(value, _property.ReturnType, minforetriever, null);
                 }
                 _triggerValue = value;
             }
