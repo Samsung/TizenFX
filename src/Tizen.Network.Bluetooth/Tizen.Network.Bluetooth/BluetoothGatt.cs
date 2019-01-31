@@ -26,10 +26,11 @@ namespace Tizen.Network.Bluetooth
     /// The Bluetooth GATT server.
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
-    public class BluetoothGattServer
+    public class BluetoothGattServer : IDisposable
     {
         private static BluetoothGattServer _instance;
         private BluetoothGattServerImpl _impl;
+
         private BluetoothGattServer()
         {
             _impl = new BluetoothGattServerImpl();
@@ -199,6 +200,38 @@ namespace Tizen.Network.Bluetooth
         internal bool IsValid()
         {
             return _impl.GetHandle().IsInvalid == false;
+        }
+
+        /// <summary>
+        /// Destroys the current object.
+        /// </summary>
+        ~BluetoothGattServer()
+        {
+            Dispose(false);
+        }
+
+        /// <summary>
+        /// Destroys the current object.
+        /// </summary>
+        /// <since_tizen> 6 </since_tizen>
+        public void Dispose()
+        {
+            Dispose(true);
+            GC.SuppressFinalize(this);
+        }
+
+        /// <summary>
+        /// Releases all the resources currently used by this instance.
+        /// </summary>
+        /// <param name="disposing">true if the managed resources should be disposed, otherwise false.</param>
+        /// <since_tizen> 6 </since_tizen>
+        protected virtual void Dispose(bool disposing)
+        {
+            if (disposing)
+            {
+                _impl?.GetHandle()?.Dispose();
+                _instance = null;
+            }
         }
     }
 

@@ -1,5 +1,5 @@
 /*
- * Copyright(c) 2018 Samsung Electronics Co., Ltd.
+ * Copyright(c) 2019 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -937,7 +937,9 @@ namespace Tizen.NUI.BaseComponents
             {
                 case "NORMAL": return DrawModeType.Normal;
                 case "OVERLAY_2D": return DrawModeType.Overlay2D;
+#pragma warning disable CS0618 // Disable deprecated warning as we do need to use the deprecated API here.
                 case "STENCIL": return DrawModeType.Stencil;
+#pragma warning restore CS0618
                 default: return DrawModeType.Normal;
             }
         });
