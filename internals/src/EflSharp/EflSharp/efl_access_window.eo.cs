@@ -1,0 +1,484 @@
+#pragma warning disable CS1591
+using System;
+using System.Runtime.InteropServices;
+using System.Collections.Generic;
+using System.Linq;
+using System.ComponentModel;
+namespace Efl { namespace Access { 
+/// <summary>Elementary accessible window interface</summary>
+[WindowConcreteNativeInherit]
+public interface Window : 
+   Efl.Eo.IWrapper, IDisposable
+{
+   /// <summary>Called when new window has been created.</summary>
+   event EventHandler WindowCreatedEvt;
+   /// <summary>Called when window has been destroyed.</summary>
+   event EventHandler WindowDestroyedEvt;
+   /// <summary>Called when window has been activated. (unfocused)</summary>
+   event EventHandler WindowActivatedEvt;
+   /// <summary>Called when window has been deactivated (unfocused).</summary>
+   event EventHandler WindowDeactivatedEvt;
+   /// <summary>Called when window has been maximmized</summary>
+   event EventHandler WindowMaximizedEvt;
+   /// <summary>Called when window has been minimized</summary>
+   event EventHandler WindowMinimizedEvt;
+   /// <summary>Called when window has been restored</summary>
+   event EventHandler WindowRestoredEvt;
+}
+/// <summary>Elementary accessible window interface</summary>
+sealed public class WindowConcrete : 
+
+Window
+   
+{
+   ///<summary>Pointer to the native class description.</summary>
+   public System.IntPtr NativeClass {
+      get {
+         if (((object)this).GetType() == typeof (WindowConcrete))
+            return Efl.Access.WindowConcreteNativeInherit.GetEflClassStatic();
+         else
+            return Efl.Eo.Globals.klasses[((object)this).GetType()];
+      }
+   }
+   private EventHandlerList eventHandlers = new EventHandlerList();
+   private  System.IntPtr handle;
+   public Dictionary<String, IntPtr> cached_strings = new Dictionary<String, IntPtr>();
+   public Dictionary<String, IntPtr> cached_stringshares = new Dictionary<String, IntPtr>();
+   ///<summary>Pointer to the native instance.</summary>
+   public System.IntPtr NativeHandle {
+      get { return handle; }
+   }
+   [System.Runtime.InteropServices.DllImport(efl.Libs.Elementary)] internal static extern System.IntPtr
+      efl_access_window_interface_get();
+   ///<summary>Constructs an instance from a native pointer.</summary>
+   public WindowConcrete(System.IntPtr raw)
+   {
+      handle = raw;
+      register_event_proxies();
+   }
+   ///<summary>Destructor.</summary>
+   ~WindowConcrete()
+   {
+      Dispose(false);
+   }
+   ///<summary>Releases the underlying native instance.</summary>
+   void Dispose(bool disposing)
+   {
+      if (handle != System.IntPtr.Zero) {
+         Efl.Eo.Globals.efl_unref(handle);
+         handle = System.IntPtr.Zero;
+      }
+   }
+   ///<summary>Releases the underlying native instance.</summary>
+   public void Dispose()
+   {
+   Efl.Eo.Globals.free_dict_values(cached_strings);
+   Efl.Eo.Globals.free_stringshare_values(cached_stringshares);
+      Dispose(true);
+      GC.SuppressFinalize(this);
+   }
+   ///<summary>Casts obj into an instance of this type.</summary>
+   public static WindowConcrete static_cast(Efl.Object obj)
+   {
+      if (obj == null)
+         throw new System.ArgumentNullException("obj");
+      return new WindowConcrete(obj.NativeHandle);
+   }
+   ///<summary>Verifies if the given object is equal to this one.</summary>
+   public override bool Equals(object obj)
+   {
+      var other = obj as Efl.Object;
+      if (other == null)
+         return false;
+      return this.NativeHandle == other.NativeHandle;
+   }
+   ///<summary>Gets the hash code for this object based on the native pointer it points to.</summary>
+   public override int GetHashCode()
+   {
+      return this.NativeHandle.ToInt32();
+   }
+   ///<summary>Turns the native pointer into a string representation.</summary>
+   public override String ToString()
+   {
+      return $"{this.GetType().Name}@[{this.NativeHandle.ToInt32():x}]";
+   }
+   private readonly object eventLock = new object();
+   private Dictionary<string, int> event_cb_count = new Dictionary<string, int>();
+   private bool add_cpp_event_handler(string key, Efl.EventCb evt_delegate) {
+      int event_count = 0;
+      if (!event_cb_count.TryGetValue(key, out event_count))
+         event_cb_count[key] = event_count;
+      if (event_count == 0) {
+         IntPtr desc = Efl.EventDescription.GetNative(key);
+         if (desc == IntPtr.Zero) {
+            Eina.Log.Error($"Failed to get native event {key}");
+            return false;
+         }
+          bool result = Efl.Eo.Globals.efl_event_callback_priority_add(handle, desc, 0, evt_delegate, System.IntPtr.Zero);
+         if (!result) {
+            Eina.Log.Error($"Failed to add event proxy for event {key}");
+            return false;
+         }
+         Eina.Error.RaiseIfUnhandledException();
+      } 
+      event_cb_count[key]++;
+      return true;
+   }
+   private bool remove_cpp_event_handler(string key, Efl.EventCb evt_delegate) {
+      int event_count = 0;
+      if (!event_cb_count.TryGetValue(key, out event_count))
+         event_cb_count[key] = event_count;
+      if (event_count == 1) {
+         IntPtr desc = Efl.EventDescription.GetNative(key);
+         if (desc == IntPtr.Zero) {
+            Eina.Log.Error($"Failed to get native event {key}");
+            return false;
+         }
+         bool result = Efl.Eo.Globals.efl_event_callback_del(handle, desc, evt_delegate, System.IntPtr.Zero);
+         if (!result) {
+            Eina.Log.Error($"Failed to remove event proxy for event {key}");
+            return false;
+         }
+         Eina.Error.RaiseIfUnhandledException();
+      } else if (event_count == 0) {
+         Eina.Log.Error($"Trying to remove proxy for event {key} when there is nothing registered.");
+         return false;
+      } 
+      event_cb_count[key]--;
+      return true;
+   }
+private static object WindowCreatedEvtKey = new object();
+   /// <summary>Called when new window has been created.</summary>
+   public event EventHandler WindowCreatedEvt
+   {
+      add {
+         lock (eventLock) {
+            string key = "_EFL_ACCESS_WINDOW_EVENT_WINDOW_CREATED";
+            if (add_cpp_event_handler(key, this.evt_WindowCreatedEvt_delegate)) {
+               eventHandlers.AddHandler(WindowCreatedEvtKey , value);
+            } else
+               Eina.Log.Error($"Error adding proxy for event {key}");
+         }
+      }
+      remove {
+         lock (eventLock) {
+            string key = "_EFL_ACCESS_WINDOW_EVENT_WINDOW_CREATED";
+            if (remove_cpp_event_handler(key, this.evt_WindowCreatedEvt_delegate)) { 
+               eventHandlers.RemoveHandler(WindowCreatedEvtKey , value);
+            } else
+               Eina.Log.Error($"Error removing proxy for event {key}");
+         }
+      }
+   }
+   ///<summary>Method to raise event WindowCreatedEvt.</summary>
+   public void On_WindowCreatedEvt(EventArgs e)
+   {
+      EventHandler evt;
+      lock (eventLock) {
+      evt = (EventHandler)eventHandlers[WindowCreatedEvtKey];
+      }
+      evt?.Invoke(this, e);
+   }
+   Efl.EventCb evt_WindowCreatedEvt_delegate;
+   private void on_WindowCreatedEvt_NativeCallback(System.IntPtr data, ref Efl.Event_StructInternal evt)
+   {
+      EventArgs args = EventArgs.Empty;
+      try {
+         On_WindowCreatedEvt(args);
+      } catch (Exception e) {
+         Eina.Log.Error(e.ToString());
+         Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
+      }
+   }
+
+private static object WindowDestroyedEvtKey = new object();
+   /// <summary>Called when window has been destroyed.</summary>
+   public event EventHandler WindowDestroyedEvt
+   {
+      add {
+         lock (eventLock) {
+            string key = "_EFL_ACCESS_WINDOW_EVENT_WINDOW_DESTROYED";
+            if (add_cpp_event_handler(key, this.evt_WindowDestroyedEvt_delegate)) {
+               eventHandlers.AddHandler(WindowDestroyedEvtKey , value);
+            } else
+               Eina.Log.Error($"Error adding proxy for event {key}");
+         }
+      }
+      remove {
+         lock (eventLock) {
+            string key = "_EFL_ACCESS_WINDOW_EVENT_WINDOW_DESTROYED";
+            if (remove_cpp_event_handler(key, this.evt_WindowDestroyedEvt_delegate)) { 
+               eventHandlers.RemoveHandler(WindowDestroyedEvtKey , value);
+            } else
+               Eina.Log.Error($"Error removing proxy for event {key}");
+         }
+      }
+   }
+   ///<summary>Method to raise event WindowDestroyedEvt.</summary>
+   public void On_WindowDestroyedEvt(EventArgs e)
+   {
+      EventHandler evt;
+      lock (eventLock) {
+      evt = (EventHandler)eventHandlers[WindowDestroyedEvtKey];
+      }
+      evt?.Invoke(this, e);
+   }
+   Efl.EventCb evt_WindowDestroyedEvt_delegate;
+   private void on_WindowDestroyedEvt_NativeCallback(System.IntPtr data, ref Efl.Event_StructInternal evt)
+   {
+      EventArgs args = EventArgs.Empty;
+      try {
+         On_WindowDestroyedEvt(args);
+      } catch (Exception e) {
+         Eina.Log.Error(e.ToString());
+         Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
+      }
+   }
+
+private static object WindowActivatedEvtKey = new object();
+   /// <summary>Called when window has been activated. (unfocused)</summary>
+   public event EventHandler WindowActivatedEvt
+   {
+      add {
+         lock (eventLock) {
+            string key = "_EFL_ACCESS_WINDOW_EVENT_WINDOW_ACTIVATED";
+            if (add_cpp_event_handler(key, this.evt_WindowActivatedEvt_delegate)) {
+               eventHandlers.AddHandler(WindowActivatedEvtKey , value);
+            } else
+               Eina.Log.Error($"Error adding proxy for event {key}");
+         }
+      }
+      remove {
+         lock (eventLock) {
+            string key = "_EFL_ACCESS_WINDOW_EVENT_WINDOW_ACTIVATED";
+            if (remove_cpp_event_handler(key, this.evt_WindowActivatedEvt_delegate)) { 
+               eventHandlers.RemoveHandler(WindowActivatedEvtKey , value);
+            } else
+               Eina.Log.Error($"Error removing proxy for event {key}");
+         }
+      }
+   }
+   ///<summary>Method to raise event WindowActivatedEvt.</summary>
+   public void On_WindowActivatedEvt(EventArgs e)
+   {
+      EventHandler evt;
+      lock (eventLock) {
+      evt = (EventHandler)eventHandlers[WindowActivatedEvtKey];
+      }
+      evt?.Invoke(this, e);
+   }
+   Efl.EventCb evt_WindowActivatedEvt_delegate;
+   private void on_WindowActivatedEvt_NativeCallback(System.IntPtr data, ref Efl.Event_StructInternal evt)
+   {
+      EventArgs args = EventArgs.Empty;
+      try {
+         On_WindowActivatedEvt(args);
+      } catch (Exception e) {
+         Eina.Log.Error(e.ToString());
+         Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
+      }
+   }
+
+private static object WindowDeactivatedEvtKey = new object();
+   /// <summary>Called when window has been deactivated (unfocused).</summary>
+   public event EventHandler WindowDeactivatedEvt
+   {
+      add {
+         lock (eventLock) {
+            string key = "_EFL_ACCESS_WINDOW_EVENT_WINDOW_DEACTIVATED";
+            if (add_cpp_event_handler(key, this.evt_WindowDeactivatedEvt_delegate)) {
+               eventHandlers.AddHandler(WindowDeactivatedEvtKey , value);
+            } else
+               Eina.Log.Error($"Error adding proxy for event {key}");
+         }
+      }
+      remove {
+         lock (eventLock) {
+            string key = "_EFL_ACCESS_WINDOW_EVENT_WINDOW_DEACTIVATED";
+            if (remove_cpp_event_handler(key, this.evt_WindowDeactivatedEvt_delegate)) { 
+               eventHandlers.RemoveHandler(WindowDeactivatedEvtKey , value);
+            } else
+               Eina.Log.Error($"Error removing proxy for event {key}");
+         }
+      }
+   }
+   ///<summary>Method to raise event WindowDeactivatedEvt.</summary>
+   public void On_WindowDeactivatedEvt(EventArgs e)
+   {
+      EventHandler evt;
+      lock (eventLock) {
+      evt = (EventHandler)eventHandlers[WindowDeactivatedEvtKey];
+      }
+      evt?.Invoke(this, e);
+   }
+   Efl.EventCb evt_WindowDeactivatedEvt_delegate;
+   private void on_WindowDeactivatedEvt_NativeCallback(System.IntPtr data, ref Efl.Event_StructInternal evt)
+   {
+      EventArgs args = EventArgs.Empty;
+      try {
+         On_WindowDeactivatedEvt(args);
+      } catch (Exception e) {
+         Eina.Log.Error(e.ToString());
+         Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
+      }
+   }
+
+private static object WindowMaximizedEvtKey = new object();
+   /// <summary>Called when window has been maximmized</summary>
+   public event EventHandler WindowMaximizedEvt
+   {
+      add {
+         lock (eventLock) {
+            string key = "_EFL_ACCESS_WINDOW_EVENT_WINDOW_MAXIMIZED";
+            if (add_cpp_event_handler(key, this.evt_WindowMaximizedEvt_delegate)) {
+               eventHandlers.AddHandler(WindowMaximizedEvtKey , value);
+            } else
+               Eina.Log.Error($"Error adding proxy for event {key}");
+         }
+      }
+      remove {
+         lock (eventLock) {
+            string key = "_EFL_ACCESS_WINDOW_EVENT_WINDOW_MAXIMIZED";
+            if (remove_cpp_event_handler(key, this.evt_WindowMaximizedEvt_delegate)) { 
+               eventHandlers.RemoveHandler(WindowMaximizedEvtKey , value);
+            } else
+               Eina.Log.Error($"Error removing proxy for event {key}");
+         }
+      }
+   }
+   ///<summary>Method to raise event WindowMaximizedEvt.</summary>
+   public void On_WindowMaximizedEvt(EventArgs e)
+   {
+      EventHandler evt;
+      lock (eventLock) {
+      evt = (EventHandler)eventHandlers[WindowMaximizedEvtKey];
+      }
+      evt?.Invoke(this, e);
+   }
+   Efl.EventCb evt_WindowMaximizedEvt_delegate;
+   private void on_WindowMaximizedEvt_NativeCallback(System.IntPtr data, ref Efl.Event_StructInternal evt)
+   {
+      EventArgs args = EventArgs.Empty;
+      try {
+         On_WindowMaximizedEvt(args);
+      } catch (Exception e) {
+         Eina.Log.Error(e.ToString());
+         Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
+      }
+   }
+
+private static object WindowMinimizedEvtKey = new object();
+   /// <summary>Called when window has been minimized</summary>
+   public event EventHandler WindowMinimizedEvt
+   {
+      add {
+         lock (eventLock) {
+            string key = "_EFL_ACCESS_WINDOW_EVENT_WINDOW_MINIMIZED";
+            if (add_cpp_event_handler(key, this.evt_WindowMinimizedEvt_delegate)) {
+               eventHandlers.AddHandler(WindowMinimizedEvtKey , value);
+            } else
+               Eina.Log.Error($"Error adding proxy for event {key}");
+         }
+      }
+      remove {
+         lock (eventLock) {
+            string key = "_EFL_ACCESS_WINDOW_EVENT_WINDOW_MINIMIZED";
+            if (remove_cpp_event_handler(key, this.evt_WindowMinimizedEvt_delegate)) { 
+               eventHandlers.RemoveHandler(WindowMinimizedEvtKey , value);
+            } else
+               Eina.Log.Error($"Error removing proxy for event {key}");
+         }
+      }
+   }
+   ///<summary>Method to raise event WindowMinimizedEvt.</summary>
+   public void On_WindowMinimizedEvt(EventArgs e)
+   {
+      EventHandler evt;
+      lock (eventLock) {
+      evt = (EventHandler)eventHandlers[WindowMinimizedEvtKey];
+      }
+      evt?.Invoke(this, e);
+   }
+   Efl.EventCb evt_WindowMinimizedEvt_delegate;
+   private void on_WindowMinimizedEvt_NativeCallback(System.IntPtr data, ref Efl.Event_StructInternal evt)
+   {
+      EventArgs args = EventArgs.Empty;
+      try {
+         On_WindowMinimizedEvt(args);
+      } catch (Exception e) {
+         Eina.Log.Error(e.ToString());
+         Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
+      }
+   }
+
+private static object WindowRestoredEvtKey = new object();
+   /// <summary>Called when window has been restored</summary>
+   public event EventHandler WindowRestoredEvt
+   {
+      add {
+         lock (eventLock) {
+            string key = "_EFL_ACCESS_WINDOW_EVENT_WINDOW_RESTORED";
+            if (add_cpp_event_handler(key, this.evt_WindowRestoredEvt_delegate)) {
+               eventHandlers.AddHandler(WindowRestoredEvtKey , value);
+            } else
+               Eina.Log.Error($"Error adding proxy for event {key}");
+         }
+      }
+      remove {
+         lock (eventLock) {
+            string key = "_EFL_ACCESS_WINDOW_EVENT_WINDOW_RESTORED";
+            if (remove_cpp_event_handler(key, this.evt_WindowRestoredEvt_delegate)) { 
+               eventHandlers.RemoveHandler(WindowRestoredEvtKey , value);
+            } else
+               Eina.Log.Error($"Error removing proxy for event {key}");
+         }
+      }
+   }
+   ///<summary>Method to raise event WindowRestoredEvt.</summary>
+   public void On_WindowRestoredEvt(EventArgs e)
+   {
+      EventHandler evt;
+      lock (eventLock) {
+      evt = (EventHandler)eventHandlers[WindowRestoredEvtKey];
+      }
+      evt?.Invoke(this, e);
+   }
+   Efl.EventCb evt_WindowRestoredEvt_delegate;
+   private void on_WindowRestoredEvt_NativeCallback(System.IntPtr data, ref Efl.Event_StructInternal evt)
+   {
+      EventArgs args = EventArgs.Empty;
+      try {
+         On_WindowRestoredEvt(args);
+      } catch (Exception e) {
+         Eina.Log.Error(e.ToString());
+         Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
+      }
+   }
+
+    void register_event_proxies()
+   {
+      evt_WindowCreatedEvt_delegate = new Efl.EventCb(on_WindowCreatedEvt_NativeCallback);
+      evt_WindowDestroyedEvt_delegate = new Efl.EventCb(on_WindowDestroyedEvt_NativeCallback);
+      evt_WindowActivatedEvt_delegate = new Efl.EventCb(on_WindowActivatedEvt_NativeCallback);
+      evt_WindowDeactivatedEvt_delegate = new Efl.EventCb(on_WindowDeactivatedEvt_NativeCallback);
+      evt_WindowMaximizedEvt_delegate = new Efl.EventCb(on_WindowMaximizedEvt_NativeCallback);
+      evt_WindowMinimizedEvt_delegate = new Efl.EventCb(on_WindowMinimizedEvt_NativeCallback);
+      evt_WindowRestoredEvt_delegate = new Efl.EventCb(on_WindowRestoredEvt_NativeCallback);
+   }
+}
+public class WindowConcreteNativeInherit : Efl.Eo.NativeClass{
+   public override System.Collections.Generic.List<Efl_Op_Description> GetEoOps(System.Type type)
+   {
+      var descs = new System.Collections.Generic.List<Efl_Op_Description>();
+      return descs;
+   }
+   public override IntPtr GetEflClass()
+   {
+      return Efl.Access.WindowConcrete.efl_access_window_interface_get();
+   }
+   public static  IntPtr GetEflClassStatic()
+   {
+      return Efl.Access.WindowConcrete.efl_access_window_interface_get();
+   }
+}
+} } 

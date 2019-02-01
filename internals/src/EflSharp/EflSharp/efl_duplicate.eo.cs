@@ -1,0 +1,151 @@
+#pragma warning disable CS1591
+using System;
+using System.Runtime.InteropServices;
+using System.Collections.Generic;
+using System.Linq;
+using System.ComponentModel;
+namespace Efl { 
+/// <summary>An interface for duplication of objects.
+/// Objects implementing this interface can be duplicated with <see cref="Efl.Duplicate.DoDuplicate"/>.</summary>
+[DuplicateConcreteNativeInherit]
+public interface Duplicate : 
+   Efl.Eo.IWrapper, IDisposable
+{
+   /// <summary>Creates a carbon copy of this object and returns it.
+/// The newly created object will have no event handlers or anything of the sort.</summary>
+/// <returns>Returned carbon copy</returns>
+Efl.Duplicate DoDuplicate();
+   }
+/// <summary>An interface for duplication of objects.
+/// Objects implementing this interface can be duplicated with <see cref="Efl.Duplicate.DoDuplicate"/>.</summary>
+sealed public class DuplicateConcrete : 
+
+Duplicate
+   
+{
+   ///<summary>Pointer to the native class description.</summary>
+   public System.IntPtr NativeClass {
+      get {
+         if (((object)this).GetType() == typeof (DuplicateConcrete))
+            return Efl.DuplicateConcreteNativeInherit.GetEflClassStatic();
+         else
+            return Efl.Eo.Globals.klasses[((object)this).GetType()];
+      }
+   }
+   private  System.IntPtr handle;
+   public Dictionary<String, IntPtr> cached_strings = new Dictionary<String, IntPtr>();
+   public Dictionary<String, IntPtr> cached_stringshares = new Dictionary<String, IntPtr>();
+   ///<summary>Pointer to the native instance.</summary>
+   public System.IntPtr NativeHandle {
+      get { return handle; }
+   }
+   [System.Runtime.InteropServices.DllImport(efl.Libs.Efl)] internal static extern System.IntPtr
+      efl_duplicate_interface_get();
+   ///<summary>Constructs an instance from a native pointer.</summary>
+   public DuplicateConcrete(System.IntPtr raw)
+   {
+      handle = raw;
+      register_event_proxies();
+   }
+   ///<summary>Destructor.</summary>
+   ~DuplicateConcrete()
+   {
+      Dispose(false);
+   }
+   ///<summary>Releases the underlying native instance.</summary>
+   void Dispose(bool disposing)
+   {
+      if (handle != System.IntPtr.Zero) {
+         Efl.Eo.Globals.efl_unref(handle);
+         handle = System.IntPtr.Zero;
+      }
+   }
+   ///<summary>Releases the underlying native instance.</summary>
+   public void Dispose()
+   {
+   Efl.Eo.Globals.free_dict_values(cached_strings);
+   Efl.Eo.Globals.free_stringshare_values(cached_stringshares);
+      Dispose(true);
+      GC.SuppressFinalize(this);
+   }
+   ///<summary>Casts obj into an instance of this type.</summary>
+   public static DuplicateConcrete static_cast(Efl.Object obj)
+   {
+      if (obj == null)
+         throw new System.ArgumentNullException("obj");
+      return new DuplicateConcrete(obj.NativeHandle);
+   }
+   ///<summary>Verifies if the given object is equal to this one.</summary>
+   public override bool Equals(object obj)
+   {
+      var other = obj as Efl.Object;
+      if (other == null)
+         return false;
+      return this.NativeHandle == other.NativeHandle;
+   }
+   ///<summary>Gets the hash code for this object based on the native pointer it points to.</summary>
+   public override int GetHashCode()
+   {
+      return this.NativeHandle.ToInt32();
+   }
+   ///<summary>Turns the native pointer into a string representation.</summary>
+   public override String ToString()
+   {
+      return $"{this.GetType().Name}@[{this.NativeHandle.ToInt32():x}]";
+   }
+    void register_event_proxies()
+   {
+   }
+
+
+   [System.Runtime.InteropServices.DllImport(efl.Libs.Efl)]
+   [return: MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(Efl.Eo.MarshalTest<Efl.DuplicateConcrete, Efl.Eo.OwnTag>))] private static extern Efl.Duplicate efl_duplicate(System.IntPtr obj);
+   /// <summary>Creates a carbon copy of this object and returns it.
+   /// The newly created object will have no event handlers or anything of the sort.</summary>
+   /// <returns>Returned carbon copy</returns>
+   public Efl.Duplicate DoDuplicate() {
+       var _ret_var = efl_duplicate(Efl.DuplicateConcrete.efl_duplicate_interface_get());
+      Eina.Error.RaiseIfUnhandledException();
+      return _ret_var;
+ }
+}
+public class DuplicateConcreteNativeInherit : Efl.Eo.NativeClass{
+   public override System.Collections.Generic.List<Efl_Op_Description> GetEoOps(System.Type type)
+   {
+      var descs = new System.Collections.Generic.List<Efl_Op_Description>();
+      efl_duplicate_static_delegate = new efl_duplicate_delegate(duplicate);
+      descs.Add(new Efl_Op_Description() {api_func = Efl.Eo.Globals.dlsym(Efl.Eo.Globals.RTLD_DEFAULT, "efl_duplicate"), func = Marshal.GetFunctionPointerForDelegate(efl_duplicate_static_delegate)});
+      return descs;
+   }
+   public override IntPtr GetEflClass()
+   {
+      return Efl.DuplicateConcrete.efl_duplicate_interface_get();
+   }
+   public static  IntPtr GetEflClassStatic()
+   {
+      return Efl.DuplicateConcrete.efl_duplicate_interface_get();
+   }
+
+
+   [return: MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(Efl.Eo.MarshalTest<Efl.DuplicateConcrete, Efl.Eo.OwnTag>))] private delegate Efl.Duplicate efl_duplicate_delegate(System.IntPtr obj, System.IntPtr pd);
+   [System.Runtime.InteropServices.DllImport(efl.Libs.Efl)] [return: MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(Efl.Eo.MarshalTest<Efl.DuplicateConcrete, Efl.Eo.OwnTag>))] private static extern Efl.Duplicate efl_duplicate(System.IntPtr obj);
+    private static Efl.Duplicate duplicate(System.IntPtr obj, System.IntPtr pd)
+   {
+      Eina.Log.Debug("function efl_duplicate was called");
+      Efl.Eo.IWrapper wrapper = Efl.Eo.Globals.data_get(pd);
+      if(wrapper != null) {
+                  Efl.Duplicate _ret_var = default(Efl.Duplicate);
+         try {
+            _ret_var = ((Duplicate)wrapper).DoDuplicate();
+         } catch (Exception e) {
+            Eina.Log.Warning($"Callback error: {e.ToString()}");
+            Eina.Error.Set(Eina.Error.UNHANDLED_EXCEPTION);
+         }
+      return _ret_var;
+      } else {
+         return efl_duplicate(Efl.Eo.Globals.efl_super(obj, Efl.Eo.Globals.efl_class_get(obj)));
+      }
+   }
+   private efl_duplicate_delegate efl_duplicate_static_delegate;
+}
+} 
