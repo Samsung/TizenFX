@@ -52,6 +52,7 @@ TizenFX API constists of the following namespaces:
 * [](xref:Tizen.Pims.Contacts.ContactsViews?displayProperty=fullName)
 * [](xref:Tizen.Security?displayProperty=fullName)
 * [](xref:Tizen.Security.SecureRepository?displayProperty=fullName)
+* [](xref:Tizen.Security.PrivacyPrivilegeManager?displayProperty=fullName)
 * [](xref:Tizen.Security.SecureRepository.Crypto?displayProperty=fullName)
 * [](xref:Tizen.Security.TEEC?displayProperty=fullName)
 * [](xref:Tizen.Sensor?displayProperty=fullName)
