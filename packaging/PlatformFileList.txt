@@ -65,6 +65,7 @@ Tizen.PhonenumberUtils.dll                         #mobile #mobile-emul #wearabl
 Tizen.Pims.Calendar.dll                            #common #mobile #mobile-emul #tv #wearable
 Tizen.Pims.Contacts.dll                            #mobile #mobile-emul #wearable
 Tizen.Security.dll                                 #common #mobile #mobile-emul #tv #wearable
+Tizen.Security.DevicePolicyManager.dll             #mobile #mobile-emul #wearable
 Tizen.Security.PrivacyPrivilegeManager.dll         #common #mobile #mobile-emul #tv #wearable
 Tizen.Security.SecureRepository.dll                #common #mobile #mobile-emul #tv #wearable
 Tizen.Security.TEEC.dll                            #mobile #mobile-emul #tv #wearable
