@@ -14,6 +14,7 @@
  * limitations under the License.
  *
  */
+using System.ComponentModel;
 
 namespace Tizen.NUI
 {
@@ -51,6 +52,8 @@ namespace Tizen.NUI
         /// <param name="data">A pointer to the data that will be copied to the buffer.</param>
         /// <param name="size">Number of elements to expand or contract the buffer.</param>
         /// <since_tizen> 3 </since_tizen>
+        /// This will be changed internal API after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public void SetData(System.IntPtr data, uint size)
         {
             NDalicPINVOKE.PropertyBuffer_SetData(swigCPtr, data, size);
