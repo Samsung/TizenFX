@@ -1463,7 +1463,7 @@
     "System.Composition/1.0.31": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-I+D26qpYdoklyAVUdqwUBrEIckMNjAYnuPJy/h9dsQItpQwVREkDFs4b4tkBza0kT2Yk48Lcfsv2QQ9hWsh9Iw==",
+      "sha512": "sha512-CbzwbjxT04VU+JzQuPOYfUCybzBtbGZdqGJS9482dDBoBHbt3Zz0QAJ/Cjzpmq5xdL+hhW4FYWf/3wq2OCVXgg==",
       "path": "system.composition/1.0.31",
       "hashPath": "system.composition.1.0.31.nupkg.sha512"
     },
@@ -1484,7 +1484,7 @@
     "System.Composition.Hosting/1.0.31": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-fN1bT4RX4vUqjbgoyuJFVUizAl2mYF5VAb+bVIxIYZSSc0BdnX+yGAxcavxJuDDCQ1K+/mdpgyEFc8e9ikjvrg==",
+      "sha512": "sha512-KlZ4qkaa1p/U2WKr353XeQ9bjrxBwn9FcD5k9WFEuV1MloDMnTnhUwQU7h1WigvsCYykzoRdnDLq33wnUPwBeg==",
       "path": "system.composition.hosting/1.0.31",
       "hashPath": "system.composition.hosting.1.0.31.nupkg.sha512"
     },
@@ -1512,7 +1512,7 @@
     "System.Diagnostics.Contracts/4.3.0": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-eelRRbnm+OloiQvp9CXS0ixjNQldjjkHO4iIkR5XH2VIP8sUB/SIpa1TdUW6/+HDcQ+MlhP3pNa1u5SbzYuWGA==",
+      "sha512": "sha512-BQcxLgTgNS9a0Um9ASMIMumpmAmAMFXcQO/lMvNRsTg7tLY50Bp4fEJkg+uozATg8Sj2y9nDfpTeR2ImhIafaw==",
       "path": "system.diagnostics.contracts/4.3.0",
       "hashPath": "system.diagnostics.contracts.4.3.0.nupkg.sha512"
     },
@@ -1617,7 +1617,7 @@
     "System.Linq.Parallel/4.3.0": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-td7x21K8LalpjTWCzW/nQboQIFbq9i0r+PCyBBCdLWWnm4NBcdN18vpz/G9hCpUaCIfRL+ZxJNVTywlNlB1aLQ==",
+      "sha512": "sha512-rvw62DwbrjHnE4aQUxCGGLeF3sfC5Pyv+O+1ZmfnFY3SLc31YwZo1dhjABihOVQUh4drpQ5wWQB8hVQbtGkxww==",
       "path": "system.linq.parallel/4.3.0",
       "hashPath": "system.linq.parallel.4.3.0.nupkg.sha512"
     },
