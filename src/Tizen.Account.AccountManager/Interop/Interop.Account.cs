@@ -32,6 +32,8 @@ internal static partial class Interop
         [DllImport(Libraries.AccountSvc, EntryPoint = "account_create", CallingConvention = CallingConvention.Cdecl)]
         internal static extern int Create(out SafeAccountHandle handle);
 
+        [DllImport(Libraries.AccountSvc, EntryPoint = "account_create", CallingConvention = CallingConvention.Cdecl)]
+        internal static extern int CreateUnmanagedHandle(out IntPtr handle);
 
         [DllImport(Libraries.AccountSvc, EntryPoint = "account_destroy", CallingConvention = CallingConvention.Cdecl)]
         internal static extern int Destroy(IntPtr handle);
