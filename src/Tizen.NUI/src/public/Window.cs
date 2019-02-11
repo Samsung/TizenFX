@@ -274,6 +274,17 @@ namespace Tizen.NUI
             }
         }
 
+        /// <summary>
+        /// ViewConnected will be triggered when the view connected on Window
+        /// </summary>
+        /// <since_tizen> 6 </since_tizen>
+        public event EventHandler ViewConnected;
+
+        internal void SendViewConnected(View view)
+        {
+            ViewConnected?.Invoke(view, EventArgs.Empty);
+        }
+
         internal event EventHandler EventProcessingFinished
         {
             add

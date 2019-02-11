@@ -1292,6 +1292,13 @@ namespace Tizen.NUI.BaseComponents
         private EventHandler<BackgroundResourceLoadedEventArgs> _backgroundResourceLoadedEventHandler;
         private _backgroundResourceLoadedCallbackType _backgroundResourceLoadedCallback;
 
+        private OnWindowEventCallbackType _onWindowSendEventCallback;
+
+        private void SendViewConnectedEventToWindow(IntPtr data)
+        {
+            Window.Instance.SendViewConnected(this);
+        }
+
         /// <summary>
         /// Creates a new instance of a view.
         /// </summary>
@@ -1313,6 +1320,9 @@ namespace Tizen.NUI.BaseComponents
                 PositionUsesPivotPoint = false;
             }
             _mergedStyle = new MergedStyle(GetType(), this);
+
+            _onWindowSendEventCallback = SendViewConnectedEventToWindow;
+            this.OnWindowSignal().Connect(_onWindowSendEventCallback);
         }
 
         internal View(ViewImpl implementation) : this(NDalicPINVOKE.new_View__SWIG_2(ViewImpl.getCPtr(implementation)), true)
@@ -5206,6 +5216,11 @@ namespace Tizen.NUI.BaseComponents
             if (_backgroundResourceLoadedCallback != null)
             {
                 this.ResourcesLoadedSignal().Disconnect(_backgroundResourceLoadedCallback);
+            }
+
+            if (_onWindowSendEventCallback != null)
+            {
+                this.OnWindowSignal().Disconnect(_onWindowSendEventCallback);
             }
 
             // BaseHandle CPtr is used in Registry and there is danger of deletion if we keep using it here.
