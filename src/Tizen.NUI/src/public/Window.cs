@@ -51,7 +51,7 @@ namespace Tizen.NUI
         private WindowResizedEventCallbackType _windowResizedEventCallback;
         private WindowFocusChangedEventCallbackType _windowFocusChangedEventCallback2;
 
-        private static readonly Window instance = Application.Instance.GetWindow();
+        private static readonly Window instance = Application.Instance?.GetWindow();
 
         internal Window(global::System.IntPtr cPtr, bool cMemoryOwn) : base(NDalicPINVOKE.Window_SWIGUpcast(cPtr), cMemoryOwn)
         {
