@@ -38,12 +38,12 @@ AutoReqProv: no
 NuGet package for %{name}
 
 %package dummy
-Summary:   Dummy assemblies of Tizen .NET
+Summary:   not used package
 Group:     Development/Libraries
 AutoReqProv: no
 
 %description dummy
-Dummy assemblies of Tizen .NET
+not used package
 
 %package full
 Summary:   All Tizen .NET assemblies
@@ -66,7 +66,6 @@ All .pdb files of Tizen .NET
 Summary:   Tizen .NET assemblies for Common profile
 Group:     Development/Libraries
 Requires:  %{name} = %{version}-%{release}
-Requires:  csapi-tizenfx-dummy = %{version}-%{release}
 AutoReqProv: no
 
 %description common
@@ -76,7 +75,6 @@ Tizen .NET assemblies for Common profile
 Summary:   Tizen .NET assemblies for Mobile profile
 Group:     Development/Libraries
 Requires:  %{name} = %{version}-%{release}
-Requires:  csapi-tizenfx-dummy = %{version}-%{release}
 AutoReqProv: no
 
 %description mobile
@@ -86,7 +84,6 @@ Tizen .NET assemblies for Mobile profile
 Summary:   Tizen .NET assemblies for Emulator of Mobile profile
 Group:     Development/Libraries
 Requires:  %{name} = %{version}-%{release}
-Requires:  csapi-tizenfx-dummy = %{version}-%{release}
 AutoReqProv: no
 
 %description mobile-emul
@@ -96,27 +93,15 @@ Tizen .NET assemblies for Emulator of Mobile profile
 Summary:   Tizen .NET assemblies for TV profile
 Group:     Development/Libraries
 Requires:  %{name} = %{version}-%{release}
-Requires:  csapi-tizenfx-dummy = %{version}-%{release}
 AutoReqProv: no
 
 %description tv
 Tizen .NET assemblies for TV profile
 
-%package ivi
-Summary:   Tizen .NET assemblies for IVI profile
-Group:     Development/Libraries
-Requires:  %{name} = %{version}-%{release}
-Requires:  csapi-tizenfx-dummy = %{version}-%{release}
-AutoReqProv: no
-
-%description ivi
-Tizen .NET assemblies for IVI profile
-
 %package wearable
 Summary:   Tizen .NET assemblies for Wearable profile
 Group:     Development/Libraries
 Requires:  %{name} = %{version}-%{release}
-Requires:  csapi-tizenfx-dummy = %{version}-%{release}
 AutoReqProv: no
 
 %description wearable
@@ -131,18 +116,6 @@ cp %{SOURCE1} .
 
 %define _tizenfx_bin_path Artifacts
 
-GetFileList() {
-  PROFILE=$1
-  cat pkg/PlatformFileList.txt | grep -E "#$PROFILE[[:space:]]|#$PROFILE$" | cut -d# -f1 | sed "s#^#%{DOTNET_ASSEMBLY_PATH}/#"
-}
-
-GetFileList common > common.filelist
-GetFileList mobile > mobile.filelist
-GetFileList mobile-emul > mobile-emul.filelist
-GetFileList tv > tv.filelist
-GetFileList ivi > ivi.filelist
-GetFileList wearable > wearable.filelist
-
 rm -fr %{_tizenfx_bin_path}
 export DOTNET_SKIP_FIRST_TIME_EXPERIENCE=true
 
@@ -150,6 +123,22 @@ export DOTNET_SKIP_FIRST_TIME_EXPERIENCE=true
 %{build_cmd} --full
 %{build_cmd} --dummy
 %{build_cmd} --pack %{TIZEN_NET_NUGET_VERSION}
+
+GetFileList() {
+  PROFILE=$1
+  cat packaging/PlatformFileList.txt | grep -E "#$PROFILE[[:space:]]|#$PROFILE$" | cut -d# -f1 | sed "s#^#%{DOTNET_ASSEMBLY_PATH}/#"
+  for f in $(cat packaging/PlatformFileList.txt | grep -v -E "#$PROFILE[[:space:]]|#$PROFILE$" | cut -d# -f1); do
+    if [ -f %{_tizenfx_bin_path}/bin/dummy/$f ]; then
+      echo "%{DOTNET_ASSEMBLY_PATH}/ref/$f"
+    fi
+  done
+}
+
+GetFileList common > common.filelist
+GetFileList mobile > mobile.filelist
+GetFileList mobile-emul > mobile-emul.filelist
+GetFileList tv > tv.filelist
+GetFileList wearable > wearable.filelist
 
 %install
 mkdir -p %{buildroot}%{DOTNET_ASSEMBLY_PATH}
@@ -176,10 +165,11 @@ install -p -m 644 %{_tizenfx_bin_path}/bin/dummy/*.dll %{buildroot}%{DOTNET_ASSE
 
 # Install NuGet Packages
 install -p -m 644 %{_tizenfx_bin_path}/*.nupkg %{buildroot}%{DOTNET_NUGET_SOURCE}
+install -p -m 644 packaging/*.nupkg %{buildroot}%{DOTNET_NUGET_SOURCE}
 
 %post
 /usr/bin/vconftool set -t int db/dotnet/tizen_api_version %{TIZEN_NET_API_VERSION} -f
-
+/usr/bin/vconftool set -t string db/dotnet/tizen_api_path %{DOTNET_ASSEMBLY_PATH} -f
 
 %files
 %license LICENSE
@@ -188,11 +178,11 @@ install -p -m 644 %{_tizenfx_bin_path}/*.nupkg %{buildroot}%{DOTNET_NUGET_SOURCE
 %{DOTNET_NUGET_SOURCE}/*.nupkg
 
 %files dummy
-%attr(644,root,root) %{DOTNET_ASSEMBLY_DUMMY_PATH}/*.dll
 
 %files full
 %manifest %{name}.manifest
 %attr(644,root,root) %{DOTNET_ASSEMBLY_PATH}/*.dll
+%attr(644,root,root) %{DOTNET_ASSEMBLY_DUMMY_PATH}/*.dll
 %attr(644,root,root) %{DOTNET_ASSEMBLY_RES_PATH}/*
 
 %files debug
@@ -208,9 +198,6 @@ install -p -m 644 %{_tizenfx_bin_path}/*.nupkg %{buildroot}%{DOTNET_NUGET_SOURCE
 %manifest %{name}.manifest
 
 %files tv -f tv.filelist
-%manifest %{name}.manifest
-
-%files ivi -f ivi.filelist
 %manifest %{name}.manifest
 
 %files wearable -f wearable.filelist

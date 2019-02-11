@@ -51,6 +51,7 @@ namespace Tizen.Applications
             /// <summary>
             /// Gets the widget content.
             /// </summary>
+            /// <returns>The bundle containing widget content.</returns>
             /// <since_tizen> 3 </since_tizen>
             /// <feature>http://tizen.org/feature/shell.appwidget</feature>
             /// <exception cref="InvalidOperationException">Thrown in case of failed conditions.</exception>
@@ -115,6 +116,7 @@ namespace Tizen.Applications
             /// Changes the update period for the widget instance.
             /// </summary>
             /// <since_tizen> 3 </since_tizen>
+            /// <param name="period">The period to be changed.</param>
             /// <feature>http://tizen.org/feature/shell.appwidget</feature>
             /// <exception cref="ArgumentException">Thrown when failed because of an invalid argument.</exception>
             /// <exception cref="InvalidOperationException">Thrown in case of failed conditions.</exception>
@@ -267,6 +269,7 @@ namespace Tizen.Applications
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <param name="pkgId">Package ID.</param>
+        /// <returns>The widget control array.</returns>
         /// <privilege>http://tizen.org/privilege/widget.viewer</privilege>
         /// <feature>http://tizen.org/feature/shell.appwidget</feature>
         /// <exception cref="ArgumentException">Thrown when failed because of an invalid argument.</exception>
@@ -304,6 +307,8 @@ namespace Tizen.Applications
         /// Gets all the widget IDs by the package ID.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        /// <param name="pkgId">Package ID.</param>
+        /// <returns>The widget id array.</returns>
         /// <privilege>http://tizen.org/privilege/widget.viewer</privilege>
         /// <feature>http://tizen.org/feature/shell.appwidget</feature>
         /// <exception cref="ArgumentException">Thrown when failed because of an invalid argument.</exception>
@@ -539,6 +544,7 @@ namespace Tizen.Applications
         /// <summary>
         /// Gets the objects for widget instance information.
         /// </summary>
+        /// <returns>The instances list.</returns>
         /// <since_tizen> 3 </since_tizen>
         /// <feature>http://tizen.org/feature/shell.appwidget</feature>
         /// <exception cref="InvalidOperationException">Thrown in case of failed conditions.</exception>
@@ -570,6 +576,7 @@ namespace Tizen.Applications
         /// <summary>
         /// Gets the objects for widget scale information.
         /// </summary>
+        /// <returns>The scales list.</returns>
         /// <since_tizen> 3 </since_tizen>
         /// <privilege>http://tizen.org/privilege/widget.viewer</privilege>
         /// <feature>http://tizen.org/feature/shell.appwidget</feature>
@@ -660,6 +667,7 @@ namespace Tizen.Applications
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <param name="lang">Language.</param>
+        /// <returns>The widget name.</returns>
         /// <privilege>http://tizen.org/privilege/widget.viewer</privilege>
         /// <feature>http://tizen.org/feature/shell.appwidget</feature>
         /// <exception cref="ArgumentNullException">Thrown when the argument is null.</exception>
@@ -691,6 +699,7 @@ namespace Tizen.Applications
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <param name="lang">Language.</param>
+        /// <returns>The widget icon path.</returns>
         /// <privilege>http://tizen.org/privilege/widget.viewer</privilege>
         /// <feature>http://tizen.org/feature/shell.appwidget</feature>
         /// <exception cref="ArgumentNullException">Thrown when the argument is null.</exception>

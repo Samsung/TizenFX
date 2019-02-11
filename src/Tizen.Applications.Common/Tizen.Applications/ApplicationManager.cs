@@ -19,6 +19,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Runtime.InteropServices;
 using System.Threading.Tasks;
+using static Interop.ApplicationManager;
 
 namespace Tizen.Applications
 {
@@ -166,6 +167,7 @@ namespace Tizen.Applications
         /// <summary>
         /// Gets the information of the installed applications asynchronously.
         /// </summary>
+        /// <returns>The installed application info list.</returns>
         /// <since_tizen> 3 </since_tizen>
         public static async Task<IEnumerable<ApplicationInfo>> GetInstalledApplicationsAsync()
         {
@@ -197,13 +199,44 @@ namespace Tizen.Applications
                     throw ApplicationManagerErrorFactory.GetException(err, "Failed to foreach the appinfo.");
                 }
                 return result;
-            });
+            }).ConfigureAwait(false);
+        }
+
+        /// <summary>
+        /// Terminates the application if it is running on background.
+        /// </summary>
+        /// <param name="app">ApplicationRunningContext object</param>
+        /// <exception cref="ArgumentException">Thrown when failed of invalid argument.</exception>
+        /// <exception cref="UnauthorizedAccessException">Thrown when failed because of permission denied.</exception>
+        /// <exception cref="InvalidOperationException">Thrown when failed because of system error.</exception>
+        /// <privilege>http://tizen.org/privilege/appmanager.kill.bgapp</privilege>
+        /// <remarks>
+        /// This function returns after it just sends a request for terminating a background application.
+        /// Platform will decide if the target application could be terminated or not according to the state of the target application.
+        /// </remarks>
+        /// <since_tizen> 6 </since_tizen>
+        public static void TerminateBackgroundApplication(ApplicationRunningContext app)
+        {
+            ErrorCode err = Interop.ApplicationManager.AppManagerRequestTerminateBgApp(app._contextHandle);
+            if (err != Interop.ApplicationManager.ErrorCode.None)
+            {
+                switch (err)
+                {
+                    case Interop.ApplicationManager.ErrorCode.InvalidParameter:
+                        throw new ArgumentException("Invalid argument.");
+                    case Interop.ApplicationManager.ErrorCode.PermissionDenied:
+                        throw new UnauthorizedAccessException("Permission denied.");
+                    default:
+                        throw new InvalidOperationException("Invalid Operation.");
+                }
+            }
         }
 
         /// <summary>
         /// Gets the information of the installed applications with the ApplicationInfoFilter asynchronously.
         /// </summary>
         /// <param name="filter">Key-value pairs for filtering.</param>
+        /// <returns>The installed application info list.</returns>
         /// <since_tizen> 3 </since_tizen>
         public static async Task<IEnumerable<ApplicationInfo>> GetInstalledApplicationsAsync(ApplicationInfoFilter filter)
         {
@@ -230,13 +263,14 @@ namespace Tizen.Applications
                 };
                 filter.Fetch(cb);
                 return result;
-            });
+            }).ConfigureAwait(false);
         }
 
         /// <summary>
         /// Gets the information of the installed applications with the ApplicationInfoMetadataFilter asynchronously.
         /// </summary>
         /// <param name="filter">Key-value pairs for filtering.</param>
+        /// <returns>The installed application info list.</returns>
         /// <since_tizen> 3 </since_tizen>
         public static async Task<IEnumerable<ApplicationInfo>> GetInstalledApplicationsAsync(ApplicationInfoMetadataFilter filter)
         {
@@ -263,12 +297,13 @@ namespace Tizen.Applications
                 };
                 filter.Fetch(cb);
                 return result;
-            });
+            }).ConfigureAwait(false);
         }
 
         /// <summary>
         /// Gets the information of the running applications asynchronously.
         /// </summary>
+        /// <returns>The application running context list.</returns>
         /// <since_tizen> 3 </since_tizen>
         public static async Task<IEnumerable<ApplicationRunningContext>> GetRunningApplicationsAsync()
         {
@@ -301,12 +336,13 @@ namespace Tizen.Applications
                     throw ApplicationManagerErrorFactory.GetException(err, "Failed to foreach appcontext.");
                 }
                 return result;
-            });
+            }).ConfigureAwait(false);
         }
 
         /// <summary>
         /// Gets the information of the running applications including subapp asynchronously.
         /// </summary>
+        /// <returns>The application running context list.</returns>
         /// <since_tizen> 3 </since_tizen>
         public static async Task<IEnumerable<ApplicationRunningContext>> GetAllRunningApplicationsAsync()
         {
@@ -339,13 +375,14 @@ namespace Tizen.Applications
                     throw ApplicationManagerErrorFactory.GetException(err, "Failed to foreach appcontext.");
                 }
                 return result;
-            });
+            }).ConfigureAwait(false);
         }
 
         /// <summary>
         /// Gets the information of the specified application with the application ID.
         /// </summary>
         /// <param name="applicationId">Application ID.</param>
+        /// <returns>The application info.</returns>
         /// <since_tizen> 3 </since_tizen>
         public static ApplicationInfo GetInstalledApplication(string applicationId)
         {
@@ -375,6 +412,24 @@ namespace Tizen.Applications
                 throw ApplicationManagerErrorFactory.GetException(Interop.ApplicationManager.ErrorCode.InvalidParameter, "Invalid parameter");
             }
             return isRunning;
+        }
+
+        /// <summary>
+        /// Returns the application id.
+        /// </summary>
+        /// <param name="processId">The application pid.</param>
+        /// <returns>Returns the application id.</returns>
+        /// <exception cref="ArgumentException">Thrown when the given parameter is invalid.</exception>
+        /// <since_tizen> 6 </since_tizen>
+        public static string GetAppId(int processId)
+        {
+            string appid;
+            Interop.ApplicationManager.ErrorCode err = Interop.ApplicationManager.AppManagerGetAppId(processId, out appid);
+            if (err != Interop.ApplicationManager.ErrorCode.None)
+            {
+                throw ApplicationManagerErrorFactory.GetException(err, "fail to get appid(" + processId + ")");
+            }
+            return appid;
         }
 
         private static void RegisterApplicationChangedEvent()

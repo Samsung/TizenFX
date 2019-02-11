@@ -19,7 +19,6 @@ using Tizen.NUI.Binding;
 
 namespace Tizen.NUI
 {
-
     /// <summary>
     /// A ToggleButton allows the user to change a setting between two or more states.
     /// </summary>
@@ -36,7 +35,7 @@ namespace Tizen.NUI
                 Tizen.NUI.Object.SetProperty(toggleButton.swigCPtr, ToggleButton.Property.STATE_VISUALS, new Tizen.NUI.PropertyValue((PropertyArray)newValue));
             }
         },
-        defaultValueCreator:(bindable) =>
+        defaultValueCreator: (bindable) =>
         {
             var toggleButton = (ToggleButton)bindable;
             Tizen.NUI.PropertyArray temp = new Tizen.NUI.PropertyArray();
@@ -53,7 +52,7 @@ namespace Tizen.NUI
                 Tizen.NUI.Object.SetProperty(toggleButton.swigCPtr, ToggleButton.Property.TOOLTIPS, new Tizen.NUI.PropertyValue((PropertyArray)newValue));
             }
         },
-        defaultValueCreator:(bindable) =>
+        defaultValueCreator: (bindable) =>
         {
             var toggleButton = (ToggleButton)bindable;
             Tizen.NUI.PropertyArray temp = new Tizen.NUI.PropertyArray();
@@ -70,7 +69,7 @@ namespace Tizen.NUI
                 Tizen.NUI.Object.SetProperty(toggleButton.swigCPtr, ToggleButton.Property.CURRENT_STATE_INDEX, new Tizen.NUI.PropertyValue((int)newValue));
             }
         },
-        defaultValueCreator:(bindable) =>
+        defaultValueCreator: (bindable) =>
         {
             var toggleButton = (ToggleButton)bindable;
             int temp = 0;
@@ -80,76 +79,6 @@ namespace Tizen.NUI
 
         private global::System.Runtime.InteropServices.HandleRef swigCPtr;
 
-        internal ToggleButton(global::System.IntPtr cPtr, bool cMemoryOwn) : base(NDalicPINVOKE.ToggleButton_SWIGUpcast(cPtr), cMemoryOwn)
-        {
-            swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
-        }
-
-        internal static global::System.Runtime.InteropServices.HandleRef getCPtr(ToggleButton obj)
-        {
-            return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
-        }
-
-        /// <summary>
-        /// Dispose
-        /// </summary>
-        /// <param name="type">The dispose type</param>
-        /// <since_tizen> 3 </since_tizen>
-        protected override void Dispose(DisposeTypes type)
-        {
-            if (disposed)
-            {
-                return;
-            }
-
-            if (type == DisposeTypes.Explicit)
-            {
-                //Called by User
-                //Release your own managed resources here.
-                //You should release all of your own disposable objects here.
-
-            }
-
-            //Release your own unmanaged resources here.
-            //You should not access any managed member here except static instance.
-            //because the execution order of Finalizes is non-deterministic.
-
-            if (swigCPtr.Handle != global::System.IntPtr.Zero)
-            {
-                if (swigCMemOwn)
-                {
-                    swigCMemOwn = false;
-                    NDalicPINVOKE.delete_ToggleButton(swigCPtr);
-                }
-                swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
-            }
-
-            base.Dispose(type);
-        }
-
-        /// <summary>
-        /// This should be internal, please do not use.
-        /// </summary>
-        /// <since_tizen> 3 </since_tizen>
-        public new class Property
-        {
-            /// <summary>
-            /// This should be internal, please do not use.
-            /// </summary>
-            /// <since_tizen> 3 </since_tizen>
-            public static readonly int STATE_VISUALS = NDalicPINVOKE.ToggleButton_Property_STATE_VISUALS_get();
-            /// <summary>
-            /// This should be internal, please do not use.
-            /// </summary>
-            /// <since_tizen> 3 </since_tizen>
-            public static readonly int TOOLTIPS = NDalicPINVOKE.ToggleButton_Property_TOOLTIPS_get();
-            /// <summary>
-            /// This should be internal, please do not use.
-            /// </summary>
-            /// <since_tizen> 3 </since_tizen>
-            public static readonly int CURRENT_STATE_INDEX = NDalicPINVOKE.ToggleButton_Property_CURRENT_STATE_INDEX_get();
-        }
-
         /// <summary>
         /// Create an instance for toggleButton.
         /// </summary>
@@ -157,7 +86,11 @@ namespace Tizen.NUI
         public ToggleButton() : this(NDalicPINVOKE.ToggleButton_New(), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
 
+        internal ToggleButton(global::System.IntPtr cPtr, bool cMemoryOwn) : base(NDalicPINVOKE.ToggleButton_SWIGUpcast(cPtr), cMemoryOwn)
+        {
+            swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
         }
 
         /// <summary>
@@ -208,6 +141,77 @@ namespace Tizen.NUI
             }
         }
 
-    }
+        internal static global::System.Runtime.InteropServices.HandleRef getCPtr(ToggleButton obj)
+        {
+            return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
+        }
 
+        /// <summary>
+        /// Dispose
+        /// </summary>
+        /// <param name="type">The dispose type</param>
+        /// <since_tizen> 3 </since_tizen>
+        protected override void Dispose(DisposeTypes type)
+        {
+            if (disposed)
+            {
+                return;
+            }
+
+            if (type == DisposeTypes.Explicit)
+            {
+                //Called by User
+                //Release your own managed resources here.
+                //You should release all of your own disposable objects here.
+
+            }
+
+            //Release your own unmanaged resources here.
+            //You should not access any managed member here except static instance.
+            //because the execution order of Finalizes is non-deterministic.
+
+            if (swigCPtr.Handle != global::System.IntPtr.Zero)
+            {
+                if (swigCMemOwn)
+                {
+                    swigCMemOwn = false;
+                    NDalicPINVOKE.delete_ToggleButton(swigCPtr);
+                }
+                swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
+            }
+
+            base.Dispose(type);
+        }
+
+        /// <summary>
+        /// This should be internal, please do not use.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
+        /// This will be changed internal API after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public new class Property
+        {
+            /// <summary>
+            /// This should be internal, please do not use.
+            /// </summary>
+            /// <since_tizen> 3 </since_tizen>
+            /// This will be changed internal API after ACR done. Before ACR, need to be hidden as inhouse API.
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            public static readonly int STATE_VISUALS = NDalicPINVOKE.ToggleButton_Property_STATE_VISUALS_get();
+            /// <summary>
+            /// This should be internal, please do not use.
+            /// </summary>
+            /// <since_tizen> 3 </since_tizen>
+            /// This will be changed internal API after ACR done. Before ACR, need to be hidden as inhouse API.
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            public static readonly int TOOLTIPS = NDalicPINVOKE.ToggleButton_Property_TOOLTIPS_get();
+            /// <summary>
+            /// This should be internal, please do not use.
+            /// </summary>
+            /// <since_tizen> 3 </since_tizen>
+            /// This will be changed internal API after ACR done. Before ACR, need to be hidden as inhouse API.
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            public static readonly int CURRENT_STATE_INDEX = NDalicPINVOKE.ToggleButton_Property_CURRENT_STATE_INDEX_get();
+        }
+    }
 }

@@ -36,9 +36,9 @@ namespace Tizen.NUI.Xaml
 
             var type = typeResolver.Resolve(typename, serviceProvider);
 
-            var pinfo = type.GetRuntimeProperties().FirstOrDefault(pi => pi.Name == membername && pi.GetMethod.IsStatic);
+            var pinfo = type.GetRuntimeProperties().FirstOrDefault(pi => pi.GetMethod != null && pi.Name == membername && pi.GetMethod.IsStatic);
             if (pinfo != null)
-                return pinfo.GetMethod.Invoke(null, new object[] { });
+                return pinfo.GetMethod?.Invoke(null, Array.Empty<object>());
 
             var finfo = type.GetRuntimeFields().FirstOrDefault(fi => fi.Name == membername && fi.IsStatic);
             if (finfo != null)

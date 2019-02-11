@@ -112,18 +112,13 @@ namespace Tizen.Applications
             _backend.AddEventHandler<RegionFormatChangedEventArgs>(EventType.RegionFormatChanged, OnRegionFormatChanged);
             _backend.AddEventHandler<DeviceOrientationEventArgs>(EventType.DeviceOrientationChanged, OnDeviceOrientationChanged);
 
-            string[] argsClone = null;
-
-            if (args == null)
+            string[] argsClone = new string[args.Length + 1];
+            if (args.Length > 1)
             {
-                argsClone = new string[1];
-            }
-            else
-            {
-                argsClone = new string[args.Length + 1];
                 args.CopyTo(argsClone, 1);
             }
             argsClone[0] = string.Empty;
+
             _backend.Run(argsClone);
         }
 
@@ -171,6 +166,7 @@ namespace Tizen.Applications
         /// Overrides this method if want to handle behavior when the system memory is low.
         /// If base.OnLowMemory() is not called, the event 'LowMemory' will not be emitted.
         /// </summary>
+        /// <param name="e">The low memory event argument</param>
         /// <since_tizen> 3 </since_tizen>
         protected virtual void OnLowMemory(LowMemoryEventArgs e)
         {
@@ -182,6 +178,7 @@ namespace Tizen.Applications
         /// Overrides this method if want to handle behavior when the system battery is low.
         /// If base.OnLowBattery() is not called, the event 'LowBattery' will not be emitted.
         /// </summary>
+        /// <param name="e">The low battery event argument</param>
         /// <since_tizen> 3 </since_tizen>
         protected virtual void OnLowBattery(LowBatteryEventArgs e)
         {
@@ -192,6 +189,7 @@ namespace Tizen.Applications
         /// Overrides this method if want to handle behavior when the system language is changed.
         /// If base.OnLocaleChanged() is not called, the event 'LocaleChanged' will not be emitted.
         /// </summary>
+        /// <param name="e">The locale changed event argument</param>
         /// <since_tizen> 3 </since_tizen>
         protected virtual void OnLocaleChanged(LocaleChangedEventArgs e)
         {
@@ -203,6 +201,7 @@ namespace Tizen.Applications
         /// Overrides this method if want to handle behavior when the region format is changed.
         /// If base.OnRegionFormatChanged() is not called, the event 'RegionFormatChanged' will not be emitted.
         /// </summary>
+        /// <param name="e">The region format changed event argument</param>
         /// <since_tizen> 3 </since_tizen>
         protected virtual void OnRegionFormatChanged(RegionFormatChangedEventArgs e)
         {
@@ -213,6 +212,7 @@ namespace Tizen.Applications
         /// Overrides this method if want to handle behavior when the device orientation is changed.
         /// If base.OnRegionFormatChanged() is not called, the event 'RegionFormatChanged' will not be emitted.
         /// </summary>
+        /// <param name="e">The device orientation changed event argument</param>
         /// <since_tizen> 3 </since_tizen>
         protected virtual void OnDeviceOrientationChanged(DeviceOrientationEventArgs e)
         {

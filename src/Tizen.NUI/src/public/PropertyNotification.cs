@@ -15,11 +15,13 @@
  *
  */
 
+using System;
+using System.Runtime.InteropServices;
+using System.ComponentModel;
+
 namespace Tizen.NUI
 {
 
-    using System;
-    using System.Runtime.InteropServices;
 
     ///<summary>
     /// Issues a notification upon a condition of the property being met.
@@ -30,81 +32,34 @@ namespace Tizen.NUI
     {
         private global::System.Runtime.InteropServices.HandleRef swigCPtr;
 
+        private DaliEventHandler<object, NotifyEventArgs> _propertyNotificationNotifyEventHandler;
+        private NotifyEventCallbackDelegate _propertyNotificationNotifyEventCallbackDelegate;
+
+        /// <summary>
+        /// Create a instance of PropertyNotification.
+        /// </summary>
+        /// <since_tizen> 4 </since_tizen>
+        public PropertyNotification() : this(NDalicPINVOKE.new_PropertyNotification__SWIG_0(), true)
+        {
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        /// <summary>
+        /// Create a instance of PropertyNotification.
+        /// </summary>
+        /// <since_tizen> 4 </since_tizen>
+        public PropertyNotification(PropertyNotification handle) : this(NDalicPINVOKE.new_PropertyNotification__SWIG_1(PropertyNotification.getCPtr(handle)), true)
+        {
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
         internal PropertyNotification(global::System.IntPtr cPtr, bool cMemoryOwn) : base(NDalicPINVOKE.PropertyNotification_SWIGUpcast(cPtr), cMemoryOwn)
         {
             swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
         }
 
-        internal static global::System.Runtime.InteropServices.HandleRef getCPtr(PropertyNotification obj)
-        {
-            return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
-        }
-
-        /// <summary>
-        /// Dispose.
-        /// </summary>
-        /// <since_tizen> 4 </since_tizen>
-        protected override void Dispose(DisposeTypes type)
-        {
-            if (disposed)
-            {
-                return;
-            }
-
-            if (type == DisposeTypes.Explicit)
-            {
-                //Called by User
-                //Release your own managed resources here.
-                //You should release all of your own disposable objects here.
-
-            }
-
-            //Release your own unmanaged resources here.
-            //You should not access any managed member here except static instance.
-            //because the execution order of Finalizes is non-deterministic.
-
-            if (swigCPtr.Handle != global::System.IntPtr.Zero)
-            {
-                if (swigCMemOwn)
-                {
-                    swigCMemOwn = false;
-                    NDalicPINVOKE.delete_PropertyNotification(swigCPtr);
-                }
-                swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
-            }
-
-            base.Dispose(type);
-        }
-
-        ///<summary>
-        /// Event arguments that passed via Notify signal
-        ///</summary>
-        /// <since_tizen> 3 </since_tizen>
-        public class NotifyEventArgs : EventArgs
-        {
-            private PropertyNotification _propertyNotification;
-
-            ///<summary>
-            /// PropertyNotification - is the PropertyNotification handle that has the notification properties.
-            ///</summary>
-            /// <since_tizen> 3 </since_tizen>
-            public PropertyNotification PropertyNotification
-            {
-                get
-                {
-                    return _propertyNotification;
-                }
-                set
-                {
-                    _propertyNotification = value;
-                }
-            }
-        }
-
         [UnmanagedFunctionPointer(CallingConvention.StdCall)]
         private delegate void NotifyEventCallbackDelegate(IntPtr propertyNotification);
-        private DaliEventHandler<object, NotifyEventArgs> _propertyNotificationNotifyEventHandler;
-        private NotifyEventCallbackDelegate _propertyNotificationNotifyEventCallbackDelegate;
 
         ///<summary>
         /// Event for Notified signal which can be used to subscribe/unsubscribe the event handler
@@ -142,17 +97,32 @@ namespace Tizen.NUI
             }
         }
 
-        // Callback for PropertyNotification NotifySignal
-        private void OnPropertyNotificationNotify(IntPtr propertyNotification)
+        /// <summary>
+        /// Enumeration for description of how to check condition.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
+        public enum NotifyMode
         {
-            NotifyEventArgs e = new NotifyEventArgs();
-            e.PropertyNotification = GetPropertyNotificationFromPtr(propertyNotification);
-
-            if (_propertyNotificationNotifyEventHandler != null)
-            {
-                //here we send all data to user event handlers
-                _propertyNotificationNotifyEventHandler(this, e);
-            }
+            /// <summary>
+            /// Don't notify, regardless of result of Condition
+            /// </summary>
+            /// <since_tizen> 3 </since_tizen>
+            Disabled,
+            /// <summary>
+            /// Notify whenever condition changes from false to true.
+            /// </summary>
+            /// <since_tizen> 3 </since_tizen>
+            NotifyOnTrue,
+            /// <summary>
+            /// Notify whenever condition changes from true to false.
+            /// </summary>
+            /// <since_tizen> 3 </since_tizen>
+            NotifyOnFalse,
+            /// <summary>
+            /// Notify whenever condition changes (false to true, and true to false)
+            /// </summary>
+            /// <since_tizen> 3 </since_tizen>
+            NotifyOnChanged
         }
 
         /// <summary>
@@ -162,20 +132,13 @@ namespace Tizen.NUI
         /// <param name="cPtr">An object of IntPtr type.</param>
         /// <returns>An object of the PropertyNotification type.</returns>
         /// <since_tizen> 4 </since_tizen>
+        /// This will be changed internal API after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public static PropertyNotification GetPropertyNotificationFromPtr(global::System.IntPtr cPtr)
         {
             PropertyNotification ret = new PropertyNotification(cPtr, false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
-        }
-
-        /// <summary>
-        /// Create a instance of PropertyNotification.
-        /// </summary>
-        /// <since_tizen> 4 </since_tizen>
-        public PropertyNotification() : this(NDalicPINVOKE.new_PropertyNotification__SWIG_0(), true)
-        {
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         /// <summary>
@@ -192,20 +155,13 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Create a instance of PropertyNotification.
-        /// </summary>
-        /// <since_tizen> 4 </since_tizen>
-        public PropertyNotification(PropertyNotification handle) : this(NDalicPINVOKE.new_PropertyNotification__SWIG_1(PropertyNotification.getCPtr(handle)), true)
-        {
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-        }
-
-        /// <summary>
         /// Assign.
         /// </summary>
         /// <param name="rhs">A reference to the copied handle.</param>
         /// <returns>A reference to this.</returns>
         /// <since_tizen> 4 </since_tizen>
+        /// This will be changed internal API after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public PropertyNotification Assign(PropertyNotification rhs)
         {
             PropertyNotification ret = new PropertyNotification(NDalicPINVOKE.PropertyNotification_Assign(swigCPtr, PropertyNotification.getCPtr(rhs)), false);
@@ -288,6 +244,8 @@ namespace Tizen.NUI
         /// </summary>
         /// <returns>A signal object to Connect() with</returns>
         /// <since_tizen> 4 </since_tizen>
+        /// This will be changed internal API after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public PropertyNotifySignal NotifySignal()
         {
             PropertyNotifySignal ret = new PropertyNotifySignal(NDalicPINVOKE.PropertyNotification_NotifySignal(swigCPtr), false);
@@ -295,32 +253,83 @@ namespace Tizen.NUI
             return ret;
         }
 
-        /// <summary>
-        /// Enumeration for description of how to check condition.
-        /// </summary>
-        /// <since_tizen> 3 </since_tizen>
-        public enum NotifyMode
+        internal static global::System.Runtime.InteropServices.HandleRef getCPtr(PropertyNotification obj)
         {
-            /// <summary>
-            /// Don't notify, regardless of result of Condition
-            /// </summary>
+            return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
+        }
+
+        /// <summary>
+        /// Dispose.
+        /// </summary>
+        /// <since_tizen> 4 </since_tizen>
+        protected override void Dispose(DisposeTypes type)
+        {
+            if (disposed)
+            {
+                return;
+            }
+
+            if (type == DisposeTypes.Explicit)
+            {
+                //Called by User
+                //Release your own managed resources here.
+                //You should release all of your own disposable objects here.
+
+            }
+
+            //Release your own unmanaged resources here.
+            //You should not access any managed member here except static instance.
+            //because the execution order of Finalizes is non-deterministic.
+
+            if (swigCPtr.Handle != global::System.IntPtr.Zero)
+            {
+                if (swigCMemOwn)
+                {
+                    swigCMemOwn = false;
+                    NDalicPINVOKE.delete_PropertyNotification(swigCPtr);
+                }
+                swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
+            }
+
+            base.Dispose(type);
+        }
+
+        // Callback for PropertyNotification NotifySignal
+        private void OnPropertyNotificationNotify(IntPtr propertyNotification)
+        {
+            NotifyEventArgs e = new NotifyEventArgs();
+            e.PropertyNotification = GetPropertyNotificationFromPtr(propertyNotification);
+
+            if (_propertyNotificationNotifyEventHandler != null)
+            {
+                //here we send all data to user event handlers
+                _propertyNotificationNotifyEventHandler(this, e);
+            }
+        }
+
+        ///<summary>
+        /// Event arguments that passed via Notify signal
+        ///</summary>
+        /// <since_tizen> 3 </since_tizen>
+        public class NotifyEventArgs : EventArgs
+        {
+            private PropertyNotification _propertyNotification;
+
+            ///<summary>
+            /// PropertyNotification - is the PropertyNotification handle that has the notification properties.
+            ///</summary>
             /// <since_tizen> 3 </since_tizen>
-            Disabled,
-            /// <summary>
-            /// Notify whenever condition changes from false to true.
-            /// </summary>
-            /// <since_tizen> 3 </since_tizen>
-            NotifyOnTrue,
-            /// <summary>
-            /// Notify whenever condition changes from true to false.
-            /// </summary>
-            /// <since_tizen> 3 </since_tizen>
-            NotifyOnFalse,
-            /// <summary>
-            /// Notify whenever condition changes (false to true, and true to false)
-            /// </summary>
-            /// <since_tizen> 3 </since_tizen>
-            NotifyOnChanged
+            public PropertyNotification PropertyNotification
+            {
+                get
+                {
+                    return _propertyNotification;
+                }
+                set
+                {
+                    _propertyNotification = value;
+                }
+            }
         }
 
     }

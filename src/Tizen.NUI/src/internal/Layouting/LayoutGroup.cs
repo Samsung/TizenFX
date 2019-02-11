@@ -129,7 +129,6 @@ namespace Tizen.NUI
         protected override void OnLayout(bool changed, LayoutLength left, LayoutLength top, LayoutLength right, LayoutLength bottom)
         {
             Log.Info("NUI", "OnLayout\n");
-
             for( uint i = 0; i < ChildCount; ++i )
             {
                 var childLayout = GetChildAt( i );
@@ -162,9 +161,9 @@ namespace Tizen.NUI
         /// </summary>
         /// <param name="newSize">The new size of the layout.</param>
         /// <param name="oldSize">The old size of the layout.</param>
-        protected virtual void OnSizeChanged(LayoutSize newSize, LayoutSize oldSize)
+        protected override void OnSizeChanged(LayoutSize newSize, LayoutSize oldSize)
         {
-
+            //Do nothing
         }
 
         /// <summary>

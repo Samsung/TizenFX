@@ -14,6 +14,7 @@
  * limitations under the License.
  *
  */
+using System.ComponentModel;
 
 namespace Tizen.NUI
 {
@@ -25,14 +26,57 @@ namespace Tizen.NUI
     {
         private global::System.Runtime.InteropServices.HandleRef swigCPtr;
 
-        internal Shader(global::System.IntPtr cPtr, bool cMemoryOwn) : base(NDalicPINVOKE.Shader_SWIGUpcast(cPtr), cMemoryOwn)
+        /// <summary>
+        /// Creates Shader object.
+        /// </summary>
+        /// <param name="vertexShader">The vertex shader code for the effect.</param>
+        /// <param name="fragmentShader">The fragment Shader code for the effect.</param>
+        /// <param name="hints">The hints to define the geometry of the rendered object.</param>
+        /// <since_tizen> 3 </since_tizen>
+        public Shader(string vertexShader, string fragmentShader, Shader.Hint.Value hints) : this(NDalicPINVOKE.Shader_New__SWIG_0(vertexShader, fragmentShader, (int)hints), true)
         {
-            swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+
+        }
+
+        /// <summary>
+        /// Creates Shader object.
+        /// </summary>
+        /// <param name="vertexShader">The vertex shader code for the effect.</param>
+        /// <param name="fragmentShader">The fragment Shader code for the effect.</param>
+        /// <since_tizen> 3 </since_tizen>
+        public Shader(string vertexShader, string fragmentShader) : this(NDalicPINVOKE.Shader_New__SWIG_1(vertexShader, fragmentShader), true)
+        {
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+
+        }
+
+        /// <summary>
+        /// Gets and Sets the program property.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
+        public Tizen.NUI.PropertyMap Program
+        {
+            get
+            {
+                Tizen.NUI.PropertyMap temp = new Tizen.NUI.PropertyMap();
+                Tizen.NUI.Object.GetProperty(swigCPtr, Shader.Property.PROGRAM).Get(temp);
+                return temp;
+            }
+            set
+            {
+                Tizen.NUI.Object.SetProperty(swigCPtr, Shader.Property.PROGRAM, new Tizen.NUI.PropertyValue(value));
+            }
         }
 
         internal static global::System.Runtime.InteropServices.HandleRef getCPtr(Shader obj)
         {
             return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
+        }
+
+        internal Shader(global::System.IntPtr cPtr, bool cMemoryOwn) : base(NDalicPINVOKE.Shader_SWIGUpcast(cPtr), cMemoryOwn)
+        {
+            swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
         }
 
         /// <summary>
@@ -107,6 +151,8 @@ namespace Tizen.NUI
         /// Enumeration for instances of properties belonging to the Shader class.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        /// This will be changed internal API after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public class Property
         {
             /// <summary>
@@ -114,52 +160,9 @@ namespace Tizen.NUI
             /// Format: {"vertex":"","fragment":"",hints:"","vertexPrefix":"","fragmentPrefix":""}
             /// </summary>
             /// <since_tizen> 3 </since_tizen>
+            /// This will be changed internal API after ACR done. Before ACR, need to be hidden as inhouse API.
+            [EditorBrowsable(EditorBrowsableState.Never)]
             public static readonly int PROGRAM = NDalicPINVOKE.Shader_Property_PROGRAM_get();
         }
-
-        /// <summary>
-        /// Creates Shader object.
-        /// </summary>
-        /// <param name="vertexShader">The vertex shader code for the effect.</param>
-        /// <param name="fragmentShader">The fragment Shader code for the effect.</param>
-        /// <param name="hints">The hints to define the geometry of the rendered object.</param>
-        /// <since_tizen> 3 </since_tizen>
-        public Shader(string vertexShader, string fragmentShader, Shader.Hint.Value hints) : this(NDalicPINVOKE.Shader_New__SWIG_0(vertexShader, fragmentShader, (int)hints), true)
-        {
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-
-        }
-
-        /// <summary>
-        /// Creates Shader object.
-        /// </summary>
-        /// <param name="vertexShader">The vertex shader code for the effect.</param>
-        /// <param name="fragmentShader">The fragment Shader code for the effect.</param>
-        /// <since_tizen> 3 </since_tizen>
-        public Shader(string vertexShader, string fragmentShader) : this(NDalicPINVOKE.Shader_New__SWIG_1(vertexShader, fragmentShader), true)
-        {
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-
-        }
-
-
-        /// <summary>
-        /// Gets and Sets the program property.
-        /// </summary>
-        /// <since_tizen> 3 </since_tizen>
-        public Tizen.NUI.PropertyMap Program
-        {
-            get
-            {
-                Tizen.NUI.PropertyMap temp = new Tizen.NUI.PropertyMap();
-                Tizen.NUI.Object.GetProperty(swigCPtr, Shader.Property.PROGRAM).Get(temp);
-                return temp;
-            }
-            set
-            {
-                Tizen.NUI.Object.SetProperty(swigCPtr, Shader.Property.PROGRAM, new Tizen.NUI.PropertyValue(value));
-            }
-        }
     }
-
 }

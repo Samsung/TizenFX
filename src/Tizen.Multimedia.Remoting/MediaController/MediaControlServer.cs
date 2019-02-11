@@ -105,7 +105,6 @@ namespace Tizen.Multimedia.Remoting
 
             try
             {
-                RegisterPlaybackCommandReceivedEvent();
                 RegisterPlaybackActionCommandReceivedEvent();
                 RegisterPlaybackPositionCommandReceivedEvent();
                 RegisterPlaylistCommandReceivedEvent();

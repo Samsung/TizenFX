@@ -1,14 +1,14 @@
 {
   "runtimeTarget": {
     "name": ".NETCoreApp,Version=v2.0",
-    "signature": "c90303c5d0baaa71801ec3ac12b8874a1a1a341b"
+    "signature": "2fc82585dcddaec47eca18d7e283975ba2b60422"
   },
   "compilationOptions": {},
   "targets": {
     ".NETCoreApp,Version=v2.0": {
       "ABIChecker/1.0.0": {
         "dependencies": {
-          "CommandLineParser": "2.2.1",
+          "CommandLineParser": "2.4.3",
           "Microsoft.CodeAnalysis": "2.6.1",
           "Microsoft.Extensions.DependencyModel": "2.0.4",
           "System.Runtime.Loader": "4.3.0"
@@ -17,24 +17,12 @@
           "ABIChecker.dll": {}
         }
       },
-      "CommandLineParser/2.2.1": {
-        "dependencies": {
-          "System.Collections": "4.3.0",
-          "System.Console": "4.3.0",
-          "System.Diagnostics.Debug": "4.3.0",
-          "System.Globalization": "4.3.0",
-          "System.IO": "4.3.0",
-          "System.Linq": "4.3.0",
-          "System.Linq.Expressions": "4.3.0",
-          "System.Reflection": "4.3.0",
-          "System.Reflection.Extensions": "4.3.0",
-          "System.Reflection.TypeExtensions": "4.3.0",
-          "System.Resources.ResourceManager": "4.3.0",
-          "System.Runtime": "4.3.0",
-          "System.Runtime.Extensions": "4.3.0"
-        },
+      "CommandLineParser/2.4.3": {
         "runtime": {
-          "lib/netstandard1.5/CommandLine.dll": {}
+          "lib/netstandard2.0/CommandLine.dll": {
+            "assemblyVersion": "2.4.3.0",
+            "fileVersion": "2.4.3.0"
+          }
         }
       },
       "Microsoft.CodeAnalysis/2.6.1": {
@@ -87,7 +75,10 @@
           "System.Xml.XmlDocument": "4.3.0"
         },
         "runtime": {
-          "lib/netstandard1.3/Microsoft.CodeAnalysis.dll": {}
+          "lib/netstandard1.3/Microsoft.CodeAnalysis.dll": {
+            "assemblyVersion": "2.6.0.0",
+            "fileVersion": "2.6.1.62414"
+          }
         }
       },
       "Microsoft.CodeAnalysis.CSharp/2.6.1": {
@@ -95,7 +86,10 @@
           "Microsoft.CodeAnalysis.Common": "2.6.1"
         },
         "runtime": {
-          "lib/netstandard1.3/Microsoft.CodeAnalysis.CSharp.dll": {}
+          "lib/netstandard1.3/Microsoft.CodeAnalysis.CSharp.dll": {
+            "assemblyVersion": "2.6.0.0",
+            "fileVersion": "2.6.1.62414"
+          }
         }
       },
       "Microsoft.CodeAnalysis.CSharp.Workspaces/2.6.1": {
@@ -104,7 +98,10 @@
           "Microsoft.CodeAnalysis.Workspaces.Common": "2.6.1"
         },
         "runtime": {
-          "lib/netstandard1.3/Microsoft.CodeAnalysis.CSharp.Workspaces.dll": {}
+          "lib/netstandard1.3/Microsoft.CodeAnalysis.CSharp.Workspaces.dll": {
+            "assemblyVersion": "2.6.0.0",
+            "fileVersion": "2.6.1.62414"
+          }
         }
       },
       "Microsoft.CodeAnalysis.VisualBasic/2.6.1": {
@@ -112,7 +109,10 @@
           "Microsoft.CodeAnalysis.Common": "2.6.1"
         },
         "runtime": {
-          "lib/netstandard1.3/Microsoft.CodeAnalysis.VisualBasic.dll": {}
+          "lib/netstandard1.3/Microsoft.CodeAnalysis.VisualBasic.dll": {
+            "assemblyVersion": "2.6.0.0",
+            "fileVersion": "2.6.1.62414"
+          }
         }
       },
       "Microsoft.CodeAnalysis.VisualBasic.Workspaces/2.6.1": {
@@ -121,7 +121,10 @@
           "Microsoft.CodeAnalysis.Workspaces.Common": "2.6.1"
         },
         "runtime": {
-          "lib/netstandard1.3/Microsoft.CodeAnalysis.VisualBasic.Workspaces.dll": {}
+          "lib/netstandard1.3/Microsoft.CodeAnalysis.VisualBasic.Workspaces.dll": {
+            "assemblyVersion": "2.6.0.0",
+            "fileVersion": "2.6.1.62414"
+          }
         }
       },
       "Microsoft.CodeAnalysis.Workspaces.Common/2.6.1": {
@@ -135,7 +138,10 @@
           "System.Threading.Tasks.Parallel": "4.3.0"
         },
         "runtime": {
-          "lib/netstandard1.3/Microsoft.CodeAnalysis.Workspaces.dll": {}
+          "lib/netstandard1.3/Microsoft.CodeAnalysis.Workspaces.dll": {
+            "assemblyVersion": "2.6.0.0",
+            "fileVersion": "2.6.1.62414"
+          }
         }
       },
       "Microsoft.CSharp/4.0.1": {
@@ -170,7 +176,10 @@
           "System.Runtime.InteropServices.RuntimeInformation": "4.0.0"
         },
         "runtime": {
-          "lib/netstandard1.3/Microsoft.DotNet.PlatformAbstractions.dll": {}
+          "lib/netstandard1.3/Microsoft.DotNet.PlatformAbstractions.dll": {
+            "assemblyVersion": "2.0.4.0",
+            "fileVersion": "2.0.4.0"
+          }
         }
       },
       "Microsoft.Extensions.DependencyModel/2.0.4": {
@@ -182,7 +191,10 @@
           "System.Linq": "4.3.0"
         },
         "runtime": {
-          "lib/netstandard1.6/Microsoft.Extensions.DependencyModel.dll": {}
+          "lib/netstandard1.6/Microsoft.Extensions.DependencyModel.dll": {
+            "assemblyVersion": "2.0.4.0",
+            "fileVersion": "2.0.4.0"
+          }
         }
       },
       "Microsoft.NETCore.Targets/1.1.0": {},
@@ -212,7 +224,10 @@
           "System.Xml.XDocument": "4.3.0"
         },
         "runtime": {
-          "lib/netstandard1.0/Newtonsoft.Json.dll": {}
+          "lib/netstandard1.0/Newtonsoft.Json.dll": {
+            "assemblyVersion": "9.0.0.0",
+            "fileVersion": "9.0.1.19813"
+          }
         }
       },
       "runtime.debian.8-x64.runtime.native.System.Security.Cryptography.OpenSsl/4.3.0": {
@@ -398,7 +413,10 @@
           "System.Runtime": "4.3.0"
         },
         "runtime": {
-          "lib/netstandard1.0/System.Composition.AttributedModel.dll": {}
+          "lib/netstandard1.0/System.Composition.AttributedModel.dll": {
+            "assemblyVersion": "1.0.31.0",
+            "fileVersion": "4.6.24705.1"
+          }
         }
       },
       "System.Composition.Convention/1.0.31": {
@@ -417,7 +435,10 @@
           "System.Threading": "4.3.0"
         },
         "runtime": {
-          "lib/netstandard1.0/System.Composition.Convention.dll": {}
+          "lib/netstandard1.0/System.Composition.Convention.dll": {
+            "assemblyVersion": "1.0.31.0",
+            "fileVersion": "4.6.24705.1"
+          }
         }
       },
       "System.Composition.Hosting/1.0.31": {
@@ -437,7 +458,10 @@
           "System.Threading": "4.3.0"
         },
         "runtime": {
-          "lib/netstandard1.0/System.Composition.Hosting.dll": {}
+          "lib/netstandard1.0/System.Composition.Hosting.dll": {
+            "assemblyVersion": "1.0.31.0",
+            "fileVersion": "4.6.24705.1"
+          }
         }
       },
       "System.Composition.Runtime/1.0.31": {
@@ -452,7 +476,10 @@
           "System.Runtime": "4.3.0"
         },
         "runtime": {
-          "lib/netstandard1.0/System.Composition.Runtime.dll": {}
+          "lib/netstandard1.0/System.Composition.Runtime.dll": {
+            "assemblyVersion": "1.0.31.0",
+            "fileVersion": "4.6.24705.1"
+          }
         }
       },
       "System.Composition.TypedParts/1.0.31": {
@@ -473,7 +500,10 @@
           "System.Runtime.Extensions": "4.3.0"
         },
         "runtime": {
-          "lib/netstandard1.0/System.Composition.TypedParts.dll": {}
+          "lib/netstandard1.0/System.Composition.TypedParts.dll": {
+            "assemblyVersion": "1.0.31.0",
+            "fileVersion": "4.6.24705.1"
+          }
         }
       },
       "System.Console/4.3.0": {
@@ -1020,11 +1050,15 @@
         "runtimeTargets": {
           "runtimes/unix/lib/netstandard1.3/System.Text.Encoding.CodePages.dll": {
             "rid": "unix",
-            "assetType": "runtime"
+            "assetType": "runtime",
+            "assemblyVersion": "4.0.2.0",
+            "fileVersion": "4.6.24705.1"
           },
           "runtimes/win/lib/netstandard1.3/System.Text.Encoding.CodePages.dll": {
             "rid": "win",
-            "assetType": "runtime"
+            "assetType": "runtime",
+            "assemblyVersion": "4.0.2.0",
+            "fileVersion": "4.6.24705.1"
           }
         }
       },
@@ -1166,12 +1200,12 @@
       "serviceable": false,
       "sha512": ""
     },
-    "CommandLineParser/2.2.1": {
+    "CommandLineParser/2.4.3": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-s+cVeOzKcoPu0IWda5DPd0b9K7vfKqo17aOOrj5zsUnE5n3Bts8vutn5R3KYqBlnbuqQEXzJT7IhAkRKMXouzw==",
-      "path": "commandlineparser/2.2.1",
-      "hashPath": "commandlineparser.2.2.1.nupkg.sha512"
+      "sha512": "sha512-3/WpSCsHNo4aTSaNW9SnmSqRNDgR4meKVJn5anKZn/hR/lGnDp8HbDMu1/w2GXOXi2rAhREU1cNwQMtEtlR1mg==",
+      "path": "commandlineparser/2.4.3",
+      "hashPath": "commandlineparser.2.4.3.nupkg.sha512"
     },
     "Microsoft.CodeAnalysis/2.6.1": {
       "type": "package",
@@ -1414,7 +1448,7 @@
     "System.Composition/1.0.31": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-I+D26qpYdoklyAVUdqwUBrEIckMNjAYnuPJy/h9dsQItpQwVREkDFs4b4tkBza0kT2Yk48Lcfsv2QQ9hWsh9Iw==",
+      "sha512": "sha512-CbzwbjxT04VU+JzQuPOYfUCybzBtbGZdqGJS9482dDBoBHbt3Zz0QAJ/Cjzpmq5xdL+hhW4FYWf/3wq2OCVXgg==",
       "path": "system.composition/1.0.31",
       "hashPath": "system.composition.1.0.31.nupkg.sha512"
     },
@@ -1435,7 +1469,7 @@
     "System.Composition.Hosting/1.0.31": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-fN1bT4RX4vUqjbgoyuJFVUizAl2mYF5VAb+bVIxIYZSSc0BdnX+yGAxcavxJuDDCQ1K+/mdpgyEFc8e9ikjvrg==",
+      "sha512": "sha512-KlZ4qkaa1p/U2WKr353XeQ9bjrxBwn9FcD5k9WFEuV1MloDMnTnhUwQU7h1WigvsCYykzoRdnDLq33wnUPwBeg==",
       "path": "system.composition.hosting/1.0.31",
       "hashPath": "system.composition.hosting.1.0.31.nupkg.sha512"
     },
@@ -1463,7 +1497,7 @@
     "System.Diagnostics.Contracts/4.3.0": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-eelRRbnm+OloiQvp9CXS0ixjNQldjjkHO4iIkR5XH2VIP8sUB/SIpa1TdUW6/+HDcQ+MlhP3pNa1u5SbzYuWGA==",
+      "sha512": "sha512-BQcxLgTgNS9a0Um9ASMIMumpmAmAMFXcQO/lMvNRsTg7tLY50Bp4fEJkg+uozATg8Sj2y9nDfpTeR2ImhIafaw==",
       "path": "system.diagnostics.contracts/4.3.0",
       "hashPath": "system.diagnostics.contracts.4.3.0.nupkg.sha512"
     },
@@ -1568,7 +1602,7 @@
     "System.Linq.Parallel/4.3.0": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-td7x21K8LalpjTWCzW/nQboQIFbq9i0r+PCyBBCdLWWnm4NBcdN18vpz/G9hCpUaCIfRL+ZxJNVTywlNlB1aLQ==",
+      "sha512": "sha512-rvw62DwbrjHnE4aQUxCGGLeF3sfC5Pyv+O+1ZmfnFY3SLc31YwZo1dhjABihOVQUh4drpQ5wWQB8hVQbtGkxww==",
       "path": "system.linq.parallel/4.3.0",
       "hashPath": "system.linq.parallel.4.3.0.nupkg.sha512"
     },

@@ -175,7 +175,7 @@ namespace Tizen.NUI.Xaml
             {
                 // Modify the namespace
                 var propname =
-                    parameter.CustomAttributes.First(ca => ca.AttributeType.FullName == "Tizen.NUI.Binding.ParameterAttribute")
+                    parameter.CustomAttributes.First(ca => ca.AttributeType.FullName == "Tizen.NUI.Binding.ParameterAttribute")?
                         .ConstructorArguments.First()
                         .Value as string;
                 if (!node.Properties.ContainsKey(new XmlName("", propname)))
@@ -197,7 +197,7 @@ namespace Tizen.NUI.Xaml
                             ci.GetParameters().Length != 0 && ci.IsPublic &&
                             ci.GetParameters().All(pi => pi.CustomAttributes.Any(attr => attr.AttributeType == typeof (ParameterAttribute))));
             object[] arguments = CreateArgumentsArray(node, ctorInfo);
-            return ctorInfo.Invoke(arguments);
+            return ctorInfo?.Invoke(arguments);
         }
 
         public object CreateFromFactory(Type nodeType, IElementNode node)
@@ -283,7 +283,7 @@ namespace Tizen.NUI.Xaml
             {
                 var parameter = ctorInfo.GetParameters()[i];
                 var propname =
-                    parameter.CustomAttributes.First(attr => attr.AttributeType == typeof (ParameterAttribute))
+                    parameter?.CustomAttributes?.First(attr => attr.AttributeType == typeof (ParameterAttribute))?
                         .ConstructorArguments.First()
                         .Value as string;
                 var name = new XmlName("", propname);
