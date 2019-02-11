@@ -892,8 +892,8 @@ namespace Tizen.Applications.WatchfaceComplication
         {
             if (!_disposed)
             {
-                Interop.WatchfaceComplication.Destroy(_handle);
                 Interop.WatchfaceComplication.RemoveUpdatedCallback(_handle, _updatedCallback);
+                Interop.WatchfaceComplication.Destroy(_handle);
                 _disposed = true;
             }
         }
