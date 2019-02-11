@@ -1009,8 +1009,10 @@ namespace Tizen.NUI
                 e.Application = this;
                 _applicationTerminateEventHandler.Invoke(this, e);
             }
-
-            Window.Instance.DisconnectNativeSignals();
+            if (Window.Instance)
+            {
+                Window.Instance.DisconnectNativeSignals();
+            }
         }
 
         /**
