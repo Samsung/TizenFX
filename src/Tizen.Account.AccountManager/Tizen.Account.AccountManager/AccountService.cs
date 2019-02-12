@@ -141,15 +141,22 @@ namespace Tizen.Account.AccountManager
         /// <exception cref="NotSupportedException">The required feature is not supported.</exception>
         public static Account GetAccountById(int accountId)
         {
-            Account account = Account.CreateAccount();
-            SafeAccountHandle handle = account.SafeAccountHandle;
+            AccountError err = (AccountError)Interop.Account.CreateUnmanagedHandle(out IntPtr handle);
+            if (err != AccountError.None)
+            {
+                Log.Warn(AccountErrorFactory.LogTag, "Failed to create handle");
+                throw AccountErrorFactory.CreateException(err, "Failed to create unmanaged handle");
+            }
 
-            AccountError res = (AccountError)Interop.AccountService.QueryAccountById(accountId, ref handle);
+            SafeAccountHandle accountHandle = new SafeAccountHandle(handle, false);
+
+            AccountError res = (AccountError)Interop.AccountService.QueryAccountById(accountId, ref accountHandle);
             if (res != AccountError.None)
             {
                 throw AccountErrorFactory.CreateException(res, "Failed to get accounts from the database for account id: " + accountId);
             }
-            Account ref_account = new Account(handle);
+
+            Account ref_account = new Account(accountHandle);
 
             return ref_account;
         }
