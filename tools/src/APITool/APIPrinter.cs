@@ -68,7 +68,7 @@ namespace APITool
 
         protected override void ProcessField(FieldDefinition fieldDef)
         {
-            if (fieldDef.IsPublic && fieldDef.IsLiteral)
+            if (fieldDef.IsPublic)
             {
                 bool isHidden = IsHidden(fieldDef.CustomAttributes);
                 if ((_isPrintAll || _options.PrintFields) && (_options.PrintHiddens || !isHidden))
