@@ -132,6 +132,10 @@ namespace Tizen.Network.Bluetooth
         internal BluetoothServerSocket(int socketFd)
         {
             Log.Info (Globals.LogTag, "Constructing server socket");
+
+            StaticAcceptStateChanged += OnAcceptStateChanged;
+            StaticConnectionRequested += OnConnectionRequested;
+
             this.socketFd = socketFd;
         }
 
