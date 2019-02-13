@@ -178,7 +178,7 @@ namespace Tizen.Applications
         protected virtual void OnLowMemory(LowMemoryEventArgs e)
         {
             LowMemory?.Invoke(this, e);
-            sTimer = new Timer(new Random().Next() % (10 * 1000));
+            sTimer = new Timer(new Random().Next(10 * 1000));
             sTimer.Elapsed += OnTimedEvent;
             sTimer.AutoReset = false;
             sTimer.Enabled = true;
