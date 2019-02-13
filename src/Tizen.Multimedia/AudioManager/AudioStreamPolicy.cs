@@ -305,6 +305,29 @@ namespace Tizen.Multimedia
         }
 
         /// <summary>
+        /// Checks if any stream from the current AudioStreamPolicy is using the device.
+        /// </summary>
+        /// <returns>true if any audio stream from the current AudioStreamPolicy is using the device; otherwise, false.</returns>
+        /// <param name="device">The device to be checked.</param>
+        /// <exception cref="ArgumentNullException"><paramref name="device"/> is null.</exception>
+        /// <exception cref="InvalidOperationException">An internal error occurs.</exception>
+        /// <exception cref="ObjectDisposedException">The <see cref="AudioStreamPolicy"/> has already been disposed of.</exception>
+        /// <seealso cref="AudioManager.GetConnectedDevices()"/>
+        /// <since_tizen> 6 </since_tizen>
+        public bool IsStreamOnDevice(AudioDevice device)
+        {
+            if (device == null)
+            {
+                throw new ArgumentNullException(nameof(device));
+            }
+
+            var ret = Interop.AudioStreamPolicy.IsStreamOnDevice(Handle, device.Id, out var isOn);
+            ret.ThrowIfError("Failed to check stream on device");
+
+            return isOn;
+        }
+
+        /// <summary>
         /// Releases all resources used by the <see cref="AudioStreamPolicy"/>.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
