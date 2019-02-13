@@ -735,17 +735,19 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
-                PropertyMap map = new PropertyMap();
-                GetProperty(TextLabel.Property.SHADOW).Get(map);
                 Vector2 shadowOffset = new Vector2();
-                map.Find(TextLabel.Property.SHADOW, "offset")?.Get(shadowOffset);
+                Shadow.Find(TextLabel.Property.SHADOW, "offset")?.Get(shadowOffset);
                 return shadowOffset;
             }
             set
             {
                 PropertyMap temp = new PropertyMap();
                 temp.Insert("offset", new PropertyValue(value));
-                SetValue(ShadowProperty, temp);
+
+                PropertyMap shadowMap = Shadow;
+                shadowMap.Merge(temp);
+
+                SetValue(ShadowProperty, shadowMap);
                 NotifyPropertyChanged();
             }
         }
@@ -761,17 +763,19 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
-                PropertyMap map = new PropertyMap();
-                GetProperty(TextLabel.Property.SHADOW).Get(map);
                 Vector4 shadowColor = new Vector4();
-                map.Find(TextLabel.Property.SHADOW, "color")?.Get(shadowColor);
+                Shadow.Find(TextLabel.Property.SHADOW, "color")?.Get(shadowColor);
                 return shadowColor;
             }
             set
             {
                 PropertyMap temp = new PropertyMap();
                 temp.Insert("color", new PropertyValue(value));
-                SetValue(ShadowProperty, temp);
+
+                PropertyMap shadowMap = Shadow;
+                shadowMap.Merge(temp);
+
+                SetValue(ShadowProperty, shadowMap);
                 NotifyPropertyChanged();
             }
         }
@@ -787,18 +791,21 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
-                PropertyMap map = new PropertyMap();
-                GetProperty(TextLabel.Property.UNDERLINE).Get(map);
                 bool underlineEnabled = false;
-                map.Find(TextLabel.Property.UNDERLINE, "enable")?.Get(out underlineEnabled);
+                Underline.Find(TextLabel.Property.UNDERLINE, "enable")?.Get(out underlineEnabled);
                 return underlineEnabled;
             }
             set
             {
                 PropertyMap temp = new PropertyMap();
-                temp.Insert("enable", new PropertyValue(value));
-                SetValue(UnderlineProperty, temp);
+                temp.Add("enable", new PropertyValue(value));
+
+                PropertyMap undelineMap = Underline;
+                undelineMap.Merge(temp);
+
+                SetValue(UnderlineProperty, undelineMap);
                 NotifyPropertyChanged();
+
             }
         }
 
@@ -813,17 +820,19 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
-                PropertyMap map = new PropertyMap();
-                GetProperty(TextLabel.Property.UNDERLINE).Get(map);
                 Vector4 underlineColor = new Vector4();
-                map.Find(TextLabel.Property.UNDERLINE, "color")?.Get(underlineColor);
+                Underline.Find(TextLabel.Property.UNDERLINE, "color")?.Get(underlineColor);
                 return underlineColor;
             }
             set
             {
                 PropertyMap temp = new PropertyMap();
                 temp.Insert("color", new PropertyValue(value));
-                SetValue(UnderlineProperty, temp);
+
+                PropertyMap undelineMap = Underline;
+                undelineMap.Merge(temp);
+
+                SetValue(UnderlineProperty, undelineMap);
                 NotifyPropertyChanged();
             }
         }
@@ -839,17 +848,19 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
-                PropertyMap map = new PropertyMap();
-                GetProperty(TextLabel.Property.UNDERLINE).Get(map);
                 float underlineHeight = 0.0f;
-                map.Find(TextLabel.Property.UNDERLINE, "height")?.Get(out underlineHeight);
+                Underline.Find(TextLabel.Property.UNDERLINE, "height")?.Get(out underlineHeight);
                 return underlineHeight;
             }
             set
             {
                 PropertyMap temp = new PropertyMap();
                 temp.Insert("height", new PropertyValue(value));
-                SetValue(UnderlineProperty, temp);
+
+                PropertyMap undelineMap = Underline;
+                undelineMap.Merge(temp);
+
+                SetValue(UnderlineProperty, undelineMap);
                 NotifyPropertyChanged();
             }
         }
