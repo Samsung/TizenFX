@@ -36,12 +36,6 @@ namespace Tizen.Network.Bluetooth
         internal int socketFd;
         private bool disposed = false;
 
-        internal BluetoothServerSocket()
-        {
-            StaticAcceptStateChanged += OnAcceptStateChanged;
-            StaticConnectionRequested += OnConnectionRequested;
-        }
-
         private void OnConnectionRequested(Object s, SocketConnectionRequestedEventArgs e)
         {
             if (e.SocketFd == socketFd)
