@@ -35,6 +35,16 @@ namespace Tizen.Network.Bluetooth
         private TaskCompletionSource<SocketConnection> _taskForAccept;
         internal int socketFd;
         private bool disposed = false;
+        
+        internal BluetoothServerSocket(int socketFd)
+        {
+            Log.Info (Globals.LogTag, "Constructing server socket");
+
+            StaticAcceptStateChanged += OnAcceptStateChanged;
+            StaticConnectionRequested += OnConnectionRequested;
+
+            this.socketFd = socketFd;
+        }
 
         private void OnConnectionRequested(Object s, SocketConnectionRequestedEventArgs e)
         {
@@ -121,16 +131,6 @@ namespace Tizen.Network.Bluetooth
                 Log.Error(Globals.LogTag, "Failed to unset accept state changed callback, Error - " + (BluetoothError)ret);
                 BluetoothErrorFactory.ThrowBluetoothException(ret);
             }
-        }
-
-        internal BluetoothServerSocket(int socketFd)
-        {
-            Log.Info (Globals.LogTag, "Constructing server socket");
-
-            StaticAcceptStateChanged += OnAcceptStateChanged;
-            StaticConnectionRequested += OnConnectionRequested;
-
-            this.socketFd = socketFd;
         }
 
         /// <summary>
