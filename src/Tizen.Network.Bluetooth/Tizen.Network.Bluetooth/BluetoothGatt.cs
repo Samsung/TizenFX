@@ -257,21 +257,158 @@ namespace Tizen.Network.Bluetooth
     /// The Bluetooth GATT client.
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
-    public class BluetoothGattClient
+    public class BluetoothGattClient : IDisposable
     {
         private BluetoothGattClientImpl _impl;
         private string _remoteAddress = string.Empty;
+        private TaskCompletionSource<bool> _taskForConnection;
+        private TaskCompletionSource<bool> _taskForDisconnection;
+        private static event EventHandler<GattConnectionStateChangedEventArgs> _connectionStateChanged;
 
         internal BluetoothGattClient(string remoteAddress)
         {
             _impl = new BluetoothGattClientImpl(remoteAddress);
             _remoteAddress = remoteAddress;
+            StaticConnectionStateChanged += OnConnectionStateChanged;
         }
 
-        internal static BluetoothGattClient CreateClient(string remoteAddress)
+        /// <summary>
+        /// Creates the Bluetooth GATT client.
+        /// </summary>
+        /// <returns>The BluetoothGattClient instance.</returns>
+        /// <feature>http://tizen.org/feature/network.bluetooth.le.gatt.client</feature>
+        /// <exception cref="NotSupportedException">Thrown when the BT/BTLE is not supported.</exception>
+        /// <exception cref="InvalidOperationException">Thrown when the create GATT client fails.</exception>
+        /// <since_tizen> 6 </since_tizen>
+        public static BluetoothGattClient CreateClient(string remoteAddress)
         {
             BluetoothGattClient client = new BluetoothGattClient(remoteAddress);
             return client.Isvalid() ? client : null;
+        }
+
+        /// <summary>
+        /// The GattConnectionStateChanged event is raised when the gatt connection state is changed.
+        /// </summary>
+        /// <since_tizen> 6 </since_tizen>
+        public event EventHandler<GattConnectionStateChangedEventArgs> GattConnectionStateChanged;
+
+        private void OnConnectionStateChanged(Object s, GattConnectionStateChangedEventArgs e)
+        {
+            if (e.RemoteAddress == _remoteAddress)
+            {
+                if (_taskForConnection != null && !_taskForConnection.Task.IsCompleted)
+                {
+                    if (e.Result == (int)BluetoothError.None)
+                    {
+                        _taskForConnection.SetResult(true);
+                    }
+                    else
+                    {
+                        _taskForConnection.SetException(BluetoothErrorFactory.CreateBluetoothException((int)e.Result));
+                    }
+                    _taskForConnection = null;
+                }
+
+                if (_taskForDisconnection != null && !_taskForDisconnection.Task.IsCompleted)
+                {
+                    if (e.Result == (int)BluetoothError.None)
+                    {
+                        _taskForDisconnection.SetResult(true);
+                    }
+                    else
+                    {
+                        _taskForDisconnection.SetException(BluetoothErrorFactory.CreateBluetoothException(e.Result));
+                    }
+                    _taskForDisconnection = null;
+                }
+
+                GattConnectionStateChanged?.Invoke(this, e);
+            }
+        }
+
+        private static event EventHandler<GattConnectionStateChangedEventArgs> StaticConnectionStateChanged
+        {
+            add
+            {
+                if (_connectionStateChanged == null)
+                {
+                    RegisterConnectionStateChangedEvent();
+                }
+                _connectionStateChanged += value;
+            }
+            remove
+            {
+                _connectionStateChanged -= value;
+                if (_connectionStateChanged == null)
+                {
+                    UnregisterConnectionStateChangedEvent();
+                }
+            }
+        }
+
+        private static void RegisterConnectionStateChangedEvent()
+        {
+            Interop.Bluetooth.GattConnectionStateChangedCallBack _connectionStateChangeCallback = (int result, bool connected, string remoteDeviceAddress, IntPtr userData) =>
+            {
+                Log.Info(Globals.LogTag, "Setting gatt connection state changed callback");
+                GattConnectionStateChangedEventArgs e = new GattConnectionStateChangedEventArgs(result, connected, remoteDeviceAddress);
+                _connectionStateChanged?.Invoke(null, e);
+            };
+
+            int ret = Interop.Bluetooth.SetGattConnectionStateChangedCallback(_connectionStateChangeCallback, IntPtr.Zero);
+            if (ret != (int)BluetoothError.None)
+            {
+                Log.Error(Globals.LogTag, "Failed to set gatt connection state changed callback, Error - " + (BluetoothError)ret);
+                BluetoothErrorFactory.ThrowBluetoothException(ret);
+            }
+        }
+
+        private static void UnregisterConnectionStateChangedEvent()
+        {
+            int ret = Interop.Bluetooth.UnsetGattConnectionStateChangedCallback();
+            if (ret != (int)BluetoothError.None)
+            {
+                Log.Error(Globals.LogTag, "Failed to unset gatt connection state changed callback, Error - " + (BluetoothError)ret);
+                BluetoothErrorFactory.ThrowBluetoothException(ret);
+            }
+        }
+
+        /// <summary>
+        /// Connects to the Bluetooth GATT client asynchronously.
+        /// </summary>
+        /// <returns>The BluetoothGattClient instance.</returns>
+        /// <feature>http://tizen.org/feature/network.bluetooth.le.gatt.client</feature>
+        /// <exception cref="NotSupportedException">Thrown when the BT/BTLE is not supported.</exception>
+        /// <exception cref="InvalidOperationException">Thrown when the create GATT client fails.</exception>
+        /// <since_tizen> 6 </since_tizen>
+        public Task ConnectAsync(bool autoConnect)
+        {
+            if (_taskForConnection != null && !_taskForConnection.Task.IsCompleted)
+            {
+                BluetoothErrorFactory.ThrowBluetoothException((int)BluetoothError.NowInProgress);
+            }
+            _taskForConnection = new TaskCompletionSource<bool>();
+            _impl.Connect(_remoteAddress, autoConnect);
+            return _taskForConnection.Task;
+        }
+
+        /// <summary>
+        /// Creates the Bluetooth GATT client asynchronously.
+        /// </summary>
+        /// <returns>The BluetoothGattClient instance.</returns>
+        /// <feature>http://tizen.org/feature/network.bluetooth.le.gatt.client</feature>
+        /// <exception cref="NotSupportedException">Thrown when the BT/BTLE is not supported.</exception>
+        /// <exception cref="InvalidOperationException">Thrown when the create GATT client fails.</exception>
+        /// <since_tizen> 6 </since_tizen>
+        public Task DisconnectAsync()
+        {
+            if (_taskForDisconnection != null && !_taskForDisconnection.Task.IsCompleted)
+            {
+                BluetoothErrorFactory.ThrowBluetoothException((int)BluetoothError.NowInProgress);
+            }
+            _taskForDisconnection = new TaskCompletionSource<bool>();
+            _impl.Disconnect(_remoteAddress);
+            return _taskForDisconnection.Task;
         }
 
         /// <summary>
@@ -381,6 +518,40 @@ namespace Tizen.Network.Bluetooth
         internal bool Isvalid()
         {
             return _impl.GetHandle().IsInvalid == false;
+        }
+
+        /// <summary>
+        /// Destroys the current object.
+        /// </summary>
+        ~BluetoothGattClient()
+        {
+            Dispose(false);
+        }
+
+        /// <summary>
+        /// Destroys the current object.
+        /// </summary>
+        /// <feature>http://tizen.org/feature/network.bluetooth.le.gatt.client</feature>
+        /// <since_tizen> 6 </since_tizen>
+        public void Dispose()
+        {
+            Dispose(true);
+            GC.SuppressFinalize(this);
+        }
+
+        /// <summary>
+        /// Releases all the resources currently used by this instance.
+        /// </summary>
+        /// <param name="disposing">true if the managed resources should be disposed, otherwise false.</param>
+        /// <since_tizen> 6 </since_tizen>
+        protected virtual void Dispose(bool disposing)
+        {
+            if (disposing)
+            {
+                _impl?.GetHandle()?.Dispose();
+                _impl = null;
+                StaticConnectionStateChanged -= OnConnectionStateChanged;
+            }
         }
     }
 
