@@ -263,7 +263,8 @@ namespace Tizen.Network.Bluetooth
         private string _remoteAddress = string.Empty;
         private TaskCompletionSource<bool> _taskForConnection;
         private TaskCompletionSource<bool> _taskForDisconnection;
-        private static event EventHandler<GattConnectionStateChangedEventArgs> _connectionStateChanged;
+        private static event EventHandler<GattConnectionStateChangedEventArgs> s_connectionStateChanged;
+        private static Interop.Bluetooth.GattConnectionStateChangedCallBack s_connectionStateChangeCallback;
 
         internal BluetoothGattClient(string remoteAddress)
         {
@@ -287,10 +288,10 @@ namespace Tizen.Network.Bluetooth
         }
 
         /// <summary>
-        /// The GattConnectionStateChanged event is raised when the gatt connection state is changed.
+        /// The ConnectionStateChanged event is raised when the gatt connection state is changed.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
-        public event EventHandler<GattConnectionStateChangedEventArgs> GattConnectionStateChanged;
+        public event EventHandler<GattConnectionStateChangedEventArgs> ConnectionStateChanged;
 
         private void OnConnectionStateChanged(Object s, GattConnectionStateChangedEventArgs e)
         {
@@ -322,7 +323,7 @@ namespace Tizen.Network.Bluetooth
                     _taskForDisconnection = null;
                 }
 
-                GattConnectionStateChanged?.Invoke(this, e);
+                ConnectionStateChanged?.Invoke(this, e);
             }
         }
 
@@ -330,16 +331,16 @@ namespace Tizen.Network.Bluetooth
         {
             add
             {
-                if (_connectionStateChanged == null)
+                if (s_connectionStateChanged == null)
                 {
                     RegisterConnectionStateChangedEvent();
                 }
-                _connectionStateChanged += value;
+                s_connectionStateChanged += value;
             }
             remove
             {
-                _connectionStateChanged -= value;
-                if (_connectionStateChanged == null)
+                s_connectionStateChanged -= value;
+                if (s_connectionStateChanged == null)
                 {
                     UnregisterConnectionStateChangedEvent();
                 }
@@ -348,14 +349,14 @@ namespace Tizen.Network.Bluetooth
 
         private static void RegisterConnectionStateChangedEvent()
         {
-            Interop.Bluetooth.GattConnectionStateChangedCallBack _connectionStateChangeCallback = (int result, bool connected, string remoteDeviceAddress, IntPtr userData) =>
+            s_connectionStateChangeCallback = (int result, bool connected, string remoteDeviceAddress, IntPtr userData) =>
             {
                 Log.Info(Globals.LogTag, "Setting gatt connection state changed callback");
                 GattConnectionStateChangedEventArgs e = new GattConnectionStateChangedEventArgs(result, connected, remoteDeviceAddress);
-                _connectionStateChanged?.Invoke(null, e);
+                s_connectionStateChanged?.Invoke(null, e);
             };
 
-            int ret = Interop.Bluetooth.SetGattConnectionStateChangedCallback(_connectionStateChangeCallback, IntPtr.Zero);
+            int ret = Interop.Bluetooth.SetGattConnectionStateChangedCallback(s_connectionStateChangeCallback, IntPtr.Zero);
             if (ret != (int)BluetoothError.None)
             {
                 Log.Error(Globals.LogTag, "Failed to set gatt connection state changed callback, Error - " + (BluetoothError)ret);
@@ -376,8 +377,10 @@ namespace Tizen.Network.Bluetooth
         /// <summary>
         /// Connects to the Bluetooth GATT client asynchronously.
         /// </summary>
+        /// <param name="autoConnect">The flag of the auto connection.</param>
         /// <returns>The BluetoothGattClient instance.</returns>
         /// <feature>http://tizen.org/feature/network.bluetooth.le.gatt.client</feature>
+        /// <privilege>http://tizen.org/privilege/bluetooth</privilege>
         /// <exception cref="NotSupportedException">Thrown when the BT/BTLE is not supported.</exception>
         /// <exception cref="InvalidOperationException">Thrown when the create GATT client fails.</exception>
         /// <since_tizen> 6 </since_tizen>
@@ -397,6 +400,7 @@ namespace Tizen.Network.Bluetooth
         /// </summary>
         /// <returns>The BluetoothGattClient instance.</returns>
         /// <feature>http://tizen.org/feature/network.bluetooth.le.gatt.client</feature>
+        /// <privilege>http://tizen.org/privilege/bluetooth</privilege>
         /// <exception cref="NotSupportedException">Thrown when the BT/BTLE is not supported.</exception>
         /// <exception cref="InvalidOperationException">Thrown when the create GATT client fails.</exception>
         /// <since_tizen> 6 </since_tizen>
