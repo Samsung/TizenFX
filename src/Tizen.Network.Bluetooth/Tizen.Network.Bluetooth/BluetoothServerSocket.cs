@@ -35,7 +35,7 @@ namespace Tizen.Network.Bluetooth
         private TaskCompletionSource<SocketConnection> _taskForAccept;
         internal int socketFd;
         private bool disposed = false;
-        
+
         internal BluetoothServerSocket(int socketFd)
         {
             Log.Info (Globals.LogTag, "Constructing server socket");
