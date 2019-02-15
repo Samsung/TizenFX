@@ -29,7 +29,7 @@ namespace Tizen.Applications.WatchfaceComplication
         internal IList<Complication> _compList = new List<Complication>();
         internal IntPtr _container = IntPtr.Zero;
         private Interop.WatchfaceComplication.EditableUpdateRequestedCallback _editableUpdatedCallback;
-        private Interop.WatchfaceComplication.EditReadyCallback _editReadyCallback;
+        private readonly Interop.WatchfaceComplication.EditReadyCallback _editReadyCallback;
         private bool _disposed = false;
         private static string _logTag = "WatchfaceComplication";
 

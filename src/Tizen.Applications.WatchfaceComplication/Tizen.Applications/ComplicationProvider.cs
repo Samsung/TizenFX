@@ -30,7 +30,7 @@ namespace Tizen.Applications.WatchfaceComplication
         private string _providerId;
         private bool _disposed = false;
         private const string LogTag = "WatchfaceComplication";
-        private UpdateRequestedCallback _updatedCallback;
+        private readonly UpdateRequestedCallback _updatedCallback;
 
         /// <summary>
         /// Initializes the ComplicationProvider class.
