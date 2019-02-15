@@ -17,6 +17,7 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
+using static Interop.WatchfaceComplication;
 
 namespace Tizen.Applications.WatchfaceComplication
 {
@@ -29,6 +30,7 @@ namespace Tizen.Applications.WatchfaceComplication
         private string _providerId;
         private bool _disposed = false;
         private const string LogTag = "WatchfaceComplication";
+        private UpdateRequestedCallback _updatedCallback;
 
         /// <summary>
         /// Initializes the ComplicationProvider class.
@@ -56,7 +58,8 @@ namespace Tizen.Applications.WatchfaceComplication
         /// <since_tizen> 6 </since_tizen>
         protected ComplicationProvider(string providerId)
         {
-            ComplicationError err = Interop.WatchfaceComplication.AddUpdateRequestedCallback(providerId, DataUpdateRequested, IntPtr.Zero);
+            _updatedCallback = new Interop.WatchfaceComplication.UpdateRequestedCallback(DataUpdateRequested);
+            ComplicationError err = Interop.WatchfaceComplication.AddUpdateRequestedCallback(providerId, _updatedCallback, IntPtr.Zero);
             if (err != ComplicationError.None)
                 ErrorFactory.ThrowException(err, "fail to create provider");
             _providerId = providerId;
@@ -247,7 +250,7 @@ namespace Tizen.Applications.WatchfaceComplication
         {
             if (!_disposed)
             {
-                Interop.WatchfaceComplication.RemoveUpdateRequestedCallback(_providerId, DataUpdateRequested);
+                Interop.WatchfaceComplication.RemoveUpdateRequestedCallback(_providerId, _updatedCallback);
                 _disposed = true;
             }
         }

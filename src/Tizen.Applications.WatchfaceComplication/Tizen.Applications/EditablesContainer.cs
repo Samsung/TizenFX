@@ -29,6 +29,7 @@ namespace Tizen.Applications.WatchfaceComplication
         internal IList<Complication> _compList = new List<Complication>();
         internal IntPtr _container = IntPtr.Zero;
         private Interop.WatchfaceComplication.EditableUpdateRequestedCallback _editableUpdatedCallback;
+        private Interop.WatchfaceComplication.EditReadyCallback _editReadyCallback;
         private bool _disposed = false;
         private static string _logTag = "WatchfaceComplication";
 
@@ -41,7 +42,8 @@ namespace Tizen.Applications.WatchfaceComplication
         /// <since_tizen> 6 </since_tizen>
         protected EditablesContainer()
         {
-            ComplicationError err = Interop.WatchfaceComplication.AddEditReadyCallback(EditReady, IntPtr.Zero);
+            _editReadyCallback = new Interop.WatchfaceComplication.EditReadyCallback(EditReady);
+            ComplicationError err = Interop.WatchfaceComplication.AddEditReadyCallback(_editReadyCallback, IntPtr.Zero);
             if (err != ComplicationError.None)
                 ErrorFactory.ThrowException(err, "Fail to add edit ready callback");
             Log.Debug(_logTag, "Edit container ready");
@@ -330,7 +332,7 @@ namespace Tizen.Applications.WatchfaceComplication
         {
             if (!_disposed)
             {
-                Interop.WatchfaceComplication.RemoveEditReadyCallback(EditReady);
+                Interop.WatchfaceComplication.RemoveEditReadyCallback(_editReadyCallback);
                 _disposed = true;
             }
         }
