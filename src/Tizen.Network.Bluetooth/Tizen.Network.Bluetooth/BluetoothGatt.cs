@@ -323,7 +323,10 @@ namespace Tizen.Network.Bluetooth
                     _taskForDisconnection = null;
                 }
 
-                ConnectionStateChanged?.Invoke(this, e);
+                if (e.Result == (int)BluetoothError.None)
+                {
+                    ConnectionStateChanged?.Invoke(this, e);
+                }
             }
         }
 
@@ -377,8 +380,8 @@ namespace Tizen.Network.Bluetooth
         /// <summary>
         /// Connects to the Bluetooth GATT client asynchronously.
         /// </summary>
-        /// <param name="autoConnect">The flag of the auto connection.</param>
-        /// <returns>The BluetoothGattClient instance.</returns>
+        /// <param name="autoConnect">The flag for reconnecting when the connection is disconnceted.</param>
+        /// <returns> A task indicating whether the method is done or not.</returns>
         /// <feature>http://tizen.org/feature/network.bluetooth.le.gatt.client</feature>
         /// <privilege>http://tizen.org/privilege/bluetooth</privilege>
         /// <exception cref="NotSupportedException">Thrown when the BT/BTLE is not supported.</exception>
@@ -398,7 +401,7 @@ namespace Tizen.Network.Bluetooth
         /// <summary>
         /// Creates the Bluetooth GATT client asynchronously.
         /// </summary>
-        /// <returns>The BluetoothGattClient instance.</returns>
+        /// <returns> A task indicating whether the method is done or not.</returns>
         /// <feature>http://tizen.org/feature/network.bluetooth.le.gatt.client</feature>
         /// <privilege>http://tizen.org/privilege/bluetooth</privilege>
         /// <exception cref="NotSupportedException">Thrown when the BT/BTLE is not supported.</exception>
