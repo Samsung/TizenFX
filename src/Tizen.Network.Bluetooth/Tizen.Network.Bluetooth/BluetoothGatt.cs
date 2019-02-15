@@ -378,7 +378,7 @@ namespace Tizen.Network.Bluetooth
         }
 
         /// <summary>
-        /// Connects to the Bluetooth GATT client asynchronously.
+        /// Connects to the remote GATT server asynchronously.
         /// </summary>
         /// <param name="autoConnect">The flag for reconnecting when the connection is disconnceted.</param>
         /// <returns> A task indicating whether the method is done or not.</returns>
@@ -399,7 +399,7 @@ namespace Tizen.Network.Bluetooth
         }
 
         /// <summary>
-        /// Creates the Bluetooth GATT client asynchronously.
+        /// Disconnects to the remote GATT server asynchronously.
         /// </summary>
         /// <returns> A task indicating whether the method is done or not.</returns>
         /// <feature>http://tizen.org/feature/network.bluetooth.le.gatt.client</feature>
