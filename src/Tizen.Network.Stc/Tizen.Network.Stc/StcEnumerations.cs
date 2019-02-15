@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2016 Samsung Electronics Co., Ltd All Rights Reserved
+ * Copyright (c) 2018 Samsung Electronics Co., Ltd All Rights Reserved
  *
  * Licensed under the Apache License, Version 2.0 (the License);
  * you may not use this file except in compliance with the License.
@@ -49,7 +49,7 @@ namespace Tizen.Network.Stc
     /// <summary>
     /// Enumeration for network interface type.
     /// </summary>
-    public enum StcIfaceType
+    public enum StcInterfaceType
     {
         /// <summary>
         /// Network interface type is Unknown.
@@ -204,7 +204,7 @@ namespace Tizen.Network.Stc
     /// <summary>
     /// Enumeration for the Stc error code.
     /// </summary>
-    public enum StcError
+    internal enum StcError
     {
         /// <summary>
         /// Successful.

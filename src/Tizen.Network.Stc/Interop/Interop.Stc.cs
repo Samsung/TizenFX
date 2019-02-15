@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2016 Samsung Electronics Co., Ltd All Rights Reserved
+ * Copyright (c) 2018 Samsung Electronics Co., Ltd All Rights Reserved
  *
  * Licensed under the Apache License, Version 2.0 (the License);
  * you may not use this file except in compliance with the License.
@@ -47,13 +47,13 @@ internal static partial class Interop
             [DllImport(Libraries.Stc,EntryPoint = "stc_stats_rule_get_app_id")]
             internal static extern int GetAppId(IntPtr rule, out string appId);
             [DllImport(Libraries.Stc,EntryPoint = "stc_stats_rule_set_time_interval")]
-            internal static extern int SetTimeInterval(IntPtr rule, long from, long to);
+            internal static extern int SetTimeInterval(IntPtr rule, DateTime from, DateTime to);
             [DllImport(Libraries.Stc,EntryPoint = "stc_stats_rule_get_time_interval")]
-            internal static extern int GetTimeInterval(IntPtr rule, out long from, out long to);
+            internal static extern int GetTimeInterval(IntPtr rule, out DateTime from, out DateTime to);
             [DllImport(Libraries.Stc,EntryPoint = "stc_stats_rule_set_iface_type")]
-            internal static extern int SetIfaceType(IntPtr rule, StcIfaceType ifaceType);
+            internal static extern int SetInterfaceType(IntPtr rule, StcInterfaceType ifaceType);
             [DllImport(Libraries.Stc,EntryPoint = "stc_stats_rule_get_iface_type")]
-            internal static extern int GetIfaceType(IntPtr rule, out StcIfaceType ifaceType);
+            internal static extern int GetInterfaceType(IntPtr rule, out StcInterfaceType ifaceType);
             [DllImport(Libraries.Stc,EntryPoint = "stc_stats_rule_set_time_period")]
             internal static extern int SetTimePeriod(IntPtr rule, StcTimePeriod timePeriod);
             [DllImport(Libraries.Stc,EntryPoint = "stc_stats_rule_get_time_period")]
@@ -71,11 +71,11 @@ internal static partial class Interop
             [DllImport(Libraries.Stc,EntryPoint = "stc_stats_info_get_app_id")]
             internal static extern int GetAppId(IntPtr info, out string appId);
             [DllImport(Libraries.Stc,EntryPoint = "stc_stats_info_get_iface_name")]
-            internal static extern int GetIfaceName(IntPtr info, out string IfaceName);
+            internal static extern int GetInterfaceName(IntPtr info, out string IfaceName);
             [DllImport(Libraries.Stc,EntryPoint = "stc_stats_info_get_time_interval")]
-            internal static extern int GetTimeInterval(IntPtr info, out long from , out long to);
+            internal static extern int GetTimeInterval(IntPtr info, out DateTime from, out DateTime to);
             [DllImport(Libraries.Stc,EntryPoint = "stc_stats_info_get_iface_type")]
-            internal static extern int GetIface(IntPtr info, out StcIfaceType iface);
+            internal static extern int GetInterfaceType(IntPtr info, out StcInterfaceType ifaceType);
             [DllImport(Libraries.Stc,EntryPoint = "stc_stats_info_get_counter")]
             internal static extern int GetCounter(IntPtr info, out long incoming, out long outgoing);
             [DllImport(Libraries.Stc,EntryPoint = "stc_stats_info_get_roaming_type")]

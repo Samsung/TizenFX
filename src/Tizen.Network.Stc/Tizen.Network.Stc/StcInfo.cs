@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2016 Samsung Electronics Co., Ltd All Rights Reserved
+ * Copyright (c) 2018 Samsung Electronics Co., Ltd All Rights Reserved
  *
  * Licensed under the Apache License, Version 2.0 (the License);
  * you may not use this file except in compliance with the License.
@@ -23,7 +23,7 @@ namespace Tizen.Network.Stc
     /// <summary>
     /// A class for managing the Stc Info (statistics information).
     /// </summary>
-    /// <since_tizen> tizen_5.5 </since_tizen>
+    /// <since_tizen> 6 </since_tizen>
 
     public class StcInfo : IDisposable
     {
@@ -44,7 +44,7 @@ namespace Tizen.Network.Stc
         /// <summary>
         /// A method to destroy the managed StcInfo objects.
         /// </summary>
-        /// <since_tizen> tizen_5.5 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
         public void Dispose()
         {
             Dispose(true);
@@ -66,7 +66,7 @@ namespace Tizen.Network.Stc
         /// <summary>
         /// A property to get the application ID from statistics information.
         /// </summary>
-        /// <since_tizen> tizen_5.5 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
         /// <value>Application ID.</value>
         /// <privilege>http://tizen.org/privilege/network.get</privilege>
         /// <exception cref="NotSupportedException">Thrown while setting this property when Stc is not supported.</exception>
@@ -89,17 +89,17 @@ namespace Tizen.Network.Stc
         /// <summary>
         /// A property to get interface name from statistics information.
         /// </summary>
-        /// <since_tizen> tizen_5.5 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
         /// <value>Interface name.</value>
         /// <privilege>http://tizen.org/privilege/network.get</privilege>
         /// <exception cref="NotSupportedException">Thrown while setting this property when Stc is not supported.</exception>
         /// <exception cref="InvalidOperationException">Thrown while setting this value due to an invalid operation.</exception>
-        public string IfaceName
+        public string InterfaceName
         {
             get
             {
                 string ifaceName;
-                int ret = Interop.Stc.Info.GetIfaceName(_infoHandle, out ifaceName);
+                int ret = Interop.Stc.Info.GetInterfaceName(_infoHandle, out ifaceName);
                 if (ret != (int)StcError.None)
                 {
                     Log.Error(Globals.LogTag, "Failed to get interface name from info, Error - " + (StcError)ret);
@@ -110,38 +110,65 @@ namespace Tizen.Network.Stc
         }
 
         /// <summary>
-        /// Get the time interval from statistics information.
+        /// A property to get "from" value(start) of time interval from statistics information.
         /// </summary>
-        /// <since_tizen> tizen_5.5 </since_tizen>
-        /// <param name="from">The beginning of the time interval.</param>
-        /// <param name="to">The end of the time interval.</param>
+        /// <since_tizen> 6 </since_tizen>
+        /// <value>from(start) of time interval.</value>
         /// <privilege>http://tizen.org/privilege/network.get</privilege>
-        /// <exception cref="NotSupportedException">Thrown when the Stc is not supported.</exception>
-        /// <exception cref="InvalidOperationException">Thrown when the method failed due to an invalid operation.</exception>
-        public void GetTimeInterval(out long from, out long to)
+        /// <exception cref="NotSupportedException">Thrown while setting this property when Stc is not supported.</exception>
+        /// <exception cref="InvalidOperationException">Thrown while setting this value due to an invalid operation.</exception>
+        public DateTime From
         {
-            int ret = Interop.Stc.Info.GetTimeInterval(_infoHandle, out from, out to);
-            if (ret != (int)StcError.None)
+            get
             {
-                Log.Error(Globals.LogTag, "Failed to get time interval from info, Error - " + (StcError)ret);
-                StcErrorFactory.ThrowStcException(ret);
+                DateTime from;
+                DateTime to;
+                int ret = Interop.Stc.Info.GetTimeInterval(_infoHandle, out from, out to);
+                if (ret != (int)StcError.None)
+                {
+                    Log.Error(Globals.LogTag, "Failed to get time interval(from value) from info, Error - " + (StcError)ret);
+                }
+                return from;
+            }
+        }
+
+        /// <summary>
+        /// A property to get "to" value(end) of time interval from statistics information.
+        /// </summary>
+        /// <since_tizen> 6 </since_tizen>
+        /// <value>to(end) of time interval.</value>
+        /// <privilege>http://tizen.org/privilege/network.get</privilege>
+        /// <exception cref="NotSupportedException">Thrown while setting this property when Stc is not supported.</exception>
+        /// <exception cref="InvalidOperationException">Thrown while setting this value due to an invalid operation.</exception>
+        public DateTime To
+        {
+            get
+            {
+                DateTime from;
+                DateTime to;
+                int ret = Interop.Stc.Info.GetTimeInterval(_infoHandle, out from, out to);
+                if (ret != (int)StcError.None)
+                {
+                    Log.Error(Globals.LogTag, "Failed to get time interval(to value) from info, Error - " + (StcError)ret);
+                }
+                return to;
             }
         }
 
         /// <summary>
         /// A property to get the interface type from statistics information.
         /// </summary>
-        /// <since_tizen> tizen_5.5 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
         /// <value>Interface type.</value>
         /// <privilege>http://tizen.org/privilege/network.get</privilege>
         /// <exception cref="NotSupportedException">Thrown while setting this property when Stc is not supported.</exception>
         /// <exception cref="InvalidOperationException">Thrown while setting this value due to an invalid operation.</exception>
-        public StcIfaceType Iface
+        public StcInterfaceType InterfaceType
         {
             get
             {
-                StcIfaceType iface;
-                int ret = Interop.Stc.Info.GetIface(_infoHandle, out iface);
+                StcInterfaceType iface;
+                int ret = Interop.Stc.Info.GetInterfaceType(_infoHandle, out iface);
                 if (ret != (int)StcError.None)
                 {
                     Log.Error(Globals.LogTag, "Failed to get Interface type from info, Error - " + (StcError)ret);
@@ -151,28 +178,55 @@ namespace Tizen.Network.Stc
         }
 
         /// <summary>
-        /// Get the counters from statistics information.
+        /// A property to get incoming counter from statistics information.
         /// </summary>
-        /// <since_tizen> tizen_5.5 </since_tizen>
-        /// <param name="incoming">The incoming counter.</param>
-        /// <param name="outgoing">The outgoing counter.</param>
+        /// <since_tizen> 6 </since_tizen>
+        /// <value>incoming counter.</value>
         /// <privilege>http://tizen.org/privilege/network.get</privilege>
-        /// <exception cref="NotSupportedException">Thrown when the Stc is not supported.</exception>
-        /// <exception cref="InvalidOperationException">Thrown when the method failed due to an invalid operation.</exception>
-        public void GetCounter(out long incoming, out long outgoing)
+        /// <exception cref="NotSupportedException">Thrown while setting this property when Stc is not supported.</exception>
+        /// <exception cref="InvalidOperationException">Thrown while setting this value due to an invalid operation.</exception>
+        public long IncomingCounter
         {
-            int ret = Interop.Stc.Info.GetCounter(_infoHandle, out incoming, out outgoing);
-            if (ret != (int)StcError.None)
+            get
             {
-                Log.Error(Globals.LogTag, "Failed to get  counters from info, Error - " + (StcError)ret);
-                StcErrorFactory.ThrowStcException(ret);
+                long incoming;
+                long outgoing;
+                int ret = Interop.Stc.Info.GetCounter(_infoHandle, out incoming, out outgoing);
+                if (ret != (int)StcError.None)
+                {
+                    Log.Error(Globals.LogTag, "Failed to get incoming counter from info, Error - " + (StcError)ret);
+                }
+                return incoming;
+            }
+        }
+
+        /// <summary>
+        /// A property to get outgoing counter from statistics information.
+        /// </summary>
+        /// <since_tizen> 6 </since_tizen>
+        /// <value>outgoing counter.</value>
+        /// <privilege>http://tizen.org/privilege/network.get</privilege>
+        /// <exception cref="NotSupportedException">Thrown while setting this property when Stc is not supported.</exception>
+        /// <exception cref="InvalidOperationException">Thrown while setting this value due to an invalid operation.</exception>
+        public long OutgoingCounter
+        {
+            get
+            {
+                long incoming;
+                long outgoing;
+                int ret = Interop.Stc.Info.GetCounter(_infoHandle, out incoming, out outgoing);
+                if (ret != (int)StcError.None)
+                {
+                    Log.Error(Globals.LogTag, "Failed to get outgoing counter from info, Error - " + (StcError)ret);
+                }
+                return outgoing;
             }
         }
 
         /// <summary>
         /// A property to get the roaming type from statistics information.
         /// </summary>
-        /// <since_tizen> tizen_5.5 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
         /// <value>Roaming type.</value>
         /// <privilege>http://tizen.org/privilege/network.get</privilege>
         /// <exception cref="NotSupportedException">Thrown while setting this property when Stc is not supported.</exception>
@@ -194,7 +248,7 @@ namespace Tizen.Network.Stc
         /// <summary>
         /// A property to get the protocol type from statistics information.
         /// </summary>
-        /// <since_tizen> tizen_5.5 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
         /// <value>Protocol type.</value>
         /// <privilege>http://tizen.org/privilege/network.get</privilege>
         /// <exception cref="NotSupportedException">Thrown while setting this property when Stc is not supported.</exception>
@@ -216,7 +270,7 @@ namespace Tizen.Network.Stc
         /// <summary>
         /// A property to get the process state from statistics information.
         /// </summary>
-        /// <since_tizen> tizen_5.5 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
         /// <value>Process state.</value>
         /// <privilege>http://tizen.org/privilege/network.get</privilege>
         /// <exception cref="NotSupportedException">Thrown while setting this property when Stc is not supported.</exception>

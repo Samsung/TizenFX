@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2016 Samsung Electronics Co., Ltd All Rights Reserved
+ * Copyright (c) 2018 Samsung Electronics Co., Ltd All Rights Reserved
  *
  * Licensed under the Apache License, Version 2.0 (the License);
  * you may not use this file except in compliance with the License.
@@ -23,16 +23,16 @@ namespace Tizen.Network.Stc
     /// <summary>
     /// A class for managing the callback delegate of statistics information.
     /// </summary>
-    /// <since_tizen> tizen_5.5 </since_tizen>
+    /// <since_tizen> 6 </since_tizen>
     public static class StatsInfoObjectCb
     {
-        public delegate StcCallbackRet InfoCallback(StcInfo info, IntPtr userData);
+        public delegate StcCallbackRet InfoCallback(StcInfo info);
     }
 
     /// <summary>
     /// A class for managing the Stc Rules to match applications.
     /// </summary>
-    /// <since_tizen> tizen_5.5 </since_tizen>
+    /// <since_tizen> 6 </since_tizen>
     public class StcRule : IDisposable
     {
         private IntPtr _ruleHandle = IntPtr.Zero;
@@ -47,7 +47,7 @@ namespace Tizen.Network.Stc
         /// <summary>
         /// Creates a StcRule object.
         /// </summary>
-        /// <since_tizen> tizen_5.5 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
         /// <privilege>http://tizen.org/privilege/network.get</privilege>
         /// <exception cref="NotSupportedException">Thrown when the Stc is not supported.</exception>
         /// <exception cref="InvalidOperationException">Thrown when the method failed due to an invalid operation.</exception>
@@ -70,7 +70,7 @@ namespace Tizen.Network.Stc
         /// <summary>
         /// A method to destroy the managed StcRule objects.
         /// </summary>
-        /// <since_tizen> tizen_5.5 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
         public void Dispose()
         {
             Dispose(true);
@@ -93,7 +93,7 @@ namespace Tizen.Network.Stc
         /// <summary>
         /// A property for Application ID for statistics rule.
         /// </summary>
-        /// <since_tizen> tizen_5.5 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
         /// <value>AppId.</value>
         /// <privilege>http://tizen.org/privilege/network.get</privilege>
         /// <exception cref="NotSupportedException">Thrown while setting this property when Stc is not supported.</exception>
@@ -129,13 +129,13 @@ namespace Tizen.Network.Stc
         /// <summary>
         /// Set the time interval for statistics rule.
         /// </summary>
-        /// <since_tizen> tizen_5.5 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
         /// <param name="from">The beginning of the time interval.</param>
         /// <param name="to">The end of the time interval.</param>
         /// <privilege>http://tizen.org/privilege/network.get</privilege>
         /// <exception cref="NotSupportedException">Thrown when the Stc is not supported.</exception>
         /// <exception cref="InvalidOperationException">Thrown when the method failed due to an invalid operation.</exception>
-        public void SetTimeInterval(long from, long to)
+        public void SetTimeInterval(DateTime from, DateTime to)
         {
             if (_disposed)
             {
@@ -150,38 +150,65 @@ namespace Tizen.Network.Stc
         }
 
         /// <summary>
-        /// Get the time interval for statistics rule.
+        /// A property to get "from" value(start) of time interval for statistics rule.
         /// </summary>
-        /// <since_tizen> tizen_5.5 </since_tizen>
-        /// <param name="from">The beginning of the time interval.</param>
-        /// <param name="to">The end of the time interval.</param>
+        /// <since_tizen> 6 </since_tizen>
+        /// <value>from(start) of time interval.</value>
         /// <privilege>http://tizen.org/privilege/network.get</privilege>
-        /// <exception cref="NotSupportedException">Thrown when the Stc is not supported.</exception>
-        /// <exception cref="InvalidOperationException">Thrown when the method failed due to an invalid operation.</exception>
-        public void GetTimeInterval(out long from, out long to)
+        /// <exception cref="NotSupportedException">Thrown while setting this property when Stc is not supported.</exception>
+        /// <exception cref="InvalidOperationException">Thrown while setting this value due to an invalid operation.</exception>
+        public DateTime From
         {
-            int ret = Interop.Stc.Rule.GetTimeInterval(_ruleHandle, out from, out to);
-            if (ret != (int)StcError.None)
+            get
             {
-                Log.Error(Globals.LogTag, "Failed to get time interval, Error - " + (StcError)ret);
-                StcErrorFactory.ThrowStcException(ret);
+                DateTime from;
+                DateTime to;
+                int ret = Interop.Stc.Rule.GetTimeInterval(_ruleHandle, out from, out to);
+                if (ret != (int)StcError.None)
+                {
+                    Log.Error(Globals.LogTag, "Failed to get time interval(from value) for rule, Error - " + (StcError)ret);
+                }
+                return from;
+            }
+        }
+
+        /// <summary>
+        /// A property to get "to" value(end) of time interval for statistics rule.
+        /// </summary>
+        /// <since_tizen> 6 </since_tizen>
+        /// <value>to(end) of time interval.</value>
+        /// <privilege>http://tizen.org/privilege/network.get</privilege>
+        /// <exception cref="NotSupportedException">Thrown while setting this property when Stc is not supported.</exception>
+        /// <exception cref="InvalidOperationException">Thrown while setting this value due to an invalid operation.</exception>
+        public DateTime To
+        {
+            get
+            {
+                DateTime from;
+                DateTime to;
+                int ret = Interop.Stc.Rule.GetTimeInterval(_ruleHandle, out from, out to);
+                if (ret != (int)StcError.None)
+                {
+                    Log.Error(Globals.LogTag, "Failed to get time interval(to value) for rule, Error - " + (StcError)ret);
+                }
+                return to;
             }
         }
 
         /// <summary>
         /// A property for Interface type for statistics rule.
         /// </summary>
-        /// <since_tizen> tizen_5.5 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
         /// <value>Interface type.</value>
         /// <privilege>http://tizen.org/privilege/network.get</privilege>
         /// <exception cref="NotSupportedException">Thrown while setting this property when Stc is not supported.</exception>
         /// <exception cref="InvalidOperationException">Thrown while setting this value due to an invalid operation.</exception>
-        public StcIfaceType IfaceType
+        public StcInterfaceType InterfaceType
         {
             get
             {
-                StcIfaceType ifaceType;
-                int ret = Interop.Stc.Rule.GetIfaceType(_ruleHandle, out ifaceType);
+                StcInterfaceType ifaceType;
+                int ret = Interop.Stc.Rule.GetInterfaceType(_ruleHandle, out ifaceType);
                 if (ret != (int)StcError.None)
                 {
                     Log.Error(Globals.LogTag, "Failed to get Interface type, Error - " + (StcError)ret);
@@ -194,7 +221,7 @@ namespace Tizen.Network.Stc
                 {
                     throw new ObjectDisposedException("Invalid StcRule instance (Object may have been disposed or released)");
                 }
-                int ret = Interop.Stc.Rule.SetIfaceType(_ruleHandle, value);
+                int ret = Interop.Stc.Rule.SetInterfaceType(_ruleHandle, value);
                 if (ret != (int)StcError.None)
                 {
                     Log.Error(Globals.LogTag, "Failed to set Interface type, Error - " + (StcError)ret);
@@ -206,7 +233,7 @@ namespace Tizen.Network.Stc
         /// <summary>
         /// A property for Time period for statistics rule.
         /// </summary>
-        /// <since_tizen> tizen_5.5 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
         /// <value>Time period.</value>
         /// <privilege>http://tizen.org/privilege/network.get</privilege>
         /// <exception cref="NotSupportedException">Thrown while setting this property when Stc is not supported.</exception>
@@ -215,7 +242,7 @@ namespace Tizen.Network.Stc
         {
             get
             {
-                StcTimePeriod timePeriod ;
+                StcTimePeriod timePeriod;
                 int ret = Interop.Stc.Rule.GetTimePeriod(_ruleHandle, out timePeriod);
                 if (ret != (int)StcError.None)
                 {
@@ -241,14 +268,13 @@ namespace Tizen.Network.Stc
         /// <summary>
         /// Gets the statistics information an application matched rule asynchronously.
         /// </summary>
-        /// <since_tizen> tizen_5.5 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
         /// <param name="infoCb">The callback is called for each application that used network in between timestamps specified.</param>
-        /// <param name="userData">The user data passed to the callback function.</param>
         /// <privilege>http://tizen.org/privilege/network.get</privilege>
         /// <exception cref="NotSupportedException">Thrown when the Stc is not supported.</exception>
         /// <exception cref="UnauthorizedAccessException">Thrown when the permission is denied.</exception>
         /// <exception cref="InvalidOperationException">Thrown when the method failed due to an invalid operation.</exception>
-        public void GetStats(StatsInfoObjectCb.InfoCallback infoCb, IntPtr userData)
+        public void GetStats(StatsInfoObjectCb.InfoCallback infoCb)
         {
             if (_disposed)
             {
@@ -257,17 +283,17 @@ namespace Tizen.Network.Stc
 
             _getStatsObjectCb = infoCb;
 
-            _getStatsCb = (int result, IntPtr info, IntPtr userDataBack) =>
+            _getStatsCb = (int result, IntPtr info, IntPtr userData) =>
             {
                 if(result != (int)StcError.None)
                 {
                     Log.Error(Globals.LogTag, "GetStats failed, Error - " + (StcError)result);
                     StcErrorFactory.ThrowStcException(result);
                 }
-                return _getStatsObjectCb(new StcInfo(info), userDataBack);
+                return _getStatsObjectCb(new StcInfo(info));
             };
 
-            int ret = Interop.Stc.Rule.GetStats(StcManagerImpl.Instance.GetSafeHandle(), _ruleHandle, _getStatsCb, userData);
+            int ret = Interop.Stc.Rule.GetStats(StcManagerImpl.Instance.GetSafeHandle(), _ruleHandle, _getStatsCb, IntPtr.Zero);
             if (ret != (int)StcError.None)
             {
                 Log.Error(Globals.LogTag, "GetStats() failed , Error - " + (StcError)ret);
@@ -278,14 +304,13 @@ namespace Tizen.Network.Stc
         /// <summary>
         /// Gets the statistics information of each application asynchronously. The callback is called for each application that used network in between timestamps specified.
         /// </summary>
-        /// <since_tizen> tizen_5.5 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
         /// <param name="infoCb">The callback is called for each application that used network in between timestamps specified.</param>
-        /// <param name="userData">The user data passed to the callback function.</param>
         /// <privilege>http://tizen.org/privilege/network.get</privilege>
         /// <exception cref="NotSupportedException">Thrown when the Stc is not supported.</exception>
         /// <exception cref="UnauthorizedAccessException">Thrown when the permission is denied.</exception>
         /// <exception cref="InvalidOperationException">Thrown when the method failed due to an invalid operation.</exception>
-        public void ForeachStats(StatsInfoObjectCb.InfoCallback infoCb, IntPtr userData)
+        public void ForeachStats(StatsInfoObjectCb.InfoCallback infoCb)
         {
             if (_disposed)
             {
@@ -294,17 +319,17 @@ namespace Tizen.Network.Stc
 
             _foreachStatsObjectCb = infoCb;
 
-            _foreachStatsCb = (int result, IntPtr info, IntPtr userDataBack) =>
+            _foreachStatsCb = (int result, IntPtr info, IntPtr userData) =>
             {
                 if(result != (int)StcError.None)
                 {
                     Log.Error(Globals.LogTag, "ForeachStats failed, Error - " + (StcError)result);
                     StcErrorFactory.ThrowStcException(result);
                 }
-                return _foreachStatsObjectCb(new StcInfo(info), userDataBack);
+                return _foreachStatsObjectCb(new StcInfo(info));
             };
 
-            int ret = Interop.Stc.Rule.ForeachStats(StcManagerImpl.Instance.GetSafeHandle(), _ruleHandle, _foreachStatsCb, userData);
+            int ret = Interop.Stc.Rule.ForeachStats(StcManagerImpl.Instance.GetSafeHandle(), _ruleHandle, _foreachStatsCb, IntPtr.Zero);
             if (ret != (int)StcError.None)
             {
                 Log.Error(Globals.LogTag, "ForeachStats() failed , Error - " + (StcError)ret);
@@ -315,14 +340,13 @@ namespace Tizen.Network.Stc
         /// <summary>
         /// Gets the total statistics information by interface type asynchronously.
         /// </summary>
-        /// <since_tizen> tizen_5.5 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
         /// <param name="infoCb">The callback is called for each application that used network in between timestamps specified.</param>
-        /// <param name="userData">The user data passed to the callback function.</param>
         /// <privilege>http://tizen.org/privilege/network.get</privilege>
         /// <exception cref="NotSupportedException">Thrown when the Stc is not supported.</exception>
         /// <exception cref="UnauthorizedAccessException">Thrown when the permission is denied.</exception>
         /// <exception cref="InvalidOperationException">Thrown when the method failed due to an invalid operation.</exception>
-        public void GetTotalStats(StatsInfoObjectCb.InfoCallback infoCb, IntPtr userData)
+        public void GetTotalStats(StatsInfoObjectCb.InfoCallback infoCb)
         {
             if (_disposed)
             {
@@ -331,17 +355,17 @@ namespace Tizen.Network.Stc
 
             _getTotalStatsObjectCb = infoCb;
 
-            _getTotalStatsCb = (int result, IntPtr info, IntPtr userDataBack) =>
+            _getTotalStatsCb = (int result, IntPtr info, IntPtr userData) =>
             {
                 if(result != (int)StcError.None)
                 {
                     Log.Error(Globals.LogTag, "GetTotalStats failed, Error - " + (StcError)result);
                     StcErrorFactory.ThrowStcException(result);
                 }
-                return _getTotalStatsObjectCb(new StcInfo(info), userDataBack);
+                return _getTotalStatsObjectCb(new StcInfo(info));
             };
 
-            int ret = Interop.Stc.Rule.GetTotalStats(StcManagerImpl.Instance.GetSafeHandle(), _ruleHandle, _getTotalStatsCb, userData);
+            int ret = Interop.Stc.Rule.GetTotalStats(StcManagerImpl.Instance.GetSafeHandle(), _ruleHandle, _getTotalStatsCb, IntPtr.Zero);
             if (ret != (int)StcError.None)
             {
                 Log.Error(Globals.LogTag, "GetTotalStats() failed , Error - " + (StcError)ret);
