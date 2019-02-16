@@ -24,6 +24,7 @@ Tizen.Applications.Shortcut.dll                    #mobile #mobile-emul
 Tizen.Applications.ToastMessage.dll                #common #mobile #mobile-emul #tv #wearable
 Tizen.Applications.UI.dll                          #common #mobile #mobile-emul #tv #wearable
 Tizen.Applications.WatchApplication.dll            #wearable
+Tizen.Applications.WatchfaceComplication.dll       #wearable
 Tizen.Applications.WidgetApplication.dll           #mobile #mobile-emul #tv #wearable
 Tizen.Applications.WidgetControl.dll               #mobile #mobile-emul #tv #wearable
 Tizen.Content.Download.dll                         #common #mobile #mobile-emul #tv #wearable
