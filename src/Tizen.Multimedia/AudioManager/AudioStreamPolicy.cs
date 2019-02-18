@@ -314,7 +314,7 @@ namespace Tizen.Multimedia
         /// <exception cref="ObjectDisposedException">The <see cref="AudioStreamPolicy"/> has already been disposed of.</exception>
         /// <seealso cref="AudioManager.GetConnectedDevices()"/>
         /// <since_tizen> 6 </since_tizen>
-        public bool IsStreamOnDevice(AudioDevice device)
+        public bool HasStreamOnDevice(AudioDevice device)
         {
             if (device == null)
             {
