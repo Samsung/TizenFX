@@ -197,7 +197,15 @@ namespace Tizen.NUI.Xaml
                             ci.GetParameters().Length != 0 && ci.IsPublic &&
                             ci.GetParameters().All(pi => pi.CustomAttributes.Any(attr => attr.AttributeType == typeof (ParameterAttribute))));
             object[] arguments = CreateArgumentsArray(node, ctorInfo);
-            return ctorInfo?.Invoke(arguments);
+
+            if (arguments != null)
+            {
+                return ctorInfo?.Invoke(arguments);
+            }
+            else
+            {
+                return null;
+            }
         }
 
         public object CreateFromFactory(Type nodeType, IElementNode node)
@@ -277,39 +285,43 @@ namespace Tizen.NUI.Xaml
 
         public object[] CreateArgumentsArray(IElementNode enode, ConstructorInfo ctorInfo)
         {
-            var n = ctorInfo.GetParameters().Length;
-            var array = new object[n];
-            for (var i = 0; i < n; i++)
+            if( ctorInfo != null )
             {
-                var parameter = ctorInfo.GetParameters()[i];
-                var propname =
-                    parameter?.CustomAttributes?.First(attr => attr.AttributeType == typeof (ParameterAttribute))?
-                        .ConstructorArguments.First()
-                        .Value as string;
-                var name = new XmlName("", propname);
-                INode node;
-                if (!enode.Properties.TryGetValue(name, out node))
+                var n = ctorInfo.GetParameters().Length;
+                var array = new object[n];
+                for (var i = 0; i < n; i++)
                 {
-                    String msg = "";
-                    if (propname != null)
+                    var parameter = ctorInfo.GetParameters()[i];
+                    var propname =
+                        parameter?.CustomAttributes?.First(attr => attr.AttributeType == typeof (ParameterAttribute))?
+                            .ConstructorArguments.First()
+                            .Value as string;
+                    var name = new XmlName("", propname);
+                    INode node;
+                    if (!enode.Properties.TryGetValue(name, out node))
                     {
-                        msg = String.Format("The Property {0} is required to create a {1} object.", propname, ctorInfo.DeclaringType.FullName);
+                        String msg = "";
+                        if (propname != null)
+                        {
+                            msg = String.Format("The Property {0} is required to create a {1} object.", propname, ctorInfo.DeclaringType.FullName);
+                        }
+                        else
+                        {
+                            msg = "propname is null.";
+                        }
+                        throw new XamlParseException(msg, enode as IXmlLineInfo);
                     }
-                    else
-                    {
-                        msg = "propname is null.";
-                    }
-                    throw new XamlParseException(msg, enode as IXmlLineInfo);
+                    if (!enode.SkipProperties.Contains(name))
+                        enode.SkipProperties.Add(name);
+                    var value = Context.Values[node];
+                    var serviceProvider = new XamlServiceProvider(enode, Context);
+                    var convertedValue = value.ConvertTo(parameter?.ParameterType, () => parameter, serviceProvider);
+                    array[i] = convertedValue;
                 }
-                if (!enode.SkipProperties.Contains(name))
-                    enode.SkipProperties.Add(name);
-                var value = Context.Values[node];
-                var serviceProvider = new XamlServiceProvider(enode, Context);
-                var convertedValue = value.ConvertTo(parameter.ParameterType, () => parameter, serviceProvider);
-                array[i] = convertedValue;
+                return array;
             }
 
-            return array;
+            return null;
         }
 
         static bool IsXaml2009LanguagePrimitive(IElementNode node)
