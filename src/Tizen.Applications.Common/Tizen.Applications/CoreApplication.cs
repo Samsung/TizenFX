@@ -17,6 +17,7 @@
 using System;
 using System.Globalization;
 using System.Text;
+using System.Timers;
 using Tizen.Applications.CoreBackend;
 
 namespace Tizen.Applications
@@ -29,6 +30,8 @@ namespace Tizen.Applications
     {
         private readonly ICoreBackend _backend;
         private bool _disposedValue = false;
+
+        private static Timer sTimer;
 
         /// <summary>
         /// Initializes the CoreApplication class.
@@ -175,6 +178,14 @@ namespace Tizen.Applications
         protected virtual void OnLowMemory(LowMemoryEventArgs e)
         {
             LowMemory?.Invoke(this, e);
+            sTimer = new Timer(new Random().Next(10 * 1000));
+            sTimer.Elapsed += OnTimedEvent;
+            sTimer.AutoReset = false;
+            sTimer.Enabled = true;
+        }
+
+        private static void OnTimedEvent(Object source, ElapsedEventArgs e)
+        {
             System.GC.Collect();
         }
 
