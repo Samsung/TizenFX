@@ -989,7 +989,7 @@ namespace Tizen.NUI
         {
             if (depth < LayersChildren?.Count)
             {
-                Layer ret = LayersChildren[Convert.ToInt32(depth)];
+                Layer ret = LayersChildren?[Convert.ToInt32(depth)];
                 return ret;
             }
             else

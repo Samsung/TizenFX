@@ -160,7 +160,7 @@ namespace Tizen.NUI.Binding
                     if (e.NewStartingIndex == -1 || e.NewItems?.Count > 1)
                         goto case NotifyCollectionChangedAction.Reset;
 
-                    var newItem = e.NewItems[0] as TRestrict;
+                    var newItem = e.NewItems?[0] as TRestrict;
                     if (newItem == null || !newItem.Owned)
                         break;
 
@@ -171,7 +171,7 @@ namespace Tizen.NUI.Binding
                     if (e.NewStartingIndex == -1 || e.OldStartingIndex == -1 || e.NewItems?.Count > 1)
                         goto case NotifyCollectionChangedAction.Reset;
 
-                    var movedItem = e.NewItems[0] as TRestrict;
+                    var movedItem = e.NewItems?[0] as TRestrict;
                     if (movedItem == null || !movedItem.Owned)
                         break;
 
