@@ -125,7 +125,7 @@ namespace Tizen.NUI.Xaml
                     var addMethod =
                         Context.Types[parentElement].GetRuntimeMethods().First(mi => mi.Name == "Add" && mi.GetParameters().Length == 1);
 
-                    addMethod.Invoke(source, new[] { value });
+                    addMethod?.Invoke(source, new[] { value });
                     return;
                 }
                 if (xpe == null && (contentProperty = GetContentPropertyName(Context.Types[parentElement].GetTypeInfo())) != null) {
