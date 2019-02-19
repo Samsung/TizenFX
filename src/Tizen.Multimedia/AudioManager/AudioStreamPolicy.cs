@@ -309,6 +309,14 @@ namespace Tizen.Multimedia
         /// </summary>
         /// <returns>true if any audio stream from the current AudioStreamPolicy is using the device; otherwise, false.</returns>
         /// <param name="device">The device to be checked.</param>
+        /// <remarks>
+        /// The AudioStreamPolicy can be applied to each playback or recording stream via other API set.
+        /// (For example., <see cref="T:Tizen.Multimedia.Player"/>, <see cref="T:Tizen.Multimedia.WavPlayer"/>,
+        /// <see cref="T:Tizen.Multimedia.AudioPlayback"/>, <see cref="T:Tizen.Multimedia.AudioCapture"/>, etc.)
+        /// This method returns true only when the device is used for the stream which meets to the two conditions.
+        /// One is that the current AudioStreamPolicy sets a audio route path to the device and the other is that the playback
+        /// or recording stream from other API set should have already started to prepare or to play.(It depends on the API set.)
+        /// </remarks>
         /// <exception cref="ArgumentNullException"><paramref name="device"/> is null.</exception>
         /// <exception cref="InvalidOperationException">An internal error occurs.</exception>
         /// <exception cref="ObjectDisposedException">The <see cref="AudioStreamPolicy"/> has already been disposed of.</exception>
