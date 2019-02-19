@@ -1120,4 +1120,70 @@ namespace Tizen.System
             }
         }
     }
+
+    /// <summary>
+    /// EventArgs type for the AccessibilityGrayscaleChanged event.
+    /// </summary>
+    /// <privilege>http://tizen.org/privilege/systemsettings.admin</privilege>
+    /// <privlevel>platform</privlevel>
+    /// <feature>http://tizen.org/feature/systemsetting</feature>
+    /// <feature>http://tizen.org/feature/accessibility.grayscale</feature>
+    /// <exception cref="ArgumentException">Invalid Argument</exception>
+    /// <exception cref="NotSupportedException">Not Supported feature</exception>
+    /// <exception cref="InvalidOperationException">Invalid operation</exception>
+    /// <exception cref="UnauthorizedAccessException">Thrown when application does not have privilege to access this method.</exception>
+    /// <since_tizen> 6 </since_tizen>
+    public class AccessibilityGrayscaleChangedEventArgs : EventArgs
+    {
+        private readonly bool _accessibilityGrayscale;
+        internal AccessibilityGrayscaleChangedEventArgs(bool val)
+        {
+            _accessibilityGrayscale = val;
+        }
+
+        /// <summary>
+        /// Indicates whether developer option state is enabled on the device or not.
+        /// </summary>
+        /// <since_tizen> 6 </since_tizen>
+        public bool Value
+        {
+            get
+            {
+                return _accessibilityGrayscale;
+            }
+        }
+    }
+
+    /// <summary>
+    /// EventArgs type for the AccessibilityNegativeColorChanged event.
+    /// </summary>
+    /// <privilege>http://tizen.org/privilege/systemsettings.admin</privilege>
+    /// <privlevel>platform</privlevel>
+    /// <feature>http://tizen.org/feature/systemsetting</feature>
+    /// <feature>http://tizen.org/feature/accessibility.negative</feature>
+    /// <exception cref="ArgumentException">Invalid Argument</exception>
+    /// <exception cref="NotSupportedException">Not Supported feature</exception>
+    /// <exception cref="InvalidOperationException">Invalid operation</exception>
+    /// <exception cref="UnauthorizedAccessException">Thrown when application does not have privilege to access this method.</exception>
+    /// <since_tizen> 6 </since_tizen>
+    public class AccessibilityNegativeColorChangedEventArgs : EventArgs
+    {
+        private readonly bool _accessibilityNegativeColor;
+        internal AccessibilityNegativeColorChangedEventArgs(bool val)
+        {
+            _accessibilityNegativeColor = val;
+        }
+
+        /// <summary>
+        /// Indicates whether developer option state is enabled on the device or not.
+        /// </summary>
+        /// <since_tizen> 6 </since_tizen>
+        public bool Value
+        {
+            get
+            {
+                return _accessibilityNegativeColor;
+            }
+        }
+    }
 }
