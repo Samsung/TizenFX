@@ -87,6 +87,9 @@ namespace Tizen.System
         /// <param name="type">The type of the storage.</param>
         /// <param name="handler">An eventhandler to register.</param>
         /// <since_tizen> 5 </since_tizen>
+        /// <feature>
+        /// http://tizen.org/feature/storage.external should be true to register an eventhandler for external storage type
+        /// </feature>
         public static void SetChangedEvent(StorageArea type, EventHandler handler)
         {
             if (type == StorageArea.Internal)
@@ -114,6 +117,9 @@ namespace Tizen.System
         /// <param name="type">The type of the storage.</param>
         /// <param name="handler">An eventhandler to unregister.</param>
         /// <since_tizen> 5 </since_tizen>
+        /// <feature>
+        /// http://tizen.org/feature/storage.external should be true to unregister an eventhandler for external storage type
+        /// </feature>
         public static void UnsetChangedEvent(StorageArea type, EventHandler handler)
         {
             if (type == StorageArea.Internal)
