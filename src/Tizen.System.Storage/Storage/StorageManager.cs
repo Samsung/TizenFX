@@ -83,6 +83,7 @@ namespace Tizen.System
 
         /// <summary>
         /// Registers an eventhandler for state changes of specific storage type.
+        /// http://tizen.org/feature/storage.external should be true to register an eventhandler for external storage type
         /// </summary>
         /// <param name="type">The type of the storage.</param>
         /// <param name="handler">An eventhandler to register.</param>
@@ -110,6 +111,7 @@ namespace Tizen.System
 
         /// <summary>
         /// Unregisters an eventhandler for state changes of specific storage type.
+        /// http://tizen.org/feature/storage.external should be true to unregister an eventhandler for external storage type
         /// </summary>
         /// <param name="type">The type of the storage.</param>
         /// <param name="handler">An eventhandler to unregister.</param>

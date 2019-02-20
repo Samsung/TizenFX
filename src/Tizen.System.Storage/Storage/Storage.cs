@@ -111,6 +111,7 @@ namespace Tizen.System
 
         /// <summary>
         /// StorageStateChanged event. This event is occurred when a storage state changes.
+        /// http://tizen.org/feature/storage.external should be true to get external storage event handler
         /// </summary>
         /// <remarks>
         /// The storage state will be updated before calling the event handler.
@@ -151,27 +152,32 @@ namespace Tizen.System
 
         /// <summary>
         /// The storage ID.
+        /// http://tizen.org/feature/storage.external should be true to get external storage id
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public int Id { get; }
         /// <summary>
         /// The type of storage.
+        /// http://tizen.org/feature/storage.external should be true to get external storage type
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public StorageArea StorageType { get { return (StorageArea)_storagetype; } }
         /// <summary>
         /// The root directory for the storage.
+        /// http://tizen.org/feature/storage.external should be true to get external storage root directory
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public string RootDirectory { get; }
         /// <summary>
         /// The total storage size in bytes.
+        /// http://tizen.org/feature/storage.external should be true to get external storage total space
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public ulong TotalSpace { get { return _totalSpace; } }
 
         /// <summary>
         /// The StorageState.
+        /// http://tizen.org/feature/storage.external should be true to get external storage state
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public StorageState State
@@ -192,6 +198,7 @@ namespace Tizen.System
 
         /// <summary>
         /// The StorageDevice.
+        /// http://tizen.org/feature/storage.external should be true to get external storage device type
         /// </summary>
         /// <since_tizen> 5 </since_tizen>
         /// <exception cref="InvalidOperationException">Thrown when DeviceType is not initialized.</exception>
@@ -210,6 +217,7 @@ namespace Tizen.System
 
         /// <summary>
         /// The type of file system.
+        /// http://tizen.org/feature/storage.external should be true to get external storage file system
         /// </summary>
         /// <since_tizen> 5 </since_tizen>
         /// <exception cref="InvalidOperationException">Thrown when Fstype is not initialized.</exception>
@@ -228,6 +236,7 @@ namespace Tizen.System
 
         /// <summary>
         /// The UUID of the file system.
+        /// http://tizen.org/feature/storage.external should be true to get external storage uuid
         /// </summary>
         /// <since_tizen> 5 </since_tizen>
         /// <exception cref="InvalidOperationException">Thrown when Fsuuid is not initialized.</exception>
@@ -246,6 +255,7 @@ namespace Tizen.System
 
         /// <summary>
         /// Information whether this is a primary partition.
+        /// http://tizen.org/feature/storage.external should be true to get external storage primary information
         /// </summary>
         /// <since_tizen> 5 </since_tizen>
         /// <exception cref="InvalidOperationException">Thrown when primary is not initialized.</exception>
@@ -264,6 +274,7 @@ namespace Tizen.System
 
         /// <summary>
         /// The flags for the storage status.
+        /// http://tizen.org/feature/storage.external should be true to get external storage flags
         /// </summary>
         /// <since_tizen> 5 </since_tizen>
         /// <exception cref="InvalidOperationException">Thrown when flags are not initialized.</exception>
@@ -304,6 +315,7 @@ namespace Tizen.System
 
         /// <summary>
         /// The available storage size in bytes.
+        /// http://tizen.org/feature/storage.external should be true to get available space of external storage
         /// </summary>
         /// <since_tizen> 5 </since_tizen>
         public ulong AvailableSpace
@@ -323,6 +335,7 @@ namespace Tizen.System
 
         /// <summary>
         /// Absolute path for a given directory type in the storage.
+        /// http://tizen.org/feature/storage.external should be true to get absolute directory path of external storage
         /// </summary>
         /// <remarks>
         /// The returned directory path may not exist, so you must make sure that it exists before using it.
