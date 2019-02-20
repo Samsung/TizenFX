@@ -81,6 +81,10 @@ namespace Tizen.Multimedia
 
             [DllImport(Libraries.SoundManager, EntryPoint = "sound_manager_remove_focus_state_watch_cb")]
             internal static extern int RemoveFocusStateWatchCallback(int id);
+
+            [DllImport(Libraries.SoundManager, EntryPoint = "sound_manager_is_stream_on_device_by_id")]
+            internal static extern AudioManagerError IsStreamOnDevice(AudioStreamPolicyHandle streamInfo, int deviceId,
+                out bool isOn);
         }
     }
 }
