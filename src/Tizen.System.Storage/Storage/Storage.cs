@@ -116,6 +116,7 @@ namespace Tizen.System
         /// The storage state will be updated before calling the event handler.
         /// </remarks>
         /// <since_tizen> 3 </since_tizen>
+        /// <feature> http://tizen.org/feature/storage.external </feature>
         /// <example>
         /// <code>
         /// myStorage.StorageStateChanged += (s, e) =>
@@ -153,27 +154,32 @@ namespace Tizen.System
         /// The storage ID.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        /// <feature> http://tizen.org/feature/storage.external </feature>
         public int Id { get; }
         /// <summary>
         /// The type of storage.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        /// <feature> http://tizen.org/feature/storage.external </feature>
         public StorageArea StorageType { get { return (StorageArea)_storagetype; } }
         /// <summary>
         /// The root directory for the storage.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        /// <feature> http://tizen.org/feature/storage.external </feature>
         public string RootDirectory { get; }
         /// <summary>
         /// The total storage size in bytes.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        /// <feature> http://tizen.org/feature/storage.external </feature>
         public ulong TotalSpace { get { return _totalSpace; } }
 
         /// <summary>
         /// The StorageState.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        /// <feature> http://tizen.org/feature/storage.external </feature>
         public StorageState State
         {
             get
@@ -194,6 +200,7 @@ namespace Tizen.System
         /// The StorageDevice.
         /// </summary>
         /// <since_tizen> 5 </since_tizen>
+        /// <feature> http://tizen.org/feature/storage.external </feature>
         /// <exception cref="InvalidOperationException">Thrown when DeviceType is not initialized.</exception>
         public StorageDevice DeviceType
         {
@@ -212,6 +219,7 @@ namespace Tizen.System
         /// The type of file system.
         /// </summary>
         /// <since_tizen> 5 </since_tizen>
+        /// <feature> http://tizen.org/feature/storage.external </feature>
         /// <exception cref="InvalidOperationException">Thrown when Fstype is not initialized.</exception>
         public string Fstype
         {
@@ -230,6 +238,7 @@ namespace Tizen.System
         /// The UUID of the file system.
         /// </summary>
         /// <since_tizen> 5 </since_tizen>
+        /// <feature> http://tizen.org/feature/storage.external </feature>
         /// <exception cref="InvalidOperationException">Thrown when Fsuuid is not initialized.</exception>
         public string Fsuuid
         {
@@ -248,6 +257,7 @@ namespace Tizen.System
         /// Information whether this is a primary partition.
         /// </summary>
         /// <since_tizen> 5 </since_tizen>
+        /// <feature> http://tizen.org/feature/storage.external </feature>
         /// <exception cref="InvalidOperationException">Thrown when primary is not initialized.</exception>
         public bool Primary
         {
@@ -266,6 +276,7 @@ namespace Tizen.System
         /// The flags for the storage status.
         /// </summary>
         /// <since_tizen> 5 </since_tizen>
+        /// <feature> http://tizen.org/feature/storage.external </feature>
         /// <exception cref="InvalidOperationException">Thrown when flags are not initialized.</exception>
         public int Flags
         {
@@ -306,6 +317,7 @@ namespace Tizen.System
         /// The available storage size in bytes.
         /// </summary>
         /// <since_tizen> 5 </since_tizen>
+        /// <feature> http://tizen.org/feature/storage.external </feature>
         public ulong AvailableSpace
         {
             get
@@ -333,6 +345,7 @@ namespace Tizen.System
         /// <since_tizen> 3 </since_tizen>
         /// <param name="dirType">Directory type.</param>
         /// <returns>Absolute path for a given directory type in the storage.</returns>
+        /// <feature> http://tizen.org/feature/storage.external </feature>
         /// <exception cref="ArgumentException">Thrown when failed because of an invalid argument.</exception>
         /// <exception cref="OutOfMemoryException">Thrown when failed due to out of memory exception.</exception>
         /// <exception cref="NotSupportedException">Thrown when failed if the storage is not supported or the application does not have the permission to access the directory path.</exception>
