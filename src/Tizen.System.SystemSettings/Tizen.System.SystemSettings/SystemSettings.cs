@@ -967,6 +967,14 @@ namespace Tizen.System
                 }
                 return isAccessibilityTTSEnabled;
             }
+            set
+            {
+                SystemSettingsError res = (SystemSettingsError)Interop.Settings.SystemSettingsSetValueBool(SystemSettingsKeys.AccessibilityTtsEnabled, value);
+                if (res != SystemSettingsError.None)
+                {
+                    throw SystemSettingsExceptionFactory.CreateException(res, "unable to set AccessibilityTTS system setting.");
+                }
+            }
         }
 
         /// <summary>
