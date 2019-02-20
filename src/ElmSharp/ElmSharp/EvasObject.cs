@@ -1277,7 +1277,8 @@ namespace ElmSharp
 
         private void DisposeEvent()
         {
-            foreach (var evt in _eventStore)
+            var events = new List<IInvalidatable>(_eventStore);
+            foreach (var evt in events)
             {
                 evt.Dispose();
             }
@@ -1296,6 +1297,11 @@ namespace ElmSharp
         internal void AddToEventLifeTracker(IInvalidatable item)
         {
             _eventStore.Add(item);
+        }
+
+        internal void RemoveFromEventLifeTracker(IInvalidatable item)
+        {
+            _eventStore.Remove(item);
         }
     }
 }
