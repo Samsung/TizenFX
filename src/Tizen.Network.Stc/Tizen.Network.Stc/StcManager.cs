@@ -55,7 +55,7 @@ namespace Tizen.Network.Stc
     /// <summary>
     /// A class which is used to manage Smart Traffic control (Stc).<br/>
     /// </summary>
-    public static class StcManager
+    internal static class StcManager
     {
         /// <summary>
         /// Gets the Stc safe handle.
@@ -66,8 +66,7 @@ namespace Tizen.Network.Stc
         /// <exception cref="NotSupportedException">Thrown when the Stc is not supported.</exception>
         /// <exception cref="UnauthorizedAccessException">Thrown when the permission is denied.</exception>
         /// <exception cref="InvalidOperationException">Thrown when the method failed due to an invalid operation.</exception>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public static SafeStcHandle GetStcHandle()
+        internal static SafeStcHandle GetStcHandle()
         {
             return StcManagerImpl.Instance.GetSafeHandle();
         }

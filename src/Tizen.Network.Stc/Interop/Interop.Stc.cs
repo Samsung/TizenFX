@@ -30,7 +30,7 @@ internal static partial class Interop
     {
         // Callback for Statistics Information
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-        internal delegate StcCallbackRet StatsInfoCallback(int result, IntPtr info, IntPtr userData);
+        internal delegate CallbackRet StatsInfoCallback(int result, IntPtr info, IntPtr userData);
 
         [DllImport(Libraries.Stc,EntryPoint = "stc_initialize")]
         internal static extern int Initialize(out SafeStcHandle stc);
@@ -51,13 +51,13 @@ internal static partial class Interop
             [DllImport(Libraries.Stc,EntryPoint = "stc_stats_rule_get_time_interval")]
             internal static extern int GetTimeInterval(IntPtr rule, out DateTime from, out DateTime to);
             [DllImport(Libraries.Stc,EntryPoint = "stc_stats_rule_set_iface_type")]
-            internal static extern int SetInterfaceType(IntPtr rule, StcInterfaceType ifaceType);
+            internal static extern int SetInterfaceType(IntPtr rule, Interface ifaceType);
             [DllImport(Libraries.Stc,EntryPoint = "stc_stats_rule_get_iface_type")]
-            internal static extern int GetInterfaceType(IntPtr rule, out StcInterfaceType ifaceType);
+            internal static extern int GetInterfaceType(IntPtr rule, out Interface ifaceType);
             [DllImport(Libraries.Stc,EntryPoint = "stc_stats_rule_set_time_period")]
-            internal static extern int SetTimePeriod(IntPtr rule, StcTimePeriod timePeriod);
+            internal static extern int SetTimePeriod(IntPtr rule, TimePeriodType timePeriod);
             [DllImport(Libraries.Stc,EntryPoint = "stc_stats_rule_get_time_period")]
-            internal static extern int GetTimePeriod(IntPtr rule, out StcTimePeriod timePeriod);
+            internal static extern int GetTimePeriod(IntPtr rule, out TimePeriodType timePeriod);
 
             [DllImport(Libraries.Stc,EntryPoint = "stc_get_stats")]
             internal static extern int GetStats(SafeStcHandle stc, IntPtr rule, StatsInfoCallback infoCb, IntPtr userData);
@@ -75,15 +75,15 @@ internal static partial class Interop
             [DllImport(Libraries.Stc,EntryPoint = "stc_stats_info_get_time_interval")]
             internal static extern int GetTimeInterval(IntPtr info, out DateTime from, out DateTime to);
             [DllImport(Libraries.Stc,EntryPoint = "stc_stats_info_get_iface_type")]
-            internal static extern int GetInterfaceType(IntPtr info, out StcInterfaceType ifaceType);
+            internal static extern int GetInterfaceType(IntPtr info, out Interface ifaceType);
             [DllImport(Libraries.Stc,EntryPoint = "stc_stats_info_get_counter")]
             internal static extern int GetCounter(IntPtr info, out long incoming, out long outgoing);
             [DllImport(Libraries.Stc,EntryPoint = "stc_stats_info_get_roaming_type")]
-            internal static extern int GetRoaming(IntPtr info, out StcRoamingType roaming);
+            internal static extern int GetRoaming(IntPtr info, out RoamingType roaming);
             [DllImport(Libraries.Stc,EntryPoint = "stc_stats_info_get_protocol_type")]
-            internal static extern int GetProtocol(IntPtr info, out StcProtocolType protocol);
+            internal static extern int GetProtocol(IntPtr info, out NetworkProtocol protocol);
             [DllImport(Libraries.Stc,EntryPoint = "stc_stats_info_get_process_state")]
-            internal static extern int GetProcessState(IntPtr info, out StcProcessState state);
+            internal static extern int GetProcessState(IntPtr info, out ProcessState state);
         }
     }
 }

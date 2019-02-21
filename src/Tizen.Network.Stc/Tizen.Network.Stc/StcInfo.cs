@@ -25,24 +25,24 @@ namespace Tizen.Network.Stc
     /// </summary>
     /// <since_tizen> 6 </since_tizen>
 
-    public class StcInfo : IDisposable
+    public class NetworkStatistics : IDisposable
     {
         private IntPtr _infoHandle = IntPtr.Zero;
         private bool _disposed = false;
 
-        internal StcInfo(IntPtr handle)
+        internal NetworkStatistics(IntPtr handle)
         {
             Log.Debug(Globals.LogTag, "New Info. Handle: " + handle);
             _infoHandle = handle;
         }
 
-        ~StcInfo()
+        ~NetworkStatistics()
         {
             Dispose(false);
         }
 
         /// <summary>
-        /// A method to destroy the managed StcInfo objects.
+        /// A method to destroy the managed NetworkStatistics objects.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
         public void Dispose()
@@ -163,11 +163,11 @@ namespace Tizen.Network.Stc
         /// <privilege>http://tizen.org/privilege/network.get</privilege>
         /// <exception cref="NotSupportedException">Thrown while setting this property when Stc is not supported.</exception>
         /// <exception cref="InvalidOperationException">Thrown while setting this value due to an invalid operation.</exception>
-        public StcInterfaceType InterfaceType
+        public Interface InterfaceType
         {
             get
             {
-                StcInterfaceType iface;
+                Interface iface;
                 int ret = Interop.Stc.Info.GetInterfaceType(_infoHandle, out iface);
                 if (ret != (int)StcError.None)
                 {
@@ -227,37 +227,40 @@ namespace Tizen.Network.Stc
         /// A property to get the roaming type from statistics information.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
-        /// <value>Roaming type.</value>
+        /// <value>IsRoaming.</value>
         /// <privilege>http://tizen.org/privilege/network.get</privilege>
         /// <exception cref="NotSupportedException">Thrown while setting this property when Stc is not supported.</exception>
         /// <exception cref="InvalidOperationException">Thrown while setting this value due to an invalid operation.</exception>
-        public StcRoamingType Roaming
+        public bool IsRoaming
         {
             get
             {
-                StcRoamingType roaming;
+                RoamingType roaming;
                 int ret = Interop.Stc.Info.GetRoaming(_infoHandle, out roaming);
                 if (ret != (int)StcError.None)
                 {
                     Log.Error(Globals.LogTag, "Failed to get Roaming type from info, Error - " + (StcError)ret);
                 }
-                return roaming;
+
+                if(roaming == RoamingType.Disabled)
+                    return false;
+                return true;
             }
         }
 
         /// <summary>
-        /// A property to get the protocol type from statistics information.
+        /// A property to get the network protocol type from statistics information.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
-        /// <value>Protocol type.</value>
+        /// <value>NetworkProtocol type.</value>
         /// <privilege>http://tizen.org/privilege/network.get</privilege>
         /// <exception cref="NotSupportedException">Thrown while setting this property when Stc is not supported.</exception>
         /// <exception cref="InvalidOperationException">Thrown while setting this value due to an invalid operation.</exception>
-        public StcProtocolType Protocol
+        public NetworkProtocol Protocol
         {
             get
             {
-                StcProtocolType protocol;
+                NetworkProtocol protocol;
                 int ret = Interop.Stc.Info.GetProtocol(_infoHandle, out protocol);
                 if (ret != (int)StcError.None)
                 {
@@ -275,17 +278,27 @@ namespace Tizen.Network.Stc
         /// <privilege>http://tizen.org/privilege/network.get</privilege>
         /// <exception cref="NotSupportedException">Thrown while setting this property when Stc is not supported.</exception>
         /// <exception cref="InvalidOperationException">Thrown while setting this value due to an invalid operation.</exception>
-        public StcProcessState State
+        public bool IsForegroundProcess
         {
             get
             {
-                StcProcessState state;
+                ProcessState state;
                 int ret = Interop.Stc.Info.GetProcessState(_infoHandle, out state);
                 if (ret != (int)StcError.None)
                 {
-                    Log.Error(Globals.LogTag, "Failed to get Process state from info, Error - " + (StcError)ret);
+                    Log.Error(Globals.LogTag, "Failed to get IsForegroundProcess from info, Error - " + (StcError)ret);
                 }
-                return state;
+
+                if(state == ProcessState.Unknown)
+                {
+                    Log.Error(Globals.LogTag, "Getting 'Unknown' as Process state from info");
+                    throw new InvalidOperationException("Operation failed");
+                }
+                else if(state == ProcessState.Foreground)
+                {
+                    return true;
+                }
+                return false;
             }
         }
     }

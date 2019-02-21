@@ -22,7 +22,7 @@ namespace Tizen.Network.Stc
     /// <summary>
     /// Enumeration for Stc time period.
     /// </summary>
-    public enum StcTimePeriod
+    public enum TimePeriodType
     {
         /// <summary>
         /// Unknown
@@ -49,7 +49,7 @@ namespace Tizen.Network.Stc
     /// <summary>
     /// Enumeration for network interface type.
     /// </summary>
-    public enum StcInterfaceType
+    public enum Interface
     {
         /// <summary>
         /// Network interface type is Unknown.
@@ -80,7 +80,7 @@ namespace Tizen.Network.Stc
     /// <summary>
     /// Enumeration for network roaming type
     /// </summary>
-    public enum StcRoamingType
+    internal enum RoamingType
     {
         /// <summary>
         /// Not in roaming.
@@ -95,7 +95,7 @@ namespace Tizen.Network.Stc
     /// <summary>
     /// Enumeration for hardware network protocol type. 
     /// </summary>
-    public enum StcProtocolType
+    public enum NetworkProtocol
     {
         /// <summary>
         /// Network unknown.
@@ -104,45 +104,45 @@ namespace Tizen.Network.Stc
         /// <summary>
         /// Network no service.
         /// </summary>
-        DatacallNoService,
+        NoService,
         /// <summary>
         /// Network emergency.
         /// </summary>
-        DatacallEmergency,
+        Emergency,
         /// <summary>
         /// Network search 1900.
         /// </summary>
-        DatacallSearch,
+        Search,
         /// <summary>
         /// Network 2G.
         /// </summary>
-        Datacall2G,
+        Datacall_2G,
         /// <summary>
         /// Network 2.5G.
         /// </summary>
-        Datacall2_5G,
+        Datacall_2_5G,
         /// <summary>
         /// Network EDGE.
         /// </summary>
-        Datacall2_5G_Edge,
+        Datacall_2_5G_Edge,
         /// <summary>
         /// Network UMTS.
         /// </summary>
-        Datacall3G,
+        Datacall_3G,
         /// <summary>
         /// Network HSDPA.
         /// </summary>
-        DatacallHsdpa,
+        Hsdpa,
         /// <summary>
         /// Network LTE.
         /// </summary>
-        DatacallLte
+        Lte
     }
 
     /// <summary>
     /// Enumeration for monitored process state.
     /// </summary>
-    public enum StcProcessState
+    internal enum ProcessState
     {
         /// <summary>
         /// Unknown state.
@@ -159,37 +159,9 @@ namespace Tizen.Network.Stc
    }
 
     /// <summary>
-    /// Enumeration for network connection period type.
-    /// @details Last received/sent mean counting data from the first connection of each interface.
-    /// </summary>
-    public enum StcConnPeriodType
-    {
-        /// <summary>
-        /// Unknown period.
-        /// </summary>
-        Unknown,
-        /// <summary>
-        /// Last received data.
-        /// </summary>
-        LastReceivedData,
-        /// <summary>
-        /// Last sent data.
-        /// </summary>
-        LastSentData,
-        /// <summary>
-        /// Total received data.
-        /// </summary>
-        TotalReceivedData,
-        /// <summary>
-        /// Total sent data.
-        /// </summary>
-        TotalSentData
-    }
-
-    /// <summary>
     /// Enumeration for return type of the callback.
     /// </summary>
-    public enum StcCallbackRet
+    public enum CallbackRet
     {
         /// <summary>
         /// Cancel

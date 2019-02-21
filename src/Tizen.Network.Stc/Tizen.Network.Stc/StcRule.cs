@@ -26,7 +26,7 @@ namespace Tizen.Network.Stc
     /// <since_tizen> 6 </since_tizen>
     public static class StatsInfoObjectCb
     {
-        public delegate StcCallbackRet InfoCallback(StcInfo info);
+        public delegate CallbackRet InfoCallback(NetworkStatistics info);
     }
 
     /// <summary>
@@ -203,11 +203,11 @@ namespace Tizen.Network.Stc
         /// <privilege>http://tizen.org/privilege/network.get</privilege>
         /// <exception cref="NotSupportedException">Thrown while setting this property when Stc is not supported.</exception>
         /// <exception cref="InvalidOperationException">Thrown while setting this value due to an invalid operation.</exception>
-        public StcInterfaceType InterfaceType
+        public Interface InterfaceType
         {
             get
             {
-                StcInterfaceType ifaceType;
+                Interface ifaceType;
                 int ret = Interop.Stc.Rule.GetInterfaceType(_ruleHandle, out ifaceType);
                 if (ret != (int)StcError.None)
                 {
@@ -238,11 +238,11 @@ namespace Tizen.Network.Stc
         /// <privilege>http://tizen.org/privilege/network.get</privilege>
         /// <exception cref="NotSupportedException">Thrown while setting this property when Stc is not supported.</exception>
         /// <exception cref="InvalidOperationException">Thrown while setting this value due to an invalid operation.</exception>
-        public StcTimePeriod TimePeriod 
+        public TimePeriodType TimePeriod
         {
             get
             {
-                StcTimePeriod timePeriod;
+                TimePeriodType timePeriod;
                 int ret = Interop.Stc.Rule.GetTimePeriod(_ruleHandle, out timePeriod);
                 if (ret != (int)StcError.None)
                 {
@@ -290,7 +290,7 @@ namespace Tizen.Network.Stc
                     Log.Error(Globals.LogTag, "GetStats failed, Error - " + (StcError)result);
                     StcErrorFactory.ThrowStcException(result);
                 }
-                return _getStatsObjectCb(new StcInfo(info));
+                return _getStatsObjectCb(new NetworkStatistics(info));
             };
 
             int ret = Interop.Stc.Rule.GetStats(StcManagerImpl.Instance.GetSafeHandle(), _ruleHandle, _getStatsCb, IntPtr.Zero);
@@ -326,7 +326,7 @@ namespace Tizen.Network.Stc
                     Log.Error(Globals.LogTag, "ForeachStats failed, Error - " + (StcError)result);
                     StcErrorFactory.ThrowStcException(result);
                 }
-                return _foreachStatsObjectCb(new StcInfo(info));
+                return _foreachStatsObjectCb(new NetworkStatistics(info));
             };
 
             int ret = Interop.Stc.Rule.ForeachStats(StcManagerImpl.Instance.GetSafeHandle(), _ruleHandle, _foreachStatsCb, IntPtr.Zero);
@@ -362,7 +362,7 @@ namespace Tizen.Network.Stc
                     Log.Error(Globals.LogTag, "GetTotalStats failed, Error - " + (StcError)result);
                     StcErrorFactory.ThrowStcException(result);
                 }
-                return _getTotalStatsObjectCb(new StcInfo(info));
+                return _getTotalStatsObjectCb(new NetworkStatistics(info));
             };
 
             int ret = Interop.Stc.Rule.GetTotalStats(StcManagerImpl.Instance.GetSafeHandle(), _ruleHandle, _getTotalStatsCb, IntPtr.Zero);
