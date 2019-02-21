@@ -310,7 +310,7 @@ namespace Tizen.NUI
         /// <since_tizen> 5 </since_tizen>
         public override int GetHashCode()
         {
-            return swigCPtr.GetHashCode();
+            return swigCPtr.Handle.GetHashCode();
         }
 
         /// <summary>
