@@ -14,7 +14,7 @@ namespace SystemSettingsUnitTest
         {
             base.OnCreate();
             SystemSettingsTests.TestAllAsync();
-            Initialize();
+            //Initialize();
         }
      
         public static void PrintOkFuncName(String str_in)
