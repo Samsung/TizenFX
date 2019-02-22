@@ -21,13 +21,10 @@ using System.Collections.Generic;
 namespace Tizen.Network.Stc
 {
     /// <summary>
-    /// A class for managing the callback delegate of statistics information.
+    /// The callback delegate for network statistics information.
     /// </summary>
     /// <since_tizen> 6 </since_tizen>
-    public static class StatsInfoObjectCb
-    {
-        public delegate CallbackRet InfoCallback(NetworkStatistics info);
-    }
+    public delegate CallbackRet StatisticsCallback(NetworkStatistics info);
 
     /// <summary>
     /// A class for managing the Stc Rules to match applications.
@@ -37,9 +34,9 @@ namespace Tizen.Network.Stc
     {
         private IntPtr _ruleHandle = IntPtr.Zero;
         private bool _disposed = false;
-        private StatsInfoObjectCb.InfoCallback _getStatsObjectCb;
-        private StatsInfoObjectCb.InfoCallback _foreachStatsObjectCb;
-        private StatsInfoObjectCb.InfoCallback _getTotalStatsObjectCb;
+        private StatisticsCallback _getStatsObjectCb;
+        private StatisticsCallback _foreachStatsObjectCb;
+        private StatisticsCallback _getTotalStatsObjectCb;
         private Interop.Stc.StatsInfoCallback _getStatsCb;
         private Interop.Stc.StatsInfoCallback _foreachStatsCb;
         private Interop.Stc.StatsInfoCallback _getTotalStatsCb;
@@ -274,7 +271,7 @@ namespace Tizen.Network.Stc
         /// <exception cref="NotSupportedException">Thrown when the Stc is not supported.</exception>
         /// <exception cref="UnauthorizedAccessException">Thrown when the permission is denied.</exception>
         /// <exception cref="InvalidOperationException">Thrown when the method failed due to an invalid operation.</exception>
-        public void GetStats(StatsInfoObjectCb.InfoCallback infoCb)
+        public void GetStats(StatisticsCallback infoCb)
         {
             if (_disposed)
             {
@@ -302,7 +299,7 @@ namespace Tizen.Network.Stc
         }
 
         /// <summary>
-        /// Gets the statistics information of each application asynchronously. The callback is called for each application that used network in between timestamps specified.
+        /// Gets the statistics information of each application asynchronously.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
         /// <param name="infoCb">The callback is called for each application that used network in between timestamps specified.</param>
@@ -310,7 +307,7 @@ namespace Tizen.Network.Stc
         /// <exception cref="NotSupportedException">Thrown when the Stc is not supported.</exception>
         /// <exception cref="UnauthorizedAccessException">Thrown when the permission is denied.</exception>
         /// <exception cref="InvalidOperationException">Thrown when the method failed due to an invalid operation.</exception>
-        public void ForeachStats(StatsInfoObjectCb.InfoCallback infoCb)
+        public void ForeachStats(StatisticsCallback infoCb)
         {
             if (_disposed)
             {
@@ -346,7 +343,7 @@ namespace Tizen.Network.Stc
         /// <exception cref="NotSupportedException">Thrown when the Stc is not supported.</exception>
         /// <exception cref="UnauthorizedAccessException">Thrown when the permission is denied.</exception>
         /// <exception cref="InvalidOperationException">Thrown when the method failed due to an invalid operation.</exception>
-        public void GetTotalStats(StatsInfoObjectCb.InfoCallback infoCb)
+        public void GetTotalStats(StatisticsCallback infoCb)
         {
             if (_disposed)
             {
