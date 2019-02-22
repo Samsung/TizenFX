@@ -17,6 +17,7 @@
 
 using System;
 using Tizen.NUI.Binding;
+using System.ComponentModel;
 
 namespace Tizen.NUI
 {
@@ -24,7 +25,7 @@ namespace Tizen.NUI
     /// <summary>
     /// The Color class.
     /// </summary>
-    [TypeConverter(typeof(ColorTypeConverter))]
+    [Tizen.NUI.Binding.TypeConverter(typeof(ColorTypeConverter))]
     public class Color : global::System.IDisposable
     {
 
@@ -615,6 +616,24 @@ namespace Tizen.NUI
             Color ret = new Color(NDalicPINVOKE.Vector4_Subtract__SWIG_1(swigCPtr), true);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
+        }
+
+        /// <summary>
+        /// Determines whether the specified object is equal to the current object.
+        /// </summary>
+        /// <param name="obj">The object to compare with the current object.</param>
+        /// <returns>true if the specified object is equal to the current object; otherwise, false.</returns>
+        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public override bool Equals(System.Object obj)
+        {
+            Color color = obj as Color;
+            bool equal = false;
+            if (R == color?.R && G == color?.G && B == color?.B && A == color?.A)
+            {
+                equal = true;
+            }
+            return equal;
         }
 
         private float ValueOfIndex(uint index)
