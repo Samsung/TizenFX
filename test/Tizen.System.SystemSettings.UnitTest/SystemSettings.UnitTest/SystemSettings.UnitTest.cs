@@ -14,7 +14,16 @@ namespace SystemSettingsUnitTest
         {
             base.OnCreate();
             SystemSettingsTests.TestAllAsync();
-            DisplayString();
+
+            //Initialize();
+        }
+     
+        public static void PrintOkFuncName(String str_in)
+        {
+            String func_name = str_in.ToString();
+            String[] parse_func = func_name.Split(' ');
+            Console.WriteLine(parse_func[1] + " >>>>>> ok");
+
         }
 
         public void DisplayString()

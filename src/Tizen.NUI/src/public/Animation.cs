@@ -17,7 +17,6 @@
 
 namespace Tizen.NUI
 {
-
     using System;
     using System.ComponentModel;
     using System.Runtime.InteropServices;
@@ -510,6 +509,8 @@ namespace Tizen.NUI
         /// <param name="handle">Handle to an object.</param>
         /// <returns>Handle to an animation object or an uninitialized handle.</returns>
         /// <since_tizen> 3 </since_tizen>
+        /// This will be changed internal API after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public static Animation DownCast(BaseHandle handle)
         {
             Animation ret = Registry.GetManagedBaseHandleFromNativePtr(handle) as Animation;

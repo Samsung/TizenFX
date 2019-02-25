@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2018 Samsung Electronics Co., Ltd All Rights Reserved
+ * Copyright (c) 2019 Samsung Electronics Co., Ltd All Rights Reserved
  *
  * Licensed under the Apache License, Version 2.0 (the License);
  * you may not use this file except in compliance with the License.
@@ -13,22 +13,57 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
- 
+
 using System;
 using System.IO;
+using System.Linq;
 using System.Text.RegularExpressions;
 using CommandLine;
 
-namespace GenDummy
+namespace APITool
 {
     class Program
     {
-        public void Run(Options options)
+        public int RunListAndReturnExitCode(ListOptions options)
         {
             if (options.Verbose)
             {
                 Log.Level = LogLevel.VERBOSE;
             }
+
+            APIPrinter printer = new APIPrinter(options);
+            
+            string absTarget = Path.GetFullPath(options.Target);
+            if (Directory.Exists(absTarget))
+            {
+                DirectoryInfo targetDir = new DirectoryInfo(absTarget);
+                var targetFiles = targetDir.GetFiles("*.dll").OrderBy(f => f.Name);
+                foreach (var file in targetFiles)
+                {
+                    printer.Run(file.FullName);
+                }
+            }
+            else if (File.Exists(absTarget))
+            {
+                printer.Run(absTarget);
+            }
+            else
+            {
+                Log.Error($"No such file found: {absTarget}");
+                return 1;
+            }
+
+            return 0;
+        }
+
+        public int RunDummyAndReturnExitCode(DummyOptions options)
+        {
+            if (options.Verbose)
+            {
+                Log.Level = LogLevel.VERBOSE;
+            }
+
+            DummyGenerator dummyGenerator = new DummyGenerator();
 
             // Convert to absolute path
             if (!string.IsNullOrEmpty(options.InputPath))
@@ -38,7 +73,7 @@ namespace GenDummy
             if (!string.IsNullOrEmpty(options.OutputPath))
             {
                 options.OutputPath = Path.GetFullPath(options.OutputPath);
-            }
+            }            
 
             if (Directory.Exists(options.InputPath))
             {
@@ -59,8 +94,7 @@ namespace GenDummy
                 foreach (var f in inputFiles)
                 {
                     Log.Info($"Processing {f.FullName} ...");
-                    Converter conv = new Converter(f.FullName);
-                    conv.ConvertTo(rgx.Replace(f.FullName, options.OutputPath));
+                    dummyGenerator.Run(f.FullName, rgx.Replace(f.FullName, options.OutputPath));
                 }
             }
             else
@@ -69,17 +103,21 @@ namespace GenDummy
                 {
                     throw new FileNotFoundException("Couldn't find the input file : " + options.InputPath);
                 }
-                Converter conv = new Converter(options.InputPath);
-                conv.ConvertTo(options.OutputPath);
+                dummyGenerator.Run(options.InputPath, options.OutputPath);
             }
+
+            return 0;
         }
 
-        static void Main(string[] args)
+        static int Main(string[] args)
         {
             try
             {
                 Program program = new Program();
-                Parser.Default.ParseArguments<Options>(args).WithParsed(opts => program.Run(opts));
+                return Parser.Default.ParseArguments<ListOptions, DummyOptions>(args).MapResult(
+                        (ListOptions opts) => program.RunListAndReturnExitCode(opts),
+                        (DummyOptions opts) => program.RunDummyAndReturnExitCode(opts),
+                        errs => 1);
             }
             catch (Exception ex)
             {
@@ -87,6 +125,7 @@ namespace GenDummy
                 Log.Error(ex.StackTrace);
                 Environment.Exit(1);
             }
+            return 0;
         }
     }
 }

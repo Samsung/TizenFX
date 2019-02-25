@@ -1796,6 +1796,520 @@ namespace SystemSettingsUnitTest
             LogUtils.WriteOK();
         }
 
+
+
+        // AdsId
+        ////[Test]
+        //[Category("P1")]
+        //[Description("Test if set/get for SystemSettings:AdsId is working properly")]
+        //[Property("SPEC", "Tizen.System.SystemSettings.AdsId A")]
+        //[Property("SPEC_URL", "-")]
+        //[Property("CRITERIA", "PRW")]
+        //[Property("AUTHOR", "Aditya Aswani, a.aswani@samsung.com")]
+        public static void AdsId_READ_WRITE()
+        {
+            try
+            {
+                LogUtils.StartTest();
+                /* TEST CODE */
+                Assert.IsInstanceOf<string>(Tizen.System.SystemSettings.AdsId, "AdsId_READ_WRITE: AdsId not an instance of string");
+                string preValue = Tizen.System.SystemSettings.AdsId;
+                var setValue = "00000215-0156-0133-0034-000000000102";
+
+                Tizen.System.SystemSettings.AdsId = setValue;
+                var getValue = Tizen.System.SystemSettings.AdsId;
+                Assert.IsTrue(setValue.CompareTo(getValue) == 0, "AdsId_READ_WRITE: Set value and get value of the property should be same.");
+                Tizen.System.SystemSettings.AdsId = preValue;
+                LogUtils.WriteOK();
+            }
+            catch (NotSupportedException)
+            {
+                bool isSupport = true;
+                Information.TryGetValue<bool>("tizen.org/feature/systemsetting.incoming_call", out isSupport);
+                Assert.IsTrue(isSupport == false, "Invalid NotSupportedException");
+                Tizen.Log.Debug("CS-SYSTEM-SETTINGS", ">>>>>> NotSupport(tizen.org/feature/systemsetting.incoming_call)");
+                LogUtils.NotSupport();
+            }
+        }
+
+        private static bool s_adsIdCallbackCalled = false;
+        private static readonly string s_adsIdValue = "00000215-0156-0133-0034-000000000102";
+        ////[Test]
+        //[Category("P1")]
+        //[Description("Check if callback to SystemSettings:AdsIdChanged event is called")]
+        //[Property("SPEC", "Tizen.System.SystemSettings.AdsIdChanged E")]
+        //[Property("SPEC_URL", "-")]
+        //[Property("CRITERIA", "EVL")]
+        //[Property("AUTHOR", "Aditya Aswani, a.aswani@samsung.com")]
+        public static async Task AdsIdChanged_CHECK_EVENT()
+        {
+            try
+            {
+                LogUtils.StartTest();
+                /* TEST CODE */
+                Tizen.System.SystemSettings.AdsIdChanged += OnAdsIdChanged;
+                string preValue = Tizen.System.SystemSettings.AdsId;
+                Tizen.System.SystemSettings.AdsId = s_adsIdValue;
+                await Task.Delay(2000);
+                Assert.IsTrue(s_adsIdCallbackCalled, "AdsIdChanged_CHECK_EVENT: EventHandler added. Not getting called");
+                s_adsIdCallbackCalled = false;
+                Tizen.System.SystemSettings.AdsIdChanged -= OnAdsIdChanged;
+                Tizen.System.SystemSettings.AdsId = s_adsIdValue;
+                await Task.Delay(2000);
+                Assert.IsFalse(s_adsIdCallbackCalled, "AdsIdChanged_CHECK_EVENT: EventHandler removed. Still getting called");
+                Tizen.System.SystemSettings.AdsId = preValue;
+                LogUtils.WriteOK();
+            }
+            catch (NotSupportedException)
+            {
+                bool isSupport = true;
+                Information.TryGetValue<bool>("tizen.org/feature/systemsetting.incoming_call", out isSupport);
+                Assert.IsTrue(isSupport == false, "Invalid NotSupportedException");
+                Tizen.Log.Debug("CS-SYSTEM-SETTINGS", ">>>>>> NotSupport(tizen.org/feature/systemsetting.incoming_call)");
+                LogUtils.NotSupport();
+            }
+        }
+        private static void OnAdsIdChanged(object sender, Tizen.System.AdsIdChangedEventArgs e)
+        {
+            s_adsIdCallbackCalled = true;
+            Assert.IsInstanceOf<string>(e.Value, "OnAdsIdChanged: AdsId not an instance of string");
+            Assert.IsTrue(s_adsIdValue.CompareTo(e.Value) == 0, "OnAdsIdChanged: The callback should receive the latest value for the property.");
+        }
+
+        // UltraDataSave
+        //[Test]
+        //[Category("P1")]
+        //[Description("Test if get for SystemSettings:UltraDataSave is working properly")]
+        //[Property("SPEC", "Tizen.System.SystemSettings.UltraDataSave A")]
+        //[Property("SPEC_URL", "-")]
+        //[Property("CRITERIA", "PRO")]
+        //[Property("AUTHOR", "Aditya Aswani, a.aswani@samsung.com")]
+        public static void UltraDataSave_READ_ONLY()
+        {
+            try
+            {
+                LogUtils.StartTest();
+                /* TEST CODE */
+                Assert.IsInstanceOf<string>(Tizen.System.SystemSettings.UltraDataSave, "UltraDataSave_READ_ONLY: UltraDataSave not an instance of string");
+                var readValue = Tizen.System.SystemSettings.UltraDataSave;
+                Assert.NotNull(readValue, "Should be readable");
+                LogUtils.WriteOK();
+            } catch (NotSupportedException) {
+                bool isSupport = true;
+                Information.TryGetValue<bool>("tizen.org/feature/network.telephony", out isSupport);
+                Assert.IsTrue(isSupport == false, "Invalid NotSupportedException");
+                Tizen.Log.Debug("CS-SYSTEM-SETTINGS", ">>>>>> NotSupport(tizen.org/feature/network.telephony)");
+                LogUtils.NotSupport();
+            }
+        }
+
+#if true
+        // AccessibilityTts
+        ////[Test]
+        //[Category("P1")]
+        //[Description("Test if set/get for SystemSettings:AccessibilityTtsEnabled is working properly")]
+        //[Property("SPEC", "Tizen.System.SystemSettings.AccessibilityTtsEnabled A")]
+        //[Property("SPEC_URL", "-")]
+        //[Property("CRITERIA", "PRW")]
+        //[Property("AUTHOR", "Aditya Aswani, a.aswani@samsung.com")]
+        public static void AccessibilityTtsEnabled_READ_WRITE()
+        {
+            LogUtils.StartTest();
+            /* TEST CODE */
+            bool preValue = Tizen.System.SystemSettings.AccessibilityTtsEnabled;
+            Assert.IsInstanceOf<bool>(Tizen.System.SystemSettings.AccessibilityTtsEnabled, "AccessibilityTtsEnabled_READ_WRITE: AccessibilityTtsEnabled not an instance of bool");
+            Tizen.System.SystemSettings.AccessibilityTtsEnabled = true;
+            Assert.IsTrue(Tizen.System.SystemSettings.AccessibilityTtsEnabled, "AccessibilityTts_READ_WRITE: Set value and get value of the property should be same.");
+            Tizen.System.SystemSettings.AccessibilityTtsEnabled = false;
+            Assert.IsFalse(Tizen.System.SystemSettings.AccessibilityTtsEnabled, "AccessibilityTts_READ_WRITE: Set value and get value of the property should be same.");
+            Tizen.System.SystemSettings.AccessibilityTtsEnabled = preValue;
+            LogUtils.WriteOK();
+        }
+
+        private static bool s_accessibilityTtsCallbackCalled = false;
+        private static bool s_accessibilityTtsValue = !Tizen.System.SystemSettings.AccessibilityTtsEnabled;
+        ////[Test]
+        //[Category("P1")]
+        //[Description("Check if callback to SystemSettings:AccessibilityTtsSettingChanged event is called")]
+        //[Property("SPEC", "Tizen.System.SystemSettings.AccessibilityTtsSettingChanged E")]
+        //[Property("SPEC_URL", "-")]
+        //[Property("CRITERIA", "EVL")]
+        //[Property("AUTHOR", "Aditya Aswani, a.aswani@samsung.com")]
+        public static async Task AccessibilityTtsSettingChanged_CHECK_EVENT()
+        {
+            LogUtils.StartTest();
+            /* TEST CODE */
+            Tizen.System.SystemSettings.AccessibilityTtsSettingChanged += OnAccessibilityTtsChanged;
+            bool preValue = Tizen.System.SystemSettings.AccessibilityTtsEnabled;
+            Tizen.System.SystemSettings.AccessibilityTtsEnabled = s_accessibilityTtsValue;
+            await Task.Delay(2000);
+            Assert.IsTrue(s_accessibilityTtsCallbackCalled, "AccessibilityTtsSettingChanged_CHECK_EVENT: EventHandler added. Not getting called");
+            s_accessibilityTtsCallbackCalled = false;
+            s_accessibilityTtsValue = !s_accessibilityTtsValue;
+            Tizen.System.SystemSettings.AccessibilityTtsEnabled = s_accessibilityTtsValue;
+            await Task.Delay(2000);
+            Assert.IsTrue(s_accessibilityTtsCallbackCalled, "AccessibilityTtsSettingChanged_CHECK_EVENT: EventHandler added. Not getting called");
+            s_accessibilityTtsCallbackCalled = false;
+
+            Tizen.System.SystemSettings.AccessibilityTtsSettingChanged -= OnAccessibilityTtsChanged;
+            Tizen.System.SystemSettings.AccessibilityTtsEnabled = s_accessibilityTtsValue;
+            await Task.Delay(2000);
+            Assert.IsFalse(s_accessibilityTtsCallbackCalled, "AccessibilityTtsSettingChanged_CHECK_EVENT: EventHandler removed. Still getting called");
+            Tizen.System.SystemSettings.AccessibilityTtsEnabled = preValue;
+            LogUtils.WriteOK();
+        }
+        private static void OnAccessibilityTtsChanged(object sender, Tizen.System.AccessibilityTtsSettingChangedEventArgs e)
+        {
+            s_accessibilityTtsCallbackCalled = true;
+            Assert.IsInstanceOf<bool>(e.Value, "OnAccessibilityTtsChanged: AccessibilityTtsEnabled not an instance of bool");
+            Assert.IsTrue(e.Value == s_accessibilityTtsValue, "OnAccessibilityTtsChanged: The callback should receive the latest value for the property.");
+        }
+#endif
+        // Vibration
+        ////[Test]
+        //[Category("P1")]
+        //[Description("Test if set/get for SystemSettings:Vibration is working properly")]
+        //[Property("SPEC", "Tizen.System.SystemSettings.Vibration A")]
+        //[Property("SPEC_URL", "-")]
+        //[Property("CRITERIA", "PRW")]
+        //[Property("AUTHOR", "Aditya Aswani, a.aswani@samsung.com")]
+        public static void Vibration_READ_WRITE()
+        {
+            LogUtils.StartTest();
+            /* TEST CODE */
+            bool preValue = Tizen.System.SystemSettings.Vibration;
+            Assert.IsInstanceOf<bool>(Tizen.System.SystemSettings.Vibration, "Vibration_READ_WRITE: Vibration not an instance of bool");
+            Tizen.System.SystemSettings.Vibration = true;
+            Assert.IsTrue(Tizen.System.SystemSettings.Vibration, "Vibration_READ_WRITE: Set value and get value of the property should be same.");
+            Tizen.System.SystemSettings.Vibration = false;
+            Assert.IsFalse(Tizen.System.SystemSettings.Vibration, "Vibration_READ_WRITE: Set value and get value of the property should be same.");
+            Tizen.System.SystemSettings.Vibration = preValue;
+            LogUtils.WriteOK();
+        }
+
+        private static bool s_vibrationCallbackCalled = false;
+        private static bool s_vibrationValue = !Tizen.System.SystemSettings.Vibration;
+        ////[Test]
+        //[Category("P1")]
+        //[Description("Check if callback to SystemSettings:VibrationSettingChanged event is called")]
+        //[Property("SPEC", "Tizen.System.SystemSettings.VibrationSettingChanged E")]
+        //[Property("SPEC_URL", "-")]
+        //[Property("CRITERIA", "EVL")]
+        //[Property("AUTHOR", "Aditya Aswani, a.aswani@samsung.com")]
+        public static async Task VibrationSettingChanged_CHECK_EVENT()
+        {
+            LogUtils.StartTest();
+            /* TEST CODE */
+            Tizen.System.SystemSettings.VibrationChanged += OnVibrationChanged;
+            bool preValue = Tizen.System.SystemSettings.Vibration;
+            Tizen.System.SystemSettings.Vibration = s_vibrationValue;
+            await Task.Delay(2000);
+            Assert.IsTrue(s_vibrationCallbackCalled, "VibrationSettingChanged_CHECK_EVENT: EventHandler added. Not getting called");
+            s_vibrationCallbackCalled = false;
+            s_vibrationValue = !s_vibrationValue;
+            Tizen.System.SystemSettings.Vibration = s_vibrationValue;
+            await Task.Delay(2000);
+            Assert.IsTrue(s_vibrationCallbackCalled, "VibrationSettingChanged_CHECK_EVENT: EventHandler added. Not getting called");
+            s_vibrationCallbackCalled = false;
+
+            Tizen.System.SystemSettings.VibrationChanged -= OnVibrationChanged;
+            Tizen.System.SystemSettings.Vibration = s_vibrationValue;
+            await Task.Delay(2000);
+            Assert.IsFalse(s_vibrationCallbackCalled, "VibrationSettingChanged_CHECK_EVENT: EventHandler removed. Still getting called");
+            Tizen.System.SystemSettings.Vibration = preValue;
+            LogUtils.WriteOK();
+        }
+        private static void OnVibrationChanged(object sender, Tizen.System.VibrationChangedEventArgs e)
+        {
+            s_vibrationCallbackCalled = true;
+            Assert.IsInstanceOf<bool>(e.Value, "OnVibrationChanged: Vibration not an instance of bool");
+            Assert.IsTrue(e.Value == s_vibrationValue, "OnVibrationChanged: The callback should receive the latest value for the property.");
+        }
+
+        // AutomaticTimeUpdate
+        ////[Test]
+        //[Category("P1")]
+        //[Description("Test if set/get for SystemSettings:AutomaticTimeUpdate is working properly")]
+        //[Property("SPEC", "Tizen.System.SystemSettings.AutomaticTimeUpdate A")]
+        //[Property("SPEC_URL", "-")]
+        //[Property("CRITERIA", "PRW")]
+        //[Property("AUTHOR", "Aditya Aswani, a.aswani@samsung.com")]
+        public static void AutomaticTimeUpdate_READ_WRITE()
+        {
+            LogUtils.StartTest();
+            /* TEST CODE */
+            bool preValue = Tizen.System.SystemSettings.AutomaticTimeUpdate;
+            Assert.IsInstanceOf<bool>(Tizen.System.SystemSettings.AutomaticTimeUpdate, "AutomaticTimeUpdate_READ_WRITE: AutomaticTimeUpdate not an instance of bool");
+            Tizen.System.SystemSettings.AutomaticTimeUpdate = true;
+            Assert.IsTrue(Tizen.System.SystemSettings.AutomaticTimeUpdate, "AutomaticTimeUpdate_READ_WRITE: Set value and get value of the property should be same.");
+            Tizen.System.SystemSettings.AutomaticTimeUpdate = false;
+            Assert.IsFalse(Tizen.System.SystemSettings.AutomaticTimeUpdate, "AutomaticTimeUpdate_READ_WRITE: Set value and get value of the property should be same.");
+            Tizen.System.SystemSettings.AutomaticTimeUpdate = preValue;
+            LogUtils.WriteOK();
+        }
+
+        private static bool s_automaticTimeUpdateCallbackCalled = false;
+        private static bool s_automaticTimeUpdateValue = !Tizen.System.SystemSettings.AutomaticTimeUpdate;
+        ////[Test]
+        //[Category("P1")]
+        //[Description("Check if callback to SystemSettings:AutomaticTimeUpdateSettingChanged event is called")]
+        //[Property("SPEC", "Tizen.System.SystemSettings.AutomaticTimeUpdateSettingChanged E")]
+        //[Property("SPEC_URL", "-")]
+        //[Property("CRITERIA", "EVL")]
+        //[Property("AUTHOR", "Aditya Aswani, a.aswani@samsung.com")]
+        public static async Task AutomaticTimeUpdateSettingChanged_CHECK_EVENT()
+        {
+            LogUtils.StartTest();
+            /* TEST CODE */
+            Tizen.System.SystemSettings.AutomaticTimeUpdateChanged += OnAutomaticTimeUpdateChanged;
+            bool preValue = Tizen.System.SystemSettings.AutomaticTimeUpdate;
+            Tizen.System.SystemSettings.AutomaticTimeUpdate = s_automaticTimeUpdateValue;
+            await Task.Delay(2000);
+            Assert.IsTrue(s_automaticTimeUpdateCallbackCalled, "AutomaticTimeUpdateSettingChanged_CHECK_EVENT: EventHandler added. Not getting called");
+            s_automaticTimeUpdateCallbackCalled = false;
+            s_automaticTimeUpdateValue = !s_automaticTimeUpdateValue;
+            Tizen.System.SystemSettings.AutomaticTimeUpdate = s_automaticTimeUpdateValue;
+            await Task.Delay(2000);
+            Assert.IsTrue(s_automaticTimeUpdateCallbackCalled, "AutomaticTimeUpdateSettingChanged_CHECK_EVENT: EventHandler added. Not getting called");
+            s_automaticTimeUpdateCallbackCalled = false;
+
+            Tizen.System.SystemSettings.AutomaticTimeUpdateChanged -= OnAutomaticTimeUpdateChanged;
+            Tizen.System.SystemSettings.AutomaticTimeUpdate = s_automaticTimeUpdateValue;
+            await Task.Delay(2000);
+            Assert.IsFalse(s_automaticTimeUpdateCallbackCalled, "AutomaticTimeUpdateSettingChanged_CHECK_EVENT: EventHandler removed. Still getting called");
+            Tizen.System.SystemSettings.AutomaticTimeUpdate = preValue;
+            LogUtils.WriteOK();
+        }
+        private static void OnAutomaticTimeUpdateChanged(object sender, Tizen.System.AutomaticTimeUpdateChangedEventArgs e)
+        {
+            s_automaticTimeUpdateCallbackCalled = true;
+            Assert.IsInstanceOf<bool>(e.Value, "OnAutomaticTimeUpdateChanged: AutomaticTimeUpdate not an instance of bool");
+            Assert.IsTrue(e.Value == s_automaticTimeUpdateValue, "OnAutomaticTimeUpdateChanged: The callback should receive the latest value for the property.");
+        }
+
+        // DeveloperOptionState
+        ////[Test]
+        //[Category("P1")]
+        //[Description("Test if set/get for SystemSettings:DeveloperOptionState is working properly")]
+        //[Property("SPEC", "Tizen.System.SystemSettings.DeveloperOptionState A")]
+        //[Property("SPEC_URL", "-")]
+        //[Property("CRITERIA", "PRW")]
+        //[Property("AUTHOR", "Aditya Aswani, a.aswani@samsung.com")]
+        public static void DeveloperOptionState_READ_WRITE()
+        {
+            LogUtils.StartTest();
+            /* TEST CODE */
+            bool preValue = Tizen.System.SystemSettings.DeveloperOptionState;
+            Assert.IsInstanceOf<bool>(Tizen.System.SystemSettings.DeveloperOptionState, "DeveloperOptionState_READ_WRITE: DeveloperOptionState not an instance of bool");
+            Tizen.System.SystemSettings.DeveloperOptionState = true;
+            Assert.IsTrue(Tizen.System.SystemSettings.DeveloperOptionState, "DeveloperOptionState_READ_WRITE: Set value and get value of the property should be same.");
+            Tizen.System.SystemSettings.DeveloperOptionState = false;
+            Assert.IsFalse(Tizen.System.SystemSettings.DeveloperOptionState, "DeveloperOptionState_READ_WRITE: Set value and get value of the property should be same.");
+            Tizen.System.SystemSettings.DeveloperOptionState = preValue;
+            LogUtils.WriteOK();
+        }
+
+        private static bool s_developerOptionStateCallbackCalled = false;
+        private static bool s_developerOptionStateValue = !Tizen.System.SystemSettings.DeveloperOptionState;
+        ////[Test]
+        //[Category("P1")]
+        //[Description("Check if callback to SystemSettings:DeveloperOptionStateSettingChanged event is called")]
+        //[Property("SPEC", "Tizen.System.SystemSettings.DeveloperOptionStateSettingChanged E")]
+        //[Property("SPEC_URL", "-")]
+        //[Property("CRITERIA", "EVL")]
+        //[Property("AUTHOR", "Aditya Aswani, a.aswani@samsung.com")]
+        public static async Task DeveloperOptionStateSettingChanged_CHECK_EVENT()
+        {
+            LogUtils.StartTest();
+            /* TEST CODE */
+            Tizen.System.SystemSettings.DeveloperOptionStateChanged += OnDeveloperOptionStateChanged;
+            bool preValue = Tizen.System.SystemSettings.DeveloperOptionState;
+            Tizen.System.SystemSettings.DeveloperOptionState = s_developerOptionStateValue;
+            await Task.Delay(2000);
+            Assert.IsTrue(s_developerOptionStateCallbackCalled, "DeveloperOptionStateSettingChanged_CHECK_EVENT: EventHandler added. Not getting called");
+            s_developerOptionStateCallbackCalled = false;
+            s_developerOptionStateValue = !s_developerOptionStateValue;
+            Tizen.System.SystemSettings.DeveloperOptionState = s_developerOptionStateValue;
+            await Task.Delay(2000);
+            Assert.IsTrue(s_developerOptionStateCallbackCalled, "DeveloperOptionStateSettingChanged_CHECK_EVENT: EventHandler added. Not getting called");
+            s_developerOptionStateCallbackCalled = false;
+
+            Tizen.System.SystemSettings.DeveloperOptionStateChanged -= OnDeveloperOptionStateChanged;
+            Tizen.System.SystemSettings.DeveloperOptionState = s_developerOptionStateValue;
+            await Task.Delay(2000);
+            Assert.IsFalse(s_developerOptionStateCallbackCalled, "DeveloperOptionStateSettingChanged_CHECK_EVENT: EventHandler removed. Still getting called");
+            Tizen.System.SystemSettings.DeveloperOptionState = preValue;
+            LogUtils.WriteOK();
+        }
+        private static void OnDeveloperOptionStateChanged(object sender, Tizen.System.DeveloperOptionStateChangedEventArgs e)
+        {
+            s_developerOptionStateCallbackCalled = true;
+            Assert.IsInstanceOf<bool>(e.Value, "OnDeveloperOptionStateChanged: DeveloperOptionState not an instance of bool");
+            Assert.IsTrue(e.Value == s_developerOptionStateValue, "OnDeveloperOptionStateChanged: The callback should receive the latest value for the property.");
+        }
+
+#if true
+        // AccessibilityGrayscale
+        ////[Test]
+        //[Category("P1")]
+        //[Description("Test if set/get for SystemSettings:AccessibilityGrayscale is working properly")]
+        //[Property("SPEC", "Tizen.System.SystemSettings.AccessibilityGrayscale A")]
+        //[Property("SPEC_URL", "-")]
+        //[Property("CRITERIA", "PRW")]
+        //[Property("AUTHOR", "Aditya Aswani, a.aswani@samsung.com")]
+        public static void AccessibilityGrayscale_READ_WRITE()
+        {
+            try
+            {
+                LogUtils.StartTest();
+                /* TEST CODE */
+                Assert.IsInstanceOf<bool>(Tizen.System.SystemSettings.AccessibilityGrayscale, "AccessibilityGrayscale_READ_WRITE: AccessibilityGrayscale not an instance of string");
+                bool preValue = Tizen.System.SystemSettings.AccessibilityGrayscale;
+                var setValue = !preValue;
+
+                Tizen.System.SystemSettings.AccessibilityGrayscale = setValue;
+                var getValue = Tizen.System.SystemSettings.AccessibilityGrayscale;
+                Assert.IsTrue(getValue == setValue, "AccessibilityGrayscale_READ_WRITE: Set value and get value of the property should be same.");
+                Tizen.System.SystemSettings.AccessibilityGrayscale = preValue;
+                LogUtils.WriteOK();
+            }
+            catch (NotSupportedException)
+            {
+                bool isSupport = true;
+                Information.TryGetValue<bool>("tizen.org/feature/accessibility.grayscale", out isSupport);
+                Assert.IsTrue(isSupport == false, "Invalid NotSupportedException");
+                Tizen.Log.Debug("CS-SYSTEM-SETTINGS", ">>>>>> NotSupport(tizen.org/feature/accessibility.grayscale)");
+                LogUtils.NotSupport();
+            }
+        }
+
+        private static bool s_accessibilityGrayscaleCallbackCalled = false;
+        private static bool s_accessibilityGrayscaleValue = false;
+        ////[Test]
+        //[Category("P1")]
+        //[Description("Check if callback to SystemSettings:AccessibilityGrayscaleChanged event is called")]
+        //[Property("SPEC", "Tizen.System.SystemSettings.AccessibilityGrayscaleChanged E")]
+        //[Property("SPEC_URL", "-")]
+        //[Property("CRITERIA", "EVL")]
+        //[Property("AUTHOR", "Aditya Aswani, a.aswani@samsung.com")]
+        public static async Task AccessibilityGrayscaleChanged_CHECK_EVENT()
+        {
+            try
+            {
+                LogUtils.StartTest();
+                /* TEST CODE */
+                Tizen.System.SystemSettings.AccessibilityGrayscaleChanged += OnAccessibilityGrayscaleChanged;
+                bool preValue = Tizen.System.SystemSettings.AccessibilityGrayscale;
+                s_accessibilityGrayscaleValue = !preValue;
+                Tizen.System.SystemSettings.AccessibilityGrayscale = s_accessibilityGrayscaleValue;
+                await Task.Delay(2000);
+                Assert.IsTrue(s_accessibilityGrayscaleCallbackCalled, "AccessibilityGrayscaleChanged_CHECK_EVENT: EventHandler added. Not getting called");
+                s_accessibilityGrayscaleCallbackCalled = false;
+                Tizen.System.SystemSettings.AccessibilityGrayscaleChanged -= OnAccessibilityGrayscaleChanged;
+                Tizen.System.SystemSettings.AccessibilityGrayscale = !s_accessibilityGrayscaleValue;
+                await Task.Delay(2000);
+                Assert.IsFalse(s_accessibilityGrayscaleCallbackCalled, "AccessibilityGrayscaleChanged_CHECK_EVENT: EventHandler removed. Still getting called");
+                Tizen.System.SystemSettings.AccessibilityGrayscale = preValue;
+                LogUtils.WriteOK();
+            }
+            catch (NotSupportedException)
+            {
+                bool isSupport = true;
+                Information.TryGetValue<bool>("tizen.org/feature/systemsetting.incoming_call", out isSupport);
+                Assert.IsTrue(isSupport == false, "Invalid NotSupportedException");
+                Tizen.Log.Debug("CS-SYSTEM-SETTINGS", ">>>>>> NotSupport(tizen.org/feature/systemsetting.incoming_call)");
+                LogUtils.NotSupport();
+            }
+        }
+        private static void OnAccessibilityGrayscaleChanged(object sender, Tizen.System.AccessibilityGrayscaleChangedEventArgs e)
+        {
+            s_accessibilityGrayscaleCallbackCalled = true;
+            Assert.IsInstanceOf<bool>(e.Value, "OnAccessibilityGrayscaleChanged: AccessibilityGrayscale not an instance of string");
+            Assert.IsTrue(s_accessibilityGrayscaleValue == e.Value, "OnAccessibilityGrayscaleChanged: The callback should receive the latest value for the property.");
+        }
+
+        // AccessibilityNegativeColor
+        ////[Test]
+        //[Category("P1")]
+        //[Description("Test if set/get for SystemSettings:AccessibilityNegativeColor is working properly")]
+        //[Property("SPEC", "Tizen.System.SystemSettings.AccessibilityNegativeColor A")]
+        //[Property("SPEC_URL", "-")]
+        //[Property("CRITERIA", "PRW")]
+        //[Property("AUTHOR", "Aditya Aswani, a.aswani@samsung.com")]
+        public static void AccessibilityNegativeColor_READ_WRITE()
+        {
+            try
+            {
+                LogUtils.StartTest();
+                /* TEST CODE */
+                Assert.IsInstanceOf<bool>(Tizen.System.SystemSettings.AccessibilityNegativeColor, "AccessibilityNegativeColor_READ_WRITE: AccessibilityNegativeColor not an instance of string");
+                bool preValue = Tizen.System.SystemSettings.AccessibilityNegativeColor;
+                var setValue = !preValue;
+
+                Tizen.System.SystemSettings.AccessibilityNegativeColor = setValue;
+                var getValue = Tizen.System.SystemSettings.AccessibilityNegativeColor;
+                Assert.IsTrue(getValue == setValue, "AccessibilityNegativeColor_READ_WRITE: Set value and get value of the property should be same.");
+                Tizen.System.SystemSettings.AccessibilityNegativeColor = preValue;
+                LogUtils.WriteOK();
+            }
+            catch (NotSupportedException)
+            {
+                bool isSupport = true;
+                Information.TryGetValue<bool>("tizen.org/feature/accessibility.grayscale", out isSupport);
+                Assert.IsTrue(isSupport == false, "Invalid NotSupportedException");
+                Tizen.Log.Debug("CS-SYSTEM-SETTINGS", ">>>>>> NotSupport(tizen.org/feature/accessibility.grayscale)");
+                LogUtils.NotSupport();
+            }
+        }
+
+        private static bool s_accessibilityNegativeColorCallbackCalled = false;
+        private static bool s_accessibilityNegativeColorValue = false;
+        ////[Test]
+        //[Category("P1")]
+        //[Description("Check if callback to SystemSettings:AccessibilityNegativeColorChanged event is called")]
+        //[Property("SPEC", "Tizen.System.SystemSettings.AccessibilityNegativeColorChanged E")]
+        //[Property("SPEC_URL", "-")]
+        //[Property("CRITERIA", "EVL")]
+        //[Property("AUTHOR", "Aditya Aswani, a.aswani@samsung.com")]
+        public static async Task AccessibilityNegativeColorChanged_CHECK_EVENT()
+        {
+            try
+            {
+                LogUtils.StartTest();
+                /* TEST CODE */
+                Tizen.System.SystemSettings.AccessibilityNegativeColorChanged += OnAccessibilityNegativeColorChanged;
+                bool preValue = Tizen.System.SystemSettings.AccessibilityNegativeColor;
+                s_accessibilityNegativeColorValue = !preValue;
+                Tizen.System.SystemSettings.AccessibilityNegativeColor = s_accessibilityNegativeColorValue;
+                await Task.Delay(2000);
+                Assert.IsTrue(s_accessibilityNegativeColorCallbackCalled, "AccessibilityNegativeColorChanged_CHECK_EVENT: EventHandler added. Not getting called");
+                s_accessibilityNegativeColorCallbackCalled = false;
+                Tizen.System.SystemSettings.AccessibilityNegativeColorChanged -= OnAccessibilityNegativeColorChanged;
+                Tizen.System.SystemSettings.AccessibilityNegativeColor = !s_accessibilityNegativeColorValue;
+                await Task.Delay(2000);
+                Assert.IsFalse(s_accessibilityNegativeColorCallbackCalled, "AccessibilityNegativeColorChanged_CHECK_EVENT: EventHandler removed. Still getting called");
+                Tizen.System.SystemSettings.AccessibilityNegativeColor = preValue;
+                LogUtils.WriteOK();
+            }
+            catch (NotSupportedException)
+            {
+                bool isSupport = true;
+                Information.TryGetValue<bool>("tizen.org/feature/systemsetting.incoming_call", out isSupport);
+                Assert.IsTrue(isSupport == false, "Invalid NotSupportedException");
+                Tizen.Log.Debug("CS-SYSTEM-SETTINGS", ">>>>>> NotSupport(tizen.org/feature/systemsetting.incoming_call)");
+                LogUtils.NotSupport();
+            }
+        }
+        private static void OnAccessibilityNegativeColorChanged(object sender, Tizen.System.AccessibilityNegativeColorChangedEventArgs e)
+        {
+            s_accessibilityNegativeColorCallbackCalled = true;
+            Assert.IsInstanceOf<bool>(e.Value, "OnAccessibilityNegativeColorChanged: AccessibilityNegativeColor not an instance of string");
+            Assert.IsTrue(s_accessibilityNegativeColorValue == e.Value, "OnAccessibilityNegativeColorChanged: The callback should receive the latest value for the property.");
+        }
+#endif
+
+
+
         public static async void TestAllAsync()
         {
 
@@ -1849,7 +2363,27 @@ namespace SystemSettingsUnitTest
             await LockStateChanged_CHECK_EVENT_UNLOCK();
             await LockStateChanged_CHECK_EVENT_LAUNCHING_LOCK();
             Time_READ_ONLY();
-            UsbDebuggingEnabled_READ_WRITE();
+            //UsbDebuggingEnabled_READ_WRITE();
+
+            AdsId_READ_WRITE();
+            await AdsIdChanged_CHECK_EVENT();
+            UltraDataSave_READ_ONLY();
+
+            AccessibilityTtsEnabled_READ_WRITE();
+            await AccessibilityTtsSettingChanged_CHECK_EVENT();
+
+            Vibration_READ_WRITE();
+            await VibrationSettingChanged_CHECK_EVENT();
+            AutomaticTimeUpdate_READ_WRITE();
+            await AutomaticTimeUpdateSettingChanged_CHECK_EVENT();
+            DeveloperOptionState_READ_WRITE();
+            await DeveloperOptionStateSettingChanged_CHECK_EVENT();
+
+            AccessibilityGrayscale_READ_WRITE();
+            await AccessibilityGrayscaleChanged_CHECK_EVENT();
+            AccessibilityNegativeColor_READ_WRITE();
+            await AccessibilityNegativeColorChanged_CHECK_EVENT();
+
 
             Tizen.Log.Debug("CS-SYSTEM-SETTINGS", "Data3GNetworkSettingChangedEventArgsTests");
             await Data3GNetworkSettingChangedEventArgsTests.Value_PROPERTY_READ_ONLY();

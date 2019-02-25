@@ -1,5 +1,5 @@
-/*
- * Copyright (c) 2018 Samsung Electronics Co., Ltd All Rights Reserved
+﻿/*
+ * Copyright (c) 2019 Samsung Electronics Co., Ltd All Rights Reserved
  *
  * Licensed under the Apache License, Version 2.0 (the License);
  * you may not use this file except in compliance with the License.
@@ -15,119 +15,82 @@
  */
 
 using System;
-using System.Linq;
 using System.Reflection;
+using System.Linq;
 using Mono.Cecil;
 using Mono.Cecil.Cil;
 
-namespace GenDummy
+namespace APITool
 {
-    public class Converter
+    public class DummyGenerator : AssemblyProcessor
     {
-        private AssemblyDefinition _asm;
-
-        public Converter(string srcAssemblyPath)
+        public void Run(string srcPath, string targetPath)
         {
-            _asm = AssemblyDefinition.ReadAssembly(srcAssemblyPath);
+            var asm = AssemblyDefinition.ReadAssembly(srcPath);
+            ProcessAssembly(asm);
+            asm.Write(targetPath);
         }
 
-        public void ConvertTo(string targetAssemblyPath)
+        protected override void ProcessAssembly(AssemblyDefinition asmDef)
         {
-            VisitAssembly(_asm);
-            _asm.Write(targetAssemblyPath);
+            Log.Verbose("Assembly: " + asmDef.FullName);
+
+            var attr = asmDef.CustomAttributes.FirstOrDefault(a => a.AttributeType.FullName == "System.Runtime.CompilerServices.ReferenceAssemblyAttribute");
+            if (attr != null)
+            {
+                asmDef.CustomAttributes.Remove(attr);
+            }
+
+            base.ProcessAssembly(asmDef);
         }
 
-        private void VisitAssembly(AssemblyDefinition assembly)
+        protected override void ProcessField(FieldDefinition fieldDef)
         {
-            Log.Verbose("Assembly: " + assembly.FullName);
-
-            var attr = assembly.CustomAttributes.FirstOrDefault(a => a.AttributeType.FullName == "System.Runtime.CompilerServices.ReferenceAssemblyAttribute");
-            if (attr != null) {
-                assembly.CustomAttributes.Remove(attr);
-            }
-
-            foreach (var module in assembly.Modules)
-            {
-                VisitModule(module);
-            }
+            Log.Verbose("  Field: " + fieldDef.FullName);
         }
 
-        private void VisitModule(ModuleDefinition module)
+        protected override void ProcessMethod(MethodDefinition methodDef)
         {
-            Log.Verbose("Module: " + module.Name);
-            foreach (var type in module.Types)
+            Log.Verbose($"  Method: {methodDef.FullName}");
+            if (methodDef.Name == "Finalize")
             {
-                VisitType(type);
-            }
-        }
-
-        private void VisitType(TypeDefinition type)
-        {
-            Log.Verbose("Type: " + type.FullName);
-
-            foreach (var prop in type.Properties)
-            {
-                VisitProperty(prop);
-            }
-
-            foreach (var method in type.Methods)
-            {
-                VisitMethod(method);
-            }
-
-            foreach (var ev in type.Events)
-            {
-                VisitEvent(ev);
-            }
-
-            foreach (var nested in type.NestedTypes)
-            {
-                VisitType(nested);
-            }
-        }
-
-        private void VisitProperty(PropertyDefinition prop)
-        {
-            Log.Verbose("  Property: " + prop.FullName);
-            if (prop.GetMethod != null)
-            {
-                Log.Verbose("    Getter:");
-                ReplaceWithThrowPNSE(prop.GetMethod);
-            }
-            if (prop.SetMethod != null)
-            {
-                Log.Verbose("    Setter:");
-                ReplaceWithThrowPNSE(prop.SetMethod);
-            }
-        }
-
-        private void VisitMethod(MethodDefinition method)
-        {
-            Log.Verbose($"  Method: {method.FullName}");
-            if (method.Name == "Finalize")
-            {
-                ReplaceWithVoidReturn(method);
+                ReplaceWithVoidReturn(methodDef);
             }
             else
             {
-                ReplaceWithThrowPNSE(method);
+                ReplaceWithThrowPNSE(methodDef);
             }
         }
 
-        private void VisitEvent(EventDefinition ev)
+        protected override void ProcessProperty(PropertyDefinition propDef)
         {
-            Log.Verbose("  Event: " + ev.FullName);
-            if (ev.AddMethod != null)
+            Log.Verbose("  Property: " + propDef.FullName);
+            if (propDef.GetMethod != null)
+            {
+                Log.Verbose("    Getter:");
+                ReplaceWithThrowPNSE(propDef.GetMethod);
+            }
+            if (propDef.SetMethod != null)
+            {
+                Log.Verbose("    Setter:");
+                ReplaceWithThrowPNSE(propDef.SetMethod);
+            }
+        }
+
+        protected override void ProcessEvent(EventDefinition eventDef)
+        {
+            Log.Verbose("  Event: " + eventDef.FullName);
+            if (eventDef.AddMethod != null)
             {
                 Log.Verbose("    Add:");
-                ReplaceWithThrowPNSE(ev.AddMethod);
+                ReplaceWithThrowPNSE(eventDef.AddMethod);
             }
-            if (ev.RemoveMethod != null)
+            if (eventDef.RemoveMethod != null)
             {
                 Log.Verbose("    Remove:");
-                ReplaceWithThrowPNSE(ev.RemoveMethod);
+                ReplaceWithThrowPNSE(eventDef.RemoveMethod);
             }
-            foreach (var method in ev.OtherMethods)
+            foreach (var method in eventDef.OtherMethods)
             {
                 Log.Verbose("    Other: " + method.FullName);
                 ReplaceWithThrowPNSE(method);
@@ -155,7 +118,7 @@ namespace GenDummy
             return false;
         }
 
-        private bool ReplaceWithVoidReturn(MethodDefinition method)
+        private void ReplaceWithVoidReturn(MethodDefinition method)
         {
             if (method.HasBody && method.IsIL)
             {
@@ -166,10 +129,7 @@ namespace GenDummy
                 processor.Append(processor.Create(OpCodes.Ret));
 
                 PrintMethodBody(method);
-
-                return true;
             }
-            return false;
         }
 
         private void ClearMethodBody(MethodDefinition method)
@@ -185,7 +145,6 @@ namespace GenDummy
         {
             if (method.HasBody)
             {
-                var iLProcessor = method.Body.GetILProcessor();
                 foreach (var inst in method.Body.Instructions)
                 {
                     Log.Verbose($"      {inst.ToString()}");
@@ -193,5 +152,4 @@ namespace GenDummy
             }
         }
     }
-
 }

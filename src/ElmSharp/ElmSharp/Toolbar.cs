@@ -348,7 +348,7 @@ namespace ElmSharp
         /// <since_tizen> preview </since_tizen>
         public ToolbarItem Append(string label, string icon)
         {
-            ToolbarItem item = new ToolbarItem(label, icon);
+            ToolbarItem item = new ToolbarItem(label, icon, this);
             item.Handle = Interop.Elementary.elm_toolbar_item_append(RealHandle, icon, label, null, (IntPtr)item.Id);
             return item;
         }
@@ -379,7 +379,7 @@ namespace ElmSharp
         /// <since_tizen> preview </since_tizen>
         public ToolbarItem Prepend(string label, string icon)
         {
-            ToolbarItem item = new ToolbarItem(label, icon);
+            ToolbarItem item = new ToolbarItem(label, icon, this);
             item.Handle = Interop.Elementary.elm_toolbar_item_prepend(RealHandle, icon, label, null, (IntPtr)item.Id);
             return item;
         }
@@ -408,7 +408,7 @@ namespace ElmSharp
         /// <since_tizen> preview </since_tizen>
         public ToolbarItem InsertBefore(ToolbarItem before, string label, string icon)
         {
-            ToolbarItem item = new ToolbarItem(label, icon);
+            ToolbarItem item = new ToolbarItem(label, icon, this);
             item.Handle = Interop.Elementary.elm_toolbar_item_insert_before(RealHandle, before, icon, label, null, (IntPtr)item.Id);
             return item;
         }
@@ -423,7 +423,7 @@ namespace ElmSharp
         /// <since_tizen> preview </since_tizen>
         public ToolbarItem InsertAfter(ToolbarItem after, string label, string icon)
         {
-            ToolbarItem item = new ToolbarItem(label, icon);
+            ToolbarItem item = new ToolbarItem(label, icon, this);
             item.Handle = Interop.Elementary.elm_toolbar_item_insert_after(RealHandle, after, icon, label, null, (IntPtr)item.Id);
             return item;
         }

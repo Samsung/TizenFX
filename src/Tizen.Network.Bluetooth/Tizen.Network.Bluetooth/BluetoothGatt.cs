@@ -26,10 +26,11 @@ namespace Tizen.Network.Bluetooth
     /// The Bluetooth GATT server.
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
-    public class BluetoothGattServer
+    public class BluetoothGattServer : IDisposable
     {
         private static BluetoothGattServer _instance;
         private BluetoothGattServerImpl _impl;
+
         private BluetoothGattServer()
         {
             _impl = new BluetoothGattServerImpl();
@@ -55,6 +56,7 @@ namespace Tizen.Network.Bluetooth
         /// Creates the Bluetooth GATT server.
         /// </summary>
         /// <returns>The BluetoothGattServer instance.</returns>
+        /// <feature>http://tizen.org/feature/network.bluetooth.le.gatt.server</feature>
         /// <exception cref="NotSupportedException">Thrown when the BT/BTLE is not supported.</exception>
         /// <exception cref="InvalidOperationException">Thrown when the create GATT server fails.</exception>
         /// <since_tizen> 3 </since_tizen>
@@ -74,6 +76,7 @@ namespace Tizen.Network.Bluetooth
         /// <summary>
         /// Registers the server along with the GATT services of the application it is hosting.
         /// </summary>
+        /// <feature>http://tizen.org/feature/network.bluetooth.le.gatt.server</feature>
         /// <exception cref="NotSupportedException">Thrown when the BT/BTLE is not supported.</exception>
         /// <exception cref="InvalidOperationException">Thrown when the register server application fails.</exception>
         /// <since_tizen> 3 </since_tizen>
@@ -86,6 +89,7 @@ namespace Tizen.Network.Bluetooth
         /// Registers a specified service to this server.
         /// </summary>
         /// <param name="service">The service, which needs to be registered with this server.</param>
+        /// <feature>http://tizen.org/feature/network.bluetooth.le.gatt.server</feature>
         /// <exception cref="NotSupportedException">Thrown when the BT/BTLE is not supported.</exception>
         /// <exception cref="InvalidOperationException">Thrown when the register service fails.</exception>
         /// <since_tizen> 3 </since_tizen>
@@ -105,6 +109,7 @@ namespace Tizen.Network.Bluetooth
         /// <remarks>
         /// Once unregistered, the service object will become invalid and should not be used to access sevices or any children attribute's methods/members.
         /// </remarks>
+        /// <feature>http://tizen.org/feature/network.bluetooth.le.gatt.server</feature>
         /// <exception cref="NotSupportedException">Thrown when the BT/BTLE is not supported.</exception>
         /// <exception cref="InvalidOperationException">Thrown when the unregister service fails.</exception>
         /// <since_tizen> 3 </since_tizen>
@@ -124,6 +129,7 @@ namespace Tizen.Network.Bluetooth
         /// <remarks>
         /// Once unregistered, servicees will become invalid and should not be used to access sevices or any children attribute's methods/members.
         /// </remarks>
+        /// <feature>http://tizen.org/feature/network.bluetooth.le.gatt.server</feature>
         /// <exception cref="NotSupportedException">Thrown when the BT/BTLE is not supported.</exception>
         /// <exception cref="InvalidOperationException">Thrown when the unregister all services fail.</exception>
         /// <since_tizen> 3 </since_tizen>
@@ -137,6 +143,9 @@ namespace Tizen.Network.Bluetooth
         /// </summary>
         /// <param name="uuid">The UUID for the service to get.</param>
         /// <returns>The Service with the given UUID if it exists, null otherwise.</returns>
+        /// <feature>http://tizen.org/feature/network.bluetooth.le.gatt.server</feature>
+        /// <exception cref="NotSupportedException">Thrown when the BT/BTLE is not supported.</exception>
+        /// <exception cref="InvalidOperationException">Thrown when the service is not registered.</exception>
         /// <since_tizen> 3 </since_tizen>
         public BluetoothGattService GetService(string uuid)
         {
@@ -147,6 +156,9 @@ namespace Tizen.Network.Bluetooth
         /// Gets the list of services that belongs to this server.
         /// </summary>
         /// <returns>The list of services that belongs to this server.</returns>
+        /// <feature>http://tizen.org/feature/network.bluetooth.le.gatt.server</feature>
+        /// <exception cref="NotSupportedException">Thrown when the BT/BTLE is not supported.</exception>
+        /// <exception cref="InvalidOperationException">Thrown when the service is not registered.</exception>
         /// <since_tizen> 3 </since_tizen>
         public IEnumerable<BluetoothGattService> GetServices()
         {
@@ -159,6 +171,8 @@ namespace Tizen.Network.Bluetooth
         /// <param name="characteristic">The characteristic whose the value is changed.</param>
         /// <param name="clientAddress">The remote device address to send, notify, or indicate and if set to NULL, then notify/indicate all is enabled.</param>
         /// <returns>true on success, false otherwise.</returns>
+        /// <feature>http://tizen.org/feature/network.bluetooth.le.gatt.server</feature>
+        /// <exception cref="NotSupportedException">Thrown when the BT/BTLE is not supported.</exception>
         /// <exception cref="InvalidOperationException">Thrown when the BT/BTLE is not enabled
         /// or when the remote device is disconnected, or when service is not registered, or when the CCCD is not enabled.</exception>
         /// <since_tizen> 3 </since_tizen>
@@ -172,6 +186,8 @@ namespace Tizen.Network.Bluetooth
         /// </summary>
         /// <param name="characteristic">The characteristic, which has a changed value.</param>
         /// <param name="clientAddress">The remote device address to send, notify, or indicate and if set to NULL, then notify/indicate all is enabled.</param>
+        /// <feature>http://tizen.org/feature/network.bluetooth.le.gatt.server</feature>
+        /// <exception cref="NotSupportedException">Thrown when the BT/BTLE is not supported.</exception>
         /// <exception cref="InvalidOperationException">Thrown when the BT/BTLE is not enabled
         /// or when the remote device is disconnected, or when service is not registered, or when the CCCD is not enabled.</exception>
         /// <since_tizen> 3 </since_tizen>
@@ -188,6 +204,8 @@ namespace Tizen.Network.Bluetooth
         /// <param name="status">The error value in case of failure, 0 for success.</param>
         /// <param name="value">The value to be sent.</param>
         /// <param name="offset">The offset from where the value is read.</param>
+        /// <feature>http://tizen.org/feature/network.bluetooth.le.gatt.server</feature>
+        /// <exception cref="NotSupportedException">Thrown when the BT/BTLE is not supported.</exception>
         /// <exception cref="InvalidOperationException">Thrown when the BT/BTLE is not enabled
         /// or when the remote device is disconnected, or the send response procedure fails.</exception>
         /// <since_tizen> 3 </since_tizen>
@@ -199,6 +217,39 @@ namespace Tizen.Network.Bluetooth
         internal bool IsValid()
         {
             return _impl.GetHandle().IsInvalid == false;
+        }
+
+        /// <summary>
+        /// Destroys the current object.
+        /// </summary>
+        ~BluetoothGattServer()
+        {
+            Dispose(false);
+        }
+
+        /// <summary>
+        /// Destroys the current object.
+        /// </summary>
+        /// <feature>http://tizen.org/feature/network.bluetooth.le.gatt.server</feature>
+        /// <since_tizen> 6 </since_tizen>
+        public void Dispose()
+        {
+            Dispose(true);
+            GC.SuppressFinalize(this);
+        }
+
+        /// <summary>
+        /// Releases all the resources currently used by this instance.
+        /// </summary>
+        /// <param name="disposing">true if the managed resources should be disposed, otherwise false.</param>
+        /// <since_tizen> 6 </since_tizen>
+        protected virtual void Dispose(bool disposing)
+        {
+            if (disposing)
+            {
+                _impl?.GetHandle()?.Dispose();
+                _instance = null;
+            }
         }
     }
 
@@ -893,7 +944,7 @@ namespace Tizen.Network.Bluetooth
                 if (Server == null) return;
                 if (_writeValueRequested == null)
                 {
-                    _writeValueRequestedCallback = (clientAddress, requestId, serverHandle, gattHandle, offset, response_needed, valueToWrite, len, userData) =>
+                    _writeValueRequestedCallback = (clientAddress, requestId, serverHandle, gattHandle, response_needed, offset, valueToWrite, len, userData) =>
                     {
                         _writeValueRequested?.Invoke(this, new WriteRequestedEventArgs(Server, clientAddress, requestId, valueToWrite, offset, response_needed));
                     };

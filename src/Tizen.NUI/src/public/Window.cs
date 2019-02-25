@@ -1,5 +1,5 @@
 /*
- * Copyright(c) 2018 Samsung Electronics Co., Ltd.
+ * Copyright(c) 2019 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -51,7 +51,9 @@ namespace Tizen.NUI
         private WindowResizedEventCallbackType _windowResizedEventCallback;
         private WindowFocusChangedEventCallbackType _windowFocusChangedEventCallback2;
 
-        private static readonly Window instance = Application.Instance.GetWindow();
+        private static readonly Window instance = Application.Instance?.GetWindow();
+
+        private LayoutController localController;
 
         internal Window(global::System.IntPtr cPtr, bool cMemoryOwn) : base(NDalicPINVOKE.Window_SWIGUpcast(cPtr), cMemoryOwn)
         {
@@ -59,6 +61,10 @@ namespace Tizen.NUI
             if (NDalicPINVOKE.Stage_IsInstalled())
             {
                 stageCPtr = new global::System.Runtime.InteropServices.HandleRef(this, NDalicPINVOKE.Stage_GetCurrent());
+
+                localController = new LayoutController();
+                NUILog.Debug("layoutController id:" + localController.GetId() );
+
                 // Create a root layout (AbsoluteLayout) that is invisible to the user but enables layouts added to the Window
                 // Enables layouts added to the Window to have a parent layout.  As parent layout is needed to store measure spec properties.
                 // Currently without these measure specs the new layout added will always be the size of the window.
@@ -981,9 +987,9 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public Layer GetLayer(uint depth)
         {
-            if (depth < LayersChildren.Count)
+            if (depth < LayersChildren?.Count)
             {
-                Layer ret = LayersChildren[Convert.ToInt32(depth)];
+                Layer ret = LayersChildren?[Convert.ToInt32(depth)];
                 return ret;
             }
             else
@@ -1102,7 +1108,7 @@ namespace Tizen.NUI
             NDalicPINVOKE.Stage_Add(stageCPtr, Layer.getCPtr(layer));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
 
-            LayersChildren.Add(layer);
+            LayersChildren?.Add(layer);
         }
 
         /// <summary>
@@ -1115,7 +1121,7 @@ namespace Tizen.NUI
             NDalicPINVOKE.Stage_Remove(stageCPtr, Layer.getCPtr(layer));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
 
-            LayersChildren.Remove(layer);
+            LayersChildren?.Remove(layer);
         }
 
         /// <summary>
@@ -1235,7 +1241,7 @@ namespace Tizen.NUI
             NDalicPINVOKE.Stage_Add(stageCPtr, Layer.getCPtr(layer));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
 
-            LayersChildren.Add(layer);
+            LayersChildren?.Add(layer);
         }
 
         internal void Remove(Layer layer)
@@ -1243,7 +1249,7 @@ namespace Tizen.NUI
             NDalicPINVOKE.Stage_Remove(stageCPtr, Layer.getCPtr(layer));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
 
-            LayersChildren.Remove(layer);
+            LayersChildren?.Remove(layer);
         }
 
         internal Vector2 GetSize()
@@ -1281,7 +1287,7 @@ namespace Tizen.NUI
             {
                 _rootLayer = new Layer(NDalicPINVOKE.Stage_GetRootLayer(stageCPtr), true);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-                LayersChildren.Add(_rootLayer);
+                LayersChildren?.Add(_rootLayer);
             }
             return _rootLayer;
         }
@@ -1802,7 +1808,7 @@ namespace Tizen.NUI
         /// Disconnect all native signals
         /// </summary>
         /// <since_tizen> 5 </since_tizen>
-        internal void DisconnectNativeSignals() 
+        internal void DisconnectNativeSignals()
         {
             if( _windowFocusChangedEventCallback != null )
             {

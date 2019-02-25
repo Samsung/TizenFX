@@ -15,11 +15,13 @@
  *
  */
 
+using System;
+using System.Runtime.InteropServices;
+using System.ComponentModel;
+
 namespace Tizen.NUI
 {
 
-    using System;
-    using System.Runtime.InteropServices;
 
     ///<summary>
     /// Issues a notification upon a condition of the property being met.
@@ -130,6 +132,8 @@ namespace Tizen.NUI
         /// <param name="cPtr">An object of IntPtr type.</param>
         /// <returns>An object of the PropertyNotification type.</returns>
         /// <since_tizen> 4 </since_tizen>
+        /// This will be changed internal API after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public static PropertyNotification GetPropertyNotificationFromPtr(global::System.IntPtr cPtr)
         {
             PropertyNotification ret = new PropertyNotification(cPtr, false);
@@ -156,6 +160,8 @@ namespace Tizen.NUI
         /// <param name="rhs">A reference to the copied handle.</param>
         /// <returns>A reference to this.</returns>
         /// <since_tizen> 4 </since_tizen>
+        /// This will be changed internal API after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public PropertyNotification Assign(PropertyNotification rhs)
         {
             PropertyNotification ret = new PropertyNotification(NDalicPINVOKE.PropertyNotification_Assign(swigCPtr, PropertyNotification.getCPtr(rhs)), false);
@@ -238,6 +244,8 @@ namespace Tizen.NUI
         /// </summary>
         /// <returns>A signal object to Connect() with</returns>
         /// <since_tizen> 4 </since_tizen>
+        /// This will be changed internal API after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public PropertyNotifySignal NotifySignal()
         {
             PropertyNotifySignal ret = new PropertyNotifySignal(NDalicPINVOKE.PropertyNotification_NotifySignal(swigCPtr), false);

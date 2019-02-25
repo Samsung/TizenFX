@@ -2148,7 +2148,6 @@ namespace Tizen.Uix.InputMethod
         /// This can occur due to the following reasons:
         /// 1) The application does not have the privilege to call this function.
         /// 2) The IME main loop has not started yet.
-        /// 3) Invalid parameter.
         /// </exception>
         /// <since_tizen> 6 </since_tizen>
         public static string GetSelectedText()
