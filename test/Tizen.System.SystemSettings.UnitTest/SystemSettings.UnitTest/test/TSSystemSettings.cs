@@ -596,18 +596,12 @@ namespace SystemSettingsUnitTest
             Assert.IsInstanceOf<string>(Tizen.System.SystemSettings.FontType, "FontType_READ_WRITE: FontType not an instance of string");
             string setValue = "BreezeSans";
             string preValue = Tizen.System.SystemSettings.FontType;
+
             Thread.Sleep(3000);
             Tizen.System.SystemSettings.FontType = setValue;
             var getValue = Tizen.System.SystemSettings.FontType;
             Assert.IsTrue(getValue.CompareTo(setValue) == 0, "FontType_READ_WRITE: Set value and get value of the property should be same.");
             Thread.Sleep(1000);
-
-
-            string strProfile;
-            Information.TryGetValue<string>("tizen.org/feature/profile", out strProfile);
-            if (string.Compare(strProfile, "mobile") == 0)
-                Tizen.System.SystemSettings.FontType = preValue;
-
 
             LogUtils.WriteOK();
         }
