@@ -98,6 +98,9 @@ namespace ElmSharp.Wearable
         /// <summary>
         /// Sets or gets the color of the marker.
         /// </summary>
+        /// <remarks>
+        /// MarkerColor is not supported on device or emulator which does not support marker in CircleDatetimeSelector and CircleSpinner.
+        /// </remarks>
         /// <since_tizen> preview </since_tizen>
         public Color MarkerColor
         {
@@ -116,6 +119,9 @@ namespace ElmSharp.Wearable
         /// <summary>
         /// Sets or gets the line width of the marker.
         /// </summary>
+        /// <remarks>
+        /// MarkerLineWidth is not supported on device or emulator which does not support marker in CircleDatetimeSelector and CircleSpinner.
+        /// </remarks>
         /// <since_tizen> preview </since_tizen>
         public int MarkerLineWidth
         {
@@ -132,6 +138,9 @@ namespace ElmSharp.Wearable
         /// <summary>
         /// Sets or gets the radius at which the center of the marker lies.
         /// </summary>
+        /// <remarks>
+        /// MarkerRadius is not supported on device or emulator which does not support marker in CircleDatetimeSelector and CircleSpinner.
+        /// </remarks>
         /// <since_tizen> preview </since_tizen>
         public double MarkerRadius
         {
