@@ -14,6 +14,7 @@ namespace SystemSettingsUnitTest
         {
             base.OnCreate();
             SystemSettingsTests.TestAllAsync();
+
             //Initialize();
         }
      
@@ -25,25 +26,17 @@ namespace SystemSettingsUnitTest
 
         }
 
-        void Initialize()
+        public void DisplayString()
         {
             Window.Instance.KeyEvent += OnKeyEvent;
             TextLabel text = new TextLabel("SystemSettings Unit Test");
-            text.HorizontalAlignment = HorizontalAlignment.Center;
-            text.VerticalAlignment = VerticalAlignment.Center;
-            text.TextColor = Color.Blue;
-            text.PointSize = 12.0f;
-            text.HeightResizePolicy = ResizePolicyType.FillToParent;
-            text.WidthResizePolicy = ResizePolicyType.FillToParent;
+            //text.HorizontalAlignment = HorizontalAlignment.Center;
+            //text.VerticalAlignment = VerticalAlignment.Center;
+            //text.TextColor = Color.Blue;
+            //text.PointSize = 12.0f;
+            //text.HeightResizePolicy = ResizePolicyType.FillToParent;
+            //text.WidthResizePolicy = ResizePolicyType.FillToParent;
             Window.Instance.GetDefaultLayer().Add(text);
-
-            /*
-            Animation animation = new Animation(2000);
-            animation.AnimateTo(text, "Orientation", new Rotation(new Radian(new Degree(180.0f)), PositionAxis.X), 200, 500);
-            animation.AnimateTo(text, "Orientation", new Rotation(new Radian(new Degree(0.0f)), PositionAxis.X), 500, 1000);
-            animation.Looping = true;
-            animation.Play();
-            */
 
         }
 
