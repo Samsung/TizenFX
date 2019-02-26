@@ -41,7 +41,7 @@ namespace Tizen.NUI.Binding
                     var bindable = weakbindable.Target as BindableObject;
                     if (bindable == null)
                         continue;
-                    item.DetachFrom(bindable);
+                    item?.DetachFrom(bindable);
                 }
             }
             base.ClearItems();
@@ -55,7 +55,7 @@ namespace Tizen.NUI.Binding
                 var bindable = weakbindable.Target as BindableObject;
                 if (bindable == null)
                     continue;
-                item.AttachTo(bindable);
+                item?.AttachTo(bindable);
             }
         }
 
@@ -66,13 +66,13 @@ namespace Tizen.NUI.Binding
                 _associatedObjects.Add(new WeakReference(bindable));
             }
             foreach (T item in this)
-                item.AttachTo(bindable);
+                item?.AttachTo(bindable);
         }
 
         protected virtual void OnDetachingFrom(BindableObject bindable)
         {
             foreach (T item in this)
-                item.DetachFrom(bindable);
+                item?.DetachFrom(bindable);
             lock (_associatedObjects)
             {
                 for (var i = 0; i < _associatedObjects.Count; i++)
@@ -96,7 +96,7 @@ namespace Tizen.NUI.Binding
                 var bindable = weakbindable.Target as BindableObject;
                 if (bindable == null)
                     continue;
-                item.DetachFrom(bindable);
+                item?.DetachFrom(bindable);
             }
 
             base.RemoveItem(index);
@@ -110,7 +110,7 @@ namespace Tizen.NUI.Binding
                 var bindable = weakbindable.Target as BindableObject;
                 if (bindable == null)
                     continue;
-                old.DetachFrom(bindable);
+                old?.DetachFrom(bindable);
             }
 
             base.SetItem(index, item);
@@ -120,7 +120,7 @@ namespace Tizen.NUI.Binding
                 var bindable = weakbindable.Target as BindableObject;
                 if (bindable == null)
                     continue;
-                item.AttachTo(bindable);
+                item?.AttachTo(bindable);
             }
         }
     }

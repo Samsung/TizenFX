@@ -64,14 +64,14 @@ namespace Tizen.NUI.Xaml
                 prop = ApplyPropertiesVisitor.GetContentPropertyName(t.GetTypeInfo());
                 if (prop == null)
                     return;
-                setter = t.GetRuntimeProperty(prop).SetMethod;
+                setter = t.GetRuntimeProperty(prop)?.SetMethod;
             }
             else
-                setter = markupExtension.GetType().GetRuntimeProperty(prop).SetMethod;
+                setter = markupExtension.GetType().GetRuntimeProperty(prop)?.SetMethod;
 
             if (value == null && strValue != null)
             {
-                value = strValue.ConvertTo(markupExtension.GetType().GetRuntimeProperty(prop).PropertyType,
+                value = strValue.ConvertTo(markupExtension.GetType().GetRuntimeProperty(prop)?.PropertyType,
                     (Func<TypeConverter>)null, serviceProvider);
             }
 
