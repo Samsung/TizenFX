@@ -729,8 +729,6 @@ namespace Tizen.NUI.BaseComponents
         /// The drop shadow offset 0 indicates no shadow.<br />
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        [Obsolete("Please do not use! This will be deprecated! Please use Shadow property instead!")]
-        [EditorBrowsable(EditorBrowsableState.Never)]
         public Vector2 ShadowOffset
         {
             get
@@ -757,8 +755,6 @@ namespace Tizen.NUI.BaseComponents
         /// The color of a drop shadow.<br />
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        [Obsolete("Please do not use! This will be deprecated! Please use Shadow property instead!")]
-        [EditorBrowsable(EditorBrowsableState.Never)]
         public Vector4 ShadowColor
         {
             get
@@ -785,8 +781,6 @@ namespace Tizen.NUI.BaseComponents
         /// The underline enabled flag.<br />
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        [Obsolete("Please do not use! This will be deprecated! Please use Underline property instead!")]
-        [EditorBrowsable(EditorBrowsableState.Never)]
         public bool UnderlineEnabled
         {
             get
@@ -814,8 +808,6 @@ namespace Tizen.NUI.BaseComponents
         /// Overrides the underline height from font metrics.<br />
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        [Obsolete("Please do not use! This will be deprecated! Please use Underline property instead!")]
-        [EditorBrowsable(EditorBrowsableState.Never)]
         public Vector4 UnderlineColor
         {
             get
@@ -842,8 +834,6 @@ namespace Tizen.NUI.BaseComponents
         /// Overrides the underline height from font metrics.<br />
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        [Obsolete("Please do not use! This will be deprecated! Please use Underline property instead!")]
-        [EditorBrowsable(EditorBrowsableState.Never)]
         public float UnderlineHeight
         {
             get

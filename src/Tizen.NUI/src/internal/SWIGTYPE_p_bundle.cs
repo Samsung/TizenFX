@@ -22,8 +22,6 @@ namespace Tizen.NUI
     /// This should be internal, please do not use.
     /// </summary>
     /// <since_tizen> 4 </since_tizen>
-    /// This will be changed internal API after ACR done. Before ACR, need to be hidden as inhouse API.
-    [EditorBrowsable(EditorBrowsableState.Never)]
     public class SWIGTYPE_p_bundle
     {
         private global::System.Runtime.InteropServices.HandleRef swigCPtr;
@@ -37,8 +35,6 @@ namespace Tizen.NUI
         /// The Constructor.
         /// </summary>
         /// <since_tizen> 4 </since_tizen>
-        /// This will be changed internal API after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
         protected SWIGTYPE_p_bundle()
         {
             swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
@@ -49,5 +45,4 @@ namespace Tizen.NUI
             return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
         }
     }
-
 }
