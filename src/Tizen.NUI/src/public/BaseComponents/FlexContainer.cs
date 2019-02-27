@@ -435,8 +435,6 @@ namespace Tizen.NUI.BaseComponents
         /// Enumeration for the instance of child properties belonging to the FlexContainer class.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        /// This will be changed internal API after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
         public class ChildProperty
         {
             internal static readonly int FLEX = NDalicPINVOKE.FlexContainer_ChildProperty_FLEX_get();

@@ -1272,8 +1272,6 @@ namespace Tizen.NUI.BaseComponents
         /// The ShadowOffset property.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        [Obsolete("Please do not use! This will be deprecated! Please use Shadow property instead!")]
-        [EditorBrowsable(EditorBrowsableState.Never)]
         public Vector2 ShadowOffset
         {
             get
@@ -1297,8 +1295,6 @@ namespace Tizen.NUI.BaseComponents
         /// The ShadowColor property.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        [Obsolete("Please do not use! This will be deprecated! Please use Shadow property instead!")]
-        [EditorBrowsable(EditorBrowsableState.Never)]
         public Vector4 ShadowColor
         {
             get

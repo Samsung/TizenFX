@@ -151,8 +151,6 @@ namespace Tizen.NUI
         /// Enumeration for instances of properties belonging to the Shader class.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        /// This will be changed internal API after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
         public class Property
         {
             /// <summary>
@@ -160,9 +158,8 @@ namespace Tizen.NUI
             /// Format: {"vertex":"","fragment":"",hints:"","vertexPrefix":"","fragmentPrefix":""}
             /// </summary>
             /// <since_tizen> 3 </since_tizen>
-            /// This will be changed internal API after ACR done. Before ACR, need to be hidden as inhouse API.
-            [EditorBrowsable(EditorBrowsableState.Never)]
             public static readonly int PROGRAM = NDalicPINVOKE.Shader_Property_PROGRAM_get();
         }
+
     }
 }
