@@ -20,17 +20,17 @@ namespace Tizen.Applications
     /// Enumeration for application component type.
     /// </summary>
     /// <since_tizen> 6 </since_tizen>
-    public enum AppComponentType
+    public enum ApplicationComponentType
     {
         /// <summary>
         /// Component type is ui app.
         /// </summary>
-        UiApp = 0,
+        UIApplication = 0,
 
         /// <summary>
         /// Component type is service app.
         /// </summary>
-        ServiceApp,
+        ServiceApplication,
 
         /// <summary>
         /// Component type is widget app.

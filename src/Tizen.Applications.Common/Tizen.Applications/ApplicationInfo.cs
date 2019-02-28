@@ -197,7 +197,7 @@ namespace Tizen.Applications
         /// Gets the application component type.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
-        public AppComponentType ApplicationComponentType
+        public ApplicationComponentType ComponentType
         {
             get
             {
@@ -211,7 +211,7 @@ namespace Tizen.Applications
                         Log.Warn(LogTag, "Failed to get the application component type of " + _applicationId + ". err = " + err);
                     }
                 }
-                return (AppComponentType)componentType;
+                return (ApplicationComponentType)componentType;
             }
         }
 
@@ -320,7 +320,7 @@ namespace Tizen.Applications
         /// </summary>
         /// <privilege>http://tizen.org/privilege/packagemanager.admin</privilege>
         /// <since_tizen> 6 </since_tizen>
-        public IEnumerable<string> Category
+        public IEnumerable<string> Categories
         {
             get
             {
