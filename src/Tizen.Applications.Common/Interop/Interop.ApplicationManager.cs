@@ -61,6 +61,14 @@ internal static partial class Interop
             Failed = 2
         }
 
+        internal enum AppInfoAppComponentType
+        {
+            UiApp = 0,
+            ServiceApp = 1,
+            WidgetApp = 2,
+            WatchApp = 3
+        }
+
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         internal delegate void AppManagerEventCallback(string appType, string appId, AppManagerEventType eventType, AppManagerEventState eventState, IntPtr eventHandle, IntPtr userData);
         //void(* app_manager_event_cb)(const char *type, const char *app_id, app_manager_event_type_e event_type, app_manager_event_state_e event_state, app_manager_event_h handle, void *user_data)
@@ -85,6 +93,10 @@ internal static partial class Interop
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         internal delegate bool AppInfoMetadataCallback(string key, string value, IntPtr userData);
         //bool(* app_info_metadata_cb )(const char *metadata_key, const char *metadata_value, void *user_data)
+
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+        internal delegate bool AppInfoCategoryCallback(string category, IntPtr userData);
+        //bool (*app_info_category_cb) (const char *category, void *user_data)
 
         [DllImport(Libraries.AppManager, EntryPoint = "app_manager_set_app_context_event_cb")]
         internal static extern ErrorCode AppManagerSetAppContextEvent(AppManagerAppContextEventCallback callback, IntPtr userData);
@@ -246,6 +258,10 @@ internal static partial class Interop
         internal static extern ErrorCode AppInfoGetType(IntPtr handle, out string type);
         //int app_info_get_type (app_info_h app_info, char **type)
 
+        [DllImport(Libraries.AppManager, EntryPoint = "app_info_get_app_component_type")]
+        internal static extern ErrorCode AppInfoGetAppComponentType(IntPtr handle, out AppInfoAppComponentType type);
+        //int app_info_get_app_component_type(app_info_h app_info, app_info_app_component_type_e *type)
+
         [DllImport(Libraries.AppManager, EntryPoint = "app_info_foreach_metadata")]
         internal static extern ErrorCode AppInfoForeachMetadata(IntPtr handle, AppInfoMetadataCallback callback, IntPtr userData);
         //int app_info_foreach_metadata(app_info_h app_info, app_info_metadata_cb callback, void *user_data)
@@ -273,6 +289,10 @@ internal static partial class Interop
         [DllImport(Libraries.AppManager, EntryPoint = "app_info_clone")]
         internal static extern ErrorCode AppInfoClone(out IntPtr destination, IntPtr source);
         //int app_info_clone(app_info_h * clone, app_info_h app_info)
+
+        [DllImport(Libraries.AppManager, EntryPoint = "app_info_foreach_category")]
+        internal static extern ErrorCode AppInfoForeachCategory(IntPtr handle, AppInfoCategoryCallback callback, IntPtr userData);
+        //int app_info_foreach_category(app_info_h app_info, app_info_category_cb callback, void *user_data)
 
         [DllImport(Libraries.AppManager, EntryPoint = "app_info_filter_create")]
         internal static extern ErrorCode AppInfoFilterCreate(out IntPtr handle);
