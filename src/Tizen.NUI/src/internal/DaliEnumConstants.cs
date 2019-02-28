@@ -29,16 +29,16 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public enum TextureType
         {
-                /// <summary>
-                /// One 2D image
-                /// </summary>
-                /// <since_tizen> 3 </since_tizen>
-                Texture2D = Tizen.NUI.TextureType.TEXTURE_2D,
-                /// <summary>
-                /// Six 2D images arranged in a cube-shape
-                /// </summary>
-                /// <since_tizen> 3 </since_tizen>
-                TextureCube = Tizen.NUI.TextureType.TEXTURE_CUBE
+            /// <summary>
+            /// One 2D image
+            /// </summary>
+            /// <since_tizen> 3 </since_tizen>
+            Texture2D = Tizen.NUI.TextureType.TEXTURE_2D,
+            /// <summary>
+            /// Six 2D images arranged in a cube-shape
+            /// </summary>
+            /// <since_tizen> 3 </since_tizen>
+            TextureCube = Tizen.NUI.TextureType.TEXTURE_CUBE
         }
 
         /// <summary>
@@ -166,29 +166,58 @@ namespace Tizen.NUI
                 public static readonly int BelowVisual = NDalic.TOOLTIP_TAIL_BELOW_VISUAL;
             }
         }
+
+        /// <summary>
+        /// Enumeration for stereoscopic view modes.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
+        public enum ViewMode
+        {
+            /// <summary>
+            /// Monoscopic (single camera). This is the default.
+            /// </summary>
+            /// <since_tizen> 3 </since_tizen>
+            Mono,
+            /// <summary>
+            /// Stereoscopic. Frame buffer is split horizontally with the left and right camera views in their respective sides.
+            /// </summary>
+            /// <since_tizen> 3 </since_tizen>
+            StereoHorizontal,
+            /// <summary>
+            /// Stereoscopic. Frame buffer is split vertically with the left camera view at the top and the right camera view at the bottom.
+            /// </summary>
+            /// <since_tizen> 3 </since_tizen>
+            StereoVertical,
+            /// <summary>
+            /// Stereoscopic. Left/Right camera views are rendered into the framebuffer on alternate frames.
+            /// </summary>
+            /// <since_tizen> 3 </since_tizen>
+            StereoInterlaced
+        }
+
     } // namespace Constants
 
 
-internal class NUILog
-{
-    [Conditional("DEBUG_ON")]
-    public static void Debug(string msg,
-        [CallerLineNumber] int lineNum = 0,
-        [CallerMemberName] string caller = null,
-        [CallerFilePath] string file = null
-    )
+    internal class NUILog
     {
-        Tizen.Log.Fatal("NUI", $"{msg} (at line {lineNum} of {caller} in {file})" );
-    }
+        [Conditional("DEBUG_ON")]
+        public static void Debug(string msg,
+            [CallerLineNumber] int lineNum = 0,
+            [CallerMemberName] string caller = null,
+            [CallerFilePath] string file = null
+        )
+        {
+            Tizen.Log.Fatal("NUI", $"{msg} (at line {lineNum} of {caller} in {file})");
+        }
 
-    public static void Error(string msg,
-        [CallerLineNumber] int lineNum = 0,
-        [CallerMemberName] string caller = null,
-        [CallerFilePath] string file = null
-    )
-    {
-        Tizen.Log.Fatal("NUI", $"[ERROR] {msg} (at line {lineNum} of {caller} in {file})" );
+        public static void Error(string msg,
+            [CallerLineNumber] int lineNum = 0,
+            [CallerMemberName] string caller = null,
+            [CallerFilePath] string file = null
+        )
+        {
+            Tizen.Log.Fatal("NUI", $"[ERROR] {msg} (at line {lineNum} of {caller} in {file})");
+        }
     }
-}
 
 } // namesapce Dali

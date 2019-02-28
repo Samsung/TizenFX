@@ -1397,191 +1397,137 @@ namespace Tizen.NUI
         /// This should be internal, please do not use.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        /// This will be changed internal API after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
         public new class Property
         {
             /// <summary>
             /// This should be internal, please do not use.
             /// </summary>
             /// <since_tizen> 3 </since_tizen>
-            /// This will be changed internal API after ACR done. Before ACR, need to be hidden as inhouse API.
-            [EditorBrowsable(EditorBrowsableState.Never)]
             public static readonly int WRAP_ENABLED = NDalicPINVOKE.ScrollView_Property_WRAP_ENABLED_get();
             /// <summary>
             /// This should be internal, please do not use.
             /// </summary>
             /// <since_tizen> 3 </since_tizen>
-            /// This will be changed internal API after ACR done. Before ACR, need to be hidden as inhouse API.
-            [EditorBrowsable(EditorBrowsableState.Never)]
             public static readonly int PANNING_ENABLED = NDalicPINVOKE.ScrollView_Property_PANNING_ENABLED_get();
             /// <summary>
             /// This should be internal, please do not use.
             /// </summary>
             /// <since_tizen> 3 </since_tizen>
-            /// This will be changed internal API after ACR done. Before ACR, need to be hidden as inhouse API.
-            [EditorBrowsable(EditorBrowsableState.Never)]
             public static readonly int AXIS_AUTO_LOCK_ENABLED = NDalicPINVOKE.ScrollView_Property_AXIS_AUTO_LOCK_ENABLED_get();
             /// <summary>
             /// This should be internal, please do not use.
             /// </summary>
             /// <since_tizen> 3 </since_tizen>
-            /// This will be changed internal API after ACR done. Before ACR, need to be hidden as inhouse API.
-            [EditorBrowsable(EditorBrowsableState.Never)]
             public static readonly int WHEEL_SCROLL_DISTANCE_STEP = NDalicPINVOKE.ScrollView_Property_WHEEL_SCROLL_DISTANCE_STEP_get();
             /// <summary>
             /// This should be internal, please do not use.
             /// </summary>
             /// <since_tizen> 3 </since_tizen>
-            /// This will be changed internal API after ACR done. Before ACR, need to be hidden as inhouse API.
-            [EditorBrowsable(EditorBrowsableState.Never)]
             public static readonly int SCROLL_MODE = NDalicPINVOKE.ScrollView_Property_SCROLL_MODE_get();
             /// <summary>
             /// This should be internal, please do not use.
             /// </summary>
             /// <since_tizen> 3 </since_tizen>
-            /// This will be changed internal API after ACR done. Before ACR, need to be hidden as inhouse API.
-            [EditorBrowsable(EditorBrowsableState.Never)]
             public static readonly int SCROLL_POSITION = NDalicPINVOKE.ScrollView_Property_SCROLL_POSITION_get();
             /// <summary>
             /// This should be internal, please do not use.
             /// </summary>
             /// <since_tizen> 3 </since_tizen>
-            /// This will be changed internal API after ACR done. Before ACR, need to be hidden as inhouse API.
-            [EditorBrowsable(EditorBrowsableState.Never)]
             public static readonly int SCROLL_PRE_POSITION = NDalicPINVOKE.ScrollView_Property_SCROLL_PRE_POSITION_get();
             /// <summary>
             /// This should be internal, please do not use.
             /// </summary>
             /// <since_tizen> 3 </since_tizen>
-            /// This will be changed internal API after ACR done. Before ACR, need to be hidden as inhouse API.
-            [EditorBrowsable(EditorBrowsableState.Never)]
             public static readonly int SCROLL_PRE_POSITION_X = NDalicPINVOKE.ScrollView_Property_SCROLL_PRE_POSITION_X_get();
             /// <summary>
             /// This should be internal, please do not use.
             /// </summary>
             /// <since_tizen> 3 </since_tizen>
-            /// This will be changed internal API after ACR done. Before ACR, need to be hidden as inhouse API.
-            [EditorBrowsable(EditorBrowsableState.Never)]
             public static readonly int SCROLL_PRE_POSITION_Y = NDalicPINVOKE.ScrollView_Property_SCROLL_PRE_POSITION_Y_get();
             /// <summary>
             /// This should be internal, please do not use.
             /// </summary>
             /// <since_tizen> 3 </since_tizen>
-            /// This will be changed internal API after ACR done. Before ACR, need to be hidden as inhouse API.
-            [EditorBrowsable(EditorBrowsableState.Never)]
             public static readonly int SCROLL_PRE_POSITION_MAX = NDalicPINVOKE.ScrollView_Property_SCROLL_PRE_POSITION_MAX_get();
             /// <summary>
             /// This should be internal, please do not use.
             /// </summary>
             /// <since_tizen> 3 </since_tizen>
-            /// This will be changed internal API after ACR done. Before ACR, need to be hidden as inhouse API.
-            [EditorBrowsable(EditorBrowsableState.Never)]
             public static readonly int SCROLL_PRE_POSITION_MAX_X = NDalicPINVOKE.ScrollView_Property_SCROLL_PRE_POSITION_MAX_X_get();
             /// <summary>
             /// This should be internal, please do not use.
             /// </summary>
             /// <since_tizen> 3 </since_tizen>
-            /// This will be changed internal API after ACR done. Before ACR, need to be hidden as inhouse API.
-            [EditorBrowsable(EditorBrowsableState.Never)]
             public static readonly int SCROLL_PRE_POSITION_MAX_Y = NDalicPINVOKE.ScrollView_Property_SCROLL_PRE_POSITION_MAX_Y_get();
             /// <summary>
             /// This should be internal, please do not use.
             /// </summary>
             /// <since_tizen> 3 </since_tizen>
-            /// This will be changed internal API after ACR done. Before ACR, need to be hidden as inhouse API.
-            [EditorBrowsable(EditorBrowsableState.Never)]
             public static readonly int OVERSHOOT_X = NDalicPINVOKE.ScrollView_Property_OVERSHOOT_X_get();
             /// <summary>
             /// This should be internal, please do not use.
             /// </summary>
             /// <since_tizen> 3 </since_tizen>
-            /// This will be changed internal API after ACR done. Before ACR, need to be hidden as inhouse API.
-            [EditorBrowsable(EditorBrowsableState.Never)]
             public static readonly int OVERSHOOT_Y = NDalicPINVOKE.ScrollView_Property_OVERSHOOT_Y_get();
             /// <summary>
             /// This should be internal, please do not use.
             /// </summary>
             /// <since_tizen> 3 </since_tizen>
-            /// This will be changed internal API after ACR done. Before ACR, need to be hidden as inhouse API.
-            [EditorBrowsable(EditorBrowsableState.Never)]
             public static readonly int SCROLL_FINAL = NDalicPINVOKE.ScrollView_Property_SCROLL_FINAL_get();
             /// <summary>
             /// This should be internal, please do not use.
             /// </summary>
             /// <since_tizen> 3 </since_tizen>
-            /// This will be changed internal API after ACR done. Before ACR, need to be hidden as inhouse API.
-            [EditorBrowsable(EditorBrowsableState.Never)]
             public static readonly int SCROLL_FINAL_X = NDalicPINVOKE.ScrollView_Property_SCROLL_FINAL_X_get();
             /// <summary>
             /// This should be internal, please do not use.
             /// </summary>
             /// <since_tizen> 3 </since_tizen>
-            /// This will be changed internal API after ACR done. Before ACR, need to be hidden as inhouse API.
-            [EditorBrowsable(EditorBrowsableState.Never)]
             public static readonly int SCROLL_FINAL_Y = NDalicPINVOKE.ScrollView_Property_SCROLL_FINAL_Y_get();
             /// <summary>
             /// This should be internal, please do not use.
             /// </summary>
             /// <since_tizen> 3 </since_tizen>
-            /// This will be changed internal API after ACR done. Before ACR, need to be hidden as inhouse API.
-            [EditorBrowsable(EditorBrowsableState.Never)]
             public static readonly int WRAP = NDalicPINVOKE.ScrollView_Property_WRAP_get();
             /// <summary>
             /// This should be internal, please do not use.
             /// </summary>
             /// <since_tizen> 3 </since_tizen>
-            /// This will be changed internal API after ACR done. Before ACR, need to be hidden as inhouse API.
-            [EditorBrowsable(EditorBrowsableState.Never)]
             public static readonly int PANNING = NDalicPINVOKE.ScrollView_Property_PANNING_get();
             /// <summary>
             /// This should be internal, please do not use.
             /// </summary>
             /// <since_tizen> 3 </since_tizen>
-            /// This will be changed internal API after ACR done. Before ACR, need to be hidden as inhouse API.
-            [EditorBrowsable(EditorBrowsableState.Never)]
             public static readonly int SCROLLING = NDalicPINVOKE.ScrollView_Property_SCROLLING_get();
             /// <summary>
             /// This should be internal, please do not use.
             /// </summary>
             /// <since_tizen> 3 </since_tizen>
-            /// This will be changed internal API after ACR done. Before ACR, need to be hidden as inhouse API.
-            [EditorBrowsable(EditorBrowsableState.Never)]
             public static readonly int SCROLL_DOMAIN_SIZE = NDalicPINVOKE.ScrollView_Property_SCROLL_DOMAIN_SIZE_get();
             /// <summary>
             /// This should be internal, please do not use.
             /// </summary>
             /// <since_tizen> 3 </since_tizen>
-            /// This will be changed internal API after ACR done. Before ACR, need to be hidden as inhouse API.
-            [EditorBrowsable(EditorBrowsableState.Never)]
             public static readonly int SCROLL_DOMAIN_SIZE_X = NDalicPINVOKE.ScrollView_Property_SCROLL_DOMAIN_SIZE_X_get();
             /// <summary>
             /// This should be internal, please do not use.
             /// </summary>
             /// <since_tizen> 3 </since_tizen>
-            /// This will be changed internal API after ACR done. Before ACR, need to be hidden as inhouse API.
-            [EditorBrowsable(EditorBrowsableState.Never)]
             public static readonly int SCROLL_DOMAIN_SIZE_Y = NDalicPINVOKE.ScrollView_Property_SCROLL_DOMAIN_SIZE_Y_get();
             /// <summary>
             /// This should be internal, please do not use.
             /// </summary>
             /// <since_tizen> 3 </since_tizen>
-            /// This will be changed internal API after ACR done. Before ACR, need to be hidden as inhouse API.
-            [EditorBrowsable(EditorBrowsableState.Never)]
             public static readonly int SCROLL_DOMAIN_OFFSET = NDalicPINVOKE.ScrollView_Property_SCROLL_DOMAIN_OFFSET_get();
             /// <summary>
             /// This should be internal, please do not use.
             /// </summary>
             /// <since_tizen> 3 </since_tizen>
-            /// This will be changed internal API after ACR done. Before ACR, need to be hidden as inhouse API.
-            [EditorBrowsable(EditorBrowsableState.Never)]
             public static readonly int SCROLL_POSITION_DELTA = NDalicPINVOKE.ScrollView_Property_SCROLL_POSITION_DELTA_get();
             /// <summary>
             /// This should be internal, please do not use.
             /// </summary>
             /// <since_tizen> 3 </since_tizen>
-            /// This will be changed internal API after ACR done. Before ACR, need to be hidden as inhouse API.
-            [EditorBrowsable(EditorBrowsableState.Never)]
             public static readonly int START_PAGE_POSITION = NDalicPINVOKE.ScrollView_Property_START_PAGE_POSITION_get();
         }
 
@@ -1695,8 +1641,6 @@ namespace Tizen.NUI
             /// Get SnapEvent From Ptr
             /// </summary>
             /// <since_tizen> 3 </since_tizen>
-            /// This will be changed internal API after ACR done. Before ACR, need to be hidden as inhouse API.
-            [EditorBrowsable(EditorBrowsableState.Never)]
             public static SnapEvent GetSnapEventFromPtr(global::System.IntPtr cPtr)
             {
                 SnapEvent ret = new SnapEvent(cPtr, false);
