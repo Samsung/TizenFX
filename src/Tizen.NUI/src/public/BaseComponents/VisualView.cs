@@ -50,7 +50,7 @@ namespace Tizen.NUI.BaseComponents
         /// Constructor.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        public VisualView() : base(typeof(VisualView).FullName, CustomViewBehaviour.ViewBehaviourDefault)
+        public VisualView() : base(typeof(VisualView).FullName, CustomViewBehaviour.ViewBehaviourDefault | CustomViewBehaviour.RequiresTouchEventsSupport)
         {
         }
 
