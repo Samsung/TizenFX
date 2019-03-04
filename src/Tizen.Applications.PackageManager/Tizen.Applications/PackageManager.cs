@@ -996,6 +996,20 @@ namespace Tizen.Applications
         }
 
         /// <summary>
+        /// Gets the package archive's information for the given archive path.
+        /// </summary>
+        /// <param name="archivePath">The path of the package archive.</param>
+        /// <returns>Returns the package archive information for the given archive path.</returns>
+        /// <exception cref="ArgumentException">Thrown when the failed input package ID is invalid.</exception>
+        /// <exception cref="OutOfMemoryException">Thrown when there is not enough memory to continue the execution of the method.</exception>
+        /// <exception cref="System.IO.IOException">Thrown when the method fails due to an internal I/O error.</exception>
+        /// <since_tizen> 6 </since_tizen>
+        public static PackageArchive GetPackageArchive(string archivePath)
+        {
+            return PackageArchive.GetPackageArchive(archivePath);
+        }
+
+        /// <summary>
         /// Drm nested class. This class has the PackageManager's drm related methods.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
