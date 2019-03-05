@@ -316,9 +316,10 @@ namespace Tizen.Applications
         }
 
         /// <summary>
-        /// Gets the application's category.
+        /// Gets the application's categories.
         /// </summary>
         /// <privilege>http://tizen.org/privilege/packagemanager.admin</privilege>
+        /// <privlevel>platform</privlevel>
         /// <since_tizen> 6 </since_tizen>
         public IEnumerable<string> Categories
         {
