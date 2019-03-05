@@ -139,7 +139,7 @@ namespace Tizen.NUI.Binding
                 throw new NotSupportedException("The collection is read-only");
             int innerIndex = ToInnerIndex(index);
             TTrack item = _list[innerIndex];
-            if (item.Owned)
+            if (item != null && item.Owned)
             {
                 _list.RemoveAt(innerIndex);
                 item.Owned = false;
