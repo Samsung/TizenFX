@@ -535,7 +535,7 @@ namespace Tizen.NUI
         /// Gets the the hash code of this Vector4.
         /// </summary>
         /// <returns>The Hash Code.</returns>
-        /// <since_tizen> 5 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
         public override int GetHashCode()
         {
             return swigCPtr.Handle.GetHashCode();
