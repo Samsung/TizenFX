@@ -1294,7 +1294,7 @@ namespace Tizen.NUI.BaseComponents
 
         private OnWindowEventCallbackType _onWindowSendEventCallback;
 
-        private void SendViewConnectedEventToWindow(IntPtr data)
+        private void SendViewAddedEventToWindow(IntPtr data)
         {
             Window.Instance.SendViewAdded(this);
         }
@@ -1321,7 +1321,7 @@ namespace Tizen.NUI.BaseComponents
             }
             _mergedStyle = new MergedStyle(GetType(), this);
 
-            _onWindowSendEventCallback = SendViewConnectedEventToWindow;
+            _onWindowSendEventCallback = SendViewAddedEventToWindow;
             this.OnWindowSignal().Connect(_onWindowSendEventCallback);
         }
 
