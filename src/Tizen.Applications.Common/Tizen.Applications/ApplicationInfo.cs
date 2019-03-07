@@ -316,7 +316,7 @@ namespace Tizen.Applications
         }
 
         /// <summary>
-        /// Gets the application's categories.
+        /// Gets the application's category values specified in the tizen-manifest
         /// </summary>
         /// <privilege>http://tizen.org/privilege/packagemanager.admin</privilege>
         /// <privlevel>platform</privlevel>
