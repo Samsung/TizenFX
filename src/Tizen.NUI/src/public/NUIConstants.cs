@@ -121,6 +121,10 @@ namespace Tizen.NUI
         /// <summary>
         /// Will be replaced by separate ClippingMode enum. Draw the actor and its children into the stencil buffer.
         /// </summary>
+        /// <remarks>
+        /// Deprecated.(API Level 6) Use ClippingModeType instead.
+        /// </remarks>
+        [Obsolete("Please do not use this DrawModeType.Stencil(Deprecated). Please use ClippingModeType instead.")]
         Stencil = 3
     }
 
