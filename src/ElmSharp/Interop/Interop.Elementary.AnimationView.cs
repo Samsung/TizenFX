@@ -46,10 +46,10 @@ internal static partial class Interop
         internal static extern double elm_animation_view_duration_time_get(IntPtr obj);
 
         [DllImport(Libraries.Elementary)]
-        internal static extern double elm_animation_view_keyframe_get(IntPtr obj);
+        internal static extern double elm_animation_view_progress_get(IntPtr obj);
 
         [DllImport(Libraries.Elementary)]
-        internal static extern void elm_animation_view_keyframe_set(IntPtr obj, double keyframe);
+        internal static extern void elm_animation_view_progress_set(IntPtr obj, double progress);
 
         [DllImport(Libraries.Elementary)]
         internal static extern bool elm_animation_view_play(IntPtr obj);

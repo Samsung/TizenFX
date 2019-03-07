@@ -207,23 +207,23 @@ namespace ElmSharp
         }
 
         /// <summary>
-        /// Sets or gets current keyframe position of animation view.
+        /// Sets or gets current progress position of animation view.
         /// <remarks>
         /// When you required to jump on a certain frame instantly,
-        /// you can change current keyframe by using this property
-        /// The range of keyframe is 0 ~ 1.
+        /// you can change current progress by using this property
+        /// The range of progress is 0 ~ 1.
         /// </remarks>
         /// </summary>
         /// <since_tizen> preview </since_tizen>
-        public double KeyFrame
+        public double Progress
         {
             get
             {
-                return Interop.Elementary.elm_animation_view_keyframe_get(Handle);
+                return Interop.Elementary.elm_animation_view_progress_get(Handle);
             }
             set
             {
-                Interop.Elementary.elm_animation_view_keyframe_set(Handle, value);
+                Interop.Elementary.elm_animation_view_progress_set(Handle, value);
             }
         }
 
@@ -240,7 +240,7 @@ namespace ElmSharp
         /// <summary>
         /// Play animation one time instantly when it's available.
         /// <remarks>
-        /// If current keyframe is on a certain position by playing reverse, this will play forward from there.
+        /// If current progress is on a certain position by playing reverse, this will play forward from there.
         /// Play request will be ignored if animation source is not set yet or animation is paused state or it's already on playing.
         /// </remarks>
         /// </summary>
@@ -253,8 +253,8 @@ namespace ElmSharp
         /// <summary>
         /// Play animation one time instantly when it's available.
         /// <remarks>
-        /// If current keyframe is on a certain position by playing reverse and isReverse is ture, this will play forward from there.
-        /// And if current keyframe is on a certain position by playing and isReverse is false, this will play backward from there.
+        /// If current progress is on a certain position by playing reverse and isReverse is ture, this will play forward from there.
+        /// And if current progress is on a certain position by playing and isReverse is false, this will play backward from there.
         /// Play request will be ignored if animation source is not set yet or animation is paused state or it's already on playing.
         /// </remarks>
         /// </summary>
