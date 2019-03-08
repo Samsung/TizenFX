@@ -5,6 +5,7 @@ SCRIPT_DIR=$(dirname $SCRIPT_FILE)
 
 OUTDIR=$SCRIPT_DIR/Artifacts
 
+
 RUN_BUILD="dotnet msbuild $SCRIPT_DIR/build/build.proj /nologo"
 
 VERSION_PREFIX=6.0.0
