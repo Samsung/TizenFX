@@ -147,6 +147,19 @@ namespace Tizen.Applications
         public int InstalledTime { get { return _installedTime; } }
 
         /// <summary>
+        /// Main application info of the package.
+        /// </summary>
+        /// <since_tizen> 6 </since_tizen>
+        public ApplicationInfo MainApplication
+        {
+            get
+            {
+                ApplicationInfo applicaionInfo = new ApplicationInfo(_mainAppId);
+                return applicaionInfo;
+            }
+        }
+
+        /// <summary>
         /// Retrieves all the application IDs of this package.
         /// </summary>
         /// <returns>Returns a dictionary containing all the application information for a given application type.</returns>
@@ -248,19 +261,6 @@ namespace Tizen.Applications
             }
 
             return (CertCompareResultType)compareResult;
-        }
-
-        /// <summary>
-        /// Main application info of the package.
-        /// </summary>
-        /// <since_tizen> 6 </since_tizen>
-        public ApplicationInfo MainApplication
-        {
-            get
-            {
-                ApplicationInfo applicaionInfo = new ApplicationInfo(_mainAppId);
-                return applicaionInfo;
-            }
         }
 
         // This method assumes that given arguments are already validated and have valid values.
