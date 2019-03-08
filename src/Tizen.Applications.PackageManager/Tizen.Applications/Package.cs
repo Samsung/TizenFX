@@ -61,12 +61,6 @@ namespace Tizen.Applications
         public string Id { get { return _id; } }
 
         /// <summary>
-        /// Main app id of the package.
-        /// </summary>
-        /// <since_tizen> 6 </since_tizen>
-        public string MainAppId { get { return _mainAppId; } }
-
-        /// <summary>
         /// Label of the package.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
@@ -254,6 +248,19 @@ namespace Tizen.Applications
             }
 
             return (CertCompareResultType)compareResult;
+        }
+
+        /// <summary>
+        /// Main application info of the package.
+        /// </summary>
+        /// <since_tizen> 6 </since_tizen>
+        public ApplicationInfo MainApplication
+        {
+            get
+            {
+                ApplicationInfo applicaionInfo = new ApplicationInfo(_mainAppId);
+                return applicaionInfo;
+            }
         }
 
         // This method assumes that given arguments are already validated and have valid values.
