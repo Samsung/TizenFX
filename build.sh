@@ -50,7 +50,9 @@ cmd_dummy_build() {
 cmd_pack() {
   VERSION=$1
   if [ -z "$VERSION" ]; then
+    pushd $SCRIPT_DIR > /dev/null
     VERSION=$VERSION_PREFIX.$((10000+$(git rev-list --count HEAD)))
+    popd > /dev/null
   fi
 
   $RUN_BUILD /t:pack /p:Version=$VERSION
