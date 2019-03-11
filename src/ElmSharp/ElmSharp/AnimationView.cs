@@ -310,7 +310,7 @@ namespace ElmSharp
         /// If AnimationView is not on playing, it will return False.
         /// </remarks>
         /// <since_tizen> preview </since_tizen>
-        public bool IsReversePlaying
+        public bool IsReversedPlaying
         {
             get
             {
