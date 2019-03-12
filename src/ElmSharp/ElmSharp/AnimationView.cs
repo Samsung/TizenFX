@@ -37,7 +37,7 @@ namespace ElmSharp
         /// <summary>
         /// Animation is on reverse playing.
         /// </summary>
-        ReversePlay,
+        ReversedPlay,
 
         /// <summary>
         /// Animation has been paused.
