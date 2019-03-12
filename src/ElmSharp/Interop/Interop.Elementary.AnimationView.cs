@@ -46,10 +46,16 @@ internal static partial class Interop
         internal static extern double elm_animation_view_duration_time_get(IntPtr obj);
 
         [DllImport(Libraries.Elementary)]
-        internal static extern double elm_animation_view_keyframe_get(IntPtr obj);
+        internal static extern double elm_animation_view_progress_get(IntPtr obj);
 
         [DllImport(Libraries.Elementary)]
-        internal static extern void elm_animation_view_keyframe_set(IntPtr obj, double keyframe);
+        internal static extern void elm_animation_view_progress_set(IntPtr obj, double progress);
+
+        [DllImport(Libraries.Elementary)]
+        internal static extern int elm_animation_view_frame_get(IntPtr obj);
+
+        [DllImport(Libraries.Elementary)]
+        internal static extern void elm_animation_view_frame_set(IntPtr obj, int frame_num);
 
         [DllImport(Libraries.Elementary)]
         internal static extern bool elm_animation_view_play(IntPtr obj);
@@ -65,6 +71,49 @@ internal static partial class Interop
 
         [DllImport(Libraries.Elementary)]
         internal static extern bool elm_animation_view_stop(IntPtr obj);
+
+        [DllImport(Libraries.Elementary, EntryPoint = "elm_animation_view_default_size_get")]
+        internal static extern Eina.Size2D _elm_animation_view_default_size_get(IntPtr obj);
+
+        internal static void elm_animation_view_default_size_get(IntPtr obj, out int w, out int h)
+        {
+            var info = _elm_animation_view_default_size_get(obj);
+            w = info.w;
+            h = info.h;
+        }
+
+        [DllImport(Libraries.Elementary)]
+        internal static extern int elm_animation_view_state_get(IntPtr obj);
+
+        [DllImport(Libraries.Elementary)]
+        internal static extern bool elm_animation_view_is_playing_back_get(IntPtr obj);
+
+        [DllImport(Libraries.Elementary)]
+        internal static extern int elm_animation_view_frame_count_get(IntPtr obj);
+
+        [DllImport(Libraries.Elementary)]
+        internal static extern double elm_animation_view_min_progress_get(IntPtr obj);
+
+        [DllImport(Libraries.Elementary)]
+        internal static extern void elm_animation_view_min_progress_set(IntPtr obj, double min_progress);
+
+        [DllImport(Libraries.Elementary)]
+        internal static extern double elm_animation_view_max_progress_get(IntPtr obj);
+
+        [DllImport(Libraries.Elementary)]
+        internal static extern void elm_animation_view_max_progress_set(IntPtr obj, double max_progress);
+
+        [DllImport(Libraries.Elementary)]
+        internal static extern int elm_animation_view_min_frame_get(IntPtr obj);
+
+        [DllImport(Libraries.Elementary)]
+        internal static extern void elm_animation_view_min_frame_set(IntPtr obj, int min_frame);
+
+        [DllImport(Libraries.Elementary)]
+        internal static extern int elm_animation_view_max_frame_get(IntPtr obj);
+
+        [DllImport(Libraries.Elementary)]
+        internal static extern void elm_animation_view_max_frame_set(IntPtr obj, double max_frame);
 
         [DllImport(Libraries.Elementary)]
         internal static extern bool elm_animation_view_file_set(IntPtr obj, string file, string key);
