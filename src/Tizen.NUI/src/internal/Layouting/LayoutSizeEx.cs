@@ -61,17 +61,6 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Compares whether the two LayoutSize instances are same or not.
-        /// </summary>
-        /// <param name="lhs">A LayoutSize instance.</param>
-        /// <param name="rhs">A LayoutSize instance.</param>
-        /// <returns>true if the two LayoutSize instances have do not have equal values.</returns>
-        public static bool operator !=(LayoutSizeEx lhs, LayoutSizeEx rhs)
-        {
-            return ((lhs.Width != rhs.Width) || (lhs.Height != rhs.Height));
-        }
-
-        /// <summary>
         /// [Draft] Get the width value of this layout
         /// </summary>
         public int Width{ get; private set; }
