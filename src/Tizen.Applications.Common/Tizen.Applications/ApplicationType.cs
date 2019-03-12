@@ -33,6 +33,14 @@ namespace Tizen.Applications
         /// <summary>
         /// Service applications.
         /// </summary>
-        Service = 2
+        Service = 2,
+        /// <summary>
+        /// Service applications.
+        /// </summary>
+        Widget = 3,
+        /// <summary>
+        /// Service applications.
+        /// </summary>
+        Watch = 4
     }
 }
