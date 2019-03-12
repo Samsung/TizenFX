@@ -387,7 +387,7 @@ namespace Tizen.Network.Bluetooth
         /// <exception cref="NotSupportedException">Thrown when the BT/BTLE is not supported.</exception>
         /// <exception cref="InvalidOperationException">Thrown when the create GATT client fails.</exception>
         /// <since_tizen> 6 </since_tizen>
-        public Task ConnectAsync(bool autoConnect)
+        public Task<bool> ConnectAsync(bool autoConnect)
         {
             if (_taskForConnection != null && !_taskForConnection.Task.IsCompleted)
             {
@@ -407,7 +407,7 @@ namespace Tizen.Network.Bluetooth
         /// <exception cref="NotSupportedException">Thrown when the BT/BTLE is not supported.</exception>
         /// <exception cref="InvalidOperationException">Thrown when the create GATT client fails.</exception>
         /// <since_tizen> 6 </since_tizen>
-        public Task DisconnectAsync()
+        public Task<bool> DisconnectAsync()
         {
             if (_taskForDisconnection != null && !_taskForDisconnection.Task.IsCompleted)
             {
