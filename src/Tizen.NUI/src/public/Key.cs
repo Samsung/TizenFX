@@ -15,6 +15,8 @@
  *
  */
 
+using System.ComponentModel;
+
 namespace Tizen.NUI
 {
 
