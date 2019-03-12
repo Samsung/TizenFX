@@ -636,6 +636,13 @@ namespace Tizen.NUI
             return equal;
         }
 
+        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public override int GetHashCode()
+        {
+            return swigCPtr.Handle.GetHashCode();
+        }
+
         private float ValueOfIndex(uint index)
         {
             float ret = NDalicPINVOKE.Vector4_ValueOfIndex__SWIG_0(swigCPtr, index);

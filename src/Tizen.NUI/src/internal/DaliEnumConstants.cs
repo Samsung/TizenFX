@@ -213,7 +213,6 @@ namespace Tizen.NUI
             /// </remarks>
             [Obsolete("Please do not use this ViewMode.StereoInterlaced(Deprecated).")]
             StereoInterlaced
-
         }
 
     } // namespace Constants
