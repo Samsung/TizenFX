@@ -255,14 +255,23 @@ namespace Tizen.NUI
         /// <summary>
         /// True if OnTouch() callback is required.
         /// </summary>
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         RequiresTouchEventsSupport = 1 << 1,
         /// <summary>
         /// True if OnHover() callback is required.
         /// </summary>
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         RequiresHoverEventsSupport = 1 << 2,
         /// <summary>
         /// True if OnWheel() callback is required.
         /// </summary>
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         RequiresWheelEventsSupport = 1 << 3,
         /// <summary>
         /// Use to provide key navigation support.

@@ -1272,6 +1272,10 @@ namespace Tizen.NUI.BaseComponents
         /// The ShadowOffset property.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        /// <remarks>
+        /// Deprecated.(API Level 6) Use Shadow instead.
+        /// </remarks>
+        [Obsolete("Please do not use this ShadowOffset(Deprecated). Please use Shadow instead.")]
         public Vector2 ShadowOffset
         {
             get
@@ -1295,6 +1299,10 @@ namespace Tizen.NUI.BaseComponents
         /// The ShadowColor property.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        /// <remarks>
+        /// Deprecated.(API Level 6) Use Shadow instead.
+        /// </remarks>
+        [Obsolete("Please do not use this ShadowColor(Deprecated). Please use Shadow instead.")]
         public Vector4 ShadowColor
         {
             get
