@@ -618,6 +618,25 @@ namespace Tizen.NUI
             return ret;
         }
 
+        private bool EqualsColorValue(float f1, float f2)
+        {
+            float EPS = (float)Math.Abs(f1 * .00001);
+            if(Math.Abs(f1 - f2) <= EPS)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        private bool EqualsColor(Color c1, Color c2)
+        {
+            return EqualsColorValue(c1.R, c2.R) && EqualsColorValue(c1.G, c2.G)
+                && EqualsColorValue(c1.B, c2.B) && EqualsColorValue(c1.A, c2.A);
+        }
+
         /// <summary>
         /// Determines whether the specified object is equal to the current object.
         /// </summary>
@@ -629,7 +648,12 @@ namespace Tizen.NUI
         {
             Color color = obj as Color;
             bool equal = false;
-            if (R == color?.R && G == color?.G && B == color?.B && A == color?.A)
+            if (color == null)
+            {
+                return equal;
+            }
+
+            if (EqualsColor(this, color))
             {
                 equal = true;
             }

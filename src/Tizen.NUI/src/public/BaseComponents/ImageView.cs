@@ -49,7 +49,7 @@ namespace Tizen.NUI.BaseComponents
         defaultValueCreator: (bindable) =>
         {
             var imageView = (ImageView)bindable;
-            if(_imageType == ImageType.Normal)
+            if(imageView._imageType == ImageType.Normal)
             {
                 Tizen.NUI.Object.GetProperty(imageView.swigCPtr, ImageView.Property.IMAGE).Get(out imageView._url);
             }
@@ -238,7 +238,7 @@ namespace Tizen.NUI.BaseComponents
         private string _url;
         private bool? _orientationCorrection;
         private PropertyMap _image;
-        private static ImageType _imageType;
+        private ImageType _imageType;
 
         /// <summary>
         /// Creates an initialized ImageView.

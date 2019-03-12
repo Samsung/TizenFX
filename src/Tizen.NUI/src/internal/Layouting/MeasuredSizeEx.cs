@@ -23,7 +23,7 @@ namespace Tizen.NUI
     /// <summary>
     /// [Draft] Class that encodes a measurement and a measure state, which is set if the measured size is too small.
     /// </summary>
-    internal struct MeasuredSizeEx
+    internal class MeasuredSizeEx
     {
         /// <summary>
         /// Constructor

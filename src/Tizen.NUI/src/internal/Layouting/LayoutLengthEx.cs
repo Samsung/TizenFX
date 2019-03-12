@@ -24,9 +24,9 @@ namespace Tizen.NUI
     /// <summary>
     /// [Draft] A type that represents a layout length. Currently, this implies pixels, but could be extended to handle device dependant sizes, etc.
     /// </summary>
-    internal struct LayoutLengthEx
+    internal class LayoutLengthEx
     {
-        private float _value;
+        private readonly float _value;
 
         /// <summary>
         /// [Draft] Constructor from an int
@@ -124,7 +124,7 @@ namespace Tizen.NUI
         /// </summary>
         public override int GetHashCode()
         {
-            return (int)Math.Ceiling(_value);
+            return _value.GetHashCode();
         }
 
         /// <summary>

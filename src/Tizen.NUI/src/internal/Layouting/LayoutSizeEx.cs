@@ -23,7 +23,7 @@ namespace Tizen.NUI
     /// <summary>
     /// [Draft] This class represents a layout size (width and height), non mutable.
     /// </summary>
-    internal struct LayoutSizeEx
+    internal class LayoutSizeEx
     {
         /// <summary>
         /// [Draft] Constructor from width and height
