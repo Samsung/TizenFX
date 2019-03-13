@@ -197,7 +197,7 @@ namespace Tizen.Applications
         /// Gets the application component type.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
-        public ApplicationType ComponentType
+        public ApplicationComponentType ComponentType
         {
             get
             {
@@ -211,7 +211,7 @@ namespace Tizen.Applications
                         Log.Warn(LogTag, "Failed to get the application component type of " + _applicationId + ". err = " + err);
                     }
                 }
-                return ToApplicationType(componentType);
+                return (ApplicationComponentType)componentType;
             }
         }
 
@@ -452,21 +452,6 @@ namespace Tizen.Applications
                 _infoHandle = infoHandle;
             }
             return _infoHandle;
-        }
-
-        private Tizen.Applications.ApplicationType ToApplicationType(Interop.ApplicationManager.AppInfoAppComponentType componentType)
-        {
-            Tizen.Applications.ApplicationType applicationType = 0;
-            if (componentType == Interop.ApplicationManager.AppInfoAppComponentType.UiApp)
-                applicationType = Tizen.Applications.ApplicationType.Ui;
-            else if (componentType == Interop.ApplicationManager.AppInfoAppComponentType.ServiceApp)
-                applicationType = Tizen.Applications.ApplicationType.Service;
-            else if (componentType == Interop.ApplicationManager.AppInfoAppComponentType.WidgetApp)
-                applicationType = Tizen.Applications.ApplicationType.Widget;
-            else if (componentType == Interop.ApplicationManager.AppInfoAppComponentType.WatchApp)
-                applicationType = Tizen.Applications.ApplicationType.Watch;
-
-            return applicationType;
         }
 
         /// <summary>
