@@ -19,7 +19,7 @@ using System;
 namespace Tizen.Network.WiFi
 {
     /// <summary>
-    /// The class that represents the exception which will be thrown when an operation is in progress
+    /// The exception that is thrown when a key is invalid.
     /// </summary>
     /// <since_tizen> 6 </since_tizen>
     public class InvalidKeyException : InvalidOperationException

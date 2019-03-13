@@ -21,6 +21,13 @@ internal static partial class Interop
 {
     internal static partial class Eina
     {
+        [StructLayout(LayoutKind.Sequential)]
+        internal struct Size2D
+        {
+            public int w;
+            public int h;
+        };
+
         [DllImport(Libraries.Eina)]
         [return: MarshalAs(UnmanagedType.U1)]
         internal static extern bool eina_main_loop_is();

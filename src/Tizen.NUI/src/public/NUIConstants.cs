@@ -69,7 +69,7 @@ namespace Tizen.NUI
         /// Actor will use its own color.
         /// </summary>
         UseOwnColor,
-         /// <summary>
+        /// <summary>
         /// Actor will use its parent color.
         /// </summary>
         UseParentColor,
@@ -117,11 +117,10 @@ namespace Tizen.NUI
         /// Draw the actor and its children as an overlay.
         /// </summary>
         Overlay2D = 1,
+
         /// <summary>
         /// Will be replaced by separate ClippingMode enum. Draw the actor and its children into the stencil buffer.
         /// </summary>
-        [Obsolete("Please do not use! This will be deprecated!")]
-        [EditorBrowsable(EditorBrowsableState.Never)]
         Stencil = 3
     }
 
@@ -253,6 +252,27 @@ namespace Tizen.NUI
         /// True if the control does not need size negotiation, i.e., it can be skipped in the algorithm.
         /// </summary>
         DisableSizeNegotiation = 1 << 0,
+        /// <summary>
+        /// True if OnTouch() callback is required.
+        /// </summary>
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        RequiresTouchEventsSupport = 1 << 1,
+        /// <summary>
+        /// True if OnHover() callback is required.
+        /// </summary>
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        RequiresHoverEventsSupport = 1 << 2,
+        /// <summary>
+        /// True if OnWheel() callback is required.
+        /// </summary>
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        RequiresWheelEventsSupport = 1 << 3,
         /// <summary>
         /// Use to provide key navigation support.
         /// </summary>
@@ -659,18 +679,18 @@ namespace Tizen.NUI
     /// <since_tizen> 5 </since_tizen>
     public enum ReleasePolicyType
     {
-      /// <summary>
-      /// Image is released when visual detached from scene.
-      /// </summary>
-      Detached = 0,
-      /// <summary>
-      /// Image is only released when visual is destroyed.
-      /// </summary>
-      Destroyed,
-      /// <summary>
-      /// Image is not released.
-      /// </summary>
-      Never
+        /// <summary>
+        /// Image is released when visual detached from scene.
+        /// </summary>
+        Detached = 0,
+        /// <summary>
+        /// Image is only released when visual is destroyed.
+        /// </summary>
+        Destroyed,
+        /// <summary>
+        /// Image is not released.
+        /// </summary>
+        Never
     }
 
     /// <summary>
@@ -680,14 +700,14 @@ namespace Tizen.NUI
     /// <since_tizen> 5 </since_tizen>
     public enum LoadPolicyType
     {
-       /// <summary>
-       /// Load texture once the image source has been provided. Even if not being used yet.
-       /// </summary>
-       Immediate = 0,
-       /// <summary>
-       /// Only load texture once the visual is attached, when the image needs to be shown.
-       /// </summary>
-       Attached
+        /// <summary>
+        /// Load texture once the image source has been provided. Even if not being used yet.
+        /// </summary>
+        Immediate = 0,
+        /// <summary>
+        /// Only load texture once the visual is attached, when the image needs to be shown.
+        /// </summary>
+        Attached
     }
 
     /// <summary>

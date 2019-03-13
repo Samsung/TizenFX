@@ -14,7 +14,7 @@
  * limitations under the License.
  *
  */
-
+using System.ComponentModel;
 using System.Runtime.InteropServices;
 
 namespace Tizen.NUI
@@ -742,5 +742,6 @@ namespace Tizen.NUI
             /// <since_tizen> 3 </since_tizen>
             public static readonly int STENCIL_OPERATION_ON_Z_PASS = NDalicPINVOKE.Renderer_Property_STENCIL_OPERATION_ON_Z_PASS_get();
         }
+
     }
 }
