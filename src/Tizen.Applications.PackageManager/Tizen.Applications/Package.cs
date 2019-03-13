@@ -194,37 +194,12 @@ namespace Tizen.Applications
         /// <summary>
         /// Retrieves all the application IDs of this package.
         /// </summary>
-        /// <param name="type">Optional: AppType enumeration value.</param>
+        /// <param name="componentType">Optional: AppType enumeration value.</param>
         /// <returns>Returns a dictionary containing all the application information for a given application type.</returns>
         /// <since_tizen> 6 </since_tizen>
         public IEnumerable<ApplicationInfo> GetApplications(ApplicationComponentType componentType)
         {
-            List<ApplicationInfo> appInfoList = new List<ApplicationInfo>();
-            Interop.Package.PackageInfoAppInfoCallback cb = (Interop.Package.AppType appType, string appId, IntPtr userData) =>
-            {
-                appInfoList.Add(new ApplicationInfo(appId));
-                return true;
-            };
-
-            IntPtr packageInfoHandle;
-            Interop.PackageManager.ErrorCode err = Interop.Package.PackageInfoCreate(Id, out packageInfoHandle);
-            if (err != Interop.PackageManager.ErrorCode.None)
-            {
-                Log.Warn(LogTag, string.Format("Failed to create native handle for package info of {0}. err = {1}", Id, err));
-            }
-            ApplicationType type = ToApplicationType(componentType);
-            err = Interop.Package.PackageInfoForeachAppInfo(packageInfoHandle, (Interop.Package.AppType)type, cb, IntPtr.Zero);
-            if (err != Interop.PackageManager.ErrorCode.None)
-            {
-                Log.Warn(LogTag, string.Format("Failed to application info of {0}. err = {1}", Id, err));
-            }
-
-            err = Interop.Package.PackageInfoDestroy(packageInfoHandle);
-            if (err != Interop.PackageManager.ErrorCode.None)
-            {
-                Log.Warn(LogTag, string.Format("Failed to destroy native handle for package info of {0}. err = {1}", Id, err));
-            }
-            return appInfoList;
+            return GetApplications(ToApplicationType(componentType));
         }
 
         /// <summary>
@@ -416,9 +391,9 @@ namespace Tizen.Applications
             return privileges;
         }
 
-        private Tizen.Applications.ApplicationType ToApplicationType(Tizen.Applications.ApplicationComponentType componentType)
+        private ApplicationType ToApplicationType(ApplicationComponentType componentType)
         {
-            Tizen.Applications.ApplicationType applicationType = 0;
+            ApplicationType applicationType = 0;
             if (componentType == Tizen.Applications.ApplicationComponentType.UIApplication)
                 applicationType = Tizen.Applications.ApplicationType.Ui;
             else if (componentType == Tizen.Applications.ApplicationComponentType.ServiceApplication)
