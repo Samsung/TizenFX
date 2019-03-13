@@ -99,7 +99,7 @@ namespace Tizen.NUI
         //A Flag to check who called Dispose(). (By User or DisposeQueue)
         private bool isDisposeQueued = false;
 
-        private readonly bool hashDummy = false;
+        private readonly bool hashDummy;
 
         /// <summary>
         /// Default constructor
@@ -633,7 +633,7 @@ namespace Tizen.NUI
             }
         }
 
-        private bool EqualsColor(Color c1, Color c2)
+        private static bool EqualsColor(Color c1, Color c2)
         {
             return EqualsColorValue(c1.R, c2.R) && EqualsColorValue(c1.G, c2.G)
                 && EqualsColorValue(c1.B, c2.B) && EqualsColorValue(c1.A, c2.A);
