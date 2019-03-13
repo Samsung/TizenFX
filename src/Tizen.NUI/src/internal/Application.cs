@@ -1013,7 +1013,6 @@ namespace Tizen.NUI
             {
                 Window.Instance.DisconnectNativeSignals();
             }
-
         }
 
         /**
@@ -1332,12 +1331,12 @@ namespace Tizen.NUI
         {
             lock (this)
             {
-            NUIApplicationBatteryLowEventArgs e = new NUIApplicationBatteryLowEventArgs();
+                NUIApplicationBatteryLowEventArgs e = new NUIApplicationBatteryLowEventArgs();
 
-            // Populate all members of "e" (NUIApplicationBatteryLowEventArgs) with real data
-            e.BatteryStatus = status;
-            _applicationBatteryLowEventHandler?.Invoke(this, e);
-        }
+                // Populate all members of "e" (NUIApplicationBatteryLowEventArgs) with real data
+                e.BatteryStatus = status;
+                _applicationBatteryLowEventHandler?.Invoke(this, e);
+            }
         }
 
         /**
@@ -1380,12 +1379,12 @@ namespace Tizen.NUI
         {
             lock (this)
             {
-            NUIApplicationMemoryLowEventArgs e = new NUIApplicationMemoryLowEventArgs();
+                NUIApplicationMemoryLowEventArgs e = new NUIApplicationMemoryLowEventArgs();
 
-            // Populate all members of "e" (NUIApplicationMemoryLowEventArgs) with real data
-            e.MemoryStatus = status;
-            _applicationMemoryLowEventHandler?.Invoke(this, e);
-        }
+                // Populate all members of "e" (NUIApplicationMemoryLowEventArgs) with real data
+                e.MemoryStatus = status;
+                _applicationMemoryLowEventHandler?.Invoke(this, e);
+            }
         }
 
         /**
