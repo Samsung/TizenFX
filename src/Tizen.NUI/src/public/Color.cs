@@ -99,6 +99,8 @@ namespace Tizen.NUI
         //A Flag to check who called Dispose(). (By User or DisposeQueue)
         private bool isDisposeQueued = false;
 
+        private readonly bool hashDummy = false;
+
         /// <summary>
         /// Default constructor
         /// </summary>
@@ -618,7 +620,7 @@ namespace Tizen.NUI
             return ret;
         }
 
-        private bool EqualsColorValue(float f1, float f2)
+        private static bool EqualsColorValue(float f1, float f2)
         {
             float EPS = (float)Math.Abs(f1 * .00001);
             if(Math.Abs(f1 - f2) <= EPS)
@@ -664,7 +666,7 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public override int GetHashCode()
         {
-            return swigCPtr.Handle.GetHashCode();
+            return hashDummy.GetHashCode();
         }
 
         private float ValueOfIndex(uint index)

@@ -24,7 +24,7 @@ namespace Tizen.NUI
     /// <summary>
     /// [Draft] A type that represents a layout length. Currently, this implies pixels, but could be extended to handle device dependant sizes, etc.
     /// </summary>
-    internal class LayoutLengthEx
+    internal class LayoutLengthEx : IEquatable<LayoutLengthEx>
     {
         private readonly float _value;
 
@@ -102,9 +102,10 @@ namespace Tizen.NUI
         /// <returns>true if equal LayoutLength, else false.</returns>
         public override bool Equals(object obj)
         {
-            if (obj is LayoutLengthEx)
+            LayoutLengthEx layoutLengthEx = obj as LayoutLengthEx;
+            if (layoutLengthEx != null)
             {
-                return this.Equals((LayoutLengthEx)obj);
+                return Equals(layoutLengthEx);
             }
             return false;
         }

@@ -14,7 +14,8 @@
  * limitations under the License.
  *
  */
-
+	 
+using System;
 using System.ComponentModel;
 using Tizen.NUI.BaseComponents;
 
@@ -23,7 +24,7 @@ namespace Tizen.NUI
     /// <summary>
     /// [Draft] This class represents a layout size (width and height), non mutable.
     /// </summary>
-    internal class LayoutSizeEx
+    internal class LayoutSizeEx : IEquatable<LayoutSizeEx>
     {
         /// <summary>
         /// [Draft] Constructor from width and height
@@ -46,18 +47,29 @@ namespace Tizen.NUI
         }
 
         /// <summary>
+        /// Determines whether the specified object is equal to the current object.
+        /// </summary>
+        /// <param name="obj">The object to compare with the current object.</param>
+        /// <returns>true if equal LayoutSize, else false.</returns>
+        public override bool Equals(object obj)
+        {
+            LayoutSizeEx layoutSizeEx = (LayoutSizeEx)obj;
+            if (layoutSizeEx != null)
+            {
+                return this.Equals(layoutSizeEx);
+            }
+            return false;
+        }
+
+        /// <summary>
         /// Whether the values of two LayoutSize objects are equals
         /// </summary>
         /// <param name="obj">Object to be compared against.</param>
         /// <returns>true if obj is equal to this LayoutSize.</returns>
-        public override bool Equals(object obj)
+        public bool Equals(LayoutSizeEx obj)
         {
-            if (obj is LayoutSizeEx)
-            {
-                LayoutSizeEx layoutSize = (LayoutSizeEx)obj;
-                return ((layoutSize.Width == Width) && (layoutSize.Height == Height));
-            }
-            return false;
+            LayoutSizeEx layoutSize = obj;
+            return ((layoutSize.Width == Width) && (layoutSize.Height == Height));
         }
 
         /// <summary>
