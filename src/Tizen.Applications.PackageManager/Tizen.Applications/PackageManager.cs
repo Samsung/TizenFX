@@ -1000,8 +1000,7 @@ namespace Tizen.Applications
         /// </summary>
         /// <param name="archivePath">The path of the package archive.</param>
         /// <remarks>
-        /// If the given path is relevant to media storage, the privilege http://tizen.org/privilege/mediastorage is needed.
-        /// If the given path is relevant to external storage, the privilege http://tizen.org/privilege/externalstorage is needed.
+        /// Regular 3rd party apps do not need to use this API
         /// </remarks>
         /// <returns>Returns the package archive information for the given archive path.</returns>
         /// <exception cref="ArgumentException">Thrown when the failed input package ID is invalid.</exception>
