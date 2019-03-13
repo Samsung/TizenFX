@@ -34,10 +34,19 @@ namespace Tizen.Multimedia
         /// Initializes a new instance of the PlayerBufferingTime struct.
         /// </summary>
         /// <param name="preBufferMillisecond">A duration of buffering data that must be prerolled to start playback.</param>
-        /// <param name="reBufferMillisecond">A duration of buffering data that must be prerolled to resume playback
-        /// if player is paused for buffering internally.</param>
+        /// Except 0 and -1, setting at least 1000 milliseconds is recommended to ensure the normal buffering operation.
+        /// 0 : use platform default value which could be different depending on the streaming type and network status. (the initial value)
+        /// -1 : use current value. (since 5.5)
+        /// <param name="reBufferMillisecond">A duration of buffering data that must be prerolled to resume playback,
+        /// when player is internally paused for buffering.
+        /// Except 0 and -1, setting at least 1000 milliseconds is recommended to ensure the normal buffering operation.
+        /// 0 : use platform default value which could be different depending on the streaming type and network status. (the initial value)
+        /// -1 : use current value. (since 5.5)
+        /// <para>0 means platform default value which could be different depending on the streaming type and network status.
+        /// If the player state is <see cref="PlayerState.Playing"/> or <see cref="PlayerState.Paused"/>,
+        /// this function will return correct time value instead of 0. (since 5.5)</para></param>
         /// <since_tizen> 5 </since_tizen>
-        public PlayerBufferingTime(int preBufferMillisecond, int reBufferMillisecond)
+        public PlayerBufferingTime(int preBufferMillisecond = -1, int reBufferMillisecond = -1)
         {
             PreBufferMillisecond = preBufferMillisecond;
             ReBufferMillisecond = reBufferMillisecond;
@@ -85,6 +94,7 @@ namespace Tizen.Multimedia
         #region Network configuration
         private string _cookie = "";
         private string _userAgent = "";
+        private const int MinBufferingTime = -1;
 
         /// <summary>
         /// Gets or sets the cookie for streaming playback.
@@ -153,9 +163,9 @@ namespace Tizen.Multimedia
         /// <exception cref="InvalidOperationException">The player is not in the valid state.</exception>
         /// <exception cref="ObjectDisposedException">The player has already been disposed of.</exception>
         /// <exception cref="ArgumentOutOfRangeException">
-        ///     <pramref name="PreBufferMillisecond"/> is less than 0.<br/>
+        ///     <pramref name="PreBufferMillisecond"/> is less than -1.<br/>
         ///     -or-<br/>
-        ///     <pramref name="ReBufferMillisecond"/> is less than 0.<br/>
+        ///     <pramref name="ReBufferMillisecond"/> is less than -1.<br/>
         /// </exception>
         /// <seealso cref="PlayerBufferingTime"/>
         /// <since_tizen> 5 </since_tizen>
@@ -174,9 +184,10 @@ namespace Tizen.Multimedia
             {
                 ValidatePlayerState(PlayerState.Idle);
 
-                if (value.PreBufferMillisecond < 0 || value.ReBufferMillisecond < 0)
+                if (value.PreBufferMillisecond < MinBufferingTime || value.ReBufferMillisecond < MinBufferingTime)
                 {
-                    throw new ArgumentOutOfRangeException("invalid range");
+                    throw new ArgumentOutOfRangeException(nameof(value), value,
+                        $"invalid range, got { value.PreBufferMillisecond }, { value.ReBufferMillisecond }.");
                 }
 
                 NativePlayer.SetStreamingBufferingTime(Handle, value.PreBufferMillisecond, value.ReBufferMillisecond).
