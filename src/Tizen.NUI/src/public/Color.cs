@@ -138,6 +138,7 @@ namespace Tizen.NUI
         {
             swigCMemOwn = cMemoryOwn;
             swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
+			hashDummy = false;
         }
 
         /// <summary>
