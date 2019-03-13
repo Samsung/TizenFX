@@ -16,16 +16,16 @@ namespace Tizen.NUI.Binding
                     resources = resources ?? new Dictionary<string, object>();
                     if (ve.XamlResources != null)
                     {
-                    foreach (KeyValuePair<string, object> res in ve.XamlResources.MergedResources)
-                        if (!resources.ContainsKey(res.Key))
-                            resources.Add(res.Key, res.Value);
-                        else if (res.Key.StartsWith(Style.StyleClassPrefix, StringComparison.Ordinal))
-                        {
-                            var mergedClassStyles = new List<Style>(resources[res.Key] as List<Style>);
-                            mergedClassStyles.AddRange(res.Value as List<Style>);
-                            resources[res.Key] = mergedClassStyles;
-                        }
-                }
+                        foreach (KeyValuePair<string, object> res in ve.XamlResources.MergedResources)
+                            if (!resources.ContainsKey(res.Key))
+                                resources.Add(res.Key, res.Value);
+                            else if (res.Key.StartsWith(Style.StyleClassPrefix, StringComparison.Ordinal))
+                            {
+                                var mergedClassStyles = new List<Style>(resources[res.Key] as List<Style>);
+                                mergedClassStyles.AddRange(res.Value as List<Style>);
+                                resources[res.Key] = mergedClassStyles;
+                            }
+                    }
                 }
                 var app = element as Application;
                 if (app != null && app.SystemResources != null)

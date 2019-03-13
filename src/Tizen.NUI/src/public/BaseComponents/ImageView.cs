@@ -49,7 +49,10 @@ namespace Tizen.NUI.BaseComponents
         defaultValueCreator: (bindable) =>
         {
             var imageView = (ImageView)bindable;
-            Tizen.NUI.Object.GetProperty(imageView.swigCPtr, ImageView.Property.IMAGE).Get(out imageView._url);
+            if(imageView._imageType == ImageType.Normal)
+            {
+                Tizen.NUI.Object.GetProperty(imageView.swigCPtr, ImageView.Property.IMAGE).Get(out imageView._url);
+            }
             return imageView._url;
         });
 
@@ -235,6 +238,7 @@ namespace Tizen.NUI.BaseComponents
         private string _url;
         private bool? _orientationCorrection;
         private PropertyMap _image;
+        private ImageType _imageType;
 
         /// <summary>
         /// Creates an initialized ImageView.
@@ -715,7 +719,7 @@ namespace Tizen.NUI.BaseComponents
 
         private void UpdateImage()
         {
-            if (_url != null)
+            if (_url != null && _url != "")
             {
                 if (_border != null)
                 { // for nine-patch image
@@ -727,6 +731,7 @@ namespace Tizen.NUI.BaseComponents
                     if (_synchronousLoading != null) { _nPatchMap.Add(NpatchImageVisualProperty.SynchronousLoading, new PropertyValue((bool)_synchronousLoading)); }
                     if (_orientationCorrection != null) { _nPatchMap.Add(ImageVisualProperty.OrientationCorrection, new PropertyValue((bool)_orientationCorrection)); }
                     SetProperty(ImageView.Property.IMAGE, new PropertyValue(_nPatchMap));
+                    _imageType = ImageType.Npatch;
                 }
                 else if (_synchronousLoading != null || _orientationCorrection != null)
                 { // for normal image, with synchronous loading property
@@ -736,10 +741,13 @@ namespace Tizen.NUI.BaseComponents
                     if (_synchronousLoading != null) { imageMap.Add(ImageVisualProperty.SynchronousLoading, new PropertyValue((bool)_synchronousLoading)); }
                     if (_orientationCorrection != null) { imageMap.Add(ImageVisualProperty.OrientationCorrection, new PropertyValue((bool)_orientationCorrection)); }
                     SetProperty(ImageView.Property.IMAGE, new PropertyValue(imageMap));
+
+                    _imageType = ImageType.Specific;
                 }
                 else
                 { // just for normal image
                     SetProperty(ImageView.Property.IMAGE, new PropertyValue(_url));
+                    _imageType = ImageType.Normal;
                 }
             }
             else
@@ -760,6 +768,7 @@ namespace Tizen.NUI.BaseComponents
                     map.Merge(_image);
                 }
                 SetProperty(ImageView.Property.IMAGE, new PropertyValue(map));
+                _imageType = ImageType.Normal;
             }
         }
 
@@ -825,6 +834,24 @@ namespace Tizen.NUI.BaseComponents
             internal static readonly int ACTION_PLAY = NDalicManualPINVOKE.ImageView_IMAGE_VISUAL_ACTION_PLAY_get();
             internal static readonly int ACTION_PAUSE = NDalicManualPINVOKE.ImageView_IMAGE_VISUAL_ACTION_PAUSE_get();
             internal static readonly int ACTION_STOP = NDalicManualPINVOKE.ImageView_IMAGE_VISUAL_ACTION_STOP_get();
+        }
+
+        private enum ImageType
+        {
+            /// <summary>
+            /// For Normal Image.
+            /// </summary>
+            Normal = 0,
+
+            /// <summary>
+            /// For normal image, with synchronous loading and orientation correction property
+            /// </summary>
+            Specific = 1,
+
+            /// <summary>
+            /// For nine-patch image
+            /// </summary>
+            Npatch = 2,
         }
     }
 }

@@ -121,10 +121,6 @@ namespace Tizen.NUI
         /// <summary>
         /// Will be replaced by separate ClippingMode enum. Draw the actor and its children into the stencil buffer.
         /// </summary>
-        /// <remarks>
-        /// Deprecated.(API Level 6) Use ClippingModeType instead.
-        /// </remarks>
-        [Obsolete("Please do not use this DrawModeType.Stencil(Deprecated). Please use ClippingModeType instead.")]
         Stencil = 3
     }
 
@@ -256,6 +252,27 @@ namespace Tizen.NUI
         /// True if the control does not need size negotiation, i.e., it can be skipped in the algorithm.
         /// </summary>
         DisableSizeNegotiation = 1 << 0,
+        /// <summary>
+        /// True if OnTouch() callback is required.
+        /// </summary>
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        RequiresTouchEventsSupport = 1 << 1,
+        /// <summary>
+        /// True if OnHover() callback is required.
+        /// </summary>
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        RequiresHoverEventsSupport = 1 << 2,
+        /// <summary>
+        /// True if OnWheel() callback is required.
+        /// </summary>
+        /// <since_tizen> 6 </since_tizen>
+        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        RequiresWheelEventsSupport = 1 << 3,
         /// <summary>
         /// Use to provide key navigation support.
         /// </summary>

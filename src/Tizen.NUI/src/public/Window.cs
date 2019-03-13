@@ -1530,7 +1530,7 @@ namespace Tizen.NUI
         private bool OnStageWheel(IntPtr rootLayer, IntPtr wheelEvent)
         {
             if (wheelEvent == global::System.IntPtr.Zero)
-        {
+            {
                 NUILog.Error("wheelEvent should not be null!");
                 return true;
             }
