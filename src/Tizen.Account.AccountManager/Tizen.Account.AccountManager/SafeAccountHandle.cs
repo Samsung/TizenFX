@@ -60,6 +60,11 @@ namespace Tizen.Account.AccountManager
         /// <returns>true if the handle is released successfully</returns>
         protected override bool ReleaseHandle()
         {
+            if (AccountErrorFactory.IsAccountFeatureSupported() == false)
+            {
+                AccountErrorFactory.ThrowNotSupportedException(AccountError.NotSupported, "account feature not supported");
+            }
+
             Interop.Account.Destroy(this.handle);
             this.SetHandle(IntPtr.Zero);
             return true;

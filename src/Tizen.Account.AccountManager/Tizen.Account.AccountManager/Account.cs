@@ -53,6 +53,11 @@ namespace Tizen.Account.AccountManager
         /// <returns>Account Instance.</returns>
         public static Account CreateAccount()
         {
+            if (AccountErrorFactory.IsAccountFeatureSupported() == false)
+            {
+                AccountErrorFactory.ThrowNotSupportedException(AccountError.NotSupported, "account feature not supported");
+            }
+
             SafeAccountHandle handle;
             AccountError err = (AccountError)Interop.Account.Create(out handle);
             if (err != AccountError.None)
@@ -72,6 +77,11 @@ namespace Tizen.Account.AccountManager
         {
             get
             {
+                if (AccountErrorFactory.IsAccountFeatureSupported() == false)
+                {
+                    AccountErrorFactory.ThrowNotSupportedException(AccountError.NotSupported, "account feature not supported");
+                }
+
                 int id = 0;
                 AccountError res = (AccountError)Interop.Account.GetAccountId(_handle, out id);
                 if (res != AccountError.None)
@@ -92,6 +102,11 @@ namespace Tizen.Account.AccountManager
         {
             get
             {
+                if (AccountErrorFactory.IsAccountFeatureSupported() == false)
+                {
+                    AccountErrorFactory.ThrowNotSupportedException(AccountError.NotSupported, "account feature not supported");
+                }
+
                 string name = "";
                 AccountError res = (AccountError)Interop.Account.GetAccountUserName(_handle, out name);
                 if (res != AccountError.None)
@@ -104,6 +119,11 @@ namespace Tizen.Account.AccountManager
 
             set
             {
+                if (AccountErrorFactory.IsAccountFeatureSupported() == false)
+                {
+                    AccountErrorFactory.ThrowNotSupportedException(AccountError.NotSupported, "account feature not supported");
+                }
+
                 AccountError res = (AccountError)Interop.Account.SetAccountUserName(_handle, value);
                 if (res != AccountError.None)
                 {
@@ -121,6 +141,11 @@ namespace Tizen.Account.AccountManager
         {
             get
             {
+                if (AccountErrorFactory.IsAccountFeatureSupported() == false)
+                {
+                    AccountErrorFactory.ThrowNotSupportedException(AccountError.NotSupported, "account feature not supported");
+                }
+
                 string name = "";
                 AccountError res = (AccountError)Interop.Account.GetAccountDisplayName(_handle, out name);
                 if (res != AccountError.None)
@@ -133,6 +158,11 @@ namespace Tizen.Account.AccountManager
 
             set
             {
+                if (AccountErrorFactory.IsAccountFeatureSupported() == false)
+                {
+                    AccountErrorFactory.ThrowNotSupportedException(AccountError.NotSupported, "account feature not supported");
+                }
+
                 AccountError res = (AccountError)Interop.Account.SetAccountDisplayName(_handle, value);
                 if (res != AccountError.None)
                 {
@@ -150,6 +180,11 @@ namespace Tizen.Account.AccountManager
         {
             get
             {
+                if (AccountErrorFactory.IsAccountFeatureSupported() == false)
+                {
+                    AccountErrorFactory.ThrowNotSupportedException(AccountError.NotSupported, "account feature not supported");
+                }
+
                 string path = "";
                 AccountError res = (AccountError)Interop.Account.GetAccountIconPath(_handle, out path);
                 if (res != AccountError.None)
@@ -162,6 +197,11 @@ namespace Tizen.Account.AccountManager
 
             set
             {
+                if (AccountErrorFactory.IsAccountFeatureSupported() == false)
+                {
+                    AccountErrorFactory.ThrowNotSupportedException(AccountError.NotSupported, "account feature not supported");
+                }
+
                 AccountError res = (AccountError)Interop.Account.SetAccountIconPath(_handle, value);
                 if (res != AccountError.None)
                 {
@@ -179,6 +219,11 @@ namespace Tizen.Account.AccountManager
         {
             get
             {
+                if (AccountErrorFactory.IsAccountFeatureSupported() == false)
+                {
+                    AccountErrorFactory.ThrowNotSupportedException(AccountError.NotSupported, "account feature not supported");
+                }
+
                 string name = "";
                 AccountError res = (AccountError)Interop.Account.GetAccountDomainName(_handle, out name);
                 if (res != AccountError.None)
@@ -191,6 +236,11 @@ namespace Tizen.Account.AccountManager
 
             set
             {
+                if (AccountErrorFactory.IsAccountFeatureSupported() == false)
+                {
+                    AccountErrorFactory.ThrowNotSupportedException(AccountError.NotSupported, "account feature not supported");
+                }
+
                 AccountError res = (AccountError)Interop.Account.SetAccountDomainName(_handle, value);
                 if (res != AccountError.None)
                 {
@@ -208,6 +258,11 @@ namespace Tizen.Account.AccountManager
         {
             get
             {
+                if (AccountErrorFactory.IsAccountFeatureSupported() == false)
+                {
+                    AccountErrorFactory.ThrowNotSupportedException(AccountError.NotSupported, "account feature not supported");
+                }
+
                 string email = "";
                 AccountError res = (AccountError)Interop.Account.GetAccountEmail(_handle, out email);
                 if (res != AccountError.None)
@@ -220,6 +275,11 @@ namespace Tizen.Account.AccountManager
 
             set
             {
+                if (AccountErrorFactory.IsAccountFeatureSupported() == false)
+                {
+                    AccountErrorFactory.ThrowNotSupportedException(AccountError.NotSupported, "account feature not supported");
+                }
+
                 AccountError res = (AccountError)Interop.Account.SetAccountEmail(_handle, value);
                 if (res != AccountError.None)
                 {
@@ -237,6 +297,11 @@ namespace Tizen.Account.AccountManager
         {
             get
             {
+                if (AccountErrorFactory.IsAccountFeatureSupported() == false)
+                {
+                    AccountErrorFactory.ThrowNotSupportedException(AccountError.NotSupported, "account feature not supported");
+                }
+
                 string name = "";
                 AccountError res = (AccountError)Interop.Account.GetAccountPackageName(_handle, out name);
                 if (res != AccountError.None)
@@ -249,6 +314,11 @@ namespace Tizen.Account.AccountManager
 
             set
             {
+                if (AccountErrorFactory.IsAccountFeatureSupported() == false)
+                {
+                    AccountErrorFactory.ThrowNotSupportedException(AccountError.NotSupported, "account feature not supported");
+                }
+
                 AccountError res = (AccountError)Interop.Account.SetAccountPackageName(_handle, value);
                 if (res != AccountError.None)
                 {
@@ -266,6 +336,11 @@ namespace Tizen.Account.AccountManager
         {
             get
             {
+                if (AccountErrorFactory.IsAccountFeatureSupported() == false)
+                {
+                    AccountErrorFactory.ThrowNotSupportedException(AccountError.NotSupported, "account feature not supported");
+                }
+
                 string token = "";
                 AccountError res = (AccountError)Interop.Account.GetAccountAccessToken(_handle, out token);
                 if (res != AccountError.None)
@@ -278,6 +353,11 @@ namespace Tizen.Account.AccountManager
 
             set
             {
+                if (AccountErrorFactory.IsAccountFeatureSupported() == false)
+                {
+                    AccountErrorFactory.ThrowNotSupportedException(AccountError.NotSupported, "account feature not supported");
+                }
+
                 AccountError res = (AccountError)Interop.Account.SetAccountAccessToken(_handle, value);
                 if (res != AccountError.None)
                 {
@@ -295,6 +375,11 @@ namespace Tizen.Account.AccountManager
         {
             get
             {
+                if (AccountErrorFactory.IsAccountFeatureSupported() == false)
+                {
+                    AccountErrorFactory.ThrowNotSupportedException(AccountError.NotSupported, "account feature not supported");
+                }
+
                 int user;
                 AccountError res = (AccountError)Interop.Account.GetAccountAuthType(_handle, out user);
                 if (res != AccountError.None)
@@ -307,6 +392,11 @@ namespace Tizen.Account.AccountManager
 
             set
             {
+                if (AccountErrorFactory.IsAccountFeatureSupported() == false)
+                {
+                    AccountErrorFactory.ThrowNotSupportedException(AccountError.NotSupported, "account feature not supported");
+                }
+
                 AccountError res = (AccountError)Interop.Account.SetAccountAuthType(_handle, (int)value);
                 if (res != AccountError.None)
                 {
@@ -324,6 +414,11 @@ namespace Tizen.Account.AccountManager
         {
             get
             {
+                if (AccountErrorFactory.IsAccountFeatureSupported() == false)
+                {
+                    AccountErrorFactory.ThrowNotSupportedException(AccountError.NotSupported, "account feature not supported");
+                }
+
                 int state;
                 AccountError res = (AccountError)Interop.Account.GetAccountSercet(_handle, out state);
                 if (res != AccountError.None)
@@ -336,6 +431,11 @@ namespace Tizen.Account.AccountManager
 
             set
             {
+                if (AccountErrorFactory.IsAccountFeatureSupported() == false)
+                {
+                    AccountErrorFactory.ThrowNotSupportedException(AccountError.NotSupported, "account feature not supported");
+                }
+
                 AccountError res = (AccountError)Interop.Account.SetAccountSecret(_handle, (int)value);
                 if (res != AccountError.None)
                 {
@@ -353,6 +453,11 @@ namespace Tizen.Account.AccountManager
         {
             get
             {
+                if (AccountErrorFactory.IsAccountFeatureSupported() == false)
+                {
+                    AccountErrorFactory.ThrowNotSupportedException(AccountError.NotSupported, "account feature not supported");
+                }
+
                 int supported;
                 AccountError res = (AccountError)Interop.Account.GetAccountSyncSupport(_handle, out supported);
                 if (res != AccountError.None)
@@ -365,6 +470,11 @@ namespace Tizen.Account.AccountManager
 
             set
             {
+                if (AccountErrorFactory.IsAccountFeatureSupported() == false)
+                {
+                    AccountErrorFactory.ThrowNotSupportedException(AccountError.NotSupported, "account feature not supported");
+                }
+
                 AccountError res = (AccountError)Interop.Account.SetAccountSyncSupport(_handle, (int)value);
                 if (res != AccountError.None)
                 {
@@ -382,6 +492,11 @@ namespace Tizen.Account.AccountManager
         {
             get
             {
+                if (AccountErrorFactory.IsAccountFeatureSupported() == false)
+                {
+                    AccountErrorFactory.ThrowNotSupportedException(AccountError.NotSupported, "account feature not supported");
+                }
+
                 string text = "";
                 AccountError res = (AccountError)Interop.Account.GetAccountSource(_handle, out text);
                 if (res != AccountError.None)
@@ -394,6 +509,11 @@ namespace Tizen.Account.AccountManager
 
             set
             {
+                if (AccountErrorFactory.IsAccountFeatureSupported() == false)
+                {
+                    AccountErrorFactory.ThrowNotSupportedException(AccountError.NotSupported, "account feature not supported");
+                }
+
                 AccountError res = (AccountError)Interop.Account.SetAccountSource(_handle, value);
                 if (res != AccountError.None)
                 {
@@ -402,7 +522,7 @@ namespace Tizen.Account.AccountManager
             }
         }
 
-		/// <summary>
+        /// <summary>
         /// Handle of the account.
         /// </summary>
         /// <since_tizen> 4 </since_tizen>
@@ -423,6 +543,11 @@ namespace Tizen.Account.AccountManager
         /// <exception cref="ArgumentException">In case of an invalid parameter.</exception>
         public void SetCapability(string capabilityType, CapabilityState state)
         {
+            if (AccountErrorFactory.IsAccountFeatureSupported() == false)
+            {
+                AccountErrorFactory.ThrowNotSupportedException(AccountError.NotSupported, "account feature not supported");
+            }
+
             AccountError ret = (AccountError)Interop.Account.SetAccountCapability(_handle, capabilityType, (int)state);
             if (ret != AccountError.None)
             {
@@ -438,6 +563,11 @@ namespace Tizen.Account.AccountManager
         /// <exception cref="ArgumentException">In case of an invalid parameter.</exception>
         public CapabilityState GetCapability(string capabilityType)
         {
+            if (AccountErrorFactory.IsAccountFeatureSupported() == false)
+            {
+                AccountErrorFactory.ThrowNotSupportedException(AccountError.NotSupported, "account feature not supported");
+            }
+
             int type;
             AccountError res = (AccountError)Interop.Account.GetAccountCapability(_handle, capabilityType, out type);
             if (res != AccountError.None)
@@ -455,6 +585,10 @@ namespace Tizen.Account.AccountManager
         /// <returns>List of capabilities as dictionary.</returns>
         public Dictionary<string, CapabilityState> GetAllCapabilities()
         {
+            if (AccountErrorFactory.IsAccountFeatureSupported() == false)
+            {
+                AccountErrorFactory.ThrowNotSupportedException(AccountError.NotSupported, "account feature not supported");
+            }
 
             AccountError res = AccountError.None;
             Dictionary<string, CapabilityState> list = new Dictionary<string, CapabilityState>();
@@ -482,6 +616,11 @@ namespace Tizen.Account.AccountManager
         /// <exception cref="ArgumentException">In case of an invalid parameter.</exception>
         public void SetCustomValue(string key, string value)
         {
+            if (AccountErrorFactory.IsAccountFeatureSupported() == false)
+            {
+                AccountErrorFactory.ThrowNotSupportedException(AccountError.NotSupported, "account feature not supported");
+            }
+
             AccountError err = (AccountError)Interop.Account.SetAccountCustomValue(_handle, key, value);
             if (err != AccountError.None)
             {
@@ -499,6 +638,11 @@ namespace Tizen.Account.AccountManager
         /// <exception cref="InvalidOperationException">If there is no given capability type in the account.</exception>
         public string GetCustomValue(string key)
         {
+            if (AccountErrorFactory.IsAccountFeatureSupported() == false)
+            {
+                AccountErrorFactory.ThrowNotSupportedException(AccountError.NotSupported, "account feature not supported");
+            }
+
             string result = "";
             AccountError err = (AccountError)Interop.Account.GetAccountCustomValue(_handle, key, out result);
             if (err != AccountError.None)
@@ -516,6 +660,11 @@ namespace Tizen.Account.AccountManager
         /// <returns>List of custom key, value pairs as dictionary.</returns>
         public Dictionary<string, string> GetAllCustomValues()
         {
+            if (AccountErrorFactory.IsAccountFeatureSupported() == false)
+            {
+                AccountErrorFactory.ThrowNotSupportedException(AccountError.NotSupported, "account feature not supported");
+            }
+
             AccountError res = AccountError.None;
             Dictionary<string, string> list = new Dictionary<string, string>();
 
@@ -544,6 +693,11 @@ namespace Tizen.Account.AccountManager
         /// <exception cref="ArgumentException">In case of an invalid parameter.</exception>
         public void SetUserText(int index, string text)
         {
+            if (AccountErrorFactory.IsAccountFeatureSupported() == false)
+            {
+                AccountErrorFactory.ThrowNotSupportedException(AccountError.NotSupported, "account feature not supported");
+            }
+
             AccountError err = (AccountError)Interop.Account.SetAccountUserText(_handle, index, text);
             if (err != AccountError.None)
             {
@@ -561,6 +715,11 @@ namespace Tizen.Account.AccountManager
         /// <exception cref="OutOfMemoryException">In case of out of memory.</exception>
         public string GetUserText(int index)
         {
+            if (AccountErrorFactory.IsAccountFeatureSupported() == false)
+            {
+                AccountErrorFactory.ThrowNotSupportedException(AccountError.NotSupported, "account feature not supported");
+            }
+
             string result = "";
             AccountError err = (AccountError)Interop.Account.GetAccountUserText(_handle, index, out result);
             if (err != AccountError.None)
@@ -580,6 +739,11 @@ namespace Tizen.Account.AccountManager
         /// <exception cref="ArgumentException">In case of an invalid parameter.</exception>
         public int GetUserInt(int index)
         {
+            if (AccountErrorFactory.IsAccountFeatureSupported() == false)
+            {
+                AccountErrorFactory.ThrowNotSupportedException(AccountError.NotSupported, "account feature not supported");
+            }
+
             int result = -1;
             AccountError err = (AccountError)Interop.Account.GetAccountUserInt(_handle, index, out result);
             if (err != AccountError.None)
@@ -599,6 +763,11 @@ namespace Tizen.Account.AccountManager
         /// <exception cref="ArgumentException">In case of an invalid parameter.</exception>
         public void SetUserInt(int index, int value)
         {
+            if (AccountErrorFactory.IsAccountFeatureSupported() == false)
+            {
+                AccountErrorFactory.ThrowNotSupportedException(AccountError.NotSupported, "account feature not supported");
+            }
+
             AccountError err = (AccountError)Interop.Account.SetAccountUserInt(_handle, index, value);
             if (err != AccountError.None)
             {

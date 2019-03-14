@@ -102,6 +102,11 @@ namespace Tizen.Account.AccountManager
         /// <exception cref="NotSupportedException">The required feature is not supported.</exception>
         public static IEnumerable<Account> GetAccountsAsync()
         {
+            if (AccountErrorFactory.IsAccountFeatureSupported() == false)
+            {
+                AccountErrorFactory.ThrowNotSupportedException(AccountError.NotSupported, "account feature not supported");
+            }
+
             List<Account> accounts = new List<Account>();
             List<int> values = new List<int>();
             Interop.Account.AccountCallback accountCallback = (IntPtr data, IntPtr userdata) =>
@@ -141,6 +146,11 @@ namespace Tizen.Account.AccountManager
         /// <exception cref="NotSupportedException">The required feature is not supported.</exception>
         public static Account GetAccountById(int accountId)
         {
+            if (AccountErrorFactory.IsAccountFeatureSupported() == false)
+            {
+                AccountErrorFactory.ThrowNotSupportedException(AccountError.NotSupported, "account feature not supported");
+            }
+
             AccountError err = (AccountError)Interop.Account.CreateUnmanagedHandle(out IntPtr handle);
             if (err != AccountError.None)
             {
@@ -173,6 +183,11 @@ namespace Tizen.Account.AccountManager
         /// <exception cref="NotSupportedException">The required feature is not supported.</exception>
         public static IEnumerable<AccountProvider> GetAccountProviders()
         {
+            if (AccountErrorFactory.IsAccountFeatureSupported() == false)
+            {
+                AccountErrorFactory.ThrowNotSupportedException(AccountError.NotSupported, "account feature not supported");
+            }
+
             List<string> values = new List<string>();
             List<AccountProvider> providers = new List<AccountProvider>();
             Interop.AccountProvider.AccountProviderCallback accountCallback = (IntPtr handle, IntPtr data) =>
@@ -213,6 +228,11 @@ namespace Tizen.Account.AccountManager
         /// <exception cref="NotSupportedException">The required feature is not supported.</exception>
         public static AccountProvider GetAccountProviderByAppId(string appId)
         {
+            if (AccountErrorFactory.IsAccountFeatureSupported() == false)
+            {
+                AccountErrorFactory.ThrowNotSupportedException(AccountError.NotSupported, "account feature not supported");
+            }
+
             IntPtr handle;
             Interop.AccountProvider.Create(out handle);
             AccountError err = (AccountError)Interop.AccountService.GetAccountProviderByAppId(appId, out handle);
@@ -239,6 +259,11 @@ namespace Tizen.Account.AccountManager
         /// <exception cref="NotSupportedException">The required feature is not supported.</exception>
         public static IEnumerable<AccountProvider> GetAccountProvidersByFeature(string feature)
         {
+            if (AccountErrorFactory.IsAccountFeatureSupported() == false)
+            {
+                AccountErrorFactory.ThrowNotSupportedException(AccountError.NotSupported, "account feature not supported");
+            }
+
             List<string> values = new List<string>();
             List<AccountProvider> providers = new List<AccountProvider>();
             Interop.AccountProvider.AccountProviderCallback providerCallback = (IntPtr handle, IntPtr data) =>
@@ -280,6 +305,11 @@ namespace Tizen.Account.AccountManager
         /// <exception cref="NotSupportedException">The required feature is not supported.</exception>
         public static int AddAccount(Account account)
         {
+            if (AccountErrorFactory.IsAccountFeatureSupported() == false)
+            {
+                AccountErrorFactory.ThrowNotSupportedException(AccountError.NotSupported, "account feature not supported");
+            }
+
             if (account == null)
             {
                 throw AccountErrorFactory.CreateException(AccountError.InvalidParameter, "Failed to AddAccount");
@@ -310,6 +340,11 @@ namespace Tizen.Account.AccountManager
         /// <exception cref="NotSupportedException">The required feature is not supported.</exception>
         public static void UpdateAccount(Account account)
         {
+            if (AccountErrorFactory.IsAccountFeatureSupported() == false)
+            {
+                AccountErrorFactory.ThrowNotSupportedException(AccountError.NotSupported, "account feature not supported");
+            }
+
             if (account == null)
             {
                 throw AccountErrorFactory.CreateException(AccountError.InvalidParameter, "Failed to UpdateAccount");
@@ -336,6 +371,11 @@ namespace Tizen.Account.AccountManager
         /// <exception cref="NotSupportedException">The required feature is not supported.</exception>
         public static void DeleteAccount(Account account)
         {
+            if (AccountErrorFactory.IsAccountFeatureSupported() == false)
+            {
+                AccountErrorFactory.ThrowNotSupportedException(AccountError.NotSupported, "account feature not supported");
+            }
+
             if (account == null)
             {
                 throw AccountErrorFactory.CreateException(AccountError.InvalidParameter, "Failed to DeleteAccount");
@@ -363,6 +403,11 @@ namespace Tizen.Account.AccountManager
         /// <exception cref="NotSupportedException">The required feature is not supported.</exception>
         public static void DeleteAccount(string userName, string packageName)
         {
+            if (AccountErrorFactory.IsAccountFeatureSupported() == false)
+            {
+                AccountErrorFactory.ThrowNotSupportedException(AccountError.NotSupported, "account feature not supported");
+            }
+
             AccountError err = (AccountError)Interop.AccountService.DeleteAccountByUser(userName, packageName);
             if (err != AccountError.None)
             {
@@ -384,6 +429,11 @@ namespace Tizen.Account.AccountManager
         /// <exception cref="NotSupportedException">The required feature is not supported.</exception>
         public static void DeleteAccount(string packageName)
         {
+            if (AccountErrorFactory.IsAccountFeatureSupported() == false)
+            {
+                AccountErrorFactory.ThrowNotSupportedException(AccountError.NotSupported, "account feature not supported");
+            }
+
             AccountError err = (AccountError)Interop.AccountService.DeleteAccountByPackage(packageName);
             if (err != AccountError.None)
             {
@@ -406,6 +456,11 @@ namespace Tizen.Account.AccountManager
         /// <exception cref="NotSupportedException">The required feature is not supported.</exception>
         public static IEnumerable<Account> GetAccountsByUserName(string userName)
         {
+            if (AccountErrorFactory.IsAccountFeatureSupported() == false)
+            {
+                AccountErrorFactory.ThrowNotSupportedException(AccountError.NotSupported, "account feature not supported");
+            }
+
             List<Account> accounts = new List<Account>();
             List<int> values = new List<int>();
             Interop.Account.AccountCallback accountCallback = (IntPtr handle, IntPtr data) =>
@@ -445,6 +500,11 @@ namespace Tizen.Account.AccountManager
         /// <exception cref="NotSupportedException">The required feature is not supported.</exception>
         public static IEnumerable<Account> GetAccountsByPackageName(string packageName)
         {
+            if (AccountErrorFactory.IsAccountFeatureSupported() == false)
+            {
+                AccountErrorFactory.ThrowNotSupportedException(AccountError.NotSupported, "account feature not supported");
+            }
+
             List<Account> accounts = new List<Account>();
             List<int> values = new List<int>();
             Interop.Account.AccountCallback accountCallback = (IntPtr handle, IntPtr data) =>
@@ -484,6 +544,11 @@ namespace Tizen.Account.AccountManager
         /// <exception cref="NotSupportedException">The required feature is not supported.</exception>
         public static IEnumerable<Account> GetAccountsByCapabilityType(string type)
         {
+            if (AccountErrorFactory.IsAccountFeatureSupported() == false)
+            {
+                AccountErrorFactory.ThrowNotSupportedException(AccountError.NotSupported, "account feature not supported");
+            }
+
             List<Account> accounts = new List<Account>();
             List<int> values = new List<int>();
             Interop.Account.AccountCallback accountCallback = (IntPtr handle, IntPtr data) =>
@@ -523,6 +588,11 @@ namespace Tizen.Account.AccountManager
         /// <exception cref="NotSupportedException">The required feature is not supported.</exception>
         public static Dictionary<string, CapabilityState> GetCapabilitiesById(int accountId)
         {
+            if (AccountErrorFactory.IsAccountFeatureSupported() == false)
+            {
+                AccountErrorFactory.ThrowNotSupportedException(AccountError.NotSupported, "account feature not supported");
+            }
+
             Dictionary<string, CapabilityState> capabilities = new Dictionary<string, CapabilityState>();
             Interop.Account.AccountCapabilityCallback capabilityCallback = (string type, int capabilityState, IntPtr data) =>
             {
@@ -551,6 +621,11 @@ namespace Tizen.Account.AccountManager
         /// <exception cref="NotSupportedException">The required feature is not supported.</exception>
         public static int GetAccountsCount()
         {
+            if (AccountErrorFactory.IsAccountFeatureSupported() == false)
+            {
+                AccountErrorFactory.ThrowNotSupportedException(AccountError.NotSupported, "account feature not supported");
+            }
+
             int count = 0;
             AccountError err = (AccountError)Interop.AccountService.GetAccountCount(out count);
             if (err != AccountError.None)
@@ -576,6 +651,11 @@ namespace Tizen.Account.AccountManager
         /// <exception cref="NotSupportedException">The required feature is not supported.</exception>
         public static void UpdateSyncStatusById(Account account, AccountSyncState status)
         {
+            if (AccountErrorFactory.IsAccountFeatureSupported() == false)
+            {
+                AccountErrorFactory.ThrowNotSupportedException(AccountError.NotSupported, "account feature not supported");
+            }
+
             AccountError err = (AccountError)Interop.AccountService.UpdateAccountSyncStatusById(account.AccountId, (int)status);
             if (err != AccountError.None)
             {
