@@ -121,12 +121,7 @@ namespace Tizen.Account.AccountManager
         /// SQLite busy handler expired.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        DBBusy = -0x01000000 | 0x10,
-        /// <summary>
-        /// Not Supported
-        /// </summary>
-        /// <since_tizen> 4 </since_tizen>
-        NotSupported = Tizen.Internals.Errors.ErrorCode.NotSupported
+        DBBusy = -0x01000000 | 0x10,        
     };
 
     internal class AccountErrorFactory
@@ -187,7 +182,7 @@ namespace Tizen.Account.AccountManager
                         break;
                     }
                 case AccountError.XMLFileNotFound:
-                    {                        
+                    {
                         exp = new FileNotFoundException(msg + " XML File not found");
                         break;
                     }
@@ -195,12 +190,7 @@ namespace Tizen.Account.AccountManager
                     {
                         exp = new InvalidDataException(msg + " XML parse error");
                         break;
-                    }
-                case AccountError.NotSupported:
-                    {
-                        exp = new NotSupportedException("Not Supported: " + msg);
-                        break;
-                    }
+                    }                
                 default:
                     {
                         exp = new InvalidOperationException(err + " " + msg);
@@ -209,17 +199,19 @@ namespace Tizen.Account.AccountManager
             }
 
             return exp;
-        }
+        }        
 
         internal static bool IsAccountFeatureSupported()
         {
             return Information.TryGetValue("http://tizen.org/feature/account", out bool IsAccountSupported) && IsAccountSupported;
         }
 
-        internal static void ThrowNotSupportedException(AccountError err, string msg)
+        internal static void CheckAccountFeature()
         {
-            Exception exp = CreateException(err, msg);
-            throw exp;
+            if (IsAccountFeatureSupported() == false)
+            {
+                throw new PlatformNotSupportedException("account feature not supported");
+            }
         }
     }
 }

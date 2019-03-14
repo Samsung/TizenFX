@@ -67,11 +67,6 @@ namespace Tizen.Account.AccountManager
         {
             get
             {
-                if (AccountErrorFactory.IsAccountFeatureSupported() == false)
-                {
-                    AccountErrorFactory.ThrowNotSupportedException(AccountError.NotSupported, "account feature not supported");
-                }
-
                 string id = "";
                 AccountError res = (AccountError)Interop.AccountProvider.GetAppId(Handle, out id);
                 if (res != AccountError.None)
@@ -91,11 +86,6 @@ namespace Tizen.Account.AccountManager
         {
             get
             {
-                if (AccountErrorFactory.IsAccountFeatureSupported() == false)
-                {
-                    AccountErrorFactory.ThrowNotSupportedException(AccountError.NotSupported, "account feature not supported");
-                }
-
                 string id = "";
                 AccountError res = (AccountError)Interop.AccountProvider.GetServiceProviderId(Handle, out id);
                 if (res != AccountError.None)
@@ -115,11 +105,6 @@ namespace Tizen.Account.AccountManager
         {
             get
             {
-                if (AccountErrorFactory.IsAccountFeatureSupported() == false)
-                {
-                    AccountErrorFactory.ThrowNotSupportedException(AccountError.NotSupported, "account feature not supported");
-                }
-
                 string path = "";
                 AccountError res = (AccountError)Interop.AccountProvider.GetAccountProviderIconPath(Handle, out path);
                 if (res != AccountError.None)
@@ -139,11 +124,6 @@ namespace Tizen.Account.AccountManager
         {
             get
             {
-                if (AccountErrorFactory.IsAccountFeatureSupported() == false)
-                {
-                    AccountErrorFactory.ThrowNotSupportedException(AccountError.NotSupported, "account feature not supported");
-                }
-
                 string path = "";
                 AccountError res = (AccountError)Interop.AccountProvider.GetAccountProviderSmallIconPath(Handle, out path);
                 if (res != AccountError.None)
@@ -163,11 +143,6 @@ namespace Tizen.Account.AccountManager
         {
             get
             {
-                if (AccountErrorFactory.IsAccountFeatureSupported() == false)
-                {
-                    AccountErrorFactory.ThrowNotSupportedException(AccountError.NotSupported, "account feature not supported");
-                }
-
                 int multiple = 0;
                 AccountError res = (AccountError)Interop.AccountProvider.GetMultipleAccountSupport(Handle, out multiple);
                 if (res != AccountError.None)
@@ -193,11 +168,6 @@ namespace Tizen.Account.AccountManager
         /// <exception cref="NotSupportedException">The required feature is not supported.</exception>
         public IEnumerable<string> GetAllCapabilities()
         {
-            if (AccountErrorFactory.IsAccountFeatureSupported() == false)
-            {
-                AccountErrorFactory.ThrowNotSupportedException(AccountError.NotSupported, "account feature not supported");
-            }
-
             List<string> capabilities = new List<string>();
             AccountError res;
             Interop.AccountProvider.AccountProviderFeatureCallback callback = (string appId, string key, IntPtr data) =>
@@ -231,11 +201,6 @@ namespace Tizen.Account.AccountManager
         /// <exception cref="NotSupportedException">The required feature is not supported.</exception>
         public string GetLabel(string locale)
         {
-            if (AccountErrorFactory.IsAccountFeatureSupported() == false)
-            {
-                AccountErrorFactory.ThrowNotSupportedException(AccountError.NotSupported, "account feature not supported");
-            }
-
             string label;
             AccountError res = (AccountError)Interop.AccountProvider.GetlabelbyLocale(Handle, locale, out label);
             if (res != AccountError.None)
@@ -262,11 +227,6 @@ namespace Tizen.Account.AccountManager
         /// <exception cref="NotSupportedException">The required feature is not supported.</exception>
         public static Dictionary<string, string> GetLabelsByAppId(string appId)
         {
-            if (AccountErrorFactory.IsAccountFeatureSupported() == false)
-            {
-                AccountErrorFactory.ThrowNotSupportedException(AccountError.NotSupported, "account feature not supported");
-            }
-
             Dictionary<string, string> labels = new Dictionary<string, string>();
             Interop.AccountProvider.LabelCallback callback = (string applicationId, string label, string locale, IntPtr userData) =>
             {
@@ -295,11 +255,6 @@ namespace Tizen.Account.AccountManager
         /// <exception cref="NotSupportedException">The required feature is not supported.</exception>
         public Dictionary<string, string> GetLabels()
         {
-            if (AccountErrorFactory.IsAccountFeatureSupported() == false)
-            {
-                AccountErrorFactory.ThrowNotSupportedException(AccountError.NotSupported, "account feature not supported");
-            }
-
             Dictionary<string, string> labels = new Dictionary<string, string>();
             Interop.AccountProvider.LabelCallback callback = (string applicationId, string label, string locale, IntPtr userData) =>
             {
@@ -330,11 +285,6 @@ namespace Tizen.Account.AccountManager
         /// <exception cref="NotSupportedException">The required feature is not supported.</exception>
         public bool IsAppSupported(string appId)
         {
-            if (AccountErrorFactory.IsAccountFeatureSupported() == false)
-            {
-                AccountErrorFactory.ThrowNotSupportedException(AccountError.NotSupported, "account feature not supported");
-            }
-
             bool isSupported = false;
             AccountError res = (AccountError)Interop.AccountProvider.GetAppIdExists(appId);
 
@@ -368,11 +318,6 @@ namespace Tizen.Account.AccountManager
         /// <exception cref="NotSupportedException">The required feature is not supported.</exception>
         public static bool IsFeatureSupportedByApp(string appId, string capability)
         {
-            if (AccountErrorFactory.IsAccountFeatureSupported() == false)
-            {
-                AccountErrorFactory.ThrowNotSupportedException(AccountError.NotSupported, "account feature not supported");
-            }
-
             bool supported = Interop.AccountProvider.IsFeatureSupported(appId, capability);
             if (!supported)
             {
@@ -401,11 +346,6 @@ namespace Tizen.Account.AccountManager
         /// <exception cref="NotSupportedException">The required feature is not supported.</exception>
         public static IEnumerable<string> GetFeaturesByAppId(string appId)
         {
-            if (AccountErrorFactory.IsAccountFeatureSupported() == false)
-            {
-                AccountErrorFactory.ThrowNotSupportedException(AccountError.NotSupported, "account feature not supported");
-            }
-
             List<string> features = new List<string>();
             Interop.AccountProvider.AccountProviderFeatureCallback callback = (string applicationId, string key, IntPtr userData) =>
             {
