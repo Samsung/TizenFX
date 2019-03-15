@@ -209,11 +209,10 @@ namespace Tizen.Account.AccountManager
 
         internal static void CheckAccountFeature()
         {
-            Log.Fatal(AccountErrorFactory.LogTag, "check account feature");
             if (IsAccountFeatureSupported() == false)
             {
-                Log.Fatal(AccountErrorFactory.LogTag, "account feature is disabled - inside");                
-                throw new NotSupportedException("account feature is disabled");
+                Log.Warn(AccountErrorFactory.LogTag, "platform account feature is disabled");
+                throw new NotSupportedException("platform account feature is disabled");
             }
         }
     }
