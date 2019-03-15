@@ -86,7 +86,7 @@ internal static partial class Interop
         internal static extern int elm_animation_view_state_get(IntPtr obj);
 
         [DllImport(Libraries.Elementary)]
-        internal static extern bool elm_animation_view_is_playing_back_get(IntPtr obj);
+        internal static extern bool elm_animation_view_is_playing_back(IntPtr obj);
 
         [DllImport(Libraries.Elementary)]
         internal static extern int elm_animation_view_frame_count_get(IntPtr obj);
@@ -113,7 +113,7 @@ internal static partial class Interop
         internal static extern int elm_animation_view_max_frame_get(IntPtr obj);
 
         [DllImport(Libraries.Elementary)]
-        internal static extern void elm_animation_view_max_frame_set(IntPtr obj, double max_frame);
+        internal static extern void elm_animation_view_max_frame_set(IntPtr obj, int max_frame);
 
         [DllImport(Libraries.Elementary)]
         internal static extern bool elm_animation_view_file_set(IntPtr obj, string file, string key);
