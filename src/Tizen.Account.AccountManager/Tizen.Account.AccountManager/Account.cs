@@ -34,6 +34,7 @@ namespace Tizen.Account.AccountManager
 	/// <param name="handle"> The account handle.</param>
         public Account(SafeAccountHandle handle)
         {
+            AccountErrorFactory.CheckAccountFeature();
             _handle = handle;
         }
 
@@ -53,6 +54,8 @@ namespace Tizen.Account.AccountManager
         /// <returns>Account Instance.</returns>
         public static Account CreateAccount()
         {
+            AccountErrorFactory.CheckAccountFeature();
+
             SafeAccountHandle handle;
             AccountError err = (AccountError)Interop.Account.Create(out handle);
             if (err != AccountError.None)
