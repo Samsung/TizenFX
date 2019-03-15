@@ -314,7 +314,7 @@ namespace ElmSharp
         {
             get
             {
-                return Interop.Elementary.elm_animation_view_is_playing_back_get(Handle);
+                return Interop.Elementary.elm_animation_view_is_playing_back(Handle);
             }
         }
 
