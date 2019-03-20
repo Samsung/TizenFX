@@ -4212,6 +4212,13 @@ namespace Tizen.NUI.BaseComponents
             IntPtr cPtr = NDalicPINVOKE.Actor_GetRendererAt(swigCPtr, index);
             HandleRef CPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
             Renderer ret = Registry.GetManagedBaseHandleFromNativePtr(CPtr.Handle) as Renderer;
+            if (cPtr != null && ret == null)
+            {
+                ret = new Renderer(cPtr, false);
+                if (NDalicPINVOKE.SWIGPendingException.Pending)
+                    throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                return ret;
+            }
             NDalicPINVOKE.delete_BaseHandle(CPtr);
             CPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
 
