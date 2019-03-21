@@ -54,9 +54,13 @@ namespace Tizen.NUI.Binding
                 if (_property != null && s_valueConverter != null)
                 {
                     Func<MemberInfo> minforetriever = () => _property.DeclaringType.GetRuntimeProperty(_property.PropertyName);
-                    value = s_valueConverter.Convert(value, _property.ReturnType, minforetriever, null);
+                    _triggerValue = s_valueConverter.Convert(value, _property.ReturnType, minforetriever, null);
                 }
-                _triggerValue = value;
+                else
+                {
+                    _triggerValue = value;
+                }
+                
             }
         }
 
