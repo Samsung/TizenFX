@@ -30,6 +30,7 @@ namespace Tizen.Applications
         private const string LogTag = "Tizen.Applications";
 
         private string _id = string.Empty;
+        private string _mainAppId = string.Empty;
         private string _label = string.Empty;
         private string _iconPath = string.Empty;
         private string _version = string.Empty;
@@ -144,6 +145,19 @@ namespace Tizen.Applications
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public int InstalledTime { get { return _installedTime; } }
+
+        /// <summary>
+        /// Main application info of the package.
+        /// </summary>
+        /// <since_tizen> 6 </since_tizen>
+        public ApplicationInfo MainApplication
+        {
+            get
+            {
+                ApplicationInfo applicaionInfo = new ApplicationInfo(_mainAppId);
+                return applicaionInfo;
+            }
+        }
 
         /// <summary>
         /// Retrieves all the application IDs of this package.
@@ -266,6 +280,11 @@ namespace Tizen.Applications
             Package package = new Package(pkgId);
 
             var err = Interop.PackageManager.ErrorCode.None;
+            err = Interop.Package.PackageInfoGetMainAppId(handle, out package._mainAppId);
+            if (err != Interop.PackageManager.ErrorCode.None)
+            {
+                Log.Warn(LogTag, "Failed to get package main app id of " + pkgId);
+            }
             err = Interop.Package.PackageInfoGetLabel(handle, out package._label);
             if (err != Interop.PackageManager.ErrorCode.None)
             {
