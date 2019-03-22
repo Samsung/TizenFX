@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2016 Samsung Electronics Co., Ltd All Rights Reserved
+ * Copyright (c) 2019 Samsung Electronics Co., Ltd All Rights Reserved
  *
  * Licensed under the Apache License, Version 2.0 (the License);
  * you may not use this file except in compliance with the License.
@@ -17,30 +17,29 @@
 namespace Tizen.Applications
 {
     /// <summary>
-    /// Enumeration for the applications type.
+    /// Enumeration for application component type.
     /// </summary>
-    /// <since_tizen> 3 </since_tizen>
-    public enum ApplicationType
+    /// <since_tizen> 6 </since_tizen>
+    public enum ApplicationComponentType
     {
         /// <summary>
-        /// All applications.
+        /// Component type is ui application.
         /// </summary>
-        All = 0,
+        UIApplication = 0,
+
         /// <summary>
-        /// UI applications.
+        /// Component type is service application.
         /// </summary>
-        Ui = 1,
+        ServiceApplication,
+
         /// <summary>
-        /// Service applications.
+        /// Component type is widget application.
         /// </summary>
-        Service = 2,
+        WidgetApplication,
+
         /// <summary>
-        /// Service applications.
+        /// Component type is watch application.
         /// </summary>
-        Widget = 3,
-        /// <summary>
-        /// Service applications.
-        /// </summary>
-        Watch = 4
+        WatchApplication,
     }
 }

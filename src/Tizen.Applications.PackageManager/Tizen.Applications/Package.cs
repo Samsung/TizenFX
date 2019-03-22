@@ -192,6 +192,17 @@ namespace Tizen.Applications
         }
 
         /// <summary>
+        /// Retrieves all the application IDs of this package.
+        /// </summary>
+        /// <param name="componentType">Optional: AppType enumeration value.</param>
+        /// <returns>Returns a dictionary containing all the application information for a given application type.</returns>
+        /// <since_tizen> 6 </since_tizen>
+        public IEnumerable<ApplicationInfo> GetApplications(ApplicationComponentType componentType)
+        {
+            return GetApplications(ToApplicationType(componentType));
+        }
+
+        /// <summary>
         /// Gets the package size information.
         /// </summary>
         /// <returns>Package size information.</returns>
@@ -378,6 +389,21 @@ namespace Tizen.Applications
                 Log.Warn(LogTag, string.Format("Failed to get privilage info. err = {0}", err));
             }
             return privileges;
+        }
+
+        private ApplicationType ToApplicationType(ApplicationComponentType componentType)
+        {
+            ApplicationType applicationType = 0;
+            if (componentType == Tizen.Applications.ApplicationComponentType.UIApplication)
+                applicationType = Tizen.Applications.ApplicationType.Ui;
+            else if (componentType == Tizen.Applications.ApplicationComponentType.ServiceApplication)
+                applicationType = Tizen.Applications.ApplicationType.Service;
+            else if (componentType == Tizen.Applications.ApplicationComponentType.WidgetApplication)
+                applicationType = Tizen.Applications.ApplicationType.Widget;
+            else if (componentType == Tizen.Applications.ApplicationComponentType.WatchApplication)
+                applicationType = Tizen.Applications.ApplicationType.Watch;
+
+            return applicationType;
         }
     }
 }

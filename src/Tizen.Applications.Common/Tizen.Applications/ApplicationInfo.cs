@@ -194,6 +194,28 @@ namespace Tizen.Applications
         }
 
         /// <summary>
+        /// Gets the application component type.
+        /// </summary>
+        /// <since_tizen> 6 </since_tizen>
+        public ApplicationComponentType ComponentType
+        {
+            get
+            {
+                IntPtr infoHandle = GetInfoHandle();
+                Interop.ApplicationManager.AppInfoAppComponentType componentType = 0;
+                if (infoHandle != IntPtr.Zero)
+                {
+                    err = Interop.ApplicationManager.AppInfoGetAppComponentType(infoHandle, out componentType);
+                    if (err != Interop.ApplicationManager.ErrorCode.None)
+                    {
+                        Log.Warn(LogTag, "Failed to get the application component type of " + _applicationId + ". err = " + err);
+                    }
+                }
+                return (ApplicationComponentType)componentType;
+            }
+        }
+
+        /// <summary>
         /// Gets the application's metadata.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
@@ -290,6 +312,37 @@ namespace Tizen.Applications
                     }
                 }
                 return preloaded;
+            }
+        }
+
+        /// <summary>
+        /// Gets the application's category values specified in the tizen-manifest
+        /// </summary>
+        /// <privilege>http://tizen.org/privilege/packagemanager.admin</privilege>
+        /// <privlevel>platform</privlevel>
+        /// <since_tizen> 6 </since_tizen>
+        public IEnumerable<string> Categories
+        {
+            get
+            {
+                List<string> categories = new List<string>();
+
+                Interop.ApplicationManager.AppInfoCategoryCallback cb = (string category, IntPtr userData) =>
+                {
+                    categories.Add(category);
+                    return true;
+                };
+
+                IntPtr infoHandle = GetInfoHandle();
+                if (infoHandle != IntPtr.Zero)
+                {
+                    err = Interop.ApplicationManager.AppInfoForeachCategory(infoHandle, cb, IntPtr.Zero);
+                    if (err != Interop.ApplicationManager.ErrorCode.None)
+                    {
+                        Log.Warn(LogTag, "Failed to get application category of " + _applicationId + ". err = " + err);
+                    }
+                }
+                return categories;
             }
         }
 
