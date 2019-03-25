@@ -422,6 +422,7 @@ namespace Tizen.Network.Bluetooth
         /// Destroy Bluetooth GATT client
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        [Obsolete("Deprecated since API level 6. Please use Dispose() method on BluetoothGattClient.")]
         public void DestroyClient()
         {
             _impl.GetHandle().Dispose();
