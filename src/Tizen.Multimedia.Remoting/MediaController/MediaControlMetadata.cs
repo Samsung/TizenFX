@@ -49,6 +49,15 @@ namespace Tizen.Multimedia.Remoting
             Description = Native.GetMetadata(handle, MediaControllerNativeAttribute.Description);
             TrackNumber = Native.GetMetadata(handle, MediaControllerNativeAttribute.TrackNumber);
             AlbumArtPath = Native.GetMetadata(handle, MediaControllerNativeAttribute.Picture);
+
+            SeasonEncoded = Native.GetMetadata(handle, MediaControllerNativeAttribute.Season);
+            Season = Decode(MediaControllerNativeAttribute.Season);
+
+            EpisodeEncoded = Native.GetMetadata(handle, MediaControllerNativeAttribute.Episode);
+            Episode = Decode(MediaControllerNativeAttribute.Episode);
+
+            ResolutionEncoded = Native.GetMetadata(handle, MediaControllerNativeAttribute.Resolution);
+            Resolution = Decode();
         }
 
         /// <summary>
@@ -116,5 +125,97 @@ namespace Tizen.Multimedia.Remoting
         /// </summary>
         /// <since_tizen> 4 </since_tizen>
         public string AlbumArtPath { get; set; }
+
+        /// <summary>
+        /// Gets or sets the season information.
+        /// </summary>
+        /// <since_tizen> 6 </since_tizen>
+        public (int number, string title) Season
+        {
+            get => Decode(MediaControllerNativeAttribute.Season);
+            set => Encode(value.number, value.title, MediaControllerNativeAttribute.Season);
+        }
+
+        /// <summary>
+        /// Gets or sets the episode information.
+        /// </summary>
+        /// <since_tizen> 6 </since_tizen>
+        public (int number, string title) Episode
+        {
+            get => Decode(MediaControllerNativeAttribute.Episode);
+            set => Encode(value.number, value.title, MediaControllerNativeAttribute.Episode);
+        }
+
+        /// <summary>
+        /// Gets or sets the content resolution.
+        /// </summary>
+        /// <since_tizen> 6 </since_tizen>
+        public Size Resolution
+        {
+            get => Decode();
+            set => Encode(value.Width, value.Height);
+        }
+
+        // Native CAPI used only encoded string to gets or sets season, episode, resolution.
+        // But encoded string is not useful for user, so we don't offer as it is.
+        // It'll be used internally.
+        internal string SeasonEncoded { get; private set; } = null;
+        internal string EpisodeEncoded { get; private set; } = null;
+        internal string ResolutionEncoded { get; private set; } = null;
+
+        private void Encode(int number, string title, MediaControllerNativeAttribute type)
+        {
+            if (type == MediaControllerNativeAttribute.Season)
+            {
+                Native.EncodeSeason(number, title, out string encoded).
+                    ThrowIfError("Failed to encode season");
+                SeasonEncoded = encoded;
+            }
+            else if (type == MediaControllerNativeAttribute.Episode)
+            {
+                Native.EncodeEpisode(number, title, out string encoded).
+                    ThrowIfError("Failed to encode episode");
+                EpisodeEncoded = encoded;
+            }
+        }
+
+        private void Encode(int width, int height)
+        {
+            Native.EncodeResolution((uint)width, (uint)height, out string encoded).
+                ThrowIfError("Failed to encode resolution");
+            ResolutionEncoded = encoded;
+        }
+
+        private (int number, string title) Decode(MediaControllerNativeAttribute type)
+        {
+            int number = 0;
+            string title = null;
+
+            if (SeasonEncoded != null && type == MediaControllerNativeAttribute.Season)
+            {
+                Native.DecodeSeason(SeasonEncoded, out number, out title).
+                    ThrowIfError("Failed to decode season");
+            }
+            else if (EpisodeEncoded != null && type == MediaControllerNativeAttribute.Episode)
+            {
+                Native.DecodeEpisode(EpisodeEncoded, out number, out title).
+                    ThrowIfError("Failed to decode episode");
+            }
+
+            return (number, title);
+        }
+
+        private Size Decode()
+        {
+            uint width = 0, height = 0;
+
+            if (ResolutionEncoded != null)
+            {
+                Native.DecodeResolution(ResolutionEncoded, out width, out height).
+                ThrowIfError("Failed to decode resolution");
+            }
+
+            return new Size((int)width, (int)height);
+        }
     }
 }
