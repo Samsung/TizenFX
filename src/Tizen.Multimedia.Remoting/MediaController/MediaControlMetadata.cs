@@ -129,64 +129,72 @@ namespace Tizen.Multimedia.Remoting
         /// <summary>
         /// Gets or sets the season information.
         /// </summary>
+        /// <seealso cref="SeriesInformation"/>
         /// <since_tizen> 6 </since_tizen>
-        public (int number, string title) Season
+        public SeriesInformation Season
         {
             get => Decode(MediaControllerNativeAttribute.Season);
-            set => Encode(value.number, value.title, MediaControllerNativeAttribute.Season);
+            set => SeasonEncoded = Encode(value, MediaControllerNativeAttribute.Season);
         }
 
         /// <summary>
         /// Gets or sets the episode information.
         /// </summary>
+        /// <seealso cref="SeriesInformation"/>
         /// <since_tizen> 6 </since_tizen>
-        public (int number, string title) Episode
+        public SeriesInformation Episode
         {
             get => Decode(MediaControllerNativeAttribute.Episode);
-            set => Encode(value.number, value.title, MediaControllerNativeAttribute.Episode);
+            set => EpisodeEncoded = Encode(value, MediaControllerNativeAttribute.Episode);
         }
 
         /// <summary>
         /// Gets or sets the content resolution.
         /// </summary>
+        /// <seealso cref="Size"/>
         /// <since_tizen> 6 </since_tizen>
         public Size Resolution
         {
             get => Decode();
-            set => Encode(value.Width, value.Height);
+            set => ResolutionEncoded = Encode(value.Width, value.Height);
         }
 
-        // Native CAPI used only encoded string to gets or sets season, episode, resolution.
+        // Native CAPI used only encoded string to gets or sets Season, Episode, Resolution.
         // But encoded string is not useful for user, so we don't offer as it is.
         // It'll be used internally.
-        internal string SeasonEncoded { get; private set; } = null;
-        internal string EpisodeEncoded { get; private set; } = null;
-        internal string ResolutionEncoded { get; private set; } = null;
+        internal string SeasonEncoded { get; private set; }
 
-        private void Encode(int number, string title, MediaControllerNativeAttribute type)
+        internal string EpisodeEncoded { get; private set; }
+
+        internal string ResolutionEncoded { get; private set; }
+
+        private string Encode(SeriesInformation information, MediaControllerNativeAttribute type)
         {
+            string encoded = null;
+
             if (type == MediaControllerNativeAttribute.Season)
             {
-                Native.EncodeSeason(number, title, out string encoded).
+                Native.EncodeSeason(information.Number, information.Title, out encoded).
                     ThrowIfError("Failed to encode season");
-                SeasonEncoded = encoded;
             }
             else if (type == MediaControllerNativeAttribute.Episode)
             {
-                Native.EncodeEpisode(number, title, out string encoded).
+                Native.EncodeEpisode(information.Number, information.Title, out encoded).
                     ThrowIfError("Failed to encode episode");
-                EpisodeEncoded = encoded;
             }
+
+            return encoded;
         }
 
-        private void Encode(int width, int height)
+        private string Encode(int width, int height)
         {
             Native.EncodeResolution((uint)width, (uint)height, out string encoded).
                 ThrowIfError("Failed to encode resolution");
-            ResolutionEncoded = encoded;
+
+            return encoded;
         }
 
-        private (int number, string title) Decode(MediaControllerNativeAttribute type)
+        private SeriesInformation Decode(MediaControllerNativeAttribute type)
         {
             int number = 0;
             string title = null;
@@ -202,7 +210,7 @@ namespace Tizen.Multimedia.Remoting
                     ThrowIfError("Failed to decode episode");
             }
 
-            return (number, title);
+            return new SeriesInformation(number, title);
         }
 
         private Size Decode()
@@ -212,10 +220,48 @@ namespace Tizen.Multimedia.Remoting
             if (ResolutionEncoded != null)
             {
                 Native.DecodeResolution(ResolutionEncoded, out width, out height).
-                ThrowIfError("Failed to decode resolution");
+                    ThrowIfError("Failed to decode resolution");
             }
 
             return new Size((int)width, (int)height);
         }
+    }
+
+    /// <summary>
+    /// Represents properties for the video series information.
+    /// </summary>
+    /// <since_tizen> 6 </since_tizen>
+    public struct SeriesInformation
+    {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="MediaControlPlaylist"/> struct.
+        /// </summary>
+        /// <param name="number">The number of this video of all series.</param>
+        /// <param name="title">The title.</param>
+        /// <since_tizen> 6 </since_tizen>
+        public SeriesInformation(int number, string title)
+        {
+            Number = number;
+            Title = title;
+        }
+
+        /// <summary>
+        /// Gets or sets the number of this video of all series.
+        /// </summary>
+        /// <since_tizen> 6 </since_tizen>
+        public int Number { get; }
+
+        /// <summary>
+        /// Gets or sets the title.
+        /// </summary>
+        /// <since_tizen> 6 </since_tizen>
+        public string Title { get; }
+
+        /// <summary>
+        /// Returns a string that represents the current object.
+        /// </summary>
+        /// <returns>A string that represents the current object.</returns>
+        /// <since_tizen> 6 </since_tizen>
+        public override string ToString() => $"Number={Number.ToString()}, Title={Title}";
     }
 }
