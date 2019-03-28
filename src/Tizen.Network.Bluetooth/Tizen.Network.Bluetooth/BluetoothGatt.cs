@@ -276,6 +276,7 @@ namespace Tizen.Network.Bluetooth
         /// <summary>
         /// Creates the Bluetooth GATT client.
         /// </summary>
+        /// <param name="remoteAddress">The remote device address.</param>
         /// <returns>The BluetoothGattClient instance.</returns>
         /// <feature>http://tizen.org/feature/network.bluetooth.le.gatt.client</feature>
         /// <exception cref="NotSupportedException">Thrown when the BT/BTLE is not supported.</exception>
