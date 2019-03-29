@@ -130,6 +130,7 @@ namespace Tizen.Network.Bluetooth {
         /// This event is called when the GATT client connects/disconnects with the server.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        [Obsolete("Deprecated since API level 6. Please use ConnectionStateChanged event on BluetoothGattClient.")]
         public event EventHandler<GattConnectionStateChangedEventArgs> GattConnectionStateChanged
         {
             add
@@ -423,6 +424,7 @@ namespace Tizen.Network.Bluetooth {
         /// <exception cref="InvalidOperationException">Thrown when the Bluetooth LE is not enabled
         /// or when the gatt connection attempt to remote device fails.</exception>
         /// <since_tizen> 3 </since_tizen>
+        [Obsolete("Deprecated since API level 6. Please use CreateClient() and ConnectAsync() method on BluetoothGattClient.")]
         public BluetoothGattClient GattConnect(bool autoConnect)
         {
             BluetoothGattClient client = null;
@@ -454,6 +456,7 @@ namespace Tizen.Network.Bluetooth {
         /// <exception cref="InvalidOperationException">Thrown when the Bluetooth LE is not enabled
         /// or when the GATT disconnection attempt to remote device fails.</exception>
         /// <since_tizen> 3 </since_tizen>
+        [Obsolete("Deprecated since API level 6. Please use DisconnectAsync() method on BluetoothGattClient.")]
         public void GattDisconnect()
         {
             if (BluetoothAdapter.IsBluetoothEnabled && Globals.IsInitialize)

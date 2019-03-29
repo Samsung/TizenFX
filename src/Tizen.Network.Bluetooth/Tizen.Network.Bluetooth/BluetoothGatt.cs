@@ -276,6 +276,7 @@ namespace Tizen.Network.Bluetooth
         /// <summary>
         /// Creates the Bluetooth GATT client.
         /// </summary>
+        /// <param name="remoteAddress">The remote device address.</param>
         /// <returns>The BluetoothGattClient instance.</returns>
         /// <feature>http://tizen.org/feature/network.bluetooth.le.gatt.client</feature>
         /// <exception cref="NotSupportedException">Thrown when the BT/BTLE is not supported.</exception>
@@ -422,6 +423,7 @@ namespace Tizen.Network.Bluetooth
         /// Destroy Bluetooth GATT client
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        [Obsolete("Deprecated since API level 6. Please use Dispose() method on BluetoothGattClient.")]
         public void DestroyClient()
         {
             _impl.GetHandle().Dispose();
