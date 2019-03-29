@@ -37,7 +37,7 @@ namespace ElmSharp.Test
             {
                 _stateLabel.Text = "<font_size=32>State = Playing</font_size>";
             }
-            else if (_state == AnimationViewState.ReversePlay)
+            else if (_state == AnimationViewState.ReversedPlay)
             {
                 _stateLabel.Text = "<font_size=32>State = Reverse Playing</font_size>";
             }
