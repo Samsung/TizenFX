@@ -230,9 +230,9 @@ namespace Tizen.Multimedia.Remoting
             SetMetadata(MediaControllerNativeAttribute.Description, metadata.Description);
             SetMetadata(MediaControllerNativeAttribute.TrackNumber, metadata.TrackNumber);
             SetMetadata(MediaControllerNativeAttribute.Picture, metadata.AlbumArtPath);
-            SetMetadata(MediaControllerNativeAttribute.Season, metadata.SeasonEncoded);
-            SetMetadata(MediaControllerNativeAttribute.Episode, metadata.EpisodeEncoded);
-            SetMetadata(MediaControllerNativeAttribute.Resolution, metadata.ResolutionEncoded);
+            SetMetadata(MediaControllerNativeAttribute.Season, metadata.EncodedSeason);
+            SetMetadata(MediaControllerNativeAttribute.Episode, metadata.EncodedEpisode);
+            SetMetadata(MediaControllerNativeAttribute.Resolution, metadata.EncodedResolution);
 
             Native.UpdateMetadata(Handle).ThrowIfError("Failed to set metadata.");
         }

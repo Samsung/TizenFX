@@ -50,14 +50,14 @@ namespace Tizen.Multimedia.Remoting
             TrackNumber = Native.GetMetadata(handle, MediaControllerNativeAttribute.TrackNumber);
             AlbumArtPath = Native.GetMetadata(handle, MediaControllerNativeAttribute.Picture);
 
-            SeasonEncoded = Native.GetMetadata(handle, MediaControllerNativeAttribute.Season);
-            Season = Decode(MediaControllerNativeAttribute.Season);
+            EncodedSeason = Native.GetMetadata(handle, MediaControllerNativeAttribute.Season);
+            Season = DecodeSeason(EncodedSeason);
 
-            EpisodeEncoded = Native.GetMetadata(handle, MediaControllerNativeAttribute.Episode);
-            Episode = Decode(MediaControllerNativeAttribute.Episode);
+            EncodedEpisode = Native.GetMetadata(handle, MediaControllerNativeAttribute.Episode);
+            Episode = DecodeEpisode(EncodedEpisode);
 
-            ResolutionEncoded = Native.GetMetadata(handle, MediaControllerNativeAttribute.Resolution);
-            Resolution = Decode();
+            EncodedResolution = Native.GetMetadata(handle, MediaControllerNativeAttribute.Resolution);
+            Resolution = DecodeResolution(EncodedResolution);
         }
 
         /// <summary>
@@ -133,8 +133,8 @@ namespace Tizen.Multimedia.Remoting
         /// <since_tizen> 6 </since_tizen>
         public SeriesInformation Season
         {
-            get => Decode(MediaControllerNativeAttribute.Season);
-            set => SeasonEncoded = Encode(value, MediaControllerNativeAttribute.Season);
+            get => DecodeSeason(EncodedSeason);
+            set => EncodedSeason = EncodeSeason(value);
         }
 
         /// <summary>
@@ -144,8 +144,8 @@ namespace Tizen.Multimedia.Remoting
         /// <since_tizen> 6 </since_tizen>
         public SeriesInformation Episode
         {
-            get => Decode(MediaControllerNativeAttribute.Episode);
-            set => EpisodeEncoded = Encode(value, MediaControllerNativeAttribute.Episode);
+            get => DecodeEpisode(EncodedEpisode);
+            set => EncodedEpisode = EncodeEpisode(value);
         }
 
         /// <summary>
@@ -155,71 +155,78 @@ namespace Tizen.Multimedia.Remoting
         /// <since_tizen> 6 </since_tizen>
         public Size Resolution
         {
-            get => Decode();
-            set => ResolutionEncoded = Encode(value.Width, value.Height);
+            get => DecodeResolution(EncodedResolution);
+            set => EncodedResolution = EncodeResolution(value.Width, value.Height);
         }
 
         // Native CAPI used only encoded string to gets or sets Season, Episode, Resolution.
         // But encoded string is not useful for user, so we don't offer as it is.
         // It'll be used internally.
-        internal string SeasonEncoded { get; private set; }
+        internal string EncodedSeason { get; private set; }
 
-        internal string EpisodeEncoded { get; private set; }
+        internal string EncodedEpisode { get; private set; }
 
-        internal string ResolutionEncoded { get; private set; }
+        internal string EncodedResolution { get; private set; }
 
-        private string Encode(SeriesInformation information, MediaControllerNativeAttribute type)
+        private string EncodeSeason(SeriesInformation information)
         {
-            string encoded = null;
+            Native.EncodeSeason(information.Number, information.Title, out string encodedSeason).
+                ThrowIfError("Failed to encode season");
 
-            if (type == MediaControllerNativeAttribute.Season)
-            {
-                Native.EncodeSeason(information.Number, information.Title, out encoded).
-                    ThrowIfError("Failed to encode season");
-            }
-            else if (type == MediaControllerNativeAttribute.Episode)
-            {
-                Native.EncodeEpisode(information.Number, information.Title, out encoded).
-                    ThrowIfError("Failed to encode episode");
-            }
-
-            return encoded;
+            return encodedSeason;
         }
 
-        private string Encode(int width, int height)
+        private string EncodeEpisode(SeriesInformation information)
         {
-            Native.EncodeResolution((uint)width, (uint)height, out string encoded).
+            Native.EncodeEpisode(information.Number, information.Title, out string encodedEpisode).
+                ThrowIfError("Failed to encode episode");
+
+            return encodedEpisode;
+        }
+
+        private string EncodeResolution(int width, int height)
+        {
+            Native.EncodeResolution((uint)width, (uint)height, out string encodedResolution).
                 ThrowIfError("Failed to encode resolution");
 
-            return encoded;
+            return encodedResolution;
         }
 
-        private SeriesInformation Decode(MediaControllerNativeAttribute type)
+        private SeriesInformation DecodeSeason(string encodedSeason)
         {
             int number = 0;
             string title = null;
 
-            if (SeasonEncoded != null && type == MediaControllerNativeAttribute.Season)
+            if (encodedSeason != null)
             {
-                Native.DecodeSeason(SeasonEncoded, out number, out title).
+                Native.DecodeSeason(encodedSeason, out number, out title).
                     ThrowIfError("Failed to decode season");
             }
-            else if (EpisodeEncoded != null && type == MediaControllerNativeAttribute.Episode)
+
+            return new SeriesInformation(number, title);
+        }
+
+        private SeriesInformation DecodeEpisode(string encodedEpisode)
+        {
+            int number = 0;
+            string title = null;
+
+            if (encodedEpisode != null)
             {
-                Native.DecodeEpisode(EpisodeEncoded, out number, out title).
+                Native.DecodeEpisode(encodedEpisode, out number, out title).
                     ThrowIfError("Failed to decode episode");
             }
 
             return new SeriesInformation(number, title);
         }
 
-        private Size Decode()
+        private Size DecodeResolution(string encodedResolution)
         {
             uint width = 0, height = 0;
 
-            if (ResolutionEncoded != null)
+            if (encodedResolution != null)
             {
-                Native.DecodeResolution(ResolutionEncoded, out width, out height).
+                Native.DecodeResolution(encodedResolution, out width, out height).
                     ThrowIfError("Failed to decode resolution");
             }
 
