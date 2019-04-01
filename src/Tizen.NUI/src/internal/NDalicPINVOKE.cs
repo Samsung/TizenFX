@@ -4139,6 +4139,8 @@ namespace Tizen.NUI
         [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint = "CSharp_Dali_Key_state_get")]
         public static extern int Key_state_get(global::System.Runtime.InteropServices.HandleRef jarg1);
 
+        [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint = "CSharp_Dali_Key_logicalKey_get")]
+        public static extern string Key_logicalKey_get(global::System.Runtime.InteropServices.HandleRef jarg1);
 
         [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint = "CSharp_Dali_new_LongPressGestureDetector__SWIG_0")]
         public static extern global::System.IntPtr new_LongPressGestureDetector__SWIG_0();
