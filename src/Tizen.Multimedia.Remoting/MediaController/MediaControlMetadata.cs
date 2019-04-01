@@ -241,7 +241,7 @@ namespace Tizen.Multimedia.Remoting
     public class SeriesInformation
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="MediaControlPlaylist"/> struct.
+        /// Initializes a new instance of the <see cref="SeriesInformation"/> class.
         /// </summary>
         /// <param name="number">The number of this video of all series.</param>
         /// <param name="title">The title.</param>
