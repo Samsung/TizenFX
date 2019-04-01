@@ -168,7 +168,7 @@ namespace Tizen.Multimedia.Remoting
 
         internal string EncodedResolution { get; private set; }
 
-        private string EncodeSeason(SeriesInformation information)
+        private static string EncodeSeason(SeriesInformation information)
         {
             Native.EncodeSeason(information.Number, information.Title, out string encodedSeason).
                 ThrowIfError("Failed to encode season");
@@ -176,7 +176,7 @@ namespace Tizen.Multimedia.Remoting
             return encodedSeason;
         }
 
-        private string EncodeEpisode(SeriesInformation information)
+        private static string EncodeEpisode(SeriesInformation information)
         {
             Native.EncodeEpisode(information.Number, information.Title, out string encodedEpisode).
                 ThrowIfError("Failed to encode episode");
@@ -184,7 +184,7 @@ namespace Tizen.Multimedia.Remoting
             return encodedEpisode;
         }
 
-        private string EncodeResolution(int width, int height)
+        private static string EncodeResolution(int width, int height)
         {
             Native.EncodeResolution((uint)width, (uint)height, out string encodedResolution).
                 ThrowIfError("Failed to encode resolution");
@@ -192,7 +192,7 @@ namespace Tizen.Multimedia.Remoting
             return encodedResolution;
         }
 
-        private SeriesInformation DecodeSeason(string encodedSeason)
+        private static SeriesInformation DecodeSeason(string encodedSeason)
         {
             int number = 0;
             string title = null;
@@ -206,7 +206,7 @@ namespace Tizen.Multimedia.Remoting
             return new SeriesInformation(number, title);
         }
 
-        private SeriesInformation DecodeEpisode(string encodedEpisode)
+        private static SeriesInformation DecodeEpisode(string encodedEpisode)
         {
             int number = 0;
             string title = null;
@@ -220,7 +220,7 @@ namespace Tizen.Multimedia.Remoting
             return new SeriesInformation(number, title);
         }
 
-        private Size DecodeResolution(string encodedResolution)
+        private static Size DecodeResolution(string encodedResolution)
         {
             uint width = 0, height = 0;
 
@@ -238,7 +238,7 @@ namespace Tizen.Multimedia.Remoting
     /// Represents properties for the video series information.
     /// </summary>
     /// <since_tizen> 6 </since_tizen>
-    public struct SeriesInformation
+    public class SeriesInformation
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="MediaControlPlaylist"/> struct.
