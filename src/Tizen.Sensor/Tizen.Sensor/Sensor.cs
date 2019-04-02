@@ -881,7 +881,7 @@ namespace Tizen.Sensor
 
         }
 
-        public void ProviderSetStopCb(IntPtr userData)
+        private void ProviderSetStopCb(IntPtr userData)
         {
             _sensorProviderStopCallBack = (IntPtr _provider, IntPtr _userData) =>
             {
@@ -900,7 +900,7 @@ namespace Tizen.Sensor
 
         }
 
-        public void ProviderSetIntervalChangedCb(IntPtr userData)
+        private void ProviderSetIntervalChangedCb(IntPtr userData)
         {
             _sensorProviderIntervalChangedCallBack = (IntPtr _provider, uint IntervalMs, IntPtr _userData) =>
             {
@@ -919,7 +919,7 @@ namespace Tizen.Sensor
 
         }
 
-        public void ProviderPublish(Interop.SensorProvider.SensorEventS sensorEventS)
+        private void ProviderPublish(Interop.SensorProvider.SensorEventS sensorEventS)
         {
             int error = Interop.SensorProvider.ProviderPublish(_sensorProviderHandle, sensorEventS);
             if (error != (int)SensorError.None)
