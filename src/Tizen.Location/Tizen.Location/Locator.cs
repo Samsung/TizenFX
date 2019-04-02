@@ -351,13 +351,25 @@ namespace Tizen.Location
         /// <exception cref="NotSupportedException">Thrown when the location is not supported.</exception>
         public void Stop()
         {
-            Log.Info(Globals.LogTag, "Stopping Location Manager");
-            int ret = Interop.Locator.Stop(_handle);
-            if (((LocationError)ret != LocationError.None))
+	    Log.Info(Globals.LogTag, "Stopping Location Manager");
+            if (_batchPeriod > 0 && _batchPeriod > _batchInterval)
             {
-                Log.Error(Globals.LogTag, "Error stopping Location Manager," + (LocationError)ret);
-                throw LocationErrorFactory.ThrowLocationException(ret);
+               	int ret = Interop.Locator.StopBatch(_handle);
+                if (((LocationError)ret != LocationError.None))
+                {
+                    Log.Error(Globals.LogTag, "Error Stopping Location Batch mode," + (LocationError)ret);
+                    throw LocationErrorFactory.ThrowLocationException(ret);
+                }
             }
+            else
+            {
+                int ret = Interop.Locator.Stop(_handle);
+                if (((LocationError)ret != LocationError.None))
+                {
+                     Log.Error(Globals.LogTag, "Error stopping Location Manager," + (LocationError)ret);
+                     throw LocationErrorFactory.ThrowLocationException(ret);
+                }
+	    }	
        }
 
         /// <summary>
