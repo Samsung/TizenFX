@@ -30,6 +30,7 @@ namespace Tizen.Sensor
     /// <since_tizen> 3 </since_tizen>
     public abstract class Sensor : IDisposable
     {
+        private string _uri;
         private string _name;
         private string _vendor;
         private float _minValue;
@@ -46,10 +47,51 @@ namespace Tizen.Sensor
         private SensorPausePolicy _pausePolicy = SensorPausePolicy.None;
         private IntPtr _sensorHandle = IntPtr.Zero;
         private IntPtr _listenerHandle = IntPtr.Zero;
+        private IntPtr recorderOption = IntPtr.Zero;
+        private IntPtr recorderQuery = IntPtr.Zero;
+        private IntPtr _sensorProviderHandle = IntPtr.Zero;
 
         internal abstract SensorType GetSensorType();
         internal abstract void EventListenStart();
         internal abstract void EventListenStop();
+        private static Interop.SensorRecoder.SensorRecorderDataCb _sensorRecorderDataCallBack = null;
+        private static Interop.SensorProvider.SensorProviderStartCb _sensorProviderStartCallBack = null;
+        private static Interop.SensorProvider.SensorProviderStopCb _sensorProviderStopCallBack = null;
+        private static Interop.SensorProvider.SensorProviderIntervalChangedCb _sensorProviderIntervalChangedCallBack = null;
+        private static Interop.SensorManager.SensorAddedCb _sensorAddedCallBack = null;
+        private static Interop.SensorManager.SensorRemovedCb _sensorRemovedCallBack = null;
+        /// <summary>
+        /// RecorderDataReceived
+        /// </summary>
+        public static event EventHandler<RecorderDataEventArgs> RecorderDataReceived;
+        /// <summary>
+        /// ProviderStarted
+        /// </summary>
+        public static event EventHandler<ProviderStartEventArgs> ProviderStarted;
+        /// <summary>
+        /// ProviderStoped
+        /// </summary>
+        public static event EventHandler<ProviderStopEventArgs> ProviderStoped;
+        /// <summary>
+        /// ProviderIntervalChanged
+        /// </summary>
+        public static event EventHandler<ProviderIntervalChangedEventArgs> ProviderIntervalChanged;
+        /// <summary>
+        /// AddSensorAdded
+        /// </summary>
+        public static event EventHandler<SensorAddedEventArgs> AddSensorAdded;
+        /// <summary>
+        /// RemoveSensorAdded
+        /// </summary>
+        public static event EventHandler<SensorAddedEventArgs> RemoveSensorAdded;
+        /// <summary>
+        /// AddSensorRemoved
+        /// </summary>
+        public static event EventHandler<SensorRemovedEventArgs> AddSensorRemoved;
+        /// <summary>
+        /// RemoveSensorRemoved
+        /// </summary>
+        public static event EventHandler<SensorRemovedEventArgs> RemoveSensorRemoved;
 
         internal Sensor(uint index)
         {
@@ -61,6 +103,17 @@ namespace Tizen.Sensor
                 GetProperty();
             }
         }
+
+        internal Sensor(String uri, uint index)
+        {
+            GetHandleList(uri, index);
+            if (CheckSensorHandle())
+            {
+                CreateListener();
+                GetProperty();
+            }
+        }
+
 
         /// <summary>
         /// Destroy the Sensor object.
@@ -470,6 +523,12 @@ namespace Tizen.Sensor
                 Log.Error(Globals.LogTag, "Error getting sensor max batch count");
                 throw SensorErrorFactory.CheckAndThrowException(error, "Sensor.MaxBatchCount Failed");
             }
+            error = Interop.Sensor.GetUri(_sensorHandle, out _uri);
+            if (error != (int)SensorError.None)
+            {
+                Log.Error(Globals.LogTag, "Error getting sensor uri");
+                throw SensorErrorFactory.CheckAndThrowException(error, "Sensor.Uri Failed");
+            }
         }
 
         private void CreateListener()
@@ -477,7 +536,7 @@ namespace Tizen.Sensor
             int error = Interop.SensorListener.CreateListener(_sensorHandle, out _listenerHandle);
             if (error != (int)SensorError.None)
             {
-                Log.Error(Globals.LogTag, "Error cerating sensor listener handle");
+                Log.Error(Globals.LogTag, "Error creating sensor listener handle");
                 throw SensorErrorFactory.CheckAndThrowException(error, "Sensor.CreateListener Failed");
             }
         }
@@ -545,5 +604,407 @@ namespace Tizen.Sensor
         {
             Interop.SensorListener.DestroyListener(_listenerHandle);
         }
+
+        public void GetDefaultSensorByUri(string uri, out IntPtr sensorHandle)
+        {
+            int error = Interop.SensorManager.GetDefaultSensorByUri(uri, out sensorHandle);
+            if (error != (int)SensorError.None)
+            {
+                Log.Error(Globals.LogTag, "Error getting default sensor by uri");
+                throw SensorErrorFactory.CheckAndThrowException(error, "Sensor.GetDefaultSensorByUri Failed");
+            }
+
+        }
+
+        private void GetHandleList(string uri, uint index) {
+            IntPtr list;
+            IntPtr[] sensorList;
+            int count;
+            int error = Interop.SensorManager.GetSensorListByUri(uri, out list, out count);
+            if (error != (int)SensorError.None)
+            {
+                Log.Error(Globals.LogTag, "Error getting sensor list by uri");
+                throw SensorErrorFactory.CheckAndThrowException(error, "Sensor.GetSensorListByUri Failed");
+            }
+            sensorList = Interop.IntPtrToIntPtrArray(list, count);
+            _sensorHandle = sensorList[index];
+            Interop.Libc.Free(list);
+        }
+
+
+        public void RecorderCreateOption() {
+            int error = Interop.SensorRecoder.RecorderCreateOption(out recorderOption);
+            if (error != (int)SensorError.None)
+            {
+                Log.Error(Globals.LogTag, "Error creating the sensor recorder option");
+                throw SensorErrorFactory.CheckAndThrowException(error, "Sensor.RecorderCreateOption Failed");
+            }
+        }
+
+        public void RecorderCreateQuery()
+        {
+            int error = Interop.SensorRecoder.RecorderCreateQuery(out recorderQuery);
+            if (error != (int)SensorError.None)
+            {
+                Log.Error(Globals.LogTag, "Error creating the sensor recorder query");
+                throw SensorErrorFactory.CheckAndThrowException(error, "Sensor.RecorderCreateQuery Failed");
+            }
+        }
+
+        public void RecorderDataGetDouble(IntPtr data, int key, out IntPtr value)
+        {
+            int error = Interop.SensorRecoder.RecorderDataGetDouble(data , key , out value);
+            if (error != (int)SensorError.None)
+            {
+                Log.Error(Globals.LogTag, "Error getting the sensor recorder double data");
+                throw SensorErrorFactory.CheckAndThrowException(error, "Sensor.RecorderDataGetDouble Failed");
+            }
+        }
+
+        public void RecorderDataGetTime(IntPtr data, out IntPtr startTime, out IntPtr endTime)
+        {
+            int error = Interop.SensorRecoder.RecorderDataGetTime(data, out startTime, out endTime);
+            if (error != (int)SensorError.None)
+            {
+                Log.Error(Globals.LogTag, "Error getting the sensor recorder time");
+                throw SensorErrorFactory.CheckAndThrowException(error, "Sensor.RecorderDataGetTime Failed");
+            }
+        }
+
+        public void RecorderDestroyOption()
+        {
+            int error = Interop.SensorRecoder.RecorderDestroyOption(recorderOption);
+            if (error != (int)SensorError.None)
+            {
+                Log.Error(Globals.LogTag, "Error deleting the sensor recorder option");
+                throw SensorErrorFactory.CheckAndThrowException(error, "Sensor.RecorderDestroyOption Failed");
+            }
+        }
+
+        public void RecorderDestroyQuery()
+        {
+            int error = Interop.SensorRecoder.RecorderDestroyQuery(recorderQuery);
+            if (error != (int)SensorError.None)
+            {
+                Log.Error(Globals.LogTag, "Error deleting the sensor recorder query");
+                throw SensorErrorFactory.CheckAndThrowException(error, "Sensor.RecorderDestroyQuery Failed");
+            }
+        }
+
+        public void RecorderIsSupported(Enum type, out IntPtr isSupported)
+        {
+            int error = Interop.SensorRecoder.RecorderIsSupported(type, out isSupported);
+            if (error != (int)SensorError.None)
+            {
+                Log.Error(Globals.LogTag, "Error checking if sensor recorder is supported");
+                throw SensorErrorFactory.CheckAndThrowException(error, "Sensor.RecorderIsSupported Failed");
+            }
+        }
+
+        public void RecorderOptionSetInt(Enum recorderOptionE, int value)
+        {
+            int error = Interop.SensorRecoder.RecorderOptionSetInt(recorderOption, recorderOptionE,  value);
+            if (error != (int)SensorError.None)
+            {
+                Log.Error(Globals.LogTag, "Error checking sensor recorder option set int");
+                throw SensorErrorFactory.CheckAndThrowException(error, "Sensor.RecorderOptionSetInt Failed");
+            }
+        }
+
+        public void RecorderQuerySetInt(Enum recorderQueryE, int value)
+        {
+            int error = Interop.SensorRecoder.RecorderQuerySetInt(recorderQuery, recorderQueryE, value);
+            if (error != (int)SensorError.None)
+            {
+                Log.Error(Globals.LogTag, "Error checking sensor recorder query set int");
+                throw SensorErrorFactory.CheckAndThrowException(error, "Sensor.RecorderQuerySetInt Failed");
+            }
+        }
+
+        public void RecorderQuerySetTime(Enum recorderQueryE, int time)
+        {
+            int error = Interop.SensorRecoder.RecorderQuerySetTime(recorderQuery, recorderQueryE, time);
+            if (error != (int)SensorError.None)
+            {
+                Log.Error(Globals.LogTag, "Error checking sensor recorder query set time");
+                throw SensorErrorFactory.CheckAndThrowException(error, "Sensor.RecorderQuerySetTime Failed");
+            }
+        }
+       
+        public void RecorderRead(Enum type, IntPtr userData)
+        {
+            _sensorRecorderDataCallBack = (Enum _type, IntPtr data, int remains, Enum _error, IntPtr _userData) =>
+            {
+                RecorderDataEventArgs e = new RecorderDataEventArgs(_type,data,remains,_error,_userData)
+                {
+                };
+                RecorderDataReceived?.Invoke(null, e);
+                Log.Debug(Globals.LogTag, "Recorder Data Status: " + e.RecorderDataStatus);
+                return e.RecorderDataStatus;
+            };
+
+            int error = Interop.SensorRecoder.RecorderRead(type, recorderQuery, _sensorRecorderDataCallBack, userData);
+            if (error != (int)SensorError.None)
+            {
+                Log.Error(Globals.LogTag, "Error in Reading Recorder");
+                throw SensorErrorFactory.CheckAndThrowException(error, "Sensor.RecorderRead Failed");
+            }
+
+        }
+
+        public void RecorderStart(Enum type)
+        {
+            int error = Interop.SensorRecoder.RecorderStart(type, recorderOption);
+            if (error != (int)SensorError.None)
+            {
+                Log.Error(Globals.LogTag, "Error in Starting Recorder");
+                throw SensorErrorFactory.CheckAndThrowException(error, "Sensor.RecorderStart Failed");
+            }
+
+        }
+
+        public void RecorderStop(Enum type)
+        {
+            int error = Interop.SensorRecoder.RecorderStop(type);
+            if (error != (int)SensorError.None)
+            {
+                Log.Error(Globals.LogTag, "Error in Starting Recorder");
+                throw SensorErrorFactory.CheckAndThrowException(error, "Sensor.RecorderStop Failed");
+            }
+
+        }
+
+        public void CreateProvider(string uri) {
+
+            int error = Interop.SensorProvider.CreateProvider(uri,out _sensorProviderHandle);
+            if (error != (int)SensorError.None)
+            {
+                Log.Error(Globals.LogTag, "Error in creating sensor provider");
+                throw SensorErrorFactory.CheckAndThrowException(error, "Sensor.CreateProvider Failed");
+            }
+
+        }
+
+        public void AddProvider()
+        {
+            int error = Interop.SensorProvider.AddProvider(_sensorProviderHandle);
+            if (error != (int)SensorError.None)
+            {
+                Log.Error(Globals.LogTag, "Error in adding sensor provider");
+                throw SensorErrorFactory.CheckAndThrowException(error, "Sensor.AddProvider Failed");
+            }
+
+        }
+
+        public void RemoveProvider()
+        {
+            int error = Interop.SensorProvider.RemoveProvider(_sensorProviderHandle);
+            if (error != (int)SensorError.None)
+            {
+                Log.Error(Globals.LogTag, "Error in removing sensor provider");
+                throw SensorErrorFactory.CheckAndThrowException(error, "Sensor.RemoveProvider Failed");
+            }
+
+        }
+
+        public void DestroyProvider()
+        {
+            int error = Interop.SensorProvider.DestroyProvider(_sensorProviderHandle);
+            if (error != (int)SensorError.None)
+            {
+                Log.Error(Globals.LogTag, "Error in destroying sensor provider");
+                throw SensorErrorFactory.CheckAndThrowException(error, "Sensor.DestroyProvider Failed");
+            }
+
+        }
+
+        public void ProviderSetName(string name)
+        {
+            int error = Interop.SensorProvider.ProviderSetName(_sensorProviderHandle, name);
+            if (error != (int)SensorError.None)
+            {
+                Log.Error(Globals.LogTag, "Error in setting name of sensor provider");
+                throw SensorErrorFactory.CheckAndThrowException(error, "Sensor.ProviderSetName Failed");
+            }
+
+        }
+
+        public void ProviderSetVendor(string vendor)
+        {
+            int error = Interop.SensorProvider.ProviderSetVendor(_sensorProviderHandle, vendor);
+            if (error != (int)SensorError.None)
+            {
+                Log.Error(Globals.LogTag, "Error in setting vendor of sensor provider");
+                throw SensorErrorFactory.CheckAndThrowException(error, "Sensor.ProviderSetVendor Failed");
+            }
+
+        }
+
+        public void ProviderSetRange(float minRange, float maxRange)
+        {
+            int error = Interop.SensorProvider.ProviderSetRange(_sensorProviderHandle, minRange, maxRange);
+            if (error != (int)SensorError.None)
+            {
+                Log.Error(Globals.LogTag, "Error in setting range of sensor provider");
+                throw SensorErrorFactory.CheckAndThrowException(error, "Sensor.ProviderSetRange Failed");
+            }
+
+        }
+
+        public void ProviderSetResolution(float resolution)
+        {
+            int error = Interop.SensorProvider.ProviderSetResolution(_sensorProviderHandle, resolution);
+            if (error != (int)SensorError.None)
+            {
+                Log.Error(Globals.LogTag, "Error in setting resolution of sensor provider");
+                throw SensorErrorFactory.CheckAndThrowException(error, "Sensor.ProviderSetResolution Failed");
+            }
+
+        }
+
+        public void ProviderSetStartCb(IntPtr userData)
+        {
+            _sensorProviderStartCallBack = (IntPtr _provider, IntPtr _userData) =>
+            {
+                ProviderStartEventArgs e = new ProviderStartEventArgs(_userData)
+                {
+                };
+                ProviderStarted?.Invoke(null, e);  
+            };
+
+            int error = Interop.SensorProvider.ProviderSetStartCb(_sensorProviderHandle, _sensorProviderStartCallBack, userData);
+            if (error != (int)SensorError.None)
+            {
+                Log.Error(Globals.LogTag, "Error in setting start callback of sensor provider");
+                throw SensorErrorFactory.CheckAndThrowException(error, "Sensor.ProviderSetStartCb Failed");
+            }
+
+        }
+
+        public void ProviderSetStopCb(IntPtr userData)
+        {
+            _sensorProviderStopCallBack = (IntPtr _provider, IntPtr _userData) =>
+            {
+                ProviderStopEventArgs e = new ProviderStopEventArgs(_userData)
+                {
+                };
+                ProviderStoped?.Invoke(null, e);
+            };
+
+            int error = Interop.SensorProvider.ProviderSetStopCb(_sensorProviderHandle, _sensorProviderStopCallBack, userData);
+            if (error != (int)SensorError.None)
+            {
+                Log.Error(Globals.LogTag, "Error in setting stop callback of sensor provider");
+                throw SensorErrorFactory.CheckAndThrowException(error, "Sensor.ProviderSetStopCb Failed");
+            }
+
+        }
+
+        public void ProviderSetIntervalChangedCb(IntPtr userData)
+        {
+            _sensorProviderIntervalChangedCallBack = (IntPtr _provider, uint IntervalMs, IntPtr _userData) =>
+            {
+                ProviderIntervalChangedEventArgs e = new ProviderIntervalChangedEventArgs(_userData,IntervalMs)
+                {
+                };
+                ProviderIntervalChanged?.Invoke(null, e);
+            };
+
+            int error = Interop.SensorProvider.ProviderSetIntervalChangedCb(_sensorProviderHandle, _sensorProviderIntervalChangedCallBack, userData);
+            if (error != (int)SensorError.None)
+            {
+                Log.Error(Globals.LogTag, "Error in setting interval callback of sensor provider");
+                throw SensorErrorFactory.CheckAndThrowException(error, "Sensor.ProviderSetIntervalChangedCb Failed");
+            }
+
+        }
+
+        public void ProviderPublish(Interop.SensorProvider.SensorEventS sensorEventS)
+        {
+            int error = Interop.SensorProvider.ProviderPublish(_sensorProviderHandle, sensorEventS);
+            if (error != (int)SensorError.None)
+            {
+                Log.Error(Globals.LogTag, "Error in sensor provider publish");
+                throw SensorErrorFactory.CheckAndThrowException(error, "Sensor.ProviderPublish Failed");
+            }
+
+        }
+
+        public void AddSensorAddedCB(IntPtr userData)
+        {
+            _sensorAddedCallBack = (String uri, IntPtr _userData) =>
+            {
+                SensorAddedEventArgs e = new SensorAddedEventArgs(_userData)
+                {
+                };
+                AddSensorAdded?.Invoke(null, e);
+            };
+
+            int error = Interop.SensorManager.AddSensorAddedCB(_sensorAddedCallBack, userData);
+            if (error != (int)SensorError.None)
+            {
+                Log.Error(Globals.LogTag, "Error in sensor add sensor added callback");
+                throw SensorErrorFactory.CheckAndThrowException(error, "SensorManager.AddSensorAddedCB Failed");
+            }
+
+        }
+
+        public void AddSensorRemovedCB(IntPtr userData)
+        {
+            _sensorRemovedCallBack = (String uri, IntPtr _userData) =>
+            {
+                SensorRemovedEventArgs e = new SensorRemovedEventArgs(_userData)
+                {
+                };
+                AddSensorRemoved?.Invoke(null, e);
+            };
+
+            int error = Interop.SensorManager.AddSensorRemovedCB(_sensorRemovedCallBack, userData);
+            if (error != (int)SensorError.None)
+            {
+                Log.Error(Globals.LogTag, "Error in sensor add sensor removed callback");
+                throw SensorErrorFactory.CheckAndThrowException(error, "SensorManager.AddSensorRemovedCB Failed");
+            }
+
+        }
+
+        public void RemoveSensorAddedCB()
+        {
+            _sensorAddedCallBack = (String uri, IntPtr _userData) =>
+            {
+                SensorAddedEventArgs e = new SensorAddedEventArgs(_userData)
+                {
+                };
+                RemoveSensorAdded?.Invoke(null, e);
+            };
+
+            int error = Interop.SensorManager.RemoveSensorAddedCB(_sensorAddedCallBack);
+            if (error != (int)SensorError.None)
+            {
+                Log.Error(Globals.LogTag, "Error in sensor remove sensor added callback");
+                throw SensorErrorFactory.CheckAndThrowException(error, "SensorManager.RemoveSensorAddedCB Failed");
+            }
+
+        }
+
+        public void RemoveSensorRemovedCB()
+        {
+            _sensorRemovedCallBack = (String uri, IntPtr _userData) =>
+            {
+                SensorRemovedEventArgs e = new SensorRemovedEventArgs(_userData)
+                {
+                };
+                RemoveSensorRemoved?.Invoke(null, e);
+            };
+
+            int error = Interop.SensorManager.RemoveSensorRemovedCB(_sensorRemovedCallBack);
+            if (error != (int)SensorError.None)
+            {
+                Log.Error(Globals.LogTag, "Error in sensor remove sensor removed callback");
+                throw SensorErrorFactory.CheckAndThrowException(error, "SensorManager.RemoveSensorRemovedCB Failed");
+            }
+
+        }
+
     }
 }

@@ -49,6 +49,10 @@ internal static partial class Interop
 
         [DllImport(Libraries.Sensor, EntryPoint = "sensor_get_max_batch_count")]
         internal static extern int GetMaxBatchCount(IntPtr sensorHandle, out int maxBatchCount);
+
+        [DllImport(Libraries.Sensor, EntryPoint = "sensor_get_uri")]
+        internal static extern int GetUri(IntPtr sensorhandle, out String uri);
+
     }
     internal static class SensorListener
     {
@@ -95,6 +99,12 @@ internal static partial class Interop
     internal static class SensorManager
     {
         //Sensor Manager CAPI
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+        internal delegate void SensorAddedCb(String uri, IntPtr userData);
+
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+        internal delegate void SensorRemovedCb(String uri, IntPtr userData);
+
         [DllImport(Libraries.Sensor, EntryPoint = "sensor_is_supported")]
         internal static extern int SensorIsSupported(SensorType type, out bool supported);
 
@@ -103,7 +113,133 @@ internal static partial class Interop
 
         [DllImport(Libraries.Sensor, EntryPoint = "sensor_get_sensor_list")]
         internal static extern int GetSensorList(SensorType type, out IntPtr list, out int sensor_count);
+
+        [DllImport(Libraries.Sensor, EntryPoint = "sensor_get_default_sensor_by_uri")]
+        internal static extern int GetDefaultSensorByUri(String uri , out IntPtr sensor);
+
+        [DllImport(Libraries.Sensor, EntryPoint = "sensor_get_sensor_list_by_uri")]
+        internal static extern int GetSensorListByUri(String uri, out IntPtr list, out int sensor_count);
+
+        [DllImport(Libraries.Sensor, EntryPoint = "sensor_add_sensor_added_cb")]
+        internal static extern int AddSensorAddedCB(SensorAddedCb callback, IntPtr userData);
+
+        [DllImport(Libraries.Sensor, EntryPoint = "sensor_add_sensor_removed_cb")]
+        internal static extern int AddSensorRemovedCB(SensorRemovedCb callback, IntPtr userData);
+
+        [DllImport(Libraries.Sensor, EntryPoint = "sensor_remove_sensor_added_cb")]
+        internal static extern int RemoveSensorAddedCB(SensorAddedCb callback);
+
+        [DllImport(Libraries.Sensor, EntryPoint = "sensor_remove_sensor_removed_cb")]
+        internal static extern int RemoveSensorRemovedCB(SensorRemovedCb callback);
     }
+
+    internal static class SensorRecoder {
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+        internal delegate bool SensorRecorderDataCb(Enum type, IntPtr data, int remains, Enum error, IntPtr userData);
+
+        [DllImport(Libraries.Sensor, EntryPoint = "sensor_recorder_create_option")]
+        internal static extern int RecorderCreateOption( out IntPtr option);
+
+        [DllImport(Libraries.Sensor, EntryPoint = "sensor_recorder_create_query")]
+        internal static extern int RecorderCreateQuery( out IntPtr query);
+
+        [DllImport(Libraries.Sensor, EntryPoint = "sensor_recorder_data_get_double")]
+        internal static extern int RecorderDataGetDouble(IntPtr data, int key, out IntPtr value);
+
+        [DllImport(Libraries.Sensor, EntryPoint = "sensor_recorder_data_get_time")]
+        internal static extern int RecorderDataGetTime(IntPtr data, out IntPtr start_time, out IntPtr end_time);
+
+        [DllImport(Libraries.Sensor, EntryPoint = "sensor_recorder_destroy_option")]
+        internal static extern int RecorderDestroyOption(IntPtr option);
+
+        [DllImport(Libraries.Sensor, EntryPoint = "sensor_recorder_destroy_query")]
+        internal static extern int RecorderDestroyQuery( IntPtr query);
+
+        [DllImport(Libraries.Sensor, EntryPoint = "sensor_recorder_is_supported")]
+        internal static extern int RecorderIsSupported(Enum type, out IntPtr isSupported);
+
+        [DllImport(Libraries.Sensor, EntryPoint = "sensor_recorder_option_set_int")]
+        internal static extern int RecorderOptionSetInt(IntPtr option, Enum attribute , int value);
+
+        [DllImport(Libraries.Sensor, EntryPoint = "sensor_recorder_query_set_int")]
+        internal static extern int RecorderQuerySetInt(IntPtr query, Enum attribute, int value);
+
+        [DllImport(Libraries.Sensor, EntryPoint = "sensor_recorder_query_set_time")]
+        internal static extern int RecorderQuerySetTime(IntPtr query, Enum attribute, int time);
+
+        [DllImport(Libraries.Sensor, EntryPoint = "sensor_recorder_read")]
+        internal static extern int RecorderRead(Enum type, IntPtr query, SensorRecorderDataCb cb , IntPtr user_data );
+
+        [DllImport(Libraries.Sensor, EntryPoint = "sensor_recorder_start")]
+        internal static extern int RecorderStart(Enum type, IntPtr option);
+
+        [DllImport(Libraries.Sensor, EntryPoint = "sensor_recorder_stop")]
+        internal static extern int RecorderStop(Enum type);
+
+    }
+
+    internal static class SensorProvider{
+        internal const int MAX_VALUE_SIZE = 16;
+
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+        internal delegate void SensorProviderStartCb(IntPtr provider, IntPtr userData);
+
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+        internal delegate void SensorProviderStopCb(IntPtr provider, IntPtr userData);
+
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+        internal delegate void SensorProviderIntervalChangedCb(IntPtr provider, uint IntervalMs, IntPtr userData);
+
+       
+        [StructLayout(LayoutKind.Sequential)]
+        internal struct SensorEventS
+        {
+            internal int accuracy;
+            internal UInt64 timeStamp;
+            internal int valueCount;
+            [MarshalAs(UnmanagedType.ByValArray, SizeConst = MAX_VALUE_SIZE)]
+            internal float[] values;
+        }
+
+        [DllImport(Libraries.Sensor, EntryPoint = "sensor_create_provider")]
+        internal static extern int CreateProvider(String uri, out  IntPtr provider);
+
+        [DllImport(Libraries.Sensor, EntryPoint = "sensor_add_provider")]
+        internal static extern int AddProvider(IntPtr provider);
+
+        [DllImport(Libraries.Sensor, EntryPoint = "sensor_remove_provider")]
+        internal static extern int RemoveProvider(IntPtr provider);
+
+        [DllImport(Libraries.Sensor, EntryPoint = "sensor_destroy_provider")]
+        internal static extern int DestroyProvider(IntPtr provider);
+
+        [DllImport(Libraries.Sensor, EntryPoint = "sensor_provider_set_name")]
+        internal static extern int ProviderSetName(IntPtr provider, String name);
+
+        [DllImport(Libraries.Sensor, EntryPoint = "sensor_provider_set_vendor")]
+        internal static extern int ProviderSetVendor(IntPtr provider, String vendor);
+
+        [DllImport(Libraries.Sensor, EntryPoint = "sensor_provider_set_range")]
+        internal static extern int ProviderSetRange(IntPtr provider, float minRange, float maxRange);
+
+        [DllImport(Libraries.Sensor, EntryPoint = "sensor_provider_set_resolution")]
+        internal static extern int ProviderSetResolution(IntPtr provider, float resolution);
+
+        [DllImport(Libraries.Sensor, EntryPoint = "sensor_provider_set_start_cb")]
+        internal static extern int ProviderSetStartCb(IntPtr provider, SensorProviderStartCb startCb, IntPtr userData);
+
+        [DllImport(Libraries.Sensor, EntryPoint = "sensor_provider_set_stop_cb")]
+        internal static extern int ProviderSetStopCb(IntPtr provider, SensorProviderStopCb stopCb, IntPtr userData);
+
+        [DllImport(Libraries.Sensor, EntryPoint = "sensor_provider_set_interval_changed_cb")]
+        internal static extern int ProviderSetIntervalChangedCb(IntPtr provider, SensorProviderIntervalChangedCb intervalCb, IntPtr userData);
+
+        [DllImport(Libraries.Sensor, EntryPoint = "sensor_provider_publish")]
+        internal static extern int ProviderPublish(IntPtr provider,  SensorEventS _event);
+
+    }
+
+    
 
     internal static partial class Libc
     {
@@ -133,4 +269,10 @@ internal static partial class Interop
         SensorEventStruct outStruct = (SensorEventStruct)Marshal.PtrToStructure<SensorEventStruct>(unmanagedVariable);
         return outStruct;
     }
+    internal static SensorStressMonitorData IntPtrToStressMonitorData(IntPtr unmanagedVariable)
+    {
+        SensorStressMonitorData outStruct = (SensorStressMonitorData)Marshal.PtrToStructure<SensorStressMonitorData>(unmanagedVariable);
+        return outStruct;
+    }
+
 }

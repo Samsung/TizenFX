@@ -84,6 +84,18 @@ namespace Tizen.Sensor
         /// </summary>
         HeartRateMonitor = 13,
         /// <summary>
+        /// Hear rate monitor LED Green sensor.
+        /// </summary>
+        HeartRateMonitorLedGreen = 14,
+        /// <summary>
+        /// Hear rate monitor sensor LED IR sensor.
+        /// </summary>
+        HeartRateMonitorLedIR = 15,
+        /// <summary>
+        /// Hear rate monitor LED Red sensor.
+        /// </summary>
+        HeartRateMonitorLedRed = 16,
+        /// <summary>
         /// The Uncalibrated Gyroscope sensor.
         /// </summary>
         UncalibratedGyroscope = 17,
@@ -100,6 +112,10 @@ namespace Tizen.Sensor
         /// </summary>
         MagnetometerRotationVectorSensor = 20,
         /// <summary>
+        /// Significant motion sensor.
+        /// </summary>
+        SignificantMotionSensor = 0x100,
+        /// <summary>
         /// Pedometer sensor.
         /// </summary>
         Pedometer = 0x300,
@@ -107,6 +123,14 @@ namespace Tizen.Sensor
         /// Sleep monitor sensor.
         /// </summary>
         SleepMonitor = 0x301,
+        /// <summary>
+        /// Sleep detector sensor.
+        /// </summary>
+        SleepDetector,
+        /// <summary>
+        /// Stress monitor sensor.
+        /// </summary>
+        StressMonitor,
         /// <summary>
         /// Stationary activity detector.
         /// </summary>
