@@ -18,15 +18,15 @@
       </group>
       <group targetFramework="Tizen5.0">
         <dependency id="Tizen.NET.API5" version="5.0.0.14562" />
-        <dependency id="Microsoft.NETCore.Platforms" version="2.0.0" />
+        <dependency id="Microsoft.NETCore.Platforms" version="2.1.1" />
       </group>
       <group targetFramework="Tizen6.0">
         <dependency id="Tizen.NET.API6" version="$fxversion$" />
-        <dependency id="Microsoft.NETCore.Platforms" version="2.0.0" />
+        <dependency id="Microsoft.NETCore.Platforms" version="2.1.1" />
       </group>
       <group targetFramework=".NETStandard2.0">
         <dependency id="Tizen.NET.API6" version="$fxversion$" />
-        <dependency id="Microsoft.NETCore.Platforms" version="2.0.0" />
+        <dependency id="Microsoft.NETCore.Platforms" version="2.1.1" />
       </group>
     </dependencies>
   </metadata>
