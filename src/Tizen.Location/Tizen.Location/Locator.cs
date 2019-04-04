@@ -43,7 +43,7 @@ namespace Tizen.Location
         private double _distance = 120.0;
         private bool _isEnableMock = false;
         private bool _disposed = false;
-        private bool _isBatchStarted = false;
+        private bool _isBatchStarted;
         private IntPtr _handle;
         private LocationType _locationType;
         private Location _location = null;
