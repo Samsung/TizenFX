@@ -36,23 +36,22 @@ cmd_full_build() {
   if [ -d /nuget ]; then
     NUGET_SOURCE_OPT="/p:RestoreSources=/nuget"
   fi
+  rm -f msbuild.log
   $RUN_BUILD /t:clean
   $RUN_BUILD /t:restore $NUGET_SOURCE_OPT $@
-  $RUN_BUILD /t:build $@
+  $RUN_BUILD /t:build /fl $@
 }
 
 cmd_dummy_build() {
-  if [ -d /nuget ]; then
-    NUGET_SOURCE_OPT="/p:RestoreSources=/nuget"
-  fi
-  $RUN_BUILD /t:restore $NUGET_SOURCE_OPT
-  $RUN_BUILD /t:dummy $NUGET_SOURCE_OPT
+  $RUN_BUILD /t:dummy
 }
 
 cmd_pack() {
   VERSION=$1
   if [ -z "$VERSION" ]; then
+    pushd $SCRIPT_DIR > /dev/null
     VERSION=$VERSION_PREFIX.$((10000+$(git rev-list --count HEAD)))
+    popd > /dev/null
   fi
 
   $RUN_BUILD /t:pack /p:Version=$VERSION
