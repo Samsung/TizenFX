@@ -28,7 +28,7 @@ namespace Tizen.Network.Stc
     public class NetworkStatistics : IDisposable
     {
         private IntPtr _infoHandle = IntPtr.Zero;
-        private bool _disposed = false;
+        private bool _disposed;
 
         internal NetworkStatistics(IntPtr handle)
         {
@@ -54,12 +54,16 @@ namespace Tizen.Network.Stc
         private void Dispose(bool disposing)
         {
             if (_disposed)
+            {
                 return;
+            }
 
             if (disposing)
             {
+                Interop.Stc.Info.StatsDestroy(_infoHandle);
                 _infoHandle = IntPtr.Zero;
             }
+
             _disposed = true;
         }
 
@@ -163,17 +167,24 @@ namespace Tizen.Network.Stc
         /// <privilege>http://tizen.org/privilege/network.get</privilege>
         /// <exception cref="NotSupportedException">Thrown while setting this property when Stc is not supported.</exception>
         /// <exception cref="InvalidOperationException">Thrown while setting this value due to an invalid operation.</exception>
-        public Interface InterfaceType
+        public InterfaceTypeEnum InterfaceType
         {
             get
             {
-                Interface iface;
-                int ret = Interop.Stc.Info.GetInterfaceType(_infoHandle, out iface);
+                NativeInterfaceTypeEnum ifaceType;
+                int ret = Interop.Stc.Info.GetInterfaceType(_infoHandle, out ifaceType);
                 if (ret != (int)StcError.None)
                 {
                     Log.Error(Globals.LogTag, "Failed to get Interface type from info, Error - " + (StcError)ret);
                 }
-                return iface;
+                if (ifaceType == NativeInterfaceTypeEnum.Unknown)
+                {
+                    throw new InvalidOperationException("Interface Type is Unknown.");
+                }
+                else
+                {
+                    return (InterfaceTypeEnum)ifaceType;
+                }
             }
         }
 
@@ -243,7 +254,9 @@ namespace Tizen.Network.Stc
                 }
 
                 if(roaming == RoamingType.Disabled)
+                {
                     return false;
+                }
                 return true;
             }
         }
@@ -260,13 +273,20 @@ namespace Tizen.Network.Stc
         {
             get
             {
-                NetworkProtocol protocol;
+                NativeNetworkProtocol protocol;
                 int ret = Interop.Stc.Info.GetProtocol(_infoHandle, out protocol);
                 if (ret != (int)StcError.None)
                 {
                     Log.Error(Globals.LogTag, "Failed to get Protocol type from info, Error - " + (StcError)ret);
                 }
-                return protocol;
+                if (protocol == NativeNetworkProtocol.Unknown)
+                {
+                    throw new InvalidOperationException("Network protocol is Unknown.");
+                }
+                else
+                {
+                    return (NetworkProtocol)protocol;
+                }
             }
         }
 
@@ -291,8 +311,7 @@ namespace Tizen.Network.Stc
 
                 if(state == ProcessState.Unknown)
                 {
-                    Log.Error(Globals.LogTag, "Getting 'Unknown' as Process state from info");
-                    throw new InvalidOperationException("Operation failed");
+                    throw new InvalidOperationException("Process state is Unknown.");
                 }
                 else if(state == ProcessState.Foreground)
                 {

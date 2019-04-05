@@ -55,7 +55,7 @@ namespace Tizen.Network.Stc
     /// <summary>
     /// A class which is used to manage Smart Traffic control (Stc).<br/>
     /// </summary>
-    internal static class StcManager
+    public static class StcManager
     {
         /// <summary>
         /// Gets the Stc safe handle.
@@ -66,9 +66,52 @@ namespace Tizen.Network.Stc
         /// <exception cref="NotSupportedException">Thrown when the Stc is not supported.</exception>
         /// <exception cref="UnauthorizedAccessException">Thrown when the permission is denied.</exception>
         /// <exception cref="InvalidOperationException">Thrown when the method failed due to an invalid operation.</exception>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         internal static SafeStcHandle GetStcHandle()
         {
             return StcManagerImpl.Instance.GetSafeHandle();
+        }
+
+        /// <summary>
+        /// Gets the statistics information of an application, which matched the rule, asynchronously.
+        /// </summary>
+        /// <since_tizen> 6 </since_tizen>
+        /// <returns>The Statistics information of the application that used network in between timestamps specified.</returns>
+        /// <privilege>http://tizen.org/privilege/network.get</privilege>
+        /// <exception cref="NotSupportedException">Thrown when the Stc is not supported.</exception>
+        /// <exception cref="UnauthorizedAccessException">Thrown when the permission is denied.</exception>
+        /// <exception cref="InvalidOperationException">Thrown when the method failed due to an invalid operation.</exception>
+        public static Task<NetworkStatistics> GetStatisticsAsync(StcRule rule)
+        {
+            return StcManagerImpl.Instance.GetStatisticsAsync(rule);
+        }
+
+        /// <summary>
+        /// Gets statistics information of each application that used network in between specified timestamps and matches the given rule, asynchronously.
+        /// </summary>
+        /// <since_tizen> 6 </since_tizen>
+        /// <returns>A list of the NetworkStatistics objects.</returns>
+        /// <privilege>http://tizen.org/privilege/network.get</privilege>
+        /// <exception cref="NotSupportedException">Thrown when the Stc is not supported.</exception>
+        /// <exception cref="UnauthorizedAccessException">Thrown when the permission is denied.</exception>
+        /// <exception cref="InvalidOperationException">Thrown when the method failed due to an invalid operation.</exception>
+        public static Task<IEnumerable<NetworkStatistics>> GetAllStatisticsAsync(StcRule rule)
+        {
+            return StcManagerImpl.Instance.GetAllStatisticsAsync(rule);
+        }
+
+        /// <summary>
+        /// Gets the total statistics information by interface type asynchronously.
+        /// </summary>
+        /// <since_tizen> 6 </since_tizen>
+        /// <returns>The total statistics information of the applications that used network in between timestamps specified.</returns>
+        /// <privilege>http://tizen.org/privilege/network.get</privilege>
+        /// <exception cref="NotSupportedException">Thrown when the Stc is not supported.</exception>
+        /// <exception cref="UnauthorizedAccessException">Thrown when the permission is denied.</exception>
+        /// <exception cref="InvalidOperationException">Thrown when the method failed due to an invalid operation.</exception>
+        public static Task<NetworkStatistics> GetTotalStatisticsAsync(StcRule rule)
+        {
+            return StcManagerImpl.Instance.GetTotalStatisticsAsync(rule);
         }
     }
 }

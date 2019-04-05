@@ -49,7 +49,7 @@ namespace Tizen.Network.Stc
     /// </summary>
     internal class StcManagerImpl
     {
-        private static StcManagerImpl _instance = null;
+        private static StcManagerImpl _instance;
 
         private StcManagerImpl()
         {
@@ -90,6 +90,144 @@ namespace Tizen.Network.Stc
                 StcErrorFactory.ThrowStcException(ret);
             }
             return handle;
+        }
+
+        internal Task<NetworkStatistics> GetStatisticsAsync(StcRule rule)
+        {
+            if (rule._disposed)
+            {
+                throw new ObjectDisposedException("Invalid StcRule instance (Object may have been disposed or released)");
+            }
+
+            TaskCompletionSource<NetworkStatistics> task = new TaskCompletionSource<NetworkStatistics>();
+
+            Interop.Stc.StatsInfoCallback getStatsCb = (int result, IntPtr info, IntPtr userData) =>
+            {
+                if(result != (int)StcError.None)
+                {
+                    Log.Error(Globals.LogTag, "GetStats failed, Error - " + (StcError)result);
+                    task.SetException(new InvalidOperationException("Error occurs during GetStats(), " + (StcError)result));
+                }
+
+                IntPtr cloned;
+                int retValue = Interop.Stc.Info.StatsClone(info, out cloned);
+                if (retValue != (int)StcError.None)
+                {
+                    Log.Error(Globals.LogTag, "StatsClone() failed , Error - " + (StcError)retValue);
+                    task.SetException(new InvalidOperationException("Error occurs during StatsClone(), " + (StcError)retValue));
+                }
+
+                task.SetResult(new NetworkStatistics(cloned));
+                return CallbackRet.Continue;
+            };
+
+            int ret = Interop.Stc.GetStats(StcManagerImpl.Instance.GetSafeHandle(), rule._ruleHandle, getStatsCb, IntPtr.Zero);
+            if (ret != (int)StcError.None)
+            {
+                Log.Error(Globals.LogTag, "GetStats() failed , Error - " + (StcError)ret);
+                StcErrorFactory.ThrowStcException(ret);
+            }
+
+            return task.Task;
+        }
+
+        internal Task<IEnumerable<NetworkStatistics>> GetAllStatisticsAsync(StcRule rule)
+        {
+            if (rule._disposed)
+            {
+                throw new ObjectDisposedException("Invalid StcRule instance (Object may have been disposed or released)");
+            }
+
+            TaskCompletionSource<IEnumerable<NetworkStatistics>> task = new TaskCompletionSource<IEnumerable<NetworkStatistics>>();
+
+            Interop.Stc.GetAllStatsFinishedCallback getAllStatsCb = (int result, IntPtr infoList, IntPtr userData) =>
+            {
+                if(result != (int)StcError.None)
+                {
+                    Log.Error(Globals.LogTag, "GetAllStats failed, Error - " + (StcError)result);
+                    task.SetException(new InvalidOperationException("Error occurs during GetAllStats(), " + (StcError)result));
+                }
+
+                List<NetworkStatistics> statsList = new List<NetworkStatistics>();
+
+                Interop.Stc.StatsInfoCallback getStatsCb = (int resultTemp, IntPtr info, IntPtr userDataTemp) =>
+                {
+                    if(resultTemp != (int)StcError.None)
+                    {
+                        Log.Error(Globals.LogTag, "ForeachAllStats failed, Error - " + (StcError)resultTemp);
+                        task.SetException(new InvalidOperationException("Error occurs during ForeachAllStats(), " + (StcError)resultTemp));
+                    }
+
+                    IntPtr cloned;
+                    int retValue = Interop.Stc.Info.StatsClone(info, out cloned);
+                    if (retValue != (int)StcError.None)
+                    {
+                        Log.Error(Globals.LogTag, "StatsClone() failed , Error - " + (StcError)retValue);
+                        task.SetException(new InvalidOperationException("Error occurs during StatsClone(), " + (StcError)retValue));
+                    }
+
+                    statsList.Add(new NetworkStatistics(cloned));
+                    return CallbackRet.Continue;
+                };
+
+                int retTemp = Interop.Stc.ForeachAllStats(infoList, getStatsCb, IntPtr.Zero);
+                if(retTemp != (int)StcError.None)
+                {
+                    Log.Error(Globals.LogTag, "foreachAllStatus() failed , Error - " + (StcError)retTemp);
+                    StcErrorFactory.ThrowStcException(retTemp);
+                }
+
+                task.SetResult(statsList);
+                return;
+            };
+
+            int ret = Interop.Stc.GetAllStats(StcManagerImpl.Instance.GetSafeHandle(), rule._ruleHandle, getAllStatsCb, IntPtr.Zero);
+            if (ret != (int)StcError.None)
+            {
+                Log.Error(Globals.LogTag, "GetAllStatus() failed , Error - " + (StcError)ret);
+                StcErrorFactory.ThrowStcException(ret);
+            }
+
+            return task.Task;
+        }
+
+        internal Task<NetworkStatistics> GetTotalStatisticsAsync(StcRule rule)
+        {
+            if (rule._disposed)
+            {
+                throw new ObjectDisposedException("Invalid StcRule instance (Object may have been disposed or released)");
+            }
+
+            TaskCompletionSource<NetworkStatistics> task = new TaskCompletionSource<NetworkStatistics>();
+
+            Interop.Stc.StatsInfoCallback getStatsCb = (int result, IntPtr info, IntPtr userData) =>
+            {
+                if(result != (int)StcError.None)
+                {
+                    Log.Error(Globals.LogTag, "GetTotalStats() failed, Error - " + (StcError)result);
+                    task.SetException(new InvalidOperationException("Error occurs during GetTotalStats(), " + (StcError)result));
+                }
+
+                IntPtr cloned;
+                int retValue = Interop.Stc.Info.StatsClone(info, out cloned);
+                if (retValue != (int)StcError.None)
+                {
+                    Log.Error(Globals.LogTag, "StatsClone() failed , Error - " + (StcError)retValue);
+                    task.SetException(new InvalidOperationException("Error occurs during StatsClone(), " + (StcError)retValue));
+                }
+
+                task.SetResult(new NetworkStatistics(cloned));
+                return CallbackRet.Continue;
+            };
+
+            int ret = Interop.Stc.GetTotalStats(StcManagerImpl.Instance.GetSafeHandle(), rule._ruleHandle, getStatsCb, IntPtr.Zero);
+            if (ret != (int)StcError.None)
+            {
+                Log.Error(Globals.LogTag, "GetTotalStats() failed , Error - " + (StcError)ret);
+                StcErrorFactory.ThrowStcException(ret);
+            }
+
+            return task.Task;
         }
     }
 }

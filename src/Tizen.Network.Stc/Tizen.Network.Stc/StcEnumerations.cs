@@ -20,9 +20,9 @@ using Tizen.Internals.Errors;
 namespace Tizen.Network.Stc
 {
     /// <summary>
-    /// Enumeration for Stc time period.
+    /// Internal Enumeration for Stc time period.
     /// </summary>
-    public enum TimePeriodType
+    internal enum NativeTimePeriodType
     {
         /// <summary>
         /// Unknown
@@ -47,14 +47,64 @@ namespace Tizen.Network.Stc
     }
 
     /// <summary>
-    /// Enumeration for network interface type.
+    /// Enumeration for Stc time period.
     /// </summary>
-    public enum Interface
+    public enum TimePeriodType
+    {
+        /// <summary>
+        /// Hour
+        /// </summary>
+        Hour = 3600,
+        /// <summary>
+        /// Day
+        /// </summary>
+        Day = 86400,
+        /// <summary>
+        /// Week
+        /// </summary>
+        Week = 604800,
+        /// <summary>
+        /// Month
+        /// </summary>
+        Month = 2419200
+    }
+
+    /// <summary>
+    /// Internal Enumeration for network interface type.
+    /// </summary>
+    internal enum NativeInterfaceTypeEnum
     {
         /// <summary>
         /// Network interface type is Unknown.
         /// </summary>
         Unknown = 0,
+        /// <summary>
+        /// Network interface type is datacall.
+        /// </summary>
+        Datacall,
+        /// <summary>
+        /// Network interface type is  wifi.
+        /// </summary>
+        Wifi,
+        /// <summary>
+        /// Network interface type is  wired.
+        /// </summary>
+        Wired,
+        /// <summary>
+        /// Network interface type is bluetooth.
+        /// </summary>
+        Bluetooth,
+        /// <summary>
+        /// Network interface type is all.
+        /// </summary>
+        All
+    }
+
+    /// <summary>
+    /// Enumeration for network interface type.
+    /// </summary>
+    public enum InterfaceTypeEnum
+    {
         /// <summary>
         /// Network interface type is datacall. 
         /// </summary>
@@ -78,7 +128,7 @@ namespace Tizen.Network.Stc
     }
 
     /// <summary>
-    /// Enumeration for network roaming type
+    /// Internal Enumeration for network roaming type
     /// </summary>
     internal enum RoamingType
     {
@@ -93,9 +143,9 @@ namespace Tizen.Network.Stc
     }
 
     /// <summary>
-    /// Enumeration for hardware network protocol type. 
+    /// Internal Enumeration for hardware network protocol type.
     /// </summary>
-    public enum NetworkProtocol
+    internal enum NativeNetworkProtocol
     {
         /// <summary>
         /// Network unknown.
@@ -140,7 +190,50 @@ namespace Tizen.Network.Stc
     }
 
     /// <summary>
-    /// Enumeration for monitored process state.
+    /// Enumeration for hardware network protocol type.
+    /// </summary>
+    public enum NetworkProtocol
+    {
+        /// <summary>
+        /// Network no service.
+        /// </summary>
+        NoService,
+        /// <summary>
+        /// Network emergency.
+        /// </summary>
+        Emergency,
+        /// <summary>
+        /// Network search 1900.
+        /// </summary>
+        Search,
+        /// <summary>
+        /// Network 2G.
+        /// </summary>
+        Datacall_2G,
+        /// <summary>
+        /// Network 2.5G.
+        /// </summary>
+        Datacall_2_5G,
+        /// <summary>
+        /// Network EDGE.
+        /// </summary>
+        Datacall_2_5G_Edge,
+        /// <summary>
+        /// Network UMTS.
+        /// </summary>
+        Datacall_3G,
+        /// <summary>
+        /// Network HSDPA.
+        /// </summary>
+        Hsdpa,
+        /// <summary>
+        /// Network LTE.
+        /// </summary>
+        Lte
+    }
+
+    /// <summary>
+    /// Internal Enumeration for monitored process state.
     /// </summary>
     internal enum ProcessState
     {
@@ -156,7 +249,7 @@ namespace Tizen.Network.Stc
         /// Background state.
         /// </summary>
         Background
-   }
+    }
 
     /// <summary>
     /// Enumeration for return type of the callback.
@@ -174,7 +267,7 @@ namespace Tizen.Network.Stc
     }
 
     /// <summary>
-    /// Enumeration for the Stc error code.
+    /// Internal Enumeration for the Stc error code.
     /// </summary>
     internal enum StcError
     {

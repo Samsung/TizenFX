@@ -47,6 +47,8 @@ namespace Tizen.Network.Stc
                 throw new InvalidOperationException("Already initialized");
             case StcError.InProgress:
                 throw new InvalidOperationException("In progress");
+            default:
+                throw new InvalidOperationException("Unexpected value error = " + exception);
             }
         }
     }
