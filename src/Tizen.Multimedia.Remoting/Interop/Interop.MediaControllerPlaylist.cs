@@ -31,7 +31,7 @@ internal static partial class Interop
             IntPtr handle, IntPtr userData);
 
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-        internal delegate void PlaylistCallback(IntPtr handle, IntPtr userData);
+        internal delegate bool PlaylistCallback(IntPtr handle, IntPtr userData);
 
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         internal delegate bool PlaylistItemCallback(string index, IntPtr handle, IntPtr userData);
