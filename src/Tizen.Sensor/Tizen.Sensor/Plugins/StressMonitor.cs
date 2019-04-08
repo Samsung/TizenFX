@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2016 Samsung Electronics Co., Ltd All Rights Reserved
+ * Copyright (c) 2019 Samsung Electronics Co., Ltd All Rights Reserved
  *
  * Licensed under the Apache License, Version 2.0 (the License);
  * you may not use this file except in compliance with the License.
@@ -21,7 +21,7 @@ namespace Tizen.Sensor
     /// <summary>
     /// The StressMonitor class is used for registering callbacks for the Stress monitor and getting the Stress data.
     /// </summary>
-    /// <since_tizen> 3 </since_tizen>
+    /// <since_tizen> 6 </since_tizen>
     public class StressMonitor : Sensor
     {
         private static string StressMonitorKey = "http://tizen.org/feature/sensor.stress_monitor";
@@ -29,7 +29,7 @@ namespace Tizen.Sensor
         /// <summary>
         /// Returns true or false based on whether the stress monitor is supported by the device.
         /// </summary>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
         /// <value><c>true</c> if supported; otherwise <c>false</c>.</value>
         public static bool IsSupported
         {
@@ -43,7 +43,7 @@ namespace Tizen.Sensor
         /// <summary>
         /// Returns the number of stress monitors available on the device.
         /// </summary>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
         /// <value> The count of stress monitors. </value>
         public static int Count
         {
@@ -57,7 +57,7 @@ namespace Tizen.Sensor
         /// <summary>
         /// Initializes a new instance of the <see cref="Tizen.Sensor.StressMonitor"/> class.
         /// </summary>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
         /// <privilege>http://tizen.org/privilege/healthinfo</privilege>
         /// <privlevel>public</privlevel>
         /// <feature>http://tizen.org/feature/sensor.stress_monitor</feature>
@@ -81,7 +81,7 @@ namespace Tizen.Sensor
         /// <summary>
         /// An event handler for storing the callback functions for the event corresponding to the change in the stress monitor data.
         /// </summary>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
 
         public event EventHandler<StressMonitorDataUpdatedEventArgs> DataUpdated;
 

@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2016 Samsung Electronics Co., Ltd All Rights Reserved
+ * Copyright (c) 2019 Samsung Electronics Co., Ltd All Rights Reserved
  *
  * Licensed under the Apache License, Version 2.0 (the License);
  * you may not use this file except in compliance with the License.
@@ -21,7 +21,7 @@ namespace Tizen.Sensor
     /// <summary>
     /// The HeartRateMonitorLedGreen class is used for registering callbacks for the heart rate monitor and getting the heart rate data.
     /// </summary>
-    /// <since_tizen> 3 </since_tizen>
+    /// <since_tizen> 6 </since_tizen>
     public sealed class HeartRateMonitorLedGreen : Sensor
     {
         private const string HrmGreenKey = "http://tizen.org/feature/sensor.heart_rate_monitor.led_green";
@@ -29,14 +29,14 @@ namespace Tizen.Sensor
         /// <summary>
         /// Gets the green light value of the heart rate monitor.
         /// </summary>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
         /// <value> Hrm Green Light Value. </value>
         public int HrmGreenLightValue { get; private set; } = int.MinValue;
 
         /// <summary>
         /// Returns true or false based on whether the heart rate monitor Led Green is supported by the device.
         /// </summary>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
         /// <value><c>true</c> if supported; otherwise <c>false</c>.</value>
         public static bool IsSupported
         {
@@ -50,7 +50,7 @@ namespace Tizen.Sensor
         /// <summary>
         /// Returns the number of Led Green heart rate monitors available on the device.
         /// </summary>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
         /// <value> The count of Led Green heart rate monitors. </value>
         public static int Count
         {
@@ -64,7 +64,7 @@ namespace Tizen.Sensor
         /// <summary>
         /// Initializes a new instance of the <see cref="Tizen.Sensor.HeartRateMonitorLedGreen"/> class.
         /// </summary>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
         /// <privilege>http://tizen.org/privilege/healthinfo</privilege>
         /// <privlevel>public</privlevel>
         /// <feature>http://tizen.org/feature/sensor.heart_rate_monitor.led_green</feature>
@@ -88,7 +88,7 @@ namespace Tizen.Sensor
         /// <summary>
         /// An event handler for storing the callback functions for the event corresponding to the change in the heart rate monitor data.
         /// </summary>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
         public event EventHandler<HeartRateMonitorLedGreenDataUpdatedEventArgs> DataUpdated;
 
         private static int GetCount()

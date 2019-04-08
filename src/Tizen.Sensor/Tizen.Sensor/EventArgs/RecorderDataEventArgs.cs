@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright (c) 2018 Samsung Electronics Co., Ltd. All Rights Reserved
+* Copyright (c) 2019 Samsung Electronics Co., Ltd. All Rights Reserved
 *
 * PROPRIETARY/CONFIDENTIAL
 *
@@ -16,6 +16,7 @@
 * LIABLE FOR ANY DAMAGES SUFFERED BY LICENSEE AS A RESULT OF USING,
 * MODIFYING OR DISTRIBUTING THIS SOFTWARE OR ITS DERIVATIVES.
 */
+
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -30,7 +31,7 @@ namespace Tizen.Sensor
         /// <summary>
         /// Indicates Recorder Data callback.
         /// </summary>
-        internal RecorderDataEventArgs(Enum type, IntPtr data, int remains, Enum error, IntPtr userData) {
+        internal RecorderDataEventArgs(Enum type, Int64 data, int remains, Enum error, Int64 userData) {
             Type = type;
             Data = data;
             Remains = remains;
@@ -47,7 +48,7 @@ namespace Tizen.Sensor
         /// <summary>
         /// Gets Data.
         /// </summary>
-        public IntPtr Data { get; private set; }
+        public Int64 Data { get; private set; }
 
         /// <summary>
         /// Gets Remains.
@@ -62,7 +63,7 @@ namespace Tizen.Sensor
         /// <summary>
         /// Gets UserData.
         /// </summary>
-        public IntPtr UserData { get; private set; }
+        public Int64 UserData { get; private set; }
 
         /// <summary>
         /// Sets RecorderDataStatus.

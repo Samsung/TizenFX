@@ -100,10 +100,10 @@ internal static partial class Interop
     {
         //Sensor Manager CAPI
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-        internal delegate void SensorAddedCb(String uri, IntPtr userData);
+        internal delegate void SensorAddedCb(String uri, Int64 userData);
 
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-        internal delegate void SensorRemovedCb(String uri, IntPtr userData);
+        internal delegate void SensorRemovedCb(String uri, Int64 userData);
 
         [DllImport(Libraries.Sensor, EntryPoint = "sensor_is_supported")]
         internal static extern int SensorIsSupported(SensorType type, out bool supported);
@@ -135,7 +135,7 @@ internal static partial class Interop
 
     internal static class SensorRecoder {
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-        internal delegate bool SensorRecorderDataCb(Enum type, IntPtr data, int remains, Enum error, IntPtr userData);
+        internal delegate bool SensorRecorderDataCb(Enum type, Int64 data, int remains, Enum error, Int64 userData);
 
         [DllImport(Libraries.Sensor, EntryPoint = "sensor_recorder_create_option")]
         internal static extern int RecorderCreateOption( out IntPtr option);
@@ -182,13 +182,13 @@ internal static partial class Interop
         internal const int MAX_VALUE_SIZE = 16;
 
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-        internal delegate void SensorProviderStartCb(IntPtr provider, IntPtr userData);
+        internal delegate void SensorProviderStartCb(IntPtr provider, Int64 userData);
 
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-        internal delegate void SensorProviderStopCb(IntPtr provider, IntPtr userData);
+        internal delegate void SensorProviderStopCb(IntPtr provider, Int64 userData);
 
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-        internal delegate void SensorProviderIntervalChangedCb(IntPtr provider, uint IntervalMs, IntPtr userData);
+        internal delegate void SensorProviderIntervalChangedCb(IntPtr provider, uint IntervalMs, Int64 userData);
 
        
         [StructLayout(LayoutKind.Sequential)]

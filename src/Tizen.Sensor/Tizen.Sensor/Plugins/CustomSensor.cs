@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright (c) 2018 Samsung Electronics Co., Ltd All Rights Reserved
+* Copyright (c) 2019 Samsung Electronics Co., Ltd All Rights Reserved
 *
 * Licensed under the Apache License, Version 2.0 (the License);
 * you may not use this file except in compliance with the License.
@@ -21,7 +21,7 @@ namespace Tizen.Sensor
     /// <summary>
     /// The CustomSensor class is used for registering callbacks for the custom sensor and getting the custom sensor data.
     /// </summary>
-    /// <since_tizen> 5.5 </since_tizen>
+    /// <since_tizen> 6 </since_tizen>
     public sealed class CustomSensor : Sensor
     {
         private uint _index;
@@ -31,14 +31,14 @@ namespace Tizen.Sensor
         /// <summary>
         /// Gets the sensor data of custom sensor.
         /// </summary>
-        /// <since_tizen> 5.5 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
         /// <value> Values </value>
         public float[] Values { get; private set; }
 
         /// <summary>
         /// Return true, It doesn't need to check sensor type in case of custom sensor.
         /// </summary>
-        /// <since_tizen> 5.5 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
         public bool IsSupported
         {
             get
@@ -50,14 +50,14 @@ namespace Tizen.Sensor
         /// <summary>
         /// Gets the number of sensor data for custom sensor.
         /// </summary>
-        /// <since_tizen> 5.5 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
         /// <value> ValueCount </value>
         public int ValueCount { get; private set; }
 
         /// <summary>
         /// Returns the number of custom sensors available on the device.
         /// </summary>
-        /// <since_tizen> 5.5 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
         /// <value> The count of custom sensors. </value>
         public int Count
         {
@@ -71,7 +71,7 @@ namespace Tizen.Sensor
         /// <summary>
         /// Initializes a new instance of the <see cref="Tizen.Sensor.CustomSensor"/> class.
         /// </summary>
-        /// <since_tizen> 5.5 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
         /// <feature>http://tizen.org/feature/sensor</feature>
         /// <exception cref="ArgumentException">Thrown when an invalid argument is used.</exception>
         /// <exception cref="OutOfMemoryException">Thrown when values can't allocate memory.</exception>
@@ -91,7 +91,7 @@ namespace Tizen.Sensor
             }
             catch (OutOfMemoryException e)
             {
-                Log.Error(Globals.LogTag, "Memory allocation failed");
+                Log.Error(Globals.LogTag, e.Message + "Memory allocation failed");
             }
 
             Log.Info(Globals.LogTag, "Creating CustomSensor");
@@ -106,7 +106,7 @@ namespace Tizen.Sensor
         /// <summary>
         /// An event handler for storing the callback functions for the event corresponding to the change in the custom sensor data.
         /// </summary>
-        /// <since_tizen> 5.5 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
 
         public event EventHandler<CustomSensorDataUpdatedEventArgs> DataUpdated;
 

@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright (c) 2018 Samsung Electronics Co., Ltd. All Rights Reserved
+* Copyright (c) 2019 Samsung Electronics Co., Ltd. All Rights Reserved
 *
 * PROPRIETARY/CONFIDENTIAL
 *
@@ -16,6 +16,7 @@
 * LIABLE FOR ANY DAMAGES SUFFERED BY LICENSEE AS A RESULT OF USING,
 * MODIFYING OR DISTRIBUTING THIS SOFTWARE OR ITS DERIVATIVES.
 */
+
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -30,12 +31,12 @@ namespace Tizen.Sensor
         /// <summary>
         /// Indicates Provider Start callback.
         /// </summary>
-        internal ProviderStartEventArgs(IntPtr userData) {
+        internal ProviderStartEventArgs(Int64 userData) {
             UserData = userData;
         }
         /// <summary>
         /// Indicates userdata sent by provider start callback
         /// </summary>
-        public IntPtr UserData { get; private set; }
+        public Int64 UserData { get; private set; }
     }
 }

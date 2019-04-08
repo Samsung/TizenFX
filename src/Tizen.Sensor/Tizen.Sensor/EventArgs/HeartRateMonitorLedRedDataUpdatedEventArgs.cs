@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2016 Samsung Electronics Co., Ltd All Rights Reserved
+ * Copyright (c) 2019 Samsung Electronics Co., Ltd All Rights Reserved
  *
  * Licensed under the Apache License, Version 2.0 (the License);
  * you may not use this file except in compliance with the License.
@@ -22,7 +22,7 @@ namespace Tizen.Sensor
     /// <summary>
     /// The HeartRateMonitorLedRed changed event arguments class is used for storing the data returned by a heart rate monitor Led Green.
     /// </summary>
-    /// <since_tizen> 3 </since_tizen>
+    /// <since_tizen> 6 </since_tizen>
     public class HeartRateMonitorLedRedDataUpdatedEventArgs : EventArgs
     {
         internal HeartRateMonitorLedRedDataUpdatedEventArgs(int _HrmRedLightValue)
@@ -33,7 +33,7 @@ namespace Tizen.Sensor
         /// <summary>
         /// Gets the red light value of the Hrm.
         /// </summary>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
         /// <value> Hrm Red Light Value. </value>
         public int HrmRedLightValue { get; private set; }
     }

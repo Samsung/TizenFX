@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2016 Samsung Electronics Co., Ltd All Rights Reserved
+ * Copyright (c) 2019 Samsung Electronics Co., Ltd All Rights Reserved
  *
  * Licensed under the Apache License, Version 2.0 (the License);
  * you may not use this file except in compliance with the License.
@@ -21,7 +21,7 @@ namespace Tizen.Sensor
     /// <summary>
     /// The SleepDetector changed event arguments class is used for storing the data returned by a sleep detector.
     /// </summary>
-    /// <since_tizen> 3 </since_tizen>
+    /// <since_tizen> 6 </since_tizen>
     public class SleepDetectorDataUpdatedEventArgs : EventArgs
     {
         internal SleepDetectorDataUpdatedEventArgs(float[] values)
@@ -35,28 +35,28 @@ namespace Tizen.Sensor
         /// <summary>
         /// Gets the value of the bed time.
         /// </summary>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
         /// <value> The bed time. </value>
         public float BedTime { get; private set; }
 
         /// <summary>
         /// Gets the value of the get up time.
         /// </summary>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
         /// <value> The get up time. </value>
         public float GetUpTime { get; private set; }
 
         /// <summary>
         /// Gets the value of the start time.
         /// </summary>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
         /// <value> The start time. </value>
         public float StartTime { get; private set; }
 
         /// <summary>
         /// Gets the value of the delay time.
         /// </summary>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
         /// <value> The delay time. </value>
         public float DelayTime { get; private set; }
     }

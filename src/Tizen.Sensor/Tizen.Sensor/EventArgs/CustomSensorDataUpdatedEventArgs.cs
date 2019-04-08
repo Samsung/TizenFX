@@ -1,5 +1,5 @@
 ﻿/*
-* Copyright (c) 2018 Samsung Electronics Co., Ltd All Rights Reserved
+* Copyright (c) 2019 Samsung Electronics Co., Ltd All Rights Reserved
 *
 * Licensed under the Apache License, Version 2.0 (the License);
 * you may not use this file except in compliance with the License.
@@ -21,7 +21,7 @@ namespace Tizen.Sensor
     /// <summary>
     /// The CustomSensor changed event arguments class is used for storing the data returned by a custom sensor.
     /// </summary>
-    /// <since_tizen> 5.5 </since_tizen>
+    /// <since_tizen> 6 </since_tizen>
     public class CustomSensorDataUpdatedEventArgs : EventArgs
     {
         internal CustomSensorDataUpdatedEventArgs(Interop.SensorEventStruct sensorData)
@@ -33,14 +33,14 @@ namespace Tizen.Sensor
             }
             catch (OutOfMemoryException e)
             {
-                Log.Error(Globals.LogTag, "Memory allocation failed");
+                Log.Error(Globals.LogTag, e.Message +  "Memory allocation failed");
             }
         }
 
         /// <summary>
         /// Gets the custom values.
         /// </summary>
-        /// <since_tizen> 5.5 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
         /// <value> The custom values. </value>
         public float[] Values { get; private set; }
     }

@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2016 Samsung Electronics Co., Ltd All Rights Reserved
+ * Copyright (c) 2019 Samsung Electronics Co., Ltd All Rights Reserved
  *
  * Licensed under the Apache License, Version 2.0 (the License);
  * you may not use this file except in compliance with the License.
@@ -19,6 +19,9 @@ using System.Runtime.InteropServices;
 
 namespace Tizen.Sensor
 {
+    /// <summary>
+    ///StressMonitorData
+    /// </summary>
     public struct SensorStressMonitorData
     {
         internal const int SENSOR_STRESS_MONITOR_DATA_SIZE = 600;
@@ -26,6 +29,10 @@ namespace Tizen.Sensor
         public int Mode;
         public int Accuracy;
         public int ValueCount;
+
+        /// <summary>
+        ///StressMonitorValue
+        /// </summary>
         public struct StressMonitorValue
         {
             public UInt64 TimeStamp;
@@ -44,7 +51,7 @@ namespace Tizen.Sensor
     /// <summary>
     /// The StressMonitor changed event arguments class is used for storing the data returned by a stress monitor.
     /// </summary>
-    /// <since_tizen> 3 </since_tizen>
+    /// <since_tizen> 6 </since_tizen>
     public class StressMonitorDataUpdatedEventArgs : EventArgs
     {
         internal StressMonitorDataUpdatedEventArgs(IntPtr stressValue)
@@ -55,7 +62,7 @@ namespace Tizen.Sensor
         /// <summary>
         /// Gets the value of the stress.
         /// </summary>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
         /// <value> The stress monitor data. </value>
         public SensorStressMonitorData Data { get; private set; }
     }

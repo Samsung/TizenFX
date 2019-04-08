@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright (c) 2016 Samsung Electronics Co., Ltd All Rights Reserved
+ * Copyright (c) 2019 Samsung Electronics Co., Ltd All Rights Reserved
  *
  * Licensed under the Apache License, Version 2.0 (the License);
  * you may not use this file except in compliance with the License.
@@ -21,7 +21,7 @@ namespace Tizen.Sensor
     /// <summary>
     /// The SignificantMotionSensor class is used for registering callbacks for the SignificantMotion sensor and getting the SignificantMotion data.
     /// </summary>
-    /// <since_tizen> 3 </since_tizen>
+    /// <since_tizen> 6 </since_tizen>
     public sealed class SignificantMotionSensor : Sensor
     {
         private static string SignificantMotionSensorKey = "http://tizen.org/feature/sensor.significant_motion";
@@ -29,14 +29,14 @@ namespace Tizen.Sensor
         /// <summary>
         /// Gets the value of the Significant motion sensor.
         /// </summary>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
         /// <value> Significant motion</value>
         public float SignificantMotion { get; private set; } = float.MinValue;
 
         /// <summary>
         /// Returns true or false based on whether the SignificantMotion sensor is supported by the device.
         /// </summary>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
         /// <value><c>true</c> if supported; otherwise <c>false</c>.</value>
         public static bool IsSupported
         {
@@ -50,7 +50,7 @@ namespace Tizen.Sensor
         /// <summary>
         /// Returns the number of SignificantMotion sensors available on the device.
         /// </summary>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
         /// <value> The count of SignificantMotion sensors. </value>
         public static int Count
         {
@@ -64,7 +64,7 @@ namespace Tizen.Sensor
         /// <summary>
         /// Initializes a new instance of the <see cref="Tizen.Sensor.SignificantMotionSensor"/> class.
         /// </summary>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
         /// <feature>http://tizen.org/feature/sensor.significant_motion</feature>
         /// <exception cref="ArgumentException">Thrown when an invalid argument is used.</exception>
         /// <exception cref="NotSupportedException">Thrown when the sensor is not supported.</exception>
@@ -85,7 +85,7 @@ namespace Tizen.Sensor
         /// <summary>
         /// An event handler for storing the callback functions for the event corresponding to the change in the SignificantMotion sensor data.
         /// </summary>
-        /// <since_tizen> 3 </since_tizen>
+        /// <since_tizen> 6 </since_tizen>
 
         public event EventHandler<SignificantMotionSensorDataUpdatedEventArgs> DataUpdated;
 
