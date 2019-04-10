@@ -597,5 +597,25 @@ namespace Tizen.Multimedia
                 return _adaptiveVariants;
             }
         }
+
+
+        private AudioPitch _audiopitch;
+
+        /// <summary>
+        /// Gets the audio pitch settings.
+        /// </summary>
+        /// <since_tizen> 6 </since_tizen>
+        public AudioPitch AudioPitch
+        {
+            get
+            {
+                if (_audiopitch == null)
+                {
+                    _audiopitch = new AudioPitch(this);
+                }
+
+                return _audiopitch;
+            }
+        }
     }
 }
