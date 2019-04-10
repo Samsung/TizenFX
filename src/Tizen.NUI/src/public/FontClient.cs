@@ -26,27 +26,27 @@ namespace Tizen.NUI
         private static readonly FontClient instance = FontClient.Get();
         private global::System.Runtime.InteropServices.HandleRef swigCPtr;
 
-        internal FontClient(global::System.IntPtr cPtr, bool cMemoryOwn) : base(NDalicManualPINVOKE.FontClient_SWIGUpcast(cPtr), cMemoryOwn)
+        internal FontClient(global::System.IntPtr cPtr, bool cMemoryOwn) : base(Interop.FontClient.FontClient_SWIGUpcast(cPtr), cMemoryOwn)
         {
             swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
         }
 
-        internal FontClient() : this(NDalicManualPINVOKE.new_FontClient__SWIG_0(), true)
+        internal FontClient() : this(Interop.FontClient.new_FontClient__SWIG_0(), true)
         {
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
         }
 
-        internal FontClient(FontClient handle) : this(NDalicManualPINVOKE.new_FontClient__SWIG_1(FontClient.getCPtr(handle)), true)
+        internal FontClient(FontClient handle) : this(Interop.FontClient.new_FontClient__SWIG_1(FontClient.getCPtr(handle)), true)
         {
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
         }
 
         internal static uint DefaultPointSize
         {
             get
             {
-                uint ret = NDalicManualPINVOKE.FontClient_DEFAULT_POINT_SIZE_get();
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                uint ret = Interop.FontClient.FontClient_DEFAULT_POINT_SIZE_get();
+                if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
                 return ret;
             }
         }
@@ -69,8 +69,8 @@ namespace Tizen.NUI
         /// <since_tizen> 5 </since_tizen>
         public void ResetSystemDefaults()
         {
-            NDalicManualPINVOKE.FontClient_ResetSystemDefaults(swigCPtr);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            Interop.FontClient.FontClient_ResetSystemDefaults(swigCPtr);
+            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
         }
 
         /// <summary>
@@ -81,8 +81,8 @@ namespace Tizen.NUI
         /// <since_tizen> 5 </since_tizen>
         public uint GetPointSize(uint id)
         {
-            uint ret = NDalicManualPINVOKE.FontClient_GetPointSize(swigCPtr, id);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            uint ret = Interop.FontClient.FontClient_GetPointSize(swigCPtr, id);
+            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
             return ret;
         }
 
@@ -95,8 +95,8 @@ namespace Tizen.NUI
         /// <since_tizen> 5 </since_tizen>
         public bool IsCharacterSupportedByFont(uint fontId, uint character)
         {
-            bool ret = NDalicManualPINVOKE.FontClient_IsCharacterSupportedByFont(swigCPtr, fontId, character);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            bool ret = Interop.FontClient.FontClient_IsCharacterSupportedByFont(swigCPtr, fontId, character);
+            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
             return ret;
         }
 
@@ -110,8 +110,8 @@ namespace Tizen.NUI
         /// <since_tizen> 5 </since_tizen>
         public uint FindDefaultFont(uint charcode, uint requestedPointSize, bool preferColor)
         {
-            uint ret = NDalicManualPINVOKE.FontClient_FindDefaultFont__SWIG_0(swigCPtr, charcode, requestedPointSize, preferColor);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            uint ret = Interop.FontClient.FontClient_FindDefaultFont__SWIG_0(swigCPtr, charcode, requestedPointSize, preferColor);
+            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
             return ret;
         }
 
@@ -124,8 +124,8 @@ namespace Tizen.NUI
         /// <since_tizen> 5 </since_tizen>
         public uint FindDefaultFont(uint charcode, uint requestedPointSize)
         {
-            uint ret = NDalicManualPINVOKE.FontClient_FindDefaultFont__SWIG_1(swigCPtr, charcode, requestedPointSize);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            uint ret = Interop.FontClient.FontClient_FindDefaultFont__SWIG_1(swigCPtr, charcode, requestedPointSize);
+            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
             return ret;
         }
 
@@ -137,8 +137,8 @@ namespace Tizen.NUI
         /// <since_tizen> 5 </since_tizen>
         public uint FindDefaultFont(uint charcode)
         {
-            uint ret = NDalicManualPINVOKE.FontClient_FindDefaultFont__SWIG_2(swigCPtr, charcode);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            uint ret = Interop.FontClient.FontClient_FindDefaultFont__SWIG_2(swigCPtr, charcode);
+            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
             return ret;
         }
 
@@ -152,8 +152,8 @@ namespace Tizen.NUI
         /// <since_tizen> 5 </since_tizen>
         public uint GetFontId(string path, uint requestedPointSize, uint faceIndex)
         {
-            uint ret = NDalicManualPINVOKE.FontClient_GetFontId__SWIG_0(swigCPtr, path, requestedPointSize, faceIndex);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            uint ret = Interop.FontClient.FontClient_GetFontId__SWIG_0(swigCPtr, path, requestedPointSize, faceIndex);
+            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
             return ret;
         }
 
@@ -166,8 +166,8 @@ namespace Tizen.NUI
         /// <since_tizen> 5 </since_tizen>
         public uint GetFontId(string path, uint requestedPointSize)
         {
-            uint ret = NDalicManualPINVOKE.FontClient_GetFontId__SWIG_1(swigCPtr, path, requestedPointSize);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            uint ret = Interop.FontClient.FontClient_GetFontId__SWIG_1(swigCPtr, path, requestedPointSize);
+            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
             return ret;
         }
 
@@ -179,8 +179,8 @@ namespace Tizen.NUI
         /// <since_tizen> 5 </since_tizen>
         public uint GetFontId(string path)
         {
-            uint ret = NDalicManualPINVOKE.FontClient_GetFontId__SWIG_2(swigCPtr, path);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            uint ret = Interop.FontClient.FontClient_GetFontId__SWIG_2(swigCPtr, path);
+            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
             return ret;
         }
 
@@ -192,8 +192,8 @@ namespace Tizen.NUI
         /// <since_tizen> 5 </since_tizen>
         public bool IsScalable(string path)
         {
-            bool ret = NDalicManualPINVOKE.FontClient_IsScalable__SWIG_0(swigCPtr, path);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            bool ret = Interop.FontClient.FontClient_IsScalable__SWIG_0(swigCPtr, path);
+            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
             return ret;
         }
 
@@ -205,8 +205,8 @@ namespace Tizen.NUI
         /// <since_tizen> 5 </since_tizen>
         public bool AddCustomFontDirectory(string path)
         {
-            bool ret = NDalicManualPINVOKE.FontClient_AddCustomFontDirectory(swigCPtr, path);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            bool ret = Interop.FontClient.FontClient_AddCustomFontDirectory(swigCPtr, path);
+            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
             return ret;
         }
 
@@ -217,179 +217,179 @@ namespace Tizen.NUI
 
         internal static FontClient Get()
         {
-            FontClient ret = new FontClient(NDalicManualPINVOKE.FontClient_Get(), true);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            FontClient ret = new FontClient(Interop.FontClient.FontClient_Get(), true);
+            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
             return ret;
         }
 
         internal FontClient Assign(FontClient handle)
         {
-            FontClient ret = new FontClient(NDalicManualPINVOKE.FontClient_Assign(swigCPtr, FontClient.getCPtr(handle)), false);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            FontClient ret = new FontClient(Interop.FontClient.FontClient_Assign(swigCPtr, FontClient.getCPtr(handle)), false);
+            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
             return ret;
         }
 
         internal void SetDpi(uint horizontalDpi, uint verticalDpi)
         {
-            NDalicManualPINVOKE.FontClient_SetDpi(swigCPtr, horizontalDpi, verticalDpi);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            Interop.FontClient.FontClient_SetDpi(swigCPtr, horizontalDpi, verticalDpi);
+            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
         }
 
         internal void GetDpi(SWIGTYPE_p_unsigned_int horizontalDpi, SWIGTYPE_p_unsigned_int verticalDpi)
         {
-            NDalicManualPINVOKE.FontClient_GetDpi(swigCPtr, SWIGTYPE_p_unsigned_int.getCPtr(horizontalDpi), SWIGTYPE_p_unsigned_int.getCPtr(verticalDpi));
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            Interop.FontClient.FontClient_GetDpi(swigCPtr, SWIGTYPE_p_unsigned_int.getCPtr(horizontalDpi), SWIGTYPE_p_unsigned_int.getCPtr(verticalDpi));
+            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
         }
 
         internal int GetDefaultFontSize()
         {
-            int ret = NDalicManualPINVOKE.FontClient_GetDefaultFontSize(swigCPtr);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            int ret = Interop.FontClient.FontClient_GetDefaultFontSize(swigCPtr);
+            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
             return ret;
         }
 
         internal void GetDefaultFonts(SWIGTYPE_p_std__vectorT_Dali__TextAbstraction__FontDescription_t defaultFonts)
         {
-            NDalicManualPINVOKE.FontClient_GetDefaultFonts(swigCPtr, SWIGTYPE_p_std__vectorT_Dali__TextAbstraction__FontDescription_t.getCPtr(defaultFonts));
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            Interop.FontClient.FontClient_GetDefaultFonts(swigCPtr, SWIGTYPE_p_std__vectorT_Dali__TextAbstraction__FontDescription_t.getCPtr(defaultFonts));
+            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
         }
 
         internal void GetDefaultPlatformFontDescription(FontDescription fontDescription)
         {
-            NDalicManualPINVOKE.FontClient_GetDefaultPlatformFontDescription(swigCPtr, FontDescription.getCPtr(fontDescription));
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            Interop.FontClient.FontClient_GetDefaultPlatformFontDescription(swigCPtr, FontDescription.getCPtr(fontDescription));
+            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
         }
 
         internal void GetSystemFonts(SWIGTYPE_p_std__vectorT_Dali__TextAbstraction__FontDescription_t systemFonts)
         {
-            NDalicManualPINVOKE.FontClient_GetSystemFonts(swigCPtr, SWIGTYPE_p_std__vectorT_Dali__TextAbstraction__FontDescription_t.getCPtr(systemFonts));
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            Interop.FontClient.FontClient_GetSystemFonts(swigCPtr, SWIGTYPE_p_std__vectorT_Dali__TextAbstraction__FontDescription_t.getCPtr(systemFonts));
+            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
         }
 
         internal void GetDescription(uint id, FontDescription fontDescription)
         {
-            NDalicManualPINVOKE.FontClient_GetDescription(swigCPtr, id, FontDescription.getCPtr(fontDescription));
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            Interop.FontClient.FontClient_GetDescription(swigCPtr, id, FontDescription.getCPtr(fontDescription));
+            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
         }
 
         internal uint FindFallbackFont(uint charcode, FontDescription preferredFontDescription, uint requestedPointSize, bool preferColor)
         {
-            uint ret = NDalicManualPINVOKE.FontClient_FindFallbackFont__SWIG_0(swigCPtr, charcode, FontDescription.getCPtr(preferredFontDescription), requestedPointSize, preferColor);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            uint ret = Interop.FontClient.FontClient_FindFallbackFont__SWIG_0(swigCPtr, charcode, FontDescription.getCPtr(preferredFontDescription), requestedPointSize, preferColor);
+            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
             return ret;
         }
 
         internal uint FindFallbackFont(uint charcode, FontDescription preferredFontDescription, uint requestedPointSize)
         {
-            uint ret = NDalicManualPINVOKE.FontClient_FindFallbackFont__SWIG_1(swigCPtr, charcode, FontDescription.getCPtr(preferredFontDescription), requestedPointSize);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            uint ret = Interop.FontClient.FontClient_FindFallbackFont__SWIG_1(swigCPtr, charcode, FontDescription.getCPtr(preferredFontDescription), requestedPointSize);
+            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
             return ret;
         }
 
         internal uint FindFallbackFont(uint charcode, FontDescription preferredFontDescription)
         {
-            uint ret = NDalicManualPINVOKE.FontClient_FindFallbackFont__SWIG_2(swigCPtr, charcode, FontDescription.getCPtr(preferredFontDescription));
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            uint ret = Interop.FontClient.FontClient_FindFallbackFont__SWIG_2(swigCPtr, charcode, FontDescription.getCPtr(preferredFontDescription));
+            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
             return ret;
         }
 
         internal uint GetFontId(FontDescription preferredFontDescription, uint requestedPointSize, uint faceIndex)
         {
-            uint ret = NDalicManualPINVOKE.FontClient_GetFontId__SWIG_3(swigCPtr, FontDescription.getCPtr(preferredFontDescription), requestedPointSize, faceIndex);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            uint ret = Interop.FontClient.FontClient_GetFontId__SWIG_3(swigCPtr, FontDescription.getCPtr(preferredFontDescription), requestedPointSize, faceIndex);
+            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
             return ret;
         }
 
         internal uint GetFontId(FontDescription preferredFontDescription, uint requestedPointSize)
         {
-            uint ret = NDalicManualPINVOKE.FontClient_GetFontId__SWIG_4(swigCPtr, FontDescription.getCPtr(preferredFontDescription), requestedPointSize);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            uint ret = Interop.FontClient.FontClient_GetFontId__SWIG_4(swigCPtr, FontDescription.getCPtr(preferredFontDescription), requestedPointSize);
+            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
             return ret;
         }
 
         internal uint GetFontId(FontDescription preferredFontDescription)
         {
-            uint ret = NDalicManualPINVOKE.FontClient_GetFontId__SWIG_5(swigCPtr, FontDescription.getCPtr(preferredFontDescription));
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            uint ret = Interop.FontClient.FontClient_GetFontId__SWIG_5(swigCPtr, FontDescription.getCPtr(preferredFontDescription));
+            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
             return ret;
         }
 
         internal bool IsScalable(FontDescription fontDescription)
         {
-            bool ret = NDalicManualPINVOKE.FontClient_IsScalable__SWIG_1(swigCPtr, FontDescription.getCPtr(fontDescription));
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            bool ret = Interop.FontClient.FontClient_IsScalable__SWIG_1(swigCPtr, FontDescription.getCPtr(fontDescription));
+            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
             return ret;
         }
 
         internal void GetFixedSizes(string path, SWIGTYPE_p_Dali__VectorT_uint32_t_TypeTraitsT_uint32_t_t__IS_TRIVIAL_TYPE__true_t sizes)
         {
-            NDalicManualPINVOKE.FontClient_GetFixedSizes__SWIG_0(swigCPtr, path, SWIGTYPE_p_Dali__VectorT_uint32_t_TypeTraitsT_uint32_t_t__IS_TRIVIAL_TYPE__true_t.getCPtr(sizes));
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            Interop.FontClient.FontClient_GetFixedSizes__SWIG_0(swigCPtr, path, SWIGTYPE_p_Dali__VectorT_uint32_t_TypeTraitsT_uint32_t_t__IS_TRIVIAL_TYPE__true_t.getCPtr(sizes));
+            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
         }
 
         internal void GetFixedSizes(FontDescription fontDescription, SWIGTYPE_p_Dali__VectorT_uint32_t_TypeTraitsT_uint32_t_t__IS_TRIVIAL_TYPE__true_t sizes)
         {
-            NDalicManualPINVOKE.FontClient_GetFixedSizes__SWIG_1(swigCPtr, FontDescription.getCPtr(fontDescription), SWIGTYPE_p_Dali__VectorT_uint32_t_TypeTraitsT_uint32_t_t__IS_TRIVIAL_TYPE__true_t.getCPtr(sizes));
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            Interop.FontClient.FontClient_GetFixedSizes__SWIG_1(swigCPtr, FontDescription.getCPtr(fontDescription), SWIGTYPE_p_Dali__VectorT_uint32_t_TypeTraitsT_uint32_t_t__IS_TRIVIAL_TYPE__true_t.getCPtr(sizes));
+            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
         }
 
         internal void GetFontMetrics(uint fontId, FontMetrics metrics)
         {
-            NDalicManualPINVOKE.FontClient_GetFontMetrics(swigCPtr, fontId, FontMetrics.getCPtr(metrics));
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            Interop.FontClient.FontClient_GetFontMetrics(swigCPtr, fontId, FontMetrics.getCPtr(metrics));
+            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
         }
 
         internal uint GetGlyphIndex(uint fontId, uint charcode)
         {
-            uint ret = NDalicManualPINVOKE.FontClient_GetGlyphIndex(swigCPtr, fontId, charcode);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            uint ret = Interop.FontClient.FontClient_GetGlyphIndex(swigCPtr, fontId, charcode);
+            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
             return ret;
         }
 
         internal bool GetGlyphMetrics(GlyphInfo array, uint size, GlyphType type, bool horizontal)
         {
-            bool ret = NDalicManualPINVOKE.FontClient_GetGlyphMetrics__SWIG_0(swigCPtr, GlyphInfo.getCPtr(array), size, (int)type, horizontal);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            bool ret = Interop.FontClient.FontClient_GetGlyphMetrics__SWIG_0(swigCPtr, GlyphInfo.getCPtr(array), size, (int)type, horizontal);
+            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
             return ret;
         }
 
         internal bool GetGlyphMetrics(GlyphInfo array, uint size, GlyphType type)
         {
-            bool ret = NDalicManualPINVOKE.FontClient_GetGlyphMetrics__SWIG_1(swigCPtr, GlyphInfo.getCPtr(array), size, (int)type);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            bool ret = Interop.FontClient.FontClient_GetGlyphMetrics__SWIG_1(swigCPtr, GlyphInfo.getCPtr(array), size, (int)type);
+            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
             return ret;
         }
 
         internal void CreateBitmap(uint fontId, uint glyphIndex, bool softwareItalic, bool softwareBold, FontClient.GlyphBufferData data, int outlineWidth)
         {
-            NDalicManualPINVOKE.FontClient_CreateBitmap__SWIG_0(swigCPtr, fontId, glyphIndex, softwareItalic, softwareBold, FontClient.GlyphBufferData.getCPtr(data), outlineWidth);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            Interop.FontClient.FontClient_CreateBitmap__SWIG_0(swigCPtr, fontId, glyphIndex, softwareItalic, softwareBold, FontClient.GlyphBufferData.getCPtr(data), outlineWidth);
+            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
         }
 
         internal PixelData CreateBitmap(uint fontId, uint glyphIndex, int outlineWidth)
         {
-            PixelData ret = new PixelData(NDalicManualPINVOKE.FontClient_CreateBitmap__SWIG_1(swigCPtr, fontId, glyphIndex, outlineWidth), true);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            PixelData ret = new PixelData(Interop.FontClient.FontClient_CreateBitmap__SWIG_1(swigCPtr, fontId, glyphIndex, outlineWidth), true);
+            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
             return ret;
         }
 
         internal void CreateVectorBlob(uint fontId, uint glyphIndex, SWIGTYPE_p_p_Dali__TextAbstraction__VectorBlob blob, SWIGTYPE_p_unsigned_int blobLength, SWIGTYPE_p_unsigned_int nominalWidth, SWIGTYPE_p_unsigned_int nominalHeight)
         {
-            NDalicManualPINVOKE.FontClient_CreateVectorBlob(swigCPtr, fontId, glyphIndex, SWIGTYPE_p_p_Dali__TextAbstraction__VectorBlob.getCPtr(blob), SWIGTYPE_p_unsigned_int.getCPtr(blobLength), SWIGTYPE_p_unsigned_int.getCPtr(nominalWidth), SWIGTYPE_p_unsigned_int.getCPtr(nominalHeight));
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            Interop.FontClient.FontClient_CreateVectorBlob(swigCPtr, fontId, glyphIndex, SWIGTYPE_p_p_Dali__TextAbstraction__VectorBlob.getCPtr(blob), SWIGTYPE_p_unsigned_int.getCPtr(blobLength), SWIGTYPE_p_unsigned_int.getCPtr(nominalWidth), SWIGTYPE_p_unsigned_int.getCPtr(nominalHeight));
+            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
         }
 
         internal GlyphInfo GetEllipsisGlyph(uint requestedPointSize)
         {
-            GlyphInfo ret = new GlyphInfo(NDalicManualPINVOKE.FontClient_GetEllipsisGlyph(swigCPtr, requestedPointSize), false);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            GlyphInfo ret = new GlyphInfo(Interop.FontClient.FontClient_GetEllipsisGlyph(swigCPtr, requestedPointSize), false);
+            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
             return ret;
         }
 
         internal bool IsColorGlyph(uint fontId, uint glyphIndex)
         {
-            bool ret = NDalicManualPINVOKE.FontClient_IsColorGlyph(swigCPtr, fontId, glyphIndex);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            bool ret = Interop.FontClient.FontClient_IsColorGlyph(swigCPtr, fontId, glyphIndex);
+            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
             return ret;
         }
 
@@ -405,9 +405,9 @@ namespace Tizen.NUI
             //A Flag to check who called Dispose(). (By User or DisposeQueue)
             private bool isDisposeQueued = false;
 
-            public GlyphBufferData() : this(NDalicManualPINVOKE.new_FontClient_GlyphBufferData(), true)
+            public GlyphBufferData() : this(Interop.FontClient.new_FontClient_GlyphBufferData(), true)
             {
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
             }
 
             internal GlyphBufferData(global::System.IntPtr cPtr, bool cMemoryOwn)
@@ -429,14 +429,14 @@ namespace Tizen.NUI
             {
                 set
                 {
-                    NDalicManualPINVOKE.FontClient_GlyphBufferData_buffer_set(swigCPtr, value);
-                    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                    Interop.FontClient.FontClient_GlyphBufferData_buffer_set(swigCPtr, value);
+                    if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
                 }
                 get
                 {
-                    global::System.IntPtr cPtr = NDalicManualPINVOKE.FontClient_GlyphBufferData_buffer_get(swigCPtr);
+                    global::System.IntPtr cPtr = Interop.FontClient.FontClient_GlyphBufferData_buffer_get(swigCPtr);
                     SWIGTYPE_p_unsigned_char ret = (cPtr == global::System.IntPtr.Zero) ? null : new SWIGTYPE_p_unsigned_char(cPtr, false);
-                    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                    if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
                     return ret;
                 }
             }*/
@@ -445,13 +445,13 @@ namespace Tizen.NUI
             {
                 set
                 {
-                    NDalicManualPINVOKE.FontClient_GlyphBufferData_width_set(swigCPtr, value);
-                    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                    Interop.FontClient.FontClient_GlyphBufferData_width_set(swigCPtr, value);
+                    if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
                 }
                 get
                 {
-                    uint ret = NDalicManualPINVOKE.FontClient_GlyphBufferData_width_get(swigCPtr);
-                    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                    uint ret = Interop.FontClient.FontClient_GlyphBufferData_width_get(swigCPtr);
+                    if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
                     return ret;
                 }
             }
@@ -460,13 +460,13 @@ namespace Tizen.NUI
             {
                 set
                 {
-                    NDalicManualPINVOKE.FontClient_GlyphBufferData_height_set(swigCPtr, value);
-                    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                    Interop.FontClient.FontClient_GlyphBufferData_height_set(swigCPtr, value);
+                    if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
                 }
                 get
                 {
-                    uint ret = NDalicManualPINVOKE.FontClient_GlyphBufferData_height_get(swigCPtr);
-                    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                    uint ret = Interop.FontClient.FontClient_GlyphBufferData_height_get(swigCPtr);
+                    if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
                     return ret;
                 }
             }
@@ -475,13 +475,13 @@ namespace Tizen.NUI
             {
                 set
                 {
-                    NDalicManualPINVOKE.FontClient_GlyphBufferData_format_set(swigCPtr, (int)value);
-                    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                    Interop.FontClient.FontClient_GlyphBufferData_format_set(swigCPtr, (int)value);
+                    if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
                 }
                 get
                 {
-                    PixelFormat ret = (PixelFormat)NDalicManualPINVOKE.FontClient_GlyphBufferData_format_get(swigCPtr);
-                    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                    PixelFormat ret = (PixelFormat)Interop.FontClient.FontClient_GlyphBufferData_format_get(swigCPtr);
+                    if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
                     return ret;
                 }
             }
@@ -533,7 +533,7 @@ namespace Tizen.NUI
                     if (swigCMemOwn)
                     {
                         swigCMemOwn = false;
-                        NDalicManualPINVOKE.delete_FontClient_GlyphBufferData(swigCPtr);
+                        Interop.FontClient.delete_FontClient_GlyphBufferData(swigCPtr);
                     }
                     swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
                 }

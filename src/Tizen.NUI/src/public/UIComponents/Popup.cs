@@ -541,12 +541,12 @@ namespace Tizen.NUI.UIComponents
         /// Creates the popup.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        public Popup() : this(NDalicPINVOKE.Popup_New(), true)
+        public Popup() : this(Interop.Popup.Popup_New(), true)
         {
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
         }
 
-        internal Popup(global::System.IntPtr cPtr, bool cMemoryOwn) : base(NDalicPINVOKE.Popup_SWIGUpcast(cPtr), cMemoryOwn)
+        internal Popup(global::System.IntPtr cPtr, bool cMemoryOwn) : base(Interop.Popup.Popup_SWIGUpcast(cPtr), cMemoryOwn)
         {
             swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
         }
@@ -1122,8 +1122,8 @@ namespace Tizen.NUI.UIComponents
         /// <since_tizen> 3 </since_tizen>
         public void SetTitle(View titleView)
         {
-            NDalicPINVOKE.Popup_SetTitle(swigCPtr, View.getCPtr(titleView));
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            Interop.Popup.Popup_SetTitle(swigCPtr, View.getCPtr(titleView));
+            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
         }
 
         /// <summary>
@@ -1133,8 +1133,8 @@ namespace Tizen.NUI.UIComponents
         /// <since_tizen> 3 </since_tizen>
         public void SetContent(View content)
         {
-            NDalicPINVOKE.Popup_SetContent(swigCPtr, View.getCPtr(content));
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            Interop.Popup.Popup_SetContent(swigCPtr, View.getCPtr(content));
+            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
         }
 
         /// <summary>
@@ -1144,8 +1144,8 @@ namespace Tizen.NUI.UIComponents
         /// <since_tizen> 3 </since_tizen>
         public void SetFooter(View footer)
         {
-            NDalicPINVOKE.Popup_SetFooter(swigCPtr, View.getCPtr(footer));
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            Interop.Popup.Popup_SetFooter(swigCPtr, View.getCPtr(footer));
+            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
         }
 
         /// <summary>
@@ -1168,8 +1168,8 @@ namespace Tizen.NUI.UIComponents
         /// <since_tizen> 3 </since_tizen>
         public void SetDisplayState(Popup.DisplayStateType displayState)
         {
-            NDalicPINVOKE.Popup_SetDisplayState(swigCPtr, (int)displayState);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            Interop.Popup.Popup_SetDisplayState(swigCPtr, (int)displayState);
+            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
         }
 
         internal static global::System.Runtime.InteropServices.HandleRef getCPtr(Popup obj)
@@ -1180,81 +1180,81 @@ namespace Tizen.NUI.UIComponents
         internal View GetTitle()
         {
             //to fix memory leak issue, match the handle count with native side.
-            IntPtr cPtr = NDalicPINVOKE.Popup_GetTitle(swigCPtr);
+            IntPtr cPtr = Interop.Popup.Popup_GetTitle(swigCPtr);
             HandleRef CPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
             View ret = Registry.GetManagedBaseHandleFromNativePtr(CPtr.Handle) as View;
-            NDalicPINVOKE.delete_BaseHandle(CPtr);
+            Interop.BaseHandle.delete_BaseHandle(CPtr);
             CPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
 
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
             return ret;
         }
 
         internal View GetContent()
         {
             //to fix memory leak issue, match the handle count with native side.
-            IntPtr cPtr = NDalicPINVOKE.Popup_GetContent(swigCPtr);
+            IntPtr cPtr = Interop.Popup.Popup_GetContent(swigCPtr);
             HandleRef CPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
             View ret = Registry.GetManagedBaseHandleFromNativePtr(CPtr.Handle) as View;
-            NDalicPINVOKE.delete_BaseHandle(CPtr);
+            Interop.BaseHandle.delete_BaseHandle(CPtr);
             CPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
 
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
             return ret;
         }
 
         internal View GetFooter()
         {
             //to fix memory leak issue, match the handle count with native side.
-            IntPtr cPtr = NDalicPINVOKE.Popup_GetFooter(swigCPtr);
+            IntPtr cPtr = Interop.Popup.Popup_GetFooter(swigCPtr);
             HandleRef CPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
             View ret = Registry.GetManagedBaseHandleFromNativePtr(CPtr.Handle) as View;
-            NDalicPINVOKE.delete_BaseHandle(CPtr);
+            Interop.BaseHandle.delete_BaseHandle(CPtr);
             CPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
 
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
             return ret;
         }
 
         internal Popup.DisplayStateType GetDisplayState()
         {
-            Popup.DisplayStateType ret = (Popup.DisplayStateType)NDalicPINVOKE.Popup_GetDisplayState(swigCPtr);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            Popup.DisplayStateType ret = (Popup.DisplayStateType)Interop.Popup.Popup_GetDisplayState(swigCPtr);
+            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
             return ret;
         }
 
         internal VoidSignal OutsideTouchedSignal()
         {
-            VoidSignal ret = new VoidSignal(NDalicPINVOKE.Popup_OutsideTouchedSignal(swigCPtr), false);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            VoidSignal ret = new VoidSignal(Interop.Popup.Popup_OutsideTouchedSignal(swigCPtr), false);
+            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
             return ret;
         }
 
         internal VoidSignal ShowingSignal()
         {
-            VoidSignal ret = new VoidSignal(NDalicPINVOKE.Popup_ShowingSignal(swigCPtr), false);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            VoidSignal ret = new VoidSignal(Interop.Popup.Popup_ShowingSignal(swigCPtr), false);
+            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
             return ret;
         }
 
         internal VoidSignal ShownSignal()
         {
-            VoidSignal ret = new VoidSignal(NDalicPINVOKE.Popup_ShownSignal(swigCPtr), false);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            VoidSignal ret = new VoidSignal(Interop.Popup.Popup_ShownSignal(swigCPtr), false);
+            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
             return ret;
         }
 
         internal VoidSignal HidingSignal()
         {
-            VoidSignal ret = new VoidSignal(NDalicPINVOKE.Popup_HidingSignal(swigCPtr), false);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            VoidSignal ret = new VoidSignal(Interop.Popup.Popup_HidingSignal(swigCPtr), false);
+            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
             return ret;
         }
 
         internal VoidSignal HiddenSignal()
         {
-            VoidSignal ret = new VoidSignal(NDalicPINVOKE.Popup_HiddenSignal(swigCPtr), false);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            VoidSignal ret = new VoidSignal(Interop.Popup.Popup_HiddenSignal(swigCPtr), false);
+            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
             return ret;
         }
 
@@ -1314,7 +1314,7 @@ namespace Tizen.NUI.UIComponents
                 if (swigCMemOwn)
                 {
                     swigCMemOwn = false;
-                    NDalicPINVOKE.delete_Popup(swigCPtr);
+                    Interop.Popup.delete_Popup(swigCPtr);
                 }
                 swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
             }
@@ -1424,27 +1424,27 @@ namespace Tizen.NUI.UIComponents
 
         internal new class Property
         {
-            internal static readonly int TITLE = NDalicPINVOKE.Popup_Property_TITLE_get();
-            internal static readonly int CONTENT = NDalicPINVOKE.Popup_Property_CONTENT_get();
-            internal static readonly int FOOTER = NDalicPINVOKE.Popup_Property_FOOTER_get();
-            internal static readonly int DISPLAY_STATE = NDalicPINVOKE.Popup_Property_DISPLAY_STATE_get();
-            internal static readonly int TOUCH_TRANSPARENT = NDalicPINVOKE.Popup_Property_TOUCH_TRANSPARENT_get();
-            internal static readonly int TAIL_VISIBILITY = NDalicPINVOKE.Popup_Property_TAIL_VISIBILITY_get();
-            internal static readonly int TAIL_POSITION = NDalicPINVOKE.Popup_Property_TAIL_POSITION_get();
-            internal static readonly int CONTEXTUAL_MODE = NDalicPINVOKE.Popup_Property_CONTEXTUAL_MODE_get();
-            internal static readonly int ANIMATION_DURATION = NDalicPINVOKE.Popup_Property_ANIMATION_DURATION_get();
-            internal static readonly int ANIMATION_MODE = NDalicPINVOKE.Popup_Property_ANIMATION_MODE_get();
-            internal static readonly int ENTRY_ANIMATION = NDalicPINVOKE.Popup_Property_ENTRY_ANIMATION_get();
-            internal static readonly int EXIT_ANIMATION = NDalicPINVOKE.Popup_Property_EXIT_ANIMATION_get();
-            internal static readonly int AUTO_HIDE_DELAY = NDalicPINVOKE.Popup_Property_AUTO_HIDE_DELAY_get();
-            internal static readonly int BACKING_ENABLED = NDalicPINVOKE.Popup_Property_BACKING_ENABLED_get();
-            internal static readonly int BACKING_COLOR = NDalicPINVOKE.Popup_Property_BACKING_COLOR_get();
-            internal static readonly int POPUP_BACKGROUND_IMAGE = NDalicPINVOKE.Popup_Property_POPUP_BACKGROUND_IMAGE_get();
-            internal static readonly int POPUP_BACKGROUND_BORDER = NDalicPINVOKE.Popup_Property_POPUP_BACKGROUND_BORDER_get();
-            internal static readonly int TAIL_UP_IMAGE = NDalicPINVOKE.Popup_Property_TAIL_UP_IMAGE_get();
-            internal static readonly int TAIL_DOWN_IMAGE = NDalicPINVOKE.Popup_Property_TAIL_DOWN_IMAGE_get();
-            internal static readonly int TAIL_LEFT_IMAGE = NDalicPINVOKE.Popup_Property_TAIL_LEFT_IMAGE_get();
-            internal static readonly int TAIL_RIGHT_IMAGE = NDalicPINVOKE.Popup_Property_TAIL_RIGHT_IMAGE_get();
+            internal static readonly int TITLE = Interop.Popup.Popup_Property_TITLE_get();
+            internal static readonly int CONTENT = Interop.Popup.Popup_Property_CONTENT_get();
+            internal static readonly int FOOTER = Interop.Popup.Popup_Property_FOOTER_get();
+            internal static readonly int DISPLAY_STATE = Interop.Popup.Popup_Property_DISPLAY_STATE_get();
+            internal static readonly int TOUCH_TRANSPARENT = Interop.Popup.Popup_Property_TOUCH_TRANSPARENT_get();
+            internal static readonly int TAIL_VISIBILITY = Interop.Popup.Popup_Property_TAIL_VISIBILITY_get();
+            internal static readonly int TAIL_POSITION = Interop.Popup.Popup_Property_TAIL_POSITION_get();
+            internal static readonly int CONTEXTUAL_MODE = Interop.Popup.Popup_Property_CONTEXTUAL_MODE_get();
+            internal static readonly int ANIMATION_DURATION = Interop.Popup.Popup_Property_ANIMATION_DURATION_get();
+            internal static readonly int ANIMATION_MODE = Interop.Popup.Popup_Property_ANIMATION_MODE_get();
+            internal static readonly int ENTRY_ANIMATION = Interop.Popup.Popup_Property_ENTRY_ANIMATION_get();
+            internal static readonly int EXIT_ANIMATION = Interop.Popup.Popup_Property_EXIT_ANIMATION_get();
+            internal static readonly int AUTO_HIDE_DELAY = Interop.Popup.Popup_Property_AUTO_HIDE_DELAY_get();
+            internal static readonly int BACKING_ENABLED = Interop.Popup.Popup_Property_BACKING_ENABLED_get();
+            internal static readonly int BACKING_COLOR = Interop.Popup.Popup_Property_BACKING_COLOR_get();
+            internal static readonly int POPUP_BACKGROUND_IMAGE = Interop.Popup.Popup_Property_POPUP_BACKGROUND_IMAGE_get();
+            internal static readonly int POPUP_BACKGROUND_BORDER = Interop.Popup.Popup_Property_POPUP_BACKGROUND_BORDER_get();
+            internal static readonly int TAIL_UP_IMAGE = Interop.Popup.Popup_Property_TAIL_UP_IMAGE_get();
+            internal static readonly int TAIL_DOWN_IMAGE = Interop.Popup.Popup_Property_TAIL_DOWN_IMAGE_get();
+            internal static readonly int TAIL_LEFT_IMAGE = Interop.Popup.Popup_Property_TAIL_LEFT_IMAGE_get();
+            internal static readonly int TAIL_RIGHT_IMAGE = Interop.Popup.Popup_Property_TAIL_RIGHT_IMAGE_get();
         }
     }
 }

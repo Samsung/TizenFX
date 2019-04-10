@@ -102,7 +102,7 @@ namespace Tizen.NUI
 
         public AnimatablePropertyComponentRegistration(TypeRegistration registered, string name, int index, int baseIndex, uint componentIndex) : this(NDalicPINVOKE.new_AnimatablePropertyComponentRegistration(TypeRegistration.getCPtr(registered), name, index, baseIndex, componentIndex), true)
         {
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
         }
 
     }

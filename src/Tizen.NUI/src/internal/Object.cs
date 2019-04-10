@@ -32,8 +32,8 @@ namespace Tizen.NUI
                 throw new System.InvalidOperationException("Error! NUI's native dali object is already disposed. OR the native dali object handle of NUI becomes null!");
             }
 
-            PropertyValue ret = new PropertyValue(NDalicPINVOKE.Handle_GetProperty(handle, index), true);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            PropertyValue ret = new PropertyValue(Interop.Handle.Handle_GetProperty(handle, index), true);
+            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
             return ret;
         }
 
@@ -44,8 +44,8 @@ namespace Tizen.NUI
                 throw new System.InvalidOperationException("Error! NUI's native dali object is already disposed. OR the native dali object handle of NUI becomes null!");
             }
 
-            NDalicPINVOKE.Handle_SetProperty(handle, index, PropertyValue.getCPtr(propertyValue));
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            Interop.Handle.Handle_SetProperty(handle, index, PropertyValue.getCPtr(propertyValue));
+            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
         }
     }
 

@@ -114,7 +114,7 @@ namespace Tizen.NUI
                 if (swigCMemOwn)
                 {
                     swigCMemOwn = false;
-                    NDalicManualPINVOKE.delete_KeyboardTypeSignalType(swigCPtr);
+                    Interop.KeyboardTypeSignalType.delete_KeyboardTypeSignalType(swigCPtr);
                 }
                 swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
             }
@@ -129,8 +129,8 @@ namespace Tizen.NUI
         /// <since_tizen> 4 </since_tizen>
         public bool Empty()
         {
-            bool ret = NDalicManualPINVOKE.KeyboardTypeSignalType_Empty(swigCPtr);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            bool ret = Interop.KeyboardTypeSignalType.KeyboardTypeSignalType_Empty(swigCPtr);
+            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
             return ret;
         }
 
@@ -141,8 +141,8 @@ namespace Tizen.NUI
         /// <since_tizen> 4 </since_tizen>
         public uint GetConnectionCount()
         {
-            uint ret = NDalicManualPINVOKE.KeyboardTypeSignalType_GetConnectionCount(swigCPtr);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            uint ret = Interop.KeyboardTypeSignalType.KeyboardTypeSignalType_GetConnectionCount(swigCPtr);
+            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
             return ret;
         }
 
@@ -155,8 +155,8 @@ namespace Tizen.NUI
         {
             System.IntPtr ip = System.Runtime.InteropServices.Marshal.GetFunctionPointerForDelegate<System.Delegate>(func);
             {
-                NDalicManualPINVOKE.KeyboardTypeSignalType_Connect(swigCPtr, new System.Runtime.InteropServices.HandleRef(this, ip));
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                Interop.KeyboardTypeSignalType.KeyboardTypeSignalType_Connect(swigCPtr, new System.Runtime.InteropServices.HandleRef(this, ip));
+                if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
             }
         }
 
@@ -169,8 +169,8 @@ namespace Tizen.NUI
         {
             System.IntPtr ip = System.Runtime.InteropServices.Marshal.GetFunctionPointerForDelegate<System.Delegate>(func);
             {
-                NDalicManualPINVOKE.KeyboardTypeSignalType_Disconnect(swigCPtr, new System.Runtime.InteropServices.HandleRef(this, ip));
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                Interop.KeyboardTypeSignalType.KeyboardTypeSignalType_Disconnect(swigCPtr, new System.Runtime.InteropServices.HandleRef(this, ip));
+                if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
             }
         }
 
@@ -181,17 +181,17 @@ namespace Tizen.NUI
         /// <since_tizen> 5 </since_tizen>
         public void Emit(InputMethodContext.KeyboardType arg)
         {
-            NDalicManualPINVOKE.KeyboardTypeSignalType_Emit(swigCPtr, (int)arg);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            Interop.KeyboardTypeSignalType.KeyboardTypeSignalType_Emit(swigCPtr, (int)arg);
+            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
         }
 
         /// <summary>
         /// The contructor.
         /// </summary>
         /// <since_tizen> 4 </since_tizen>
-        public KeyboardTypeSignalType() : this(NDalicManualPINVOKE.new_KeyboardTypeSignalType(), true)
+        public KeyboardTypeSignalType() : this(Interop.KeyboardTypeSignalType.new_KeyboardTypeSignalType(), true)
         {
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
         }
 
     }

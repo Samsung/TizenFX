@@ -102,7 +102,7 @@ namespace Tizen.NUI
 
         public ChildPropertyRegistration(TypeRegistration registered, string name, int index, PropertyType type) : this(NDalicPINVOKE.new_ChildPropertyRegistration(TypeRegistration.getCPtr(registered), name, index, (int)type), true)
         {
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
         }
 
     }

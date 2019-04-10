@@ -30,9 +30,9 @@ namespace Tizen.NUI
         /// </summary>
         /// <param name="transition">The transition data to store (a single animator).</param>
         /// <since_tizen> 3 </since_tizen>
-        public TransitionData(PropertyMap transition) : this(NDalicPINVOKE.TransitionData_New__SWIG_0(PropertyMap.getCPtr(transition)), true)
+        public TransitionData(PropertyMap transition) : this(Interop.TransitionData.TransitionData_New__SWIG_0(PropertyMap.getCPtr(transition)), true)
         {
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
 
         }
 
@@ -41,9 +41,9 @@ namespace Tizen.NUI
         /// </summary>
         /// <param name="transition">The transition data to store (an array of maps of animators).</param>
         /// <since_tizen> 3 </since_tizen>
-        public TransitionData(PropertyArray transition) : this(NDalicPINVOKE.TransitionData_New__SWIG_1(PropertyArray.getCPtr(transition)), true)
+        public TransitionData(PropertyArray transition) : this(Interop.TransitionData.TransitionData_New__SWIG_1(PropertyArray.getCPtr(transition)), true)
         {
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
 
         }
 
@@ -52,12 +52,12 @@ namespace Tizen.NUI
         /// </summary>
         /// <param name="handle">Handle to an object.</param>
         /// <since_tizen> 3 </since_tizen>
-        public TransitionData(TransitionData handle) : this(NDalicPINVOKE.new_TransitionData__SWIG_1(TransitionData.getCPtr(handle)), true)
+        public TransitionData(TransitionData handle) : this(Interop.TransitionData.new_TransitionData__SWIG_1(TransitionData.getCPtr(handle)), true)
         {
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
         }
 
-        internal TransitionData(global::System.IntPtr cPtr, bool cMemoryOwn) : base(NDalicPINVOKE.TransitionData_SWIGUpcast(cPtr), cMemoryOwn)
+        internal TransitionData(global::System.IntPtr cPtr, bool cMemoryOwn) : base(Interop.TransitionData.TransitionData_SWIGUpcast(cPtr), cMemoryOwn)
         {
             swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
         }
@@ -69,8 +69,8 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public uint Count()
         {
-            uint ret = NDalicPINVOKE.TransitionData_Count(swigCPtr);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            uint ret = Interop.TransitionData.TransitionData_Count(swigCPtr);
+            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
             return ret;
         }
 
@@ -82,8 +82,8 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public PropertyMap GetAnimatorAt(uint index)
         {
-            PropertyMap ret = new PropertyMap(NDalicPINVOKE.TransitionData_GetAnimatorAt(swigCPtr, index), true);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            PropertyMap ret = new PropertyMap(Interop.TransitionData.TransitionData_GetAnimatorAt(swigCPtr, index), true);
+            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
             return ret;
         }
 
@@ -121,7 +121,7 @@ namespace Tizen.NUI
                 if (swigCMemOwn)
                 {
                     swigCMemOwn = false;
-                    NDalicPINVOKE.delete_TransitionData(swigCPtr);
+                    Interop.TransitionData.delete_TransitionData(swigCPtr);
                 }
                 swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
             }

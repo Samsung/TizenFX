@@ -53,7 +53,7 @@ namespace Tizen.NUI
                     if (swigCMemOwn)
                     {
                         swigCMemOwn = false;
-                        LayoutPINVOKE.delete_LayoutLength(swigCPtr);
+                        Interop.LayoutLength.delete_LayoutLength(swigCPtr);
                     }
                     swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
                 }
@@ -61,14 +61,14 @@ namespace Tizen.NUI
             }
         }
 
-        public LayoutLength(int value) : this(LayoutPINVOKE.new_LayoutLength__SWIG_0(value), true)
+        public LayoutLength(int value) : this(Interop.LayoutLength.new_LayoutLength__SWIG_0(value), true)
         {
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
         }
 
-        public LayoutLength(LayoutLength layoutLength) : this(LayoutPINVOKE.new_LayoutLength__SWIG_1(LayoutLength.getCPtr(layoutLength)), true)
+        public LayoutLength(LayoutLength layoutLength) : this(Interop.LayoutLength.new_LayoutLength__SWIG_1(LayoutLength.getCPtr(layoutLength)), true)
         {
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
         }
 
         /// <summary>
@@ -197,127 +197,127 @@ namespace Tizen.NUI
 
         private bool EqualTo(LayoutLength rhs)
         {
-            bool ret = LayoutPINVOKE.LayoutLength_EqualTo__SWIG_0(swigCPtr, LayoutLength.getCPtr(rhs));
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            bool ret = Interop.LayoutLength.LayoutLength_EqualTo__SWIG_0(swigCPtr, LayoutLength.getCPtr(rhs));
+            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
             return ret;
         }
 
         private bool EqualTo(int rhs)
         {
-            bool ret = LayoutPINVOKE.LayoutLength_EqualTo__SWIG_1(swigCPtr, rhs);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            bool ret = Interop.LayoutLength.LayoutLength_EqualTo__SWIG_1(swigCPtr, rhs);
+            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
             return ret;
         }
 
         private bool NotEqualTo(LayoutLength rhs)
         {
-            bool ret = LayoutPINVOKE.LayoutLength_NotEqualTo(swigCPtr, LayoutLength.getCPtr(rhs));
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            bool ret = Interop.LayoutLength.LayoutLength_NotEqualTo(swigCPtr, LayoutLength.getCPtr(rhs));
+            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
             return ret;
         }
 
         private bool LessThan(LayoutLength rhs)
         {
-            bool ret = LayoutPINVOKE.LayoutLength_LessThan__SWIG_0(swigCPtr, LayoutLength.getCPtr(rhs));
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            bool ret = Interop.LayoutLength.LayoutLength_LessThan__SWIG_0(swigCPtr, LayoutLength.getCPtr(rhs));
+            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
             return ret;
         }
 
         private bool GreaterThan(LayoutLength rhs)
         {
-            bool ret = LayoutPINVOKE.LayoutLength_GreaterThan__SWIG_0(swigCPtr, LayoutLength.getCPtr(rhs));
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            bool ret = Interop.LayoutLength.LayoutLength_GreaterThan__SWIG_0(swigCPtr, LayoutLength.getCPtr(rhs));
+            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
             return ret;
         }
 
         private LayoutLength Add(LayoutLength rhs)
         {
-            LayoutLength ret = new LayoutLength(LayoutPINVOKE.LayoutLength_Add__SWIG_0(swigCPtr, LayoutLength.getCPtr(rhs)), true);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            LayoutLength ret = new LayoutLength(Interop.LayoutLength.LayoutLength_Add__SWIG_0(swigCPtr, LayoutLength.getCPtr(rhs)), true);
+            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
             return ret;
         }
 
         private LayoutLength Add(int rhs)
         {
-            LayoutLength ret = new LayoutLength(LayoutPINVOKE.LayoutLength_Add__SWIG_1(swigCPtr, rhs), true);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            LayoutLength ret = new LayoutLength(Interop.LayoutLength.LayoutLength_Add__SWIG_1(swigCPtr, rhs), true);
+            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
             return ret;
         }
 
         private LayoutLength Subtract(LayoutLength rhs)
         {
-            LayoutLength ret = new LayoutLength(LayoutPINVOKE.LayoutLength_Subtract__SWIG_0(swigCPtr, LayoutLength.getCPtr(rhs)), true);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            LayoutLength ret = new LayoutLength(Interop.LayoutLength.LayoutLength_Subtract__SWIG_0(swigCPtr, LayoutLength.getCPtr(rhs)), true);
+            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
             return ret;
         }
 
         private LayoutLength Subtract(int rhs)
         {
-            LayoutLength ret = new LayoutLength(LayoutPINVOKE.LayoutLength_Subtract__SWIG_1(swigCPtr, rhs), true);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            LayoutLength ret = new LayoutLength(Interop.LayoutLength.LayoutLength_Subtract__SWIG_1(swigCPtr, rhs), true);
+            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
             return ret;
         }
 
         private LayoutLength AddAssign(LayoutLength rhs)
         {
-            LayoutLength ret = new LayoutLength(LayoutPINVOKE.LayoutLength_AddAssign__SWIG_0(swigCPtr, LayoutLength.getCPtr(rhs)), false);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            LayoutLength ret = new LayoutLength(Interop.LayoutLength.LayoutLength_AddAssign__SWIG_0(swigCPtr, LayoutLength.getCPtr(rhs)), false);
+            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
             return ret;
         }
 
         private LayoutLength AddAssign(int rhs)
         {
-            LayoutLength ret = new LayoutLength(LayoutPINVOKE.LayoutLength_AddAssign__SWIG_1(swigCPtr, rhs), false);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            LayoutLength ret = new LayoutLength(Interop.LayoutLength.LayoutLength_AddAssign__SWIG_1(swigCPtr, rhs), false);
+            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
             return ret;
         }
 
         private LayoutLength SubtractAssign(LayoutLength rhs)
         {
-            LayoutLength ret = new LayoutLength(LayoutPINVOKE.LayoutLength_SubtractAssign__SWIG_0(swigCPtr, LayoutLength.getCPtr(rhs)), false);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            LayoutLength ret = new LayoutLength(Interop.LayoutLength.LayoutLength_SubtractAssign__SWIG_0(swigCPtr, LayoutLength.getCPtr(rhs)), false);
+            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
             return ret;
         }
 
         private LayoutLength SubtractAssign(int rhs)
         {
-            LayoutLength ret = new LayoutLength(LayoutPINVOKE.LayoutLength_SubtractAssign__SWIG_1(swigCPtr, rhs), false);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            LayoutLength ret = new LayoutLength(Interop.LayoutLength.LayoutLength_SubtractAssign__SWIG_1(swigCPtr, rhs), false);
+            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
             return ret;
         }
 
         private LayoutLength Divide(LayoutLength rhs)
         {
-            LayoutLength ret = new LayoutLength(LayoutPINVOKE.LayoutLength_Divide__SWIG_0(swigCPtr, LayoutLength.getCPtr(rhs)), true);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            LayoutLength ret = new LayoutLength(Interop.LayoutLength.LayoutLength_Divide__SWIG_0(swigCPtr, LayoutLength.getCPtr(rhs)), true);
+            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
             return ret;
         }
 
         private LayoutLength Divide(int rhs)
         {
-            LayoutLength ret = new LayoutLength(LayoutPINVOKE.LayoutLength_Divide__SWIG_1(swigCPtr, rhs), true);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            LayoutLength ret = new LayoutLength(Interop.LayoutLength.LayoutLength_Divide__SWIG_1(swigCPtr, rhs), true);
+            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
             return ret;
         }
 
         private LayoutLength Multiply(LayoutLength rhs)
         {
-            LayoutLength ret = new LayoutLength(LayoutPINVOKE.LayoutLength_Multiply__SWIG_0(swigCPtr, LayoutLength.getCPtr(rhs)), true);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            LayoutLength ret = new LayoutLength(Interop.LayoutLength.LayoutLength_Multiply__SWIG_0(swigCPtr, LayoutLength.getCPtr(rhs)), true);
+            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
             return ret;
         }
 
         private LayoutLength Multiply(int rhs)
         {
-            LayoutLength ret = new LayoutLength(LayoutPINVOKE.LayoutLength_Multiply__SWIG_1(swigCPtr, rhs), true);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            LayoutLength ret = new LayoutLength(Interop.LayoutLength.LayoutLength_Multiply__SWIG_1(swigCPtr, rhs), true);
+            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
             return ret;
         }
 
         private LayoutLength Multiply(float rhs)
         {
-            LayoutLength ret = new LayoutLength(LayoutPINVOKE.LayoutLength_Multiply__SWIG_2(swigCPtr, rhs), true);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            LayoutLength ret = new LayoutLength(Interop.LayoutLength.LayoutLength_Multiply__SWIG_2(swigCPtr, rhs), true);
+            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
             return ret;
         }
 
@@ -325,13 +325,13 @@ namespace Tizen.NUI
         {
             set
             {
-                LayoutPINVOKE.LayoutLength_mValue_set(swigCPtr, value);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                Interop.LayoutLength.LayoutLength_mValue_set(swigCPtr, value);
+                if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
             }
             get
             {
-                int ret = LayoutPINVOKE.LayoutLength_mValue_get(swigCPtr);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                int ret = Interop.LayoutLength.LayoutLength_mValue_get(swigCPtr);
+                if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
                 return ret;
             }
         }

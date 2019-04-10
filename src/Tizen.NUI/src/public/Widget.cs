@@ -34,10 +34,10 @@ namespace Tizen.NUI
         /// <since_tizen> 4 </since_tizen>
         public Widget() : this(new WidgetImpl(), true)
         {
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
         }
 
-        internal Widget(WidgetImpl widgetImpl, bool swigCMemOwn) : this(NDalicManualPINVOKE.Widget_New__SWIG_1(WidgetImpl.getCPtr(widgetImpl)), swigCMemOwn)
+        internal Widget(WidgetImpl widgetImpl, bool swigCMemOwn) : this(Interop.Widget.Widget_New__SWIG_1(WidgetImpl.getCPtr(widgetImpl)), swigCMemOwn)
         {
             this.widgetImpl = widgetImpl;
             widgetImpl.WidgetInstanceCreated += OnWidgetInstanceCreated;
@@ -50,7 +50,7 @@ namespace Tizen.NUI
             WidgetApplication.Instance?.AddWidgetInstance(this);
         }
 
-        internal Widget(global::System.IntPtr cPtr, bool cMemoryOwn) : base(NDalicManualPINVOKE.Widget_SWIGUpcast(cPtr), cMemoryOwn)
+        internal Widget(global::System.IntPtr cPtr, bool cMemoryOwn) : base(Interop.Widget.Widget_SWIGUpcast(cPtr), cMemoryOwn)
         {
             swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
         }
@@ -94,8 +94,8 @@ namespace Tizen.NUI
         }
         internal Widget Assign(Widget widget)
         {
-            Widget ret = new Widget(NDalicManualPINVOKE.Widget_Assign(swigCPtr, Widget.getCPtr(widget)), false);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            Widget ret = new Widget(Interop.Widget.Widget_Assign(swigCPtr, Widget.getCPtr(widget)), false);
+            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
             return ret;
         }
 
@@ -178,7 +178,7 @@ namespace Tizen.NUI
                 if (swigCMemOwn)
                 {
                     swigCMemOwn = false;
-                    NDalicManualPINVOKE.delete_Widget(swigCPtr);
+                    Interop.Widget.delete_Widget(swigCPtr);
                 }
                 swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
             }

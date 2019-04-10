@@ -102,26 +102,26 @@ namespace Tizen.NUI
         public static RefObject GetRefObjectFromPtr(global::System.IntPtr cPtr)
         {
             RefObject ret = new RefObject(cPtr, false);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
             return ret;
         }
 
         public void Reference()
         {
-            NDalicPINVOKE.RefObject_Reference(swigCPtr);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            Interop.RefObject.RefObject_Reference(swigCPtr);
+            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
         }
 
         public void Unreference()
         {
-            NDalicPINVOKE.RefObject_Unreference(swigCPtr);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            Interop.RefObject.RefObject_Unreference(swigCPtr);
+            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
         }
 
         public int ReferenceCount()
         {
-            int ret = NDalicPINVOKE.RefObject_ReferenceCount(swigCPtr);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            int ret = Interop.RefObject.RefObject_ReferenceCount(swigCPtr);
+            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
             return ret;
         }
 

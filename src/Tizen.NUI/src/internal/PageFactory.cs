@@ -92,7 +92,7 @@ namespace Tizen.NUI
                 if (swigCMemOwn)
                 {
                     swigCMemOwn = false;
-                    NDalicPINVOKE.delete_PageFactory(swigCPtr);
+                    Interop.PageFactory.delete_PageFactory(swigCPtr);
                 }
                 swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
             }
@@ -102,15 +102,15 @@ namespace Tizen.NUI
 
         public virtual uint GetNumberOfPages()
         {
-            uint ret = NDalicPINVOKE.PageFactory_GetNumberOfPages(swigCPtr);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            uint ret = Interop.PageFactory.PageFactory_GetNumberOfPages(swigCPtr);
+            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
             return ret;
         }
 
         public virtual Texture NewPage(uint pageId)
         {
-            Texture ret = new Texture(NDalicPINVOKE.PageFactory_NewPage(swigCPtr, pageId), true);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            Texture ret = new Texture(Interop.PageFactory.PageFactory_NewPage(swigCPtr, pageId), true);
+            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
             return ret;
         }
 

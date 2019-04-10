@@ -22,7 +22,7 @@ namespace Tizen.NUI
     {
         private global::System.Runtime.InteropServices.HandleRef swigCPtr;
 
-        internal Camera(global::System.IntPtr cPtr, bool cMemoryOwn) : base(NDalicPINVOKE.CameraActor_SWIGUpcast(cPtr), cMemoryOwn)
+        internal Camera(global::System.IntPtr cPtr, bool cMemoryOwn) : base(Interop.CameraActor.CameraActor_SWIGUpcast(cPtr), cMemoryOwn)
         {
             swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
         }
@@ -56,7 +56,7 @@ namespace Tizen.NUI
                 if (swigCMemOwn)
                 {
                     swigCMemOwn = false;
-                    NDalicPINVOKE.delete_CameraActor(swigCPtr);
+                    Interop.CameraActor.delete_CameraActor(swigCPtr);
                 }
                 swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
             }
@@ -144,7 +144,7 @@ namespace Tizen.NUI
                     if (swigCMemOwn)
                     {
                         swigCMemOwn = false;
-                        NDalicPINVOKE.delete_CameraActor_Property(swigCPtr);
+                        Interop.CameraActor.delete_CameraActor_Property(swigCPtr);
                     }
                     swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
                 }
@@ -154,191 +154,191 @@ namespace Tizen.NUI
 
 
             /// <since_tizen> 3 </since_tizen>
-            public Property() : this(NDalicPINVOKE.new_CameraActor_Property(), true)
+            public Property() : this(Interop.CameraActor.new_CameraActor_Property(), true)
             {
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
             }
 
             /// <since_tizen> 3 </since_tizen>
-            public static readonly int TYPE = NDalicPINVOKE.CameraActor_Property_TYPE_get();
+            public static readonly int TYPE = Interop.CameraActor.CameraActor_Property_TYPE_get();
             /// <since_tizen> 3 </since_tizen>
-            public static readonly int PROJECTION_MODE = NDalicPINVOKE.CameraActor_Property_PROJECTION_MODE_get();
+            public static readonly int PROJECTION_MODE = Interop.CameraActor.CameraActor_Property_PROJECTION_MODE_get();
             /// <since_tizen> 3 </since_tizen>
-            public static readonly int FIELD_OF_VIEW = NDalicPINVOKE.CameraActor_Property_FIELD_OF_VIEW_get();
+            public static readonly int FIELD_OF_VIEW = Interop.CameraActor.CameraActor_Property_FIELD_OF_VIEW_get();
             /// <since_tizen> 3 </since_tizen>
-            public static readonly int ASPECT_RATIO = NDalicPINVOKE.CameraActor_Property_ASPECT_RATIO_get();
+            public static readonly int ASPECT_RATIO = Interop.CameraActor.CameraActor_Property_ASPECT_RATIO_get();
             /// <since_tizen> 3 </since_tizen>
-            public static readonly int NEAR_PLANE_DISTANCE = NDalicPINVOKE.CameraActor_Property_NEAR_PLANE_DISTANCE_get();
+            public static readonly int NEAR_PLANE_DISTANCE = Interop.CameraActor.CameraActor_Property_NEAR_PLANE_DISTANCE_get();
             /// <since_tizen> 3 </since_tizen>
-            public static readonly int FAR_PLANE_DISTANCE = NDalicPINVOKE.CameraActor_Property_FAR_PLANE_DISTANCE_get();
+            public static readonly int FAR_PLANE_DISTANCE = Interop.CameraActor.CameraActor_Property_FAR_PLANE_DISTANCE_get();
             /// <since_tizen> 3 </since_tizen>
-            public static readonly int LEFT_PLANE_DISTANCE = NDalicPINVOKE.CameraActor_Property_LEFT_PLANE_DISTANCE_get();
+            public static readonly int LEFT_PLANE_DISTANCE = Interop.CameraActor.CameraActor_Property_LEFT_PLANE_DISTANCE_get();
             /// <since_tizen> 3 </since_tizen>
-            public static readonly int RIGHT_PLANE_DISTANCE = NDalicPINVOKE.CameraActor_Property_RIGHT_PLANE_DISTANCE_get();
+            public static readonly int RIGHT_PLANE_DISTANCE = Interop.CameraActor.CameraActor_Property_RIGHT_PLANE_DISTANCE_get();
             /// <since_tizen> 3 </since_tizen>
-            public static readonly int TOP_PLANE_DISTANCE = NDalicPINVOKE.CameraActor_Property_TOP_PLANE_DISTANCE_get();
+            public static readonly int TOP_PLANE_DISTANCE = Interop.CameraActor.CameraActor_Property_TOP_PLANE_DISTANCE_get();
             /// <since_tizen> 3 </since_tizen>
-            public static readonly int BOTTOM_PLANE_DISTANCE = NDalicPINVOKE.CameraActor_Property_BOTTOM_PLANE_DISTANCE_get();
+            public static readonly int BOTTOM_PLANE_DISTANCE = Interop.CameraActor.CameraActor_Property_BOTTOM_PLANE_DISTANCE_get();
             /// <since_tizen> 3 </since_tizen>
-            public static readonly int TARGET_POSITION = NDalicPINVOKE.CameraActor_Property_TARGET_POSITION_get();
+            public static readonly int TARGET_POSITION = Interop.CameraActor.CameraActor_Property_TARGET_POSITION_get();
             /// <since_tizen> 3 </since_tizen>
-            public static readonly int PROJECTION_MATRIX = NDalicPINVOKE.CameraActor_Property_PROJECTION_MATRIX_get();
+            public static readonly int PROJECTION_MATRIX = Interop.CameraActor.CameraActor_Property_PROJECTION_MATRIX_get();
             /// <since_tizen> 3 </since_tizen>
-            public static readonly int VIEW_MATRIX = NDalicPINVOKE.CameraActor_Property_VIEW_MATRIX_get();
+            public static readonly int VIEW_MATRIX = Interop.CameraActor.CameraActor_Property_VIEW_MATRIX_get();
             /// <since_tizen> 3 </since_tizen>
-            public static readonly int INVERT_Y_AXIS = NDalicPINVOKE.CameraActor_Property_INVERT_Y_AXIS_get();
+            public static readonly int INVERT_Y_AXIS = Interop.CameraActor.CameraActor_Property_INVERT_Y_AXIS_get();
 
         }
 
-        public Camera() : this(NDalicPINVOKE.CameraActor_New__SWIG_0(), true)
+        public Camera() : this(Interop.CameraActor.CameraActor_New__SWIG_0(), true)
         {
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
 
         }
-        public Camera(Vector2 size) : this(NDalicPINVOKE.CameraActor_New__SWIG_1(Vector2.getCPtr(size)), true)
+        public Camera(Vector2 size) : this(Interop.CameraActor.CameraActor_New__SWIG_1(Vector2.getCPtr(size)), true)
         {
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
 
         }
         public static Camera DownCast(BaseHandle handle)
         {
             Camera ret = Registry.GetManagedBaseHandleFromNativePtr(handle) as Camera;
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
             return ret;
         }
 
-        public Camera(Camera copy) : this(NDalicPINVOKE.new_CameraActor__SWIG_1(Camera.getCPtr(copy)), true)
+        public Camera(Camera copy) : this(Interop.CameraActor.new_CameraActor__SWIG_1(Camera.getCPtr(copy)), true)
         {
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
         }
 
         public Camera Assign(Camera rhs)
         {
-            Camera ret = new Camera(NDalicPINVOKE.CameraActor_Assign(swigCPtr, Camera.getCPtr(rhs)), false);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            Camera ret = new Camera(Interop.CameraActor.CameraActor_Assign(swigCPtr, Camera.getCPtr(rhs)), false);
+            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
             return ret;
         }
 
         public void SetType(CameraType type)
         {
-            NDalicPINVOKE.CameraActor_SetType(swigCPtr, (int)type);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            Interop.CameraActor.CameraActor_SetType(swigCPtr, (int)type);
+            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
         }
 
         public new CameraType GetType()
         {
-            CameraType ret = (CameraType)NDalicPINVOKE.CameraActor_GetType(swigCPtr);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            CameraType ret = (CameraType)Interop.CameraActor.CameraActor_GetType(swigCPtr);
+            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
             return ret;
         }
 
         public void SetProjectionMode(ProjectionMode mode)
         {
-            NDalicPINVOKE.CameraActor_SetProjectionMode(swigCPtr, (int)mode);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            Interop.CameraActor.CameraActor_SetProjectionMode(swigCPtr, (int)mode);
+            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
         }
 
         public ProjectionMode GetProjectionMode()
         {
-            ProjectionMode ret = (ProjectionMode)NDalicPINVOKE.CameraActor_GetProjectionMode(swigCPtr);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            ProjectionMode ret = (ProjectionMode)Interop.CameraActor.CameraActor_GetProjectionMode(swigCPtr);
+            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
             return ret;
         }
 
         public void SetFieldOfView(float fieldOfView)
         {
-            NDalicPINVOKE.CameraActor_SetFieldOfView(swigCPtr, fieldOfView);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            Interop.CameraActor.CameraActor_SetFieldOfView(swigCPtr, fieldOfView);
+            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
         }
 
         public float GetFieldOfView()
         {
-            float ret = NDalicPINVOKE.CameraActor_GetFieldOfView(swigCPtr);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            float ret = Interop.CameraActor.CameraActor_GetFieldOfView(swigCPtr);
+            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
             return ret;
         }
 
         public void SetAspectRatio(float aspectRatio)
         {
-            NDalicPINVOKE.CameraActor_SetAspectRatio(swigCPtr, aspectRatio);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            Interop.CameraActor.CameraActor_SetAspectRatio(swigCPtr, aspectRatio);
+            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
         }
 
         public float GetAspectRatio()
         {
-            float ret = NDalicPINVOKE.CameraActor_GetAspectRatio(swigCPtr);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            float ret = Interop.CameraActor.CameraActor_GetAspectRatio(swigCPtr);
+            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
             return ret;
         }
 
         public void SetNearClippingPlane(float nearClippingPlane)
         {
-            NDalicPINVOKE.CameraActor_SetNearClippingPlane(swigCPtr, nearClippingPlane);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            Interop.CameraActor.CameraActor_SetNearClippingPlane(swigCPtr, nearClippingPlane);
+            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
         }
 
         public float GetNearClippingPlane()
         {
-            float ret = NDalicPINVOKE.CameraActor_GetNearClippingPlane(swigCPtr);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            float ret = Interop.CameraActor.CameraActor_GetNearClippingPlane(swigCPtr);
+            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
             return ret;
         }
 
         public void SetFarClippingPlane(float farClippingPlane)
         {
-            NDalicPINVOKE.CameraActor_SetFarClippingPlane(swigCPtr, farClippingPlane);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            Interop.CameraActor.CameraActor_SetFarClippingPlane(swigCPtr, farClippingPlane);
+            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
         }
 
         public float GetFarClippingPlane()
         {
-            float ret = NDalicPINVOKE.CameraActor_GetFarClippingPlane(swigCPtr);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            float ret = Interop.CameraActor.CameraActor_GetFarClippingPlane(swigCPtr);
+            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
             return ret;
         }
 
         public void SetTargetPosition(Vector3 targetPosition)
         {
-            NDalicPINVOKE.CameraActor_SetTargetPosition(swigCPtr, Vector3.getCPtr(targetPosition));
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            Interop.CameraActor.CameraActor_SetTargetPosition(swigCPtr, Vector3.getCPtr(targetPosition));
+            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
         }
 
         public Vector3 GetTargetPosition()
         {
-            Vector3 ret = new Vector3(NDalicPINVOKE.CameraActor_GetTargetPosition(swigCPtr), true);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            Vector3 ret = new Vector3(Interop.CameraActor.CameraActor_GetTargetPosition(swigCPtr), true);
+            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
             return ret;
         }
 
         public void SetInvertYAxis(bool invertYAxis)
         {
-            NDalicPINVOKE.CameraActor_SetInvertYAxis(swigCPtr, invertYAxis);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            Interop.CameraActor.CameraActor_SetInvertYAxis(swigCPtr, invertYAxis);
+            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
         }
 
         public bool GetInvertYAxis()
         {
-            bool ret = NDalicPINVOKE.CameraActor_GetInvertYAxis(swigCPtr);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            bool ret = Interop.CameraActor.CameraActor_GetInvertYAxis(swigCPtr);
+            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
             return ret;
         }
 
         public void SetPerspectiveProjection(Vector2 size)
         {
-            NDalicPINVOKE.CameraActor_SetPerspectiveProjection(swigCPtr, Vector2.getCPtr(size));
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            Interop.CameraActor.CameraActor_SetPerspectiveProjection(swigCPtr, Vector2.getCPtr(size));
+            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
         }
 
         public void SetOrthographicProjection(Vector2 size)
         {
-            NDalicPINVOKE.CameraActor_SetOrthographicProjection__SWIG_0(swigCPtr, Vector2.getCPtr(size));
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            Interop.CameraActor.CameraActor_SetOrthographicProjection__SWIG_0(swigCPtr, Vector2.getCPtr(size));
+            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
         }
 
         public void SetOrthographicProjection(float left, float right, float top, float bottom, float near, float far)
         {
-            NDalicPINVOKE.CameraActor_SetOrthographicProjection__SWIG_1(swigCPtr, left, right, top, bottom, near, far);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            Interop.CameraActor.CameraActor_SetOrthographicProjection__SWIG_1(swigCPtr, left, right, top, bottom, near, far);
+            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
         }
 
         public string Type

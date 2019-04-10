@@ -59,7 +59,7 @@ namespace Tizen.NUI
                 if (swigCMemOwn)
                 {
                     swigCMemOwn = false;
-                    NDalicManualPINVOKE.delete_WidgetApplication(swigCPtr);
+                    Interop.WidgetApplication.delete_WidgetApplication(swigCPtr);
                 }
                 swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
             }
@@ -77,7 +77,7 @@ namespace Tizen.NUI
         public static WidgetApplication NewWidgetApplication(string[] args, string stylesheet)
         {
             WidgetApplication ret = New(args, stylesheet);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
             _instance = ret;
             return ret;
         }
@@ -87,24 +87,24 @@ namespace Tizen.NUI
             int argc = args.Length;
             string argvStr = string.Join(" ", args);
 
-            IntPtr widgetIntPtr = NDalicManualPINVOKE.WidgetApplication_New(argc, argvStr, stylesheet);
+            IntPtr widgetIntPtr = Interop.WidgetApplication.WidgetApplication_New(argc, argvStr, stylesheet);
 
             WidgetApplication ret = new WidgetApplication(widgetIntPtr, false);
 
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
 
             return ret;
         }
 
-        internal WidgetApplication(WidgetApplication widgetApplication) : this(NDalicManualPINVOKE.new_WidgetApplication__SWIG_1(WidgetApplication.getCPtr(widgetApplication)), true)
+        internal WidgetApplication(WidgetApplication widgetApplication) : this(Interop.WidgetApplication.new_WidgetApplication__SWIG_1(WidgetApplication.getCPtr(widgetApplication)), true)
         {
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
         }
 
         internal WidgetApplication Assign(WidgetApplication widgetApplication)
         {
-            WidgetApplication ret = new WidgetApplication(NDalicManualPINVOKE.WidgetApplication_Assign(swigCPtr, WidgetApplication.getCPtr(widgetApplication)), false);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            WidgetApplication ret = new WidgetApplication(Interop.WidgetApplication.WidgetApplication_Assign(swigCPtr, WidgetApplication.getCPtr(widgetApplication)), false);
+            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
             return ret;
         }
 
@@ -124,8 +124,8 @@ namespace Tizen.NUI
             System.IntPtr ip = System.Runtime.InteropServices.Marshal.GetFunctionPointerForDelegate<System.Delegate>(newDelegate);
             CreateWidgetFunction createWidgetFunction = new CreateWidgetFunction(ip, true);
 
-            NDalicManualPINVOKE.WidgetApplication_RegisterWidgetCreatingFunction(swigCPtr, ref widgetName, CreateWidgetFunction.getCPtr(createWidgetFunction));
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            Interop.WidgetApplication.WidgetApplication_RegisterWidgetCreatingFunction(swigCPtr, ref widgetName, CreateWidgetFunction.getCPtr(createWidgetFunction));
+            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
         }
 
         public void AddWidgetInstance( Widget widget )

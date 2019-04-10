@@ -32,13 +32,13 @@ namespace Tizen.NUI
         /// </summary>
         /// <param name="bufferFormat">The map of names and types that describes the components of the buffer.</param>
         /// <since_tizen> 3 </since_tizen>
-        public PropertyBuffer(PropertyMap bufferFormat) : this(NDalicPINVOKE.PropertyBuffer_New(PropertyMap.getCPtr(bufferFormat)), true)
+        public PropertyBuffer(PropertyMap bufferFormat) : this(Interop.PropertyBuffer.PropertyBuffer_New(PropertyMap.getCPtr(bufferFormat)), true)
         {
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
 
         }
 
-        internal PropertyBuffer(global::System.IntPtr cPtr, bool cMemoryOwn) : base(NDalicPINVOKE.PropertyBuffer_SWIGUpcast(cPtr), cMemoryOwn)
+        internal PropertyBuffer(global::System.IntPtr cPtr, bool cMemoryOwn) : base(Interop.PropertyBuffer.PropertyBuffer_SWIGUpcast(cPtr), cMemoryOwn)
         {
             swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
         }
@@ -54,8 +54,8 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public void SetData(System.IntPtr data, uint size)
         {
-            NDalicPINVOKE.PropertyBuffer_SetData(swigCPtr, data, size);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            Interop.PropertyBuffer.PropertyBuffer_SetData(swigCPtr, data, size);
+            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
         }
 
         /// <summary>
@@ -65,8 +65,8 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public uint GetSize()
         {
-            uint ret = NDalicPINVOKE.PropertyBuffer_GetSize(swigCPtr);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            uint ret = Interop.PropertyBuffer.PropertyBuffer_GetSize(swigCPtr);
+            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
             return ret;
         }
 
@@ -103,7 +103,7 @@ namespace Tizen.NUI
                 if (swigCMemOwn)
                 {
                     swigCMemOwn = false;
-                    NDalicPINVOKE.delete_PropertyBuffer(swigCPtr);
+                    Interop.PropertyBuffer.delete_PropertyBuffer(swigCPtr);
                 }
                 swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
             }

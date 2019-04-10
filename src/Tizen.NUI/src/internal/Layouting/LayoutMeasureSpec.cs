@@ -54,21 +54,21 @@ namespace Tizen.NUI
                     if (swigCMemOwn)
                     {
                         swigCMemOwn = false;
-                        LayoutPINVOKE.delete_MeasureSpec(swigCPtr);
+                        Interop.MeasureSpec.delete_MeasureSpec(swigCPtr);
                     }
                     swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
                 }
             }
         }
 
-        public LayoutMeasureSpec(LayoutLength measureSpec, LayoutMeasureSpec.ModeType mode) : this(LayoutPINVOKE.new_MeasureSpec__SWIG_0(LayoutLength.getCPtr(measureSpec), (int)mode), true)
+        public LayoutMeasureSpec(LayoutLength measureSpec, LayoutMeasureSpec.ModeType mode) : this(Interop.MeasureSpec.new_MeasureSpec__SWIG_0(LayoutLength.getCPtr(measureSpec), (int)mode), true)
         {
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
         }
 
-        public LayoutMeasureSpec(int measureSpec) : this(LayoutPINVOKE.new_MeasureSpec__SWIG_1(measureSpec), true)
+        public LayoutMeasureSpec(int measureSpec) : this(Interop.MeasureSpec.new_MeasureSpec__SWIG_1(measureSpec), true)
         {
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
         }
 
         public static bool operator ==(LayoutMeasureSpec r1, LayoutMeasureSpec r2)
@@ -109,29 +109,29 @@ namespace Tizen.NUI
 
         private bool EqualTo(LayoutMeasureSpec value)
         {
-            bool ret = LayoutPINVOKE.MeasureSpec_EqualTo(swigCPtr, LayoutMeasureSpec.getCPtr(value));
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            bool ret = Interop.MeasureSpec.MeasureSpec_EqualTo(swigCPtr, LayoutMeasureSpec.getCPtr(value));
+            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
             return ret;
         }
 
         private bool NotEqualTo(LayoutMeasureSpec value)
         {
-            bool ret = LayoutPINVOKE.MeasureSpec_NotEqualTo(swigCPtr, LayoutMeasureSpec.getCPtr(value));
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            bool ret = Interop.MeasureSpec.MeasureSpec_NotEqualTo(swigCPtr, LayoutMeasureSpec.getCPtr(value));
+            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
             return ret;
         }
 
         private LayoutMeasureSpec.ModeType GetMode()
         {
-            LayoutMeasureSpec.ModeType ret = (LayoutMeasureSpec.ModeType)LayoutPINVOKE.MeasureSpec_GetMode(swigCPtr);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            LayoutMeasureSpec.ModeType ret = (LayoutMeasureSpec.ModeType)Interop.MeasureSpec.MeasureSpec_GetMode(swigCPtr);
+            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
             return ret;
         }
 
         private int GetSize()
         {
-            int ret = LayoutPINVOKE.MeasureSpec_GetSize(swigCPtr);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            int ret = Interop.MeasureSpec.MeasureSpec_GetSize(swigCPtr);
+            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
             return ret;
         }
 
@@ -144,8 +144,8 @@ namespace Tizen.NUI
         /// <returns>A new measure spec with the adjusted values.</returns>
         public static LayoutMeasureSpec Adjust(LayoutMeasureSpec measureSpec, int delta)
         {
-            LayoutMeasureSpec ret = new LayoutMeasureSpec(LayoutPINVOKE.MeasureSpec_Adjust(LayoutMeasureSpec.getCPtr(measureSpec), delta), true);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            LayoutMeasureSpec ret = new LayoutMeasureSpec(Interop.MeasureSpec.MeasureSpec_Adjust(LayoutMeasureSpec.getCPtr(measureSpec), delta), true);
+            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
             return ret;
         }
 
@@ -153,13 +153,13 @@ namespace Tizen.NUI
         {
             set
             {
-                LayoutPINVOKE.MeasureSpec_mSize_set(swigCPtr, value);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                Interop.MeasureSpec.MeasureSpec_mSize_set(swigCPtr, value);
+                if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
             }
             get
             {
-                int ret = LayoutPINVOKE.MeasureSpec_mSize_get(swigCPtr);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                int ret = Interop.MeasureSpec.MeasureSpec_mSize_get(swigCPtr);
+                if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
                 return ret;
             }
         }
@@ -168,13 +168,13 @@ namespace Tizen.NUI
         {
             set
             {
-                LayoutPINVOKE.MeasureSpec_mMode_set(swigCPtr, (int)value);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                Interop.MeasureSpec.MeasureSpec_mMode_set(swigCPtr, (int)value);
+                if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
             }
             get
             {
-                LayoutMeasureSpec.ModeType ret = (LayoutMeasureSpec.ModeType)LayoutPINVOKE.MeasureSpec_mMode_get(swigCPtr);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                LayoutMeasureSpec.ModeType ret = (LayoutMeasureSpec.ModeType)Interop.MeasureSpec.MeasureSpec_mMode_get(swigCPtr);
+                if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
                 return ret;
             }
         }

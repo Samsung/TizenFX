@@ -416,12 +416,12 @@ namespace Tizen.NUI.UIComponents
         /// Only the derived versions can be instantiated.<br />
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        public Button() : this(NDalicPINVOKE.new_Button__SWIG_0(), true)
+        public Button() : this(Interop.Button.new_Button__SWIG_0(), true)
         {
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
         }
 
-        internal Button(global::System.IntPtr cPtr, bool cMemoryOwn) : base(NDalicPINVOKE.Button_SWIGUpcast(cPtr), cMemoryOwn)
+        internal Button(global::System.IntPtr cPtr, bool cMemoryOwn) : base(Interop.Button.Button_SWIGUpcast(cPtr), cMemoryOwn)
         {
             swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
         }
@@ -898,29 +898,29 @@ namespace Tizen.NUI.UIComponents
 
         internal ButtonSignal PressedSignal()
         {
-            ButtonSignal ret = new ButtonSignal(NDalicPINVOKE.Button_PressedSignal(swigCPtr), false);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            ButtonSignal ret = new ButtonSignal(Interop.Button.Button_PressedSignal(swigCPtr), false);
+            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
             return ret;
         }
 
         internal ButtonSignal ReleasedSignal()
         {
-            ButtonSignal ret = new ButtonSignal(NDalicPINVOKE.Button_ReleasedSignal(swigCPtr), false);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            ButtonSignal ret = new ButtonSignal(Interop.Button.Button_ReleasedSignal(swigCPtr), false);
+            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
             return ret;
         }
 
         internal ButtonSignal ClickedSignal()
         {
-            ButtonSignal ret = new ButtonSignal(NDalicPINVOKE.Button_ClickedSignal(swigCPtr), false);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            ButtonSignal ret = new ButtonSignal(Interop.Button.Button_ClickedSignal(swigCPtr), false);
+            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
             return ret;
         }
 
         internal ButtonSignal StateChangedSignal()
         {
-            ButtonSignal ret = new ButtonSignal(NDalicPINVOKE.Button_StateChangedSignal(swigCPtr), false);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            ButtonSignal ret = new ButtonSignal(Interop.Button.Button_StateChangedSignal(swigCPtr), false);
+            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
             return ret;
         }
 
@@ -956,7 +956,7 @@ namespace Tizen.NUI.UIComponents
                 if (swigCMemOwn)
                 {
                     swigCMemOwn = false;
-                    NDalicPINVOKE.delete_Button(swigCPtr);
+                    Interop.Button.delete_Button(swigCPtr);
                 }
                 swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
             }
@@ -1035,25 +1035,25 @@ namespace Tizen.NUI.UIComponents
 
         internal new class Property
         {
-            internal static readonly int UNSELECTED_VISUAL = NDalicManualPINVOKE.Button_Property_UNSELECTED_VISUAL_get();
-            internal static readonly int SELECTED_VISUAL = NDalicManualPINVOKE.Button_Property_SELECTED_VISUAL_get();
-            internal static readonly int DISABLED_SELECTED_VISUAL = NDalicManualPINVOKE.Button_Property_DISABLED_SELECTED_VISUAL_get();
-            internal static readonly int DISABLED_UNSELECTED_VISUAL = NDalicManualPINVOKE.Button_Property_DISABLED_UNSELECTED_VISUAL_get();
-            internal static readonly int UNSELECTED_BACKGROUND_VISUAL = NDalicManualPINVOKE.Button_Property_UNSELECTED_BACKGROUND_VISUAL_get();
-            internal static readonly int SELECTED_BACKGROUND_VISUAL = NDalicManualPINVOKE.Button_Property_SELECTED_BACKGROUND_VISUAL_get();
-            internal static readonly int DISABLED_UNSELECTED_BACKGROUND_VISUAL = NDalicManualPINVOKE.Button_Property_DISABLED_UNSELECTED_BACKGROUND_VISUAL_get();
-            internal static readonly int DISABLED_SELECTED_BACKGROUND_VISUAL = NDalicManualPINVOKE.Button_Property_DISABLED_SELECTED_BACKGROUND_VISUAL_get();
-            internal static readonly int LABEL_RELATIVE_ALIGNMENT = NDalicManualPINVOKE.Button_Property_LABEL_RELATIVE_ALIGNMENT_get();
-            internal static readonly int LABEL_PADDING = NDalicManualPINVOKE.Button_Property_LABEL_PADDING_get();
-            internal static readonly int FOREGROUND_VISUAL_PADDING = NDalicManualPINVOKE.Button_Property_VISUAL_PADDING_get();
-            internal static readonly int AUTO_REPEATING = NDalicPINVOKE.Button_Property_AUTO_REPEATING_get();
-            internal static readonly int INITIAL_AUTO_REPEATING_DELAY = NDalicPINVOKE.Button_Property_INITIAL_AUTO_REPEATING_DELAY_get();
-            internal static readonly int NEXT_AUTO_REPEATING_DELAY = NDalicPINVOKE.Button_Property_NEXT_AUTO_REPEATING_DELAY_get();
-            internal static readonly int TOGGLABLE = NDalicPINVOKE.Button_Property_TOGGLABLE_get();
-            internal static readonly int SELECTED = NDalicPINVOKE.Button_Property_SELECTED_get();
-            internal static readonly int UNSELECTED_COLOR = NDalicPINVOKE.Button_Property_UNSELECTED_COLOR_get();
-            internal static readonly int SELECTED_COLOR = NDalicPINVOKE.Button_Property_SELECTED_COLOR_get();
-            internal static readonly int LABEL = NDalicPINVOKE.Button_Property_LABEL_get();
+            internal static readonly int UNSELECTED_VISUAL = Interop.Button.Button_Property_UNSELECTED_VISUAL_get();
+            internal static readonly int SELECTED_VISUAL = Interop.Button.Button_Property_SELECTED_VISUAL_get();
+            internal static readonly int DISABLED_SELECTED_VISUAL = Interop.Button.Button_Property_DISABLED_SELECTED_VISUAL_get();
+            internal static readonly int DISABLED_UNSELECTED_VISUAL = Interop.Button.Button_Property_DISABLED_UNSELECTED_VISUAL_get();
+            internal static readonly int UNSELECTED_BACKGROUND_VISUAL = Interop.Button.Button_Property_UNSELECTED_BACKGROUND_VISUAL_get();
+            internal static readonly int SELECTED_BACKGROUND_VISUAL = Interop.Button.Button_Property_SELECTED_BACKGROUND_VISUAL_get();
+            internal static readonly int DISABLED_UNSELECTED_BACKGROUND_VISUAL = Interop.Button.Button_Property_DISABLED_UNSELECTED_BACKGROUND_VISUAL_get();
+            internal static readonly int DISABLED_SELECTED_BACKGROUND_VISUAL = Interop.Button.Button_Property_DISABLED_SELECTED_BACKGROUND_VISUAL_get();
+            internal static readonly int LABEL_RELATIVE_ALIGNMENT = Interop.Button.Button_Property_LABEL_RELATIVE_ALIGNMENT_get();
+            internal static readonly int LABEL_PADDING = Interop.Button.Button_Property_LABEL_PADDING_get();
+            internal static readonly int FOREGROUND_VISUAL_PADDING = Interop.Button.Button_Property_VISUAL_PADDING_get();
+            internal static readonly int AUTO_REPEATING = Interop.Button.Button_Property_AUTO_REPEATING_get();
+            internal static readonly int INITIAL_AUTO_REPEATING_DELAY = Interop.Button.Button_Property_INITIAL_AUTO_REPEATING_DELAY_get();
+            internal static readonly int NEXT_AUTO_REPEATING_DELAY = Interop.Button.Button_Property_NEXT_AUTO_REPEATING_DELAY_get();
+            internal static readonly int TOGGLABLE = Interop.Button.Button_Property_TOGGLABLE_get();
+            internal static readonly int SELECTED = Interop.Button.Button_Property_SELECTED_get();
+            internal static readonly int UNSELECTED_COLOR = Interop.Button.Button_Property_UNSELECTED_COLOR_get();
+            internal static readonly int SELECTED_COLOR = Interop.Button.Button_Property_SELECTED_COLOR_get();
+            internal static readonly int LABEL = Interop.Button.Button_Property_LABEL_get();
         }
     }
 }

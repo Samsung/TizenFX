@@ -106,26 +106,26 @@ namespace Tizen.NUI
                 if (swigCMemOwn)
                 {
                     swigCMemOwn = false;
-                    LayoutPINVOKE.delete_MeasuredSize(swigCPtr);
+                    Interop.MeasuredSize.delete_MeasuredSize(swigCPtr);
                 }
                 swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
             }
             disposed = true;
         }
 
-        public MeasuredSize() : this(LayoutPINVOKE.new_MeasuredSize__SWIG_0(), true)
+        public MeasuredSize() : this(Interop.MeasuredSize.new_MeasuredSize__SWIG_0(), true)
         {
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
         }
 
-        public MeasuredSize(LayoutLength measuredSize) : this(LayoutPINVOKE.new_MeasuredSize__SWIG_1(LayoutLength.getCPtr(measuredSize)), true)
+        public MeasuredSize(LayoutLength measuredSize) : this(Interop.MeasuredSize.new_MeasuredSize__SWIG_1(LayoutLength.getCPtr(measuredSize)), true)
         {
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
         }
 
-        public MeasuredSize(LayoutLength measuredSize, MeasuredSize.StateType state) : this(LayoutPINVOKE.new_MeasuredSize__SWIG_2(LayoutLength.getCPtr(measuredSize), (int)state), true)
+        public MeasuredSize(LayoutLength measuredSize, MeasuredSize.StateType state) : this(Interop.MeasuredSize.new_MeasuredSize__SWIG_2(LayoutLength.getCPtr(measuredSize), (int)state), true)
         {
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
         }
 
         /// <summary>
@@ -159,15 +159,15 @@ namespace Tizen.NUI
 
         private bool EqualTo(MeasuredSize value)
         {
-            bool ret = LayoutPINVOKE.MeasuredSize_EqualTo(swigCPtr, MeasuredSize.getCPtr(value));
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            bool ret = Interop.MeasuredSize.MeasuredSize_EqualTo(swigCPtr, MeasuredSize.getCPtr(value));
+            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
             return ret;
         }
 
         private bool NotEqualTo(MeasuredSize value)
         {
-            bool ret = LayoutPINVOKE.MeasuredSize_NotEqualTo(swigCPtr, MeasuredSize.getCPtr(value));
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            bool ret = Interop.MeasuredSize.MeasuredSize_NotEqualTo(swigCPtr, MeasuredSize.getCPtr(value));
+            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
             return ret;
         }
 
@@ -185,14 +185,14 @@ namespace Tizen.NUI
 
         private void SetState(MeasuredSize.StateType state)
         {
-            LayoutPINVOKE.MeasuredSize_SetState(swigCPtr, (int)state);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            Interop.MeasuredSize.MeasuredSize_SetState(swigCPtr, (int)state);
+            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
         }
 
         private MeasuredSize.StateType GetState()
         {
-            MeasuredSize.StateType ret = (MeasuredSize.StateType)LayoutPINVOKE.MeasuredSize_GetState(swigCPtr);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            MeasuredSize.StateType ret = (MeasuredSize.StateType)Interop.MeasuredSize.MeasuredSize_GetState(swigCPtr);
+            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
             return ret;
         }
 
@@ -210,14 +210,14 @@ namespace Tizen.NUI
 
         private void SetSize(LayoutLength size)
         {
-            LayoutPINVOKE.MeasuredSize_SetSize(swigCPtr, LayoutLength.getCPtr(size));
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            Interop.MeasuredSize.MeasuredSize_SetSize(swigCPtr, LayoutLength.getCPtr(size));
+            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
         }
 
         private LayoutLength GetSize()
         {
-            LayoutLength ret = new LayoutLength(LayoutPINVOKE.MeasuredSize_GetSize(swigCPtr), true);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            LayoutLength ret = new LayoutLength(Interop.MeasuredSize.MeasuredSize_GetSize(swigCPtr), true);
+            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
             return ret;
         }
 

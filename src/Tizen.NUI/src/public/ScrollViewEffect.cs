@@ -30,9 +30,9 @@ namespace Tizen.NUI
         /// The constructor.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        public ScrollViewEffect() : this(NDalicPINVOKE.new_ScrollViewEffect(), true)
+        public ScrollViewEffect() : this(Interop.ScrollView.new_ScrollViewEffect(), true)
         {
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
         }
 
         internal static global::System.Runtime.InteropServices.HandleRef getCPtr(ScrollViewEffect obj)
@@ -40,7 +40,7 @@ namespace Tizen.NUI
             return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.swigCPtr;
         }
 
-        internal ScrollViewEffect(global::System.IntPtr cPtr, bool cMemoryOwn) : base(NDalicPINVOKE.ScrollViewEffect_SWIGUpcast(cPtr), cMemoryOwn)
+        internal ScrollViewEffect(global::System.IntPtr cPtr, bool cMemoryOwn) : base(Interop.ScrollView.ScrollViewEffect_SWIGUpcast(cPtr), cMemoryOwn)
         {
             swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
         }
@@ -73,7 +73,7 @@ namespace Tizen.NUI
                 if (swigCMemOwn)
                 {
                     swigCMemOwn = false;
-                    NDalicPINVOKE.delete_ScrollViewEffect(swigCPtr);
+                    Interop.ScrollView.delete_ScrollViewEffect(swigCPtr);
                 }
                 swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
             }

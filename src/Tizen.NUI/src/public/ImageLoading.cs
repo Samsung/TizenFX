@@ -42,8 +42,8 @@ namespace Tizen.NUI
         public static PixelBuffer LoadImageFromFile(string url, Size2D size, FittingModeType fittingMode, SamplingModeType samplingMode, bool orientationCorrection)
         {
             var uSize = new Uint16Pair((uint)size.Width, (uint)size.Height);
-            PixelBuffer ret = new PixelBuffer(NDalicPINVOKE.LoadImageFromFile__SWIG_0(url, Uint16Pair.getCPtr(uSize), (int)fittingMode, (int)samplingMode, orientationCorrection), true);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            PixelBuffer ret = new PixelBuffer(Interop.ImageLoading.LoadImageFromFile__SWIG_0(url, Uint16Pair.getCPtr(uSize), (int)fittingMode, (int)samplingMode, orientationCorrection), true);
+            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
             return ret;
         }
 
@@ -61,8 +61,8 @@ namespace Tizen.NUI
         public static PixelBuffer LoadImageFromFile(string url, Size2D size, FittingModeType fittingMode, SamplingModeType samplingMode)
         {
             var uSize = new Uint16Pair((uint)size.Width, (uint)size.Height);
-            PixelBuffer ret = new PixelBuffer(NDalicPINVOKE.LoadImageFromFile__SWIG_1(url, Uint16Pair.getCPtr(uSize), (int)fittingMode, (int)samplingMode), true);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            PixelBuffer ret = new PixelBuffer(Interop.ImageLoading.LoadImageFromFile__SWIG_1(url, Uint16Pair.getCPtr(uSize), (int)fittingMode, (int)samplingMode), true);
+            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
             return ret;
         }
 
@@ -79,8 +79,8 @@ namespace Tizen.NUI
         public static PixelBuffer LoadImageFromFile(string url, Size2D size, FittingModeType fittingMode)
         {
             var uSize = new Uint16Pair((uint)size.Width, (uint)size.Height);
-            PixelBuffer ret = new PixelBuffer(NDalicPINVOKE.LoadImageFromFile__SWIG_2(url, Uint16Pair.getCPtr(uSize), (int)fittingMode), true);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            PixelBuffer ret = new PixelBuffer(Interop.ImageLoading.LoadImageFromFile__SWIG_2(url, Uint16Pair.getCPtr(uSize), (int)fittingMode), true);
+            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
             return ret;
         }
 
@@ -96,8 +96,8 @@ namespace Tizen.NUI
         public static PixelBuffer LoadImageFromFile(string url, Size2D size)
         {
             var uSize = new Uint16Pair((uint)size.Width, (uint)size.Height);
-            PixelBuffer ret = new PixelBuffer(NDalicPINVOKE.LoadImageFromFile__SWIG_3(url, Uint16Pair.getCPtr(uSize)), true);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            PixelBuffer ret = new PixelBuffer(Interop.ImageLoading.LoadImageFromFile__SWIG_3(url, Uint16Pair.getCPtr(uSize)), true);
+            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
             return ret;
         }
 
@@ -111,8 +111,8 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static PixelBuffer LoadImageFromFile(string url)
         {
-            PixelBuffer ret = new PixelBuffer(NDalicPINVOKE.LoadImageFromFile__SWIG_4(url), true);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            PixelBuffer ret = new PixelBuffer(Interop.ImageLoading.LoadImageFromFile__SWIG_4(url), true);
+            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
             return ret;
         }
 
@@ -131,9 +131,9 @@ namespace Tizen.NUI
         public static Size2D GetClosestImageSize(string filename, Size2D size, FittingModeType fittingMode, SamplingModeType samplingMode, bool orientationCorrection)
         {
             var uSize = new Uint16Pair((uint)size.Width, (uint)size.Height);
-            var val = new Uint16Pair(NDalicPINVOKE.GetClosestImageSize__SWIG_0(filename, Uint16Pair.getCPtr(uSize), (int)fittingMode, (int)samplingMode, orientationCorrection), true);
+            var val = new Uint16Pair(Interop.ImageLoading.GetClosestImageSize__SWIG_0(filename, Uint16Pair.getCPtr(uSize), (int)fittingMode, (int)samplingMode, orientationCorrection), true);
             Size2D ret = new Size2D(val.GetWidth(), val.GetHeight());
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
             return ret;
         }
 
@@ -151,9 +151,9 @@ namespace Tizen.NUI
         public static Size2D GetClosestImageSize(string filename, Size2D size, FittingModeType fittingMode, SamplingModeType samplingMode)
         {
             var uSize = new Uint16Pair((uint)size.Width, (uint)size.Height);
-            var val = new Uint16Pair(NDalicPINVOKE.GetClosestImageSize__SWIG_1(filename, Uint16Pair.getCPtr(uSize), (int)fittingMode, (int)samplingMode), true);
+            var val = new Uint16Pair(Interop.ImageLoading.GetClosestImageSize__SWIG_1(filename, Uint16Pair.getCPtr(uSize), (int)fittingMode, (int)samplingMode), true);
             Size2D ret = new Size2D(val.GetWidth(), val.GetHeight());
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
             return ret;
         }
 
@@ -170,9 +170,9 @@ namespace Tizen.NUI
         public static Size2D GetClosestImageSize(string filename, Size2D size, FittingModeType fittingMode)
         {
             var uSize = new Uint16Pair((uint)size.Width, (uint)size.Height);
-            var val = new Uint16Pair(NDalicPINVOKE.GetClosestImageSize__SWIG_2(filename, Uint16Pair.getCPtr(uSize), (int)fittingMode), true);
+            var val = new Uint16Pair(Interop.ImageLoading.GetClosestImageSize__SWIG_2(filename, Uint16Pair.getCPtr(uSize), (int)fittingMode), true);
             Size2D ret = new Size2D(val.GetWidth(), val.GetHeight());
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
             return ret;
         }
 
@@ -188,9 +188,9 @@ namespace Tizen.NUI
         public static Size2D GetClosestImageSize(string filename, Size2D size)
         {
             var uSize = new Uint16Pair((uint)size.Width, (uint)size.Height);
-            var val = new Uint16Pair(NDalicPINVOKE.GetClosestImageSize__SWIG_3(filename, Uint16Pair.getCPtr(uSize)), true);
+            var val = new Uint16Pair(Interop.ImageLoading.GetClosestImageSize__SWIG_3(filename, Uint16Pair.getCPtr(uSize)), true);
             Size2D ret = new Size2D(val.GetWidth(), val.GetHeight());
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
             return ret;
         }
 
@@ -204,9 +204,9 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static Size2D GetClosestImageSize(string filename)
         {
-            var val = new Uint16Pair(NDalicPINVOKE.GetClosestImageSize__SWIG_4(filename), true);
+            var val = new Uint16Pair(Interop.ImageLoading.GetClosestImageSize__SWIG_4(filename), true);
             Size2D ret = new Size2D(val.GetWidth(), val.GetHeight());
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
             return ret;
         }
 
@@ -220,9 +220,9 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static Size2D GetOriginalImageSize(string filename)
         {
-            var val = new Uint16Pair(NDalicPINVOKE.GetOriginalImageSize(filename), true);
+            var val = new Uint16Pair(Interop.ImageLoading.GetOriginalImageSize(filename), true);
             Size2D ret = new Size2D(val.GetWidth(), val.GetHeight());
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
             return ret;
         }
 
@@ -241,8 +241,8 @@ namespace Tizen.NUI
         public static PixelBuffer DownloadImageSynchronously(string url, Size2D size, FittingModeType fittingMode, SamplingModeType samplingMode, bool orientationCorrection)
         {
             var uSize = new Uint16Pair((uint)size.Width, (uint)size.Height);
-            PixelBuffer ret = new PixelBuffer(NDalicPINVOKE.DownloadImageSynchronously__SWIG_0(url, Uint16Pair.getCPtr(uSize), (int)fittingMode, (int)samplingMode, orientationCorrection), true);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            PixelBuffer ret = new PixelBuffer(Interop.ImageLoading.DownloadImageSynchronously__SWIG_0(url, Uint16Pair.getCPtr(uSize), (int)fittingMode, (int)samplingMode, orientationCorrection), true);
+            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
             return ret;
         }
 
@@ -260,8 +260,8 @@ namespace Tizen.NUI
         public static PixelBuffer DownloadImageSynchronously(string url, Size2D size, FittingModeType fittingMode, SamplingModeType samplingMode)
         {
             var uSize = new Uint16Pair((uint)size.Width, (uint)size.Height);
-            PixelBuffer ret = new PixelBuffer(NDalicPINVOKE.DownloadImageSynchronously__SWIG_1(url, Uint16Pair.getCPtr(uSize), (int)fittingMode, (int)samplingMode), true);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            PixelBuffer ret = new PixelBuffer(Interop.ImageLoading.DownloadImageSynchronously__SWIG_1(url, Uint16Pair.getCPtr(uSize), (int)fittingMode, (int)samplingMode), true);
+            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
             return ret;
         }
 
@@ -278,8 +278,8 @@ namespace Tizen.NUI
         public static PixelBuffer DownloadImageSynchronously(string url, Size2D size, FittingModeType fittingMode)
         {
             var uSize = new Uint16Pair((uint)size.Width, (uint)size.Height);
-            PixelBuffer ret = new PixelBuffer(NDalicPINVOKE.DownloadImageSynchronously__SWIG_2(url, Uint16Pair.getCPtr(uSize), (int)fittingMode), true);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            PixelBuffer ret = new PixelBuffer(Interop.ImageLoading.DownloadImageSynchronously__SWIG_2(url, Uint16Pair.getCPtr(uSize), (int)fittingMode), true);
+            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
             return ret;
         }
 
@@ -295,8 +295,8 @@ namespace Tizen.NUI
         public static PixelBuffer DownloadImageSynchronously(string url, Size2D size)
         {
             var uSize = new Uint16Pair((uint)size.Width, (uint)size.Height);
-            PixelBuffer ret = new PixelBuffer(NDalicPINVOKE.DownloadImageSynchronously__SWIG_3(url, Uint16Pair.getCPtr(uSize)), true);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            PixelBuffer ret = new PixelBuffer(Interop.ImageLoading.DownloadImageSynchronously__SWIG_3(url, Uint16Pair.getCPtr(uSize)), true);
+            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
             return ret;
         }
 
@@ -310,8 +310,8 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static PixelBuffer DownloadImageSynchronously(string url)
         {
-            PixelBuffer ret = new PixelBuffer(NDalicPINVOKE.DownloadImageSynchronously__SWIG_4(url), true);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            PixelBuffer ret = new PixelBuffer(Interop.ImageLoading.DownloadImageSynchronously__SWIG_4(url), true);
+            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
             return ret;
         }
 

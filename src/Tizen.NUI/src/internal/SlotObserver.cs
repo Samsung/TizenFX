@@ -110,7 +110,7 @@ namespace Tizen.NUI
                 if (swigCMemOwn)
                 {
                     swigCMemOwn = false;
-                    NDalicPINVOKE.delete_SlotObserver(swigCPtr);
+                    delete_SlotObserver(swigCPtr);
                 }
                 swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
             }
@@ -125,9 +125,18 @@ namespace Tizen.NUI
         /// <since_tizen> 4 </since_tizen>
         public virtual void SlotDisconnected(SWIGTYPE_p_Dali__CallbackBase callback)
         {
-            NDalicPINVOKE.SlotObserver_SlotDisconnected(swigCPtr, SWIGTYPE_p_Dali__CallbackBase.getCPtr(callback));
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            SlotObserver_SlotDisconnected(swigCPtr, SWIGTYPE_p_Dali__CallbackBase.getCPtr(callback));
+            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
         }
+
+
+        [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint = "CSharp_Dali_delete_SlotObserver")]
+        public static extern void delete_SlotObserver(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+
+        [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint = "CSharp_Dali_SlotObserver_SlotDisconnected")]
+        public static extern void SlotObserver_SlotDisconnected(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+
 
     }
 

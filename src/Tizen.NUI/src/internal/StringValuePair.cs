@@ -91,39 +91,39 @@ namespace Tizen.NUI
                 if (swigCMemOwn)
                 {
                     swigCMemOwn = false;
-                    NDalicPINVOKE.delete_StringValuePair(swigCPtr);
+                    Interop.StringValuePair.delete_StringValuePair(swigCPtr);
                 }
                 swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
             }
 
             disposed = true;
         }
-        public StringValuePair() : this(NDalicPINVOKE.new_StringValuePair__SWIG_0(), true)
+        public StringValuePair() : this(Interop.StringValuePair.new_StringValuePair__SWIG_0(), true)
         {
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
         }
 
-        public StringValuePair(string t, PropertyValue u) : this(NDalicPINVOKE.new_StringValuePair__SWIG_1(t, PropertyValue.getCPtr(u)), true)
+        public StringValuePair(string t, PropertyValue u) : this(Interop.StringValuePair.new_StringValuePair__SWIG_1(t, PropertyValue.getCPtr(u)), true)
         {
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
         }
 
-        public StringValuePair(StringValuePair p) : this(NDalicPINVOKE.new_StringValuePair__SWIG_2(StringValuePair.getCPtr(p)), true)
+        public StringValuePair(StringValuePair p) : this(Interop.StringValuePair.new_StringValuePair__SWIG_2(StringValuePair.getCPtr(p)), true)
         {
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
         }
 
         public string first
         {
             set
             {
-                NDalicPINVOKE.StringValuePair_first_set(swigCPtr, value);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                Interop.StringValuePair.StringValuePair_first_set(swigCPtr, value);
+                if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
             }
             get
             {
-                string ret = NDalicPINVOKE.StringValuePair_first_get(swigCPtr);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                string ret = Interop.StringValuePair.StringValuePair_first_get(swigCPtr);
+                if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
                 return ret;
             }
         }
@@ -132,14 +132,14 @@ namespace Tizen.NUI
         {
             set
             {
-                NDalicPINVOKE.StringValuePair_second_set(swigCPtr, PropertyValue.getCPtr(value));
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                Interop.StringValuePair.StringValuePair_second_set(swigCPtr, PropertyValue.getCPtr(value));
+                if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
             }
             get
             {
-                global::System.IntPtr cPtr = NDalicPINVOKE.StringValuePair_second_get(swigCPtr);
+                global::System.IntPtr cPtr = Interop.StringValuePair.StringValuePair_second_get(swigCPtr);
                 PropertyValue ret = (cPtr == global::System.IntPtr.Zero) ? null : new PropertyValue(cPtr, false);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
                 return ret;
             }
         }

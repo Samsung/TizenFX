@@ -92,7 +92,7 @@ namespace Tizen.NUI
                 if (swigCMemOwn)
                 {
                     swigCMemOwn = false;
-                    NDalicPINVOKE.delete_RenderTaskSignal(swigCPtr);
+                    Interop.RenderTask.delete_RenderTaskSignal(swigCPtr);
                 }
                 swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
             }
@@ -101,9 +101,9 @@ namespace Tizen.NUI
         }
 
 
-        public RenderTaskSignal() : this(NDalicPINVOKE.new_RenderTaskSignal(), true)
+        public RenderTaskSignal() : this(Interop.RenderTask.new_RenderTaskSignal(), true)
         {
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
         }
 
     }

@@ -22,7 +22,7 @@ namespace Tizen.NUI
     {
         private global::System.Runtime.InteropServices.HandleRef swigCPtr;
 
-        internal PathConstrainer(global::System.IntPtr cPtr, bool cMemoryOwn) : base(NDalicPINVOKE.PathConstrainer_SWIGUpcast(cPtr), cMemoryOwn)
+        internal PathConstrainer(global::System.IntPtr cPtr, bool cMemoryOwn) : base(Interop.PathConstrainer.PathConstrainer_SWIGUpcast(cPtr), cMemoryOwn)
         {
             swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
         }
@@ -57,7 +57,7 @@ namespace Tizen.NUI
                 if (swigCMemOwn)
                 {
                     swigCMemOwn = false;
-                    NDalicPINVOKE.delete_PathConstrainer(swigCPtr);
+                    Interop.PathConstrainer.delete_PathConstrainer(swigCPtr);
                 }
                 swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
             }
@@ -146,7 +146,7 @@ namespace Tizen.NUI
                     if (swigCMemOwn)
                     {
                         swigCMemOwn = false;
-                        NDalicPINVOKE.delete_PathConstrainer_Property(swigCPtr);
+                        Interop.PathConstrainer.delete_PathConstrainer_Property(swigCPtr);
                     }
                     swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
                 }
@@ -155,57 +155,57 @@ namespace Tizen.NUI
             }
 
             /// <since_tizen> 3 </since_tizen>
-            public Property() : this(NDalicPINVOKE.new_PathConstrainer_Property(), true)
+            public Property() : this(Interop.PathConstrainer.new_PathConstrainer_Property(), true)
             {
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
             }
 
-            internal static readonly int FORWARD = NDalicPINVOKE.PathConstrainer_Property_FORWARD_get();
-            internal static readonly int POINTS = NDalicPINVOKE.PathConstrainer_Property_POINTS_get();
-            internal static readonly int CONTROL_POINTS = NDalicPINVOKE.PathConstrainer_Property_CONTROL_POINTS_get();
+            internal static readonly int FORWARD = Interop.PathConstrainer.PathConstrainer_Property_FORWARD_get();
+            internal static readonly int POINTS = Interop.PathConstrainer.PathConstrainer_Property_POINTS_get();
+            internal static readonly int CONTROL_POINTS = Interop.PathConstrainer.PathConstrainer_Property_CONTROL_POINTS_get();
 
         }
 
-        public PathConstrainer() : this(NDalicPINVOKE.PathConstrainer_New(), true)
+        public PathConstrainer() : this(Interop.PathConstrainer.PathConstrainer_New(), true)
         {
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
 
         }
         public static PathConstrainer DownCast(BaseHandle handle)
         {
             PathConstrainer ret =  Registry.GetManagedBaseHandleFromNativePtr(handle) as PathConstrainer;
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
             return ret;
         }
 
-        internal PathConstrainer(PathConstrainer handle) : this(NDalicPINVOKE.new_PathConstrainer__SWIG_1(PathConstrainer.getCPtr(handle)), true)
+        internal PathConstrainer(PathConstrainer handle) : this(Interop.PathConstrainer.new_PathConstrainer__SWIG_1(PathConstrainer.getCPtr(handle)), true)
         {
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
         }
 
         internal PathConstrainer Assign(PathConstrainer rhs)
         {
-            PathConstrainer ret = new PathConstrainer(NDalicPINVOKE.PathConstrainer_Assign(swigCPtr, PathConstrainer.getCPtr(rhs)), false);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            PathConstrainer ret = new PathConstrainer(Interop.PathConstrainer.PathConstrainer_Assign(swigCPtr, PathConstrainer.getCPtr(rhs)), false);
+            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
             return ret;
         }
 
         public void Apply(Property target, Property source, Vector2 range, Vector2 wrap)
         {
-            NDalicPINVOKE.PathConstrainer_Apply__SWIG_0(swigCPtr, Property.getCPtr(target), Property.getCPtr(source), Vector2.getCPtr(range), Vector2.getCPtr(wrap));
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            Interop.PathConstrainer.PathConstrainer_Apply__SWIG_0(swigCPtr, Property.getCPtr(target), Property.getCPtr(source), Vector2.getCPtr(range), Vector2.getCPtr(wrap));
+            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
         }
 
         public void Apply(Property target, Property source, Vector2 range)
         {
-            NDalicPINVOKE.PathConstrainer_Apply__SWIG_1(swigCPtr, Property.getCPtr(target), Property.getCPtr(source), Vector2.getCPtr(range));
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            Interop.PathConstrainer.PathConstrainer_Apply__SWIG_1(swigCPtr, Property.getCPtr(target), Property.getCPtr(source), Vector2.getCPtr(range));
+            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
         }
 
         internal void Remove(Animatable target)
         {
-            NDalicPINVOKE.PathConstrainer_Remove(swigCPtr, Animatable.getCPtr(target));
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            Interop.PathConstrainer.PathConstrainer_Remove(swigCPtr, Animatable.getCPtr(target));
+            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
         }
 
         public Vector3 Forward

@@ -48,9 +48,9 @@ namespace Tizen.NUI
         /// The default constructor.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        public Wheel() : this(NDalicPINVOKE.new_Wheel__SWIG_0(), true)
+        public Wheel() : this(Interop.Wheel.new_Wheel__SWIG_0(), true)
         {
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
         }
 
         /// <summary>
@@ -63,9 +63,9 @@ namespace Tizen.NUI
         /// <param name="z">The offset of rolling (positive value means roll down or clockwise, and negative value means roll up or counter-clockwise).</param>
         /// <param name="timeStamp">The time the wheel is being rolled.</param>
         /// <since_tizen> 3 </since_tizen>
-        public Wheel(Wheel.WheelType type, int direction, uint modifiers, Vector2 point, int z, uint timeStamp) : this(NDalicPINVOKE.new_Wheel__SWIG_1((int)type, direction, modifiers, Vector2.getCPtr(point), z, timeStamp), true)
+        public Wheel(Wheel.WheelType type, int direction, uint modifiers, Vector2 point, int z, uint timeStamp) : this(Interop.Wheel.new_Wheel__SWIG_1((int)type, direction, modifiers, Vector2.getCPtr(point), z, timeStamp), true)
         {
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
         }
 
         internal Wheel(global::System.IntPtr cPtr, bool cMemoryOwn)
@@ -182,13 +182,13 @@ namespace Tizen.NUI
         {
             set
             {
-                NDalicPINVOKE.Wheel_type_set(swigCPtr, (int)value);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                Interop.Wheel.Wheel_type_set(swigCPtr, (int)value);
+                if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
             }
             get
             {
-                Wheel.WheelType ret = (Wheel.WheelType)NDalicPINVOKE.Wheel_type_get(swigCPtr);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                Wheel.WheelType ret = (Wheel.WheelType)Interop.Wheel.Wheel_type_get(swigCPtr);
+                if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
                 return ret;
             }
         }
@@ -197,13 +197,13 @@ namespace Tizen.NUI
         {
             set
             {
-                NDalicPINVOKE.Wheel_direction_set(swigCPtr, value);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                Interop.Wheel.Wheel_direction_set(swigCPtr, value);
+                if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
             }
             get
             {
-                int ret = NDalicPINVOKE.Wheel_direction_get(swigCPtr);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                int ret = Interop.Wheel.Wheel_direction_get(swigCPtr);
+                if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
                 return ret;
             }
         }
@@ -212,13 +212,13 @@ namespace Tizen.NUI
         {
             set
             {
-                NDalicPINVOKE.Wheel_modifiers_set(swigCPtr, value);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                Interop.Wheel.Wheel_modifiers_set(swigCPtr, value);
+                if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
             }
             get
             {
-                uint ret = NDalicPINVOKE.Wheel_modifiers_get(swigCPtr);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                uint ret = Interop.Wheel.Wheel_modifiers_get(swigCPtr);
+                if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
                 return ret;
             }
         }
@@ -227,14 +227,14 @@ namespace Tizen.NUI
         {
             set
             {
-                NDalicPINVOKE.Wheel_point_set(swigCPtr, Vector2.getCPtr(value));
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                Interop.Wheel.Wheel_point_set(swigCPtr, Vector2.getCPtr(value));
+                if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
             }
             get
             {
-                global::System.IntPtr cPtr = NDalicPINVOKE.Wheel_point_get(swigCPtr);
+                global::System.IntPtr cPtr = Interop.Wheel.Wheel_point_get(swigCPtr);
                 Vector2 ret = (cPtr == global::System.IntPtr.Zero) ? null : new Vector2(cPtr, false);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
                 return ret;
             }
         }
@@ -243,13 +243,13 @@ namespace Tizen.NUI
         {
             set
             {
-                NDalicPINVOKE.Wheel_z_set(swigCPtr, value);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                Interop.Wheel.Wheel_z_set(swigCPtr, value);
+                if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
             }
             get
             {
-                int ret = NDalicPINVOKE.Wheel_z_get(swigCPtr);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                int ret = Interop.Wheel.Wheel_z_get(swigCPtr);
+                if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
                 return ret;
             }
         }
@@ -258,13 +258,13 @@ namespace Tizen.NUI
         {
             set
             {
-                NDalicPINVOKE.Wheel_timeStamp_set(swigCPtr, value);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                Interop.Wheel.Wheel_timeStamp_set(swigCPtr, value);
+                if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
             }
             get
             {
-                uint ret = NDalicPINVOKE.Wheel_timeStamp_get(swigCPtr);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                uint ret = Interop.Wheel.Wheel_timeStamp_get(swigCPtr);
+                if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
                 return ret;
             }
         }
@@ -277,8 +277,8 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public bool IsShiftModifier()
         {
-            bool ret = NDalicPINVOKE.Wheel_IsShiftModifier(swigCPtr);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            bool ret = Interop.Wheel.Wheel_IsShiftModifier(swigCPtr);
+            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
             return ret;
         }
 
@@ -289,8 +289,8 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public bool IsCtrlModifier()
         {
-            bool ret = NDalicPINVOKE.Wheel_IsCtrlModifier(swigCPtr);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            bool ret = Interop.Wheel.Wheel_IsCtrlModifier(swigCPtr);
+            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
             return ret;
         }
 
@@ -301,8 +301,8 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public bool IsAltModifier()
         {
-            bool ret = NDalicPINVOKE.Wheel_IsAltModifier(swigCPtr);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            bool ret = Interop.Wheel.Wheel_IsAltModifier(swigCPtr);
+            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
             return ret;
         }
 
@@ -337,7 +337,7 @@ namespace Tizen.NUI
         internal static Wheel GetWheelFromPtr(global::System.IntPtr cPtr)
         {
             Wheel ret = new Wheel(cPtr, false);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
             return ret;
         }
 
@@ -369,7 +369,7 @@ namespace Tizen.NUI
                 if (swigCMemOwn)
                 {
                     swigCMemOwn = false;
-                    NDalicPINVOKE.delete_Wheel(swigCPtr);
+                    Interop.Wheel.delete_Wheel(swigCPtr);
                 }
                 swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
             }

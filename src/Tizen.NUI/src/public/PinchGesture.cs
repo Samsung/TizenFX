@@ -28,7 +28,7 @@ namespace Tizen.NUI
     {
         private global::System.Runtime.InteropServices.HandleRef swigCPtr;
 
-        internal PinchGesture(global::System.IntPtr cPtr, bool cMemoryOwn) : base(NDalicPINVOKE.PinchGesture_SWIGUpcast(cPtr), cMemoryOwn)
+        internal PinchGesture(global::System.IntPtr cPtr, bool cMemoryOwn) : base(Interop.PinchGesture.PinchGesture_SWIGUpcast(cPtr), cMemoryOwn)
         {
             swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
         }
@@ -92,22 +92,22 @@ namespace Tizen.NUI
         /// <param name="state">The state of the gesture.</param>
         /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public PinchGesture(Gesture.StateType state) : this(NDalicPINVOKE.new_PinchGesture__SWIG_0((int)state), true)
+        public PinchGesture(Gesture.StateType state) : this(Interop.PinchGesture.new_PinchGesture__SWIG_0((int)state), true)
         {
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
         }
 
         private float scale
         {
             set
             {
-                NDalicPINVOKE.PinchGesture_scale_set(swigCPtr, value);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                Interop.PinchGesture.PinchGesture_scale_set(swigCPtr, value);
+                if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
             }
             get
             {
-                float ret = NDalicPINVOKE.PinchGesture_scale_get(swigCPtr);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                float ret = Interop.PinchGesture.PinchGesture_scale_get(swigCPtr);
+                if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
                 return ret;
             }
         }
@@ -116,13 +116,13 @@ namespace Tizen.NUI
         {
             set
             {
-                NDalicPINVOKE.PinchGesture_speed_set(swigCPtr, value);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                Interop.PinchGesture.PinchGesture_speed_set(swigCPtr, value);
+                if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
             }
             get
             {
-                float ret = NDalicPINVOKE.PinchGesture_speed_get(swigCPtr);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                float ret = Interop.PinchGesture.PinchGesture_speed_get(swigCPtr);
+                if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
                 return ret;
             }
         }
@@ -131,14 +131,14 @@ namespace Tizen.NUI
         {
             set
             {
-                NDalicPINVOKE.PinchGesture_screenCenterPoint_set(swigCPtr, Vector2.getCPtr(value));
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                Interop.PinchGesture.PinchGesture_screenCenterPoint_set(swigCPtr, Vector2.getCPtr(value));
+                if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
             }
             get
             {
-                global::System.IntPtr cPtr = NDalicPINVOKE.PinchGesture_screenCenterPoint_get(swigCPtr);
+                global::System.IntPtr cPtr = Interop.PinchGesture.PinchGesture_screenCenterPoint_get(swigCPtr);
                 Vector2 ret = (cPtr == global::System.IntPtr.Zero) ? null : new Vector2(cPtr, false);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
                 return ret;
             }
         }
@@ -147,14 +147,14 @@ namespace Tizen.NUI
         {
             set
             {
-                NDalicPINVOKE.PinchGesture_localCenterPoint_set(swigCPtr, Vector2.getCPtr(value));
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                Interop.PinchGesture.PinchGesture_localCenterPoint_set(swigCPtr, Vector2.getCPtr(value));
+                if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
             }
             get
             {
-                global::System.IntPtr cPtr = NDalicPINVOKE.PinchGesture_localCenterPoint_get(swigCPtr);
+                global::System.IntPtr cPtr = Interop.PinchGesture.PinchGesture_localCenterPoint_get(swigCPtr);
                 Vector2 ret = (cPtr == global::System.IntPtr.Zero) ? null : new Vector2(cPtr, false);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
                 return ret;
             }
         }
@@ -167,7 +167,7 @@ namespace Tizen.NUI
         internal static PinchGesture GetPinchGestureFromPtr(global::System.IntPtr cPtr)
         {
             PinchGesture ret = new PinchGesture(cPtr, false);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
             return ret;
         }
 
@@ -198,7 +198,7 @@ namespace Tizen.NUI
                 if (swigCMemOwn)
                 {
                     swigCMemOwn = false;
-                    NDalicPINVOKE.delete_PinchGesture(swigCPtr);
+                    Interop.PinchGesture.delete_PinchGesture(swigCPtr);
                 }
                 swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
             }

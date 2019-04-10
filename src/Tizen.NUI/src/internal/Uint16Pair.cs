@@ -121,7 +121,7 @@ namespace Tizen.NUI
                 if (swigCMemOwn)
                 {
                     swigCMemOwn = false;
-                    NDalicPINVOKE.delete_Uint16Pair(swigCPtr);
+                    Interop.Uint16Pair.delete_Uint16Pair(swigCPtr);
                 }
                 swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
             }
@@ -157,9 +157,9 @@ namespace Tizen.NUI
         /// Default constructor for the(0, 0) tuple.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        public Uint16Pair() : this(NDalicPINVOKE.new_Uint16Pair__SWIG_0(), true)
+        public Uint16Pair() : this(Interop.Uint16Pair.new_Uint16Pair__SWIG_0(), true)
         {
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
         }
 
         /// <summary>
@@ -168,9 +168,9 @@ namespace Tizen.NUI
         /// <param name="width">The width or X dimension of the tuple. Make sure it is less than 65536.</param>
         /// <param name="height">The height or Y dimension of the tuple.Make sure it is less than 65536.</param>
         /// <since_tizen> 3 </since_tizen>
-        public Uint16Pair(uint width, uint height) : this(NDalicPINVOKE.new_Uint16Pair__SWIG_1(width, height), true)
+        public Uint16Pair(uint width, uint height) : this(Interop.Uint16Pair.new_Uint16Pair__SWIG_1(width, height), true)
         {
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
         }
 
         /// <summary>
@@ -178,9 +178,9 @@ namespace Tizen.NUI
         /// </summary>
         /// <param name="rhs">A reference to assign.</param>
         /// <since_tizen> 3 </since_tizen>
-        public Uint16Pair(Uint16Pair rhs) : this(NDalicPINVOKE.new_Uint16Pair__SWIG_2(Uint16Pair.getCPtr(rhs)), true)
+        public Uint16Pair(Uint16Pair rhs) : this(Interop.Uint16Pair.new_Uint16Pair__SWIG_2(Uint16Pair.getCPtr(rhs)), true)
         {
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
         }
 
         /// <summary>
@@ -190,8 +190,8 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public void SetWidth(ushort width)
         {
-            NDalicPINVOKE.Uint16Pair_SetWidth(swigCPtr, width);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            Interop.Uint16Pair.Uint16Pair_SetWidth(swigCPtr, width);
+            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
         }
 
         /// <summary>
@@ -203,8 +203,8 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public ushort GetWidth()
         {
-            ushort ret = NDalicPINVOKE.Uint16Pair_GetWidth(swigCPtr);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            ushort ret = Interop.Uint16Pair.Uint16Pair_GetWidth(swigCPtr);
+            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
             return ret;
         }
 
@@ -215,8 +215,8 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public void SetHeight(ushort height)
         {
-            NDalicPINVOKE.Uint16Pair_SetHeight(swigCPtr, height);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            Interop.Uint16Pair.Uint16Pair_SetHeight(swigCPtr, height);
+            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
         }
 
         /// <summary>
@@ -228,8 +228,8 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public ushort GetHeight()
         {
-            ushort ret = NDalicPINVOKE.Uint16Pair_GetHeight(swigCPtr);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            ushort ret = Interop.Uint16Pair.Uint16Pair_GetHeight(swigCPtr);
+            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
             return ret;
         }
 
@@ -240,8 +240,8 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public void SetX(ushort x)
         {
-            NDalicPINVOKE.Uint16Pair_SetX(swigCPtr, x);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            Interop.Uint16Pair.Uint16Pair_SetX(swigCPtr, x);
+            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
         }
 
         /// <summary>
@@ -253,8 +253,8 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public ushort GetX()
         {
-            ushort ret = NDalicPINVOKE.Uint16Pair_GetX(swigCPtr);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            ushort ret = Interop.Uint16Pair.Uint16Pair_GetX(swigCPtr);
+            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
             return ret;
         }
 
@@ -265,8 +265,8 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public void SetY(ushort y)
         {
-            NDalicPINVOKE.Uint16Pair_SetY(swigCPtr, y);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            Interop.Uint16Pair.Uint16Pair_SetY(swigCPtr, y);
+            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
         }
 
         /// <summary>
@@ -278,8 +278,8 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public ushort GetY()
         {
-            ushort ret = NDalicPINVOKE.Uint16Pair_GetY(swigCPtr);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            ushort ret = Interop.Uint16Pair.Uint16Pair_GetY(swigCPtr);
+            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
             return ret;
         }
 
@@ -291,36 +291,36 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public Uint16Pair Assign(Uint16Pair rhs)
         {
-            Uint16Pair ret = new Uint16Pair(NDalicPINVOKE.Uint16Pair_Assign(swigCPtr, Uint16Pair.getCPtr(rhs)), false);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            Uint16Pair ret = new Uint16Pair(Interop.Uint16Pair.Uint16Pair_Assign(swigCPtr, Uint16Pair.getCPtr(rhs)), false);
+            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
             return ret;
         }
 
         private bool EqualTo(Uint16Pair rhs)
         {
-            bool ret = NDalicPINVOKE.Uint16Pair_EqualTo(swigCPtr, Uint16Pair.getCPtr(rhs));
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            bool ret = Interop.Uint16Pair.Uint16Pair_EqualTo(swigCPtr, Uint16Pair.getCPtr(rhs));
+            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
             return ret;
         }
 
         private bool NotEqualTo(Uint16Pair rhs)
         {
-            bool ret = NDalicPINVOKE.Uint16Pair_NotEqualTo(swigCPtr, Uint16Pair.getCPtr(rhs));
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            bool ret = Interop.Uint16Pair.Uint16Pair_NotEqualTo(swigCPtr, Uint16Pair.getCPtr(rhs));
+            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
             return ret;
         }
 
         private bool LessThan(Uint16Pair rhs)
         {
-            bool ret = NDalicPINVOKE.Uint16Pair_LessThan(swigCPtr, Uint16Pair.getCPtr(rhs));
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            bool ret = Interop.Uint16Pair.Uint16Pair_LessThan(swigCPtr, Uint16Pair.getCPtr(rhs));
+            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
             return ret;
         }
 
         private bool GreaterThan(Uint16Pair rhs)
         {
-            bool ret = NDalicPINVOKE.Uint16Pair_GreaterThan(swigCPtr, Uint16Pair.getCPtr(rhs));
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            bool ret = Interop.Uint16Pair.Uint16Pair_GreaterThan(swigCPtr, Uint16Pair.getCPtr(rhs));
+            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
             return ret;
         }
 

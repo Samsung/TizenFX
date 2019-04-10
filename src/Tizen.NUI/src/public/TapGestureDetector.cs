@@ -39,9 +39,9 @@ namespace Tizen.NUI
         /// </summary>
         /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public TapGestureDetector() : this(NDalicPINVOKE.TapGestureDetector_New__SWIG_0(), true)
+        public TapGestureDetector() : this(Interop.TapGestureDetector.TapGestureDetector_New__SWIG_0(), true)
         {
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
 
         }
 
@@ -51,13 +51,13 @@ namespace Tizen.NUI
         /// <param name="tapsRequired">The minimum and maximum number of taps required</param>
         /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public TapGestureDetector(uint tapsRequired) : this(NDalicPINVOKE.TapGestureDetector_New__SWIG_1(tapsRequired), true)
+        public TapGestureDetector(uint tapsRequired) : this(Interop.TapGestureDetector.TapGestureDetector_New__SWIG_1(tapsRequired), true)
         {
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
 
         }
 
-        internal TapGestureDetector(global::System.IntPtr cPtr, bool cMemoryOwn) : base(NDalicPINVOKE.TapGestureDetector_SWIGUpcast(cPtr), cMemoryOwn)
+        internal TapGestureDetector(global::System.IntPtr cPtr, bool cMemoryOwn) : base(Interop.TapGestureDetector.TapGestureDetector_SWIGUpcast(cPtr), cMemoryOwn)
         {
             swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
         }
@@ -107,9 +107,9 @@ namespace Tizen.NUI
         /// <param name="handle">A reference to the copied handle</param>
         /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public TapGestureDetector(TapGestureDetector handle) : this(NDalicPINVOKE.new_TapGestureDetector__SWIG_1(TapGestureDetector.getCPtr(handle)), true)
+        public TapGestureDetector(TapGestureDetector handle) : this(Interop.TapGestureDetector.new_TapGestureDetector__SWIG_1(TapGestureDetector.getCPtr(handle)), true)
         {
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
         }
 
         /// <summary>
@@ -121,8 +121,8 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void SetMinimumTapsRequired(uint minimumTaps)
         {
-            NDalicPINVOKE.TapGestureDetector_SetMinimumTapsRequired(swigCPtr, minimumTaps);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            Interop.TapGestureDetector.TapGestureDetector_SetMinimumTapsRequired(swigCPtr, minimumTaps);
+            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
         }
 
         /// <summary>
@@ -134,8 +134,8 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void SetMaximumTapsRequired(uint maximumTaps)
         {
-            NDalicPINVOKE.TapGestureDetector_SetMaximumTapsRequired(swigCPtr, maximumTaps);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            Interop.TapGestureDetector.TapGestureDetector_SetMaximumTapsRequired(swigCPtr, maximumTaps);
+            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
         }
 
         /// <summary>
@@ -146,8 +146,8 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public uint GetMinimumTapsRequired()
         {
-            uint ret = NDalicPINVOKE.TapGestureDetector_GetMinimumTapsRequired(swigCPtr);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            uint ret = Interop.TapGestureDetector.TapGestureDetector_GetMinimumTapsRequired(swigCPtr);
+            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
             return ret;
         }
 
@@ -159,15 +159,15 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public uint GetMaximumTapsRequired()
         {
-            uint ret = NDalicPINVOKE.TapGestureDetector_GetMaximumTapsRequired(swigCPtr);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            uint ret = Interop.TapGestureDetector.TapGestureDetector_GetMaximumTapsRequired(swigCPtr);
+            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
             return ret;
         }
 
         internal new static TapGestureDetector DownCast(BaseHandle handle)
         {
             TapGestureDetector ret = Registry.GetManagedBaseHandleFromNativePtr(handle) as TapGestureDetector;
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
             return ret;
         }
 
@@ -179,21 +179,21 @@ namespace Tizen.NUI
         internal static TapGestureDetector GetTapGestureDetectorFromPtr(global::System.IntPtr cPtr)
         {
             TapGestureDetector ret = new TapGestureDetector(cPtr, false);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
             return ret;
         }
 
         internal TapGestureDetectedSignal DetectedSignal()
         {
-            TapGestureDetectedSignal ret = new TapGestureDetectedSignal(NDalicPINVOKE.TapGestureDetector_DetectedSignal(swigCPtr), false);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            TapGestureDetectedSignal ret = new TapGestureDetectedSignal(Interop.TapGestureDetector.TapGestureDetector_DetectedSignal(swigCPtr), false);
+            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
             return ret;
         }
 
         internal TapGestureDetector Assign(TapGestureDetector rhs)
         {
-            TapGestureDetector ret = new TapGestureDetector(NDalicPINVOKE.TapGestureDetector_Assign(swigCPtr, TapGestureDetector.getCPtr(rhs)), false);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            TapGestureDetector ret = new TapGestureDetector(Interop.TapGestureDetector.TapGestureDetector_Assign(swigCPtr, TapGestureDetector.getCPtr(rhs)), false);
+            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
             return ret;
         }
 
@@ -227,7 +227,7 @@ namespace Tizen.NUI
                 if (swigCMemOwn)
                 {
                     swigCMemOwn = false;
-                    NDalicPINVOKE.delete_TapGestureDetector(swigCPtr);
+                    Interop.TapGestureDetector.delete_TapGestureDetector(swigCPtr);
                 }
                 swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
             }

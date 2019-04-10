@@ -39,9 +39,9 @@ namespace Tizen.NUI.UIComponents
         /// Creates an uninitialized RadioButton.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        public RadioButton() : this(NDalicPINVOKE.RadioButton_New__SWIG_0(), true)
+        public RadioButton() : this(Interop.RadioButton.RadioButton_New__SWIG_0(), true)
         {
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
         }
 
         /// <summary>
@@ -49,12 +49,12 @@ namespace Tizen.NUI.UIComponents
         /// </summary>
         /// <param name="label">The label text.</param>
         /// <since_tizen> 3 </since_tizen>
-        public RadioButton(string label) : this(NDalicPINVOKE.RadioButton_New__SWIG_1(label), true)
+        public RadioButton(string label) : this(Interop.RadioButton.RadioButton_New__SWIG_1(label), true)
         {
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
         }
 
-        internal RadioButton(global::System.IntPtr cPtr, bool cMemoryOwn) : base(NDalicPINVOKE.RadioButton_SWIGUpcast(cPtr), cMemoryOwn)
+        internal RadioButton(global::System.IntPtr cPtr, bool cMemoryOwn) : base(Interop.RadioButton.RadioButton_SWIGUpcast(cPtr), cMemoryOwn)
         {
             swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
         }
@@ -92,7 +92,7 @@ namespace Tizen.NUI.UIComponents
                 if (swigCMemOwn)
                 {
                     swigCMemOwn = false;
-                    NDalicPINVOKE.delete_RadioButton(swigCPtr);
+                    Interop.RadioButton.delete_RadioButton(swigCPtr);
                 }
                 swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
             }

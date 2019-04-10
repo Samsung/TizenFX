@@ -32,13 +32,13 @@ namespace Tizen.NUI
         /// Create an instance of TextureSet.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        public TextureSet() : this(NDalicPINVOKE.TextureSet_New(), true)
+        public TextureSet() : this(Interop.TextureSet.TextureSet_New(), true)
         {
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
 
         }
 
-        internal TextureSet(global::System.IntPtr cPtr, bool cMemoryOwn) : base(NDalicPINVOKE.TextureSet_SWIGUpcast(cPtr), cMemoryOwn)
+        internal TextureSet(global::System.IntPtr cPtr, bool cMemoryOwn) : base(Interop.TextureSet.TextureSet_SWIGUpcast(cPtr), cMemoryOwn)
         {
             swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
         }
@@ -51,8 +51,8 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public void SetTexture(uint index, Texture texture)
         {
-            NDalicPINVOKE.TextureSet_SetTexture(swigCPtr, index, Texture.getCPtr(texture));
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            Interop.TextureSet.TextureSet_SetTexture(swigCPtr, index, Texture.getCPtr(texture));
+            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
         }
 
         /// <summary>
@@ -64,19 +64,19 @@ namespace Tizen.NUI
         public Texture GetTexture(uint index)
         {
             //to fix memory leak issue, match the handle count with native side.
-            System.IntPtr cPtr = NDalicPINVOKE.TextureSet_GetTexture(swigCPtr, index);
+            System.IntPtr cPtr = Interop.TextureSet.TextureSet_GetTexture(swigCPtr, index);
             HandleRef CPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
             Texture ret = Registry.GetManagedBaseHandleFromNativePtr(CPtr.Handle) as Texture;
             if (cPtr != null && ret == null)
             {
                 ret = new Texture(cPtr, false);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
                 return ret;
             }
-            NDalicPINVOKE.delete_BaseHandle(CPtr);
+            Interop.BaseHandle.delete_BaseHandle(CPtr);
             CPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
 
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
             return ret;
         }
 
@@ -88,8 +88,8 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public void SetSampler(uint index, Sampler sampler)
         {
-            NDalicPINVOKE.TextureSet_SetSampler(swigCPtr, index, Sampler.getCPtr(sampler));
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            Interop.TextureSet.TextureSet_SetSampler(swigCPtr, index, Sampler.getCPtr(sampler));
+            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
         }
 
         /// <summary>
@@ -101,13 +101,13 @@ namespace Tizen.NUI
         public Sampler GetSampler(uint index)
         {
             //to fix memory leak issue, match the handle count with native side.
-            System.IntPtr cPtr = NDalicPINVOKE.TextureSet_GetSampler(swigCPtr, index);
+            System.IntPtr cPtr = Interop.TextureSet.TextureSet_GetSampler(swigCPtr, index);
             HandleRef CPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
             Sampler ret = Registry.GetManagedBaseHandleFromNativePtr(CPtr.Handle) as Sampler;
-            NDalicPINVOKE.delete_BaseHandle(CPtr);
+            Interop.BaseHandle.delete_BaseHandle(CPtr);
             CPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
 
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
             return ret;
         }
 
@@ -118,8 +118,8 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public uint GetTextureCount()
         {
-            uint ret = NDalicPINVOKE.TextureSet_GetTextureCount(swigCPtr);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            uint ret = Interop.TextureSet.TextureSet_GetTextureCount(swigCPtr);
+            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
             return ret;
         }
 
@@ -156,7 +156,7 @@ namespace Tizen.NUI
                 if (swigCMemOwn)
                 {
                     swigCMemOwn = false;
-                    NDalicPINVOKE.delete_TextureSet(swigCPtr);
+                    Interop.TextureSet.delete_TextureSet(swigCPtr);
                 }
                 swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
             }

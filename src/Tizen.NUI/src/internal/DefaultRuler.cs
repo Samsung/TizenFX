@@ -22,7 +22,7 @@ namespace Tizen.NUI
     {
         private global::System.Runtime.InteropServices.HandleRef swigCPtr;
 
-        internal DefaultRuler(global::System.IntPtr cPtr, bool cMemoryOwn) : base(NDalicPINVOKE.DefaultRuler_SWIGUpcast(cPtr), cMemoryOwn)
+        internal DefaultRuler(global::System.IntPtr cPtr, bool cMemoryOwn) : base(Interop.Ruler.DefaultRuler_SWIGUpcast(cPtr), cMemoryOwn)
         {
             swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
         }
@@ -56,7 +56,7 @@ namespace Tizen.NUI
                 if (swigCMemOwn)
                 {
                     swigCMemOwn = false;
-                    NDalicPINVOKE.delete_DefaultRuler(swigCPtr);
+                    Interop.Ruler.delete_DefaultRuler(swigCPtr);
                 }
                 swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
             }
@@ -64,36 +64,36 @@ namespace Tizen.NUI
             base.Dispose(type);
         }
 
-        public DefaultRuler() : this(NDalicPINVOKE.new_DefaultRuler(), true)
+        public DefaultRuler() : this(Interop.Ruler.new_DefaultRuler(), true)
         {
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
         }
 
         public override float Snap(float x, float bias)
         {
-            float ret = NDalicPINVOKE.DefaultRuler_Snap(swigCPtr, x, bias);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            float ret = Interop.Ruler.DefaultRuler_Snap(swigCPtr, x, bias);
+            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
             return ret;
         }
 
         public override float GetPositionFromPage(uint page, out uint volume, bool wrap)
         {
-            float ret = NDalicPINVOKE.DefaultRuler_GetPositionFromPage(swigCPtr, page, out volume, wrap);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            float ret = Interop.Ruler.DefaultRuler_GetPositionFromPage(swigCPtr, page, out volume, wrap);
+            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
             return ret;
         }
 
         public override uint GetPageFromPosition(float position, bool wrap)
         {
-            uint ret = NDalicPINVOKE.DefaultRuler_GetPageFromPosition(swigCPtr, position, wrap);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            uint ret = Interop.Ruler.DefaultRuler_GetPageFromPosition(swigCPtr, position, wrap);
+            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
             return ret;
         }
 
         public override uint GetTotalPages()
         {
-            uint ret = NDalicPINVOKE.DefaultRuler_GetTotalPages(swigCPtr);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            uint ret = Interop.Ruler.DefaultRuler_GetTotalPages(swigCPtr);
+            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
             return ret;
         }
 

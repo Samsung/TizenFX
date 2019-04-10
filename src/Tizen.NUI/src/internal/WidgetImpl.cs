@@ -24,12 +24,12 @@ namespace Tizen.NUI
     {
         private global::System.Runtime.InteropServices.HandleRef swigCPtr;
 
-        internal WidgetImpl() : this( NDalicManualPINVOKE.WidgetImpl_New(), true )
+        internal WidgetImpl() : this( Interop.WidgetImpl.WidgetImpl_New(), true )
         {
             SwigDirectorConnect();
         }
 
-        internal WidgetImpl(global::System.IntPtr cPtr, bool cMemoryOwn) : base(NDalicManualPINVOKE.WidgetImpl_SWIGUpcast(cPtr), cMemoryOwn)
+        internal WidgetImpl(global::System.IntPtr cPtr, bool cMemoryOwn) : base(Interop.WidgetImpl.WidgetImpl_SWIGUpcast(cPtr), cMemoryOwn)
         {
             swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
         }
@@ -306,14 +306,14 @@ namespace Tizen.NUI
 
         public void SetContentInfo(string contentInfo)
         {
-            NDalicManualPINVOKE.WidgetImpl_SetContentInfo(swigCPtr, contentInfo);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            Interop.WidgetImpl.WidgetImpl_SetContentInfo(swigCPtr, contentInfo);
+            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
         }
 
         internal void SetImpl(SWIGTYPE_p_Dali__Widget__Impl impl)
         {
-            NDalicManualPINVOKE.WidgetImpl_SetImpl(swigCPtr, SWIGTYPE_p_Dali__Widget__Impl.getCPtr(impl));
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            Interop.WidgetImpl.WidgetImpl_SetImpl(swigCPtr, SWIGTYPE_p_Dali__Widget__Impl.getCPtr(impl));
+            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
         }
 
         private void SwigDirectorConnect()
@@ -326,7 +326,7 @@ namespace Tizen.NUI
             swigDelegate5 = new SwigDelegateWidgetImpl_5(SwigDirectorOnUpdate);
             swigDelegate6 = new SwigDelegateWidgetImpl_6(SwigDirectorSignalConnected);
             swigDelegate7 = new SwigDelegateWidgetImpl_7(SwigDirectorSignalDisconnected);
-            NDalicManualPINVOKE.WidgetImpl_director_connect(swigCPtr, swigDelegate0, swigDelegate1, swigDelegate2, swigDelegate3, swigDelegate4, swigDelegate5, swigDelegate6, swigDelegate7);
+            Interop.WidgetImpl.WidgetImpl_director_connect(swigCPtr, swigDelegate0, swigDelegate1, swigDelegate2, swigDelegate3, swigDelegate4, swigDelegate5, swigDelegate6, swigDelegate7);
         }
 
         private bool SwigDerivedClassHasMethod(string methodName, global::System.Type[] methodTypes)

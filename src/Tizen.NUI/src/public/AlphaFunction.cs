@@ -47,7 +47,7 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public AlphaFunction(System.Delegate func) : this(NDalicPINVOKE.new_AlphaFunction__SWIG_2(SWIGTYPE_p_f_float__float.getCPtr(new SWIGTYPE_p_f_float__float(System.Runtime.InteropServices.Marshal.GetFunctionPointerForDelegate<System.Delegate>(func), true))), true)
         {
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
         }
 
         /// <summary>
@@ -57,7 +57,7 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public AlphaFunction() : this(NDalicPINVOKE.new_AlphaFunction__SWIG_0(), true)
         {
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
         }
 
         /// <summary>
@@ -68,7 +68,7 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public AlphaFunction(AlphaFunction.BuiltinFunctions function) : this(NDalicPINVOKE.new_AlphaFunction__SWIG_1((int)function), true)
         {
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
         }
 
         /// <summary>
@@ -81,7 +81,7 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public AlphaFunction(Vector2 controlPoint0, Vector2 controlPoint1) : this(NDalicPINVOKE.new_AlphaFunction__SWIG_3(Vector2.getCPtr(controlPoint0), Vector2.getCPtr(controlPoint1)), true)
         {
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
         }
 
         internal AlphaFunction(global::System.IntPtr cPtr, bool cMemoryOwn)
@@ -92,7 +92,7 @@ namespace Tizen.NUI
 
         internal AlphaFunction(SWIGTYPE_p_f_float__float function) : this(NDalicPINVOKE.new_AlphaFunction__SWIG_2(SWIGTYPE_p_f_float__float.getCPtr(function)), true)
         {
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
         }
 
         /// <summary>
@@ -229,7 +229,7 @@ namespace Tizen.NUI
         public void GetBezierControlPoints(out Vector2 controlPoint0, out Vector2 controlPoint1)
         {
             Vector4 ret = new Vector4(NDalicPINVOKE.AlphaFunction_GetBezierControlPoints(swigCPtr), true);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
 
             controlPoint0 = new Vector2(ret.X, ret.Y);
             controlPoint1 = new Vector2(ret.Z, ret.W);
@@ -244,7 +244,7 @@ namespace Tizen.NUI
         public AlphaFunction.BuiltinFunctions GetBuiltinFunction()
         {
             AlphaFunction.BuiltinFunctions ret = (AlphaFunction.BuiltinFunctions)NDalicPINVOKE.AlphaFunction_GetBuiltinFunction(swigCPtr);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
             return ret;
         }
 
@@ -256,7 +256,7 @@ namespace Tizen.NUI
         public AlphaFunction.Modes GetMode()
         {
             AlphaFunction.Modes ret = (AlphaFunction.Modes)NDalicPINVOKE.AlphaFunction_GetMode(swigCPtr);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
             return ret;
         }
 
@@ -351,7 +351,7 @@ namespace Tizen.NUI
         {
             global::System.IntPtr cPtr = NDalicPINVOKE.AlphaFunction_GetCustomFunction(swigCPtr);
             SWIGTYPE_p_f_float__float ret = (cPtr == global::System.IntPtr.Zero) ? null : new SWIGTYPE_p_f_float__float(cPtr, false);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
             return ret;
         }
 

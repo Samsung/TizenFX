@@ -87,7 +87,7 @@ namespace Tizen.NUI
         public virtual void Add(View view, Size2D size)
         {
             NDalicPINVOKE.RelayoutContainer_Add(swigCPtr, View.getCPtr(view), Size2D.getCPtr(size));
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
         }
 
         internal static global::System.Runtime.InteropServices.HandleRef getCPtr(RelayoutContainer obj)

@@ -951,17 +951,17 @@ namespace Tizen.NUI.BaseComponents
         /// Creates the TextEditor control.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        public TextEditor() : this(NDalicPINVOKE.TextEditor_New(), true)
+        public TextEditor() : this(Interop.TextEditor.TextEditor_New(), true)
         {
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
         }
 
-        internal TextEditor(TextEditor handle) : this(NDalicPINVOKE.new_TextEditor__SWIG_1(TextEditor.getCPtr(handle)), true)
+        internal TextEditor(TextEditor handle) : this(Interop.TextEditor.new_TextEditor__SWIG_1(TextEditor.getCPtr(handle)), true)
         {
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
         }
 
-        internal TextEditor(global::System.IntPtr cPtr, bool cMemoryOwn) : base(NDalicPINVOKE.TextEditor_SWIGUpcast(cPtr), cMemoryOwn)
+        internal TextEditor(global::System.IntPtr cPtr, bool cMemoryOwn) : base(Interop.TextEditor.TextEditor_SWIGUpcast(cPtr), cMemoryOwn)
         {
             swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
         }
@@ -2027,8 +2027,8 @@ namespace Tizen.NUI.BaseComponents
             if (inputMethodContext == null)
             {
                 /*Avoid raising InputMethodContext reference count.*/
-                inputMethodContext = new InputMethodContext(NDalicPINVOKE.TextEditor_GetInputMethodContext(swigCPtr), true);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                inputMethodContext = new InputMethodContext(Interop.TextEditor.TextEditor_GetInputMethodContext(swigCPtr), true);
+                if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
             }
             return inputMethodContext;
         }
@@ -2040,22 +2040,22 @@ namespace Tizen.NUI.BaseComponents
 
         internal TextEditorSignal TextChangedSignal()
         {
-            TextEditorSignal ret = new TextEditorSignal(NDalicPINVOKE.TextEditor_TextChangedSignal(swigCPtr), false);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            TextEditorSignal ret = new TextEditorSignal(Interop.TextEditor.TextEditor_TextChangedSignal(swigCPtr), false);
+            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
             return ret;
         }
 
         internal ScrollStateChangedSignal ScrollStateChangedSignal(TextEditor textEditor)
         {
-            ScrollStateChangedSignal ret = new ScrollStateChangedSignal(NDalicManualPINVOKE.TextEditor_ScrollStateChangedSignal(TextEditor.getCPtr(textEditor)), false);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            ScrollStateChangedSignal ret = new ScrollStateChangedSignal(Interop.TextEditor.TextEditor_ScrollStateChangedSignal(TextEditor.getCPtr(textEditor)), false);
+            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
             return ret;
         }
 
         internal SWIGTYPE_p_Dali__SignalT_void_fDali__Toolkit__TextEditor_Dali__Toolkit__TextEditor__InputStyle__MaskF_t InputStyleChangedSignal()
         {
-            SWIGTYPE_p_Dali__SignalT_void_fDali__Toolkit__TextEditor_Dali__Toolkit__TextEditor__InputStyle__MaskF_t ret = new SWIGTYPE_p_Dali__SignalT_void_fDali__Toolkit__TextEditor_Dali__Toolkit__TextEditor__InputStyle__MaskF_t(NDalicPINVOKE.TextEditor_InputStyleChangedSignal(swigCPtr), false);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            SWIGTYPE_p_Dali__SignalT_void_fDali__Toolkit__TextEditor_Dali__Toolkit__TextEditor__InputStyle__MaskF_t ret = new SWIGTYPE_p_Dali__SignalT_void_fDali__Toolkit__TextEditor_Dali__Toolkit__TextEditor__InputStyle__MaskF_t(Interop.TextEditor.TextEditor_InputStyleChangedSignal(swigCPtr), false);
+            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
             return ret;
         }
 
@@ -2093,7 +2093,7 @@ namespace Tizen.NUI.BaseComponents
                     swigCMemOwn = false;
                     // In order to speed up IME hide, temporarily add
                     GetInputMethodContext()?.DestroyContext();
-                    NDalicPINVOKE.delete_TextEditor(swigCPtr);
+                    Interop.TextEditor.delete_TextEditor(swigCPtr);
                 }
                 swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
             }
@@ -2235,60 +2235,60 @@ namespace Tizen.NUI.BaseComponents
 
         internal new class Property
         {
-            internal static readonly int RENDERING_BACKEND = NDalicPINVOKE.TextEditor_Property_RENDERING_BACKEND_get();
-            internal static readonly int TEXT = NDalicPINVOKE.TextEditor_Property_TEXT_get();
-            internal static readonly int TEXT_COLOR = NDalicPINVOKE.TextEditor_Property_TEXT_COLOR_get();
-            internal static readonly int FONT_FAMILY = NDalicPINVOKE.TextEditor_Property_FONT_FAMILY_get();
-            internal static readonly int FONT_STYLE = NDalicPINVOKE.TextEditor_Property_FONT_STYLE_get();
-            internal static readonly int POINT_SIZE = NDalicPINVOKE.TextEditor_Property_POINT_SIZE_get();
-            internal static readonly int HORIZONTAL_ALIGNMENT = NDalicPINVOKE.TextEditor_Property_HORIZONTAL_ALIGNMENT_get();
-            internal static readonly int SCROLL_THRESHOLD = NDalicPINVOKE.TextEditor_Property_SCROLL_THRESHOLD_get();
-            internal static readonly int SCROLL_SPEED = NDalicPINVOKE.TextEditor_Property_SCROLL_SPEED_get();
-            internal static readonly int PRIMARY_CURSOR_COLOR = NDalicPINVOKE.TextEditor_Property_PRIMARY_CURSOR_COLOR_get();
-            internal static readonly int SECONDARY_CURSOR_COLOR = NDalicPINVOKE.TextEditor_Property_SECONDARY_CURSOR_COLOR_get();
-            internal static readonly int ENABLE_CURSOR_BLINK = NDalicPINVOKE.TextEditor_Property_ENABLE_CURSOR_BLINK_get();
-            internal static readonly int CURSOR_BLINK_INTERVAL = NDalicPINVOKE.TextEditor_Property_CURSOR_BLINK_INTERVAL_get();
-            internal static readonly int CURSOR_BLINK_DURATION = NDalicPINVOKE.TextEditor_Property_CURSOR_BLINK_DURATION_get();
-            internal static readonly int CURSOR_WIDTH = NDalicPINVOKE.TextEditor_Property_CURSOR_WIDTH_get();
-            internal static readonly int GRAB_HANDLE_IMAGE = NDalicPINVOKE.TextEditor_Property_GRAB_HANDLE_IMAGE_get();
-            internal static readonly int GRAB_HANDLE_PRESSED_IMAGE = NDalicPINVOKE.TextEditor_Property_GRAB_HANDLE_PRESSED_IMAGE_get();
-            internal static readonly int SELECTION_HANDLE_IMAGE_LEFT = NDalicPINVOKE.TextEditor_Property_SELECTION_HANDLE_IMAGE_LEFT_get();
-            internal static readonly int SELECTION_HANDLE_IMAGE_RIGHT = NDalicPINVOKE.TextEditor_Property_SELECTION_HANDLE_IMAGE_RIGHT_get();
-            internal static readonly int SELECTION_HANDLE_PRESSED_IMAGE_LEFT = NDalicPINVOKE.TextEditor_Property_SELECTION_HANDLE_PRESSED_IMAGE_LEFT_get();
-            internal static readonly int SELECTION_HANDLE_PRESSED_IMAGE_RIGHT = NDalicPINVOKE.TextEditor_Property_SELECTION_HANDLE_PRESSED_IMAGE_RIGHT_get();
-            internal static readonly int SELECTION_HANDLE_MARKER_IMAGE_LEFT = NDalicPINVOKE.TextEditor_Property_SELECTION_HANDLE_MARKER_IMAGE_LEFT_get();
-            internal static readonly int SELECTION_HANDLE_MARKER_IMAGE_RIGHT = NDalicPINVOKE.TextEditor_Property_SELECTION_HANDLE_MARKER_IMAGE_RIGHT_get();
-            internal static readonly int SELECTION_HIGHLIGHT_COLOR = NDalicPINVOKE.TextEditor_Property_SELECTION_HIGHLIGHT_COLOR_get();
-            internal static readonly int DECORATION_BOUNDING_BOX = NDalicPINVOKE.TextEditor_Property_DECORATION_BOUNDING_BOX_get();
-            internal static readonly int ENABLE_MARKUP = NDalicPINVOKE.TextEditor_Property_ENABLE_MARKUP_get();
-            internal static readonly int INPUT_COLOR = NDalicPINVOKE.TextEditor_Property_INPUT_COLOR_get();
-            internal static readonly int INPUT_FONT_FAMILY = NDalicPINVOKE.TextEditor_Property_INPUT_FONT_FAMILY_get();
-            internal static readonly int INPUT_FONT_STYLE = NDalicPINVOKE.TextEditor_Property_INPUT_FONT_STYLE_get();
-            internal static readonly int INPUT_POINT_SIZE = NDalicPINVOKE.TextEditor_Property_INPUT_POINT_SIZE_get();
-            internal static readonly int LINE_SPACING = NDalicPINVOKE.TextEditor_Property_LINE_SPACING_get();
-            internal static readonly int INPUT_LINE_SPACING = NDalicPINVOKE.TextEditor_Property_INPUT_LINE_SPACING_get();
-            internal static readonly int UNDERLINE = NDalicPINVOKE.TextEditor_Property_UNDERLINE_get();
-            internal static readonly int INPUT_UNDERLINE = NDalicPINVOKE.TextEditor_Property_INPUT_UNDERLINE_get();
-            internal static readonly int SHADOW = NDalicPINVOKE.TextEditor_Property_SHADOW_get();
-            internal static readonly int INPUT_SHADOW = NDalicPINVOKE.TextEditor_Property_INPUT_SHADOW_get();
-            internal static readonly int EMBOSS = NDalicPINVOKE.TextEditor_Property_EMBOSS_get();
-            internal static readonly int INPUT_EMBOSS = NDalicPINVOKE.TextEditor_Property_INPUT_EMBOSS_get();
-            internal static readonly int OUTLINE = NDalicPINVOKE.TextEditor_Property_OUTLINE_get();
-            internal static readonly int INPUT_OUTLINE = NDalicPINVOKE.TextEditor_Property_INPUT_OUTLINE_get();
-            internal static readonly int SMOOTH_SCROLL = NDalicManualPINVOKE.TextEditor_Property_SMOOTH_SCROLL_get();
-            internal static readonly int SMOOTH_SCROLL_DURATION = NDalicManualPINVOKE.TextEditor_Property_SMOOTH_SCROLL_DURATION_get();
-            internal static readonly int ENABLE_SCROLL_BAR = NDalicManualPINVOKE.TextEditor_Property_ENABLE_SCROLL_BAR_get();
-            internal static readonly int SCROLL_BAR_SHOW_DURATION = NDalicManualPINVOKE.TextEditor_Property_SCROLL_BAR_SHOW_DURATION_get();
-            internal static readonly int SCROLL_BAR_FADE_DURATION = NDalicManualPINVOKE.TextEditor_Property_SCROLL_BAR_FADE_DURATION_get();
-            internal static readonly int PIXEL_SIZE = NDalicManualPINVOKE.TextEditor_Property_PIXEL_SIZE_get();
-            internal static readonly int LINE_COUNT = NDalicManualPINVOKE.TextEditor_Property_LINE_COUNT_get();
-            internal static readonly int ENABLE_SELECTION = NDalicManualPINVOKE.TextEditor_Property_ENABLE_SELECTION_get();
-            internal static readonly int PLACEHOLDER = NDalicManualPINVOKE.TextEditor_Property_PLACEHOLDER_get();
-            internal static readonly int LINE_WRAP_MODE = NDalicManualPINVOKE.TextEditor_Property_LINE_WRAP_MODE_get();
-            internal static readonly int PLACEHOLDER_TEXT = NDalicManualPINVOKE.TextEditor_Property_PLACEHOLDER_TEXT_get();
-            internal static readonly int PLACEHOLDER_TEXT_COLOR = NDalicManualPINVOKE.TextEditor_Property_PLACEHOLDER_TEXT_COLOR_get();
-            internal static readonly int ENABLE_SHIFT_SELECTION = NDalicManualPINVOKE.TextEditor_Property_ENABLE_SHIFT_SELECTION_get();
-            internal static readonly int MATCH_SYSTEM_LANGUAGE_DIRECTION = NDalicManualPINVOKE.TextEditor_Property_MATCH_SYSTEM_LANGUAGE_DIRECTION_get();
+            internal static readonly int RENDERING_BACKEND = Interop.TextEditor.TextEditor_Property_RENDERING_BACKEND_get();
+            internal static readonly int TEXT = Interop.TextEditor.TextEditor_Property_TEXT_get();
+            internal static readonly int TEXT_COLOR = Interop.TextEditor.TextEditor_Property_TEXT_COLOR_get();
+            internal static readonly int FONT_FAMILY = Interop.TextEditor.TextEditor_Property_FONT_FAMILY_get();
+            internal static readonly int FONT_STYLE = Interop.TextEditor.TextEditor_Property_FONT_STYLE_get();
+            internal static readonly int POINT_SIZE = Interop.TextEditor.TextEditor_Property_POINT_SIZE_get();
+            internal static readonly int HORIZONTAL_ALIGNMENT = Interop.TextEditor.TextEditor_Property_HORIZONTAL_ALIGNMENT_get();
+            internal static readonly int SCROLL_THRESHOLD = Interop.TextEditor.TextEditor_Property_SCROLL_THRESHOLD_get();
+            internal static readonly int SCROLL_SPEED = Interop.TextEditor.TextEditor_Property_SCROLL_SPEED_get();
+            internal static readonly int PRIMARY_CURSOR_COLOR = Interop.TextEditor.TextEditor_Property_PRIMARY_CURSOR_COLOR_get();
+            internal static readonly int SECONDARY_CURSOR_COLOR = Interop.TextEditor.TextEditor_Property_SECONDARY_CURSOR_COLOR_get();
+            internal static readonly int ENABLE_CURSOR_BLINK = Interop.TextEditor.TextEditor_Property_ENABLE_CURSOR_BLINK_get();
+            internal static readonly int CURSOR_BLINK_INTERVAL = Interop.TextEditor.TextEditor_Property_CURSOR_BLINK_INTERVAL_get();
+            internal static readonly int CURSOR_BLINK_DURATION = Interop.TextEditor.TextEditor_Property_CURSOR_BLINK_DURATION_get();
+            internal static readonly int CURSOR_WIDTH = Interop.TextEditor.TextEditor_Property_CURSOR_WIDTH_get();
+            internal static readonly int GRAB_HANDLE_IMAGE = Interop.TextEditor.TextEditor_Property_GRAB_HANDLE_IMAGE_get();
+            internal static readonly int GRAB_HANDLE_PRESSED_IMAGE = Interop.TextEditor.TextEditor_Property_GRAB_HANDLE_PRESSED_IMAGE_get();
+            internal static readonly int SELECTION_HANDLE_IMAGE_LEFT = Interop.TextEditor.TextEditor_Property_SELECTION_HANDLE_IMAGE_LEFT_get();
+            internal static readonly int SELECTION_HANDLE_IMAGE_RIGHT = Interop.TextEditor.TextEditor_Property_SELECTION_HANDLE_IMAGE_RIGHT_get();
+            internal static readonly int SELECTION_HANDLE_PRESSED_IMAGE_LEFT = Interop.TextEditor.TextEditor_Property_SELECTION_HANDLE_PRESSED_IMAGE_LEFT_get();
+            internal static readonly int SELECTION_HANDLE_PRESSED_IMAGE_RIGHT = Interop.TextEditor.TextEditor_Property_SELECTION_HANDLE_PRESSED_IMAGE_RIGHT_get();
+            internal static readonly int SELECTION_HANDLE_MARKER_IMAGE_LEFT = Interop.TextEditor.TextEditor_Property_SELECTION_HANDLE_MARKER_IMAGE_LEFT_get();
+            internal static readonly int SELECTION_HANDLE_MARKER_IMAGE_RIGHT = Interop.TextEditor.TextEditor_Property_SELECTION_HANDLE_MARKER_IMAGE_RIGHT_get();
+            internal static readonly int SELECTION_HIGHLIGHT_COLOR = Interop.TextEditor.TextEditor_Property_SELECTION_HIGHLIGHT_COLOR_get();
+            internal static readonly int DECORATION_BOUNDING_BOX = Interop.TextEditor.TextEditor_Property_DECORATION_BOUNDING_BOX_get();
+            internal static readonly int ENABLE_MARKUP = Interop.TextEditor.TextEditor_Property_ENABLE_MARKUP_get();
+            internal static readonly int INPUT_COLOR = Interop.TextEditor.TextEditor_Property_INPUT_COLOR_get();
+            internal static readonly int INPUT_FONT_FAMILY = Interop.TextEditor.TextEditor_Property_INPUT_FONT_FAMILY_get();
+            internal static readonly int INPUT_FONT_STYLE = Interop.TextEditor.TextEditor_Property_INPUT_FONT_STYLE_get();
+            internal static readonly int INPUT_POINT_SIZE = Interop.TextEditor.TextEditor_Property_INPUT_POINT_SIZE_get();
+            internal static readonly int LINE_SPACING = Interop.TextEditor.TextEditor_Property_LINE_SPACING_get();
+            internal static readonly int INPUT_LINE_SPACING = Interop.TextEditor.TextEditor_Property_INPUT_LINE_SPACING_get();
+            internal static readonly int UNDERLINE = Interop.TextEditor.TextEditor_Property_UNDERLINE_get();
+            internal static readonly int INPUT_UNDERLINE = Interop.TextEditor.TextEditor_Property_INPUT_UNDERLINE_get();
+            internal static readonly int SHADOW = Interop.TextEditor.TextEditor_Property_SHADOW_get();
+            internal static readonly int INPUT_SHADOW = Interop.TextEditor.TextEditor_Property_INPUT_SHADOW_get();
+            internal static readonly int EMBOSS = Interop.TextEditor.TextEditor_Property_EMBOSS_get();
+            internal static readonly int INPUT_EMBOSS = Interop.TextEditor.TextEditor_Property_INPUT_EMBOSS_get();
+            internal static readonly int OUTLINE = Interop.TextEditor.TextEditor_Property_OUTLINE_get();
+            internal static readonly int INPUT_OUTLINE = Interop.TextEditor.TextEditor_Property_INPUT_OUTLINE_get();
+            internal static readonly int SMOOTH_SCROLL = Interop.TextEditor.TextEditor_Property_SMOOTH_SCROLL_get();
+            internal static readonly int SMOOTH_SCROLL_DURATION = Interop.TextEditor.TextEditor_Property_SMOOTH_SCROLL_DURATION_get();
+            internal static readonly int ENABLE_SCROLL_BAR = Interop.TextEditor.TextEditor_Property_ENABLE_SCROLL_BAR_get();
+            internal static readonly int SCROLL_BAR_SHOW_DURATION = Interop.TextEditor.TextEditor_Property_SCROLL_BAR_SHOW_DURATION_get();
+            internal static readonly int SCROLL_BAR_FADE_DURATION = Interop.TextEditor.TextEditor_Property_SCROLL_BAR_FADE_DURATION_get();
+            internal static readonly int PIXEL_SIZE = Interop.TextEditor.TextEditor_Property_PIXEL_SIZE_get();
+            internal static readonly int LINE_COUNT = Interop.TextEditor.TextEditor_Property_LINE_COUNT_get();
+            internal static readonly int ENABLE_SELECTION = Interop.TextEditor.TextEditor_Property_ENABLE_SELECTION_get();
+            internal static readonly int PLACEHOLDER = Interop.TextEditor.TextEditor_Property_PLACEHOLDER_get();
+            internal static readonly int LINE_WRAP_MODE = Interop.TextEditor.TextEditor_Property_LINE_WRAP_MODE_get();
+            internal static readonly int PLACEHOLDER_TEXT = Interop.TextEditor.TextEditor_Property_PLACEHOLDER_TEXT_get();
+            internal static readonly int PLACEHOLDER_TEXT_COLOR = Interop.TextEditor.TextEditor_Property_PLACEHOLDER_TEXT_COLOR_get();
+            internal static readonly int ENABLE_SHIFT_SELECTION = Interop.TextEditor.TextEditor_Property_ENABLE_SHIFT_SELECTION_get();
+            internal static readonly int MATCH_SYSTEM_LANGUAGE_DIRECTION = Interop.TextEditor.TextEditor_Property_MATCH_SYSTEM_LANGUAGE_DIRECTION_get();
         }
 
         internal class InputStyle

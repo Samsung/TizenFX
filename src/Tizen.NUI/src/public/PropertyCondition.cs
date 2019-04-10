@@ -29,12 +29,12 @@ namespace Tizen.NUI
         /// Create a property condition instance.
         /// </summary>
         /// <since_tizen> 4 </since_tizen>
-        public PropertyCondition() : this(NDalicPINVOKE.new_PropertyCondition__SWIG_0(), true)
+        public PropertyCondition() : this(Interop.PropertyCondition.new_PropertyCondition__SWIG_0(), true)
         {
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
         }
 
-        internal PropertyCondition(global::System.IntPtr cPtr, bool cMemoryOwn) : base(NDalicPINVOKE.PropertyCondition_SWIGUpcast(cPtr), cMemoryOwn)
+        internal PropertyCondition(global::System.IntPtr cPtr, bool cMemoryOwn) : base(Interop.PropertyCondition.PropertyCondition_SWIGUpcast(cPtr), cMemoryOwn)
         {
             swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
         }
@@ -46,8 +46,8 @@ namespace Tizen.NUI
         /// <since_tizen> 4 </since_tizen>
         public uint GetArgumentCount()
         {
-            uint ret = NDalicPINVOKE.PropertyCondition_GetArgumentCount(swigCPtr);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            uint ret = Interop.PropertyCondition.PropertyCondition_GetArgumentCount(swigCPtr);
+            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
             return ret;
         }
         /// <summary>
@@ -58,8 +58,8 @@ namespace Tizen.NUI
         /// <since_tizen> 4 </since_tizen>
         public float GetArgument(uint index)
         {
-            float ret = NDalicPINVOKE.PropertyCondition_GetArgument(swigCPtr, index);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            float ret = Interop.PropertyCondition.PropertyCondition_GetArgument(swigCPtr, index);
+            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
             return ret;
         }
 
@@ -71,8 +71,8 @@ namespace Tizen.NUI
         /// <since_tizen> 4 </since_tizen>
         public static PropertyCondition LessThan(float arg)
         {
-            PropertyCondition ret = new PropertyCondition(NDalicPINVOKE.LessThanCondition(arg), true);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            PropertyCondition ret = new PropertyCondition(Interop.PropertyCondition.LessThanCondition(arg), true);
+            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
             return ret;
         }
 
@@ -84,8 +84,8 @@ namespace Tizen.NUI
         /// <since_tizen> 4 </since_tizen>
         public static PropertyCondition GreaterThan(float arg)
         {
-            PropertyCondition ret = new PropertyCondition(NDalicPINVOKE.GreaterThanCondition(arg), true);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            PropertyCondition ret = new PropertyCondition(Interop.PropertyCondition.GreaterThanCondition(arg), true);
+            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
             return ret;
         }
 
@@ -98,8 +98,8 @@ namespace Tizen.NUI
         /// <since_tizen> 4 </since_tizen>
         public static PropertyCondition Inside(float arg0, float arg1)
         {
-            PropertyCondition ret = new PropertyCondition(NDalicPINVOKE.InsideCondition(arg0, arg1), true);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            PropertyCondition ret = new PropertyCondition(Interop.PropertyCondition.InsideCondition(arg0, arg1), true);
+            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
             return ret;
         }
 
@@ -112,8 +112,8 @@ namespace Tizen.NUI
         /// <since_tizen> 4 </since_tizen>
         public static PropertyCondition Outside(float arg0, float arg1)
         {
-            PropertyCondition ret = new PropertyCondition(NDalicPINVOKE.OutsideCondition(arg0, arg1), true);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            PropertyCondition ret = new PropertyCondition(Interop.PropertyCondition.OutsideCondition(arg0, arg1), true);
+            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
             return ret;
         }
 
@@ -126,8 +126,8 @@ namespace Tizen.NUI
         /// <since_tizen> 4 </since_tizen>
         public static PropertyCondition Step(float stepAmount, float initialValue)
         {
-            PropertyCondition ret = new PropertyCondition(NDalicPINVOKE.StepCondition__SWIG_0(stepAmount, initialValue), true);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            PropertyCondition ret = new PropertyCondition(Interop.PropertyCondition.StepCondition__SWIG_0(stepAmount, initialValue), true);
+            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
             return ret;
         }
 
@@ -139,8 +139,8 @@ namespace Tizen.NUI
         /// <since_tizen> 4 </since_tizen>
         public static PropertyCondition Step(float stepAmount)
         {
-            PropertyCondition ret = new PropertyCondition(NDalicPINVOKE.StepCondition__SWIG_1(stepAmount), true);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            PropertyCondition ret = new PropertyCondition(Interop.PropertyCondition.StepCondition__SWIG_1(stepAmount), true);
+            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
             return ret;
         }
 
@@ -177,7 +177,7 @@ namespace Tizen.NUI
                 if (swigCMemOwn)
                 {
                     swigCMemOwn = false;
-                    NDalicPINVOKE.delete_PropertyCondition(swigCPtr);
+                    Interop.PropertyCondition.delete_PropertyCondition(swigCPtr);
                 }
                 swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
             }

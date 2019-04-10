@@ -92,7 +92,7 @@ namespace Tizen.NUI
                 if (swigCMemOwn)
                 {
                     swigCMemOwn = false;
-                    NDalicPINVOKE.delete_uintp(swigCPtr);
+                    Interop.uintp.delete_uintp(swigCPtr);
                 }
                 swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
             }
@@ -101,37 +101,37 @@ namespace Tizen.NUI
         }
 
 
-        public uintp() : this(NDalicPINVOKE.new_uintp(), true)
+        public uintp() : this(Interop.uintp.new_uintp(), true)
         {
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
         }
 
         public void assign(uint value)
         {
-            NDalicPINVOKE.uintp_assign(swigCPtr, value);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            Interop.uintp.uintp_assign(swigCPtr, value);
+            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
         }
 
         public uint value()
         {
-            uint ret = NDalicPINVOKE.uintp_value(swigCPtr);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            uint ret = Interop.uintp.uintp_value(swigCPtr);
+            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
             return ret;
         }
 
         internal SWIGTYPE_p_unsigned_int cast()
         {
-            global::System.IntPtr cPtr = NDalicPINVOKE.uintp_cast(swigCPtr);
+            global::System.IntPtr cPtr = Interop.uintp.uintp_cast(swigCPtr);
             SWIGTYPE_p_unsigned_int ret = (cPtr == global::System.IntPtr.Zero) ? null : new SWIGTYPE_p_unsigned_int(cPtr, false);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
             return ret;
         }
 
         internal static uintp frompointer(SWIGTYPE_p_unsigned_int t)
         {
-            global::System.IntPtr cPtr = NDalicPINVOKE.uintp_frompointer(SWIGTYPE_p_unsigned_int.getCPtr(t));
+            global::System.IntPtr cPtr = Interop.uintp.uintp_frompointer(SWIGTYPE_p_unsigned_int.getCPtr(t));
             uintp ret = (cPtr == global::System.IntPtr.Zero) ? null : new uintp(cPtr, false);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
             return ret;
         }
 

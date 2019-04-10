@@ -91,29 +91,29 @@ namespace Tizen.NUI
                 if (swigCMemOwn)
                 {
                     swigCMemOwn = false;
-                    NDalicManualPINVOKE.delete_FontDescription(swigCPtr);
+                    Interop.FontClient.delete_FontDescription(swigCPtr);
                 }
                 swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
             }
             disposed = true;
         }
 
-        public FontDescription() : this(NDalicManualPINVOKE.new_FontDescription(), true)
+        public FontDescription() : this(Interop.FontClient.new_FontDescription(), true)
         {
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
         }
 
         public string Path
         {
             set
             {
-                NDalicManualPINVOKE.FontDescription_path_set(swigCPtr, value);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                Interop.FontClient.FontDescription_path_set(swigCPtr, value);
+                if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
             }
             get
             {
-                string ret = NDalicManualPINVOKE.FontDescription_path_get(swigCPtr);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                string ret = Interop.FontClient.FontDescription_path_get(swigCPtr);
+                if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
                 return ret;
             }
         }
@@ -122,13 +122,13 @@ namespace Tizen.NUI
         {
             set
             {
-                NDalicManualPINVOKE.FontDescription_family_set(swigCPtr, value);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                Interop.FontClient.FontDescription_family_set(swigCPtr, value);
+                if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
             }
             get
             {
-                string ret = NDalicManualPINVOKE.FontDescription_family_get(swigCPtr);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                string ret = Interop.FontClient.FontDescription_family_get(swigCPtr);
+                if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
                 return ret;
             }
         }
@@ -137,13 +137,13 @@ namespace Tizen.NUI
         {
             set
             {
-                NDalicManualPINVOKE.FontDescription_width_set(swigCPtr, (int)value);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                Interop.FontClient.FontDescription_width_set(swigCPtr, (int)value);
+                if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
             }
             get
             {
-                FontWidthType ret = (FontWidthType)NDalicManualPINVOKE.FontDescription_width_get(swigCPtr);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                FontWidthType ret = (FontWidthType)Interop.FontClient.FontDescription_width_get(swigCPtr);
+                if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
                 return ret;
             }
         }
@@ -152,13 +152,13 @@ namespace Tizen.NUI
         {
             set
             {
-                NDalicManualPINVOKE.FontDescription_weight_set(swigCPtr, (int)value);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                Interop.FontClient.FontDescription_weight_set(swigCPtr, (int)value);
+                if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
             }
             get
             {
-                FontWeightType ret = (FontWeightType)NDalicManualPINVOKE.FontDescription_weight_get(swigCPtr);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                FontWeightType ret = (FontWeightType)Interop.FontClient.FontDescription_weight_get(swigCPtr);
+                if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
                 return ret;
             }
         }
@@ -167,13 +167,13 @@ namespace Tizen.NUI
         {
             set
             {
-                NDalicManualPINVOKE.FontDescription_slant_set(swigCPtr, (int)value);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                Interop.FontClient.FontDescription_slant_set(swigCPtr, (int)value);
+                if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
             }
             get
             {
-                FontSlantType ret = (FontSlantType)NDalicManualPINVOKE.FontDescription_slant_get(swigCPtr);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                FontSlantType ret = (FontSlantType)Interop.FontClient.FontDescription_slant_get(swigCPtr);
+                if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
                 return ret;
             }
         }

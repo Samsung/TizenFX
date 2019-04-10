@@ -31,6 +31,12 @@ namespace Tizen.NUI
         public const int nuiAPIVer = 505;
         public const int reservedVer1 = 0;
         public const int reservedVer2 = 0;
+        
+        [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint = "CSharp_Dali_NativeVersionCheck")]
+        public static extern bool NativeVersionCheck(ref int ver1, ref int ver2, ref int ver3);
+        
+        [global::System.Runtime.InteropServices.DllImport("libdali-csharp-binder.so", EntryPoint = "CSharp_NUI_InternalAPIVersionCheck")]
+        public static extern bool InternalAPIVersionCheck(ref int ver1, ref int ver2, ref int ver3);
 
         static internal bool DaliVersionMatchWithNUI()
         {
@@ -40,7 +46,7 @@ namespace Tizen.NUI
 
             try
             {
-                if (NDalicManualPINVOKE.InternalAPIVersionCheck(ref ver1, ref ver2, ref ver3) == true)
+                if (InternalAPIVersionCheck(ref ver1, ref ver2, ref ver3) == true)
                 {
                     if (ver1 != nuiAPIVer)
                     {
@@ -71,7 +77,7 @@ namespace Tizen.NUI
             int ver2 = -1;
             int ver3 = -1;
 
-            NDalicManualPINVOKE.NativeVersionCheck(ref ver1, ref ver2, ref ver3);
+            NativeVersionCheck(ref ver1, ref ver2, ref ver3);
             //NUILog.Debug($"DALi Version: ({ver1}.{ver2}.{ver3}), NUI API Version: ({nuiAPIVer})");
             NUILog.Error($"NOT Error! Just Showing DALi Version: ({ver1}.{ver2}.{ver3}), NUI API Version: ({nuiAPIVer})");
         }

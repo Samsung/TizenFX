@@ -102,21 +102,21 @@ namespace Tizen.NUI
             disposed = true;
         }
 
-        public EventThreadCallback(CallbackDelegate func) : this(NDalicManualPINVOKE.new_EventThreadCallback(func), true)
+        public EventThreadCallback(CallbackDelegate func) : this(Interop.EventThreadCallback.new_EventThreadCallback(func), true)
         {
-            if (NDalicPINVOKE.SWIGPendingException.Pending)
-                throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            if (SWIGException.SWIGPendingException.Pending)
+                throw SWIGException.SWIGPendingException.Retrieve();
         }
 
         public void Trigger()
         {
             if ((System.IntPtr)swigCPtr != global::System.IntPtr.Zero)
             {
-                NDalicManualPINVOKE.EventThreadCallback_Trigger(swigCPtr);
+                Interop.EventThreadCallback.EventThreadCallback_Trigger(swigCPtr);
             }
 
-            if (NDalicPINVOKE.SWIGPendingException.Pending)
-                throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            if (SWIGException.SWIGPendingException.Pending)
+                throw SWIGException.SWIGPendingException.Retrieve();
         }
     }
 

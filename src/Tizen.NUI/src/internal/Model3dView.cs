@@ -24,7 +24,7 @@ namespace Tizen.NUI
     {
         private global::System.Runtime.InteropServices.HandleRef swigCPtr;
 
-        internal Model3dView(global::System.IntPtr cPtr, bool cMemoryOwn) : base(NDalicPINVOKE.Model3dView_SWIGUpcast(cPtr), cMemoryOwn)
+        internal Model3dView(global::System.IntPtr cPtr, bool cMemoryOwn) : base(Interop.Model3DView.Model3dView_SWIGUpcast(cPtr), cMemoryOwn)
         {
             swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
         }
@@ -58,7 +58,7 @@ namespace Tizen.NUI
                 if (swigCMemOwn)
                 {
                     swigCMemOwn = false;
-                    NDalicPINVOKE.delete_Model3dView(swigCPtr);
+                    Interop.Model3DView.delete_Model3dView(swigCPtr);
                 }
                 swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
             }
@@ -145,7 +145,7 @@ namespace Tizen.NUI
                     if (swigCMemOwn)
                     {
                         swigCMemOwn = false;
-                        NDalicPINVOKE.delete_Model3dView_Property(swigCPtr);
+                        Interop.Model3DView.delete_Model3dView_Property(swigCPtr);
                     }
                     swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
                 }
@@ -154,56 +154,56 @@ namespace Tizen.NUI
             }
 
             /// <since_tizen> 3 </since_tizen>
-            public Property() : this(NDalicPINVOKE.new_Model3dView_Property(), true)
+            public Property() : this(Interop.Model3DView.new_Model3dView_Property(), true)
             {
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
             }
 
             /// <since_tizen> 3 </since_tizen>
-            public static readonly int GEOMETRY_URL = NDalicPINVOKE.Model3dView_Property_GEOMETRY_URL_get();
+            public static readonly int GEOMETRY_URL = Interop.Model3DView.Model3dView_Property_GEOMETRY_URL_get();
             /// <since_tizen> 3 </since_tizen>
-            public static readonly int MATERIAL_URL = NDalicPINVOKE.Model3dView_Property_MATERIAL_URL_get();
+            public static readonly int MATERIAL_URL = Interop.Model3DView.Model3dView_Property_MATERIAL_URL_get();
             /// <since_tizen> 3 </since_tizen>
-            public static readonly int IMAGES_URL = NDalicPINVOKE.Model3dView_Property_IMAGES_URL_get();
+            public static readonly int IMAGES_URL = Interop.Model3DView.Model3dView_Property_IMAGES_URL_get();
             /// <since_tizen> 3 </since_tizen>
-            public static readonly int ILLUMINATION_TYPE = NDalicPINVOKE.Model3dView_Property_ILLUMINATION_TYPE_get();
+            public static readonly int ILLUMINATION_TYPE = Interop.Model3DView.Model3dView_Property_ILLUMINATION_TYPE_get();
             /// <since_tizen> 3 </since_tizen>
-            public static readonly int TEXTURE0_URL = NDalicPINVOKE.Model3dView_Property_TEXTURE0_URL_get();
+            public static readonly int TEXTURE0_URL = Interop.Model3DView.Model3dView_Property_TEXTURE0_URL_get();
             /// <since_tizen> 3 </since_tizen>
-            public static readonly int TEXTURE1_URL = NDalicPINVOKE.Model3dView_Property_TEXTURE1_URL_get();
+            public static readonly int TEXTURE1_URL = Interop.Model3DView.Model3dView_Property_TEXTURE1_URL_get();
             /// <since_tizen> 3 </since_tizen>
-            public static readonly int TEXTURE2_URL = NDalicPINVOKE.Model3dView_Property_TEXTURE2_URL_get();
+            public static readonly int TEXTURE2_URL = Interop.Model3DView.Model3dView_Property_TEXTURE2_URL_get();
             /// <since_tizen> 3 </since_tizen>
-            public static readonly int LIGHT_POSITION = NDalicPINVOKE.Model3dView_Property_LIGHT_POSITION_get();
+            public static readonly int LIGHT_POSITION = Interop.Model3DView.Model3dView_Property_LIGHT_POSITION_get();
 
         }
 
-        public Model3dView() : this(NDalicPINVOKE.Model3dView_New__SWIG_0(), true)
+        public Model3dView() : this(Interop.Model3DView.Model3dView_New__SWIG_0(), true)
         {
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
 
         }
-        public Model3dView(string objUrl, string mtlUrl, string imagesUrl) : this(NDalicPINVOKE.Model3dView_New__SWIG_1(objUrl, mtlUrl, imagesUrl), true)
+        public Model3dView(string objUrl, string mtlUrl, string imagesUrl) : this(Interop.Model3DView.Model3dView_New__SWIG_1(objUrl, mtlUrl, imagesUrl), true)
         {
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
 
         }
-        public Model3dView(Model3dView model3dView) : this(NDalicPINVOKE.new_Model3dView__SWIG_1(Model3dView.getCPtr(model3dView)), true)
+        public Model3dView(Model3dView model3dView) : this(Interop.Model3DView.new_Model3dView__SWIG_1(Model3dView.getCPtr(model3dView)), true)
         {
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
         }
 
         public Model3dView Assign(Model3dView model3dView)
         {
-            Model3dView ret = new Model3dView(NDalicPINVOKE.Model3dView_Assign(swigCPtr, Model3dView.getCPtr(model3dView)), false);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            Model3dView ret = new Model3dView(Interop.Model3DView.Model3dView_Assign(swigCPtr, Model3dView.getCPtr(model3dView)), false);
+            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
             return ret;
         }
 
         public static Model3dView DownCast(BaseHandle handle)
         {
             Model3dView ret =  Registry.GetManagedBaseHandleFromNativePtr(handle) as Model3dView;
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
             return ret;
         }
 

@@ -102,12 +102,12 @@ namespace Tizen.NUI
 
         public AnimatablePropertyRegistration(TypeRegistration registered, string name, int index, PropertyType type) : this(NDalicPINVOKE.new_AnimatablePropertyRegistration__SWIG_0(TypeRegistration.getCPtr(registered), name, index, (int)type), true)
         {
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
         }
 
         public AnimatablePropertyRegistration(TypeRegistration registered, string name, int index, PropertyValue value) : this(NDalicPINVOKE.new_AnimatablePropertyRegistration__SWIG_1(TypeRegistration.getCPtr(registered), name, index, PropertyValue.getCPtr(value)), true)
         {
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
         }
 
     }

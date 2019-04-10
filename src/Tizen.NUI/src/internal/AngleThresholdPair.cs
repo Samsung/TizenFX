@@ -91,7 +91,7 @@ namespace Tizen.NUI
                 if (swigCMemOwn)
                 {
                     swigCMemOwn = false;
-                    NDalicPINVOKE.delete_AngleThresholdPair(swigCPtr);
+                    Interop.AngleThresholdPair.delete_AngleThresholdPair(swigCPtr);
                 }
                 swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
             }
@@ -99,33 +99,33 @@ namespace Tizen.NUI
             disposed = true;
         }
 
-        public AngleThresholdPair() : this(NDalicPINVOKE.new_AngleThresholdPair__SWIG_0(), true)
+        public AngleThresholdPair() : this(Interop.AngleThresholdPair.new_AngleThresholdPair__SWIG_0(), true)
         {
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
         }
 
-        public AngleThresholdPair(Radian t, Radian u) : this(NDalicPINVOKE.new_AngleThresholdPair__SWIG_1(Radian.getCPtr(t), Radian.getCPtr(u)), true)
+        public AngleThresholdPair(Radian t, Radian u) : this(Interop.AngleThresholdPair.new_AngleThresholdPair__SWIG_1(Radian.getCPtr(t), Radian.getCPtr(u)), true)
         {
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
         }
 
-        public AngleThresholdPair(AngleThresholdPair p) : this(NDalicPINVOKE.new_AngleThresholdPair__SWIG_2(AngleThresholdPair.getCPtr(p)), true)
+        public AngleThresholdPair(AngleThresholdPair p) : this(Interop.AngleThresholdPair.new_AngleThresholdPair__SWIG_2(AngleThresholdPair.getCPtr(p)), true)
         {
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
         }
 
         public Radian first
         {
             set
             {
-                NDalicPINVOKE.AngleThresholdPair_first_set(swigCPtr, Radian.getCPtr(value));
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                Interop.AngleThresholdPair.AngleThresholdPair_first_set(swigCPtr, Radian.getCPtr(value));
+                if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
             }
             get
             {
-                global::System.IntPtr cPtr = NDalicPINVOKE.AngleThresholdPair_first_get(swigCPtr);
+                global::System.IntPtr cPtr = Interop.AngleThresholdPair.AngleThresholdPair_first_get(swigCPtr);
                 Radian ret = (cPtr == global::System.IntPtr.Zero) ? null : new Radian(cPtr, false);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
                 return ret;
             }
         }
@@ -134,14 +134,14 @@ namespace Tizen.NUI
         {
             set
             {
-                NDalicPINVOKE.AngleThresholdPair_second_set(swigCPtr, Radian.getCPtr(value));
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                Interop.AngleThresholdPair.AngleThresholdPair_second_set(swigCPtr, Radian.getCPtr(value));
+                if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
             }
             get
             {
-                global::System.IntPtr cPtr = NDalicPINVOKE.AngleThresholdPair_second_get(swigCPtr);
+                global::System.IntPtr cPtr = Interop.AngleThresholdPair.AngleThresholdPair_second_get(swigCPtr);
                 Radian ret = (cPtr == global::System.IntPtr.Zero) ? null : new Radian(cPtr, false);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
                 return ret;
             }
         }

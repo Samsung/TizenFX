@@ -30,12 +30,12 @@ namespace Tizen.NUI
         /// Creates a TapGesture.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        public TapGesture() : this(NDalicPINVOKE.new_TapGesture__SWIG_0(), true)
+        public TapGesture() : this(Interop.TapGesture.new_TapGesture__SWIG_0(), true)
         {
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
         }
 
-        internal TapGesture(global::System.IntPtr cPtr, bool cMemoryOwn) : base(NDalicPINVOKE.TapGesture_SWIGUpcast(cPtr), cMemoryOwn)
+        internal TapGesture(global::System.IntPtr cPtr, bool cMemoryOwn) : base(Interop.TapGesture.TapGesture_SWIGUpcast(cPtr), cMemoryOwn)
         {
             swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
         }
@@ -92,13 +92,13 @@ namespace Tizen.NUI
         {
             set
             {
-                NDalicPINVOKE.TapGesture_numberOfTaps_set(swigCPtr, value);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                Interop.TapGesture.TapGesture_numberOfTaps_set(swigCPtr, value);
+                if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
             }
             get
             {
-                uint ret = NDalicPINVOKE.TapGesture_numberOfTaps_get(swigCPtr);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                uint ret = Interop.TapGesture.TapGesture_numberOfTaps_get(swigCPtr);
+                if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
                 return ret;
             }
         }
@@ -107,13 +107,13 @@ namespace Tizen.NUI
         {
             set
             {
-                NDalicPINVOKE.TapGesture_numberOfTouches_set(swigCPtr, value);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                Interop.TapGesture.TapGesture_numberOfTouches_set(swigCPtr, value);
+                if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
             }
             get
             {
-                uint ret = NDalicPINVOKE.TapGesture_numberOfTouches_get(swigCPtr);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                uint ret = Interop.TapGesture.TapGesture_numberOfTouches_get(swigCPtr);
+                if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
                 return ret;
             }
         }
@@ -122,14 +122,14 @@ namespace Tizen.NUI
         {
             set
             {
-                NDalicPINVOKE.TapGesture_screenPoint_set(swigCPtr, Vector2.getCPtr(value));
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                Interop.TapGesture.TapGesture_screenPoint_set(swigCPtr, Vector2.getCPtr(value));
+                if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
             }
             get
             {
-                global::System.IntPtr cPtr = NDalicPINVOKE.TapGesture_screenPoint_get(swigCPtr);
+                global::System.IntPtr cPtr = Interop.TapGesture.TapGesture_screenPoint_get(swigCPtr);
                 Vector2 ret = (cPtr == global::System.IntPtr.Zero) ? null : new Vector2(cPtr, false);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
                 return ret;
             }
         }
@@ -138,14 +138,14 @@ namespace Tizen.NUI
         {
             set
             {
-                NDalicPINVOKE.TapGesture_localPoint_set(swigCPtr, Vector2.getCPtr(value));
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                Interop.TapGesture.TapGesture_localPoint_set(swigCPtr, Vector2.getCPtr(value));
+                if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
             }
             get
             {
-                global::System.IntPtr cPtr = NDalicPINVOKE.TapGesture_localPoint_get(swigCPtr);
+                global::System.IntPtr cPtr = Interop.TapGesture.TapGesture_localPoint_get(swigCPtr);
                 Vector2 ret = (cPtr == global::System.IntPtr.Zero) ? null : new Vector2(cPtr, false);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
                 return ret;
             }
         }
@@ -163,7 +163,7 @@ namespace Tizen.NUI
         internal static TapGesture GetTapGestureFromPtr(global::System.IntPtr cPtr)
         {
             TapGesture ret = new TapGesture(cPtr, false);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            if (SWIGException.SWIGPendingException.Pending) throw SWIGException.SWIGPendingException.Retrieve();
             return ret;
         }
 
@@ -194,7 +194,7 @@ namespace Tizen.NUI
                 if (swigCMemOwn)
                 {
                     swigCMemOwn = false;
-                    NDalicPINVOKE.delete_TapGesture(swigCPtr);
+                    Interop.TapGesture.delete_TapGesture(swigCPtr);
                 }
                 swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
             }
