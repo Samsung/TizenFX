@@ -507,11 +507,6 @@ namespace Tizen.Content.MediaContent
             Interop.MediaInfo.GetMediaFromDB(mediaId, out var handle).
                 ThrowIfError("Failed to delete MediaInfo.");
 
-            if (handle.IsInvalid)
-            {
-                return false;
-            }
-
             var path = InteropHelper.GetString(handle, Interop.MediaInfo.GetFilePath);
 
             // If we don't check file existence before calling `ScanFile` method,
