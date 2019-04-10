@@ -40,10 +40,13 @@ namespace Tizen.Network.Stc
         {
             get
             {
-                return this.handle == IntPtr.Zero;
+                return (this.handle == IntPtr.Zero);
             }
         }
 
+        /// <summary>
+        /// Release the Stc handle
+        /// </summary>
         protected override bool ReleaseHandle()
         {
             Interop.Stc.Deinitialize(this.handle);
@@ -73,7 +76,7 @@ namespace Tizen.Network.Stc
         }
 
         /// <summary>
-        /// Gets the statistics information of an application, which matched the rule, asynchronously.
+        /// Gets the statistics information of an application, which matched the rule, asynchronously. The rule must contain an Application ID.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
         /// <returns>The Statistics information of the application that used network in between timestamps specified.</returns>
@@ -101,7 +104,7 @@ namespace Tizen.Network.Stc
         }
 
         /// <summary>
-        /// Gets the total statistics information by interface type asynchronously.
+        /// Gets the total statistics information by interface type and according to the given rule, asynchronously.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
         /// <returns>The total statistics information of the applications that used network in between timestamps specified.</returns>

@@ -72,7 +72,7 @@ namespace Tizen.Network.Stc
     /// <summary>
     /// Internal Enumeration for network interface type.
     /// </summary>
-    internal enum NativeInterfaceTypeEnum
+    internal enum NativeNetworkInterface
     {
         /// <summary>
         /// Network interface type is Unknown.
@@ -103,7 +103,7 @@ namespace Tizen.Network.Stc
     /// <summary>
     /// Enumeration for network interface type.
     /// </summary>
-    public enum InterfaceTypeEnum
+    public enum NetworkInterface
     {
         /// <summary>
         /// Network interface type is datacall. 
@@ -254,7 +254,7 @@ namespace Tizen.Network.Stc
     /// <summary>
     /// Enumeration for return type of the callback.
     /// </summary>
-    public enum CallbackRet
+    internal enum CallbackRet
     {
         /// <summary>
         /// Cancel

@@ -36,6 +36,9 @@ namespace Tizen.Network.Stc
             _infoHandle = handle;
         }
 
+        /// <summary>
+        /// Destroy the NetworkStatistics object
+        /// </summary>
         ~NetworkStatistics()
         {
             Dispose(false);
@@ -58,12 +61,14 @@ namespace Tizen.Network.Stc
                 return;
             }
 
-            if (disposing)
+            int ret = Interop.Stc.Info.StatsDestroy(_infoHandle);
+            if (ret != (int)StcError.None)
             {
-                Interop.Stc.Info.StatsDestroy(_infoHandle);
-                _infoHandle = IntPtr.Zero;
+                Log.Error(Globals.LogTag, "Failed to destroy network statistics handle, Error - " + (StcError)ret);
+                StcErrorFactory.ThrowStcException(ret);
             }
 
+            _infoHandle = IntPtr.Zero;
             _disposed = true;
         }
 
@@ -84,7 +89,7 @@ namespace Tizen.Network.Stc
                 if (ret != (int)StcError.None)
                 {
                     Log.Error(Globals.LogTag, "Failed to get AppId from Info, Error - " + (StcError)ret);
-                    return "";
+                    return string.Empty;
                 }
                 return appId;
             }
@@ -107,7 +112,7 @@ namespace Tizen.Network.Stc
                 if (ret != (int)StcError.None)
                 {
                     Log.Error(Globals.LogTag, "Failed to get interface name from info, Error - " + (StcError)ret);
-                    return "";
+                    return string.Empty;
                 }
                 return ifaceName;
             }
@@ -167,23 +172,23 @@ namespace Tizen.Network.Stc
         /// <privilege>http://tizen.org/privilege/network.get</privilege>
         /// <exception cref="NotSupportedException">Thrown while setting this property when Stc is not supported.</exception>
         /// <exception cref="InvalidOperationException">Thrown while setting this value due to an invalid operation.</exception>
-        public InterfaceTypeEnum InterfaceType
+        public NetworkInterface InterfaceType
         {
             get
             {
-                NativeInterfaceTypeEnum ifaceType;
+                NativeNetworkInterface ifaceType;
                 int ret = Interop.Stc.Info.GetInterfaceType(_infoHandle, out ifaceType);
                 if (ret != (int)StcError.None)
                 {
                     Log.Error(Globals.LogTag, "Failed to get Interface type from info, Error - " + (StcError)ret);
                 }
-                if (ifaceType == NativeInterfaceTypeEnum.Unknown)
+                if (ifaceType == NativeNetworkInterface.Unknown)
                 {
                     throw new InvalidOperationException("Interface Type is Unknown.");
                 }
                 else
                 {
-                    return (InterfaceTypeEnum)ifaceType;
+                    return (NetworkInterface)ifaceType;
                 }
             }
         }
@@ -291,10 +296,10 @@ namespace Tizen.Network.Stc
         }
 
         /// <summary>
-        /// A property to get the process state from statistics information.
+        /// A property to get if the app is running as a foreground process, from it's statistics information.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
-        /// <value>Process state.</value>
+        /// <value>Process state is Foreground Process or not.</value>
         /// <privilege>http://tizen.org/privilege/network.get</privilege>
         /// <exception cref="NotSupportedException">Thrown while setting this property when Stc is not supported.</exception>
         /// <exception cref="InvalidOperationException">Thrown while setting this value due to an invalid operation.</exception>

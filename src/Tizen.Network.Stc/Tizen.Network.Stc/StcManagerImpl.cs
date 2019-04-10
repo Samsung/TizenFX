@@ -50,6 +50,9 @@ namespace Tizen.Network.Stc
     internal class StcManagerImpl
     {
         private static StcManagerImpl _instance;
+        private Interop.Stc.StatsInfoCallback _getStatsCb;
+        private Interop.Stc.GetAllStatsFinishedCallback _getAllStatsCb;
+        private Interop.Stc.StatsInfoCallback _getTotalStatsCb;
 
         private StcManagerImpl()
         {
@@ -96,12 +99,12 @@ namespace Tizen.Network.Stc
         {
             if (rule._disposed)
             {
-                throw new ObjectDisposedException("Invalid StcRule instance (Object may have been disposed or released)");
+                throw new ArgumentException("Invalid StcRule object (Object may have been disposed or released).");
             }
 
             TaskCompletionSource<NetworkStatistics> task = new TaskCompletionSource<NetworkStatistics>();
 
-            Interop.Stc.StatsInfoCallback getStatsCb = (int result, IntPtr info, IntPtr userData) =>
+            _getStatsCb = (int result, IntPtr info, IntPtr userData) =>
             {
                 if(result != (int)StcError.None)
                 {
@@ -121,7 +124,7 @@ namespace Tizen.Network.Stc
                 return CallbackRet.Continue;
             };
 
-            int ret = Interop.Stc.GetStats(StcManagerImpl.Instance.GetSafeHandle(), rule._ruleHandle, getStatsCb, IntPtr.Zero);
+            int ret = Interop.Stc.GetStats(StcManagerImpl.Instance.GetSafeHandle(), rule._ruleHandle, _getStatsCb, IntPtr.Zero);
             if (ret != (int)StcError.None)
             {
                 Log.Error(Globals.LogTag, "GetStats() failed , Error - " + (StcError)ret);
@@ -135,12 +138,12 @@ namespace Tizen.Network.Stc
         {
             if (rule._disposed)
             {
-                throw new ObjectDisposedException("Invalid StcRule instance (Object may have been disposed or released)");
+                throw new ArgumentException("Invalid StcRule object (Object may have been disposed or released).");
             }
 
             TaskCompletionSource<IEnumerable<NetworkStatistics>> task = new TaskCompletionSource<IEnumerable<NetworkStatistics>>();
 
-            Interop.Stc.GetAllStatsFinishedCallback getAllStatsCb = (int result, IntPtr infoList, IntPtr userData) =>
+            _getAllStatsCb = (int result, IntPtr infoList, IntPtr userData) =>
             {
                 if(result != (int)StcError.None)
                 {
@@ -150,7 +153,7 @@ namespace Tizen.Network.Stc
 
                 List<NetworkStatistics> statsList = new List<NetworkStatistics>();
 
-                Interop.Stc.StatsInfoCallback getStatsCb = (int resultTemp, IntPtr info, IntPtr userDataTemp) =>
+                Interop.Stc.StatsInfoCallback foreachAllStatsCb = (int resultTemp, IntPtr info, IntPtr userDataTemp) =>
                 {
                     if(resultTemp != (int)StcError.None)
                     {
@@ -170,7 +173,7 @@ namespace Tizen.Network.Stc
                     return CallbackRet.Continue;
                 };
 
-                int retTemp = Interop.Stc.ForeachAllStats(infoList, getStatsCb, IntPtr.Zero);
+                int retTemp = Interop.Stc.ForeachAllStats(infoList, foreachAllStatsCb, IntPtr.Zero);
                 if(retTemp != (int)StcError.None)
                 {
                     Log.Error(Globals.LogTag, "foreachAllStatus() failed , Error - " + (StcError)retTemp);
@@ -181,7 +184,7 @@ namespace Tizen.Network.Stc
                 return;
             };
 
-            int ret = Interop.Stc.GetAllStats(StcManagerImpl.Instance.GetSafeHandle(), rule._ruleHandle, getAllStatsCb, IntPtr.Zero);
+            int ret = Interop.Stc.GetAllStats(StcManagerImpl.Instance.GetSafeHandle(), rule._ruleHandle, _getAllStatsCb, IntPtr.Zero);
             if (ret != (int)StcError.None)
             {
                 Log.Error(Globals.LogTag, "GetAllStatus() failed , Error - " + (StcError)ret);
@@ -195,12 +198,12 @@ namespace Tizen.Network.Stc
         {
             if (rule._disposed)
             {
-                throw new ObjectDisposedException("Invalid StcRule instance (Object may have been disposed or released)");
+                throw new ArgumentException("Invalid StcRule object (Object may have been disposed or released).");
             }
 
             TaskCompletionSource<NetworkStatistics> task = new TaskCompletionSource<NetworkStatistics>();
 
-            Interop.Stc.StatsInfoCallback getStatsCb = (int result, IntPtr info, IntPtr userData) =>
+            _getTotalStatsCb = (int result, IntPtr info, IntPtr userData) =>
             {
                 if(result != (int)StcError.None)
                 {
@@ -220,7 +223,7 @@ namespace Tizen.Network.Stc
                 return CallbackRet.Continue;
             };
 
-            int ret = Interop.Stc.GetTotalStats(StcManagerImpl.Instance.GetSafeHandle(), rule._ruleHandle, getStatsCb, IntPtr.Zero);
+            int ret = Interop.Stc.GetTotalStats(StcManagerImpl.Instance.GetSafeHandle(), rule._ruleHandle, _getTotalStatsCb, IntPtr.Zero);
             if (ret != (int)StcError.None)
             {
                 Log.Error(Globals.LogTag, "GetTotalStats() failed , Error - " + (StcError)ret);

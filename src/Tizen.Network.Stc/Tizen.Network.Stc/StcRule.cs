@@ -21,12 +21,6 @@ using System.Collections.Generic;
 namespace Tizen.Network.Stc
 {
     /// <summary>
-    /// The callback delegate for network statistics information.
-    /// </summary>
-    /// <since_tizen> 6 </since_tizen>
-    public delegate CallbackRet StatisticsCallback(NetworkStatistics info);
-
-    /// <summary>
     /// A class for managing the Stc Rules to match applications.
     /// </summary>
     /// <since_tizen> 6 </since_tizen>
@@ -53,6 +47,9 @@ namespace Tizen.Network.Stc
             }
         }
 
+        /// <summary>
+        /// Destroy the StcRule object
+        /// </summary>
         ~StcRule()
         {
             Dispose(false);
@@ -74,12 +71,15 @@ namespace Tizen.Network.Stc
             {
                 return;
             }
-            if (disposing)
+
+            int ret = Interop.Stc.Rule.Destroy(_ruleHandle);
+            if (ret != (int)StcError.None)
             {
-                Interop.Stc.Rule.Destroy(_ruleHandle);
-                _ruleHandle = IntPtr.Zero;
+                Log.Error(Globals.LogTag, "Failed to destroy Rule handle, Error - " + (StcError)ret);
+                StcErrorFactory.ThrowStcException(ret);
             }
 
+            _ruleHandle = IntPtr.Zero;
             _disposed = true;
         }
 
@@ -100,7 +100,7 @@ namespace Tizen.Network.Stc
                 if (ret != (int)StcError.None)
                 {
                     Log.Error(Globals.LogTag, "Failed to get AppId, Error - " + (StcError)ret);
-                    return "";
+                    return string.Empty;
                 }
                 return appId;
             }
@@ -196,23 +196,23 @@ namespace Tizen.Network.Stc
         /// <privilege>http://tizen.org/privilege/network.get</privilege>
         /// <exception cref="NotSupportedException">Thrown while setting this property when Stc is not supported.</exception>
         /// <exception cref="InvalidOperationException">Thrown while setting this value due to an invalid operation.</exception>
-        public InterfaceTypeEnum InterfaceType
+        public NetworkInterface InterfaceType
         {
             get
             {
-                NativeInterfaceTypeEnum ifaceType;
+                NativeNetworkInterface ifaceType;
                 int ret = Interop.Stc.Rule.GetInterfaceType(_ruleHandle, out ifaceType);
                 if (ret != (int)StcError.None)
                 {
                     Log.Error(Globals.LogTag, "Failed to get Interface type, Error - " + (StcError)ret);
                 }
-                if (ifaceType == NativeInterfaceTypeEnum.Unknown)
+                if (ifaceType == NativeNetworkInterface.Unknown)
                 {
                     throw new InvalidOperationException("Interface Type is Unknown.");
                 }
                 else
                 {
-                    return (InterfaceTypeEnum)ifaceType;
+                    return (NetworkInterface)ifaceType;
                 }
             }
             set
@@ -221,7 +221,7 @@ namespace Tizen.Network.Stc
                 {
                     throw new ObjectDisposedException("Invalid StcRule instance (Object may have been disposed or released)");
                 }
-                int ret = Interop.Stc.Rule.SetInterfaceType(_ruleHandle, (NativeInterfaceTypeEnum)value);
+                int ret = Interop.Stc.Rule.SetInterfaceType(_ruleHandle, (NativeNetworkInterface)value);
                 if (ret != (int)StcError.None)
                 {
                     Log.Error(Globals.LogTag, "Failed to set Interface type, Error - " + (StcError)ret);

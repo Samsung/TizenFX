@@ -64,9 +64,9 @@ internal static partial class Interop
             [DllImport(Libraries.Stc,EntryPoint = "stc_stats_rule_get_time_interval")]
             internal static extern int GetTimeInterval(IntPtr rule, out DateTime from, out DateTime to);
             [DllImport(Libraries.Stc,EntryPoint = "stc_stats_rule_set_iface_type")]
-            internal static extern int SetInterfaceType(IntPtr rule, NativeInterfaceTypeEnum ifaceType);
+            internal static extern int SetInterfaceType(IntPtr rule, NativeNetworkInterface ifaceType);
             [DllImport(Libraries.Stc,EntryPoint = "stc_stats_rule_get_iface_type")]
-            internal static extern int GetInterfaceType(IntPtr rule, out NativeInterfaceTypeEnum ifaceType);
+            internal static extern int GetInterfaceType(IntPtr rule, out NativeNetworkInterface ifaceType);
             [DllImport(Libraries.Stc,EntryPoint = "stc_stats_rule_set_time_period")]
             internal static extern int SetTimePeriod(IntPtr rule, NativeTimePeriodType timePeriod);
             [DllImport(Libraries.Stc,EntryPoint = "stc_stats_rule_get_time_period")]
@@ -85,7 +85,7 @@ internal static partial class Interop
             [DllImport(Libraries.Stc,EntryPoint = "stc_stats_info_get_time_interval")]
             internal static extern int GetTimeInterval(IntPtr info, out DateTime from, out DateTime to);
             [DllImport(Libraries.Stc,EntryPoint = "stc_stats_info_get_iface_type")]
-            internal static extern int GetInterfaceType(IntPtr info, out NativeInterfaceTypeEnum ifaceType);
+            internal static extern int GetInterfaceType(IntPtr info, out NativeNetworkInterface ifaceType);
             [DllImport(Libraries.Stc,EntryPoint = "stc_stats_info_get_counter")]
             internal static extern int GetCounter(IntPtr info, out long incoming, out long outgoing);
             [DllImport(Libraries.Stc,EntryPoint = "stc_stats_info_get_roaming_type")]
