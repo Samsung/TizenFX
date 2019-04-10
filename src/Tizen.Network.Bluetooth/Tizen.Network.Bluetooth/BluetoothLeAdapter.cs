@@ -275,7 +275,7 @@ namespace Tizen.Network.Bluetooth {
         {
             get
             {
-                return GetServiceUuid(BluetoothLePacketType.BluetoothLeAdvertisingPacket);
+                return GetServiceUuid(_packetType);
             }
         }
 
@@ -315,7 +315,7 @@ namespace Tizen.Network.Bluetooth {
         {
             get
             {
-                return GetDeviceName(BluetoothLePacketType.BluetoothLeAdvertisingPacket);
+                return GetDeviceName(_packetType);
             }
         }
 
@@ -355,7 +355,7 @@ namespace Tizen.Network.Bluetooth {
         {
             get
             {
-                return GetTxPowerLevel(BluetoothLePacketType.BluetoothLeAdvertisingPacket);
+                return GetTxPowerLevel(_packetType);
             }
         }
 
@@ -394,7 +394,7 @@ namespace Tizen.Network.Bluetooth {
         {
             get
             {
-                return GetServiceSolicitationUuid(BluetoothLePacketType.BluetoothLeAdvertisingPacket);
+                return GetServiceSolicitationUuid(_packetType);
             }
         }
 
@@ -433,7 +433,7 @@ namespace Tizen.Network.Bluetooth {
         {
             get
             {
-                return GetAppearance(BluetoothLePacketType.BluetoothLeAdvertisingPacket);
+                return GetAppearance(_packetType);
             }
         }
 
@@ -472,7 +472,7 @@ namespace Tizen.Network.Bluetooth {
         {
             get
             {
-                return GetManufacturerData(BluetoothLePacketType.BluetoothLeAdvertisingPacket);
+                return GetManufacturerData(_packetType);
             }
         }
 
@@ -509,7 +509,7 @@ namespace Tizen.Network.Bluetooth {
         [Obsolete("Deprecated since API level 6. Please use GetServiceDataList() method on BluetoothLeDevice.")]
         public IEnumerable<BluetoothLeServiceData> GetServiceDataList()
         {
-            return GetServiceDataList(BluetoothLePacketType.BluetoothLeAdvertisingPacket);
+            return GetServiceDataList(_packetType);
         }
 
         /// <summary>
