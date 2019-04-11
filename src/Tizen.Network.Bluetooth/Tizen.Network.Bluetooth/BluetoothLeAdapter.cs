@@ -292,12 +292,7 @@ namespace Tizen.Network.Bluetooth {
         /// <since_tizen> 6 </since_tizen>
         public IEnumerable<string> GetServiceUuid(BluetoothLePacketType packetType)
         {
-            if (BluetoothAdapter.IsBluetoothEnabled && Globals.IsInitialize)
-            {
-                Log.Info(Globals.LogTag, "Retrieving Service uuid- ");
-                return BluetoothLeImplAdapter.Instance.GetLeScanResultServiceUuids(_scanData, packetType);
-            }
-            return null;
+            return BluetoothLeImplAdapter.Instance.GetLeScanResultServiceUuids(_scanData, packetType);
         }
 
         /// <summary>
@@ -332,12 +327,7 @@ namespace Tizen.Network.Bluetooth {
         /// <since_tizen> 6 </since_tizen>
         public string GetDeviceName(BluetoothLePacketType packetType)
         {
-            Log.Info(Globals.LogTag, "Retrieving device name- ");
-            if (BluetoothAdapter.IsBluetoothEnabled && Globals.IsInitialize)
-            {
-                return BluetoothLeImplAdapter.Instance.GetLeScanResultDeviceName(_scanData, packetType);
-            }
-            return null;
+            return BluetoothLeImplAdapter.Instance.GetLeScanResultDeviceName(_scanData, packetType);
         }
 
         /// <summary>
@@ -372,11 +362,7 @@ namespace Tizen.Network.Bluetooth {
         /// <since_tizen> 6 </since_tizen>
         public int GetTxPowerLevel(BluetoothLePacketType packetType)
         {
-            if (BluetoothAdapter.IsBluetoothEnabled && Globals.IsInitialize)
-            {
-                return BluetoothLeImplAdapter.Instance.GetScanResultTxPowerLevel(_scanData, packetType);
-            }
-            return -1;
+            return BluetoothLeImplAdapter.Instance.GetScanResultTxPowerLevel(_scanData, packetType);
         }
 
         /// <summary>
@@ -411,11 +397,7 @@ namespace Tizen.Network.Bluetooth {
         /// <since_tizen> 6 </since_tizen>
         public IEnumerable<string> GetServiceSolicitationUuid(BluetoothLePacketType packetType)
         {
-            if (BluetoothAdapter.IsBluetoothEnabled && Globals.IsInitialize)
-            {
-                return BluetoothLeImplAdapter.Instance.GetScanResultSvcSolicitationUuids(_scanData, packetType);
-            }
-            return null;
+            return BluetoothLeImplAdapter.Instance.GetScanResultSvcSolicitationUuids(_scanData, packetType);
         }
 
         /// <summary>
@@ -450,11 +432,7 @@ namespace Tizen.Network.Bluetooth {
         /// <since_tizen> 6 </since_tizen>
         public int GetAppearance(BluetoothLePacketType packetType)
         {
-            if (BluetoothAdapter.IsBluetoothEnabled && Globals.IsInitialize)
-            {
-                return BluetoothLeImplAdapter.Instance.GetScanResultAppearance(_scanData, packetType);
-            }
-            return -1;
+            return BluetoothLeImplAdapter.Instance.GetScanResultAppearance(_scanData, packetType);
         }
 
         /// <summary>
@@ -489,11 +467,7 @@ namespace Tizen.Network.Bluetooth {
         /// <since_tizen> 6 </since_tizen>
         public ManufacturerData GetManufacturerData(BluetoothLePacketType packetType)
         {
-            if (BluetoothAdapter.IsBluetoothEnabled && Globals.IsInitialize)
-            {
-                return BluetoothLeImplAdapter.Instance.GetScanResultManufacturerData(_scanData, packetType);
-            }
-            return null;
+            return BluetoothLeImplAdapter.Instance.GetScanResultManufacturerData(_scanData, packetType);
         }
 
         /// <summary>
@@ -524,12 +498,7 @@ namespace Tizen.Network.Bluetooth {
         /// <since_tizen> 6 </since_tizen>
         public IEnumerable<BluetoothLeServiceData> GetServiceDataList(BluetoothLePacketType packetType)
         {
-            int serviceCount = 0;
-            if (BluetoothAdapter.IsBluetoothEnabled && Globals.IsInitialize)
-            {
-                return BluetoothLeImplAdapter.Instance.GetScanResultServiceDataList(_scanData, packetType, out serviceCount);
-            }
-            return null;
+            return BluetoothLeImplAdapter.Instance.GetScanResultServiceDataList(_scanData, packetType);
         }
 
         /// <summary>

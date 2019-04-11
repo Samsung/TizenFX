@@ -203,45 +203,64 @@ namespace Tizen.Network.Bluetooth
 
         internal IList<string> GetLeScanResultServiceUuids(BluetoothLeScanData scanData, BluetoothLePacketType packetType)
         {
-            IntPtr uuidListArray = IntPtr.Zero;
-            int count = -1;
-
-            BluetoothLeScanDataStruct scanDataStruct = BluetoothUtils.ConvertLeScanDataToStruct(scanData);
-
-            int ret = Interop.Bluetooth.GetScanResultServiceUuid(ref scanDataStruct, packetType,
-                                                ref uuidListArray, ref count);
-            if (ret != (int)BluetoothError.None)
-            {
-                Log.Info(Globals.LogTag, "Failed to service uuids list- " + (BluetoothError)ret);
-                return null;
-            }
-
-            Log.Info(Globals.LogTag, "count of uuids :  " + count);
-
-            IntPtr[] uuidList = new IntPtr[count];
-            Marshal.Copy(uuidListArray, uuidList, 0, count);
             IList<string> list = new List<string>();
-            foreach(IntPtr uuids in uuidList)
+
+            if (BluetoothAdapter.IsBluetoothEnabled && Globals.IsInitialize)
             {
-                list.Add(Marshal.PtrToStringAnsi(uuids));
-                Interop.Libc.Free(uuids);
+                IntPtr uuidListArray = IntPtr.Zero;
+                int count = -1;
+
+                BluetoothLeScanDataStruct scanDataStruct = BluetoothUtils.ConvertLeScanDataToStruct(scanData);
+
+                int ret = Interop.Bluetooth.GetScanResultServiceUuid(ref scanDataStruct, packetType,
+                                                    ref uuidListArray, ref count);
+                if (ret != (int)BluetoothError.None)
+                {
+                    Log.Info(Globals.LogTag, "Failed to service uuids list- " + (BluetoothError)ret);
+                    BluetoothErrorFactory.ThrowBluetoothException(ret);
+                    return list;
+                }
+
+                Log.Info(Globals.LogTag, "count of uuids :  " + count);
+
+                IntPtr[] uuidList = new IntPtr[count];
+                Marshal.Copy(uuidListArray, uuidList, 0, count);
+                foreach (IntPtr uuids in uuidList)
+                {
+                    list.Add(Marshal.PtrToStringAnsi(uuids));
+                    Interop.Libc.Free(uuids);
+                }
+
+                Interop.Libc.Free(uuidListArray);
+            }
+            else
+            {
+                BluetoothErrorFactory.ThrowBluetoothException((int)BluetoothError.NotEnabled);
             }
 
-            Interop.Libc.Free(uuidListArray);
             return list;
         }
 
         internal string GetLeScanResultDeviceName(BluetoothLeScanData scanData, BluetoothLePacketType packetType)
         {
-            string deviceName;
+            string deviceName = null;
 
-            BluetoothLeScanDataStruct scanDataStruct = BluetoothUtils.ConvertLeScanDataToStruct (scanData);
+            if (BluetoothAdapter.IsBluetoothEnabled && Globals.IsInitialize)
+            {
+                BluetoothLeScanDataStruct scanDataStruct = BluetoothUtils.ConvertLeScanDataToStruct(scanData);
 
-            int ret = Interop.Bluetooth.GetLeScanResultDeviceName(ref scanDataStruct, packetType, out deviceName);
-            if (ret != (int)BluetoothError.None) {
-                Log.Error(Globals.LogTag, "Failed to get Device name- " + (BluetoothError)ret);
-                return null;
+                int ret = Interop.Bluetooth.GetLeScanResultDeviceName(ref scanDataStruct, packetType, out deviceName);
+                if (ret != (int)BluetoothError.None)
+                {
+                    Log.Error(Globals.LogTag, "Failed to get Device name- " + (BluetoothError)ret);
+                    BluetoothErrorFactory.ThrowBluetoothException(ret);
+                }
             }
+            else
+            {
+                BluetoothErrorFactory.ThrowBluetoothException((int)BluetoothError.NotEnabled);
+            }   
+
             Log.Info (Globals.LogTag, "Device name " + deviceName);
             return deviceName;
         }
@@ -249,78 +268,105 @@ namespace Tizen.Network.Bluetooth
         internal int GetScanResultTxPowerLevel(BluetoothLeScanData scanData, BluetoothLePacketType packetType)
         {
             int powerLevel = -1;
-            BluetoothLeScanDataStruct scanDataStruct = BluetoothUtils.ConvertLeScanDataToStruct (scanData);
 
-            int ret = Interop.Bluetooth.GetScanResultTxPowerLevel(ref scanDataStruct, packetType, out powerLevel);
-            if (ret != (int)BluetoothError.None) {
-                Log.Error(Globals.LogTag, "Failed to get tx power level- " + (BluetoothError)ret);
+            if (BluetoothAdapter.IsBluetoothEnabled && Globals.IsInitialize)
+            {
+                BluetoothLeScanDataStruct scanDataStruct = BluetoothUtils.ConvertLeScanDataToStruct(scanData);
+
+                int ret = Interop.Bluetooth.GetScanResultTxPowerLevel(ref scanDataStruct, packetType, out powerLevel);
+                if (ret != (int)BluetoothError.None)
+                {
+                    Log.Error(Globals.LogTag, "Failed to get tx power level- " + (BluetoothError)ret);
+                    BluetoothErrorFactory.ThrowBluetoothException(ret);
+                }
             }
+            else
+            {
+                BluetoothErrorFactory.ThrowBluetoothException((int)BluetoothError.NotEnabled);
+            }
+
             Log.Info (Globals.LogTag, "TxPowerLevel is --- " + powerLevel);
             return powerLevel;
         }
 
         internal IList<string> GetScanResultSvcSolicitationUuids(BluetoothLeScanData scanData, BluetoothLePacketType packetType)
         {
-            IntPtr uuidListArray;
-            int count;
-
-            BluetoothLeScanDataStruct scanDataStruct = BluetoothUtils.ConvertLeScanDataToStruct(scanData);
-
-            int ret = Interop.Bluetooth.GetScaResultSvcSolicitationUuids(ref scanDataStruct, packetType, out uuidListArray, out count);
-            if (ret != (int)BluetoothError.None) {
-                Log.Error(Globals.LogTag, "Failed to get service solicitation uuids " + (BluetoothError)ret);
-                return null;
-            }
-
-            IntPtr[] uuidList = new IntPtr[count];
-            Marshal.Copy(uuidListArray, uuidList, 0, count);
             IList<string> list = new List<string>();
-            foreach(IntPtr uuids in uuidList)
+
+            if (BluetoothAdapter.IsBluetoothEnabled && Globals.IsInitialize)
             {
-                list.Add(Marshal.PtrToStringAnsi(uuids));
-                Interop.Libc.Free(uuids);
+                IntPtr uuidListArray;
+                int count;
+
+                BluetoothLeScanDataStruct scanDataStruct = BluetoothUtils.ConvertLeScanDataToStruct(scanData);
+
+                int ret = Interop.Bluetooth.GetScaResultSvcSolicitationUuids(ref scanDataStruct, packetType, out uuidListArray, out count);
+                if (ret != (int)BluetoothError.None)
+                {
+                    Log.Error(Globals.LogTag, "Failed to get service solicitation uuids " + (BluetoothError)ret);
+                    BluetoothErrorFactory.ThrowBluetoothException(ret);
+                    return list;
+                }
+
+                IntPtr[] uuidList = new IntPtr[count];
+                Marshal.Copy(uuidListArray, uuidList, 0, count);
+                foreach (IntPtr uuids in uuidList)
+                {
+                    list.Add(Marshal.PtrToStringAnsi(uuids));
+                    Interop.Libc.Free(uuids);
+                }
+
+                Interop.Libc.Free(uuidListArray);
+            }
+            else
+            {
+                BluetoothErrorFactory.ThrowBluetoothException((int)BluetoothError.NotEnabled);
             }
 
-            Interop.Libc.Free(uuidListArray);
             return list;
         }
 
-        internal IList<BluetoothLeServiceData> GetScanResultServiceDataList(BluetoothLeScanData scanData,
-                            BluetoothLePacketType packetType, out int serviceCount)
+        internal IList<BluetoothLeServiceData> GetScanResultServiceDataList(BluetoothLeScanData scanData, BluetoothLePacketType packetType)
         {
-            int ret = 0;
-            IntPtr serviceListArray;
-            _serviceListCount = 0;
-
-            BluetoothLeScanDataStruct scanDataStruct = BluetoothUtils.ConvertLeScanDataToStruct (scanData);
-
-            ret = Interop.Bluetooth.GetScanResultServiceDataList(ref scanDataStruct, packetType, out serviceListArray, out _serviceListCount);
-            Log.Info(Globals.LogTag, "ServiceListCount :  " + _serviceListCount + " PacketType : " + packetType + " Error: " + (BluetoothError)ret);
-            if (ret != (int)BluetoothError.None)
+            if (BluetoothAdapter.IsBluetoothEnabled && Globals.IsInitialize)
             {
-                Log.Info(Globals.LogTag, "Failed to get Service Data List, Error - " + (BluetoothError)ret);
-                serviceCount = 0;
-                Marshal.FreeHGlobal(serviceListArray);
+                int ret = 0;
+                IntPtr serviceListArray;
+                _serviceListCount = 0;
+
+                BluetoothLeScanDataStruct scanDataStruct = BluetoothUtils.ConvertLeScanDataToStruct(scanData);
+
+                ret = Interop.Bluetooth.GetScanResultServiceDataList(ref scanDataStruct, packetType, out serviceListArray, out _serviceListCount);
+                Log.Info(Globals.LogTag, "ServiceListCount :  " + _serviceListCount + " PacketType : " + packetType + " Error: " + (BluetoothError)ret);
+                if (ret != (int)BluetoothError.None)
+                {
+                    Log.Info(Globals.LogTag, "Failed to get Service Data List, Error - " + (BluetoothError)ret);
+                    Marshal.FreeHGlobal(serviceListArray);
+                    Marshal.FreeHGlobal(scanDataStruct.AdvData);
+                    Marshal.FreeHGlobal(scanDataStruct.ScanData);
+                    BluetoothErrorFactory.ThrowBluetoothException(ret);
+                    return _list;
+                }
+
+                BluetoothLeServiceDataStruct[] svcList = new BluetoothLeServiceDataStruct[_serviceListCount];
+                int sizePointerToABC = Marshal.SizeOf(new BluetoothLeServiceDataStruct());
+                for (int i = 0; i < _serviceListCount; i++)
+                {
+                    svcList[i] = (BluetoothLeServiceDataStruct)Marshal.PtrToStructure(new IntPtr(serviceListArray.ToInt32() + (i * sizePointerToABC)), typeof(BluetoothLeServiceDataStruct));
+                    Log.Info(Globals.LogTag, " Uuid : " + svcList[i].ServiceUuid + "length :  " + svcList[i].ServiceDataLength);
+
+                    _list.Add(BluetoothUtils.ConvertStructToLeServiceData(svcList[i]));
+                }
+
+                Interop.Libc.Free(serviceListArray);
                 Marshal.FreeHGlobal(scanDataStruct.AdvData);
                 Marshal.FreeHGlobal(scanDataStruct.ScanData);
-                return null;
             }
-
-            BluetoothLeServiceDataStruct[] svcList = new BluetoothLeServiceDataStruct[_serviceListCount];
-            int sizePointerToABC = Marshal.SizeOf(new BluetoothLeServiceDataStruct());
-            for (int i = 0; i < _serviceListCount; i++)
+            else
             {
-                svcList[i] = (BluetoothLeServiceDataStruct)Marshal.PtrToStructure(new IntPtr(serviceListArray.ToInt32() + (i * sizePointerToABC)), typeof(BluetoothLeServiceDataStruct));
-                Log.Info(Globals.LogTag, " Uuid : " + svcList[i].ServiceUuid + "length :  " + svcList[i].ServiceDataLength);
-
-                _list.Add(BluetoothUtils.ConvertStructToLeServiceData(svcList[i]));
+                BluetoothErrorFactory.ThrowBluetoothException((int)BluetoothError.NotEnabled);
             }
 
-            serviceCount = _serviceListCount;
-
-            Interop.Libc.Free(serviceListArray);
-            Marshal.FreeHGlobal(scanDataStruct.AdvData);
-            Marshal.FreeHGlobal(scanDataStruct.ScanData);
             return _list;
         }
 
@@ -346,40 +392,58 @@ namespace Tizen.Network.Bluetooth
 
         internal int GetScanResultAppearance(BluetoothLeScanData scanData, BluetoothLePacketType packetType)
         {
-            int appearance;
+            int appearance = -1;
 
-            BluetoothLeScanDataStruct scanDataStruct = BluetoothUtils.ConvertLeScanDataToStruct (scanData);
+            if (BluetoothAdapter.IsBluetoothEnabled && Globals.IsInitialize)
+            {
+                BluetoothLeScanDataStruct scanDataStruct = BluetoothUtils.ConvertLeScanDataToStruct(scanData);
 
-            int ret = Interop.Bluetooth.GetScanResultAppearance(ref scanDataStruct, packetType, out appearance);
-            if (ret != (int)BluetoothError.None) {
-                Log.Error(Globals.LogTag, "Failed to get Appearance value- " + (BluetoothError)ret);
+                int ret = Interop.Bluetooth.GetScanResultAppearance(ref scanDataStruct, packetType, out appearance);
+                if (ret != (int)BluetoothError.None)
+                {
+                    Log.Error(Globals.LogTag, "Failed to get Appearance value- " + (BluetoothError)ret);
+                    BluetoothErrorFactory.ThrowBluetoothException(ret);
+                }
             }
+            else
+            {
+                BluetoothErrorFactory.ThrowBluetoothException((int)BluetoothError.NotEnabled);
+            }
+
             return appearance;
         }
 
         internal ManufacturerData GetScanResultManufacturerData(BluetoothLeScanData scanData, BluetoothLePacketType packetType)
         {
-            int dataId = 0;
-            int dataLength = 0;
-            IntPtr manufData;
-
-            BluetoothLeScanDataStruct scanDataStruct = BluetoothUtils.ConvertLeScanDataToStruct (scanData);
             ManufacturerData data = new ManufacturerData();
 
-            int ret = Interop.Bluetooth.GetScanResultManufacturerData(ref scanDataStruct, packetType, out dataId,
-                out manufData, out dataLength);
-            if (ret != (int)BluetoothError.None)
+            if (BluetoothAdapter.IsBluetoothEnabled && Globals.IsInitialize)
             {
-                Log.Error(Globals.LogTag, "Failed to get Manufacturer data - " + (BluetoothError)ret);
-                return null;
-            }
+                int dataId = 0;
+                int dataLength = 0;
+                IntPtr manufData;
 
-            data.Id = dataId;
-            data.DataLength = dataLength;
-            if (data.DataLength > 0)
+                BluetoothLeScanDataStruct scanDataStruct = BluetoothUtils.ConvertLeScanDataToStruct(scanData);
+                
+                int ret = Interop.Bluetooth.GetScanResultManufacturerData(ref scanDataStruct, packetType, out dataId, out manufData, out dataLength);
+                if (ret != (int)BluetoothError.None)
+                {
+                    Log.Error(Globals.LogTag, "Failed to get Manufacturer data - " + (BluetoothError)ret);
+                    BluetoothErrorFactory.ThrowBluetoothException(ret);
+                    return data;
+                }
+
+                data.Id = dataId;
+                data.DataLength = dataLength;
+                if (data.DataLength > 0)
+                {
+                    data.Data = new byte[data.DataLength];
+                    Marshal.Copy(manufData, data.Data, 0, data.DataLength);
+                }
+            }
+            else
             {
-                data.Data = new byte[data.DataLength];
-                Marshal.Copy(manufData, data.Data, 0, data.DataLength);
+                BluetoothErrorFactory.ThrowBluetoothException((int)BluetoothError.NotEnabled);
             }
 
             return data;
