@@ -244,7 +244,7 @@ internal static partial class Interop
                             BluetoothLePacketType packetType, out int txPowerLevel);
 
         [DllImport(Libraries.Bluetooth, EntryPoint = "bt_adapter_le_get_scan_result_service_solicitation_uuids")]
-        public static extern int GetScaResultSvcSolicitationUuids(ref BluetoothLeScanDataStruct scanData,
+        public static extern int GetScanResultSvcSolicitationUuids(ref BluetoothLeScanDataStruct scanData,
                             BluetoothLePacketType packetType, out IntPtr uuids, out int count);
 
         [DllImport(Libraries.Bluetooth, EntryPoint = "bt_adapter_le_get_scan_result_service_data_list")]
